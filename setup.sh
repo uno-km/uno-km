@@ -21,11 +21,11 @@ OS=$(uname -s)
 ARCH=$(uname -m)
 PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
 
-# 🏠 AMEVA 홈 디렉토리
+# 🏠 AMEVA 홈 디렉토리 (모두 소문자)
 if [ "$OS" = "Darwin" ]; then
-    AMEVA_HOME="${HOME}/AMEVA"
+    AMEVA_HOME="${HOME}/ameva"
 elif [ "$OS" = "Linux" ]; then
-    AMEVA_HOME="${HOME}/AMEVA"
+    AMEVA_HOME="${HOME}/ameva"
 else
     echo "❌ Unsupported OS: $OS"
     exit 1
@@ -40,11 +40,11 @@ print_banner() {
     
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
-║                     ███    ███  ███████ ██    ██  █████                  ║
-║                     ████  ████  ██      ██    ██ ██   ██                 ║
-║                     ██ ████ ██  █████   ██    ██ ███████                 ║
-║                     ██  ██  ██  ██       ██  ██  ██   ██                 ║
-║                     ██      ██  ███████  ██ ██   ██   ██                 ║
+║               █████  ███    ███ ███████ ██    ██  █████                   ║
+║              ██   ██ ████  ████ ██      ██    ██ ██   ██                  ║
+║              ███████ ██ ████ ██ █████   ██    ██ ███████                  ║
+║              ██   ██ ██  ██  ██ ██       ██  ██  ██   ██                  ║
+║              ██   ██ ██      ██ ███████   ██ ██   ██   ██                  ║
 ║                                                                           ║
 ║                   🎮 AMEVA Universe Setup Installer 🎮                   ║
 ║              Welcome to the AMEVA AI Ecosystem Portal!                   ║
@@ -104,7 +104,7 @@ fi
 sleep 1
 
 ################################################################################
-# Phase 2: 폴더 구조 생성
+# Phase 2: 폴더 구조 생성 (모두 소문자)
 ################################################################################
 
 print_section "PHASE 2: CREATING DIRECTORY STRUCTURE"
