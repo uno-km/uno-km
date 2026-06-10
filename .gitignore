@@ -1,0 +1,88 @@
+# ==========================================
+# AMEVA Project Git Ignore
+# ==========================================
+
+# Python Virtual Environments
+venv/
+env/
+env_ai/
+.venv/
+ENV/
+Active_Resources/
+
+# Python Cache & Builds
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Large Machine Learning Models
+*.gguf
+*.bin
+*.pt
+*.pth
+*.onnx
+models/
+models/llm/
+models/vlm/
+models/stt/
+models/tts/
+
+# Local Run Artifacts, Caches & Logs
+logs/
+*.log
+cache/
+tmp/
+C:/ameva/
+config.json
+
+# Pytest / Coverage / Linting
+.target/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+pylintrc
+jaxshare/
+
+# Editors & IDEs (VS Code, PyCharm, Visual Studio)
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln
+*.docstates
+.vs/
+*.ipch
+*.db
+*.opendb
+
+# OS specific files
+Thumbs.db
+db.json
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
