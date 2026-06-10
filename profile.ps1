@@ -57,6 +57,24 @@ function Initialize-AmelvaEnvironment {
     Write-Host "  AMEVA_HOME: $AmelvaHome`n" -ForegroundColor Green
 }
 
+function Activate-AmelvaVenv {
+    <#
+    .SYNOPSIS
+        AMEVA Virtual Environment (env_ai) 활성화
+    #>
+    $activatePath = "$env:AMEVA_HOME\env_ai\Scripts\Activate.ps1"
+    if (Test-Path $activatePath) {
+        . $activatePath
+    } else {
+        Write-Host "❌ AMEVA virtual environment not found at $env:AMEVA_HOME\env_ai" -ForegroundColor Red
+    }
+}
+
+# 단축 명령어 별칭 설정
+Set-Alias -Name act -Value Activate-AmelvaVenv -Force
+Set-Alias -Name activate -Value Activate-AmelvaVenv -Force
+Set-Alias -Name env_ai -Value Activate-AmelvaVenv -Force
+
 function Start-AmelvaAPI {
     <#
     .SYNOPSIS
@@ -66,7 +84,13 @@ function Start-AmelvaAPI {
     if (Test-Path $projectPath) {
         Write-Host "🚀 Starting AMEVA API Server...`n" -ForegroundColor Green
         Push-Location $projectPath
-        python main.py
+        
+        $venvPython = "$env:AMEVA_HOME\env_ai\Scripts\python.exe"
+        if (Test-Path $venvPython) {
+            & $venvPython main.py
+        } else {
+            python main.py
+        }
         Pop-Location
     } else {
         Write-Host "❌ AMEVA-Model-Nexus not found at $projectPath" -ForegroundColor Red

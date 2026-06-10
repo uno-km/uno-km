@@ -66,7 +66,7 @@ def run_cuda_test():
     
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.01)
-    scaler = torch.amp.GradScaler('cuda')
+    scaler = torch.amp.GradScaler(device_type='cuda')
     
     inputs = torch.randn(128, 2000, device=device)
     targets = torch.randn(128, 10, device=device)
@@ -74,7 +74,7 @@ def run_cuda_test():
     try:
         for epoch in range(1, 6):
             optimizer.zero_grad()
-            with torch.amp.autocast('cuda'):
+            with torch.amp.autocast(device_type='cuda'):
                 outputs = model(inputs)
                 loss = criterion(outputs, targets)
             

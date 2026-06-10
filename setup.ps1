@@ -1,4 +1,4 @@
-# =============================================================================
+﻿# =============================================================================
 # 🎮 AMEVA Universe Setup — PowerShell Edition 🎮
 # 한번의 커맨드로 모든 Windows AMEVA AI 에코시스템을 설정하세요!
 # =============================================================================
@@ -130,6 +130,38 @@ if ($currentPolicy -eq "Restricted" -or $currentPolicy -eq "Undefined") {
     Write-Check $true "PowerShell script execution policy verified ($currentPolicy)"
 }
 
+# Git 설치 여부 사전 진단 및 winget 자동 설치
+$gitCmd = Get-Command git -ErrorAction SilentlyContinue
+if (-not $gitCmd) {
+    Write-Host "  [!] Git is not installed on this system." -ForegroundColor Yellow
+    $gitChoice = ""
+    while ("y","n" -notcontains $gitChoice) {
+        $gitChoice = Read-Host "[?] Do you want to install Git now via winget? (y/n)"
+        $gitChoice = $gitChoice.Trim().ToLower()
+    }
+    
+    if ($gitChoice -eq "y") {
+        try {
+            Write-Host "  ⚙️ Installing Git via winget..." -ForegroundColor Yellow
+            # winget을 조용히 설치하고 동의 플래그 전달
+            $null = winget install --id Git.Git -e --source winget --accept-package-agreements --accept-source-agreements --quiet
+            
+            $gitCmd = Get-Command git -ErrorAction SilentlyContinue
+            if ($gitCmd) {
+                Write-Check $true "Git installed successfully! (Note: You may need to restart PowerShell to use it)"
+            } else {
+                Write-Check $true "Git installation initiated. If 'git' is not recognized, please restart your PowerShell window."
+            }
+        } catch {
+            Write-Check $false "Failed to install Git via winget: $_"
+        }
+    } else {
+        Write-Host "  => Skipped Git installation. Please manually install Git to clone repositories later." -ForegroundColor DarkGray
+    }
+} else {
+    Write-Check $true "Git installation verified"
+}
+
 # Windows Long Path 지원 상태 확인 및 활성화
 $keyPath = "HKLM:\System\CurrentControlSet\Control\FileSystem"
 $valName = "LongPathsEnabled"
@@ -246,11 +278,11 @@ if ($versionSplit.Length -ge 2) {
     Exit-Script
 }
 
-# 가상환경 env_ai 생성 및 확인 (로컬 디렉토리 내부)
-$venvPython = "$PSScriptRoot\env_ai\Scripts\python.exe"
+# 가상환경 env_ai 생성 및 확인
+$venvPython = "$AMEVA_HOME\env_ai\Scripts\python.exe"
 if (-not (Test-Path $venvPython)) {
-    Write-Host "`n⚙️ Creating virtual environment at $PSScriptRoot\env_ai..." -ForegroundColor Yellow
-    & python -m venv "$PSScriptRoot\env_ai"
+    Write-Host "`n⚙️ Creating virtual environment at $AMEVA_HOME\env_ai..." -ForegroundColor Yellow
+    & python -m venv "$AMEVA_HOME\env_ai"
     if (-not (Test-Path $venvPython)) {
         Write-Host "❌ Failed to create virtual environment." -ForegroundColor Red
         Exit-Script
@@ -378,6 +410,10 @@ if ($pipExitCode -eq 0 -and ($components -contains "llm")) {
     Write-Host "⚙️ Installing llama-cpp-python using pre-built wheels..." -ForegroundColor Cyan
     $llamaInstalled = $false
     
+    # 컴파일 대비 1070 Ti 가속 플래그 지정
+    $origCMakeArgs = $env:CMAKE_ARGS
+    $env:CMAKE_ARGS = "-DGGML_CUDA=on"
+    
     # GPU 가속이 가능할 때 (NVIDIA CUDA 가속 버전 설치 시도)
     if ($gpuAvailable) {
         Write-Host "  ► Attempting GPU-accelerated installation (CUDA)..." -ForegroundColor Yellow
@@ -404,6 +440,9 @@ if ($pipExitCode -eq 0 -and ($components -contains "llm")) {
             $pipExitCode = 1
         }
     }
+    
+    # CMAKE_ARGS 복원
+    $env:CMAKE_ARGS = $origCMakeArgs
 }
 
 # 임시 환경 변수 원복 및 디렉토리 삭제
@@ -497,6 +536,20 @@ function Initialize-AmelvaEnvironment {
     `$env:MODEL_PATH_TTS = "`$AmelvaHome\models\tts"
     Write-Host "✓ AMEVA Environment variables initialized" -ForegroundColor Green
 }
+
+function Activate-AmelvaVenv {
+    `$activatePath = "`$env:AMEVA_HOME\env_ai\Scripts\Activate.ps1"
+    if (Test-Path `$activatePath) {
+        . `$activatePath
+    } else {
+        Write-Host "❌ AMEVA virtual environment not found at `$env:AMEVA_HOME\env_ai" -ForegroundColor Red
+    }
+}
+
+Set-Alias -Name act -Value Activate-AmelvaVenv -Force
+Set-Alias -Name activate -Value Activate-AmelvaVenv -Force
+Set-Alias -Name env_ai -Value Activate-AmelvaVenv -Force
+
 Initialize-AmelvaEnvironment
 "@
     $fallbackProfile | Out-File -FilePath $profileLocalPath -Encoding utf8
@@ -651,6 +704,10 @@ if ($gpuAvailable) {
     if ($cudaChoice -eq "y") {
         Write-Host "⚙️ Installing CUDA 12.1-enabled PyTorch, torchvision, and torchaudio..." -ForegroundColor Cyan
         
+        # 컴파일 대비 1070 Ti 가속 플래그 지정
+        $origCMakeArgs = $env:CMAKE_ARGS
+        $env:CMAKE_ARGS = "-DGGML_CUDA=on"
+        
         # 짧은 임시 디렉토리 설정 (경로 초과 방지)
         $shortTemp = "$AMEVA_HOME\tmp"
         if (-not (Test-Path $shortTemp)) {
@@ -670,6 +727,9 @@ if ($gpuAvailable) {
         if (Test-Path $shortTemp) {
             Remove-Item $shortTemp -Recurse -Force -ErrorAction SilentlyContinue
         }
+        
+        # CMAKE_ARGS 복원
+        $env:CMAKE_ARGS = $origCMakeArgs
         
         if ($installExitCode -eq 0) {
             Write-Check $true "CUDA-enabled PyTorch installed successfully"
@@ -736,7 +796,7 @@ Write-Header "INSTALLATION COMPLETE - FINAL CHECKLIST"
 Write-Check $true "Python 3.9+ Environment"
 Write-Check (Test-Path $AMEVA_HOME) "AMEVA Home Directory"
 Write-Check (Test-Path "$AMEVA_HOME\models") "Model Folders (llm, vlm, stt, tts)"
-Write-Check (Test-Path "$AMEVA_HOME\venv") "Python Virtual Environment"
+Write-Check (Test-Path "$AMEVA_HOME\env_ai") "Python Virtual Environment (env_ai)"
 Write-Check (Test-Path $configFile) "Configuration File (config.json)"
 Write-Check (Test-Path $profileLocalPath) "PowerShell Module & Profile Settings"
 if ($gpuAvailable) {
