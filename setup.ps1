@@ -273,16 +273,17 @@ try {
 }
 
 # pip 업그레이드
-Write-Host "⚙️ Upgrading pip, setuptools, wheel..." -ForegroundColor Cyan
-& $venvPython -m pip install --upgrade pip setuptools wheel --quiet
+Write-Host "⚙️ Upgrading pip and wheel..." -ForegroundColor Cyan
+& $venvPython -m pip install --upgrade pip wheel --quiet
 if ($LASTEXITCODE -ne 0) {
-    Write-Check $false "Failed to upgrade pip, setuptools, wheel."
+    Write-Check $false "Failed to upgrade pip and wheel."
     exit 1
 }
 Write-Check $true "pip upgraded"
 
-# 공통 패키지 설치
-$commonPackages = @(
+# 설치할 패키지 수집
+Write-Host "⚙️ Resolving dependency package list..." -ForegroundColor Cyan
+$packages = @(
     "fastapi>=0.100.0",
     "uvicorn[standard]>=0.22.0",
     "requests>=2.31.0",
@@ -303,62 +304,37 @@ $commonPackages = @(
     "tqdm>=4.65.0"
 )
 
-Write-Host "⚙️ Installing common dependencies..." -ForegroundColor Cyan
-& $venvPython -m pip install $commonPackages --quiet
-if ($LASTEXITCODE -ne 0) {
-    Write-Check $false "Failed to install common dependencies."
-    exit 1
-}
-Write-Check $true "Common packages installed"
-
-# 컴포넌트별 설치
 if ($components -contains "llm") {
-    Write-Host "⚙️ Installing LLM stack (torch, transformers, llama-cpp-python...)..." -ForegroundColor Cyan
-    # torch & transformers 우선 설치
-    & $venvPython -m pip install torch transformers accelerate peft datasets sentencepiece gguf --quiet
-    if ($LASTEXITCODE -ne 0) {
-        Write-Check $false "Failed to install LLM stack core packages."
-        exit 1
-    }
-    # llama-cpp-python은 윈도우 환경에서 컴파일 이슈 방지를 위해 미리 wheel 설치 시도
-    & $venvPython -m pip install llama-cpp-python --prefer-binary --quiet
-    if ($LASTEXITCODE -ne 0) {
-        Write-Check $false "Failed to install llama-cpp-python."
-        Write-Host "  [!] Hint: This system might not have Windows Long Path support enabled." -ForegroundColor Yellow
-        Write-Host "      Please run the following command in an Administrator PowerShell to enable it, then try again:" -ForegroundColor Yellow
-        Write-Host "      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1" -ForegroundColor Cyan
-        exit 1
-    }
-    Write-Check $true "LLM stack installed"
+    $packages += @("torch", "transformers", "accelerate", "peft", "datasets", "sentencepiece", "gguf", "llama-cpp-python")
 }
 
 if ($components -contains "stt") {
-    Write-Host "⚙️ Installing STT stack (torchaudio, librosa, soundfile...)..." -ForegroundColor Cyan
-    if (-not ($components -contains "llm")) {
-        # LLM이 선택되지 않아 torch가 안 깔려있는 경우 torch 먼저 설치
-        & $venvPython -m pip install torch --quiet
-        if ($LASTEXITCODE -ne 0) {
-            Write-Check $false "Failed to install torch for STT."
-            exit 1
-        }
-    }
-    & $venvPython -m pip install torchaudio librosa soundfile pydub scipy vosk pywhispercpp yt-dlp jiwer evaluate --quiet
-    if ($LASTEXITCODE -ne 0) {
-        Write-Check $false "Failed to install STT stack packages."
-        exit 1
-    }
-    Write-Check $true "STT stack installed"
+    if ($packages -notcontains "torch") { $packages += "torch" }
+    $packages += @("torchaudio", "librosa", "soundfile", "pydub", "scipy", "vosk", "pywhispercpp", "yt-dlp", "jiwer", "evaluate")
 }
 
 if ($components -contains "tts") {
-    Write-Host "⚙️ Installing TTS stack (edge-tts, gTTS)..." -ForegroundColor Cyan
-    & $venvPython -m pip install edge-tts gTTS --quiet
-    if ($LASTEXITCODE -ne 0) {
-        Write-Check $false "Failed to install TTS stack packages."
-        exit 1
-    }
-    Write-Check $true "TTS stack installed"
+    $packages += @("edge-tts", "gTTS")
 }
+
+# 모든 패키지를 하나의 pip 명령어로 일괄 설치하여 버전 충돌 방지
+Write-Host "⚙️ Installing selected packages ($($packages.Count) packages)..." -ForegroundColor Cyan
+& $venvPython -m pip install $packages --quiet
+if ($LASTEXITCODE -ne 0) {
+    Write-Check $false "Failed to install dependencies."
+    if ($components -contains "llm") {
+        Write-Host "  [!] Hint: If the error was related to llama-cpp-python, it might be due to Windows Long Path limits." -ForegroundColor Yellow
+        Write-Host "      Please run the following command in an Administrator PowerShell to enable it, then try again:" -ForegroundColor Yellow
+        Write-Host "      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1" -ForegroundColor Cyan
+    }
+    exit 1
+}
+
+# 체크리스트 결과 출력
+Write-Check $true "Common packages installed"
+if ($components -contains "llm") { Write-Check $true "LLM stack installed" }
+if ($components -contains "stt") { Write-Check $true "STT stack installed" }
+if ($components -contains "tts") { Write-Check $true "TTS stack installed" }
 
 Write-Host "`n✓ All dependencies installed successfully!" -ForegroundColor Green
 Start-Sleep -Seconds 1
