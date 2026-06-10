@@ -295,6 +295,115 @@ def create_config_file(ameva_home: Path, system_info: Dict, components: List[str
     print_checklist_item(True, f"Config saved: {config_file}")
     print(f"\n{Colors.CYAN}{json.dumps(config, indent=2, ensure_ascii=False)}{Colors.ENDC}\n")
 
+def download_file_with_progress(url: str, dest_path: Path):
+    """Download helper with progress indicator"""
+    import urllib.request
+    
+    print(f"  📥 Downloading: {url} -> {dest_path}")
+    try:
+        # User-Agent header to avoid HTTP 403 Forbidden
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
+            total_size = int(response.info().get('Content-Length', 0))
+            block_size = 1024 * 1024  # 1MB blocks
+            downloaded = 0
+            
+            with open(dest_path, 'wb') as f:
+                while True:
+                    buffer = response.read(block_size)
+                    if not buffer:
+                        break
+                    downloaded += len(buffer)
+                    f.write(buffer)
+                    if total_size > 0:
+                        percent = int(downloaded * 100 / total_size)
+                        sys.stdout.write(f"\r    Progress: {percent}% ({downloaded // (1024*1024)}MB / {total_size // (1024*1024)}MB)")
+                        sys.stdout.flush()
+            print(f"\n  {Colors.GREEN}✓ Download complete!{Colors.ENDC}")
+            return True
+    except Exception as e:
+        print(f"\n  {Colors.RED}✗ Download failed: {str(e)}{Colors.ENDC}")
+        if dest_path.exists():
+            dest_path.unlink()
+        return False
+
+def download_models_interactively(ameva_home: Path):
+    """Prompt user to download models interactively"""
+    print_section("PHASE 7: INTERACTIVE MODEL INSTALLATION")
+    
+    models = {
+        'llm': [
+            {
+                'name': 'Qwen2.5 0.5B Instruct (Nano LLM / Router)',
+                'filename': 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-q4_k_m.gguf'
+            },
+            {
+                'name': 'Qwen2.5 1.5B Instruct (Light LLM / Edge)',
+                'filename': 'qwen2.5-1.5b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf'
+            },
+            {
+                'name': 'Qwen2.5 3B Instruct (Balance LLM / Orchestra)',
+                'filename': 'qwen2.5-3b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF/resolve/main/qwen2.5-3b-instruct-q4_k_m.gguf'
+            },
+            {
+                'name': 'Qwen2.5 Coder 7B Instruct (Specialist LLM / Doc AI)',
+                'filename': 'qwen2.5-coder-7b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q4_k_m.gguf'
+            },
+            {
+                'name': 'Qwen2 VL 2B Instruct (Vision VLM / Window Assistant)',
+                'filename': 'qwen2-vl-2b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/bartowski/Qwen2-VL-2B-Instruct-GGUF/resolve/main/Qwen2-VL-2B-Instruct-Q4_K_M.gguf'
+            },
+            {
+                'name': 'Llama 3.2 1B Instruct (Ultra Light LLM)',
+                'filename': 'llama3.2-1b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf'
+            },
+            {
+                'name': 'Llama 3.2 3B Instruct (Medium LLM)',
+                'filename': 'llama3.2-3b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf'
+            },
+            {
+                'name': 'Meta Llama 3.1 8B Instruct (Heavy LLM / Simulation)',
+                'filename': 'meta-llama-3.1-8b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf'
+            }
+        ],
+        'stt': [
+            {
+                'name': 'Whisper.cpp Small model (STT / Voice Assistant)',
+                'filename': 'ggml-small.bin',
+                'url': 'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin'
+            },
+            {
+                'name': 'Whisper.cpp Medium model (STT / High Quality)',
+                'filename': 'ggml-medium.bin',
+                'url': 'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-medium.bin'
+            }
+        ]
+    }
+    
+    for category, items in models.items():
+        dest_dir = ameva_home / 'models' / category
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        
+        for item in items:
+            dest_file = dest_dir / item['filename']
+            if dest_file.exists():
+                print(f"  {Colors.GREEN}✓ {item['name']} already exists. ({dest_file.name}){Colors.ENDC}")
+                continue
+            
+            choice = input(f"\n[?] {Colors.BOLD}{item['name']}{Colors.ENDC} ({item['filename']}) 모델을 다운로드하시겠습니까? (y/n): ").strip().lower()
+            if choice == 'y':
+                download_file_with_progress(item['url'], dest_file)
+            else:
+                print(f"  => Skipping {item['filename']}")
+
 def print_completion_checklist(ameva_home: Path):
     """✅ 완료 체크리스트"""
     print_section("INSTALLATION COMPLETE - FINAL CHECKLIST")
@@ -349,8 +458,8 @@ def print_next_steps(ameva_home: Path):
     print("    http://localhost:8000/docs\n")
     
     print(f"{Colors.BOLD}4. Download Model Files:{Colors.ENDC}")
-    print("    Visit: https://huggingface.co/models?search=gguf")
-    print(f"    Place in: {ameva_home / 'models'}\n")
+    print("    Models can be managed interactively during installation.")
+    print(f"    Or manually place GGUF files in: {ameva_home / 'models'}\n")
 
 def main():
     """🎮 Main Setup Flow"""
@@ -385,7 +494,11 @@ def main():
         create_config_file(ameva_home, system_info, components)
         time.sleep(1)
         
-        # Phase 7: 완료 체크리스트
+        # Phase 7: 모델 다운로드 진행 (y/n 확인)
+        download_models_interactively(ameva_home)
+        time.sleep(1)
+        
+        # Phase 8: 완료 체크리스트
         all_passed = print_completion_checklist(ameva_home)
         
         if all_passed:
