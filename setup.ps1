@@ -1,4 +1,4 @@
-# =============================================================================
+﻿# =============================================================================
 # 🎮 AMEVA Universe Setup — PowerShell Edition 🎮
 # 한번의 커맨드로 모든 Windows AMEVA AI 에코시스템을 설정하세요!
 # =============================================================================
@@ -158,7 +158,7 @@ if ($currentVal -ne 1) {
         if ($lpChoice -eq "y") {
             try {
                 Write-Host "  ⚙️ Requesting Administrator permission to enable Long Paths..." -ForegroundColor Yellow
-                $proc = Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -WindowStyle Hidden -Command `Set-ItemProperty -Path '$keyPath' -Name '$valName' -Value 1 -Force`" -PassThru -Wait
+                $proc = Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile", "-WindowStyle", "Hidden", "-Command", "Set-ItemProperty -Path '$keyPath' -Name '$valName' -Value 1 -Force" -PassThru -Wait
                 
                 # 변경 사항 재확인
                 $currentVal = (Get-ItemProperty -Path $keyPath -Name $valName -ErrorAction SilentlyContinue).$valName
