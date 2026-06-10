@@ -109,10 +109,11 @@ sleep 1
 
 print_section "PHASE 2: CREATING DIRECTORY STRUCTURE"
 
-mkdir -p "$AMEVA_HOME"/{models/{llm,stt,tts},venv,logs,cache,projects}
+mkdir -p "$AMEVA_HOME"/{models/{llm,vlm,stt,tts},venv,logs,cache,projects}
 
 echo -e "  ${GREEN}✓${NC}  Created: $AMEVA_HOME"
 echo -e "  ${GREEN}✓${NC}  Created: $AMEVA_HOME/models/llm"
+echo -e "  ${GREEN}✓${NC}  Created: $AMEVA_HOME/models/vlm"
 echo -e "  ${GREEN}✓${NC}  Created: $AMEVA_HOME/models/stt"
 echo -e "  ${GREEN}✓${NC}  Created: $AMEVA_HOME/models/tts"
 

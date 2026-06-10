@@ -125,6 +125,7 @@ def setup_directory_structure() -> Path:
     # 필수 폴더 생성 (모두 소문자)
     folders = [
         ameva_home / 'models' / 'llm',
+        ameva_home / 'models' / 'vlm',
         ameva_home / 'models' / 'stt',
         ameva_home / 'models' / 'tts',
         ameva_home / 'venv',
@@ -154,7 +155,7 @@ def check_python_version() -> bool:
         print_checklist_item(False, f"Python {major}.{minor} (Required: 3.9+)")
         
         if platform.system() == 'Windows':
-            print(f"\n{Colors.YELLOW}📥 Download Python 3.12 from:"){Colors.ENDC}")
+            print(f"\n{Colors.YELLOW}📥 Download Python 3.12 from:{Colors.ENDC}")
             print("   https://www.python.org/downloads/\n")
         else:
             print(f"\n{Colors.YELLOW}📥 Install Python using:{Colors.ENDC}")
@@ -278,6 +279,7 @@ def create_config_file(ameva_home: Path, system_info: Dict, components: List[str
         },
         'model_paths': {
             'llm': str(ameva_home / 'models' / 'llm'),
+            'vlm': str(ameva_home / 'models' / 'vlm'),
             'stt': str(ameva_home / 'models' / 'stt'),
             'tts': str(ameva_home / 'models' / 'tts')
         },
@@ -335,7 +337,7 @@ def download_models_interactively(ameva_home: Path):
         'llm': [
             {
                 'name': 'Qwen2.5 0.5B Instruct (Nano LLM / Router)',
-                'filename': 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
+                'filename': 'qwen2.5-0.5b-q4_k_m.gguf',
                 'url': 'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-q4_k_m.gguf'
             },
             {
@@ -350,28 +352,35 @@ def download_models_interactively(ameva_home: Path):
             },
             {
                 'name': 'Qwen2.5 Coder 7B Instruct (Specialist LLM / Doc AI)',
-                'filename': 'qwen2.5-coder-7b-instruct-q4_k_m.gguf',
-                'url': 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q4_k_m.gguf'
-            },
-            {
-                'name': 'Qwen2 VL 2B Instruct (Vision VLM / Window Assistant)',
-                'filename': 'qwen2-vl-2b-instruct-q4_k_m.gguf',
-                'url': 'https://huggingface.co/bartowski/Qwen2-VL-2B-Instruct-GGUF/resolve/main/Qwen2-VL-2B-Instruct-Q4_K_M.gguf'
+                'filename': 'Qwen2.5-coder-7b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5-coder-7b-instruct-q4_k_m.gguf'
             },
             {
                 'name': 'Llama 3.2 1B Instruct (Ultra Light LLM)',
-                'filename': 'llama3.2-1b-instruct-q4_k_m.gguf',
+                'filename': 'Llama-3.2-1B-Instruct-Q4_K_M.gguf',
                 'url': 'https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf'
             },
             {
                 'name': 'Llama 3.2 3B Instruct (Medium LLM)',
-                'filename': 'llama3.2-3b-instruct-q4_k_m.gguf',
+                'filename': 'Llama-3.2-3B-Instruct-Q4_K_M.gguf',
                 'url': 'https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf'
             },
             {
                 'name': 'Meta Llama 3.1 8B Instruct (Heavy LLM / Simulation)',
-                'filename': 'meta-llama-3.1-8b-instruct-q4_k_m.gguf',
+                'filename': 'Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf',
                 'url': 'https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf'
+            }
+        ],
+        'vlm': [
+            {
+                'name': 'Qwen2 VL 2B Instruct (Vision VLM / Window Assistant)',
+                'filename': 'Qwen2-VL-2B-Instruct-Q4_K_M.gguf',
+                'url': 'https://huggingface.co/bartowski/Qwen2-VL-2B-Instruct-GGUF/resolve/main/Qwen2-VL-2B-Instruct-Q4_K_M.gguf'
+            },
+            {
+                'name': 'Qwen2 VL 2B Instruct Projector (VLM Projector / mmproj)',
+                'filename': 'mmproj-Qwen2-VL-2B-Instruct-f16.gguf',
+                'url': 'https://huggingface.co/bartowski/Qwen2-VL-2B-Instruct-GGUF/resolve/main/mmproj-Qwen2-VL-2B-Instruct-f16.gguf'
             }
         ],
         'stt': [
@@ -411,7 +420,7 @@ def print_completion_checklist(ameva_home: Path):
     checklist_items = [
         ('Python 3.9+', True),
         ('AMEVA Home Directory', (ameva_home).exists()),
-        ('Model Folders (llm, stt, tts)', (ameva_home / 'models').exists()),
+        ('Model Folders (llm, vlm, stt, tts)', (ameva_home / 'models').exists()),
         ('Common Libraries', True),
         ('Configuration File', (ameva_home / 'config.json').exists()),
     ]

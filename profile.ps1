@@ -40,6 +40,7 @@ function Initialize-AmelvaEnvironment {
     # 환경변수 설정
     $env:AMEVA_HOME = $AmelvaHome
     $env:MODEL_PATH_LLM = "$AmelvaHome\models\llm"
+    $env:MODEL_PATH_VLM = "$AmelvaHome\models\vlm"
     $env:MODEL_PATH_STT = "$AmelvaHome\models\stt"
     $env:MODEL_PATH_TTS = "$AmelvaHome\models\tts"
     $env:AMEVA_API_HOST = "localhost"
@@ -48,6 +49,7 @@ function Initialize-AmelvaEnvironment {
     # 영구 설정 (사용자 환경변수)
     [Environment]::SetEnvironmentVariable("AMEVA_HOME", $AmelvaHome, "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_LLM", "$AmelvaHome\models\llm", "User")
+    [Environment]::SetEnvironmentVariable("MODEL_PATH_VLM", "$AmelvaHome\models\vlm", "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_STT", "$AmelvaHome\models\stt", "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_TTS", "$AmelvaHome\models\tts", "User")
 
@@ -89,6 +91,12 @@ function Get-AmelvaStatus {
         Write-Host "✓ LLM models folder: $env:MODEL_PATH_LLM" -ForegroundColor Green
     } else {
         Write-Host "✗ LLM models folder not found" -ForegroundColor Red
+    }
+
+    if (Test-Path $env:MODEL_PATH_VLM) {
+        Write-Host "✓ VLM models folder: $env:MODEL_PATH_VLM" -ForegroundColor Green
+    } else {
+        Write-Host "✗ VLM models folder not found" -ForegroundColor Red
     }
 
     if (Test-Path $env:MODEL_PATH_STT) {

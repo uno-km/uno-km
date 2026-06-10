@@ -12,11 +12,13 @@ function Initialize-AmelvaEnvironment {
 
     $env:AMEVA_HOME = $AmelvaHome
     $env:MODEL_PATH_LLM = "$AmelvaHome\models\llm"
+    $env:MODEL_PATH_VLM = "$AmelvaHome\models\vlm"
     $env:MODEL_PATH_STT = "$AmelvaHome\models\stt"
     $env:MODEL_PATH_TTS = "$AmelvaHome\models\tts"
     
     [Environment]::SetEnvironmentVariable("AMEVA_HOME", $AmelvaHome, "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_LLM", "$AmelvaHome\models\llm", "User")
+    [Environment]::SetEnvironmentVariable("MODEL_PATH_VLM", "$AmelvaHome\models\vlm", "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_STT", "$AmelvaHome\models\stt", "User")
     [Environment]::SetEnvironmentVariable("MODEL_PATH_TTS", "$AmelvaHome\models\tts", "User")
 }
