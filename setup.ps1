@@ -635,6 +635,101 @@ if ($downloadQueue.Count -gt 0) {
 Start-Sleep -Seconds 1
 
 # =============================================================================
+# PHASE 8.5: GPU 가속 검증 및 테스트 (GPU Acceleration & CUDA Validation)
+# =============================================================================
+Write-Header "PHASE 8.5: GPU ACCELERATION & CUDA VALIDATION"
+
+$cudaTested = $false
+$cudaStatus = "Not Tested"
+
+if ($gpuAvailable) {
+    $cudaChoice = ""
+    while ("y","n" -notcontains $cudaChoice) {
+        $cudaChoice = Read-Host "[?] Do you want to install GPU-accelerated PyTorch (CUDA 12.1) and validate CUDA? (y/n)"
+        $cudaChoice = $cudaChoice.Trim().ToLower()
+    }
+    
+    if ($cudaChoice -eq "y") {
+        Write-Host "⚙️ Installing CUDA 12.1-enabled PyTorch, torchvision, and torchaudio..." -ForegroundColor Cyan
+        
+        # 짧은 임시 디렉토리 설정 (경로 초과 방지)
+        $shortTemp = "$AMEVA_HOME\tmp"
+        if (-not (Test-Path $shortTemp)) {
+            New-Item -ItemType Directory -Path $shortTemp -Force | Out-Null
+        }
+        $origTemp = $env:TEMP
+        $origTmp = $env:TMP
+        $env:TEMP = $shortTemp
+        $env:TMP = $shortTemp
+        
+        & $venvPython -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 --upgrade --quiet --cache-dir "$shortTemp\cache"
+        $installExitCode = $LASTEXITCODE
+        
+        # 임시 환경 변수 원복 및 디렉토리 삭제
+        $env:TEMP = $origTemp
+        $env:TMP = $origTmp
+        if (Test-Path $shortTemp) {
+            Remove-Item $shortTemp -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        
+        if ($installExitCode -eq 0) {
+            Write-Check $true "CUDA-enabled PyTorch installed successfully"
+            
+            # CUDA 테스트 스크립트 실행
+            Write-Host "⚙️ Running CUDA system validation test..." -ForegroundColor Cyan
+            
+            # test\cuda_test.py 존재 여부 확인 및 다운로드 처리
+            $cudaTestLocalPath = Join-Path $PSScriptRoot "test\cuda_test.py"
+            $cudaTestTempPath = "$AMEVA_HOME\cuda_test.py"
+            
+            $testScriptPath = ""
+            if (Test-Path $cudaTestLocalPath) {
+                $testScriptPath = $cudaTestLocalPath
+            } else {
+                # 만약 원격 설치(irm) 시나리오라 로컬에 test 폴더가 없다면 원격에서 다운로드
+                try {
+                    Invoke-WebRequest -Uri "$BASE_URL/test/cuda_test.py" -OutFile $cudaTestTempPath -UseBasicParsing -ErrorAction Stop
+                    $testScriptPath = $cudaTestTempPath
+                } catch {
+                    # 다운로드 실패 시 대비
+                }
+            }
+            
+            if ($testScriptPath) {
+                # 가상환경 파이썬으로 테스트 스크립트 실행
+                & $venvPython $testScriptPath
+                if ($LASTEXITCODE -eq 0) {
+                    $cudaTested = $true
+                    $cudaStatus = "Success (GPU Verified)"
+                    Write-Check $true "CUDA environment verified and fully functional!"
+                } else {
+                    $cudaStatus = "Failed (Runtime Error)"
+                    Write-Check $false "CUDA test script execution failed. Please check your driver version."
+                }
+            } else {
+                Write-Check $false "Could not locate or download 'test/cuda_test.py' script."
+            }
+            
+            # 임시 파일 삭제
+            if (Test-Path $cudaTestTempPath) {
+                Remove-Item $cudaTestTempPath -Force -ErrorAction SilentlyContinue
+            }
+        } else {
+            $cudaStatus = "Failed (Installation Error)"
+            Write-Check $false "Failed to install CUDA-enabled PyTorch. Check network connection or dependency conflicts."
+        }
+    } else {
+        Write-Host "  => Skipped CUDA optimization. Default PyTorch will be used." -ForegroundColor DarkGray
+        $cudaStatus = "Skipped"
+    }
+} else {
+    Write-Host "  => NVIDIA GPU was not detected. Skipping CUDA validation." -ForegroundColor DarkGray
+    $cudaStatus = "Not Available (CPU Only)"
+}
+
+Start-Sleep -Seconds 1
+
+# =============================================================================
 # PHASE 9: 설치 완료 및 다음 단계
 # =============================================================================
 Write-Header "INSTALLATION COMPLETE - FINAL CHECKLIST"
@@ -645,6 +740,9 @@ Write-Check (Test-Path "$AMEVA_HOME\models") "Model Folders (llm, vlm, stt, tts)
 Write-Check (Test-Path "$AMEVA_HOME\venv") "Python Virtual Environment"
 Write-Check (Test-Path $configFile) "Configuration File (config.json)"
 Write-Check (Test-Path $profileLocalPath) "PowerShell Module & Profile Settings"
+if ($gpuAvailable) {
+    Write-Check ($cudaStatus -eq "Success (GPU Verified)") "CUDA GPU Acceleration ($cudaStatus)"
+}
 
 $successBanner = @"
 
