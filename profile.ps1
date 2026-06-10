@@ -60,13 +60,22 @@ function Initialize-AmelvaEnvironment {
 function Activate-AmelvaVenv {
     <#
     .SYNOPSIS
-        AMEVA Virtual Environment (env_ai) 활성화
+        로컬 가상환경 활성화 (venv, env_ai, .venv 탐색)
     #>
-    $activatePath = "$env:AMEVA_HOME\env_ai\Scripts\Activate.ps1"
-    if (Test-Path $activatePath) {
-        . $activatePath
-    } else {
-        Write-Host "❌ AMEVA virtual environment not found at $env:AMEVA_HOME\env_ai" -ForegroundColor Red
+    $found = $false
+    $targets = @("env_ai\Scripts\Activate.ps1", "venv\Scripts\Activate.ps1", ".venv\Scripts\Activate.ps1")
+    
+    foreach ($target in $targets) {
+        $path = Join-Path (Get-Location).Path $target
+        if (Test-Path $path) {
+            . $path
+            $found = $true
+            break
+        }
+    }
+    
+    if (-not $found) {
+        Write-Host "❌ No local virtual environment found in the current folder (checked: env_ai, venv, .venv)" -ForegroundColor Red
     }
 }
 
