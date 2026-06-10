@@ -70,7 +70,7 @@ python setup.py
 > * Installer files live on branch `setup-universe-feature` (raw links above). You can inspect or copy them to run locally.
 > * All installer prompts and printed progress are in English; inline comments in the scripts are written in Korean.
 
---
+---
 
 ## 🔬 In-depth Project Analysis: 핵심 기술 논의
 
