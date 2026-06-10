@@ -337,8 +337,8 @@ def download_models_interactively(ameva_home: Path):
         'llm': [
             {
                 'name': 'Qwen2.5 0.5B Instruct (Nano LLM / Router)',
-                'filename': 'qwen2.5-0.5b-q4_k_m.gguf',
-                'url': 'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-q4_k_m.gguf'
+                'filename': 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
+                'url': 'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf'
             },
             {
                 'name': 'Qwen2.5 1.5B Instruct (Light LLM / Edge)',

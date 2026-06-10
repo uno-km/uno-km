@@ -9,7 +9,7 @@
 $ErrorActionPreference = "Stop"
 $UTF8Encoding = [System.Text.Encoding]::UTF8
 
-# Base GitHub Repository path for remote downloads
+# 원격 다운로드를 위한 기본 GitHub 저장소 경로
 $BASE_URL = "https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature"
 $AMEVA_HOME = "C:\ameva"
 
@@ -113,15 +113,31 @@ $currentPolicy = Get-ExecutionPolicy
 if ($currentPolicy -eq "Restricted" -or $currentPolicy -eq "Undefined") {
     try {
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force -ErrorAction Stop
-        Write-Check $true "PowerShell 스크립트 실행 권한 활성화 (RemoteSigned)"
+        Write-Check $true "PowerShell script execution policy enabled (RemoteSigned)"
     } catch {
-        Write-Host "  [!] 스크립트 실행 권한을 자동으로 구성할 수 없었습니다 (시스템/그룹 정책 제한 등)." -ForegroundColor Yellow
-        Write-Host "      일반 사용자 권한 범위(Non-Administrator) 내에서 설치를 안전하게 계속 진행합니다." -ForegroundColor Yellow
-        Write-Host "      (새 PowerShell 창에서 환경 로드 경고가 뜰 경우 'Set-ExecutionPolicy RemoteSigned -Scope CurrentUser' 명령을 수동 실행해 주세요.)" -ForegroundColor DarkGray
+        Write-Host "  [!] Could not automatically configure script execution policy (system/group policy restrictions)." -ForegroundColor Yellow
+        Write-Host "      Continuing the installation safely within the non-administrator scope." -ForegroundColor Yellow
+        Write-Host "      (If an environment load warning appears in a new PowerShell window, run 'Set-ExecutionPolicy RemoteSigned -Scope CurrentUser' manually.)" -ForegroundColor DarkGray
     }
 } else {
-    Write-Check $true "PowerShell 스크립트 실행 정책 확인 ($currentPolicy)"
+    Write-Check $true "PowerShell script execution policy verified ($currentPolicy)"
 }
+
+# Windows Long Path 지원 자동 활성화 시도
+try {
+    $keyPath = "HKLM:\System\CurrentControlSet\Control\FileSystem"
+    $valName = "LongPathsEnabled"
+    $currentVal = (Get-ItemProperty -Path $keyPath -Name $valName -ErrorAction SilentlyContinue).$valName
+    if ($currentVal -ne 1) {
+        Set-ItemProperty -Path $keyPath -Name $valName -Value 1 -Force -ErrorAction Stop
+        Write-Check $true "Windows Long Path support enabled in registry"
+    } else {
+        Write-Check $true "Windows Long Path support already enabled"
+    }
+} catch {
+    # 관리자 권한이 없거나 설정 불가 시 오류 없이 건너뜀
+}
+
 Start-Sleep -Seconds 1
 
 # =============================================================================
@@ -160,8 +176,8 @@ Write-Header "PHASE 3: PYTHON VERSION CHECK"
 $pythonCmd = Get-Command python -ErrorAction SilentlyContinue
 if (-not $pythonCmd) {
     Write-Check $false "Python: Not found"
-    Write-Host "`n❌ Python이 설치되어 있지 않거나 환경 변수 PATH에 등록되지 않았습니다." -ForegroundColor Red
-    Write-Host "📥 https://www.python.org/downloads/ 에서 Python 3.9 이상(3.12 권장) 버전을 설치한 후 다시 실행해 주세요." -ForegroundColor Yellow
+    Write-Host "`n❌ Python is not installed or not added to your PATH environment variable." -ForegroundColor Red
+    Write-Host "📥 Please install Python 3.9 or higher (3.12 recommended) from https://www.python.org/downloads/ and try again." -ForegroundColor Yellow
     exit 1
 }
 
@@ -182,8 +198,8 @@ if ($versionSplit.Length -ge 2) {
         Write-Check $true "Python $pythonVersion (Required: 3.9+)"
     } else {
         Write-Check $false "Python $pythonVersion (Required: 3.9+)"
-        Write-Host "`n❌ 오래된 Python 버전이 감지되었습니다." -ForegroundColor Red
-        Write-Host "📥 Python 3.9 이상 버전을 새로 설치해 주세요." -ForegroundColor Yellow
+        Write-Host "`n❌ An outdated Python version was detected." -ForegroundColor Red
+        Write-Host "📥 Please install Python 3.9 or higher." -ForegroundColor Yellow
         exit 1
     }
 } else {
@@ -197,7 +213,7 @@ if (-not (Test-Path $venvPython)) {
     Write-Host "`n⚙️ Creating virtual environment at $AMEVA_HOME\venv..." -ForegroundColor Yellow
     & python -m venv "$AMEVA_HOME\venv"
     if (-not (Test-Path $venvPython)) {
-        Write-Host "❌ 가상환경 생성에 실패했습니다." -ForegroundColor Red
+        Write-Host "❌ Failed to create virtual environment." -ForegroundColor Red
         exit 1
     }
     Write-Check $true "Created Python Virtual Environment"
@@ -212,19 +228,19 @@ Start-Sleep -Seconds 1
 # =============================================================================
 Write-Header "PHASE 4: SELECT AI MODEL COMPONENTS"
 
-Write-Host "설치할 AI 컴포넌트를 선택해 주세요:`n" -ForegroundColor White
+Write-Host "Please select the AI components to install:`n" -ForegroundColor White
 Write-Host "  [1] LLM (Large Language Model)" -ForegroundColor Cyan -Bold
 Write-Host "       └─ llama-cpp-python, transformers, torch`n" -ForegroundColor DarkGray
 Write-Host "  [2] STT (Speech-to-Text)" -ForegroundColor Cyan -Bold
 Write-Host "       └─ torchaudio, librosa, vosk, whisper`n" -ForegroundColor DarkGray
 Write-Host "  [3] TTS (Text-to-Speech)" -ForegroundColor Cyan -Bold
 Write-Host "       └─ edge-tts, gTTS`n" -ForegroundColor DarkGray
-Write-Host "  [4] All (모두 설치 - 권장)" -ForegroundColor Cyan -Bold
+Write-Host "  [4] All (Install everything - Recommended)" -ForegroundColor Cyan -Bold
 Write-Host "       └─ Complete AMEVA Experience`n" -ForegroundColor DarkGray
 
 $choice = ""
 while ("1","2","3","4" -notcontains $choice) {
-    $choice = Read-Host "옵션을 선택하세요 (1-4)"
+    $choice = Read-Host "Select option (1-4)"
     $choice = $choice.Trim()
 }
 
@@ -236,7 +252,7 @@ switch ($choice) {
     "4" { $components += @("llm", "stt", "tts") }
 }
 
-Write-Host "`n✓ 선택된 컴포넌트: $($components -join ', ')" -ForegroundColor Green
+Write-Host "`n✓ Selected components: $($components -join ', ')" -ForegroundColor Green
 Start-Sleep -Seconds 1
 
 # =============================================================================
@@ -244,7 +260,7 @@ Start-Sleep -Seconds 1
 # =============================================================================
 Write-Header "PHASE 5: INSTALLING DEPENDENCIES"
 
-Write-Host "의존성 라이브러리를 설치합니다. 이 작업은 다소 시간이 소요될 수 있습니다.`n" -ForegroundColor Yellow
+Write-Host "Installing dependency libraries. This process may take some time.`n" -ForegroundColor Yellow
 
 # requirements.txt 다운로드
 $reqFile = "$AMEVA_HOME\requirements.txt"
@@ -259,6 +275,10 @@ try {
 # pip 업그레이드
 Write-Host "⚙️ Upgrading pip, setuptools, wheel..." -ForegroundColor Cyan
 & $venvPython -m pip install --upgrade pip setuptools wheel --quiet
+if ($LASTEXITCODE -ne 0) {
+    Write-Check $false "Failed to upgrade pip, setuptools, wheel."
+    exit 1
+}
 Write-Check $true "pip upgraded"
 
 # 공통 패키지 설치
@@ -285,6 +305,10 @@ $commonPackages = @(
 
 Write-Host "⚙️ Installing common dependencies..." -ForegroundColor Cyan
 & $venvPython -m pip install $commonPackages --quiet
+if ($LASTEXITCODE -ne 0) {
+    Write-Check $false "Failed to install common dependencies."
+    exit 1
+}
 Write-Check $true "Common packages installed"
 
 # 컴포넌트별 설치
@@ -292,24 +316,47 @@ if ($components -contains "llm") {
     Write-Host "⚙️ Installing LLM stack (torch, transformers, llama-cpp-python...)..." -ForegroundColor Cyan
     # torch & transformers 우선 설치
     & $venvPython -m pip install torch transformers accelerate peft datasets sentencepiece gguf --quiet
+    if ($LASTEXITCODE -ne 0) {
+        Write-Check $false "Failed to install LLM stack core packages."
+        exit 1
+    }
     # llama-cpp-python은 윈도우 환경에서 컴파일 이슈 방지를 위해 미리 wheel 설치 시도
     & $venvPython -m pip install llama-cpp-python --prefer-binary --quiet
+    if ($LASTEXITCODE -ne 0) {
+        Write-Check $false "Failed to install llama-cpp-python."
+        Write-Host "  [!] Hint: This system might not have Windows Long Path support enabled." -ForegroundColor Yellow
+        Write-Host "      Please run the following command in an Administrator PowerShell to enable it, then try again:" -ForegroundColor Yellow
+        Write-Host "      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1" -ForegroundColor Cyan
+        exit 1
+    }
     Write-Check $true "LLM stack installed"
 }
 
 if ($components -contains "stt") {
-    Write-Host "⚙️ Installing STT stack (torchaudio, librosa, soundfile, vosk...)..." -ForegroundColor Cyan
+    Write-Host "⚙️ Installing STT stack (torchaudio, librosa, soundfile...)..." -ForegroundColor Cyan
     if (-not ($components -contains "llm")) {
         # LLM이 선택되지 않아 torch가 안 깔려있는 경우 torch 먼저 설치
         & $venvPython -m pip install torch --quiet
+        if ($LASTEXITCODE -ne 0) {
+            Write-Check $false "Failed to install torch for STT."
+            exit 1
+        }
     }
     & $venvPython -m pip install torchaudio librosa soundfile pydub scipy vosk pywhispercpp yt-dlp jiwer evaluate --quiet
+    if ($LASTEXITCODE -ne 0) {
+        Write-Check $false "Failed to install STT stack packages."
+        exit 1
+    }
     Write-Check $true "STT stack installed"
 }
 
 if ($components -contains "tts") {
     Write-Host "⚙️ Installing TTS stack (edge-tts, gTTS)..." -ForegroundColor Cyan
     & $venvPython -m pip install edge-tts gTTS --quiet
+    if ($LASTEXITCODE -ne 0) {
+        Write-Check $false "Failed to install TTS stack packages."
+        exit 1
+    }
     Write-Check $true "TTS stack installed"
 }
 
@@ -424,8 +471,8 @@ $models = @(
     @{
         "category" = "llm"
         "name"     = "Qwen2.5 0.5B Instruct (Nano LLM / Router)"
-        "filename" = "qwen2.5-0.5b-q4_k_m.gguf"
-        "url"      = "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-q4_k_m.gguf"
+        "filename" = "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+        "url"      = "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf"
     },
     @{
         "category" = "llm"
@@ -455,7 +502,8 @@ $models = @(
     }
 )
 
-Write-Host "각 인공지능 모델 다운로드 여부를 선택해 주세요 (대용량 파일이므로 네트워크 속도에 따라 시간이 소요됩니다):`n" -ForegroundColor White
+# 다운로드 대상 및 상태 수집
+$downloadQueue = @()
 
 foreach ($model in $models) {
     $destDir = "$AMEVA_HOME\models\$($model.category)"
@@ -466,40 +514,53 @@ foreach ($model in $models) {
     $destFile = Join-Path $destDir $model.filename
     
     if (Test-Path $destFile) {
-        Write-Host "  [✓] $($model.name) 이미 존재합니다. ($($model.filename))" -ForegroundColor Green
+        Write-Host "  [✓] $($model.name) already exists. ($($model.filename))" -ForegroundColor Green
         continue
     }
     
     $dlChoice = ""
     while ("y","n" -notcontains $dlChoice) {
-        $dlChoice = Read-Host "[?] $($model.name) ($($model.filename)) 모델을 다운로드하시겠습니까? (y/n)"
+        $dlChoice = Read-Host "[?] Do you want to download $($model.name) ($($model.filename))? (y/n)"
         $dlChoice = $dlChoice.Trim().ToLower()
     }
     
     if ($dlChoice -eq "y") {
-        Write-Host "  📥 $($model.filename) 다운로드 중..." -ForegroundColor Cyan
+        # 모델 정보에 최종 목적지 파일 경로 추가 후 대기열에 삽입
+        $model.destFile = $destFile
+        $downloadQueue += $model
+    } else {
+        Write-Host "  => Skipped ($($model.filename))" -ForegroundColor DarkGray
+    }
+}
+
+# 대기열에 추가된 모델 순차적으로 다운로드 실행
+if ($downloadQueue.Count -gt 0) {
+    Write-Host "`n📥 Starting download queue for selected models ($($downloadQueue.Count) file(s))...`n" -ForegroundColor Yellow
+    
+    foreach ($model in $downloadQueue) {
+        Write-Host "  📥 Downloading $($model.name) ($($model.filename))..." -ForegroundColor Cyan
         
         # BITS (Background Intelligent Transfer Service) 사용 시도 (프로그레스 바 지원)
         try {
             Import-Module BitsTransfer -ErrorAction Stop
-            Start-BitsTransfer -Source $model.url -Destination $destFile -ErrorAction Stop
-            Write-Host "  ✓ 다운로드 완료!" -ForegroundColor Green
+            Start-BitsTransfer -Source $model.url -Destination $model.destFile -ErrorAction Stop
+            Write-Host "  ✓ Download complete!`n" -ForegroundColor Green
         } catch {
             # BITS 실패 시 Invoke-WebRequest 백업 사용 (프로그레스 바 숨겨서 속도 향상)
             try {
                 $oldProgressPreference = $ProgressPreference
                 $ProgressPreference = 'SilentlyContinue'
-                Invoke-WebRequest -Uri $model.url -OutFile $destFile -UseBasicParsing -ErrorAction Stop
+                Invoke-WebRequest -Uri $model.url -OutFile $model.destFile -UseBasicParsing -ErrorAction Stop
                 $ProgressPreference = $oldProgressPreference
-                Write-Host "  ✓ 다운로드 완료 (기본 다운로더 사용)!" -ForegroundColor Green
+                Write-Host "  ✓ Download complete (using default downloader)!`n" -ForegroundColor Green
             } catch {
-                Write-Host "  ❌ 다운로드 실패: $_" -ForegroundColor Red
-                if (Test-Path $destFile) { Remove-Item $destFile -Force }
+                Write-Host "  ❌ Download failed: $_`n" -ForegroundColor Red
+                if (Test-Path $model.destFile) { Remove-Item $model.destFile -Force }
             }
         }
-    } else {
-        Write-Host "  => 건너뜀" -ForegroundColor DarkGray
     }
+} else {
+    Write-Host "`n✓ No models selected for download." -ForegroundColor Green
 }
 
 Start-Sleep -Seconds 1
@@ -531,19 +592,50 @@ Write-Host $successBanner -ForegroundColor Green
 
 Write-Header "NEXT STEPS"
 
-Write-Host "1. AMEVA 프로젝트 폴더로 이동하여 원하는 프로젝트를 복제하세요:" -ForegroundColor White
+Write-Host "1. Navigate to the AMEVA projects folder and clone the projects you want:" -ForegroundColor White
 Write-Host "   cd C:\ameva\projects" -ForegroundColor Cyan
 Write-Host "   git clone https://github.com/uno-km/AMEVA-Agent-Orchestra.git" -ForegroundColor Cyan
 Write-Host "   git clone https://github.com/uno-km/AMEVA-Model-Nexus.git" -ForegroundColor Cyan
 Write-Host "   git clone https://github.com/uno-km/AMEVA-Doc-AI.git" -ForegroundColor Cyan -Bold
 
-Write-Host "`n2. 모델 API 서버(Nexus)를 실행하세요:" -ForegroundColor White
+Write-Host "`n2. Start the Model API Server (Nexus):" -ForegroundColor White
 Write-Host "   cd C:\ameva\projects\AMEVA-Model-Nexus" -ForegroundColor Cyan
 Write-Host "   python main.py" -ForegroundColor Cyan
 
-Write-Host "`n3. API 작동 상태를 확인하세요:" -ForegroundColor White
+Write-Host "`n3. Check API status:" -ForegroundColor White
 Write-Host "   http://localhost:8000/docs" -ForegroundColor Cyan
 
-Write-Host "`n4. 환경 설정을 적용하려면 현재 PowerShell 창을 닫고 다시 실행해 주세요." -ForegroundColor Yellow -Bold
+Write-Host "`n4. To apply the environment settings, please restart your PowerShell window." -ForegroundColor Yellow -Bold
 
-Write-Host "`n🎮 AMEVA Universe에 오신 것을 환영합니다! 🎮`n" -ForegroundColor Green
+# 웰컴 메시지 별빛 효과 함수 정의
+function Write-StarLine {
+    param([string]$line)
+    for ($i = 0; $i -lt $line.Length; $i++) {
+        $c = $line[$i]
+        if ($c -eq '*') {
+            Write-Host $c -ForegroundColor Yellow -NoNewline
+        } elseif ($c -eq '.') {
+            Write-Host $c -ForegroundColor Gray -NoNewline
+        } elseif ($c -eq '+') {
+            Write-Host $c -ForegroundColor White -NoNewline
+        } elseif ($c -eq 'o') {
+            Write-Host $c -ForegroundColor DarkGray -NoNewline
+        } elseif ("╔","═","╗","║","╚","╝" -contains $c) {
+            Write-Host $c -ForegroundColor Cyan -NoNewline
+        } else {
+            # Box 내부 텍스트는 굵고 밝은 녹색으로 출력
+            Write-Host $c -ForegroundColor Green -NoNewline
+        }
+    }
+    Write-Host ""
+}
+
+Write-Host ""
+Write-StarLine "          .            o           *            .         "; Start-Sleep -Milliseconds 150
+Write-StarLine "     *          .          +            o          .      "; Start-Sleep -Milliseconds 150
+Write-StarLine "  o     ╔══════════════════════════════════════════╗   o  "; Start-Sleep -Milliseconds 150
+Write-StarLine "    .   ║      Welcome to the AMEVA Universe!      ║  .   "; Start-Sleep -Milliseconds 150
+Write-StarLine "  *     ╚══════════════════════════════════════════╝     o"; Start-Sleep -Milliseconds 150
+Write-StarLine "     .          *          o            +          .      "; Start-Sleep -Milliseconds 150
+Write-StarLine "          o            .           .            o         "; Start-Sleep -Milliseconds 150
+Write-Host ""
