@@ -34,38 +34,41 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
 
 ---
 
-## 🔧 Setup Universe — One-click installer & Guide (NEW)
+## 🚀 AMEVA Setup Universe (One-Click Installer)
 
 This repository now includes the "AMEVA Setup Universe" — a single installer and UX layer to bootstrap the full AMEVA ecosystem on macOS, Linux, and Windows.
 
-Quick links (one-liners):
+### Quick links (one-liners):
 
-- macOS / Linux (Bash):
+#### macOS / Linux (Bash):
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)
+```
 
-  bash <(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)
+#### Windows (PowerShell):
+Run PowerShell as Administrator and execute:
+```powershell
+irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex
+```
 
-- Windows (PowerShell):
+#### Python (Cross-platform):
+```bash
+python setup.py
+```
 
-  Run PowerShell as Administrator and execute:
+### What the installer does (high level):
+* **Creates a unified AMEVA home**: `~/ameva` or `C:\ameva`
+* **Creates canonical model folders**: `ameva/models/llm`, `ameva/models/stt`, `ameva/models/tts`
+* **Offers interactive selection** of components (LLM / STT / TTS / All)
+* **Diagnoses system environments**: OS, CPU/GPU, PowerShell execution policies, Git installation, Windows Long Path support, and **C++ Build Tools (MSVC compiler)**.
+* **Performs temporary CUDA/GPU validation**: Sets up an isolated temporary environment (`temp_env_ai`) to verify PyTorch CUDA acceleration and instantly cleans it up after validation.
+* **Delegates library installation**: Python library installs are delegated to each cloned project's local virtual environment (e.g. `venv`) to keep the global environment clean and stable.
+* **Generates a unified `config.json`** at AMEVA home.
+* **Integrates with PowerShell profiles**: Automates environment variables initialization and provides dynamic virtual environment scanning activation commands (`act` / `activate` / `env_ai`).
 
-  irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex
-
-- Python: (cross-platform)
-
-  python setup.py
-
-What the installer does (high level):
-- Creates a unified AMEVA home: ~/ameva or C:\ameva
-- Creates canonical model folders: ameva/models/llm, ameva/models/stt, ameva/models/tts
-- Offers interactive selection of components (LLM / STT / TTS / All)
-- Detects system GPU/CPU and adapts installs
-- Installs common dependencies (fastapi, uvicorn, requests, psutil, pandas, etc.)
-- Provides animated, user-friendly installation progress and a checklist
-- Generates a config.json at AMEVA home
-
-Notes:
-- Installer files live on branch `setup-universe-feature` (raw links above). You can inspect or copy them to run locally.
-- All installer prompts and printed progress are in English; inline comments in the scripts are written in Korean.
+> [!NOTE]
+> * Installer files live on branch `setup-universe-feature` (raw links above). You can inspect or copy them to run locally.
+> * All installer prompts and printed progress are in English; inline comments in the scripts are written in Korean.
 
 --
 
