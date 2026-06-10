@@ -1,4 +1,4 @@
-﻿# =============================================================================
+# =============================================================================
 # 🎮 AMEVA Universe Setup — PowerShell Edition 🎮
 # 한번의 커맨드로 모든 Windows AMEVA AI 에코시스템을 설정하세요!
 # =============================================================================
@@ -28,6 +28,13 @@ function Write-Check {
     } else {
         Write-Host "  [✗] $text" -ForegroundColor Red
     }
+}
+
+function Exit-Script {
+    param([int]$exitCode = 1)
+    Write-Host ""
+    Read-Host "Press Enter to exit..."
+    exit $exitCode
 }
 
 function Show-Spinner {
@@ -123,19 +130,52 @@ if ($currentPolicy -eq "Restricted" -or $currentPolicy -eq "Undefined") {
     Write-Check $true "PowerShell script execution policy verified ($currentPolicy)"
 }
 
-# Windows Long Path 지원 자동 활성화 시도
-try {
-    $keyPath = "HKLM:\System\CurrentControlSet\Control\FileSystem"
-    $valName = "LongPathsEnabled"
-    $currentVal = (Get-ItemProperty -Path $keyPath -Name $valName -ErrorAction SilentlyContinue).$valName
-    if ($currentVal -ne 1) {
-        Set-ItemProperty -Path $keyPath -Name $valName -Value 1 -Force -ErrorAction Stop
-        Write-Check $true "Windows Long Path support enabled in registry"
+# Windows Long Path 지원 상태 확인 및 활성화
+$keyPath = "HKLM:\System\CurrentControlSet\Control\FileSystem"
+$valName = "LongPathsEnabled"
+$currentVal = (Get-ItemProperty -Path $keyPath -Name $valName -ErrorAction SilentlyContinue).$valName
+
+if ($currentVal -ne 1) {
+    Write-Host "  [!] Windows Long Path support is currently disabled." -ForegroundColor Yellow
+    Write-Host "      This might cause installation failures for deep learning packages (e.g. llama-cpp-python)." -ForegroundColor Yellow
+    
+    $isAdmin = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).Groups | Where-Object { $_.Value -eq "S-1-5-32-544" })
+    
+    if ($isAdmin) {
+        try {
+            Set-ItemProperty -Path $keyPath -Name $valName -Value 1 -Force -ErrorAction Stop
+            Write-Check $true "Windows Long Path support has been enabled in registry (Administrator)."
+        } catch {
+            Write-Check $false "Failed to enable Windows Long Path support: $_"
+        }
     } else {
-        Write-Check $true "Windows Long Path support already enabled"
+        $lpChoice = ""
+        while ("y","n" -notcontains $lpChoice) {
+            $lpChoice = Read-Host "[?] Do you want to enable Windows Long Path support now? (Requires UAC Administrator elevation) (y/n)"
+            $lpChoice = $lpChoice.Trim().ToLower()
+        }
+        
+        if ($lpChoice -eq "y") {
+            try {
+                Write-Host "  ⚙️ Requesting Administrator permission to enable Long Paths..." -ForegroundColor Yellow
+                $proc = Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -WindowStyle Hidden -Command `Set-ItemProperty -Path '$keyPath' -Name '$valName' -Value 1 -Force`" -PassThru -Wait
+                
+                # 변경 사항 재확인
+                $currentVal = (Get-ItemProperty -Path $keyPath -Name $valName -ErrorAction SilentlyContinue).$valName
+                if ($currentVal -eq 1) {
+                    Write-Check $true "Windows Long Path support has been enabled successfully!"
+                } else {
+                    Write-Check $false "Windows Long Path support was not enabled (UAC declined or failed)."
+                }
+            } catch {
+                Write-Check $false "Failed to launch administrator process to enable Long Paths: $_"
+            }
+        } else {
+            Write-Host "  => Skipped. We will attempt to bypass path limit using short temp directories during installation." -ForegroundColor DarkGray
+        }
     }
-} catch {
-    # 관리자 권한이 없거나 설정 불가 시 오류 없이 건너뜀
+} else {
+    Write-Check $true "Windows Long Path support is already enabled"
 }
 
 Start-Sleep -Seconds 1
@@ -178,7 +218,7 @@ if (-not $pythonCmd) {
     Write-Check $false "Python: Not found"
     Write-Host "`n❌ Python is not installed or not added to your PATH environment variable." -ForegroundColor Red
     Write-Host "📥 Please install Python 3.9 or higher (3.12 recommended) from https://www.python.org/downloads/ and try again." -ForegroundColor Yellow
-    exit 1
+    Exit-Script
 }
 
 $pythonVersionRaw = & python --version 2>&1
@@ -200,11 +240,11 @@ if ($versionSplit.Length -ge 2) {
         Write-Check $false "Python $pythonVersion (Required: 3.9+)"
         Write-Host "`n❌ An outdated Python version was detected." -ForegroundColor Red
         Write-Host "📥 Please install Python 3.9 or higher." -ForegroundColor Yellow
-        exit 1
+        Exit-Script
     }
 } else {
     Write-Check $false "Python version check failed"
-    exit 1
+    Exit-Script
 }
 
 # 가상환경 venv 생성 및 확인
@@ -214,7 +254,7 @@ if (-not (Test-Path $venvPython)) {
     & python -m venv "$AMEVA_HOME\venv"
     if (-not (Test-Path $venvPython)) {
         Write-Host "❌ Failed to create virtual environment." -ForegroundColor Red
-        exit 1
+        Exit-Script
     }
     Write-Check $true "Created Python Virtual Environment"
 } else {
@@ -277,7 +317,7 @@ Write-Host "⚙️ Upgrading pip and wheel..." -ForegroundColor Cyan
 & $venvPython -m pip install --upgrade pip wheel --quiet
 if ($LASTEXITCODE -ne 0) {
     Write-Check $false "Failed to upgrade pip and wheel."
-    exit 1
+    Exit-Script
 }
 Write-Check $true "pip upgraded"
 
@@ -319,15 +359,36 @@ if ($components -contains "tts") {
 
 # 모든 패키지를 하나의 pip 명령어로 일괄 설치하여 버전 충돌 방지
 Write-Host "⚙️ Installing selected packages ($($packages.Count) packages)..." -ForegroundColor Cyan
-& $venvPython -m pip install $packages --quiet
-if ($LASTEXITCODE -ne 0) {
+
+# Windows 경로 길이 제한(260자)을 우회하기 위해 짧은 임시 디렉토리 설정
+$shortTemp = "$AMEVA_HOME\tmp"
+if (-not (Test-Path $shortTemp)) {
+    New-Item -ItemType Directory -Path $shortTemp -Force | Out-Null
+}
+$origTemp = $env:TEMP
+$origTmp = $env:TMP
+$env:TEMP = $shortTemp
+$env:TMP = $shortTemp
+
+# pip install 실행 (캐시 디렉토리도 짧은 경로 내부에 설정하여 경로 오버플로우 방지)
+& $venvPython -m pip install $packages --quiet --cache-dir "$shortTemp\cache"
+$pipExitCode = $LASTEXITCODE
+
+# 임시 환경 변수 원복 및 디렉토리 삭제
+$env:TEMP = $origTemp
+$env:TMP = $origTmp
+if (Test-Path $shortTemp) {
+    Remove-Item $shortTemp -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+if ($pipExitCode -ne 0) {
     Write-Check $false "Failed to install dependencies."
     if ($components -contains "llm") {
         Write-Host "  [!] Hint: If the error was related to llama-cpp-python, it might be due to Windows Long Path limits." -ForegroundColor Yellow
-        Write-Host "      Please run the following command in an Administrator PowerShell to enable it, then try again:" -ForegroundColor Yellow
+        Write-Host "      You can manually enable it by running this command in an Administrator PowerShell:" -ForegroundColor Yellow
         Write-Host "      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1" -ForegroundColor Cyan
     }
-    exit 1
+    Exit-Script
 }
 
 # 체크리스트 결과 출력
