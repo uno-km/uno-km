@@ -107,6 +107,21 @@ if ($nvidiaSmi) {
 }
 
 Write-Check $gpuAvailable "GPU: $gpuName"
+
+# PowerShell 실행 정책 (Execution Policy) 진단 및 조정
+$currentPolicy = Get-ExecutionPolicy
+if ($currentPolicy -eq "Restricted" -or $currentPolicy -eq "Undefined") {
+    try {
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force -ErrorAction Stop
+        Write-Check $true "PowerShell 스크립트 실행 권한 활성화 (RemoteSigned)"
+    } catch {
+        Write-Host "  [!] 스크립트 실행 권한을 자동으로 구성할 수 없었습니다 (시스템/그룹 정책 제한 등)." -ForegroundColor Yellow
+        Write-Host "      일반 사용자 권한 범위(Non-Administrator) 내에서 설치를 안전하게 계속 진행합니다." -ForegroundColor Yellow
+        Write-Host "      (새 PowerShell 창에서 환경 로드 경고가 뜰 경우 'Set-ExecutionPolicy RemoteSigned -Scope CurrentUser' 명령을 수동 실행해 주세요.)" -ForegroundColor DarkGray
+    }
+} else {
+    Write-Check $true "PowerShell 스크립트 실행 정책 확인 ($currentPolicy)"
+}
 Start-Sleep -Seconds 1
 
 # =============================================================================
