@@ -345,7 +345,7 @@ $packages = @(
 )
 
 if ($components -contains "llm") {
-    $packages += @("torch", "transformers", "accelerate", "peft", "datasets", "sentencepiece", "gguf", "llama-cpp-python")
+    $packages += @("torch", "transformers", "accelerate", "peft", "datasets", "sentencepiece", "gguf")
 }
 
 if ($components -contains "stt") {
@@ -374,6 +374,39 @@ $env:TMP = $shortTemp
 & $venvPython -m pip install $packages --quiet --cache-dir "$shortTemp\cache"
 $pipExitCode = $LASTEXITCODE
 
+# llama-cpp-python 패키지 개별 설치 및 Fallback 처리 (LLM 모드일 경우)
+if ($pipExitCode -eq 0 -and ($components -contains "llm")) {
+    Write-Host "⚙️ Installing llama-cpp-python using pre-built wheels..." -ForegroundColor Cyan
+    $llamaInstalled = $false
+    
+    # GPU 가속이 가능할 때 (NVIDIA CUDA 가속 버전 설치 시도)
+    if ($gpuAvailable) {
+        Write-Host "  ► Attempting GPU-accelerated installation (CUDA)..." -ForegroundColor Yellow
+        $cudaIndex = "https://abetlen.github.io/llama-cpp-python/whl/cu122"
+        & $venvPython -m pip install llama-cpp-python --prefer-binary --extra-index-url $cudaIndex --quiet --cache-dir "$shortTemp\cache"
+        if ($LASTEXITCODE -eq 0) {
+            $llamaInstalled = $true
+            Write-Check $true "llama-cpp-python (GPU Mode) installed successfully"
+        } else {
+            Write-Host "  [!] GPU wheel install failed. Falling back to CPU-only wheel..." -ForegroundColor Yellow
+        }
+    }
+    
+    # CPU 전용 버전 설치 시도 (GPU가 없거나 GPU 빌드 설치에 실패했을 경우)
+    if (-not $llamaInstalled) {
+        Write-Host "  ► Attempting CPU-only installation..." -ForegroundColor Yellow
+        $cpuIndex = "https://abetlen.github.io/llama-cpp-python/whl/cpu"
+        & $venvPython -m pip install llama-cpp-python --prefer-binary --extra-index-url $cpuIndex --quiet --cache-dir "$shortTemp\cache"
+        if ($LASTEXITCODE -eq 0) {
+            $llamaInstalled = $true
+            Write-Check $true "llama-cpp-python (CPU Mode) installed successfully"
+        } else {
+            Write-Check $false "Failed to install llama-cpp-python"
+            $pipExitCode = 1
+        }
+    }
+}
+
 # 임시 환경 변수 원복 및 디렉토리 삭제
 $env:TEMP = $origTemp
 $env:TMP = $origTmp
@@ -384,9 +417,8 @@ if (Test-Path $shortTemp) {
 if ($pipExitCode -ne 0) {
     Write-Check $false "Failed to install dependencies."
     if ($components -contains "llm") {
-        Write-Host "  [!] Hint: If the error was related to llama-cpp-python, it might be due to Windows Long Path limits." -ForegroundColor Yellow
-        Write-Host "      You can manually enable it by running this command in an Administrator PowerShell:" -ForegroundColor Yellow
-        Write-Host "      Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1" -ForegroundColor Cyan
+        Write-Host "  [!] Hint: If the error was related to llama-cpp-python, make sure you have a working network connection." -ForegroundColor Yellow
+        Write-Host "      You can also try manual installation: pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu" -ForegroundColor Cyan
     }
     Exit-Script
 }
