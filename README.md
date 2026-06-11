@@ -51,6 +51,11 @@ Run PowerShell as Administrator and execute:
 irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex
 ```
 
+Git all clone execute:
+```powershell
+irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/clone_ameva.ps1 | iex
+```
+
 #### Python (Cross-platform):
 ```bash
 python setup.py
