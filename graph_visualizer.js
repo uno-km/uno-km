@@ -442,10 +442,10 @@ let autoAdvanceTimer = null;
 let currentUtterance = null;
 let ringAnimFrame = null;
 let cachedTourData = null;
+let currentTtsRate = 1.2;
 
 // Constants
 const CIRCUMFERENCE = 2 * Math.PI * 16; // ~100.53
-const CHARS_PER_SECOND_KO = 5.4; // 4.5 * 1.2 (for 1.2x faster TTS)
 const MIN_STEP_DURATION_MS = 3500;
 const TRANSITION_BUFFER_MS = 1500;
 
@@ -485,8 +485,9 @@ function getKoreanVoice() {
 
 // Estimate TTS duration from text length
 function estimateTTSDuration(text) {
+  const charsPerSecondKo = 4.5 * currentTtsRate;
   const charCount = text.length;
-  const estimatedMs = (charCount / CHARS_PER_SECOND_KO) * 1000;
+  const estimatedMs = (charCount / charsPerSecondKo) * 1000;
   return Math.max(MIN_STEP_DURATION_MS, estimatedMs) + TRANSITION_BUFFER_MS;
 }
 
@@ -508,7 +509,7 @@ window.startTour = async function() {
   let btnPrev = document.getElementById('btn-tour-prev');
   let btnExit = document.getElementById('btn-tour-exit');
   let btnTts = document.getElementById('btn-tour-tts');
-  let ttsIcon = document.getElementById('tts-icon');
+  let ttsSpeedSelect = document.getElementById('tts-speed-select');
 
   const titleEl = document.getElementById('tour-title');
   const descEl = document.getElementById('tour-desc');
@@ -521,9 +522,15 @@ window.startTour = async function() {
   btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
   btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
   btnTts.replaceWith(btnTts.cloneNode(true));   btnTts = document.getElementById('btn-tour-tts');
+  if (ttsSpeedSelect) {
+    ttsSpeedSelect.replaceWith(ttsSpeedSelect.cloneNode(true));
+    ttsSpeedSelect = document.getElementById('tts-speed-select');
+    // Initialize select to current rate
+    ttsSpeedSelect.value = currentTtsRate.toFixed(1);
+  }
   
   // Select DOM elements inside wrappers AFTER cloning
-  ttsIcon = document.getElementById('tts-icon');
+  let ttsIcon = document.getElementById('tts-icon');
   const progressRing = document.getElementById('tour-progress-circle');
 
   isTourActive = true;
@@ -642,7 +649,7 @@ window.startTour = async function() {
         window.speechSynthesis.cancel(); // Cancel any pending
         currentUtterance = new SpeechSynthesisUtterance(speechText);
         currentUtterance.lang = 'ko-KR';
-        currentUtterance.rate = 1.35; // Increased by ~1.2x (was 1.1)
+        currentUtterance.rate = currentTtsRate;
 
         const koVoice = getKoreanVoice();
         if (koVoice) currentUtterance.voice = koVoice;
@@ -684,6 +691,13 @@ window.startTour = async function() {
     // Re-show current step (restarts ring + optionally TTS)
     showStep(currentTourIndex);
   });
+
+  if (ttsSpeedSelect) {
+    ttsSpeedSelect.addEventListener('change', (e) => {
+      currentTtsRate = parseFloat(e.target.value);
+      showStep(currentTourIndex);
+    });
+  }
 
   btnExit.addEventListener('click', exitTour);
 

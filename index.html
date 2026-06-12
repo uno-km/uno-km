@@ -64,7 +64,14 @@
         <span class="tts-icon" id="tts-icon">🔈</span>
       </div>
       
-      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next">❯</button>
+      <select id="tts-speed-select" class="tts-speed-select" aria-label="TTS Speed" style="background: rgba(255,255,255,0.1); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 5px; font-size: 0.8rem; outline: none; cursor: pointer; margin-left: 10px;">
+        <option value="1.0" style="color: black;">1.0x</option>
+        <option value="1.2" style="color: black;" selected>1.2x</option>
+        <option value="1.5" style="color: black;">1.5x</option>
+        <option value="2.0" style="color: black;">2.0x</option>
+      </select>
+      
+      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next" style="margin-left: 10px;">❯</button>
       <button class="btn-tour-nav" id="btn-tour-exit" aria-label="Exit" style="margin-left: 10px; font-size: 1.2rem; background: rgba(255,50,50,0.2);">✕</button>
     </div>
   </div>
@@ -310,6 +317,11 @@
           <line x1="12" y1="15" x2="12" y2="3" />
         </svg>
         Download &amp; Initialize
+      </button>
+      
+      <!-- Just view Codex button -->
+      <button type="button" id="btn-just-view-codex" style="width: 100%; margin-top: 10px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease;">
+        그냥 코덱스(가이드 투어)만 볼래요
       </button>
     </div>
 

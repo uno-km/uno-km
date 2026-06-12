@@ -36,6 +36,7 @@ const downloadProg  = document.getElementById('download-progress');
 const engineStatus  = document.getElementById('chat-engine-status');
 const btnStopGen    = document.getElementById('btn-stop-gen');
 const btnStartTourPc = document.getElementById('btn-start-tour-pc');
+const btnJustViewCodex = document.getElementById('btn-just-view-codex');
 
 // ─── WebLLM Config ─────────────────────────────────────────
 let engine = null;
@@ -135,6 +136,17 @@ function bindEvents() {
     btnStartTourPc.addEventListener('click', () => {
       closePanel();
       if (window.startTour) window.startTour();
+    });
+  }
+
+  // Just view Codex button binding
+  if (btnJustViewCodex) {
+    btnJustViewCodex.addEventListener('click', () => {
+      isFallbackMode = true; // Switch to fallback mode manually
+      closePanel(); // Close chat panel
+      fab.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>`;
+      openPanel(); // Open codex panel (now fallback mode is true)
+      if (window.showToast) window.showToast('코덱스(가이드 투어) 모드로 전환되었습니다.');
     });
   }
 
