@@ -74,15 +74,25 @@ const appConfigHF = {
 };
 
 // ─── LFS 대역폭 체크 함수 ───
-// 깃허브 LFS 트래픽이 초과되었는지 확인합니다. 초과되었다면 .bin 파일이 134바이트짜리 포인터로 내려옵니다.
+// 깃허브 LFS 트래픽이 초과되었는지 확인합니다.
 async function checkLocalLfsHealth(url) {
   try {
-    const res = await fetch(url + 'params_shard_0.bin', { method: 'HEAD' });
+    // HEAD 요청의 Content-Length는 CORS로 인해 누락될 수 있으므로, 
+    // 실제 스트림을 아주 짧게 열어서 첫 바이트를 확인합니다.
+    const res = await fetch(url + 'params_shard_0.bin');
     if (!res.ok) return false;
     
-    const size = parseInt(res.headers.get('content-length') || '0', 10);
-    // 포인터 파일은 보통 150바이트 미만이므로, 비정상적으로 작으면 LFS 대역폭 소진으로 간주
-    if (size > 0 && size < 1024) return false;
+    const reader = res.body.getReader();
+    const { value, done } = await reader.read();
+    reader.cancel(); // 확인 직후 다운로드 즉시 중단
+    
+    if (value && value.length >= 8) {
+      // LFS 포인터 파일은 "version https://..." 로 시작합니다.
+      const text = new TextDecoder().decode(value.slice(0, 8));
+      if (text === "version ") {
+        return false; // LFS 대역폭 초과로 포인터 반환됨
+      }
+    }
     
     return true;
   } catch (e) {
