@@ -11,6 +11,7 @@
 // If using a bundler later, this would be: import * as d3 from 'd3';
 
 const container = document.getElementById('graph-container');
+
 const placeholder = document.getElementById('graph-placeholder');
 
 // Color palette mapping to Supabase x Obsidian aesthetic
@@ -30,6 +31,25 @@ let svg, simulation, link, node, labels;
  * Initialize the graph by loading the JSON data
  */
 export async function initGraph() {
+  const subtextEl = document.getElementById('loading-subtext');
+  
+  // Fake Hacker-style log sequence
+  const logs = [
+    "Establishing secure connection to GitHub API...",
+    "Querying uno-km repository list...",
+    "Filtering repositories by 'AMEVA' prefix...",
+    "Parsing metadata and categorizing nodes...",
+    "Allocating D3.js physics layout memory...",
+    "Igniting Neural Fabric synapses..."
+  ];
+  let logIdx = 0;
+  const logInterval = setInterval(() => {
+    if (subtextEl) {
+      subtextEl.textContent = logs[logIdx % logs.length];
+      logIdx++;
+    }
+  }, 400);
+
   try {
     // 1. Fetch from GitHub API dynamically
     const username = 'uno-km'; // GitHub username
@@ -41,15 +61,14 @@ export async function initGraph() {
       const repos = await response.json();
       
       // 2. Build Hierarchy: Root -> Categories -> Repos
-      // 2. Build Hierarchy: Root -> Categories -> Repos
       const nodes = [
-        { id: "AMEVA Universe", group: 1, radius: 28, description: "Root Ecosystem" },
-        { id: "LLM", group: 2, radius: 20, description: "Large Language Models & AI" },
-        { id: "LLM Applications", group: 2, radius: 16, description: "Applied LLM Services" }, // Child of LLM
-        { id: "STT", group: 3, radius: 20, description: "Speech to Text & Voice" },
-        { id: "Multiplex Applications", group: 4, radius: 20, description: "Complex Application Orchestration" }, // New Category under root
-        { id: "Social Research", group: 4, radius: 20, description: "Socio-technological AI Research" }, // New Category under root
-        { id: "MLOps", group: 5, radius: 20, description: "Machine Learning Operations" }
+        { id: "AMEVA Universe", group: 1, radius: 28, description: "AMEVA 생태계의 중심 노드입니다. 오프라인 엣지 환경에서 구동되는 모든 AI 어플리케이션과 연구가 여기서 파생됩니다." },
+        { id: "LLM", group: 2, radius: 20, description: "대규모 언어 모델 훈련 및 코어 엔진 기술이 모인 허브입니다." },
+        { id: "LLM Applications", group: 2, radius: 16, description: "LLM을 바탕으로 구축된 실생활 응용 서비스 및 벤치마크 툴셋입니다." },
+        { id: "STT", group: 3, radius: 20, description: "음성 인식 및 음성-텍스트 변환 기술 노드입니다." },
+        { id: "Multiplex Applications", group: 4, radius: 20, description: "단일 기능을 넘어 시스템을 제어하고 자동화하는 복합 에이전트 및 데스크톱 어플리케이션입니다." },
+        { id: "Social Research", group: 4, radius: 20, description: "AI가 사회에 미치는 영향과 실험적 사회학 연구를 진행하는 분야입니다." },
+        { id: "MLOps", group: 5, radius: 20, description: "AI 모델의 안정적인 서빙, 파이프라인 관리 및 데이터베이스를 담당하는 인프라입니다." }
       ];
       
       const links = [
@@ -76,16 +95,13 @@ export async function initGraph() {
            targetCategory = "STT";
         } else if (nameUpper.includes('LLM-TRAINER')) {
            targetCategory = "LLM";
-        } else if (nameUpper.includes('DOC-AI') || nameUpper.includes('BENCHMARK-SUITE') || nameUpper.includes('BENCHMARK')) {
+        } else if (nameUpper.includes('DOC-AI') || nameUpper.includes('BENCHMARK')) {
            targetCategory = "LLM Applications";
-        } else if (nameUpper.includes('MODEL-NEXUS') || nameUpper.includes('MODELNEXUS') || 
-                   nameUpper.includes('DATA-HARVESTER') || nameUpper.includes('DATAHARVESTER') ||
-                   nameUpper.includes('CONDUCTOR') || 
-                   nameUpper.includes('DATABASE')) {
+        } else if (nameUpper.includes('MODEL') || nameUpper.includes('DATA') || nameUpper.includes('CONDUCTOR') || nameUpper.includes('DATABASE')) {
            targetCategory = "MLOps";
-        } else if (nameUpper.includes('WINDOWS-ASSIST') || nameUpper.includes('VIEWPORT') || nameUpper.includes('AGENT-ORCHESTRATOR')) {
+        } else if (nameUpper.includes('WINDOWS-ASSIST') || nameUpper.includes('VIEWPORT') || nameUpper.includes('AGENT-ORCHESTRA')) {
            targetCategory = "Multiplex Applications";
-        } else if (nameUpper.includes('DEAD-INTERNET-THEORY')) {
+        } else if (nameUpper.includes('DEAD-INTERNET-THEOR') || nameUpper.includes('SOCIAL')) {
            targetCategory = "Social Research";
         }
         
@@ -117,9 +133,11 @@ export async function initGraph() {
     if (placeholder) placeholder.style.display = 'none';
     
     // Start drawing sequence
+    if (subtextEl) subtextEl.textContent = "Initiating cascade sequence...";
     await renderGraph(data);
     
     // Hide global loading screen
+    clearInterval(logInterval);
     const globalLoading = document.getElementById('global-loading');
     if (globalLoading) {
       globalLoading.classList.add('is-hidden');
@@ -127,6 +145,7 @@ export async function initGraph() {
     
     window.addEventListener('resize', handleResize);
   } catch (error) {
+    clearInterval(logInterval);
     console.error('[AMEVA D3] Failed to load graph:', error);
     if (placeholder) {
       placeholder.innerHTML = `<span style="color:var(--danger)">Graph Loading Failed</span>`;
@@ -164,8 +183,8 @@ async function renderGraph(data) {
   svg.call(zoom);
   svg.on("dblclick.zoom", null);
 
-  // Initialize simulation WITHOUT nodes so physics don't run yet
-  simulation = d3.forceSimulation()
+  // Initialize simulation WITH nodes but STOP it so physics don't run yet
+  simulation = d3.forceSimulation(data.nodes)
     .force('link', d3.forceLink(data.links).id(d => d.id).distance(120))
     .force('charge', d3.forceManyBody().strength(-400))
     .force('center', d3.forceCenter(width / 2, height / 2))
@@ -191,6 +210,19 @@ async function renderGraph(data) {
     .attr('fill', d => colorScale(d.group))
     .attr('cursor', d => d.url ? 'pointer' : 'grab');
     
+  labels = g.append('g')
+    .selectAll('text')
+    .data(data.nodes)
+    .join('text')
+    .attr('dx', d => d.radius + 8)
+    .attr('dy', 4)
+    .text(d => d.id)
+    .attr('font-family', 'var(--font-mono)')
+    .attr('font-size', '12px')
+    .attr('fill', 'var(--text-secondary)')
+    .attr('pointer-events', 'none')
+    .attr('opacity', 0); // start invisible
+
   // Cascade Animation (Fly-in / Grow)
   // We return a Promise that resolves when the animation finishes
   return new Promise(resolve => {
@@ -210,8 +242,10 @@ async function renderGraph(data) {
         .on('end', () => {
           finishedNodes++;
           if (finishedNodes === totalNodes) {
+             // Show labels
+             labels.transition().duration(400).attr('opacity', 1);
+             
              // 3. Start simulation AFTER all nodes are drawn
-             simulation.nodes(data.nodes);
              simulation.on('tick', tick);
              simulation.alpha(1).restart();
              
@@ -233,6 +267,12 @@ function tick() {
   node
     .attr('cx', d => d.x)
     .attr('cy', d => d.y);
+    
+  if (labels) {
+    labels
+      .attr('x', d => d.x)
+      .attr('y', d => d.y);
+  }
 }
 
 function bindNodeEvents() {
@@ -252,6 +292,15 @@ function bindNodeEvents() {
   if (btnCloseModal) {
     btnCloseModal.addEventListener('click', () => {
       modalNode.classList.remove('is-active');
+    });
+  }
+  
+  if (modalNode) {
+    modalNode.addEventListener('click', (e) => {
+      // Close only if the backdrop itself was clicked (not the modal card inside)
+      if (e.target === modalNode) {
+        modalNode.classList.remove('is-active');
+      }
     });
   }
 
@@ -315,42 +364,7 @@ function bindNodeEvents() {
       }
     });
 
-  // Draw Labels
-  labels = g.append('g')
-    .selectAll('text')
-    .data(data.nodes)
-    .join('text')
-    .attr('dx', d => d.radius + 8)
-    .attr('dy', 4)
-    .text(d => d.id)
-    .attr('font-family', 'var(--font-mono)')
-    .attr('font-size', '12px')
-    .attr('fill', 'var(--text-secondary)')
-    .attr('pointer-events', 'none');
-
-  // Tooltips (Simple title for now)
-  node.append('title')
-    .text(d => `${d.id}\n${d.description}`);
-
-  // Simulation Tick
-  simulation.on('tick', () => {
-    link
-      .attr('x1', d => d.source.x)
-      .attr('y1', d => d.source.y)
-      .attr('x2', d => d.target.x)
-      .attr('y2', d => d.target.y);
-
-    node
-      .attr('cx', d => d.x)
-      .attr('cy', d => d.y);
-      
-    labels
-      .attr('x', d => d.x)
-      .attr('y', d => d.y);
-  });
-  
-  // Initial nice zoom out so it fits
-  svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+  // End of bindNodeEvents
 }
 
 /**

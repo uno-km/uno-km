@@ -938,6 +938,13 @@ body {
   color: var(--accent-cyan);
   letter-spacing: 0.05em;
   animation: pulse-slow 2s infinite;
+  margin-bottom: 8px;
+}
+.loading-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 /* ── Small Hover Tooltip ──────────────────────────────────── */
