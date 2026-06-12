@@ -49,11 +49,10 @@ let isGenerating = false;
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
 // WebLLM tries to force append /resolve/main/ to local paths. 
 // We use a path traversal hack to satisfy its regex while normalizing back to our local directory.
-// Determine base path dynamically to support GitHub Pages subdirectories (e.g. /uno-km/)
-// Using includes ensures it works whether there is a trailing slash or not.
-const repoName = 'uno-km';
-const basePath = window.location.pathname.includes(`/${repoName}`) ? `/${repoName}` : '';
-const localModelUrl = window.location.origin + basePath + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/../../";
+// ─── 해결된 경로 로직 ───
+const repoName = "uno-km";
+// 깃허브 페이지스에서 모델 파일은 raw.githubusercontent.com을 경유하는 것이 LFS 포인터 문제를 피하는 방법입니다.
+const localModelUrl = `https://raw.githubusercontent.com/uno-km/${repoName}/ameva-page/models/${modelId}/resolve/main/../../`;
 
 // Dynamically fetch the default config to get the correct WASM URL, 
 // and override the model URL with our local path hack.
