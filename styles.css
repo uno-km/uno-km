@@ -334,6 +334,42 @@ body {
   opacity: 0;
 }
 
+/* ── Floating Action Button (Who Made AMEVA?) ── */
+.fab-who-made {
+  position: fixed;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-fab);
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+.fab-who-made:hover {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.8);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+  transform: translateX(-50%) translateY(-2px);
+}
+.fab-who-made:active {
+  transform: translateX(-50%) translateY(2px);
+}
+.fab-who-made .icon {
+  font-size: 1.1rem;
+}
+
 
 /* ── Chat Panel ────────────────────────────────────────────── */
 .chat-panel {
@@ -425,7 +461,28 @@ body {
   align-items: center;
   gap: var(--space-xs);
 }
-.chat-header-actions button {
+
+/* PC Tour Button */
+.btn-tour-pc {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-green);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  margin-right: var(--space-sm);
+}
+.btn-tour-pc:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Clear & Close chat buttons */
+.chat-header-actions button:not(.btn-tour-pc) {
   width: 30px;
   height: 30px;
   border-radius: var(--radius-sm);

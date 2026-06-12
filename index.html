@@ -100,9 +100,6 @@
         <button id="btn-start-tour" class="btn-download" style="width: 100%; justify-content: center; margin-bottom: 15px;">
           ▶ 시네마틱 가이드 투어 시작
         </button>
-        <button id="btn-who-made" class="btn-download" style="width: 100%; justify-content: center; background: rgba(124, 58, 237, 0.2); border-color: rgba(124, 58, 237, 0.5);">
-          🧑‍💻 Who Made AMEVA?
-        </button>
       </div>
     </div>
   </div>
@@ -216,6 +213,13 @@
     </svg>
   </button>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       C-2. FLOATING ACTION BUTTON — Who Made AMEVA? (Centered)
+       ═══════════════════════════════════════════════════════════ -->
+  <button id="btn-who-made" class="fab-who-made" aria-label="Who Made AMEVA?">
+    <span class="icon">🧑‍💻</span> Who Made AMEVA?
+  </button>
+
 
   <!-- ═══════════════════════════════════════════════════════════
        D. CHAT PANEL — The Command Center
@@ -232,6 +236,10 @@
         </div>
       </div>
       <div class="chat-header-actions">
+        <!-- Tour on PC -->
+        <button type="button" id="btn-start-tour-pc" class="btn-tour-pc" aria-label="Start Cinematic Tour" title="시네마틱 가이드 투어">
+          ▶ 투어 시작
+        </button>
         <!-- Clear chat -->
         <button type="button" id="btn-clear-chat" aria-label="Clear chat history" title="Clear chat">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -372,6 +380,13 @@
         disabled
         aria-label="Type your message"
       ></textarea>
+      <!-- Stop Generation button (hidden by default) -->
+      <button type="button" id="btn-stop-gen" aria-label="Stop generation" class="is-hidden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="12" height="12"></rect>
+        </svg>
+      </button>
+      <!-- Send button -->
       <button type="button" id="btn-send" aria-label="Send message" disabled>
         <!-- Send arrow icon -->
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
