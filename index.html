@@ -40,12 +40,84 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
+       TOUR OVERLAY (Cinematic Mode)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="tour-overlay" class="tour-overlay is-hidden">
+    <div class="tour-content">
+      <h3 id="tour-title">Touring AMEVA</h3>
+      <p id="tour-desc">Initializing cinematic sequence...</p>
+    </div>
+    <div class="tour-controls">
+      <button id="btn-tour-next" class="btn btn-primary">Next Node ⏭</button>
+      <button id="btn-tour-exit" class="btn btn-secondary">Exit Tour ⏹</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
        LOADING OVERLAY
        ═══════════════════════════════════════════════════════════ -->
   <div id="global-loading" class="global-loading">
     <div class="spinner-large"></div>
     <div class="loading-text">Exploring AMEVA Universe...</div>
     <div id="loading-subtext" class="loading-subtext">Initializing connection...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CODEX PANEL (Fallback Mode UI)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="codex-panel" class="chat-panel">
+    <div class="chat-header">
+      <div class="chat-title">
+        <span class="status-dot online"></span> AMEVA Codex
+      </div>
+      <button id="btn-close-codex" class="icon-btn" aria-label="Close codex">✕</button>
+    </div>
+    <div class="chat-log" id="codex-content">
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          <strong>AMEVA 은하계 도감 (Codex)</strong><br><br>
+          로컬 LLM 코어를 사용할 수 없는 환경이므로, 경량화된 도감 모드로 대체되었습니다.<br>
+          아래 투어를 통해 생태계를 둘러보세요.
+        </div>
+      </div>
+      <div style="padding: 1rem; text-align: center;">
+        <button id="btn-start-tour" class="btn btn-primary" style="width: 100%;">▶ 시네마틱 가이드 투어 시작</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MODALS
+       ═══════════════════════════════════════════════════════════ -->
+  
+  <div class="modal-backdrop" id="modal-mobile" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger">Mobile / Unsupported Device Detected</h2>
+      </div>
+      <div class="modal-body">
+        <p>This Edge-native AI dashboard requires heavy WebGPU compute capabilities usually found on desktop browsers.</p>
+        <p>We've switched you to <strong>Codex Mode</strong> so you can still explore the architecture safely.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-dismiss-mobile" class="btn btn-primary">Enter Codex Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-webgpu" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger">WebGPU Not Supported</h2>
+      </div>
+      <div class="modal-body">
+        <p>Your browser does not support WebGPU, which is strictly required for the local LLM engine.</p>
+        <p>We've switched you to <strong>Codex Mode</strong> so you can explore the network without local AI.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-dismiss-webgpu" class="btn btn-primary">Enter Codex Mode</button>
+      </div>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════

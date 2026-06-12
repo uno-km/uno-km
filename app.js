@@ -22,6 +22,11 @@ const webgpuStatus  = document.getElementById('webgpu-status');
 const modalMobile   = document.getElementById('modal-mobile');
 const modalWebgpu   = document.getElementById('modal-webgpu');
 const modalStorage  = document.getElementById('modal-storage');
+const codexPanel    = document.getElementById('codex-panel');
+const btnCloseCodex = document.getElementById('btn-close-codex');
+const btnDismissMobile = document.getElementById('btn-dismiss-mobile');
+const btnDismissWebgpu = document.getElementById('btn-dismiss-webgpu');
+const btnStartTour  = document.getElementById('btn-start-tour');
 const downloadOverlay = document.getElementById('download-overlay');
 const btnDownload   = document.getElementById('btn-start-download');
 const progressBar   = document.getElementById('progress-bar-fill');
@@ -34,6 +39,7 @@ const engineStatus  = document.getElementById('chat-engine-status');
 let engine = null;
 let isPanelOpen = false;
 let isEngineReady = false;
+let isFallbackMode = false;
 
 // We use the hybrid approach: local weights + official wasm binary
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
@@ -68,20 +74,24 @@ function hasWebGPU() {
 // ─── Initialize ────────────────────────────────────────────
 function init() {
   if (isMobileDevice()) {
+    isFallbackMode = true;
     modalMobile.classList.add('is-active');
-    fab.style.display = 'none';
-    return;
-  }
-
-  if (hasWebGPU()) {
-    webgpuDot.classList.remove('loading');
-    webgpuDot.classList.add('online');
-    webgpuStatus.textContent = 'Online';
-  } else {
+  } else if (!hasWebGPU()) {
+    isFallbackMode = true;
+    modalWebgpu.classList.add('is-active');
     webgpuDot.classList.remove('loading');
     webgpuDot.classList.add('offline');
     webgpuStatus.textContent = 'Absent';
     webgpuStatus.style.color = 'var(--danger)';
+  } else {
+    webgpuDot.classList.remove('loading');
+    webgpuDot.classList.add('online');
+    webgpuStatus.textContent = 'Online';
+  }
+
+  if (isFallbackMode) {
+    // Change FAB to book icon
+    fab.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>`;
   }
 
   bindEvents();
@@ -91,9 +101,30 @@ function init() {
 // ─── Event Bindings ─────────────────────────────────────────
 function bindEvents() {
   fab.addEventListener('click', togglePanel);
-  btnClose.addEventListener('click', closePanel);
-  btnClear.addEventListener('click', clearChat);
-  btnSend.addEventListener('click', handleSend);
+  if (btnClose) btnClose.addEventListener('click', closePanel);
+  if (btnClear) btnClear.addEventListener('click', clearChat);
+  if (btnSend) btnSend.addEventListener('click', handleSend);
+  if (btnCloseCodex) btnCloseCodex.addEventListener('click', closePanel);
+
+  if (btnDismissMobile) {
+    btnDismissMobile.addEventListener('click', () => {
+      modalMobile.classList.remove('is-active');
+      openPanel();
+    });
+  }
+  if (btnDismissWebgpu) {
+    btnDismissWebgpu.addEventListener('click', () => {
+      modalWebgpu.classList.remove('is-active');
+      openPanel();
+    });
+  }
+
+  if (btnStartTour) {
+    btnStartTour.addEventListener('click', () => {
+      closePanel();
+      if (window.startTour) window.startTour();
+    });
+  }
 
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -123,25 +154,26 @@ function togglePanel() {
 }
 
 function openPanel() {
-  if (!hasWebGPU()) {
-    modalWebgpu.classList.add('is-active');
-    return;
-  }
   isPanelOpen = true;
-  chatPanel.classList.add('is-visible');
   fab.classList.add('is-open');
-  fab.setAttribute('aria-label', 'Close AI chat');
-
-  if (isEngineReady) {
-    setTimeout(() => chatInput.focus(), 400);
+  fab.setAttribute('aria-label', 'Close panel');
+  
+  if (isFallbackMode) {
+    codexPanel.classList.add('is-visible');
+  } else {
+    chatPanel.classList.add('is-visible');
+    if (isEngineReady && chatInput) {
+      setTimeout(() => chatInput.focus(), 400);
+    }
   }
 }
 
 function closePanel() {
   isPanelOpen = false;
-  chatPanel.classList.remove('is-visible');
+  if (chatPanel) chatPanel.classList.remove('is-visible');
+  if (codexPanel) codexPanel.classList.remove('is-visible');
   fab.classList.remove('is-open');
-  fab.setAttribute('aria-label', 'Open AI chat');
+  fab.setAttribute('aria-label', isFallbackMode ? 'Open Codex' : 'Open AI chat');
 }
 
 // ─── Download Handler (WebLLM Integration) ──────────────────

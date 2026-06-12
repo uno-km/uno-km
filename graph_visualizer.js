@@ -431,3 +431,90 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add a slight delay to ensure CSS variables and fonts are loaded
   setTimeout(initGraph, 100);
 });
+
+// ─── Cinematic Tour Logic ────────────────────────────────────
+let currentTourIndex = 0;
+let tourNodes = [];
+let isTourActive = false;
+
+window.startTour = function() {
+  const tourOverlay = document.getElementById('tour-overlay');
+  let btnNext = document.getElementById('btn-tour-next');
+  let btnExit = document.getElementById('btn-tour-exit');
+  const titleEl = document.getElementById('tour-title');
+  const descEl = document.getElementById('tour-desc');
+  
+  // Clear old listeners
+  const newBtnNext = btnNext.cloneNode(true);
+  btnNext.parentNode.replaceChild(newBtnNext, btnNext);
+  btnNext = newBtnNext;
+  
+  const newBtnExit = btnExit.cloneNode(true);
+  btnExit.parentNode.replaceChild(newBtnExit, btnExit);
+  btnExit = newBtnExit;
+
+  if (!tourOverlay || !node) return;
+
+  // Find category nodes from D3 data bound to nodes
+  tourNodes = [];
+  node.each(function(d) {
+    if (!d.isRepo) tourNodes.push(d); // Push category/root nodes
+  });
+
+  // Sort logically: Root first, then LLM, then others
+  tourNodes.sort((a, b) => a.group - b.group);
+
+  if (tourNodes.length === 0) return;
+
+  isTourActive = true;
+  currentTourIndex = 0;
+  tourOverlay.classList.remove('is-hidden');
+  
+  // Handlers
+  const exitTour = () => {
+    isTourActive = false;
+    tourOverlay.classList.add('is-hidden');
+    // Zoom out
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    svg.transition().duration(1500)
+       .call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+    btnNext.removeEventListener('click', nextTour);
+    btnExit.removeEventListener('click', exitTour);
+  };
+  
+  const nextTour = () => {
+    if (!isTourActive) return;
+    if (currentTourIndex >= tourNodes.length) {
+      exitTour();
+      return;
+    }
+    
+    const target = tourNodes[currentTourIndex];
+    titleEl.textContent = target.id;
+    descEl.textContent = target.description || "Node details loading...";
+    
+    // Zoom to target
+    const scale = 2.0; // Deep zoom
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const tx = -target.x * scale + width / 2;
+    const ty = -target.y * scale + height / 2;
+    
+    svg.transition().duration(1500).ease(d3.easeCubicOut)
+       .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+       
+    currentTourIndex++;
+    if (currentTourIndex >= tourNodes.length) {
+      btnNext.textContent = "Finish Tour ⏹";
+    } else {
+      btnNext.textContent = "Next Node ⏭";
+    }
+  };
+
+  btnNext.addEventListener('click', nextTour);
+  btnExit.addEventListener('click', exitTour);
+
+  // Start first step
+  nextTour();
+};
