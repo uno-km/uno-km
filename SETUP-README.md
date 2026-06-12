@@ -11,7 +11,7 @@ uno-km/
 ├── setup.ps1                   # PowerShell 설치 스크립트 (Windows)
 ├── requirements.txt            # 통합 의존성 파일 (모든 AMEVA 프로젝트의 중복 제거)
 ├── .env.example               # 환경변수 템플릿
-├── AmelvaSetup.psm1           # PowerShell 모듈
+├── AmevaSetup.psm1           # PowerShell 모듈
 ├── profile.ps1                # PowerShell 프로필 (자동 초기화)
 ├── AMEVA-SETUP-GUIDE.md       # 상세 설치 가이드
 └── README.md                  # 이 파일

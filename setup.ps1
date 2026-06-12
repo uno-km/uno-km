@@ -375,12 +375,12 @@ Start-Sleep -Seconds 1
 Write-Header "PHASE 7: POWERSHELL PROFILE INTEGRATION"
 
 $profileLocalPath = "$AMEVA_HOME\profile.ps1"
-$moduleLocalPath = "$AMEVA_HOME\AmelvaSetup.psm1"
+$moduleLocalPath = "$AMEVA_HOME\AmevaSetup.psm1"
 
 try {
     Write-Host "📥 Downloading AMEVA profile & setup module..." -ForegroundColor Cyan
     Invoke-WebRequest -Uri "$BASE_URL/profile.ps1" -OutFile $profileLocalPath -UseBasicParsing -ErrorAction Stop
-    Invoke-WebRequest -Uri "$BASE_URL/AmelvaSetup.psm1" -OutFile $moduleLocalPath -UseBasicParsing -ErrorAction Stop
+    Invoke-WebRequest -Uri "$BASE_URL/AmevaSetup.psm1" -OutFile $moduleLocalPath -UseBasicParsing -ErrorAction Stop
     Write-Check $true "Downloaded helper script files"
 } catch {
     Write-Check $false "Failed to download profile scripts. Creating baseline profile.ps1 locally."
