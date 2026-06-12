@@ -235,6 +235,32 @@ window.showToast = function(msg) {
   }, 3500);
 };
 
+// ─── Blog Iframe Modal Logic ────────────────────────────────
+const btnBlog = document.getElementById('fab-blog');
+const modalBlog = document.getElementById('modal-blog');
+const btnCloseBlog = document.getElementById('btn-close-blog');
+const blogIframe = document.getElementById('blog-iframe');
+
+if (btnBlog && modalBlog) {
+  btnBlog.addEventListener('click', () => {
+    // Lazy load iframe content on first click
+    if (blogIframe && blogIframe.src.includes('about:blank')) {
+      blogIframe.src = blogIframe.getAttribute('data-src');
+    }
+    modalBlog.classList.add('is-active');
+  });
+  if (btnCloseBlog) {
+    btnCloseBlog.addEventListener('click', () => {
+      modalBlog.classList.remove('is-active');
+    });
+  }
+  modalBlog.addEventListener('click', (e) => {
+    if (e.target === modalBlog) {
+      modalBlog.classList.remove('is-active');
+    }
+  });
+}
+
 // ─── Profile Modal Logic ────────────────────────────────────
 const btnWhoMade = document.getElementById('btn-who-made');
 const modalProfile = document.getElementById('modal-profile');
