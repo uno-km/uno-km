@@ -1,4 +1,4 @@
-import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
+import { CreateMLCEngine, prebuiltAppConfig } from "https://esm.run/@mlc-ai/web-llm";
 
 /**
  * ============================================================
@@ -46,15 +46,18 @@ const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
 // WebLLM tries to force append /resolve/main/ to local paths. 
 // We use a path traversal hack to satisfy its regex while normalizing back to our local directory.
 const localModelUrl = window.location.origin + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/../../";
-// The wasm URL for Qwen2.5 1.5B q4f16_1. (Using standard CDN fallback since it's not locally present)
-const modelLibUrl = "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_4/qwen2-q4f16_1-ctx4k_cs1k-webgpu.wasm";
+
+// Dynamically fetch the default config to get the correct WASM URL, 
+// and override the model URL with our local path hack.
+const defaultModelConfig = prebuiltAppConfig.model_list.find(m => m.model_id === modelId) || {
+  model_id: modelId,
+  model_lib: "qwen2.5-q4f16_1-ctx4k_cs1k-webgpu.wasm" // safe fallback
+};
 
 const appConfig = {
   model_list: [
     {
-      model_id: modelId,
-      model_lib_url: modelLibUrl,
-      model_lib: modelLibUrl,
+      ...defaultModelConfig,
       model_url: localModelUrl,
       model: localModelUrl
     }
