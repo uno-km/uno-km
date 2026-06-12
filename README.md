@@ -53,9 +53,12 @@ irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup
 
 Git all clone execute:
 ```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/clone_ameva.ps1 | iex
+irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/clone_ameva.ps1 | iex
 ```
-
+Git all fetch execute:
+```powershell
+irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/fetch_ameva.ps1 | iex
+```
 #### Python (Cross-platform):
 ```bash
 python setup.py
