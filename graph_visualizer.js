@@ -237,10 +237,12 @@ async function renderGraph(data) {
     .data(data.nodes)
     .join('text')
     .attr('dx', d => d.radius + 8)
+    .attr('dx', d => d.radius + 8)
     .attr('dy', 4)
     .text(d => d.id)
     .attr('font-family', 'var(--font-mono)')
     .attr('font-size', '12px')
+    .attr('font-weight', 'bold')
     .attr('fill', 'var(--text-secondary)')
     .attr('pointer-events', 'none')
     .attr('opacity', 0); // start invisible
@@ -269,7 +271,8 @@ async function renderGraph(data) {
              
              // 3. Start simulation AFTER all nodes are drawn
              simulation.on('tick', tick);
-             simulation.alpha(1).restart();
+             // alphaTarget을 0.01로 유지하여 물리 엔진이 아주 천천히 계속 돌게 함 (아메바 이펙트)
+             simulation.alpha(1).alphaTarget(0.01).restart();
              
              // 4. Bind Interactions AFTER rendering
              bindNodeEvents();
@@ -279,7 +282,17 @@ async function renderGraph(data) {
   });
 }
 
+let time = 0;
 function tick() {
+  time += 0.05;
+  // 유기적인 아메바(Amoeba) 무빙 이펙트: 모든 노드에 아주 미세한 사인 곡선 힘을 가함
+  if (node && node.data) {
+    node.data().forEach((d, i) => {
+      d.vx += Math.sin(time + i) * 0.02;
+      d.vy += Math.cos(time + i * 0.8) * 0.02;
+    });
+  }
+
   link
     .attr('x1', d => d.source.x)
     .attr('y1', d => d.source.y)
@@ -374,7 +387,29 @@ function bindNodeEvents() {
       // Open Medium Modal
       if (modalNode && mTitle && mDesc) {
         mTitle.textContent = d.id;
-        mDesc.textContent = d.description || 'No description provided.';
+        
+        // --- 하위 노드 목록 렌더링 (중간 노드일 경우) ---
+        let childrenHTML = '';
+        if (!d.isRepo && d.id !== "AMEVA Universe") {
+          // 현재 노드가 source인 링크들을 찾아 target(자식 노드)을 수집
+          const children = link.data()
+            .filter(l => l.source.id === d.id)
+            .map(l => l.target);
+            
+          if (children.length > 0) {
+            childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
+            childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
+            childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
+            children.forEach(child => {
+              childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
+                 <span style="margin-right:8px;">🚀</span> ${child.id}
+              </li>`;
+            });
+            childrenHTML += '</ul></div>';
+          }
+        }
+
+        mDesc.innerHTML = `<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
         
         if (d.url) {
           mLink.href = d.url;
@@ -382,6 +417,26 @@ function bindNodeEvents() {
         } else {
           mLink.style.display = 'none';
         }
+        
+        // 이벤트 위임(Event Delegation)을 통해 하위 노드 클릭 처리
+        mDesc.onclick = (e) => {
+          const item = e.target.closest('.child-node-item');
+          if (item) {
+            const childId = item.getAttribute('data-id');
+            const childNode = node.data().find(n => n.id === childId);
+            if (childNode) {
+               mTitle.textContent = childNode.id;
+               mDesc.innerHTML = `<p>${childNode.description || 'No description provided.'}</p>`;
+               if (childNode.url) {
+                 mLink.href = childNode.url;
+                 mLink.style.display = 'inline-flex';
+               } else {
+                 mLink.style.display = 'none';
+               }
+            }
+          }
+        };
+
         modalNode.classList.add('is-active'); // Re-using modal backdrop style
       }
     });

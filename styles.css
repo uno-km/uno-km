@@ -1433,3 +1433,10 @@ body {
   font-size: 0.9em;
   color: var(--accent-cyan);
 }
+
+/* ── Child Node Item Hover ───────────────────────────────── */
+.child-node-item:hover {
+  border-color: var(--accent-cyan) !important;
+  background: rgba(0, 239, 255, 0.1) !important;
+  transform: translateX(4px);
+}
