@@ -410,6 +410,7 @@ function drag(simulation) {
 
 /**
  * Resize handler to keep graph centered
+ */
 function handleResize() {
   if (!svg || !simulation) return;
   

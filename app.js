@@ -78,10 +78,8 @@ function hasWebGPU() {
 function init() {
   if (isMobileDevice()) {
     isFallbackMode = true;
-    modalMobile.classList.add('is-active');
   } else if (!hasWebGPU()) {
     isFallbackMode = true;
-    modalWebgpu.classList.add('is-active');
     webgpuDot.classList.remove('loading');
     webgpuDot.classList.add('offline');
     webgpuStatus.textContent = 'Absent';
