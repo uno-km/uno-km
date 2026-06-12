@@ -46,7 +46,9 @@ const appConfig = {
     {
       model_id: modelId,
       model_lib_url: modelLibUrl,
-      model_url: localModelUrl
+      model_lib: modelLibUrl,
+      model_url: localModelUrl,
+      model: localModelUrl
     }
   ]
 };

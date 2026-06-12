@@ -87,22 +87,36 @@ export async function initGraph() {
         if (!name.startsWith('AMEVA')) return;
 
         const nameUpper = name.toUpperCase();
+        const topics = (repo.topics || []).map(t => t.toUpperCase());
         
         // Categorization logic
         let targetCategory = "AMEVA Universe"; // Fallback
         
-        if (nameUpper.includes('STT-TRAINER') || nameUpper.includes('STT')) {
+        if (topics.includes('STT')) {
            targetCategory = "STT";
-        } else if (nameUpper.includes('LLM-TRAINER')) {
+        } else if (topics.includes('LLM')) {
            targetCategory = "LLM";
-        } else if (nameUpper.includes('DOC-AI') || nameUpper.includes('BENCHMARK')) {
-           targetCategory = "LLM Applications";
-        } else if (nameUpper.includes('MODEL') || nameUpper.includes('DATA') || nameUpper.includes('CONDUCTOR') || nameUpper.includes('DATABASE')) {
-           targetCategory = "MLOps";
-        } else if (nameUpper.includes('WINDOWS-ASSIST') || nameUpper.includes('VIEWPORT') || nameUpper.includes('AGENT-ORCHESTRA')) {
+        } else if (topics.includes('MA')) {
            targetCategory = "Multiplex Applications";
-        } else if (nameUpper.includes('DEAD-INTERNET-THEOR') || nameUpper.includes('SOCIAL')) {
+        } else if (topics.includes('SR')) {
            targetCategory = "Social Research";
+        } else if (topics.includes('MLOPS')) {
+           targetCategory = "MLOps";
+        } else {
+           // Fallback mapping if topics are not provided
+           if (nameUpper.includes('STT')) {
+              targetCategory = "STT";
+           } else if (nameUpper.includes('LLM')) {
+              targetCategory = "LLM";
+           } else if (nameUpper.includes('DOC-AI') || nameUpper.includes('BENCHMARK')) {
+              targetCategory = "LLM Applications";
+           } else if (nameUpper.includes('MODEL') || nameUpper.includes('DATA') || nameUpper.includes('CONDUCTOR') || nameUpper.includes('DATABASE')) {
+              targetCategory = "MLOps";
+           } else if (nameUpper.includes('WINDOWS-ASSIST') || nameUpper.includes('VIEWPORT') || nameUpper.includes('AGENT-ORCHESTRA')) {
+              targetCategory = "Multiplex Applications";
+           } else if (nameUpper.includes('DEAD-INTERNET-THEOR') || nameUpper.includes('SOCIAL')) {
+              targetCategory = "Social Research";
+           }
         }
         
         nodes.push({
