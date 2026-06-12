@@ -445,8 +445,8 @@ let cachedTourData = null;
 
 // Constants
 const CIRCUMFERENCE = 2 * Math.PI * 16; // ~100.53
-const CHARS_PER_SECOND_KO = 4.5;
-const MIN_STEP_DURATION_MS = 4000;
+const CHARS_PER_SECOND_KO = 5.4; // 4.5 * 1.2 (for 1.2x faster TTS)
+const MIN_STEP_DURATION_MS = 3500;
 const TRANSITION_BUFFER_MS = 1500;
 
 // Preload tour data from JSON
@@ -515,14 +515,16 @@ window.startTour = async function() {
   const detailsEl = document.getElementById('tour-details');
   const techEl = document.getElementById('tour-tech');
   const algEl = document.getElementById('tour-alg');
-  const progressRing = document.getElementById('tour-progress-circle');
 
   // Clear old listeners by cloning
   btnNext.replaceWith(btnNext.cloneNode(true)); btnNext = document.getElementById('btn-tour-next');
   btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
   btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
   btnTts.replaceWith(btnTts.cloneNode(true));   btnTts = document.getElementById('btn-tour-tts');
+  
+  // Select DOM elements inside wrappers AFTER cloning
   ttsIcon = document.getElementById('tts-icon');
+  const progressRing = document.getElementById('tour-progress-circle');
 
   isTourActive = true;
   currentTourIndex = 0;
@@ -640,7 +642,7 @@ window.startTour = async function() {
         window.speechSynthesis.cancel(); // Cancel any pending
         currentUtterance = new SpeechSynthesisUtterance(speechText);
         currentUtterance.lang = 'ko-KR';
-        currentUtterance.rate = 1.1;
+        currentUtterance.rate = 1.35; // Increased by ~1.2x (was 1.1)
 
         const koVoice = getKoreanVoice();
         if (koVoice) currentUtterance.voice = koVoice;
