@@ -1,1 +1,312 @@
-Hello World!!
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AMEVA Edge-Native AI Portfolio — A serverless, browser-only dashboard featuring WebGPU LLM inference and interactive knowledge graph visualization." />
+  <meta name="theme-color" content="#181818" />
+
+  <title>AMEVA Neural Fabric — Edge-Native AI Dashboard</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       A. GRAPH CONTAINER — Full-screen Obsidian-style canvas
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="graph-container" role="img" aria-label="AMEVA Knowledge Graph Visualization">
+    <div class="graph-placeholder" id="graph-placeholder">
+      <!-- Orbital icon -->
+      <svg viewBox="0 0 64 64" fill="none" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="32" cy="32" r="20" opacity="0.4" />
+        <circle cx="32" cy="32" r="8" opacity="0.6" />
+        <ellipse cx="32" cy="32" rx="30" ry="12" transform="rotate(35 32 32)" opacity="0.3" />
+        <ellipse cx="32" cy="32" rx="30" ry="12" transform="rotate(-35 32 32)" opacity="0.3" />
+        <circle cx="32" cy="12" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+        <circle cx="52" cy="32" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+        <circle cx="18" cy="45" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+      </svg>
+      <span>Neural Fabric Initializing…</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       B. HEADER — Glassmorphism SRE Metrics Bar
+       ═══════════════════════════════════════════════════════════ -->
+  <header id="header" role="banner">
+    <!-- Logo -->
+    <div class="header-logo">
+      <div class="logo-icon" aria-hidden="true">A</div>
+      <h1>AMEVA <span>Neural Fabric</span></h1>
+    </div>
+
+    <!-- SRE Metrics Cluster -->
+    <div class="sre-metrics" aria-label="System metrics">
+      <!-- WebGPU Status -->
+      <div class="metric-badge" id="metric-webgpu">
+        <span class="status-dot loading" id="webgpu-dot"></span>
+        <span>WebGPU:</span>
+        <span class="metric-value" id="webgpu-status">Checking</span>
+      </div>
+
+      <!-- Model Info -->
+      <div class="metric-badge" id="metric-model">
+        <span>Model:</span>
+        <span class="metric-value" id="model-name" style="color: var(--accent-cyan);">Qwen 1.5B</span>
+      </div>
+
+      <!-- TPS (Tokens Per Second) -->
+      <div class="metric-badge" id="metric-tps">
+        <span>TPS:</span>
+        <span class="metric-value" id="tps-header">0.00</span>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       C. FLOATING ACTION BUTTON (FAB) — Chat Toggle
+       ═══════════════════════════════════════════════════════════ -->
+  <button id="fab-chat" aria-label="Open AI chat" type="button">
+    <!-- AI Core / Terminal Icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
+      <path d="M5 10h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" />
+      <circle cx="9" cy="15" r="1" fill="currentColor" />
+      <circle cx="15" cy="15" r="1" fill="currentColor" />
+      <path d="M9 22v-2" />
+      <path d="M15 22v-2" />
+    </svg>
+  </button>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       D. CHAT PANEL — The Command Center
+       ═══════════════════════════════════════════════════════════ -->
+  <aside id="chat-panel" role="complementary" aria-label="AI Chat Panel">
+
+    <!-- ─── Panel Header ───────────────────────────────────── -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="ai-avatar" aria-hidden="true">⚡</div>
+        <div class="chat-title-group">
+          <span class="chat-title">AMEVA Cortex</span>
+          <span class="chat-subtitle" id="chat-engine-status">engine: standby</span>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <!-- Clear chat -->
+        <button type="button" id="btn-clear-chat" aria-label="Clear chat history" title="Clear chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+            <path d="M10 11v6" /><path d="M14 11v6" />
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+          </svg>
+        </button>
+        <!-- Close panel -->
+        <button type="button" id="btn-close-chat" aria-label="Close chat panel" title="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── TPS Metrics Strip ──────────────────────────────── -->
+    <div class="tps-strip" id="tps-strip">
+      <div class="tps-item">
+        <span class="tps-label">Speed</span>
+        <span class="tps-value dim" id="tps-speed">— t/s</span>
+      </div>
+      <div class="tps-item">
+        <span class="tps-label">Tokens</span>
+        <span class="tps-value dim" id="tps-tokens">0</span>
+      </div>
+      <div class="tps-item">
+        <span class="tps-label">Latency</span>
+        <span class="tps-value dim" id="tps-latency">— ms</span>
+      </div>
+    </div>
+
+    <!-- ─── Download Overlay (shown on first visit) ────────── -->
+    <div class="download-overlay" id="download-overlay">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      </div>
+
+      <h3>Edge AI Engine Required</h3>
+      <span class="model-tag">Qwen2.5-1.5B-Instruct-q4f16_1-MLC</span>
+      <p>
+        이 대시보드는 브라우저 내에서 직접 LLM을 구동합니다.
+        최초 1회 약 <strong style="color:var(--text-primary)">900MB</strong>의 모델 다운로드가 필요합니다.
+        (이후 IndexedDB에 캐싱됩니다.)
+      </p>
+
+      <!-- Progress UI (hidden until download starts) -->
+      <div class="download-progress" id="download-progress" style="display:none;">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+        <span class="progress-text" id="progress-text">Preparing download…</span>
+        <span class="progress-percent" id="progress-percent">0%</span>
+      </div>
+
+      <!-- CTA Button -->
+      <button type="button" class="btn-download" id="btn-start-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download &amp; Initialize
+      </button>
+    </div>
+
+    <!-- ─── Chat Message Log ───────────────────────────────── -->
+    <div class="chat-log" id="chat-log">
+
+      <!-- System welcome message -->
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          안녕하세요! 저는 <strong>AMEVA Cortex</strong>입니다. 🧠<br/>
+          AMEVA 생태계의 아키텍처, 코드 구조, 배포 파이프라인에 대해 질문해 주세요.<br/>
+          브라우저 내 로컬 GraphRAG 엔진이 관련 소스 코드를 검색하여 답변합니다.
+        </div>
+        <div class="source-badges">
+          <a class="source-badge" href="#" title="Knowledge Graph loaded">
+            <span class="badge-icon">📊</span>
+            <span>graph_index.json</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sample User message -->
+      <div class="chat-msg user">
+        <div class="msg-bubble">
+          AMEVA 프로젝트의 <code>setup.ps1</code> 스크립트는 무슨 역할을 해?
+        </div>
+      </div>
+
+      <!-- Sample AI response with source badges -->
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          <code>setup.ps1</code>은 AMEVA 개발 환경의 초기 설정을 자동화하는 PowerShell 스크립트입니다.
+          주요 역할은 다음과 같습니다:<br/><br/>
+          <strong>1.</strong> Python 가상 환경 생성 및 의존성 설치<br/>
+          <strong>2.</strong> 환경 변수 설정 (<code>.env</code> 파일 생성)<br/>
+          <strong>3.</strong> GPU 드라이버 호환성 체크<br/>
+          <strong>4.</strong> 초기 모델 가중치 다운로드 트리거
+        </div>
+        <div class="source-badges">
+          <a class="source-badge" href="https://github.com/ameva-project/setup.ps1" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+            <span class="badge-icon">🔗</span>
+            <span>setup.ps1</span>
+          </a>
+          <a class="source-badge" href="https://github.com/ameva-project/requirements.txt" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+            <span class="badge-icon">🔗</span>
+            <span>requirements.txt</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Typing indicator (hidden by default, shown via JS) -->
+      <!--
+      <div class="typing-indicator" id="typing-indicator">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      -->
+
+    </div><!-- /.chat-log -->
+
+    <!-- ─── Chat Input Area ────────────────────────────────── -->
+    <div class="chat-input-area">
+      <textarea
+        id="chat-input"
+        placeholder="AMEVA에 대해 질문하세요…"
+        rows="1"
+        disabled
+        aria-label="Type your message"
+      ></textarea>
+      <button type="button" id="btn-send" aria-label="Send message" disabled>
+        <!-- Send arrow icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+
+  </aside><!-- /#chat-panel -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       E. MOBILE BLOCK MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-mobile" role="dialog" aria-modal="true" aria-labelledby="modal-mobile-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">🖥️</span>
+      <h2 id="modal-mobile-title">Desktop Environment Required</h2>
+      <p>
+        해당 AI 엔진은 PC 환경의 <strong>WebGPU</strong> 자원을 필요로 합니다.<br/>
+        Chrome 또는 Edge 데스크톱 브라우저에서 접속해 주세요.
+      </p>
+      <span class="modal-tag">WebGPU · OOM Prevention</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       F. WEBGPU FALLBACK MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-webgpu" role="dialog" aria-modal="true" aria-labelledby="modal-webgpu-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">⚠️</span>
+      <h2 id="modal-webgpu-title">WebGPU Not Detected</h2>
+      <p>
+        브라우저에서 WebGPU가 감지되지 않습니다.<br/>
+        Chrome/Edge에서 <code>chrome://flags/#enable-unsafe-webgpu</code>를
+        활성화한 후 재시작해 주세요.
+      </p>
+      <span class="modal-tag">Hardware Acceleration Required</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       G. STORAGE QUOTA EXCEEDED MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-storage" role="dialog" aria-modal="true" aria-labelledby="modal-storage-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">💾</span>
+      <h2 id="modal-storage-title">Storage Quota Exceeded</h2>
+      <p>
+        브라우저 저장소 공간이 부족합니다.<br/>
+        불필요한 사이트 데이터를 삭제하거나 저장소 권한을 허용해 주세요.
+      </p>
+      <span class="modal-tag">IndexedDB · Cache Failure</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS — Loaded as ES Modules (to be implemented)
+       ═══════════════════════════════════════════════════════════ -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
