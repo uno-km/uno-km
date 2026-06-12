@@ -45,17 +45,9 @@ let isEngineReady = false;
 let isFallbackMode = false;
 let isGenerating = false;
 
-// We use the hybrid approach: local weights + official wasm binary
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
-// WebLLM tries to force append /resolve/main/ to local paths. 
-// We use a path traversal hack to satisfy its regex while normalizing back to our local directory.
-// ─── 해결된 경로 로직 ───
-const repoName = "uno-km";
-// 깃허브 페이지스에서 모델 파일은 raw.githubusercontent.com을 경유하는 것이 LFS 포인터 문제를 피하는 방법입니다.
-const localModelUrl = `https://raw.githubusercontent.com/uno-km/${repoName}/ameva-page/models/${modelId}/resolve/main/../../`;
 
-// Dynamically fetch the default config to get the correct WASM URL, 
-// and override the model URL with our local path hack.
+// Dynamically fetch the default config to get the correct WASM URL and HuggingFace Model URL
 const defaultModelConfig = prebuiltAppConfig.model_list.find(m => m.model_id === modelId) || {
   model_id: modelId,
   model_lib: "qwen2.5-q4f16_1-ctx4k_cs1k-webgpu.wasm" // safe fallback
@@ -63,11 +55,7 @@ const defaultModelConfig = prebuiltAppConfig.model_list.find(m => m.model_id ===
 
 const appConfig = {
   model_list: [
-    {
-      ...defaultModelConfig,
-      model_url: localModelUrl,
-      model: localModelUrl
-    }
+    defaultModelConfig
   ]
 };
 
