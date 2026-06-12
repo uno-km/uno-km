@@ -1,185 +1,55 @@
-# 🧠 AMEVA: The Autonomous Multi-Agent Edge-AI Ecosystem
-**Orchestrating Intelligence Beyond the Cloud.**
+# 🌌 AMEVA Dashboard & Codex
 
-Welcome to the AMEVA Ecosystem. 본 프로젝트는 Local-first, Hierarchical AI Orchestration 및 SRE-driven Inference Infrastructure에 대한 심도 있는 Research Portfolio입니다. Data Priv[...] (truncated for brevity)
+AMEVA(Autonomous Multi-Agent Edge-AI Ecosystem)의 철학과 기술 생태계를 시각적으로 보여주고, 브라우저 환경에서 직접 Edge-AI를 체험할 수 있도록 구축된 대시보드 웹 애플리케이션입니다. 클라우드 서버나 외부 API 의존 없이 브라우저 내장 하드웨어만으로 LLM을 구동하는 제로 풋프린트 아키텍처를 시연합니다.
 
----
-
-## 🏛 Ecosystem Architecture Overview
-
-AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었습니다:
-
-- **Hierarchical Control**: 단순한 Prompt-response 패턴을 넘어, 구조화된 "Nobles & Workers" 계층형 제어를 지향합니다.
-- **Hardware-Software Co-Design**: 각 Edge device의 Power/Compute profile을 고려하여 Inference 과정을 최적화합니다.
-- **Reliability by Design**: AI 추론 과정을 하나의 Mission-critical utility로 간주하고, Site Reliability Engineering (SRE) 원칙을 적용합니다.
+🌐 **Live Demo:** [uno-km.github.io/uno-km](https://uno-km.github.io/uno-km/)
 
 ---
 
-## 🌐 The AMEVA Universe
+## 🎯 핵심 기능
 
-| Project | Role in Ecosystem | Core Innovation |
-|---------|-------------------|-----------------|
-| **[Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)** | Orchestrator | Hierarchical task decomposition & Agent management |
-| **[Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)** | Infrastructure | Unified API gateway with SRE-based dynamic throttling |
-| **[Benchmark Suite](https://github.com/uno-km/AMEVA-Benchmark-Suite)** | Validation | Empirical power/performance profiling for edge hardware |
-| **[Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)** | Interface | Privacy-first offline document intelligence pipeline |
-| **[Conductor](https://github.com/uno-km/AMEVA-Conductor)** | Control | Remote cross-platform UI for human-agent interaction |
-| **[Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)** | Data Layer | Hyper-resilient, zero-loss edge forwarder with multi-transport backup |
-| **[Database](https://github.com/uno-km/AMEVA-Database)** | Analytics | Lightweight SQLite & log inspector for distributed AMEVA ecosystem |
-| **[STT Trainer](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper-based Korean STT with LoRA fine-tuning |
-| **[STT Agent](https://github.com/uno-km/AMEVA-STT-Agent)** | Perception | Speech recognition agent integration |
-| **[Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)** | Interface | Windows-native local AI desktop assistant with OCR-first screen understanding |
-| **[Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | Fully autonomous Docker-based multi-agent simulation |
-| **[BitNet](https://github.com/uno-km/BitNet)** | Optimization | BitNet inference framework with ARM/Exynos scalar fallback |
+- **WebGPU 로컬 챗봇 엔진**: WebLLM을 활용하여 Qwen 1.5B 모델을 사용자 기기의 GPU 메모리 위에서 직접 구동합니다.
+- **D3.js 시네마틱 가이드 투어 (Codex)**: WebGPU를 지원하지 않는 기기(구형 PC, 저사양 모바일 등)를 위한 Fallback 경험입니다. AMEVA 생태계를 노드 그래프로 시각화하고 TTS(음성 합성)로 투어를 진행합니다.
+- **Glassmorphism UI/UX**: 우주 공간을 떠다니는 듯한 신비로운 노드 애니메이션과 세련된 다크 테마 기반의 모던 웹 디자인을 채택했습니다.
 
 ---
 
-## 🚀 AMEVA Setup Universe (One-Click Installer)
+## ⚖️ 트레이드오프 (Trade-offs)
 
-This repository now includes the "AMEVA Setup Universe" — a single installer and UX layer to bootstrap the full AMEVA ecosystem on macOS, Linux, and Windows.
+### 1. "Sovereign Hosting" vs. "High Availability"
+**배경**: AMEVA의 완전한 오프라인/주권 철학을 지키기 위해, 900MB에 달하는 언어 모델을 GitHub LFS를 통해 직접 호스팅하고자 했습니다.
+**문제**: 무료 GitHub 계정의 LFS 대역폭 제한은 월 1GB입니다. 개발 중 단 두세 번의 로드 테스트만으로도 대역폭이 완전히 고갈되었고, 깃허브는 원본 바이너리 대신 134바이트짜리 LFS 포인터 텍스트 파일을 반환하기 시작했습니다.
+**결정**: 100% 로컬 호스팅이라는 이념적 목표를 약간 양보하는 대신, 서비스의 안정성(HA)을 택했습니다. 기본적으로 GitHub LFS에서 로드를 시도하되, 실패가 감지되면 즉시 트래픽이 무제한인 **Hugging Face CDN으로 우회(Fallback)**하도록 하이브리드 다운로드 아키텍처를 설계했습니다.
 
-### Quick links (one-liners):
-
-#### macOS / Linux (Bash):
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)
-```
-
-#### Windows (PowerShell):
-Run PowerShell as Administrator and execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex
-```
-
-Git all clone execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/clone_ameva.ps1 | iex
-```
-Git all fetch execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/fetch_ameva.ps1 | iex
-```
-#### Python (Cross-platform):
-```bash
-python setup.py
-```
-
-### What the installer does (high level):
-* **Creates a unified AMEVA home**: `~/ameva` or `C:\ameva`
-* **Creates canonical model folders**: `ameva/models/llm`, `ameva/models/stt`, `ameva/models/tts`
-* **Offers interactive selection** of components (LLM / STT / TTS / All)
-* **Diagnoses system environments**: OS, CPU/GPU, PowerShell execution policies, Git installation, Windows Long Path support, and **C++ Build Tools (MSVC compiler)**.
-* **Performs temporary CUDA/GPU validation**: Sets up an isolated temporary environment (`temp_env_ai`) to verify PyTorch CUDA acceleration and instantly cleans it up after validation.
-* **Delegates library installation**: Python library installs are delegated to each cloned project's local virtual environment (e.g. `venv`) to keep the global environment clean and stable.
-* **Generates a unified `config.json`** at AMEVA home.
-* **Integrates with PowerShell profiles**: Automates environment variables initialization and provides dynamic virtual environment scanning activation commands (`act` / `activate` / `env_ai`).
-
-> [!NOTE]
-> * Installer files live on branch `setup-universe-feature` (raw links above). You can inspect or copy them to run locally.
-> * All installer prompts and printed progress are in English; inline comments in the scripts are written in Korean.
+### 2. "모든 기기 챗봇 지원" vs. "안정적인 브라우저 경험"
+**배경**: 초창기에는 모든 모바일 기기 접속을 차단하고 챗봇 대신 시네마틱 투어(Codex)만 보여주도록 설계했습니다.
+**문제**: 모바일 브라우저에서 1.5GB가 넘는 VRAM을 할당하려 하면 브라우저 탭이 강제 종료(OOM Crash)되는 빈도가 높았기 때문입니다.
+**결정**: 모바일 접속 여부로 기능을 제한하는 대신, 오직 **WebGPU 지원 여부**만을 기준으로 제한 기준을 완화했습니다. 따라서 갤럭시 S24와 같은 최신 하이엔드 모바일 기기는 챗봇을 실행할 수 있는 기회를 갖게 되며, 사양이 부족한 기기는 우아하게 Codex 모드로 Fallback됩니다.
 
 ---
 
-## 🔬 In-depth Project Analysis: 핵심 기술 논의
+## 🧗‍♂️ 개발 중 마주한 난제 및 해결책
 
-### 1. AMEVA Agent Orchestra: 계층적 주권 (Hierarchical Sovereignty)
+### 난제 1: LFS 대역폭 소진 판별 시 CORS 문제 (Content-Length 은닉)
+WebLLM이 LFS 포인터 파일을 116MB짜리 진짜 가중치 파일로 오인하여 파싱하다가 `size mismatch` 에러로 뻗어버리는 문제가 있었습니다. 이를 방지하기 위해 파일 용량을 검사하려 했으나, 브라우저에서 외부 도메인(`raw.githubusercontent.com`)으로 `HEAD` 요청을 보낼 때 깃허브 서버 측의 CORS 정책으로 인해 `Content-Length` 헤더를 읽을 수 없었습니다.
+💡 **해결책 (Streaming First-Chunk Cancel)**: `HEAD` 요청 대신 실제 `GET` 요청으로 파일을 `fetch`하고, `ReadableStream`을 통해 **딱 첫 번째 청크(Chunk)만 읽은 뒤 즉시 다운로드를 `cancel()` 시키는 기법**을 도입했습니다. 읽어들인 앞부분의 8바이트 텍스트가 `"version "` (LFS 포인터 파일의 시작 문자열)인지 확인하여 파일이 포인터인지 확실히 판별하면서도, 116MB의 데이터를 낭비하지 않는 완벽한 방어 로직을 구축했습니다.
 
-현대 LLM은 Long-context 내에서의 "망각" 현상을 겪습니다. Agent Orchestra는 User intent를 **Nobles (의사결정 레이어)**로 추상화하고, 이를 원자 단위의 서브 태스크로 쪼개어 전문화된 Workers에게 위임함으로써 이를 해결합니다.
+### 난제 2: WebLLM 브라우저 캐시 오염 (Cache Poisoning) 방지
+위의 LFS 다운로드 실패를 겪는 과정에서, WebLLM 엔진이 잘못된 134바이트짜리 포인터 파일을 내부 `IndexedDB`에 정상적인 모델 파일로 저장(캐싱)해 버리는 현상이 발생했습니다. 이로 인해 이후 Hugging Face로 다운로드 경로를 우회했음에도 엔진이 오염된 캐시를 계속 불러와 뻗어버렸습니다.
+💡 **해결책 (Dynamic Model ID)**: Hugging Face 경로로 Fallback 시, WebLLM 초기화 객체에 들어가는 `model_id` 문자열 뒤에 `-HF` 라는 접미사를 동적으로 붙였습니다. 이를 통해 WebLLM이 기존에 오염된 캐시(`Qwen2.5-1.5B...`)를 무시하고 새로운 모델 환경(`Qwen2.5-1.5B...-HF`)으로 인식하게 만들어, 사용자가 직접 F12를 눌러 캐시를 비우지 않아도 시스템이 스스로 복구될 수 있도록 조치했습니다.
 
-- **Research Focus**: Multi-turn 오케스트레이션 과정에서의 "Semantic Drift" 최소화
-- **Key Implementation**: 로컬 GGUF 모델에 최적화된 Graph-based state management 시스템
-
-### 2. AMEVA Model Nexus: SRE 관점의 인프라
-
-제한된 리소스 환경에서 어떻게 안정적으로 AI를 서빙할 것인가? Model Nexus는 모델을 가상화된 리소스로 취급합니다.
-
-- **Dynamic Scoped-Throttling**: 현재 하드웨어의 온도 및 Power draw를 실시간으로 감지하여 Context window와 Sampling 파라미터를 동적으로 조절합니다
-- **High-Availability Serving**: 복잡한 Agent 요청이 단순 질의보다 우선 처리될 수 있도록 스케줄링합니다
-
-### 3. AMEVA Benchmark Suite (Singularity)
-
-"측정할 수 없으면 개선할 수 없다." 본 Suite는 모든 AMEVA 최적화의 기술적 근거(Empirical foundation)를 제공합니다.
-
-- **Synchronized Power Tracking**: TPS(Tokens Per Second)와 mW(Milliwatt) 소모량을 동기화하여 분석하는 "Greener AI"의 첫걸음입니다
-
-### 4. AMEVA Data Harvester: Zero-Loss Resilience
-
-데이터 손실 없는 극도의 복원력. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로를 통해 데이터를 수집합니다.
-
-- **Multi-Transport Backup**: SCP, HTTPS, Telegram Bot을 통한 자동 폴백
-- **Payload Validation**: 제로 로스 검증 메커니즘으로 데이터 무결성 보장
-
-### 5. AMEVA STT Ecosystem: 한국어 우선 음성 지능
-
-Whisper 기반 LoRA 파인 튜닝으로 한국어 특화 음성 인식을 구현합니다.
-
-- **STT Trainer**: 데이터 스크래핑부터 모델 병합까지 전체 파이프라인 제공
-- **STT Agent**: Edge device에서 실시간 음성 처리 및 통합
-
-### 6. AMEVA Window Assistant: OCR-First Perception
-
-Windows 데스크톱 AI 어시스턴트로, 화면 이해를 OCR 기반으로 우선 처리합니다.
-
-- **Multimodal Fallback**: OCR 실패 시 Vision 모델로 자동 전환
-- **Offline Voice I/O**: 완전 오프라인 음성 입출력
-- **llama.cpp Integration**: 로컬 추론 엔진 통합
+### 난제 3: 시네마틱 투어 중 TTS와 D3.js 줌 객체 간의 스코프 충돌
+투어 콘텐츠를 읽어주는 TTS(Text-to-Speech)가 끝날 때마다 자동으로 다음 노드로 D3 카메라를 줌인시키는 로직에서, `zoom` 객체를 찾을 수 없다는 `ReferenceError`가 발생했습니다.
+💡 **해결책**: `d3.zoom()` 객체가 `initGraph()` 함수 내부에 지역 변수로 고립되어 있던 것을 파악하고, 모듈(Module) 스코프로 끌어올렸습니다(Hoisting). 이후 외부에서 카메라 시점을 제어할 수 있는 Setter 함수를 구현해 TTS 이벤트 사이클과 시각화 라이브러리를 안전하게 결합했습니다.
 
 ---
 
-## 🗺 Evaluation & Future Directions: 최종 청사진
+## 🛠 기술 스택
 
-### 🚀 Phase 1: Local Supremacy (현재)
-복잡한 Agentic workflow를 100% 오프라인 환경에서 구현 완료. Local model fine-tuning을 통한 Data sovereignty 확보.
-
-### ⛓ Phase 2: Distributed Neural Fabric (중기)
-Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이스 가용 VRAM을 풀링(Pooling)하여, 단일 기기에서 불가능했던 대형 모델(30B+)을 분산 처리하는 기술 연구.
-
-### 🌌 Phase 3: The Singular Conductor (비전)
-단순한 수행을 넘어, Benchmark Suite의 과거 데이터를 학습하여 스스로 코드와 인프라를 최적화(Self-optimization)하는 자율형 Self-healing AI 에이전트 시스템 구축.
+- **Core**: Vanilla JavaScript, HTML5, CSS3 (No Frontend Frameworks)
+- **AI Inference**: WebLLM, WebGPU, TVM (Qwen2.5-1.5B-Instruct-q4f16_1-MLC)
+- **Visualization**: D3.js
+- **Typography & Markdown**: Google Fonts (Inter, Roboto), Marked.js
 
 ---
-
-## 📚 Technical Glossary (용어 꾸러미)
-
-| Term | Definition |
-|------|-----------|
-| **Orchestration** | 복잡한 시스템이나 여러 에이전트의 동작을 조화롭게 제어하고 관리하는 과정 |
-| **Hierarchical** | 계층적인 시스템 구조. 상위 레이어가 전략을 짜고 하위 레이어가 실행하는 방식 |
-| **Edge-AI** | 데이터 센터(클라우드)가 아닌 사용자와 가까운 기기(엣지)에서 직접 AI를 구동하는 기술 |
-| **Inference** | 학습된 AI 모델을 통해 결과값을 도출해내는 추론(실행) 과정 |
-| **SRE** | Site Reliability Engineering - 시스템의 안정성과 신뢰성을 높이기 위해 소프트웨어 공학 기법을 인프라 운영에 적용하는 방법론 |
-| **Sovereignty** | 데이터나 시스템에 대한 완전한 통제권 및 주권 |
-| **Throttling** | 자원 과부하를 막기 위해 의도적으로 처리 속도나 요청을 조절하는 기술 |
-| **Semantic Drift** | 대화나 작업이 길어질수록 AI가 원래의 맥락이나 의도에서 벗어나는 현상 |
-| **Empirical** | 실제 실험이나 관찰을 통해 얻은 데이터에 기반한 실증적인 접근 |
-| **Federated** | 여러 곳에 분산되어 있지만 하나처럼 협력하는 연합 방식 |
-
----
-
-## 🛠 Tech Stack & Infrastructure
-
-- **Core Runtime**: Python 3.9+, GGUF (llama.cpp), Ollama
-- **Agent Framework**: Custom hierarchical orchestration
-- **Data Pipeline**: SQLite, pandas, Arrow
-- **Communication**: Telegram Bot API, HTTPS, SCP
-- **AI/ML**: Whisper, LoRA, BitNet, llama.cpp
-- **Containerization**: Docker, Docker Compose
-- **UI/UX**: Tkinter, Web-based dashboards
-- **Monitoring**: Custom power/performance tracking
-
----
-
-## 📬 Contact & Collaboration
-
-저는 Multi-Agent Systems, Edge Computing, 그리고 AI SRE 분야에 대한 학술적 담론을 언제나 환영합니다.
-
-- **GitHub**: [@uno-km](https://github.com/uno-km)
-- **Email**: zhfldk014745@naver.com
-- **Tstory** : [my-blog](https://uno-kim.tistory.com/)
-- **Research Focus**: Hierarchical AI Orchestration, Edge-native Inference, Data Sovereignty
-
----
-
-**Generated with ❤️ by AMEVA Researcher Portfolio Builder**
-
-*Last Updated: June 9, 2026*
+*“생물학적인 아메바가 형태를 자유자재로 바꾸며 가장 척박한 환경에서도 끝내 살아남듯이, AMEVA 역시 제한된 컴퓨팅 자원과 단절된 네트워크 속에서 스스로 생각하고 호흡하며 진화하는 코드가 되기를 지향합니다.”*
