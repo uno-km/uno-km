@@ -4,7 +4,7 @@
 
 ## 👑 AMEVA Creator & Architect
 
-안녕하세요! 저는 완전 오프라인 환경에서도 생존하고 스스로 진화하는 Edge-Native AI 생태계, **AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)**의 설계자입니다. 
+안녕하세요! 저는 완전 오프라인 환경에서도 생존하고 스스로 진화하는 Edge-Native AI 생태계, AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)의 설계자입니다. 
 
 AMEVA는 단순한 AI 서비스가 아닙니다. 클라우드 의존성에서 벗어나 개개인의 디바이스 속에서 주권을 가지는 AI(Sovereign AI)를 구현하려는 거대한 실험이자, 언젠가 다가올 지 모를 'Dead Internet'의 시대 속에서도 인류와 AI가 독립적으로 상호작용할 수 있는 최후의 보루를 만드는 작업입니다.
 
