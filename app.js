@@ -47,17 +47,48 @@ let isGenerating = false;
 
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
 
+// ─── 경로 로직 ───
+const repoName = "uno-km";
+const localModelUrl = `https://raw.githubusercontent.com/uno-km/${repoName}/ameva-page/models/${modelId}/resolve/main/../../`;
+
 // Dynamically fetch the default config to get the correct WASM URL and HuggingFace Model URL
 const defaultModelConfig = prebuiltAppConfig.model_list.find(m => m.model_id === modelId) || {
   model_id: modelId,
   model_lib: "qwen2.5-q4f16_1-ctx4k_cs1k-webgpu.wasm" // safe fallback
 };
 
-const appConfig = {
+const appConfigLocal = {
+  model_list: [
+    {
+      ...defaultModelConfig,
+      model_url: localModelUrl,
+      model: localModelUrl
+    }
+  ]
+};
+
+const appConfigHF = {
   model_list: [
     defaultModelConfig
   ]
 };
+
+// ─── LFS 대역폭 체크 함수 ───
+// 깃허브 LFS 트래픽이 초과되었는지 확인합니다. 초과되었다면 .bin 파일이 134바이트짜리 포인터로 내려옵니다.
+async function checkLocalLfsHealth(url) {
+  try {
+    const res = await fetch(url + 'params_shard_0.bin', { method: 'HEAD' });
+    if (!res.ok) return false;
+    
+    const size = parseInt(res.headers.get('content-length') || '0', 10);
+    // 포인터 파일은 보통 150바이트 미만이므로, 비정상적으로 작으면 LFS 대역폭 소진으로 간주
+    if (size > 0 && size < 1024) return false;
+    
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 // ─── Environment Checks ───────────────────────────────────
 function isMobileDevice() {
@@ -253,9 +284,25 @@ async function handleDownloadClick() {
       progressText.textContent = report.text;
     };
 
-    // Initialize WebLLM using the local model
+    // Verify LFS health before initializing WebLLM to avoid cache poisoning
+    progressText.textContent = "Verifying local model repository health...";
+    const isLocalHealthy = await checkLocalLfsHealth(localModelUrl);
+    
+    let selectedConfig = appConfigHF;
+    if (isLocalHealthy) {
+      progressText.textContent = "Local LFS is healthy. Loading model from GitHub...";
+      selectedConfig = appConfigLocal;
+    } else {
+      progressText.textContent = "Local LFS bandwidth exhausted. Falling back to Hugging Face...";
+      progressText.style.color = "var(--accent-purple)";
+      // Wait a brief moment so the user can see the message
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      progressText.style.color = "";
+    }
+
+    // Initialize WebLLM using the selected configuration
     engine = await CreateMLCEngine(modelId, {
-      appConfig: appConfig,
+      appConfig: selectedConfig,
       initProgressCallback: initProgressCallback
     });
 
