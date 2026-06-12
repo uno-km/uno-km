@@ -221,6 +221,16 @@
   </button>
 
   <!-- ═══════════════════════════════════════════════════════════
+       C-3. FLOATING ACTION BUTTON — Blog (Next to Chat)
+       ═══════════════════════════════════════════════════════════ -->
+  <button id="fab-blog" aria-label="Open Blog" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+      <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+    </svg>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════
        C-2. FLOATING ACTION BUTTON — Who Made AMEVA? (Centered)
        ═══════════════════════════════════════════════════════════ -->
   <button id="btn-who-made" class="fab-who-made" aria-label="Who Made AMEVA?">
@@ -495,6 +505,19 @@
        J. TOAST NOTIFICATION CONTAINER
        ═══════════════════════════════════════════════════════════ -->
   <div id="toast-container" class="toast-container"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       K. BLOG IFRAME MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-blog" role="dialog" aria-modal="true" aria-labelledby="modal-blog-title">
+    <div class="modal-card profile-card" style="width: 90vw; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+      <div style="padding: 15px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5);">
+        <h3 id="modal-blog-title" style="margin: 0; font-size: 1.1rem; color: var(--accent-cyan); font-family: var(--font-mono);">📝 uno-kim.tistory.com</h3>
+        <button class="btn-close-modal" id="btn-close-blog" aria-label="Close Blog" style="position: static; padding: 5px;">✕</button>
+      </div>
+      <iframe src="https://uno-kim.tistory.com/" style="flex: 1; width: 100%; border: none; background: #fff;"></iframe>
+    </div>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════════════════════

@@ -349,6 +349,47 @@ body {
   opacity: 0;
 }
 
+/* ── Floating Action Button (Blog) ── */
+#fab-blog {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: calc(var(--space-lg) + 70px);
+  z-index: var(--z-fab);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 239, 255, 0.4);
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(8px);
+  color: var(--accent-cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 239, 255, 0.2);
+  transition:
+    transform var(--duration-fast) var(--ease-bounce),
+    box-shadow var(--duration-fast) ease,
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+#fab-blog:hover {
+  transform: scale(1.08);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 239, 255, 0.1);
+  box-shadow: var(--shadow-fab), var(--accent-cyan-glow);
+}
+
+#fab-blog:active {
+  transform: scale(0.95);
+}
+
+#fab-blog svg {
+  width: 24px;
+  height: 24px;
+}
+
 /* ── Floating Action Button (Who Made AMEVA?) ── */
 .fab-who-made {
   position: fixed;

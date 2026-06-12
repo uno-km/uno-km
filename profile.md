@@ -2,6 +2,10 @@
 
 ![Profile Image](ameva-creater.jpg)
 
+<p style="text-align: center; margin: 15px 0;">
+  👉 <a href="https://uno-kim.tistory.com/" target="_blank" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-cyan);">https://uno-kim.tistory.com/</a>
+</p>
+
 ## 👑 AMEVA Creator & Architect
 
 안녕하세요! 저는 완전 오프라인 환경에서도 생존하고 스스로 진화하는 Edge-Native AI 생태계, AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)의 설계자입니다. 
