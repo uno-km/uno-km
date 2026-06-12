@@ -69,7 +69,10 @@ const appConfigLocal = {
 
 const appConfigHF = {
   model_list: [
-    defaultModelConfig
+    {
+      ...defaultModelConfig,
+      model_id: modelId + "-HF" // 캐시 오염(Cache Poisoning)을 우회하기 위해 다른 ID 사용
+    }
   ]
 };
 
@@ -83,14 +86,20 @@ async function checkLocalLfsHealth(url) {
     if (!res.ok) return false;
     
     const reader = res.body.getReader();
-    const { value, done } = await reader.read();
+    const { value } = await reader.read();
     reader.cancel(); // 확인 직후 다운로드 즉시 중단
     
     if (value && value.length >= 8) {
-      // LFS 포인터 파일은 "version https://..." 로 시작합니다.
       const text = new TextDecoder().decode(value.slice(0, 8));
+      console.log("[AMEVA] LFS Check First 8 bytes:", text);
+      // LFS 포인터 파일은 "version https://..." 로 시작합니다.
       if (text === "version ") {
+        console.warn("[AMEVA] LFS Pointer detected! Bandwidth likely exhausted.");
         return false; // LFS 대역폭 초과로 포인터 반환됨
+      }
+      if (text.startsWith("<!DOCTYP")) {
+        console.warn("[AMEVA] HTML page detected! File not found.");
+        return false;
       }
     }
     
@@ -299,9 +308,12 @@ async function handleDownloadClick() {
     const isLocalHealthy = await checkLocalLfsHealth(localModelUrl);
     
     let selectedConfig = appConfigHF;
+    let finalModelId = modelId + "-HF";
+    
     if (isLocalHealthy) {
       progressText.textContent = "Local LFS is healthy. Loading model from GitHub...";
       selectedConfig = appConfigLocal;
+      finalModelId = modelId;
     } else {
       progressText.textContent = "Local LFS bandwidth exhausted. Falling back to Hugging Face...";
       progressText.style.color = "var(--accent-purple)";
@@ -311,7 +323,7 @@ async function handleDownloadClick() {
     }
 
     // Initialize WebLLM using the selected configuration
-    engine = await CreateMLCEngine(modelId, {
+    engine = await CreateMLCEngine(finalModelId, {
       appConfig: selectedConfig,
       initProgressCallback: initProgressCallback
     });
