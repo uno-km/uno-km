@@ -33,7 +33,7 @@ let zoomBehavior = null;  // Module-scope zoom (was local to renderGraph — cau
  */
 export async function initGraph() {
   const subtextEl = document.getElementById('loading-subtext');
-  
+
   // Fake Hacker-style log sequence
   const logs = [
     "Establishing secure connection to GitHub API...",
@@ -55,23 +55,22 @@ export async function initGraph() {
     // 1. Fetch from GitHub API dynamically
     const username = 'uno-km'; // GitHub username
     const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-    
+
     let data;
-    
+
     if (response.ok) {
       const repos = await response.json();
-      
-      // 2. Build Hierarchy: Root -> Categories -> Repos
+
       const nodes = [
-        { id: "AMEVA Universe", group: 1, radius: 28, description: "AMEVA 생태계의 중심 노드입니다. 오프라인 엣지 환경에서 구동되는 모든 AI 어플리케이션과 연구가 여기서 파생됩니다." },
-        { id: "LLM", group: 2, radius: 20, description: "대규모 언어 모델 훈련 및 코어 엔진 기술이 모인 허브입니다." },
-        { id: "LLM Applications", group: 2, radius: 16, description: "LLM을 바탕으로 구축된 실생활 응용 서비스 및 벤치마크 툴셋입니다." },
-        { id: "STT", group: 3, radius: 20, description: "음성 인식 및 음성-텍스트 변환 기술 노드입니다." },
-        { id: "Multiplex Applications", group: 4, radius: 20, description: "단일 기능을 넘어 시스템을 제어하고 자동화하는 복합 에이전트 및 데스크톱 어플리케이션입니다." },
-        { id: "Social Research", group: 4, radius: 20, description: "AI가 사회에 미치는 영향과 실험적 사회학 연구를 진행하는 분야입니다." },
-        { id: "MLOps", group: 5, radius: 20, description: "AI 모델의 안정적인 서빙, 파이프라인 관리 및 데이터베이스를 담당하는 인프라입니다." }
+        { id: "AMEVA Universe", group: 1, radius: 28, description: "AMEVA 생태계의 중심 노드입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.001, freqY: 0.001 },
+        { id: "LLM", group: 2, radius: 20, description: "대규모 언어 모델 훈련 및 코어 엔진 기술이 모인 허브입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
+        { id: "LLM Applications", group: 2, radius: 16, description: "LLM을 바탕으로 구축된 실생활 응용 서비스 및 벤치마크 툴셋입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
+        { id: "STT", group: 3, radius: 20, description: "음성 인식 및 음성-텍스트 변환 기술 노드입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
+        { id: "Multiplex Applications", group: 4, radius: 20, description: "복합 에이전트 및 데스크톱 어플리케이션입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
+        { id: "Social Research", group: 4, radius: 20, description: "실험적 사회학 연구를 진행하는 분야입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
+        { id: "MLOps", group: 5, radius: 20, description: "파이프라인 관리 및 데이터베이스를 담당하는 인프라입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 }
       ];
-      
+
       const links = [
         { source: "AMEVA Universe", target: "LLM", value: 3 },
         { source: "AMEVA Universe", target: "STT", value: 3 },
@@ -83,13 +82,13 @@ export async function initGraph() {
 
       repos.forEach(repo => {
         const name = repo.name;
-        
+
         // 1. "AMEVA" 대문자 프리픽스가 있는 레포지토리만 필터링
         if (!name.startsWith('AMEVA')) return;
 
         const nameUpper = name.toUpperCase();
         const topics = (repo.topics || []).map(t => t.toUpperCase());
-        
+
         // Categorization logic (Rule-based Engine)
         const CATEGORY_RULES = [
           { id: "STT", tags: ["STT"], keywords: ["STT"] },
@@ -101,59 +100,64 @@ export async function initGraph() {
         ];
 
         let targetCategory = "AMEVA Universe"; // Fallback
-        
+
         for (const rule of CATEGORY_RULES) {
           if (topics.some(t => rule.tags.includes(t)) || rule.keywords.some(k => nameUpper.includes(k))) {
             targetCategory = rule.id;
             break;
           }
         }
-        
+
         nodes.push({
           id: repo.name,
-          group: targetCategory === "LLM" || targetCategory === "LLM Applications" ? 2 : 
-                 targetCategory === "STT" ? 3 : 
-                 targetCategory === "MLOps" ? 5 : 4,
+          group: targetCategory === "LLM" || targetCategory === "LLM Applications" ? 2 :
+            targetCategory === "STT" ? 3 :
+              targetCategory === "MLOps" ? 5 : 4,
           radius: 12,
           description: repo.description || "No description provided.",
           url: repo.html_url,
-          isRepo: true
+          isRepo: true,
+          // 아메바 효과를 위한 노드별 고유 파동 변수
+          phaseX: Math.random() * Math.PI * 2,
+          phaseY: Math.random() * Math.PI * 2,
+          freqX: 0.002 + Math.random() * 0.003,
+          freqY: 0.002 + Math.random() * 0.003
         });
-        
+
         links.push({
           source: targetCategory,
           target: repo.name,
           value: 1
         });
       });
-      
+
       data = { nodes, links };
     } else {
       console.warn("GitHub API limit exceeded or failed. Falling back to local index.");
       const fallback = await fetch('graph_index.json');
       data = await fallback.json();
     }
-    
+
     if (placeholder) placeholder.style.display = 'none';
-    
+
     // Start drawing sequence
     if (subtextEl) subtextEl.textContent = "Initiating cascade sequence...";
     await renderGraph(data);
-    
+
     // Hide global loading screen
     clearInterval(logInterval);
     const globalLoading = document.getElementById('global-loading');
     if (globalLoading) {
       globalLoading.classList.add('is-hidden');
     }
-    
+
     // 로딩 완료 후 친절한 안내 메시지 띄우기 (1~2초 사이)
     setTimeout(() => {
       if (window.showToast) {
-        window.showToast("(각 노드들을 눌러서 AMEVA 프로젝트를 탐험해 보세요!)");
+        window.showToast("각 노드들을 눌러서 AMEVA 프로젝트를 탐험해 보세요!");
       }
     }, 800);
-    
+
     window.addEventListener('resize', handleResize);
   } catch (error) {
     clearInterval(logInterval);
@@ -190,12 +194,13 @@ async function renderGraph(data) {
     .on('zoom', (event) => {
       g.attr('transform', event.transform);
     });
-  
+
   svg.call(zoomBehavior);
   svg.on("dblclick.zoom", null);
 
   // Initialize simulation WITH nodes but STOP it so physics don't run yet
   simulation = d3.forceSimulation(data.nodes)
+    // 원래의 텐션으로 되돌려 카테고리별 군집 형태를 단단하게 유지
     .force('link', d3.forceLink(data.links).id(d => d.id).distance(120))
     .force('charge', d3.forceManyBody().strength(-400))
     .force('center', d3.forceCenter(width / 2, height / 2))
@@ -220,7 +225,7 @@ async function renderGraph(data) {
     .attr('r', 0) // start radius 0
     .attr('fill', d => colorScale(d.group))
     .attr('cursor', d => d.url ? 'pointer' : 'grab');
-    
+
   labels = g.append('g')
     .selectAll('text')
     .data(data.nodes)
@@ -241,44 +246,44 @@ async function renderGraph(data) {
   return new Promise(resolve => {
     // 1. Links fade in slowly
     link.transition()
-        .duration(800)
-        .attr('opacity', 1);
+      .duration(800)
+      .attr('opacity', 1);
 
     // 2. Nodes pop in one by one (cascade)
     const totalNodes = data.nodes.length;
     let finishedNodes = 0;
 
     node.transition()
-        .duration(400)
-        .delay((d, i) => i * 30) // cascade effect
-        .attr('r', d => d.radius)
-        .on('end', () => {
-          finishedNodes++;
-          if (finishedNodes === totalNodes) {
-             // Show labels
-             labels.transition().duration(400).attr('opacity', 1);
-             
-             // 3. Start simulation AFTER all nodes are drawn
-             simulation.on('tick', tick);
-             // alphaTarget을 조금 더 높여서(0.05) 물리 엔진이 더 활발하게 반응하도록 함
-             simulation.alpha(1).alphaTarget(0.05).restart();
-             
-             // 4. Bind Interactions AFTER rendering
-             bindNodeEvents();
-             resolve();
-          }
-        });
+      .duration(400)
+      .delay((d, i) => i * 30) // cascade effect
+      .attr('r', d => d.radius)
+      .on('end', () => {
+        finishedNodes++;
+        if (finishedNodes === totalNodes) {
+          // Show labels
+          labels.transition().duration(400).attr('opacity', 1);
+
+          // 3. Start simulation AFTER all nodes are drawn
+          simulation.on('tick', tick);
+          // alphaTarget을 조금 더 높여서(0.05) 물리 엔진이 더 활발하게 반응하도록 함
+          simulation.alpha(1).alphaTarget(0.05).restart();
+
+          // 4. Bind Interactions AFTER rendering
+          bindNodeEvents();
+          resolve();
+        }
+      });
   });
 }
 
 let time = 0;
 function tick() {
-  time += 0.08; // 움직임 속도 증가
-  // 유기적인 아메바(Amoeba) 무빙 이펙트: 모든 노드에 훨씬 강한 사인 곡선 힘을 가함 (활동성 극대화!!!!)
+  time += 0.05;
+  // 부드러운 아메바(Amoeba) 무빙 이펙트: 모든 노드에 아주 미세한 사인 곡선 힘을 가함 (제자리 둥실둥실)
   if (node && node.data) {
     node.data().forEach((d, i) => {
-      d.vx += Math.sin(time + i) * 0.12;
-      d.vy += Math.cos(time + i * 0.8) * 0.12;
+      d.vx += Math.sin(time + i) * 0.04;
+      d.vy += Math.cos(time + i * 0.8) * 0.2;
     });
   }
 
@@ -291,7 +296,7 @@ function tick() {
   node
     .attr('cx', d => d.x)
     .attr('cy', d => d.y);
-    
+
   if (labels) {
     labels
       .attr('x', d => d.x)
@@ -305,7 +310,7 @@ function bindNodeEvents() {
   // UI Elements
   const tooltipSmall = document.getElementById('graph-tooltip-small');
   const tTitle = document.getElementById('tooltip-small-title');
-  
+
   const modalNode = document.getElementById('modal-node-detail');
   const mTitle = document.getElementById('node-modal-title');
   const mDesc = document.getElementById('node-modal-desc');
@@ -318,7 +323,7 @@ function bindNodeEvents() {
       modalNode.classList.remove('is-active');
     });
   }
-  
+
   if (modalNode) {
     modalNode.addEventListener('click', (e) => {
       // Close only if the backdrop itself was clicked (not the modal card inside)
@@ -333,7 +338,7 @@ function bindNodeEvents() {
     if (!modalNode || !mTitle || !mDesc) return;
 
     mTitle.textContent = d.id;
-    
+
     // 1. 상위 노드(Parent) 찾기 (뒤로가기 버튼)
     let backBtnHTML = '';
     const parentLink = link.data().find(l => l.target.id === d.id);
@@ -351,7 +356,7 @@ function bindNodeEvents() {
     const children = link.data()
       .filter(l => l.source.id === d.id)
       .map(l => l.target);
-      
+
     if (children.length > 0) {
       childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
       childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
@@ -365,14 +370,14 @@ function bindNodeEvents() {
     }
 
     mDesc.innerHTML = `${backBtnHTML}<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
-    
+
     if (d.url) {
       mLink.href = d.url;
       mLink.style.display = 'inline-flex';
     } else {
       mLink.style.display = 'none';
     }
-    
+
     // 이벤트 위임(Event Delegation)을 통해 뒤로가기 및 하위 노드 클릭 처리
     mDesc.onclick = (e) => {
       const backBtn = e.target.closest('.btn-node-back');
@@ -380,8 +385,8 @@ function bindNodeEvents() {
         const parentId = backBtn.getAttribute('data-id');
         const pNode = node.data().find(n => n.id === parentId);
         if (pNode) {
-           zoomToNode(pNode);
-           renderNodeModal(pNode);
+          zoomToNode(pNode);
+          renderNodeModal(pNode);
         }
         return;
       }
@@ -391,8 +396,8 @@ function bindNodeEvents() {
         const childId = item.getAttribute('data-id');
         const childNode = node.data().find(n => n.id === childId);
         if (childNode) {
-           zoomToNode(childNode);
-           renderNodeModal(childNode);
+          zoomToNode(childNode);
+          renderNodeModal(childNode);
         }
       }
     };
@@ -402,47 +407,47 @@ function bindNodeEvents() {
   }
 
   // Node Interactions
-  node.on('mouseover', function(event, d) {
-      d3.select(this)
-        .transition().duration(200)
-        .attr('r', d.radius * 1.3)
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 2);
-        
-      link.transition().duration(200)
-        .attr('stroke', l => l.source.id === d.id || l.target.id === d.id ? colorScale(d.group) : 'var(--border-subtle)')
-        .attr('stroke-opacity', l => l.source.id === d.id || l.target.id === d.id ? 1 : 0.2);
-        
-      // Show Small Tooltip tracking mouse
-      if (tooltipSmall && tTitle) {
-        tTitle.textContent = d.id;
-        tooltipSmall.classList.add('is-visible');
-        tooltipSmall.style.left = (event.pageX + 15) + 'px';
-        tooltipSmall.style.top = (event.pageY + 15) + 'px';
-      }
-    })
-    .on('mousemove', function(event) {
+  node.on('mouseover', function (event, d) {
+    d3.select(this)
+      .transition().duration(200)
+      .attr('r', d.radius * 1.3)
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2);
+
+    link.transition().duration(200)
+      .attr('stroke', l => l.source.id === d.id || l.target.id === d.id ? colorScale(d.group) : 'var(--border-subtle)')
+      .attr('stroke-opacity', l => l.source.id === d.id || l.target.id === d.id ? 1 : 0.2);
+
+    // Show Small Tooltip tracking mouse
+    if (tooltipSmall && tTitle) {
+      tTitle.textContent = d.id;
+      tooltipSmall.classList.add('is-visible');
+      tooltipSmall.style.left = (event.pageX + 15) + 'px';
+      tooltipSmall.style.top = (event.pageY + 15) + 'px';
+    }
+  })
+    .on('mousemove', function (event) {
       if (tooltipSmall) {
         tooltipSmall.style.left = (event.pageX + 15) + 'px';
         tooltipSmall.style.top = (event.pageY + 15) + 'px';
       }
     })
-    .on('mouseout', function(event, d) {
+    .on('mouseout', function (event, d) {
       d3.select(this)
         .transition().duration(200)
         .attr('r', d.radius)
         .attr('stroke', 'var(--bg-deep)')
         .attr('stroke-width', 1.5);
-        
+
       link.transition().duration(200)
         .attr('stroke', 'var(--border-subtle)')
         .attr('stroke-opacity', 0.6);
-        
+
       if (tooltipSmall) {
         tooltipSmall.classList.remove('is-visible');
       }
     })
-    .on('click', function(event, d) {
+    .on('click', function (event, d) {
       // Hide small tooltip
       if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
 
@@ -462,18 +467,18 @@ function drag(simulation) {
     event.subject.fx = event.subject.x;
     event.subject.fy = event.subject.y;
   }
-  
+
   function dragged(event) {
     event.subject.fx = event.x;
     event.subject.fy = event.y;
   }
-  
+
   function dragended(event) {
     if (!event.active) simulation.alphaTarget(0);
     event.subject.fx = null;
     event.subject.fy = null;
   }
-  
+
   return d3.drag()
     .on('start', dragstarted)
     .on('drag', dragged)
@@ -485,15 +490,15 @@ function drag(simulation) {
  */
 function handleResize() {
   if (!svg || !simulation) return;
-  
+
   const width = container.clientWidth;
   const height = container.clientHeight;
-  
+
   svg
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
-    
+
   simulation.force('center', d3.forceCenter(width / 2, height / 2));
   simulation.alpha(0.3).restart();
 }
@@ -550,8 +555,8 @@ function getKoreanVoice() {
   if (!('speechSynthesis' in window)) return null;
   const voices = window.speechSynthesis.getVoices();
   return voices.find(v => v.lang === 'ko-KR') ||
-         voices.find(v => v.lang.startsWith('ko')) ||
-         null;
+    voices.find(v => v.lang.startsWith('ko')) ||
+    null;
 }
 
 // Estimate TTS duration from text length
@@ -562,7 +567,7 @@ function estimateTTSDuration(text) {
   return Math.max(MIN_STEP_DURATION_MS, estimatedMs) + TRANSITION_BUFFER_MS;
 }
 
-window.startTour = async function() {
+window.startTour = async function () {
   const tourOverlay = document.getElementById('tour-overlay');
   if (!tourOverlay || !node) return;
 
@@ -592,14 +597,14 @@ window.startTour = async function() {
   btnNext.replaceWith(btnNext.cloneNode(true)); btnNext = document.getElementById('btn-tour-next');
   btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
   btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
-  btnTts.replaceWith(btnTts.cloneNode(true));   btnTts = document.getElementById('btn-tour-tts');
+  btnTts.replaceWith(btnTts.cloneNode(true)); btnTts = document.getElementById('btn-tour-tts');
   if (ttsSpeedSelect) {
     ttsSpeedSelect.replaceWith(ttsSpeedSelect.cloneNode(true));
     ttsSpeedSelect = document.getElementById('tts-speed-select');
     // Initialize select to current rate
     ttsSpeedSelect.value = currentTtsRate.toFixed(1);
   }
-  
+
   // Select DOM elements inside wrappers AFTER cloning
   let ttsIcon = document.getElementById('tts-icon');
   const progressRing = document.getElementById('tour-progress-circle');
@@ -629,7 +634,7 @@ window.startTour = async function() {
       const width = container.clientWidth;
       const height = container.clientHeight;
       svg.transition().duration(1500)
-         .call(zoomBehavior.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+        .call(zoomBehavior.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.8).translate(-width / 2, -height / 2));
     }
     if (window.showToast) window.showToast('웰컴 아메바 유니버스!');
   };
@@ -665,12 +670,12 @@ window.startTour = async function() {
 
     // Find matching D3 node and zoom to it
     let targetNode = null;
-    node.each(function(d) {
+    node.each(function (d) {
       if (d.id === step.nodeId) targetNode = d;
     });
 
     if (targetNode) {
-       zoomToNode(targetNode);
+      zoomToNode(targetNode);
     }
 
     // Build speech text
@@ -781,7 +786,7 @@ export function zoomToNode(targetNode) {
     const tx = -targetNode.x * scale + width / 2;
     const ty = -targetNode.y * scale + height / 2;
     svg.transition().duration(1200).ease(d3.easeCubicOut)
-       .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+      .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
   }
 }
 
