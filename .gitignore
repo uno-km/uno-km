@@ -76,3 +76,9 @@ C:/ameva
 c:/ameva
 C:\ameva
 c:\ameva
+
+# Reports
+report/
+.report
+
+*_repo.py

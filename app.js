@@ -37,7 +37,9 @@ let isEngineReady = false;
 
 // We use the hybrid approach: local weights + official wasm binary
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
-const localModelUrl = window.location.origin + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/";
+// WebLLM tries to force append /resolve/main/ to local paths. 
+// We use a path traversal hack to satisfy its regex while normalizing back to our local directory.
+const localModelUrl = window.location.origin + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/../../";
 // The wasm URL for Qwen2.5 1.5B q4f16_1. (Using standard CDN fallback since it's not locally present)
 const modelLibUrl = "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_4/qwen2-q4f16_1-ctx4k_cs1k-webgpu.wasm";
 
