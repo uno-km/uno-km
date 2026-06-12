@@ -90,34 +90,23 @@ export async function initGraph() {
         const nameUpper = name.toUpperCase();
         const topics = (repo.topics || []).map(t => t.toUpperCase());
         
-        // Categorization logic
+        // Categorization logic (Rule-based Engine)
+        const CATEGORY_RULES = [
+          { id: "STT", tags: ["STT"], keywords: ["STT"] },
+          { id: "LLM Applications", tags: ["LLM-APP"], keywords: ["DOC-AI", "BENCHMARK"] },
+          { id: "LLM", tags: ["LLM"], keywords: ["LLM"] },
+          { id: "Multiplex Applications", tags: ["MA"], keywords: ["WINDOWS-ASSIST", "VIEWPORT", "AGENT-ORCHESTRA"] },
+          { id: "Social Research", tags: ["SR"], keywords: ["DEAD-INTERNET-THEOR", "SOCIAL"] },
+          { id: "MLOps", tags: ["MLOPS"], keywords: ["MODEL", "DATA", "CONDUCTOR", "DATABASE"] }
+        ];
+
         let targetCategory = "AMEVA Universe"; // Fallback
         
-        if (topics.includes('STT')) {
-           targetCategory = "STT";
-        } else if (topics.includes('LLM')) {
-           targetCategory = "LLM";
-        } else if (topics.includes('MA')) {
-           targetCategory = "Multiplex Applications";
-        } else if (topics.includes('SR')) {
-           targetCategory = "Social Research";
-        } else if (topics.includes('MLOPS')) {
-           targetCategory = "MLOps";
-        } else {
-           // Fallback mapping if topics are not provided
-           if (nameUpper.includes('STT')) {
-              targetCategory = "STT";
-           } else if (nameUpper.includes('LLM')) {
-              targetCategory = "LLM";
-           } else if (nameUpper.includes('DOC-AI') || nameUpper.includes('BENCHMARK')) {
-              targetCategory = "LLM Applications";
-           } else if (nameUpper.includes('MODEL') || nameUpper.includes('DATA') || nameUpper.includes('CONDUCTOR') || nameUpper.includes('DATABASE')) {
-              targetCategory = "MLOps";
-           } else if (nameUpper.includes('WINDOWS-ASSIST') || nameUpper.includes('VIEWPORT') || nameUpper.includes('AGENT-ORCHESTRA')) {
-              targetCategory = "Multiplex Applications";
-           } else if (nameUpper.includes('DEAD-INTERNET-THEOR') || nameUpper.includes('SOCIAL')) {
-              targetCategory = "Social Research";
-           }
+        for (const rule of CATEGORY_RULES) {
+          if (topics.some(t => rule.tags.includes(t)) || rule.keywords.some(k => nameUpper.includes(k))) {
+            targetCategory = rule.id;
+            break;
+          }
         }
         
         nodes.push({
@@ -271,8 +260,8 @@ async function renderGraph(data) {
              
              // 3. Start simulation AFTER all nodes are drawn
              simulation.on('tick', tick);
-             // alphaTarget을 0.01로 유지하여 물리 엔진이 아주 천천히 계속 돌게 함 (아메바 이펙트)
-             simulation.alpha(1).alphaTarget(0.01).restart();
+             // alphaTarget을 조금 더 높여서(0.05) 물리 엔진이 더 활발하게 반응하도록 함
+             simulation.alpha(1).alphaTarget(0.05).restart();
              
              // 4. Bind Interactions AFTER rendering
              bindNodeEvents();
@@ -284,12 +273,12 @@ async function renderGraph(data) {
 
 let time = 0;
 function tick() {
-  time += 0.05;
-  // 유기적인 아메바(Amoeba) 무빙 이펙트: 모든 노드에 아주 미세한 사인 곡선 힘을 가함
+  time += 0.08; // 움직임 속도 증가
+  // 유기적인 아메바(Amoeba) 무빙 이펙트: 모든 노드에 훨씬 강한 사인 곡선 힘을 가함 (활동성 극대화!!!!)
   if (node && node.data) {
     node.data().forEach((d, i) => {
-      d.vx += Math.sin(time + i) * 0.02;
-      d.vy += Math.cos(time + i * 0.8) * 0.02;
+      d.vx += Math.sin(time + i) * 0.12;
+      d.vy += Math.cos(time + i * 0.8) * 0.12;
     });
   }
 
@@ -339,6 +328,79 @@ function bindNodeEvents() {
     });
   }
 
+  // ─── Tree Navigator Modal Rendering Logic ───
+  function renderNodeModal(d) {
+    if (!modalNode || !mTitle || !mDesc) return;
+
+    mTitle.textContent = d.id;
+    
+    // 1. 상위 노드(Parent) 찾기 (뒤로가기 버튼)
+    let backBtnHTML = '';
+    const parentLink = link.data().find(l => l.target.id === d.id);
+    if (parentLink) {
+      const parentNode = parentLink.source;
+      backBtnHTML = `<div class="back-btn-container" style="margin-bottom:15px;">
+        <button class="btn-node-back" data-id="${parentNode.id}" style="background:transparent; border:1px solid var(--accent-purple); color:var(--accent-purple); padding:6px 12px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.8rem; transition:all 0.2s ease;">
+          ⬅️ ${parentNode.id} (으)로 돌아가기
+        </button>
+      </div>`;
+    }
+
+    // 2. 하위 노드(Children) 찾기
+    let childrenHTML = '';
+    const children = link.data()
+      .filter(l => l.source.id === d.id)
+      .map(l => l.target);
+      
+    if (children.length > 0) {
+      childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
+      childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
+      childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
+      children.forEach(child => {
+        childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
+           <span style="margin-right:8px;">${child.isRepo ? '📦' : '📂'}</span> ${child.id}
+        </li>`;
+      });
+      childrenHTML += '</ul></div>';
+    }
+
+    mDesc.innerHTML = `${backBtnHTML}<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
+    
+    if (d.url) {
+      mLink.href = d.url;
+      mLink.style.display = 'inline-flex';
+    } else {
+      mLink.style.display = 'none';
+    }
+    
+    // 이벤트 위임(Event Delegation)을 통해 뒤로가기 및 하위 노드 클릭 처리
+    mDesc.onclick = (e) => {
+      const backBtn = e.target.closest('.btn-node-back');
+      if (backBtn) {
+        const parentId = backBtn.getAttribute('data-id');
+        const pNode = node.data().find(n => n.id === parentId);
+        if (pNode) {
+           zoomToNode(pNode);
+           renderNodeModal(pNode);
+        }
+        return;
+      }
+
+      const item = e.target.closest('.child-node-item');
+      if (item) {
+        const childId = item.getAttribute('data-id');
+        const childNode = node.data().find(n => n.id === childId);
+        if (childNode) {
+           zoomToNode(childNode);
+           renderNodeModal(childNode);
+        }
+      }
+    };
+
+    modalNode.classList.add('is-active');
+    zoomToNode(d); // 노드가 클릭/렌더링될 때 시네마틱 줌 실행!
+  }
+
   // Node Interactions
   node.on('mouseover', function(event, d) {
       d3.select(this)
@@ -384,61 +446,8 @@ function bindNodeEvents() {
       // Hide small tooltip
       if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
 
-      // Open Medium Modal
-      if (modalNode && mTitle && mDesc) {
-        mTitle.textContent = d.id;
-        
-        // --- 하위 노드 목록 렌더링 (중간 노드일 경우) ---
-        let childrenHTML = '';
-        if (!d.isRepo && d.id !== "AMEVA Universe") {
-          // 현재 노드가 source인 링크들을 찾아 target(자식 노드)을 수집
-          const children = link.data()
-            .filter(l => l.source.id === d.id)
-            .map(l => l.target);
-            
-          if (children.length > 0) {
-            childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
-            childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
-            childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
-            children.forEach(child => {
-              childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
-                 <span style="margin-right:8px;">🚀</span> ${child.id}
-              </li>`;
-            });
-            childrenHTML += '</ul></div>';
-          }
-        }
-
-        mDesc.innerHTML = `<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
-        
-        if (d.url) {
-          mLink.href = d.url;
-          mLink.style.display = 'inline-flex';
-        } else {
-          mLink.style.display = 'none';
-        }
-        
-        // 이벤트 위임(Event Delegation)을 통해 하위 노드 클릭 처리
-        mDesc.onclick = (e) => {
-          const item = e.target.closest('.child-node-item');
-          if (item) {
-            const childId = item.getAttribute('data-id');
-            const childNode = node.data().find(n => n.id === childId);
-            if (childNode) {
-               mTitle.textContent = childNode.id;
-               mDesc.innerHTML = `<p>${childNode.description || 'No description provided.'}</p>`;
-               if (childNode.url) {
-                 mLink.href = childNode.url;
-                 mLink.style.display = 'inline-flex';
-               } else {
-                 mLink.style.display = 'none';
-               }
-            }
-          }
-        };
-
-        modalNode.classList.add('is-active'); // Re-using modal backdrop style
-      }
+      // 렌더링 함수 호출
+      renderNodeModal(d);
     });
 
   // End of bindNodeEvents
@@ -519,8 +528,8 @@ async function loadTourData() {
     if (!res.ok) throw new Error('Tour data not found');
     cachedTourData = await res.json();
     return cachedTourData;
-  } catch (e) {
-    console.warn('[AMEVA Tour] Failed to load tour_data.json:', e);
+  } catch (err) {
+    console.warn('[AMEVA Tour] Failed to load tour_data.json:', err);
     return null;
   }
 }
@@ -660,14 +669,8 @@ window.startTour = async function() {
       if (d.id === step.nodeId) targetNode = d;
     });
 
-    if (targetNode && svg && zoomBehavior) {
-      const scale = 2.0;
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      const tx = -targetNode.x * scale + width / 2;
-      const ty = -targetNode.y * scale + height / 2;
-      svg.transition().duration(1500).ease(d3.easeCubicOut)
-         .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    if (targetNode) {
+       zoomToNode(targetNode);
     }
 
     // Build speech text
@@ -766,4 +769,19 @@ window.startTour = async function() {
   // Start first step
   showStep(currentTourIndex);
 };
+
+/**
+ * Helper to smoothly zoom and pan to a specific node
+ */
+export function zoomToNode(targetNode) {
+  if (targetNode && svg && zoomBehavior) {
+    const scale = 2.0;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const tx = -targetNode.x * scale + width / 2;
+    const ty = -targetNode.y * scale + height / 2;
+    svg.transition().duration(1200).ease(d3.easeCubicOut)
+       .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+  }
+}
 
