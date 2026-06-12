@@ -1,3 +1,5 @@
+import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
+
 /**
  * ============================================================
  * AMEVA Edge-Native AI Dashboard — Core Application Controller
@@ -5,9 +7,6 @@
  * 
  * Handles: UI toggles, environment checks (mobile/WebGPU),
  * chat panel animations, and localStorage session memory.
- * 
- * LLM engine integration (WebLLM), RAG pipeline, and D3 graph
- * will be wired in from separate modules.
  */
 
 // ─── DOM References ────────────────────────────────────────
@@ -31,11 +30,26 @@ const progressPct   = document.getElementById('progress-percent');
 const downloadProg  = document.getElementById('download-progress');
 const engineStatus  = document.getElementById('chat-engine-status');
 
-
-// ─── State ─────────────────────────────────────────────────
+// ─── WebLLM Config ─────────────────────────────────────────
+let engine = null;
 let isPanelOpen = false;
 let isEngineReady = false;
 
+// We use the hybrid approach: local weights + official wasm binary
+const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
+const localModelUrl = window.location.origin + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/";
+// The wasm URL for Qwen2.5 1.5B q4f16_1. (Using standard CDN fallback since it's not locally present)
+const modelLibUrl = "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_4/qwen2-q4f16_1-ctx4k_cs1k-webgpu.wasm";
+
+const appConfig = {
+  model_list: [
+    {
+      model_id: modelId,
+      model_lib_url: modelLibUrl,
+      model_url: localModelUrl
+    }
+  ]
+};
 
 // ─── Environment Checks ───────────────────────────────────
 function isMobileDevice() {
@@ -47,17 +61,14 @@ function hasWebGPU() {
   return !!navigator.gpu;
 }
 
-
 // ─── Initialize ────────────────────────────────────────────
 function init() {
-  // 1. Mobile block
   if (isMobileDevice()) {
     modalMobile.classList.add('is-active');
     fab.style.display = 'none';
-    return; // Stop all initialization
+    return;
   }
 
-  // 2. WebGPU check
   if (hasWebGPU()) {
     webgpuDot.classList.remove('loading');
     webgpuDot.classList.add('online');
@@ -67,32 +78,19 @@ function init() {
     webgpuDot.classList.add('offline');
     webgpuStatus.textContent = 'Absent';
     webgpuStatus.style.color = 'var(--danger)';
-    // Show WebGPU modal on first FAB click instead of blocking outright
   }
 
-  // 3. Bind UI events
   bindEvents();
-
-  // 4. Restore chat session from localStorage
   restoreSession();
 }
 
-
 // ─── Event Bindings ─────────────────────────────────────────
 function bindEvents() {
-  // FAB toggle
   fab.addEventListener('click', togglePanel);
-
-  // Close button
   btnClose.addEventListener('click', closePanel);
-
-  // Clear chat
   btnClear.addEventListener('click', clearChat);
-
-  // Send message
   btnSend.addEventListener('click', handleSend);
 
-  // Enter to send (Shift+Enter for new line)
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -100,16 +98,13 @@ function bindEvents() {
     }
   });
 
-  // Auto-resize textarea
   chatInput.addEventListener('input', () => {
     chatInput.style.height = 'auto';
     chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
   });
 
-  // Download button
   btnDownload.addEventListener('click', handleDownloadClick);
 
-  // Escape to close panel
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isPanelOpen) {
       closePanel();
@@ -117,29 +112,22 @@ function bindEvents() {
   });
 }
 
-
 // ─── Panel Toggle ───────────────────────────────────────────
 function togglePanel() {
-  if (isPanelOpen) {
-    closePanel();
-  } else {
-    openPanel();
-  }
+  if (isPanelOpen) closePanel();
+  else openPanel();
 }
 
 function openPanel() {
-  // If no WebGPU, show modal instead
   if (!hasWebGPU()) {
     modalWebgpu.classList.add('is-active');
     return;
   }
-
   isPanelOpen = true;
   chatPanel.classList.add('is-visible');
   fab.classList.add('is-open');
   fab.setAttribute('aria-label', 'Close AI chat');
 
-  // Focus input if engine is ready
   if (isEngineReady) {
     setTimeout(() => chatInput.focus(), 400);
   }
@@ -152,97 +140,124 @@ function closePanel() {
   fab.setAttribute('aria-label', 'Open AI chat');
 }
 
-
-// ─── Download Handler (Stub for WebLLM integration) ─────────
+// ─── Download Handler (WebLLM Integration) ──────────────────
 async function handleDownloadClick() {
   btnDownload.disabled = true;
   btnDownload.innerHTML = '<div class="spinner"></div> Initializing…';
   downloadProg.style.display = 'flex';
 
-  // --- STUB: Replace with actual WebLLM initialization ---
-  // Simulates progress for UI demonstration
-  simulateProgress();
-}
+  try {
+    const initProgressCallback = (report) => {
+      const pct = Math.floor(report.progress * 100);
+      progressBar.style.width = pct + '%';
+      progressPct.textContent = pct + '%';
+      progressText.textContent = report.text;
+    };
 
-function simulateProgress() {
-  let progress = 0;
-  const steps = [
-    'Fetching model manifest…',
-    'Downloading weights (1/4)…',
-    'Downloading weights (2/4)…',
-    'Downloading weights (3/4)…',
-    'Downloading weights (4/4)…',
-    'Compiling WebGPU shaders…',
-    'Loading tokenizer…',
-    'Warming up inference engine…',
-  ];
-  let stepIdx = 0;
+    // Initialize WebLLM using the local model
+    engine = await CreateMLCEngine(modelId, {
+      appConfig: appConfig,
+      initProgressCallback: initProgressCallback
+    });
 
-  const interval = setInterval(() => {
-    progress += Math.random() * 8 + 3;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-      onEngineReady();
-    }
-
-    progressBar.style.width = progress.toFixed(1) + '%';
-    progressPct.textContent = Math.floor(progress) + '%';
-
-    if (stepIdx < steps.length && progress > (stepIdx + 1) * (100 / steps.length)) {
-      progressText.textContent = steps[stepIdx];
-      stepIdx++;
-    }
-  }, 300);
+    onEngineReady();
+  } catch (error) {
+    console.error("[AMEVA] WebLLM Initialization Error:", error);
+    btnDownload.innerHTML = 'Initialization Failed';
+    progressText.textContent = "Error: Check console for details.";
+    progressText.style.color = "var(--danger)";
+  }
 }
 
 function onEngineReady() {
   isEngineReady = true;
-
-  // Hide overlay
   downloadOverlay.classList.add('is-hidden');
-
-  // Enable input
+  
   chatInput.disabled = false;
   btnSend.disabled = false;
   chatInput.placeholder = 'AMEVA에 대해 질문하세요…';
   chatInput.focus();
 
-  // Update status indicators
   engineStatus.textContent = 'engine: active';
   engineStatus.style.color = 'var(--accent-green)';
 
-  // Update TPS indicators
   document.getElementById('tps-speed').classList.remove('dim');
   document.getElementById('tps-tokens').classList.remove('dim');
   document.getElementById('tps-latency').classList.remove('dim');
 }
 
-
-// ─── Message Handling ──────────────────────────────────────
-function handleSend() {
+// ─── Message Handling (Actual LLM streaming) ────────────────
+async function handleSend() {
   const text = chatInput.value.trim();
-  if (!text || !isEngineReady) return;
+  if (!text || !isEngineReady || !engine) return;
 
-  // Add user message
+  // Append User message
   appendMessage('user', text);
-
-  // Clear input
   chatInput.value = '';
   chatInput.style.height = 'auto';
-
-  // Save session
   saveSession();
 
-  // TODO: Pipe through RAG engine → LLM → stream response
-  // For now, show a placeholder response
-  setTimeout(() => {
-    appendMessage('ai', 
-      '해당 질문에 대해 분석 중입니다… (LLM 엔진 연결 후 실제 응답이 생성됩니다.)',
-      [{ name: 'graph_index.json', url: '#' }]
-    );
+  // Disable input while generating
+  chatInput.disabled = true;
+  btnSend.disabled = true;
+
+  // Create an empty AI message bubble for streaming
+  const aiMsgDiv = document.createElement('div');
+  aiMsgDiv.className = 'chat-msg ai';
+  const bubbleDiv = document.createElement('div');
+  bubbleDiv.className = 'msg-bubble';
+  aiMsgDiv.appendChild(bubbleDiv);
+  chatLog.appendChild(aiMsgDiv);
+
+  try {
+    const messages = [
+      { role: "system", content: "You are AMEVA Cortex, a helpful Edge-native AI assistant representing the AMEVA ecosystem. Answer politely in Korean." },
+      { role: "user", content: text }
+    ];
+
+    const asyncChunkGenerator = await engine.chat.completions.create({
+      messages,
+      stream: true,
+      temperature: 0.7,
+      max_tokens: 512,
+    });
+
+    let fullResponse = "";
+    const startTime = performance.now();
+    let tokenCount = 0;
+
+    for await (const chunk of asyncChunkGenerator) {
+      const chunkText = chunk.choices[0]?.delta?.content || "";
+      fullResponse += chunkText;
+      bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
+      chatLog.scrollTop = chatLog.scrollHeight;
+      tokenCount++;
+
+      // Update TPS metrics occasionally
+      if (tokenCount % 5 === 0) {
+        const elapsedSec = (performance.now() - startTime) / 1000;
+        document.getElementById('tps-speed').textContent = (tokenCount / elapsedSec).toFixed(1) + ' t/s';
+        document.getElementById('tps-tokens').textContent = tokenCount;
+      }
+    }
+
+    // Final metrics update
+    const elapsedSec = (performance.now() - startTime) / 1000;
+    document.getElementById('tps-speed').textContent = (tokenCount / elapsedSec).toFixed(1) + ' t/s';
+    document.getElementById('tps-tokens').textContent = tokenCount;
+    document.getElementById('tps-latency').textContent = (performance.now() - startTime).toFixed(0) + ' ms';
+
+    // (RAG Badges would be injected here in the future)
+
+  } catch (e) {
+    console.error("LLM Generation error:", e);
+    bubbleDiv.innerHTML += "<br/><br/><em style='color:var(--danger)'>[에러가 발생했습니다. 개발자 도구를 확인해주세요.]</em>";
+  } finally {
+    chatInput.disabled = false;
+    btnSend.disabled = false;
+    chatInput.focus();
     saveSession();
-  }, 800);
+  }
 }
 
 function appendMessage(role, text, sources = []) {

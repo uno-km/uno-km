@@ -36,6 +36,39 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       LOADING OVERLAY
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="global-loading" class="global-loading">
+    <div class="spinner-large"></div>
+    <div class="loading-text">Exploring AMEVA Universe...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       GRAPH HOVER TOOLTIP (Small, follows mouse)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="graph-tooltip-small" class="graph-tooltip-small is-hidden" aria-hidden="true">
+    <span id="tooltip-small-title">Node</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NODE DETAIL MODAL (Click to open)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-node-detail" role="dialog" aria-hidden="true">
+    <div class="modal-card modal-medium">
+      <button type="button" class="btn-close-modal" id="btn-close-node-modal" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+      </button>
+      <div class="node-modal-icon">🚀</div>
+      <h2 id="node-modal-title">Node Title</h2>
+      <p id="node-modal-desc">Detailed description goes here...</p>
+      <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download" style="width: 100%; justify-content: center; margin-top: 10px;">
+        Explore Repo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+      </a>
+    </div>
+  </div>
+
 
   <!-- ═══════════════════════════════════════════════════════════
        B. HEADER — Glassmorphism SRE Metrics Bar

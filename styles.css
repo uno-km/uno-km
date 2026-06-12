@@ -906,6 +906,89 @@ body {
   animation: spin 0.8s linear infinite;
 }
 
+.spinner-large {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-md);
+}
+
+/* ── Global Loading Overlay ──────────────────────────────── */
+.global-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--duration-med) ease, visibility var(--duration-med);
+}
+.global-loading.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.loading-text {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.05em;
+  animation: pulse-slow 2s infinite;
+}
+
+/* ── Small Hover Tooltip ──────────────────────────────────── */
+.graph-tooltip-small {
+  position: absolute;
+  z-index: var(--z-modal);
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid var(--accent-cyan);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  box-shadow: var(--accent-cyan-glow);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+.graph-tooltip-small.is-visible {
+  opacity: 1;
+}
+.graph-tooltip-small span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}
+
+/* ── Modal Enhancements ───────────────────────────────────── */
+.modal-medium {
+  max-width: 480px;
+}
+.btn-close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+.btn-close-modal:hover {
+  color: var(--text-primary);
+}
+.btn-close-modal svg {
+  width: 20px;
+  height: 20px;
+}
+.node-modal-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+}
+
 
 /* ── Utility Classes ──────────────────────────────────────── */
 .visually-hidden {
