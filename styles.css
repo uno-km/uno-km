@@ -949,14 +949,14 @@ body {
   margin: 0 0 0.5rem 0;
   color: var(--accent-cyan);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 0.05em;
 }
 .tour-content p {
   margin: 0;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: #ffffff;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 .tour-controls {
   display: flex;
@@ -1106,8 +1106,8 @@ body {
 }
 .graph-tooltip-small span {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-primary);
+  font-size: 0.85rem;
+  color: #ffffff;
 }
 
 /* ── Modal Enhancements ───────────────────────────────────── */
@@ -1192,10 +1192,11 @@ body {
     gap: 12px;
   }
   .tour-content h3 {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
   .tour-content p {
-    font-size: 0.82rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
   }
 }
 

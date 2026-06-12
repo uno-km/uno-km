@@ -158,6 +158,13 @@ export async function initGraph() {
       globalLoading.classList.add('is-hidden');
     }
     
+    // 로딩 완료 후 친절한 안내 메시지 띄우기 (1~2초 사이)
+    setTimeout(() => {
+      if (window.showToast) {
+        window.showToast("(각 노드들을 눌러서 AMEVA 프로젝트를 탐험해 보세요!)");
+      }
+    }, 800);
+    
     window.addEventListener('resize', handleResize);
   } catch (error) {
     clearInterval(logInterval);
