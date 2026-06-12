@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AMEVA Edge-Native AI Portfolio — A serverless, browser-only dashboard featuring WebGPU LLM inference and interactive knowledge graph visualization." />
+  <meta name="description"
+    content="AMEVA Edge-Native AI Portfolio — A serverless, browser-only dashboard featuring WebGPU LLM inference and interactive knowledge graph visualization." />
   <meta name="theme-color" content="#181818" />
 
   <title>AMEVA Neural Fabric — Edge-Native AI Dashboard</title>
@@ -18,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
+
 <body>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -48,14 +51,14 @@
       <div id="tour-desc-container">
         <p id="tour-desc">Initializing cinematic sequence...</p>
         <div id="tour-details" style="display:none; margin-top: 10px;">
-          <strong style="color:var(--accent-cyan)">Tech Stack:</strong> <span id="tour-tech">...</span><br/>
+          <strong style="color:var(--accent-cyan)">Tech Stack:</strong> <span id="tour-tech">...</span><br />
           <strong style="color:var(--accent-purple)">Core Alg:</strong> <span id="tour-alg">...</span>
         </div>
       </div>
     </div>
     <div class="tour-controls-new">
       <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
-      
+
       <div class="tour-progress-wrapper" id="btn-tour-tts">
         <svg class="tour-progress-ring" viewBox="0 0 36 36">
           <circle class="ring-bg" cx="18" cy="18" r="16" />
@@ -63,16 +66,18 @@
         </svg>
         <span class="tts-icon" id="tts-icon">🔈</span>
       </div>
-      
-      <select id="tts-speed-select" class="tts-speed-select" aria-label="TTS Speed" style="background: rgba(255,255,255,0.1); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 5px; font-size: 0.8rem; outline: none; cursor: pointer; margin-left: 10px;">
+
+      <select id="tts-speed-select" class="tts-speed-select" aria-label="TTS Speed"
+        style="background: rgba(255,255,255,0.1); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 5px; font-size: 0.8rem; outline: none; cursor: pointer; margin-left: 10px;">
         <option value="1.0" style="color: black;">1.0x</option>
         <option value="1.2" style="color: black;" selected>1.2x</option>
         <option value="1.5" style="color: black;">1.5x</option>
         <option value="2.0" style="color: black;">2.0x</option>
       </select>
-      
+
       <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next" style="margin-left: 10px;">❯</button>
-      <button class="btn-tour-nav" id="btn-tour-exit" aria-label="Exit" style="margin-left: 10px; font-size: 1.2rem; background: rgba(255,50,50,0.2);">✕</button>
+      <button class="btn-tour-nav" id="btn-tour-exit" aria-label="Exit"
+        style="margin-left: 10px; font-size: 1.2rem; background: rgba(255,50,50,0.2);">✕</button>
     </div>
   </div>
 
@@ -104,7 +109,8 @@
         </div>
       </div>
       <div class="codex-actions">
-        <button id="btn-start-tour" class="btn-download" style="width: 100%; justify-content: center; margin-bottom: 15px;">
+        <button id="btn-start-tour" class="btn-download"
+          style="width: 100%; justify-content: center; margin-bottom: 15px;">
           ▶ 시네마틱 가이드 투어 시작
         </button>
       </div>
@@ -114,14 +120,15 @@
   <!-- ═══════════════════════════════════════════════════════════
        MODALS
        ═══════════════════════════════════════════════════════════ -->
-  
+
   <div class="modal-backdrop" id="modal-mobile" role="dialog" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-header">
         <h2 class="modal-title text-danger">Mobile / Unsupported Device Detected</h2>
       </div>
       <div class="modal-body">
-        <p>This Edge-native AI dashboard requires heavy WebGPU compute capabilities usually found on desktop browsers.</p>
+        <p>This Edge-native AI dashboard requires heavy WebGPU compute capabilities usually found on desktop browsers.
+        </p>
         <p>We've switched you to <strong>Codex Mode</strong> so you can still explore the architecture safely.</p>
       </div>
       <div class="modal-footer">
@@ -158,14 +165,21 @@
   <div class="modal-backdrop" id="modal-node-detail" role="dialog" aria-hidden="true">
     <div class="modal-card modal-medium">
       <button type="button" class="btn-close-modal" id="btn-close-node-modal" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
       <div class="node-modal-icon">🚀</div>
       <h2 id="node-modal-title">Node Title</h2>
       <p id="node-modal-desc">Detailed description goes here...</p>
-      <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download" style="width: 100%; justify-content: center; margin-top: 10px;">
+      <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download"
+        style="width: 100%; justify-content: center; margin-top: 10px;">
         Explore Repo
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
       </a>
     </div>
   </div>
@@ -210,7 +224,8 @@
        ═══════════════════════════════════════════════════════════ -->
   <button id="fab-chat" aria-label="Open AI chat" type="button">
     <!-- AI Core / Terminal Icon -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
       <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
       <path d="M5 10h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" />
       <circle cx="9" cy="15" r="1" fill="currentColor" />
@@ -224,7 +239,8 @@
        C-3. FLOATING ACTION BUTTON — Blog (Next to Chat)
        ═══════════════════════════════════════════════════════════ -->
   <button id="fab-blog" aria-label="Open Blog" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
       <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
       <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
     </svg>
@@ -254,7 +270,8 @@
       </div>
       <div class="chat-header-actions">
         <!-- Tour on PC -->
-        <button type="button" id="btn-start-tour-pc" class="btn-tour-pc" aria-label="Start Cinematic Tour" title="시네마틱 가이드 투어">
+        <button type="button" id="btn-start-tour-pc" class="btn-tour-pc" aria-label="Start Cinematic Tour"
+          title="시네마틱 가이드 투어">
           ▶ 투어 시작
         </button>
         <!-- Clear chat -->
@@ -262,7 +279,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <polyline points="3 6 5 6 21 6" />
             <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-            <path d="M10 11v6" /><path d="M14 11v6" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
             <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
           </svg>
         </button>
@@ -295,7 +313,8 @@
     <!-- ─── Download Overlay (shown on first visit) ────────── -->
     <div class="download-overlay" id="download-overlay">
       <div class="download-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
           <polyline points="7 10 12 15 17 10" />
           <line x1="12" y1="15" x2="12" y2="3" />
@@ -328,9 +347,10 @@
         </svg>
         Download &amp; Initialize
       </button>
-      
+
       <!-- Just view Codex button -->
-      <button type="button" id="btn-just-view-codex" style="width: 100%; margin-top: 10px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease;">
+      <button type="button" id="btn-just-view-codex"
+        style="width: 100%; margin-top: 10px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease;">
         그냥 코덱스(가이드 투어)만 볼래요
       </button>
     </div>
@@ -341,8 +361,8 @@
       <!-- System welcome message -->
       <div class="chat-msg ai">
         <div class="msg-bubble">
-          안녕하세요! 저는 <strong>AMEVA Cortex</strong>입니다. 🧠<br/>
-          AMEVA 생태계의 아키텍처, 코드 구조, 배포 파이프라인에 대해 질문해 주세요.<br/>
+          안녕하세요! 저는 <strong>AMEVA Cortex</strong>입니다. 🧠<br />
+          AMEVA 생태계의 아키텍처, 코드 구조, 배포 파이프라인에 대해 질문해 주세요.<br />
           브라우저 내 로컬 GraphRAG 엔진이 관련 소스 코드를 검색하여 답변합니다.
         </div>
         <div class="source-badges">
@@ -364,18 +384,20 @@
       <div class="chat-msg ai">
         <div class="msg-bubble">
           <code>setup.ps1</code>은 AMEVA 개발 환경의 초기 설정을 자동화하는 PowerShell 스크립트입니다.
-          주요 역할은 다음과 같습니다:<br/><br/>
-          <strong>1.</strong> Python 가상 환경 생성 및 의존성 설치<br/>
-          <strong>2.</strong> 환경 변수 설정 (<code>.env</code> 파일 생성)<br/>
-          <strong>3.</strong> GPU 드라이버 호환성 체크<br/>
+          주요 역할은 다음과 같습니다:<br /><br />
+          <strong>1.</strong> Python 가상 환경 생성 및 의존성 설치<br />
+          <strong>2.</strong> 환경 변수 설정 (<code>.env</code> 파일 생성)<br />
+          <strong>3.</strong> GPU 드라이버 호환성 체크<br />
           <strong>4.</strong> 초기 모델 가중치 다운로드 트리거
         </div>
         <div class="source-badges">
-          <a class="source-badge" href="https://github.com/ameva-project/setup.ps1" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+          <a class="source-badge" href="https://github.com/ameva-project/setup.ps1" target="_blank"
+            rel="noopener noreferrer" title="View source on GitHub">
             <span class="badge-icon">🔗</span>
             <span>setup.ps1</span>
           </a>
-          <a class="source-badge" href="https://github.com/ameva-project/requirements.txt" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+          <a class="source-badge" href="https://github.com/ameva-project/requirements.txt" target="_blank"
+            rel="noopener noreferrer" title="View source on GitHub">
             <span class="badge-icon">🔗</span>
             <span>requirements.txt</span>
           </a>
@@ -395,23 +417,20 @@
 
     <!-- ─── Chat Input Area ────────────────────────────────── -->
     <div class="chat-input-area">
-      <textarea
-        id="chat-input"
-        placeholder="AMEVA에 대해 질문하세요…"
-        rows="1"
-        disabled
-        aria-label="Type your message"
-      ></textarea>
+      <textarea id="chat-input" placeholder="AMEVA에 대해 질문하세요…" rows="1" disabled
+        aria-label="Type your message"></textarea>
       <!-- Stop Generation button (hidden by default) -->
       <button type="button" id="btn-stop-gen" aria-label="Stop generation" class="is-hidden">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <rect x="6" y="6" width="12" height="12"></rect>
         </svg>
       </button>
       <!-- Send button -->
       <button type="button" id="btn-send" aria-label="Send message" disabled>
         <!-- Send arrow icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13" />
           <polygon points="22 2 15 22 11 13 2 9 22 2" />
         </svg>
@@ -429,7 +448,7 @@
       <span class="modal-icon" aria-hidden="true">🖥️</span>
       <h2 id="modal-mobile-title">Desktop Environment Required</h2>
       <p>
-        해당 AI 엔진은 PC 환경의 <strong>WebGPU</strong> 자원을 필요로 합니다.<br/>
+        해당 AI 엔진은 PC 환경의 <strong>WebGPU</strong> 자원을 필요로 합니다.<br />
         Chrome 또는 Edge 데스크톱 브라우저에서 접속해 주세요.
       </p>
       <span class="modal-tag">WebGPU · OOM Prevention</span>
@@ -445,7 +464,7 @@
       <span class="modal-icon" aria-hidden="true">⚠️</span>
       <h2 id="modal-webgpu-title">WebGPU Not Detected</h2>
       <p>
-        브라우저에서 WebGPU가 감지되지 않습니다.<br/>
+        브라우저에서 WebGPU가 감지되지 않습니다.<br />
         Chrome/Edge에서 <code>chrome://flags/#enable-unsafe-webgpu</code>를
         활성화한 후 재시작해 주세요.
       </p>
@@ -462,7 +481,7 @@
       <span class="modal-icon" aria-hidden="true">💾</span>
       <h2 id="modal-storage-title">Storage Quota Exceeded</h2>
       <p>
-        브라우저 저장소 공간이 부족합니다.<br/>
+        브라우저 저장소 공간이 부족합니다.<br />
         불필요한 사이트 데이터를 삭제하거나 저장소 권한을 허용해 주세요.
       </p>
       <span class="modal-tag">IndexedDB · Cache Failure</span>
@@ -476,7 +495,7 @@
   <template id="tour-controls-template">
     <div class="tour-controls">
       <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
-      
+
       <div class="tour-progress-wrapper">
         <svg class="tour-progress-ring" viewBox="0 0 36 36">
           <circle class="ring-bg" cx="18" cy="18" r="16" />
@@ -484,7 +503,7 @@
         </svg>
         <button class="btn-tour-tts" id="btn-tour-tts" aria-label="Toggle TTS">🔊</button>
       </div>
-      
+
       <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next">❯</button>
     </div>
   </template>
@@ -510,12 +529,20 @@
        K. BLOG IFRAME MODAL
        ═══════════════════════════════════════════════════════════ -->
   <div class="modal-backdrop" id="modal-blog" role="dialog" aria-modal="true" aria-labelledby="modal-blog-title">
-    <div class="modal-card profile-card" style="width: 90vw; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-      <div style="padding: 15px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5);">
-        <h3 id="modal-blog-title" style="margin: 0; font-size: 1.1rem; color: var(--accent-cyan); font-family: var(--font-mono);">📝 uno-kim.tistory.com</h3>
-        <button class="btn-close-modal" id="btn-close-blog" aria-label="Close Blog" style="position: static; padding: 5px;">✕</button>
+    <div class="modal-card profile-card"
+      style="width: 90vw; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+      <div
+        style="height: 40px; background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; padding: 0 16px; flex-shrink: 0;">
+        <a href="https://uno-kim.tistory.com/" target="_blank" rel="noopener noreferrer"
+          style="color: var(--accent-cyan); font-family: var(--font-sans); font-size: 0.95rem; font-weight: bold; text-decoration: none; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; transition: color 0.2s;">
+          🔗 uno-kim.tistory.com
+        </a>
+        <button id="btn-close-blog" aria-label="Close Blog"
+          style="background: rgba(255,255,255,0.1); border: none; color: #fff; cursor: pointer; font-size: 1rem; width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; transition: background 0.2s;">✕</button>
       </div>
-      <iframe id="blog-iframe" src="about:blank" data-src="https://uno-kim.tistory.com/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" style="flex: 1; width: 100%; border: none; background: #fff;"></iframe>
+      <iframe id="blog-iframe" src="about:blank" data-src="https://uno-kim.tistory.com/"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        style="flex: 1; width: 100%; border: none; background: #fff;"></iframe>
     </div>
   </div>
 
@@ -525,7 +552,7 @@
        ═══════════════════════════════════════════════════════════ -->
   <!-- D3.js -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  
+
   <!-- Markdown Parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -533,4 +560,5 @@
   <script type="module" src="graph_visualizer.js"></script>
 
 </body>
+
 </html>
