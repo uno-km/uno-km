@@ -1359,10 +1359,28 @@ body {
 .profile-card {
   position: relative;
   max-width: 600px;
-  width: 100%;
+  width: 90%; /* 모바일에서 꽉 차지 않게 여백 줌 */
+  max-height: 80vh; /* 화면 높이의 80%까지만 커지도록 제한 */
+  overflow-y: auto; /* 내용이 넘치면 세로 스크롤 생성 */
   background: rgba(15, 23, 42, 0.95);
   text-align: left;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
 }
+
+/* 프로필 모달 커스텀 스크롤바 */
+.profile-card::-webkit-scrollbar {
+  width: 8px;
+}
+.profile-card::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.profile-card::-webkit-scrollbar-thumb {
+  background: var(--accent-purple);
+  border-radius: 4px;
+}
+
 .btn-close-modal {
   position: absolute;
   top: 15px;
