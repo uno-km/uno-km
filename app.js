@@ -49,7 +49,9 @@ let isGenerating = false;
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
 // WebLLM tries to force append /resolve/main/ to local paths. 
 // We use a path traversal hack to satisfy its regex while normalizing back to our local directory.
-const localModelUrl = window.location.origin + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/../../";
+// Determine base path dynamically to support GitHub Pages subdirectories (e.g. /uno-km/)
+const basePath = window.location.pathname.replace(/\/[^\/]*$/, ''); // removes /index.html if present
+const localModelUrl = window.location.origin + basePath + "/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/../../";
 
 // Dynamically fetch the default config to get the correct WASM URL, 
 // and override the model URL with our local path hack.
