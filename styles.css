@@ -1358,9 +1358,9 @@ body {
 /* ── Profile Modal & Markdown Body ────────────────────────── */
 .profile-card {
   position: relative;
-  max-width: 600px;
-  width: 90%; /* 모바일에서 꽉 차지 않게 여백 줌 */
-  max-height: 80vh; /* 화면 높이의 80%까지만 커지도록 제한 */
+  max-width: 450px; /* PC에서도 앙증맞은 프로필 카드 사이즈로 고정 */
+  width: 90%;
+  max-height: 70vh; /* 조금 더 짧게 잡아 스크롤이 자연스럽게 생기도록 유도 */
   overflow-y: auto; /* 내용이 넘치면 세로 스크롤 생성 */
   background: rgba(15, 23, 42, 0.95);
   text-align: left;
