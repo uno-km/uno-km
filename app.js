@@ -260,6 +260,14 @@ if (btnCloseProfile) {
   });
 }
 
+// 배경(검은 영역) 클릭 시 모달 닫기
+if (modalProfile) {
+  modalProfile.addEventListener('click', (e) => {
+    if (e.target === modalProfile) {
+      modalProfile.classList.remove('is-active');
+    }
+  });
+}
 // ─── Panel Toggle ───────────────────────────────────────────
 function togglePanel() {
   if (isPanelOpen) closePanel();
