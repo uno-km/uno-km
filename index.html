@@ -45,11 +45,27 @@
   <div id="tour-overlay" class="tour-overlay is-hidden">
     <div class="tour-content">
       <h3 id="tour-title">Touring AMEVA</h3>
-      <p id="tour-desc">Initializing cinematic sequence...</p>
+      <div id="tour-desc-container">
+        <p id="tour-desc">Initializing cinematic sequence...</p>
+        <div id="tour-details" style="display:none; margin-top: 10px;">
+          <strong style="color:var(--accent-cyan)">Tech Stack:</strong> <span id="tour-tech">...</span><br/>
+          <strong style="color:var(--accent-purple)">Core Alg:</strong> <span id="tour-alg">...</span>
+        </div>
+      </div>
     </div>
-    <div class="tour-controls">
-      <button id="btn-tour-next" class="btn btn-primary">Next Node ⏭</button>
-      <button id="btn-tour-exit" class="btn btn-secondary">Exit Tour ⏹</button>
+    <div class="tour-controls-new">
+      <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
+      
+      <div class="tour-progress-wrapper" id="btn-tour-tts">
+        <svg class="tour-progress-ring" viewBox="0 0 36 36">
+          <circle class="ring-bg" cx="18" cy="18" r="16" />
+          <circle class="ring-progress" cx="18" cy="18" r="16" id="tour-progress-circle" />
+        </svg>
+        <span class="tts-icon" id="tts-icon">🔈</span>
+      </div>
+      
+      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next">❯</button>
+      <button class="btn-tour-nav" id="btn-tour-exit" aria-label="Exit" style="margin-left: 10px; font-size: 1.2rem; background: rgba(255,50,50,0.2);">✕</button>
     </div>
   </div>
 
@@ -80,8 +96,13 @@
           아래 투어를 통해 생태계를 둘러보세요.
         </div>
       </div>
-      <div style="padding: 1rem; text-align: center;">
-        <button id="btn-start-tour" class="btn btn-primary" style="width: 100%;">▶ 시네마틱 가이드 투어 시작</button>
+      <div class="codex-actions">
+        <button id="btn-start-tour" class="btn-download" style="width: 100%; justify-content: center; margin-bottom: 15px;">
+          ▶ 시네마틱 가이드 투어 시작
+        </button>
+        <button id="btn-who-made" class="btn-download" style="width: 100%; justify-content: center; background: rgba(124, 58, 237, 0.2); border-color: rgba(124, 58, 237, 0.5);">
+          🧑‍💻 Who Made AMEVA?
+        </button>
       </div>
     </div>
   </div>
@@ -411,6 +432,43 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       H. TOUR OVERLAY CONTROLS (ADDED)
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- Tour Navigation Controls added dynamically inside tour-overlay -->
+  <template id="tour-controls-template">
+    <div class="tour-controls">
+      <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
+      
+      <div class="tour-progress-wrapper">
+        <svg class="tour-progress-ring" viewBox="0 0 36 36">
+          <circle class="ring-bg" cx="18" cy="18" r="16" />
+          <circle class="ring-progress" cx="18" cy="18" r="16" id="tour-progress-circle" />
+        </svg>
+        <button class="btn-tour-tts" id="btn-tour-tts" aria-label="Toggle TTS">🔊</button>
+      </div>
+      
+      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next">❯</button>
+    </div>
+  </template>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       I. WHO MADE AMEVA PROFILE MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-profile" role="dialog" aria-modal="true" aria-labelledby="modal-profile-title">
+    <div class="modal-card profile-card">
+      <button class="btn-close-modal" id="btn-close-profile" aria-label="Close Profile">✕</button>
+      <div id="profile-content" class="markdown-body">
+        <div class="spinner"></div> Loading Profile...
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       J. TOAST NOTIFICATION CONTAINER
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="toast-container" class="toast-container"></div>
+
 
   <!-- ═══════════════════════════════════════════════════════════
        SCRIPTS — Loaded as ES Modules
@@ -418,6 +476,9 @@
   <!-- D3.js -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   
+  <!-- Markdown Parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script type="module" src="app.js"></script>
   <script type="module" src="graph_visualizer.js"></script>
 

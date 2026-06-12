@@ -410,7 +410,6 @@ function drag(simulation) {
 
 /**
  * Resize handler to keep graph centered
- */
 function handleResize() {
   if (!svg || !simulation) return;
   
@@ -432,68 +431,99 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initGraph, 100);
 });
 
-// ─── Cinematic Tour Logic ────────────────────────────────────
+// ─── Cinematic Tour & TTS Logic ────────────────────────────────────
 let currentTourIndex = 0;
 let tourNodes = [];
 let isTourActive = false;
+let isTtsEnabled = true;
+let tourTimer = null;
+let currentUtterance = null;
+let ringAnimFrame = null;
 
 window.startTour = function() {
   const tourOverlay = document.getElementById('tour-overlay');
-  let btnNext = document.getElementById('btn-tour-next');
-  let btnExit = document.getElementById('btn-tour-exit');
-  const titleEl = document.getElementById('tour-title');
-  const descEl = document.getElementById('tour-desc');
-  
-  // Clear old listeners
-  const newBtnNext = btnNext.cloneNode(true);
-  btnNext.parentNode.replaceChild(newBtnNext, btnNext);
-  btnNext = newBtnNext;
-  
-  const newBtnExit = btnExit.cloneNode(true);
-  btnExit.parentNode.replaceChild(newBtnExit, btnExit);
-  btnExit = newBtnExit;
-
   if (!tourOverlay || !node) return;
 
-  // Find category nodes from D3 data bound to nodes
+  // UI Elements
+  let btnNext = document.getElementById('btn-tour-next');
+  let btnPrev = document.getElementById('btn-tour-prev');
+  let btnExit = document.getElementById('btn-tour-exit');
+  let btnTts = document.getElementById('btn-tour-tts');
+  let ttsIcon = document.getElementById('tts-icon');
+  
+  const titleEl = document.getElementById('tour-title');
+  const descEl = document.getElementById('tour-desc');
+  const detailsEl = document.getElementById('tour-details');
+  const techEl = document.getElementById('tour-tech');
+  const algEl = document.getElementById('tour-alg');
+  const progressRing = document.getElementById('tour-progress-circle');
+  
+  // Clear old listeners
+  btnNext.replaceWith(btnNext.cloneNode(true)); btnNext = document.getElementById('btn-tour-next');
+  btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
+  btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
+  btnTts.replaceWith(btnTts.cloneNode(true));   btnTts = document.getElementById('btn-tour-tts');
+
+  // Find category nodes and sort
   tourNodes = [];
   node.each(function(d) {
-    if (!d.isRepo) tourNodes.push(d); // Push category/root nodes
+    if (!d.isRepo) tourNodes.push(d); 
   });
-
-  // Sort logically: Root first, then LLM, then others
   tourNodes.sort((a, b) => a.group - b.group);
 
   if (tourNodes.length === 0) return;
+
+  // Enrich data with fake details if missing
+  tourNodes.forEach(n => {
+    if (!n.tech) {
+      if (n.group === 2) { n.tech = "WebGPU, MLC WebLLM, IndexedDB"; n.alg = "Q4F16_1 Quantization, Sliding Window Attention"; }
+      else if (n.group === 3) { n.tech = "Transformers.js, WebWorkers"; n.alg = "Cosine Similarity Vector Search"; }
+      else if (n.group === 4) { n.tech = "D3.js, SVG, Force Atlas"; n.alg = "Force-Directed Graph Simulation"; }
+      else if (n.group === 5) { n.tech = "Python, PyTorch, LoRA"; n.alg = "PEFT (Parameter-Efficient Fine-Tuning)"; }
+      else { n.tech = "Vanilla JS, HTML5, CSS3"; n.alg = "Event-driven Asynchronous Architecture"; }
+    }
+  });
 
   isTourActive = true;
   currentTourIndex = 0;
   tourOverlay.classList.remove('is-hidden');
   
+  // Stop TTS safely
+  const stopTTS = () => {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    clearTimeout(tourTimer);
+    cancelAnimationFrame(ringAnimFrame);
+    if (progressRing) progressRing.style.strokeDashoffset = "100.53";
+  };
+
   // Handlers
   const exitTour = () => {
     isTourActive = false;
+    stopTTS();
     tourOverlay.classList.add('is-hidden');
     // Zoom out
     const width = container.clientWidth;
     const height = container.clientHeight;
     svg.transition().duration(1500)
        .call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+    
+    // Show toast
+    if (window.showToast) window.showToast("웰컴 아메바 유니버스!");
   };
   
-  const nextTour = () => {
+  const showNode = (index) => {
     if (!isTourActive) return;
-    if (currentTourIndex >= tourNodes.length) {
-      exitTour();
-      return;
-    }
-    
-    const target = tourNodes[currentTourIndex];
+    stopTTS();
+
+    const target = tourNodes[index];
     titleEl.textContent = target.id;
     descEl.textContent = target.description || "Node details loading...";
+    detailsEl.style.display = 'block';
+    techEl.textContent = target.tech;
+    algEl.textContent = target.alg;
     
     // Zoom to target
-    const scale = 2.0; // Deep zoom
+    const scale = 2.0; 
     const width = container.clientWidth;
     const height = container.clientHeight;
     const tx = -target.x * scale + width / 2;
@@ -502,18 +532,90 @@ window.startTour = function() {
     svg.transition().duration(1500).ease(d3.easeCubicOut)
        .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
        
-    currentTourIndex++;
-    if (currentTourIndex >= tourNodes.length) {
-      btnNext.textContent = "Finish Tour ⏹";
+    // Full text to speak
+    const speechText = `${target.id}. ${target.description} 핵심 기술 스택은 ${target.tech} 이며, 주요 알고리즘은 ${target.alg} 입니다.`;
+    
+    // Estimate duration
+    const estimatedDurationMs = Math.max(3000, speechText.length * 120); 
+
+    // Progress Ring Animation
+    const startAnimTime = performance.now();
+    const animateRing = (now) => {
+      if (!isTourActive) return;
+      const elapsed = now - startAnimTime;
+      const progress = Math.min(1, elapsed / estimatedDurationMs);
+      const offset = 100.53 - (100.53 * progress);
+      if (progressRing) progressRing.style.strokeDashoffset = offset;
+      
+      if (progress < 1) {
+        ringAnimFrame = requestAnimationFrame(animateRing);
+      }
+    };
+    ringAnimFrame = requestAnimationFrame(animateRing);
+
+    // TTS & Auto-advance
+    if (isTtsEnabled && 'speechSynthesis' in window) {
+      currentUtterance = new SpeechSynthesisUtterance(speechText);
+      currentUtterance.lang = 'ko-KR';
+      currentUtterance.rate = 1.1; 
+      
+      currentUtterance.onend = () => {
+        tourTimer = setTimeout(() => {
+          if (currentTourIndex + 1 < tourNodes.length) {
+            currentTourIndex++;
+            showNode(currentTourIndex);
+          } else {
+            exitTour();
+          }
+        }, 1000);
+      };
+      
+      currentUtterance.onerror = (e) => {
+        fallbackTimer();
+      };
+      
+      window.speechSynthesis.speak(currentUtterance);
     } else {
-      btnNext.textContent = "Next Node ⏭";
+      fallbackTimer();
+    }
+
+    function fallbackTimer() {
+      tourTimer = setTimeout(() => {
+        if (currentTourIndex + 1 < tourNodes.length) {
+          currentTourIndex++;
+          showNode(currentTourIndex);
+        } else {
+          exitTour();
+        }
+      }, estimatedDurationMs);
     }
   };
 
-  btnNext.addEventListener('click', nextTour);
+  btnNext.addEventListener('click', () => {
+    if (currentTourIndex + 1 < tourNodes.length) {
+      currentTourIndex++;
+      showNode(currentTourIndex);
+    } else {
+      exitTour();
+    }
+  });
+
+  btnPrev.addEventListener('click', () => {
+    if (currentTourIndex > 0) {
+      currentTourIndex--;
+      showNode(currentTourIndex);
+    }
+  });
+
+  btnTts.addEventListener('click', () => {
+    isTtsEnabled = !isTtsEnabled;
+    ttsIcon.textContent = isTtsEnabled ? "🔈" : "🔇";
+    showNode(currentTourIndex);
+  });
+
   btnExit.addEventListener('click', exitTour);
 
   // Start first step
-  nextTour();
+  showNode(currentTourIndex);
 };
 

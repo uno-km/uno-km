@@ -150,6 +150,44 @@ function bindEvents() {
   });
 }
 
+// ─── Toast System ─────────────────────────────────────────────
+window.showToast = function(msg) {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+  const t = document.createElement('div');
+  t.className = 'toast-msg';
+  t.textContent = msg;
+  container.appendChild(t);
+  setTimeout(() => {
+    if (t.parentNode === container) container.removeChild(t);
+  }, 3500);
+};
+
+// ─── Profile Modal Logic ────────────────────────────────────
+const btnWhoMade = document.getElementById('btn-who-made');
+const modalProfile = document.getElementById('modal-profile');
+const btnCloseProfile = document.getElementById('btn-close-profile');
+const profileContent = document.getElementById('profile-content');
+
+if (btnWhoMade && modalProfile) {
+  btnWhoMade.addEventListener('click', async () => {
+    modalProfile.classList.add('is-active');
+    try {
+      const res = await fetch('profile.md');
+      if (!res.ok) throw new Error("Profile not found");
+      const text = await res.text();
+      profileContent.innerHTML = marked.parse(text);
+    } catch (e) {
+      profileContent.innerHTML = `<div style="color:var(--danger)">프로필을 불러오지 못했습니다. (${e.message})</div>`;
+    }
+  });
+}
+if (btnCloseProfile) {
+  btnCloseProfile.addEventListener('click', () => {
+    modalProfile.classList.remove('is-active');
+  });
+}
+
 // ─── Panel Toggle ───────────────────────────────────────────
 function togglePanel() {
   if (isPanelOpen) closePanel();
