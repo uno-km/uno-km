@@ -336,7 +336,7 @@ body {
 
 
 /* ── Chat Panel ────────────────────────────────────────────── */
-#chat-panel {
+.chat-panel {
   position: fixed;
   bottom: 96px;
   right: var(--space-lg);
@@ -363,7 +363,7 @@ body {
     opacity var(--duration-med) ease,
     visibility 0ms var(--duration-slow);
 }
-#chat-panel.is-visible {
+.chat-panel.is-visible {
   transform: translateY(0) scale(1);
   opacity: 1;
   visibility: visible;
@@ -1065,7 +1065,7 @@ body {
 
 /* ── Responsive (tablets — chat panel reflow) ─────────────── */
 @media (max-width: 480px) {
-  #chat-panel {
+  .chat-panel {
     right: var(--space-sm);
     width: calc(100vw - 16px);
     bottom: 80px;

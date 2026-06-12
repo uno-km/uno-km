@@ -479,8 +479,6 @@ window.startTour = function() {
     const height = container.clientHeight;
     svg.transition().duration(1500)
        .call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
-    btnNext.removeEventListener('click', nextTour);
-    btnExit.removeEventListener('click', exitTour);
   };
   
   const nextTour = () => {
@@ -518,3 +516,4 @@ window.startTour = function() {
   // Start first step
   nextTour();
 };
+
