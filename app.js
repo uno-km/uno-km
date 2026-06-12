@@ -34,12 +34,15 @@ const progressText  = document.getElementById('progress-text');
 const progressPct   = document.getElementById('progress-percent');
 const downloadProg  = document.getElementById('download-progress');
 const engineStatus  = document.getElementById('chat-engine-status');
+const btnStopGen    = document.getElementById('btn-stop-gen');
+const btnStartTourPc = document.getElementById('btn-start-tour-pc');
 
 // ─── WebLLM Config ─────────────────────────────────────────
 let engine = null;
 let isPanelOpen = false;
 let isEngineReady = false;
 let isFallbackMode = false;
+let isGenerating = false;
 
 // We use the hybrid approach: local weights + official wasm binary
 const modelId = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC";
@@ -124,6 +127,24 @@ function bindEvents() {
     btnStartTour.addEventListener('click', () => {
       closePanel();
       if (window.startTour) window.startTour();
+    });
+  }
+
+  // PC Tour button binding
+  if (btnStartTourPc) {
+    btnStartTourPc.addEventListener('click', () => {
+      closePanel();
+      if (window.startTour) window.startTour();
+    });
+  }
+
+  // Stop generation button
+  if (btnStopGen) {
+    btnStopGen.addEventListener('click', () => {
+      if (isGenerating && engine) {
+        try { engine.interruptGenerate(); } catch(e) { console.warn('[AMEVA] Interrupt failed:', e); }
+        isGenerating = false;
+      }
     });
   }
 
@@ -272,9 +293,12 @@ async function handleSend() {
   chatInput.style.height = 'auto';
   saveSession();
 
-  // Disable input while generating
+  // Disable input, show stop button, hide send button
   chatInput.disabled = true;
   btnSend.disabled = true;
+  isGenerating = true;
+  if (btnStopGen) btnStopGen.classList.remove('is-hidden');
+  if (btnSend) btnSend.style.display = 'none';
 
   // Create an empty AI message bubble for streaming
   const aiMsgDiv = document.createElement('div');
@@ -339,6 +363,13 @@ ${contextStr}
     let tokenCount = 0;
 
     for await (const chunk of asyncChunkGenerator) {
+      // Check if generation was interrupted
+      if (!isGenerating) {
+        fullResponse += "\n\n[⏹ 생성이 중지되었습니다.]";
+        bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
+        break;
+      }
+
       const chunkText = chunk.choices[0]?.delta?.content || "";
       fullResponse += chunkText;
       bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
@@ -379,10 +410,15 @@ ${contextStr}
 
   } catch (e) {
     console.error("LLM Generation error:", e);
-    bubbleDiv.innerHTML += "<br/><br/><em style='color:var(--danger)'>[에러가 발생했습니다. 개발자 도구를 확인해주세요.]</em>";
+    if (e.message && !e.message.includes('interrupt')) {
+      bubbleDiv.innerHTML += "<br/><br/><em style='color:var(--danger)'>[에러가 발생했습니다. 개발자 도구를 확인해주세요.]</em>";
+    }
   } finally {
+    isGenerating = false;
     chatInput.disabled = false;
     btnSend.disabled = false;
+    if (btnStopGen) btnStopGen.classList.add('is-hidden');
+    if (btnSend) btnSend.style.display = 'flex';
     chatInput.focus();
     saveSession();
   }

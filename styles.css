@@ -849,6 +849,43 @@ body {
   height: 18px;
 }
 
+/* ── Stop Generation Button ────────────────────────────── */
+#btn-stop-gen {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--danger);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--duration-fast) ease;
+  animation: stop-pulse 1.5s ease-in-out infinite;
+}
+#btn-stop-gen:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: var(--danger);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.4);
+}
+#btn-stop-gen:active {
+  transform: scale(0.92);
+}
+#btn-stop-gen svg {
+  width: 16px;
+  height: 16px;
+}
+#btn-stop-gen.is-hidden {
+  display: none;
+}
+
+@keyframes stop-pulse {
+  0%, 100% { opacity: 1; border-color: rgba(239, 68, 68, 0.4); }
+  50% { opacity: 0.7; border-color: rgba(239, 68, 68, 0.8); }
+}
+
 
 /* ── Mobile Block Modal ──────────────────────────────────── */
 .modal-backdrop {
@@ -1137,6 +1174,29 @@ body {
   .sre-metrics {
     display: none;
   }
+  /* Mobile tour overlay fix — prevent right overflow */
+  .tour-overlay {
+    width: calc(100vw - 2rem) !important;
+    max-width: none !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    transform: translateX(0) !important;
+    padding: 1rem !important;
+    box-sizing: border-box;
+  }
+  .tour-overlay.is-hidden {
+    transform: translateY(20px) !important;
+    opacity: 0;
+  }
+  .tour-controls-new {
+    gap: 12px;
+  }
+  .tour-content h3 {
+    font-size: 0.9rem;
+  }
+  .tour-content p {
+    font-size: 0.82rem;
+  }
 }
 
 /* ── Toast Container ────────────────────────────────────────── */
@@ -1234,13 +1294,65 @@ body {
   stroke-width: 3;
   stroke-dasharray: 100.53; /* 2 * PI * 16 = 100.53 */
   stroke-dashoffset: 100.53;
-  transition: stroke-dashoffset 0.1s linear;
+  transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease;
+}
+.ring-progress.ring-intense {
+  stroke: #00ffff;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.7));
 }
 
 .tts-icon {
   font-size: 1.5rem;
   z-index: 2;
   user-select: none;
+}
+
+/* Tour step counter */
+.tour-step-counter {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: right;
+  opacity: 0.7;
+  margin-bottom: -0.5rem;
+}
+
+/* Tour GitHub link */
+.tour-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 207, 142, 0.3);
+  background: rgba(62, 207, 142, 0.08);
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--duration-fast) ease;
+}
+.tour-github-link:hover {
+  background: rgba(62, 207, 142, 0.2);
+  border-color: var(--accent-green);
+  box-shadow: 0 0 10px rgba(62, 207, 142, 0.3);
+}
+
+/* Tour tech badge */
+.tour-tech-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-cyan-dim);
+  border: 1px solid rgba(0, 239, 255, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-cyan);
+  font-weight: 500;
 }
 
 /* ── Profile Modal & Markdown Body ────────────────────────── */

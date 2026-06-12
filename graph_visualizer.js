@@ -26,6 +26,7 @@ const colorScale = d3.scaleOrdinal()
   ]);
 
 let svg, simulation, link, node, labels;
+let zoomBehavior = null;  // Module-scope zoom (was local to renderGraph — caused TTS crash)
 
 /**
  * Initialize the graph by loading the JSON data
@@ -188,13 +189,13 @@ async function renderGraph(data) {
 
   const g = svg.append('g');
 
-  const zoom = d3.zoom()
+  zoomBehavior = d3.zoom()
     .scaleExtent([0.1, 4])
     .on('zoom', (event) => {
       g.attr('transform', event.transform);
     });
   
-  svg.call(zoom);
+  svg.call(zoomBehavior);
   svg.on("dblclick.zoom", null);
 
   // Initialize simulation WITH nodes but STOP it so physics don't run yet
@@ -432,18 +433,75 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initGraph, 100);
 });
 
-// ─── Cinematic Tour & TTS Logic ────────────────────────────────────
+// ─── Cinematic Tour & TTS Logic (REWRITTEN — loads from tour_data.json) ───
 let currentTourIndex = 0;
-let tourNodes = [];
+let tourSteps = [];
 let isTourActive = false;
 let isTtsEnabled = true;
-let tourTimer = null;
+let autoAdvanceTimer = null;
 let currentUtterance = null;
 let ringAnimFrame = null;
+let cachedTourData = null;
 
-window.startTour = function() {
+// Constants
+const CIRCUMFERENCE = 2 * Math.PI * 16; // ~100.53
+const CHARS_PER_SECOND_KO = 4.5;
+const MIN_STEP_DURATION_MS = 4000;
+const TRANSITION_BUFFER_MS = 1500;
+
+// Preload tour data from JSON
+async function loadTourData() {
+  if (cachedTourData) return cachedTourData;
+  try {
+    const res = await fetch('tour_data.json');
+    if (!res.ok) throw new Error('Tour data not found');
+    cachedTourData = await res.json();
+    return cachedTourData;
+  } catch (e) {
+    console.warn('[AMEVA Tour] Failed to load tour_data.json:', e);
+    return null;
+  }
+}
+
+// Warm up speechSynthesis for Chrome
+function warmUpTTS() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.addEventListener('voiceschanged', () => {
+      window.speechSynthesis.getVoices();
+    }, { once: true });
+  }
+}
+warmUpTTS();
+
+// Find best Korean voice
+function getKoreanVoice() {
+  if (!('speechSynthesis' in window)) return null;
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.lang === 'ko-KR') ||
+         voices.find(v => v.lang.startsWith('ko')) ||
+         null;
+}
+
+// Estimate TTS duration from text length
+function estimateTTSDuration(text) {
+  const charCount = text.length;
+  const estimatedMs = (charCount / CHARS_PER_SECOND_KO) * 1000;
+  return Math.max(MIN_STEP_DURATION_MS, estimatedMs) + TRANSITION_BUFFER_MS;
+}
+
+window.startTour = async function() {
   const tourOverlay = document.getElementById('tour-overlay');
   if (!tourOverlay || !node) return;
+
+  // Load tour data
+  const tourData = await loadTourData();
+  if (!tourData || !tourData.steps || tourData.steps.length === 0) {
+    if (window.showToast) window.showToast('투어 데이터를 불러올 수 없습니다.');
+    return;
+  }
+
+  tourSteps = tourData.steps;
 
   // UI Elements
   let btnNext = document.getElementById('btn-tour-next');
@@ -451,151 +509,158 @@ window.startTour = function() {
   let btnExit = document.getElementById('btn-tour-exit');
   let btnTts = document.getElementById('btn-tour-tts');
   let ttsIcon = document.getElementById('tts-icon');
-  
+
   const titleEl = document.getElementById('tour-title');
   const descEl = document.getElementById('tour-desc');
   const detailsEl = document.getElementById('tour-details');
   const techEl = document.getElementById('tour-tech');
   const algEl = document.getElementById('tour-alg');
   const progressRing = document.getElementById('tour-progress-circle');
-  
-  // Clear old listeners
+
+  // Clear old listeners by cloning
   btnNext.replaceWith(btnNext.cloneNode(true)); btnNext = document.getElementById('btn-tour-next');
   btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
   btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
   btnTts.replaceWith(btnTts.cloneNode(true));   btnTts = document.getElementById('btn-tour-tts');
-
-  // Find category nodes and sort
-  tourNodes = [];
-  node.each(function(d) {
-    if (!d.isRepo) tourNodes.push(d); 
-  });
-  tourNodes.sort((a, b) => a.group - b.group);
-
-  if (tourNodes.length === 0) return;
-
-  // Enrich data with fake details if missing
-  tourNodes.forEach(n => {
-    if (!n.tech) {
-      if (n.group === 2) { n.tech = "WebGPU, MLC WebLLM, IndexedDB"; n.alg = "Q4F16_1 Quantization, Sliding Window Attention"; }
-      else if (n.group === 3) { n.tech = "Transformers.js, WebWorkers"; n.alg = "Cosine Similarity Vector Search"; }
-      else if (n.group === 4) { n.tech = "D3.js, SVG, Force Atlas"; n.alg = "Force-Directed Graph Simulation"; }
-      else if (n.group === 5) { n.tech = "Python, PyTorch, LoRA"; n.alg = "PEFT (Parameter-Efficient Fine-Tuning)"; }
-      else { n.tech = "Vanilla JS, HTML5, CSS3"; n.alg = "Event-driven Asynchronous Architecture"; }
-    }
-  });
+  ttsIcon = document.getElementById('tts-icon');
 
   isTourActive = true;
   currentTourIndex = 0;
   tourOverlay.classList.remove('is-hidden');
-  
-  // Stop TTS safely
-  const stopTTS = () => {
+
+  // Stop TTS + timers + ring
+  const stopAll = () => {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
-    clearTimeout(tourTimer);
+    clearTimeout(autoAdvanceTimer);
     cancelAnimationFrame(ringAnimFrame);
-    if (progressRing) progressRing.style.strokeDashoffset = "100.53";
+    if (progressRing) {
+      progressRing.style.strokeDashoffset = CIRCUMFERENCE;
+      progressRing.classList.remove('ring-intense');
+    }
   };
 
-  // Handlers
+  // Exit tour
   const exitTour = () => {
     isTourActive = false;
-    stopTTS();
+    stopAll();
     tourOverlay.classList.add('is-hidden');
     // Zoom out
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    svg.transition().duration(1500)
-       .call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
-    
-    // Show toast
-    if (window.showToast) window.showToast("웰컴 아메바 유니버스!");
+    if (svg && zoomBehavior) {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      svg.transition().duration(1500)
+         .call(zoomBehavior.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+    }
+    if (window.showToast) window.showToast('웰컴 아메바 유니버스!');
   };
-  
-  const showNode = (index) => {
-    if (!isTourActive) return;
-    stopTTS();
 
-    const target = tourNodes[index];
-    titleEl.textContent = target.id;
-    descEl.textContent = target.description || "Node details loading...";
+  // Show a tour step
+  const showStep = (index) => {
+    if (!isTourActive || index < 0 || index >= tourSteps.length) return;
+    stopAll();
+
+    const step = tourSteps[index];
+
+    // Update UI
+    titleEl.textContent = step.title;
+    descEl.textContent = step.description || '';
     detailsEl.style.display = 'block';
-    techEl.textContent = target.tech;
-    algEl.textContent = target.alg;
-    
-    // Zoom to target
-    const scale = 2.0; 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    const tx = -target.x * scale + width / 2;
-    const ty = -target.y * scale + height / 2;
-    
-    svg.transition().duration(1500).ease(d3.easeCubicOut)
-       .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
-       
-    // Full text to speak
-    const speechText = `${target.id}. ${target.description} 핵심 기술 스택은 ${target.tech} 이며, 주요 알고리즘은 ${target.alg} 입니다.`;
-    
-    // Estimate duration
-    const estimatedDurationMs = Math.max(3000, speechText.length * 120); 
+    techEl.textContent = step.tech || '';
 
-    // Progress Ring Animation
-    const startAnimTime = performance.now();
+    // Show/hide algorithm field (repurpose as GitHub link for repos)
+    if (step.github) {
+      algEl.innerHTML = `<a href="${step.github}" target="_blank" rel="noopener noreferrer" class="tour-github-link">🔗 GitHub 리포지토리</a>`;
+    } else {
+      algEl.innerHTML = step.type === 'category' ? '<span class="tour-tech-badge">카테고리 노드</span>' : '';
+    }
+
+    // Step counter — inject or update
+    let counterEl = tourOverlay.querySelector('.tour-step-counter');
+    if (!counterEl) {
+      counterEl = document.createElement('div');
+      counterEl.className = 'tour-step-counter';
+      tourOverlay.querySelector('.tour-content').prepend(counterEl);
+    }
+    counterEl.textContent = `${index + 1} / ${tourSteps.length}`;
+
+    // Find matching D3 node and zoom to it
+    let targetNode = null;
+    node.each(function(d) {
+      if (d.id === step.nodeId) targetNode = d;
+    });
+
+    if (targetNode && svg && zoomBehavior) {
+      const scale = 2.0;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      const tx = -targetNode.x * scale + width / 2;
+      const ty = -targetNode.y * scale + height / 2;
+      svg.transition().duration(1500).ease(d3.easeCubicOut)
+         .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    }
+
+    // Build speech text
+    const speechText = `${step.title.replace(/[\u{1F300}-\u{1FAFF}\u{2702}-\u{27B0}]/gu, '')}. ${step.description}. 핵심 기술 스택은 ${step.tech} 입니다.`;
+    const estimatedDurationMs = estimateTTSDuration(speechText);
+
+    // ── Progress Ring Animation (drives auto-advance) ──
+    const ringStartTime = performance.now();
     const animateRing = (now) => {
       if (!isTourActive) return;
-      const elapsed = now - startAnimTime;
+      const elapsed = now - ringStartTime;
       const progress = Math.min(1, elapsed / estimatedDurationMs);
-      const offset = 100.53 - (100.53 * progress);
-      if (progressRing) progressRing.style.strokeDashoffset = offset;
-      
+      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * progress);
+      if (progressRing) {
+        progressRing.style.strokeDashoffset = offset;
+        // 75% intensity change
+        if (progress >= 0.75) {
+          progressRing.classList.add('ring-intense');
+        } else {
+          progressRing.classList.remove('ring-intense');
+        }
+      }
+
       if (progress < 1) {
         ringAnimFrame = requestAnimationFrame(animateRing);
+      } else {
+        // Ring complete → auto-advance
+        if (currentTourIndex + 1 < tourSteps.length) {
+          currentTourIndex++;
+          showStep(currentTourIndex);
+        } else {
+          exitTour();
+        }
       }
     };
     ringAnimFrame = requestAnimationFrame(animateRing);
 
-    // TTS & Auto-advance
+    // ── TTS (plays alongside ring, doesn't control timing) ──
     if (isTtsEnabled && 'speechSynthesis' in window) {
-      currentUtterance = new SpeechSynthesisUtterance(speechText);
-      currentUtterance.lang = 'ko-KR';
-      currentUtterance.rate = 1.1; 
-      
-      currentUtterance.onend = () => {
-        tourTimer = setTimeout(() => {
-          if (currentTourIndex + 1 < tourNodes.length) {
-            currentTourIndex++;
-            showNode(currentTourIndex);
-          } else {
-            exitTour();
-          }
-        }, 1000);
-      };
-      
-      currentUtterance.onerror = (e) => {
-        fallbackTimer();
-      };
-      
-      window.speechSynthesis.speak(currentUtterance);
-    } else {
-      fallbackTimer();
-    }
+      try {
+        window.speechSynthesis.cancel(); // Cancel any pending
+        currentUtterance = new SpeechSynthesisUtterance(speechText);
+        currentUtterance.lang = 'ko-KR';
+        currentUtterance.rate = 1.1;
 
-    function fallbackTimer() {
-      tourTimer = setTimeout(() => {
-        if (currentTourIndex + 1 < tourNodes.length) {
-          currentTourIndex++;
-          showNode(currentTourIndex);
-        } else {
-          exitTour();
-        }
-      }, estimatedDurationMs);
+        const koVoice = getKoreanVoice();
+        if (koVoice) currentUtterance.voice = koVoice;
+
+        currentUtterance.onerror = (e) => {
+          console.warn('[AMEVA TTS] Speech error:', e.error);
+        };
+
+        window.speechSynthesis.speak(currentUtterance);
+      } catch (e) {
+        console.warn('[AMEVA TTS] Failed to speak:', e);
+      }
     }
   };
 
+  // ── Navigation Controls ──
   btnNext.addEventListener('click', () => {
-    if (currentTourIndex + 1 < tourNodes.length) {
+    if (currentTourIndex + 1 < tourSteps.length) {
       currentTourIndex++;
-      showNode(currentTourIndex);
+      showStep(currentTourIndex);
     } else {
       exitTour();
     }
@@ -604,19 +669,23 @@ window.startTour = function() {
   btnPrev.addEventListener('click', () => {
     if (currentTourIndex > 0) {
       currentTourIndex--;
-      showNode(currentTourIndex);
+      showStep(currentTourIndex);
     }
   });
 
   btnTts.addEventListener('click', () => {
     isTtsEnabled = !isTtsEnabled;
-    ttsIcon.textContent = isTtsEnabled ? "🔈" : "🔇";
-    showNode(currentTourIndex);
+    if (ttsIcon) ttsIcon.textContent = isTtsEnabled ? '🔈' : '🔇';
+    if (!isTtsEnabled && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    // Re-show current step (restarts ring + optionally TTS)
+    showStep(currentTourIndex);
   });
 
   btnExit.addEventListener('click', exitTour);
 
   // Start first step
-  showNode(currentTourIndex);
+  showStep(currentTourIndex);
 };
 

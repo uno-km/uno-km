@@ -1,6 +1,6 @@
 # Who Made AMEVA?
 
-![Profile Image](profile_placeholder.png)
+![Profile Image](ameva-creater.jpg)
 
 ## 👑 AMEVA Creator
 
