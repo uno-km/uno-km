@@ -79,9 +79,9 @@ class SandboxEmulator {
 
     const preElement = block.parentElement;
 
-    // Find or create the iframe for this specific code block
-    let iframe = preElement.nextElementSibling;
-    if (!iframe || !iframe.classList.contains('sandbox-iframe')) {
+    // Find or create the iframe for this specific code block inside preElement
+    let iframe = preElement.querySelector('.sandbox-iframe');
+    if (!iframe) {
       iframe = document.createElement('iframe');
       iframe.className = 'sandbox-iframe';
       iframe.sandbox = "allow-scripts"; // Only allow scripts
@@ -89,9 +89,16 @@ class SandboxEmulator {
       iframe.style.border = '1px solid var(--accent-cyan)';
       iframe.style.background = '#fff';
       iframe.style.borderRadius = '8px';
-      iframe.style.marginTop = '12px';
+      iframe.style.marginTop = '8px';
+      iframe.style.marginBottom = '12px';
       iframe.style.display = 'block';
-      preElement.after(iframe);
+      
+      const btn = preElement.querySelector('.sandbox-run-btn');
+      if (btn) {
+        btn.after(iframe);
+      } else {
+        preElement.insertBefore(iframe, block);
+      }
     }
 
     const iframeId = 'sandbox-iframe-' + Math.random().toString(36).substr(2, 9);
