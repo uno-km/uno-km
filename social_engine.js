@@ -44,17 +44,20 @@ class SocialEngine {
     try {
       console.log("[SocialEngine] Sending unique visit tracking hit...");
       const userAgent = navigator.userAgent;
-      const res = await fetch(this.GAS_URL, {
+      
+      // 구글 앱스 스크립트 POST 리디렉션 시 발생하는 브라우저 CORS 차단 정책을 피하기 위해
+      // Response JSON 파싱을 거치지 않고 바로 세션 스토리지 플래그를 저장합니다.
+      await fetch(this.GAS_URL, {
         method: 'POST',
         body: JSON.stringify({ type: 'visit', userAgent: userAgent, key: this.API_SECRET_KEY }),
         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
-      const data = await res.json();
-      if (data.status === 'success') {
-        sessionStorage.setItem('ameva_visited', 'true');
-        console.log("[SocialEngine] Unique visit successfully tracked.");
-        this.fetchData(); //방문자 카운트 갱신
-      }
+
+      sessionStorage.setItem('ameva_visited', 'true');
+      console.log("[SocialEngine] Unique visit logged (ignoring response parse for CORS compatibility).");
+      
+      // 구글 스프레드시트 기록 시간 버퍼를 고려하여 1.5초 뒤 조회수를 갱신합니다.
+      setTimeout(() => this.fetchData(), 1500);
     } catch (e) {
       console.warn("[SocialEngine] Visit tracking post failed:", e);
     }
@@ -80,7 +83,10 @@ class SocialEngine {
     this.container.innerHTML = `
       <div style="font-weight: 600; color: var(--accent-cyan); margin-bottom: 8px;">🌐 Neural Sync (방명록)</div>
       <div id="gb-count" style="color: var(--text-secondary); margin-bottom: 12px;">방문자: 로딩중...</div>
-      <div id="gb-list" style="max-height: 100px; overflow-y: auto; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">
+      <div id="gb-list" style="max-height: 85px; overflow-y: auto; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); transition: max-height 0.2s ease;">
+      </div>
+      <div id="gb-toggle-container" style="display: none; text-align: right; margin-bottom: 8px;">
+        <button id="gb-toggle" style="background: transparent; border: none; color: var(--accent-cyan); font-size: 0.7rem; cursor: pointer; padding: 0; outline: none;">펼치기 ▾</button>
       </div>
       <div style="display: flex; gap: 4px;">
         <input type="text" id="gb-input" placeholder="메시지 남기기..." style="flex:1; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); color: #fff; padding: 4px 8px; border-radius: 4px; outline:none;">
@@ -89,6 +95,21 @@ class SocialEngine {
     `;
 
     document.body.appendChild(this.container);
+
+    const toggleBtn = document.getElementById('gb-toggle');
+    const listEl = document.getElementById('gb-list');
+    let isExpanded = false;
+
+    toggleBtn.onclick = () => {
+      isExpanded = !isExpanded;
+      if (isExpanded) {
+        listEl.style.maxHeight = '250px';
+        toggleBtn.textContent = '접기 ▴';
+      } else {
+        listEl.style.maxHeight = '85px';
+        toggleBtn.textContent = '펼치기 ▾';
+      }
+    };
 
     document.getElementById('gb-send').onclick = () => {
       const msg = document.getElementById('gb-input').value;
@@ -111,6 +132,14 @@ class SocialEngine {
         document.getElementById('gb-count').textContent = `누적 방문자: ${data.total_visitors}명`;
         const list = document.getElementById('gb-list');
         list.innerHTML = data.recent.map(r => `<div><span style="color:var(--accent-purple)">[${r[1] || 'Explorer'}]</span> ${r[2]}</div>`).join('');
+        
+        // 메시지가 4개 이상일 때만 펼치기/접기 버튼을 노출합니다.
+        const toggleContainer = document.getElementById('gb-toggle-container');
+        if (data.recent && data.recent.length >= 4) {
+          toggleContainer.style.display = 'block';
+        } else {
+          toggleContainer.style.display = 'none';
+        }
       }
     } catch (e) {
       console.warn("Guestbook fetch error", e);
