@@ -62,7 +62,7 @@ class SandboxEmulator {
         const codeType = isHtml ? 'html' : 'javascript';
 
         btn.onclick = () => this.runCode(block.textContent, codeType, block);
-        
+
         // Insert run button on top of the code text inside pre
         block.parentElement.insertBefore(btn, block);
 
@@ -76,9 +76,9 @@ class SandboxEmulator {
 
   runCode(code, type, block) {
     if (window.audioEngine) window.audioEngine.playSwoosh();
-    
+
     const preElement = block.parentElement;
-    
+
     // Find or create the iframe for this specific code block
     let iframe = preElement.nextElementSibling;
     if (!iframe || !iframe.classList.contains('sandbox-iframe')) {
@@ -153,7 +153,7 @@ class SandboxEmulator {
         </html>
       `;
     }
-    
+
     iframe.srcdoc = srcDoc;
   }
 }
