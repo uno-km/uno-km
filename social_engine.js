@@ -42,14 +42,26 @@ class SocialEngine {
     }
 
     try {
-      console.log("[SocialEngine] Sending unique visit tracking hit...");
-      const userAgent = navigator.userAgent;
+      console.log("[SocialEngine] Sending unique visit tracking hit with environment info...");
       
+      const visitorInfo = {
+        userAgent: navigator.userAgent,
+        language: navigator.language || "Unknown",
+        platform: navigator.platform || "Unknown",
+        screenResolution: `${window.screen.width}x${window.screen.height}`,
+        windowSize: `${window.innerWidth}x${window.innerHeight}`,
+        cores: navigator.hardwareConcurrency || "Unknown",
+        memory: navigator.deviceMemory || "Unknown",
+        webgpu: !!navigator.gpu,
+        connection: navigator.connection ? navigator.connection.effectiveType : "Unknown",
+        referrer: document.referrer || "Direct"
+      };
+
       // 구글 앱스 스크립트 POST 리디렉션 시 발생하는 브라우저 CORS 차단 정책을 피하기 위해
       // Response JSON 파싱을 거치지 않고 바로 세션 스토리지 플래그를 저장합니다.
       await fetch(this.GAS_URL, {
         method: 'POST',
-        body: JSON.stringify({ type: 'visit', userAgent: userAgent, key: this.API_SECRET_KEY }),
+        body: JSON.stringify({ type: 'visit', visitorInfo: visitorInfo, key: this.API_SECRET_KEY }),
         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
 

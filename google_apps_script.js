@@ -34,11 +34,29 @@ function doPost(e) {
     
     if (data.type === 'visit') {
       var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
+      var headers = ["Timestamp", "Type", "Platform", "Language", "ScreenResolution", "WindowSize", "Cores", "Memory", "WebGPU", "Connection", "Referrer", "UserAgent"];
+      
       if (!visitsSheet) {
         visitsSheet = activeSpreadsheet.insertSheet("Visits");
-        visitsSheet.appendRow(["Timestamp", "Type", "UserAgent"]); // Header
+        visitsSheet.appendRow(headers);
       }
-      visitsSheet.appendRow([new Date(), "visit", data.userAgent || "Unknown"]);
+      
+      var info = data.visitorInfo || {};
+      var rowData = [
+        new Date(),
+        "visit",
+        info.platform || "Unknown",
+        info.language || "Unknown",
+        info.screenResolution || "Unknown",
+        info.windowSize || "Unknown",
+        info.cores || "Unknown",
+        info.memory || "Unknown",
+        info.webgpu !== undefined ? info.webgpu : "Unknown",
+        info.connection || "Unknown",
+        info.referrer || "Direct",
+        info.userAgent || "Unknown"
+      ];
+      visitsSheet.appendRow(rowData);
       
       return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
         .setMimeType(ContentService.MimeType.JSON);
