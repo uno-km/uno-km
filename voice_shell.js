@@ -43,7 +43,15 @@ class VoiceShell {
   createUI() {
     this.btn = document.createElement('button');
     this.btn.id = 'fab-voice';
-    this.btn.innerHTML = '🎤';
+    this.btn.setAttribute('aria-label', 'Voice Commands');
+    this.btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--accent-purple); transition: color 0.2s;">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+        <path d="M19 10v1a7 7 0 0 1-14 0v-1"></path>
+        <line x1="12" y1="19" x2="12" y2="23"></line>
+        <line x1="8" y1="23" x2="16" y2="23"></line>
+      </svg>
+    `;
     this.btn.style.position = 'fixed';
     this.btn.style.bottom = '24px';
     // Position it to the left of the search FAB
@@ -57,7 +65,9 @@ class VoiceShell {
     this.btn.style.color = 'var(--text-primary)';
     this.btn.style.cursor = 'pointer';
     this.btn.style.zIndex = '200';
-    this.btn.style.fontSize = '1.2rem';
+    this.btn.style.display = 'flex';
+    this.btn.style.alignItems = 'center';
+    this.btn.style.justifyContent = 'center';
     this.btn.style.boxShadow = '0 0 10px rgba(124, 58, 237, 0.2)';
     this.btn.style.transition = 'all 0.2s';
     
@@ -66,14 +76,17 @@ class VoiceShell {
   }
 
   updateUI() {
+    const svgIcon = this.btn.querySelector('svg');
     if (this.isListening) {
       this.btn.style.background = 'var(--accent-purple)';
       this.btn.style.boxShadow = '0 0 20px var(--accent-purple)';
       this.btn.style.animation = 'pulse-dot 1s infinite';
+      if (svgIcon) svgIcon.style.color = '#ffffff';
     } else {
       this.btn.style.background = 'rgba(15, 15, 15, 0.7)';
       this.btn.style.boxShadow = '0 0 10px rgba(124, 58, 237, 0.2)';
       this.btn.style.animation = 'none';
+      if (svgIcon) svgIcon.style.color = 'var(--accent-purple)';
     }
   }
 

@@ -1009,8 +1009,9 @@ body {
   position: fixed;
   inset: 0;
   z-index: var(--z-modal);
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(3px);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -1228,7 +1229,7 @@ body {
 .spinner-large {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--border-subtle);
+  border: 3px solid rgba(255, 255, 255, 0.15);
   border-top-color: var(--accent-cyan);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -1240,7 +1241,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: var(--bg-deep);
+  background: #050505;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1255,18 +1256,23 @@ body {
 
 .loading-text {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: var(--accent-cyan);
-  letter-spacing: 0.05em;
-  animation: pulse-slow 2s infinite;
-  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  animation: pulse-slow 2.0s infinite;
+  margin-bottom: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0, 239, 255, 0.7), 0 0 30px rgba(0, 239, 255, 0.3);
 }
 
 .loading-subtext {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  opacity: 0.7;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  opacity: 1;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
 }
 
 /* ── Small Hover Tooltip ──────────────────────────────────── */
