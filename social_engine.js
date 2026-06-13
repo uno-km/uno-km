@@ -14,6 +14,7 @@ class SocialEngine {
     this.loadConfig().then(() => {
       this.initGuestbookUI();
       this.initWebRTC();
+      this.trackVisitor();
     });
   }
 
@@ -27,6 +28,34 @@ class SocialEngine {
       }
     } catch (e) {
       console.warn("Failed to load config.json, running without credentials.", e);
+    }
+  }
+
+  async trackVisitor() {
+    if (!this.GAS_URL) return;
+
+    // session에 방문 이력이 있는지 체크
+    const sessionVisited = sessionStorage.getItem('ameva_visited');
+    if (sessionVisited) {
+      console.log("[SocialEngine] Visit already recorded in this session.");
+      return;
+    }
+
+    try {
+      console.log("[SocialEngine] Sending unique visit tracking hit...");
+      const res = await fetch(this.GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ type: 'visit', key: this.API_SECRET_KEY }),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        sessionStorage.setItem('ameva_visited', 'true');
+        console.log("[SocialEngine] Unique visit successfully tracked.");
+        this.fetchData(); //방문자 카운트 갱신
+      }
+    } catch (e) {
+      console.warn("[SocialEngine] Visit tracking post failed:", e);
     }
   }
 
@@ -99,7 +128,7 @@ class SocialEngine {
 
       await fetch(this.GAS_URL, {
         method: 'POST',
-        body: JSON.stringify({ name: "Explorer", message: message, key: this.API_SECRET_KEY }),
+        body: JSON.stringify({ type: 'guestbook', name: "Explorer", message: message, key: this.API_SECRET_KEY }),
         headers: { 'Content-Type': 'text/plain;charset=utf-8' } // CORS 우회를 위해 text/plain 사용
       });
 

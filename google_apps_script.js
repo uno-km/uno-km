@@ -17,7 +17,7 @@
 function doPost(e) {
   try {
     var SECRET_KEY = "ameva-secure-fabric-key-2026";
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     var data = JSON.parse(e.postData.contents);
     
     if (data.key !== SECRET_KEY) {
@@ -25,18 +25,30 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // 타임스탬프, 이름, 메시지, 토픽
-    var rowData = [
-      new Date(), 
-      data.name || "Anonymous", 
-      data.message || "", 
-      data.topic || ""
-    ];
-    
-    sheet.appendRow(rowData);
-    
-    return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
-      .setMimeType(ContentService.MimeType.JSON);
+    if (data.type === 'visit') {
+      var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
+      if (!visitsSheet) {
+        visitsSheet = activeSpreadsheet.insertSheet("Visits");
+        visitsSheet.appendRow(["Timestamp", "Type"]); // Header
+      }
+      visitsSheet.appendRow([new Date(), "visit"]);
+      
+      return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } else {
+      var guestbookSheet = activeSpreadsheet.getSheetByName("Guestbook") || activeSpreadsheet.getSheets()[0];
+      // 타임스탬프, 이름, 메시지, 토픽
+      var rowData = [
+        new Date(), 
+        data.name || "Anonymous", 
+        data.message || "", 
+        data.topic || ""
+      ];
+      guestbookSheet.appendRow(rowData);
+      
+      return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -53,15 +65,24 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = sheet.getDataRange().getValues();
+    var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var guestbookSheet = activeSpreadsheet.getSheetByName("Guestbook") || activeSpreadsheet.getSheets()[0];
+    var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
     
-    // 첫 행은 헤더라고 가정하고 스킵 (데이터만 반환)
-    var visitors = data.length > 1 ? data.slice(1) : [];
+    var gbData = guestbookSheet.getDataRange().getValues();
+    var visitors = gbData.length > 1 ? gbData.slice(1) : [];
+    
+    var totalVisitsCount = 0;
+    if (visitsSheet) {
+      var visitsData = visitsSheet.getDataRange().getValues();
+      totalVisitsCount = Math.max(0, visitsData.length - 1);
+    } else {
+      totalVisitsCount = visitors.length; // Fallback
+    }
     
     return ContentService.createTextOutput(JSON.stringify({ 
       "status": "success", 
-      "total_visitors": visitors.length,
+      "total_visitors": totalVisitsCount,
       "recent": visitors.slice(-5) // 최근 5개만
     })).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
