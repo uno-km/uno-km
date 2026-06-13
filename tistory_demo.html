@@ -1,0 +1,1062 @@
+<!-- AMEVA Neural Fabric Standalone Tistory Wrapper -->
+<div id="ameva-tistory-wrapper" style="background: #06060a; padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.8); color: #e0e0e3; font-family: 'Segoe UI', Roboto, sans-serif; max-width: 1000px; margin: 0 auto; box-sizing: border-box;">
+
+  <!-- A. Blog Post Intro -->
+  <div class="blog-intro" style="margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem;">
+    <h1 style="color: #fff; border-bottom: 2px solid #b366ff; padding-bottom: 12px; margin-top: 0; font-size: 1.8rem; font-weight: 800; text-shadow: 0 0 10px rgba(179,102,255,0.4);">
+      🚀 서버 없이 가동되는 엣지 네이티브 AI 생태계, AMEVA Neural Fabric
+    </h1>
+    <p style="color: #ccc; margin: 15px 0 10px 0;">
+      안녕하세요! 클라우드 서버 의존도 0%를 지향하며, 사용자의 브라우저 로컬 하드웨어만을 가속하여 동작하는 <b>오프라인 생존형 AI 대시보드(Neural Fabric)</b>를 개발했습니다.
+    </p>
+    <p style="color: #aaa; margin: 0 0 20px 0;">
+      구글 스프레드시트를 실시간 데이터베이스 삼아 통신하는 방명록 기능부터, D3.js 기반의 지식 연결망 시각화 노드 그래프, 로컬 음성 합성(TTS)이 가미된 도슨트 오디오 투어 및 마이크 녹음 음성 인식(STT), 격리형 코드 컴파일 터미널 에뮬레이터까지 하나의 <b>정수</b>로 결합한 맛보기 데모를 티스토리에 그대로 이식하였습니다. 직접 마이크로 이야기하거나 터미널 명령어를 통해 브라우저 자율 운용 성능을 직접 체험해 보세요!
+    </p>
+  </div>
+
+  <!-- B. Interactive Neural Dashboard Demo Container -->
+  <div id="ameva-tistory-demo">
+    <style>
+      #ameva-tistory-demo {
+        --bg-dark: #07070b;
+        --bg-card: rgba(15, 15, 25, 0.85);
+        --bg-input: rgba(5, 5, 10, 0.7);
+        --border-color: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #00e5ff;
+        --accent-purple: #b366ff;
+        --accent-pink: #ff007f;
+        --text-main: #ffffff;
+        --text-muted: #888899;
+        --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        
+        position: relative;
+        width: 100%;
+        background: var(--bg-dark);
+        border-radius: 12px;
+        overflow: hidden;
+        font-family: var(--font-family);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+      }
+
+      #ameva-tistory-demo * {
+        box-sizing: border-box;
+      }
+
+      /* Header Styling */
+      #ameva-tistory-demo .demo-header {
+        width: 100%;
+        height: 55px;
+        background: rgba(10, 10, 15, 0.9);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 20;
+      }
+
+      #ameva-tistory-demo .demo-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #ameva-tistory-demo .demo-title span {
+        color: var(--accent-cyan);
+        font-weight: 300;
+      }
+
+      #ameva-tistory-demo .status-group {
+        display: flex;
+        gap: 12px;
+      }
+
+      #ameva-tistory-demo .status-badge {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      #ameva-tistory-demo .status-dot {
+        width: 6px;
+        height: 6px;
+        background: #00ff66;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #00ff66;
+      }
+
+      /* Stacked Layout */
+      #ameva-tistory-demo .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+      }
+
+      /* Canvas Map (Top) */
+      #ameva-tistory-demo .canvas-container {
+        position: relative;
+        width: 100%;
+        height: 380px; /* Spacious width-first view */
+        background: #06060a;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      #ameva-tistory-demo #demo-bg-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      #ameva-tistory-demo #demo-network-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
+
+      /* Panels Grid (Bottom) */
+      #ameva-tistory-demo .panels-bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 460px;
+      }
+
+      #ameva-tistory-demo .panel-left {
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      #ameva-tistory-demo .panel-right {
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* AI Chat Panel (Bottom - Left) */
+      #ameva-tistory-demo .panel-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+        font-weight: bold;
+        color: var(--text-main);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      #ameva-tistory-demo .chat-history {
+        flex: 1;
+        min-height: 0;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 0.8rem;
+      }
+
+      #ameva-tistory-demo .chat-bubble {
+        padding: 10px 14px;
+        border-radius: 8px;
+        line-height: 1.4;
+        max-width: 90%;
+      }
+
+      #ameva-tistory-demo .chat-bubble.ai {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #e0e0e3;
+        align-self: flex-start;
+      }
+
+      #ameva-tistory-demo .chat-bubble.user {
+        background: rgba(179, 102, 255, 0.15);
+        border: 1px solid rgba(179, 102, 255, 0.3);
+        color: #f1e6ff;
+        align-self: flex-end;
+      }
+
+      #ameva-tistory-demo .chat-input-row {
+        padding: 15px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 8px;
+        background: rgba(5, 5, 10, 0.5);
+      }
+
+      #ameva-tistory-demo .chat-input-row input {
+        flex: 1;
+        background: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: #fff;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        outline: none;
+      }
+
+      #ameva-tistory-demo .chat-input-row input:focus {
+        border-color: var(--accent-cyan);
+      }
+
+      #ameva-tistory-demo .btn-accent {
+        background: var(--accent-purple);
+        border: none;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 0.8rem;
+        transition: background 0.2s;
+      }
+
+      #ameva-tistory-demo .btn-accent:hover {
+        background: #9933ff;
+      }
+
+      #ameva-tistory-demo .btn-mic {
+        background: rgba(0, 229, 255, 0.15);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        color: var(--accent-cyan);
+        border-radius: 6px;
+        width: 36px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      #ameva-tistory-demo .btn-mic.recording {
+        background: rgba(255, 0, 127, 0.3);
+        border-color: var(--accent-pink);
+        color: #fff;
+        animation: mic-pulse 1.2s infinite;
+      }
+
+      /* Guestbook (Bottom - Right - Top) */
+      #ameva-tistory-demo .gb-section {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      #ameva-tistory-demo .gb-list {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 15px;
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
+
+      #ameva-tistory-demo .gb-card {
+        margin-bottom: 8px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Sandbox Emulator (Bottom - Right - Bottom) */
+      #ameva-tistory-demo .emulator-section {
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        background: #050508;
+      }
+
+      #ameva-tistory-demo .console-log {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 12px;
+        font-family: monospace;
+        font-size: 0.7rem;
+        color: #00ff55;
+        line-height: 1.4;
+      }
+
+      #ameva-tistory-demo .console-input-row {
+        border-top: 1px solid rgba(0, 255, 85, 0.15);
+        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        background: #020204;
+        font-family: monospace;
+        font-size: 0.7rem;
+        color: #00ff55;
+      }
+
+      #ameva-tistory-demo .console-input-row input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #00ff55;
+        outline: none;
+        font-family: monospace;
+        font-size: 0.7rem;
+        margin-left: 6px;
+      }
+
+      /* Floating Overlays */
+      #ameva-tistory-demo .floating-tour-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        background: rgba(0, 229, 255, 0.15);
+        border: 1px solid var(--accent-cyan);
+        color: var(--accent-cyan);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        cursor: pointer;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,229,255,0.2);
+      }
+
+      #ameva-tistory-demo .floating-tour-btn:hover {
+        background: var(--accent-cyan);
+        color: #000;
+        box-shadow: 0 4px 20px rgba(0,229,255,0.4);
+      }
+
+      #ameva-tistory-demo .subtitles-bar {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 180px;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 12px 18px;
+        color: #fff;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+
+      #ameva-tistory-demo .subtitles-bar.active {
+        opacity: 1;
+      }
+
+      /* Responsive Viewport (Mobile First Collapse) */
+      @media (max-width: 800px) {
+        #ameva-tistory-demo .canvas-container {
+          height: 300px;
+        }
+        #ameva-tistory-demo .panels-bottom {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+        #ameva-tistory-demo .panel-left {
+          border-right: none;
+          border-bottom: 1px solid var(--border-color);
+          height: 350px;
+        }
+        #ameva-tistory-demo .panel-right {
+          height: 400px;
+        }
+      }
+
+      @keyframes mic-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.4); }
+        70% { box-shadow: 0 0 0 8px rgba(255, 0, 127, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
+      }
+    </style>
+
+    <!-- Header Bar -->
+    <div class="demo-header">
+      <div class="demo-title">
+        ⚡ AMEVA <span>Neural Fabric Core</span>
+      </div>
+      <div class="status-group">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>WebGPU: Active</span>
+        </div>
+        <div class="status-badge">
+          <span>TPS: 24.8</span>
+        </div>
+        <div class="status-badge">
+          <span>Latency: 12ms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Stacked Layout -->
+    <div class="dashboard-grid">
+      <!-- Top Section: Neural Canvas -->
+      <div class="canvas-container">
+        <canvas id="demo-bg-canvas"></canvas>
+        <svg id="demo-network-canvas"></svg>
+        
+        <!-- Interactive Overlays -->
+        <button class="floating-tour-btn" id="demo-btn-tour">▶ 도슨트 투어</button>
+        <div class="subtitles-bar" id="demo-subtitles">
+          도슨트 가이드 준비중...
+        </div>
+      </div>
+
+      <!-- Bottom Section: Panels Row -->
+      <div class="panels-bottom">
+        <!-- Left Panel: AI Chat -->
+        <div class="panel-left">
+          <div class="panel-header">
+            <span>🧠 AMEVA Chat Agent</span>
+            <span style="color: var(--accent-cyan); font-size: 0.75rem;">Standby</span>
+          </div>
+          <div class="chat-history" id="demo-chat-history">
+            <div class="chat-bubble ai">
+              안녕하세요! 저는 로컬에서 구동되는 AMEVA AI 가속 코어입니다.<br><br>
+              프로젝트 구조, 기술 스택, 방명록 시트 연동 방법에 대해 질문하시거나 <b>🎙️ 음성 인식</b>으로 대화를 나눠보세요.
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <button class="btn-mic" id="demo-mic-btn" title="음성 인식 시작">🎙️</button>
+            <input type="text" id="demo-chat-input" placeholder="질문을 입력하세요...">
+            <button class="btn-accent" id="demo-chat-send">Send</button>
+          </div>
+        </div>
+
+        <!-- Right Panel: Guestbook & Emulator -->
+        <div class="panel-right">
+          <!-- Top: Guestbook -->
+          <div class="gb-section">
+            <div class="panel-header">
+              <span>🌐 Database Guestbook</span>
+              <span style="color: var(--accent-purple); font-size: 0.75rem;" id="demo-gb-count">Loading...</span>
+            </div>
+            <div class="gb-list" id="demo-gb-list">
+              <div style="color: var(--text-muted); text-align: center; margin-top: 40px;">스프레드시트 동기화 중...</div>
+            </div>
+            <div class="chat-input-row" style="border-top: 1px solid var(--border-color); border-bottom: none; background: rgba(10,10,20,0.4); flex-direction: column; gap: 6px; padding: 10px 15px;">
+              <input type="text" id="demo-gb-name" placeholder="작성자 이름" style="width: 100%;">
+              <div style="display: flex; width: 100%; gap: 6px;">
+                <input type="text" id="demo-gb-msg" placeholder="방명록을 남겨주세요." style="flex:1;">
+                <button class="btn-accent" id="demo-gb-send" style="background: var(--accent-cyan); color:#000;">Sync</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Emulator -->
+          <div class="emulator-section">
+            <div class="panel-header" style="background: rgba(0,255,85,0.03); border-bottom: 1px solid rgba(0,255,85,0.15); padding: 10px 15px;">
+              <span style="color: #00ff55; font-family: monospace;">🖥️ Sandbox Emulator</span>
+              <span style="color: #00ff55; font-family: monospace; font-size: 0.7rem;">v1.0.4-live</span>
+            </div>
+            <div class="console-log" id="demo-console">
+              <div>[SYSTEM] Booting AMEVA Fabric Environment...</div>
+              <div>[SYSTEM] Device Memory allocation status: OK</div>
+              <div>[SYSTEM] Neural net visualization layers loaded.</div>
+              <div>[SYSTEM] Type 'help' to check console commands.</div>
+            </div>
+            <div class="console-input-row">
+              <span>Guest@AMEVA:~$</span>
+              <input type="text" id="demo-console-input" placeholder="Type command...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C. Resume / Profile Card -->
+  <div class="profile-section" style="margin-top: 40px; background: rgba(15, 15, 25, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 25px; backdrop-filter: blur(10px); display: flex; flex-wrap: wrap; gap: 25px; align-items: flex-start;">
+    <!-- Profile Photo -->
+    <div style="flex: 0 0 160px; display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 0 auto;">
+      <img src="https://uno-km.github.io/uno-km/ameva-creater.jpg" alt="" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid #00e5ff; object-fit: cover; box-shadow: 0 0 15px rgba(0, 229, 255, 0.3); background: #13131f url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%2300e5ff\'><path d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/></svg>') no-repeat center; background-size: 60%; color: transparent;">
+      <span style="background: rgba(0, 229, 255, 0.1); border: 1px solid #00e5ff; color: #00e5ff; font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: bold;">ARCHITECT</span>
+    </div>
+
+    <!-- Career & Info -->
+    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 15px;">
+      <div>
+        <h2 style="color: #fff; margin: 0 0 5px 0; font-size: 1.45rem; display: flex; align-items: center; gap: 10px; font-weight: 800;">
+          👨‍💻 개발자 Uno-km <span style="font-size: 0.8rem; color: #ff007f; font-weight: bold; background: rgba(255, 0, 127, 0.1); padding: 2px 10px; border-radius: 12px; border: 1px solid rgba(255,0,127,0.25);" id="dev-days-badge">0일째 개발 중</span>
+        </h2>
+        <p style="color: #00e5ff; font-weight: 600; font-size: 0.9rem; margin: 0;">응용소프트웨어공학부 졸업</p>
+      </div>
+
+      <!-- Skills Pills -->
+      <div>
+        <h3 style="color: #ccc; font-size: 0.85rem; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">🧬 Core Skillsets</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span style="background: rgba(179,102,255,0.15); border: 1px solid rgba(179,102,255,0.3); color: #d6b3ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">AI (WebGPU)</span>
+          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Backend (NodeJS / Python)</span>
+          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Frontend (VanillaJS / D3.js)</span>
+          <span style="background: rgba(0,255,85,0.15); border: 1px solid rgba(0,255,85,0.3); color: #80ffaa; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Database (SQL / Serverless Sync)</span>
+          <span style="background: rgba(255,0,127,0.15); border: 1px solid rgba(255,0,127,0.3); color: #ff80bf; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">System Architecture</span>
+          <span style="background: rgba(255,165,0,0.15); border: 1px solid rgba(255,165,0,0.3); color: #ffc266; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">DevOps / MLOps</span>
+        </div>
+      </div>
+
+      <!-- Projects List -->
+      <div>
+        <h3 style="color: #ccc; font-size: 0.85rem; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">📁 Main Projects</h3>
+        <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; color: #bbb; line-height: 1.7;">
+          <li><b style="color: #fff;">AMEVA Neural Fabric</b> : 브라우저 하드웨어를 직접 활용하는 온프레미스 AI 지식 맵 대시보드</li>
+          <li><b style="color: #fff;">AMEVA Edge Agent Orchestrator</b> : 클라우드 없이 디바이스에서 독립 수행되는 자율적 멀티 에이전트 환경 설계</li>
+          <li><b style="color: #fff;">Android Termux STT Voice Pipeline</b> : 모바일 쉘 환경에서의 비동기 음성 처리 자동화 시스템 배치</li>
+        </ul>
+      </div>
+
+      <!-- Contact Card -->
+      <div style="margin-top: 5px; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; line-height: 1.6;">
+        🤝 <b>비즈니스 협업 제안 및 프로젝트 제안</b><br>
+        기술적 구동 원리가 궁금하시거나 프로젝트 협업 및 채용 의사가 있으신 기업, 단체분들께서는 아래 메일로 편하게 연락주세요!<br>
+        <span style="color: #00e5ff; font-weight: bold;">Email: <a href="mailto:zhfldk014745@naver.com" style="color: #00e5ff; text-decoration: none; border-bottom: 1px solid #00e5ff;">zhfldk014745@naver.com</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- D. Bottom Spoiler: Iframe Reveal -->
+  <div style="margin-top: 25px; font-family: 'Segoe UI', sans-serif;">
+    <details style="background: #0e0e12; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; overflow: hidden; transition: all 0.3s;">
+      <summary style="padding: 14px 20px; color: #00e5ff; font-weight: bold; cursor: pointer; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; background: #131318;">
+        <span style="display: flex; align-items: center; gap: 8px;">🔗 진짜 깃허브 포트폴리오 여기서 바로보기!</span>
+        <span style="font-size: 0.75rem; color: #888; border: 1px solid rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">클릭하여 열기</span>
+      </summary>
+      <div style="padding: 15px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #050508;">
+        <iframe src="https://uno-kim.github.io/uno-km/" style="width: 100%; height: 650px; border: 1px solid #00e5ff; border-radius: 6px; background: #ffffff;" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- D3.js Script -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function() {
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbzQPhyLzTGGolPKgTDx86M5z4tCP3Vmj2tHYVrjBQlW0t46O4c5MDlCtOidFJyNiN8S/exec";
+  const SECRET_KEY = "ameva-secure-fabric-key-2026";
+
+  const container = document.getElementById("ameva-tistory-demo");
+
+  // ────────────────────────────────────────────────────────
+  // 1. DYNAMIC CAREER DATE CALCULATOR
+  // ────────────────────────────────────────────────────────
+  const startDate = new Date("2021-10-01");
+  const today = new Date();
+  const diffTime = Math.abs(today - startDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  document.getElementById("dev-days-badge").textContent = `${diffDays}일째 개발 중`;
+
+  // ────────────────────────────────────────────────────────
+  // 2. STARFIELD PARTICLE BACKGROUND (Canvas)
+  // ────────────────────────────────────────────────────────
+  const bgCanvas = document.getElementById("demo-bg-canvas");
+  const bgCtx = bgCanvas.getContext("2d");
+  let stars = [];
+  
+  function resizeCanvas() {
+    const parent = bgCanvas.parentElement;
+    bgCanvas.width = parent.clientWidth;
+    bgCanvas.height = parent.clientHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  // Initialize stars
+  const numStars = 60;
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * bgCanvas.width,
+      y: Math.random() * bgCanvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      pulseSeed: Math.random() * 10
+    });
+  }
+
+  function drawBg() {
+    bgCtx.fillStyle = "rgba(7, 7, 11, 0.25)";
+    bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+    
+    // Draw Constellations
+    bgCtx.strokeStyle = "rgba(0, 229, 255, 0.04)";
+    bgCtx.lineWidth = 0.5;
+    for (let i = 0; i < stars.length; i++) {
+      for (let j = i + 1; j < stars.length; j++) {
+        const dx = stars[i].x - stars[j].x;
+        const dy = stars[i].y - stars[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 75) {
+          bgCtx.beginPath();
+          bgCtx.moveTo(stars[i].x, stars[i].y);
+          bgCtx.lineTo(stars[j].x, stars[j].y);
+          bgCtx.stroke();
+        }
+      }
+    }
+
+    // Draw Stars
+    stars.forEach(s => {
+      s.x += s.vx;
+      s.y += s.vy;
+      
+      if (s.x < 0 || s.x > bgCanvas.width) s.vx *= -1;
+      if (s.y < 0 || s.y > bgCanvas.height) s.vy *= -1;
+
+      const alpha = Math.sin(Date.now() * 0.0015 + s.pulseSeed) * 0.4 + 0.6;
+      bgCtx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      bgCtx.beginPath();
+      bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      bgCtx.fill();
+    });
+
+    requestAnimationFrame(drawBg);
+  }
+  drawBg();
+
+  // ────────────────────────────────────────────────────────
+  // 3. D3.JS INTERACTIVE NEURAL NETWORK
+  // ────────────────────────────────────────────────────────
+  const svg = d3.select("#demo-network-canvas");
+  
+  // Need to get initial dimension
+  let svgWidth = bgCanvas.width;
+  let svgHeight = bgCanvas.height;
+
+  // Watch for container resize to adjust svgWidth & svgHeight
+  window.addEventListener("resize", () => {
+    svgWidth = bgCanvas.width;
+    svgHeight = bgCanvas.height;
+    simulation.force("center", d3.forceCenter(svgWidth / 2, svgHeight / 2));
+    simulation.alpha(0.3).restart();
+  });
+
+  // Neural Network architectural nodes
+  const nodes = [
+    { id: "AMEVA Core", group: "core", info: "시스템 지식 연산의 중심 허브입니다.", fill: "#ff007f", r: 10 },
+    { id: "Audio Engine", group: "sub", info: "TTS 음성 브리핑 및 오디오 사운드를 처리합니다.", fill: "#00e5ff", r: 7 },
+    { id: "Sandbox Emulator", group: "sub", info: "코드 컴파일 및 격리 실시간 컴파일러 모듈입니다.", fill: "#00e5ff", r: 7 },
+    { id: "Social Engine", group: "sub", info: "구글 스프레드시트 데이터 연동 및 WebRTC를 관리합니다.", fill: "#00e5ff", r: 7 },
+    { id: "Knowledge Engine", group: "sub", info: "지식 그래프 로더 및 인덱서 연산 기작입니다.", fill: "#b366ff", r: 7 },
+    { id: "Particle Compute", group: "util", info: "백그라운드 가속 펄스 입자를 연산합니다.", fill: "#999", r: 5 },
+    { id: "Voice Shell", group: "leaf", info: "Web Speech API 연계 음성 명령 처리기입니다.", fill: "#00ff55", r: 5 },
+    { id: "Google Sheets DB", group: "leaf", info: "실시간 스프레드시트 영구 저장 연동 서버리스 모듈입니다.", fill: "#00ff55", r: 5 },
+    { id: "WebRTC Sync", group: "leaf", info: "브라우저간 P2P 가상 마우스 실시간 추적 장치입니다.", fill: "#00ff55", r: 5 },
+    { id: "Graph Vis", group: "leaf", info: "D3.js 기반 지식 시각화 렌더러 모듈입니다.", fill: "#b366ff", r: 5 }
+  ];
+
+  const links = [
+    { source: "AMEVA Core", target: "Audio Engine" },
+    { source: "AMEVA Core", target: "Sandbox Emulator" },
+    { source: "AMEVA Core", target: "Social Engine" },
+    { source: "AMEVA Core", target: "Knowledge Engine" },
+    { source: "AMEVA Core", target: "Particle Compute" },
+    { source: "Audio Engine", target: "Voice Shell" },
+    { source: "Social Engine", target: "Google Sheets DB" },
+    { source: "Social Engine", target: "WebRTC Sync" },
+    { source: "Knowledge Engine", target: "Graph Vis" }
+  ];
+
+  const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(65))
+    .force("charge", d3.forceManyBody().strength(-150))
+    .force("center", d3.forceCenter(svgWidth / 2, svgHeight / 2));
+
+  const link = svg.append("g")
+    .attr("stroke", "rgba(0, 229, 255, 0.18)")
+    .attr("stroke-width", 1.2)
+    .selectAll("line")
+    .data(links)
+    .join("line");
+
+  const nodeGroup = svg.append("g")
+    .selectAll("g")
+    .data(nodes)
+    .join("g")
+    .attr("cursor", "pointer")
+    .call(drag(simulation));
+
+  // Glowing Circle
+  nodeGroup.append("circle")
+    .attr("r", d => d.r)
+    .attr("fill", d => d.fill)
+    .attr("filter", "drop-shadow(0 0 5px currentColor)");
+
+  // Node Labels
+  nodeGroup.append("text")
+    .text(d => d.id)
+    .attr("fill", "#fff")
+    .attr("font-size", "9px")
+    .attr("font-weight", "600")
+    .attr("dx", d => d.r + 4)
+    .attr("dy", 3);
+
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+    nodeGroup
+      .attr("transform", d => `translate(${Math.max(d.r, Math.min(svgWidth - d.r - 50, d.x))}, ${Math.max(d.r, Math.min(svgHeight - d.r, d.y))})`);
+  });
+
+  // Node Click Interaction
+  nodeGroup.on("click", (event, d) => {
+    // 1. AI Chatbot Auto-question
+    document.getElementById("demo-chat-input").value = `${d.id} 모듈에 대해 설명해줘.`;
+    handleChatSubmit();
+
+    // 2. Emulator system injection
+    const consoleLog = document.getElementById("demo-console");
+    const newLog = document.createElement("div");
+    newLog.style.color = "#00e5ff";
+    newLog.innerHTML = `[NODE_SELECT] Inspecting: ${d.id}<br>&gt; Group: ${d.group.toUpperCase()}<br>&gt; Info: ${d.info}`;
+    consoleLog.appendChild(newLog);
+    consoleLog.scrollTop = consoleLog.scrollHeight;
+  });
+
+  function drag(simulation) {
+    function dragstarted(event) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      event.subject.fx = event.subject.x;
+      event.subject.fy = event.subject.y;
+    }
+    function dragged(event) {
+      event.subject.fx = event.x;
+      event.subject.fy = event.y;
+    }
+    function dragended(event) {
+      if (!event.active) simulation.alphaTarget(0);
+      event.subject.fx = null;
+      event.subject.fy = null;
+    }
+    return d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+  }
+
+  // ────────────────────────────────────────────────────────
+  // 4. AI AGENT SIMULATOR (LLM, STT, TTS)
+  // ────────────────────────────────────────────────────────
+  const chatHistory = document.getElementById("demo-chat-history");
+  const chatInput = document.getElementById("demo-chat-input");
+  const chatSendBtn = document.getElementById("demo-chat-send");
+  const micBtn = document.getElementById("demo-mic-btn");
+
+  const chatbotDatabase = {
+    "core": "AMEVA Core는 시스템 중심 제어 노드로, 로컬 웹 환경 가속 및 연산 제어를 담당하는 통제 허브입니다.",
+    "audio": "Audio Engine은 Web Speech API와 연결되어 가이드 음성을 합성(TTS)하고 실시간 브리핑 오디오를 송출합니다.",
+    "sandbox": "Sandbox Emulator는 사용자가 작성하거나 제안된 코드를 격리된 iFrame 내부에서 바로 컴파일하고 안전하게 실행시키는 핵심 샌드박스입니다.",
+    "social": "Social Engine은 구글 스프레드시트를 데이터베이스삼아 통신하는 API 연동부 및 WebRTC 피어 무선 통신을 처리합니다.",
+    "knowledge": "Knowledge Engine은 브라우저에서 인덱스 맵 데이터를 불러와 정보간 유기적 연결망을 해석하는 브라우저 내장 데이터 로더입니다.",
+    "speech": "Voice Shell 모듈은 사용자의 음성 입력을 받아 이를 파싱하고 최적의 작업을 실행시키는 마이크 트리거 시스템입니다.",
+    "sheets": "Google Sheets DB 모듈은 비용이 들지 않는 서버리스 환경을 위해 스프레드시트를 REST 통신 형식으로 우회 연결한 고성능 데이터 스토어입니다.",
+    "webrtc": "WebRTC Sync는 같은 페이지에 들어온 불특정 사용자 간의 무선 브라우저 연결을 구성해, 마우스 위치를 공유하는 실시간 연결 기작입니다.",
+    "graph": "Graph Vis는 D3.js 라이브러리의 힘을 빌려 사용자가 자유롭게 상호작용하고 노드를 드래그할 수 있도록 캔버스를 구축하는 모듈입니다."
+  };
+
+  async function handleChatSubmit() {
+    const query = chatInput.value.trim();
+    if (!query) return;
+
+    // Append User Message
+    const userBubble = document.createElement("div");
+    userBubble.className = "chat-bubble user";
+    userBubble.textContent = query;
+    chatHistory.appendChild(userBubble);
+    chatInput.value = "";
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    // AI typing state
+    const aiBubble = document.createElement("div");
+    aiBubble.className = "chat-bubble ai";
+    aiBubble.innerHTML = "<span style='color: var(--text-muted);'>연산 가속 엔진이 분석중...</span>";
+    chatHistory.appendChild(aiBubble);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    // Match intent
+    let responseText = "가중치 탐색 및 브라우저 로컬 데이터베이스 분석 완료. AMEVA Core 엔진은 현재 엣지 가속 모드로 대기 중입니다. 더 유기적인 개발 구성을 직접 경험해 보세요.";
+    const cleanQuery = query.toLowerCase();
+    
+    for (let key in chatbotDatabase) {
+      if (cleanQuery.includes(key) || cleanQuery.includes(key.replace(" ", ""))) {
+        responseText = chatbotDatabase[key];
+        break;
+      }
+    }
+
+    if (cleanQuery.includes("구조") || cleanQuery.includes("프로젝트")) {
+      responseText = "AMEVA는 D3.js 시각화 노드 맵과 구글 시트 데이터베이스, 격리형 샌드박스 에뮬레이터가 유기적으로 엮인 최첨단 엣지 네이티브 시스템입니다.";
+    } else if (cleanQuery.includes("기술") || cleanQuery.includes("스택")) {
+      responseText = "핵심 기술은 HTML5, D3.js 시각화 라이브러리, 구글 앱스 스크립트 기반 REST 통신, 그리고 브라우저 내장 Web Speech API 음성 가속입니다.";
+    }
+
+    // Simulate typing
+    setTimeout(() => {
+      aiBubble.innerHTML = "";
+      let idx = 0;
+      function typeText() {
+        if (idx < responseText.length) {
+          aiBubble.innerHTML += responseText[idx++];
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+          setTimeout(typeText, 25);
+        } else {
+          // Play response via TTS
+          if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(responseText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 1.15;
+            window.speechSynthesis.speak(utterance);
+          }
+        }
+      }
+      typeText();
+    }, 600);
+  }
+
+  chatSendBtn.addEventListener("click", handleChatSubmit);
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === 'Enter') handleChatSubmit();
+  });
+
+  // ────────────────────────────────────────────────────────
+  // 5. STT (Speech-to-Text - Web Speech API)
+  // ────────────────────────────────────────────────────────
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'ko-KR';
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+      micBtn.classList.add("recording");
+      micBtn.textContent = "🔊";
+      chatInput.placeholder = "말씀해 주세요... (듣는 중)";
+    };
+
+    recognition.onresult = (event) => {
+      const resultText = event.results[0][0].transcript;
+      chatInput.value = resultText;
+    };
+
+    recognition.onerror = () => {
+      alert("음성 인식 오류가 발생했습니다.");
+    };
+
+    recognition.onend = () => {
+      micBtn.classList.remove("recording");
+      micBtn.textContent = "🎙️";
+      chatInput.placeholder = "질문을 입력하세요...";
+      handleChatSubmit();
+    };
+
+    micBtn.addEventListener("click", () => {
+      recognition.start();
+    });
+  } else {
+    micBtn.addEventListener("click", () => {
+      // Fallback for browsers that don't support STT
+      chatInput.value = "Google Sheets DB 연동 설명해줘.";
+      handleChatSubmit();
+      const consoleLog = document.getElementById("demo-console");
+      consoleLog.innerHTML += `<div>[SYSTEM] WebSpeech Recognition is not supported. Injected default prompt.</div>`;
+      consoleLog.scrollTop = consoleLog.scrollHeight;
+    });
+  }
+
+  // ────────────────────────────────────────────────────────
+  // 6. CINEMATIC DOCENT TOUR (Guide System)
+  // ────────────────────────────────────────────────────────
+  const tourScript = [
+    "반갑습니다. 브라우저에서 가동되는 엣지 신경망 대시보드 도슨트입니다.",
+    "화면 중앙의 신경망 캔버스는 D3.js 엔진을 탑재하여 노드 드래그 및 지식 관계도를 시각화합니다.",
+    "이 지식 정보들은 실시간으로 구글 스프레드시트 데이터베이스와 연결되어 즉각 기록됩니다.",
+    "가볍게 좌측의 마이크를 눌러 음성 명령을 내리시거나 노드를 직접 클릭하여 작동을 확인해 보세요."
+  ];
+  let isTouring = false;
+  const subtitleEl = document.getElementById("demo-subtitles");
+
+  document.getElementById("demo-btn-tour").addEventListener("click", () => {
+    if (isTouring) return;
+    if (!('speechSynthesis' in window)) {
+      alert("TTS 음성을 지원하지 않는 브라우저입니다.");
+      return;
+    }
+    isTouring = true;
+    let step = 0;
+    subtitleEl.classList.add("active");
+
+    // Dynamic focus on nodes
+    const nodePulseInterval = setInterval(() => {
+      const idx = Math.floor(Math.random() * nodes.length);
+      const targetNode = nodeGroup.filter(d => d.id === nodes[idx].id);
+      targetNode.select("circle").transition().duration(250).attr("r", 16).attr("fill", "#00e5ff")
+        .transition().duration(800).attr("r", d => d.r).attr("fill", d => d.fill);
+    }, 600);
+
+    function speakNext() {
+      if (step >= tourScript.length) {
+        isTouring = false;
+        subtitleEl.classList.remove("active");
+        clearInterval(nodePulseInterval);
+        return;
+      }
+      
+      const text = tourScript[step];
+      subtitleEl.textContent = text;
+      
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ko-KR';
+      utterance.rate = 1.1;
+      
+      utterance.onend = () => {
+        step++;
+        setTimeout(speakNext, 500);
+      };
+      
+      window.speechSynthesis.speak(utterance);
+    }
+    speakNext();
+  });
+
+  // ────────────────────────────────────────────────────────
+  // 7. DATABASE GUESTBOOK (Google Spreadsheet Sync)
+  // ────────────────────────────────────────────────────────
+  const gbList = document.getElementById("demo-gb-list");
+  const gbCount = document.getElementById("demo-gb-count");
+  const gbNameInput = document.getElementById("demo-gb-name");
+  const gbMsgInput = document.getElementById("demo-gb-msg");
+  const gbSendBtn = document.getElementById("demo-gb-send");
+
+  async function fetchGuestbook() {
+    try {
+      const res = await fetch(`${GAS_URL}?key=${encodeURIComponent(SECRET_KEY)}`);
+      const data = await res.json();
+      if (data.status === 'success') {
+        gbCount.textContent = `Sync: ${data.total_visitors || 0}건`;
+        gbList.innerHTML = data.recent.map(r => `
+          <div class="gb-card">
+            <span style="color: var(--accent-cyan); font-weight: bold;">[${r[1] || 'Explorer'}]</span>
+            <span style="color: #fff; margin-left: 5px;">${r[2]}</span>
+          </div>
+        `).join('');
+      }
+    } catch (e) {
+      gbList.innerHTML = '<div style="color:red; text-align:center;">Database sync failure.</div>';
+    }
+  }
+
+  gbSendBtn.addEventListener("click", async () => {
+    const name = gbNameInput.value.trim() || "익명";
+    const msg = gbMsgInput.value.trim();
+    if (!msg) return;
+
+    gbSendBtn.textContent = "...";
+    gbSendBtn.disabled = true;
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ type: 'guestbook', name: name, message: msg, key: SECRET_KEY }),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      });
+      gbMsgInput.value = "";
+      gbNameInput.value = "";
+      // Refresh after write buffer
+      setTimeout(fetchGuestbook, 1500);
+    } catch (e) {
+      alert("데이터를 기록하지 못했습니다.");
+    } finally {
+      gbSendBtn.textContent = "Sync";
+      gbSendBtn.disabled = false;
+    }
+  });
+
+  fetchGuestbook();
+
+  // ────────────────────────────────────────────────────────
+  // 8. SANDBOX EMULATOR COMMAND INTERPRETER
+  // ────────────────────────────────────────────────────────
+  const consoleLog = document.getElementById("demo-console");
+  const consoleInput = document.getElementById("demo-console-input");
+
+  consoleInput.addEventListener("keydown", (e) => {
+    if (e.key === 'Enter') {
+      const cmd = consoleInput.value.trim();
+      consoleInput.value = "";
+      if (!cmd) return;
+
+      const userLine = document.createElement("div");
+      userLine.style.color = "#888";
+      userLine.textContent = `Guest@AMEVA:~$ ${cmd}`;
+      consoleLog.appendChild(userLine);
+
+      const responseLine = document.createElement("div");
+      responseLine.style.marginBottom = "5px";
+
+      const lowerCmd = cmd.toLowerCase();
+      if (lowerCmd === 'help') {
+        responseLine.innerHTML = `Available commands:<br>&gt; help - List commands<br>&gt; run - Launch neural calculations<br>&gt; status - Diagnostics status report<br>&gt; clear - Clear screen`;
+      } else if (lowerCmd === 'run') {
+        responseLine.style.color = "#ff007f";
+        responseLine.innerHTML = `[RUNNING] Executing sandbox compiler context...<br>Compiling active links matrix... [100%]<br>Diagnostic finished: 0 errors, 0 warnings.`;
+        // Trigger graph flash
+        link.transition().duration(200).attr("stroke", "rgba(255, 0, 127, 0.8)")
+          .transition().duration(800).attr("stroke", "rgba(0, 229, 255, 0.18)");
+      } else if (lowerCmd === 'status') {
+        responseLine.innerHTML = `System Parameters:<br>&gt; WebGPU Pipeline Status: active<br>&gt; Live nodes: ${nodes.length}<br>&gt; Live connections: ${links.length}<br>&gt; Storage Cache: 2.14MB allocated`;
+      } else if (lowerCmd === 'clear') {
+        consoleLog.innerHTML = "";
+        return;
+      } else {
+        responseLine.style.color = "#ff4444";
+        responseLine.textContent = `[ERROR] Command '${cmd}' not recognized. Try 'help'.`;
+      }
+
+      consoleLog.appendChild(responseLine);
+      consoleLog.scrollTop = consoleLog.scrollHeight;
+    }
+  });
+})();
+</script>
