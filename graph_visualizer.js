@@ -272,7 +272,7 @@ async function renderGraph(data) {
     .attr('dy', 4)
     .text(d => d.id)
     .attr('font-family', 'var(--font-mono)')
-    .attr('font-size', '12px')
+    .attr('font-size', '14px')
     .attr('font-weight', 'bold')
     .attr('fill', 'var(--text-secondary)')
     .attr('pointer-events', 'none')

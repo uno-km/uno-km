@@ -83,8 +83,10 @@ window.knowledgeEngine = {
       const fuseOptions = {
         includeScore: true,
         includeMatches: true,
+        useExtendedSearch: true,
+        ignoreLocation: true,
         minMatchCharLength: 2,
-        threshold: 0.4, // Lower is stricter
+        threshold: 0.3, // Lower is stricter
         keys: [
           { name: 'repoName', weight: 0.3 },
           { name: 'text', weight: 0.5 },
@@ -128,7 +130,20 @@ window.knowledgeEngine = {
     const cleanQuery = query.replace(/\s+/g, '');
     const isConsonants = /^[ㄱ-ㅎ]+$/.test(cleanQuery);
     
-    let results = this.fuseIndex.search(query);
+    let searchStr = query;
+    if (!isConsonants && query.length > 5) {
+      // Extract key terms to construct an extended search query
+      const words = query.replace(/은|는|이|가|을|를|의|에|에서|로|으로|과|와|도|만|해|무슨|뭐야/g, ' ')
+                         .replace(/[^가-힣a-zA-Z0-9\s]/g, ' ')
+                         .split(/\s+/)
+                         .filter(w => w.length > 1);
+      if (words.length > 0) {
+        // Build OR query for Fuse.js extended search (e.g. "word1 | word2")
+        searchStr = words.join(' | ');
+      }
+    }
+    
+    let results = this.fuseIndex.search(searchStr);
     
     if (isConsonants) {
       // Direct substring matches in choseongs get boosted to the very top

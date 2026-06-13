@@ -594,13 +594,6 @@ ${contextStr}
     let isFirstChunk = true;
 
     for await (const chunk of asyncChunkGenerator) {
-      // Check if generation was interrupted
-      if (!isGenerating) {
-        fullResponse += "\n\n[⏹ 생성이 중지되었습니다.]";
-        bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
-        break;
-      }
-
       const chunkText = chunk.choices[0]?.delta?.content || "";
       if (isFirstChunk && chunkText) {
         bubbleDiv.innerHTML = '';
@@ -619,6 +612,11 @@ ${contextStr}
         document.getElementById('tps-speed').textContent = (tokenCount / elapsedSec).toFixed(1) + ' t/s';
         document.getElementById('tps-tokens').textContent = tokenCount;
       }
+    }
+
+    if (!isGenerating) {
+      fullResponse += "\n\n[⏹ 생성이 중지되었습니다.]";
+      bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
     }
 
     // Final metrics update
