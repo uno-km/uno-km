@@ -38,6 +38,12 @@ const btnStopGen    = document.getElementById('btn-stop-gen');
 const btnStartTourPc = document.getElementById('btn-start-tour-pc');
 const btnJustViewCodex = document.getElementById('btn-just-view-codex');
 
+// Spotlight DOM
+const spotlightContainer = document.getElementById('spotlight-search');
+const spotlightInput = document.getElementById('spotlight-input');
+const spotlightResults = document.getElementById('spotlight-results');
+const btnCloseSpotlight = document.getElementById('btn-close-spotlight');
+
 // ─── WebLLM Config ─────────────────────────────────────────
 let engine = null;
 let isPanelOpen = false;
@@ -215,11 +221,75 @@ function bindEvents() {
 
   btnDownload.addEventListener('click', handleDownloadClick);
 
+  // Spotlight Bindings
+  if (spotlightInput) {
+    spotlightInput.addEventListener('input', handleSpotlightSearch);
+  }
+  if (btnCloseSpotlight) {
+    btnCloseSpotlight.addEventListener('click', closeSpotlight);
+  }
+
+  // Global Keydown (Cmd/Ctrl+K or Esc)
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isPanelOpen) {
-      closePanel();
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      toggleSpotlight();
+    }
+    if (e.key === 'Escape') {
+      if (isPanelOpen) closePanel();
+      closeSpotlight();
     }
   });
+}
+
+// ─── Spotlight Search Logic ─────────────────────────────────
+function toggleSpotlight() {
+  if (spotlightContainer.classList.contains('is-hidden')) {
+    spotlightContainer.classList.remove('is-hidden');
+    spotlightInput.focus();
+  } else {
+    closeSpotlight();
+  }
+}
+
+function closeSpotlight() {
+  if (spotlightContainer) {
+    spotlightContainer.classList.add('is-hidden');
+    if (spotlightInput) spotlightInput.value = '';
+    if (spotlightResults) spotlightResults.innerHTML = '';
+  }
+}
+
+function handleSpotlightSearch(e) {
+  const query = e.target.value.trim();
+  if (!query || query.length < 2) {
+    spotlightResults.innerHTML = '';
+    return;
+  }
+
+  if (window.knowledgeEngine) {
+    const results = window.knowledgeEngine.search(query, 5);
+    renderSpotlightResults(results);
+  }
+}
+
+function renderSpotlightResults(results) {
+  if (!results || results.length === 0) {
+    spotlightResults.innerHTML = '<div style="color:var(--text-secondary); padding: 10px;">결과가 없습니다.</div>';
+    return;
+  }
+
+  let html = '';
+  results.forEach(res => {
+    const item = res.item;
+    html += `
+      <div class="search-result-item" onclick="alert('TODO: Navigate to ${item.repoName}')">
+        <div class="search-result-repo">📦 ${item.repoName}</div>
+        <div class="search-result-text">${escapeHtml(item.text)}</div>
+      </div>
+    `;
+  });
+  spotlightResults.innerHTML = html;
 }
 
 // ─── Toast System ─────────────────────────────────────────────

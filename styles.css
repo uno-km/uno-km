@@ -1686,3 +1686,88 @@ body {
   background: rgba(0, 239, 255, 0.1) !important;
   transform: translateX(4px);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   SPOTLIGHT SEARCH (FUSE.JS)
+   ═══════════════════════════════════════════════════════════ */
+.spotlight-container {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 600px;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.spotlight-container.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -20px);
+}
+
+.spotlight-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.spotlight-input-wrapper .search-icon {
+  font-size: 1.2rem;
+  margin-right: 12px;
+  opacity: 0.7;
+}
+
+#spotlight-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  outline: none;
+  font-family: var(--font-sans);
+}
+
+.spotlight-results {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.search-result-item {
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 5px;
+}
+
+.search-result-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-result-repo {
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.search-result-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

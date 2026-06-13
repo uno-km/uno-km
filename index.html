@@ -24,6 +24,18 @@
 <body>
 
   <!-- ═══════════════════════════════════════════════════════════
+       SPOTLIGHT SEARCH (FUSE.JS)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="spotlight-search" class="spotlight-container is-hidden">
+    <div class="spotlight-input-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="spotlight-input" placeholder="AMEVA 지식 베이스 검색..." autocomplete="off">
+      <button id="btn-close-spotlight" class="icon-btn" aria-label="Close search">✕</button>
+    </div>
+    <div id="spotlight-results" class="spotlight-results">
+      <!-- Results will be injected here -->
+    </div>
+  </div>  <!-- ═══════════════════════════════════════════════════════════
        A. GRAPH CONTAINER — Full-screen Obsidian-style canvas
        ═══════════════════════════════════════════════════════════ -->
   <div id="graph-container" role="img" aria-label="AMEVA Knowledge Graph Visualization">
@@ -555,6 +567,10 @@
 
   <!-- Markdown Parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Fuse.js & Knowledge Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script src="knowledge_engine.js"></script>
 
   <script type="module" src="app.js"></script>
   <script type="module" src="graph_visualizer.js"></script>

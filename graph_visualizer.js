@@ -60,74 +60,95 @@ export async function initGraph() {
 
     if (response.ok) {
       const repos = await response.json();
+      
+      // 1. Fetch Ecosystem DB
+      const dbResponse = await fetch('ecosystem_db.json');
+      const dbRoot = await dbResponse.json();
 
-      const nodes = [
-        { id: "AMEVA Universe", group: 1, radius: 28, description: "AMEVA 생태계의 중심 노드입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.001, freqY: 0.001 },
-        { id: "LLM", group: 2, radius: 20, description: "대규모 언어 모델 훈련 및 코어 엔진 기술이 모인 허브입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
-        { id: "LLM Applications", group: 2, radius: 16, description: "LLM을 바탕으로 구축된 실생활 응용 서비스 및 벤치마크 툴셋입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
-        { id: "STT", group: 3, radius: 20, description: "음성 인식 및 음성-텍스트 변환 기술 노드입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
-        { id: "Multiplex Applications", group: 4, radius: 20, description: "복합 에이전트 및 데스크톱 어플리케이션입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
-        { id: "Social Research", group: 4, radius: 20, description: "실험적 사회학 연구를 진행하는 분야입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 },
-        { id: "MLOps", group: 5, radius: 20, description: "파이프라인 관리 및 데이터베이스를 담당하는 인프라입니다.", phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, freqX: 0.002, freqY: 0.002 }
-      ];
+      const nodes = [];
+      const links = [];
+      const branchMap = new Map(); // topic -> branchNodeId
 
-      const links = [
-        { source: "AMEVA Universe", target: "LLM", value: 3 },
-        { source: "AMEVA Universe", target: "STT", value: 3 },
-        { source: "AMEVA Universe", target: "MLOps", value: 3 },
-        { source: "AMEVA Universe", target: "Multiplex Applications", value: 3 },
-        { source: "AMEVA Universe", target: "Social Research", value: 3 },
-        { source: "LLM", target: "LLM Applications", value: 2 }
-      ];
+      // 재귀적으로 DB 트리를 파싱하여 노드와 링크 배열 생성
+      function parseTree(nodeData, parentId = null) {
+        const nodeObj = {
+          id: nodeData.id,
+          group: parentId ? 2 : 1, // Root is 1, branches are 2
+          radius: nodeData.metadata?.root ? 28 : (parentId ? 20 : 16),
+          description: nodeData.description || "",
+          metadata: nodeData.metadata || {},
+          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
+          freqX: 0.001 + Math.random() * 0.001, freqY: 0.001 + Math.random() * 0.001
+        };
+        nodes.push(nodeObj);
+        
+        if (parentId) {
+          links.push({ source: parentId, target: nodeData.id, value: 3 });
+        }
+
+        if (nodeData.match_topics) {
+          nodeData.match_topics.forEach(t => {
+            branchMap.set(t.toLowerCase(), nodeData.id);
+          });
+        }
+
+        if (nodeData.children) {
+          nodeData.children.forEach(child => parseTree(child, nodeData.id));
+        }
+      }
+      
+      parseTree(dbRoot);
 
       repos.forEach(repo => {
         const name = repo.name;
+        if (!name.startsWith('AMEVA')) return; // AMEVA 프리픽스만 허용
 
-        // 1. "AMEVA" 대문자 프리픽스가 있는 레포지토리만 필터링
-        if (!name.startsWith('AMEVA')) return;
+        const topics = (repo.topics || []).map(t => t.toLowerCase());
+        let attached = false;
 
-        const nameUpper = name.toUpperCase();
-        const topics = (repo.topics || []).map(t => t.toUpperCase());
-
-        // Categorization logic (Rule-based Engine)
-        const CATEGORY_RULES = [
-          { id: "STT", tags: ["STT"], keywords: ["STT"] },
-          { id: "LLM Applications", tags: ["LLM-APP"], keywords: ["DOC-AI", "BENCHMARK"] },
-          { id: "LLM", tags: ["LLM"], keywords: ["LLM"] },
-          { id: "Multiplex Applications", tags: ["MA"], keywords: ["WINDOWS-ASSIST", "VIEWPORT", "AGENT-ORCHESTRA"] },
-          { id: "Social Research", tags: ["SR"], keywords: ["DEAD-INTERNET-THEOR", "SOCIAL"] },
-          { id: "MLOps", tags: ["MLOPS"], keywords: ["MODEL", "DATA", "CONDUCTOR", "DATABASE"] }
-        ];
-
-        let targetCategory = "AMEVA Universe"; // Fallback
-
-        for (const rule of CATEGORY_RULES) {
-          if (topics.some(t => rule.tags.includes(t)) || rule.keywords.some(k => nameUpper.includes(k))) {
-            targetCategory = rule.id;
-            break;
+        topics.forEach(topic => {
+          if (branchMap.has(topic)) {
+            // DB에 정의된 브랜치에 매칭
+            const targetId = branchMap.get(topic);
+            links.push({ source: targetId, target: repo.name, value: 1 });
+            attached = true;
+          } else {
+            // DB에 없는 새로운 토픽 발견! 동적으로 새로운 중간 브랜치 생성
+            const newBranchId = `Category: ${topic}`;
+            if (!nodes.find(n => n.id === newBranchId)) {
+              nodes.push({
+                id: newBranchId,
+                group: 4,
+                radius: 16,
+                description: `동적으로 생성된 [${topic}] 토픽 브랜치입니다.`,
+                metadata: { dynamic: true },
+                phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, 
+                freqX: 0.002, freqY: 0.002
+              });
+              // 루트(dbRoot.id)에 새 브랜치를 붙임
+              links.push({ source: dbRoot.id, target: newBranchId, value: 2 });
+              branchMap.set(topic, newBranchId);
+            }
+            links.push({ source: newBranchId, target: repo.name, value: 1 });
+            attached = true;
           }
+        });
+
+        // 토픽이 없거나 매칭 실패 시 루트 노드에 직접 연결 (Fallback)
+        if (!attached) {
+          links.push({ source: dbRoot.id, target: repo.name, value: 1 });
         }
 
+        // 레포지토리 노드 추가
         nodes.push({
           id: repo.name,
-          group: targetCategory === "LLM" || targetCategory === "LLM Applications" ? 2 :
-            targetCategory === "STT" ? 3 :
-              targetCategory === "MLOps" ? 5 : 4,
+          group: 5,
           radius: 12,
           description: repo.description || "No description provided.",
           url: repo.html_url,
           isRepo: true,
-          // 아메바 효과를 위한 노드별 고유 파동 변수
-          phaseX: Math.random() * Math.PI * 2,
-          phaseY: Math.random() * Math.PI * 2,
-          freqX: 0.002 + Math.random() * 0.003,
-          freqY: 0.002 + Math.random() * 0.003
-        });
-
-        links.push({
-          source: targetCategory,
-          target: repo.name,
-          value: 1
+          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, 
+          freqX: 0.003 + Math.random() * 0.003, freqY: 0.003 + Math.random() * 0.003
         });
       });
 

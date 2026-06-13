@@ -1,0 +1,45 @@
+{
+  "id": "AMEVA Universe",
+  "description": "AMEVA 생태계의 중심 노드입니다.",
+  "metadata": { "root": true },
+  "children": [
+    {
+      "id": "LLM",
+      "match_topics": ["llm", "ai", "language-model"],
+      "description": "대규모 언어 모델 훈련 및 코어 엔진 기술이 모인 허브입니다.",
+      "metadata": { "tag": "llm", "priority": "high", "stt": false },
+      "children": [
+        {
+          "id": "LLM Applications",
+          "match_topics": ["llm-app", "doc-ai", "benchmark"],
+          "description": "LLM을 바탕으로 구축된 실생활 응용 서비스 및 벤치마크 툴셋입니다.",
+          "metadata": { "stt": false, "ma": false }
+        }
+      ]
+    },
+    {
+      "id": "STT",
+      "match_topics": ["stt", "speech-to-text", "voice"],
+      "description": "음성 인식 및 음성-텍스트 변환 기술 노드입니다.",
+      "metadata": { "stt": true }
+    },
+    {
+      "id": "Multiplex Applications",
+      "match_topics": ["ma", "multiplex", "agent-orchestra", "windows-assist"],
+      "description": "복합 에이전트 및 데스크톱 어플리케이션입니다.",
+      "metadata": { "ma": true }
+    },
+    {
+      "id": "Social Research",
+      "match_topics": ["sr", "social", "dead-internet-theory"],
+      "description": "실험적 사회학 연구를 진행하는 분야입니다.",
+      "metadata": { "sr": true }
+    },
+    {
+      "id": "MLOps",
+      "match_topics": ["mlops", "model", "data", "database"],
+      "description": "파이프라인 관리 및 데이터베이스를 담당하는 인프라입니다.",
+      "metadata": { "mlops": true }
+    }
+  ]
+}
