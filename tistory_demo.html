@@ -550,15 +550,26 @@
     </div>
   </div>
 
-  <!-- D. Bottom Spoiler: Iframe Reveal -->
-  <div style="margin-top: 25px; font-family: 'Segoe UI', sans-serif;">
+  <!-- D. Bottom Spoiler: Iframe Reveal & Quick Links -->
+  <div style="margin-top: 25px; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; gap: 12px;">
+    <!-- Quick Links Row -->
+    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+      <a href="https://uno-km.github.io/uno-km/" target="_blank" style="flex: 1; min-width: 200px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(0, 229, 255, 0.2)); border: 1px solid #00e5ff; border-radius: 8px; color: #80f2ff; font-weight: bold; text-decoration: none; transition: all 0.3s; text-align: center; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);" onmouseover="this.style.background='var(--accent-cyan)'; this.style.color='#000'; this.style.boxShadow='0 4px 20px rgba(0, 229, 255, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(0, 229, 255, 0.2))'; this.style.color='#80f2ff'; this.style.boxShadow='0 4px 15px rgba(0, 229, 255, 0.15)'">
+        🚀 실제로 아메바 여행가기 (깃페이지 구경가기)
+      </a>
+      <a href="https://github.com/uno-km/" target="_blank" style="flex: 1; min-width: 200px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(255, 0, 127, 0.2)); border: 1px solid #ff007f; border-radius: 8px; color: #ff80bf; font-weight: bold; text-decoration: none; transition: all 0.3s; text-align: center; box-shadow: 0 4px 15px rgba(255, 0, 127, 0.15);" onmouseover="this.style.background='#ff007f'; this.style.color='#fff'; this.style.boxShadow='0 4px 20px rgba(255, 0, 127, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(255, 0, 127, 0.2))'; this.style.color='#ff80bf'; this.style.boxShadow='0 4px 15px rgba(255, 0, 127, 0.15)'">
+        📖 아메바 문서보기 (GitHub)
+      </a>
+    </div>
+
+    <!-- Collapsible Iframe -->
     <details style="background: #0e0e12; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; overflow: hidden; transition: all 0.3s;">
       <summary style="padding: 14px 20px; color: #00e5ff; font-weight: bold; cursor: pointer; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; background: #131318;">
         <span style="display: flex; align-items: center; gap: 8px;">🔗 진짜 깃허브 포트폴리오 여기서 바로보기!</span>
         <span style="font-size: 0.75rem; color: #888; border: 1px solid rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">클릭하여 열기</span>
       </summary>
       <div style="padding: 15px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #050508;">
-        <iframe src="https://uno-kim.github.io/uno-km/" style="width: 100%; height: 650px; border: 1px solid #00e5ff; border-radius: 6px; background: #ffffff;" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+        <iframe src="https://uno-km.github.io/uno-km/" style="width: 100%; height: 650px; border: 1px solid #00e5ff; border-radius: 6px; background: #ffffff;" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
       </div>
     </details>
   </div>
