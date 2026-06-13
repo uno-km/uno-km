@@ -60,7 +60,7 @@ export async function initGraph() {
 
     if (response.ok) {
       const repos = await response.json();
-      
+
       // 1. Fetch Ecosystem DB
       const dbResponse = await fetch('ecosystem_db.json');
       const dbRoot = await dbResponse.json();
@@ -82,7 +82,7 @@ export async function initGraph() {
           freqX: 0.001 + Math.random() * 0.001, freqY: 0.001 + Math.random() * 0.001
         };
         nodes.push(nodeObj);
-        
+
         if (parentId) {
           links.push({ source: parentId, target: nodeData.id, value: 3 });
         }
@@ -97,7 +97,7 @@ export async function initGraph() {
           nodeData.children.forEach(child => parseTree(child, nodeData.id));
         }
       }
-      
+
       parseTree(dbRoot);
 
       repos.forEach(repo => {
@@ -127,7 +127,7 @@ export async function initGraph() {
                 radius: 16,
                 description: `동적으로 생성된 [${topic}] 토픽 브랜치입니다.`,
                 metadata: { dynamic: true },
-                phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, 
+                phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
                 freqX: 0.002, freqY: 0.002
               });
               // 루트(dbRoot.id)에 새 브랜치를 붙임
@@ -156,7 +156,7 @@ export async function initGraph() {
           url: repo.html_url,
           isRepo: true,
           matchTopics: topics,
-          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, 
+          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
           freqX: 0.003 + Math.random() * 0.003, freqY: 0.003 + Math.random() * 0.003
         });
       });
@@ -582,6 +582,10 @@ window.startTour = async function () {
   // Stop TTS + timers + ring
   const stopAll = () => {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
+    if (window.currentAudioTTS) {
+      window.currentAudioTTS.pause();
+      window.currentAudioTTS = null;
+    }
     clearTimeout(autoAdvanceTimer);
     cancelAnimationFrame(ringAnimFrame);
     if (progressRing) {
@@ -679,24 +683,25 @@ window.startTour = async function () {
     };
     ringAnimFrame = requestAnimationFrame(animateRing);
 
-    // ── TTS (plays alongside ring, doesn't control timing) ──
-    if (isTtsEnabled && 'speechSynthesis' in window) {
+    // ── TTS (Google Translate Unofficial API) ──
+    if (isTtsEnabled) {
       try {
-        window.speechSynthesis.cancel(); // Cancel any pending
-        currentUtterance = new SpeechSynthesisUtterance(speechText);
-        currentUtterance.lang = 'ko-KR';
-        currentUtterance.rate = currentTtsRate;
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        if (window.currentAudioTTS) {
+          window.currentAudioTTS.pause();
+          window.currentAudioTTS = null;
+        }
 
-        const koVoice = getKoreanVoice();
-        if (koVoice) currentUtterance.voice = koVoice;
+        // Limit text length to ~200 chars to respect Google Translate TTS limits
+        const safeText = speechText.length > 200 ? speechText.substring(0, 197) + "..." : speechText;
+        const encodedText = encodeURIComponent(safeText);
+        const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ko-KR&client=tw-ob&q=${encodedText}`;
 
-        currentUtterance.onerror = (e) => {
-          console.warn('[AMEVA TTS] Speech error:', e.error);
-        };
-
-        window.speechSynthesis.speak(currentUtterance);
+        window.currentAudioTTS = new Audio(audioUrl);
+        window.currentAudioTTS.playbackRate = currentTtsRate;
+        window.currentAudioTTS.play().catch(e => console.warn('[AMEVA TTS] Audio play failed:', e));
       } catch (e) {
-        console.warn('[AMEVA TTS] Failed to speak:', e);
+        console.warn('[AMEVA TTS] Failed to fetch Google TTS:', e);
       }
     }
   };
@@ -721,8 +726,12 @@ window.startTour = async function () {
   btnTts.addEventListener('click', () => {
     isTtsEnabled = !isTtsEnabled;
     if (ttsIcon) ttsIcon.textContent = isTtsEnabled ? '🔈' : '🔇';
-    if (!isTtsEnabled && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
+    if (!isTtsEnabled) {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      if (window.currentAudioTTS) {
+        window.currentAudioTTS.pause();
+        window.currentAudioTTS = null;
+      }
     }
     // Re-show current step (restarts ring + optionally TTS)
     showStep(currentTourIndex);
