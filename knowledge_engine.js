@@ -1,7 +1,22 @@
 /**
- * AMEVA Knowledge Engine
- * Fetches dynamic READMEs from GitHub, loads into memory, and builds a Fuse.js index.
+ * Korean Choseong (Consonant) Extractor Helper
  */
+function getChoseong(str) {
+  const choseongs = [
+    'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 
+    'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+  ];
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i) - 0xAC00;
+    if (code >= 0 && code < 11172) {
+      result += choseongs[Math.floor(code / 588)];
+    } else {
+      result += str.charAt(i);
+    }
+  }
+  return result.toLowerCase();
+}
 
 window.knowledgeEngine = {
   readmeMap: new Map(), // repoName -> raw markdown text
@@ -40,15 +55,17 @@ window.knowledgeEngine = {
       await Promise.all(fetchPromises);
       console.log(`[Knowledge Engine] Loaded ${this.readmeMap.size} READMEs into memory.`);
 
-      // Initialize Fuse.js
+      // Initialize Fuse.js with choseong support
       const fuseOptions = {
         includeScore: true,
         includeMatches: true,
         minMatchCharLength: 2,
-        threshold: 0.3, // Lower is stricter
+        threshold: 0.4, // Lower is stricter
         keys: [
           { name: 'repoName', weight: 0.3 },
-          { name: 'text', weight: 0.7 }
+          { name: 'text', weight: 0.5 },
+          { name: 'choseongRepo', weight: 0.3 },
+          { name: 'choseongText', weight: 0.4 }
         ]
       };
 
@@ -70,18 +87,43 @@ window.knowledgeEngine = {
         this.documents.push({
           id: `${repoName}-${Math.random().toString(36).substr(2, 9)}`,
           repoName: repoName,
-          text: trimmed
+          text: trimmed,
+          choseongRepo: getChoseong(repoName),
+          choseongText: getChoseong(trimmed)
         });
       }
     });
   },
 
   /**
-   * Search the loaded knowledge base.
+   * Search the loaded knowledge base with support for Korean consonant/choseong queries.
    */
   search(query, limit = 5) {
     if (!this.fuseIndex) return [];
-    const results = this.fuseIndex.search(query);
+    
+    const cleanQuery = query.replace(/\s+/g, '');
+    const isConsonants = /^[ㄱ-ㅎ]+$/.test(cleanQuery);
+    
+    let results = this.fuseIndex.search(query);
+    
+    if (isConsonants) {
+      // Direct substring matches in choseongs get boosted to the very top
+      const directMatches = [];
+      const otherMatches = [];
+      
+      results.forEach(res => {
+        const item = res.item;
+        if (item.choseongRepo.includes(cleanQuery) || item.choseongText.includes(cleanQuery)) {
+          res.score = (res.score || 0) * 0.05; // Boost score significantly (lower is better in Fuse)
+          directMatches.push(res);
+        } else {
+          otherMatches.push(res);
+        }
+      });
+      
+      results = [...directMatches, ...otherMatches].sort((a, b) => (a.score || 0) - (b.score || 0));
+    }
+    
     return results.slice(0, limit);
   }
 };

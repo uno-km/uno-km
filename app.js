@@ -43,6 +43,8 @@ const spotlightContainer = document.getElementById('spotlight-search');
 const spotlightInput = document.getElementById('spotlight-input');
 const spotlightResults = document.getElementById('spotlight-results');
 const btnCloseSpotlight = document.getElementById('btn-close-spotlight');
+const fabSearch = document.getElementById('fab-search');
+let searchTimeout = null;
 
 // ─── WebLLM Config ─────────────────────────────────────────
 let engine = null;
@@ -228,6 +230,9 @@ function bindEvents() {
   if (btnCloseSpotlight) {
     btnCloseSpotlight.addEventListener('click', closeSpotlight);
   }
+  if (fabSearch) {
+    fabSearch.addEventListener('click', toggleSpotlight);
+  }
 
   // Global Keydown (Cmd/Ctrl+K or Esc)
   document.addEventListener('keydown', (e) => {
@@ -259,18 +264,29 @@ function closeSpotlight() {
     if (spotlightResults) spotlightResults.innerHTML = '';
   }
 }
+window.closeSpotlight = closeSpotlight;
 
 function handleSpotlightSearch(e) {
   const query = e.target.value.trim();
+  
+  if (searchTimeout) {
+    clearTimeout(searchTimeout);
+  }
+  
   if (!query || query.length < 2) {
     spotlightResults.innerHTML = '';
     return;
   }
 
-  if (window.knowledgeEngine) {
-    const results = window.knowledgeEngine.search(query, 5);
-    renderSpotlightResults(results);
-  }
+  // Show a pulsing "Searching..." indicator
+  spotlightResults.innerHTML = '<div class="search-searching">🔍 검색 중...</div>';
+
+  searchTimeout = setTimeout(() => {
+    if (window.knowledgeEngine) {
+      const results = window.knowledgeEngine.search(query, 5);
+      renderSpotlightResults(results);
+    }
+  }, 400);
 }
 
 function renderSpotlightResults(results) {
@@ -283,7 +299,7 @@ function renderSpotlightResults(results) {
   results.forEach(res => {
     const item = res.item;
     html += `
-      <div class="search-result-item" onclick="alert('TODO: Navigate to ${item.repoName}')">
+      <div class="search-result-item" onclick="if (window.selectNodeById) { window.selectNodeById('${item.repoName}'); } closeSpotlight();">
         <div class="search-result-repo">📦 ${item.repoName}</div>
         <div class="search-result-text">${escapeHtml(item.text)}</div>
       </div>

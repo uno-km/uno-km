@@ -354,79 +354,6 @@ function bindNodeEvents() {
     });
   }
 
-  // ─── Tree Navigator Modal Rendering Logic ───
-  function renderNodeModal(d) {
-    if (!modalNode || !mTitle || !mDesc) return;
-
-    mTitle.textContent = d.id;
-
-    // 1. 상위 노드(Parent) 찾기 (뒤로가기 버튼)
-    let backBtnHTML = '';
-    const parentLink = link.data().find(l => l.target.id === d.id);
-    if (parentLink) {
-      const parentNode = parentLink.source;
-      backBtnHTML = `<div class="back-btn-container" style="margin-bottom:15px;">
-        <button class="btn-node-back" data-id="${parentNode.id}" style="background:transparent; border:1px solid var(--accent-purple); color:var(--accent-purple); padding:6px 12px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.8rem; transition:all 0.2s ease;">
-          ⬅️ ${parentNode.id} (으)로 돌아가기
-        </button>
-      </div>`;
-    }
-
-    // 2. 하위 노드(Children) 찾기
-    let childrenHTML = '';
-    const children = link.data()
-      .filter(l => l.source.id === d.id)
-      .map(l => l.target);
-
-    if (children.length > 0) {
-      childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
-      childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
-      childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
-      children.forEach(child => {
-        childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
-           <span style="margin-right:8px;">${child.isRepo ? '📦' : '📂'}</span> ${child.id}
-        </li>`;
-      });
-      childrenHTML += '</ul></div>';
-    }
-
-    mDesc.innerHTML = `${backBtnHTML}<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
-
-    if (d.url) {
-      mLink.href = d.url;
-      mLink.style.display = 'inline-flex';
-    } else {
-      mLink.style.display = 'none';
-    }
-
-    // 이벤트 위임(Event Delegation)을 통해 뒤로가기 및 하위 노드 클릭 처리
-    mDesc.onclick = (e) => {
-      const backBtn = e.target.closest('.btn-node-back');
-      if (backBtn) {
-        const parentId = backBtn.getAttribute('data-id');
-        const pNode = node.data().find(n => n.id === parentId);
-        if (pNode) {
-          zoomToNode(pNode);
-          renderNodeModal(pNode);
-        }
-        return;
-      }
-
-      const item = e.target.closest('.child-node-item');
-      if (item) {
-        const childId = item.getAttribute('data-id');
-        const childNode = node.data().find(n => n.id === childId);
-        if (childNode) {
-          zoomToNode(childNode);
-          renderNodeModal(childNode);
-        }
-      }
-    };
-
-    modalNode.classList.add('is-active');
-    zoomToNode(d); // 노드가 클릭/렌더링될 때 시네마틱 줌 실행!
-  }
-
   // Node Interactions
   node.on('mouseover', function (event, d) {
     d3.select(this)
@@ -810,4 +737,100 @@ export function zoomToNode(targetNode) {
       .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
   }
 }
+
+/**
+ * Render the modal detail card for a selected node
+ */
+export function renderNodeModal(d) {
+  const modalNode = document.getElementById('modal-node-detail');
+  const mTitle = document.getElementById('node-modal-title');
+  const mDesc = document.getElementById('node-modal-desc');
+  const mLink = document.getElementById('node-modal-link');
+  if (!modalNode || !mTitle || !mDesc) return;
+
+  mTitle.textContent = d.id;
+
+  // 1. Parent Node Back Button
+  let backBtnHTML = '';
+  const parentLink = link.data().find(l => l.target.id === d.id);
+  if (parentLink) {
+    const parentNode = parentLink.source;
+    backBtnHTML = `<div class="back-btn-container" style="margin-bottom:15px;">
+      <button class="btn-node-back" data-id="${parentNode.id}" style="background:transparent; border:1px solid var(--accent-purple); color:var(--accent-purple); padding:6px 12px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.8rem; transition:all 0.2s ease;">
+        ⬅️ ${parentNode.id} (으)로 돌아가기
+      </button>
+    </div>`;
+  }
+
+  // 2. Child Nodes List
+  let childrenHTML = '';
+  const children = link.data()
+    .filter(l => l.source.id === d.id)
+    .map(l => l.target);
+
+  if (children.length > 0) {
+    childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
+    childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
+    childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
+    children.forEach(child => {
+      childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
+         <span style="margin-right:8px;">${child.isRepo ? '📦' : '📂'}</span> ${child.id}
+      </li>`;
+    });
+    childrenHTML += '</ul></div>';
+  }
+
+  mDesc.innerHTML = `${backBtnHTML}<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
+
+  if (d.url) {
+    mLink.href = d.url;
+    mLink.style.display = 'inline-flex';
+  } else {
+    mLink.style.display = 'none';
+  }
+
+  // Event delegation
+  mDesc.onclick = (e) => {
+    const backBtn = e.target.closest('.btn-node-back');
+    if (backBtn) {
+      const parentId = backBtn.getAttribute('data-id');
+      const pNode = node.data().find(n => n.id === parentId);
+      if (pNode) {
+        zoomToNode(pNode);
+        renderNodeModal(pNode);
+      }
+      return;
+    }
+
+    const item = e.target.closest('.child-node-item');
+    if (item) {
+      const childId = item.getAttribute('data-id');
+      const childNode = node.data().find(n => n.id === childId);
+      if (childNode) {
+        zoomToNode(childNode);
+        renderNodeModal(childNode);
+      }
+    }
+  };
+
+  modalNode.classList.add('is-active');
+  zoomToNode(d);
+}
+
+/**
+ * Expose selecting and navigating to a node by ID to the window object
+ */
+export function selectNodeById(id) {
+  if (!node || !node.data) return false;
+  const targetNode = node.data().find(n => n.id === id || n.id.toLowerCase() === id.toLowerCase());
+  if (targetNode) {
+    renderNodeModal(targetNode);
+    zoomToNode(targetNode);
+    return true;
+  }
+  return false;
+}
+
+window.selectNodeById = selectNodeById;
+
 
