@@ -6,6 +6,28 @@ AMEVA(Autonomous Multi-Agent Edge-AI Ecosystem)의 철학과 기술 생태계를
 
 ---
 
+## 🎮 브라우저 에뮬레이터 테스트 (Sandbox Run)
+
+아래 코드 블록은 노드 상세 모달이 열리면 자동으로 감지되어 그 하단에 `▶ 브라우저 에뮬레이터에서 실행` 버튼이 생성됩니다. 클릭 시 안전한 샌드박스 내에서 즉시 구동됩니다.
+
+```javascript
+// Sandbox Emulator Test Code
+console.log("🚀 AMEVA Sandbox Emulator Initialized!");
+console.log("현재 브라우저 화면 크기:", window.innerWidth, "x", window.innerHeight);
+const mathResult = Math.sqrt(256) * Math.PI;
+console.log("계산 연산 결과 (sqrt(256) * PI):", mathResult.toFixed(4));
+```
+
+```html
+<div style="padding: 15px; background: linear-gradient(135deg, #7C3AED, #00EFFF); color: #fff; border-radius: 8px; font-family: sans-serif; text-align: center; box-shadow: 0 4px 15px rgba(0,239,255,0.3);">
+  <h3>🌌 Hello from Sandbox!</h3>
+  <p>이 영역은 iframe 샌드박스 내부에서 안전하게 실행된 HTML 뷰포트입니다.</p>
+  <button onclick="alert('샌드박스 클릭!')" style="background: #3ECF8E; border: none; padding: 8px 16px; border-radius: 4px; color: #111; cursor: pointer; font-weight: bold;">대화상자 띄우기</button>
+</div>
+```
+
+---
+
 ## 🎯 핵심 기능
 
 - **WebGPU 로컬 챗봇 엔진**: WebLLM을 활용하여 Qwen 1.5B 모델을 사용자 기기의 GPU 메모리 위에서 직접 구동합니다.

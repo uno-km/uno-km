@@ -26,33 +26,57 @@ window.knowledgeEngine = {
   async init() {
     console.log("[Knowledge Engine] Initializing...");
     try {
-      const username = 'uno-km';
-      const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-      
-      if (!reposRes.ok) throw new Error("Failed to fetch repos for knowledge engine.");
-      
-      const repos = await reposRes.json();
-      const amevaRepos = repos.filter(r => r.name.startsWith('AMEVA'));
-
-      // Fetch all READMEs concurrently
-      const fetchPromises = amevaRepos.map(async repo => {
+      // 1. Fetch local README.md if on localhost/127.0.0.1
+      const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.startsWith('192.168.');
+      if (isLocal) {
         try {
-          // Default branch is usually 'main' or 'master'
-          const branch = repo.default_branch || 'main';
-          const readmeUrl = `https://raw.githubusercontent.com/${username}/${repo.name}/${branch}/README.md`;
-          
-          const readmeRes = await fetch(readmeUrl);
-          if (readmeRes.ok) {
-            const text = await readmeRes.text();
-            this.readmeMap.set(repo.name, text);
-            this._chunkAndStore(repo.name, text);
+          const localReadmeRes = await fetch('README.md');
+          if (localReadmeRes.ok) {
+            const localReadmeText = await localReadmeRes.text();
+            this.readmeMap.set('AMEVA Neural Fabric', localReadmeText);
+            this.readmeMap.set('AMEVA-LLM-Trainer', localReadmeText);
+            this._chunkAndStore('AMEVA Neural Fabric', localReadmeText);
+            this._chunkAndStore('AMEVA-LLM-Trainer', localReadmeText);
+            console.log("[Knowledge Engine] Loaded local README.md for sandbox testing.");
           }
         } catch (e) {
-          console.warn(`[Knowledge Engine] Failed to fetch README for ${repo.name}`, e);
+          console.warn("[Knowledge Engine] Failed to fetch local README.md:", e);
         }
-      });
+      }
 
-      await Promise.all(fetchPromises);
+      // 2. Fetch from GitHub API
+      const username = 'uno-km';
+      try {
+        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        if (reposRes.ok) {
+          const repos = await reposRes.json();
+          const amevaRepos = repos.filter(r => r.name.startsWith('AMEVA'));
+
+          // Fetch all READMEs concurrently
+          const fetchPromises = amevaRepos.map(async repo => {
+            try {
+              const branch = repo.default_branch || 'main';
+              const readmeUrl = `https://raw.githubusercontent.com/${username}/${repo.name}/${branch}/README.md`;
+              
+              const readmeRes = await fetch(readmeUrl);
+              if (readmeRes.ok) {
+                const text = await readmeRes.text();
+                this.readmeMap.set(repo.name, text);
+                this._chunkAndStore(repo.name, text);
+              }
+            } catch (e) {
+              console.warn(`[Knowledge Engine] Failed to fetch README for ${repo.name}`, e);
+            }
+          });
+
+          await Promise.all(fetchPromises);
+        } else {
+          console.warn("[Knowledge Engine] GitHub API request not OK. Using local/fallback only.");
+        }
+      } catch (err) {
+        console.warn("[Knowledge Engine] GitHub API fetch error:", err);
+      }
+
       console.log(`[Knowledge Engine] Loaded ${this.readmeMap.size} READMEs into memory.`);
 
       // Initialize Fuse.js with choseong support

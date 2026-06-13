@@ -555,33 +555,19 @@ async function handleSend() {
     let contextStr = "AMEVA는 곰팡이나 생물학적 아메바가 아닙니다. AMEVA 프로젝트는 오프라인 엣지 환경에서 구동되는 로컬 AI 에코시스템 및 레포지토리들의 집합체입니다.\n주요 카테고리: 멀티플렉스 어플리케이션(에이전트 오케스트라, 윈도우 어시스턴트, 뷰포트 등), 소셜 리서치(데드 인터넷 씨어터 등), LLM, STT, MLOps.\n\n";
     let sources = [];
 
-    if (window.graphData && window.graphData.nodes) {
-      const queryWords = text.toLowerCase().split(/\s+/).filter(w => w.length > 1);
-      
-      // Calculate a basic score for each repo based on keyword matches
-      const scoredNodes = window.graphData.nodes
-        .filter(n => n.isRepo)
-        .map(n => {
-          const targetText = (n.id + " " + (n.description || "")).toLowerCase();
-          let score = 0;
-          queryWords.forEach(w => {
-            if (targetText.includes(w)) score++;
-            if (w === '소셜리서치' && targetText.includes('social research')) score += 2;
-            if (w === '아메바' && targetText.includes('ameva')) score += 2;
-          });
-          return { node: n, score };
-        })
-        .filter(x => x.score > 0)
-        .sort((a, b) => b.score - a.score);
-
-      if (scoredNodes.length > 0) {
-        contextStr += "[검색된 레포지토리 정보]\n";
-        scoredNodes.slice(0, 3).forEach(x => {
-          contextStr += `- ${x.node.id}: ${x.node.description || '설명 없음'}\n`;
-          sources.push({ name: x.node.id, url: x.node.url || "#" });
+    if (window.knowledgeEngine && window.knowledgeEngine.fuseIndex) {
+      const searchResults = window.knowledgeEngine.search(text, 3);
+      if (searchResults && searchResults.length > 0) {
+        contextStr += "[검색된 README 컨텍스트]\n";
+        searchResults.forEach(res => {
+          contextStr += `[Repo: ${res.item.repoName}] ${res.item.text}\n---\n`;
+          // Only add unique sources
+          if (!sources.some(s => s.name === res.item.repoName)) {
+            sources.push({ name: res.item.repoName, url: `https://github.com/uno-km/${res.item.repoName}` });
+          }
         });
       } else {
-        contextStr += "[검색된 특정 레포지토리 정보가 없습니다.]";
+        contextStr += "[관련 컨텍스트를 찾을 수 없습니다.]";
       }
     }
 

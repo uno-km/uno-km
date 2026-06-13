@@ -137,7 +137,7 @@ body {
   background:
     radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.04) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(0, 239, 255, 0.03) 0%, transparent 50%),
-    var(--bg-deep);
+    transparent;
 }
 
 /* Subtle animated grid overlay */
@@ -1296,7 +1296,76 @@ body {
 
 /* ── Modal Enhancements ───────────────────────────────────── */
 .modal-medium {
-  max-width: 480px;
+  max-width: 800px !important;
+  width: 90vw;
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+#node-modal-desc {
+  text-align: left;
+  width: 100%;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 8px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+#node-modal-desc h1,
+#node-modal-desc h2,
+#node-modal-desc h3,
+#node-modal-desc h4 {
+  color: var(--accent-cyan);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 4px;
+}
+
+#node-modal-desc p {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+#node-modal-desc ul,
+#node-modal-desc ol {
+  margin-bottom: 16px;
+  padding-left: 20px;
+  text-align: left;
+}
+
+#node-modal-desc li {
+  margin-bottom: 6px;
+}
+
+#node-modal-desc code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--accent-green);
+}
+
+#node-modal-desc pre {
+  background: #121212;
+  border: 1px solid var(--border-subtle);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+#node-modal-desc pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text-primary);
+  display: block;
 }
 
 .btn-close-modal {

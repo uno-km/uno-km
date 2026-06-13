@@ -77,6 +77,7 @@ export async function initGraph() {
           radius: nodeData.metadata?.root ? 28 : (parentId ? 20 : 16),
           description: nodeData.description || "",
           metadata: nodeData.metadata || {},
+          matchTopics: nodeData.match_topics || [],
           phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
           freqX: 0.001 + Math.random() * 0.001, freqY: 0.001 + Math.random() * 0.001
         };
@@ -105,12 +106,16 @@ export async function initGraph() {
 
         const topics = (repo.topics || []).map(t => t.toLowerCase());
         let attached = false;
+        const linkedParents = new Set();
 
         topics.forEach(topic => {
           if (branchMap.has(topic)) {
             // DB에 정의된 브랜치에 매칭
             const targetId = branchMap.get(topic);
-            links.push({ source: targetId, target: repo.name, value: 1 });
+            if (!linkedParents.has(targetId)) {
+              links.push({ source: targetId, target: repo.name, value: 1 });
+              linkedParents.add(targetId);
+            }
             attached = true;
           } else {
             // DB에 없는 새로운 토픽 발견! 동적으로 새로운 중간 브랜치 생성
@@ -129,7 +134,10 @@ export async function initGraph() {
               links.push({ source: dbRoot.id, target: newBranchId, value: 2 });
               branchMap.set(topic, newBranchId);
             }
-            links.push({ source: newBranchId, target: repo.name, value: 1 });
+            if (!linkedParents.has(newBranchId)) {
+              links.push({ source: newBranchId, target: repo.name, value: 1 });
+              linkedParents.add(newBranchId);
+            }
             attached = true;
           }
         });
@@ -147,6 +155,7 @@ export async function initGraph() {
           description: repo.description || "No description provided.",
           url: repo.html_url,
           isRepo: true,
+          matchTopics: topics,
           phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2, 
           freqX: 0.003 + Math.random() * 0.003, freqY: 0.003 + Math.random() * 0.003
         });
@@ -157,6 +166,10 @@ export async function initGraph() {
       console.warn("GitHub API limit exceeded or failed. Falling back to local index.");
       const fallback = await fetch('graph_index.json');
       data = await fallback.json();
+    }
+
+    if (window.tagCloud) {
+      window.tagCloud.buildFromGraph(data);
     }
 
     if (placeholder) placeholder.style.display = 'none';
@@ -246,6 +259,9 @@ async function renderGraph(data) {
     .attr('r', 0) // start radius 0
     .attr('fill', d => colorScale(d.group))
     .attr('cursor', d => d.url ? 'pointer' : 'grab');
+
+  window.nodeElements = node;
+  window.linkElements = link;
 
   labels = g.append('g')
     .selectAll('text')
@@ -356,6 +372,7 @@ function bindNodeEvents() {
 
   // Node Interactions
   node.on('mouseover', function (event, d) {
+    if (window.audioEngine) window.audioEngine.playTick();
     d3.select(this)
       .transition().duration(200)
       .attr('r', d.radius * 1.3)
@@ -396,6 +413,7 @@ function bindNodeEvents() {
       }
     })
     .on('click', function (event, d) {
+      if (window.audioEngine) window.audioEngine.playDeepBass();
       // Hide small tooltip
       if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
 
@@ -780,7 +798,17 @@ export function renderNodeModal(d) {
     childrenHTML += '</ul></div>';
   }
 
-  mDesc.innerHTML = `${backBtnHTML}<p>${d.description || 'No description provided.'}</p>${childrenHTML}`;
+  let descHTML = d.description || 'No description provided.';
+  if (d.isRepo && window.knowledgeEngine && window.knowledgeEngine.readmeMap.has(d.id)) {
+    const readmeMarkdown = window.knowledgeEngine.readmeMap.get(d.id);
+    if (typeof marked !== 'undefined') {
+      descHTML = marked.parse(readmeMarkdown);
+    }
+  } else {
+    descHTML = `<p>${descHTML}</p>`;
+  }
+
+  mDesc.innerHTML = `${backBtnHTML}${descHTML}${childrenHTML}`;
 
   if (d.url) {
     mLink.href = d.url;

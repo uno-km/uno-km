@@ -25,13 +25,13 @@
     },
     {
       "id": "Multiplex Applications",
-      "match_topics": ["ma", "multiplex", "agent-orchestra", "windows-assist"],
+      "match_topics": ["ma", "multiplex", "agent-orchestra", "windows-assist", "multi-agent", "window-assistant"],
       "description": "복합 에이전트 및 데스크톱 어플리케이션입니다.",
       "metadata": { "ma": true }
     },
     {
       "id": "Social Research",
-      "match_topics": ["sr", "social", "dead-internet-theory"],
+      "match_topics": ["sr", "social", "dead-internet-theory", "social-research"],
       "description": "실험적 사회학 연구를 진행하는 분야입니다.",
       "metadata": { "sr": true }
     },
