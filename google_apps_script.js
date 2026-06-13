@@ -29,9 +29,9 @@ function doPost(e) {
       var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
       if (!visitsSheet) {
         visitsSheet = activeSpreadsheet.insertSheet("Visits");
-        visitsSheet.appendRow(["Timestamp", "Type"]); // Header
+        visitsSheet.appendRow(["Timestamp", "Type", "UserAgent"]); // Header
       }
-      visitsSheet.appendRow([new Date(), "visit"]);
+      visitsSheet.appendRow([new Date(), "visit", data.userAgent || "Unknown"]);
       
       return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
         .setMimeType(ContentService.MimeType.JSON);

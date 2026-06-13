@@ -43,9 +43,10 @@ class SocialEngine {
 
     try {
       console.log("[SocialEngine] Sending unique visit tracking hit...");
+      const userAgent = navigator.userAgent;
       const res = await fetch(this.GAS_URL, {
         method: 'POST',
-        body: JSON.stringify({ type: 'visit', key: this.API_SECRET_KEY }),
+        body: JSON.stringify({ type: 'visit', userAgent: userAgent, key: this.API_SECRET_KEY }),
         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
       const data = await res.json();
@@ -109,7 +110,7 @@ class SocialEngine {
       if (data.status === 'success') {
         document.getElementById('gb-count').textContent = `누적 방문자: ${data.total_visitors}명`;
         const list = document.getElementById('gb-list');
-        list.innerHTML = data.recent.map(r => `<div><span style="color:var(--accent-purple)">[${new Date(r[0]).toLocaleTimeString()}]</span> ${r[2]}</div>`).join('');
+        list.innerHTML = data.recent.map(r => `<div><span style="color:var(--accent-purple)">[${r[1] || 'Explorer'}]</span> ${r[2]}</div>`).join('');
       }
     } catch (e) {
       console.warn("Guestbook fetch error", e);
