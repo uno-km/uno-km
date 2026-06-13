@@ -83,7 +83,7 @@ class SocialEngine {
     this.container.innerHTML = `
       <div style="font-weight: 600; color: var(--accent-cyan); margin-bottom: 8px;">🌐 Neural Sync (방명록)</div>
       <div id="gb-count" style="color: var(--text-secondary); margin-bottom: 12px;">방문자: 로딩중...</div>
-      <div id="gb-list" style="max-height: 85px; overflow-y: auto; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); transition: max-height 0.2s ease;">
+      <div id="gb-list" style="max-height: 55px; overflow-y: auto; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); transition: max-height 0.2s ease;">
       </div>
       <div id="gb-toggle-container" style="display: none; text-align: right; margin-bottom: 8px;">
         <button id="gb-toggle" style="background: transparent; border: none; color: var(--accent-cyan); font-size: 0.7rem; cursor: pointer; padding: 0; outline: none;">펼치기 ▾</button>
@@ -106,7 +106,7 @@ class SocialEngine {
         listEl.style.maxHeight = '250px';
         toggleBtn.textContent = '접기 ▴';
       } else {
-        listEl.style.maxHeight = '85px';
+        listEl.style.maxHeight = '55px';
         toggleBtn.textContent = '펼치기 ▾';
       }
     };

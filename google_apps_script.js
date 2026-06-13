@@ -14,10 +14,17 @@
  * 10. 제공된 "웹 앱 URL"을 복사하여, `social_engine.js`의 `GAS_URL` 변수에 붙여넣습니다.
  */
 
+function getSpreadsheet() {
+  var active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) return active;
+  // 스크립트가 스프레드시트에 종속되지 않은 단독 실행형(Standalone)일 때의 대체 수단
+  return SpreadsheetApp.openById("1LMFt9sGWeW-RPlzWfhZaQimiL_p_Gleenh6lZwuYwj4");
+}
+
 function doPost(e) {
   try {
     var SECRET_KEY = "ameva-secure-fabric-key-2026";
-    var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var activeSpreadsheet = getSpreadsheet();
     var data = JSON.parse(e.postData.contents);
     
     if (data.key !== SECRET_KEY) {
@@ -65,7 +72,7 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var activeSpreadsheet = getSpreadsheet();
     var guestbookSheet = activeSpreadsheet.getSheetByName("Guestbook") || activeSpreadsheet.getSheets()[0];
     var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
     
