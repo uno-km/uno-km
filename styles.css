@@ -1843,3 +1843,14 @@ body {
   width: 24px;
   height: 24px;
 }
+
+/* Highlight matching search terms */
+.search-highlight {
+  background: rgba(124, 58, 237, 0.25);
+  color: var(--accent-cyan);
+  border-bottom: 2px dashed var(--accent-cyan);
+  font-weight: bold;
+  padding: 0 4px;
+  border-radius: 4px;
+  margin: 0 1px;
+}

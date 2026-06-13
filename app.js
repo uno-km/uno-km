@@ -284,12 +284,62 @@ function handleSpotlightSearch(e) {
   searchTimeout = setTimeout(() => {
     if (window.knowledgeEngine) {
       const results = window.knowledgeEngine.search(query, 5);
-      renderSpotlightResults(results);
+      renderSpotlightResults(results, query);
     }
   }, 400);
 }
 
-function renderSpotlightResults(results) {
+function getChoseong(str) {
+  const choseongs = [
+    'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 
+    'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+  ];
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i) - 0xAC00;
+    if (code >= 0 && code < 11172) {
+      result += choseongs[Math.floor(code / 588)];
+    } else {
+      result += str.charAt(i);
+    }
+  }
+  return result.toLowerCase();
+}
+
+function highlightText(text, query) {
+  if (!query) return escapeHtml(text);
+  const cleanQuery = query.trim();
+  if (cleanQuery.length === 0) return escapeHtml(text);
+
+  const isConsonants = /^[ㄱ-ㅎ]+$/.test(cleanQuery.replace(/\s+/g, ''));
+
+  if (isConsonants) {
+    const words = text.split(/(\s+)/);
+    const highlightedWords = words.map(word => {
+      if (/^\s+$/.test(word)) return word;
+      const cleanWord = word.replace(/[^\uAC00-\uD7A3a-zA-Z0-9ㄱ-ㅎ]/g, '');
+      if (!cleanWord) return escapeHtml(word);
+      const wordChoseong = getChoseong(cleanWord);
+      const queryChoseong = cleanQuery.toLowerCase();
+      if (wordChoseong.includes(queryChoseong)) {
+        return `<span class="search-highlight">${escapeHtml(word)}</span>`;
+      }
+      return escapeHtml(word);
+    });
+    return highlightedWords.join('');
+  } else {
+    try {
+      const escaped = cleanQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const regex = new RegExp(`(${escaped})`, 'gi');
+      const safeText = escapeHtml(text);
+      return safeText.replace(regex, '<span class="search-highlight">$1</span>');
+    } catch (e) {
+      return escapeHtml(text);
+    }
+  }
+}
+
+function renderSpotlightResults(results, query) {
   if (!results || results.length === 0) {
     spotlightResults.innerHTML = '<div style="color:var(--text-secondary); padding: 10px;">결과가 없습니다.</div>';
     return;
@@ -298,10 +348,11 @@ function renderSpotlightResults(results) {
   let html = '';
   results.forEach(res => {
     const item = res.item;
+    const highlightedText = highlightText(item.text, query);
     html += `
       <div class="search-result-item" onclick="if (window.selectNodeById) { window.selectNodeById('${item.repoName}'); } closeSpotlight();">
         <div class="search-result-repo">📦 ${item.repoName}</div>
-        <div class="search-result-text">${escapeHtml(item.text)}</div>
+        <div class="search-result-text">${highlightedText}</div>
       </div>
     `;
   });
