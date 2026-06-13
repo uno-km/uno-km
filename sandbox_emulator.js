@@ -1,38 +1,54 @@
 /**
  * AMEVA Neural Fabric - Sandbox Emulator
  * Intercepts Markdown rendering to add "Run" buttons to JS/HTML code blocks
+ * and automatically executes them immediately below the code block.
  */
 
 class SandboxEmulator {
   constructor() {
     this.setupObserver();
+    this.setupMessageListener();
   }
 
   setupObserver() {
-    // Observe changes to node-modal-desc to inject run buttons
+    // Observe changes to node-modal-desc to inject run buttons and auto-run code
     const targetNode = document.getElementById('node-modal-desc');
     if (!targetNode) return;
 
     const config = { childList: true, subtree: true };
     const observer = new MutationObserver((mutations) => {
-      this.injectButtons(targetNode);
+      this.injectAndAutoRun(targetNode);
     });
     observer.observe(targetNode, config);
   }
 
-  injectButtons(container) {
+  setupMessageListener() {
+    // Listen for resize messages from sandboxed iframes
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'resize-sandbox') {
+        const iframe = document.getElementById(event.data.id);
+        if (iframe) {
+          // Fit height perfectly based on content scrollHeight
+          iframe.style.height = (event.data.height + 25) + 'px';
+        }
+      }
+    });
+  }
+
+  injectAndAutoRun(container) {
     const codeBlocks = container.querySelectorAll('pre code');
     codeBlocks.forEach(block => {
-      // Avoid duplicate buttons
+      // Avoid duplicate buttons/iframes
       if (block.parentElement.querySelector('.sandbox-run-btn')) return;
 
       const lang = block.className || "";
       if (lang.includes('language-javascript') || lang.includes('language-js') || lang.includes('language-html')) {
         const btn = document.createElement('button');
         btn.className = 'sandbox-run-btn';
-        btn.innerHTML = '▶ 브라우저 에뮬레이터에서 실행';
+        btn.innerHTML = '▶ 코드 다시 실행';
         btn.style.display = 'block';
-        btn.style.marginTop = '8px';
+        btn.style.marginBottom = '8px';
+        btn.style.marginTop = '0px';
         btn.style.padding = '4px 12px';
         btn.style.background = 'var(--accent-purple)';
         btn.style.color = '#fff';
@@ -42,49 +58,96 @@ class SandboxEmulator {
         btn.style.fontSize = '0.8rem';
         btn.style.fontWeight = 'bold';
 
-        btn.onclick = () => this.runCode(block.textContent, lang.includes('html') ? 'html' : 'javascript');
+        const isHtml = lang.includes('html');
+        const codeType = isHtml ? 'html' : 'javascript';
+
+        btn.onclick = () => this.runCode(block.textContent, codeType, block);
         
-        block.parentElement.appendChild(btn);
+        // Insert run button on top of the code text inside pre
+        block.parentElement.insertBefore(btn, block);
+
+        // Auto-run immediately when loaded
+        setTimeout(() => {
+          this.runCode(block.textContent, codeType, block);
+        }, 100);
       }
     });
   }
 
-  runCode(code, type) {
-    if(window.audioEngine) window.audioEngine.playSwoosh();
+  runCode(code, type, block) {
+    if (window.audioEngine) window.audioEngine.playSwoosh();
     
-    // Create an iframe to sandbox the code
-    const iframe = document.createElement('iframe');
-    iframe.sandbox = "allow-scripts"; // Only allow scripts, no same-origin
-    iframe.style.width = '100%';
-    iframe.style.height = '300px';
-    iframe.style.border = '1px solid var(--accent-cyan)';
-    iframe.style.background = '#fff';
-    iframe.style.borderRadius = '8px';
-    iframe.style.marginTop = '12px';
+    const preElement = block.parentElement;
+    
+    // Find or create the iframe for this specific code block
+    let iframe = preElement.nextElementSibling;
+    if (!iframe || !iframe.classList.contains('sandbox-iframe')) {
+      iframe = document.createElement('iframe');
+      iframe.className = 'sandbox-iframe';
+      iframe.sandbox = "allow-scripts"; // Only allow scripts
+      iframe.style.width = '100%';
+      iframe.style.border = '1px solid var(--accent-cyan)';
+      iframe.style.background = '#fff';
+      iframe.style.borderRadius = '8px';
+      iframe.style.marginTop = '12px';
+      iframe.style.display = 'block';
+      preElement.after(iframe);
+    }
+
+    const iframeId = 'sandbox-iframe-' + Math.random().toString(36).substr(2, 9);
+    iframe.id = iframeId;
+    iframe.style.height = '100px'; // Initial height
 
     let srcDoc = "";
     if (type === 'html') {
-      srcDoc = code;
+      srcDoc = `
+        <!DOCTYPE html>
+        <html>
+        <body style="font-family: sans-serif; padding: 10px; margin: 0;">
+          ${code}
+          <script>
+            function sendHeight() {
+              const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+              window.parent.postMessage({ type: 'resize-sandbox', id: '${iframeId}', height: height }, '*');
+            }
+            window.addEventListener('load', sendHeight);
+            // Observe DOM changes to resize
+            const observer = new MutationObserver(sendHeight);
+            observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+          </script>
+        </body>
+        </html>
+      `;
     } else {
       srcDoc = `
         <!DOCTYPE html>
         <html>
-        <body style="font-family: sans-serif; padding: 10px;">
-          <h3>Sandbox Output:</h3>
-          <pre id="output" style="background: #f4f4f4; padding: 10px; border-radius: 4px;"></pre>
+        <body style="font-family: sans-serif; padding: 10px; margin: 0; background: #fafafa; color: #333;">
+          <h4 style="margin: 0 0 8px 0; color: var(--accent-purple); font-size: 0.85rem; font-family: monospace;">🖥️ Sandbox Console Output</h4>
+          <pre id="output" style="background: #1e1e1e; color: #fff; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; margin: 0; white-space: pre-wrap; word-break: break-all;"></pre>
           <script>
-            // Intercept console.log
             const ogLog = console.log;
+            function sendHeight() {
+              const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+              window.parent.postMessage({ type: 'resize-sandbox', id: '${iframeId}', height: height }, '*');
+            }
             console.log = function(...args) {
               const str = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
-              document.getElementById('output').innerHTML += str + '<br>';
+              const output = document.getElementById('output');
+              if (output) {
+                output.innerHTML += str + '<br>';
+                sendHeight();
+              }
               ogLog.apply(console, args);
             };
-            try {
-              ${code}
-            } catch (e) {
-              document.getElementById('output').innerHTML += '<span style="color:red">' + e.message + '</span>';
-            }
+            window.addEventListener('load', () => {
+              try {
+                ${code}
+              } catch (e) {
+                document.getElementById('output').innerHTML += '<span style="color:#ff6b6b; font-weight:bold;">⚠️ Error: ' + e.message + '</span>';
+              }
+              sendHeight();
+            });
           </script>
         </body>
         </html>
@@ -92,19 +155,6 @@ class SandboxEmulator {
     }
     
     iframe.srcdoc = srcDoc;
-
-    // Show it in a simple popup or append below the button
-    const modalBody = document.querySelector('#modal-node-detail .modal-body') || document.getElementById('node-modal-desc');
-    
-    // Remove old iframe if exists
-    const old = modalBody.querySelector('.sandbox-iframe');
-    if (old) old.remove();
-
-    iframe.className = 'sandbox-iframe';
-    modalBody.appendChild(iframe);
-    
-    // Scroll to it
-    iframe.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 }
 
