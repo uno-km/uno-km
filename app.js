@@ -548,6 +548,7 @@ async function handleSend() {
   aiMsgDiv.className = 'chat-msg ai';
   const bubbleDiv = document.createElement('div');
   bubbleDiv.className = 'msg-bubble';
+  bubbleDiv.innerHTML = '<span class="thinking-indicator">.. ... . ... 생각쥐어짜는중...</span>';
   aiMsgDiv.appendChild(bubbleDiv);
   chatLog.appendChild(aiMsgDiv);
 
@@ -590,6 +591,7 @@ ${contextStr}
     let fullResponse = "";
     const startTime = performance.now();
     let tokenCount = 0;
+    let isFirstChunk = true;
 
     for await (const chunk of asyncChunkGenerator) {
       // Check if generation was interrupted
@@ -600,8 +602,14 @@ ${contextStr}
       }
 
       const chunkText = chunk.choices[0]?.delta?.content || "";
+      if (isFirstChunk && chunkText) {
+        bubbleDiv.innerHTML = '';
+        isFirstChunk = false;
+      }
       fullResponse += chunkText;
-      bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
+      if (!isFirstChunk) {
+        bubbleDiv.innerHTML = escapeHtml(fullResponse).replace(/\n/g, '<br/>');
+      }
       chatLog.scrollTop = chatLog.scrollHeight;
       tokenCount++;
 

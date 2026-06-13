@@ -813,6 +813,18 @@ body {
   color: var(--accent-cyan);
 }
 
+.thinking-indicator {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  animation: pulse-opacity 1.5s infinite;
+}
+
+@keyframes pulse-opacity {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; text-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
+  100% { opacity: 0.4; }
+}
 /* Source Badges */
 .source-badges {
   display: flex;
