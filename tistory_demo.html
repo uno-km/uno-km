@@ -174,8 +174,8 @@
       }
 
       #ameva-tistory-demo .chat-history {
-        flex: 1;
-        min-height: 0;
+        height: 340px;
+        max-height: 340px;
         padding: 15px;
         overflow-y: auto;
         display: flex;
@@ -523,11 +523,11 @@
         <h3 style="color: #ccc; font-size: 0.85rem; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">🧬 Core Skillsets</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 6px;">
           <span style="background: rgba(179,102,255,0.15); border: 1px solid rgba(179,102,255,0.3); color: #d6b3ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">AI (WebGPU)</span>
-          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Backend (NodeJS / Python)</span>
-          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Frontend (VanillaJS / D3.js)</span>
+          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Backend (Java / Spring Boot / Spring)</span>
+          <span style="background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: #80f2ff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Frontend (JavaScript)</span>
           <span style="background: rgba(0,255,85,0.15); border: 1px solid rgba(0,255,85,0.3); color: #80ffaa; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Database (SQL / Serverless Sync)</span>
           <span style="background: rgba(255,0,127,0.15); border: 1px solid rgba(255,0,127,0.3); color: #ff80bf; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">System Architecture</span>
-          <span style="background: rgba(255,165,0,0.15); border: 1px solid rgba(255,165,0,0.3); color: #ffc266; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">DevOps / MLOps</span>
+          <span style="background: rgba(255,165,0,0.15); border: 1px solid rgba(255,165,0,0.3); color: #ffc266; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold;">MLOps</span>
         </div>
       </div>
 
@@ -535,9 +535,12 @@
       <div>
         <h3 style="color: #ccc; font-size: 0.85rem; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">📁 Main Projects</h3>
         <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; color: #bbb; line-height: 1.7;">
-          <li><b style="color: #fff;">AMEVA Neural Fabric</b> : 브라우저 하드웨어를 직접 활용하는 온프레미스 AI 지식 맵 대시보드</li>
-          <li><b style="color: #fff;">AMEVA Edge Agent Orchestrator</b> : 클라우드 없이 디바이스에서 독립 수행되는 자율적 멀티 에이전트 환경 설계</li>
-          <li><b style="color: #fff;">Android Termux STT Voice Pipeline</b> : 모바일 쉘 환경에서의 비동기 음성 처리 자동화 시스템 배치</li>
+          <li><b>2021</b> : 상품관리 시스템 개발 프로젝트</li>
+          <li><b>2022</b> : 전사 상품관리시스템 고도화 프로젝트 참여</li>
+          <li><b>2023</b> : 모바일 연동을 통해 전자결재시스템 연동</li>
+          <li><b>2024</b> : 사업성과지표관리 및 워크플로우 최적화 프로젝트 진행</li>
+          <li><b>2025</b> : 조직관리자동화 시스템 구축 및 프로젝트 진행</li>
+          <li><b>2026</b> : MLOps 개발 및 연구 진행</li>
         </ul>
       </div>
 
@@ -587,7 +590,7 @@
   // ────────────────────────────────────────────────────────
   // 1. DYNAMIC CAREER DATE CALCULATOR
   // ────────────────────────────────────────────────────────
-  const startDate = new Date("2021-10-01");
+  const startDate = new Date("2021-03-05");
   const today = new Date();
   const diffTime = Math.abs(today - startDate);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
