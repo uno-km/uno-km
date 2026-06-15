@@ -18,7 +18,7 @@ class TagCloud {
     this.container.style.position = 'fixed';
     this.container.style.left = '11px';
     this.container.style.bottom = '11px';
-    this.container.style.zIndex = '150'; // Below FABs but above graph
+    this.container.style.zIndex = '210'; // Below FABs but above graph
     this.container.style.display = 'flex';
     this.container.style.flexWrap = 'wrap';
     this.container.style.gap = '8px';

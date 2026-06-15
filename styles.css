@@ -289,139 +289,10 @@ body {
 }
 
 
-/* ── FAB (Floating Action Button) ──────────────────────────── */
-/* ── FAB Group Container (Unified Cluster) ── */
-.fab-group {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: var(--z-fab);
-  display: flex;
-  flex-direction: column-reverse; /* Trigger at bottom, sub-buttons stack up */
-  align-items: center;
-  gap: 12px;
-  pointer-events: none;
-}
 
-.fab-group * {
-  pointer-events: auto;
-}
 
-/* Trigger Button */
-#fab-trigger {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-green);
-  background: var(--bg-panel);
-  color: var(--accent-green);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-fab);
-  transition:
-    transform var(--duration-fast) var(--ease-bounce),
-    box-shadow var(--duration-fast) ease,
-    background var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
-  z-index: 10;
-  outline: none;
-}
 
-#fab-trigger:hover {
-  transform: scale(1.08);
-  box-shadow: var(--shadow-fab), var(--accent-green-glow);
-}
 
-#fab-trigger .trigger-icon {
-  font-size: 1.5rem;
-  transition: transform var(--duration-med) var(--ease-smooth);
-  display: inline-block;
-}
-
-.fab-group.is-open #fab-trigger {
-  border-color: var(--danger);
-  color: var(--danger);
-}
-
-.fab-group.is-open #fab-trigger .trigger-icon {
-  transform: rotate(135deg); /* Rotates cross/lightning */
-}
-
-/* Sub-buttons */
-.fab-sub {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  transform: translateY(20px) scale(0.6);
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    transform var(--duration-med) var(--ease-smooth),
-    opacity var(--duration-med) ease,
-    visibility var(--duration-med) ease;
-  outline: none;
-}
-
-/* Specific Sub-Button Styling */
-#fab-chat {
-  color: var(--accent-green);
-  border-color: rgba(62, 207, 142, 0.4);
-}
-#fab-chat:hover {
-  border-color: var(--accent-green);
-  background: rgba(62, 207, 142, 0.1);
-  box-shadow: 0 0 12px rgba(62, 207, 142, 0.3);
-}
-
-#fab-blog {
-  color: var(--accent-cyan);
-  border-color: rgba(0, 239, 255, 0.4);
-}
-#fab-blog:hover {
-  border-color: var(--accent-cyan);
-  background: rgba(0, 239, 255, 0.1);
-  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
-}
-
-#fab-voice {
-  color: var(--accent-purple);
-  border-color: rgba(124, 58, 237, 0.4);
-}
-#fab-voice:hover {
-  border-color: var(--accent-purple);
-  background: rgba(124, 58, 237, 0.1);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.3);
-}
-
-/* Open State for Sub-buttons */
-.fab-group.is-open .fab-sub {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Cascade delays for fly-out animation (4 items) */
-.fab-group.is-open .fab-sub:nth-child(1) { transition-delay: 0.12s; } /* top: blog */
-.fab-group.is-open .fab-sub:nth-child(2) { transition-delay: 0.08s; } /* search */
-.fab-group.is-open .fab-sub:nth-child(3) { transition-delay: 0.04s; } /* voice */
-.fab-group.is-open .fab-sub:nth-child(4) { transition-delay: 0.00s; } /* chat */
-
-.fab-sub svg {
-  width: 20px;
-  height: 20px;
-}
 
 /* ── Floating Action Button (Who Made AMEVA?) ── */
 .fab-who-made {
@@ -854,10 +725,20 @@ body {
 }
 
 @keyframes pulse-opacity {
-  0%   { opacity: 0.4; }
-  50%  { opacity: 1; text-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
-  100% { opacity: 0.4; }
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(124, 58, 237, 0.5);
+  }
+
+  100% {
+    opacity: 0.4;
+  }
 }
+
 /* Source Badges */
 .source-badges {
   display: flex;
@@ -1494,13 +1375,6 @@ body {
     height: calc(100vh - 120px);
   }
 
-  #fab-chat {
-    right: var(--space-md);
-    bottom: var(--space-md);
-    width: 50px;
-    height: 50px;
-  }
-
   .sre-metrics {
     display: none;
   }
@@ -1827,7 +1701,7 @@ body {
   backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -1888,17 +1762,32 @@ body {
 }
 
 /* Cascade animation delays */
-.search-result-item:nth-child(1) { animation-delay: 0.04s; }
-.search-result-item:nth-child(2) { animation-delay: 0.08s; }
-.search-result-item:nth-child(3) { animation-delay: 0.12s; }
-.search-result-item:nth-child(4) { animation-delay: 0.16s; }
-.search-result-item:nth-child(5) { animation-delay: 0.20s; }
+.search-result-item:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.search-result-item:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.search-result-item:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.search-result-item:nth-child(4) {
+  animation-delay: 0.16s;
+}
+
+.search-result-item:nth-child(5) {
+  animation-delay: 0.20s;
+}
 
 @keyframes slide-up-fade {
   from {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1929,21 +1818,6 @@ body {
   overflow: hidden;
 }
 
-/* ── Floating Action Button (Search) ── */
-#fab-search {
-  color: var(--accent-cyan);
-  border-color: rgba(0, 239, 255, 0.4);
-}
-#fab-search:hover {
-  border-color: var(--accent-cyan);
-  background: rgba(0, 239, 255, 0.1);
-  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
-}
-
-#fab-search svg {
-  width: 20px;
-  height: 20px;
-}
 
 /* Highlight matching search terms */
 .search-highlight {
@@ -1958,12 +1832,31 @@ body {
 
 /* ── Panel Wobble Animation (Dog in Box Effect) ── */
 @keyframes box-wobble {
-  0%, 100% { transform: rotate(0deg); }
-  15% { transform: rotate(-3deg) scale(1.02); }
-  30% { transform: rotate(3deg) scale(1.02); }
-  45% { transform: rotate(-2deg) scale(1.01); }
-  60% { transform: rotate(2deg) scale(1.01); }
-  75% { transform: rotate(0deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(-3deg) scale(1.02);
+  }
+
+  30% {
+    transform: rotate(3deg) scale(1.02);
+  }
+
+  45% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+
+  60% {
+    transform: rotate(2deg) scale(1.01);
+  }
+
+  75% {
+    transform: rotate(0deg);
+  }
 }
 
 .wobble-active {
@@ -1975,4 +1868,183 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ── FAB (Floating Action Button) : CURRENT INDEX.HTML VERSION ── */
+
+.fab-group {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  z-index: 220;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.fab-group * {
+  pointer-events: auto;
+}
+
+/* 번개 버튼: 항상 맨 아래 */
+#fab-trigger {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-green);
+  background: var(--bg-panel);
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-fab);
+  z-index: 30;
+  outline: none;
+  transition:
+    transform var(--duration-fast) var(--ease-bounce),
+    box-shadow var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    background var(--duration-fast) ease;
+}
+
+#fab-trigger:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-fab), var(--accent-green-glow);
+}
+
+#fab-trigger .trigger-icon {
+  font-size: 1.5rem;
+  display: inline-block;
+  transition: transform var(--duration-med) var(--ease-smooth);
+}
+
+.fab-group.is-open #fab-trigger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.fab-group.is-open #fab-trigger .trigger-icon {
+  transform: rotate(135deg);
+}
+
+/* 서브 버튼: 기본은 번개 위에 겹쳐놓음 */
+.fab-sub {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.7);
+
+  z-index: 10;
+  transition:
+    bottom var(--duration-med) var(--ease-smooth),
+    opacity var(--duration-med) ease,
+    transform var(--duration-med) var(--ease-smooth),
+    visibility 0s linear var(--duration-med);
+}
+
+/* 열렸을 때 보이기 */
+.fab-group.is-open .fab-sub {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  transition:
+    bottom var(--duration-med) var(--ease-smooth),
+    opacity var(--duration-med) ease,
+    transform var(--duration-med) var(--ease-smooth),
+    visibility 0s linear 0s;
+}
+
+/* 위로 착착 올라가는 위치 */
+/* 위로 착착 올라가는 위치 */
+.fab-group.is-open #fab-voice {
+  bottom: 68px;
+  transition-delay: 0s;
+}
+
+.fab-group.is-open #fab-chat {
+  bottom: 128px;
+  transition-delay: 0.04s;
+}
+
+.fab-group.is-open #fab-search {
+  bottom: 188px;
+  transition-delay: 0.08s;
+}
+
+.fab-group.is-open #fab-blog {
+  bottom: 248px;
+  transition-delay: 0.12s;
+}
+
+/* 아이콘 크기 */
+.fab-sub svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 버튼별 색상 */
+#fab-chat {
+  color: var(--accent-green);
+  border-color: rgba(62, 207, 142, 0.4);
+}
+
+#fab-chat:hover {
+  border-color: var(--accent-green);
+  background: rgba(62, 207, 142, 0.1);
+  box-shadow: 0 0 12px rgba(62, 207, 142, 0.3);
+}
+
+#fab-search {
+  color: var(--accent-cyan);
+  border-color: rgba(0, 239, 255, 0.4);
+}
+
+#fab-search:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 239, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
+}
+
+#fab-blog {
+  color: var(--accent-cyan);
+  border-color: rgba(0, 239, 255, 0.4);
+}
+
+#fab-blog:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 239, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
+}
+
+#fab-voice {
+  color: var(--accent-purple);
+  border-color: rgba(124, 58, 237, 0.4);
+}
+
+#fab-voice:hover {
+  border-color: var(--accent-purple);
+  background: rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.3);
 }
