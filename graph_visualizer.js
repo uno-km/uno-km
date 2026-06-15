@@ -418,6 +418,8 @@ function bindNodeEvents() {
       // Hide small tooltip
       if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
 
+      if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] Node clicked', `${d.id} 노드 클릭됨`);
+
       // 렌더링 함수 호출
       renderNodeModal(d);
     });
@@ -433,6 +435,7 @@ function drag(simulation) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
     event.subject.fx = event.subject.x;
     event.subject.fy = event.subject.y;
+    if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] Node drag started', `${event.subject.id} 노드 드래그 시작`);
   }
 
   function dragged(event) {
@@ -579,6 +582,7 @@ window.startTour = async function () {
   isTourActive = true;
   currentTourIndex = 0;
   tourOverlay.classList.remove('is-hidden');
+  if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] TTS Tour', '시네마틱 투어 시작됨');
 
   // Stop TTS + timers + ring
   const stopAll = () => {
@@ -603,6 +607,10 @@ window.startTour = async function () {
       svg.transition().duration(1500)
         .call(zoomBehavior.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.8).translate(-width / 2, -height / 2));
     }
+    const completed = (currentTourIndex + 1 === tourSteps.length);
+    if (window.logTelemetryEvent) {
+      window.logTelemetryEvent('[LOG] TTS Tour Exit', `투어 종료 - ${currentTourIndex + 1}단계에서 종료 (완주 여부: ${completed ? '예' : '아니오'})`);
+    }
     if (window.showToast) window.showToast('웰컴 아메바 유니버스!');
   };
 
@@ -612,6 +620,9 @@ window.startTour = async function () {
     stopAll();
 
     const step = tourSteps[index];
+    if (window.logTelemetryEvent) {
+      window.logTelemetryEvent('[LOG] TTS Tour Step', `${index + 1}단계: ${step.title} (Node: ${step.nodeId})`);
+    }
 
     // Update UI
     titleEl.textContent = step.title;

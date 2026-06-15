@@ -34,7 +34,12 @@ function doPost(e) {
     
     if (data.type === 'visit') {
       var visitsSheet = activeSpreadsheet.getSheetByName("Visits");
-      var headers = ["Timestamp", "Type", "Platform", "Language", "ScreenResolution", "WindowSize", "Cores", "Memory", "WebGPU", "Connection", "Referrer", "UserAgent"];
+      var headers = [
+        "Timestamp", "SessionID", "CanvasFingerprint", "Platform", "Language", 
+        "ScreenResolution", "WindowSize", "Cores", "Memory", "WebGPU", 
+        "Connection", "Referrer", "UserAgent", "IP", "Country", "City", 
+        "ISP", "BatteryLevel", "BatteryCharging", "DarkMode", "Timezone"
+      ];
       
       if (!visitsSheet) {
         visitsSheet = activeSpreadsheet.insertSheet("Visits");
@@ -44,7 +49,8 @@ function doPost(e) {
       var info = data.visitorInfo || {};
       var rowData = [
         new Date(),
-        "visit",
+        data.session_id || "Unknown",
+        data.fingerprint || "Unknown",
         info.platform || "Unknown",
         info.language || "Unknown",
         info.screenResolution || "Unknown",
@@ -54,9 +60,59 @@ function doPost(e) {
         info.webgpu !== undefined ? info.webgpu : "Unknown",
         info.connection || "Unknown",
         info.referrer || "Direct",
-        info.userAgent || "Unknown"
+        info.userAgent || "Unknown",
+        info.ip || "Unknown",
+        info.country || "Unknown",
+        info.city || "Unknown",
+        info.isp || "Unknown",
+        info.batteryLevel || "Unknown",
+        info.batteryCharging || "Unknown",
+        info.darkMode || "Unknown",
+        info.timezone || "Unknown"
       ];
       visitsSheet.appendRow(rowData);
+      
+      return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } else if (data.type === 'interaction') {
+      var interactionsSheet = activeSpreadsheet.getSheetByName("Interactions");
+      var headers = ["Timestamp", "SessionID", "CanvasFingerprint", "EventMessage", "Details"];
+      
+      if (!interactionsSheet) {
+        interactionsSheet = activeSpreadsheet.insertSheet("Interactions");
+        interactionsSheet.appendRow(headers);
+      }
+      
+      var rowData = [
+        new Date(),
+        data.session_id || "Unknown",
+        data.fingerprint || "Unknown",
+        data.eventName || "Unknown",
+        data.details || ""
+      ];
+      interactionsSheet.appendRow(rowData);
+      
+      return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } else if (data.type === 'telemetry') {
+      var telemetrySheet = activeSpreadsheet.getSheetByName("SessionTelemetry");
+      var headers = ["Timestamp", "SessionID", "CanvasFingerprint", "DwellTimeSeconds", "MaxScrollDepthPct", "ClickCount", "ClickHeatmap"];
+      
+      if (!telemetrySheet) {
+        telemetrySheet = activeSpreadsheet.insertSheet("SessionTelemetry");
+        telemetrySheet.appendRow(headers);
+      }
+      
+      var rowData = [
+        new Date(),
+        data.session_id || "Unknown",
+        data.fingerprint || "Unknown",
+        data.dwellTime || 0,
+        data.scrollDepth || 0,
+        data.clickCount || 0,
+        data.clickHeatmap || ""
+      ];
+      telemetrySheet.appendRow(rowData);
       
       return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
         .setMimeType(ContentService.MimeType.JSON);

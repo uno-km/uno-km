@@ -76,6 +76,10 @@ class SandboxEmulator {
 
   runCode(code, type, block) {
     if (window.audioEngine) window.audioEngine.playSwoosh();
+    
+    if (window.logTelemetryEvent) {
+      window.logTelemetryEvent('[LOG] Sandbox run', `${type} 코드 블록 실행`);
+    }
 
     const preElement = block.parentElement;
 

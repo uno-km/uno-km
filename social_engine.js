@@ -3,6 +3,16 @@
  * Handles Google Sheets Guestbook & WebRTC Multiplayer
  */
 
+// Global queue for early logs before SocialEngine is instantiated
+window.telemetryQueue = window.telemetryQueue || [];
+window.logTelemetryEvent = function(eventName, details) {
+  if (window.socialEngine && typeof window.socialEngine.logInteraction === 'function') {
+    window.socialEngine.logInteraction(eventName, details);
+  } else {
+    window.telemetryQueue.push({ eventName, details, timestamp: new Date().toISOString() });
+  }
+};
+
 class SocialEngine {
   constructor() {
     this.GAS_URL = "";
@@ -12,11 +22,160 @@ class SocialEngine {
     this.ghostCursors = {};
     this.expandTimeout = null;
 
+    // Initialize session telemetry properties
+    this.sessionId = 'sess-' + Math.random().toString(36).substr(2, 9);
+    this.startTime = Date.now();
+    this.maxScrollPercent = 0;
+    this.clickCount = 0;
+    this.clickHeatmap = [];
+    this.fingerprint = this.getCanvasFingerprint();
+
+    this.setupBehavioralListeners();
+
     this.loadConfig().then(() => {
       this.initGuestbookUI();
       this.initWebRTC();
       this.trackVisitor();
+
+      // Flush early queue logs
+      if (window.telemetryQueue && window.telemetryQueue.length > 0) {
+        window.telemetryQueue.forEach(item => {
+          this.logInteraction(item.eventName, item.details);
+        });
+        window.telemetryQueue = [];
+      }
     });
+  }
+
+  getCanvasFingerprint() {
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return "NoContext";
+      canvas.width = 200;
+      canvas.height = 50;
+      ctx.textBaseline = "top";
+      ctx.font = "14px 'Arial'";
+      ctx.fillStyle = "#f60";
+      ctx.fillRect(125, 1, 62, 20);
+      ctx.fillStyle = "#069";
+      ctx.fillText("AMEVA-Fingerprint-2026", 2, 15);
+      ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+      ctx.fillText("AMEVA-Fingerprint-2026", 4, 17);
+      
+      ctx.strokeStyle = "#f0f";
+      ctx.beginPath();
+      ctx.arc(50, 25, 20, 0, Math.PI * 2, true);
+      ctx.closePath();
+      ctx.stroke();
+      
+      const src = canvas.toDataURL();
+      let hash = 0;
+      for (let i = 0; i < src.length; i++) {
+        const char = src.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return Math.abs(hash).toString(16);
+    } catch (e) {
+      return "FingerprintError";
+    }
+  }
+
+  setupBehavioralListeners() {
+    // Scroll depth tracking
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        const pct = Math.round((scrollTop / docHeight) * 100);
+        if (pct > this.maxScrollPercent) {
+          this.maxScrollPercent = pct;
+        }
+      }
+    });
+
+    // Click tracker (heatmap coords)
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      this.clickCount++;
+      const rx = (e.clientX / window.innerWidth).toFixed(3);
+      const ry = (e.clientY / window.innerHeight).toFixed(3);
+      
+      if (this.clickHeatmap.length < 50) {
+        this.clickHeatmap.push({ x: rx, y: ry, tag: e.target.tagName });
+      }
+    });
+
+    // Periodic telemetry uploads (every 15 seconds)
+    setInterval(() => {
+      this.sendTelemetryUpdate();
+    }, 15000);
+
+    // Visibility-change / exit listener
+    const exitHandler = () => {
+      this.sendTelemetryUpdate(true);
+    };
+    window.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        exitHandler();
+      }
+    });
+    window.addEventListener('pagehide', exitHandler);
+  }
+
+  async sendTelemetryUpdate(isSync = false) {
+    if (!this.GAS_URL) return;
+    const dwellTime = Math.round((Date.now() - this.startTime) / 1000);
+    const payload = {
+      type: 'telemetry',
+      session_id: this.sessionId,
+      fingerprint: this.fingerprint,
+      dwellTime: dwellTime,
+      scrollDepth: this.maxScrollPercent,
+      clickCount: this.clickCount,
+      clickHeatmap: JSON.stringify(this.clickHeatmap),
+      key: this.API_SECRET_KEY
+    };
+
+    const payloadStr = JSON.stringify(payload);
+
+    if (isSync && navigator.sendBeacon) {
+      const blob = new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' });
+      navigator.sendBeacon(this.GAS_URL, blob);
+    } else {
+      try {
+        fetch(this.GAS_URL, {
+          method: 'POST',
+          body: payloadStr,
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          keepalive: true
+        });
+      } catch (e) {
+        console.warn("[SocialEngine] Telemetry update failed:", e);
+      }
+    }
+  }
+
+  async logInteraction(eventName, details = "") {
+    if (!this.GAS_URL) return;
+    try {
+      fetch(this.GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          type: 'interaction',
+          session_id: this.sessionId,
+          fingerprint: this.fingerprint,
+          eventName: eventName,
+          details: details,
+          key: this.API_SECRET_KEY
+        }),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        keepalive: true
+      });
+    } catch (e) {
+      console.warn("[SocialEngine] Interaction log failed:", e);
+    }
   }
 
   async loadConfig() {
@@ -35,12 +194,44 @@ class SocialEngine {
   async trackVisitor() {
     if (!this.GAS_URL) return;
 
-    // session에 방문 이력이 있는지 체크
+    // session에 방문 이력이 있는지 체크 (GAS 중복 카운트 방지용)
     const sessionVisited = sessionStorage.getItem('ameva_visited');
-    if (sessionVisited) {
-      console.log("[SocialEngine] Visit already recorded in this session.");
-      return;
+
+    // IP & Geolocation info (isp, country, city)
+    let ipInfo = { ip: "Unknown", country: "Unknown", city: "Unknown", isp: "Unknown" };
+    try {
+      const ipRes = await Promise.race([
+        fetch('https://ipapi.co/json/').then(r => r.json()),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+      ]);
+      ipInfo = {
+        ip: ipRes.ip || "Unknown",
+        country: ipRes.country_name || "Unknown",
+        city: ipRes.city || "Unknown",
+        isp: ipRes.org || "Unknown"
+      };
+    } catch (err) {
+      console.warn("[SocialEngine] Failed to fetch IP/Location info:", err);
+      ipInfo = { ip: "Blocked/Failed", country: "Unknown", city: "Unknown", isp: "Unknown" };
     }
+
+    // Battery Status
+    let batteryInfo = { level: "Unsupported", charging: "Unsupported" };
+    if (navigator.getBattery) {
+      try {
+        const battery = await navigator.getBattery();
+        batteryInfo = {
+          level: Math.round(battery.level * 100) + "%",
+          charging: battery.charging ? "Yes" : "No"
+        };
+      } catch (e) {
+        console.warn("[SocialEngine] Failed to get battery status:", e);
+      }
+    }
+
+    // Preferences and Timezone
+    const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "Dark" : "Light";
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown";
 
     try {
       console.log("[SocialEngine] Sending unique visit tracking hit with environment info...");
@@ -55,19 +246,31 @@ class SocialEngine {
         memory: navigator.deviceMemory || "Unknown",
         webgpu: !!navigator.gpu,
         connection: navigator.connection ? navigator.connection.effectiveType : "Unknown",
-        referrer: document.referrer || "Direct"
+        referrer: document.referrer || "Direct",
+        ip: ipInfo.ip,
+        country: ipInfo.country,
+        city: ipInfo.city,
+        isp: ipInfo.isp,
+        batteryLevel: batteryInfo.level,
+        batteryCharging: batteryInfo.charging,
+        darkMode: darkMode,
+        timezone: timezone
       };
 
-      // 구글 앱스 스크립트 POST 리디렉션 시 발생하는 브라우저 CORS 차단 정책을 피하기 위해
-      // Response JSON 파싱을 거치지 않고 바로 세션 스토리지 플래그를 저장합니다.
       await fetch(this.GAS_URL, {
         method: 'POST',
-        body: JSON.stringify({ type: 'visit', visitorInfo: visitorInfo, key: this.API_SECRET_KEY }),
+        body: JSON.stringify({ 
+          type: 'visit', 
+          session_id: this.sessionId, 
+          fingerprint: this.fingerprint, 
+          visitorInfo: visitorInfo, 
+          key: this.API_SECRET_KEY 
+        }),
         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
 
       sessionStorage.setItem('ameva_visited', 'true');
-      console.log("[SocialEngine] Unique visit logged (ignoring response parse for CORS compatibility).");
+      console.log("[SocialEngine] Unique visit logged.");
 
       // 구글 스프레드시트 기록 시간 버퍼를 고려하여 1.5초 뒤 조회수를 갱신합니다.
       setTimeout(() => this.fetchData(), 1500);

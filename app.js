@@ -302,6 +302,9 @@ function handleSpotlightSearch(e) {
   spotlightResults.innerHTML = '<div class="search-searching">🔍 검색 중...</div>';
 
   searchTimeout = setTimeout(() => {
+    if (window.logTelemetryEvent) {
+      window.logTelemetryEvent('[LOG] Spotlight Search', `검색 키워드: "${query}"`);
+    }
     if (window.knowledgeEngine) {
       const results = window.knowledgeEngine.search(query, 5);
       renderSpotlightResults(results, query);
