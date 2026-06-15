@@ -183,6 +183,7 @@ export async function initGraph() {
     const globalLoading = document.getElementById('global-loading');
     if (globalLoading) {
       globalLoading.classList.add('is-hidden');
+      triggerGenesisGlow();
     }
 
     // 로딩 완료 후 친절한 안내 메시지 띄우기 (1~2초 사이)
@@ -871,5 +872,45 @@ export function selectNodeById(id) {
 }
 
 window.selectNodeById = selectNodeById;
+
+export function triggerGenesisGlow() {
+  if (!window.nodeElements || !window.linkElements) return;
+
+  if (window.audioEngine && typeof window.audioEngine.playPowerUp === 'function') {
+    window.audioEngine.playPowerUp();
+  }
+
+  // 1. Nodes inflate, pulse drop-shadow, and return to baseline size
+  window.nodeElements.transition()
+    .duration(800)
+    .ease(d3.easeExpoOut)
+    .attr('r', d => d.radius * 2.5)
+    .style('filter', 'drop-shadow(0 0 20px #00EFFF) drop-shadow(0 0 10px #7C3AED)')
+    .style('stroke', '#3ECF8E')
+    .style('stroke-width', '3px')
+    .transition()
+    .duration(1200)
+    .ease(d3.easeSineInOut)
+    .attr('r', d => d.radius)
+    .style('filter', null)
+    .style('stroke', null)
+    .style('stroke-width', null);
+
+  // 2. Links briefly glow and expand, then return to normal opacity/width
+  window.linkElements.transition()
+    .duration(800)
+    .ease(d3.easeExpoOut)
+    .attr('stroke', '#00EFFF')
+    .attr('stroke-width', d => Math.sqrt(d.value) * 3)
+    .attr('stroke-opacity', 1)
+    .transition()
+    .duration(1200)
+    .ease(d3.easeSineInOut)
+    .attr('stroke', 'var(--border-subtle)')
+    .attr('stroke-width', d => Math.sqrt(d.value))
+    .attr('stroke-opacity', 0.6);
+}
+
+window.triggerGenesisGlow = triggerGenesisGlow;
 
 

@@ -41,8 +41,10 @@ class VoiceShell {
   }
 
   createUI() {
+    const parent = document.getElementById('fab-group');
     this.btn = document.createElement('button');
     this.btn.id = 'fab-voice';
+    this.btn.className = 'fab-sub';
     this.btn.setAttribute('aria-label', 'Voice Commands');
     this.btn.innerHTML = `
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--accent-purple); transition: color 0.2s;">
@@ -52,10 +54,6 @@ class VoiceShell {
         <line x1="8" y1="23" x2="16" y2="23"></line>
       </svg>
     `;
-    this.btn.style.position = 'fixed';
-    this.btn.style.bottom = '24px';
-    // Position it to the left of the search FAB
-    this.btn.style.right = 'calc(24px + 56px + 140px)'; 
     this.btn.style.width = '48px';
     this.btn.style.height = '48px';
     this.btn.style.borderRadius = '50%';
@@ -72,7 +70,12 @@ class VoiceShell {
     this.btn.style.transition = 'all 0.2s';
     
     this.btn.onclick = () => this.toggle();
-    document.body.appendChild(this.btn);
+    if (parent) {
+      const trigger = document.getElementById('fab-trigger');
+      parent.insertBefore(this.btn, trigger);
+    } else {
+      document.body.appendChild(this.btn);
+    }
   }
 
   updateUI() {

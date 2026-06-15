@@ -10,6 +10,7 @@ class SocialEngine {
     this.peer = null;
     this.connections = [];
     this.ghostCursors = {};
+    this.expandTimeout = null;
 
     this.loadConfig().then(() => {
       this.initGuestbookUI();
@@ -43,7 +44,7 @@ class SocialEngine {
 
     try {
       console.log("[SocialEngine] Sending unique visit tracking hit with environment info...");
-      
+
       const visitorInfo = {
         userAgent: navigator.userAgent,
         language: navigator.language || "Unknown",
@@ -67,7 +68,7 @@ class SocialEngine {
 
       sessionStorage.setItem('ameva_visited', 'true');
       console.log("[SocialEngine] Unique visit logged (ignoring response parse for CORS compatibility).");
-      
+
       // 구글 스프레드시트 기록 시간 버퍼를 고려하여 1.5초 뒤 조회수를 갱신합니다.
       setTimeout(() => this.fetchData(), 1500);
     } catch (e) {
@@ -82,79 +83,259 @@ class SocialEngine {
     this.container.style.position = 'fixed';
     this.container.style.top = '70px';
     this.container.style.right = '24px';
-    this.container.style.width = '280px';
-    this.container.style.background = 'rgba(28, 28, 28, 0.85)';
-    this.container.style.backdropFilter = 'blur(12px)';
-    this.container.style.border = '1px solid var(--border-subtle)';
-    this.container.style.borderRadius = 'var(--radius-md)';
-    this.container.style.padding = '16px';
+    this.container.style.width = '125px';
     this.container.style.zIndex = '150';
     this.container.style.color = 'var(--text-primary)';
     this.container.style.fontSize = '0.8rem';
-
-    this.container.innerHTML = `
-      <div style="font-weight: 600; color: var(--accent-cyan); margin-bottom: 8px;">🌐 Neural Sync (방명록)</div>
-      <div id="gb-count" style="color: var(--text-secondary); margin-bottom: 12px;">방문자: 로딩중...</div>
-      <div id="gb-list" style="max-height: 55px; overflow-y: auto; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); transition: max-height 0.2s ease;">
-      </div>
-      <div id="gb-toggle-container" style="display: none; text-align: right; margin-bottom: 8px;">
-        <button id="gb-toggle" style="background: transparent; border: none; color: var(--accent-cyan); font-size: 0.7rem; cursor: pointer; padding: 0; outline: none;">펼치기 ▾</button>
-      </div>
-      <div style="display: flex; gap: 4px;">
-        <input type="text" id="gb-input" placeholder="메시지 남기기..." style="flex:1; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); color: #fff; padding: 4px 8px; border-radius: 4px; outline:none;">
-        <button id="gb-send" style="background: var(--accent-cyan); color: #000; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Sync</button>
-      </div>
-    `;
+    this.container.style.transition = 'all 0.3s ease';
 
     document.body.appendChild(this.container);
 
-    const toggleBtn = document.getElementById('gb-toggle');
-    const listEl = document.getElementById('gb-list');
-    let isExpanded = false;
+    this.isCollapsed = window.innerWidth <= 768; // Collapse by default on mobile
+    this.wobbleInterval = null;
+    this.lastData = null;
+    this.startWobbleTimer();
 
-    toggleBtn.onclick = () => {
-      isExpanded = !isExpanded;
-      if (isExpanded) {
-        listEl.style.maxHeight = '250px';
-        toggleBtn.textContent = '접기 ▴';
-      } else {
-        listEl.style.maxHeight = '55px';
-        toggleBtn.textContent = '펼치기 ▾';
-      }
-    };
-
-    document.getElementById('gb-send').onclick = () => {
-      const msg = document.getElementById('gb-input').value;
-      if (msg) this.postMessage(msg);
-    };
+    // Render initial empty state (Loading...)
+    this.renderGuestbook(null);
 
     // Load initial data
     this.fetchData();
   }
 
+  startWobbleTimer() {
+    if (this.wobbleInterval) clearInterval(this.wobbleInterval);
+    this.wobbleInterval = setInterval(() => {
+      if (this.isCollapsed && this.container) {
+        this.container.classList.add('wobble-active');
+        setTimeout(() => {
+          this.container.classList.remove('wobble-active');
+        }, 600);
+      }
+    }, 3000);
+  }
+
+  renderGuestbook(data) {
+    if (!this.container) return;
+
+    if (this.expandTimeout) {
+      clearTimeout(this.expandTimeout);
+      this.expandTimeout = null;
+    }
+
+    // Apply container styling based on collapse state
+    if (this.isCollapsed) {
+      this.container.style.background = 'rgba(15, 23, 42, 0.8)';
+      this.container.style.border = '1px dashed var(--accent-cyan)';
+      this.container.style.borderRadius = 'var(--radius-sm)';
+      this.container.style.padding = '8px 12px';
+      this.container.style.width = '125px';
+      this.container.style.boxShadow = '0 4px 15px rgba(0, 239, 255, 0.1)';
+      this.container.style.backdropFilter = 'blur(8px)';
+
+      this.renderCollapsedHeader();
+    } else {
+      this.container.style.background = 'rgba(28, 28, 28, 0.85)';
+      this.container.style.border = '1px solid var(--border-subtle)';
+      this.container.style.borderRadius = 'var(--radius-md)';
+      this.container.style.padding = '16px';
+      this.container.style.width = '280px';
+      this.container.style.boxShadow = 'none';
+      this.container.style.backdropFilter = 'blur(12px)';
+
+      this.renderExpandedSkeleton();
+
+      this.expandTimeout = setTimeout(() => {
+        this.renderExpandedContent(data);
+      }, 300); // 300ms transition delay
+    }
+  }
+
+  renderCollapsedHeader() {
+    this.container.innerHTML = '';
+
+    const header = document.createElement('div');
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    header.style.alignItems = 'center';
+    header.style.width = '100%';
+    header.style.cursor = 'pointer';
+    header.style.userSelect = 'none';
+
+    const title = document.createElement('span');
+    title.textContent = 'Guest book';
+    title.style.fontSize = '0.75rem';
+    title.style.color = 'var(--accent-cyan)';
+    title.style.fontFamily = 'var(--font-mono)';
+    title.style.fontWeight = 'bold';
+    header.appendChild(title);
+
+    const toggle = document.createElement('span');
+    toggle.textContent = '[+]';
+    toggle.style.fontSize = '0.7rem';
+    toggle.style.color = 'var(--text-secondary)';
+    toggle.style.fontFamily = 'var(--font-mono)';
+    header.appendChild(toggle);
+
+    header.onclick = (e) => {
+      e.stopPropagation();
+      this.isCollapsed = false;
+      this.renderGuestbook(this.lastData);
+      if (window.audioEngine) window.audioEngine.playTick();
+    };
+
+    this.container.appendChild(header);
+  }
+
+  renderExpandedSkeleton() {
+    this.container.innerHTML = '';
+
+    const header = document.createElement('div');
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    header.style.alignItems = 'center';
+    header.style.width = '100%';
+    header.style.cursor = 'pointer';
+    header.style.userSelect = 'none';
+
+    const title = document.createElement('span');
+    title.textContent = 'Guest book';
+    title.style.fontSize = '0.75rem';
+    title.style.color = 'var(--accent-cyan)';
+    title.style.fontFamily = 'var(--font-mono)';
+    title.style.fontWeight = 'bold';
+    header.appendChild(title);
+
+    const toggle = document.createElement('span');
+    toggle.textContent = '[-]';
+    toggle.style.fontSize = '0.7rem';
+    toggle.style.color = 'var(--text-secondary)';
+    toggle.style.fontFamily = 'var(--font-mono)';
+    header.appendChild(toggle);
+
+    header.onclick = (e) => {
+      e.stopPropagation();
+      this.isCollapsed = true;
+      this.renderGuestbook(this.lastData);
+      if (window.audioEngine) window.audioEngine.playTick();
+    };
+
+    this.container.appendChild(header);
+  }
+
+  renderExpandedContent(data) {
+    if (this.isCollapsed) return;
+
+    // Divider line
+    const hr = document.createElement('div');
+    hr.style.width = '100%';
+    hr.style.height = '1px';
+    hr.style.background = 'var(--border-subtle)';
+    hr.style.margin = '8px 0';
+    this.container.appendChild(hr);
+
+    // Visitor count
+    const countEl = document.createElement('div');
+    countEl.id = 'gb-count';
+    countEl.style.color = 'var(--text-secondary)';
+    countEl.style.marginBottom = '12px';
+    if (data && data.total_visitors !== undefined) {
+      countEl.textContent = `누적 방문자: ${data.total_visitors}명`;
+    } else {
+      countEl.textContent = '방문자: 로딩중...';
+    }
+    this.container.appendChild(countEl);
+
+    // Guestbook Messages list
+    const listEl = document.createElement('div');
+    listEl.id = 'gb-list';
+    listEl.style.maxHeight = '150px';
+    listEl.style.overflowY = 'auto';
+    listEl.style.marginBottom = '12px';
+    listEl.style.fontFamily = 'var(--font-mono)';
+    listEl.style.fontSize = '0.7rem';
+    listEl.style.color = 'var(--text-muted)';
+
+    if (data && data.recent) {
+      listEl.innerHTML = data.recent.map(r => `<div><span style="color:var(--accent-purple)">[${r[1] || 'Explorer'}]</span> ${r[2]}</div>`).join('');
+    } else {
+      listEl.innerHTML = '<div>불러오는 중...</div>';
+    }
+    this.container.appendChild(listEl);
+
+    // Input form
+    const formDiv = document.createElement('div');
+    formDiv.style.display = 'flex';
+    formDiv.style.gap = '4px';
+
+    // Fade-in animation for guestbook elements
+    formDiv.style.opacity = '0';
+    formDiv.style.transform = 'translateY(5px)';
+    formDiv.style.animation = 'tagFadeIn 0.3s ease forwards';
+    listEl.style.opacity = '0';
+    listEl.style.transform = 'translateY(5px)';
+    listEl.style.animation = 'tagFadeIn 0.3s ease forwards';
+    countEl.style.opacity = '0';
+    countEl.style.transform = 'translateY(5px)';
+    countEl.style.animation = 'tagFadeIn 0.3s ease forwards';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'gb-input';
+    input.placeholder = '메시지 남기기...';
+    input.style.flex = '1';
+    input.style.background = 'rgba(0,0,0,0.3)';
+    input.style.border = '1px solid var(--border-subtle)';
+    input.style.color = '#fff';
+    input.style.padding = '4px 8px';
+    input.style.borderRadius = '4px';
+    input.style.outline = 'none';
+
+    const sendBtn = document.createElement('button');
+    sendBtn.id = 'gb-send';
+    sendBtn.textContent = 'Sync';
+    sendBtn.style.background = 'var(--accent-cyan)';
+    sendBtn.style.color = '#000';
+    sendBtn.style.border = 'none';
+    sendBtn.style.padding = '4px 8px';
+    sendBtn.style.borderRadius = '4px';
+    sendBtn.style.cursor = 'pointer';
+    sendBtn.style.fontWeight = 'bold';
+
+    sendBtn.onclick = () => {
+      const msg = input.value;
+      if (msg) this.postMessage(msg);
+    };
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const msg = input.value;
+        if (msg) this.postMessage(msg);
+      }
+    });
+
+    formDiv.appendChild(input);
+    formDiv.appendChild(sendBtn);
+    this.container.appendChild(formDiv);
+  }
+
   async fetchData() {
     if (!this.GAS_URL) {
-      document.getElementById('gb-count').textContent = "방문자: (config.json 설정 필요)";
+      this.lastData = { total_visitors: "(config.json 설정 필요)", recent: [] };
+      this.renderGuestbook(this.lastData);
       return;
     }
     try {
       const res = await fetch(`${this.GAS_URL}?key=${encodeURIComponent(this.API_SECRET_KEY)}`);
       const data = await res.json();
       if (data.status === 'success') {
-        document.getElementById('gb-count').textContent = `누적 방문자: ${data.total_visitors}명`;
-        const list = document.getElementById('gb-list');
-        list.innerHTML = data.recent.map(r => `<div><span style="color:var(--accent-purple)">[${r[1] || 'Explorer'}]</span> ${r[2]}</div>`).join('');
-        
-        // 메시지가 4개 이상일 때만 펼치기/접기 버튼을 노출합니다.
-        const toggleContainer = document.getElementById('gb-toggle-container');
-        if (data.recent && data.recent.length >= 4) {
-          toggleContainer.style.display = 'block';
-        } else {
-          toggleContainer.style.display = 'none';
-        }
+        this.lastData = data;
+        this.renderGuestbook(data);
       }
     } catch (e) {
       console.warn("Guestbook fetch error", e);
+      this.lastData = { total_visitors: "Offline", recent: [["", "System", "네트워크 오류 또는 오프라인 상태입니다."]] };
+      this.renderGuestbook(this.lastData);
     }
   }
 
@@ -165,18 +346,23 @@ class SocialEngine {
     }
     try {
       const btn = document.getElementById('gb-send');
-      btn.textContent = "...";
-      btn.disabled = true;
+      if (btn) {
+        btn.textContent = "...";
+        btn.disabled = true;
+      }
 
       await fetch(this.GAS_URL, {
         method: 'POST',
         body: JSON.stringify({ type: 'guestbook', name: "Explorer", message: message, key: this.API_SECRET_KEY }),
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' } // CORS 우회를 위해 text/plain 사용
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
 
-      document.getElementById('gb-input').value = "";
-      btn.textContent = "Sync";
-      btn.disabled = false;
+      const input = document.getElementById('gb-input');
+      if (input) input.value = "";
+      if (btn) {
+        btn.textContent = "Sync";
+        btn.disabled = false;
+      }
       this.fetchData();
     } catch (e) {
       console.warn("Guestbook post error", e);

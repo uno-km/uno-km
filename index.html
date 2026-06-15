@@ -232,48 +232,51 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════
-       C. FLOATING ACTION BUTTON (FAB) — Chat Toggle
+       C. UNIFIED FAB MENU CLUSTER
        ═══════════════════════════════════════════════════════════ -->
-  <button id="fab-chat" aria-label="Open AI chat" type="button">
-    <!-- AI Core / Terminal Icon -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round">
-      <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
-      <path d="M5 10h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" />
-      <circle cx="9" cy="15" r="1" fill="currentColor" />
-      <circle cx="15" cy="15" r="1" fill="currentColor" />
-      <path d="M9 22v-2" />
-      <path d="M15 22v-2" />
-    </svg>
-  </button>
+  <div id="fab-group" class="fab-group">
+    <!-- 1. Blog (Tistory) FAB -->
+    <button id="fab-blog" class="fab-sub" aria-label="Open Blog" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+        <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+      </svg>
+    </button>
+
+    <!-- 2. Spotlight Search FAB -->
+    <button id="fab-search" class="fab-sub" aria-label="Open Search" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+    </button>
+
+    <!-- 3. AI Chat FAB -->
+    <button id="fab-chat" class="fab-sub" aria-label="Open AI chat" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
+        <path d="M5 10h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" />
+        <circle cx="9" cy="15" r="1" fill="currentColor" />
+        <circle cx="15" cy="15" r="1" fill="currentColor" />
+        <path d="M9 22v-2" />
+        <path d="M15 22v-2" />
+      </svg>
+    </button>
+
+    <!-- Main Trigger Button -->
+    <button id="fab-trigger" aria-label="Toggle Controls Menu" type="button">
+      <span class="trigger-icon">⚡</span>
+    </button>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       C-3. FLOATING ACTION BUTTON — Blog (Next to Chat)
-       ═══════════════════════════════════════════════════════════ -->
-  <button id="fab-blog" aria-label="Open Blog" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
-      <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
-    </svg>
-  </button>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       C-4. FLOATING ACTION BUTTON — Search (Spotlight)
-       ═══════════════════════════════════════════════════════════ -->
-  <button id="fab-search" aria-label="Open Search" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-  </button>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       C-2. FLOATING ACTION BUTTON — Who Made AMEVA? (Centered)
+       C-2. FLOATING ACTION BUTTON — Who Made AMEVA? (Centered - Stays Independent)
        ═══════════════════════════════════════════════════════════ -->
   <button id="btn-who-made" class="fab-who-made" aria-label="Who Made AMEVA?">
-    <span class="icon">🧑‍💻</span> Who Made AMEVA?
+    Who Made AMEVA?
   </button>
 
 

@@ -155,6 +155,26 @@ function init() {
 // ─── Event Bindings ─────────────────────────────────────────
 function bindEvents() {
   fab.addEventListener('click', togglePanel);
+
+  // FAB Trigger Click Handler & Close on Outside Click
+  const fabGroup = document.getElementById('fab-group');
+  const fabTrigger = document.getElementById('fab-trigger');
+  if (fabTrigger && fabGroup) {
+    fabTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fabGroup.classList.toggle('is-open');
+      if (window.audioEngine) window.audioEngine.playTick();
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (fabGroup && fabGroup.classList.contains('is-open')) {
+      if (!fabGroup.contains(e.target)) {
+        fabGroup.classList.remove('is-open');
+      }
+    }
+  });
+
   if (btnClose) btnClose.addEventListener('click', closePanel);
   if (btnClear) btnClear.addEventListener('click', clearChat);
   if (btnSend) btnSend.addEventListener('click', handleSend);
@@ -441,6 +461,9 @@ function openPanel() {
   isPanelOpen = true;
   fab.classList.add('is-open');
   fab.setAttribute('aria-label', 'Close panel');
+  
+  const fabGroup = document.getElementById('fab-group');
+  if (fabGroup) fabGroup.classList.remove('is-open');
   
   if (isFallbackMode) {
     codexPanel.classList.add('is-visible');

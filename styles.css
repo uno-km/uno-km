@@ -290,15 +290,29 @@ body {
 
 
 /* ── FAB (Floating Action Button) ──────────────────────────── */
-#fab-chat {
+/* ── FAB Group Container (Unified Cluster) ── */
+.fab-group {
   position: fixed;
-  bottom: var(--space-lg);
-  right: var(--space-lg);
+  right: 24px;
+  bottom: 24px;
   z-index: var(--z-fab);
+  display: flex;
+  flex-direction: column-reverse; /* Trigger at bottom, sub-buttons stack up */
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.fab-group * {
+  pointer-events: auto;
+}
+
+/* Trigger Button */
+#fab-trigger {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--accent-green);
   background: var(--bg-panel);
   color: var(--accent-green);
   cursor: pointer;
@@ -311,83 +325,102 @@ body {
     box-shadow var(--duration-fast) ease,
     background var(--duration-fast) ease,
     border-color var(--duration-fast) ease;
+  z-index: 10;
+  outline: none;
 }
 
-#fab-chat:hover {
+#fab-trigger:hover {
   transform: scale(1.08);
-  border-color: var(--accent-green);
   box-shadow: var(--shadow-fab), var(--accent-green-glow);
 }
 
-#fab-chat:active {
-  transform: scale(0.95);
+#fab-trigger .trigger-icon {
+  font-size: 1.5rem;
+  transition: transform var(--duration-med) var(--ease-smooth);
+  display: inline-block;
 }
 
-#fab-chat svg {
-  width: 24px;
-  height: 24px;
-  transition: transform var(--duration-fast) var(--ease-smooth);
+.fab-group.is-open #fab-trigger {
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
-#fab-chat.is-open svg {
-  transform: rotate(90deg);
+.fab-group.is-open #fab-trigger .trigger-icon {
+  transform: rotate(135deg); /* Rotates cross/lightning */
 }
 
-/* FAB pulse ring */
-#fab-chat::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
+/* Sub-buttons */
+.fab-sub {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 2px solid var(--accent-green);
-  opacity: 0;
-  animation: fab-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-#fab-chat.is-open::before {
-  animation: none;
-  opacity: 0;
-}
-
-/* ── Floating Action Button (Blog) ── */
-#fab-blog {
-  position: fixed;
-  bottom: var(--space-lg);
-  right: calc(var(--space-lg) + 70px);
-  z-index: var(--z-fab);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 239, 255, 0.4);
-  background: rgba(15, 15, 15, 0.7);
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 15, 15, 0.85);
   backdrop-filter: blur(8px);
-  color: var(--accent-cyan);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 239, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(20px) scale(0.6);
+  visibility: hidden;
+  pointer-events: none;
   transition:
-    transform var(--duration-fast) var(--ease-bounce),
-    box-shadow var(--duration-fast) ease,
-    background var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
+    transform var(--duration-med) var(--ease-smooth),
+    opacity var(--duration-med) ease,
+    visibility var(--duration-med) ease;
+  outline: none;
 }
 
+/* Specific Sub-Button Styling */
+#fab-chat {
+  color: var(--accent-green);
+  border-color: rgba(62, 207, 142, 0.4);
+}
+#fab-chat:hover {
+  border-color: var(--accent-green);
+  background: rgba(62, 207, 142, 0.1);
+  box-shadow: 0 0 12px rgba(62, 207, 142, 0.3);
+}
+
+#fab-blog {
+  color: var(--accent-cyan);
+  border-color: rgba(0, 239, 255, 0.4);
+}
 #fab-blog:hover {
-  transform: scale(1.08);
   border-color: var(--accent-cyan);
   background: rgba(0, 239, 255, 0.1);
-  box-shadow: var(--shadow-fab), var(--accent-cyan-glow);
+  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
 }
 
-#fab-blog:active {
-  transform: scale(0.95);
+#fab-voice {
+  color: var(--accent-purple);
+  border-color: rgba(124, 58, 237, 0.4);
+}
+#fab-voice:hover {
+  border-color: var(--accent-purple);
+  background: rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.3);
 }
 
-#fab-blog svg {
-  width: 24px;
-  height: 24px;
+/* Open State for Sub-buttons */
+.fab-group.is-open .fab-sub {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Cascade delays for fly-out animation (4 items) */
+.fab-group.is-open .fab-sub:nth-child(1) { transition-delay: 0.12s; } /* top: blog */
+.fab-group.is-open .fab-sub:nth-child(2) { transition-delay: 0.08s; } /* search */
+.fab-group.is-open .fab-sub:nth-child(3) { transition-delay: 0.04s; } /* voice */
+.fab-group.is-open .fab-sub:nth-child(4) { transition-delay: 0.00s; } /* chat */
+
+.fab-sub svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* ── Floating Action Button (Who Made AMEVA?) ── */
@@ -401,10 +434,10 @@ body {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(124, 58, 237, 0.4);
   color: #fff;
-  border-radius: 30px;
-  padding: 10px 24px;
+  border-radius: 20px;
+  padding: 8px 18px;
   font-family: var(--font-primary);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -1276,6 +1309,9 @@ body {
   font-weight: 900;
   text-transform: uppercase;
   text-shadow: 0 0 15px rgba(0, 239, 255, 0.7), 0 0 30px rgba(0, 239, 255, 0.3);
+  text-align: center;
+  max-width: 90vw;
+  padding: 0 16px;
 }
 
 .loading-subtext {
@@ -1285,6 +1321,9 @@ body {
   opacity: 1;
   font-weight: 500;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  max-width: 90vw;
+  padding: 0 16px;
 }
 
 /* ── Small Hover Tooltip ──────────────────────────────────── */
@@ -1892,43 +1931,18 @@ body {
 
 /* ── Floating Action Button (Search) ── */
 #fab-search {
-  position: fixed;
-  bottom: var(--space-lg);
-  right: calc(var(--space-lg) + 140px);
-  z-index: var(--z-fab);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(8px);
-  color: var(--accent-purple);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
-  transition:
-    transform var(--duration-fast) var(--ease-bounce),
-    box-shadow var(--duration-fast) ease,
-    background var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
+  color: var(--accent-cyan);
+  border-color: rgba(0, 239, 255, 0.4);
 }
-
 #fab-search:hover {
-  transform: scale(1.08);
-  border-color: var(--accent-purple);
-  background: rgba(124, 58, 237, 0.1);
-  box-shadow: var(--shadow-fab), 0 0 14px rgba(124, 58, 237, 0.4);
-}
-
-#fab-search:active {
-  transform: scale(0.95);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 239, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 239, 255, 0.3);
 }
 
 #fab-search svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Highlight matching search terms */
@@ -1940,4 +1954,25 @@ body {
   padding: 0 4px;
   border-radius: 4px;
   margin: 0 1px;
+}
+
+/* ── Panel Wobble Animation (Dog in Box Effect) ── */
+@keyframes box-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-3deg) scale(1.02); }
+  30% { transform: rotate(3deg) scale(1.02); }
+  45% { transform: rotate(-2deg) scale(1.01); }
+  60% { transform: rotate(2deg) scale(1.01); }
+  75% { transform: rotate(0deg); }
+}
+
+.wobble-active {
+  animation: box-wobble 0.6s ease-in-out;
+}
+
+@keyframes tagFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
