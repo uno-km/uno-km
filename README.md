@@ -5,11 +5,425 @@
 
 🌐 **Live Demo:** [uno-km.github.io/uno-km](https://uno-km.github.io/uno-km/)
 
-![Uno-km](assets/images/ameva-creater.jpg)
+<style>
+  /* Custom styled classes for profile modal */
+  .portfolio-section {
+    font-family: 'Inter', 'Outfit', sans-serif;
+    color: #e2e8f0;
+  }
+  .portfolio-title {
+    background: linear-gradient(135deg, #00EFFF, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: -0.02em;
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .tech-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(0, 239, 255, 0.15);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 20px rgba(0, 239, 255, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .tech-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 239, 255, 0.4);
+  }
+  .tech-card h3 {
+    margin-top: 0;
+    color: #00EFFF !important;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(0, 239, 255, 0.1);
+    padding-bottom: 8px;
+  }
+  .project-card {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .project-card:hover {
+    border-color: rgba(0, 239, 255, 0.45);
+    box-shadow: 0 10px 40px rgba(0, 229, 255, 0.12);
+    transform: translateY(-4px);
+  }
+  .project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .project-card-title {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .project-card-badge {
+    font-size: 0.8rem;
+    background: rgba(168, 85, 247, 0.15);
+    color: #d8b4fe;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .project-card-section {
+    margin-top: 12px;
+  }
+  .project-card-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #00EFFF;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .project-card-section-body {
+    font-size: 0.92rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.55;
+    padding-left: 2px;
+  }
+  .project-card-list {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 0.92rem;
+    color: #cbd5e1;
+  }
+  .project-card-list li {
+    margin-bottom: 4px;
+  }
+  .project-card-result {
+    margin-top: 16px;
+    background: rgba(16, 185, 129, 0.06);
+    border-left: 4px solid #10b981;
+    border-radius: 0 12px 12px 0;
+    padding: 12px 16px;
+  }
+  .project-card-result-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .project-card-result-body {
+    font-size: 0.92rem;
+    color: #e2e8f0;
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+</style>
 
 ---
 
-## 🎮 브라우저 에뮬레이터 테스트 (Sandbox Run)
+## 👑 About the Architect: Uno-km (AI SRE & Edge-Native Engineer)
+
+안녕하세요! 저는 완전 폐쇄망 및 인터넷 단절 환경에서도 독립적으로 사유하고 동작하는 자율형 멀티 에이전트 시스템 **AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)**의 설계자이자 1인 개발자, **Uno-km**입니다.
+
+상용 API(OpenAI, Claude 등)의 중앙 통제적 지능에 의존하는 것을 거부하며, 군·금융·의료 등 극도의 기밀이 요구되는 격리망에서도 상용 AI 수준의 생산성을 구현하기 위해 모바일 디바이스(ARM64), Windows PC, Linux 컨테이너 환경의 밑바닥까지 제어하고 최적화해 왔습니다. 
+
+하드웨어 수준의 메모리 인터리빙 튜닝부터 대규모 멀티 스레딩 관제, SRE 원칙에 기반한 전력/온도 모니터링 및 자가 치유(Self-Healing) 시스템 구축까지, **"실행 가능하고 신뢰할 수 있는 지능"**을 실증하는 시스템 엔지니어입니다.
+
+### 🛠 Core Skillsets (기술 역량)
+
+<div class="tech-grid">
+  <div class="tech-card">
+    <h3>🤖 AI/ML Serving</h3>
+    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
+      llama.cpp 서빙, GGUF 양자화 빌드, Ollama 자원 제어, PEFT/LoRA 파인튜닝, Whisper 로컬 디코딩, Vosk 임베딩, scikit-learn 화자 군집화
+    </p>
+  </div>
+  <div class="tech-card">
+    <h3>⚙️ Systems Programming</h3>
+    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
+      Asynchronous multi-threading (ThreadPoolExecutor, Queue), sounddevice Direct PCM 캡처, psutil/GPUtil 리소스 실시간 프로파일링
+    </p>
+  </div>
+  <div class="tech-card">
+    <h3>☁️ Infrastructure & MLOps</h3>
+    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
+      Docker Compose 격리 컨테이너 샌드박싱, Windows MSVC/ARM CUDA 크로스 빌드 툴체인, LFS-HuggingFace 하이브리드 CDN 라우팅
+    </p>
+  </div>
+  <div class="tech-card">
+    <h3>🔒 Security & Database</h3>
+    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
+      AST(추상 구문 트리) 정적 스캔, shred 포렌식 파일 영구 소거, SQLite3 세션 영속화 및 트랜잭션 동기화
+    </p>
+  </div>
+</div>
+
+---
+
+## 🏗 The AMEVA Universe: 8대 핵심 프로젝트 기술 실증
+
+클라우드 의존성 0%를 달성하기 위해 유기적으로 맞물려 가동되는 8개 프로젝트의 핵심 명세와 실제 트러블슈팅 경험입니다.
+
+<!-- 1. AMEVA-Edge-Agent -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">📱 1. AMEVA-Edge-Agent</h3>
+    <span class="project-card-badge">모바일 온디바이스 AI 및 물리 소거 동기화</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">모바일 엣지(Exynos 1380, Galaxy A35)에서 온디바이스로 1.58비트 양자화 대규모 언어 모델(BitNet)을 독립 구동하여 데이터를 수집하고, 호스트 서버 동기화 즉시 로컬 흔적을 물리적으로 소거하는 보안 파이프라인 구축. 초기에 모바일 기기 구동 시, 추론 결과가 깨지고 의미 없는 단어만 무한 반복 출력하는 출력 붕괴(Word Salad) 현상에 직면함.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>무의존성 순수 Python 3 아키텍처</strong>: 모바일 Termux 환경의 의존성 제약을 극복하기 위해 100% 표준 라이브러리만으로 전송 루프와 파일 삭제 메커니즘을 설계.</li>
+      <li><strong>shred 알고리즘 이식</strong>: 파일 링크만 해제하는 기본 삭제 방식을 배제하고, 디스크 블록에 직접 0x00과 난수를 다중 오버라이트하여 복구를 원천 차단하는 포렌식 소거 방식 선택.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (NEON SIMD Assembly & Memory Interleaving)</strong>
+    <ul class="project-card-list">
+      <li><strong>원인 분석</strong>: GGUF 1.58비트 가중치 파일은 x86_64(AVX2) 아키텍처에 맞게 활성화 배열이 32바이트 단위로 교차 정렬(Interleaving)되어 있으나, 기존 ARM NEON 폴백 코드가 이를 페치하는 과정에서 선형 버퍼 정렬에 맞춰 설계되어 메모리 오염을 유발함. 또한, {-1, 0, 1} 삼진법 매핑 연산 시 AVX2 인트린직의 비트 마스킹 우회 연산을 ARM NEON 어셈블리로 직역하는 과정에서 부호 비트 처리가 뒤틀려 값이 붕괴됨.</li>
+      <li><strong>해결 조치</strong>: QK=128 블록 규격을 강제 고정하고, <code>ggml_vec_dot_i2_i8_s_1x1</code> 등 C++ 벡터 수학 연산 커널을 AArch64 SIMD 및 DotProd 어셈블리를 활용하여 메모리 offset 정렬에 완전히 부합하도록 어셈블리 수준에서 전면 수정 후 빌드.</li>
+      <li><strong>빌드 크래시 해결</strong>: Clang 21과 Termux NDK 빌드 시 깨진 심볼릭 링크로 인한 CMake 중단 문제를 우회하기 위해, CMake 툴체인 단에서 헤더 파일을 직접 수동 동적 복사하고 steady_clock 시간 측정을 강제 패치하는 쉘/파이썬 컴파일 자동화 스크립트를 작성하여 빌드 체계 완결.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">갤럭시 A35(Exynos 1380) 환경에서 가상화 레이어를 얹고도 8스레드 병렬 NEON 가속을 통해 3.01 tokens/sec의 실시간 온디바이스 추론에 최초 성공. 하드웨어 SIMD 명령어 레벨의 데이터 정렬과 어셈블리 최적화의 미시적 깊이를 실증함.</p>
+  </div>
+</div>
+
+<!-- 2. AMEVA-Agent-Orchestra -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">🤖 2. AMEVA-Agent-Orchestra</h3>
+    <span class="project-card-badge">자율형 멀티 에이전트 코딩 시스템</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">단일 8B 모델 하에서 턴 단위 프롬프트 역할 주입을 통해 PM, 설계자, 개발자, 테스터가 협업하는 재귀적 자율 코딩 루프 구현. 다중 에이전트 스레드가 로컬 llama.cpp 서버에 동시 추론 요청을 보낼 때 발생하는 세그먼테이션 폴트 및 턴 누적으로 인한 컨텍스트 포화(정체성 붕괴) 해결이 요구됨.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>단일 8B 모델 롤플레잉 vs 다중 소형 모델 병렬 구동</strong>: 메모리 점유를 최소화하기 위해 단일 8B 가중치를 상주시킨 채 턴제로 에이전트를 스위칭하는 구조 채택. 동시 다발적 비동기 처리는 불가능해져 전체 소요 시간은 늘어났으나 추론의 안정성과 연산 품질을 극대화함.</li>
+      <li><strong>LlamaGrammar 가드</strong>: 에이전트의 답변을 온전한 JSON 규격으로 제어하기 위해 문법 가이드를 강제하여 파싱 에러율을 통제.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (Adaptive Handoff & Hybrid JSON Parser)</strong>
+    <ul class="project-card-list">
+      <li><strong>정체성 오염</strong>: 이전 에이전트의 대화 이력이 누적되어 다음 에이전트가 이전 에이전트의 페르소나를 흉내 내는 현상. 이를 해결하기 위해 DB 테이블을 설계하여 개별 에이전트의 히스토리를 물리적으로 격리. 프롬프트 생성 시 전체 로그 대신 DB에서 가공된 최근 턴의 핵심 결과물 요약본만 결합하여 바통터치식으로 주입하는 Adaptive Handoff 아키텍처 구축.</li>
+      <li><strong>JSON 후행 탈락 복구</strong>: LLM 추론 중 컨텍스트 제한으로 중괄호가 덜 닫힌 채 반환되는 파싱 붕괴 현상을 해결하기 위해, 중괄호 깊이를 스택으로 추적하여 자동으로 닫는 필터와 정규식을 결합한 Hybrid JSON Parser를 자체 제작해 데이터를 구출해 냄.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">10턴 누적 테스트 중 정체성 이탈률 0%, 지시어 유출률 0%, 자가 치유(Self-Healing) 성공률 92% 달성. 프롬프트 수준의 자아 제어를 시스템 데이터베이스 레벨로 정형화한 구조적 실증 완료.</p>
+  </div>
+</div>
+
+<!-- 3. AMEVA-Window-Assistant -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">💻 3. AMEVA-Window-Assistant</h3>
+    <span class="project-card-badge">로컬 멀티모달 데스크톱 에어 비서</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">완전 오프라인 환경에서 캡처된 화면 상황 인지(VLM) 및 마이크 입력(STT)을 연계하여 사용자와 대화하는 Windows 네이티브 개인 비서 시스템. 무거운 시각 언어 모델(VLM)을 로컬 GPU에서 상시 가동할 때 발생하는 극심한 VRAM 초과(OOM) 및 전체 GUI 루프 프리징 해결 필요.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>Selective Routing 아키텍처</strong>: 모든 화면을 VLM으로 보내는 대신, Tesseract OCR의 Bounding Box 텍스트 밀도를 먼저 분석. 밀도가 충분할 경우 텍스트를 추출하여 일반 Llama-3.1-8B 모델로 라우팅하고, 복잡한 시각 맥락이 포함된 명령인 경우에만 Qwen2-VL-2B/7B 모델을 백그라운드로 로드하여 VRAM OOM을 방지.</li>
+      <li><strong>Direct PCM Buffer capture</strong>: FFmpeg를 거치지 않고 sounddevice 라이브러리로 오디오 장치의 16kHz PCM 스트림 버퍼에 다이렉트 접근하여 오디오 파일 생성 및 변환 딜레이를 0초로 단축.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (RMS 에너지 모니터링 & GUI 비동기 격리)</strong>
+    <ul class="project-card-list">
+      <li><strong>마이크 무음 대기 시 CPU 폭주</strong>: 마이크가 켜져 있는 동안 무음 구간에서도 STT 디코더가 무한 작동하여 CPU 점유율이 50%를 초과하는 현상. 오디오 버퍼의 RMS 에너지를 100ms 단위로 실시간 연산하여, 임계값 이상 발화가 시작될 때만 STT 엔진을 활성화하고 무음 지속 시 컷오프하는 침묵 감지 스위치를 내장하여 대기 CPU 점유율을 3% 미만으로 제거.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">VRAM 8GB 미만의 일반 데스크톱 환경에서 OOM 없이 화면 인지 및 실시간 오프라인 음성 대화 기능 구현.</p>
+  </div>
+</div>
+
+<!-- 4. AMEVA-Dead-Internet-Theatre -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">🎭 4. AMEVA-Dead-Internet-Theatre</h3>
+    <span class="project-card-badge">잠재적 인격 동역학 시뮬레이터</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">AI 에이전트들이 외부 개입 없이 텍스트 토론을 수행할 때 발생하는 여론 수렴(모두 찬성으로 쏠리는 무한 동조) 및 3B 이하 소형 모델(SLM)의 정체성 붕괴 방지 연구.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>Director Agent (감독 봇) 중앙 집중 통제</strong>: 에이전트들 간의 자유 분산 토론에 의존하지 않고, 교착 상태를 감지하면 개입하여 화두를 환기하거나 대립각을 세우는 감독 에이전트를 도입.</li>
+      <li><strong>감정 상태 인자 주입</strong>: 시스템 프롬프트에 추상적인 설명 대신 기분(Valence), 흥분도(Arousal), 고집(Conviction) 등 수치형 상태 인자를 실시간 튜닝하여 제공.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (LPDE 인격 상태 벡터 및 어조 후처리 필터링)</strong>
+    <ul class="project-card-list">
+      <li><strong>소형 모델의 기억 포화 및 자아 상실</strong>: 대화가 길어지면 1.5B/3B급 SLM 모델들이 상대방의 텍스트를 그대로 복사해 읊조리는 앵무새 현상(Parroting) 및 자아 붕괴(Stance Flip) 현상이 발생. 대화 이력을 단순히 프롬프트에 누적하지 않고, 대화에서 나타난 감정과 핵심 쟁점만을 수치적으로 압축한 LPDE 인격 상태 벡터로 변환하여 메모리를 최적화. 봇의 성향 정의에 정면 위배되는 동조 발언 감지 시 해당 턴 출력을 정규식 필터로 강제 반려하고 재추론을 시도하는 복구 필터 구축.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">3B 소형 모델의 정체성 유지 턴 한계를 기존 7.8턴에서 50턴 이상으로 대폭 향상. 소형 모델 구동 시에도 정형화된 메타 정보 피드백을 통해 고품질의 소통 시뮬레이션을 구현할 수 있음을 증명함.</p>
+  </div>
+</div>
+
+<!-- 5. AMEVA-Benchmark-Suite -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">🧪 5. AMEVA-Benchmark-Suite</h3>
+    <span class="project-card-badge">컨테이너 격리형 LLM 계측 플랫폼</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">호스트 환경 간섭 없이 신규 로컬 LLM의 정확도(수학, 코드, 번역) 및 물리 자원 사용률을 독립적으로 계측하고 진단서(.docx) 작성을 자동화.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>Smart SWAP (컨테이너 완전 소거)</strong>: 모델 변경 시 단순히 프로세스를 재시작하지 않고 Docker 컨테이너 전체를 완전히 파괴한 후 재생성하여, 이전 실행의 VRAM 파편 및 OS 캐시 잔존 등 측정 편향을 100% 원천 차단.</li>
+      <li><strong>Strict 채점 프롬프트</strong>: 생성 일관성을 위해 Temperature = 0.0으로 강제 고정하고, 출력을 JSON Schema로 강제 억제.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (교차 순차 메모리 스케줄링)</strong>
+    <ul class="project-card-list">
+      <li><strong>VRAM OOM 크래시</strong>: 8B급 피평가 모델과 8B급 채점 에이전트(EXAONE-3.5)를 한 물리 메모리에 동시에 로드할 시 가용 자원 부족으로 벤치마크 중단. 피평가 모델의 추론 태스크가 완수되면 호스트 메모리에서 모델을 완전히 Unload(메모리 소거) 한 것을 감지한 이후에만 채점 에이전트를 로드하도록 하는 런타임 제어 오케스트레이터를 작성하여 100% 예방.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">싱글 PC 리소스로도 간섭과 오차 없는 정밀하고 공정한 로컬 LLM 정량/정성 평가 파이프라인 확립.</p>
+  </div>
+</div>
+
+<!-- 6. AMEVA-Doc-AI -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">📄 6. AMEVA-Doc-AI</h3>
+    <span class="project-card-badge">오프라인 문서 지능 RAG 워크스테이션</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">기밀 유지 환경에서 대용량 PDF 문서들의 요약, 하이브리드 RAG 질의응답 및 오디오북 합성을 로컬에서 단독 처리. 단일 스레드로 대규모 파싱 및 요약 수행 시 병목이 매우 심하며, 멀티스레드 요청 시 로컬 Ollama 서버가 트래픽을 견디지 못하고 터지는 현상 발생.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <p class="project-card-section-body"><strong>1.5B 모델 병렬 요약 + 8B RAG 라우팅</strong>: 전체 텍스트 요약은 저사양 여러 스레드로 1.5B 모델들을 동시 가동해 분산 처리하여 처리 시간을 약 5배 단축하고, 정밀한 팩트 매칭이 중요한 최종 RAG 질의응답에만 8B 모델을 단독 매핑하여 속도와 정확도의 타협점을 도출.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (Watchdog 롤오버 안전망 & 하이브리드 RAG)</strong>
+    <ul class="project-card-list">
+      <li><strong>Ollama 503 과부하 에러</strong>: OLLAMA_NUM_PARALLEL 내부 설정을 스레드 가용량에 맞게 최적화하고, 세마포어 기반 락을 도입해 호출을 제한.</li>
+      <li><strong>정전/자원 고갈 시 데이터 유실</strong>: 시스템의 물리적 전력 탈착 및 메모리 한계 임계값 도달을 주기적으로 감시하는 Watchdog 데몬을 기동. 위기 상황 감지 시 현재 처리 중이던 요약 태스크들을 P-2 백업 큐로 롤오버해 다른 가용 노드로 안전하게 이관시키는 복구 아키텍처 설계.</li>
+      <li><strong>RAG 검색 누락</strong>: 스파스 중심 검색의 오타/동의어 인식 실패를 막기 위해 TF-IDF 인덱스를 직접 메모리에 구축하고, 조밀 임베딩 코사인 유사도 점수를 가중 결합(alpha=0.7)한 하이브리드 RAG 구조를 구축해 검색 재현율을 94.2%로 보정.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">대용량 기밀 문서 RAG 질의응답 속도를 기존 대비 80% 이상 혁신.</p>
+  </div>
+</div>
+
+<!-- 7. AMEVA-STT-Agent -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">🎙️ 7. AMEVA-STT-Agent</h3>
+    <span class="project-card-badge">하이브리드 화자 분리 및 회의록 전사 엔진</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">로컬 환경에서 음성 회의 녹음본을 다중 화자로 구분(Diarization)하고 전사 텍스트와 매핑하여 정형화된 회의록 문서로 최종 출력.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <p class="project-card-section-body"><strong>Whisper-Vosk 하이브리드 모델 매핑</strong>: Whisper는 뛰어난 전사 정확도를 보이지만 화자 분류 성능이 부재하며, Vosk는 화자 구별(X-Vector 임베딩) 속도가 빠르지만 받아쓰기 능력이 뒤처짐. 따라서 두 모델의 세그먼트 출력을 타임라인 상에서 기하학적으로 연동하는 하이브리드 방식을 설계.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (중간값 클러스터링 & 멱반복법 PCA 축소)</strong>
+    <ul class="project-card-list">
+      <li><strong>화자 불일치 및 오프셋 뒤섞임</strong>: Whisper 자막 타임스탬프와 Vosk 화자 세그먼트 시간대가 미세하게 맞물리지 않아 대화가 겹치는 구간에서 화자가 뒤섞이는 에러. 전사 텍스트 구간의 중간(Median) 타임스탬프 값을 연산한 후, 해당 지점에 가장 인접한 화자 클러스터를 1:1 매칭하는 타임 인터섹션 필터를 설계해 해결.</li>
+      <li><strong>CPU 연산 병목</strong>: 대량 텐서 연산으로 인한 군집화 단계의 CPU 과부하를 막기 위해 멱반복법(Power Iteration)을 적용한 주성분 분석(PCA) 차원 축소를 도입해 응답 속도를 개선함.</li>
+    </ul>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">1분 분량 분석 기준, Medium 구성으로 전사 오류율 3.8% 및 화자 매칭 정밀도 89.2%의 고성능 오프라인 회의록 작성 엔진을 실증 완료.</p>
+  </div>
+</div>
+
+<!-- 8. AMEVA-STT-Trainer -->
+<div class="project-card">
+  <div class="project-card-header">
+    <h3 class="project-card-title">🏋️ 8. AMEVA-STT-Trainer</h3>
+    <span class="project-card-badge">Whisper LoRA 파인튜닝 파이프라인</span>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🎯 목적 및 문제 정의</strong>
+    <p class="project-card-section-body">외부 네트워크 연결이 불가한 환경에서, 특정 도메인 코퍼스 음성 데이터를 수집 및 3단계 정제하여 Whisper 모델을 LoRA 학습시키고 C++ 서빙(Whisper.cpp)용 GGUF 가중치로 양자화 배포하는 파이프라인 구축.</p>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">⚖️ 기술적 의사결정 (Trade-off)</strong>
+    <ul class="project-card-list">
+      <li><strong>IterableDataset 스트리밍</strong>: 윈도우 디스크 I/O 병목 및 메모리 캐싱 오버헤드를 막기 위해 학습 데이터를 디스크에 다 올리지 않고 필요할 때 실시간 스트리밍 디코딩 로드 처리.</li>
+      <li><strong>터미널 기반 경량 관제</strong>: 그래픽 UI를 띄워 학습 속도를 뺏기는 것을 방지하고자 터미널 콘솔 스트림을 파싱해 실시간 상태를 갱신하는 텍스트 텔레메트리 화면 설계.</li>
+    </ul>
+  </div>
+  <div class="project-card-section">
+    <strong class="project-card-section-title">🧗‍♂️ 임계 트러블슈팅 & 해결 과정 (WinError 87 및 프로세스 격리)</strong>
+    <p class="project-card-section-body"><strong>Windows 환경 Dataloader 충돌</strong>: 윈도우에서 PyTorch Dataloader 가동 시 ctypes 직렬화 제한으로 인해 WinError 87을 뱉으며 파이프라인이 즉각 중단되는 버그. pin_memory=False 및 num_workers=0으로 가상 메모리 로더 구조를 변경하고, 데이터 추출 모듈을 전역 런타임 환경과 완벽히 격리해 단일 프로세스 직렬 처리 방식으로 안전성 우회 확보.</p>
+  </div>
+  <div class="project-card-result">
+    <strong class="project-card-result-title">📈 성과 및 피드백</strong>
+    <p class="project-card-result-body">제한된 저사양 Windows 환경에서도 메모리 고갈이나 충돌 없는 완전 독립형 음성 인식 파인튜닝 환경을 완비함.</p>
+  </div>
+</div>
+
+---
+
+## 🎮 AMEVA Dashboard & Codex App Documentation
+
+이 레포지토리는 AMEVA 생태계의 철학과 기술을 시각화하고, 브라우저 환경에서 직접 Edge-native LLM을 구동하고 검증하는 대시보드 웹 애플리케이션의 소스 코드입니다.
+
+### 🎮 브라우저 에뮬레이터 테스트 (Sandbox Run)
 
 아래 코드 블록은 노드 상세 모달이 열리면 자동으로 감지되어 그 하단에 `▶ 브라우저 에뮬레이터에서 실행` 버튼이 생성됩니다. 클릭 시 안전한 샌드박스 내에서 즉시 구동됩니다.
 
@@ -29,181 +443,22 @@ console.log("계산 연산 결과 (sqrt(256) * PI):", mathResult.toFixed(4));
 </div>
 ```
 
----
-
-## 🎯 핵심 기능
+### 🎯 대시보드 핵심 기능
 
 - **WebGPU 로컬 챗봇 엔진**: WebLLM을 활용하여 Qwen 1.5B 모델을 사용자 기기의 GPU 메모리 위에서 직접 구동합니다.
 - **D3.js 시네마틱 가이드 투어 (Codex)**: WebGPU를 지원하지 않는 기기(구형 PC, 저사양 모바일 등)를 위한 Fallback 경험입니다. AMEVA 생태계를 노드 그래프로 시각화하고 TTS(음성 합성)로 투어를 진행합니다.
 - **Glassmorphism UI/UX**: 우주 공간을 떠다니는 듯한 신비로운 노드 애니메이션과 세련된 다크 테마 기반의 모던 웹 디자인을 채택했습니다.
 
----
+### ⚖️ 대시보드 설계 트레이드오프 (Trade-offs)
 
-## ⚖️ 트레이드오프 (Trade-offs)
+- **"Sovereign Hosting" vs. "High Availability"**: AMEVA의 완전한 오프라인/주권 철학을 위해 900MB 모델 가중치를 GitHub LFS로 직접 서빙하고자 하였으나, GitHub LFS의 1GB 대역폭 제한으로 인한 pointer 파일 반환 이슈를 극복하기 위해 실패 감지 시 즉시 Hugging Face CDN으로 우회(Fallback)하는 하이브리드 구조를 설계했습니다.
+- **"모든 기기 챗봇 지원" vs. "안정적인 브라우저 경험"**: 모바일 환경에서의 VRAM 할당으로 인한 OOM 크래시를 완화하기 위해 모바일 디바이스 감지 시 바로 Codex(투어 및 도감) 모드로 안전하게 폴백되도록 제어 루프를 적용했습니다.
 
-### 1. "Sovereign Hosting" vs. "High Availability"
-* **배경**: AMEVA의 완전한 오프라인/주권 철학을 지키기 위해, 900MB에 달하는 언어 모델을 GitHub LFS를 통해 직접 호스팅하고자 했습니다.
-* **문제**: 무료 GitHub 계정의 LFS 대역폭 제한은 월 1GB입니다. 개발 중 단 두세 번의 로드 테스트만으로도 대역폭이 완전히 고갈되었고, 깃허브는 원본 바이너리 대신 134바이트짜리 LFS 포인터 텍스트 파일을 반환하기 시작했습니다.
-* **결정**: 100% 로컬 호스팅이라는 이념적 목표를 약간 양보하는 대신, 서비스의 안정성(HA)을 택했습니다. 기본적으로 GitHub LFS에서 로드를 시도하되, 실패가 감지되면 즉시 트래픽이 무제한인 **Hugging Face CDN으로 우회(Fallback)**하도록 하이브리드 다운로드 아키텍처를 설계했습니다.
+### 🧗‍♂️ 대시보드 개발 트러블슈팅 (Troubleshooting)
 
-### 2. "모든 기기 챗봇 지원" vs. "안정적인 브라우저 경험"
-* **배경**: 초창기에는 모든 모바일 기기 접속을 차단하고 챗봇 대신 시네마틱 투어(Codex)만 보여주도록 설계했습니다.
-* **문제**: 모바일 브라우저에서 1.5GB가 넘는 VRAM을 할당하려 하면 브라우저 탭이 강제 종료(OOM Crash)되는 빈도가 높았기 때문입니다.
-* **결정**: 모바일 접속 여부로 기능을 제한하는 대신, 오직 **WebGPU 지원 여부**만을 기준으로 제한 기준을 완화했습니다. 따라서 갤럭시 S24와 같은 최신 하이엔드 모바일 기기는 챗봇을 실행할 수 있는 기회를 갖게 되며, 사양이 부족한 기기는 우아하게 Codex 모드로 Fallback됩니다.
-
----
-
-## 🧗‍♂️ 개발 중 마주한 난제 및 해결책 (Troubleshooting)
-
-### 난제 1: LFS 대역폭 소진 판별 시 CORS 문제 (Content-Length 은닉)
-* **문제**: WebLLM이 LFS 포인터 파일을 116MB짜리 진짜 가중치 파일로 오인하여 파싱하다가 `size mismatch` 에러로 뻗어버리는 문제가 있었습니다. 이를 방지하기 위해 파일 용량을 검사하려 했으나, 브라우저에서 외부 도메인(`raw.githubusercontent.com`)으로 `HEAD` 요청을 보낼 때 깃허브 서버 측의 CORS 정책으로 인해 `Content-Length` 헤더를 읽을 수 없었습니다.
-* **해결책 (Streaming First-Chunk Cancel)**: `HEAD` 요청 대신 실제 `GET` 요청으로 파일을 `fetch`하고, `ReadableStream`을 통해 **딱 첫 번째 청크(Chunk)만 읽은 뒤 즉시 다운로드를 `cancel()` 시키는 기법**을 도입했습니다. 읽어들인 앞부분의 8바이트 텍스트가 `"version "` (LFS 포인터 파일의 시작 문자열)인지 확인하여 파일이 포인터인지 확실히 판별하면서도, 116MB의 데이터를 낭비하지 않는 완벽한 방어 로직을 구축했습니다.
-
-### 난제 2: WebLLM 브라우저 캐시 오염 (Cache Poisoning) 방지
-* **문제**: 위의 LFS 다운로드 실패를 겪는 과정에서, WebLLM 엔진이 잘못된 134바이트짜리 포인터 파일을 내부 `IndexedDB`에 정상적인 모델 파일로 저장(캐싱)해 버리는 현상이 발생했습니다. 이로 인해 이후 Hugging Face로 다운로드 경로를 우회했음에도 엔진이 오염된 캐시를 계속 불러와 뻗어버렸습니다.
-* **해결책 (Dynamic Model ID)**: Hugging Face 경로로 Fallback 시, WebLLM 초기화 객체에 들어가는 `model_id` 문자열 뒤에 `-HF` 라는 접미사를 동적으로 붙였습니다. 이를 통해 WebLLM이 기존에 오염된 캐시(`Qwen2.5-1.5B...`)를 무시하고 새로운 모델 환경(`Qwen2.5-1.5B...-HF`)으로 인식하게 만들어, 사용자가 직접 F12를 눌러 캐시를 비우지 않아도 시스템이 스스로 복구될 수 있도록 조치했습니다.
-
-### 난제 3: 시네마틱 투어 중 TTS와 D3.js 줌 객체 간의 스코프 충돌
-* **문제**: 투어 콘텐츠를 읽어주는 TTS(Text-to-Speech)가 끝날 때마다 자동으로 다음 노드로 D3 카메라를 줌인시키는 로직에서, `zoom` 객체를 찾을 수 없다는 `ReferenceError`가 발생했습니다.
-* **해결책**: `d3.zoom()` 객체가 `initGraph()` 함수 내부에 지역 변수로 고립되어 있던 것을 파악하고, 모듈(Module) 스코프로 끌어올렸습니다(Hoisting). 이후 외부에서 카메라 시점을 제어할 수 있는 Setter 함수를 구현해 TTS 이벤트 사이클과 시각화 라이브러리를 안전하게 결합했습니다.
-
----
-
-## 🧬 About the Architect: Uno-km (AI SRE & Edge-Native Engineer)
-
-안녕하세요! 저는 완전 폐쇄망 및 인터넷 단절 환경에서도 독립적으로 사유하고 동작하는 자율형 멀티 에이전트 시스템 **AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)**의 설계자이자 1인 개발자, **Uno-km**입니다.
-
-상용 API(OpenAI, Claude 등)의 중앙 통제적 지능에 의존하는 것을 거부하며, 군·금융·의료 등 극도의 기밀이 요구되는 격리망에서도 상용 AI 수준의 생산성을 구현하기 위해 모바일 디바이스(ARM64), Windows PC, Linux 컨테이너 환경의 밑바닥까지 제어하고 최적화해 왔습니다. 
-
-하드웨어 수준의 메모리 인터리빙 튜닝부터 대규모 멀티 스레딩 관제, SRE 원칙에 기반한 전력/온도 모니터링 및 자가 치유(Self-Healing) 시스템 구축까지, **"실행 가능하고 신뢰할 수 있는 지능"**을 실증하는 시스템 엔지니어입니다.
-
-### 🛠 Core Skillsets (기술 역량)
-
-| 분류 | 상세 기술 스택 |
-| :--- | :--- |
-| **AI/ML serving** | `llama.cpp` 서빙, GGUF 양자화 빌드, `Ollama` 자원 제어, `PEFT`/`LoRA` 파인튜닝, `Whisper` 로컬 디코딩, `Vosk` 임베딩, `scikit-learn` 화자 군집화 |
-| **Systems Programming** | Asynchronous multi-threading (`ThreadPoolExecutor`, `Queue`), `sounddevice` Direct PCM 캡처, `psutil`/`GPUtil` 리소스 실시간 프로파일링 |
-| **Infrastructure & MLOps** | `Docker Compose` 격리 컨테이너 샌드박싱, Windows MSVC/ARM CUDA 크로스 빌드 툴체인, LFS-HuggingFace 하이브리드 CDN 라우팅 |
-| **Security & Database** | AST(추상 구문 트리) 정적 스캔, `shred` 포렌식 파일 영구 소거, `SQLite3` 세션 영속화 및 트랜잭션 동기화 |
-| **Backend & Frontend** | Java, Spring Boot, Spring, Python 3.11+, C++ 20, Shell Scripting, Vanilla JS (D3.js) |
-
----
-
-## 🏗 The AMEVA Universe: 8대 핵심 프로젝트 기술 실증
-
-클라우드 의존성 0%를 달성하기 위해 유기적으로 맞물려 가동되는 8개 프로젝트의 핵심 명세와 실제 트러블슈팅 경험입니다.
-
----
-
-### 1. AMEVA-Edge-Agent (모바일 온디바이스 AI 및 물리 소거 동기화)
-* **목적 및 문제 정의**:
-  * 모바일 엣지(Exynos 1380, Galaxy A35)에서 온디바이스로 1.58비트 양자화 대규모 언어 모델(BitNet)을 독립 구동하여 데이터를 수집하고, 호스트 서버 동기화 즉시 로컬 흔적을 물리적으로 소거하는 보안 파이프라인 구축.
-  * 초기에 모바일 기기 구동 시, 추론 결과가 깨지고 의미 없는 단어만 무한 반복 출력하는 **출력 붕괴(Word Salad) 현상**에 직면함.
-* **기술적 의사결정 (Trade-off)**:
-  * **무의존성 순수 Python 3 아키텍처**: 모바일 Termux 환경의 의존성 제약을 극복하기 위해 100% 표준 라이브러리만으로 전송 루프와 파일 삭제 메커니즘을 설계.
-  * **shred 알고리즘 이식**: 파일 링크만 해제하는 기본 삭제 방식을 배제하고, 디스크 블록에 직접 `0x00`과 난수를 다중 오버라이트하여 복구를 원천 차단하는 포렌식 소거 방식 선택.
-* **임계 트러블슈팅 & 해결 과정 (NEON SIMD Assembly & Memory Interleaving)**:
-  * **원인 분석**: GGUF 1.58비트 가중치 파일은 x86_64(AVX2) 아키텍처에 맞게 활성화 배열이 32바이트 단위로 교차 정렬(Interleaving)되어 있으나, 기존 ARM NEON 폴백 코드가 이를 페치하는 과정에서 선형 버퍼 정렬에 맞춰 설계되어 메모리 오염을 유발함. 또한, `{-1, 0, 1}` 삼진법 매핑 연산 시 AVX2 인트린직의 비트 마스킹 우회 연산을 ARM NEON 어셈블리로 직역하는 과정에서 부호 비트 처리가 뒤틀려 값이 붕괴됨.
-  * **해결 조치**: QK=128 블록 규격을 강제 고정하고, `ggml_vec_dot_i2_i8_s_1x1` 등 C++ 벡터 수학 연산 커널을 AArch64 SIMD 및 DotProd 어셈블리를 활용하여 메모리 offset 정렬에 완전히 부합하도록 어셈블리 수준에서 전면 수정 후 빌드.
-  * **빌드 크래시 해결**: Clang 21과 Termux NDK 빌드 시 깨진 심볼릭 링크로 인한 CMake 중단 문제를 우회하기 위해, CMake 툴체인 단에서 헤더 파일을 직접 수동 동적 복사하고 `steady_clock` 시간 측정을 강제 패치하는 쉘/파이썬 컴파일 자동화 스크립트를 작성하여 빌드 체계 완결.
-* **성과 및 피드백**:
-  * **갤럭시 A35(Exynos 1380) 환경에서 가상화 레이어를 얹고도 8스레드 병렬 NEON 가속을 통해 3.01 tokens/sec의 실시간 온디바이스 추론에 최초 성공.** 하드웨어 SIMD 명령어 레벨의 데이터 정렬과 어셈블리 최적화의 미시적 깊이를 실증함.
-
----
-
-### 2. AMEVA-Agent-Orchestra (자율형 멀티 에이전트 코딩 시스템)
-* **목적 및 문제 정의**:
-  * 단일 8B 모델 하에서 턴 단위 프롬프트 역할 주입을 통해 PM, 설계자, 개발자, 테스터가 협업하는 재귀적 자율 코딩 루프 구현.
-  * 다중 에이전트 스레드가 로컬 `llama.cpp` 서버에 동시 추론 요청을 보낼 때 발생하는 세그먼테이션 폴트 및 턴 누적으로 인한 컨텍스트 포화(정체성 붕괴) 해결이 요구됨.
-* **기술적 의사결정 (Trade-off)**:
-  * **단일 8B 모델 롤플레잉 vs 다중 소형 모델 병렬 구동**: 메모리 점유를 최소화하기 위해 단일 8B 가중치를 상주시킨 채 턴제로 에이전트를 스위칭하는 구조 채택. 동시 다발적 비동기 처리는 불가능해져 전체 소요 시간은 늘어났으나 추론의 안정성과 연산 품질을 극대화함.
-  * **LlamaGrammar 가드**: 에이전트의 답변을 온전한 JSON 규격으로 제어하기 위해 문법 가이드를 강제하여 파싱 에러율을 통제.
-* **임계 트러블슈팅 & 해결 과정 (Adaptive Handoff & Hybrid JSON Parser)**:
-  * **정체성 오염**: 이전 에이전트의 대화 이력이 누적되어 다음 에이전트가 이전 에이전트의 페르소나를 흉내 내는 현상. 이를 해결하기 위해 DB 테이블을 설계하여 개별 에이전트의 히스토리를 물리적으로 격리. 프롬프트 생성 시 전체 로그 대신 DB에서 가공된 최근 턴의 핵심 결과물 요약본만 결합하여 바통터치식으로 주입하는 **Adaptive Handoff 아키텍처** 구축.
-  * **JSON 후행 탈락 복구**: LLM 추론 중 컨텍스트 제한으로 중괄호가 덜 닫힌 채 반환되는 파싱 붕괴 현상을 해결하기 위해, 중괄호 깊이를 스택으로 추적하여 자동으로 닫는 필터와 정규식을 결합한 **Hybrid JSON Parser**를 자체 제작해 데이터를 구출해 냄.
-* **성과 및 피드백**:
-  * **10턴 누적 테스트 중 정체성 이탈률 0%, 지시어 유출률 0%, 자가 치유(Self-Healing) 성공률 92% 달성.** 프롬프트 수준의 자아 제어를 시스템 데이터베이스 레벨로 정형화한 구조적 실증 완료.
-
----
-
-### 3. AMEVA-Window-Assistant (로컬 멀티모달 데스크톱 에어 비서)
-* **목적 및 문제 정의**:
-  * 완전 오프라인 환경에서 캡처된 화면 상황 인지(VLM) 및 마이크 입력(STT)을 연계하여 사용자와 대화하는 Windows 네이티브 개인 비서 시스템.
-  * 무거운 시각 언어 모델(VLM)을 로컬 GPU에서 상시 가동할 때 발생하는 극심한 VRAM 초과(OOM) 및 전체 GUI 루프 프리징 해결 필요.
-* **기술적 의사결정 (Trade-off)**:
-  * **Selective Routing 아키텍처**: 모든 화면을 VLM으로 보내는 대신, Tesseract OCR의 Bounding Box 텍스트 밀도를 먼저 분석. 밀도가 충분할 경우 텍스트를 추출하여 일반 Llama-3.1-8B 모델로 라우팅하고, 복잡한 시각 맥락이 포함된 명령인 경우에만 Qwen2-VL-2B/7B 모델을 백그라운드로 로드하여 VRAM OOM을 방지.
-  * **Direct PCM Buffer capture**: FFmpeg를 거치지 않고 `sounddevice` 라이브러리로 오디오 장치의 16kHz PCM 스트림 버퍼에 다이렉트 접근하여 오디오 파일 생성 및 변환 딜레이를 0초로 단축.
-* **임계 트러블슈팅 & 해결 과정 (RMS 에너지 모니터링 & GUI 비동기 격리)**:
-  * **마이크 무음 대기 시 CPU 폭주**: 마이크가 켜져 있는 동안 무음 구간에서도 STT 디코더가 무한 작동하여 CPU 점유율이 50%를 초과하는 현상. 오디오 버퍼의 RMS 에너지를 100ms 단위로 실시간 연산하여, 임계값 이상 발화가 시작될 때만 STT 엔진을 활성화하고 무음 지속 시 컷오프하는 침묵 감지 스위치를 내장하여 대기 CPU 점유율을 3% 미만으로 제거.
-* **성과 및 피드백**:
-  * VRAM 8GB 미만의 일반 데스크톱 환경에서 OOM 없이 화면 인지 및 실시간 오프라인 음성 대화 기능 구현.
-
----
-
-### 4. AMEVA-Dead-Internet-Theatre (잠재적 인격 동역학 시뮬레이터)
-* **목적 및 문제 정의**:
-  * AI 에이전트들이 외부 개입 없이 텍스트 토론을 수행할 때 발생하는 여론 수렴(모두 찬성으로 쏠리는 무한 동조) 및 3B 이하 소형 모델(SLM)의 정체성 붕괴 방지 연구.
-* **기술적 의사결정 (Trade-off)**:
-  * **Director Agent (감독 봇) 중앙 집중 통제**: 에이전트들 간의 자유 분산 토론에 의존하지 않고, 교착 상태를 감지하면 개입하여 화두를 환기하거나 대립각을 세우는 감독 에이전트를 도입.
-  * **감정 상태 인자 주입**: 시스템 프롬프트에 추상적인 설명 대신 기분(Valence), 흥분도(Arousal), 고집(Conviction) 등 수치형 상태 인자를 실시간 튜닝하여 제공.
-* **임계 트러블슈팅 & 해결 과정 (LPDE 인격 상태 벡터 및 어조 후처리 필터링)**:
-  * **소형 모델의 기억 포화 및 자아 상실**: 대화가 길어지면 1.5B/3B급 SLM 모델들이 상대방의 텍스트를 그대로 복사해 읊조리는 **앵무새 현상(Parroting)** 및 자아 붕괴(Stance Flip) 현상이 발생. 대화 이력을 단순히 프롬프트에 누적하지 않고, 대화에서 나타난 감정과 핵심 쟁점만을 수치적으로 압축한 **LPDE 인격 상태 벡터**로 변환하여 메모리를 최적화. 봇의 성향 정의에 정면 위배되는 동조 발언 감지 시 해당 턴 출력을 정규식 필터로 강제 반려하고 재추론을 시도하는 복구 필터 구축.
-* **성과 및 피드백**:
-  * 3B 소형 모델의 정체성 유지 턴 한계를 기존 7.8턴에서 50턴 이상으로 대폭 향상. 소형 모델 구동 시에도 정형화된 메타 정보 피드백을 통해 고품질의 소통 시뮬레이션을 구현할 수 있음을 증명함.
-
----
-
-### 5. AMEVA-Benchmark-Suite (컨테이너 격리형 LLM 계측 플랫폼)
-* **목적 및 문제 정의**:
-  * 호스트 환경 간섭 없이 신규 로컬 LLM의 정확도(수학, 코드, 번역) 및 물리 자원 사용률을 독립적으로 계측하고 진단서(.docx) 작성을 자동화.
-* **기술적 의사결정 (Trade-off)**:
-  * **Smart SWAP (컨테이너 완전 소거)**: 모델 변경 시 단순히 프로세스를 재시작하지 않고 Docker 컨테이너 전체를 완전히 파괴한 후 재생성하여, 이전 실행의 VRAM 파편 및 OS 캐시 잔존 등 측정 편향을 100% 원천 차단.
-  * **Strict 채점 프롬프트**: 생성 일관성을 위해 `Temperature = 0.0`으로 강제 고정하고, 출력을 JSON Schema로 강제 억제.
-* **임계 트러블슈팅 & 해결 과정 (교차 순차 메모리 스케줄링)**:
-  * **VRAM OOM 크래시**: 8B급 피평가 모델과 8B급 채점 에이전트(EXAONE-3.5)를 한 물리 메모리에 동시에 로드할 시 가용 자원 부족으로 벤치마크 중단. 피평가 모델의 추론 태스크가 완수되면 호스트 메모리에서 모델을 완전히 Unload(메모리 소거) 한 것을 감지한 이후에만 채점 에이전트를 로드하도록 하는 런타임 제어 오케스트레이터를 작성하여 100% 예방.
-* **성과 및 피드백**:
-  * 싱글 PC 리소스로도 간섭과 오차 없는 정밀하고 공정한 로컬 LLM 정량/정성 평가 파이프라인 확립.
-
----
-
-### 6. AMEVA-Doc-AI (오프라인 문서 지능 RAG 워크스테이션)
-* **목적 및 문제 정의**:
-  * 기밀 유지 환경에서 대용량 PDF 문서들의 요약, 하이브리드 RAG 질의응답 및 오디오북 합성을 로컬에서 단독 처리.
-  * 단일 스레드로 대규모 파싱 및 요약 수행 시 병목이 매우 심하며, 멀티스레드 요청 시 로컬 Ollama 서버가 트래픽을 견디지 못하고 터지는 현상 발생.
-* **기술적 의사결정 (Trade-off)**:
-  * **1.5B 모델 병렬 요약 + 8B RAG 라우팅**: 전체 텍스트 요약은 저사양 여러 스레드로 1.5B 모델들을 동시 가동해 분산 처리하여 처리 시간을 약 5배 단축하고, 정밀한 팩트 매칭이 중요한 최종 RAG 질의응답에만 8B 모델을 단독 매핑하여 속도와 정확도의 타협점을 도출.
-* **임계 트러블슈팅 & 해결 과정 (Watchdog 롤오버 안전망 & 하이브리드 RAG)**:
-  * **Ollama 503 과부하 에러**: `OLLAMA_NUM_PARALLEL` 내부 설정을 스레드 가용량에 맞게 최적화하고, 세마포어 기반 락을 도입해 호출을 제한.
-  * **정전/자원 고갈 시 데이터 유실**: 시스템의 물리적 전력 탈착 및 메모리 한계 임계값 도달을 주기적으로 감시하는 **Watchdog 데몬**을 기동. 위기 상황 감지 시 현재 처리 중이던 요약 태스크들을 P-2 백업 큐로 롤오버해 다른 가용 노드로 안전하게 이관시키는 복구 아키텍처 설계.
-  * **RAG 검색 누락**: 스파스 중심 검색의 오타/동의어 인식 실패를 막기 위해 TF-IDF 인덱스를 직접 메모리에 구축하고, 조밀 임베딩 코사인 유사도 점수를 가중 결합(alpha=0.7)한 **하이브리드 RAG** 구조를 구축해 검색 재현율을 94.2%로 보정.
-* **성과 및 피드백**:
-  * 대용량 기밀 문서 RAG 질의응답 속도를 기존 대비 80% 이상 혁신.
-
----
-
-### 7. AMEVA-STT-Agent (하이브리드 화자 분리 및 회의록 전사 엔진)
-* **목적 및 문제 정의**:
-  * 로컬 환경에서 음성 회의 녹음본을 다중 화자로 구분(Diarization)하고 전사 텍스트와 매핑하여 정형화된 회의록 문서로 최종 출력.
-* **기술적 의사결정 (Trade-off)**:
-  * **Whisper-Vosk 하이브리드 모델 매핑**: Whisper는 뛰어난 전사 정확도를 보이지만 화자 분류 성능이 부재하며, Vosk는 화자 구별(X-Vector 임베딩) 속도가 빠르지만 받아쓰기 능력이 뒤처짐. 따라서 두 모델의 세그먼트 출력을 타임라인 상에서 기하학적으로 연동하는 하이브리드 방식을 설계.
-* **임계 트러블슈팅 & 해결 과정 (중간값 클러스터링 & 멱반복법 PCA 축소)**:
-  * **화자 불일치 및 오프셋 뒤섞임**: Whisper 자막 타임스탬프와 Vosk 화자 세그먼트 시간대가 미세하게 맞물리지 않아 대화가 겹치는 구간에서 화자가 뒤섞이는 에러. 전사 텍스트 구간의 중간(Median) 타임스탬프 값을 연산한 후, 해당 지점에 가장 인접한 화자 클러스터를 1:1 매칭하는 타임 인터섹션 필터를 설계해 해결.
-  * **CPU 연산 병목**: 대량 텐서 연산으로 인한 군집화 단계의 CPU 과부하를 막기 위해 멱반복법(Power Iteration)을 적용한 주성분 분석(PCA) 차원 축소를 도입해 응답 속도를 개선함.
-* **성과 및 피드백**:
-  * **1분 분량 분석 기준, Medium 구성으로 전사 오류율 3.8% 및 화자 매칭 정밀도 89.2%의 고성능 오프라인 회의록 작성 엔진을 실증 완료.**
-
----
-
-### 8. AMEVA-STT-Trainer (Whisper LoRA 파인튜닝 파이프라인)
-* **목적 및 문제 정의**:
-  * 외부 네트워크 연결이 불가한 환경에서, 특정 도메인 코퍼스 음성 데이터를 수집 및 3단계 정제하여 Whisper 모델을 LoRA 학습시키고 C++ 서빙(Whisper.cpp)용 GGUF 가중치로 양자화 배포하는 파이프라인 구축.
-* **기술적 의사결정 (Trade-off)**:
-  * **IterableDataset 스트리밍**: 윈도우 디스크 I/O 병목 및 메모리 캐싱 오버헤드를 막기 위해 학습 데이터를 디스크에 다 올리지 않고 필요할 때 실시간 스트리밍 디코딩 로드 처리.
-  * **터미널 기반 경량 관제**: 그래픽 UI를 띄워 학습 속도를 뺏기는 것을 방지하고자 터미널 콘솔 스트림을 파싱해 실시간 상태를 갱신하는 텍스트 텔레메트리 화면 설계.
-* **임계 트러블슈팅 & 해결 과정 (WinError 87 및 프로세스 격리)**:
-  * **Windows 환경 Dataloader 충돌**: 윈도우에서 PyTorch Dataloader 가동 시 ctypes 직렬화 제한으로 인해 `WinError 87`을 뱉으며 파이프라인이 즉각 중단되는 버그. `pin_memory=False` 및 `num_workers=0`으로 가상 메모리 로더 구조를 변경하고, 데이터 추출 모듈을 전역 런타임 환경과 완벽히 격리해 단일 프로세스 직렬 처리 방식으로 안전성 우회 확보.
-* **성과 및 피드백**:
-  * 제한된 저사양 Windows 환경에서도 메모리 고갈이나 충돌 없는 완전 독립형 음성 인식 파인튜닝 환경을 완비함.
+- **CORS 제한 하의 LFS 포인터 탐지**: 외부 도메인(`raw.githubusercontent.com`) `HEAD` 호출 시 CORS 이슈로 `Content-Length`를 읽을 수 없었던 문제를, `GET` 요청으로 스트리밍을 시작한 뒤 최초 8바이트가 `"version "` 인지만을 검사하고 즉시 `ReadableStream.cancel()`을 호출하는 **Streaming First-Chunk Cancel** 기법을 개발하여 트래픽 낭비 없이 포인터를 완벽히 차단했습니다.
+- **WebLLM 캐시 오염 방지**: LFS 다운로드 실패 시 IndexedDB에 오염된 가중치 정보가 캐싱되어 차후 hugginface 우회 시에도 계속 크래시가 유도되는 오류를, HF 폴백 시 `model_id` 뒤에 `-HF` 접미사를 동적으로 붙여 새 세션으로 인식시키는 **Dynamic Model ID** 기법으로 극복했습니다.
+- **D3.js와 TTS 스코프 결합**: D3.js 줌 객체의 모듈 레벨 Hoisting 및 외부 카메라 시점 제어 Setter 구현을 통해, TTS 음성 가이드 투어 완료 이벤트 사이클에 맞춰 D3 줌 카메라를 안정적으로 이동시키는 구조적 설계를 완성했습니다.
 
 ---
 
