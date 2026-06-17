@@ -1595,19 +1595,23 @@ body {
   max-width: 450px;
   width: 90%;
   max-height: 70vh;
-  overflow-y: auto;
+  overflow: auto;
   background: rgba(15, 23, 42, 0.95);
   text-align: left;
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  transition: max-width 0.3s ease, width 0.3s ease, max-height 0.3s ease;
+  
+  /* 드래그 크기 조절 기능 추가 */
+  resize: both;
+  min-width: 320px;
+  min-height: 300px;
 }
 
 @media (min-width: 768px) {
   .profile-card {
-    max-width: 900px;
+    max-width: 95vw;
     width: 85%;
-    max-height: 85vh;
+    max-height: 95vh;
     padding: var(--space-2xl);
   }
 }
