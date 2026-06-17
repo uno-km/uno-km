@@ -142,44 +142,33 @@
   }
 </style>
 
----
-
 ## 👑 About the Architect: Uno-km (AI SRE & Edge-Native Engineer)
 
-안녕하세요! 저는 완전 폐쇄망 및 인터넷 단절 환경에서도 독립적으로 사유하고 동작하는 자율형 멀티 에이전트 시스템 **AMEVA (Autonomous Multi-Agent Edge-AI Ecosystem)**의 설계자이자 1인 개발자, **Uno-km**입니다.
+### 🎯 핵심 기능
+* **WebGPU 로컬 챗봇 엔진**: WebLLM을 활용하여 Qwen 1.5B 모델을 사용자 기기의 GPU 메모리 위에서 직접 구동합니다.
+* **D3.js 시네마틱 가이드 투어 (Codex)**: WebGPU를 지원하지 않는 기기(구형 PC, 저사양 모바일 등)를 위한 Fallback 경험입니다. AMEVA 생태계를 노드 그래프로 시각화하고 TTS(음성 합성)로 투어를 진행합니다.
+* **Glassmorphism UI/UX**: 우주 공간을 떠다니는 듯한 신비로운 노드 애니메이션과 세련된 다크 테마 기반의 모던 웹 디자인을 채택했습니다.
 
-상용 API(OpenAI, Claude 등)의 중앙 통제적 지능에 의존하는 것을 거부하며, 군·금융·의료 등 극도의 기밀이 요구되는 격리망에서도 상용 AI 수준의 생산성을 구현하기 위해 모바일 디바이스(ARM64), Windows PC, Linux 컨테이너 환경의 밑바닥까지 제어하고 최적화해 왔습니다. 
+### ⚖️ 트레이드오프 (Trade-offs)
+1. **"Sovereign Hosting" vs. "High Availability"**
+   * **배경**: AMEVA의 완전한 오프라인/주권 철학을 지키기 위해, 900MB에 달하는 언어 모델을 GitHub LFS를 통해 직접 호스팅하고자 했습니다.
+   * **문제**: 무료 GitHub 계정의 LFS 대역폭 제한은 월 1GB입니다. 개발 중 단 두세 번의 로드 테스트만으로도 대역폭이 완전히 고갈되었고, 깃허브는 원본 바이너리 대신 134바이트짜리 LFS 포인터 텍스트 파일을 반환하기 시작했습니다.
+   * **결정**: 100% 로컬 호스팅이라는 이념적 목표를 약간 양보하는 대신, 서비스의 안정성(HA)을 택했습니다. 기본적으로 GitHub LFS에서 로드를 시도하되, 실패가 감지되면 즉시 트래픽이 무제한인 **Hugging Face CDN으로 우회(Fallback)**하도록 하이브리드 다운로드 아키텍처를 설계했습니다.
+2. **"모든 기기 챗봇 지원" vs. "안정적인 브라우저 경험"**
+   * **배경**: 초창기에는 모든 모바일 기기 접속을 차단하고 챗봇 대신 시네마틱 투어(Codex)만 보여주도록 설계했습니다.
+   * **문제**: 모바일 브라우저에서 1.5GB가 넘는 VRAM을 할당하려 하면 브라우저 탭이 강제 종료(OOM Crash)되는 빈도가 높았기 때문입니다.
+   * **결정**: 모바일 접속 여부로 기능을 제한하는 대신, 오직 WebGPU 지원 여부만을 기준으로 제한 기준을 완화했습니다. 따라서 갤럭시 S24와 같은 최신 하이엔드 모바일 기기는 챗봇을 실행할 수 있는 기회를 갖게 되며, 사양이 부족한 기기는 우아하게 Codex 모드로 Fallback됩니다.
 
-하드웨어 수준의 메모리 인터리빙 튜닝부터 대규모 멀티 스레딩 관제, SRE 원칙에 기반한 전력/온도 모니터링 및 자가 치유(Self-Healing) 시스템 구축까지, **"실행 가능하고 신뢰할 수 있는 지능"**을 실증하는 시스템 엔지니어입니다.
-
-### 🛠 Core Skillsets (기술 역량)
-
-<div class="tech-grid">
-  <div class="tech-card">
-    <h3>🤖 AI/ML Serving</h3>
-    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
-      llama.cpp 서빙, GGUF 양자화 빌드, Ollama 자원 제어, PEFT/LoRA 파인튜닝, Whisper 로컬 디코딩, Vosk 임베딩, scikit-learn 화자 군집화
-    </p>
-  </div>
-  <div class="tech-card">
-    <h3>⚙️ Systems Programming</h3>
-    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
-      Asynchronous multi-threading (ThreadPoolExecutor, Queue), sounddevice Direct PCM 캡처, psutil/GPUtil 리소스 실시간 프로파일링
-    </p>
-  </div>
-  <div class="tech-card">
-    <h3>☁️ Infrastructure & MLOps</h3>
-    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
-      Docker Compose 격리 컨테이너 샌드박싱, Windows MSVC/ARM CUDA 크로스 빌드 툴체인, LFS-HuggingFace 하이브리드 CDN 라우팅
-    </p>
-  </div>
-  <div class="tech-card">
-    <h3>🔒 Security & Database</h3>
-    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8; line-height: 1.4;">
-      AST(추상 구문 트리) 정적 스캔, shred 포렌식 파일 영구 소거, SQLite3 세션 영속화 및 트랜잭션 동기화
-    </p>
-  </div>
-</div>
+### 🧗‍♂️ 개발 중 마주한 난제 및 해결책 (Troubleshooting)
+* **난제 1: LFS 대역폭 소진 판별 시 CORS 문제 (Content-Length 은닉)**
+  * **문제**: WebLLM이 LFS 포인터 파일을 116MB짜리 진짜 가중치 파일로 오인하여 파싱하다가 size mismatch 에러로 뻗어버리는 문제가 있었습니다. 이를 방지하기 위해 파일 용량을 검사하려 했으나, 브라우저에서 외부 도메인(raw.githubusercontent.com)으로 HEAD 요청을 보낼 때 깃허브 서버 측의 CORS 정책으로 인해 Content-Length 헤더를 읽을 수 없었습니다.
+  * **해결책 (Streaming First-Chunk Cancel)**: HEAD 요청 대신 실제 GET 요청으로 파일을 fetch하고, ReadableStream을 통해 딱 첫 번째 청크(Chunk)만 읽은 뒤 즉시 다운로드를 cancel() 시키는 기법을 도입했습니다. 읽어들인 앞부분의 8바이트 텍스트가 "version " (LFS 포인터 파일의 시작 문자열)인지 확인하여 파일이 포인터인지 확실히 판별하면서도, 116MB의 데이터를 낭비하지 않는 완벽한 방어 로직을 구축했습니다.
+* **난제 2: WebLLM 브라우저 캐시 오염 (Cache Poisoning) 방지**
+  * **문제**: 위의 LFS 다운로드 실패를 겪는 과정에서, WebLLM 엔진이 잘못된 134바이트짜리 포인터 파일을 내부 IndexedDB에 정상적인 모델 파일로 저장(캐싱)해 버리는 현상이 발생했습니다. 이로 인해 이후 Hugging Face로 다운로드 경로를 우회했음에도 엔진이 오염된 캐시를 계속 불러와 뻗어버렸습니다.
+  * **해결책 (Dynamic Model ID)**: Hugging Face 경로로 Fallback 시, WebLLM 초기화 객체에 들어가는 model_id 문자열 뒤에 -HF 라는 접미사를 동적으로 붙였습니다. 이를 통해 WebLLM이 기존에 오염된 캐시(Qwen2.5-1.5B...)를 무시하고 새로운 모델 환경(Qwen2.5-1.5B...-HF)으로 인식하게 만들어, 사용자가 직접 F12를 눌러 캐시를 비우지 않아도 시스템이 스스로 복구될 수 있도록 조치했습니다.
+* **난제 3: 시네마틱 투어 중 TTS와 D3.js 줌 객체 간의 스코프 충돌**
+  * **문제**: 투어 콘텐츠를 읽어주는 TTS(Text-to-Speech)가 끝날 때마다 자동으로 다음 노드로 D3 카메라를 줌인시키는 로직에서, zoom 객체를 찾을 수 없다는 ReferenceError가 발생했습니다.
+  * **해결책**: d3.zoom() 객체가 initGraph() 함수 내부에 지역 변수로 고립되어 있던 것을 파악하고, 모듈(Module) 스코프로 끌어올렸습니다(Hoisting). 이후 외부에서 카메라 시점을 제어할 수 있는 Setter 함수를 구현해 TTS 이벤트 사이클과 시각화 라이브러리를 안전하게 결합했습니다.
 
 ---
 
@@ -417,48 +406,6 @@
   </div>
 </div>
 
----
-
-## 🎮 AMEVA Dashboard & Codex App Documentation
-
-이 레포지토리는 AMEVA 생태계의 철학과 기술을 시각화하고, 브라우저 환경에서 직접 Edge-native LLM을 구동하고 검증하는 대시보드 웹 애플리케이션의 소스 코드입니다.
-
-### 🎮 브라우저 에뮬레이터 테스트 (Sandbox Run)
-
-아래 코드 블록은 노드 상세 모달이 열리면 자동으로 감지되어 그 하단에 `▶ 브라우저 에뮬레이터에서 실행` 버튼이 생성됩니다. 클릭 시 안전한 샌드박스 내에서 즉시 구동됩니다.
-
-```javascript
-// Sandbox Emulator Test Code
-console.log("🚀 AMEVA Sandbox Emulator Initialized!");
-console.log("현재 브라우저 화면 크기:", window.innerWidth, "x", window.innerHeight);
-const mathResult = Math.sqrt(256) * Math.PI;
-console.log("계산 연산 결과 (sqrt(256) * PI):", mathResult.toFixed(4));
-```
-
-```html
-<div style="padding: 15px; background: linear-gradient(135deg, #7C3AED, #00EFFF); color: #fff; border-radius: 8px; font-family: sans-serif; text-align: center; box-shadow: 0 4px 15px rgba(0,239,255,0.3);">
-  <h3>🌌 Hello from Sandbox!</h3>
-  <p>이 영역은 iframe 샌드박스 내부에서 안전하게 실행된 HTML 뷰포트입니다.</p>
-  <button onclick="alert('샌드박스 클릭!')" style="background: #3ECF8E; border: none; padding: 8px 16px; border-radius: 4px; color: #111; cursor: pointer; font-weight: bold;">대화상자 띄우기</button>
-</div>
-```
-
-### 🎯 대시보드 핵심 기능
-
-- **WebGPU 로컬 챗봇 엔진**: WebLLM을 활용하여 Qwen 1.5B 모델을 사용자 기기의 GPU 메모리 위에서 직접 구동합니다.
-- **D3.js 시네마틱 가이드 투어 (Codex)**: WebGPU를 지원하지 않는 기기(구형 PC, 저사양 모바일 등)를 위한 Fallback 경험입니다. AMEVA 생태계를 노드 그래프로 시각화하고 TTS(음성 합성)로 투어를 진행합니다.
-- **Glassmorphism UI/UX**: 우주 공간을 떠다니는 듯한 신비로운 노드 애니메이션과 세련된 다크 테마 기반의 모던 웹 디자인을 채택했습니다.
-
-### ⚖️ 대시보드 설계 트레이드오프 (Trade-offs)
-
-- **"Sovereign Hosting" vs. "High Availability"**: AMEVA의 완전한 오프라인/주권 철학을 위해 900MB 모델 가중치를 GitHub LFS로 직접 서빙하고자 하였으나, GitHub LFS의 1GB 대역폭 제한으로 인한 pointer 파일 반환 이슈를 극복하기 위해 실패 감지 시 즉시 Hugging Face CDN으로 우회(Fallback)하는 하이브리드 구조를 설계했습니다.
-- **"모든 기기 챗봇 지원" vs. "안정적인 브라우저 경험"**: 모바일 환경에서의 VRAM 할당으로 인한 OOM 크래시를 완화하기 위해 모바일 디바이스 감지 시 바로 Codex(투어 및 도감) 모드로 안전하게 폴백되도록 제어 루프를 적용했습니다.
-
-### 🧗‍♂️ 대시보드 개발 트러블슈팅 (Troubleshooting)
-
-- **CORS 제한 하의 LFS 포인터 탐지**: 외부 도메인(`raw.githubusercontent.com`) `HEAD` 호출 시 CORS 이슈로 `Content-Length`를 읽을 수 없었던 문제를, `GET` 요청으로 스트리밍을 시작한 뒤 최초 8바이트가 `"version "` 인지만을 검사하고 즉시 `ReadableStream.cancel()`을 호출하는 **Streaming First-Chunk Cancel** 기법을 개발하여 트래픽 낭비 없이 포인터를 완벽히 차단했습니다.
-- **WebLLM 캐시 오염 방지**: LFS 다운로드 실패 시 IndexedDB에 오염된 가중치 정보가 캐싱되어 차후 hugginface 우회 시에도 계속 크래시가 유도되는 오류를, HF 폴백 시 `model_id` 뒤에 `-HF` 접미사를 동적으로 붙여 새 세션으로 인식시키는 **Dynamic Model ID** 기법으로 극복했습니다.
-- **D3.js와 TTS 스코프 결합**: D3.js 줌 객체의 모듈 레벨 Hoisting 및 외부 카메라 시점 제어 Setter 구현을 통해, TTS 음성 가이드 투어 완료 이벤트 사이클에 맞춰 D3 줌 카메라를 안정적으로 이동시키는 구조적 설계를 완성했습니다.
 
 ---
 
