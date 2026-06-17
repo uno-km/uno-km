@@ -9,10 +9,13 @@
 
 ```
 uno-km/
-├── tour_data.json          ← JS가 런타임에 로드하는 실제 데이터
-├── codex_tour_data.md      ← 이 문서 (유지보수 가이드)
-├── graph_config.md          ← 노드 그래프 구성 가이드
-└── graph_visualizer.js      ← 투어 로직 (데이터는 tour_data.json에서 로드)
+├── data/
+│   └── tour_data.json      ← JS가 런타임에 로드하는 실제 데이터
+├── assets/docs/
+│   ├── codex_tour_data.md  ← 이 문서 (유지보수 가이드)
+│   └── graph_config.md     ← 노드 그래프 구성 가이드
+└── js/
+    └── graph_visualizer.js ← 투어 로직 (데이터는 tour_data.json에서 로드)
 ```
 
 ---

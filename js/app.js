@@ -431,7 +431,7 @@ if (btnWhoMade && modalProfile) {
   btnWhoMade.addEventListener('click', async () => {
     modalProfile.classList.add('is-active');
     try {
-      const res = await fetch('profile.md');
+      const res = await fetch('assets/docs/profile.md');
       if (!res.ok) throw new Error("Profile not found");
       const text = await res.text();
       profileContent.innerHTML = marked.parse(text);

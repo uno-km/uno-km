@@ -62,7 +62,7 @@ export async function initGraph() {
       const repos = await response.json();
 
       // 1. Fetch Ecosystem DB
-      const dbResponse = await fetch('ecosystem_db.json');
+      const dbResponse = await fetch('data/ecosystem_db.json');
       const dbRoot = await dbResponse.json();
 
       const nodes = [];
@@ -164,7 +164,7 @@ export async function initGraph() {
       data = { nodes, links };
     } else {
       console.warn("GitHub API limit exceeded or failed. Falling back to local index.");
-      const fallback = await fetch('graph_index.json');
+      const fallback = await fetch('data/graph_index.json');
       data = await fallback.json();
     }
 
@@ -499,7 +499,7 @@ const TRANSITION_BUFFER_MS = 1500;
 async function loadTourData() {
   if (cachedTourData) return cachedTourData;
   try {
-    const res = await fetch('tour_data.json');
+    const res = await fetch('data/tour_data.json');
     if (!res.ok) throw new Error('Tour data not found');
     cachedTourData = await res.json();
     return cachedTourData;

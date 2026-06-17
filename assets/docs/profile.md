@@ -1,6 +1,6 @@
 # Who Made AMEVA?
 
-![Profile Image](ameva-creater.jpg)
+![Profile Image](assets/images/ameva-creater.jpg)
 
 <p style="text-align: center; margin: 15px 0;">
   👉 <a href="https://uno-kim.tistory.com/" target="_blank" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-cyan);">https://uno-kim.tistory.com/</a>

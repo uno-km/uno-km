@@ -9,10 +9,14 @@
 
 ```
 uno-km/
-├── graph_visualizer.js      ← 그래프 렌더링 + 카테고리 정의 + 분류 로직
-├── graph_index.json         ← GitHub API 실패 시 사용되는 폴백 데이터
-├── graph_config.md          ← 이 문서 (유지보수 가이드)
-└── styles.css               ← 그래프 관련 CSS (tooltip, modal 등)
+├── js/
+│   └── graph_visualizer.js  ← 그래프 렌더링 + 카테고리 정의 + 분류 로직
+├── data/
+│   └── graph_index.json     ← GitHub API 실패 시 사용되는 폴백 데이터
+├── assets/docs/
+│   └── graph_config.md      ← 이 문서 (유지보수 가이드)
+└── css/
+    └── styles.css           ← 그래프 관련 CSS (tooltip, modal 등)
 ```
 
 ---

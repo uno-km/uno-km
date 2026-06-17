@@ -83,3 +83,6 @@ report/
 .report
 
 *_repo.py
+
+# Tistory Demo (Temporary)
+tistory/
