@@ -64,6 +64,10 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
+tistory/
+scripts/
+report/
+
 # Logs and databases
 *.log
 logs/
