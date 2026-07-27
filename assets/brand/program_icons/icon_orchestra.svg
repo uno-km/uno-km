@@ -1,12 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Deep Cosmic Background -->
     <linearGradient id="bg-space" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0B132B" />
       <stop offset="100%" stop-color="#1C2541" />
     </linearGradient>
 
-    <!-- Crisp Aqua Cyan & Ocean Sky Blue Gradient -->
     <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00F5D4" />
       <stop offset="50%" stop-color="#00E5FF" />
@@ -15,52 +13,47 @@
 
     <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#00F5D4" stop-opacity="1" />
-      <stop offset="50%" stop-color="#38BDF8" stroke-opacity="0.6" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  <!-- FULL CANVAS SOLID BACKGROUND (NO WHITE CORNERS AT ALL) -->
   <rect width="512" height="512" rx="108" fill="url(#bg-space)" />
 
-  <!-- Outer Organic Fluid Universe Ring -->
-  <path d="M 256 60 
-           C 364 60, 436 132, 436 240 
-           C 436 348, 364 420, 256 420 
-           C 148 420, 76 348, 76 240 
-           C 76 132, 148 60, 256 60 Z" 
+  <path d="M 256 50 
+           C 364 50, 436 122, 436 230 
+           C 436 338, 364 410, 256 410 
+           C 148 410, 76 338, 76 230 
+           C 76 122, 148 50, 256 50 Z" 
         fill="none" 
         stroke="url(#aqua-sky-grad)" 
-        stroke-width="24" 
+        stroke-width="22" 
         stroke-linecap="round" 
         stroke-dasharray="740" 
         stroke-dashoffset="65" 
-        opacity="0.55" />
+        opacity="0.5" />
 
-  <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
-  <line x1="256" y1="100" x2="190" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
-  <line x1="190" y1="220" x2="150" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="256" y1="90" x2="190" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+  <line x1="190" y1="210" x2="150" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
   
-  <!-- 60° Inward Organic Branching Pseudopod Node -->
-  <line x1="190" y1="220" x2="245" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="10 5" />
+  <line x1="190" y1="210" x2="245" y2="290" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
 
-  <line x1="256" y1="100" x2="322" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
-  <line x1="322" y1="220" x2="362" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="256" y1="90" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+  <line x1="322" y1="210" x2="362" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
 
-  <line x1="190" y1="220" x2="322" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" opacity="0.9" />
+  <line x1="190" y1="210" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
 
-  <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
-  <circle cx="256" cy="100" r="36" fill="url(#cyan-glow)" />
-  <circle cx="256" cy="100" r="19" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
+  <circle cx="256" cy="90" r="34" fill="url(#cyan-glow)" />
+  <circle cx="256" cy="90" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
 
-  <circle cx="190" cy="220" r="23" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="150" cy="320" r="29" fill="#00F5D4" />
-  <circle cx="245" cy="300" r="21" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="322" cy="220" r="21" fill="#38BDF8" />
-  <circle cx="362" cy="320" r="29" fill="#3A86FF" />
+  <circle cx="190" cy="210" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+  <circle cx="150" cy="310" r="28" fill="#00F5D4" />
+  <circle cx="245" cy="290" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+  <circle cx="322" cy="210" r="20" fill="#38BDF8" />
+  <circle cx="362" cy="310" r="28" fill="#3A86FF" />
 
-  <!-- MAXIMUM SIZE EXTRA-BOLD HIGH-CONTRAST INTEGRATED TEXT (NO BARS, NO BORDERS) -->
-  <text x="256" y="420" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#0B132B" stroke-width="18" paint-order="stroke fill" text-anchor="middle">
+  <!-- GIGANTIC HIGH-CONTRAST BOLD TEXT (UP TO 130PX) -->
+  <text x="256" y="415" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="78" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#060A14" stroke-width="22" paint-order="stroke fill" text-anchor="middle">
     ORCHESTRA
   </text>
 </svg>
