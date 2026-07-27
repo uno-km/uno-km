@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Deep Cosmic Background -->
+    <linearGradient id="bg-space" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B" />
+      <stop offset="100%" stop-color="#1C2541" />
+    </linearGradient>
+
+    <!-- Crisp Aqua Cyan & Ocean Sky Blue Gradient -->
+    <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F5D4" />
+      <stop offset="50%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#3A86FF" />
+    </linearGradient>
+
+    <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00F5D4" stop-opacity="1" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Squircle Base Frame -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg-space)" stroke="#00F5D4" stroke-opacity="0.35" stroke-width="6" />
+
+  <!-- Outer Organic Universe Ring -->
+  <path d="M 256 76 
+           C 354 76, 426 148, 426 246 
+           C 426 344, 354 416, 256 416 
+           C 158 416, 86 344, 86 246 
+           C 86 148, 158 76, 256 76 Z" 
+        fill="none" 
+        stroke="url(#aqua-sky-grad)" 
+        stroke-width="16" 
+        stroke-linecap="round" 
+        stroke-dasharray="740" 
+        stroke-dashoffset="65" 
+        opacity="0.45" />
+
+  <!-- SKELETON CONNECTIONS -->
+  <line x1="256" y1="125" x2="195" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="195" y1="245" x2="155" y2="345" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="195" y1="245" x2="248" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" stroke-dasharray="8 4" />
+
+  <line x1="256" y1="125" x2="317" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="317" y1="245" x2="357" y2="345" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+
+  <line x1="195" y1="245" x2="317" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" opacity="0.85" />
+
+  <!-- NODES -->
+  <circle cx="256" cy="125" r="30" fill="url(#cyan-glow)" />
+  <circle cx="256" cy="125" r="16" fill="#FFFFFF" stroke="#00F5D4" stroke-width="4" />
+
+  <circle cx="195" cy="245" r="18" fill="#00E5FF" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="155" cy="345" r="24" fill="#00F5D4" />
+  <circle cx="248" cy="320" r="16" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="317" cy="245" r="16" fill="#38BDF8" />
+  <circle cx="357" cy="345" r="24" fill="#3A86FF" />
+
+  <!-- BOTTOM BADGE CONTAINER (M365 Style Pill Tag) -->
+  <g transform="translate(0, 0)">
+    <!-- Dark Pill Background with Glow Border -->
+    <rect x="136" y="390" width="240" height="76" rx="20" fill="#050B1A" stroke="#00F5D4" stroke-width="4" />
+    <rect x="140" y="394" width="232" height="68" rx="16" fill="rgba(11, 19, 43, 0.95)" />
+    
+    <!-- Badge Label Text -->
+    <text x="256" y="442" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial Black', sans-serif" font-size="34" font-weight="900" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">
+      CLI
+    </text>
+  </g>
+</svg>
