@@ -15,61 +15,52 @@
 
     <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#00F5D4" stop-opacity="1" />
-      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#38BDF8" stroke-opacity="0.6" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
-
-    <clipPath id="squircle-clip">
-      <rect x="0" y="0" width="512" height="512" rx="108" />
-    </clipPath>
   </defs>
 
-  <!-- Squircle Base Frame -->
-  <g clip-path="url(#squircle-clip)">
-    <!-- Base Deep Background -->
-    <rect x="0" y="0" width="512" height="512" fill="url(#bg-space)" />
+  <!-- FULL CANVAS SOLID BACKGROUND (NO WHITE CORNERS AT ALL) -->
+  <rect width="512" height="512" rx="108" fill="url(#bg-space)" />
 
-    <!-- Outer Organic Fluid Universe Ring -->
-    <path d="M 256 55 
-             C 364 55, 436 127, 436 235 
-             C 436 343, 364 415, 256 415 
-             C 148 415, 76 343, 76 235 
-             C 76 127, 148 55, 256 55 Z" 
-          fill="none" 
-          stroke="url(#aqua-sky-grad)" 
-          stroke-width="22" 
-          stroke-linecap="round" 
-          stroke-dasharray="740" 
-          stroke-dashoffset="65" 
-          opacity="0.5" />
+  <!-- Outer Organic Fluid Universe Ring -->
+  <path d="M 256 60 
+           C 364 60, 436 132, 436 240 
+           C 436 348, 364 420, 256 420 
+           C 148 420, 76 348, 76 240 
+           C 76 132, 148 60, 256 60 Z" 
+        fill="none" 
+        stroke="url(#aqua-sky-grad)" 
+        stroke-width="24" 
+        stroke-linecap="round" 
+        stroke-dasharray="740" 
+        stroke-dashoffset="65" 
+        opacity="0.55" />
 
-    <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
-    <line x1="256" y1="95" x2="190" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="190" y1="215" x2="150" y2="315" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    
-    <!-- 60° Inward Organic Branching Pseudopod Node -->
-    <line x1="190" y1="215" x2="245" y2="295" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
-
-    <line x1="256" y1="95" x2="322" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="322" y1="215" x2="362" y2="315" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-
-    <line x1="190" y1="215" x2="322" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
-
-    <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
-    <circle cx="256" cy="95" r="34" fill="url(#cyan-glow)" />
-    <circle cx="256" cy="95" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
-
-    <circle cx="190" cy="215" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
-    <circle cx="150" cy="315" r="28" fill="#00F5D4" />
-    <circle cx="245" cy="295" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-    <circle cx="322" cy="215" r="20" fill="#38BDF8" />
-    <circle cx="362" cy="315" r="28" fill="#3A86FF" />
-
-    <!-- MAXIMUM SIZE EXTRA-BOLD HIGH-CONTRAST TEXT -->
-    <text x="256" y="415" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="68" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#060A14" stroke-width="18" paint-order="stroke fill" text-anchor="middle">
-      BROWSER
-    </text>
-  </g>
+  <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
+  <line x1="256" y1="100" x2="190" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="190" y1="220" x2="150" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
   
-  <rect x="2" y="2" width="508" height="508" rx="106" fill="none" stroke="rgba(0, 245, 212, 0.4)" stroke-width="4" />
+  <!-- 60° Inward Organic Branching Pseudopod Node -->
+  <line x1="190" y1="220" x2="245" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="10 5" />
+
+  <line x1="256" y1="100" x2="322" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="322" y1="220" x2="362" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+
+  <line x1="190" y1="220" x2="322" y2="220" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" opacity="0.9" />
+
+  <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
+  <circle cx="256" cy="100" r="36" fill="url(#cyan-glow)" />
+  <circle cx="256" cy="100" r="19" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
+
+  <circle cx="190" cy="220" r="23" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+  <circle cx="150" cy="320" r="29" fill="#00F5D4" />
+  <circle cx="245" cy="300" r="21" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+  <circle cx="322" cy="220" r="21" fill="#38BDF8" />
+  <circle cx="362" cy="320" r="29" fill="#3A86FF" />
+
+  <!-- MAXIMUM SIZE EXTRA-BOLD HIGH-CONTRAST INTEGRATED TEXT (NO BARS, NO BORDERS) -->
+  <text x="256" y="420" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="68" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#0B132B" stroke-width="18" paint-order="stroke fill" text-anchor="middle">
+    BROWSER
+  </text>
 </svg>
