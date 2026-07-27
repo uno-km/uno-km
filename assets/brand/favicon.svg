@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
+    <radialGradient id="space-fill" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#162244" />
+      <stop offset="65%" stop-color="#0B132B" />
+      <stop offset="100%" stop-color="#050914" />
+    </radialGradient>
     <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00F5D4" />
       <stop offset="40%" stop-color="#00E5FF" />
@@ -11,27 +16,27 @@
       <stop offset="40%" stop-color="#00F5D4" stop-opacity="0.9" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
-    <filter id="emblem-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.75" />
-    </filter>
   </defs>
 
-  <g filter="url(#emblem-shadow)">
-    <path d="M 256 40 C 392 40, 468 116, 462 244 C 457 372, 380 450, 256 444 C 130 438, 46 356, 50 236 C 55 116, 120 40, 256 40 Z" fill="none" stroke="url(#aqua-sky-grad)" stroke-width="40" stroke-linecap="round" stroke-dasharray="680" stroke-dashoffset="60" />
+  <circle cx="256" cy="256" r="240" fill="url(#space-fill)" stroke="url(#aqua-sky-grad)" stroke-width="14" />
 
-    <line x1="256" y1="95" x2="162" y2="335" stroke="url(#aqua-sky-grad)" stroke-width="36" stroke-linecap="round" />
-    <line x1="256" y1="95" x2="350" y2="335" stroke="url(#aqua-sky-grad)" stroke-width="36" stroke-linecap="round" />
-    <line x1="195" y1="240" x2="317" y2="240" stroke="url(#aqua-sky-grad)" stroke-width="30" stroke-linecap="round" />
-    
-    <line x1="195" y1="240" x2="260" y2="325" stroke="#00F5D4" stroke-width="24" stroke-linecap="round" stroke-dasharray="10 5" />
+  <path d="M 256 60 C 370 60, 442 132, 442 246 C 442 360, 370 432, 256 432 C 142 432, 70 360, 70 246 C 70 132, 142 60, 256 60 Z" fill="none" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" opacity="0.6" />
 
-    <circle cx="256" cy="95" r="40" fill="url(#cyan-glow)" />
-    <circle cx="256" cy="95" r="22" fill="#FFFFFF" stroke="#00F5D4" stroke-width="6" />
+  <line x1="256" y1="105" x2="180" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="180" y1="245" x2="140" y2="365" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="180" y1="245" x2="245" y2="335" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="10 5" />
 
-    <circle cx="195" cy="240" r="26" fill="#00E5FF" stroke="#FFFFFF" stroke-width="5" />
-    <circle cx="162" cy="335" r="32" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-    <circle cx="260" cy="325" r="26" fill="#00F5D4" stroke="#FFFFFF" stroke-width="5" />
-    <circle cx="317" cy="240" r="24" fill="#38BDF8" />
-    <circle cx="350" cy="335" r="32" fill="#3A86FF" stroke="#FFFFFF" stroke-width="4" />
-  </g>
+  <line x1="256" y1="105" x2="332" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+  <line x1="332" y1="245" x2="372" y2="365" stroke="url(#aqua-sky-grad)" stroke-width="26" stroke-linecap="round" />
+
+  <line x1="180" y1="245" x2="332" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" />
+
+  <circle cx="256" cy="105" r="38" fill="url(#cyan-glow)" />
+  <circle cx="256" cy="105" r="20" fill="#FFFFFF" stroke="#00F5D4" stroke-width="6" />
+
+  <circle cx="180" cy="245" r="24" fill="#00E5FF" stroke="#FFFFFF" stroke-width="5" />
+  <circle cx="140" cy="365" r="30" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="245" cy="335" r="22" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+  <circle cx="332" cy="245" r="22" fill="#38BDF8" />
+  <circle cx="372" cy="365" r="30" fill="#3A86FF" stroke="#FFFFFF" stroke-width="3" />
 </svg>
