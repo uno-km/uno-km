@@ -1,91 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Deep Cosmic Background -->
-    <linearGradient id="bg-space" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B132B" />
-      <stop offset="100%" stop-color="#1C2541" />
-    </linearGradient>
-
-    <!-- Crisp Aqua Cyan & Ocean Sky Blue Gradient -->
-    <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Crisp 3D Aqua Cyan & Sky Blue Ribbon Gradient -->
+    <linearGradient id="m365-ribbon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00F5D4" />
-      <stop offset="50%" stop-color="#00E5FF" />
+      <stop offset="45%" stop-color="#00E5FF" />
+      <stop offset="75%" stop-color="#38BDF8" />
       <stop offset="100%" stop-color="#3A86FF" />
     </linearGradient>
 
-    <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00F5D4" stop-opacity="1" />
-      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
+    <!-- Deep Fluid Shadow for 3D Layering -->
+    <linearGradient id="ribbon-shade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.2" />
+    </linearGradient>
+
+    <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+      <stop offset="40%" stop-color="#00F5D4" stop-opacity="0.9" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
 
-    <clipPath id="squircle-clip">
-      <rect x="0" y="0" width="512" height="512" rx="108" />
-    </clipPath>
+    <filter id="m365-drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
   </defs>
 
-  <!-- Canonical AMEVA Squircle Base (Edge-to-Edge inside Clip, ZERO White Background Outside) -->
-  <g clip-path="url(#squircle-clip)">
-    <!-- Base Deep Background -->
-    <rect x="0" y="0" width="512" height="512" fill="url(#bg-space)" />
-
-    <!-- Outer Organic Fluid Universe Ring (Thickened for High-Contrast Sharpness) -->
-    <path d="M 256 55 
-             C 364 55, 436 127, 436 225 
-             C 436 323, 364 385, 256 385 
-             C 148 385, 76 323, 76 225 
-             C 76 127, 148 55, 256 55 Z" 
+  <!-- STANDALONE AMEVA ORGANIC EMBLEM (NO SQUIRCLE BACKGROUND BOX!) -->
+  <g filter="url(#m365-drop-shadow)">
+    <!-- Outer Fluid Amoeba Ribbon Ring -->
+    <path d="M 256 40 
+             C 385 40, 460 115, 455 240 
+             C 450 365, 375 440, 256 435 
+             C 137 430, 55 350, 60 235 
+             C 65 120, 127 40, 256 40 Z" 
           fill="none" 
-          stroke="url(#aqua-sky-grad)" 
-          stroke-width="22" 
-          stroke-linecap="round" 
-          stroke-dasharray="740" 
-          stroke-dashoffset="65" 
-          opacity="0.55" />
+          stroke="url(#m365-ribbon-grad)" 
+          stroke-width="48" 
+          stroke-linecap="round" />
 
-    <!-- BOLD AMEVA 'A' SKELETON CONNECTIONS -->
-    <line x1="256" y1="95" x2="190" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="190" y1="210" x2="150" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <!-- 3D Fluid Overlay Shadow Curve -->
+    <path d="M 220 70 C 330 50, 420 120, 410 230 C 400 330, 310 400, 200 380" 
+          fill="none" 
+          stroke="url(#ribbon-shade)" 
+          stroke-width="24" 
+          stroke-linecap="round" />
+
+    <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
+    <!-- Left Leg -->
+    <line x1="256" y1="95" x2="165" y2="330" stroke="url(#m365-ribbon-grad)" stroke-width="40" stroke-linecap="round" />
+    <!-- Right Leg -->
+    <line x1="256" y1="95" x2="345" y2="330" stroke="url(#m365-ribbon-grad)" stroke-width="40" stroke-linecap="round" />
+    <!-- Crossbar -->
+    <line x1="198" y1="240" x2="312" y2="240" stroke="url(#m365-ribbon-grad)" stroke-width="32" stroke-linecap="round" />
     
-    <!-- 60° Inward Organic Branching Pseudopod Node -->
-    <line x1="190" y1="210" x2="245" y2="285" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
+    <!-- 60° Inward Organic Branching Pseudopod Stem -->
+    <line x1="198" y1="240" x2="260" y2="325" stroke="#00F5D4" stroke-width="28" stroke-linecap="round" />
 
-    <line x1="256" y1="95" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="322" y1="210" x2="362" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <!-- AMEVA GLOWING NODES -->
+    <!-- Top Core Node [1] -->
+    <circle cx="256" cy="95" r="40" fill="url(#node-glow)" />
+    <circle cx="256" cy="95" r="20" fill="#FFFFFF" stroke="#00F5D4" stroke-width="6" />
 
-    <line x1="190" y1="210" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
+    <!-- Left Middle Node [1-1] -->
+    <circle cx="198" cy="240" r="26" fill="#00E5FF" stroke="#FFFFFF" stroke-width="5" />
 
-    <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
-    <!-- Root Node [1] -->
-    <circle cx="256" cy="95" r="34" fill="url(#cyan-glow)" />
-    <circle cx="256" cy="95" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
+    <!-- Bottom Left Node [1-1-1] -->
+    <circle cx="165" cy="330" r="32" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
 
-    <!-- [1-1] Middle Left -->
-    <circle cx="190" cy="210" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+    <!-- ⭐ 60° Inward Organic Branch Node [1-1-2] -->
+    <circle cx="260" cy="325" r="26" fill="#00F5D4" stroke="#FFFFFF" stroke-width="5" />
 
-    <!-- [1-1-1] Bottom Left -->
-    <circle cx="150" cy="300" r="28" fill="#00F5D4" />
+    <!-- Right Middle Node [1-2] -->
+    <circle cx="312" cy="240" r="24" fill="#38BDF8" />
 
-    <!-- [1-1-2] Inward 60° Organic Pseudopod Node -->
-    <circle cx="245" cy="285" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-
-    <!-- [1-2] Middle Right -->
-    <circle cx="322" cy="210" r="20" fill="#38BDF8" />
-
-    <!-- [1-2-1] Bottom Right -->
-    <circle cx="362" cy="300" r="28" fill="#3A86FF" />
-
-    <!-- SOLID PURE BLACK M365/COPILOT STYLE BOTTOM BADGE BAR -->
-    <g transform="translate(0, 360)">
-      <rect x="0" y="0" width="512" height="152" fill="#000000" />
-      <line x1="0" y1="0" x2="512" y2="0" stroke="rgba(0, 245, 212, 0.5)" stroke-width="4" />
-      
-      <text x="256" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="1" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
-        WORKSTATION
-      </text>
-    </g>
+    <!-- Bottom Right Node [1-2-1] -->
+    <circle cx="345" cy="330" r="32" fill="#3A86FF" stroke="#FFFFFF" stroke-width="4" />
   </g>
-  
-  <!-- Subtle Outer Rim Line -->
-  <rect x="2" y="2" width="508" height="508" rx="106" fill="none" stroke="rgba(0, 245, 212, 0.4)" stroke-width="4" />
+
+  <!-- EXACT M365 STYLE BOTTOM RIGHT SOLID BLACK BADGE TAG -->
+  <g transform="translate(0, 0)" filter="url(#m365-drop-shadow)">
+    <!-- Solid Pure Black Tag Plate Overlapping Bottom Right -->
+    <rect x="222" y="380" width="250" height="76" rx="18" fill="#000000" stroke="#1E293B" stroke-width="3" />
+    
+    <!-- Ultra Bold Crisp White Text -->
+    <text x="347.0" y="418" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" letter-spacing="1" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
+      WORKSTATION
+    </text>
+  </g>
 </svg>
