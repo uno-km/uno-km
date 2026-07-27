@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bg-space" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B132B" />
-      <stop offset="100%" stop-color="#1C2541" />
-    </linearGradient>
+    <!-- Deep Cosmic Circular Gradient -->
+    <radialGradient id="circle-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#162244" />
+      <stop offset="70%" stop-color="#0B132B" />
+      <stop offset="100%" stop-color="#060A17" />
+    </radialGradient>
 
+    <!-- Crisp Aqua Cyan & Ocean Sky Blue Gradient -->
     <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00F5D4" />
       <stop offset="50%" stop-color="#00E5FF" />
@@ -16,44 +19,59 @@
       <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
+
+    <filter id="circle-drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
   </defs>
 
-  <rect width="512" height="512" rx="108" fill="url(#bg-space)" />
+  <!-- PURE SMOOTH CIRCULAR CONTAINER (NO SQUARE BOX! ZERO WHITE CORNERS!) -->
+  <g filter="url(#circle-drop-shadow)">
+    <!-- Main Circular Disc Base -->
+    <circle cx="256" cy="256" r="240" fill="url(#circle-bg)" stroke="rgba(0, 245, 212, 0.4)" stroke-width="6" />
 
-  <path d="M 256 50 
-           C 364 50, 436 122, 436 230 
-           C 436 338, 364 410, 256 410 
-           C 148 410, 76 338, 76 230 
-           C 76 122, 148 50, 256 50 Z" 
-        fill="none" 
-        stroke="url(#aqua-sky-grad)" 
-        stroke-width="22" 
-        stroke-linecap="round" 
-        stroke-dasharray="740" 
-        stroke-dashoffset="65" 
-        opacity="0.5" />
+    <!-- Inner Glowing Rim Line -->
+    <circle cx="256" cy="256" r="232" fill="none" stroke="url(#aqua-sky-grad)" stroke-width="3" opacity="0.4" />
 
-  <line x1="256" y1="90" x2="190" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-  <line x1="190" y1="210" x2="150" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-  
-  <line x1="190" y1="210" x2="245" y2="290" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
+    <!-- Outer Organic Fluid Universe Ring -->
+    <path d="M 256 60 
+             C 364 60, 432 128, 432 236 
+             C 432 344, 364 412, 256 412 
+             C 148 412, 80 344, 80 236 
+             C 80 128, 148 60, 256 60 Z" 
+          fill="none" 
+          stroke="url(#aqua-sky-grad)" 
+          stroke-width="20" 
+          stroke-linecap="round" 
+          stroke-dasharray="740" 
+          stroke-dashoffset="65" 
+          opacity="0.55" />
 
-  <line x1="256" y1="90" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-  <line x1="322" y1="210" x2="362" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
+    <line x1="256" y1="95" x2="190" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="22" stroke-linecap="round" />
+    <line x1="190" y1="215" x2="152" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="22" stroke-linecap="round" />
+    
+    <!-- 60° Inward Organic Branching Pseudopod Node -->
+    <line x1="190" y1="215" x2="245" y2="290" stroke="url(#aqua-sky-grad)" stroke-width="16" stroke-linecap="round" stroke-dasharray="10 5" />
 
-  <line x1="190" y1="210" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
+    <line x1="256" y1="95" x2="322" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="22" stroke-linecap="round" />
+    <line x1="322" y1="215" x2="360" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="22" stroke-linecap="round" />
 
-  <circle cx="256" cy="90" r="34" fill="url(#cyan-glow)" />
-  <circle cx="256" cy="90" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
+    <line x1="190" y1="215" x2="322" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="16" stroke-linecap="round" opacity="0.9" />
 
-  <circle cx="190" cy="210" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="150" cy="310" r="28" fill="#00F5D4" />
-  <circle cx="245" cy="290" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="322" cy="210" r="20" fill="#38BDF8" />
-  <circle cx="362" cy="310" r="28" fill="#3A86FF" />
+    <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
+    <circle cx="256" cy="95" r="32" fill="url(#cyan-glow)" />
+    <circle cx="256" cy="95" r="17" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
 
-  <!-- GIGANTIC HIGH-CONTRAST BOLD TEXT (UP TO 130PX) -->
-  <text x="256" y="415" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="78" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#060A14" stroke-width="22" paint-order="stroke fill" text-anchor="middle">
-    ORCHESTRA
-  </text>
+    <circle cx="190" cy="215" r="20" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+    <circle cx="152" cy="310" r="26" fill="#00F5D4" />
+    <circle cx="245" cy="290" r="18" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+    <circle cx="322" cy="215" r="18" fill="#38BDF8" />
+    <circle cx="360" cy="310" r="26" fill="#3A86FF" />
+
+    <!-- INTEGRATED TEXT INSIDE THE CIRCULAR EMBLEM -->
+    <text x="256" y="405" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="60" font-weight="900" letter-spacing="1" fill="#FFFFFF" stroke="#060A14" stroke-width="18" paint-order="stroke fill" text-anchor="middle">
+      ORCHESTRA
+    </text>
+  </g>
 </svg>
