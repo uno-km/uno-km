@@ -1,7 +1,32 @@
-# 🧠 AMEVA: The Autonomous Multi-Agent Edge-AI Ecosystem
-**Orchestrating Intelligence Beyond the Cloud.**
+<p align="center">
+  <img src="assets/brand/ameva_logo.svg" alt="AMEVA Brand Logo" width="850"/>
+</p>
 
-Welcome to the AMEVA Ecosystem. 본 프로젝트는 Local-first, Hierarchical AI Orchestration 및 SRE-driven Inference Infrastructure에 대한 심도 있는 Research Portfolio입니다. Data Priv[...] (truncated for brevity)
+<p align="center">
+  <b>Autonomous Multi-Agent Enterprise Virtualized Automation</b><br/>
+  <i>Orchestrating Intelligence Beyond the Cloud.</i>
+</p>
+
+<p align="center">
+  <a href="assets/brand/BRAND_GUIDE.md"><b>🎨 Official Brand & Design System Guide</b></a> |
+  <a href="https://github.com/uno-km"><b>🌐 GitHub Organization</b></a>
+</p>
+
+---
+
+## 🧬 AMEVA Ecosystem Brand Identity
+
+The **AMEVA** ecosystem identity is defined by a clean **Aqua-Cyan Universe & Dynamic Asymmetric Organic Automation** aesthetic.
+
+### 🤖 Acronym Architecture
+- **A**gentic — Self-reasoning and autonomous decision-making AI agents.
+- **M**ulti-agent & **M**ultimedia — Hierarchical agent orchestration & rich media authoring.
+- **E**cosystem — Integrated enterprise platform bridging Desktop, Cloud, and Edge.
+- **V**irtualized — Isolated offline WASM/Electron sandboxes & inference runtimes.
+- **A**utomation — Self-executing pipelines with real-time visual output.
+
+> [!TIP]
+> For complete color tokens, SVG assets, and design system guidelines, see [`assets/brand/BRAND_GUIDE.md`](assets/brand/BRAND_GUIDE.md).
 
 ---
 
@@ -210,6 +235,6 @@ Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이�
 
 ---
 
-**Generated with ❤️ by AMEVA Researcher Portfolio Builder**
+**Generated with ❤️ by AMEVA Ecosystem Builder**
 
-*Last Updated: June 9, 2026*
+*Last Updated: July 27, 2026*
