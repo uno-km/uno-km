@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
     <!-- Deep Cosmic Background -->
     <linearGradient id="bg-space" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -18,53 +18,64 @@
       <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
       <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
     </radialGradient>
+
+    <clipPath id="squircle-clip">
+      <rect x="0" y="0" width="512" height="512" rx="108" />
+    </clipPath>
   </defs>
 
-  <!-- Squircle Base Frame -->
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg-space)" stroke="rgba(0, 245, 212, 0.3)" stroke-width="6" />
+  <!-- Full Canvas Squircle with Edge-to-Edge Fill (NO White Outer Margin) -->
+  <g clip-path="url(#squircle-clip)">
+    <!-- Base Background -->
+    <rect x="0" y="0" width="512" height="512" fill="url(#bg-space)" />
 
-  <!-- Outer Organic Universe Ring -->
-  <path d="M 256 65 
-           C 354 65, 426 137, 426 230 
-           C 426 323, 354 395, 256 395 
-           C 158 395, 86 323, 86 230 
-           C 86 137, 158 65, 256 65 Z" 
-        fill="none" 
-        stroke="url(#aqua-sky-grad)" 
-        stroke-width="16" 
-        stroke-linecap="round" 
-        stroke-dasharray="740" 
-        stroke-dashoffset="65" 
-        opacity="0.45" />
+    <!-- Outer Organic Universe Ring -->
+    <path d="M 256 55 
+             C 364 55, 436 127, 436 225 
+             C 436 323, 364 385, 256 385 
+             C 148 385, 76 323, 76 225 
+             C 76 127, 148 55, 256 55 Z" 
+          fill="none" 
+          stroke="url(#aqua-sky-grad)" 
+          stroke-width="18" 
+          stroke-linecap="round" 
+          stroke-dasharray="740" 
+          stroke-dashoffset="65" 
+          opacity="0.45" />
 
-  <!-- SKELETON CONNECTIONS -->
-  <line x1="256" y1="105" x2="195" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="195" y1="215" x2="155" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="195" y1="215" x2="248" y2="290" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" stroke-dasharray="8 4" />
+    <!-- SKELETON CONNECTIONS -->
+    <line x1="256" y1="95" x2="190" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" />
+    <line x1="190" y1="210" x2="150" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" />
+    <line x1="190" y1="210" x2="245" y2="285" stroke="url(#aqua-sky-grad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="8 4" />
 
-  <line x1="256" y1="105" x2="317" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="317" y1="215" x2="357" y2="310" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+    <line x1="256" y1="95" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" />
+    <line x1="322" y1="210" x2="362" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="20" stroke-linecap="round" />
 
-  <line x1="195" y1="215" x2="317" y2="215" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" opacity="0.85" />
+    <line x1="190" y1="210" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="14" stroke-linecap="round" opacity="0.85" />
 
-  <!-- NODES -->
-  <circle cx="256" cy="105" r="30" fill="url(#cyan-glow)" />
-  <circle cx="256" cy="105" r="16" fill="#FFFFFF" stroke="#00F5D4" stroke-width="4" />
+    <!-- NODES -->
+    <circle cx="256" cy="95" r="32" fill="url(#cyan-glow)" />
+    <circle cx="256" cy="95" r="17" fill="#FFFFFF" stroke="#00F5D4" stroke-width="4" />
 
-  <circle cx="195" cy="215" r="18" fill="#00E5FF" stroke="#FFFFFF" stroke-width="3" />
-  <circle cx="155" cy="310" r="24" fill="#00F5D4" />
-  <circle cx="248" cy="290" r="16" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
-  <circle cx="317" cy="215" r="16" fill="#38BDF8" />
-  <circle cx="357" cy="310" r="24" fill="#3A86FF" />
+    <circle cx="190" cy="210" r="19" fill="#00E5FF" stroke="#FFFFFF" stroke-width="3" />
+    <circle cx="150" cy="300" r="25" fill="#00F5D4" />
+    <circle cx="245" cy="285" r="17" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
+    <circle cx="322" cy="210" r="17" fill="#38BDF8" />
+    <circle cx="362" cy="300" r="25" fill="#3A86FF" />
 
-  <!-- COPILOT / M365 STYLE SOLID BLACK BADGE (NO OUTLINE BORDER, PURE BLACK FILL, GIANT WHITE TEXT) -->
-  <g transform="translate(0, 0)">
-    <!-- Solid Pure Black Tag Plate (No Stroke Border) -->
-    <rect x="76" y="356" width="360" height="116" rx="28" fill="#000000" />
-    
-    <!-- Giant Crisp White Text -->
-    <text x="256" y="414" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', Roboto, sans-serif" font-size="68" font-weight="900" letter-spacing="1" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
-      HUB
-    </text>
+    <!-- COPILOT / M365 STYLE SOLID BLACK BOTTOM BADGE BAR (FULL EDGE-TO-EDGE AT BOTTOM) -->
+    <g transform="translate(0, 360)">
+      <!-- Solid Pure Black Tag Plate Across Bottom -->
+      <rect x="0" y="0" width="512" height="152" fill="#000000" />
+      <line x1="0" y1="0" x2="512" y2="0" stroke="rgba(0, 245, 212, 0.4)" stroke-width="3" />
+      
+      <!-- Giant Crisp White Text -->
+      <text x="256" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', Roboto, sans-serif" font-size="72" font-weight="900" letter-spacing="1" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
+        HUB
+      </text>
+    </g>
   </g>
+  
+  <!-- Subtle Outer Border -->
+  <rect x="2" y="2" width="508" height="508" rx="106" fill="none" stroke="rgba(0, 245, 212, 0.35)" stroke-width="4" />
 </svg>
