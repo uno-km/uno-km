@@ -24,68 +24,52 @@
     </clipPath>
   </defs>
 
-  <!-- Canonical AMEVA Squircle Base (Edge-to-Edge inside Clip, ZERO White Background Outside) -->
+  <!-- Squircle Base Frame -->
   <g clip-path="url(#squircle-clip)">
     <!-- Base Deep Background -->
     <rect x="0" y="0" width="512" height="512" fill="url(#bg-space)" />
 
-    <!-- Outer Organic Fluid Universe Ring (Thickened for High-Contrast Sharpness) -->
-    <path d="M 256 55 
-             C 364 55, 436 127, 436 225 
-             C 436 323, 364 385, 256 385 
-             C 148 385, 76 323, 76 225 
-             C 76 127, 148 55, 256 55 Z" 
+    <!-- Outer Organic Fluid Universe Ring -->
+    <path d="M 256 60 
+             C 364 60, 436 132, 436 240 
+             C 436 348, 364 420, 256 420 
+             C 148 420, 76 348, 76 240 
+             C 76 132, 148 60, 256 60 Z" 
           fill="none" 
           stroke="url(#aqua-sky-grad)" 
           stroke-width="22" 
           stroke-linecap="round" 
           stroke-dasharray="740" 
           stroke-dashoffset="65" 
-          opacity="0.55" />
+          opacity="0.5" />
 
-    <!-- BOLD AMEVA 'A' SKELETON CONNECTIONS -->
-    <line x1="256" y1="95" x2="190" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="190" y1="210" x2="150" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <!-- BOLD AMEVA 'A' SKELETON & 60° ORGANIC PSEUDOPOD -->
+    <line x1="256" y1="100" x2="190" y2="225" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <line x1="190" y1="225" x2="150" y2="330" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
     
     <!-- 60° Inward Organic Branching Pseudopod Node -->
-    <line x1="190" y1="210" x2="245" y2="285" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
+    <line x1="190" y1="225" x2="245" y2="305" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="10 5" />
 
-    <line x1="256" y1="95" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
-    <line x1="322" y1="210" x2="362" y2="300" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <line x1="256" y1="100" x2="322" y2="225" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
+    <line x1="322" y1="225" x2="362" y2="330" stroke="url(#aqua-sky-grad)" stroke-width="24" stroke-linecap="round" />
 
-    <line x1="190" y1="210" x2="322" y2="210" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
+    <line x1="190" y1="225" x2="322" y2="225" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" opacity="0.9" />
 
     <!-- BOLD HIGH-CONTRAST AMEVA NODES -->
-    <!-- Root Node [1] -->
-    <circle cx="256" cy="95" r="34" fill="url(#cyan-glow)" />
-    <circle cx="256" cy="95" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
+    <circle cx="256" cy="100" r="34" fill="url(#cyan-glow)" />
+    <circle cx="256" cy="100" r="18" fill="#FFFFFF" stroke="#00F5D4" stroke-width="5" />
 
-    <!-- [1-1] Middle Left -->
-    <circle cx="190" cy="210" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+    <circle cx="190" cy="225" r="22" fill="#00E5FF" stroke="#FFFFFF" stroke-width="4" />
+    <circle cx="150" cy="330" r="28" fill="#00F5D4" />
+    <circle cx="245" cy="305" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+    <circle cx="322" cy="225" r="20" fill="#38BDF8" />
+    <circle cx="362" cy="330" r="28" fill="#3A86FF" />
 
-    <!-- [1-1-1] Bottom Left -->
-    <circle cx="150" cy="300" r="28" fill="#00F5D4" />
-
-    <!-- [1-1-2] Inward 60° Organic Pseudopod Node -->
-    <circle cx="245" cy="285" r="20" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
-
-    <!-- [1-2] Middle Right -->
-    <circle cx="322" cy="210" r="20" fill="#38BDF8" />
-
-    <!-- [1-2-1] Bottom Right -->
-    <circle cx="362" cy="300" r="28" fill="#3A86FF" />
-
-    <!-- SOLID PURE BLACK M365/COPILOT STYLE BOTTOM BADGE BAR -->
-    <g transform="translate(0, 360)">
-      <rect x="0" y="0" width="512" height="152" fill="#000000" />
-      <line x1="0" y1="0" x2="512" y2="0" stroke="rgba(0, 245, 212, 0.5)" stroke-width="4" />
-      
-      <text x="256" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', Roboto, sans-serif" font-size="50" font-weight="900" letter-spacing="1" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
-        ORCHESTRA
-      </text>
-    </g>
+    <!-- TEXT DIRECTLY ON THE EMBLEM (NO BLACK BAR! NO DIVIDING LINE!) -->
+    <text x="256" y="405" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="900" letter-spacing="2" fill="#FFFFFF" stroke="#0B132B" stroke-width="10" paint-order="stroke fill" text-anchor="middle">
+      ORCHESTRA
+    </text>
   </g>
   
-  <!-- Subtle Outer Rim Line -->
   <rect x="2" y="2" width="508" height="508" rx="106" fill="none" stroke="rgba(0, 245, 212, 0.4)" stroke-width="4" />
 </svg>
