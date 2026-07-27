@@ -24,11 +24,11 @@
   <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg-space)" stroke="#00F5D4" stroke-opacity="0.35" stroke-width="6" />
 
   <!-- Outer Organic Universe Ring -->
-  <path d="M 256 76 
-           C 354 76, 426 148, 426 246 
-           C 426 344, 354 416, 256 416 
-           C 158 416, 86 344, 86 246 
-           C 86 148, 158 76, 256 76 Z" 
+  <path d="M 256 70 
+           C 354 70, 426 142, 426 240 
+           C 426 338, 354 410, 256 410 
+           C 158 410, 86 338, 86 240 
+           C 86 142, 158 70, 256 70 Z" 
         fill="none" 
         stroke="url(#aqua-sky-grad)" 
         stroke-width="16" 
@@ -38,33 +38,33 @@
         opacity="0.45" />
 
   <!-- SKELETON CONNECTIONS -->
-  <line x1="256" y1="125" x2="195" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="195" y1="245" x2="155" y2="345" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="195" y1="245" x2="248" y2="320" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" stroke-dasharray="8 4" />
+  <line x1="256" y1="115" x2="195" y2="230" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="195" y1="230" x2="155" y2="330" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="195" y1="230" x2="248" y2="305" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" stroke-dasharray="8 4" />
 
-  <line x1="256" y1="125" x2="317" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
-  <line x1="317" y1="245" x2="357" y2="345" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="256" y1="115" x2="317" y2="230" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
+  <line x1="317" y1="230" x2="357" y2="330" stroke="url(#aqua-sky-grad)" stroke-width="18" stroke-linecap="round" />
 
-  <line x1="195" y1="245" x2="317" y2="245" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" opacity="0.85" />
+  <line x1="195" y1="230" x2="317" y2="230" stroke="url(#aqua-sky-grad)" stroke-width="13" stroke-linecap="round" opacity="0.85" />
 
   <!-- NODES -->
-  <circle cx="256" cy="125" r="30" fill="url(#cyan-glow)" />
-  <circle cx="256" cy="125" r="16" fill="#FFFFFF" stroke="#00F5D4" stroke-width="4" />
+  <circle cx="256" cy="115" r="30" fill="url(#cyan-glow)" />
+  <circle cx="256" cy="115" r="16" fill="#FFFFFF" stroke="#00F5D4" stroke-width="4" />
 
-  <circle cx="195" cy="245" r="18" fill="#00E5FF" stroke="#FFFFFF" stroke-width="3" />
-  <circle cx="155" cy="345" r="24" fill="#00F5D4" />
-  <circle cx="248" cy="320" r="16" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
-  <circle cx="317" cy="245" r="16" fill="#38BDF8" />
-  <circle cx="357" cy="345" r="24" fill="#3A86FF" />
+  <circle cx="195" cy="230" r="18" fill="#00E5FF" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="155" cy="330" r="24" fill="#00F5D4" />
+  <circle cx="248" cy="305" r="16" fill="#00F5D4" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="317" cy="230" r="16" fill="#38BDF8" />
+  <circle cx="357" cy="330" r="24" fill="#3A86FF" />
 
-  <!-- BOTTOM BADGE CONTAINER (M365 Style Pill Tag) -->
+  <!-- PROMINENT BOTTOM BADGE CONTAINER (Prominent Large Font Pill Tag) -->
   <g transform="translate(0, 0)">
-    <!-- Dark Pill Background with Glow Border -->
-    <rect x="136" y="390" width="240" height="76" rx="20" fill="#050B1A" stroke="#00F5D4" stroke-width="4" />
-    <rect x="140" y="394" width="232" height="68" rx="16" fill="rgba(11, 19, 43, 0.95)" />
+    <!-- Extra Large Dark Pill Plate with Vibrant Accent Glow -->
+    <rect x="96" y="370" width="320" height="96" rx="28" fill="#050B1A" stroke="#00F5D4" stroke-width="5" />
+    <rect x="102" y="376" width="308" height="84" rx="22" fill="#0F172A" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" />
     
-    <!-- Badge Label Text -->
-    <text x="256" y="442" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial Black', sans-serif" font-size="34" font-weight="900" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">
+    <!-- Extra Bold Prominent Badge Label Text -->
+    <text x="256" y="434" font-family="'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="900" letter-spacing="2" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">
       WINDOW
     </text>
   </g>
