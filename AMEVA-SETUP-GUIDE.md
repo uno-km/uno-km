@@ -154,7 +154,7 @@ manager.update_stt_models()    # STT 모델 업데이트
 ### ❌ "모델 다운로드 실패"
 ```bash
 # 수동 다운로드 후 폴더에 배치
-# C:\AMEVA\models\llm\ 또는 ~/AMEVA/models/llm/
+# D:\AMEVA\models\llm\ 또는 ~/AMEVA/models/llm/
 ```
 
 ---
