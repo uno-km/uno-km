@@ -132,6 +132,12 @@
 
 ---
 
+> 📚 **심층 아키텍처 및 브랜드 가이드:**
+> - [🏛️ **AMEVA Ecosystem: Deep Technical Architecture & Research Specification**](docs/ECOSYSTEM_SPEC.md) — SRE 스로틀링, 실시간 벤치마크, 제로 로스 하베스터, 용어 사전 및 3단계 진화 청사진
+> - [🎨 **Official Brand & Design System Guide**](assets/brand/BRAND_GUIDE.md) — 디자인 토큰, 컬러 팔레트, 아이콘 에셋 가이드
+
+---
+
 ## 🚀 AMEVA Setup Universe (One-Click Installer)
 
 ```powershell

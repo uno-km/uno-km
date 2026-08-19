@@ -1,0 +1,143 @@
+# 🏛️ AMEVA Ecosystem: Deep Technical Architecture & Research Specification
+
+> **Autonomous Multi-Agent Enterprise Virtualized Automation**<br/>
+> *Orchestrating Intelligence Beyond the Cloud · Edge-Native AI Democratization · 100% Data Sovereignty*
+
+---
+
+## 🏛 Ecosystem Architecture Overview
+
+AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었습니다:
+
+- **Hierarchical Control**: 단순한 Prompt-response 패턴을 넘어, 구조화된 "Nobles & Workers" 계층형 제어를 지향합니다.
+- **Hardware-Software Co-Design**: 각 Edge device의 Power/Compute profile을 고려하여 Inference 과정을 최적화합니다.
+- **Reliability by Design**: AI 추론 과정을 하나의 Mission-critical utility로 간주하고, Site Reliability Engineering (SRE) 원칙을 적용합니다.
+
+---
+
+## 🌐 The AMEVA Universe Full Catalog
+
+| Project | Role in Ecosystem | Core Innovation | Repository |
+|:---|:---|:---|:---:|
+| **[Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)** | Orchestrator | Hierarchical task decomposition & Agent management | [🐙 GitHub](https://github.com/uno-km/AMEVA-Agent-Orchestra) |
+| **[Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)** | Infrastructure | Unified API gateway with SRE-based dynamic throttling | [🐙 GitHub](https://github.com/uno-km/AMEVA-Model-Nexus) |
+| **[Benchmark Suite](https://github.com/uno-km/AMEVA-Benchmark-Suite)** | Validation | Empirical power/performance profiling for edge hardware | [🐙 GitHub](https://github.com/uno-km/AMEVA-Benchmark-Suite) |
+| **[Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)** | Interface | Privacy-first offline document intelligence pipeline | [🐙 GitHub](https://github.com/uno-km/AMEVA-Doc-AI) |
+| **[Conductor](https://github.com/uno-km/AMEVA-Conductor)** | Control | Remote cross-platform UI for human-agent interaction | [🐙 GitHub](https://github.com/uno-km/AMEVA-Conductor) |
+| **[Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)** | Data Layer | Hyper-resilient, zero-loss edge forwarder with multi-transport backup | [🐙 GitHub](https://github.com/uno-km/AMEVA-Data-Harvester) |
+| **[Database](https://github.com/uno-km/AMEVA-Database)** | Analytics | Lightweight SQLite & log inspector for distributed AMEVA ecosystem | [🐙 GitHub](https://github.com/uno-km/AMEVA-Database) |
+| **[STT Trainer](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper-based Korean STT with LoRA fine-tuning | [🐙 GitHub](https://github.com/uno-km/AMEVA-STT-Trainer) |
+| **[STT Agent](https://github.com/uno-km/AMEVA-STT-Agent)** | Perception | Speech recognition agent integration | [🐙 GitHub](https://github.com/uno-km/AMEVA-STT-Agent) |
+| **[Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)** | Interface | Windows-native local AI desktop assistant with OCR-first screen understanding | [🐙 GitHub](https://github.com/uno-km/AMEVA-Window-Assistant) |
+| **[Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | Fully autonomous Docker-based multi-agent simulation | [🐙 GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) |
+| **[BitNet](https://github.com/uno-km/BitNet)** | Optimization | BitNet inference framework with ARM/Exynos scalar fallback | [🐙 GitHub](https://github.com/uno-km/BitNet) |
+
+---
+
+## 🧭 AMEVA Core Infrastructure & MCP Ecosystem
+
+* **[🚀 AMEVA OS Workspace & Playground (WASM OS)](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경 (로컬 프록시 구동 시 연동 작동)
+* **[✨ AMEVA OS 프로모션 & 인터랙티브 체험 페이지 (Promo URL)](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)**: Node Flow 및 가상 쉘 데모 시뮬레이터를 직접 체험해볼 수 있는 공식 랜드마크 페이지
+
+### 🔍 AMEVA Core MCP Specifications
+
+#### 1. ⚙️ MCP Wasm Toolkit (AMEVA OS Core)
+- **역할**: 로컬 기기 자원을 안전하게 보존하면서, 크롤러나 동적 파이썬 스크립트 등 위험도가 높은 연산을 100% 격리된 웹 브라우저 WASM(Pyodide) 샌드박스로 우회하여 안전하게 처리합니다.
+- **특징**: `https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 보장합니다.
+
+#### 2. 🧰 MCP Utils Toolkit (Dynamic Tool Hub)
+- **역할**: GitHub 원격 리포지토리에 저장된 `mcp_manifest.json` 설정과 도구 코드를 SSE(ntfy.sh) 실시간 핫리로드 채널을 통해 active 브라우저 세션에 3초 이내에 자동 업데이트 및 동적 등록합니다.
+- **특징**: 패키지 재설치나 서버 재부팅 없이 AI 에이전트의 실행 가능한 도구 셋을 동적으로 확장합니다.
+
+---
+
+## 🚀 AMEVA Setup Universe (One-Click Installer Details)
+
+This repository includes the "AMEVA Setup Universe" — a single installer and UX layer to bootstrap the full AMEVA ecosystem on macOS, Linux, and Windows.
+
+### Quick links (one-liners):
+
+#### macOS / Linux (Bash):
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.sh)
+```
+
+#### Windows (PowerShell):
+Run PowerShell as Administrator and execute:
+```powershell
+irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex
+```
+
+### What the installer does:
+* **Creates a unified AMEVA home**: `~/ameva` or `C:\ameva`
+* **Creates canonical model folders**: `ameva/models/llm`, `ameva/models/stt`, `ameva/models/tts`
+* **Offers interactive selection** of components (LLM / STT / TTS / All)
+* **Diagnoses system environments**: OS, CPU/GPU, PowerShell execution policies, Git installation, Windows Long Path support, and **C++ Build Tools (MSVC compiler)**.
+* **Performs temporary CUDA/GPU validation**: Sets up an isolated temporary environment (`temp_env_ai`) to verify PyTorch CUDA acceleration and instantly cleans it up after validation.
+* **Delegates library installation**: Python library installs are delegated to each cloned project's local virtual environment (e.g. `venv`) to keep the global environment clean and stable.
+* **Generates a unified `config.json`** at AMEVA home.
+* **Integrates with PowerShell profiles**: Automates environment variables initialization and provides dynamic virtual environment scanning activation commands (`act` / `activate` / `env_ai`).
+
+---
+
+## 🔬 In-depth Project Analysis: 핵심 기술 논의
+
+### 1. AMEVA Agent Orchestra: 계층적 주권 (Hierarchical Sovereignty)
+현대 LLM은 Long-context 내에서의 "망각" 현상을 겪습니다. Agent Orchestra는 User intent를 **Nobles (의사결정 레이어)**로 추상화하고, 이를 원자 단위의 서브 태스크로 쪼개어 전문화된 Workers에게 위임함으로써 이를 해결합니다.
+- **Research Focus**: Multi-turn 오케스트레이션 과정에서의 "Semantic Drift" 최소화
+- **Key Implementation**: 로컬 GGUF 모델에 최적화된 Graph-based state management 시스템
+
+### 2. AMEVA Model Nexus: SRE 관점의 인프라
+제한된 리소스 환경에서 어떻게 안정적으로 AI를 서빙할 것인가? Model Nexus는 모델을 가상화된 리소스로 취급합니다.
+- **Dynamic Scoped-Throttling**: 현재 하드웨어의 온도 및 Power draw를 실시간으로 감지하여 Context window와 Sampling 파라미터를 동적으로 조절합니다
+- **High-Availability Serving**: 복잡한 Agent 요청이 단순 질의보다 우선 처리될 수 있도록 스케줄링합니다
+
+### 3. AMEVA Benchmark Suite (Singularity)
+"측정할 수 없으면 개선할 수 없다." 본 Suite는 모든 AMEVA 최적화의 기술적 근거(Empirical foundation)를 제공합니다.
+- **Synchronized Power Tracking**: TPS(Tokens Per Second)와 mW(Milliwatt) 소모량을 동기화하여 분석하는 "Greener AI"의 첫걸음입니다
+
+### 4. AMEVA Data Harvester: Zero-Loss Resilience
+데이터 손실 없는 극도의 복원력. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로를 통해 데이터를 수집합니다.
+- **Multi-Transport Backup**: SCP, HTTPS, Telegram Bot을 통한 자동 폴백
+- **Payload Validation**: 제로 로스 검증 메커니즘으로 데이터 무결성 보장
+
+### 5. AMEVA STT Ecosystem: 한국어 우선 음성 지능
+Whisper 기반 LoRA 파인 튜닝으로 한국어 특화 음성 인식을 구현합니다.
+- **STT Trainer**: 데이터 스크래핑부터 모델 병합까지 전체 파이프라인 제공
+- **STT Agent**: Edge device에서 실시간 음성 처리 및 통합
+
+### 6. AMEVA Window Assistant: OCR-First Perception
+Windows 데스크톱 AI 어시스턴트로, 화면 이해를 OCR 기반으로 우선 처리합니다.
+- **Multimodal Fallback**: OCR 실패 시 Vision 모델로 자동 전환
+- **Offline Voice I/O**: 완전 오프라인 음성 입출력
+- **llama.cpp Integration**: 로컬 추론 엔진 통합
+
+---
+
+## 🗺 Evaluation & Future Directions: 최종 청사진
+
+### 🚀 Phase 1: Local Supremacy (현재)
+복잡한 Agentic workflow를 100% 오프라인 환경에서 구현 완료. Local model fine-tuning을 통한 Data sovereignty 확보.
+
+### ⛓ Phase 2: Distributed Neural Fabric (중기)
+Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이스 가용 VRAM을 풀링(Pooling)하여, 단일 기기에서 불가능했던 대형 모델(30B+)을 분산 처리하는 기술 연구.
+
+### 🌌 Phase 3: The Singular Conductor (비전)
+단순한 수행을 넘어, Benchmark Suite의 과거 데이터를 학습하여 스스로 코드와 인프라를 최적화(Self-optimization)하는 자율형 Self-healing AI 에이전트 시스템 구축.
+
+---
+
+## 📚 Technical Glossary (용어 꾸러미)
+
+| Term | Definition |
+|:---|:---|
+| **Orchestration** | 복잡한 시스템이나 여러 에이전트의 동작을 조화롭게 제어하고 관리하는 과정 |
+| **Hierarchical** | 계층적인 시스템 구조. 상위 레이어가 전략을 짜고 하위 레이어가 실행하는 방식 |
+| **Edge-AI** | 데이터 센터(클라우드)가 아닌 사용자와 가까운 기기(엣지)에서 직접 AI를 구동하는 기술 |
+| **Inference** | 학습된 AI 모델을 통해 결과값을 도출해내는 추론(실행) 과정 |
+| **SRE** | Site Reliability Engineering - 시스템의 안정성과 신뢰성을 높이기 위해 소프트웨어 공학 기법을 인프라 운영에 적용하는 방법론 |
+| **Sovereignty** | 데이터나 시스템에 대한 완전한 통제권 및 주권 |
+| **Throttling** | 자원 과부하를 막기 위해 의도적으로 처리 속도나 요청을 조절하는 기술 |
+| **Semantic Drift** | 대화나 작업이 길어질수록 AI가 원래의 맥락이나 의도에서 벗어나는 현상 |
+| **Empirical** | 실제 실험이나 관찰을 통해 얻은 데이터에 기반한 실증적인 접근 |
+| **Federated** | 여러 곳에 분산되어 있지만 하나처럼 협력하는 연합 방식 |
