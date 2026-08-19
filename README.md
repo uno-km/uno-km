@@ -31,7 +31,7 @@
 
 ---
 
-# 🌌 What is AMEVA Universe? (왔이즈 아메바 유니버스?)
+# 🌌 What is AMEVA Universe?
 
 > **"거대 클라우드 서버 비용 없이, 개인의 브라우저와 엣지 기기만으로 완전한 자율 추론과 자동화를 실현합니다."**
 
@@ -50,7 +50,7 @@
 
 ---
 
-# 👤 Executive Digital Business Card & Technical CV (공식 명함 & 이력)
+# 👤 Executive Digital Business Card & Technical CV
 
 <table align="center" width="100%">
   <tr>
