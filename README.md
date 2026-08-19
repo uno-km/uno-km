@@ -168,6 +168,15 @@
 
 ---
 
+### 📱 Mobile On-Device Edge AI & Automation (Termux Dual Engines)
+
+| Project & Registry | Runtime | 1-Line Quick Installation | Official Documentation |
+| :--- | :---: | :--- | :---: |
+| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **Python**<br/>**Node.js** | `pip install termux-diffusion && termux-diffusion-install`<br/>`npm install -g termux-diffusion && npx termux-diffusion install` | [📖 공식 문서 포털](https://uno-km.github.io/termux-diffusion/) |
+| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Python**<br/>**Node.js** | `pip install termux-playwright && termux-playwright-install`<br/>`npm install termux-playwright && npx termux-playwright install` | [📖 공식 문서 포털](https://uno-km.github.io/termux-playwright-demo/) |
+
+---
+
 > 📚 **AMEVA 생태계 원본 상세 문서 및 브랜드 가이드:**
 > - [🏛️ **AMEVA Ecosystem: Full Architecture & Research Documentation (생태계 원본 상세 리드미)**](docs/README_ECOSYSTEM.md) — 12개 프로젝트별 심층 분석, SRE 스로틀링, 실시간 벤치마크, 3단계 청사진, 전문 용어 사전 전체 수록
 > - [🎨 **Official Brand & Design System Guide**](assets/brand/BRAND_GUIDE.md) — 공식 브랜드 아이덴티티 및 디자인 가이드
