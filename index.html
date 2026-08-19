@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMEVA Grand Portal | Autonomous Multi-Agent Enterprise Virtualized Automation</title>
-  <meta name="description" content="Official Grand Gateway & Digital Business Card for the AMEVA Ecosystem: Workstation, Universe, and High-Performance Core Libraries.">
+  <title>Uno Kim (@uno-km) | AMEVA Ecosystem Founder &amp; Systems Architect</title>
+  <meta name="description" content="Official Executive Technical Resume, Portfolio &amp; Grand Portal for Uno Kim and the AMEVA Open-Source Ecosystem.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     /* ==========================================================================
-       AMEVA Ecosystem - Grand Master Portal & Digital Business Card
-       Brand Identity: Cosmic Midnight (#0B132B) & Aqua-Cyan (#00F5D4 / #38BDF8)
+       AMEVA Ecosystem - High-Clarity Enterprise Open-Source (Apache/Tomcat Tech Style)
+       Executive Technical Portfolio & Digital Resume Portal
        ========================================================================== */
     :root {
-      --bg-base: #060a17;
-      --bg-midnight: #0b132b;
-      --bg-surface: #141f3d;
-      --bg-card: rgba(20, 31, 61, 0.75);
-      --bg-card-hover: rgba(28, 44, 86, 0.9);
-      --border-color: rgba(0, 245, 212, 0.2);
-      --border-hover: rgba(0, 245, 212, 0.6);
-      --accent-cyan: #00f5d4;
-      --accent-aqua: #00e5ff;
-      --accent-sky: #38bdf8;
-      --accent-blue: #3a86ff;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --grad-primary: linear-gradient(135deg, #00f5d4 0%, #00e5ff 50%, #3a86ff 100%);
-      --grad-card: linear-gradient(180deg, rgba(20, 31, 61, 0.8) 0%, rgba(11, 19, 43, 0.95) 100%);
+      --primary-navy: #003399;
+      --primary-dark: #002266;
+      --primary-light: #f0f4fa;
+      --accent-blue: #0055cc;
+      --accent-cyan: #00887a;
+      --border-color: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-header: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
@@ -34,907 +33,956 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-base);
-      background-image: 
-        radial-gradient(circle at 20% 15%, rgba(0, 245, 212, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 85%, rgba(58, 134, 255, 0.08) 0%, transparent 40%),
-        linear-gradient(180deg, #060a17 0%, #0b132b 50%, #060a17 100%);
+      background-color: var(--bg-body);
       color: var(--text-main);
       font-family: var(--font-sans);
       line-height: 1.6;
-      min-height: 100vh;
+      font-size: 14.5px;
+    }
+
+    /* ── Top Apache Classic Header Bar ──────────────────────────────────────── */
+    header.top-header {
+      background-color: var(--bg-header);
+      border-bottom: 2px solid var(--primary-navy);
+      padding: 10px 24px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
-    /* ── Top Business Card Header ───────────────────────────────────────────── */
-    header.business-card-hero {
-      padding: 48px 24px 32px 24px;
-      text-align: center;
-      position: relative;
-      border-bottom: 1px solid var(--border-color);
-      background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    .lang-switcher {
-      position: absolute;
-      top: 20px;
-      right: 24px;
+    .brand-logo {
+      width: 28px;
+      height: 28px;
     }
 
-    .lang-switcher select {
-      background: var(--bg-surface);
-      color: var(--text-main);
+    .brand-title {
+      font-size: 1.25em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      background: #e2e8f0;
+      color: var(--primary-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-select-box {
+      background: #ffffff;
       border: 1px solid var(--border-color);
-      padding: 6px 12px;
-      border-radius: 6px;
+      color: var(--text-main);
+      padding: 4px 8px;
+      border-radius: 4px;
       font-size: 0.85em;
+      font-weight: 600;
       cursor: pointer;
       outline: none;
     }
 
-    .brand-logo-img {
-      max-width: 540px;
-      width: 90%;
-      height: auto;
-      margin-bottom: 16px;
-      filter: drop-shadow(0 0 25px rgba(0, 245, 212, 0.25));
-    }
-
-    .hero-tagline {
-      font-size: 1.15em;
-      font-weight: 500;
-      color: var(--accent-sky);
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-
-    .hero-sub {
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 0.95em;
-      margin-bottom: 24px;
-    }
-
-    /* ── Executive Hologram Digital Business Card ───────────────────────── */
-    .business-card-box {
-      display: flex;
-      flex-direction: row;
+    .header-link-btn {
+      text-decoration: none;
+      font-size: 0.82em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 600;
+      transition: all 0.15s ease;
+      display: inline-flex;
       align-items: center;
-      gap: 28px;
-      max-width: 880px;
-      width: 100%;
-      background: linear-gradient(135deg, rgba(20, 31, 61, 0.9) 0%, rgba(6, 10, 23, 0.98) 100%);
-      border: 1px solid var(--border-hover);
-      border-radius: 20px;
-      padding: 24px 32px;
-      box-shadow: 0 12px 40px rgba(0, 245, 212, 0.2), inset 0 0 25px rgba(0, 245, 212, 0.06);
-      backdrop-filter: blur(12px);
-      margin: 16px auto 0 auto;
-      text-align: left;
-      position: relative;
+      gap: 4px;
     }
 
-    .card-avatar-wrap {
+    .header-link-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-navy);
+      color: var(--primary-navy);
+    }
+
+    /* ── Main 2-Column Container ────────────────────────────────────────────── */
+    .container {
+      max-width: 1320px;
+      margin: 24px auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* ── Left Sidebar (Executive Resume / Profile Card) ─────────────────────── */
+    aside.profile-sidebar {
+      width: 320px;
       flex-shrink: 0;
-      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 24px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
-    .card-avatar-img {
-      width: 120px;
-      height: 120px;
+    .avatar-wrapper {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .profile-avatar-img {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--accent-cyan);
-      box-shadow: 0 0 22px rgba(0, 245, 212, 0.45);
-      display: block;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 3px solid var(--primary-navy);
+      box-shadow: 0 2px 10px rgba(0,51,153,0.15);
     }
 
-    .card-avatar-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 32px rgba(0, 245, 212, 0.75);
-    }
-
-    .card-main-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .card-profile-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .card-name {
+    .profile-name {
       font-size: 1.45em;
       font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.3px;
+      color: var(--primary-navy);
+      text-align: center;
+      margin-bottom: 4px;
     }
 
-    .card-role-badge {
-      display: inline-block;
-      font-size: 0.78em;
+    .profile-role {
+      font-size: 0.85em;
       font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: rgba(0, 245, 212, 0.15);
-      border: 1px solid var(--accent-cyan);
-      color: var(--accent-cyan);
-      letter-spacing: 0.3px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .card-contacts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      width: 100%;
+    .sidebar-section-title {
+      font-size: 0.88em;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 16px 0 8px 0;
     }
 
-    .contact-pill {
+    .contact-list {
+      list-style: none;
+      font-size: 0.9em;
+    }
+
+    .contact-list li {
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      color: var(--text-main);
+    }
+
+    .contact-list a {
+      color: var(--primary-navy);
       text-decoration: none;
-      font-size: 0.88em;
-      transition: all 0.2s ease;
-      overflow: hidden;
+      font-weight: 600;
+      word-break: break-all;
     }
 
-    .contact-pill:hover {
-      background: rgba(0, 245, 212, 0.15);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      transform: translateY(-1px);
+    .contact-list a:hover {
+      text-decoration: underline;
     }
 
-    .contact-pill .pill-icon {
-      font-size: 1.1em;
-      flex-shrink: 0;
-    }
-
-    .contact-pill .pill-text {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* ── Main Container ─────────────────────────────────────────────────────── */
-    .main-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 40px 24px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .section-title-wrap {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .section-title {
-      font-size: 1.8em;
-      font-weight: 700;
-      background: var(--grad-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      font-size: 1em;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    /* ── 3-Pillar Pillars Grid ───────────────────────────────────────────────── */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 28px;
-      margin-bottom: 48px;
-    }
-
-    .pillar-card {
-      background: var(--grad-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .pillar-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--grad-primary);
-      opacity: 0.8;
-    }
-
-    .pillar-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-hover);
-      box-shadow: 0 12px 40px rgba(0, 245, 212, 0.15);
-    }
-
-    .pillar-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .pillar-icon {
-      font-size: 2em;
-    }
-
-    .pillar-heading h3 {
-      font-size: 1.35em;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .pillar-heading .pillar-badge {
-      display: inline-block;
-      font-size: 0.75em;
-      text-transform: uppercase;
-      font-family: var(--font-mono);
-      padding: 2px 8px;
-      background: rgba(0, 245, 212, 0.15);
-      color: var(--accent-cyan);
-      border-radius: 4px;
-      margin-top: 4px;
-    }
-
-    .pillar-body {
-      color: var(--text-muted);
-      font-size: 0.95em;
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-
-    .sub-tags {
+    .skills-tag-wrap {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 24px;
+      margin-top: 6px;
     }
 
-    .tag-item {
-      font-size: 0.78em;
-      padding: 3px 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      color: var(--text-main);
+    .skill-badge {
       font-family: var(--font-mono);
-    }
-
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .action-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.92em;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .action-btn.primary {
-      background: var(--grad-primary);
-      color: #060a17;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0, 245, 212, 0.3);
-    }
-
-    .action-btn.primary:hover {
-      box-shadow: 0 6px 20px rgba(0, 245, 212, 0.5);
-      transform: scale(1.02);
-    }
-
-    .action-btn.secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
+      font-size: 0.76em;
+      background: var(--bg-header);
       border: 1px solid var(--border-color);
-    }
-
-    .action-btn.secondary:hover {
-      background: rgba(0, 245, 212, 0.12);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-    }
-
-    /* ── Library Showcase Section (Apache/Tomcat Tech Hub) ──────────────────── */
-    .library-hub-section {
-      background: rgba(11, 19, 43, 0.6);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 36px 30px;
-      margin-bottom: 48px;
-    }
-
-    .hub-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 16px;
-      margin-bottom: 24px;
-    }
-
-    .hub-header h3 {
-      font-size: 1.4em;
-      color: var(--accent-cyan);
-    }
-
-    .hub-tag {
-      font-family: var(--font-mono);
-      font-size: 0.82em;
-      background: rgba(0, 245, 212, 0.1);
-      color: var(--accent-cyan);
-      border: 1px solid var(--border-color);
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-
-    .lib-items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .lib-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-    }
-
-    .lib-card:hover {
-      border-color: var(--accent-cyan);
-      background: var(--bg-card-hover);
-    }
-
-    .lib-card-top {
-      margin-bottom: 14px;
-    }
-
-    .lib-card-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .lib-card-title h4 {
-      font-size: 1.15em;
-      color: #ffffff;
-    }
-
-    .lib-badge-pkg {
-      font-family: var(--font-mono);
-      font-size: 0.75em;
-      background: #004499;
-      color: #ffffff;
       padding: 2px 6px;
       border-radius: 3px;
+      color: var(--text-main);
     }
 
-    .lib-card-desc {
+    /* ── Right Content Area ─────────────────────────────────────────────────── */
+    main.main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .content-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .box-header {
+      border-bottom: 2px solid var(--primary-navy);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .box-header h2 {
+      font-size: 1.25em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .box-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      background: var(--primary-light);
+      color: var(--primary-navy);
+      border: 1px solid #bfdbfe;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .bio-text {
+      color: var(--text-main);
+      font-size: 0.95em;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* ── Grid Cards for Projects & MCP ──────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .item-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px;
+      background: #fafbfc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+    }
+
+    .item-card:hover {
+      border-color: var(--primary-navy);
+      background: #ffffff;
+      box-shadow: 0 3px 12px rgba(0,51,153,0.08);
+    }
+
+    .item-card-top h3 {
+      font-size: 1.05em;
+      color: var(--primary-navy);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .item-card-desc {
       font-size: 0.88em;
       color: var(--text-muted);
+      margin: 6px 0 12px 0;
       line-height: 1.5;
     }
 
-    .lib-specs-table {
+    .tech-specs-table {
       width: 100%;
-      font-size: 0.8em;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      margin: 12px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 8px;
-    }
-
-    .lib-specs-table td {
-      padding: 2px 0;
-    }
-
-    .lib-specs-table td:last-child {
-      text-align: right;
-      color: var(--accent-sky);
-    }
-
-    /* ── Quick Bootstrap Universe Box ───────────────────────────────────────── */
-    .setup-box {
-      background: #060a17;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 40px;
-    }
-
-    .setup-box h4 {
-      color: var(--accent-cyan);
-      margin-bottom: 12px;
-      font-size: 1.1em;
-    }
-
-    .cmd-group {
-      margin-bottom: 12px;
-    }
-
-    .cmd-label {
+      border-collapse: collapse;
       font-size: 0.82em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      display: block;
+      margin-bottom: 12px;
     }
 
-    .cmd-code {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 10px 14px;
+    .tech-specs-table td {
+      padding: 3px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .tech-specs-table td:first-child {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tech-specs-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      color: var(--primary-dark);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-action {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.82em;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-action.primary {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border: 1px solid var(--primary-navy);
+    }
+
+    .btn-action.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-action.secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-action.secondary:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-navy);
+      color: var(--primary-navy);
+    }
+
+    /* ── MCP Special Highlight Box ──────────────────────────────────────────── */
+    .mcp-highlight-box {
+      background: #f0f7ff;
+      border: 1px solid #99c2ff;
+      border-left: 4px solid var(--primary-navy);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .mcp-highlight-box h4 {
+      color: var(--primary-navy);
+      font-size: 1.05em;
+      margin-bottom: 6px;
+    }
+
+    /* ── Terminal Code Box ──────────────────────────────────────────────────── */
+    .code-box {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 14px 18px;
       border-radius: 6px;
       font-family: var(--font-mono);
-      font-size: 0.88em;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      font-size: 0.86em;
       overflow-x: auto;
+      margin: 8px 0;
+      line-height: 1.5;
     }
 
     /* ── Footer ─────────────────────────────────────────────────────────────── */
-    footer {
+    footer.bottom-footer {
       border-top: 1px solid var(--border-color);
-      background: #04070f;
-      padding: 24px;
+      background: var(--bg-header);
+      padding: 20px 24px;
       text-align: center;
+      font-size: 0.84em;
       color: var(--text-muted);
-      font-size: 0.85em;
+      margin-top: 32px;
     }
 
-    footer a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      header.business-card-hero { padding: 32px 16px; }
-      .brand-logo-img { max-width: 300px; }
-      .business-card-box { flex-direction: column; text-align: center; padding: 20px 16px; gap: 16px; }
-      .card-profile-row { justify-content: center; }
-      .card-contacts-grid { grid-template-columns: 1fr; }
-      .pillars-grid { grid-template-columns: 1fr; }
+    /* ── Responsive ─────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      aside.profile-sidebar { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 📇 Top Executive Digital Business Card Hero -->
-  <header class="business-card-hero">
-    <div class="lang-switcher">
-      <select id="langSelect" onchange="changeLanguage(this.value)">
-        <option value="ko" selected>🇰🇷 한국어</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="ja">🇯🇵 日本語</option>
+  <!-- 🏛️ Top Header Bar -->
+  <header class="top-header">
+    <a href="index.html" class="brand-group">
+      <img src="assets/brand/favicon.svg" alt="AMEVA Logo" class="brand-logo">
+      <span class="brand-title">AMEVA Ecosystem</span>
+      <span class="brand-badge">v2026.8</span>
+    </a>
+
+    <div class="header-right">
+      <!-- 🌐 Global 12+ Language Switcher -->
+      <select id="globalLangSelect" class="lang-select-box" onchange="switchLanguage(this.value)">
+        <option value="ko" selected>🇰🇷 한국어 (Korean)</option>
+        <option value="en">🇺🇸 English (US)</option>
+        <option value="ja">🇯🇵 日本語 (Japanese)</option>
+        <option value="zh">🇨🇳 简体中文 (Chinese)</option>
+        <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+        <option value="ru">🇷🇺 Русский (Russian)</option>
+        <option value="pl">🇵🇱 Polski (Polish)</option>
+        <option value="vi">🇻🇳 Tiếng Việt (Vietnamese)</option>
+        <option value="ar">🇸🇦 العربية (Arabic)</option>
+        <option value="la">🏛️ Latina (Latin)</option>
+        <option value="es">🇪🇸 Español (Spanish)</option>
+        <option value="de">🇩🇪 Deutsch (German)</option>
+        <option value="fr">🇫🇷 Français (French)</option>
       </select>
-    </div>
 
-    <img src="assets/brand/ameva_logo.svg" alt="AMEVA Brand Logo" class="brand-logo-img">
-    <p class="hero-tagline" data-i18n="hero.tagline">Autonomous Multi-Agent Enterprise Virtualized Automation</p>
-    <p class="hero-sub" data-i18n="hero.sub">Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems &amp; Autograd Engine</p>
-
-    <!-- 📇 Executive Hologram Digital Business Card -->
-    <div class="business-card-box">
-      <div class="card-avatar-wrap">
-        <img src="assets/images/profile.jpg" alt="Uno Kim (김우노)" class="card-avatar-img">
-      </div>
-      <div class="card-main-info">
-        <div class="card-profile-row">
-          <span class="card-name">👤 Uno Kim (김우노)</span>
-          <span class="card-role-badge">AMEVA Founder &amp; Lead Systems Architect</span>
-        </div>
-        <div class="card-contacts-grid">
-          <a href="tel:010-4943-7334" class="contact-pill">
-            <span class="pill-icon">📞</span>
-            <span class="pill-text">010-4943-7334</span>
-          </a>
-          <a href="mailto:zhfldk014745@naver.com" class="contact-pill">
-            <span class="pill-icon">✉️</span>
-            <span class="pill-text">zhfldk014745@naver.com</span>
-          </a>
-          <a href="https://uno-kim.tistory.com/" target="_blank" class="contact-pill">
-            <span class="pill-icon">📖</span>
-            <span class="pill-text">uno-kim.tistory.com</span>
-          </a>
-          <a href="https://github.com/uno-km" target="_blank" class="contact-pill">
-            <span class="pill-icon">🐙</span>
-            <span class="pill-text">github.com/uno-km</span>
-          </a>
-        </div>
-      </div>
+      <a href="https://github.com/uno-km" target="_blank" class="header-link-btn">
+        🐙 GitHub Organization
+      </a>
     </div>
   </header>
 
-  <!-- 🏛️ Main Content Container -->
-  <main class="main-container">
+  <!-- 🏛️ Main Layout -->
+  <div class="container">
 
-    <div class="section-title-wrap">
-      <h2 class="section-title" data-i18n="pillars.title">AMEVA Ecosystem Architecture</h2>
-      <p class="section-desc" data-i18n="pillars.desc">
-        서버 인프라 비용 제로의 엣지 딥러닝 라이브러리부터, 가상 웹 OS 워크스테이션 및 자율형 멀티에이전트 유니버스까지 하나의 유기적 생태계로 연결됩니다.
+    <!-- 👤 Left Sidebar: Executive Technical Resume Card -->
+    <aside class="profile-sidebar">
+      <div class="avatar-wrapper">
+        <img src="assets/images/profile.jpg" alt="Uno Kim Profile" class="profile-avatar-img">
+      </div>
+
+      <h1 class="profile-name">Uno Kim (김우노)</h1>
+      <p class="profile-role" data-i18n="sidebar.role">Founder &amp; Lead Systems Architect</p>
+
+      <h3 class="sidebar-section-title" data-i18n="sidebar.contactTitle">Direct Contact</h3>
+      <ul class="contact-list">
+        <li>📞 <a href="tel:010-4943-7334">010-4943-7334</a></li>
+        <li>✉️ <a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></li>
+        <li>📖 <a href="https://uno-kim.tistory.com/" target="_blank">uno-kim.tistory.com</a></li>
+        <li>🐙 <a href="https://github.com/uno-km" target="_blank">github.com/uno-km</a></li>
+      </ul>
+
+      <h3 class="sidebar-section-title" data-i18n="sidebar.competencyTitle">Core Competencies</h3>
+      <div class="skills-tag-wrap">
+        <span class="skill-badge">WebGPU Compute</span>
+        <span class="skill-badge">Autograd Engine</span>
+        <span class="skill-badge">Pyodide / WASM</span>
+        <span class="skill-badge">Android Bionic</span>
+        <span class="skill-badge">Playwright CDP</span>
+        <span class="skill-badge">node-pty PTY</span>
+        <span class="skill-badge">Multi-Agent SRE</span>
+        <span class="skill-badge">Zero-Server ML</span>
+        <span class="skill-badge">TypeScript</span>
+        <span class="skill-badge">Python</span>
+        <span class="skill-badge">C / C++</span>
+        <span class="skill-badge">Electron</span>
+      </div>
+
+      <h3 class="sidebar-section-title" data-i18n="sidebar.researchTitle">Research Focus</h3>
+      <p style="font-size: 0.88em; color: var(--text-muted); line-height: 1.5;" data-i18n="sidebar.researchText">
+        Hierarchical AI Multi-Agent Sovereignty, Edge-Native Zero-Server Deep Learning, and Fault-Tolerant Distributed Runtimes.
       </p>
-    </div>
+    </aside>
 
-    <!-- 🌌 The 3 Major Pillars -->
-    <div class="pillars-grid">
+    <!-- 🏛️ Right Main Content: Portfolios & Ecosystem Hub -->
+    <main class="main-content">
 
-      <!-- 🖥️ Pillar 1: AMEVA Workstation -->
-      <div class="pillar-card">
-        <div>
-          <div class="pillar-header">
-            <span class="pillar-icon">🖥️</span>
-            <div class="pillar-heading">
-              <h3 data-i18n="workstation.title">AMEVA Workstation</h3>
-              <span class="pillar-badge">Virtual Web OS &amp; Desktop</span>
-            </div>
-          </div>
-          <p class="pillar-body" data-i18n="workstation.body">
-            로컬 기기 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경입니다. 실시간 Node Flow 및 가상 쉘 데모 시뮬레이터를 제공합니다.
-          </p>
-          <div class="sub-tags">
-            <span class="tag-item">AMEVA OS (WASM)</span>
-            <span class="tag-item">Market Place</span>
-            <span class="tag-item">Window Assistant</span>
-            <span class="tag-item">Conductor</span>
-          </div>
+      <!-- Section 1: Executive Summary -->
+      <section class="content-box">
+        <div class="box-header">
+          <h2><span data-i18n="sec1.title">Executive Summary &amp; Vision</span></h2>
+          <span class="box-tag">Architecture</span>
         </div>
-        <div class="btn-group">
-          <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="action-btn primary" data-i18n="workstation.btnApp">
-            🚀 AMEVA OS 워크스테이션 실행
-          </a>
-          <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/" target="_blank" class="action-btn secondary" data-i18n="workstation.btnPromo">
-            ✨ 프로모션 &amp; 인터랙티브 체험관
-          </a>
-        </div>
-      </div>
+        <p class="bio-text" data-i18n="sec1.p1">
+          <strong>AMEVA</strong> (Autonomous Multi-Agent Enterprise Virtualized Automation)는 클라우드 서버 인프라 비용 없이 개인의 엣지 디바이스 및 브라우저에서 직접 구동되는 차세대 고성능 분산 인공지능 &amp; 시스템 런타임 프레임워크입니다.
+        </p>
+        <p class="bio-text" data-i18n="sec1.p2">
+          본 포털은 AMEVA 산하의 <strong>3대 핵심 갈래</strong>(가상 OS 워크스테이션, 분산 멀티에이전트 유니버스, 고성능 코어 딥러닝 라이브러리)와 <strong>Model Context Protocol (MCP) 생태계</strong>를 총괄하는 공식 엔지니어링 허브입니다.
+        </p>
+      </section>
 
-      <!-- 🌐 Pillar 2: AMEVA Universe -->
-      <div class="pillar-card">
-        <div>
-          <div class="pillar-header">
-            <span class="pillar-icon">🌐</span>
-            <div class="pillar-heading">
-              <h3 data-i18n="universe.title">AMEVA Universe</h3>
-              <span class="pillar-badge">Autonomous Multi-Agent AI</span>
-            </div>
-          </div>
-          <p class="pillar-body" data-i18n="universe.body">
-            계층적 주권(Nobles &amp; Workers) 기반의 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다.
-          </p>
-          <div class="sub-tags">
-            <span class="tag-item">Agent Orchestra</span>
-            <span class="tag-item">Model Nexus</span>
-            <span class="tag-item">Benchmark Suite</span>
-            <span class="tag-item">Data Harvester</span>
-          </div>
+      <!-- Section 2: MCP Ecosystem (Model Context Protocol Hub) -->
+      <section class="content-box">
+        <div class="box-header">
+          <h2><span data-i18n="sec2.title">⚙️ Model Context Protocol (MCP) Ecosystem</span></h2>
+          <span class="box-tag">Dynamic Tooling &amp; Sandbox</span>
         </div>
-        <div class="btn-group">
-          <a href="dashboard/index.html" target="_blank" class="action-btn primary" data-i18n="universe.btnDashboard">
-            🌌 AMEVA Universe 대시보드 (Neural Fabric)
-          </a>
-          <a href="https://github.com/uno-km/uno-km" target="_blank" class="action-btn secondary" data-i18n="universe.btnRepo">
-            📂 에코시스템 마스터 리포지토리
-          </a>
-        </div>
-      </div>
 
-      <!-- 📦 Pillar 3: AMEVA Core Libraries -->
-      <div class="pillar-card">
-        <div>
-          <div class="pillar-header">
-            <span class="pillar-icon">📦</span>
-            <div class="pillar-heading">
-              <h3 data-i18n="libraries.title">AMEVA Core Libraries</h3>
-              <span class="pillar-badge">High-Performance Runtimes</span>
-            </div>
-          </div>
-          <p class="pillar-body" data-i18n="libraries.body">
-            하드웨어 및 OS 샌드박스의 한계를 뚫어내는 저수준 코어 딥러닝 텐서 엔진 및 플랫폼 자동화 런타임 라이브러리들입니다.
-          </p>
-          <div class="sub-tags">
-            <span class="tag-item">AMEVA-Forge (WebGPU)</span>
-            <span class="tag-item">Termux-Playwright</span>
-            <span class="tag-item">MCP-Wasm-Toolkit</span>
-            <span class="tag-item">BitNet (1-Bit)</span>
-          </div>
-        </div>
-        <div class="btn-group">
-          <a href="#libraries-hub" class="action-btn primary" data-i18n="libraries.btnHub">
-            🔍 라이브러리 기술 사양 허브 보기
-          </a>
-          <a href="docs/pages/templates/library/README.md" class="action-btn secondary" data-i18n="libraries.btnTemplate">
-            📄 라이브러리 문서 템플릿 주조소
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 📦 Comprehensive Library Showcase (Apache / Tomcat Classic Tech Hub Style) -->
-    <section id="libraries-hub" class="library-hub-section">
-      <div class="hub-header">
-        <div>
-          <h3 data-i18n="hub.title">📦 AMEVA Open-Source Systems Libraries Hub</h3>
-          <p style="color: var(--text-muted); font-size: 0.9em; margin-top: 4px;" data-i18n="hub.subtitle">
-            각 라이브러리 카드를 클릭하면 공식 GitHub Pages 문서 및 데모로 직접 이동합니다.
+        <div class="mcp-highlight-box">
+          <h4 data-i18n="mcp.title">⚡ AMEVA Official MCP Architecture Specification</h4>
+          <p style="font-size: 0.9em; color: var(--text-main); margin-bottom: 8px;" data-i18n="mcp.desc">
+            안전한 100% 클라이언트 브라우저 격리 샌드박스와 실시간 SSE 핫리로드 채널을 결합하여, AI 에이전트의 실행 가능 도구 셋을 서버 재부팅 없이 3초 이내에 동적으로 확장합니다.
           </p>
         </div>
-        <span class="hub-tag">Apache / Enterprise Open-Source Standard</span>
-      </div>
 
-      <div class="lib-items-grid">
-
-        <!-- ⚡ Lib 1: AMEVA-Forge -->
-        <div class="lib-card">
-          <div class="lib-card-top">
-            <div class="lib-card-title">
-              <h4>⚡ AMEVA-Forge</h4>
-              <span class="lib-badge-pkg">@ameva/forge · v1.0.0</span>
+        <div class="cards-grid">
+          <!-- MCP 1 -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>⚙️ MCP Wasm Toolkit</span> <span style="font-size: 0.75em; color: var(--primary-navy);">Core Engine</span></h3>
+              <p class="item-card-desc" data-i18n="mcp.card1Desc">
+                로컬 호스트 자원을 보존하면서 위험 연산(크롤러, 동적 코드)을 브라우저 Pyodide WASM 샌드박스로 격리 실행하는 런타임.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Isolation:</td><td>100% WASM Client Sandbox</td></tr>
+                <tr><td>Bridge:</td><td>Local Port 9000 WebSocket</td></tr>
+              </table>
             </div>
-            <p class="lib-card-desc" data-i18n="hub.forgeDesc">
-              서버 비용 제로의 Browser-Native WebGPU Deep Learning &amp; Autograd Engine. PyTorch 구문 호환, WGSL Compute Shader 역전파, 8D 브로드캐스팅 지원.
-            </p>
-            <table class="lib-specs-table">
-              <tr><td>Runtime:</td><td>Browser WebGPU / Pyodide WASM</td></tr>
-              <tr><td>Core Ops:</td><td>Autograd, Linear, Attention, SGD</td></tr>
-              <tr><td>Memory:</td><td>WeakRef GC &amp; Zero-Leak Pool</td></tr>
-            </table>
-          </div>
-          <div class="btn-group">
-            <a href="https://uno-km.github.io/AMEVA-Tensor/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
-              📖 공식 문서 (GitHub Pages)
-            </a>
-            <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="action-btn secondary" style="font-size: 0.85em; padding: 8px 12px;">
-              ⚡ 실시간 WebGPU 데모 체험
-            </a>
-          </div>
-        </div>
-
-        <!-- 📱 Lib 2: Termux-Playwright -->
-        <div class="lib-card">
-          <div class="lib-card-top">
-            <div class="lib-card-title">
-              <h4>📱 Termux-Playwright</h4>
-              <span class="lib-badge-pkg">pip install · v1.61.2</span>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="btn-action primary" data-i18n="btn.launchApp">
+                🚀 AMEVA OS 실행
+              </a>
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/" target="_blank" class="btn-action secondary" data-i18n="btn.promoStudio">
+                ✨ 프로모션 체험관
+              </a>
             </div>
-            <p class="lib-card-desc" data-i18n="hub.termuxDesc">
-              PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 최적화 라이브러리.
-            </p>
-            <table class="lib-specs-table">
-              <tr><td>Platform:</td><td>Android Termux (aarch64 / x86_64)</td></tr>
-              <tr><td>Hardening:</td><td>Bionic RPC, ProcessReaper, Stealth</td></tr>
-              <tr><td>Storage:</td><td>RAM Cache &amp; eMMC Flash Protection</td></tr>
-            </table>
           </div>
-          <div class="btn-group">
-            <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
-              📖 공식 문서 (GitHub Pages)
-            </a>
-            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="action-btn secondary" style="font-size: 0.85em; padding: 8px 12px;">
-              📦 PyPI 공식 패키지
-            </a>
-          </div>
-        </div>
 
-        <!-- ⚙️ Lib 3: MCP-Wasm-Toolkit -->
-        <div class="lib-card">
-          <div class="lib-card-top">
-            <div class="lib-card-title">
-              <h4>⚙️ MCP-Wasm-Toolkit</h4>
-              <span class="lib-badge-pkg">WASM Core · v1.0.0</span>
+          <!-- MCP 2 -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>🧰 MCP Utils Dynamic Hub</span> <span style="font-size: 0.75em; color: var(--primary-navy);">SSE Stream</span></h3>
+              <p class="item-card-desc" data-i18n="mcp.card2Desc">
+                GitHub 원격 저장소의 manifest와 도구 코드를 실시간 핫리로드 채널(ntfy.sh)을 통해 액티브 세션에 3초 내 자동 등록.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Sync Latency:</td><td>&lt; 3.0s Live Hot-Reload</td></tr>
+                <tr><td>Protocol:</td><td>Server-Sent Events (SSE)</td></tr>
+              </table>
             </div>
-            <p class="lib-card-desc" data-i18n="hub.mcpDesc">
-              브라우저 WASM(Pyodide) 샌드박스로 위험 연산을 완전 격리하고, SSE(ntfy) 채널을 통해 도구를 3초 내 핫리로드하는 동적 툴킷 허브.
-            </p>
-            <table class="lib-specs-table">
-              <tr><td>Security:</td><td>100% Client-Side Sandbox Isolation</td></tr>
-              <tr><td>Sync:</td><td>SSE Real-time Dynamic Hot-Reload</td></tr>
-              <tr><td>Bridge:</td><td>Local Port 9000 WebSocket Proxy</td></tr>
-            </table>
-          </div>
-          <div class="btn-group">
-            <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
-              📖 공식 문서 (GitHub Pages)
-            </a>
-          </div>
-        </div>
-
-        <!-- 🧠 Lib 4: BitNet Inference -->
-        <div class="lib-card">
-          <div class="lib-card-top">
-            <div class="lib-card-title">
-              <h4>🧠 BitNet Engine</h4>
-              <span class="lib-badge-pkg">ARM / Exynos Scalar · v1.0.0</span>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">
+                📖 공식 문서 보기
+              </a>
             </div>
-            <p class="lib-card-desc" data-i18n="hub.bitnetDesc">
-              1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.
-            </p>
-            <table class="lib-specs-table">
-              <tr><td>Quantization:</td><td>1.58-bit Ternary Weights {-1, 0, 1}</td></tr>
-              <tr><td>Hardware:</td><td>ARM Neon / Exynos Scalar Fallback</td></tr>
-              <tr><td>Efficiency:</td><td>Ultra-Low mW Power Footprint</td></tr>
-            </table>
-          </div>
-          <div class="btn-group">
-            <a href="https://github.com/uno-km/BitNet" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
-              🐙 GitHub 저장소 확인
-            </a>
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>
-
-    <!-- ⚡ Quick Universe Setup Box -->
-    <div class="setup-box">
-      <h4 data-i18n="setup.title">🚀 AMEVA Setup Universe (One-Click Bootstrap)</h4>
-      <div class="cmd-group">
-        <span class="cmd-label">Windows (PowerShell as Administrator):</span>
-        <div class="cmd-code">
-          <code>irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex</code>
+      <!-- Section 3: Open-Source Systems & Deep Learning Libraries -->
+      <section class="content-box">
+        <div class="box-header">
+          <h2><span data-i18n="sec3.title">📦 AMEVA Open-Source Core Libraries</span></h2>
+          <span class="box-tag">Apache / Systems</span>
         </div>
-      </div>
-      <div class="cmd-group">
-        <span class="cmd-label">macOS / Linux (Bash):</span>
-        <div class="cmd-code">
-          <code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)</code>
+        <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;" data-i18n="sec3.desc">
+          하드웨어 및 샌드박스 제약을 뚫어내는 고성능 딥러닝 텐서 엔진 및 플랫폼 자동화 오픈소스 라이브러리 목록입니다.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Forge -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>⚡ AMEVA-Forge</span> <span style="font-size: 0.75em; color: var(--primary-navy);">@ameva/forge</span></h3>
+              <p class="item-card-desc" data-i18n="libs.forgeDesc">
+                Browser-Native WebGPU Deep Learning &amp; Autograd Engine. PyTorch 구문 호환, WGSL Compute Shader 역전파, 8D 브로드캐스팅.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Runtime:</td><td>WebGPU / Pyodide WASM</td></tr>
+                <tr><td>Autograd:</td><td>Closed-form GPU Gradients</td></tr>
+              </table>
+            </div>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/AMEVA-Tensor/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="btn-action secondary" data-i18n="btn.liveDemo">⚡ 실시간 데모</a>
+            </div>
+          </div>
+
+          <!-- Termux-Playwright -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>📱 Termux-Playwright</span> <span style="font-size: 0.75em; color: var(--primary-navy);">pip package</span></h3>
+              <p class="item-card-desc" data-i18n="libs.termuxDesc">
+                PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 라이브러리.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Platform:</td><td>Android Bionic (ARM64)</td></tr>
+                <tr><td>Process:</td><td>Persistent Disk Reaper</td></tr>
+              </table>
+            </div>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+            </div>
+          </div>
+
+          <!-- AMEVA-Multi-CLI -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>💻 AMEVA-Multi-CLI</span> <span style="font-size: 0.75em; color: var(--primary-navy);">Desktop App</span></h3>
+              <p class="item-card-desc" data-i18n="libs.multiCliDesc">
+                트리 기반 무한 재귀 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치, DevSecOps 보안 가드레일 및 포트 킬러가 내장된 CLI 워크벤치.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Tech:</td><td>Electron, React 18, SQLite</td></tr>
+                <tr><td>PTY:</td><td>12ms Dynamic Batching</td></tr>
+              </table>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+
+          <!-- BitNet -->
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span>🧠 BitNet Engine</span> <span style="font-size: 0.75em; color: var(--primary-navy);">1-Bit LLM</span></h3>
+              <p class="item-card-desc" data-i18n="libs.bitnetDesc">
+                1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 엔진.
+              </p>
+              <table class="tech-specs-table">
+                <tr><td>Weights:</td><td>Ternary {-1, 0, 1}</td></tr>
+                <tr><td>Hardware:</td><td>ARM Neon / Exynos Scalar</td></tr>
+              </table>
+            </div>
+            <div class="card-actions">
+              <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-  </main>
+      <!-- Section 4: AMEVA Universe & 3D Neural Fabric -->
+      <section class="content-box">
+        <div class="box-header">
+          <h2><span data-i18n="sec4.title">🌐 AMEVA Universe &amp; 3D Neural Fabric</span></h2>
+          <span class="box-tag">Multi-Agent</span>
+        </div>
+        <p class="bio-text" data-i18n="sec4.desc">
+          계층적 주권(Nobles &amp; Workers) 기반 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다. 아래 버튼을 통해 3D WebGPU 인터랙티브 그래프 대시보드를 직접 탐색할 수 있습니다.
+        </p>
+        <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <a href="dashboard/index.html" target="_blank" class="btn-action primary" style="padding: 10px 18px; font-size: 0.9em;" data-i18n="btn.launchNeural">
+            🔮 3D Neural Fabric 대시보드 입장
+          </a>
+          <a href="docs/pages/templates/library/README.md" class="btn-action secondary" style="padding: 10px 18px; font-size: 0.9em;" data-i18n="btn.templateFoundry">
+            📄 공식 라이브러리 문서 주조소 (Template)
+          </a>
+        </div>
+      </section>
 
-  <!-- 🏛️ Footer -->
-  <footer>
-    <p>&copy; 2026 <strong>AMEVA Ecosystem</strong> · Built with ❤️ by <a href="https://github.com/uno-km" target="_blank">Uno Kim (@uno-km)</a></p>
-    <p style="margin-top: 4px; color: #64748b;">Clean Aqua-Cyan Universe &amp; Dynamic Asymmetric Organic Automation Aesthetic.</p>
+      <!-- Section 5: One-Click Setup Universe CLI -->
+      <section class="content-box">
+        <div class="box-header">
+          <h2><span data-i18n="sec5.title">🚀 AMEVA Setup Universe (One-Click Bootstrap)</span></h2>
+          <span class="box-tag">CLI Installer</span>
+        </div>
+        <p style="font-size: 0.88em; color: var(--text-muted); margin-bottom: 6px;">Windows (PowerShell as Administrator):</p>
+        <div class="code-box">irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex</div>
+        
+        <p style="font-size: 0.88em; color: var(--text-muted); margin: 10px 0 6px 0;">macOS / Linux (Bash):</p>
+        <div class="code-box">bash &lt;(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.sh)</div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 🏛️ Bottom Footer -->
+  <footer class="bottom-footer">
+    <p>&copy; 2026 <strong>Uno Kim (@uno-km)</strong> · AMEVA Ecosystem Founder &amp; Systems Architect.</p>
+    <p style="margin-top: 4px;">High-Clarity Enterprise Open-Source Technical Portfolio &amp; Digital Resume Portal.</p>
   </footer>
 
-  <!-- 🌐 Simple Client-side i18n Switcher Script -->
+  <!-- 🌐 Global 13-Language Dynamic Dictionary Script -->
   <script>
-    const portalTranslations = {
+    const i18nDictionary = {
       "ko": {
-        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
-        "hero.sub": "Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems & Autograd Engine",
-        "pillars.title": "AMEVA 에코시스템 아키텍처",
-        "pillars.desc": "서버 인프라 비용 제로의 엣지 딥러닝 라이브러리부터, 가상 웹 OS 워크스테이션 및 자율형 멀티에이전트 유니버스까지 하나의 유기적 생태계로 연결됩니다.",
-        "workstation.title": "AMEVA 워크스테이션",
-        "workstation.body": "로컬 기기 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경입니다. 실시간 Node Flow 및 가상 쉘 데모 시뮬레이터를 제공합니다.",
-        "workstation.btnApp": "🚀 AMEVA OS 워크스테이션 실행",
-        "workstation.btnPromo": "✨ 프로모션 & 인터랙티브 체험관",
-        "universe.title": "AMEVA 유니버스",
-        "universe.body": "계층적 주권(Nobles & Workers) 기반의 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다.",
-        "universe.btnDashboard": "🌌 AMEVA Universe 대시보드 입장",
-        "universe.btnRepo": "📂 에코시스템 마스터 리포지토리",
-        "libraries.title": "AMEVA 코어 라이브러리",
-        "libraries.body": "하드웨어 및 OS 샌드박스의 한계를 뚫어내는 저수준 코어 딥러닝 텐서 엔진 및 플랫폼 자동화 런타임 라이브러리들입니다.",
-        "libraries.btnHub": "🔍 라이브러리 기술 사양 허브 보기",
-        "libraries.btnTemplate": "📄 라이브러리 문서 템플릿 주조소",
-        "hub.title": "📦 AMEVA 오픈소스 시스템 라이브러리 허브",
-        "hub.subtitle": "각 라이브러리 카드를 클릭하면 공식 GitHub Pages 문서 및 데모로 직접 이동합니다.",
-        "hub.forgeDesc": "서버 비용 제로의 Browser-Native WebGPU Deep Learning & Autograd Engine. PyTorch 구문 호환, WGSL Compute Shader 역전파, 8D 브로드캐스팅 지원.",
-        "hub.termuxDesc": "PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 최적화 라이브러리.",
-        "hub.mcpDesc": "브라우저 WASM(Pyodide) 샌드박스로 위험 연산을 완전 격리하고, SSE(ntfy) 채널을 통해 도구를 3초 내 핫리로드하는 동적 툴킷 허브.",
-        "hub.bitnetDesc": "1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.",
-        "setup.title": "🚀 AMEVA Setup Universe (One-Click 부트스트랩)"
+        "sidebar.role": "창립자 & 시스템 아키텍트",
+        "sidebar.contactTitle": "공식 연락처 (명함)",
+        "sidebar.competencyTitle": "핵심 기술 역량",
+        "sidebar.researchTitle": "연구 분야",
+        "sidebar.researchText": "계층적 멀티에이전트 주권, 엣지 네이티브 무서버 딥러닝 및 고가용성 분산 런타임.",
+        "sec1.title": "개요 및 아키텍처 비전",
+        "sec1.p1": "AMEVA는 클라우드 서버 인프라 비용 없이 개인의 엣지 디바이스 및 브라우저에서 직접 구동되는 차세대 고성능 분산 인공지능 & 시스템 런타임 프레임워크입니다.",
+        "sec1.p2": "본 포털은 AMEVA 산하의 3대 핵심 갈래(워크스테이션, 멀티에이전트 유니버스, 코어 라이브러리)와 Model Context Protocol (MCP) 생태계를 총괄하는 공식 엔지니어링 허브입니다.",
+        "sec2.title": "⚙️ Model Context Protocol (MCP) 생태계",
+        "mcp.title": "⚡ AMEVA 공식 MCP 아키텍처 명세",
+        "mcp.desc": "안전한 100% 클라이언트 브라우저 격리 샌드박스와 실시간 SSE 핫리로드 채널을 결합하여, AI 에이전트의 도구 셋을 서버 재부팅 없이 3초 이내에 동적으로 확장합니다.",
+        "mcp.card1Desc": "로컬 자원을 보존하면서 위험 연산(크롤러, 동적 스크립트)을 브라우저 WASM 샌드박스로 격리 실행하는 런타임.",
+        "mcp.card2Desc": "GitHub 원격 저장소의 도구 코드를 실시간 핫리로드 채널을 통해 액티브 세션에 3초 내 자동 등록.",
+        "sec3.title": "📦 AMEVA 오픈소스 코어 라이브러리",
+        "sec3.desc": "하드웨어 및 샌드박스 제약을 뚫어내는 고성능 딥러닝 텐서 엔진 및 플랫폼 자동화 오픈소스 라이브러리 목록입니다.",
+        "libs.forgeDesc": "Browser-Native WebGPU Deep Learning & Autograd Engine. PyTorch 구문 호환, WGSL 역전파, 8D 브로드캐스팅.",
+        "libs.termuxDesc": "PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 라이브러리.",
+        "libs.multiCliDesc": "트리 기반 무한 재귀 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치, DevSecOps 보안 가드레일 및 포트 킬러가 내장된 CLI 워크벤치.",
+        "libs.bitnetDesc": "1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 엔진.",
+        "sec4.title": "🌐 AMEVA 유니버스 & 3D Neural Fabric",
+        "sec4.desc": "계층적 주권 기반 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다.",
+        "sec5.title": "🚀 AMEVA Setup Universe (원클릭 부트스트랩)",
+        "btn.launchApp": "🚀 AMEVA OS 실행",
+        "btn.promoStudio": "✨ 프로모션 체험관",
+        "btn.viewDoc": "📖 공식 문서 보기",
+        "btn.liveDemo": "⚡ 실시간 데모",
+        "btn.viewRepo": "🐙 GitHub 저장소",
+        "btn.launchNeural": "🔮 3D Neural Fabric 대시보드 입장",
+        "btn.templateFoundry": "📄 라이브러리 문서 템플릿 주조소"
       },
       "en": {
-        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
-        "hero.sub": "Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems & Autograd Engine",
-        "pillars.title": "AMEVA Ecosystem Architecture",
-        "pillars.desc": "Connecting zero-server edge deep learning libraries, virtual web OS workstations, and autonomous multi-agent universes into a single living ecosystem.",
-        "workstation.title": "AMEVA Workstation",
-        "workstation.body": "Hybrid virtual OS developer platform merging local machine resources with browser-isolated WASM sandboxes, featuring Node Flow and virtual shell simulation.",
-        "workstation.btnApp": "🚀 Launch AMEVA OS Workstation",
-        "workstation.btnPromo": "✨ Interactive Promotion Studio",
-        "universe.title": "AMEVA Universe",
-        "universe.body": "100% offline distributed multi-agent ecosystem driven by hierarchical sovereignty (Nobles & Workers) and SRE dynamic scoped throttling.",
-        "universe.btnDashboard": "🌌 Enter Universe Dashboard",
-        "universe.btnRepo": "📂 Master Ecosystem Repository",
-        "libraries.title": "AMEVA Core Libraries",
-        "libraries.body": "Low-level deep learning tensor engines and platform automation runtimes breaking through edge hardware and OS sandbox constraints.",
-        "libraries.btnHub": "🔍 Explore Libraries Hub",
-        "libraries.btnTemplate": "📄 Library Docs Template Foundry",
-        "hub.title": "📦 AMEVA Open-Source Systems Libraries Hub",
-        "hub.subtitle": "Click any library card to access official GitHub Pages documentation and live interactive demos.",
-        "hub.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning & Autograd Engine with PyTorch compatibility, WGSL backprop, and 8D broadcasting.",
-        "hub.termuxDesc": "Production Playwright & Chromium browser automation on Android Termux without root or PRoot overhead.",
-        "hub.mcpDesc": "Zero-overhead browser WASM sandbox isolation and 3-second dynamic tool hot-reload via SSE.",
-        "hub.bitnetDesc": "Ultra-low power 1-bit quantization LLM inference engine optimized for ARM and Exynos scalar hardware.",
-        "setup.title": "🚀 AMEVA Setup Universe (One-Click Bootstrap)"
+        "sidebar.role": "Founder & Lead Systems Architect",
+        "sidebar.contactTitle": "Direct Contact",
+        "sidebar.competencyTitle": "Core Competencies",
+        "sidebar.researchTitle": "Research Focus",
+        "sidebar.researchText": "Hierarchical AI Multi-Agent Sovereignty, Edge-Native Zero-Server Deep Learning, and Fault-Tolerant Distributed Runtimes.",
+        "sec1.title": "Executive Summary & Vision",
+        "sec1.p1": "AMEVA is a high-performance distributed edge-native AI and systems runtime framework running directly inside client devices and browsers with zero server infrastructure overhead.",
+        "sec1.p2": "This portal serves as the official engineering hub orchestrating the 3 Pillars of AMEVA (Workstation, Universe, Core Libraries) and the Model Context Protocol (MCP) tooling ecosystem.",
+        "sec2.title": "⚙️ Model Context Protocol (MCP) Ecosystem",
+        "mcp.title": "⚡ AMEVA Official MCP Architecture Specification",
+        "mcp.desc": "Combines client-side browser WASM sandboxes with real-time SSE hot-reload channels, dynamically registering tools into AI agent sessions within 3 seconds without server restarts.",
+        "mcp.card1Desc": "Preserves host resources while executing unsafe tasks inside isolated Pyodide WASM browser sandboxes.",
+        "mcp.card2Desc": "Dynamically registers remote GitHub tools into active browser sessions within 3 seconds via SSE channels.",
+        "sec3.title": "📦 AMEVA Open-Source Core Libraries",
+        "sec3.desc": "Production-grade deep learning tensor engines and systems automation runtime libraries built for constrained edge environments.",
+        "libs.forgeDesc": "Browser-Native WebGPU Deep Learning & Autograd Engine with PyTorch compatibility, WGSL compute shaders, and 8D broadcasting.",
+        "libs.termuxDesc": "Genuine Chromium browser automation on Android Termux without root or PRoot overhead.",
+        "libs.multiCliDesc": "Tree-based recursive multi-split terminal workbench with 80 FPS smart PTY batching and DevSecOps command guardrails.",
+        "libs.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM and Exynos scalar CPUs.",
+        "sec4.title": "🌐 AMEVA Universe & 3D Neural Fabric",
+        "sec4.desc": "Offline distributed multi-agent ecosystem driven by hierarchical sovereignty (Nobles & Workers) and SRE dynamic scoped throttling.",
+        "sec5.title": "🚀 AMEVA Setup Universe (One-Click Bootstrap)",
+        "btn.launchApp": "🚀 Launch AMEVA OS",
+        "btn.promoStudio": "✨ Promo Studio",
+        "btn.viewDoc": "📖 View Documentation",
+        "btn.liveDemo": "⚡ Live Demo",
+        "btn.viewRepo": "🐙 GitHub Repo",
+        "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
+        "btn.templateFoundry": "📄 Library Docs Template"
       },
       "ja": {
-        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
-        "hero.sub": "Orchestrating Intelligence Beyond the Cloud",
-        "pillars.title": "AMEVA エコシステム アーキテクチャ",
-        "pillars.desc": "エッジ深層学習ライブラリ、仮想Web OSワークステーション、自律型マルチエージェントユニバースを統合するオープンソースエコシステム。",
-        "workstation.title": "AMEVA ワークステーション",
-        "workstation.body": "ローカルリソースとブラウザWASMサンドボックスを統合した仮想OS環境。Node Flowと仮想シェルシミュレータを提供します。",
-        "workstation.btnApp": "🚀 AMEVA OSを起動する",
-        "workstation.btnPromo": "✨ プロモーション＆体験ページ",
-        "universe.title": "AMEVA ユニバース",
-        "universe.body": "階層型自律制御とSREスロットリングを備えた100%オフライン分散マルチエージェントAI基盤。",
-        "universe.btnDashboard": "🌌 ダッシュボードに入る",
-        "universe.btnRepo": "📂 マスターリポジトリ",
-        "libraries.title": "AMEVA コアライブラリ",
-        "libraries.body": "ブラウザWebGPU自動微分テンソルエンジンとAndroidネイティブ自動化ランタイムライブラリ群。",
-        "libraries.btnHub": "🔍 ライブラリ仕様を見る",
-        "libraries.btnTemplate": "📄 ドキュメントテンプレート工房",
-        "hub.title": "📦 AMEVA オープンソース システムライブラリ",
-        "hub.subtitle": "カードをクリックすると、各公式GitHub Pagesドキュメントへ移動します。",
-        "hub.forgeDesc": "サーバー不要のWebGPU深層学習＆Autogradエンジン。PyTorch互換、WGSL逆伝播。",
-        "hub.termuxDesc": "Android Termux環境でルート権限不要でChromiumを動かす自動化ライブラリ。",
-        "hub.mcpDesc": "WASMサンドボックスと3秒以内の動的ツールホットリロードを実現するMCPツールキット。",
-        "hub.bitnetDesc": "低消費電力ARM向け1ビット量子化モデル推論フレームワーク。",
-        "setup.title": "🚀 AMEVA Setup Universe (ワンクリック導入)"
+        "sidebar.role": "創設者 兼 主任システムアーキテクト",
+        "sidebar.contactTitle": "連絡先（名刺）",
+        "sidebar.competencyTitle": "主要技術分野",
+        "sidebar.researchTitle": "研究分野",
+        "sidebar.researchText": "階層型マルチエージェント主権、エッジネイティブ深層学習、分散高可用性ランタイム。",
+        "sec1.title": "概要とアーキテクチャビジョン",
+        "sec1.p1": "AMEVAはサーバー不要でエッジデバイスおよびブラウザ上で直接動作する自律型AIランタイム基盤です。",
+        "sec1.p2": "本ポータルはAMEVAの3大領域（Workstation、Universe、Libraries）とMCPエコシステムを統括する公式ハブです。",
+        "sec2.title": "⚙️ Model Context Protocol (MCP) エコシステム",
+        "mcp.title": "⚡ AMEVA 公式 MCP 仕様",
+        "mcp.desc": "ブラウザWASMサンドボックスとSSEホットリロードを統合し、3秒以内にAIツールセットを動的拡張します。",
+        "sec3.title": "📦 AMEVA オープンソース コアライブラリ",
+        "sec4.title": "🌐 AMEVA ユニバース & 3D Neural Fabric",
+        "sec5.title": "🚀 AMEVA Setup Universe (ワンクリック導入)",
+        "btn.launchApp": "🚀 AMEVA OS起動",
+        "btn.promoStudio": "✨ 体験スタジオ",
+        "btn.viewDoc": "📖 公式ドキュメント",
+        "btn.liveDemo": "⚡ デモ体験",
+        "btn.viewRepo": "🐙 GitHubリポジトリ",
+        "btn.launchNeural": "🔮 3Dグラフを開く",
+        "btn.templateFoundry": "📄 テンプレート工房"
+      },
+      "zh": {
+        "sidebar.role": "创始人 兼 首席系统架构师",
+        "sidebar.contactTitle": "联系方式（名片）",
+        "sidebar.competencyTitle": "核心技能",
+        "sidebar.researchTitle": "研究方向",
+        "sidebar.researchText": "分层多智能体主权、边缘原生零服务器深度学习与分布式高可用运行时。",
+        "sec1.title": "概述与架构愿景",
+        "sec1.p1": "AMEVA 是一个无需服务器基础设施、直接在边缘设备与浏览器中运行的高性能分布式 AI 框架。",
+        "sec1.p2": "本门户是统筹 AMEVA 三大核心支柱（工作站、智能体宇宙、核心库）与 MCP 生态系统的官方工程枢纽。",
+        "sec2.title": "⚙️ Model Context Protocol (MCP) 生态系统",
+        "mcp.title": "⚡ AMEVA 官方 MCP 规范",
+        "mcp.desc": "结合浏览器 WASM 沙箱与实时 SSE 热重载，在 3 秒内动态扩展 AI 智能体工具集。",
+        "sec3.title": "📦 AMEVA 开源核心系统库",
+        "sec4.title": "🌐 AMEVA 智能体宇宙 & 3D 神经织网",
+        "sec5.title": "🚀 AMEVA Setup Universe (一键安装)",
+        "btn.launchApp": "🚀 运行 AMEVA OS",
+        "btn.promoStudio": "✨ 体验展厅",
+        "btn.viewDoc": "📖 查看文档",
+        "btn.liveDemo": "⚡ 在线演示",
+        "btn.viewRepo": "🐙 GitHub 仓库",
+        "btn.launchNeural": "🔮 进入 3D 仪表板",
+        "btn.templateFoundry": "📄 文档模版铸造厂"
+      },
+      "hi": {
+        "sidebar.role": "संस्थापक और मुख्य सिस्टम आर्किटेक्ट",
+        "sidebar.contactTitle": "संपर्क विवरण (विज़िटिंग कार्ड)",
+        "sidebar.competencyTitle": "मुख्य तकनीकी क्षमताएं",
+        "sidebar.researchTitle": "अनुसंधान फोकस",
+        "sidebar.researchText": "पदानुक्रमित मल्टी-एजेंट स्वायत्तता, एज-नेटिव डीप लर्निंग और वितरित रनटाइम।",
+        "sec1.title": "कार्यकारी सारांश और विजन",
+        "sec1.p1": "AMEVA बिना किसी सर्वर लागत के एज डिवाइस और ब्राउज़र में सीधे चलने वाला डीप लर्निंग और सिस्टम फ्रेमवर्क है।",
+        "sec2.title": "⚙️ मॉडल संदर्भ प्रोटोकॉल (MCP) पारिस्थितिकी तंत्र",
+        "sec3.title": "📦 AMEVA ओपन-सोर्स कोर लाइब्रेरी",
+        "sec4.title": "🌐 AMEVA यूनिवर्स और 3D न्यूरल फैब्रिक",
+        "sec5.title": "🚀 AMEVA सेटअप यूनिवर्स (वन-क्लिक इंस्टालर)",
+        "btn.launchApp": "🚀 AMEVA OS प्रारंभ करें",
+        "btn.viewDoc": "📖 प्रलेखन देखें",
+        "btn.launchNeural": "🔮 3D डैशबोर्ड में प्रवेश करें"
+      },
+      "ru": {
+        "sidebar.role": "Основатель и главный системный архитектор",
+        "sidebar.contactTitle": "Прямые контакты (Визитка)",
+        "sidebar.competencyTitle": "Ключевые компетенции",
+        "sidebar.researchTitle": "Направления исследований",
+        "sidebar.researchText": "Иерархический суверенитет мультиагентов, глубокое обучение на edge-устройствах без серверов.",
+        "sec1.title": "Обзор и архитектурное видение",
+        "sec1.p1": "AMEVA — это высокопроизводительный edge-native фреймворк искусственного интеллекта без серверных затрат.",
+        "sec2.title": "⚙️ Экосистема Model Context Protocol (MCP)",
+        "sec3.title": "📦 Открытые системные библиотеки AMEVA",
+        "sec4.title": "🌐 Вселенная AMEVA и 3D Neural Fabric",
+        "sec5.title": "🚀 Установка AMEVA Universe в один клик",
+        "btn.launchApp": "🚀 Запуск AMEVA OS",
+        "btn.viewDoc": "📖 Документация",
+        "btn.launchNeural": "🔮 Открыть 3D Дашборд"
+      },
+      "pl": {
+        "sidebar.role": "Założyciel i Główny Architekt Systemowy",
+        "sidebar.contactTitle": "Kontakt Bezpośredni (Wizytówka)",
+        "sidebar.competencyTitle": "Kluczowe Kompetencje",
+        "sidebar.researchTitle": "Obszary Badań",
+        "sidebar.researchText": "Hierarchiczna suwerenność agentów AI, bezserwerowe uczenie maszynowe w przeglądarce.",
+        "sec1.title": "Podsumowanie i Wizja Architektury",
+        "sec1.p1": "AMEVA to bezserwerowy framework uczenia głębokiego i środowisk wykonawczych AI na urządzeniach brzegowych.",
+        "sec2.title": "⚙️ Ekosystem Model Context Protocol (MCP)",
+        "sec3.title": "📦 Biblioteki Open-Source AMEVA",
+        "sec4.title": "🌐 Uniwersum AMEVA i 3D Neural Fabric",
+        "sec5.title": "🚀 Instalator AMEVA Universe (Jedno kliknięcie)",
+        "btn.launchApp": "🚀 Uruchom AMEVA OS",
+        "btn.viewDoc": "📖 Dokumentacja",
+        "btn.launchNeural": "🔮 Otwórz 3D Dashboard"
+      },
+      "vi": {
+        "sidebar.role": "Người sáng lập & Kiến trúc sư hệ thống",
+        "sidebar.contactTitle": "Thông tin liên hệ (Danh thiếp)",
+        "sidebar.competencyTitle": "Năng lực cốt lõi",
+        "sidebar.researchTitle": "Lĩnh vực nghiên cứu",
+        "sidebar.researchText": "Hệ thống đa tác tử tự trị, học sâu edge-native không máy chủ và môi trường phân tán.",
+        "sec1.title": "Tóm tắt & Tầm nhìn kiến trúc",
+        "sec1.p1": "AMEVA là nền tảng AI phân tán hiệu năng cao chạy trực tiếp trên thiết bị đầu cuối và trình duyệt.",
+        "sec2.title": "⚙️ Hệ sinh thái Model Context Protocol (MCP)",
+        "sec3.title": "📦 Thư viện mã nguồn mở AMEVA",
+        "sec4.title": "🌐 Vũ trụ AMEVA & 3D Neural Fabric",
+        "sec5.title": "🚀 Cài đặt AMEVA Universe (1 Click)",
+        "btn.launchApp": "🚀 Chạy AMEVA OS",
+        "btn.viewDoc": "📖 Tài liệu hướng dẫn",
+        "btn.launchNeural": "🔮 Mở 3D Dashboard"
+      },
+      "ar": {
+        "sidebar.role": "المؤسس وكبير مهندسي النظم",
+        "sidebar.contactTitle": "بيانات الاتصال (بطاقة عمل)",
+        "sidebar.competencyTitle": "الكفاءات الأساسية",
+        "sidebar.researchTitle": "مجالات البحث",
+        "sidebar.researchText": "سيادة الأنظمة متعددة الوكلاء، والتعلم العميق الأصلي على الأجهزة الطرفية دون خوادم.",
+        "sec1.title": "الملخص والرؤية المعمارية",
+        "sec1.p1": "AMEVA هو إطار عمل للذكاء الاصطناعي يعمل مباشرة على متصفحات وأجهزة الحافة بصفر تكلفة سحابية.",
+        "sec2.title": "⚙️ منظومة بروتوكول سياق النموذج (MCP)",
+        "sec3.title": "📦 مكتبات AMEVA مفتوحة المصدر",
+        "sec4.title": "🌐 كون AMEVA ولوحة التحكم العصبية ثلاثية الأبعاد",
+        "sec5.title": "🚀 تثبيت AMEVA Universe بنقرة واحدة",
+        "btn.launchApp": "🚀 تشغيل AMEVA OS",
+        "btn.viewDoc": "📖 عرض التوثيق",
+        "btn.launchNeural": "🔮 لوحة التحكم 3D"
+      },
+      "la": {
+        "sidebar.role": "Conditor & Primarius Architectus Systematum",
+        "sidebar.contactTitle": "Contactus Directus (Tessera)",
+        "sidebar.competencyTitle": "Facultates Primariae",
+        "sidebar.researchTitle": "Studia et Investigationes",
+        "sidebar.researchText": "Imperium agentium multiplicium, apparatus computatorii locales sine servitore.",
+        "sec1.title": "Summarium et Consilium Architecturae",
+        "sec1.p1": "AMEVA est structura intelligentiae artificialis in computatris localibus et navigatoribus directa.",
+        "sec2.title": "⚙️ Systema Model Context Protocol (MCP)",
+        "sec3.title": "📦 Bibliothecae Systematum Apertae",
+        "sec4.title": "🌐 Universum AMEVA & 3D Textura Neuralis",
+        "sec5.title": "🚀 AMEVA Institutio Uno Ictu",
+        "btn.launchApp": "🚀 AMEVA OS Exsequi",
+        "btn.viewDoc": "📖 Documenta Legere",
+        "btn.launchNeural": "🔮 Tabulam 3D Adire"
+      },
+      "es": {
+        "sidebar.role": "Fundador y Arquitecto Principal de Sistemas",
+        "sidebar.contactTitle": "Contacto Directo (Tarjeta)",
+        "sidebar.competencyTitle": "Competencias Clave",
+        "sidebar.researchTitle": "Enfoque de Investigación",
+        "sidebar.researchText": "Soberanía de multiagentes IA, aprendizaje profundo edge-native sin servidores.",
+        "sec1.title": "Resumen Ejecutivo y Visión",
+        "sec1.p1": "AMEVA es un marco de IA edge-native de alto rendimiento ejecutado directamente en navegadores.",
+        "sec2.title": "⚙️ Ecosistema Model Context Protocol (MCP)",
+        "sec3.title": "📦 Bibliotecas Open-Source AMEVA",
+        "sec4.title": "🌐 Universo AMEVA y 3D Neural Fabric",
+        "sec5.title": "🚀 Instalador AMEVA Universe (1 Clic)",
+        "btn.launchApp": "🚀 Iniciar AMEVA OS",
+        "btn.viewDoc": "📖 Ver Documentación",
+        "btn.launchNeural": "🔮 Abrir Dashboard 3D"
+      },
+      "de": {
+        "sidebar.role": "Gründer & Leitender Systemarchitekt",
+        "sidebar.contactTitle": "Direkter Kontakt (Visitenkarte)",
+        "sidebar.competencyTitle": "Kernkompetenzen",
+        "sidebar.researchTitle": "Forschungsschwerpunkte",
+        "sidebar.researchText": "Hierarchische Multi-Agenten-Souveränität, serverlose Edge-Native KI-Laufzeitumgebungen.",
+        "sec1.title": "Zusammenfassung & Architekturvision",
+        "sec1.p1": "AMEVA ist ein serverloses KI- und System-Framework für Edge-Geräte und Webbrowser.",
+        "sec2.title": "⚙️ Model Context Protocol (MCP) Ökosystem",
+        "sec3.title": "📦 AMEVA Open-Source-Kernbibliotheken",
+        "sec4.title": "🌐 AMEVA Universum & 3D Neural Fabric",
+        "sec5.title": "🚀 AMEVA Setup Universe (Ein-Klick-Installation)",
+        "btn.launchApp": "🚀 AMEVA OS starten",
+        "btn.viewDoc": "📖 Dokumentation",
+        "btn.launchNeural": "🔮 3D Dashboard öffnen"
+      },
+      "fr": {
+        "sidebar.role": "Fondateur & Architecte Système Principal",
+        "sidebar.contactTitle": "Contact Direct (Carte de Visite)",
+        "sidebar.competencyTitle": "Compétences Clés",
+        "sidebar.researchTitle": "Axes de Recherche",
+        "sidebar.researchText": "Souveraineté des multi-agents, apprentissage profond edge-native sans serveur.",
+        "sec1.title": "Résumé Exécutif & Vision Architecturale",
+        "sec1.p1": "AMEVA est un framework d'exécution IA distribué et haute performance fonctionnant directement sur navigateur.",
+        "sec2.title": "⚙️ Écosystème Model Context Protocol (MCP)",
+        "sec3.title": "📦 Bibliothèques Open-Source AMEVA",
+        "sec4.title": "🌐 Univers AMEVA & 3D Neural Fabric",
+        "sec5.title": "🚀 AMEVA Setup Universe (1-Clic)",
+        "btn.launchApp": "🚀 Lancer AMEVA OS",
+        "btn.viewDoc": "📖 Voir la Documentation",
+        "btn.launchNeural": "🔮 Ouvrir le Dashboard 3D"
       }
     };
 
-    function changeLanguage(lang) {
-      const dict = portalTranslations[lang] || portalTranslations['ko'];
+    function switchLanguage(lang) {
+      const dict = i18nDictionary[lang] || i18nDictionary['ko'];
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key]) {
-          el.textContent = dict[key];
+          el.innerHTML = dict[key];
         }
       });
       document.documentElement.lang = lang;
-      try { localStorage.setItem('ameva_portal_lang', lang); } catch (e) {}
+      try { localStorage.setItem('uno_km_lang', lang); } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       let saved = 'ko';
-      try { saved = localStorage.getItem('ameva_portal_lang') || 'ko'; } catch (e) {}
-      document.getElementById('langSelect').value = saved;
-      changeLanguage(saved);
+      try { saved = localStorage.getItem('uno_km_lang') || 'ko'; } catch (e) {}
+      const sel = document.getElementById('globalLangSelect');
+      if (sel && i18nDictionary[saved]) {
+        sel.value = saved;
+        switchLanguage(saved);
+      }
     });
   </script>
 </body>
