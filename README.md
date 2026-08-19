@@ -214,16 +214,13 @@ Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이�
 
 ---
 
-## 🛠 Tech Stack & Infrastructure
+## 🛠 Tech Stack & Core Competencies
 
-- **Core Runtime**: Python 3.9+, GGUF (llama.cpp), Ollama
-- **Agent Framework**: Custom hierarchical orchestration
-- **Data Pipeline**: SQLite, pandas, Arrow
-- **Communication**: Telegram Bot API, HTTPS, SCP
-- **AI/ML**: Whisper, LoRA, BitNet, llama.cpp
-- **Containerization**: Docker, Docker Compose
-- **UI/UX**: Tkinter, Web-based dashboards
-- **Monitoring**: Custom power/performance tracking
+- **Enterprise Backend**: Java, Spring Boot, PostgreSQL, JPA/Hibernate, Microservices Architecture
+- **Systems & Edge AI**: WebGPU Compute, Autograd Engine, Pyodide (WASM), Android Bionic, Playwright CDP, node-pty, C/C++, Python
+- **Modern Fullstack & UI**: TypeScript, React 18, Electron, D3.js, Canvas GPU Rendering, REST & SSE
+- **Architecture & MLOps**: Technical Solution Planning, SRE Dynamic Scoped Throttling, Docker, Zero-Server ML Pipelines
+- **Data & Storage**: PostgreSQL, SQLite (`better-sqlite3`), Apache Arrow, pandas
 
 ---
 
