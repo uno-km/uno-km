@@ -74,17 +74,20 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
 </details>
 
 ---
-> **💡 인터랙티브 대시보드 활용 팁:**
-> 1. **Graph Exploration**: 중앙의 캔버스를 드래그하여 에이전트 노드들을 관찰하세요.
-> 2. **RAG Query**: 오른쪽 하단 채팅창에 `아메바란?` 이라고 치면 RAG 엔진이 프로젝트 문서를 검색합니다. -PC에서 최적화
-> 3. **Edge Optimization**: 설정 탭에서 모델 가중치(양자화)를 실시간으로 조정해 보세요.
+> **💡 AMEVA Universe & 포털 활용 팁:**
+> 1. **Grand Master Portal**: 상단 및 아래 버튼을 통해 전체 AMEVA 3대 갈래(Workstation, Universe, Libraries) 및 디지털 명함으로 진입하세요.
+> 2. **Interactive Neural Fabric**: Universe 섹션에서 WebGPU 3D 지식 그래프 및 RAG 질의 챗봇 대시보드로 바로 이동할 수 있습니다.
 
 <div align="center">
   <a href="https://uno-km.github.io/uno-km/" style="text-decoration: none;">
-    <button style="padding: 25px 50px; font-size: 24px; cursor: pointer; border-radius: 12px; border: 2px solid #ffffff; background-color: #2ea043; color: white; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-      🚀 AMEVA 대시보드 입장하기
+    <button style="padding: 22px 48px; font-size: 22px; cursor: pointer; border-radius: 12px; border: 2px solid #00F5D4; background: linear-gradient(135deg, #00f5d4 0%, #00e5ff 50%, #3a86ff 100%); color: #060a17; font-weight: bold; box-shadow: 0 4px 20px rgba(0,245,212,0.35);">
+      🌌 AMEVA 그랜드 포털 & 디지털 명함 입장하기
     </button>
   </a>
+  <p style="margin-top: 10px; font-size: 0.95em;">
+    <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric 대시보드 바로가기</b></a> |
+    <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/"><b>✨ AMEVA OS 프로모션 체험관</b></a>
+  </p>
 </div>
 
 ---
