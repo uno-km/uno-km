@@ -227,13 +227,16 @@ Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이�
 
 ---
 
-## 📬 Contact & Collaboration
+## 📬 Contact & Collaboration (디지털 명함)
 
-저는 Multi-Agent Systems, Edge Computing, 그리고 AI SRE 분야에 대한 학술적 담론을 언제나 환영합니다.
+저는 Multi-Agent Systems, Edge Computing, 그리고 AI SRE 분야에 대한 학술적 담론 및 협업을 언제나 환영합니다.
 
+- **Lead Architect**: Uno Kim (김우노 / @uno-km)
+- **Phone**: [010-4943-7334](tel:010-4943-7334)
+- **Email**: [zhfldk014745@naver.com](mailto:zhfldk014745@naver.com)
+- **Tistory Blog**: [uno-kim.tistory.com](https://uno-kim.tistory.com/)
 - **GitHub**: [@uno-km](https://github.com/uno-km)
-- **Email**: zhfldk014745@naver.com
-- **Tstory** : [my-blog](https://uno-kim.tistory.com/)
+- **Grand Portal**: [uno-km.github.io/uno-km](https://uno-km.github.io/uno-km/)
 - **Research Focus**: Hierarchical AI Orchestration, Edge-native Inference, Data Sovereignty
 
 ---

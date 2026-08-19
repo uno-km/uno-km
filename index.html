@@ -96,39 +96,89 @@
       margin-bottom: 24px;
     }
 
-    /* ── Executive Identity Badge & Social Links ────────────────────────────── */
-    .executive-bar {
+    /* ── Executive Hologram Digital Business Card ───────────────────────── */
+    .business-card-box {
       display: inline-flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      max-width: 860px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(20, 31, 61, 0.85) 0%, rgba(6, 10, 23, 0.95) 100%);
+      border: 1px solid var(--border-hover);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 10px 35px rgba(0, 245, 212, 0.18), inset 0 0 20px rgba(0, 245, 212, 0.05);
+      backdrop-filter: blur(10px);
+      margin-top: 12px;
+      position: relative;
+    }
+
+    .card-profile-row {
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 10px 20px;
-      background: rgba(11, 19, 43, 0.85);
-      border: 1px solid var(--border-color);
-      border-radius: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
-    .exec-item {
-      display: inline-flex;
+    .card-name {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    .card-role-badge {
+      display: inline-block;
+      font-size: 0.78em;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(0, 245, 212, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      letter-spacing: 0.3px;
+    }
+
+    .card-contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      width: 100%;
+    }
+
+    .contact-pill {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.88em;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
       color: var(--text-main);
       text-decoration: none;
-      padding: 4px 10px;
-      border-radius: 20px;
+      font-size: 0.88em;
       transition: all 0.2s ease;
+      overflow: hidden;
     }
 
-    .exec-item:hover {
+    .contact-pill:hover {
       background: rgba(0, 245, 212, 0.15);
+      border-color: var(--accent-cyan);
       color: var(--accent-cyan);
+      transform: translateY(-1px);
     }
 
-    .exec-divider {
-      color: var(--border-color);
+    .contact-pill .pill-icon {
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+
+    .contact-pill .pill-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* ── Main Container ─────────────────────────────────────────────────────── */
@@ -482,17 +532,30 @@
     <p class="hero-tagline" data-i18n="hero.tagline">Autonomous Multi-Agent Enterprise Virtualized Automation</p>
     <p class="hero-sub" data-i18n="hero.sub">Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems &amp; Autograd Engine</p>
 
-    <!-- Digital Business Card Badges -->
-    <div class="executive-bar">
-      <span class="exec-item">👤 <strong>Uno Kim (@uno-km)</strong></span>
-      <span class="exec-divider">|</span>
-      <a href="https://github.com/uno-km" target="_blank" class="exec-item">🐙 GitHub Profile</a>
-      <span class="exec-divider">|</span>
-      <a href="https://uno-kim.tistory.com/" target="_blank" class="exec-item">📖 Tistory Engineering Blog</a>
-      <span class="exec-divider">|</span>
-      <a href="mailto:zhfldk014745@naver.com" class="exec-item">✉️ Contact Email</a>
-      <span class="exec-divider">|</span>
-      <a href="assets/brand/BRAND_GUIDE.md" class="exec-item">🎨 Brand Guide</a>
+    <!-- 📇 Executive Hologram Digital Business Card -->
+    <div class="business-card-box">
+      <div class="card-profile-row">
+        <span class="card-name">👤 Uno Kim (김우노)</span>
+        <span class="card-role-badge">AMEVA Founder &amp; Lead Systems Architect</span>
+      </div>
+      <div class="card-contacts-grid">
+        <a href="tel:010-4943-7334" class="contact-pill">
+          <span class="pill-icon">📞</span>
+          <span class="pill-text">010-4943-7334</span>
+        </a>
+        <a href="mailto:zhfldk014745@naver.com" class="contact-pill">
+          <span class="pill-icon">✉️</span>
+          <span class="pill-text">zhfldk014745@naver.com</span>
+        </a>
+        <a href="https://uno-kim.tistory.com/" target="_blank" class="contact-pill">
+          <span class="pill-icon">📖</span>
+          <span class="pill-text">uno-kim.tistory.com</span>
+        </a>
+        <a href="https://github.com/uno-km" target="_blank" class="contact-pill">
+          <span class="pill-icon">🐙</span>
+          <span class="pill-text">github.com/uno-km</span>
+        </a>
+      </div>
     </div>
   </header>
 
