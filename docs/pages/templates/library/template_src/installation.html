@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation Guide | {{name}}</title>
+  <meta name="description" content="Step-by-step setup instructions for {{name}}">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Logo">
+      <h1 data-i18n="common.brand">{{name}}</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">{{version}} ({{release_name}})</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://pypi.org/project/{{package_name_pypi}}/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI Package</a>
+      <a href="{{github_repo_url}}" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repo</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.overview">Overview</h3>
+      <ul>
+        <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+        <li><a href="installation.html" class="active" data-i18n="common.nav.installation">Installation Guide</a></li>
+        <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart &amp; Recipes</a></li>
+        <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+        <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks &amp; Profiling</a></li>
+        <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.advanced">AI Specifications</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2 data-i18n="installation.title">Installation Guide</h2>
+      <p data-i18n="installation.subtitle">Step-by-step setup instructions across diverse package managers and hardware backends.</p>
+
+      <div class="tabs-container">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="pip" data-i18n="installation.tabPip">Python (pip)</button>
+          <button class="tab-btn" data-tab="npm" data-i18n="installation.tabNpm">Node.js (npm)</button>
+          <button class="tab-btn" data-tab="cargo" data-i18n="installation.tabCargo">Rust (cargo)</button>
+          <button class="tab-btn" data-tab="source" data-i18n="installation.tabSource">Build from Source</button>
+        </div>
+
+        <div class="tab-content active" data-tab-content="pip">
+          <h3>Python Package (PyPI)</h3>
+          <p>Install via pip directly into your virtual environment:</p>
+          <pre><code>pip install {{package_name_pypi}}</code></pre>
+        </div>
+
+        <div class="tab-content" data-tab-content="npm">
+          <h3>NPM Package</h3>
+          <p>Install via npm or yarn for web/Node environments:</p>
+          <pre><code>npm install {{package_name_npm}}</code></pre>
+        </div>
+
+        <div class="tab-content" data-tab-content="cargo">
+          <h3>Cargo Crate</h3>
+          <p>Add dependency to Cargo.toml:</p>
+          <pre><code>[dependencies]
+{{package_name_pypi}} = "{{version}}"</code></pre>
+        </div>
+
+        <div class="tab-content" data-tab-content="source">
+          <h3>Build from Source</h3>
+          <pre><code>git clone {{github_repo_url}}.git
+cd {{package_name_pypi}}
+pip install -e .</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="installation.prereqTitle">System Prerequisites</h3>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Platform / Hardware</th>
+            <th>Minimum Version</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Python Runtime</td>
+            <td>Python 3.8+ / 3.11+</td>
+            <td>✅ Fully Supported</td>
+          </tr>
+          <tr>
+            <td>Node.js Runtime</td>
+            <td>Node.js 18+ LTS</td>
+            <td>✅ Fully Supported</td>
+          </tr>
+          <tr>
+            <td>WebGPU / Browser</td>
+            <td>Chrome 113+, Edge 113+, Safari 18+</td>
+            <td>✅ Hardware Accelerated</td>
+          </tr>
+          <tr>
+            <td>Android Termux</td>
+            <td>Android 10+ (aarch64 / x86_64)</td>
+            <td>✅ Native Bionic</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="installation.verifyTitle">Installation Verification</h3>
+      <p>Verify your installation by running the diagnostics CLI:</p>
+      <pre><code>python -m {{package_name_pypi}}.doctor</code></pre>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Ecosystem. Released under the {{license}} License.</span>
+  </footer>
+</body>
+</html>

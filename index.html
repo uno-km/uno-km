@@ -1,1 +1,844 @@
-Hello World!!
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA Grand Portal | Autonomous Multi-Agent Enterprise Virtualized Automation</title>
+  <meta name="description" content="Official Grand Gateway & Digital Business Card for the AMEVA Ecosystem: Workstation, Universe, and High-Performance Core Libraries.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    /* ==========================================================================
+       AMEVA Ecosystem - Grand Master Portal & Digital Business Card
+       Brand Identity: Cosmic Midnight (#0B132B) & Aqua-Cyan (#00F5D4 / #38BDF8)
+       ========================================================================== */
+    :root {
+      --bg-base: #060a17;
+      --bg-midnight: #0b132b;
+      --bg-surface: #141f3d;
+      --bg-card: rgba(20, 31, 61, 0.75);
+      --bg-card-hover: rgba(28, 44, 86, 0.9);
+      --border-color: rgba(0, 245, 212, 0.2);
+      --border-hover: rgba(0, 245, 212, 0.6);
+      --accent-cyan: #00f5d4;
+      --accent-aqua: #00e5ff;
+      --accent-sky: #38bdf8;
+      --accent-blue: #3a86ff;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --grad-primary: linear-gradient(135deg, #00f5d4 0%, #00e5ff 50%, #3a86ff 100%);
+      --grad-card: linear-gradient(180deg, rgba(20, 31, 61, 0.8) 0%, rgba(11, 19, 43, 0.95) 100%);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 20% 15%, rgba(0, 245, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(58, 134, 255, 0.08) 0%, transparent 40%),
+        linear-gradient(180deg, #060a17 0%, #0b132b 50%, #060a17 100%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Business Card Header ───────────────────────────────────────────── */
+    header.business-card-hero {
+      padding: 48px 24px 32px 24px;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--border-color);
+      background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+    }
+
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+    }
+
+    .lang-switcher select {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .brand-logo-img {
+      max-width: 540px;
+      width: 90%;
+      height: auto;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 25px rgba(0, 245, 212, 0.25));
+    }
+
+    .hero-tagline {
+      font-size: 1.15em;
+      font-weight: 500;
+      color: var(--accent-sky);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95em;
+      margin-bottom: 24px;
+    }
+
+    /* ── Executive Identity Badge & Social Links ────────────────────────────── */
+    .executive-bar {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 20px;
+      background: rgba(11, 19, 43, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .exec-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88em;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .exec-item:hover {
+      background: rgba(0, 245, 212, 0.15);
+      color: var(--accent-cyan);
+    }
+
+    .exec-divider {
+      color: var(--border-color);
+    }
+
+    /* ── Main Container ─────────────────────────────────────────────────────── */
+    .main-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      font-weight: 700;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1em;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── 3-Pillar Pillars Grid ───────────────────────────────────────────────── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .pillar-card {
+      background: var(--grad-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pillar-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad-primary);
+      opacity: 0.8;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 40px rgba(0, 245, 212, 0.15);
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .pillar-icon {
+      font-size: 2em;
+    }
+
+    .pillar-heading h3 {
+      font-size: 1.35em;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .pillar-heading .pillar-badge {
+      display: inline-block;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      padding: 2px 8px;
+      background: rgba(0, 245, 212, 0.15);
+      color: var(--accent-cyan);
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    .pillar-body {
+      color: var(--text-muted);
+      font-size: 0.95em;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .sub-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .tag-item {
+      font-size: 0.78em;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.92em;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .action-btn.primary {
+      background: var(--grad-primary);
+      color: #060a17;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0, 245, 212, 0.3);
+    }
+
+    .action-btn.primary:hover {
+      box-shadow: 0 6px 20px rgba(0, 245, 212, 0.5);
+      transform: scale(1.02);
+    }
+
+    .action-btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(0, 245, 212, 0.12);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* ── Library Showcase Section (Apache/Tomcat Tech Hub) ──────────────────── */
+    .library-hub-section {
+      background: rgba(11, 19, 43, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 36px 30px;
+      margin-bottom: 48px;
+    }
+
+    .hub-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hub-header h3 {
+      font-size: 1.4em;
+      color: var(--accent-cyan);
+    }
+
+    .hub-tag {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      background: rgba(0, 245, 212, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .lib-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .lib-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .lib-card:hover {
+      border-color: var(--accent-cyan);
+      background: var(--bg-card-hover);
+    }
+
+    .lib-card-top {
+      margin-bottom: 14px;
+    }
+
+    .lib-card-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .lib-card-title h4 {
+      font-size: 1.15em;
+      color: #ffffff;
+    }
+
+    .lib-badge-pkg {
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      background: #004499;
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .lib-card-desc {
+      font-size: 0.88em;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .lib-specs-table {
+      width: 100%;
+      font-size: 0.8em;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 8px;
+    }
+
+    .lib-specs-table td {
+      padding: 2px 0;
+    }
+
+    .lib-specs-table td:last-child {
+      text-align: right;
+      color: var(--accent-sky);
+    }
+
+    /* ── Quick Bootstrap Universe Box ───────────────────────────────────────── */
+    .setup-box {
+      background: #060a17;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .setup-box h4 {
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+
+    .cmd-group {
+      margin-bottom: 12px;
+    }
+
+    .cmd-label {
+      font-size: 0.82em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .cmd-code {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: auto;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border-color);
+      background: #04070f;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85em;
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      header.business-card-hero { padding: 32px 16px; }
+      .brand-logo-img { max-width: 320px; }
+      .executive-bar { flex-direction: column; border-radius: 12px; }
+      .exec-divider { display: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 📇 Top Executive Digital Business Card Hero -->
+  <header class="business-card-hero">
+    <div class="lang-switcher">
+      <select id="langSelect" onchange="changeLanguage(this.value)">
+        <option value="ko" selected>🇰🇷 한국어</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="ja">🇯🇵 日本語</option>
+      </select>
+    </div>
+
+    <img src="assets/brand/ameva_logo.svg" alt="AMEVA Brand Logo" class="brand-logo-img">
+    <p class="hero-tagline" data-i18n="hero.tagline">Autonomous Multi-Agent Enterprise Virtualized Automation</p>
+    <p class="hero-sub" data-i18n="hero.sub">Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems &amp; Autograd Engine</p>
+
+    <!-- Digital Business Card Badges -->
+    <div class="executive-bar">
+      <span class="exec-item">👤 <strong>Uno Kim (@uno-km)</strong></span>
+      <span class="exec-divider">|</span>
+      <a href="https://github.com/uno-km" target="_blank" class="exec-item">🐙 GitHub Profile</a>
+      <span class="exec-divider">|</span>
+      <a href="https://uno-kim.tistory.com/" target="_blank" class="exec-item">📖 Tistory Engineering Blog</a>
+      <span class="exec-divider">|</span>
+      <a href="mailto:zhfldk014745@naver.com" class="exec-item">✉️ Contact Email</a>
+      <span class="exec-divider">|</span>
+      <a href="assets/brand/BRAND_GUIDE.md" class="exec-item">🎨 Brand Guide</a>
+    </div>
+  </header>
+
+  <!-- 🏛️ Main Content Container -->
+  <main class="main-container">
+
+    <div class="section-title-wrap">
+      <h2 class="section-title" data-i18n="pillars.title">AMEVA Ecosystem Architecture</h2>
+      <p class="section-desc" data-i18n="pillars.desc">
+        서버 인프라 비용 제로의 엣지 딥러닝 라이브러리부터, 가상 웹 OS 워크스테이션 및 자율형 멀티에이전트 유니버스까지 하나의 유기적 생태계로 연결됩니다.
+      </p>
+    </div>
+
+    <!-- 🌌 The 3 Major Pillars -->
+    <div class="pillars-grid">
+
+      <!-- 🖥️ Pillar 1: AMEVA Workstation -->
+      <div class="pillar-card">
+        <div>
+          <div class="pillar-header">
+            <span class="pillar-icon">🖥️</span>
+            <div class="pillar-heading">
+              <h3 data-i18n="workstation.title">AMEVA Workstation</h3>
+              <span class="pillar-badge">Virtual Web OS &amp; Desktop</span>
+            </div>
+          </div>
+          <p class="pillar-body" data-i18n="workstation.body">
+            로컬 기기 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경입니다. 실시간 Node Flow 및 가상 쉘 데모 시뮬레이터를 제공합니다.
+          </p>
+          <div class="sub-tags">
+            <span class="tag-item">AMEVA OS (WASM)</span>
+            <span class="tag-item">Market Place</span>
+            <span class="tag-item">Window Assistant</span>
+            <span class="tag-item">Conductor</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="action-btn primary" data-i18n="workstation.btnApp">
+            🚀 AMEVA OS 워크스테이션 실행
+          </a>
+          <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/" target="_blank" class="action-btn secondary" data-i18n="workstation.btnPromo">
+            ✨ 프로모션 &amp; 인터랙티브 체험관
+          </a>
+        </div>
+      </div>
+
+      <!-- 🌐 Pillar 2: AMEVA Universe -->
+      <div class="pillar-card">
+        <div>
+          <div class="pillar-header">
+            <span class="pillar-icon">🌐</span>
+            <div class="pillar-heading">
+              <h3 data-i18n="universe.title">AMEVA Universe</h3>
+              <span class="pillar-badge">Autonomous Multi-Agent AI</span>
+            </div>
+          </div>
+          <p class="pillar-body" data-i18n="universe.body">
+            계층적 주권(Nobles &amp; Workers) 기반의 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다.
+          </p>
+          <div class="sub-tags">
+            <span class="tag-item">Agent Orchestra</span>
+            <span class="tag-item">Model Nexus</span>
+            <span class="tag-item">Benchmark Suite</span>
+            <span class="tag-item">Data Harvester</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="https://uno-km.github.io/uno-km/" target="_blank" class="action-btn primary" data-i18n="universe.btnDashboard">
+            🌌 AMEVA Universe 대시보드 입장
+          </a>
+          <a href="https://github.com/uno-km/uno-km" target="_blank" class="action-btn secondary" data-i18n="universe.btnRepo">
+            📂 에코시스템 마스터 리포지토리
+          </a>
+        </div>
+      </div>
+
+      <!-- 📦 Pillar 3: AMEVA Core Libraries -->
+      <div class="pillar-card">
+        <div>
+          <div class="pillar-header">
+            <span class="pillar-icon">📦</span>
+            <div class="pillar-heading">
+              <h3 data-i18n="libraries.title">AMEVA Core Libraries</h3>
+              <span class="pillar-badge">High-Performance Runtimes</span>
+            </div>
+          </div>
+          <p class="pillar-body" data-i18n="libraries.body">
+            하드웨어 및 OS 샌드박스의 한계를 뚫어내는 저수준 코어 딥러닝 텐서 엔진 및 플랫폼 자동화 런타임 라이브러리들입니다.
+          </p>
+          <div class="sub-tags">
+            <span class="tag-item">AMEVA-Forge (WebGPU)</span>
+            <span class="tag-item">Termux-Playwright</span>
+            <span class="tag-item">MCP-Wasm-Toolkit</span>
+            <span class="tag-item">BitNet (1-Bit)</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="#libraries-hub" class="action-btn primary" data-i18n="libraries.btnHub">
+            🔍 라이브러리 기술 사양 허브 보기
+          </a>
+          <a href="docs/pages/templates/library/README.md" class="action-btn secondary" data-i18n="libraries.btnTemplate">
+            📄 라이브러리 문서 템플릿 주조소
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 📦 Comprehensive Library Showcase (Apache / Tomcat Classic Tech Hub Style) -->
+    <section id="libraries-hub" class="library-hub-section">
+      <div class="hub-header">
+        <div>
+          <h3 data-i18n="hub.title">📦 AMEVA Open-Source Systems Libraries Hub</h3>
+          <p style="color: var(--text-muted); font-size: 0.9em; margin-top: 4px;" data-i18n="hub.subtitle">
+            각 라이브러리 카드를 클릭하면 공식 GitHub Pages 문서 및 데모로 직접 이동합니다.
+          </p>
+        </div>
+        <span class="hub-tag">Apache / Enterprise Open-Source Standard</span>
+      </div>
+
+      <div class="lib-items-grid">
+
+        <!-- ⚡ Lib 1: AMEVA-Forge -->
+        <div class="lib-card">
+          <div class="lib-card-top">
+            <div class="lib-card-title">
+              <h4>⚡ AMEVA-Forge</h4>
+              <span class="lib-badge-pkg">@ameva/forge · v1.0.0</span>
+            </div>
+            <p class="lib-card-desc" data-i18n="hub.forgeDesc">
+              서버 비용 제로의 Browser-Native WebGPU Deep Learning &amp; Autograd Engine. PyTorch 구문 호환, WGSL Compute Shader 역전파, 8D 브로드캐스팅 지원.
+            </p>
+            <table class="lib-specs-table">
+              <tr><td>Runtime:</td><td>Browser WebGPU / Pyodide WASM</td></tr>
+              <tr><td>Core Ops:</td><td>Autograd, Linear, Attention, SGD</td></tr>
+              <tr><td>Memory:</td><td>WeakRef GC &amp; Zero-Leak Pool</td></tr>
+            </table>
+          </div>
+          <div class="btn-group">
+            <a href="https://uno-km.github.io/AMEVA-Tensor/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
+              📖 공식 문서 (GitHub Pages)
+            </a>
+            <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="action-btn secondary" style="font-size: 0.85em; padding: 8px 12px;">
+              ⚡ 실시간 WebGPU 데모 체험
+            </a>
+          </div>
+        </div>
+
+        <!-- 📱 Lib 2: Termux-Playwright -->
+        <div class="lib-card">
+          <div class="lib-card-top">
+            <div class="lib-card-title">
+              <h4>📱 Termux-Playwright</h4>
+              <span class="lib-badge-pkg">pip install · v1.61.2</span>
+            </div>
+            <p class="lib-card-desc" data-i18n="hub.termuxDesc">
+              PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 최적화 라이브러리.
+            </p>
+            <table class="lib-specs-table">
+              <tr><td>Platform:</td><td>Android Termux (aarch64 / x86_64)</td></tr>
+              <tr><td>Hardening:</td><td>Bionic RPC, ProcessReaper, Stealth</td></tr>
+              <tr><td>Storage:</td><td>RAM Cache &amp; eMMC Flash Protection</td></tr>
+            </table>
+          </div>
+          <div class="btn-group">
+            <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
+              📖 공식 문서 (GitHub Pages)
+            </a>
+            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="action-btn secondary" style="font-size: 0.85em; padding: 8px 12px;">
+              📦 PyPI 공식 패키지
+            </a>
+          </div>
+        </div>
+
+        <!-- ⚙️ Lib 3: MCP-Wasm-Toolkit -->
+        <div class="lib-card">
+          <div class="lib-card-top">
+            <div class="lib-card-title">
+              <h4>⚙️ MCP-Wasm-Toolkit</h4>
+              <span class="lib-badge-pkg">WASM Core · v1.0.0</span>
+            </div>
+            <p class="lib-card-desc" data-i18n="hub.mcpDesc">
+              브라우저 WASM(Pyodide) 샌드박스로 위험 연산을 완전 격리하고, SSE(ntfy) 채널을 통해 도구를 3초 내 핫리로드하는 동적 툴킷 허브.
+            </p>
+            <table class="lib-specs-table">
+              <tr><td>Security:</td><td>100% Client-Side Sandbox Isolation</td></tr>
+              <tr><td>Sync:</td><td>SSE Real-time Dynamic Hot-Reload</td></tr>
+              <tr><td>Bridge:</td><td>Local Port 9000 WebSocket Proxy</td></tr>
+            </table>
+          </div>
+          <div class="btn-group">
+            <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
+              📖 공식 문서 (GitHub Pages)
+            </a>
+          </div>
+        </div>
+
+        <!-- 🧠 Lib 4: BitNet Inference -->
+        <div class="lib-card">
+          <div class="lib-card-top">
+            <div class="lib-card-title">
+              <h4>🧠 BitNet Engine</h4>
+              <span class="lib-badge-pkg">ARM / Exynos Scalar · v1.0.0</span>
+            </div>
+            <p class="lib-card-desc" data-i18n="hub.bitnetDesc">
+              1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.
+            </p>
+            <table class="lib-specs-table">
+              <tr><td>Quantization:</td><td>1.58-bit Ternary Weights {-1, 0, 1}</td></tr>
+              <tr><td>Hardware:</td><td>ARM Neon / Exynos Scalar Fallback</td></tr>
+              <tr><td>Efficiency:</td><td>Ultra-Low mW Power Footprint</td></tr>
+            </table>
+          </div>
+          <div class="btn-group">
+            <a href="https://github.com/uno-km/BitNet" target="_blank" class="action-btn primary" style="font-size: 0.85em; padding: 8px 12px;">
+              🐙 GitHub 저장소 확인
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ⚡ Quick Universe Setup Box -->
+    <div class="setup-box">
+      <h4 data-i18n="setup.title">🚀 AMEVA Setup Universe (One-Click Bootstrap)</h4>
+      <div class="cmd-group">
+        <span class="cmd-label">Windows (PowerShell as Administrator):</span>
+        <div class="cmd-code">
+          <code>irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex</code>
+        </div>
+      </div>
+      <div class="cmd-group">
+        <span class="cmd-label">macOS / Linux (Bash):</span>
+        <div class="cmd-code">
+          <code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)</code>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🏛️ Footer -->
+  <footer>
+    <p>&copy; 2026 <strong>AMEVA Ecosystem</strong> · Built with ❤️ by <a href="https://github.com/uno-km" target="_blank">Uno Kim (@uno-km)</a></p>
+    <p style="margin-top: 4px; color: #64748b;">Clean Aqua-Cyan Universe &amp; Dynamic Asymmetric Organic Automation Aesthetic.</p>
+  </footer>
+
+  <!-- 🌐 Simple Client-side i18n Switcher Script -->
+  <script>
+    const portalTranslations = {
+      "ko": {
+        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
+        "hero.sub": "Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems & Autograd Engine",
+        "pillars.title": "AMEVA 에코시스템 아키텍처",
+        "pillars.desc": "서버 인프라 비용 제로의 엣지 딥러닝 라이브러리부터, 가상 웹 OS 워크스테이션 및 자율형 멀티에이전트 유니버스까지 하나의 유기적 생태계로 연결됩니다.",
+        "workstation.title": "AMEVA 워크스테이션",
+        "workstation.body": "로컬 기기 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경입니다. 실시간 Node Flow 및 가상 쉘 데모 시뮬레이터를 제공합니다.",
+        "workstation.btnApp": "🚀 AMEVA OS 워크스테이션 실행",
+        "workstation.btnPromo": "✨ 프로모션 & 인터랙티브 체험관",
+        "universe.title": "AMEVA 유니버스",
+        "universe.body": "계층적 주권(Nobles & Workers) 기반의 멀티에이전트 오케스트레이션과 SRE 동적 스로틀링을 적용한 100% 오프라인 분산 AI 생태계입니다.",
+        "universe.btnDashboard": "🌌 AMEVA Universe 대시보드 입장",
+        "universe.btnRepo": "📂 에코시스템 마스터 리포지토리",
+        "libraries.title": "AMEVA 코어 라이브러리",
+        "libraries.body": "하드웨어 및 OS 샌드박스의 한계를 뚫어내는 저수준 코어 딥러닝 텐서 엔진 및 플랫폼 자동화 런타임 라이브러리들입니다.",
+        "libraries.btnHub": "🔍 라이브러리 기술 사양 허브 보기",
+        "libraries.btnTemplate": "📄 라이브러리 문서 템플릿 주조소",
+        "hub.title": "📦 AMEVA 오픈소스 시스템 라이브러리 허브",
+        "hub.subtitle": "각 라이브러리 카드를 클릭하면 공식 GitHub Pages 문서 및 데모로 직접 이동합니다.",
+        "hub.forgeDesc": "서버 비용 제로의 Browser-Native WebGPU Deep Learning & Autograd Engine. PyTorch 구문 호환, WGSL Compute Shader 역전파, 8D 브로드캐스팅 지원.",
+        "hub.termuxDesc": "PRoot나 Root 권한 없이 안드로이드 Termux 환경에서 정품 Chromium 헤드리스 브라우저 자동화를 실행하는 런타임 최적화 라이브러리.",
+        "hub.mcpDesc": "브라우저 WASM(Pyodide) 샌드박스로 위험 연산을 완전 격리하고, SSE(ntfy) 채널을 통해 도구를 3초 내 핫리로드하는 동적 툴킷 허브.",
+        "hub.bitnetDesc": "1-bit 양자화 모델(1.58-bit LLM)을 엣지 디바이스 및 저전력 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.",
+        "setup.title": "🚀 AMEVA Setup Universe (One-Click 부트스트랩)"
+      },
+      "en": {
+        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
+        "hero.sub": "Orchestrating Intelligence Beyond the Cloud · Edge-Native Systems & Autograd Engine",
+        "pillars.title": "AMEVA Ecosystem Architecture",
+        "pillars.desc": "Connecting zero-server edge deep learning libraries, virtual web OS workstations, and autonomous multi-agent universes into a single living ecosystem.",
+        "workstation.title": "AMEVA Workstation",
+        "workstation.body": "Hybrid virtual OS developer platform merging local machine resources with browser-isolated WASM sandboxes, featuring Node Flow and virtual shell simulation.",
+        "workstation.btnApp": "🚀 Launch AMEVA OS Workstation",
+        "workstation.btnPromo": "✨ Interactive Promotion Studio",
+        "universe.title": "AMEVA Universe",
+        "universe.body": "100% offline distributed multi-agent ecosystem driven by hierarchical sovereignty (Nobles & Workers) and SRE dynamic scoped throttling.",
+        "universe.btnDashboard": "🌌 Enter Universe Dashboard",
+        "universe.btnRepo": "📂 Master Ecosystem Repository",
+        "libraries.title": "AMEVA Core Libraries",
+        "libraries.body": "Low-level deep learning tensor engines and platform automation runtimes breaking through edge hardware and OS sandbox constraints.",
+        "libraries.btnHub": "🔍 Explore Libraries Hub",
+        "libraries.btnTemplate": "📄 Library Docs Template Foundry",
+        "hub.title": "📦 AMEVA Open-Source Systems Libraries Hub",
+        "hub.subtitle": "Click any library card to access official GitHub Pages documentation and live interactive demos.",
+        "hub.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning & Autograd Engine with PyTorch compatibility, WGSL backprop, and 8D broadcasting.",
+        "hub.termuxDesc": "Production Playwright & Chromium browser automation on Android Termux without root or PRoot overhead.",
+        "hub.mcpDesc": "Zero-overhead browser WASM sandbox isolation and 3-second dynamic tool hot-reload via SSE.",
+        "hub.bitnetDesc": "Ultra-low power 1-bit quantization LLM inference engine optimized for ARM and Exynos scalar hardware.",
+        "setup.title": "🚀 AMEVA Setup Universe (One-Click Bootstrap)"
+      },
+      "ja": {
+        "hero.tagline": "Autonomous Multi-Agent Enterprise Virtualized Automation",
+        "hero.sub": "Orchestrating Intelligence Beyond the Cloud",
+        "pillars.title": "AMEVA エコシステム アーキテクチャ",
+        "pillars.desc": "エッジ深層学習ライブラリ、仮想Web OSワークステーション、自律型マルチエージェントユニバースを統合するオープンソースエコシステム。",
+        "workstation.title": "AMEVA ワークステーション",
+        "workstation.body": "ローカルリソースとブラウザWASMサンドボックスを統合した仮想OS環境。Node Flowと仮想シェルシミュレータを提供します。",
+        "workstation.btnApp": "🚀 AMEVA OSを起動する",
+        "workstation.btnPromo": "✨ プロモーション＆体験ページ",
+        "universe.title": "AMEVA ユニバース",
+        "universe.body": "階層型自律制御とSREスロットリングを備えた100%オフライン分散マルチエージェントAI基盤。",
+        "universe.btnDashboard": "🌌 ダッシュボードに入る",
+        "universe.btnRepo": "📂 マスターリポジトリ",
+        "libraries.title": "AMEVA コアライブラリ",
+        "libraries.body": "ブラウザWebGPU自動微分テンソルエンジンとAndroidネイティブ自動化ランタイムライブラリ群。",
+        "libraries.btnHub": "🔍 ライブラリ仕様を見る",
+        "libraries.btnTemplate": "📄 ドキュメントテンプレート工房",
+        "hub.title": "📦 AMEVA オープンソース システムライブラリ",
+        "hub.subtitle": "カードをクリックすると、各公式GitHub Pagesドキュメントへ移動します。",
+        "hub.forgeDesc": "サーバー不要のWebGPU深層学習＆Autogradエンジン。PyTorch互換、WGSL逆伝播。",
+        "hub.termuxDesc": "Android Termux環境でルート権限不要でChromiumを動かす自動化ライブラリ。",
+        "hub.mcpDesc": "WASMサンドボックスと3秒以内の動的ツールホットリロードを実現するMCPツールキット。",
+        "hub.bitnetDesc": "低消費電力ARM向け1ビット量子化モデル推論フレームワーク。",
+        "setup.title": "🚀 AMEVA Setup Universe (ワンクリック導入)"
+      }
+    };
+
+    function changeLanguage(lang) {
+      const dict = portalTranslations[lang] || portalTranslations['ko'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('ameva_portal_lang', lang); } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      let saved = 'ko';
+      try { saved = localStorage.getItem('ameva_portal_lang') || 'ko'; } catch (e) {}
+      document.getElementById('langSelect').value = saved;
+      changeLanguage(saved);
+    });
+  </script>
+</body>
+</html>

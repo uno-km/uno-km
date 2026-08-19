@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarks &amp; Profiling | {{name}}</title>
+  <meta name="description" content="Performance benchmarks and profiling metrics for {{name}}">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Logo">
+      <h1 data-i18n="common.brand">{{name}}</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">{{version}} ({{release_name}})</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://pypi.org/project/{{package_name_pypi}}/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI Package</a>
+      <a href="{{github_repo_url}}" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repo</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.overview">Overview</h3>
+      <ul>
+        <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+        <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+        <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart &amp; Recipes</a></li>
+        <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+        <li><a href="benchmarks.html" class="active" data-i18n="common.nav.benchmarks">Benchmarks &amp; Profiling</a></li>
+        <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.advanced">AI Specifications</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2 data-i18n="benchmarks.title">Benchmarks &amp; Hardware Profiling</h2>
+      <p data-i18n="benchmarks.subtitle">Empirical TPS throughput, latency, power draw (mW), and memory scaling benchmarks.</p>
+
+      <h3>Hardware Benchmark Summary</h3>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Device Environment</th>
+            <th>Batch Size</th>
+            <th>Throughput (TPS)</th>
+            <th>Memory Overhead</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apple M-Series (WebGPU)</td>
+            <td>32</td>
+            <td><strong>420.5 ops/s</strong></td>
+            <td>18.4 MB</td>
+          </tr>
+          <tr>
+            <td>NVIDIA RTX Laptop (WebGPU)</td>
+            <td>32</td>
+            <td><strong>512.0 ops/s</strong></td>
+            <td>22.1 MB</td>
+          </tr>
+          <tr>
+            <td>Android ARM64 Snapdragon 8 Gen 2</td>
+            <td>16</td>
+            <td><strong>185.2 ops/s</strong></td>
+            <td>12.8 MB</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Ecosystem. Released under the {{license}} License.</span>
+  </footer>
+</body>
+</html>

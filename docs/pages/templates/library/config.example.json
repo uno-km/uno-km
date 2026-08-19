@@ -1,0 +1,16 @@
+{
+  "name": "AMEVA-Example-Engine",
+  "package_name_pypi": "ameva-example",
+  "package_name_npm": "@ameva/example",
+  "tagline_ko": "브라우저 및 엣지 환경을 위한 차세대 고성능 시스템 라이브러리",
+  "tagline_en": "High-Performance Edge & Browser Native Open-Source Systems Library",
+  "description_ko": "서버 인프라 비용 없이 웹 브라우저 및 엣지 디바이스의 하드웨어 가속을 100% 활용하는 딥러닝 & 시스템 라이브러리입니다.",
+  "description_en": "Zero server infrastructure overhead, fully exploiting edge and browser hardware acceleration for deep learning and systems automation.",
+  "version": "v1.0.0",
+  "release_name": "Production-Hardened",
+  "license": "Apache 2.0",
+  "github_repo_url": "https://github.com/uno-km/AMEVA-Example",
+  "quick_install_cmd": "pip install ameva-example",
+  "primary_color": "#004499",
+  "accent_color": "#00f5d4"
+}
