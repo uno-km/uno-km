@@ -4,240 +4,149 @@
 
 <p align="center">
   <b>Autonomous Multi-Agent Enterprise Virtualized Automation</b><br/>
-  <i>Orchestrating Intelligence Beyond the Cloud.</i>
+  <i>Orchestrating Intelligence Beyond the Cloud · Edge-Native AI Democratization · 100% Data Sovereignty</i>
 </p>
 
 <p align="center">
-  <a href="assets/brand/BRAND_GUIDE.md"><b>🎨 Official Brand & Design System Guide</b></a> |
-  <a href="https://github.com/uno-km"><b>🌐 GitHub Organization</b></a>
+  <a href="https://uno-km.github.io/uno-km/"><b>🌐 Official Executive Portal & Digital CV</b></a> |
+  <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric Dashboard</b></a> |
+  <a href="https://uno-km.github.io/ameva-forge/"><b>⚡ AMEVA-Forge Docs</b></a> |
+  <a href="https://uno-kim.tistory.com/"><b>📖 Tech Blog</b></a>
 </p>
 
----
-
-## 🧬 AMEVA Ecosystem Brand Identity
-
-The **AMEVA** ecosystem identity is defined by a clean **Aqua-Cyan Universe & Dynamic Asymmetric Organic Automation** aesthetic.
-
-### 🤖 Acronym Architecture
-- **A**gentic — Self-reasoning and autonomous decision-making AI agents.
-- **M**ulti-agent & **M**ultimedia — Hierarchical agent orchestration & rich media authoring.
-- **E**cosystem — Integrated enterprise platform bridging Desktop, Cloud, and Edge.
-- **V**irtualized — Isolated offline WASM/Electron sandboxes & inference runtimes.
-- **A**utomation — Self-executing pipelines with real-time visual output.
-
-> [!TIP]
-> For complete color tokens, SVG assets, and design system guidelines, see [`assets/brand/BRAND_GUIDE.md`](assets/brand/BRAND_GUIDE.md).
-
----
-
-## 🏛 Ecosystem Architecture Overview
-
-AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었습니다:
-
-- **Hierarchical Control**: 단순한 Prompt-response 패턴을 넘어, 구조화된 "Nobles & Workers" 계층형 제어를 지향합니다.
-- **Hardware-Software Co-Design**: 각 Edge device의 Power/Compute profile을 고려하여 Inference 과정을 최적화합니다.
-- **Reliability by Design**: AI 추론 과정을 하나의 Mission-critical utility로 간주하고, Site Reliability Engineering (SRE) 원칙을 적용합니다.
-
----
-
-## 🌐 The AMEVA Universe
-
-| Project | Role in Ecosystem | Core Innovation |
-|---------|-------------------|-----------------|
-| **[Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)** | Orchestrator | Hierarchical task decomposition & Agent management |
-| **[Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)** | Infrastructure | Unified API gateway with SRE-based dynamic throttling |
-| **[Benchmark Suite](https://github.com/uno-km/AMEVA-Benchmark-Suite)** | Validation | Empirical power/performance profiling for edge hardware |
-| **[Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)** | Interface | Privacy-first offline document intelligence pipeline |
-| **[Conductor](https://github.com/uno-km/AMEVA-Conductor)** | Control | Remote cross-platform UI for human-agent interaction |
-| **[Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)** | Data Layer | Hyper-resilient, zero-loss edge forwarder with multi-transport backup |
-| **[Database](https://github.com/uno-km/AMEVA-Database)** | Analytics | Lightweight SQLite & log inspector for distributed AMEVA ecosystem |
-| **[STT Trainer](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper-based Korean STT with LoRA fine-tuning |
-| **[STT Agent](https://github.com/uno-km/AMEVA-STT-Agent)** | Perception | Speech recognition agent integration |
-| **[Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)** | Interface | Windows-native local AI desktop assistant with OCR-first screen understanding |
-| **[Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | Fully autonomous Docker-based multi-agent simulation |
-| **[BitNet](https://github.com/uno-km/BitNet)** | Optimization | BitNet inference framework with ARM/Exynos scalar fallback |
-
-### 🧭 AMEVA Core Infrastructure & MCP Ecosystem
-* **[🚀 AMEVA OS Workspace & Playground (WASM OS)](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경 (로컬 프록시 구동 시 연동 작동)
-* **[✨ AMEVA OS 프로모션 & 인터랙티브 체험 페이지 (Promo URL)](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)**: Node Flow 및 가상 쉘 데모 시뮬레이터를 직접 체험해볼 수 있는 공식 랜드마크 페이지
-
-<details>
-<summary><b>🔍 AMEVA Core MCP Specifications (두 가지 핵심 MCP 연동 스펙 보기)</b></summary>
-
-#### 1. ⚙️ MCP Wasm Toolkit (AMEVA OS Core)
-- **역할**: 로컬 기기 자원을 안전하게 보존하면서, 크롤러나 동적 파이썬 스크립트 등 위험도가 높은 연산을 100% 격리된 웹 브라우저 WASM(Pyodide) 샌드박스로 우회하여 안전하게 처리합니다.
-- **특징**: `https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 보장합니다.
-
-#### 2. 🧰 MCP Utils Toolkit (Dynamic Tool Hub)
-- **역할**: GitHub 원격 리포지토리에 저장된 `mcp_manifest.json` 설정과 도구 코드를 SSE(ntfy.sh) 실시간 핫리로드 채널을 통해 active 브라우저 세션에 3초 이내에 자동 업데이트 및 동적 등록합니다.
-- **특징**: 패키지 재설치나 서버 재부팅 없이 AI 에이전트의 실행 가능한 도구 셋을 동적으로 확장합니다.
-</details>
-
----
-> **💡 AMEVA Universe & 포털 활용 팁:**
-> 1. **Grand Master Portal**: 상단 및 아래 버튼을 통해 전체 AMEVA 3대 갈래(Workstation, Universe, Libraries) 및 디지털 명함으로 진입하세요.
-> 2. **Interactive Neural Fabric**: Universe 섹션에서 WebGPU 3D 지식 그래프 및 RAG 질의 챗봇 대시보드로 바로 이동할 수 있습니다.
-
 <div align="center">
-  <a href="https://uno-km.github.io/uno-km/" style="text-decoration: none;">
-    <button style="padding: 22px 48px; font-size: 22px; cursor: pointer; border-radius: 12px; border: 2px solid #00F5D4; background: linear-gradient(135deg, #00f5d4 0%, #00e5ff 50%, #3a86ff 100%); color: #060a17; font-weight: bold; box-shadow: 0 4px 20px rgba(0,245,212,0.35);">
-      🌌 AMEVA 그랜드 포털 & 디지털 명함 입장하기
-    </button>
+  <a href="https://uno-km.github.io/uno-km/">
+    <img src="https://img.shields.io/badge/Live_Portal-uno--km.github.io-003399?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portal"/>
   </a>
-  <p style="margin-top: 10px; font-size: 0.95em;">
-    <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric 대시보드 바로가기</b></a> |
-    <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/"><b>✨ AMEVA OS 프로모션 체험관</b></a>
-  </p>
+  <a href="https://uno-km.github.io/uno-km/dashboard/">
+    <img src="https://img.shields.io/badge/3D_Universe-WebGPU_Dashboard-00887A?style=for-the-badge&logo=webgpu&logoColor=white" alt="3D Dashboard"/>
+  </a>
+  <a href="https://uno-kim.tistory.com/">
+    <img src="https://img.shields.io/badge/Tech_Blog-uno--kim.tistory.com-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog"/>
+  </a>
+  <a href="mailto:zhfldk014745@naver.com">
+    <img src="https://img.shields.io/badge/Contact-zhfldk014745@naver.com-03C75A?style=for-the-badge&logo=naver&logoColor=white" alt="Email"/>
+  </a>
 </div>
+
+---
+
+# 🌌 What is AMEVA Universe? (왔이즈 아메바 유니버스?)
+
+> **"거대 클라우드 서버 비용 없이, 개인의 브라우저와 엣지 기기만으로 완전한 자율 추론과 자동화를 실현합니다."**
+
+**AMEVA**는 척박한 환경에서도 형태를 유연하게 바꾸며 끝내 살아남는 단세포 생물 **아메바(Amoeba)**의 생존력에서 착안한 **차세대 엣지 네이티브 AI 생태계**입니다.
+
+### 🧬 AMEVA Acronym & Architecture
+- **A — Agentic**: 스스로 상황을 분석하고 계획을 수립하는 자율 추론 & 의사결정 지능.
+- **M — Multi-Agent**: 복잡한 작업을 원자 단위로 분해하여 전문 에이전트에 위임하는 계층적 오케스트레이션.
+- **E — Ecosystem**: Desktop, Web, Android(Termux), Edge 기기를 유기적으로 연결하는 통합 플랫폼.
+- **V — Virtualized**: 100% 클라이언트 브라우저 Pyodide WASM 샌드박스로 호스트를 완벽히 격리하는 보안 런타임.
+- **A — Automation**: 서버 비용 제로의 실시간 비주얼 파이프라인 및 자동화 워크플로우.
+
+```text
+※ 보안 원칙: AMEVA는 웜이나 악성코드가 절대 아니며, 100% 클라이언트 격리 WASM 샌드박스에서 구동되는 합법적인 오픈소스 시스템 프레임워크입니다.
+```
+
+---
+
+# 👤 Executive Digital Business Card & Technical CV (공식 명함 & 이력)
+
+<table align="center" width="100%">
+  <tr>
+    <td width="220px" align="center" valign="top">
+      <img src="assets/images/profile.jpg" width="170px" style="border-radius: 50%;" alt="Eunho Kim Avatar"/><br/>
+      <h3 style="margin-top: 8px; margin-bottom: 2px;"><b>김은호 (Eunho Kim)</b></h3>
+      <p style="font-size: 0.88em; color: #64748b; margin-top: 0;"><code>@uno-km</code> · 1994.11.10</p>
+      <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.78em;">Tech Lead & Systems Architect</span>
+    </td>
+    <td valign="top">
+      <h3>📞 Contact & Verification</h3>
+      <ul>
+        <li>📱 <b>전화번호</b>: <a href="tel:010-4943-7334">010-4943-7334</a></li>
+        <li>✉️ <b>이메일</b>: <a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></li>
+        <li>📖 <b>기술 블로그</b>: <a href="https://uno-kim.tistory.com/">https://uno-kim.tistory.com/</a></li>
+        <li>🐙 <b>GitHub</b>: <a href="https://github.com/uno-km">https://github.com/uno-km</a></li>
+        <li>📍 <b>위치</b>: 대한민국 경기도 성남시 분당구</li>
+      </ul>
+      <h3>🎓 Education & Military</h3>
+      <ul>
+        <li>🎓 <b>아주대학교 정보통신대학원</b> 인공지능학과 석사 재학 (2026.08 ~)</li>
+        <li>🎓 <b>한양사이버대학교</b> 응용소프트웨어공학과 학사 졸업 (3.94 / 4.5)</li>
+        <li>🎖️ <b>대한민국 육군 만기제대</b> 보병 중위 (2017.03 ~ 2019.06)</li>
+        <li>🗣️ <b>영어 (OPIc IH)</b>: 기술 소통 및 비즈니스 회화 가능</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+### 💬 Self-Introduction (자기소개)
+> **"개발을 진심으로 즐기며, 어떤 난제든 끝까지 파고들어 해결해 내는 끈기와 소통력을 가진 엔지니어입니다."**
+>
+> 새로운 기술을 탐구하고 복잡한 문제를 분석하여 최적의 해답을 찾아내는 과정에서 큰 즐거움을 느낍니다. 
+> 팀원 및 유관부서와 적극적으로 소통하고 협업하는 문화를 좋아하며, 맡은 일은 포기하지 않고 끝까지 완수하는 강한 책임감을 가지고 있습니다. 
+> 2021년 10월부터 대기업 협력사(KT DS) 및 SK AX 자회사에서 사내 핵심 시스템 풀스택 개발, 대규모 DB 쿼리 튜닝(3초 → 0.3초), CI/CD 자동화 구축을 주도적으로 이끌어 왔습니다.
+
+---
+
+### 💼 Enterprise Career & Project Track Records (실무 경력 및 프로젝트 성과)
+
+#### 🏢 1. SK AX 자회사 (2026.02 ~ 현재 / 재직중)
+- **직무**: Tech Lead (TL), Business Analyst (BA), 사내 시스템 CI/CD 배포 파이프라인 구축, 백엔드/프론트엔드 풀스택 개발
+- **핵심 성과**:
+  - 사내 핵심 시스템 전사 CI/CD 배포 자동화 파이프라인 구축 및 백엔드(Java/Spring Boot) / 프론트엔드 풀스택 개발 총괄.
+  - 비즈니스 요구사항 분석(BA) 및 테크 리드(TL) 역할을 주도적으로 수행하며 사내 시스템 안정성과 개발 생산성 극대화.
+
+#### 🏢 2. KT DS 협력사 고객개발팀 (2021.10 ~ 2026.01 / 4년 4개월)
+- **직무**: Tech Lead (TL), PM/PL, 사내 핵심 시스템(B2B/PLM) 구축 및 ITO 운영 개발
+- **핵심 성과**:
+  - **KT 엔터프라이즈 B2B/PLM 시스템 풀스택 개발 및 고도화**: 레거시 KOS 시스템의 웹/MSA 전환, 대규모 데이터 무중단(Zero-downtime) 이관 및 쿼리 튜닝(**3초 → 0.3초**, 10배 향상), 비즈니스 룰 엔진 최적화로 **상품 출시 리드타임 2주 → 3일 단축**.
+  - **ITO 운영 안정화 및 DevOps 자동화 (Tech Lead/PM)**: 수수료 정산 배치 속도 개선(**0.5초 → 0.05초**), Jenkins CI/CD 배포 시간 단축(**30분 → 5분**), 보안성 검토 자동화(누락 0건) 및 **장애 대응 체계 개선(1시간 → 10분)**.
+
+---
+
+### 🛠️ Core Technical Competencies (핵심 기술 역량)
+
+| 분야 | 핵심 보유 기술 및 툴셋 |
+|:---|:---|
+| **🧠 AI, Data Science & Reasoning** | `WebGPU Compute`, `Autograd Engine`, `MLOps`, `BitNet (1.58-bit LLM)`, `Deep Reasoning (CoT/ToT)`, `Prompt Engineering`, `Pyodide WASM`, `RAG Architecture`, `LoRA / QLoRA` |
+| **☕ Backend & Architecture** | `Java 17/21`, `Spring Boot 3`, `Spring MVC`, `Spring Scheduler`, `JPA / Hibernate`, `MyBatis`, `Python`, `Maven / Gradle`, `RESTful API` |
+| **💾 Database & Optimization** | `PostgreSQL`, `Oracle DB`, `MariaDB`, `MySQL`, `SQLite`, **대규모 쿼리 튜닝 (3s → 0.3s)**, `인덱스 최적화` |
+| **🖥️ Frontend** | `JavaScript`, `React JS`, `TypeScript`, `SheetJS`, `Chart.js`, `Toast UI`, `jQuery / Ajax`, `HTML5 / CSS3` |
+| **🚀 DevOps, Systems & Collab** | `Jenkins`, `GitHub Actions`, `Docker`, `Kubernetes (K8S)`, `Tomcat`, `Nginx`, `Jira / Confluence`, `Git / SVN`, `SOP / WBS` |
+
+---
+
+# 📦 The AMEVA Universe & Open-Source Projects
+
+| 프로젝트 | 생태계 역할 | 핵심 혁신 기술 | 바로가기 |
+|:---|:---|:---|:---:|
+| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)** | Deep Learning | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine | [📖 문서](https://uno-km.github.io/ameva-forge/) \| [⚡ 데모](https://uno-km.github.io/ameva-forge/demo.html) |
+| **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)** | MCP Runtime | 위험 연산을 100% 격리된 브라우저 WASM 샌드박스로 구동 | [🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) \| [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/) |
+| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)** | Automation | 안드로이드 비루트 Chromium 브라우저 자동화 런타임 | [📖 문서](https://uno-km.github.io/termux-playwright-demo/) \| [📦 PyPI](https://pypi.org/project/termux-playwright/) |
+| **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)** | Desktop Tool | 트리 기반 무한 분할 레이아웃 & 80 FPS 저지연 스마트 PTY 워크벤치 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Multi-CLI) |
+| **🧠 [BitNet](https://github.com/uno-km/BitNet)** | Edge Inference | 1-bit 양자화(1.58-bit) LLM 초경량 저전력 추론 엔진 | [🐙 GitHub](https://github.com/uno-km/BitNet) |
+| **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | 도커 기반 100% 자율 멀티에이전트 사회 시뮬레이터 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) |
+| **🎙️ [STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper 기반 한국어 STT LoRA 파인튜닝 & 음성 에이전트 | [🐙 GitHub](https://github.com/uno-km/AMEVA-STT-Trainer) |
+| **🪟 [Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)** | Desktop AI | OCR 기반 화면 인식 로컬 Windows 데스크톱 AI 어시스턴트 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Window-Assistant) |
 
 ---
 
 ## 🚀 AMEVA Setup Universe (One-Click Installer)
 
-This repository now includes the "AMEVA Setup Universe" — a single installer and UX layer to bootstrap the full AMEVA ecosystem on macOS, Linux, and Windows.
+```powershell
+# Windows PowerShell 1-Click Bootstrap
+irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex
+```
 
-### Quick links (one-liners):
-
-#### macOS / Linux (Bash):
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.sh)
+# Linux / macOS / Android Termux 1-Click Bootstrap
+curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.sh | bash
 ```
 
-#### Windows (PowerShell):
-Run PowerShell as Administrator and execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/setup.ps1 | iex
-```
-
-Git all clone execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/clone_ameva.ps1 | iex
-```
-Git all fetch execute:
-```powershell
-irm https://raw.githubusercontent.com/uno-km/uno-km/setup-universe-feature/git/fetch_ameva.ps1 | iex
-```
-#### Python (Cross-platform):
-```bash
-python setup.py
-```
-
-### What the installer does (high level):
-* **Creates a unified AMEVA home**: `~/ameva` or `C:\ameva`
-* **Creates canonical model folders**: `ameva/models/llm`, `ameva/models/stt`, `ameva/models/tts`
-* **Offers interactive selection** of components (LLM / STT / TTS / All)
-* **Diagnoses system environments**: OS, CPU/GPU, PowerShell execution policies, Git installation, Windows Long Path support, and **C++ Build Tools (MSVC compiler)**.
-* **Performs temporary CUDA/GPU validation**: Sets up an isolated temporary environment (`temp_env_ai`) to verify PyTorch CUDA acceleration and instantly cleans it up after validation.
-* **Delegates library installation**: Python library installs are delegated to each cloned project's local virtual environment (e.g. `venv`) to keep the global environment clean and stable.
-* **Generates a unified `config.json`** at AMEVA home.
-* **Integrates with PowerShell profiles**: Automates environment variables initialization and provides dynamic virtual environment scanning activation commands (`act` / `activate` / `env_ai`).
-
-> [!NOTE]
-> * Installer files live on branch `setup-universe-feature` (raw links above). You can inspect or copy them to run locally.
-> * All installer prompts and printed progress are in English; inline comments in the scripts are written in Korean.
-
 ---
 
-## 🔬 In-depth Project Analysis: 핵심 기술 논의
-
-### 1. AMEVA Agent Orchestra: 계층적 주권 (Hierarchical Sovereignty)
-
-현대 LLM은 Long-context 내에서의 "망각" 현상을 겪습니다. Agent Orchestra는 User intent를 **Nobles (의사결정 레이어)**로 추상화하고, 이를 원자 단위의 서브 태스크로 쪼개어 전문화된 Workers에게 위임함으로써 이를 해결합니다.
-
-- **Research Focus**: Multi-turn 오케스트레이션 과정에서의 "Semantic Drift" 최소화
-- **Key Implementation**: 로컬 GGUF 모델에 최적화된 Graph-based state management 시스템
-
-### 2. AMEVA Model Nexus: SRE 관점의 인프라
-
-제한된 리소스 환경에서 어떻게 안정적으로 AI를 서빙할 것인가? Model Nexus는 모델을 가상화된 리소스로 취급합니다.
-
-- **Dynamic Scoped-Throttling**: 현재 하드웨어의 온도 및 Power draw를 실시간으로 감지하여 Context window와 Sampling 파라미터를 동적으로 조절합니다
-- **High-Availability Serving**: 복잡한 Agent 요청이 단순 질의보다 우선 처리될 수 있도록 스케줄링합니다
-
-### 3. AMEVA Benchmark Suite (Singularity)
-
-"측정할 수 없으면 개선할 수 없다." 본 Suite는 모든 AMEVA 최적화의 기술적 근거(Empirical foundation)를 제공합니다.
-
-- **Synchronized Power Tracking**: TPS(Tokens Per Second)와 mW(Milliwatt) 소모량을 동기화하여 분석하는 "Greener AI"의 첫걸음입니다
-
-### 4. AMEVA Data Harvester: Zero-Loss Resilience
-
-데이터 손실 없는 극도의 복원력. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로를 통해 데이터를 수집합니다.
-
-- **Multi-Transport Backup**: SCP, HTTPS, Telegram Bot을 통한 자동 폴백
-- **Payload Validation**: 제로 로스 검증 메커니즘으로 데이터 무결성 보장
-
-### 5. AMEVA STT Ecosystem: 한국어 우선 음성 지능
-
-Whisper 기반 LoRA 파인 튜닝으로 한국어 특화 음성 인식을 구현합니다.
-
-- **STT Trainer**: 데이터 스크래핑부터 모델 병합까지 전체 파이프라인 제공
-- **STT Agent**: Edge device에서 실시간 음성 처리 및 통합
-
-### 6. AMEVA Window Assistant: OCR-First Perception
-
-Windows 데스크톱 AI 어시스턴트로, 화면 이해를 OCR 기반으로 우선 처리합니다.
-
-- **Multimodal Fallback**: OCR 실패 시 Vision 모델로 자동 전환
-- **Offline Voice I/O**: 완전 오프라인 음성 입출력
-- **llama.cpp Integration**: 로컬 추론 엔진 통합
-
----
-
-## 🗺 Evaluation & Future Directions: 최종 청사진
-
-### 🚀 Phase 1: Local Supremacy (현재)
-복잡한 Agentic workflow를 100% 오프라인 환경에서 구현 완료. Local model fine-tuning을 통한 Data sovereignty 확보.
-
-### ⛓ Phase 2: Distributed Neural Fabric (중기)
-Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이스 가용 VRAM을 풀링(Pooling)하여, 단일 기기에서 불가능했던 대형 모델(30B+)을 분산 처리하는 기술 연구.
-
-### 🌌 Phase 3: The Singular Conductor (비전)
-단순한 수행을 넘어, Benchmark Suite의 과거 데이터를 학습하여 스스로 코드와 인프라를 최적화(Self-optimization)하는 자율형 Self-healing AI 에이전트 시스템 구축.
-
----
-
-## 📚 Technical Glossary (용어 꾸러미)
-
-| Term | Definition |
-|------|-----------|
-| **Orchestration** | 복잡한 시스템이나 여러 에이전트의 동작을 조화롭게 제어하고 관리하는 과정 |
-| **Hierarchical** | 계층적인 시스템 구조. 상위 레이어가 전략을 짜고 하위 레이어가 실행하는 방식 |
-| **Edge-AI** | 데이터 센터(클라우드)가 아닌 사용자와 가까운 기기(엣지)에서 직접 AI를 구동하는 기술 |
-| **Inference** | 학습된 AI 모델을 통해 결과값을 도출해내는 추론(실행) 과정 |
-| **SRE** | Site Reliability Engineering - 시스템의 안정성과 신뢰성을 높이기 위해 소프트웨어 공학 기법을 인프라 운영에 적용하는 방법론 |
-| **Sovereignty** | 데이터나 시스템에 대한 완전한 통제권 및 주권 |
-| **Throttling** | 자원 과부하를 막기 위해 의도적으로 처리 속도나 요청을 조절하는 기술 |
-| **Semantic Drift** | 대화나 작업이 길어질수록 AI가 원래의 맥락이나 의도에서 벗어나는 현상 |
-| **Empirical** | 실제 실험이나 관찰을 통해 얻은 데이터에 기반한 실증적인 접근 |
-| **Federated** | 여러 곳에 분산되어 있지만 하나처럼 협력하는 연합 방식 |
-
----
-
-## 🛠 Tech Stack & Core Competencies
-
-- **Enterprise Backend**: Java, Spring Boot, PostgreSQL, JPA/Hibernate, Microservices Architecture
-- **Systems & Edge AI**: WebGPU Compute, Autograd Engine, Pyodide (WASM), Android Bionic, Playwright CDP, node-pty, C/C++, Python
-- **Modern Fullstack & UI**: TypeScript, React 18, Electron, D3.js, Canvas GPU Rendering, REST & SSE
-- **Architecture & MLOps**: Technical Solution Planning, SRE Dynamic Scoped Throttling, Docker, Zero-Server ML Pipelines
-- **Data & Storage**: PostgreSQL, SQLite (`better-sqlite3`), Apache Arrow, pandas
-
----
-
-## 📬 Contact & Collaboration (디지털 명함)
-
-저는 Multi-Agent Systems, Edge Computing, 그리고 AI SRE 분야에 대한 학술적 담론 및 협업을 언제나 환영합니다.
-
-- **Lead Architect**: Uno Kim (김우노 / @uno-km)
-- **Phone**: [010-4943-7334](tel:010-4943-7334)
-- **Email**: [zhfldk014745@naver.com](mailto:zhfldk014745@naver.com)
-- **Tistory Blog**: [uno-kim.tistory.com](https://uno-kim.tistory.com/)
-- **GitHub**: [@uno-km](https://github.com/uno-km)
-- **Grand Portal**: [uno-km.github.io/uno-km](https://uno-km.github.io/uno-km/)
-- **Research Focus**: Hierarchical AI Orchestration, Edge-native Inference, Data Sovereignty
-
----
-
-**Generated with ❤️ by AMEVA Ecosystem Builder**
-
-*Last Updated: July 27, 2026*
+<p align="center">
+  &copy; 2026 <b>Eunho Kim (김은호 / @uno-km)</b> · Senior Full-Stack Engineer & Systems Architect.<br/>
+  High-Clarity Enterprise Open-Source Technical Portfolio · Powered by AMEVA Ecosystem.
+</p>
