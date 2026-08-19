@@ -1431,25 +1431,57 @@
     });
 
     function switchLanguage(lang) {
-      const dict = i18nDictionary[lang] || i18nDictionary['ko'];
+      const targetLang = i18nDictionary[lang] ? lang : 'en';
+      const dict = i18nDictionary[targetLang] || i18nDictionary['en'];
+      
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict && dict[key] !== undefined) {
           el.innerHTML = dict[key];
         }
       });
-      document.documentElement.lang = lang;
-      try { localStorage.setItem('uno_km_lang', lang); } catch (e) {}
+      document.documentElement.lang = targetLang;
+      
+      const sel = document.getElementById('globalLangSelect');
+      if (sel && sel.value !== targetLang) {
+        sel.value = targetLang;
+      }
+      try { localStorage.setItem('uno_km_lang', targetLang); } catch (e) {}
+    }
+
+    function detectInitialLanguage() {
+      // 1. Check URL query parameter (e.g. ?lang=en or ?lang=ja)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const qLang = urlParams.get('lang');
+        if (qLang && i18nDictionary[qLang.toLowerCase()]) {
+          return qLang.toLowerCase();
+        }
+      } catch (e) {}
+
+      // 2. Check user's previous selection from localStorage
+      try {
+        const saved = localStorage.getItem('uno_km_lang');
+        if (saved && i18nDictionary[saved]) {
+          return saved;
+        }
+      } catch (e) {}
+
+      // 3. Auto-detect browser / system language
+      try {
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase().split('-')[0];
+        if (navLang && i18nDictionary[navLang]) {
+          return navLang;
+        }
+      } catch (e) {}
+
+      // 4. Default for all other international visitors & unregistered regions: English ('en')
+      return 'en';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      let saved = 'ko';
-      try { saved = localStorage.getItem('uno_km_lang') || 'ko'; } catch (e) {}
-      const sel = document.getElementById('globalLangSelect');
-      if (sel && i18nDictionary[saved]) {
-        sel.value = saved;
-        switchLanguage(saved);
-      }
+      const initialLang = detectInitialLanguage();
+      switchLanguage(initialLang);
     });
   </script>
 </body>
