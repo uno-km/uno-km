@@ -158,7 +158,8 @@
 |:---|:---|:---|:---:|
 | **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)** | Deep Learning | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine | [📖 문서](https://uno-km.github.io/ameva-forge/) \| [⚡ 데모](https://uno-km.github.io/ameva-forge/demo.html) |
 | **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)** | MCP Runtime | 위험 연산을 100% 격리된 브라우저 WASM 샌드박스로 구동 | [🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) \| [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/) |
-| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)** | Automation | 안드로이드 비루트 Chromium 브라우저 자동화 런타임 | [📖 문서](https://uno-km.github.io/termux-playwright-demo/) \| [📦 PyPI](https://pypi.org/project/termux-playwright/) |
+| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)** | Automation | 안드로이드 비루트 Chromium 브라우저 자동화 런타임 | [📖 문서](https://uno-km.github.io/termux-playwright-demo/) \| [📦 PyPI](https://pypi.org/project/termux-playwright/) \| [📦 npm](https://www.npmjs.com/package/termux-playwright) |
+| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)** | On-Device AI | 안드로이드 Bionic 네이티브 ARM64 Stable Diffusion 이미지 생성 런타임 (Python & Node.js) | [📖 문서](https://uno-km.github.io/termux-diffusion/) \| [📦 PyPI](https://pypi.org/project/termux-diffusion/) \| [📦 npm](https://www.npmjs.com/package/termux-diffusion) |
 | **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)** | Desktop Tool | 트리 기반 무한 분할 레이아웃 & 80 FPS 저지연 스마트 PTY 워크벤치 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Multi-CLI) |
 | **🧠 [BitNet](https://github.com/uno-km/BitNet)** | Edge Inference | 1-bit 양자화(1.58-bit) LLM 초경량 저전력 추론 엔진 | [🐙 GitHub](https://github.com/uno-km/BitNet) |
 | **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | 도커 기반 100% 자율 멀티에이전트 사회 시뮬레이터 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) |
