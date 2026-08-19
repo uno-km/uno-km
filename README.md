@@ -58,24 +58,59 @@
       <img src="assets/images/profile.jpg" width="170px" style="border-radius: 50%;" alt="Eunho Kim Avatar"/><br/>
       <h3 style="margin-top: 8px; margin-bottom: 2px;"><b>김은호 (Eunho Kim)</b></h3>
       <p style="font-size: 0.88em; color: #64748b; margin-top: 0;"><code>@uno-km</code> · 1994.11.10</p>
-      <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.78em;">Tech Lead & Systems Architect</span>
+      <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.78em;">Tech Lead &amp; Systems Architect</span>
     </td>
     <td valign="top">
-      <h3>📞 Contact & Verification</h3>
-      <ul>
-        <li>📱 <b>전화번호</b>: <a href="tel:010-4943-7334">010-4943-7334</a></li>
-        <li>✉️ <b>이메일</b>: <a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></li>
-        <li>📖 <b>기술 블로그</b>: <a href="https://uno-kim.tistory.com/">https://uno-kim.tistory.com/</a></li>
-        <li>🐙 <b>GitHub</b>: <a href="https://github.com/uno-km">https://github.com/uno-km</a></li>
-        <li>📍 <b>위치</b>: 대한민국 경기도 성남시 분당구</li>
-      </ul>
-      <h3>🎓 Education & Military</h3>
-      <ul>
-        <li>🎓 <b>아주대학교 정보통신대학원</b> 인공지능학과 석사 재학 (2026.08 ~)</li>
-        <li>🎓 <b>한양사이버대학교</b> 응용소프트웨어공학과 학사 졸업 (3.94 / 4.5)</li>
-        <li>🎖️ <b>대한민국 육군 만기제대</b> 보병 중위 (2017.03 ~ 2019.06)</li>
-        <li>🗣️ <b>영어 (OPIc IH)</b>: 기술 소통 및 비즈니스 회화 가능</li>
-      </ul>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th colspan="2" align="left">📞 Contact &amp; Verification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td width="32%">📱 <b>전화번호</b></td>
+            <td><a href="tel:010-4943-7334">010-4943-7334</a></td>
+          </tr>
+          <tr>
+            <td>✉️ <b>이메일</b></td>
+            <td><a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></td>
+          </tr>
+          <tr>
+            <td>📖 <b>기술 블로그</b></td>
+            <td><a href="https://uno-kim.tistory.com/" target="_blank">https://uno-kim.tistory.com/</a></td>
+          </tr>
+          <tr>
+            <td>🐙 <b>GitHub</b></td>
+            <td><a href="https://github.com/uno-km" target="_blank">https://github.com/uno-km</a></td>
+          </tr>
+          <tr>
+            <td>📍 <b>위치</b></td>
+            <td>대한민국 경기도 성남시 분당구</td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="100%" style="margin-top: 8px;">
+        <thead>
+          <tr>
+            <th colspan="2" align="left">🎓 Education &amp; Language</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td width="32%">🎓 <b>대학원</b></td>
+            <td>아주대학교 정보통신대학원 인공지능학과 석사 재학 (2026.08 ~)</td>
+          </tr>
+          <tr>
+            <td>🎓 <b>학사</b></td>
+            <td>한양사이버대학교 응용소프트웨어공학과 학사 졸업 (3.94 / 4.5)</td>
+          </tr>
+          <tr>
+            <td>🗣️ <b>어학</b></td>
+            <td>영어 (OPIc IH): 기술 소통 및 비즈니스 회화 가능</td>
+          </tr>
+        </tbody>
+      </table>
     </td>
   </tr>
 </table>
