@@ -132,12 +132,12 @@
 
     /* ── Left Sidebar (Executive Resume) ────────────────────────────────────── */
     aside.resume-sidebar {
-      width: 340px;
+      width: 360px;
       flex-shrink: 0;
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
       border-radius: 6px;
-      padding: 22px 18px;
+      padding: 24px 20px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
@@ -147,8 +147,8 @@
     }
 
     .profile-avatar-img {
-      width: 145px;
-      height: 145px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--primary-navy);
@@ -179,7 +179,7 @@
       background: var(--primary-light);
       border: 1px solid #bfdbfe;
       border-radius: 4px;
-      padding: 4px 8px;
+      padding: 5px 8px;
       text-align: center;
       margin-bottom: 16px;
     }
@@ -192,7 +192,7 @@
       letter-spacing: 0.5px;
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 4px;
-      margin: 16px 0 8px 0;
+      margin: 18px 0 10px 0;
     }
 
     .contact-list, .meta-list {
@@ -200,12 +200,21 @@
       font-size: 0.88em;
     }
 
-    .contact-list li, .meta-list li {
+    .contact-list li {
       margin-bottom: 6px;
       display: flex;
-      align-items: flex-start;
-      gap: 6px;
+      align-items: center;
+      gap: 8px;
       line-height: 1.45;
+    }
+
+    .meta-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+      word-break: keep-all;
     }
 
     .contact-list a {
@@ -218,14 +227,14 @@
     .contact-list a:hover { text-decoration: underline; }
 
     .skills-group {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .skills-category {
       font-size: 0.78em;
       font-weight: 700;
       color: var(--primary-dark);
-      margin: 6px 0 3px 0;
+      margin: 8px 0 4px 0;
     }
 
     .skill-chips {
@@ -557,17 +566,37 @@
       <!-- Education & Military -->
       <h3 class="sidebar-heading" data-i18n="side.eduMil">Education &amp; Military</h3>
       <ul class="meta-list">
-        <li>🎓 <strong>아주대학교 정보통신대학원</strong><br><span style="color:var(--text-muted); font-size:0.9em;">인공지능학과 석사 재학 (2026.08 ~)</span></li>
-        <li>🎓 <strong>한양사이버대학교</strong><br><span style="color:var(--text-muted); font-size:0.9em;">응용소프트웨어공학과 학사 (3.94 / 4.5)</span></li>
-        <li>🎖️ <strong>대한민국 육군 만기제대</strong><br><span style="color:var(--text-muted); font-size:0.9em;">보병 중위 (2017.03 ~ 2019.06)</span></li>
-        <li>🗣️ <strong>영어 (OPIc IH)</strong><br><span style="color:var(--text-muted); font-size:0.9em;">기술 소통 및 비즈니스 회화 가능</span></li>
+        <li>🎓 <div><strong>아주대학교 정보통신대학원</strong><br><span style="color:var(--text-muted); font-size:0.86em;">인공지능학과 석사 재학 (2026.08 ~)</span></div></li>
+        <li>🎓 <div><strong>한양사이버대학교</strong><br><span style="color:var(--text-muted); font-size:0.86em;">응용소프트웨어공학과 학사 (3.94 / 4.5)</span></div></li>
+        <li>🎖️ <div><strong>대한민국 육군 만기제대</strong><br><span style="color:var(--text-muted); font-size:0.86em;">보병 중위 (2017.03 ~ 2019.06)</span></div></li>
+        <li>🗣️ <div><strong>영어 (OPIc IH)</strong><br><span style="color:var(--text-muted); font-size:0.86em;">기술 소통 및 비즈니스 회화 가능</span></div></li>
       </ul>
 
       <!-- Core Skills Matrix -->
       <h3 class="sidebar-heading" data-i18n="side.skills">Technical Competencies</h3>
 
+      <!-- Category 1: AI, Data Science & Reasoning -->
       <div class="skills-group">
-        <p class="skills-category">☕ Backend &amp; Architecture (중급 이상)</p>
+        <p class="skills-category">🧠 AI, Data Science &amp; Advanced Reasoning</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">MLOps</span>
+          <span class="skill-chip highlight">Deep Reasoning (CoT/ToT)</span>
+          <span class="skill-chip highlight">Prompt Engineering</span>
+          <span class="skill-chip highlight">Data Mining</span>
+          <span class="skill-chip highlight">WebGPU Compute</span>
+          <span class="skill-chip">Autograd Engine</span>
+          <span class="skill-chip">RAG Architecture</span>
+          <span class="skill-chip">Pyodide WASM</span>
+          <span class="skill-chip">BitNet 1-Bit LLM</span>
+          <span class="skill-chip">LoRA / Fine-Tuning</span>
+          <span class="skill-chip">Multi-Agent SRE</span>
+          <span class="skill-chip">Agentic Workflow</span>
+        </div>
+      </div>
+
+      <!-- Category 2: Backend & Architecture -->
+      <div class="skills-group">
+        <p class="skills-category">☕ Backend &amp; Architecture</p>
         <div class="skill-chips">
           <span class="skill-chip highlight">Java</span>
           <span class="skill-chip highlight">Spring Boot</span>
@@ -581,6 +610,7 @@
         </div>
       </div>
 
+      <!-- Category 3: Database & Optimization -->
       <div class="skills-group">
         <p class="skills-category">💾 Database &amp; Optimization</p>
         <div class="skill-chips">
@@ -592,6 +622,7 @@
         </div>
       </div>
 
+      <!-- Category 4: Frontend -->
       <div class="skills-group">
         <p class="skills-category">🖥️ Frontend</p>
         <div class="skill-chips">
@@ -605,6 +636,7 @@
         </div>
       </div>
 
+      <!-- Category 5: DevOps & Collab -->
       <div class="skills-group">
         <p class="skills-category">🚀 DevOps, Systems &amp; Collab</p>
         <div class="skill-chips">
