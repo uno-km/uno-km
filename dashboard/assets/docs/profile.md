@@ -2,9 +2,14 @@
 
 ![Profile Image](assets/images/ameva-creater.jpg)
 
-<p style="text-align: center; margin: 15px 0;">
-  👉 <a href="https://uno-kim.tistory.com/" target="_blank" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-cyan);">https://uno-kim.tistory.com/</a>
-</p>
+<div style="text-align: center; margin: 15px 0; background: rgba(0,245,212,0.08); padding: 15px; border-radius: 10px; border: 1px solid rgba(0,245,212,0.3);">
+  <h3 style="color: #ffffff; margin-bottom: 8px;">👤 Uno Kim (김우노)</h3>
+  <p style="color: #00F5D4; font-weight: bold; margin-bottom: 12px;">AMEVA Founder &amp; Lead Systems Architect</p>
+  <p style="margin: 4px 0;">📞 <b>Phone:</b> <a href="tel:010-4943-7334" style="color: #38bdf8;">010-4943-7334</a></p>
+  <p style="margin: 4px 0;">✉️ <b>Email:</b> <a href="mailto:zhfldk014745@naver.com" style="color: #38bdf8;">zhfldk014745@naver.com</a></p>
+  <p style="margin: 4px 0;">📖 <b>Blog:</b> <a href="https://uno-kim.tistory.com/" target="_blank" style="color: #38bdf8;">https://uno-kim.tistory.com/</a></p>
+  <p style="margin: 4px 0;">🐙 <b>GitHub:</b> <a href="https://github.com/uno-km" target="_blank" style="color: #38bdf8;">https://github.com/uno-km</a></p>
+</div>
 
 ## 👑 AMEVA Creator & Architect
 
