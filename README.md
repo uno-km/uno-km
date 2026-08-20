@@ -159,6 +159,7 @@
 | 라이브러리 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
 |:---|:---:|:---|:---:|
 | **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>`@ameva/forge` · `ameva-forge` | **WebGPU**<br/>TypeScript / Python | **서버 비용 제로의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 공식 문서](https://uno-km.github.io/ameva-forge/)<br/>[⚡ 실시간 데모](https://uno-km.github.io/ameva-forge/demo.html)<br/>[🐙 GitHub](https://github.com/uno-km/ameva-forge) |
+| **🧠 [BitNet](https://github.com/uno-km/BitNet)**<br/>`bitnet` · `1-bit LLM` | **Edge Inference**<br/>C++ / Python | **1-bit 양자화(1.58-bit) LLM 초경량 저전력 추론 프레임워크**<br/>행렬 곱셈(Matmul)을 덧셈(Addition)으로 대체하여 ARM/x86 엣지 CPU에서 극한의 전력 효율 달성 | [🐙 GitHub](https://github.com/uno-km/BitNet) |
 | **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Android Bionic**<br/>Python / Node.js | **안드로이드 Termux 환경 비루트(Non-root) 브라우저 자동화**<br/>ARM64 Chromium CDP 직접 제어, 헤드리스 웹 스크래핑 & 테스팅 파이프라인 | [📖 공식 문서](https://uno-km.github.io/termux-playwright-demo/)<br/>[📦 PyPI](https://pypi.org/project/termux-playwright/) · [📦 npm](https://www.npmjs.com/package/termux-playwright)<br/>[🐙 GitHub](https://github.com/uno-km/termux-playwright-demo) |
 | **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **On-Device AI**<br/>Python / Node.js | **안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임**<br/>모바일 엣지 기기에서 클라우드 연결 없이 로컬 이미지 생성 및 가속 | [📖 공식 문서](https://uno-km.github.io/termux-diffusion/)<br/>[📦 PyPI](https://pypi.org/project/termux-diffusion/) · [📦 npm](https://www.npmjs.com/package/termux-diffusion)<br/>[🐙 GitHub](https://github.com/uno-km/termux-diffusion) |
 | **🔥 [Termux-Torch](https://github.com/uno-km/termux-torch)**<br/>`termux-torch` | **Autograd Core**<br/>Python / C++ | **안드로이드 및 엣지 임베디드 전용 초경량 텐서 & 딥러닝 엔진**<br/>엄격한 스칼라/논스칼라 backward 정책, zero-overhead 순수 텐서 연산 | [🐙 GitHub](https://github.com/uno-km/termux-torch) |
@@ -185,8 +186,7 @@
 - **🎼 [AMEVA Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 엔진 (Semantic Drift 방지).
 - **🎙️ [AMEVA STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)**: Whisper 기반 한국어 음성 데이터 수집부터 LoRA 파인튜닝, 실시간 엣지 음성 인식 에이전트 파이프라인.
 
-### 🧠 Layer 4. Edge Inference, SRE Infrastructure & Data Pipeline (엣지 추론, 인프라 & 데이터)
-- **🧠 [BitNet](https://github.com/uno-km/BitNet)**: 1-bit 양자화(1.58-bit LLM) 모델을 ARM/x86 엣지 CPU에서 초저전력으로 구동하는 초경량 추론 프레임워크.
+### 🧠 Layer 4. SRE Infrastructure & Resilient Data Pipeline (인프라 & 데이터)
 - **⚡ [AMEVA Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)**: SRE 원칙 기반 다이내믹 스코프드 스로틀링(기기 온도/전력 실시간 감지) 및 우선순위 스케줄링 AI 게이트웨이.
 - **📄 [AMEVA Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)**: 데이터 유출이 원천 차단된 100% 오프라인 로컬 문서 인텔리전스 및 지식 기반 RAG 파이프라인.
 - **📦 [AMEVA Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)**: SCP, HTTPS, Telegram Bot 등 다중 전송 경로 기반의 무손실(Zero-loss) 엣지 데이터 전달기.
