@@ -56,8 +56,8 @@
       <p class="subtitle" data-i18n="home.subtitle">Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Tax</p>
 
       <div class="alert alert-info">
-        <span class="alert-title">Separation of Concerns (공사 분리 원칙)</span>
-        <p>
+        <span class="alert-title" data-i18n="home.sepTitle">Separation of Concerns (Strict Dual Separation)</span>
+        <p data-i18n="home.sepDesc">
           AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong>Eunho Kim (@uno-km)</strong> are maintained strictly separately in the <a href="../../index.html">Personal Digital CV</a>.
         </p>
       </div>
@@ -73,7 +73,7 @@
       <div class="features-grid">
         <!-- Workstation -->
         <div class="feature-card" style="border-left: 4px solid var(--primary-color);">
-          <h4>AMEVA Workstation (Web/Desktop)</h4>
+          <h4 data-i18n="proj.workstationTitle">AMEVA Workstation (Web/Desktop)</h4>
           <p data-i18n="proj.workstationDesc">World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.</p>
           <div class="card-links">
             <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-sm primary">Launch Web App</a>
@@ -83,7 +83,7 @@
 
         <!-- Termux Playwright -->
         <div class="feature-card">
-          <h4>Termux-Playwright</h4>
+          <h4 data-i18n="proj.playwrightTitle">Termux-Playwright</h4>
           <p data-i18n="proj.playwrightDesc">Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.</p>
           <div class="card-links">
             <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="btn-sm primary">Docs</a>
@@ -95,7 +95,7 @@
 
         <!-- Termux Diffusion -->
         <div class="feature-card">
-          <h4>Termux-Diffusion</h4>
+          <h4 data-i18n="proj.diffusionTitle">Termux-Diffusion</h4>
           <p data-i18n="proj.diffusionDesc">Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
           <div class="card-links">
             <a href="https://uno-km.github.io/termux-diffusion/" target="_blank" class="btn-sm primary">Docs</a>
@@ -112,7 +112,7 @@
 
       <div class="features-grid">
         <div class="feature-card">
-          <h4>AMEVA-Forge</h4>
+          <h4 data-i18n="proj.forgeTitle">AMEVA-Forge</h4>
           <p data-i18n="proj.forgeDesc">Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.</p>
           <div class="card-links">
             <a href="https://uno-km.github.io/ameva-forge/" target="_blank" class="btn-sm primary">Docs</a>
@@ -122,7 +122,7 @@
         </div>
 
         <div class="feature-card">
-          <h4>Termux-Torch</h4>
+          <h4 data-i18n="proj.torchTitle">Termux-Torch</h4>
           <p data-i18n="proj.torchDesc">Ultra-lightweight on-device Tensor and Autograd engine engineered for Android Bionic and embedded edge micro-runtimes.</p>
           <div class="card-links">
             <a href="https://github.com/uno-km/termux-torch" target="_blank" class="btn-sm primary">GitHub Repo</a>
@@ -130,7 +130,7 @@
         </div>
 
         <div class="feature-card">
-          <h4>Termux-Whisper</h4>
+          <h4 data-i18n="proj.whisperTitle">Termux-Whisper</h4>
           <p data-i18n="proj.whisperDesc">On-device Whisper Korean speech recognition and LoRA fine-tuning pipeline designed for resource-constrained edge hardware.</p>
           <div class="card-links">
             <a href="https://github.com/uno-km/AMEVA-STT-Trainer" target="_blank" class="btn-sm primary">GitHub Repo</a>
@@ -186,21 +186,21 @@
       </table>
 
       <!-- Governance Hub -->
-      <h3>Governance &amp; Bylaws Hub</h3>
-      <p>Explore the official foundation charter, meritocracy guidelines, and incubation policies:</p>
+      <h3 data-i18n="home.govHubTitle">Governance &amp; Bylaws Hub</h3>
+      <p data-i18n="home.govHubDesc">Explore the official foundation charter, meritocracy guidelines, and incubation policies:</p>
       <ul>
-        <li><a href="charter.html"><strong>Charter &amp; Mission (재단 헌장)</strong></a> - Core mission, technical scope, and licensing policy.</li>
-        <li><a href="governance.html"><strong>Governance &amp; Meritocracy (운영 규정)</strong></a> - Apache-style meritocracy, PMC roles, and voting protocols.</li>
-        <li><a href="incubation.html"><strong>Incubation Policy (인큐베이션 정책)</strong></a> - 3-tier lifecycle and graduation checkpoints.</li>
-        <li><a href="sponsorship.html"><strong>Sponsorship &amp; Grants (후원 안내)</strong></a> - Financial transparency and supporter tiers.</li>
+        <li><a href="charter.html" data-i18n="home.linkCharter"><strong>Charter &amp; Mission (재단 헌장)</strong> - Core mission, technical scope, and licensing policy.</a></li>
+        <li><a href="governance.html" data-i18n="home.linkGov"><strong>Governance &amp; Meritocracy (운영 규정)</strong> - Apache-style meritocracy, PMC roles, and voting protocols.</a></li>
+        <li><a href="incubation.html" data-i18n="home.linkInc"><strong>Incubation Policy (인큐베이션 정책)</strong> - 3-tier lifecycle and graduation checkpoints.</a></li>
+        <li><a href="sponsorship.html" data-i18n="home.linkSpon"><strong>Sponsorship &amp; Grants (후원 안내)</strong> - Financial transparency and supporter tiers.</a></li>
       </ul>
     </main>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 <strong>AMEVA Open-Source Foundation (AOSF)</strong>. All Rights Reserved.</p>
-    <p style="margin-top: 4px;">
+    <p data-i18n="common.footerRights">&copy; 2026 <strong>AMEVA Open-Source Foundation (AOSF)</strong>. All Rights Reserved.</p>
+    <p style="margin-top: 4px;" data-i18n="common.footerLicense">
       Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.
     </p>
   </footer>
