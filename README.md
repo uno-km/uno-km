@@ -152,28 +152,46 @@
 
 ---
 
-# 📦 The AMEVA Universe & Open-Source Projects
+# 🌟 Flagship Core Open-Source Libraries (대표 오픈소스 라이브러리)
 
-| 프로젝트 | 생태계 역할 | 핵심 혁신 기술 | 바로가기 |
-|:---|:---|:---|:---:|
-| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)** | Deep Learning | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine | [📖 문서](https://uno-km.github.io/ameva-forge/) \| [⚡ 데모](https://uno-km.github.io/ameva-forge/demo.html) |
-| **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)** | MCP Runtime | 위험 연산을 100% 격리된 브라우저 WASM 샌드박스로 구동 | [🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) \| [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/) |
-| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)** | Automation | 안드로이드 비루트 Chromium 브라우저 자동화 런타임 | [📖 문서](https://uno-km.github.io/termux-playwright-demo/) \| [📦 PyPI](https://pypi.org/project/termux-playwright/) \| [📦 npm](https://www.npmjs.com/package/termux-playwright) |
-| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)** | On-Device AI | 안드로이드 Bionic 네이티브 ARM64 Stable Diffusion 이미지 생성 런타임 (Python & Node.js) | [📖 문서](https://uno-km.github.io/termux-diffusion/) \| [📦 PyPI](https://pypi.org/project/termux-diffusion/) \| [📦 npm](https://www.npmjs.com/package/termux-diffusion) |
-| **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)** | Desktop Tool | 트리 기반 무한 분할 레이아웃 & 80 FPS 저지연 스마트 PTY 워크벤치 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Multi-CLI) |
-| **🧠 [BitNet](https://github.com/uno-km/BitNet)** | Edge Inference | 1-bit 양자화(1.58-bit) LLM 초경량 저전력 추론 엔진 | [🐙 GitHub](https://github.com/uno-km/BitNet) |
-| **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)** | Simulation | 도커 기반 100% 자율 멀티에이전트 사회 시뮬레이터 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) |
-| **🎙️ [STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper 기반 한국어 STT LoRA 파인튜닝 & 음성 에이전트 | [🐙 GitHub](https://github.com/uno-km/AMEVA-STT-Trainer) |
-| **🪟 [Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)** | Desktop AI | OCR 기반 화면 인식 로컬 Windows 데스크톱 AI 어시스턴트 | [🐙 GitHub](https://github.com/uno-km/AMEVA-Window-Assistant) |
+> **PyPI 및 npm에 공식 배포된 독립형 엣지 딥러닝·자동화 오픈소스 라이브러리 패키지입니다.**
+
+| 라이브러리 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
+|:---|:---:|:---|:---:|
+| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>`@ameva/forge` · `ameva-forge` | **WebGPU**<br/>TypeScript / Python | **서버 비용 제로의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 공식 문서](https://uno-km.github.io/ameva-forge/)<br/>[⚡ 실시간 데모](https://uno-km.github.io/ameva-forge/demo.html)<br/>[🐙 GitHub](https://github.com/uno-km/ameva-forge) |
+| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Android Bionic**<br/>Python / Node.js | **안드로이드 Termux 환경 비루트(Non-root) 브라우저 자동화**<br/>ARM64 Chromium CDP 직접 제어, 헤드리스 웹 스크래핑 & 테스팅 파이프라인 | [📖 공식 문서](https://uno-km.github.io/termux-playwright-demo/)<br/>[📦 PyPI](https://pypi.org/project/termux-playwright/) · [📦 npm](https://www.npmjs.com/package/termux-playwright)<br/>[🐙 GitHub](https://github.com/uno-km/termux-playwright-demo) |
+| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **On-Device AI**<br/>Python / Node.js | **안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임**<br/>모바일 엣지 기기에서 클라우드 연결 없이 로컬 이미지 생성 및 가속 | [📖 공식 문서](https://uno-km.github.io/termux-diffusion/)<br/>[📦 PyPI](https://pypi.org/project/termux-diffusion/) · [📦 npm](https://www.npmjs.com/package/termux-diffusion)<br/>[🐙 GitHub](https://github.com/uno-km/termux-diffusion) |
+| **🔥 [Termux-Torch](https://github.com/uno-km/termux-torch)**<br/>`termux-torch` | **Autograd Core**<br/>Python / C++ | **안드로이드 및 엣지 임베디드 전용 초경량 텐서 & 딥러닝 엔진**<br/>엄격한 스칼라/논스칼라 backward 정책, zero-overhead 순수 텐서 연산 | [🐙 GitHub](https://github.com/uno-km/termux-torch) |
 
 ---
 
-### 📱 Mobile On-Device Edge AI & Automation (Termux Dual Engines)
+# 🏛️ AMEVA Multi-Layer Ecosystem & Systems Architecture
 
-| Project & Registry | Runtime | 1-Line Quick Installation | Official Documentation |
-| :--- | :---: | :--- | :---: |
-| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **Python**<br/>**Node.js** | `pip install termux-diffusion && termux-diffusion-install`<br/>`npm install -g termux-diffusion && npx termux-diffusion install` | [📖 공식 문서 포털](https://uno-km.github.io/termux-diffusion/) |
-| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Python**<br/>**Node.js** | `pip install termux-playwright && termux-playwright-install`<br/>`npm install termux-playwright && npx termux-playwright install` | [📖 공식 문서 포털](https://uno-km.github.io/termux-playwright-demo/) |
+> **데스크톱, 브라우저 샌드박스, 멀티에이전트 오케스트레이션, 인프라를 유기적으로 연결하는 AMEVA 4대 시스템 레이어입니다.**
+
+### 🖥️ Layer 1. Enterprise Desktop & Smart Workbench (데스크톱 및 워크벤치 도구)
+- **🏢 [AMEVA Workstation](https://github.com/uno-km/AMEVA-Workstation)**: 로컬 고성능 AI 모델 연동 및 엔터프라이즈급 통합 개발·작업대 환경.
+- **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)**: 트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치 및 DevSecOps 가드레일 내장 터미널 워크벤치.
+- **🪟 [AMEVA Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)**: OCR-First 화면 인식 & 로컬 llama.cpp 추론 기반의 프라이버시 보호형 Windows 데스크톱 AI 어시스턴트.
+- **🌐 [AMEVA Edge Browser](https://github.com/uno-km/AMEVA-Edge-Browser)**: 100% 로컬 보안 격리 및 엣지 AI 웹 에이전트 구동에 최적화된 전용 브라우저 런타임.
+
+### ⚙️ Layer 2. Model Context Protocol (MCP) & WASM Sandbox (MCP 및 보안 격리)
+- **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)**: 웹 크롤러, 동적 코드 실행 등 위험도가 높은 연산을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 격리 구동 ([🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) | [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)).
+- **🧰 [MCP Dynamic Utils Hub](https://github.com/uno-km/MCP-Wasm-Toolkit)**: GitHub 원격 도구 코드를 SSE(ntfy) 채널을 통해 서버 재부팅 없이 AI 에이전트 활성 세션에 3초 내 동적 핫리로드.
+- **🚀 [AMEVA OS Playground](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경.
+
+### 🤖 Layer 3. Autonomous Agents, Simulation & Perception (자율 에이전트, 사회 시뮬레이션 & 음성)
+- **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)**: Docker 기반 100% 자율 멀티에이전트 가상 사회 시뮬레이터 (에이전트 간 자율 상호작용 및 집단 담론 형성).
+- **🎼 [AMEVA Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 엔진 (Semantic Drift 방지).
+- **🎙️ [AMEVA STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)**: Whisper 기반 한국어 음성 데이터 수집부터 LoRA 파인튜닝, 실시간 엣지 음성 인식 에이전트 파이프라인.
+
+### 🧠 Layer 4. Edge Inference, SRE Infrastructure & Data Pipeline (엣지 추론, 인프라 & 데이터)
+- **🧠 [BitNet](https://github.com/uno-km/BitNet)**: 1-bit 양자화(1.58-bit LLM) 모델을 ARM/x86 엣지 CPU에서 초저전력으로 구동하는 초경량 추론 프레임워크.
+- **⚡ [AMEVA Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)**: SRE 원칙 기반 다이내믹 스코프드 스로틀링(기기 온도/전력 실시간 감지) 및 우선순위 스케줄링 AI 게이트웨이.
+- **📄 [AMEVA Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)**: 데이터 유출이 원천 차단된 100% 오프라인 로컬 문서 인텔리전스 및 지식 기반 RAG 파이프라인.
+- **📦 [AMEVA Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)**: SCP, HTTPS, Telegram Bot 등 다중 전송 경로 기반의 무손실(Zero-loss) 엣지 데이터 전달기.
+- **💾 [AMEVA Database](https://github.com/uno-km/AMEVA-Database)**: 분산 AMEVA 에코시스템 로그 분석 및 임베디드 SQLite 데이터 인스펙터.
+- **🕹️ [AMEVA Conductor](https://github.com/uno-km/AMEVA-Conductor)**: 원격 크로스플랫폼 환경에서 인간과 AI 에이전트 간의 상호작용을 제어하는 리모트 UI.
 
 ---
 
