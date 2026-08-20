@@ -159,7 +159,6 @@
 | 라이브러리 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
 |:---|:---:|:---|:---:|
 | **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>`@ameva/forge` · `ameva-forge` | **WebGPU**<br/>TypeScript / Python | **서버 비용 제로의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 공식 문서](https://uno-km.github.io/ameva-forge/)<br/>[⚡ 실시간 데모](https://uno-km.github.io/ameva-forge/demo.html)<br/>[🐙 GitHub](https://github.com/uno-km/ameva-forge) |
-| **🧠 [BitNet](https://github.com/uno-km/BitNet)**<br/>`bitnet` · `1-bit LLM` | **Edge Inference**<br/>C++ / Python | **1-bit 양자화(1.58-bit) LLM 초경량 저전력 추론 프레임워크**<br/>행렬 곱셈(Matmul)을 덧셈(Addition)으로 대체하여 ARM/x86 엣지 CPU에서 극한의 전력 효율 달성 | [🐙 GitHub](https://github.com/uno-km/BitNet) |
 | **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Android Bionic**<br/>Python / Node.js | **안드로이드 Termux 환경 비루트(Non-root) 브라우저 자동화**<br/>ARM64 Chromium CDP 직접 제어, 헤드리스 웹 스크래핑 & 테스팅 파이프라인 | [📖 공식 문서](https://uno-km.github.io/termux-playwright-demo/)<br/>[📦 PyPI](https://pypi.org/project/termux-playwright/) · [📦 npm](https://www.npmjs.com/package/termux-playwright)<br/>[🐙 GitHub](https://github.com/uno-km/termux-playwright-demo) |
 | **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **On-Device AI**<br/>Python / Node.js | **안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임**<br/>모바일 엣지 기기에서 클라우드 연결 없이 로컬 이미지 생성 및 가속 | [📖 공식 문서](https://uno-km.github.io/termux-diffusion/)<br/>[📦 PyPI](https://pypi.org/project/termux-diffusion/) · [📦 npm](https://www.npmjs.com/package/termux-diffusion)<br/>[🐙 GitHub](https://github.com/uno-km/termux-diffusion) |
 | **🔥 [Termux-Torch](https://github.com/uno-km/termux-torch)**<br/>`termux-torch` | **Autograd Core**<br/>Python / C++ | **안드로이드 및 엣지 임베디드 전용 초경량 텐서 & 딥러닝 엔진**<br/>엄격한 스칼라/논스칼라 backward 정책, zero-overhead 순수 텐서 연산 | [🐙 GitHub](https://github.com/uno-km/termux-torch) |
@@ -212,6 +211,11 @@ irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps
 # Linux / macOS / Android Termux 1-Click Bootstrap
 curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.sh | bash
 ```
+
+---
+
+### 🌐 Open-Source Contributions & Community PRs
+- [BitNet (microsoft/BitNet)](https://github.com/uno-km/BitNet): 1-bit LLM ARM NEON / I2_S 커널 및 환경 빌드 관련 풀 리퀘스트(PR) 및 코드 기여 참여
 
 ---
 
