@@ -662,9 +662,10 @@
       <ul class="contact-list">
         <li>📞 <a href="tel:010-4943-7334">010-4943-7334</a></li>
         <li>✉️ <a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></li>
-        <li>📖 <a href="https://uno-kim.tistory.com/" target="_blank">uno-kim.tistory.com</a></li>
+        <li>📖 <a href="https://uno-kim.tistory.com/" target="_blank">uno-kim.tistory.com (기술블로그)</a></li>
         <li>🐙 <a href="https://github.com/uno-km" target="_blank">github.com/uno-km</a></li>
-        <li>📍 <span data-i18n="side.location">경기도 성남시 분당구</span></li>
+        <li>🚀 <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Live App)</a></li>
+        <li>📍 <span data-i18n="side.location">대한민국 경기도 성남시 분당구 (판교)</span></li>
       </ul>
 
       <!-- Education & Language -->
@@ -682,18 +683,18 @@
       <div class="skills-group">
         <p class="skills-category" data-i18n="side.catAI">🧠 AI, Data Science &amp; Advanced Reasoning</p>
         <div class="skill-chips">
-          <span class="skill-chip highlight">MLOps</span>
-          <span class="skill-chip highlight">Deep Reasoning (CoT/ToT)</span>
-          <span class="skill-chip highlight">Prompt Engineering</span>
-          <span class="skill-chip highlight">Data Mining</span>
-          <span class="skill-chip highlight">WebGPU Compute</span>
-          <span class="skill-chip">Autograd Engine</span>
-          <span class="skill-chip">RAG Architecture</span>
+          <span class="skill-chip highlight">WebGPU Local AI</span>
+          <span class="skill-chip highlight">On-Device STT / Diarization</span>
+          <span class="skill-chip highlight">On-Device LoRA Training</span>
+          <span class="skill-chip highlight">ARM64 Bionic Native</span>
+          <span class="skill-chip highlight">Autograd Engine</span>
+          <span class="skill-chip">MLOps &amp; SRE</span>
+          <span class="skill-chip">Deep Reasoning (CoT/ToT)</span>
+          <span class="skill-chip">Prompt Engineering</span>
           <span class="skill-chip">Pyodide WASM</span>
-          <span class="skill-chip">BitNet 1-Bit LLM</span>
-          <span class="skill-chip">LoRA / Fine-Tuning</span>
-          <span class="skill-chip">Multi-Agent SRE</span>
-          <span class="skill-chip">Agentic Workflow</span>
+          <span class="skill-chip">BitNet 1.58-bit LLM</span>
+          <span class="skill-chip">RAG Architecture</span>
+          <span class="skill-chip">Multi-Agent Orchestration</span>
         </div>
       </div>
 
@@ -896,13 +897,26 @@
         </div>
       </section>
 
-      <!-- Panel 5: Core Open-Source Libraries -->
+            <!-- Panel 5: Core Open-Source Libraries -->
       <section class="panel-box">
         <div class="panel-header">
-          <h2><span data-i18n="p5.title">📦 AMEVA Open-Source Core Libraries</span></h2>
-          <span class="panel-tag" data-i18n="tag.runtimes">High-Performance Runtimes</span>
+          <h2><span data-i18n="p5.title">📦 AMEVA Open-Source Flagship Software &amp; Core Libraries</span></h2>
+          <span class="panel-tag" data-i18n="tag.runtimes">Production-Ready &amp; Published</span>
         </div>
         <div class="cards-grid">
+          <!-- 1. Flagship AMEVA Workstation Web -->
+          <div class="item-card" style="border-left: 4px solid #004499; grid-column: 1 / -1;">
+            <div class="item-card-top">
+              <h3><span>🏢 AMEVA Workstation (Web / Desktop)</span> <span style="font-size:0.75em; background:#004499; color:#fff; padding:2px 6px; border-radius:3px;">🌟 Flagship App</span></h3>
+              <p data-i18n="p5.workstationDesc">세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 &amp; 1초 AI 누끼 스튜디오.</p>
+            </div>
+            <div class="card-actions" style="margin-top:8px;">
+              <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-action primary" style="background:#004499;">🚀 라이브 웹 앱 실행</a>
+              <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+
+          <!-- 2. AMEVA-Forge -->
           <div class="item-card">
             <h3><span>⚡ AMEVA-Forge</span> <span style="font-size:0.75em;">PyPI: ameva</span></h3>
             <p data-i18n="p5.forgeDesc">서버 비용 제로의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
@@ -913,6 +927,30 @@
             </div>
           </div>
 
+          <!-- 3. Termux-STT -->
+          <div class="item-card">
+            <h3><span>🎙️ Termux-STT</span> <span style="font-size:0.75em;">pip / npm</span></h3>
+            <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/termux-stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://uno-km.github.io/termux-stt/showcase.html" target="_blank" class="btn-action secondary">🎧 쇼케이스</a>
+            </div>
+          </div>
+
+          <!-- 4. Termux-Train -->
+          <div class="item-card">
+            <h3><span>🚂 Termux-Train</span> <span style="font-size:0.75em;">PyPI: termux-train</span></h3>
+            <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).</p>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/termux-train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">🐙 GitHub</a>
+            </div>
+          </div>
+
+          <!-- 5. Termux-Playwright -->
           <div class="item-card">
             <h3><span>📱 Termux-Playwright</span> <span style="font-size:0.75em;">pip / npm</span></h3>
             <p data-i18n="p5.termuxDesc">안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.</p>
@@ -923,9 +961,10 @@
             </div>
           </div>
 
+          <!-- 6. Termux-Diffusion -->
           <div class="item-card">
             <h3><span>🎨 Termux-Diffusion</span> <span style="font-size:0.75em;">pip / npm</span></h3>
-            <p data-i18n="p5.diffusionDesc">안드로이드 Termux & 삼성 갤럭시 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
+            <p data-i18n="p5.diffusionDesc">안드로이드 Termux & Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
             <div class="card-actions">
               <a href="https://uno-km.github.io/termux-diffusion/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
               <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-action secondary">📦 PyPI</a>
@@ -933,31 +972,21 @@
             </div>
           </div>
 
-          <div class="item-card">
-            <h3><span>🎙️ Termux-STT</span> <span style="font-size:0.75em;">pip / npm</span></h3>
-            <p>안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 화자 분리 프레임워크.</p>
-            <div class="card-actions">
-              <a href="https://uno-km.github.io/termux-stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
-              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
-            </div>
-          </div>
-
-          <div class="item-card">
-            <h3><span>🚂 Termux-Train</span> <span style="font-size:0.75em;">PyPI: termux-train</span></h3>
-            <p>안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파 및 온디바이스 LoRA 파인튜닝 프레임워크.</p>
-            <div class="card-actions">
-              <a href="https://uno-km.github.io/termux-train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
-              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">🐙 GitHub</a>
-            </div>
-          </div>
-
+          <!-- 7. AMEVA-Multi-CLI -->
           <div class="item-card">
             <h3><span>💻 AMEVA-Multi-CLI</span> <span style="font-size:0.75em;">Desktop App</span></h3>
             <p data-i18n="p5.multiCliDesc">트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치, DevSecOps 보안 가드레일 내장 터미널 워크벤치.</p>
             <div class="card-actions">
               <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+
+          <!-- 8. BitNet Engine -->
+          <div class="item-card">
+            <h3><span>🧠 BitNet Engine</span> <span style="font-size:0.75em;">1-Bit Inference</span></h3>
+            <p data-i18n="p5.bitnetDesc">1-bit 양자화 모델(1.58-bit LLM)을 엣지 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.</p>
+            <div class="card-actions">
+              <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
             </div>
           </div>
         </div>
@@ -1189,6 +1218,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "GitHub 원격 매니페스트와 도구 코드를 SSE(ntfy) 채널을 통해 액티브 세션에 3초 내 동적 핫리로드.",
         "p5.title": "📦 AMEVA Open-Source Core Libraries",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "서버 비용 제로의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.",
         "p5.termuxDesc": "안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.",
         "p5.diffusionDesc": "안드로이드 Termux & 삼성 갤럭시 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.",
@@ -1268,6 +1300,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "Dynamically registers remote GitHub tools into active browser sessions within 3 seconds via SSE channels.",
         "p5.title": "📦 AMEVA Open-Source Core Libraries",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch compatibility and WGSL shaders.",
         "p5.termuxDesc": "Non-root Chromium browser automation library optimized for Android Termux (ARM64 Bionic).",
         "p5.diffusionDesc": "On-Device Generative AI pipeline running native ARM64 Bionic Stable Diffusion on Android Termux and Samsung Galaxy (Python & Node.js).",
@@ -1346,6 +1381,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "GitHubリモートツールをSSE通信を通じてアクティブセッションに3秒で即時反映。",
         "p5.title": "📦 AMEVA オープンソース コアライブラリ",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "サーバー不要のBrowser-Native WebGPU Deep Learning Autograd Engine。PyTorch互換。",
         "p5.termuxDesc": "Android Termux環境で非rootでChromiumブラウザ自動化を動かす最適化パッケージ。",
         "p5.diffusionDesc": "Android TermuxおよびSamsung Galaxy環境で非rootでBionic ARM64ネイティブStable Diffusion画像生成を動かすデュアルエンジン基盤。",
@@ -1424,6 +1462,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "通过SSE通道在3秒内将GitHub远程工具代码热重载至活动会话。",
         "p5.title": "📦 AMEVA 开源核心系统库",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "零服务器成本的端侧 WebGPU 深度学习自动求导引擎，兼容 PyTorch 语法与 WGSL 计算着色器。",
         "p5.termuxDesc": "无需Root权限在安卓 Termux 环境中自动化驱动原生 Chromium 的优化库。",
         "p5.diffusionDesc": "在安卓 Termux 与三星 Galaxy 环境下免 Root 驱动 Bionic ARM64 原生 Stable Diffusion 图像生成的端侧双引擎框架。",
@@ -1479,6 +1520,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "GitHubリモートツールをSSE通信を通じてアクティブセッションに3秒で即時反映。",
         "p5.title": "📦 AMEVA オープンソース コアライブラリ",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "サーバー不要のBrowser-Native WebGPU Deep Learning Autograd Engine。PyTorch互換。",
         "p5.termuxDesc": "Android Termux環境で非rootでChromiumブラウザ自動化を動かす最適化パッケージ。",
         "p5.multiCliDesc": "無限分割レイアウト、80FPS低遅延PTY、セキュリティガードレール内蔵のターミナル。",
@@ -1556,6 +1600,9 @@
         "p4.mcp2Badge": "SSE Hot-Reload",
         "p4.mcp2Desc": "通过SSE通道在3秒内将GitHub远程工具代码热重载至活动会话。",
         "p5.title": "📦 AMEVA 开源核心系统库",
+                "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+        "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+        "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
         "p5.forgeDesc": "零服务器成本的端侧 WebGPU 深度学习自动求导引擎，兼容 PyTorch 语法与 WGSL 计算着色器。",
         "p5.termuxDesc": "无需Root权限在安卓 Termux 环境中自动化驱动原生 Chromium 的优化库。",
         "p5.multiCliDesc": "基于树状结构的无限分屏、80FPS低延迟PTY批处理与DevSecOps安全护栏工作台。",
