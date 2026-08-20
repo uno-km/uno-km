@@ -14,6 +14,7 @@
 ## 2. 3-Tier Project Portfolio Specification
 
 ### Tier 1: Flagship Top-Level Projects (TLP)
+- **AMEVA-Workstation**: 100% On-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX doc reader & editor, video cutter, 1-sec AI background removal, audio silence auto-cut. Web App: https://ameva-workstation-web-core.vercel.app/
 - **Termux-Playwright**: Non-root Chromium browser automation on Android Termux (ARM64 Bionic). PyPI: `termux-playwright`, npm: `termux-playwright`.
 - **Termux-Diffusion**: On-device ARM64 native Stable Diffusion runtime for Android without root. PyPI: `termux-diffusion`, npm: `termux-diffusion`.
 

@@ -23,10 +23,11 @@ AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)은 개방형 거
 AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 따라 3단계 라이프사이클로 분류하여 육성합니다.
 
 ### Tier 1: Flagship Projects (TLP / 대표 오픈소스)
-엄격한 릴리즈 게이트를 통과하여 PyPI 및 npm에 공식 배포되고, 크로스 플랫폼 프로덕션 레벨의 안정성을 입증한 프로젝트입니다.
+엄격한 릴리즈 게이트를 통과하여 정식 배포되고, 프로덕션 레벨의 완성도와 안정성을 입증한 핵심 완제품 및 라이브러리입니다.
 
 | 프로젝트 | 런타임 & 기술 스택 | 핵심 역할 및 설명 | 패키지 및 문서 |
 |:---|:---:|:---|:---:|
+| [AMEVA Workstation (Web/Desktop)](https://ameva-workstation-web-core.vercel.app/) | WebGPU, Next.js, WASM | 세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 문서 리더 & 편집기, 인앱 비디오 컷팅, 1초 AI 이미지 누끼, 오디오 무음 자동삭제. | [라이브 앱](https://ameva-workstation-web-core.vercel.app/) · [GitHub](https://github.com/uno-km/AMEVA-Workstation-Web) |
 | [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)<br/>termux-playwright | Android Bionic<br/>Python, Node.js | 안드로이드 Termux 비루트(Non-root) 브라우저 자동화. ARM64 Chromium CDP 직접 제어 및 헤드리스 테스팅. | [문서](https://uno-km.github.io/termux-playwright-demo/) · [PyPI](https://pypi.org/project/termux-playwright/) · [npm](https://www.npmjs.com/package/termux-playwright) |
 | [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)<br/>termux-diffusion | On-Device AI<br/>Python, Node.js | 안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion. 모바일 엣지 기기에서 로컬 이미지 생성. | [문서](https://uno-km.github.io/termux-diffusion/) · [PyPI](https://pypi.org/project/termux-diffusion/) · [npm](https://www.npmjs.com/package/termux-diffusion) |
 
