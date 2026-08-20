@@ -9,7 +9,7 @@
 
 1. **Apache / Tomcat Classic Tech 감성 + AMEVA Corporate Blue**:
    - 화려하기만 하고 가독성이 떨어지는 디자인을 배제하고, 엔지니어가 가장 신뢰하는 **아파치/톰캣 클래식 고가독성 기술 문서 스타일**을 고정 적용합니다.
-   - 상단 고정 헤더(하단 2px 블루 언더라인) + 좌측 고정 네비게이션 사이드바(270px) + 우측 메인 기술 본문(최대 980px).
+   - 상단 고정 헤더(하단 2px `#004499` 블루 언더라인) + 좌측 고정 네비게이션 사이드바(270px) + 우측 메인 기술 본문(최대 980px).
 2. **이모지 최소화 및 담백한 엔지니어링 톤**:
    - 이모지 벽(Emoji Wall)을 금지하고, 텍스트와 담백한 기호(`-`, `·`, `[ ]`, `→`) 중심으로 기술적 신뢰도를 극대화합니다.
 3. **100% 본문 전수 다국어 번역 (Zero Missing Translation)**:
@@ -19,7 +19,92 @@
 
 ---
 
-## 🎨 2. 표준 디자인 토큰 & 색상 규격 (Design Tokens)
+## 🖼️ 2. 파비콘 및 브랜드 에셋 표준 규격 (Favicon & Brand Asset Spec)
+
+1. **표준 파비콘 파일 위치**:
+   - 각 프로젝트의 `docs/favicon.svg` (루트 `uno-km/docs/pages/templates/library/template_src/favicon.svg`를 복사하여 사용).
+2. **파비콘 디자인 규격**:
+   - 32x32 / 512x512 벡터 SVG 포맷.
+   - 색상 팔레트: Cosmic Midnight (`#0B132B`), Aqua-Cyan (`#00F5D4`), Sky Blue (`#38BDF8`), Corporate Blue (`#004499`).
+3. **HTML `<head>` 표준 링크 태그**:
+   ```html
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   ```
+
+---
+
+## 📄 3. 첫 페이지 (`index.html`) 필수 섹션 전개 공식 (Exact Page Section Breakdown)
+
+어떤 라이브러리든 `index.html`은 다음 **8대 표준 섹션** 순서대로 엄격히 전개되어야 합니다:
+
+1. **대제목 및 1줄 서브타이틀**:
+   - `h2`: `[라이브러리명] 공식 문서 (릴리즈 [버전])` (`font-size: 1.85em`, color: `#002b66`)
+   - `p.subtitle`: 1줄 핵심 아키텍처 사명 (`color: #475569`, font-size: `1.05em`)
+2. **배지 바 (`.badges-bar`)**:
+   - PyPI 버전 배지 (`https://img.shields.io/pypi/v/[package_name]`)
+   - npm 버전 배지 (`https://img.shields.io/npm/v/[package_name]`)
+   - 라이선스 배지 (`Apache 2.0` / `MIT`)
+   - 테스트 통과 배지 (`tests: 100% PASS`)
+   - 런타임 환경 태그 (`Android Bionic ARM64` / `WebGPU` / `WASM`)
+3. **1줄 원터치 빠른 설치 알림 박스 (`.alert.alert-tip`)**:
+   - `span.alert-title`: `1-Line Quick Installation`
+   - `pre > code`: `pip install [패키지명]` (또는 멀티 탭 패키지 매니저)
+4. **엔지니어링 도전 과제와 아키텍처 혁신 (`h3`)**:
+   - `The Engineering Challenge`: 왜 기존 데스크톱/서버 프레임워크가 엣지/브라우저 환경에서 실패하는지 서술.
+   - `The Architectural Breakthrough`: 당사 라이브러리가 메모리, 시스템 콜, 셰이더 차원에서 이를 어떻게 해결했는지 서술.
+5. **핵심 역량 및 기능 카드 그리드 (`.features-grid` + `.feature-card`)**:
+   - 3개~6개의 고성능 핵심 역량 카드 (무설치 네이티브 실행, 수학적 무결성, 하드웨어 메모리 보호 등).
+6. **지원 연산 및 모듈 매트릭스 표 (`table.data-table`)**:
+   - `분류 (Category)` | `지원 연산 및 세부 모듈 (Operations & Modules)` | `상태 (Status)`
+7. **대표 정석 코드 예제 블록 (`Canonical Usage Example`)**:
+   - 10줄 이내의 가장 직관적인 표준 실행 코드 + 1-Click 복사 툴팁.
+8. **시작하기 네비게이션 가이드**:
+   - 설치 가이드(`installation.html`), 퀵스타트(`quickstart.html`), API 명세(`api-reference.html`) 링크.
+
+---
+
+## 🧭 4. 좌측 사이드바 표준 메뉴 계층 트리 (Sidebar Menu Tree Hierarchy)
+
+사이드바는 항상 아래 3대 그룹 트리 구조를 고정 준수합니다:
+
+```text
+OVERVIEW (개요)
+├── Home / Architecture (index.html)
+├── Installation Guide (installation.html)
+└── Quickstart & Recipes (quickstart.html)
+
+OFFICIAL REFERENCE (공식 레퍼런스)
+├── API Reference (api-reference.html)
+├── Benchmarks & Profiling (benchmarks.html)
+├── Models Hub / Domain Presets (models.html 또는 advanced-parameters.html)
+└── Version Archive & Changelog (versions.html)
+
+AI & AGENT PROTOCOLS (AI 에이전트 전용 피드 & 떡밥즈)
+├── llms.txt (AI Matrix & Quick Reference)
+├── llms-full.txt (Full Architecture & API Spec)
+├── robots.txt (AI Bot Allowlist)
+├── sitemap.xml (Search Engine XML Sitemap)
+└── rss.xml (Release Feed)
+```
+
+---
+
+## 🤖 5. AI / LLM 에이전트 최적화 규격 (AI & LLM Feeds / 떡밥즈 표준 규격)
+
+모든 사이트는 전 세계 AI 코딩 에이전트(Cursor, Copilot, Antigravity, ChatGPT, Claude)와 검색엔진 크롤러가 1초 만에 색인하고 정확한 코드를 작성할 수 있도록 다음 4대 파일을 루트에 필수 탑재합니다:
+
+1. **`llms.txt` (경량 AI 요약)**:
+   - 30줄 내외, AI 코딩 도구가 한 번에 읽고 바로 정확한 코드를 생성할 수 있는 메타데이터, 설치법, 5줄 복붙 코드.
+2. **`llms-full.txt` (전체 심층 명세)**:
+   - 100% 전체 API 함수 시그니처, 인자 타입, 반환형, 예외 클래스, 메모리 라이프사이클.
+3. **`robots.txt` (전 세계 AI 크롤러 100% 허용)**:
+   - `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Bingbot`, `Applebot`, `AntigravityBot`에 `Crawl-delay: 0` 허용.
+4. **Schema.org JSON-LD (구조화 메타데이터)**:
+   - `<script type="application/ld+json">`에 `SoftwareApplication`, `TechArticle`, `FAQPage` 구조화 데이터 내장.
+
+---
+
+## 🎨 6. 표준 디자인 토큰 & 색상 규격 (Design Tokens)
 
 모든 사이트의 `assets/style.css`는 아래 CSS 변수 토큰을 표준으로 사용합니다:
 
@@ -59,7 +144,7 @@
 
 ---
 
-## 📐 3. 타이포그래피 및 글머리 계층 (Typography Scale)
+## 📐 7. 타이포그래피 및 글머리 계층 (Typography Scale)
 
 | 요소 | CSS 선택자 | 크기 / 두께 | 색상 | 스타일 규칙 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -75,121 +160,19 @@
 
 ---
 
-## 🏛️ 4. 표준 2단 레이아웃 및 HTML 구조
+## 🌐 8. 6개 국어 다국어 (i18n) 번역 딕셔너리 필수 키 매트릭스
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Name | Official Documentation</title>
-  <meta name="description" content="Production-ready library documentation.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js"></script>
-  <script src="assets/i18n-translations.js"></script>
-</head>
-<body>
-  <!-- 1. Top Header -->
-  <header>
-    <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="Logo">
-      <h1 data-i18n="common.brand">Library Name</h1>
-    </a>
-    <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Genesis)</span>
-      <div class="lang-selector-wrapper"></div>
-      <a href="https://pypi.org/project/package-name/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI Package</a>
-      <a href="https://github.com/uno-km/repo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repo</a>
-    </div>
-  </header>
-
-  <!-- 2. Container (Sidebar + Content) -->
-  <div class="container">
-    <!-- Left Sticky Sidebar -->
-    <nav class="sidebar">
-      <h3 data-i18n="nav.overview">Overview</h3>
-      <ul>
-        <li><a href="index.html" class="active" data-i18n="nav.home">Home / Architecture</a></li>
-        <li><a href="installation.html" data-i18n="nav.installation">Installation Guide</a></li>
-        <li><a href="quickstart.html" data-i18n="nav.quickstart">Quickstart &amp; Recipes</a></li>
-      </ul>
-
-      <h3 data-i18n="nav.reference">Reference</h3>
-      <ul>
-        <li><a href="api-reference.html" data-i18n="nav.apiRef">API Reference</a></li>
-        <li><a href="benchmarks.html" data-i18n="nav.benchmarks">Benchmarks &amp; Profiling</a></li>
-        <li><a href="versions.html" data-i18n="nav.versions">Version Archive</a></li>
-      </ul>
-
-      <h3 data-i18n="nav.aiSpecs">AI Agent Protocol</h3>
-      <ul>
-        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
-        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-        <li><a href="sitemap.xml" target="_blank">sitemap.xml</a></li>
-      </ul>
-    </nav>
-
-    <!-- Right Main Content -->
-    <main class="content">
-      <h2 data-i18n="page.title">Main Title</h2>
-      <p class="subtitle" data-i18n="page.subtitle">Short descriptive subtitle</p>
-
-      <!-- Badges Bar -->
-      <div class="badges-bar">
-        <img src="https://img.shields.io/pypi/v/package-name.svg?color=blue" alt="PyPI">
-        <img src="https://img.shields.io/npm/v/package-name.svg?color=red" alt="npm">
-        <img src="https://img.shields.io/badge/license-Apache_2.0-success.svg" alt="License">
-        <img src="https://img.shields.io/badge/tests-100%25_PASS-success" alt="Tests">
-      </div>
-
-      <!-- Alert Box -->
-      <div class="alert alert-tip">
-        <span class="alert-title" data-i18n="page.alertTitle">1-Line Quick Installation</span>
-        <p data-i18n="page.alertDesc">Run the command directly in your environment:</p>
-        <pre><code>pip install package-name</code></pre>
-      </div>
-
-      <!-- Feature Grid -->
-      <h3 data-i18n="page.secTitle">Key Capabilities</h3>
-      <div class="features-grid">
-        <div class="feature-card">
-          <h4 data-i18n="feat.title1">Capability One</h4>
-          <p data-i18n="feat.desc1">Description of capability one.</p>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- 3. Footer -->
-  <footer>
-    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved.</p>
-  </footer>
-</body>
-</html>
-```
+- **지원 언어**: `en` (English), `ko` (한국어), `ja` (日本語), `zh` (简体中文), `es` (Español), `de` (Deutsch)
+- **필수 딕셔너리 키 분류**:
+  * `common.*` (brand, releaseTag, pypiBtn, githubBtn, founderBtn, footer)
+  * `nav.*` (overview, home, installation, quickstart, reference, apiRef, benchmarks, models, versions, aiSpecs)
+  * `home.*` (title, subtitle, quickInstallTitle, quickInstallDesc, whyTitle, whyText, solTitle, solText, capTitle, codeExampleTitle)
+  * `install.*`, `quick.*`, `api.*`, `bench.*`, `models.*`, `versions.*`
+- **100% 번역 원칙**: 본문의 단 1개 텍스트 노드도 누락 없이 `data-i18n="key"` 속성을 바인딩해야 합니다.
 
 ---
 
-## 🌐 5. 6개 국어 다국어 (i18n) 아키텍처 규칙
-
-1. **지원 언어 매트릭스**:
-   - `en`: 🇺🇸 English (Default)
-   - `ko`: 🇰🇷 한국어
-   - `ja`: 🇯🇵 日本語
-   - `zh`: 🇨🇳 简体中文
-   - `es`: 🇪🇸 Español
-   - `de`: 🇩🇪 Deutsch
-2. **동작 메커니즘**:
-   - 브라우저 접속 시 `localStorage('aosf_lang')` &rarr; `navigator.language` &rarr; `'en'` 순으로 자동 감지.
-   - `data-i18n="key"`가 부여된 모든 태그의 `innerHTML`을 실시간 치환.
-3. **완전성 원칙 (100% Rule)**:
-   - **본문에 일반 텍스트만 단독으로 하드코딩하는 것을 엄격히 금지**하며, 반드시 `data-i18n` 키를 부여하고 `i18n-translations.js`의 6개 언어 딕셔너리에 모두 등록해야 합니다.
-
----
-
-## 🤖 6. [AI Agent Prompt Template] 후배 에이전트를 위한 마스터 프롬프트
+## 🤖 9. [AI Agent Prompt Template] 후배 에이전트를 위한 마스터 프롬프트
 
 새로운 라이브러리나 서브 프로젝트의 GitHub Pages 사이트를 만들 때 다음 프롬프트를 복사하여 실행합니다:
 
@@ -204,28 +187,27 @@
 - 패키지명 (PyPI / npm): [예: termux-torch / @termux/torch]
 - 핵심 사명: [예: 안드로이드 Bionic 네이티브 경량 텐서 & Autograd 엔진]
 - 깃허브 저장소: [예: https://github.com/uno-km/termux-torch]
+- 파비콘: docs/favicon.svg (uno-km 표준 벡터 파비콘 복사)
 
 ■ 필수 준수 규칙:
 1. 디자인 시스템:
-   - uno-km/docs/pages/templates/library/template_src/assets/style.css를 그대로 사용할 것.
+   - uno-km/docs/pages/templates/library/template_src/assets/style.css 표준 적용.
    - 상단 헤더(2px #004499 라인) + 좌측 고정 사이드바(270px) + 우측 본문(최대 980px).
    - 이모지 남발 금지 (담백한 특수문자 및 기호 사용).
-2. 필수 페이지 구성 (docs/):
-   - index.html (아키텍처 및 개요)
-   - installation.html (패키지 매니저별 설치)
-   - quickstart.html (실전 사용법 및 코드 예제)
-   - api-reference.html (100% API 상세 명세)
-   - benchmarks.html (하드웨어 성능 및 메모리 지표)
-   - versions.html (릴리즈 이력)
-   - llms.txt, llms-full.txt, robots.txt, sitemap.xml
-3. 다국어(i18n) 필수 구현:
-   - assets/i18n.js 및 assets/i18n-translations.js를 포함할 것.
-   - 모든 제목, 문단, 알림, 표(Table), 리스트에 data-i18n 속성을 부여하고 6개 국어(ko, en, ja, zh, es, de) 딕셔너리를 100% 완벽히 작성할 것.
+2. 첫 페이지 (index.html) 8대 필수 섹션:
+   - 1) 대제목/서브타이틀, 2) 배지바, 3) 1줄 설치 알림박스, 4) 기술과제 & 아키텍처 혁신,
+   - 5) 3~6개 기능카드 그리드, 6) 연산/모듈 데이터 테이블, 7) 정석 코드예제, 8) 시작하기 링크.
+3. 필수 7대 페이지 구성 (docs/):
+   - index.html, installation.html, quickstart.html, api-reference.html, benchmarks.html, versions.html, llms.txt, llms-full.txt, robots.txt, sitemap.xml
+4. 다국어(i18n) 100% 구현:
+   - assets/i18n.js 및 assets/i18n-translations.js 포함.
+   - 모든 제목, 문단, 알림, 표(Table), 리스트에 data-i18n 속성 바인딩.
+   - 6개 국어(ko, en, ja, zh, es, de) 딕셔너리 100% 전수 작성.
 ```
 
 ---
 
-## 🚀 7. 1-Click 자동 생성 스크립트 사용법
+## 🚀 10. 1-Click 자동 생성 스크립트 사용법
 
 ```bash
 # 1. 설정 파일 생성
