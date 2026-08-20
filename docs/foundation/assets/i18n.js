@@ -1,5 +1,5 @@
 /**
- * AMEVA Open-Source Foundation (AOSF) - Multilingual (i18n) Engine
+ * AMEVA Ecosystem - Multilingual (i18n) Core Engine
  * Zero-dependency, client-side internationalization manager with auto-detection.
  */
 
@@ -7,16 +7,16 @@
   'use strict';
 
   const SUPPORTED_LANGUAGES = {
-    'en': { code: 'en', name: 'English', nativeName: 'English' },
-    'ko': { code: 'ko', name: 'Korean', nativeName: '한국어' },
-    'ja': { code: 'ja', name: 'Japanese', nativeName: '日本語' },
-    'zh': { code: 'zh', name: 'Chinese', nativeName: '简体中文' },
-    'es': { code: 'es', name: 'Spanish', nativeName: 'Español' },
-    'de': { code: 'de', name: 'German', nativeName: 'Deutsch' }
+    'en': { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+    'ko': { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷' },
+    'ja': { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+    'zh': { code: 'zh', name: 'Chinese', nativeName: '简体中文', flag: '🇨🇳' },
+    'es': { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+    'hi': { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' }
   };
 
   const DEFAULT_LANG = 'en';
-  const STORAGE_KEY = 'aosf_foundation_lang';
+  const STORAGE_KEY = 'ameva_lib_doc_lang';
 
   class I18nManager {
     constructor() {
@@ -33,6 +33,7 @@
 
       this._setupLanguageSelectors();
       this._setupCodeCopyButtons();
+      this._setupTabs();
       this.applyLanguage(this.currentLang);
       this.initialized = true;
     }
@@ -77,74 +78,119 @@
       this.currentLang = lang;
       this._saveLang(lang);
       this.applyLanguage(lang);
+
+      document.querySelectorAll('.lang-select').forEach(sel => {
+        sel.value = lang;
+      });
+
+      document.documentElement.lang = lang;
     }
 
     applyLanguage(lang) {
-      document.documentElement.lang = lang;
       const dict = this.translations[lang] || this.translations[DEFAULT_LANG] || {};
 
-      const elements = document.querySelectorAll('[data-i18n]');
-      elements.forEach(el => {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (dict[key] !== undefined) {
-          el.innerHTML = dict[key];
+        const val = this._lookup(dict, key);
+        if (val !== undefined) {
+          el.textContent = val;
         }
       });
 
-      const selects = document.querySelectorAll('.lang-select');
-      selects.forEach(select => {
-        if (select.value !== lang) {
-          select.value = lang;
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        const val = this._lookup(dict, key);
+        if (val !== undefined) {
+          el.innerHTML = val;
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const val = this._lookup(dict, key);
+        if (val !== undefined) {
+          el.setAttribute('placeholder', val);
         }
       });
     }
 
+    _lookup(dict, keyPath) {
+      return keyPath.split('.').reduce((acc, part) => (acc && acc[part] !== undefined) ? acc[part] : undefined, dict);
+    }
+
     _setupLanguageSelectors() {
-      const wrappers = document.querySelectorAll('.lang-selector-wrapper');
-      wrappers.forEach(wrapper => {
+      const containers = document.querySelectorAll('.lang-selector-wrapper');
+      containers.forEach(container => {
         const select = document.createElement('select');
         select.className = 'lang-select';
         select.setAttribute('aria-label', 'Select Language');
 
-        Object.keys(SUPPORTED_LANGUAGES).forEach(code => {
+        Object.values(SUPPORTED_LANGUAGES).forEach(lang => {
           const opt = document.createElement('option');
-          opt.value = code;
-          opt.textContent = SUPPORTED_LANGUAGES[code].nativeName;
-          if (code === this.currentLang) opt.selected = true;
+          opt.value = lang.code;
+          opt.textContent = `${lang.nativeName} (${lang.name})`;
+          if (lang.code === this.currentLang) opt.selected = true;
           select.appendChild(opt);
         });
 
-        select.addEventListener('change', e => {
+        select.addEventListener('change', (e) => {
           this.setLanguage(e.target.value);
         });
 
-        wrapper.appendChild(select);
+        container.innerHTML = '';
+        container.appendChild(select);
       });
     }
 
     _setupCodeCopyButtons() {
-      const codeBlocks = document.querySelectorAll('pre');
-      codeBlocks.forEach(pre => {
-        if (pre.querySelector('.copy-btn')) return;
+      document.querySelectorAll('pre').forEach(pre => {
+        if (pre.parentElement.classList.contains('code-wrapper')) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
         const btn = document.createElement('button');
-        btn.className = 'btn-sm';
-        btn.style.cssText = 'position:absolute;top:8px;right:8px;cursor:pointer;background:#1e293b;color:#e2e8f0;border:1px solid #475569;';
+        btn.className = 'copy-btn';
         btn.textContent = 'Copy';
-        pre.style.position = 'relative';
-        btn.addEventListener('click', () => {
-          const code = pre.querySelector('code') || pre;
-          navigator.clipboard.writeText(code.innerText.replace('Copy', '').trim()).then(() => {
-            btn.textContent = 'Copied!';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+        btn.addEventListener('click', async () => {
+          const code = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
+          try {
+            await navigator.clipboard.writeText(code);
+            btn.textContent = 'Copied! ✓';
             setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-          });
+          } catch (err) {
+            btn.textContent = 'Failed';
+          }
         });
-        pre.appendChild(btn);
+
+        wrapper.appendChild(btn);
+      });
+    }
+
+    _setupTabs() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.tabs-container');
+          if (!parent) return;
+          const target = btn.getAttribute('data-tab');
+
+          parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+          btn.classList.add('active');
+          const targetContent = parent.querySelector(`.tab-content[data-tab-content="${target}"]`);
+          if (targetContent) targetContent.classList.add('active');
+        });
       });
     }
   }
 
-  global.AOSF_i18n = new I18nManager();
+  global.I18n = new I18nManager();
   document.addEventListener('DOMContentLoaded', () => {
-    global.AOSF_i18n.init();
+    global.I18n.init();
   });
 })(window);
