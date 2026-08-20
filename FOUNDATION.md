@@ -22,7 +22,7 @@ AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)은 개방형 거
 
 AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 따라 3단계 라이프사이클로 분류하여 육성합니다.
 
-### Tier 1: Flagship Projects (TLP / 대표 오픈소스)
+### Tier 1: Flagship Projects (TLP / 공식 배포 완료)
 엄격한 릴리즈 게이트를 통과하여 정식 배포되고, 프로덕션 레벨의 완성도와 안정성을 입증한 핵심 완제품 및 라이브러리입니다.
 
 | 프로젝트 | 런타임 & 기술 스택 | 핵심 역할 및 설명 | 패키지 및 문서 |
@@ -30,6 +30,9 @@ AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 �
 | [AMEVA Workstation (Web/Desktop)](https://ameva-workstation-web-core.vercel.app/) | WebGPU, Next.js, WASM | 세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 문서 리더 & 편집기, 인앱 비디오 컷팅, 1초 AI 이미지 누끼, 오디오 무음 자동삭제. | [라이브 앱](https://ameva-workstation-web-core.vercel.app/) · [GitHub](https://github.com/uno-km/AMEVA-Workstation-Web) |
 | [Termux-Playwright](https://github.com/uno-km/termux-playwright-demo)<br/>termux-playwright | Android Bionic<br/>Python, Node.js | 안드로이드 Termux 비루트(Non-root) 브라우저 자동화. ARM64 Chromium CDP 직접 제어 및 헤드리스 테스팅. | [문서](https://uno-km.github.io/termux-playwright-demo/) · [PyPI](https://pypi.org/project/termux-playwright/) · [npm](https://www.npmjs.com/package/termux-playwright) |
 | [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)<br/>termux-diffusion | On-Device AI<br/>Python, Node.js | 안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion. 모바일 엣지 기기에서 로컬 이미지 생성. | [문서](https://uno-km.github.io/termux-diffusion/) · [PyPI](https://pypi.org/project/termux-diffusion/) · [npm](https://www.npmjs.com/package/termux-diffusion) |
+| [Termux-STT](https://github.com/uno-km/termux-stt)<br/>termux-stt | On-Device STT<br/>Python, Node.js | 안드로이드 온디바이스 통합 음성인식(STT). Whisper.cpp, Vosk, Sherpa-ONNX 통합 및 순수 Python 화자 분리. | [문서](https://uno-km.github.io/termux-stt/) · [PyPI](https://pypi.org/project/termux-stt/) · [npm](https://www.npmjs.com/package/termux-stt) |
+| [Termux-Train](https://github.com/uno-km/termux-train)<br/>termux-train | Tensor & DL<br/>Python | 안드로이드 Bionic 네이티브 경량 텐서 & DAG Autograd 역전파, SafeTensors I/O, 온디바이스 LoRA 파인튜닝. | [문서](https://uno-km.github.io/termux-train/) · [PyPI](https://pypi.org/project/termux-train/) · [GitHub](https://github.com/uno-km/termux-train) |
+| [AMEVA-Forge](https://github.com/uno-km/ameva-forge)<br/>ameva-forge | WebGPU DL<br/>Python (Pyodide) | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine. PyTorch 호환 및 WGSL 셰이더 기반 브라우저 훈련. | [문서](https://uno-km.github.io/ameva-forge/demo.html) · [PyPI](https://pypi.org/project/ameva-forge/) · [GitHub](https://github.com/uno-km/ameva-forge) |
 
 ---
 
@@ -38,9 +41,8 @@ AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 �
 
 | 프로젝트 | 분류 | 핵심 목표 및 현황 | 바로가기 |
 |:---|:---:|:---|:---:|
-| [AMEVA-Forge](https://github.com/uno-km/ameva-forge) | WebGPU DL | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine. PyTorch 호환 및 WGSL 셰이더. | [문서](https://uno-km.github.io/ameva-forge/) · [데모](https://uno-km.github.io/ameva-forge/demo.html) |
-| [Termux-Torch](https://github.com/uno-km/termux-torch) | Tensor Engine | 안드로이드 Bionic 네이티브 경량 텐서 & 엄격한 Autograd backward 정책 엔진. | [GitHub](https://github.com/uno-km/termux-torch) |
-| [Termux-Whisper](https://github.com/uno-km/AMEVA-STT-Trainer) | On-Device STT | 엣지 디바이스 전용 Whisper 한국어 음성인식 & LoRA 파인튜닝 파이프라인. | [GitHub](https://github.com/uno-km/AMEVA-STT-Trainer) |
+| [AMEVA-Doc-AI](https://github.com/uno-km/AMEVA-Doc-AI) | Document AI | 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진. | [GitHub](https://github.com/uno-km/AMEVA-Doc-AI) |
+| [AMEVA-Edge-Agent](https://github.com/uno-km/AMEVA-Edge-Agent) | Edge Runtime | 임베디드 및 모바일 기기를 위한 자율 에이전트 마이크로 런타임. | [GitHub](https://github.com/uno-km/AMEVA-Edge-Agent) |
 
 ---
 
