@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundation Charter | AMEVA Open-Source Foundation</title>
+  <meta name="description" content="Official Charter and Mission Statement of the AMEVA Open-Source Foundation (AOSF).">
+  <link rel="icon" type="image/svg+xml" href="../../assets/brand/favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+  <!-- Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="../../assets/brand/favicon.svg" alt="AOSF Logo">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation (AOSF)</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag">Official Charter v1.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="../../index.html" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile (@uno-km)</a>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Central GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <h3 data-i18n="nav.overview">Foundation Overview</h3>
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home / 3-Tier Portfolio</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" data-i18n="nav.workstation">AMEVA Workstation Web</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.documents">Governance &amp; Bylaws</h3>
+      <ul>
+        <li><a href="charter.html" class="active" data-i18n="nav.charter">Charter &amp; Mission</a></li>
+        <li><a href="governance.html" data-i18n="nav.governance">Governance &amp; Meritocracy</a></li>
+        <li><a href="incubation.html" data-i18n="nav.incubation">Incubation Policy</a></li>
+        <li><a href="sponsorship.html" data-i18n="nav.sponsorship">Sponsorship &amp; Grants</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.aiSpecs">AI &amp; Machine Specs</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h2>Official Charter of the AMEVA Foundation</h2>
+      <p class="subtitle">재단 공식 헌장 및 사명 선언문 · Adopted August 2026</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Mission Statement (사명 선언)</span>
+        <p style="font-style: italic; margin-bottom: 0;">
+          "Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Tax"<br/>
+          거대 클라우드 벤더의 서버 과금과 종속 없이, 개인의 기기에서 100% 자율 구동되는 엣지 AI와 오토메이션 기술을 전 인류의 공공재로 민주화한다.
+        </p>
+      </div>
+
+      <h3>Article I. Name and Core Purpose (명칭 및 목적)</h3>
+      <p>
+        <strong>1.1 Name:</strong> The official name of this organization is the <strong>AMEVA Open-Source Foundation</strong> (hereinafter "AOSF" or "Foundation"; 한국어: AMEVA 오픈소스 재단).
+      </p>
+      <p>
+        <strong>1.2 Core Principles:</strong>
+      </p>
+      <ul>
+        <li><strong>Edge-First &amp; Zero-Cloud-Tax:</strong> All AI inference and automation pipelines are engineered to execute on end-user hardware (smartphones, browsers, edge boards) without mandatory cloud server dependencies.</li>
+        <li><strong>100% Data Sovereignty:</strong> User prompts, inputs, and inference results remain strictly inside client-side execution boundaries.</li>
+        <li><strong>Public Good &amp; Open Standards:</strong> Foundation deliverables are permanently licensed as open-source public goods.</li>
+        <li><strong>Strict Separation of Concerns:</strong> Foundation institutional assets and governance are operated strictly independently from Founder <a href="../../index.html">Eunho Kim (@uno-km)</a>'s private career track records.</li>
+      </ul>
+
+      <h3>Article II. Technical Scope (기술 범위)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Core Technologies</th>
+            <th>Primary Objectives</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mobile &amp; Edge Runtimes</strong></td>
+            <td>Android Bionic ARM64, Termux, NEON SIMD</td>
+            <td>Non-root browser automation (termux-playwright), on-device Stable Diffusion (termux-diffusion), and tensor autograd (termux-torch).</td>
+          </tr>
+          <tr>
+            <td><strong>Browser &amp; WebGPU AI</strong></td>
+            <td>WebGPU, WGSL, Pyodide WASM</td>
+            <td>Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).</td>
+          </tr>
+          <tr>
+            <td><strong>Autonomous Systems</strong></td>
+            <td>Docker, SRE Mesh, Multi-CLI</td>
+            <td>Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Article III. Licensing &amp; Intellectual Property</h3>
+      <p>
+        All software produced under AOSF is released under standard open-source licenses: the <strong>Apache License, Version 2.0</strong> or the <strong>MIT License</strong>. The trademarks "AMEVA" and "AOSF" are maintained by the foundation to guarantee ecosystem software integrity.
+      </p>
+
+      <h3>Article IV. Disclaimer of Liability (면책 조항)</h3>
+      <p>
+        All software and documentation are provided "AS IS", without warranty of any kind, express or implied. In no event shall the Foundation or its contributors be liable for any claim, damages, or other liability.
+      </p>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <strong>AMEVA Open-Source Foundation (AOSF)</strong>. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

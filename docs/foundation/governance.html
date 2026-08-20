@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Governance &amp; Meritocracy | AMEVA Open-Source Foundation</title>
+  <meta name="description" content="Governance, Meritocracy rules, PMC roles, and voting protocols of the AMEVA Open-Source Foundation (AOSF).">
+  <link rel="icon" type="image/svg+xml" href="../../assets/brand/favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+  <!-- Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="../../assets/brand/favicon.svg" alt="AOSF Logo">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation (AOSF)</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag">Governance &amp; Voting</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="../../index.html" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile (@uno-km)</a>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Central GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <h3 data-i18n="nav.overview">Foundation Overview</h3>
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home / 3-Tier Portfolio</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" data-i18n="nav.workstation">AMEVA Workstation Web</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.documents">Governance &amp; Bylaws</h3>
+      <ul>
+        <li><a href="charter.html" data-i18n="nav.charter">Charter &amp; Mission</a></li>
+        <li><a href="governance.html" class="active" data-i18n="nav.governance">Governance &amp; Meritocracy</a></li>
+        <li><a href="incubation.html" data-i18n="nav.incubation">Incubation Policy</a></li>
+        <li><a href="sponsorship.html" data-i18n="nav.sponsorship">Sponsorship &amp; Grants</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.aiSpecs">AI &amp; Machine Specs</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h2>Governance &amp; Meritocracy Guidelines</h2>
+      <p class="subtitle">AMEVA 재단 운영 규정 및 메리토크라시 헌장</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Meritocracy Principle (실력주의 원칙)</span>
+        <p style="margin-bottom: 0;">
+          AOSF operates on the principle that "code and demonstrable contributions speak louder than corporate affiliation or titles." Authority is earned through sustained technical contributions, rigorous code reviews, and transparent community stewardship.
+        </p>
+      </div>
+
+      <h3>1. Organizational Hierarchy</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Qualification</th>
+            <th>Core Responsibilities &amp; Privileges</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Board of Directors</strong></td>
+            <td>Foundational Leadership</td>
+            <td>Strategic governance, legal oversight, trademark stewardship. Chair: Eunho Kim (@uno-km).</td>
+          </tr>
+          <tr>
+            <td><strong>Project Management Committee (PMC)</strong></td>
+            <td>Elected Key Maintainers</td>
+            <td>Technical roadmap approval, package release authorization (PyPI/npm), committer nominations.</td>
+          </tr>
+          <tr>
+            <td><strong>Committers</strong></td>
+            <td>Active Regular Contributors</td>
+            <td>Direct write access to project repositories, PR reviews, bug triage.</td>
+          </tr>
+          <tr>
+            <td><strong>Contributors &amp; Users</strong></td>
+            <td>Global Community</td>
+            <td>Issue reporting, feature requests, patch submissions, documentation improvements.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Decision-Making &amp; Voting Protocol</h3>
+      <p>All formal decisions follow standard open-source consensus voting:</p>
+      <ul>
+        <li><strong>+1 (Approval):</strong> Agreement with the proposal.</li>
+        <li><strong>0 (Abstain):</strong> Neutral or no opinion.</li>
+        <li><strong>-1 (Veto):</strong> Clear objection. Must be accompanied by technical justification and an alternative proposal.</li>
+      </ul>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Action Type</th>
+            <th>Minimum Requirement</th>
+            <th>Veto Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Code PR Merge</strong></td>
+            <td>At least one +1 from a Committer</td>
+            <td>-1 halts merge until technical consensus is reached</td>
+          </tr>
+          <tr>
+            <td><strong>Package Release (PyPI/npm)</strong></td>
+            <td>At least three +1s from PMC members</td>
+            <td>Majority rules (+1 &gt; -1) after 72-hour window</td>
+          </tr>
+          <tr>
+            <td><strong>New Committer Election</strong></td>
+            <td>At least three +1s from PMC members</td>
+            <td>Consensus with zero vetoes</td>
+          </tr>
+          <tr>
+            <td><strong>TLP Graduation</strong></td>
+            <td>2/3 majority vote of Board &amp; PMC</td>
+            <td>Final ratification by Board of Directors</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Quality &amp; Verification Gates</h3>
+      <p>Before any package is tagged or published, it must pass 4 verification gates:</p>
+      <ol>
+        <li>Automated CI/CD suite with 100% PASS on all unit and integration tests.</li>
+        <li>Single-Source Op Contract verification without broken dependencies.</li>
+        <li>Zero unverified claims or lint errors in documentation.</li>
+        <li>Successful reproducible build in an isolated clean environment.</li>
+      </ol>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <strong>AMEVA Open-Source Foundation (AOSF)</strong>. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

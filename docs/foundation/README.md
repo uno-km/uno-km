@@ -6,12 +6,12 @@ Welcome to the official governance and documentation repository of the AMEVA Ope
 
 ## Foundation Governance & Policy Documents
 
-| Document | Description | Korean Summary |
-|:---|:---|:---|
-| [CHARTER.md](CHARTER.md) | Official Foundation Charter, Mission, Core Principles & Licensing | 재단 공식 헌장, 사명, 핵심 원칙 및 라이선스 정책 |
-| [GOVERNANCE.md](GOVERNANCE.md) | Meritocracy, PMC, Committership & Voting Rules | 메리토크라시 거버넌스 및 의사결정 투표 규정 |
-| [INCUBATION_POLICY.md](INCUBATION_POLICY.md) | 3-Tier Lifecycle from Labs to Top-Level Project (TLP) | 3단계 프로젝트 라이프사이클 및 TLP 승격 기준 |
-| [SPONSORSHIP.md](SPONSORSHIP.md) | Financial Transparency, GitHub Sponsors & Open Collective | 후원 체계, 재정 투명성 및 스폰서 혜택 |
+| Document | Web Portal (HTML) | Markdown Source | Description |
+|:---|:---|:---|:---|
+| Foundation Charter | [charter.html](charter.html) | [CHARTER.md](CHARTER.md) | Official Foundation Charter, Mission, Core Principles & Licensing |
+| Governance & Meritocracy | [governance.html](governance.html) | [GOVERNANCE.md](GOVERNANCE.md) | Meritocracy, PMC, Committership & Voting Rules |
+| Incubation Policy | [incubation.html](incubation.html) | [INCUBATION_POLICY.md](INCUBATION_POLICY.md) | 3-Tier Lifecycle from Labs to Top-Level Project (TLP) |
+| Sponsorship & Support | [sponsorship.html](sponsorship.html) | [SPONSORSHIP.md](SPONSORSHIP.md) | Financial Transparency, GitHub Sponsors & Open Collective |
 
 ---
 

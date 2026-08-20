@@ -3,7 +3,7 @@
 Democratizing On-Device AI & Autonomous Systems Without Cloud Tax  
 클라우드 종속과 서버 비용 없는 순수 클라이언트 엣지 AI & 자율 시스템
 
-[Foundation Charter](docs/foundation/CHARTER.md) | [Governance](docs/foundation/GOVERNANCE.md) | [Incubation Policy](docs/foundation/INCUBATION_POLICY.md) | [Sponsorship](docs/foundation/SPONSORSHIP.md) | [Foundation Portal](https://uno-km.github.io/uno-km/docs/foundation/)
+[Foundation Charter](https://uno-km.github.io/uno-km/docs/foundation/charter.html) | [Governance](https://uno-km.github.io/uno-km/docs/foundation/governance.html) | [Incubation Policy](https://uno-km.github.io/uno-km/docs/foundation/incubation.html) | [Sponsorship](https://uno-km.github.io/uno-km/docs/foundation/sponsorship.html) | [Foundation Portal](https://uno-km.github.io/uno-km/docs/foundation/)
 
 ---
 
@@ -60,12 +60,12 @@ AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 �
 
 ## Foundation Governance & Guidelines
 
-재단의 모든 규정과 운영 방침은 다음 공식 문서에 명시되어 있습니다:
+재단의 모든 규정과 운영 방침은 다음 공식 웹 문서 및 리포지토리에서 확인할 수 있습니다:
 
-- [Foundation Charter (재단 헌장)](docs/foundation/CHARTER.md) - 설립 사명, 기술 범위, 지적재산권 및 라이선스 정책
-- [Governance & Meritocracy (운영 규정)](docs/foundation/GOVERNANCE.md) - 메리토크라시, PMC 및 커미터 권한, 의사결정 투표제
-- [Incubation Policy (인큐베이션 정책)](docs/foundation/INCUBATION_POLICY.md) - 신규 프로젝트 제안부터 플래그십 승격까지의 3단계 가이드라인
-- [Sponsorship & Support (후원 안내)](docs/foundation/SPONSORSHIP.md) - 오픈소스 공공재 유지를 위한 재정 투명성 및 후원 안내
+- [Foundation Charter (재단 헌장)](https://uno-km.github.io/uno-km/docs/foundation/charter.html) ([Markdown](docs/foundation/CHARTER.md)) - 설립 사명, 기술 범위, 지적재산권 및 라이선스 정책
+- [Governance & Meritocracy (운영 규정)](https://uno-km.github.io/uno-km/docs/foundation/governance.html) ([Markdown](docs/foundation/GOVERNANCE.md)) - 메리토크라시, PMC 및 커미터 권한, 의사결정 투표제
+- [Incubation Policy (인큐베이션 정책)](https://uno-km.github.io/uno-km/docs/foundation/incubation.html) ([Markdown](docs/foundation/INCUBATION_POLICY.md)) - 신규 프로젝트 제안부터 플래그십 승격까지의 3단계 가이드라인
+- [Sponsorship & Support (후원 안내)](https://uno-km.github.io/uno-km/docs/foundation/sponsorship.html) ([Markdown](docs/foundation/SPONSORSHIP.md)) - 오픈소스 공공재 유지를 위한 재정 투명성 및 후원 안내
 
 ---
 
