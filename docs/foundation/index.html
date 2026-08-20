@@ -15,20 +15,18 @@
   <meta property="og:url" content="https://uno-km.github.io/uno-km/docs/foundation/">
   <meta property="og:image" content="https://raw.githubusercontent.com/uno-km/uno-km/main/assets/brand/social_card.png">
 
-  <!-- Classic Apache/Tomcat Engineering Design System -->
   <style>
     :root {
       --primary: #003399;
       --primary-dark: #002266;
       --secondary: #00887A;
-      --accent: #d22128;
+      --accent: #b91c1c;
       --bg-main: #f8fafc;
       --bg-card: #ffffff;
       --border-color: #cbd5e1;
-      --border-dark: #94a3b8;
       --text-main: #0f172a;
       --text-muted: #475569;
-      --header-bg: #002b66;
+      --header-bg: #0f172a;
       --header-text: #ffffff;
       --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -42,12 +40,12 @@
       line-height: 1.6;
     }
 
-    /* 🏛️ Top Header */
+    /* Header */
     header.foundation-header {
-      background: linear-gradient(135deg, var(--header-bg) 0%, #001a40 100%);
+      background: var(--header-bg);
       color: var(--header-text);
       padding: 12px 24px;
-      border-bottom: 3px solid var(--accent);
+      border-bottom: 2px solid var(--primary);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,44 +54,42 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: #fff;
     }
-    .brand-logo { width: 34px; height: 34px; }
-    .brand-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.5px; }
+    .brand-title { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.3px; }
     .brand-tag {
-      background: var(--accent);
-      color: #fff;
+      background: #334155;
+      color: #e2e8f0;
       font-size: 0.72rem;
       padding: 2px 6px;
       border-radius: 3px;
       font-weight: 600;
-      text-transform: uppercase;
     }
 
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
     .nav-link {
-      color: #e2e8f0;
+      color: #cbd5e1;
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 4px;
       transition: background 0.2s;
     }
-    .nav-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
     .nav-btn-founder {
       background: #fef3c7;
       color: #92400e !important;
@@ -106,15 +102,15 @@
       color: #0f172a;
       border: 1px solid #94a3b8;
       border-radius: 4px;
-      padding: 5px 8px;
+      padding: 4px 8px;
       font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
     }
 
-    /* 🏛️ Layout Container */
+    /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 24px 20px;
     }
@@ -123,98 +119,80 @@
     .hero-banner {
       background: #ffffff;
       border: 1px solid var(--border-color);
-      border-left: 6px solid var(--primary);
-      border-radius: 6px;
-      padding: 32px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .hero-badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    .hero-badge {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 8px;
+      border-left: 4px solid var(--primary);
       border-radius: 4px;
-      background: #e0f2fe;
-      color: #0369a1;
+      padding: 28px;
+      margin-bottom: 24px;
     }
-    .hero-title { font-size: 1.85rem; font-weight: 800; color: var(--header-bg); margin-bottom: 8px; }
-    .hero-subtitle { font-size: 1.08rem; color: #334155; font-style: italic; margin-bottom: 16px; }
-    .hero-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+    .hero-title { font-size: 1.6rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+    .hero-subtitle { font-size: 1rem; color: #475569; margin-bottom: 14px; }
+    .hero-desc { font-size: 0.92rem; color: #475569; line-height: 1.65; }
 
     /* Section Layout */
     .section-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--primary-dark);
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #e2e8f0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: #0f172a;
+      margin: 32px 0 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
     }
 
     /* 3-Tier Grid */
-    .tier-container { margin-bottom: 28px; }
+    .tier-container { margin-bottom: 24px; }
     .tier-header {
-      background: #e2e8f0;
-      padding: 10px 16px;
-      font-size: 1.02rem;
+      padding: 8px 14px;
+      font-size: 0.95rem;
       font-weight: 700;
-      border-radius: 6px 6px 0 0;
+      border-radius: 4px 4px 0 0;
       border: 1px solid var(--border-color);
       border-bottom: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .tier-header.t1 { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
-    .tier-header.t2 { background: #fef3c7; color: #92400e; border-color: #fde68a; }
-    .tier-header.t3 { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+    .tier-header.t1 { background: #f1f5f9; color: #1e293b; }
+    .tier-header.t2 { background: #f8fafc; color: #334155; }
+    .tier-header.t3 { background: #f8fafc; color: #475569; }
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px;
       background: #ffffff;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid var(--border-color);
-      border-radius: 0 0 6px 6px;
+      border-radius: 0 0 4px 4px;
     }
 
     .project-card {
       border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 16px;
+      border-radius: 4px;
+      padding: 14px;
       background: #ffffff;
-      transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     .project-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-      border-color: var(--primary);
+      border-color: #94a3b8;
     }
-    .card-top { margin-bottom: 12px; }
-    .card-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .card-title { font-size: 1.08rem; font-weight: 700; color: var(--header-bg); text-decoration: none; }
+    .card-top { margin-bottom: 10px; }
+    .card-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .card-title { font-size: 1rem; font-weight: 700; color: #0f172a; text-decoration: none; }
     .card-title:hover { color: var(--primary); text-decoration: underline; }
-    .card-tag { font-size: 0.72rem; padding: 2px 6px; border-radius: 3px; font-weight: 600; background: #f1f5f9; color: #475569; }
-    .card-desc { font-size: 0.88rem; color: #475569; line-height: 1.55; margin-bottom: 10px; }
-    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-    .card-links { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.82rem; }
+    .card-tag { font-size: 0.72rem; padding: 2px 5px; border-radius: 3px; font-weight: 600; background: #f1f5f9; color: #475569; }
+    .card-desc { font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 8px; }
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+    .card-links { display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.8rem; }
     .btn-link {
-      padding: 4px 10px;
-      border-radius: 4px;
+      padding: 3px 8px;
+      border-radius: 3px;
       text-decoration: none;
       font-weight: 600;
       border: 1px solid var(--border-color);
       color: #334155;
       background: #f8fafc;
-      transition: background 0.2s;
     }
     .btn-link:hover { background: #e2e8f0; color: #0f172a; }
     .btn-link-primary { background: #003399; color: #ffffff; border-color: #003399; }
@@ -225,53 +203,47 @@
       width: 100%;
       border-collapse: collapse;
       background: #ffffff;
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
       border: 1px solid var(--border-color);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .docs-table th, .docs-table td {
-      padding: 12px 16px;
+      padding: 10px 14px;
       text-align: left;
       border-bottom: 1px solid #e2e8f0;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }
-    .docs-table th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
+    .docs-table th { background: #f8fafc; font-weight: 700; color: #1e293b; }
     .docs-table tr:hover { background: #f8fafc; }
     .docs-table a { color: var(--primary); text-decoration: none; font-weight: 600; }
     .docs-table a:hover { text-decoration: underline; }
 
     /* Separation of Concerns Banner */
     .founder-separation-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 6px;
-      padding: 20px;
-      margin: 32px 0;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 18px;
+      margin: 24px 0;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
       flex-wrap: wrap;
     }
-    .founder-separation-box img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 2px solid #3b82f6;
-    }
-    .founder-info h4 { font-size: 1.05rem; color: #1e3a8a; margin-bottom: 4px; }
-    .founder-info p { font-size: 0.88rem; color: #3b82f6; line-height: 1.5; }
-    .founder-info a { color: #1d4ed8; font-weight: 700; text-decoration: underline; }
+    .founder-info h4 { font-size: 0.98rem; color: #0f172a; margin-bottom: 4px; font-weight: 700; }
+    .founder-info p { font-size: 0.86rem; color: #475569; line-height: 1.5; }
+    .founder-info a { color: var(--primary); font-weight: 600; text-decoration: underline; }
 
     /* Footer */
     footer.foundation-footer {
       background: #0f172a;
       color: #94a3b8;
-      padding: 32px 20px;
+      padding: 24px 20px;
       text-align: center;
-      font-size: 0.85rem;
-      border-top: 3px solid var(--primary);
-      margin-top: 48px;
+      font-size: 0.82rem;
+      border-top: 1px solid #334155;
+      margin-top: 40px;
     }
     footer.foundation-footer a { color: #cbd5e1; text-decoration: none; }
     footer.foundation-footer a:hover { color: #fff; text-decoration: underline; }
@@ -279,58 +251,52 @@
 </head>
 <body>
 
-  <!-- 🏛️ Top Header -->
+  <!-- Header -->
   <header class="foundation-header">
     <a href="#" class="brand-group">
-      <img src="../../assets/brand/favicon.svg" alt="AOSF Logo" class="brand-logo">
       <span class="brand-title">AMEVA Open-Source Foundation (AOSF)</span>
       <span class="brand-tag">Apache 2.0 / MIT</span>
     </a>
 
     <nav class="header-nav">
-      <a href="CHARTER.md" class="nav-link" data-i18n="nav.charter">📜 Charter</a>
-      <a href="GOVERNANCE.md" class="nav-link" data-i18n="nav.governance">⚖️ Governance</a>
-      <a href="INCUBATION_POLICY.md" class="nav-link" data-i18n="nav.incubation">🌱 Incubation</a>
-      <a href="SPONSORSHIP.md" class="nav-link" data-i18n="nav.sponsorship">💖 Sponsorship</a>
-      <a href="../../index.html" class="nav-link nav-btn-founder" data-i18n="nav.founder">👤 Founder Profile (@uno-km)</a>
+      <a href="CHARTER.md" class="nav-link" data-i18n="nav.charter">Charter</a>
+      <a href="GOVERNANCE.md" class="nav-link" data-i18n="nav.governance">Governance</a>
+      <a href="INCUBATION_POLICY.md" class="nav-link" data-i18n="nav.incubation">Incubation</a>
+      <a href="SPONSORSHIP.md" class="nav-link" data-i18n="nav.sponsorship">Sponsorship</a>
+      <a href="../../index.html" class="nav-link nav-btn-founder" data-i18n="nav.founder">Founder Profile (@uno-km)</a>
       
-      <!-- 🌐 6-Language Selector -->
+      <!-- 6-Language Selector -->
       <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
-        <option value="en" selected>🇺🇸 English</option>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="zh">🇨🇳 简体中文</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="de">🇩🇪 Deutsch</option>
+        <option value="en" selected>English</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+        <option value="zh">简体中文</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
       </select>
     </nav>
   </header>
 
-  <!-- 🏛️ Main Content Container -->
+  <!-- Main Container -->
   <div class="container">
 
-    <!-- Hero Mission Banner -->
+    <!-- Hero Banner -->
     <section class="hero-banner">
-      <div class="hero-badge-row">
-        <span class="hero-badge">🏛️ Independent Open-Source Body</span>
-        <span class="hero-badge">⚖️ Apache Meritocracy Model</span>
-        <span class="hero-badge">📱 Edge-Native &amp; Zero Cloud Tax</span>
-      </div>
       <h1 class="hero-title" data-i18n="hero.title">AMEVA Open-Source Foundation (AOSF)</h1>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">"Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Tax"</p>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Democratizing On-Device AI & Autonomous Systems Without Cloud Tax</p>
       <p class="hero-desc" data-i18n="hero.desc">
-        AOSF is an independent non-profit open-source foundation modeled after the Apache Software Foundation (ASF) and Linux Foundation. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.
+        AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.
       </p>
     </section>
 
-    <!-- 📊 3-Tier Project Portfolio -->
-    <h2 class="section-title" data-i18n="sec.portfolio">📊 3-Tier Project Portfolio &amp; Runtimes</h2>
+    <!-- 3-Tier Portfolio -->
+    <h2 class="section-title" data-i18n="sec.portfolio">3-Tier Project Portfolio & Runtimes</h2>
 
     <!-- Tier 1: Flagship TLP -->
     <div class="tier-container">
       <div class="tier-header t1">
-        <span data-i18n="tier1.title">🏆 Tier 1: Flagship Top-Level Projects (TLP)</span>
-        <span style="font-size: 0.8rem; font-weight: normal;">Production-Ready · PyPI &amp; npm Verified</span>
+        <span data-i18n="tier1.title">Tier 1: Flagship Top-Level Projects (TLP)</span>
+        <span style="font-size: 0.8rem; font-weight: normal;">Production-Ready · PyPI & npm Verified</span>
       </div>
       <div class="project-grid">
         
@@ -338,7 +304,7 @@
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="card-title">📱 Termux-Playwright</a>
+              <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="card-title">Termux-Playwright</a>
               <span class="card-tag">Android Bionic</span>
             </div>
             <p class="card-desc" data-i18n="proj.playwright">Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.</p>
@@ -348,8 +314,8 @@
             </div>
           </div>
           <div class="card-links">
-            <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="btn-link btn-link-primary">📖 Docs</a>
-            <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="btn-link btn-link-primary">Docs</a>
+            <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
@@ -357,7 +323,7 @@
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="card-title">🎨 Termux-Diffusion</a>
+              <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="card-title">Termux-Diffusion</a>
               <span class="card-tag">On-Device AI</span>
             </div>
             <p class="card-desc" data-i18n="proj.diffusion">Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
@@ -367,8 +333,8 @@
             </div>
           </div>
           <div class="card-links">
-            <a href="https://uno-km.github.io/termux-diffusion/" target="_blank" class="btn-link btn-link-primary">📖 Docs</a>
-            <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://uno-km.github.io/termux-diffusion/" target="_blank" class="btn-link btn-link-primary">Docs</a>
+            <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
@@ -378,7 +344,7 @@
     <!-- Tier 2: Incubating Projects -->
     <div class="tier-container">
       <div class="tier-header t2">
-        <span data-i18n="tier2.title">🧪 Tier 2: Incubating Projects</span>
+        <span data-i18n="tier2.title">Tier 2: Incubating Projects</span>
         <span style="font-size: 0.8rem; font-weight: normal;">Standardization · Op Contracts · In Active Hardening</span>
       </div>
       <div class="project-grid">
@@ -387,15 +353,15 @@
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="card-title">⚡ AMEVA-Forge</a>
+              <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="card-title">AMEVA-Forge</a>
               <span class="card-tag">WebGPU Autograd</span>
             </div>
             <p class="card-desc" data-i18n="proj.forge">Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.</p>
           </div>
           <div class="card-links">
-            <a href="https://uno-km.github.io/ameva-forge/" target="_blank" class="btn-link btn-link-primary">📖 Docs</a>
-            <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="btn-link">⚡ Live Demo</a>
-            <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://uno-km.github.io/ameva-forge/" target="_blank" class="btn-link btn-link-primary">Docs</a>
+            <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="btn-link">Live Demo</a>
+            <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
@@ -403,13 +369,13 @@
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/termux-torch" target="_blank" class="card-title">🔥 Termux-Torch</a>
+              <a href="https://github.com/uno-km/termux-torch" target="_blank" class="card-title">Termux-Torch</a>
               <span class="card-tag">Tensor Engine</span>
             </div>
             <p class="card-desc" data-i18n="proj.torch">Ultra-lightweight on-device Tensor and Autograd engine engineered for Android Bionic and embedded edge micro-runtimes.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/termux-torch" target="_blank" class="btn-link btn-link-primary">🐙 GitHub Repo</a>
+            <a href="https://github.com/uno-km/termux-torch" target="_blank" class="btn-link btn-link-primary">GitHub Repo</a>
           </div>
         </div>
 
@@ -417,13 +383,13 @@
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/AMEVA-STT-Trainer" target="_blank" class="card-title">🎙️ Termux-Whisper</a>
+              <a href="https://github.com/uno-km/AMEVA-STT-Trainer" target="_blank" class="card-title">Termux-Whisper</a>
               <span class="card-tag">Edge Speech AI</span>
             </div>
             <p class="card-desc" data-i18n="proj.whisper">On-device Whisper Korean speech recognition and LoRA fine-tuning pipeline designed for resource-constrained edge hardware.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/AMEVA-STT-Trainer" target="_blank" class="btn-link btn-link-primary">🐙 GitHub Repo</a>
+            <a href="https://github.com/uno-km/AMEVA-STT-Trainer" target="_blank" class="btn-link btn-link-primary">GitHub Repo</a>
           </div>
         </div>
 
@@ -433,82 +399,82 @@
     <!-- Tier 3: Labs & Research -->
     <div class="tier-container">
       <div class="tier-header t3">
-        <span data-i18n="tier3.title">🔬 Tier 3: Labs &amp; Research</span>
-        <span style="font-size: 0.8rem; font-weight: normal;">Experimental Prototypes &amp; Visionary Systems</span>
+        <span data-i18n="tier3.title">Tier 3: Labs & Research</span>
+        <span style="font-size: 0.8rem; font-weight: normal;">Experimental Prototypes & Visionary Systems</span>
       </div>
       <div class="project-grid">
 
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/AMEVA-Dead-Internet-Threatre" target="_blank" class="card-title">🎭 Dead Internet Theatre</a>
+              <a href="https://github.com/uno-km/AMEVA-Dead-Internet-Threatre" target="_blank" class="card-title">Dead Internet Theatre</a>
               <span class="card-tag">Simulation</span>
             </div>
             <p class="card-desc">Docker-based 100% autonomous multi-agent social simulation environment where AI agents interact and form emergent discourse.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/AMEVA-Dead-Internet-Threatre" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://github.com/uno-km/AMEVA-Dead-Internet-Threatre" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/AMEVA-Agent-Orchestra" target="_blank" class="card-title">🎼 AMEVA Agent Orchestra</a>
+              <a href="https://github.com/uno-km/AMEVA-Agent-Orchestra" target="_blank" class="card-title">AMEVA Agent Orchestra</a>
               <span class="card-tag">Multi-Agent</span>
             </div>
             <p class="card-desc">Hierarchical multi-agent orchestration engine splitting planning (Nobles) and execution (Workers) to prevent semantic drift.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/AMEVA-Agent-Orchestra" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://github.com/uno-km/AMEVA-Agent-Orchestra" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="card-title">⚙️ MCP-Wasm-Toolkit</a>
+              <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="card-title">MCP-Wasm-Toolkit</a>
               <span class="card-tag">WASM Sandbox</span>
             </div>
             <p class="card-desc">Runs high-risk tool operations inside 100% isolated browser Pyodide WASM sandboxes to ensure zero-leakage security boundaries.</p>
           </div>
           <div class="card-links">
-            <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="btn-link btn-link-primary">🚀 Launch OS</a>
-            <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="btn-link btn-link-primary">Launch OS</a>
+            <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="card-title">💻 AMEVA-Multi-CLI</a>
+              <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="card-title">AMEVA-Multi-CLI</a>
               <span class="card-tag">Terminal UI</span>
             </div>
             <p class="card-desc">Tree-based recursive multi-split terminal workbench with 80 FPS smart PTY batching and DevSecOps guardrails.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
         <div class="project-card">
           <div class="card-top">
             <div class="card-title-row">
-              <a href="https://github.com/uno-km/BitNet" target="_blank" class="card-title">🧠 BitNet Contributions</a>
+              <a href="https://github.com/uno-km/BitNet" target="_blank" class="card-title">BitNet Contributions</a>
               <span class="card-tag">1-Bit LLM</span>
             </div>
             <p class="card-desc">1-bit quantization (1.58-bit) LLM ARM NEON / I2_S kernel optimizations and build pull requests for edge CPU inference.</p>
           </div>
           <div class="card-links">
-            <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-link">🐙 GitHub</a>
+            <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-link">GitHub</a>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- 📜 Foundation Governance & Bylaws -->
-    <h2 class="section-title" data-i18n="sec.governance">📜 Foundation Governance &amp; Bylaws</h2>
+    <!-- Governance Docs Table -->
+    <h2 class="section-title" data-i18n="sec.governance">Foundation Governance & Bylaws</h2>
     <table class="docs-table">
       <thead>
         <tr>
@@ -520,50 +486,49 @@
       </thead>
       <tbody>
         <tr>
-          <td><a href="CHARTER.md">📜 CHARTER.md</a></td>
-          <td>Foundation Charter, Mission, Core Principles &amp; Licensing Scope</td>
+          <td><a href="CHARTER.md">CHARTER.md</a></td>
+          <td>Foundation Charter, Mission, Core Principles & Licensing Scope</td>
           <td>재단 공식 헌장, 사명, 핵심 원칙 및 라이선스 정책</td>
           <td><a href="CHARTER.md" class="btn-link">Read</a></td>
         </tr>
         <tr>
-          <td><a href="GOVERNANCE.md">⚖️ GOVERNANCE.md</a></td>
-          <td>Apache-Style Meritocracy, PMC, Committership &amp; Voting Rules</td>
-          <td>아파치식 메리토크라시 거버넌스 및 의사결정 투표 규정</td>
+          <td><a href="GOVERNANCE.md">GOVERNANCE.md</a></td>
+          <td>Meritocracy, PMC, Committership & Voting Rules</td>
+          <td>메리토크라시 거버넌스 및 의사결정 투표 규정</td>
           <td><a href="GOVERNANCE.md" class="btn-link">Read</a></td>
         </tr>
         <tr>
-          <td><a href="INCUBATION_POLICY.md">🌱 INCUBATION_POLICY.md</a></td>
+          <td><a href="INCUBATION_POLICY.md">INCUBATION_POLICY.md</a></td>
           <td>3-Tier Project Lifecycle from Labs to Top-Level Project (TLP)</td>
           <td>3단계 프로젝트 라이프사이클 및 TLP 승격 기준</td>
           <td><a href="INCUBATION_POLICY.md" class="btn-link">Read</a></td>
         </tr>
         <tr>
-          <td><a href="SPONSORSHIP.md">💖 SPONSORSHIP.md</a></td>
-          <td>Financial Transparency, GitHub Sponsors &amp; Open Collective</td>
+          <td><a href="SPONSORSHIP.md">SPONSORSHIP.md</a></td>
+          <td>Financial Transparency, GitHub Sponsors & Open Collective</td>
           <td>후원 체계, 재정 투명성 및 스폰서 혜택</td>
           <td><a href="SPONSORSHIP.md" class="btn-link">Read</a></td>
         </tr>
       </tbody>
     </table>
 
-    <!-- 👤 2-Tier Separation Note: Founder Profile -->
+    <!-- Separation of Concerns -->
     <div class="founder-separation-box">
-      <img src="../../assets/images/profile.jpg" alt="Founder Eunho Kim">
       <div class="founder-info">
-        <h4 data-i18n="sep.title">🏛️ Foundation &amp; Founder Separation of Concerns (공사 분리 원칙)</h4>
+        <h4 data-i18n="sep.title">Foundation & Founder Separation of Concerns (공사 분리 원칙)</h4>
         <p data-i18n="sep.desc">
-          AMEVA Open-Source Foundation (AOSF) operates as an independent technical entity. Personal career track records, private contact details, and professional consulting profiles of Founder <strong>Eunho Kim (@uno-km)</strong> are maintained strictly separately in the <a href="../../index.html">Personal Digital CV &amp; Executive Portfolio</a>.
+          AMEVA Open-Source Foundation (AOSF) operates as an independent technical entity. Personal career track records, private contact details, and professional consulting profiles of Founder Eunho Kim (@uno-km) are maintained strictly separately in the <a href="../../index.html">Personal Digital CV & Executive Portfolio</a>.
         </p>
       </div>
     </div>
 
   </div>
 
-  <!-- 🏛️ Footer -->
+  <!-- Footer -->
   <footer class="foundation-footer">
-    <p>&copy; 2026 <strong>AMEVA Open-Source Foundation (AOSF)</strong>. All Rights Reserved.</p>
+    <p>&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved.</p>
     <p style="margin-top: 6px;">
-      Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>. Modeled after ASF &amp; Linux Foundation Meritocracy.
+      Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.
     </p>
     <p style="margin-top: 8px;">
       <a href="../../index.html">Founder Profile</a> · 
@@ -575,95 +540,95 @@
     </p>
   </footer>
 
-  <!-- 🌐 i18n Translation Dictionary -->
+  <!-- i18n Translation Dictionary -->
   <script>
     const i18n = {
       "en": {
-        "nav.charter": "📜 Charter",
-        "nav.governance": "⚖️ Governance",
-        "nav.incubation": "🌱 Incubation",
-        "nav.sponsorship": "💖 Sponsorship",
-        "nav.founder": "👤 Founder Profile (@uno-km)",
+        "nav.charter": "Charter",
+        "nav.governance": "Governance",
+        "nav.incubation": "Incubation",
+        "nav.sponsorship": "Sponsorship",
+        "nav.founder": "Founder Profile (@uno-km)",
         "hero.title": "AMEVA Open-Source Foundation (AOSF)",
-        "hero.subtitle": "\"Democratizing On-Device AI & Autonomous Systems Without Cloud Tax\"",
-        "hero.desc": "AOSF is an independent non-profit open-source foundation modeled after the Apache Software Foundation (ASF) and Linux Foundation. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-        "sec.portfolio": "📊 3-Tier Project Portfolio & Runtimes",
-        "tier1.title": "🏆 Tier 1: Flagship Top-Level Projects (TLP)",
+        "hero.subtitle": "Democratizing On-Device AI & Autonomous Systems Without Cloud Tax",
+        "hero.desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
+        "sec.portfolio": "3-Tier Project Portfolio & Runtimes",
+        "tier1.title": "Tier 1: Flagship Top-Level Projects (TLP)",
         "proj.playwright": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
         "proj.diffusion": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
-        "tier2.title": "🧪 Tier 2: Incubating Projects",
+        "tier2.title": "Tier 2: Incubating Projects",
         "proj.forge": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.",
         "proj.torch": "Ultra-lightweight on-device Tensor and Autograd engine engineered for Android Bionic and embedded edge micro-runtimes.",
         "proj.whisper": "On-device Whisper Korean speech recognition and LoRA fine-tuning pipeline designed for resource-constrained edge hardware.",
-        "tier3.title": "🔬 Tier 3: Labs & Research",
-        "sec.governance": "📜 Foundation Governance & Bylaws",
-        "sep.title": "🏛️ Foundation & Founder Separation of Concerns (공사 분리 원칙)",
+        "tier3.title": "Tier 3: Labs & Research",
+        "sec.governance": "Foundation Governance & Bylaws",
+        "sep.title": "Foundation & Founder Separation of Concerns (공사 분리 원칙)",
         "sep.desc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical entity. Personal career track records, private contact details, and professional consulting profiles of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV & Executive Portfolio."
       },
       "ko": {
-        "nav.charter": "📜 재단 헌장",
-        "nav.governance": "⚖️ 운영 규정",
-        "nav.incubation": "🌱 인큐베이션",
-        "nav.sponsorship": "💖 후원 안내",
-        "nav.founder": "👤 설립자 프로필 (@uno-km)",
+        "nav.charter": "재단 헌장",
+        "nav.governance": "운영 규정",
+        "nav.incubation": "인큐베이션",
+        "nav.sponsorship": "후원 안내",
+        "nav.founder": "설립자 프로필 (@uno-km)",
         "hero.title": "AMEVA 오픈소스 재단 (AOSF)",
-        "hero.subtitle": "\"클라우드 과금 없는 온디바이스 AI 및 자율 시스템의 민주화\"",
-        "hero.desc": "AOSF는 아파치 소프트웨어 재단(ASF)과 리눅스 재단의 메리토크라시(Meritocracy) 모델을 따르는 독립 비영리 오픈소스 기술 협의체입니다. 거대 클라우드 서버 비용 없이 개인의 기기에서 100% 자율 구동되는 엣지 AI, 멀티에이전트 오케스트레이션, WebGPU 딥러닝 엔진을 연구하고 공공재로 보급합니다.",
-        "sec.portfolio": "📊 3-Tier 프로젝트 포트폴리오 및 런타임",
-        "tier1.title": "🏆 Tier 1: 대표 오픈소스 (Flagship TLP)",
+        "hero.subtitle": "클라우드 과금 없는 온디바이스 AI 및 자율 시스템의 민주화",
+        "hero.desc": "AOSF는 투명한 실력주의(Meritocracy) 모델을 따르는 독립 오픈소스 기술 협의체입니다. 거대 클라우드 서버 비용 없이 개인의 기기에서 100% 자율 구동되는 엣지 AI, 멀티에이전트 오케스트레이션, WebGPU 딥러닝 엔진을 연구하고 공공재로 보급합니다.",
+        "sec.portfolio": "3-Tier 프로젝트 포트폴리오 및 런타임",
+        "tier1.title": "Tier 1: 대표 오픈소스 (Flagship TLP)",
         "proj.playwright": "안드로이드 Termux 환경에서 루팅 없이 동작하는 Chromium 브라우저 자동화. CDP 직접 제어로 헤드리스 스크래핑 및 테스트 수행.",
         "proj.diffusion": "안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임. 클라우드 연결 없이 모바일 기기에서 로컬 이미지 생성.",
-        "tier2.title": "🧪 Tier 2: 인큐베이팅 프로젝트 (Incubating)",
+        "tier2.title": "Tier 2: 인큐베이팅 프로젝트 (Incubating)",
         "proj.forge": "서버 비용 제로의 Browser-Native WebGPU Autograd Engine. PyTorch 구문 호환 및 WGSL 커스텀 셰이더 역전파 지원.",
         "proj.torch": "안드로이드 Bionic 네이티브 경량 텐서 & 엄격한 Autograd backward 정책을 제공하는 초경량 딥러닝 엔진.",
         "proj.whisper": "엣지 디바이스 전용 Whisper 한국어 음성인식 & LoRA 파인튜닝 파이프라인.",
-        "tier3.title": "🔬 Tier 3: 선행 연구소 (Labs & Research)",
-        "sec.governance": "📜 재단 정관 및 거버넌스 규정",
-        "sep.title": "🏛️ 재단 기관과 설립자 개인의 공사 분리 원칙",
+        "tier3.title": "Tier 3: 선행 연구소 (Labs & Research)",
+        "sec.governance": "재단 정관 및 거버넌스 규정",
+        "sep.title": "재단 기관과 설립자 개인의 공사 분리 원칙",
         "sep.desc": "AMEVA 오픈소스 재단(AOSF)은 독립된 기술 공공재로 운영됩니다. 설립자 김은호(Eunho Kim / @uno-km)의 실무 경력, 개인 연락처 및 엔지니어링 이력은 개인 공식 포털(Digital CV)에서 엄격히 분리되어 관리됩니다."
       },
       "ja": {
-        "nav.charter": "📜 財団憲章",
-        "nav.governance": "⚖️ ガバナンス",
-        "nav.incubation": "🌱 インキュベーション",
-        "nav.sponsorship": "💖 スポンサー",
-        "nav.founder": "👤 創設者プロファイル",
+        "nav.charter": "財団憲章",
+        "nav.governance": "ガバナンス",
+        "nav.incubation": "インキュベーション",
+        "nav.sponsorship": "スポンサー",
+        "nav.founder": "創設者プロファイル",
         "hero.title": "AMEVA オープンソース財団 (AOSF)",
-        "hero.subtitle": "「クラウドコストゼロのオンデバイスAIと自律システムの民主化」",
-        "hero.desc": "AOSFはApacheソフトウェア財団（ASF）とLinux Foundationのメリトクラシーモデルに基づく独立非営利オープンソース技術組織です。",
-        "sec.portfolio": "📊 3-Tier プロジェクトポートフォリオ",
-        "tier1.title": "🏆 Tier 1: フラッグシッププロジェクト (TLP)",
+        "hero.subtitle": "クラウドコストゼロのオンデバイスAIと自律システムの民主化",
+        "hero.desc": "AOSFは透明なメリトクラシーに基づく独立オープンソース技術組織です。",
+        "sec.portfolio": "3-Tier プロジェクトポートフォリオ",
+        "tier1.title": "Tier 1: フラッグシッププロジェクト (TLP)",
         "proj.playwright": "Android Termux環境でroot権限不要で動作するChromiumブラウザ自動化パッケージ。",
         "proj.diffusion": "Android ARM64ネイティブオンデバイスStable Diffusion画像生成ランタイム。",
-        "tier2.title": "🧪 Tier 2: インキュベーションプロジェクト",
+        "tier2.title": "Tier 2: インキュベーションプロジェクト",
         "proj.forge": "サーバー費用ゼロのBrowser-Native WebGPU Autograd Engine。PyTorch互換。",
         "proj.torch": "Android Bionic向けの超軽量テンソル＆Autogradエンジン。",
         "proj.whisper": "エッジハードウェア向けWhisper音声認識＆LoRAファインチューニング。",
-        "tier3.title": "🔬 Tier 3: 先行研究ラボ",
-        "sec.governance": "📜 財団規約およびガバナンス",
-        "sep.title": "🏛️ 財団組織と創設者個人の分離原則",
+        "tier3.title": "Tier 3: 先行研究ラボ",
+        "sec.governance": "財団規約およびガバナンス",
+        "sep.title": "財団組織と創設者個人の分離原則",
         "sep.desc": "AOSFは独立した公共財として運営されます。創設者キム・ウンホ（Eunho Kim / @uno-km）の経歴や個人連絡先は個人ポータルにて厳格に分離管理されます。"
       },
       "zh": {
-        "nav.charter": "📜 基金会章程",
-        "nav.governance": "⚖️ 治理规则",
-        "nav.incubation": "🌱 孵化政策",
-        "nav.sponsorship": "💖 赞助支持",
-        "nav.founder": "👤 创始人主页",
+        "nav.charter": "基金会章程",
+        "nav.governance": "治理规则",
+        "nav.incubation": "孵化政策",
+        "nav.sponsorship": "赞助支持",
+        "nav.founder": "创始人主页",
         "hero.title": "AMEVA 开源基金会 (AOSF)",
-        "hero.subtitle": "“无需云端税费的端侧AI与自主演化系统民主化”",
-        "hero.desc": "AOSF是一个遵循Apache软件基金会(ASF)和Linux基金会精英治理(Meritocracy)模式的独立非营利开源技术组织。",
-        "sec.portfolio": "📊 3-Tier 项目矩阵与运行时",
-        "tier1.title": "🏆 Tier 1: 旗舰顶级项目 (TLP)",
+        "hero.subtitle": "无需云端税费的端侧AI与自主演化系统民主化",
+        "hero.desc": "AOSF是一个遵循精英治理(Meritocracy)模式的独立非营利开源技术组织。",
+        "sec.portfolio": "3-Tier 项目矩阵与运行时",
+        "tier1.title": "Tier 1: 旗舰顶级项目 (TLP)",
         "proj.playwright": "Android Termux免Root正品Chromium浏览器自动化与CDP控制。",
         "proj.diffusion": "Android ARM64原生端侧Stable Diffusion图像生成运行时。",
-        "tier2.title": "🧪 Tier 2: 孵化中项目",
+        "tier2.title": "Tier 2: 孵化中项目",
         "proj.forge": "零服务器成本的浏览器原生WebGPU Autograd深度学习引擎。",
         "proj.torch": "专为Android Bionic与嵌入式端侧设计的超轻量张量与自动求导引擎。",
         "proj.whisper": "端侧Whisper韩语音频识别与LoRA微调流水线。",
-        "tier3.title": "🔬 Tier 3: 实验室与前沿研究",
-        "sec.governance": "📜 基金会章程与制度规范",
-        "sep.title": "🏛️ 基金会机构与创始人个人公私分离原则",
+        "tier3.title": "Tier 3: 实验室与前沿研究",
+        "sec.governance": "基金会章程与制度规范",
+        "sep.title": "基金会机构与创始人个人公私分离原则",
         "sep.desc": "AOSF作为独立开源公共实体运作。创始人金银浩(Eunho Kim / @uno-km)的个人职业经历与联系方式在个人主页严格独立管理。"
       }
     };

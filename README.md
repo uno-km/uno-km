@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://uno-km.github.io/uno-km/"><b>🌐 Official Executive Portal & Digital CV</b></a> |
-  <a href="FOUNDATION.md"><b>🏛️ AMEVA Foundation</b></a> |
+  <a href="FOUNDATION.md"><b>AMEVA Foundation</b></a> |
   <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric Dashboard</b></a> |
   <a href="https://uno-km.github.io/ameva-forge/"><b>⚡ AMEVA-Forge Docs</b></a> |
   <a href="https://uno-kim.tistory.com/"><b>📖 Tech Blog</b></a>
@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/badge/Live_Portal-uno--km.github.io-003399?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portal"/>
   </a>
   <a href="FOUNDATION.md">
-    <img src="https://img.shields.io/badge/Foundation-AMEVA_Open--Source-D22128?style=for-the-badge&logo=apache&logoColor=white" alt="AMEVA Foundation"/>
+    <img src="https://img.shields.io/badge/Foundation-AMEVA_Open--Source-003399?style=for-the-badge" alt="AMEVA Foundation"/>
   </a>
   <a href="https://uno-km.github.io/uno-km/dashboard/">
     <img src="https://img.shields.io/badge/3D_Universe-WebGPU_Dashboard-00887A?style=for-the-badge&logo=webgpu&logoColor=white" alt="3D Dashboard"/>
@@ -63,7 +63,7 @@
       <h3 style="margin-top: 8px; margin-bottom: 2px;"><b>김은호 (Eunho Kim)</b></h3>
       <p style="font-size: 0.88em; color: #64748b; margin-top: 0;"><code>@uno-km</code> · 1994.11.10</p>
       <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.78em;">Tech Lead &amp; Systems Architect</span><br/>
-      <a href="FOUNDATION.md"><span style="display:inline-block; margin-top:4px; background: #fef3c7; color: #92400e; padding: 3px 6px; border-radius: 4px; font-weight: bold; font-size: 0.74em; border: 1px solid #fde68a;">🏛️ Founder &amp; Chair @ AMEVA Foundation</span></a>
+      <a href="FOUNDATION.md"><span style="display:inline-block; margin-top:4px; background: #fef3c7; color: #92400e; padding: 3px 6px; border-radius: 4px; font-weight: bold; font-size: 0.74em; border: 1px solid #fde68a;">Founder &amp; Chair @ AMEVA Foundation</span></a>
     </td>
     <td valign="top">
       <table width="100%">
