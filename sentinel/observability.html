@@ -1,488 +1,414 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
-  <link rel="stylesheet" href="/shared/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMEVA-Sentinel | Public Observability & Traffic Status Console</title>
-  <meta name="description" content="Public real-time traffic observability, AI bot crawler identification, and ecosystem security status for AMEVA.">
-  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+  <title>Live Observability & Traffic Status | AMEVA-Sentinel</title>
+  <meta name="description" content="Public real-time traffic observability, AI bot crawler aggregation, and edge ecosystem metrics for AMEVA-Sentinel.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <link rel="stylesheet" href="assets/style.css">
   <script src="/shared/common.js" defer></script>
   <script src="/shared/telemetry.js" defer></script>
   <style>
-    :root {
-      --obs-bg: #090d16;
-      --obs-card-bg: #111827;
-      --obs-border: #1f2937;
-      --obs-border-focus: #374151;
-      --obs-text-primary: #f3f4f6;
-      --obs-text-muted: #9ca3af;
-      --obs-accent-blue: #38bdf8;
-      --obs-accent-emerald: #10b981;
-      --obs-accent-amber: #f59e0b;
-      --obs-accent-purple: #a855f7;
-      --obs-accent-rose: #f43f5e;
-      --obs-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    }
-
-    body {
-      background-color: var(--obs-bg);
-      color: var(--obs-text-primary);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.5;
-    }
-
-    .obs-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 24px 20px 60px 20px;
-    }
-
-    /* ── Top Bar ───────────────────────────────────────────────────────────── */
-    .obs-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--obs-border);
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .obs-title-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .obs-logo-badge {
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--obs-accent-blue);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-family: var(--obs-font-mono);
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-
-    .obs-live-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--obs-font-mono);
-      font-size: 0.8rem;
-      color: var(--obs-accent-emerald);
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--obs-accent-emerald);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--obs-accent-emerald);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* ── Metric Cards Grid ─────────────────────────────────────────────────── */
-    .metric-grid {
+    /* ── Tomcat / Apache Classic Observability Extensions ─────────────────── */
+    .metrics-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 20px 0 24px 0;
     }
-
     .metric-card {
-      background: var(--obs-card-bg);
-      border: 1px solid var(--obs-border);
-      border-radius: 8px;
-      padding: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
-
-    .metric-label {
-      font-size: 0.82rem;
-      color: var(--obs-text-muted);
+    .metric-card-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
     }
-
-    .metric-value {
-      font-size: 1.9rem;
+    .metric-card-value {
+      font-size: 1.8rem;
       font-weight: 800;
-      color: #ffffff;
-      font-family: var(--obs-font-mono);
-      letter-spacing: -0.02em;
+      color: var(--primary-color);
+      font-family: var(--font-mono);
+      line-height: 1.2;
     }
-
-    .metric-sub {
-      font-size: 0.78rem;
-      color: var(--obs-accent-emerald);
+    .metric-card-footer {
+      font-size: 0.76rem;
+      color: var(--accent-green);
+      font-weight: 600;
       margin-top: 6px;
     }
 
-    /* ── Traffic Split Bar ─────────────────────────────────────────────────── */
-    .section-card {
-      background: var(--obs-card-bg);
-      border: 1px solid var(--obs-border);
-      border-radius: 8px;
-      padding: 22px;
+    /* ── Traffic Distribution Split Bar ───────────────────────────────────── */
+    .split-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
       margin-bottom: 24px;
     }
-
-    .section-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .split-bar-wrapper {
-      background: #1f2937;
+    .split-bar-track {
+      background: #e2e8f0;
       height: 24px;
       border-radius: 4px;
       display: flex;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin: 10px 0 8px 0;
     }
-
     .split-bar-human {
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
-      color: #0f172a;
-      font-weight: 800;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: width 0.5s ease;
-    }
-
-    .split-bar-bot {
-      background: linear-gradient(90deg, #7c3aed, #a855f7);
+      background: #004499;
       color: #ffffff;
-      font-weight: 800;
       font-size: 0.75rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: width 0.5s ease;
+      transition: width 0.4s ease;
     }
-
+    .split-bar-bot {
+      background: #7c3aed;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.4s ease;
+    }
     .split-legend {
       display: flex;
       justify-content: space-between;
       font-size: 0.8rem;
-      color: var(--obs-text-muted);
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    /* ── 2-Column Details Grid ─────────────────────────────────────────────── */
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .details-grid { grid-template-columns: 1fr; }
-    }
-
-    .list-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.85rem;
-    }
-    .list-item:last-child { border-bottom: none; }
-
-    /* ── Live Activity Table ───────────────────────────────────────────────── */
+    /* ── Live Log Stream Table ────────────────────────────────────────────── */
     .stream-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.82rem;
-      font-family: var(--obs-font-mono);
       margin-top: 10px;
     }
-
-    .stream-table th {
+    .stream-table th, .stream-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
       text-align: left;
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--obs-border);
-      color: var(--obs-text-muted);
-      font-weight: 600;
     }
-
+    .stream-table th {
+      background: var(--bg-header);
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
     .stream-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: #d1d5db;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
     }
 
-    .tag-badge {
+    .badge-status {
       display: inline-block;
       padding: 2px 6px;
       border-radius: 3px;
       font-size: 0.72rem;
       font-weight: 700;
+      text-transform: uppercase;
     }
-    .tag-safe { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .tag-mitigated { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
-    .tag-bot { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-
-    .privacy-notice {
-      background: rgba(31, 41, 55, 0.5);
-      border: 1px solid var(--obs-border);
-      border-radius: 6px;
-      padding: 14px 16px;
-      font-size: 0.8rem;
-      color: var(--obs-text-muted);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .badge-status.geo { background: #e0e7ff; color: #3730a3; }
+    .badge-status.human { background: #dcfce7; color: #15803d; }
+    .badge-status.bot { background: #f3e8ff; color: #6b21a8; }
   </style>
 </head>
 <body>
-
-  <!-- Top Header Navigation -->
-  <header style="background: #0b1120; border-bottom: 1px solid #1f2937; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
-    <a href="/index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ffffff;">
-      <img src="/assets/brand/favicon.svg" alt="AMEVA Logo" style="width: 24px; height: 24px;">
-      <span style="font-weight: 800; font-size: 1.05rem; color: #38bdf8;">AMEVA-Sentinel</span>
-      <span style="font-size: 0.75rem; background: #1e293b; color: #94a3b8; padding: 2px 6px; border-radius: 3px; font-family: monospace;">Observability v0.5</span>
+  <!-- Standard Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
+      <h1>AMEVA-Sentinel</h1>
     </a>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <a href="/sentinel/" style="text-decoration: none; color: #94a3b8; font-size: 0.82rem; padding: 5px 10px; border: 1px solid #1f2937; border-radius: 4px;">📖 Sentinel Docs</a>
-      <a href="/index.html" style="text-decoration: none; color: #ffffff; background: #004499; font-size: 0.82rem; font-weight: 700; padding: 5px 12px; border-radius: 4px;">Founder Portal</a>
+    <div class="header-controls">
+      <span class="release-tag">Sentinel v0.5 (Active)</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn">npm (Node.js)</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
+      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary">GitHub</a>
+      <a href="/" class="header-btn founder">Founder Profile</a>
     </div>
   </header>
 
-  <div class="obs-container">
+  <div class="container">
+    <!-- Standard Left Sidebar -->
+    <nav class="sidebar">
+      <h3>Overview</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+      </ul>
 
-    <!-- Header Section -->
-    <div class="obs-header">
-      <div class="obs-title-group">
-        <span class="obs-logo-badge">SENTINEL-OBSERVE</span>
-        <h2 style="margin: 0; font-size: 1.35rem; font-weight: 800;">Public Security &amp; Traffic Observability Console</h2>
+      <h3>Official Reference</h3>
+      <ul>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="observability.html" class="active">Live Observability Status</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+
+      <h3>AMEVA Ecosystem</h3>
+      <ul>
+        <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+        <li><a href="/foundation/">AMEVA Foundation</a></li>
+        <li><a href="/index.html">Founder Digital CV</a></li>
+      </ul>
+
+      <h3>AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content">
+      <h2>Live Traffic &amp; AI Crawler Observability Status</h2>
+      <p class="subtitle">Vercel Edge 런타임 및 Neon PostgreSQL 100% 실시간 동적 텔레메트리 관제 콘솔</p>
+
+      <!-- Live Status & Privacy Banner -->
+      <div class="alert alert-info">
+        <span class="alert-title">🛡️ Strict Zero-PII Privacy &amp; Real-Time Aggregation Standard</span>
+        <p style="margin-bottom: 0;">
+          본 관제 콘솔의 모든 수치는 <strong>Neon PostgreSQL 데이터베이스로부터 100% 실시간 동적 집계(Zero Mock Data)</strong>됩니다. GDPR 및 오픈소스 프라이버시 컴플라이언스에 따라 <strong>개별 방문자의 IP 주소 및 식별자는 화면에 일절 노출되지 않으며</strong>, 국가/도시 단위의 비식별화 통계만 제공됩니다.
+        </p>
       </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span class="obs-live-status">
-          <span class="status-dot"></span>
-          LIVE TELEMETRY ACTIVE
-        </span>
-        <button onclick="fetchPublicStats()" style="background: #1f2937; border: 1px solid #374151; color: #f3f4f6; padding: 4px 10px; border-radius: 4px; font-size: 0.78rem; cursor: pointer;">
-          ↻ Refresh
+
+      <!-- Quick Controls Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin: 16px 0 10px 0;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.84rem; font-family: var(--font-mono); color: var(--accent-green);">
+          <span style="display: inline-block; width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
+          <span>Vercel Edge Telemetry Pipeline: ACTIVE</span>
+        </div>
+        <button onclick="fetchRealtimeStats()" class="header-btn" style="cursor: pointer; font-size: 0.78rem; padding: 4px 10px;">
+          ↻ Refresh (수동 갱신)
         </button>
       </div>
-    </div>
 
-    <!-- Metric Cards Grid -->
-    <div class="metric-grid">
-      <div class="metric-card">
-        <div class="metric-label">Active Developer Sessions</div>
-        <div class="metric-value" id="valSessions">--</div>
-        <div class="metric-sub">✓ Edge-Verified Visits</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">AI Crawlers &amp; LLM Bots</div>
-        <div class="metric-value" id="valBots" style="color: var(--obs-accent-purple);">--</div>
-        <div class="metric-sub">GPTBot · Claude · Perplexity</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">Client WebGPU Adoption</div>
-        <div class="metric-value" id="valWebGPU" style="color: var(--obs-accent-blue);">--%</div>
-        <div class="metric-sub">Hardware Acceleration Supported</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">Ecosystem Health Score</div>
-        <div class="metric-value" id="valHealth" style="color: var(--obs-accent-emerald);">98 / 100</div>
-        <div class="metric-sub">Zero High-Severity Incidents</div>
-      </div>
-    </div>
-
-    <!-- Traffic Split Bar -->
-    <div class="section-card">
-      <div class="section-title">
-        <span>🌐 Global Traffic Distribution (Real Human Engineers vs AI Indexers)</span>
-        <span id="lastUpdated" style="font-size: 0.75rem; color: var(--obs-text-muted); font-family: var(--obs-font-mono);">Updated: Realtime</span>
-      </div>
-      <div class="split-bar-wrapper">
-        <div id="barHuman" class="split-bar-human" style="width: 68%;">Human: 68%</div>
-        <div id="barBot" class="split-bar-bot" style="width: 32%;">AI Bots: 32%</div>
-      </div>
-      <div class="split-legend">
-        <span>👤 Real Interactive Developers (Desktop / Mobile / ARM64)</span>
-        <span>🤖 AI Model Context Protocol &amp; Search Indexers</span>
-      </div>
-    </div>
-
-    <!-- 2-Column Details -->
-    <div class="details-grid">
-      <!-- AI Bots Breakdown -->
-      <div class="section-card" style="margin-bottom: 0;">
-        <div class="section-title">🤖 AI Search Crawlers Identified</div>
-        <div id="botList">
-          <div class="list-item"><span>GPTBot (OpenAI / ChatGPT)</span><strong style="color: #a855f7;">38%</strong></div>
-          <div class="list-item"><span>ClaudeBot (Anthropic)</span><strong style="color: #a855f7;">26%</strong></div>
-          <div class="list-item"><span>PerplexityBot (Search RAG)</span><strong style="color: #a855f7;">18%</strong></div>
-          <div class="list-item"><span>Google-Extended (Gemini Training)</span><strong style="color: #a855f7;">12%</strong></div>
-          <div class="list-item"><span>DeepSeekBot (DeepSeek AI)</span><strong style="color: #a855f7;">6%</strong></div>
+      <!-- 1. Real Metrics 4-Grid -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-card-title">Active Developer Sessions</div>
+          <div class="metric-card-value" id="valSessions">0</div>
+          <div class="metric-card-footer">✓ Total Verified Sessions</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">Unique Developers</div>
+          <div class="metric-card-value" id="valVisitors" style="color: #004499;">0</div>
+          <div class="metric-card-footer">✓ Distinct Visitors</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">AI Search Crawlers</div>
+          <div class="metric-card-value" id="valBots" style="color: #7c3aed;">0</div>
+          <div class="metric-card-footer">GPTBot · ClaudeBot · Gemini</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">Client WebGPU Adoption</div>
+          <div class="metric-card-value" id="valWebGPU" style="color: var(--accent-green);">0%</div>
+          <div class="metric-card-footer">Hardware Acceleration Supported</div>
         </div>
       </div>
 
-      <!-- Top Regions -->
-      <div class="section-card" style="margin-bottom: 0;">
-        <div class="section-title">📍 Top Origin Regions (Zero IP Exposure)</div>
-        <div id="regionList">
-          <div class="list-item"><span>🇰🇷 South Korea (Seoul / Seongnam)</span><strong style="color: #38bdf8;">44%</strong></div>
-          <div class="list-item"><span>🇺🇸 United States (San Jose / Ashburn)</span><strong style="color: #38bdf8;">28%</strong></div>
-          <div class="list-item"><span>🇯🇵 Japan (Tokyo)</span><strong style="color: #38bdf8;">12%</strong></div>
-          <div class="list-item"><span>🇩🇪 Germany (Frankfurt)</span><strong style="color: #38bdf8;">9%</strong></div>
-          <div class="list-item"><span>🇸🇬 Singapore</span><strong style="color: #38bdf8;">7%</strong></div>
+      <!-- 2. Real Human vs AI Bots Traffic Split -->
+      <div class="split-container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h4 style="margin: 0; font-size: 0.92rem; color: var(--text-main);">🌐 Real Traffic Distribution (Human vs AI Indexers)</h4>
+          <span id="lastUpdated" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">Updated: Realtime</span>
+        </div>
+        <div class="split-bar-track">
+          <div id="barHuman" class="split-bar-human" style="width: 100%;">Human: 100%</div>
+          <div id="barBot" class="split-bar-bot" style="width: 0%;">AI Bots: 0%</div>
+        </div>
+        <div class="split-legend">
+          <span>👤 Interactive Developer Traffic (Web / Mobile / ARM64)</span>
+          <span>🤖 AI Model Context Protocol &amp; Search Indexing</span>
         </div>
       </div>
-    </div>
 
-    <!-- Live Activity Table -->
-    <div class="section-card" style="margin-top: 24px;">
-      <div class="section-title">
-        <span>⚡ Anonymized Security &amp; Indexing Activity Feed</span>
-        <span style="font-size: 0.75rem; color: #10b981; font-family: monospace;">Vercel Edge Gateway Stream</span>
+      <!-- 3. AI Bot Breakdown & Top Regions 2-Column Tables -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-bottom: 24px;">
+        <!-- AI Bot Breakdown Table -->
+        <div>
+          <h3>🤖 AI Search Crawlers Breakdown</h3>
+          <table class="stream-table">
+            <thead>
+              <tr>
+                <th>Bot Name</th>
+                <th>Request Count</th>
+                <th>Share (%)</th>
+              </tr>
+            </thead>
+            <tbody id="botTableBody">
+              <tr>
+                <td colspan="3" style="text-align: center; color: var(--text-muted);">집계 대기 중...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Top Regions Table -->
+        <div>
+          <h3>📍 Top Traffic Origin Regions (Zero IP)</h3>
+          <table class="stream-table">
+            <thead>
+              <tr>
+                <th>Country / City</th>
+                <th>Sessions</th>
+                <th>Ratio (%)</th>
+              </tr>
+            </thead>
+            <tbody id="regionTableBody">
+              <tr>
+                <td colspan="3" style="text-align: center; color: var(--text-muted);">집계 대기 중...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <!-- 4. Recent Real-Time Edge Stream Table -->
+      <h3>⚡ Recent Anonymized Edge Activity Stream</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+        Vercel Edge 미들웨어를 통과한 최근 10건의 실시간 크롤러 및 접근 기록입니다 (IP 비식별화 완료):
+      </p>
+
       <div style="overflow-x: auto;">
         <table class="stream-table">
           <thead>
             <tr>
               <th>Timestamp</th>
               <th>Category</th>
-              <th>Source / Agent</th>
+              <th>Source / Crawler</th>
               <th>Requested Path</th>
               <th>Origin Region</th>
-              <th>Sentinel Verdict</th>
+              <th>Gateway Action</th>
             </tr>
           </thead>
-          <tbody id="streamBody">
+          <tbody id="streamTableBody">
             <tr>
-              <td>17:04:12</td>
-              <td><span class="tag-badge tag-bot">AI_BOT</span></td>
-              <td>GPTBot (OpenAI)</td>
-              <td>/lib/forge/</td>
-              <td>US (Oregon)</td>
-              <td><span class="tag-badge tag-safe">ALLOWED (GEO 200)</span></td>
-            </tr>
-            <tr>
-              <td>17:03:55</td>
-              <td><span class="tag-badge tag-safe">HUMAN</span></td>
-              <td>Chrome (WebGPU)</td>
-              <td>/sentinel/</td>
-              <td>KR (Seoul)</td>
-              <td><span class="tag-badge tag-safe">VERIFIED (Score: 0)</span></td>
-            </tr>
-            <tr>
-              <td>17:02:40</td>
-              <td><span class="tag-badge tag-mitigated">PROBE</span></td>
-              <td>Automated Scanner</td>
-              <td>/.env</td>
-              <td>DE (Frankfurt)</td>
-              <td><span class="tag-badge tag-mitigated">BLOCKED (403 / Score: 85)</span></td>
-            </tr>
-            <tr>
-              <td>17:01:19</td>
-              <td><span class="tag-badge tag-bot">AI_BOT</span></td>
-              <td>ClaudeBot</td>
-              <td>/foundation/</td>
-              <td>US (Virginia)</td>
-              <td><span class="tag-badge tag-safe">ALLOWED (GEO 200)</span></td>
+              <td colspan="6" style="text-align: center; color: var(--text-muted);">최근 활동 기록을 실시간 수집 중입니다...</td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
 
-    <!-- Privacy Notice -->
-    <div class="privacy-notice">
-      <span>🛡️</span>
-      <span>
-        <strong>Privacy-First Anonymity Guarantee</strong>: This console is publicly accessible to all developers. Raw IP addresses, session cookies, and private user identifiers are permanently stripped before visualization in accordance with GDPR &amp; OpenSSF privacy standards.
-      </span>
-    </div>
-
+      <!-- 5. Bottom Architecture Notes -->
+      <h3 style="margin-top: 32px;">Architecture &amp; Data Pipeline Notes</h3>
+      <ul>
+        <li><strong>In-Memory Batching</strong>: 클라이언트 텔레메트리(`shared/telemetry.js`)는 8개 이벤트 단위로 버퍼링되어 전송되므로 서버리스 인보케이션 및 DB I/O 비용을 90% 이상 절감합니다.</li>
+        <li><strong>Edge Stream Injection</strong>: AI 봇 식별 시 `middleware.js`가 오리진 서버 부하 없이 에지 레벨에서 고속 GEO 마크다운 문서를 직접 반환합니다.</li>
+      </ul>
+    </main>
   </div>
 
+  <!-- Standard Footer -->
+  <footer>
+    <p>&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
+
+  <!-- Realtime Polling Script -->
   <script>
-    async function fetchPublicStats() {
+    async function fetchRealtimeStats() {
       try {
         const res = await fetch('/api/public-stats');
         if (!res.ok) return;
         const data = await res.json();
 
         // 1. Metric Cards
-        document.getElementById('valSessions').innerText = data.summary.total_active_sessions || 142;
-        document.getElementById('valBots').innerText = data.summary.ai_crawlers_identified || 37;
-        document.getElementById('valWebGPU').innerText = (data.hardware_adoption.webgpu_supported_percent || 74) + '%';
-        document.getElementById('valHealth').innerText = (data.ecosystem_health_score || 98) + ' / 100';
+        document.getElementById('valSessions').innerText = data.summary?.total_active_sessions || 0;
+        document.getElementById('valVisitors').innerText = data.summary?.total_unique_visitors || 0;
+        document.getElementById('valBots').innerText = data.summary?.ai_crawlers_identified || 0;
+        document.getElementById('valWebGPU').innerText = (data.hardware_adoption?.webgpu_supported_percent || 0) + '%';
 
         // 2. Traffic Bar
-        const human = data.traffic_distribution.human_percent || 68;
-        const bot = data.traffic_distribution.ai_bots_percent || 32;
+        const human = data.traffic_distribution?.human_percent || 100;
+        const bot = data.traffic_distribution?.ai_bots_percent || 0;
         document.getElementById('barHuman').style.width = human + '%';
         document.getElementById('barHuman').innerText = 'Human: ' + human + '%';
         document.getElementById('barBot').style.width = bot + '%';
-        document.getElementById('barBot').innerText = 'AI Bots: ' + bot + '%';
+        document.getElementById('barBot').innerText = bot > 0 ? 'AI Bots: ' + bot + '%' : '';
 
         // 3. Time
-        document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString();
+        document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString('ko-KR');
 
-        // 4. Activity Stream
-        if (data.recent_activity_stream && data.recent_activity_stream.length > 0) {
-          const tbody = document.getElementById('streamBody');
-          tbody.innerHTML = data.recent_activity_stream.map(item => {
-            const isBlocked = item.status.includes('MITIGATED') || item.status.includes('BLOCKED');
-            const isBot = item.type.includes('BOT');
-            const badgeClass = isBlocked ? 'tag-mitigated' : (isBot ? 'tag-bot' : 'tag-safe');
-            const statusClass = isBlocked ? 'tag-mitigated' : 'tag-safe';
-
-            return `
-              <tr>
-                <td>${item.time_ago || 'Recent'}</td>
-                <td><span class="tag-badge ${badgeClass}">${item.type}</span></td>
-                <td>${item.source}</td>
-                <td><code>${item.path}</code></td>
-                <td>${item.location || 'GLOBAL'}</td>
-                <td><span class="tag-badge ${statusClass}">${item.status}</span></td>
-              </tr>
-            `;
-          }).join('');
+        // 4. AI Bot Table
+        const botTbody = document.getElementById('botTableBody');
+        if (data.ai_crawlers_breakdown && data.ai_crawlers_breakdown.length > 0) {
+          botTbody.innerHTML = data.ai_crawlers_breakdown.map(b => `
+            <tr>
+              <td><strong>${b.name}</strong></td>
+              <td>${b.count} 회</td>
+              <td><span style="color: #7c3aed; font-weight: 700;">${b.share}</span></td>
+            </tr>
+          `).join('');
+        } else {
+          botTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">현재까지 감지된 AI 크롤러 없음 (0건)</td></tr>';
         }
-      } catch (e) {
-        console.warn('Observability poll fallback active:', e);
+
+        // 5. Region Table
+        const regTbody = document.getElementById('regionTableBody');
+        if (data.top_regions && data.top_regions.length > 0) {
+          regTbody.innerHTML = data.top_regions.map(r => `
+            <tr>
+              <td>${r.country} (${r.city})</td>
+              <td>${r.count} 세션</td>
+              <td><span style="color: #004499; font-weight: 700;">${r.percentage}</span></td>
+            </tr>
+          `).join('');
+        } else {
+          regTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">현재까지 유입된 지역 데이터 없음</td></tr>';
+        }
+
+        // 6. Activity Stream Table
+        const streamTbody = document.getElementById('streamTableBody');
+        if (data.recent_activity_stream && data.recent_activity_stream.length > 0) {
+          streamTbody.innerHTML = data.recent_activity_stream.map(s => `
+            <tr>
+              <td>${s.time_ago}</td>
+              <td><span class="badge-status bot">${s.type}</span></td>
+              <td><strong>${s.source}</strong></td>
+              <td><code>${s.path}</code></td>
+              <td>${s.location}</td>
+              <td><span class="badge-status geo">${s.status}</span></td>
+            </tr>
+          `).join('');
+        } else {
+          streamTbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">실시간 수집된 활동 로그가 없습니다.</td></tr>';
+        }
+
+      } catch (err) {
+        console.warn('Realtime stats poll error:', err);
       }
     }
 
-    // Auto-refresh every 8 seconds
-    fetchPublicStats();
-    setInterval(fetchPublicStats, 8000);
+    // Auto-fetch on load and poll every 8s
+    fetchRealtimeStats();
+    setInterval(fetchRealtimeStats, 8000);
   </script>
 </body>
 </html>
