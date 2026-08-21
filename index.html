@@ -11,14 +11,14 @@
       const lib = params.get('lib') || params.get('doc') || params.get('p');
       if (lib) {
         const targetMap = {
-          'stt': './stt/',
-          'train': './train/',
-          'torch': './train/',
-          'forge': './forge/',
-          'playwright': './playwright/',
-          'diffusion': './diffusion/',
+          'stt': './lib/stt/',
+          'train': './lib/train/',
+          'torch': './lib/train/',
+          'forge': './lib/forge/',
+          'playwright': './lib/playwright/',
+          'diffusion': './lib/diffusion/',
           'foundation': './foundation/',
-          'workstation': 'https://ameva-workstation-web-core.vercel.app/'
+          'workstation': './app/workstation/'
         };
         const dest = targetMap[lib.toLowerCase()];
         if (dest) {
