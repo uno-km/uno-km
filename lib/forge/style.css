@@ -1,9 +1,8 @@
 /* ==========================================================================
-   AMEVA Ecosystem - Canonical Library Documentation Design System (SSOT)
-   Version: 2.1.0 (Collapsible Hamburger & Accordion System)
-   Standard: 58px Fixed Header, Solid Apache/Tomcat Classic Theme,
-             4-Tier Breakpoints: Ultra-Wide, Desktop, Split/Tablet, Mobile
-   Rules: Strict No-Emoji, Zero Flashy Effects, Clean Solid Borders
+   AMEVA Ecosystem - Canonical Unified Design System (SSOT v3.0)
+   Standard: 58px Fixed Header (2px #004499 line), 270px Unified Left Sidebar,
+             High-Clarity Enterprise Open-Source (Apache/Tomcat Tech Hybrid)
+   Standardized Rounded Pill Active Links, Zero-Jitter Clean Layout
    ========================================================================== */
 
 :root {
@@ -81,202 +80,151 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
-  flex-shrink: 0;
+  color: var(--text-main);
 }
 
 .header-brand img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
 .header-brand h1 {
-  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--primary-color);
-  font-size: 1.2em;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* ── Hamburger Menu Toggle Button ────────────────────────────────────────── */
-.menu-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #ffffff;
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  padding: 4px 9px;
-  border-radius: 4px;
-  font-family: var(--font-sans);
-  font-size: 0.82em;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-}
-
-.menu-toggle-btn:hover {
-  background-color: var(--bg-alt);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-.menu-toggle-btn.active {
-  background-color: var(--primary-light);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  gap: 10px;
 }
 
 .release-tag {
   background-color: var(--primary-light);
   color: var(--primary-color);
-  padding: 4px 8px;
   border: 1px solid #bfdbfe;
-  border-radius: 4px;
-  font-weight: 600;
   font-family: var(--font-mono);
-  font-size: 0.8em;
-  white-space: nowrap;
-}
-
-.lang-select {
-  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
   border-radius: 4px;
-  border: 1px solid var(--border-color);
-  font-size: 0.82em;
-  background-color: #ffffff;
-  color: var(--text-main);
-  cursor: pointer;
-  font-weight: 500;
-  outline: none;
-  font-family: var(--font-sans);
-}
-
-.lang-select:focus {
-  border-color: var(--primary-color);
+  white-space: nowrap;
 }
 
 .header-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  font-size: 0.82em;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
   font-weight: 600;
-  text-decoration: none;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  background-color: #ffffff;
   color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.12s ease;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .header-btn:hover {
   background-color: var(--bg-alt);
-  border-color: var(--text-muted);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .header-btn.primary {
   background-color: var(--primary-color);
+  border-color: var(--primary-color);
   color: #ffffff;
-  border-color: var(--primary-dark);
 }
 
 .header-btn.primary:hover {
   background-color: var(--primary-dark);
 }
 
-.header-btn.npm-btn {
-  background-color: #cb3837;
-  color: #ffffff;
-  border-color: #a82d2c;
+.lang-select {
+  padding: 4px 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
 }
 
-.header-btn.npm-btn:hover {
-  background-color: #a82d2c;
+.lang-select:focus {
+  border-color: var(--primary-color);
 }
 
-/* ── Container Layout ────────────────────────────────────────────────────── */
+/* ── Layout Container ─────────────────────────────────────────────────────── */
 .container {
   display: flex;
-  min-height: calc(100vh - var(--header-height) - 48px);
-  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - var(--header-height) - 60px);
 }
 
-/* ── Sidebar Navigation ─────────────────────────────────────────────────── */
+/* ── Unified Master Left Sidebar ─────────────────────────────────────────── */
 .sidebar {
   width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
   background-color: var(--bg-surface);
   border-right: 1px solid var(--border-color);
-  padding: 18px 14px;
+  padding: 20px 14px;
+  box-sizing: border-box;
   flex-shrink: 0;
-  overflow-y: auto;
-  position: sticky;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
-  user-select: none;
 }
 
 .sidebar h3 {
-  font-size: 0.72em;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--text-subtle);
-  margin-top: 16px;
-  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 18px 0 6px 0;
   padding-left: 8px;
-  border-left: 2px solid var(--primary-color);
-}
-
-.sidebar h3:first-of-type {
-  margin-top: 2px;
-}
-
-/* Collapsible Accordion Header */
-.sidebar h3.collapsible-header {
-  cursor: pointer;
+  border-left: 3px solid var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 6px;
-  transition: color 0.12s;
+  cursor: pointer;
+  user-select: none;
 }
 
-.sidebar h3.collapsible-header:hover {
-  color: var(--primary-color);
+.sidebar h3:first-of-type {
+  margin-top: 0;
 }
 
-.sidebar h3.collapsible-header .accordion-icon {
-  font-size: 0.9em;
-  font-weight: 700;
+.sidebar h3 .accordion-icon {
+  font-size: 0.75rem;
   color: var(--text-subtle);
+  transition: transform 0.15s ease;
 }
 
 .sidebar ul {
   list-style: none;
-  margin-bottom: 12px;
+  padding: 0;
+  margin: 0 0 10px 0;
 }
 
 .sidebar ul.collapsed {
-  display: none !important;
+  display: none;
 }
 
 .sidebar li {
@@ -285,12 +233,14 @@ header {
 
 .sidebar a {
   display: block;
-  padding: 5px 10px;
-  color: var(--text-muted);
+  padding: 6px 10px;
+  color: var(--text-main);
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.86em;
+  font-size: 0.88rem;
   font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.12s ease;
+  line-height: 1.35;
 }
 
 .sidebar a:hover {
@@ -298,202 +248,133 @@ header {
   color: var(--primary-color);
 }
 
-.sidebar a.active {
-  background-color: var(--primary-light);
-  color: var(--primary-color);
-  font-weight: 600;
+/* 🌟 Standardized 100% Rounded Pill Active Link (Sentinel Standard) */
+.sidebar a.active,
+.sidebar li a.active,
+.sidebar a.active strong,
+.sidebar li a.active strong {
+  background-color: var(--primary-light) !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  border-left: none !important;
 }
 
-/* ── Desktop Collapsible Sidebar (Reading Focus Mode) ───────────────────── */
-.sidebar.collapsed {
-  display: none !important;
-}
-
-.container.sidebar-collapsed .content {
-  max-width: 100%;
-}
-
-/* ── Main Content Area ───────────────────────────────────────────────────── */
+/* ── Content Area ────────────────────────────────────────────────────────── */
 .content {
   flex: 1;
-  min-width: 0;
-  max-width: var(--content-max-width);
   padding: 32px 40px;
-  margin: 0 auto;
+  max-width: var(--content-max-width);
+  min-width: 0;
 }
 
 .content h2 {
-  font-size: 1.65em;
-  color: var(--primary-color);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
   margin-bottom: 6px;
-  font-weight: 700;
-  line-height: 1.3;
+}
+
+.content .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
 .content h3 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-main);
-  margin-top: 28px;
-  margin-bottom: 10px;
-  font-weight: 600;
+  margin: 32px 0 12px 0;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 4px;
 }
 
-.content h4 {
-  font-size: 1.05em;
-  color: var(--primary-dark);
-  margin-top: 18px;
-  margin-bottom: 8px;
-  font-weight: 600;
+.content p {
+  margin-bottom: 16px;
+  color: var(--text-main);
+  line-height: 1.65;
 }
 
-.subtitle {
-  color: var(--text-muted);
-  font-size: 0.95em;
-  margin-bottom: 18px;
-  line-height: 1.5;
+.content ul, .content ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
 }
 
-/* ── Badges & Meta Bar ───────────────────────────────────────────────────── */
+.content li {
+  margin-bottom: 6px;
+}
+
+/* ── Tables & Cards ──────────────────────────────────────────────────────── */
+.data-table, table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px 0;
+  font-size: 0.9rem;
+}
+
+.data-table th, table th,
+.data-table td, table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.data-table th, table th {
+  background-color: var(--bg-surface);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.data-table tr:hover, table tr:hover {
+  background-color: var(--bg-surface);
+}
+
 .badges-bar {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  align-items: center;
-  margin: 14px 0 20px 0;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-.badges-bar img {
-  height: 20px;
-  display: block;
-}
-
-/* ── Sober Alert & Notice Banners ────────────────────────────────────────── */
 .alert {
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin: 16px 0;
-  font-size: 0.9em;
+  background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
-}
-
-.alert-tip {
-  background-color: #f0fdf4;
-  border-left: 4px solid var(--accent-green);
-  color: #14532d;
-}
-
-.alert-warning {
-  background-color: #fffbeb;
-  border-left: 4px solid #d97706;
-  color: #78350f;
-}
-
-.alert-info {
-  background-color: var(--primary-light);
   border-left: 4px solid var(--primary-color);
-  color: var(--primary-dark);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 18px 0;
+}
+
+.alert.alert-tip {
+  border-left-color: var(--accent-green);
+  background-color: #f0fdf4;
+}
+
+.alert.alert-warning {
+  border-left-color: var(--accent-amber);
+  background-color: #fffbeb;
 }
 
 .alert-title {
-  font-weight: 700;
   display: block;
+  font-weight: 700;
   margin-bottom: 4px;
-  font-size: 0.95em;
-}
-
-/* ── Cards Grid System ───────────────────────────────────────────────────── */
-.features-grid, .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px;
-  margin: 20px 0;
-}
-
-.feature-card, .item-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.feature-card:hover, .item-card:hover {
-  border-color: var(--primary-color);
-  background-color: #ffffff;
-}
-
-.feature-card h4, .item-card h3 {
-  margin: 0 0 6px 0;
-  color: var(--primary-color);
-  font-size: 0.98em;
-  font-weight: 600;
-}
-
-.feature-card p, .item-card p {
-  font-size: 0.86em;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ── Tables & Matrix ─────────────────────────────────────────────────────── */
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 16px 0;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-}
-
-table, .matrix-table, .acronym-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88em;
-  text-align: left;
-  background-color: #ffffff;
-}
-
-th {
-  background-color: var(--bg-surface);
   color: var(--text-main);
-  font-weight: 600;
-  padding: 10px 12px;
-  border-bottom: 2px solid var(--border-color);
-  white-space: nowrap;
 }
 
-td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  vertical-align: top;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tr:hover td {
-  background-color: #fafbfc;
-}
-
-/* ── Code Blocks & Tabs ─────────────────────────────────────────────────── */
+/* ── Code Blocks ─────────────────────────────────────────────────────────── */
 pre {
   background-color: var(--code-bg);
   color: var(--code-text);
   padding: 14px 18px;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   font-family: var(--font-mono);
-  font-size: 0.88em;
-  line-height: 1.55;
-  margin: 14px 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 14px 0 20px 0;
   position: relative;
   border: 1px solid var(--code-border);
 }
@@ -501,180 +382,80 @@ pre {
 code {
   font-family: var(--font-mono);
   font-size: 0.88em;
-}
-
-p code, li code, td code {
   background-color: var(--bg-alt);
   color: var(--primary-dark);
   padding: 2px 5px;
   border-radius: 3px;
-  border: 1px solid var(--border-subtle);
-  font-size: 0.85em;
-  word-break: break-word;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
 }
 
 .copy-code-btn {
   position: absolute;
   top: 8px;
   right: 8px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background: #1e293b;
   color: #94a3b8;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #334155;
   padding: 3px 8px;
-  font-size: 0.74em;
-  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .copy-code-btn:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  background: #334155;
+  color: #f8fafc;
 }
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */
 footer {
-  background-color: var(--bg-surface);
   border-top: 1px solid var(--border-color);
-  padding: 14px 20px;
+  background-color: var(--bg-surface);
+  padding: 20px 24px;
   text-align: center;
-  font-size: 0.82em;
-  color: var(--text-subtle);
-  min-height: 48px;
-  display: flex;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive Hamburger & Mobile Drawer ────────────────────────────────── */
+.menu-toggle-btn {
+  display: none;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  padding: 5px 10px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
 }
 
-/* ==========================================================================
-   📱 4-Tier Rock-Solid Responsive System (No Gimmicks, Crisp Engineering)
-   ========================================================================== */
-
-/* ── 1. Split-Screen / Compact Desktop (960px ~ 1160px) ─────────────────── */
-@media (max-width: 1160px) and (min-width: 961px) {
-  :root {
-    --sidebar-width: 230px;
-  }
-  .content {
-    padding: 28px 30px;
-  }
-  .features-grid, .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ── 2. Tablet & Half-Screen View (768px ~ 960px) ────────────────────────── */
 @media (max-width: 960px) {
-  .container {
-    flex-direction: column;
+  .menu-toggle-btn {
+    display: inline-flex;
   }
   .sidebar {
-    display: none;
-    width: 100%;
-    height: auto;
-    position: static;
-    border-right: none;
-    border-bottom: 2px solid var(--primary-color);
-    padding: 14px 20px;
+    position: fixed;
+    top: var(--header-height);
+    left: -100%;
+    bottom: 0;
+    z-index: 99;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.2s ease;
+    overflow-y: auto;
   }
   .sidebar.mobile-open {
-    display: block !important;
-  }
-  .sidebar ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    gap: 4px;
-    margin-bottom: 10px;
-  }
-  .sidebar a {
-    padding: 6px 10px;
-    font-size: 0.86em;
+    left: 0;
   }
   .content {
-    max-width: 100%;
-    padding: 24px 20px;
-  }
-  .features-grid, .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-}
-
-/* ── 3. Mobile Phones (< 768px) ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  header {
-    padding: 8px 14px;
-    height: auto;
-    min-height: 52px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .header-brand h1 {
-    font-size: 1.05em;
-  }
-  .header-controls {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 6px;
-  }
-  .release-tag {
-    font-size: 0.74em;
-    padding: 2px 6px;
-  }
-  .lang-select, .header-btn, .menu-toggle-btn {
-    font-size: 0.76em;
-    padding: 3px 8px;
-  }
-  .sidebar {
-    padding: 12px 14px;
-  }
-  .sidebar ul {
-    grid-template-columns: 1fr 1fr;
-    gap: 3px;
-  }
-  .sidebar a {
-    font-size: 0.82em;
-    padding: 5px 8px;
-  }
-  .content {
-    padding: 18px 14px;
-  }
-  .content h2 {
-    font-size: 1.35em;
-  }
-  .content h3 {
-    font-size: 1.12em;
-    margin-top: 20px;
-  }
-  .features-grid, .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  pre {
-    padding: 12px 14px;
-    font-size: 0.82em;
-    margin: 10px 0;
-  }
-  table, .matrix-table, .acronym-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  th, td {
-    padding: 8px 10px;
-    font-size: 0.82em;
-  }
-}
-
-/* ── 4. Small Handsets (< 420px) ─────────────────────────────────────────── */
-@media (max-width: 420px) {
-  .sidebar ul {
-    grid-template-columns: 1fr;
-  }
-  .header-brand h1 {
-    font-size: 0.95em;
+    padding: 20px;
   }
 }
