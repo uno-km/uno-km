@@ -81,3 +81,21 @@ CREATE TABLE IF NOT EXISTS click_events (
 CREATE INDEX IF NOT EXISTS idx_clicks_session_id ON click_events(session_id);
 CREATE INDEX IF NOT EXISTS idx_clicks_event_type ON click_events(event_type);
 CREATE INDEX IF NOT EXISTS idx_clicks_occurred_at ON click_events(occurred_at DESC);
+
+-- 4. AI Crawlers & Search Engine Bot Footprints
+CREATE TABLE IF NOT EXISTS bot_crawler_logs (
+    log_id BIGSERIAL PRIMARY KEY,
+    bot_name VARCHAR(100) NOT NULL,
+    bot_category VARCHAR(50) NOT NULL, -- 'AI_AGENT', 'SEARCH_ENGINE', 'SCRAPER', 'SOCIAL_BOT'
+    requested_path VARCHAR(255) NOT NULL,
+    ip_address VARCHAR(45),
+    country VARCHAR(10),
+    city VARCHAR(100),
+    user_agent TEXT,
+    detected_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_bot_name ON bot_crawler_logs(bot_name);
+CREATE INDEX IF NOT EXISTS idx_bot_category ON bot_crawler_logs(bot_category);
+CREATE INDEX IF NOT EXISTS idx_bot_detected_at ON bot_crawler_logs(detected_at DESC);
+
