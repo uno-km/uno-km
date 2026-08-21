@@ -27,7 +27,7 @@
       background: #ffffff;
       border: 1px solid var(--border-color);
       border-radius: 6px;
-      padding: 20px;
+      padding: 22px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -89,7 +89,8 @@
       display: flex;
       align-items: flex-start;
       gap: 6px;
-      line-height: 1.35;
+      line-height: 1.4;
+      word-break: keep-all;
     }
     .tier-features li::before {
       content: "✓";
@@ -102,30 +103,29 @@
       justify-content: center;
       gap: 6px;
       width: 100%;
-      padding: 8px 14px;
+      padding: 9px 14px;
       background: var(--primary-color);
       color: #ffffff;
       font-size: 0.85rem;
       font-weight: 700;
       border-radius: 4px;
       text-decoration: none;
-      transition: background 0.15s ease;
+      transition: all 0.15s ease;
       box-sizing: border-box;
     }
     .sponsor-btn:hover {
       background: var(--primary-dark);
       color: #ffffff;
     }
-    .sponsor-btn.secondary {
-      background: #ffffff;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
+    .sponsor-btn.github {
+      background: #ea4aaa;
+      color: #ffffff;
+      border: 1px solid #ea4aaa;
       margin-top: 6px;
     }
-    .sponsor-btn.secondary:hover {
-      background: var(--bg-alt);
-      border-color: var(--primary-color);
-      color: var(--primary-color);
+    .sponsor-btn.github:hover {
+      background: #d83597;
+      color: #ffffff;
     }
 
     /* ── Fund Allocation Metrics ─────────────────────────────────────────────── */
@@ -181,8 +181,9 @@
           <option value="la">🏛️ Latina</option>
         </select>
       </div>
-      <a href="https://opencollective.com/ameva-foundation" target="_blank" class="header-btn primary">💖 Open Collective</a>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn">GitHub Sponsors</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
+      <a href="https://opencollective.com/ameva-foundation" target="_blank" class="header-btn primary">Open Collective</a>
+      <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
     </div>
   </header>
 
@@ -276,8 +277,8 @@
             </ul>
           </div>
           <div>
-            <a href="https://opencollective.com/ameva-foundation/contribute" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($5)</a>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective ($5)</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn github">GitHub Sponsors ($5)</a>
           </div>
         </div>
 
@@ -294,8 +295,8 @@
             </ul>
           </div>
           <div>
-            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($25)</a>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective ($25)</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn github">GitHub Sponsors ($25)</a>
           </div>
         </div>
 
@@ -312,8 +313,8 @@
             </ul>
           </div>
           <div>
-            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($100)</a>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective ($100)</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn github">GitHub Sponsors ($100)</a>
           </div>
         </div>
 
@@ -331,8 +332,8 @@
             </ul>
           </div>
           <div>
-            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($500)</a>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective ($500)</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn github">GitHub Sponsors ($500)</a>
           </div>
         </div>
 
@@ -349,8 +350,8 @@
             </ul>
           </div>
           <div>
-            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($2,000)</a>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective ($2,000)</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn github">GitHub Sponsors ($2,000)</a>
           </div>
         </div>
       </div>
