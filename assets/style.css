@@ -459,3 +459,86 @@ footer {
     padding: 20px;
   }
 }
+
+
+/* ── Desktop Sidebar Collapse Toggle Handle (문서철 접기/펼치기 탭) ────────── */
+.sidebar {
+  position: relative;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s ease, min-width 0.2s ease;
+}
+
+.sidebar.desktop-collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border-right: none !important;
+  overflow: hidden !important;
+  visibility: hidden;
+}
+
+.container.sidebar-collapsed .content {
+  max-width: 1200px;
+}
+
+.sidebar-toggle-tab {
+  position: absolute;
+  top: 140px;
+  right: -12px;
+  width: 20px;
+  height: 42px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 60;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.sidebar-toggle-tab:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 68, 153, 0.18);
+}
+
+.sidebar-toggle-tab.collapsed-tab {
+  position: fixed;
+  left: 0;
+  top: 198px;
+  right: auto;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background: #ffffff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Menu Button Responsive Rules ────────────────────────────────────────── */
+.menu-toggle-btn {
+  display: none;
+}
+
+@media (min-width: 961px) {
+  .menu-toggle-btn {
+    display: none !important; /* Wide screen: Hide top header menu button */
+  }
+}
+
+@media (max-width: 960px) {
+  .menu-toggle-btn {
+    display: inline-flex !important; /* Mobile/Tablet: Show in top header */
+  }
+  .sidebar-toggle-tab {
+    display: none !important; /* Mobile: Hide desktop sidebar tab */
+  }
+}

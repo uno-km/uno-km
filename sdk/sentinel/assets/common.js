@@ -1,22 +1,65 @@
 /**
  * AMEVA Ecosystem - Unified Common Client Script (shared/common.js)
- * High-Clarity Enterprise Open-Source Standard
+ * High-Clarity Enterprise Open-Source Standard (SSOT v3.1)
  * 
  * Features:
- * 1. Universal Hamburger Menu Toggle (Desktop Collapse & Mobile Drawer)
- * 2. Sidebar Section Accordions (Collapsible/Expandable Categories)
- * 3. Automatic Code Block Copy Tooltips
- * 4. Sidebar Active Link Highlighting
+ * 1. Desktop Sidebar Edge Tab (< / >) Collapse Handle
+ * 2. Mobile Responsive Top Header Hamburger Drawer (<= 960px)
+ * 3. Collapsible Category Section Accordions
+ * 4. Automatic Code Block Copy Tooltips
+ * 5. Active Link Highlighting
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ── 1. Setup Universal Hamburger Menu Toggle ─────────────────────────────
     const header = document.querySelector('header');
     const container = document.querySelector('.container');
     const sidebar = document.querySelector('.sidebar');
 
-    if (header && sidebar) {
-        // Find or create Hamburger Toggle Button
+    if (!sidebar) return;
+
+    // ── 1. Desktop Sidebar Edge Tab (< / > Toggle Handle) ─────────────────────
+    let tabBtn = document.getElementById('sidebar-toggle-tab');
+    if (!tabBtn) {
+        tabBtn = document.createElement('div');
+        tabBtn.id = 'sidebar-toggle-tab';
+        tabBtn.className = 'sidebar-toggle-tab';
+        tabBtn.setAttribute('title', '사이드바 접기/펼치기 (Toggle Sidebar)');
+        tabBtn.setAttribute('aria-label', 'Toggle Sidebar');
+        tabBtn.innerHTML = '‹';
+        sidebar.appendChild(tabBtn);
+    }
+
+    function updateDesktopSidebar(collapsed) {
+        if (collapsed) {
+            sidebar.classList.add('desktop-collapsed');
+            if (container) container.classList.add('sidebar-collapsed');
+            tabBtn.classList.add('collapsed-tab');
+            tabBtn.innerHTML = '›';
+            document.body.appendChild(tabBtn); // Move to body for fixed left positioning
+        } else {
+            sidebar.classList.remove('desktop-collapsed');
+            if (container) container.classList.remove('sidebar-collapsed');
+            tabBtn.classList.remove('collapsed-tab');
+            tabBtn.innerHTML = '‹';
+            sidebar.appendChild(tabBtn); // Restore inside sidebar
+        }
+    }
+
+    // Restore saved state
+    const isSavedCollapsed = localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
+    if (window.innerWidth > 960 && isSavedCollapsed) {
+        updateDesktopSidebar(true);
+    }
+
+    tabBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willCollapse = !sidebar.classList.contains('desktop-collapsed');
+        updateDesktopSidebar(willCollapse);
+        localStorage.setItem('ameva_desktop_sidebar_collapsed', willCollapse ? 'true' : 'false');
+    });
+
+    // ── 2. Mobile Header Hamburger Button (Active <= 960px) ───────────────────
+    if (header) {
         let toggleBtn = header.querySelector('.menu-toggle-btn');
         if (!toggleBtn) {
             toggleBtn = document.createElement('button');
@@ -31,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="menu-toggle-label">Menu</span>
             `;
             
-            // Insert at beginning of header-controls or right after header-brand
             const controls = header.querySelector('.header-controls');
             if (controls) {
                 controls.insertBefore(toggleBtn, controls.firstChild);
@@ -40,20 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Toggle action
         toggleBtn.addEventListener('click', () => {
-            const isMobile = window.innerWidth <= 960;
-            if (isMobile) {
-                sidebar.classList.toggle('mobile-open');
-                toggleBtn.classList.toggle('active');
-            } else {
-                sidebar.classList.toggle('collapsed');
-                if (container) container.classList.toggle('sidebar-collapsed');
-                toggleBtn.classList.toggle('active');
-            }
+            sidebar.classList.toggle('mobile-open');
+            toggleBtn.classList.toggle('active');
         });
 
-        // Close mobile menu on link click
+        // Close mobile drawer on link click
         sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 960) {
@@ -64,46 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── 2. Setup Collapsible Sidebar Section Accordions ───────────────────────
-    if (sidebar) {
-        const headers = sidebar.querySelectorAll('h3');
-        headers.forEach(h3 => {
-            const ul = h3.nextElementSibling;
-            if (!ul || ul.tagName !== 'UL') return;
+    // ── 3. Collapsible Sidebar Section Accordions ─────────────────────────────
+    const headers = sidebar.querySelectorAll('h3');
+    headers.forEach(h3 => {
+        const ul = h3.nextElementSibling;
+        if (!ul || ul.tagName !== 'UL') return;
 
-            h3.classList.add('collapsible-header');
+        h3.classList.add('collapsible-header');
 
-            // Add arrow icon if missing
-            if (!h3.querySelector('.accordion-icon')) {
-                const icon = document.createElement('span');
-                icon.className = 'accordion-icon';
-                icon.textContent = '▾';
-                h3.appendChild(icon);
+        if (!h3.querySelector('.accordion-icon')) {
+            const icon = document.createElement('span');
+            icon.className = 'accordion-icon';
+            icon.textContent = '▾';
+            h3.appendChild(icon);
+        }
+
+        h3.addEventListener('click', () => {
+            const isCollapsed = ul.classList.toggle('collapsed');
+            h3.classList.toggle('collapsed', isCollapsed);
+            const icon = h3.querySelector('.accordion-icon');
+            if (icon) {
+                icon.textContent = isCollapsed ? '▸' : '▾';
             }
-
-            // Check if this category has an active link
-            const hasActiveLink = ul.querySelector('a.active') !== null;
-            
-            // If on mobile, collapse secondary categories by default, keep active open
-            if (window.innerWidth <= 768 && !hasActiveLink && h3.textContent.includes('Ecosystem')) {
-                ul.classList.add('collapsed');
-                h3.classList.add('collapsed');
-                h3.querySelector('.accordion-icon').textContent = '▸';
-            }
-
-            // Click listener for section toggle
-            h3.addEventListener('click', () => {
-                const isCollapsed = ul.classList.toggle('collapsed');
-                h3.classList.toggle('collapsed', isCollapsed);
-                const icon = h3.querySelector('.accordion-icon');
-                if (icon) {
-                    icon.textContent = isCollapsed ? '▸' : '▾';
-                }
-            });
         });
-    }
+    });
 
-    // ── 3. Setup Copy Buttons on all <pre><code> blocks ───────────────────────
+    // ── 4. Setup Copy Buttons on all <pre><code> blocks ───────────────────────
     document.querySelectorAll('pre').forEach((pre) => {
         if (pre.querySelector('.copy-code-btn')) return;
 
@@ -134,16 +154,14 @@ document.addEventListener('DOMContentLoaded', () => {
         pre.appendChild(btn);
     });
 
-    // ── 4. Auto-highlight Active Link in Sidebar ───────────────────────────────
+    // ── 5. Auto-highlight Active Link in Sidebar ───────────────────────────────
     const currentPath = window.location.pathname;
     document.querySelectorAll('.sidebar a').forEach(link => {
         const href = link.getAttribute('href');
         if (!href) return;
         
-        // Exact match or subpage match
         if (href === currentPath || currentPath.endsWith(href) || (href === './' && currentPath.endsWith('/'))) {
             link.classList.add('active');
-            // Ensure parent ul and category are open
             const parentUl = link.closest('ul');
             if (parentUl) {
                 parentUl.classList.remove('collapsed');
