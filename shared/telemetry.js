@@ -419,6 +419,7 @@
             session_id: sessionId,
             cpu_cores: nav.hardwareConcurrency || null,
             ram_gb: nav.deviceMemory || null,
+            js_heap_used_mb: window.performance?.memory ? Math.round(window.performance.memory.usedJSHeapSize / (1024 * 1024)) : null,
             has_webgpu: !!nav.gpu,
             screen_width: scr.width || window.innerWidth,
             screen_height: scr.height || window.innerHeight,
