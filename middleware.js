@@ -131,26 +131,11 @@ export async function middleware(request) {
         return;
     }
 
-    // 1. AMEVA-Sentinel Active Threat Evaluation
+    // 1. AMEVA-Sentinel Observability: Calculate Threat Score (100% Permissive / Zero Blocking)
     const { score: threatScore, reasons } = calculateThreatScore(rawUrl, userAgent);
 
-    // 2. Active Defense: Block critical threats (Score >= 80)
-    if (threatScore >= 80) {
-        return new Response(JSON.stringify({
-            status: 'blocked',
-            code: 403,
-            guard: 'AMEVA-Sentinel v0.5 Active Defense',
-            threat_score: threatScore,
-            mitigated_reasons: reasons
-        }), {
-            status: 403,
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Sentinel-Score': String(threatScore),
-                'X-Sentinel-Action': 'BLOCKED'
-            }
-        });
-    }
+    // 2. Permissive Mode: All requests pass through freely without any 403 blocking
+    // Threat scores are purely evaluated for telemetry and public observability metrics.
 
     // 3. AI Crawler Identification & GEO Streaming
     let matchedBot = null;
