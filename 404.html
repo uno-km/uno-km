@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found | AMEVA Sovereign Ecosystem</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="/shared/common.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+</head>
+<body>
+  <!-- Standard Top Header -->
+  <header>
+    <a href="/index.html" class="header-brand">
+      <img src="/assets/brand/favicon.svg" alt="AMEVA Logo">
+      <h1>AMEVA Sovereign Foundation</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag">HTTP 404 Sentinel Logged</span>
+      <a href="/sentinel/observability.html" class="header-btn">📊 Live Observability</a>
+      <a href="/index.html" class="header-btn primary">Home Portal</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="/index.html">Founder Digital CV</a></li>
+        <li><a href="/sentinel/observability.html">Live Observability Console</a></li>
+        <li><a href="/foundation/">AMEVA Foundation Portal</a></li>
+      </ul>
+
+      <h3>Flagship Libraries</h3>
+      <ul>
+        <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Speech AI)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>404 - Requested Route Not Found</h2>
+      <p class="subtitle">The requested endpoint does not exist on this serverless deployment.</p>
+
+      <div class="alert alert-warning">
+        <span class="alert-title">🔍 Path Catch-All Telemetry Captured</span>
+        <p style="margin-bottom: 0;">
+          접속하신 비정상 또는 존재하지 않는 경로(<code id="missingPath">unknown</code>)는 AMEVA-Sentinel 관제 원장에 <strong>100% 정상적으로 포착되어 기록</strong>되었습니다.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 24px 0;">
+        <h4 style="margin: 0 0 12px 0;">Where to go from here?</h4>
+        <ul style="margin-bottom: 0;">
+          <li><a href="/index.html">Return to Founder Homepage</a></li>
+          <li><a href="/sentinel/observability.html">Inspect Live Observability Dashboard</a></li>
+          <li><a href="/foundation/">Browse AMEVA Foundation Governance Charter</a></li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('missingPath').innerText = window.location.pathname;
+  </script>
+</body>
+</html>
