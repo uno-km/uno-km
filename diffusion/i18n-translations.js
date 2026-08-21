@@ -189,8 +189,11 @@
       "gallery": {
         "title": "视觉画廊与渲染展示",
         "subtitle": "全系列 5 大模型预设、图生图 (Img2Img) 及各项参数设置的真实生成效果展示。"
-      }
-    }
+      },
+      "home": {
+        "title": "Termux-Diffusion",
+        "subtitle": "适用于 Android Termux 和三星 Galaxy 的生产级端侧 AI 图像生成框架",
+        "quickInstallTitle": "用户场景速查",
         "quickInstallDesc": "根据您的环境选择对应的一键命令直接运行:",
         "whyTitle": "移动端设备工程挑战",
         "whyText": "传统桌面级Stable Diffusion依赖CUDA和8GB以上显存，PRoot虚拟化容器导致40%额外内存损耗并极易触发安卓LMK崩溃。",

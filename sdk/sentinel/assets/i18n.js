@@ -688,7 +688,6 @@
       document.documentElement.dir = SUPPORTED_LANGUAGES[lang].dir || 'ltr';
     }
 
-    applyLanguage(lang) {
     _getCurrentContext() {
       const path = (window.location.pathname || '').toLowerCase();
       if (path.includes('playwright')) return 'playwright';

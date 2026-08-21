@@ -1,273 +1,162 @@
+# AMEVA Open-Source Foundation (AOSF)
+
 <p align="center">
-  <img src="assets/brand/ameva_logo.svg" alt="AMEVA Brand Logo" width="850"/>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="160" height="160">
+    <defs>
+      <radialGradient id="space-fill" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#162244" />
+        <stop offset="70%" stop-color="#0B132B" />
+        <stop offset="100%" stop-color="#060A17" />
+      </radialGradient>
+      <linearGradient id="aqua-sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#00F5D4" />
+        <stop offset="40%" stop-color="#00E5FF" />
+        <stop offset="70%" stop-color="#38BDF8" />
+        <stop offset="100%" stop-color="#3A86FF" />
+      </linearGradient>
+      <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+        <stop offset="40%" stop-color="#00F5D4" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#3A86FF" stop-opacity="0" />
+      </radialGradient>
+      <filter id="emblem-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.8" />
+      </filter>
+    </defs>
+    <g filter="url(#emblem-shadow)">
+      <path d="M 256 36 C 390 36, 465 112, 460 240 C 455 368, 380 445, 256 440 C 132 435, 48 355, 52 235 C 57 115, 122 36, 256 36 Z" fill="url(#space-fill)" />
+      <path d="M 256 36 C 395 36, 470 112, 465 240 C 460 368, 385 448, 256 442 C 175 436, 105 395, 72 335" fill="none" stroke="url(#aqua-sky-grad)" stroke-width="40" stroke-linecap="round" />
+      <line x1="256" y1="95" x2="162" y2="335" stroke="url(#aqua-sky-grad)" stroke-width="36" stroke-linecap="round" />
+      <line x1="256" y1="95" x2="350" y2="335" stroke="url(#aqua-sky-grad)" stroke-width="36" stroke-linecap="round" />
+      <line x1="195" y1="240" x2="317" y2="240" stroke="url(#aqua-sky-grad)" stroke-width="30" stroke-linecap="round" />
+      <line x1="195" y1="240" x2="260" y2="325" stroke="#00F5D4" stroke-width="24" stroke-linecap="round" stroke-dasharray="10 5" />
+      <circle cx="256" cy="95" r="40" fill="url(#cyan-glow)" />
+      <circle cx="256" cy="95" r="22" fill="#FFFFFF" stroke="#00F5D4" stroke-width="6" />
+      <circle cx="195" cy="240" r="26" fill="#00E5FF" stroke="#FFFFFF" stroke-width="5" />
+      <circle cx="162" cy="335" r="32" fill="#00F5D4" stroke="#FFFFFF" stroke-width="4" />
+      <circle cx="260" cy="325" r="26" fill="#00F5D4" stroke="#FFFFFF" stroke-width="5" />
+      <circle cx="317" cy="240" r="24" fill="#38BDF8" />
+      <circle cx="350" cy="335" r="32" fill="#3A86FF" stroke="#FFFFFF" stroke-width="4" />
+    </g>
+  </svg>
 </p>
 
 <p align="center">
-  <b>Autonomous Multi-Agent Enterprise Virtualized Automation</b><br/>
-  <i>Orchestrating Intelligence Beyond the Cloud · Edge-Native AI Democratization · 100% Data Sovereignty</i>
+  <strong>Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Egress Dependency</strong><br/>
+  <em>클라우드 종속과 서버 비용 없는 100% 순수 클라이언트 엣지 AI &amp; 분산 자율 소프트웨어 생태계</em>
 </p>
 
 <p align="center">
-  <a href="https://uno-km.vercel.app/"><b>🌐 Official Executive Portal & Digital CV</b></a> |
-  <a href="https://uno-km.vercel.app/foundation/"><b>🏛️ AMEVA Foundation</b></a> |
-  <a href="https://uno-km.vercel.app/lib/forge/"><b>⚡ AMEVA-Forge Docs</b></a> |
-  <a href="https://uno-km.vercel.app/sentinel/"><b>🛡️ AMEVA-Sentinel</b></a> |
-  <a href="https://uno-kim.tistory.com/"><b>📖 Tech Blog</b></a>
+  <a href="https://uno-km.vercel.app/foundation/index.html"><img src="https://img.shields.io/badge/AOSF-Official_Portal-004499.svg?style=flat-square" alt="Portal"></a>
+  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square" alt="License"></a>
+  <a href="https://uno-km.vercel.app/foundation/governance.html"><img src="https://img.shields.io/badge/Governance-Meritocracy-brightgreen.svg?style=flat-square" alt="Governance"></a>
+  <a href="https://opencollective.com/ameva-fund"><img src="https://img.shields.io/badge/Open_Collective-Donate-blueviolet.svg?style=flat-square" alt="OpenCollective"></a>
+  <a href="https://github.com/sponsors/uno-km"><img src="https://img.shields.io/badge/GitHub-Sponsor_Project-ea4aaa.svg?style=flat-square" alt="GitHub Sponsors"></a>
 </p>
 
-<div align="center">
-  <a href="https://uno-km.vercel.app/">
-    <img src="https://img.shields.io/badge/Live_Portal-uno--km.vercel.app-003399?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portal"/>
-  </a>
-  <a href="https://uno-km.vercel.app/foundation/">
-    <img src="https://img.shields.io/badge/Foundation-AMEVA_Open--Source-003399?style=for-the-badge" alt="AMEVA Foundation"/>
-  </a>
-  <a href="https://opencollective.com/ameva-fund">
-    <img src="https://img.shields.io/badge/Open_Collective-AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
-  </a>
-  <a href="https://github.com/sponsors/uno-km">
-    <img src="https://img.shields.io/badge/GitHub_Sponsors-uno--km-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"/>
-  </a>
-  <a href="https://uno-kim.tistory.com/">
-    <img src="https://img.shields.io/badge/Tech_Blog-uno--kim.tistory.com-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog"/>
-  </a>
-</div>
+<p align="center">
+  <a href="https://uno-km.vercel.app/foundation/charter.html">재단 헌장 (Charter)</a> •
+  <a href="https://uno-km.vercel.app/foundation/governance.html">거버넌스 (Governance)</a> •
+  <a href="https://uno-km.vercel.app/foundation/incubation.html">인큐베이션 정책</a> •
+  <a href="https://uno-km.vercel.app/foundation/sponsorship.html">스폰서십 안내</a> •
+  <a href="https://uno-km.vercel.app/llms.txt">AI 피드 (llms.txt)</a>
+</p>
 
 ---
 
-# 🌌 What is AMEVA Universe?
+## 1. About AMEVA Open-Source Foundation (AOSF)
 
-> **"거대 클라우드 서버 비용 없이, 개인의 브라우저와 엣지 기기만으로 완전한 자율 추론과 자동화를 실현합니다."**
+**AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)**은 투명한 개방형 거버넌스와 실력주의(Meritocracy) 모델을 기반으로 운영되는 독립 비영리 오픈소스 기술 연구 협의체입니다.
 
-**AMEVA**는 척박한 환경에서도 형태를 유연하게 바꾸며 끝내 살아남는 단세포 생물 **아메바(Amoeba)**의 생존력에서 착안한 **차세대 엣지 네이티브 AI 생태계**입니다.
+빅테크 클라우드 벤더의 가파른 API 과금과 프라이버시 침해로부터 개발자와 사용자를 보호하기 위해, 사용자가 이미 소유하고 있는 **스마트폰(Android Termux), 개인 PC 브라우저(WebGPU/WASM), 엣지 임베디드 디바이스(ARM64)**의 로컬 하드웨어 자원을 극한까지 활용하는 **소버린 온디바이스(Sovereign On-Device) AI 및 자율 자동화 인프라**를 연구, 개발, 보급합니다.
 
-### 🧬 AMEVA Acronym & Architecture
-- **A — Agentic**: 스스로 상황을 분석하고 계획을 수립하는 자율 추론 & 의사결정 지능.
-- **M — Multi-Agent**: 복잡한 작업을 원자 단위로 분해하여 전문 에이전트에 위임하는 계층적 오케스트레이션.
-- **E — Ecosystem**: Desktop, Web, Android(Termux), Edge 기기를 유기적으로 연결하는 통합 플랫폼.
-- **V — Virtualized**: 클라이언트 중심 (Client-Side Native) 브라우저 Pyodide WASM 샌드박스로 호스트를 완벽히 격리하는 보안 런타임.
-- **A — Automation**: 클라이언트 중심 연산 오프로딩의 실시간 비주얼 파이프라인 및 자동화 워크플로우.
+> **[원칙] 재단 공공 기구와 설립자 개인 프로필의 엄격한 분리 (Separation of Concerns)**  
+> AMEVA 오픈소스 재단(AOSF)은 특정 개인이나 사기업에 종속되지 않는 영구적인 공공재(Public Good)로 관리됩니다. 설립자 김은호(Eunho Kim, [@uno-km](https://github.com/uno-km))의 개인 커리어 및 개발자 포트폴리오는 [개인 디지털 CV](https://uno-km.vercel.app/)를 통해 명확히 분리 운영됩니다.
 
-```text
-※ 보안 원칙: AMEVA는 웜이나 악성코드가 절대 아니며, 클라이언트 중심 (Client-Side Native) 격리 WASM 샌드박스에서 구동되는 합법적인 오픈소스 시스템 프레임워크입니다.
+---
+
+## 2. AOSF 전체 생태계 아키텍처 (Ecosystem Map)
+
+```mermaid
+flowchart TD
+    subgraph AppLayer ["1. 사용자 애플리케이션 계층 (End-User Applications)"]
+        Workstation["AMEVA Workstation (Web/Desktop)<br/>- 100% 로컬 WebGPU LLM (Qwen2.5)<br/>- 대용량 PDF/DOCX 3초 맵리듀스 편집<br/>- 인앱 비디오 컷팅 & 1초 AI 배경제거"]
+    end
+
+    subgraph CoreLibs ["2. Tier 1 플래그십 라이브러리 & SDK (Core Ecosystem)"]
+        Playwright["termux-playwright<br/>(ARM64 비루팅 모바일 브라우저 자동화)"]
+        Diffusion["termux-diffusion<br/>(ARM64 네이티브 온디바이스 Stable Diffusion)"]
+        STT["termux-stt<br/>(통합 온디바이스 음성인식 & 128d 화자분리)"]
+        Train["termux-train<br/>(초경량 온디바이스 텐서 & DAG 자동미분)"]
+        Forge["AMEVA-Forge<br/>(브라우저 네이티브 WebGPU 텐서 가속 엔진)"]
+        Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]
+    end
+
+    subgraph RuntimeLayer ["3. 기저 런타임 및 하드웨어 가속 계층 (System Runtimes)"]
+        AndroidBionic["Android Bionic libc (ARM64 NEON SIMD)"]
+        WebGPU_WASM["Browser WebGPU / Pyodide WASM Runtime"]
+        NodeLinux["Node.js / Express / Linux User-Space Engine"]
+    end
+
+    AppLayer --> CoreLibs
+    CoreLibs --> RuntimeLayer
 ```
 
 ---
 
-# 👤 Executive Digital Business Card & Technical CV
+## 3. Tier 1: 플래그십 탑레벨 프로젝트 명세 (TLP Catalog)
 
-<table align="center" width="100%">
-  <tr>
-    <td width="220px" align="center" valign="top">
-      <img src="assets/images/profile.jpg" width="170px" style="border-radius: 50%;" alt="Eunho Kim Avatar"/><br/>
-      <h3 style="margin-top: 8px; margin-bottom: 2px;"><b>김은호 (Eunho Kim)</b></h3>
-      <p style="font-size: 0.88em; color: #64748b; margin-top: 0;"><code>@uno-km</code> · 1994.11.10</p>
-      <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.78em;">Tech Lead &amp; Systems Architect</span><br/>
-      <a href="FOUNDATION.md"><span style="display:inline-block; margin-top:4px; background: #fef3c7; color: #92400e; padding: 3px 6px; border-radius: 4px; font-weight: bold; font-size: 0.74em; border: 1px solid #fde68a;">Founder &amp; Chair @ AMEVA Foundation</span></a>
-    </td>
-    <td valign="top">
-      <table width="100%">
-        <thead>
-          <tr>
-            <th colspan="2" align="left">📞 Contact &amp; Verification</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td width="32%">📱 <b>전화번호</b></td>
-            <td><a href="tel:010-4943-7334">010-4943-7334</a></td>
-          </tr>
-          <tr>
-            <td>✉️ <b>이메일</b></td>
-            <td><a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></td>
-          </tr>
-          <tr>
-            <td>📖 <b>기술 블로그</b></td>
-            <td><a href="https://uno-kim.tistory.com/" target="_blank">https://uno-kim.tistory.com/</a></td>
-          </tr>
-          <tr>
-            <td>🐙 <b>GitHub</b></td>
-            <td><a href="https://github.com/uno-km" target="_blank">https://github.com/uno-km</a></td>
-          </tr>
-          <tr>
-            <td>📍 <b>위치</b></td>
-            <td>대한민국 경기도 성남시 분당구</td>
-          </tr>
-        </tbody>
-      </table>
-      <table width="100%" style="margin-top: 8px;">
-        <thead>
-          <tr>
-            <th colspan="2" align="left">🎓 Education &amp; Language</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td width="32%">🎓 <b>대학원</b></td>
-            <td>아주대학교 정보통신대학원 인공지능학과 석사 재학 (2026.08 ~)</td>
-          </tr>
-          <tr>
-            <td>🎓 <b>학사</b></td>
-            <td>한양사이버대학교 응용소프트웨어공학과 학사 졸업 (3.94 / 4.5)</td>
-          </tr>
-          <tr>
-            <td>🗣️ <b>어학</b></td>
-            <td>영어 (OPIc IH): 기술 소통 및 비즈니스 회화 가능</td>
-          </tr>
-        </tbody>
-      </table>
-    </td>
-  </tr>
-</table>
+엄격한 자동화 검증과 릴리즈 게이트를 통과하여 프로덕션 환경에서 즉시 사용 가능한 공식 배포 패키지 목록입니다.
 
-### 💬 Self-Introduction (자기소개)
-> **"개발을 진심으로 즐기며, 어떤 난제든 끝까지 파고들어 해결해 내는 끈기와 소통력을 가진 엔지니어입니다."**
->
-> 새로운 기술을 탐구하고 복잡한 문제를 분석하여 최적의 해답을 찾아내는 과정에서 큰 즐거움을 느낍니다. 
-> 팀원 및 유관부서와 적극적으로 소통하고 협업하는 문화를 좋아하며, 맡은 일은 포기하지 않고 끝까지 완수하는 강한 책임감을 가지고 있습니다. 
-> 2021년 10월부터 대기업 협력사(KT DS) 및 SK AX 자회사에서 사내 핵심 시스템 풀스택 개발, 대규모 DB 쿼리 튜닝(3초 → 0.3초), CI/CD 자동화 구축을 주도적으로 이끌어 왔습니다.
+| 프로젝트 명 | 기술 스택 & 런타임 | 핵심 기능 및 공학적 해결 과제 | 패키지 설치 및 레퍼런스 |
+| :--- | :--- | :--- | :--- |
+| **`AMEVA Workstation`** | WebGPU, WASM, React | 세계 최초 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
+| **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.github.io/termux-playwright/) |
+| **`termux-diffusion`** | C++ NEON, GGUF, Python | 클라우드 서버 없이 안드로이드 ARM64 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>[공식 문서](https://uno-km.github.io/termux-diffusion/) |
+| **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>[공식 문서](https://uno-km.github.io/termux-stt/) |
+| **`termux-train`** | C++, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.github.io/termux-train/) |
+| **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 가속 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `npm install @uno-km/ameva-forge`<br/>[공식 데모](https://uno-km.github.io/ameva-forge/demo.html) |
+| **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install @ameva/sentinel`<br/>[공식 문서](https://uno-km.vercel.app/sdk/sentinel/) |
 
 ---
 
-### 💼 Enterprise Career & Project Track Records (실무 경력 및 프로젝트 성과)
+## 4. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
 
-#### 🏢 1. SK AX 자회사 (2026.02 ~ 현재 / 재직중)
-- **직무**: Tech Lead (TL), Business Analyst (BA), 사내 시스템 CI/CD 배포 파이프라인 구축, 백엔드/프론트엔드 풀스택 개발
-- **핵심 성과**:
-  - 사내 핵심 시스템 전사 CI/CD 배포 자동화 파이프라인 구축 및 백엔드(Java/Spring Boot) / 프론트엔드 풀스택 개발 총괄.
-  - 비즈니스 요구사항 분석(BA) 및 테크 리드(TL) 역할을 주도적으로 수행하며 사내 시스템 안정성과 개발 생산성 극대화.
-
-#### 🏢 2. KT DS 협력사 고객개발팀 (2021.10 ~ 2026.01 / 4년 4개월)
-- **직무**: Tech Lead (TL), PM/PL, 사내 핵심 시스템(B2B/PLM) 구축 및 ITO 운영 개발
-- **핵심 성과**:
-  - **KT 엔터프라이즈 B2B/PLM 시스템 풀스택 개발 및 고도화**: 레거시 KOS 시스템의 웹/MSA 전환, 대규모 데이터 무중단(Zero-downtime) 이관 및 쿼리 튜닝(**3초 → 0.3초**, 10배 향상), 비즈니스 룰 엔진 최적화로 **상품 출시 리드타임 2주 → 3일 단축**.
-  - **ITO 운영 안정화 및 DevOps 자동화 (Tech Lead/PM)**: 수수료 정산 배치 속도 개선(**0.5초 → 0.05초**), Jenkins CI/CD 배포 시간 단축(**30분 → 5분**), 보안성 검토 자동화(누락 0건) 및 **장애 대응 체계 개선(1시간 → 10분)**.
+- **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
+- **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))
+- **`Dead Internet Theatre`**: Docker 기반 자율 멀티에이전트 사회 시뮬레이터 ([GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre))
+- **`AMEVA Agent Orchestra`**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 ([GitHub](https://github.com/uno-km/AMEVA-Agent-Orchestra))
+- **`BitNet Kernel Contributions`**: 1-bit(1.58-bit) LLM을 위한 ARM NEON 커널 및 빌드 최적화 오픈소스 기여 ([GitHub](https://github.com/uno-km/BitNet))
 
 ---
 
-### 🛠️ Core Technical Competencies (핵심 기술 역량)
+## 5. 스폰서십 및 재정적·하드웨어 후원 안내 (Sponsorship & Grants)
 
-| 분야 | 핵심 보유 기술 및 툴셋 |
-|:---|:---|
-| **🧠 AI, Data Science & Reasoning** | `WebGPU Compute`, `Autograd Engine`, `MLOps`, `BitNet (1.58-bit LLM)`, `Deep Reasoning (CoT/ToT)`, `Prompt Engineering`, `Pyodide WASM`, `RAG Architecture`, `LoRA / QLoRA` |
-| **☕ Backend & Architecture** | `Java 17/21`, `Spring Boot 3`, `Spring MVC`, `Spring Scheduler`, `JPA / Hibernate`, `MyBatis`, `Python`, `Maven / Gradle`, `RESTful API` |
-| **💾 Database & Optimization** | `PostgreSQL`, `Oracle DB`, `MariaDB`, `MySQL`, `SQLite`, **대규모 쿼리 튜닝 (3s → 0.3s)**, `인덱스 최적화` |
-| **🖥️ Frontend** | `JavaScript`, `React JS`, `TypeScript`, `SheetJS`, `Chart.js`, `Toast UI`, `jQuery / Ajax`, `HTML5 / CSS3` |
-| **🚀 DevOps, Systems & Collab** | `Jenkins`, `GitHub Actions`, `Docker`, `Kubernetes (K8S)`, `Tomcat`, `Nginx`, `Jira / Confluence`, `Git / SVN`, `SOP / WBS` |
+AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 투자나 영리 목적의 유료화 없이, **순수한 오픈 커뮤니티의 자발적 후원과 연구비 지원**으로 운영됩니다.
 
----
+### 왜 여러분의 후원이 절실한가요?
+1. **실기기 하드웨어 테스트베드 구축**:
+   - 모바일(ARM64), WebGPU, 임베디드 보드 환경에서 온디바이스 AI 런타임을 무결하게 검증하기 위해서는 다양한 스마트폰 단말기와 GPU CI/CD 러너가 지속적으로 확보되어야 합니다.
+2. **도메인 및 오픈소스 패키지 인프라 유지**:
+   - Vercel, GitHub Pages, NPM 및 PyPI 저장소 배포 파이프라인의 고가용성을 보장합니다.
+3. **투명한 재정 공시 (Transparency Reports)**:
+   - 모든 후원금과 기증 하드웨어는 분기별 투명성 보고서를 통해 공공 커뮤니티에 100% 투명하게 영수증과 함께 공개됩니다.
 
-# 🛡️ Security & Observability SDKs (핵심 보안·관측 SDK)
-
-> **npm에 공식 배포된 개인정보 침해 없는 0-Data 브라우저 관측 및 확정적 위험도 채점 보안 SDK입니다.**
-
-| SDK 패키지 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
-|:---|:---:|:---|:---:|
-| **🛡️ [AMEVA-Sentinel](https://github.com/uno-km/ameva-sentinel)**<br/>[![npm](https://img.shields.io/npm/v/@ameva/sentinel/alpha.svg?color=blue)](https://www.npmjs.com/package/@ameva/sentinel) | **Privacy-First Web Security**<br/>TypeScript / NodeNext ESM | **개인정보 침해 없는 0-Data 브라우저 관측 & 확정적 위험도 채점 레이어**<br/>원시 좌표/키로깅 일절 미수집, 0~100점 확정적 규칙 평가, 3대 브라우저(Chrome/Firefox/Safari) E2E 100% 검증 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/sdk/sentinel/)<br/>[🌐 GitHub Pages](https://uno-km.github.io/ameva-sentinel/)<br/>[📦 npm](https://www.npmjs.com/package/@ameva/sentinel) · [🐙 GitHub](https://github.com/uno-km/ameva-sentinel) |
+### 공식 후원 채널
+- **Open Collective (재단 공식 연구 기금 후원)**:  
+  👉 [https://opencollective.com/ameva-fund](https://opencollective.com/ameva-fund)
+- **GitHub Sponsors (창립자 및 개발자 직접 후원)**:  
+  👉 [https://github.com/sponsors/uno-km](https://github.com/sponsors/uno-km)
 
 ---
 
-# 🌟 Flagship Core Open-Source Libraries (대표 오픈소스 라이브러리)
+## 6. 오픈소스 커뮤니티 참여 및 깃허브 방문 안내
 
-> **PyPI 및 npm에 공식 배포된 독립형 엣지 딥러닝·자동화 오픈소스 라이브러리 패키지입니다.**
+AOSF는 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원의 코드 기여와 이슈 제기를 진심으로 환영합니다!
 
-| 라이브러리 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
-|:---|:---:|:---|:---:|
-| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>[![PyPI](https://img.shields.io/pypi/v/ameva.svg?color=blue)](https://pypi.org/project/ameva/) | **WebGPU**<br/>TypeScript / Python | **클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/forge/)<br/>[⚡ 실시간 데모](https://uno-km.vercel.app/lib/forge/demo.html)<br/>[📦 PyPI](https://pypi.org/project/ameva/) · [🐙 GitHub](https://github.com/uno-km/ameva-forge) |
-| **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Android Bionic**<br/>Python / Node.js | **안드로이드 Termux 환경 비루트(Non-root) 브라우저 자동화**<br/>ARM64 Chromium CDP 직접 제어, 헤드리스 웹 스크래핑 & 테스팅 파이프라인 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/playwright/)<br/>[📦 PyPI](https://pypi.org/project/termux-playwright/) · [📦 npm](https://www.npmjs.com/package/termux-playwright)<br/>[🐙 GitHub](https://github.com/uno-km/termux-playwright) |
-| **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **On-Device AI**<br/>Python / Node.js | **안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임**<br/>모바일 엣지 기기에서 클라우드 연결 없이 로컬 이미지 생성 및 가속 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/diffusion/)<br/>[📦 PyPI](https://pypi.org/project/termux-diffusion/) · [📦 npm](https://www.npmjs.com/package/termux-diffusion)<br/>[🐙 GitHub](https://github.com/uno-km/termux-diffusion) |
-| **🎙️ [Termux-STT](https://github.com/uno-km/termux-stt)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-stt.svg?color=blue)](https://pypi.org/project/termux-stt/) [![npm](https://img.shields.io/npm/v/termux-stt.svg?color=red)](https://www.npmjs.com/package/termux-stt) | **On-Device STT**<br/>Python / Node.js | **안드로이드 온디바이스 통합 음성인식(STT) & 화자 분리**<br/>Whisper.cpp, Vosk, Sherpa-ONNX 3줄 통합, 순수 Python K-Means 화자 분리 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/stt/)<br/>[📦 PyPI](https://pypi.org/project/termux-stt/) · [📦 npm](https://www.npmjs.com/package/termux-stt)<br/>[🐙 GitHub](https://github.com/uno-km/termux-stt) |
-| **🚂 [Termux-Train](https://github.com/uno-km/termux-train)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-train.svg?color=blue)](https://pypi.org/project/termux-train/) | **Autograd & DL**<br/>Python (ARM64 Bionic) | **안드로이드 및 엣지 임베디드 전용 경량 텐서 & 온디바이스 LoRA 훈련 엔진**<br/>SafeTensors zero-copy, RoPE 트랜스포머, DAG autograd 역전파, 정밀 릴리즈 검증 통과 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/train/)<br/>[📦 PyPI](https://pypi.org/project/termux-train/) · [🐙 GitHub](https://github.com/uno-km/termux-train) |
+- **공식 깃허브 조직**: [https://github.com/uno-km](https://github.com/uno-km)
+- **공식 기술 포털**: [https://uno-km.vercel.app/foundation/index.html](https://uno-km.vercel.app/foundation/index.html)
+- **개발자 기술 블로그**: [https://uno-kim.tistory.com/](https://uno-kim.tistory.com/) (쌩초보코딩단, 천천히 앞으로)
+- **AI 에이전트 전용 명세서**: [https://uno-km.vercel.app/llms.txt](https://uno-km.vercel.app/llms.txt)
 
----
-
-# 🏛️ AMEVA Multi-Layer Ecosystem & Systems Architecture
-
-> **데스크톱, 브라우저 샌드박스, 멀티에이전트 오케스트레이션, 인프라를 유기적으로 연결하는 AMEVA 4대 시스템 레이어입니다.**
-
-### 🖥️ Layer 1. Enterprise Desktop & Smart Workbench (데스크톱 및 워크벤치 도구)
-- **🏢 [AMEVA Workstation](https://github.com/uno-km/AMEVA-Workstation)**: 로컬 고성능 AI 모델 연동 및 엔터프라이즈급 통합 개발·작업대 환경.
-- **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)**: 트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치 및 DevSecOps 가드레일 내장 터미널 워크벤치.
-- **🪟 [AMEVA Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)**: OCR-First 화면 인식 & 로컬 llama.cpp 추론 기반의 프라이버시 보호형 Windows 데스크톱 AI 어시스턴트.
-- **🌐 [AMEVA Edge Browser](https://github.com/uno-km/AMEVA-Edge-Browser)**: 완전한 온디바이스 (Client-Side Native) 보안 격리 및 엣지 AI 웹 에이전트 구동에 최적화된 전용 브라우저 런타임.
-
-### ⚙️ Layer 2. Model Context Protocol (MCP) & WASM Sandbox (MCP 및 보안 격리)
-- **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)**: 웹 크롤러, 동적 코드 실행 등 위험도가 높은 연산을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 격리 구동 ([🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) | [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)).
-- **🧰 [MCP Dynamic Utils Hub](https://github.com/uno-km/MCP-Wasm-Toolkit)**: GitHub 원격 도구 코드를 SSE(ntfy) 채널을 통해 서버 재부팅 없이 AI 에이전트 활성 세션에 3초 내 동적 핫리로드.
-- **🚀 [AMEVA OS Playground](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경.
-
-### 🤖 Layer 3. Autonomous Agents, Simulation & Perception (자율 에이전트, 사회 시뮬레이션 & 음성)
-- **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)**: Docker 기반 자율 멀티에이전트 가상 사회 시뮬레이터 (에이전트 간 자율 상호작용 및 집단 담론 형성).
-- **🎼 [AMEVA Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 엔진 (Semantic Drift 방지).
-- **🎙️ [AMEVA STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)**: Whisper 기반 한국어 음성 데이터 수집부터 LoRA 파인튜닝, 실시간 엣지 음성 인식 에이전트 파이프라인.
-
-### 🧠 Layer 4. SRE Infrastructure & Resilient Data Pipeline (인프라 & 데이터)
-- **⚡ [AMEVA Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)**: SRE 원칙 기반 다이내믹 스코프드 스로틀링(기기 온도/전력 실시간 감지) 및 우선순위 스케줄링 AI 게이트웨이.
-- **📄 [AMEVA Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)**: 데이터 유출이 원천 차단된 오프라인 환경 지원 로컬 문서 인텔리전스 및 지식 기반 RAG 파이프라인.
-- **📦 [AMEVA Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)**: SCP, HTTPS, Telegram Bot 등 다중 전송 경로 기반의 무손실(Resilient retry-backed) 엣지 데이터 전달기.
-- **💾 [AMEVA Database](https://github.com/uno-km/AMEVA-Database)**: 분산 AMEVA 에코시스템 로그 분석 및 임베디드 SQLite 데이터 인스펙터.
-- **🕹️ [AMEVA Conductor](https://github.com/uno-km/AMEVA-Conductor)**: 원격 크로스플랫폼 환경에서 인간과 AI 에이전트 간의 상호작용을 제어하는 리모트 UI.
-
----
-
-> 📚 **AMEVA 생태계 원본 상세 문서 및 브랜드 가이드:**
-> - [🏛️ **AMEVA Ecosystem: Full Architecture & Research Documentation (생태계 원본 상세 리드미)**](docs/README_ECOSYSTEM.md) — 12개 프로젝트별 심층 분석, SRE 스로틀링, 실시간 벤치마크, 3단계 청사진, 전문 용어 사전 전체 수록
-> - [🎨 **Official Brand & Design System Guide**](assets/brand/BRAND_GUIDE.md) — 공식 브랜드 아이덴티티 및 디자인 가이드
-
----
-
-## 🚀 AMEVA Setup Universe (One-Click Installer)
-
-```powershell
-# Windows PowerShell 1-Click Bootstrap
-irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex
-```
-
-```bash
-# Linux / macOS / Android Termux 1-Click Bootstrap
-curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.sh | bash
-```
-
----
-
-# 💖 Sponsorship & Sovereign Public Goods Support
-
-> **클라우드 종속성 없는 100% 온디바이스 AI, 브라우저 WebGPU 딥러닝, 자율 에이전트 공공재 연구를 후원해주세요.**
-
-모든 AMEVA 핵심 소프트웨어는 **상업적 장벽 없는 영구 오픈소스 공공재(Apache 2.0 / MIT)**로 전 세계에 배포됩니다. 수납된 모든 후원금은 **투명한 공개 원장(Public Ledger)**을 통해 관리되며, ARM64 실기기 테스트베드 확보 및 CI/CD 멀티 GPU 러너 구동에 전액 집행됩니다.
-
-<div align="center">
-  <a href="https://github.com/sponsors/uno-km">
-    <img src="https://img.shields.io/badge/GitHub_Sponsors-💖_Sponsor_@uno--km-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"/>
-  </a>
-  <a href="https://opencollective.com/ameva-fund">
-    <img src="https://img.shields.io/badge/Open_Collective-🏛️_AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
-  </a>
-  <a href="https://uno-km.vercel.app/docs/foundation/sponsorship.html">
-    <img src="https://img.shields.io/badge/Foundation_Portal-📊_Sponsorship_Tiers-16a34a?style=for-the-badge&logo=vercel&logoColor=white" alt="AOSF Sponsorship Portal"/>
-  </a>
-</div>
-
-<br/>
-
-### 💎 후원 등급 및 공식 기여자 혜택 (Sponsorship Tiers)
-
-| 등급 (Tier) | 월 기여 금액 | 대상 및 공식 혜택 | 직통 후원 링크 |
-| :--- | :---: | :--- | :---: |
-| **☕ Community Supporter** | **$5** / mo | 개인 개발자 · 공식 저장소 `SPONSORS.md` 영구 등재 및 디스코드 배지 | [💖 후원하기](https://github.com/sponsors/uno-km) |
-| **🥉 Bronze Sponsor** | **$25** / mo | 스타트업 엔지니어 · 공식 재단 웹사이트 후원자 프로필/링크 노출 | [💖 후원하기](https://github.com/sponsors/uno-km) |
-| **🥈 Silver Ecosystem Partner** | **$100** / mo | 도구 도입 파트너 · 6대 플래그십 README 실버 파트너 배지 노출 | [💖 후원하기](https://github.com/sponsors/uno-km) |
-| **🥇 Gold Corporate Patron** | **$500** / mo | 기업 파트너 · 메인 포털 최상단 기업 로고 & 백링크 게시 (인보이스 발급) | [💖 후원하기](https://github.com/sponsors/uno-km) |
-| **💎 Platinum Strategic Partner** | **$2,000+** / mo | 글로벌 테크 기업 · 재단 거버넌스 자문 위원회 & 맞춤형 GPU/NPU 최적화 지원 | [💖 후원하기](https://github.com/sponsors/uno-km) |
-
----
-
-### 🌐 Open-Source Contributions & Community PRs
-- [BitNet (microsoft/BitNet)](https://github.com/uno-km/BitNet): 1-bit LLM ARM NEON / I2_S 커널 및 환경 빌드 관련 풀 리퀘스트(PR) 및 코드 기여 참여
-
----
-
-<p align="center">
-  &copy; 2026 <b>Eunho Kim (김은호 / @uno-km)</b> · Senior Full-Stack Engineer & Systems Architect.<br/>
-  High-Clarity Enterprise Open-Source Technical Portfolio · Powered by AMEVA Ecosystem.
-</p>
+> *"화려한 미사여구나 마케팅 수사 대신, 정확한 수학적 모델과 투명한 오픈소스 코드로 증명하겠습니다. 자유로운 클라이언트 엣지 AI의 미래를 함께 만들어 갈 여러분의 깃허브 방문과 스타(Star), 피드백을 기다립니다."*

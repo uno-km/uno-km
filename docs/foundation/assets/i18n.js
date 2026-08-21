@@ -25,6 +25,120 @@
   const DEFAULT_LANG = 'en';
   const STORAGE_KEYS = ['ameva_global_lang', 'uno_km_lang', 'ameva_lib_doc_lang', 'forge_lang'];
   const PHRASE_MAP = {
+
+  "AMEVA Ecosystem": {
+    "ko": "AMEVA 생태계",
+    "zh": "AMEVA 生态系统",
+    "ja": "AMEVA 生態系",
+    "ar": "النظام البيئي AMEVA",
+    "fr": "Écosystème AMEVA",
+    "de": "AMEVA Ökosystem",
+    "es": "Ecosistema AMEVA",
+    "hi": "AMEVA इकोसिस्टम",
+    "ru": "Экосистема AMEVA",
+    "vi": "Hệ sinh thái AMEVA",
+    "pl": "Ekosystem AMEVA",
+    "la": "Oecosystema AMEVA"
+  },
+  "Overview": {
+    "ko": "개요",
+    "zh": "概述",
+    "ja": "概要",
+    "ar": "نظرة عامة",
+    "fr": "Aperçu",
+    "de": "Überblick",
+    "es": "Descripción General",
+    "hi": "अवलोकन",
+    "ru": "Обзор",
+    "vi": "Tổng quan",
+    "pl": "Przegląd",
+    "la": "Conspectus"
+  },
+  "Official Reference": {
+    "ko": "공식 레퍼런스",
+    "zh": "官方参考",
+    "ja": "公式リファレンス",
+    "ar": "المرجع الرسمي",
+    "fr": "Référence Officielle",
+    "de": "Offizielle Referenz",
+    "es": "Referencia Oficial",
+    "hi": "आधिकारिक संदर्भ",
+    "ru": "Официальная документация",
+    "vi": "Tài liệu tham khảo",
+    "pl": "Oficjalna Dokumentacja",
+    "la": "Documenta Publica"
+  },
+  "Interactive": {
+    "ko": "인터랙티브",
+    "zh": "交互式演示",
+    "ja": "インタラクティブ",
+    "ar": "تفاعلي",
+    "fr": "Interactif",
+    "de": "Interaktiv",
+    "es": "Interactivo",
+    "hi": "इंटरैक्टिव",
+    "ru": "Интерактив",
+    "vi": "Tương tác",
+    "pl": "Interaktywne",
+    "la": "Repertorium"
+  },
+  "Concepts": {
+    "ko": "핵심 개념",
+    "zh": "核心概念",
+    "ja": "コア概念",
+    "ar": "المفاهيم الأساسية",
+    "fr": "Concepts Clés",
+    "de": "Kernkonzepte",
+    "es": "Conceptos Clave",
+    "hi": "मुख्य अवधारणाएँ",
+    "ru": "Основные концепции",
+    "vi": "Khái niệm cốt lõi",
+    "pl": "Kluczowe Pojęcia",
+    "la": "Doctrinae"
+  },
+  "Documentation": {
+    "ko": "공식 문서",
+    "zh": "官方文档",
+    "ja": "公式ドキュメント",
+    "ar": "الوثائق الرسمية",
+    "fr": "Documentation Officielle",
+    "de": "Offizielle Dokumentation",
+    "es": "Documentación Oficial",
+    "hi": "आधिकारिक दस्तावेज़",
+    "ru": "Официальные документы",
+    "vi": "Tài liệu chính thức",
+    "pl": "Oficjalne Dokumenty",
+    "la": "Documenta Primaria"
+  },
+  "AI Agent Protocols": {
+    "ko": "AI 에이전트 프로토콜",
+    "zh": "AI 代理规范",
+    "ja": "AIエージェント仕様",
+    "ar": "بروتوكولات الذكاء الاصطناعي",
+    "fr": "Protocoles Agent IA",
+    "de": "KI-Agenten-Protokolle",
+    "es": "Protocolos de Agente IA",
+    "hi": "AI एजेंट प्रोटोकॉल",
+    "ru": "Протоколы ИИ-агентов",
+    "vi": "Giao thức AI Agent",
+    "pl": "Protokoły Agentów AI",
+    "la": "Rationes Agentis AI"
+  },
+  "AI Agent Protocols & Feeds": {
+    "ko": "AI 에이전트 프로토콜 & 피드",
+    "zh": "AI 代理规范与订阅",
+    "ja": "AIエージェント仕様 & フィード",
+    "ar": "بروتوكولات وخلاصات الذكاء الاصطناعي",
+    "fr": "Protocoles et flux d'agents IA",
+    "de": "KI-Agenten-Protokolle & Feeds",
+    "es": "Protocolos y fuentes de agentes IA",
+    "hi": "AI एजेंट प्रोटोकॉल और फ़ीड्स",
+    "ru": "Протоколы и фиды ИИ-агентов",
+    "vi": "Giao thức & Nguồn cấp dữ liệu AI",
+    "pl": "Protokoły i kanały agentów AI",
+    "la": "Rationes et Flumina Agentis AI"
+  }
+,
   "Model Hub & GGUF Quantization Presets": {
     "ko": "모델 허브 & GGUF 양자화 프리셋",
     "zh": "模型中心与 GGUF 量化预设",
@@ -574,12 +688,43 @@
       document.documentElement.dir = SUPPORTED_LANGUAGES[lang].dir || 'ltr';
     }
 
+    _getCurrentContext() {
+      const path = (window.location.pathname || '').toLowerCase();
+      if (path.includes('playwright')) return 'playwright';
+      if (path.includes('stt')) return 'stt';
+      if (path.includes('diffusion')) return 'diffusion';
+      if (path.includes('train')) return 'train';
+      if (path.includes('forge')) return 'forge';
+      if (path.includes('sentinel')) return 'sentinel';
+      return 'foundation';
+    }
+
     applyLanguage(lang) {
       const dict = this.translations[lang] || this.translations[DEFAULT_LANG] || this.translations['ko'] || {};
+      const ctx = this._getCurrentContext();
+      const metaMap = {"playwright": {"brand": "Termux-Playwright", "title": "Termux-Playwright", "subtitles": {"en": "Production On-Device Browser Automation and Scraper Engine for Android Termux", "ko": "안드로이드 Termux를 위한 프로덕션급 온디바이스 브라우저 자동화 & 스크래핑 엔진", "ja": "Android Termux向けオンデバイスブラウザ自動化およびスクレイピングエンジン", "zh": "适用于 Android Termux 的端侧浏览器自动化与网页采集引擎", "ar": "محرك أتمتة المتصفح واستخراج البيانات على الأجهزة المحمولة لنظام Android Termux", "fr": "Moteur d'automatisation et de scraping de navigateur sur appareil pour Android Termux", "de": "On-Device-Browser-Automatisierungs- und Scraping-Engine für Android Termux", "es": "Motor de automatización y extracción de navegadores en el dispositivo para Android Termux", "hi": "Android Termux के लिए ऑन-डिवाइस ब्राउज़र ऑटोमेशन और स्क्रैपर इंजन", "ru": "Автоматизация браузера и сбор данных на устройствах Android Termux", "vi": "Công cụ tự động hóa và trích xuất trình duyệt trên thiết bị Android Termux", "pl": "Silnik automatyzacji i scrapowania przeglądarki na urządzeniach Android Termux", "la": "Machina automatica et extractio navigatoris in apparatu Android Termux"}}, "stt": {"brand": "Termux-STT", "title": "Termux-STT", "subtitles": {"en": "Production On-Device Speech-to-Text & 128d X-Vector Speaker Diarization for Android Termux", "ko": "안드로이드 Termux 전용 프로덕션급 온디바이스 음성인식 & 128차원 X-Vector 화자 분리 프레임워크", "ja": "Android Termux専用オンデバイス音声認識および128次元X-Vector話者分離フレームワーク", "zh": "适用于 Android Termux 的生产级端侧语音识别与 128 维 X-Vector 说话人日志分离框架", "ar": "إطار عمل تحويل الكلام إلى نص والتعرف على المتحدث 128d لنظام Android Termux", "fr": "Framework de reconnaissance vocale et de diarisation des locuteurs 128d sur Android Termux", "de": "On-Device-Sprach-zu-Text- und 128d-X-Vector-Sprechertrennung für Android Termux", "es": "Framework de voz a texto y diarización de hablantes 128d en el dispositivo para Android Termux", "hi": "Android Termux के लिए ऑन-डिवाइस स्पीच-टू-टेक्स्ट और 128d स्पीकर डायराइजेशन", "ru": "Распознавание речи и диаризация дикторов 128d на устройствах Android Termux", "vi": "Nhận dạng giọng nói và phân tách người nói 128d trên thiết bị Android Termux", "pl": "Rozpoznawanie mowy i diaryzacja mówców 128d na urządzeniach Android Termux", "la": "Recongnitio vocis et secretio locutorum 128d in apparatu Android Termux"}}, "diffusion": {"brand": "Termux-Diffusion", "title": "Termux-Diffusion", "subtitles": {"en": "Production On-Device AI Image Generation Framework for Android Termux & Samsung Galaxy", "ko": "안드로이드 Termux 및 삼성 갤럭시를 위한 온디바이스 AI 이미지 생성 프레임워크", "ja": "Android TermuxおよびSamsung Galaxy向けオンデバイスAI画像生成フレームワーク", "zh": "适用于 Android Termux 和三星 Galaxy 的生产级端侧 AI 图像生成框架", "ar": "إطار عمل توليد الصور بالذكاء الاصطناعي على أجهزة Android Termux وSamsung Galaxy", "fr": "Framework de génération d'images IA sur appareil pour Android Termux et Samsung Galaxy", "de": "On-Device-KI-Bilderzeugungs-Framework für Android Termux und Samsung Galaxy", "es": "Framework de generación de imágenes IA en el dispositivo para Android Termux y Samsung Galaxy", "hi": "Android Termux और Samsung Galaxy के लिए ऑन-डिवाइस AI इमेज जेनरेशन फ्रेमवर्क", "ru": "Генерация изображений с помощью ИИ на устройствах Android Termux и Samsung Galaxy", "vi": "Khung tạo hình ảnh AI trên thiết bị cho Android Termux & Samsung Galaxy", "pl": "Generowanie obrazów AI na urządzeniach Android Termux i Samsung Galaxy", "la": "Formatio imaginum per AI in apparatu Android Termux et Samsung Galaxy"}}, "train": {"brand": "Termux-Train", "title": "Termux-Train", "subtitles": {"en": "Ultra-lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android ARM64 Termux", "ko": "안드로이드 ARM64 Termux를 위한 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크", "ja": "Android ARM64 Termux向け超軽量オンバイステンソル演算＆DAG自動微分深層学習フレームワーク", "zh": "适用于 Android ARM64 Termux 的超轻量端侧张量运算与有向无环图自动求导深度学习框架", "ar": "إطار عمل للتعلم العميق وحساب المشتقات التلقائية خفيف الوزن لنظام Android ARM64 Termux", "fr": "Framework d'apprentissage profond et d'autodifférenciation DAG ultra-léger pour Android ARM64 Termux", "de": "Ultraleichtes On-Device-Tensor- und DAG-Autograd-Deep-Learning-Framework für Android ARM64 Termux", "es": "Framework de aprendizaje profundo y autograd de tensores ultraligero para Android ARM64 Termux", "hi": "Android ARM64 Termux के लिए अल्ट्रा-लाइटवेट ऑन-डिवाइस टेंसर और DAG ऑटोग्रैड डीप लर्निंग फ्रेमवर्क", "ru": "Сверхлегкий фреймворк глубокого обучения и автографа тензоров для Android ARM64 Termux", "vi": "Khung học sâu Tensor & DAG Autograd siêu nhẹ trên thiết bị cho Android ARM64 Termux", "pl": "Ultralekki framework uczenia głębokiego i autogradu tensorów dla Android ARM64 Termux", "la": "Syntaxis levissima tensurae et autograd pro Android ARM64 Termux"}}, "forge": {"brand": "AMEVA-Forge", "title": "AMEVA-Forge", "subtitles": {"en": "Client-Compute Offloaded Architecture Browser-Native WebGPU Autograd Deep Learning Engine", "ko": "서버 비용 없는 브라우저 네이티브 WebGPU 딥러닝 & 자동미분(Autograd) 엔진", "ja": "サーバー費用ゼロのブラウザネイティブWebGPU深層学習＆自動微分エンジン", "zh": "零服务器成本的浏览器原生 WebGPU 自动求导与深度学习引擎", "ar": "محرك التعلم العميق والمشتقات التلقائية WebGPU الأصلي في المتصفح بدون تكلفة خادم", "fr": "Moteur d'apprentissage profond et d'autodifférenciation WebGPU natif pour navigateur à coût serveur nul", "de": "Serverlose Browser-native WebGPU-Autograd-Deep-Learning-Engine", "es": "Motor de aprendizaje profundo y autograd WebGPU nativo del navegador sin costo de servidor", "hi": "ज़ीरो-सर्वर-लागत ब्राउज़र-मूल WebGPU ऑटोग्रै드 डीप लर्निंग इंजन", "ru": "Браузерный движок глубокого обучения WebGPU без затрат на сервер", "vi": "Công cụ học sâu WebGPU Autograd gốc trên trình duyệt không tốn chi phí máy chủ", "pl": "Natywny silnik uczenia głębokiego WebGPU i autogradu w przeglądarce bez kosztów serwera", "la": "Machina WebGPU nativa in navigatro sine pretio ministri"}}, "sentinel": {"brand": "AMEVA-Sentinel", "title": "AMEVA-Sentinel", "subtitles": {"en": "Privacy-first Security Observability and Deterministic Threat Scoring Layer for Web Applications", "ko": "웹 애플리케이션을 위한 프라이버시 우선 보안 관측성 및 결정론적 0~100 위협 스코어링 엔진", "ja": "Webアプリケーション向けプライバシー優先セキュリティ観測および決定論的脅威スコアリング層", "zh": "适用于 Web 应用的隐私优先安全可观测性与确定性威胁评分层", "ar": "طبقة مراقبة أمنية تعطي الأولوية للخصوصية وتسجيل التهديدات لتطبيقات الويب", "fr": "Couche d'observabilité de la sécurité et d'évaluation des menaces axée sur la confidentialité", "de": "Datenschutzorientierte Sicherheitsbeobachtbarkeit und Bedrohungsbewertung für Webanwendungen", "es": "Capa de observabilidad de seguridad y puntuación de amenazas que prioriza la privacidad", "hi": "वेब अनुप्रयोगों के लिए गोपनीयता-प्रथम सुरक्षा अवलोकन और खतरा स्कोरिंग परत", "ru": "Конфиденциальный уровень наблюдения за безопасностью и оценки угроз для веб-приложений", "vi": "Lớp quan sát bảo mật và chấm điểm mối đe dọa ưu tiên quyền riêng tư cho ứng dụng web", "pl": "Warstwa obserwowalności bezpieczeństwa i oceny zagrożeń zorientowana na prywatność", "la": "Stratum securitatis et computatio periculorum pro applicationibus interretialibus"}}, "foundation": {"brand": "AMEVA Open-Source Foundation", "title": "AMEVA 오픈소스 재단 (AOSF)", "subtitles": {"en": "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency", "ko": "클라우드 종속성 없는 100% 온디바이스 AI 및 자율 소프트웨어 생태계의 대중화", "ja": "クラウド依存のない100％オンデバイスAIおよび自律ソフトウェアエコシステムの民主化", "zh": "无云端依赖的 100% 端侧 AI 与自主软件生态系统普惠化", "ar": "إتاحة الذكاء الاصطناعي على الأجهزة المحمولة والأنظمة المستقلة بدون ضرائب سحابية", "fr": "Démocratiser l'IA sur appareil et les systèmes autonomes sans taxe cloud", "de": "Demokratisierung von On-Device-KI und autonomen Systemen ohne Cloud-Steuer", "es": "Democratización de la IA en el dispositivo y los sistemas autónomos sin impuestos en la nube", "hi": "क्लाउड टैक्स के बिना ऑन-डिवाइस AI और स्वायत्त प्रणालियों का लोकतंत्रीकरण", "ru": "Демократизация локального ИИ и автономных систем без облачных подписок", "vi": "Phổ cập AI trên thiết bị & hệ thống tự trị mà không cần phí đám mây", "pl": "Demokratyzacja lokalnej sztucznej inteligencji i systemów autonomicznych bez opłat chmurowych", "la": "Democratizatio AI in apparatu et systematum autonomorum sine vectigali nubis"}}};
+      const meta = metaMap[ctx] || metaMap['foundation'];
 
       // 1. Explicit [data-i18n] element translation
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
+
+        // Context-aware Header Brand & Page Title overrides for libraries
+        if (ctx !== 'foundation') {
+          if (key === 'common.brand' || key === 'common.headerTitle') {
+            el.textContent = meta.brand;
+            return;
+          }
+          if (key === 'home.title' || key === 'home.heroTitle') {
+            el.textContent = meta.title;
+            return;
+          }
+          if (key === 'home.subtitle' || key === 'home.heroSubtitle') {
+            el.textContent = meta.subtitles[lang] || meta.subtitles['en'] || meta.subtitles['ko'];
+            return;
+          }
+        }
+
         const val = this._lookup(dict, key);
         if (val !== undefined && val !== null && typeof val === 'string') {
           el.textContent = val;
@@ -597,7 +742,6 @@
       // 2. Intelligent Body, Table Header, Alert & Subtitle Universal Translator
       const targetTags = ['h1', 'h2', 'h3', 'h4', 'th', 'span.alert-title', 'p.subtitle', 'td', 'div.alert > p'];
       document.querySelectorAll(targetTags.join(',')).forEach(el => {
-        // Skip elements with specific child elements like inputs/code blocks to prevent messing code
         if (el.querySelector('pre, code, input, select, textarea')) return;
         
         let original = origTextMap.get(el);

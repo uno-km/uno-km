@@ -1,5 +1,5 @@
 /**
- * AMEVA Open-Source Foundation (AOSF) - Master 13-Language Translation Dictionary (SSOT)
+ * AMEVA Ecosystem - Standard 13-Language Fallback Translation Dictionary (SSOT)
  * Languages: en, ko, ja, zh, ar, fr, de, es, hi, ru, vi, pl, la
  */
 
@@ -127,46 +127,46 @@
   "ko": {
     "common": {
       "brand": "AMEVA 오픈소스 재단",
-      "releaseTag": "AOSF v2.0 (운영 중)",
-      "status": "독립 오픈소스 공공 기구",
-      "githubBtn": "재단 깃허브",
-      "founderBtn": "설립자 프로필",
+      "releaseTag": "AOSF v2.0 (Active)",
+      "status": "독립 비영리 오픈소스 기구",
+      "githubBtn": "재단 저장소",
+      "founderBtn": "창립자 프로필",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy."
     },
     "nav": {
-      "foundation": "파운데이션 인포",
-      "portal": "재단 공식 포털",
-      "charter": "재단 공식 헌장",
-      "governance": "거버넌스 & 메리트",
+      "foundation": "재단 소개 (Info)",
+      "portal": "재단 포털 (Portal)",
+      "charter": "재단 헌장 (Charter)",
+      "governance": "거버넌스 & 메리토크라시",
       "incubation": "인큐베이션 정책",
-      "sponsorship": "후원 및 지원 안내",
-      "tier1": "라이브러리 (Flagship TLP)",
-      "aiSpecs": "AI 에이전트 사양서"
+      "sponsorship": "스폰서십 & 후원",
+      "tier1": "플래그십 라이브러리 (TLP)",
+      "aiSpecs": "AI 에이전트 프로토콜"
     },
     "home": {
       "pageTitle": "AMEVA 오픈소스 재단 (AOSF) - 공식 포털",
       "title": "AMEVA 오픈소스 재단 (AOSF)",
       "subtitle": "클라우드 종속성 없는 100% 온디바이스 AI 및 자율 소프트웨어 생태계의 대중화",
       "sepTitle": "재단 공공 기구와 개인 프로필의 엄격한 분리",
-      "sepDesc": "AMEVA 오픈소스 재단(AOSF)은 독립된 기술 공공 기구로 운영됩니다. 설립자 김은호(@uno-km)의 개인 커리어, 연락처 및 포트폴리오는 개인 디지털 이력서에서 완전히 분리되어 관리됩니다.",
-      "desc": "AOSF는 투명한 메리토크라시(실력주의)에 의해 운영되는 비영리 오픈소스 기술 재단입니다. 클라우드 서버 비용 없이 사용자의 기기에서 온디바이스 중심로 구동되는 소버린 온디바이스 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 엔진을 개발하고 육성합니다.",
-      "tier1Title": "Tier 1: 공식 플래그십 탑레벨 프로젝트 (TLP)",
-      "tier1Desc": "프로덕션 레디 · PyPI 및 npm 정식 배포 · 완성형 소프트웨어 런타임",
-      "matrixTitle": "공식 배포 패키지 및 생태계 매트릭스"
+      "sepDesc": "AMEVA 오픈소스 재단(AOSF)은 독립적인 비영리 공공 기구로 운영됩니다. 창립자 김은호(@uno-km)의 개인 커리어, 연락처 및 포트폴리오는 개인 디지털 이력서(Personal Digital CV)에서 엄격히 분리되어 관리됩니다.",
+      "desc": "AOSF는 투명한 메리토크라시(능력주의) 거버넌스로 운영되는 독립 비영리 오픈소스 재단입니다. 클라우드 서버 비용 없이 사용자의 로컬 하드웨어에서 100% 온디바이스로 구동되는 소버린 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 텐서 엔진을 연구 및 육성합니다.",
+      "tier1Title": "Tier 1: 플래그십 탑레벨 프로젝트 (TLP)",
+      "tier1Desc": "프로덕션 레디 · PyPI 및 npm 인증 완료 · 독립 완전체 소프트웨어 및 런타임",
+      "matrixTitle": "자립형 온디바이스 소프트웨어 생태계 아키텍처"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 3초 MapReduce PDF/DOCX 리더 & 에디터, 웹 내 동영상 컷편집, 1초 AI 배경 누끼 제거, 오디오 무음 구간 자동 컷팅.",
+      "workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 3초 MapReduce PDF/DOCX 문서 뷰어 & 에디터, 인앱 동영상 컷편집, 1초 AI 배경제거 및 무음 자동 컷 기능 탑재.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "안드로이드 Termux(ARM64) 환경을 위한 비루팅 크로미움 브라우저 자동화 프레임워크. CDP 제어를 통한 고속 스크래핑 및 파이프라인 구동.",
+      "playwrightDesc": "안드로이드 Termux(ARM64) 환경을 위한 비루팅 크로미움 브라우저 자동화 프레임워크. CDP 제어를 통해 모바일 상에서 무인 크롤링 및 웹 자동화 파이프라인 구동.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임. 클라우드 서버나 루팅 없이 스마트폰 단말에서 직접 AI 이미지 생성.",
+      "diffusionDesc": "안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임. 클라우드 서버나 루팅 없이 모바일 단말기 로컬 하드웨어에서 직접 AI 이미지 생성.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 화자 분리(Diarization)를 제공하는 온디바이스 음성인식 통합 프레임워크.",
+      "sttDesc": "Whisper.cpp, Vosk, Sherpa-ONNX를 통합하고 온디바이스 화자 분리(Diarization)를 지원하는 온디바이스 음성인식 통합 프레임워크.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "SafeTensors 제로카피 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 및 DAG 자동미분 딥러닝 엔진.",
+      "trainDesc": "SafeTensors 인코딩 및 LoRA 어댑터 미세조정을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분 딥러닝 엔진.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "서버 비용이 전혀 없는 브라우저 네이티브 WebGPU 딥러닝 학습 및 오토그라드 엔진. PyTorch 호환 및 WGSL 셰이더 메모리 최적화."
+      "forgeDesc": "서버 비용 없는 브라우저 네이티브 WebGPU 딥러닝 & 자동미분(Autograd) 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 최적화 지원."
     },
     "charter": {
       "pageTitle": "AMEVA 재단 공식 헌장 (Charter)",
@@ -241,49 +241,166 @@
       "usageText": "모든 후원금과 하드웨어 기부 내역은 분기별 재정 보고서를 통해 100% 투명하게 공개됩니다."
     }
   },
+  "hi": {
+    "common": {
+      "brand": "AMEVA ओपन-सोर्स फाउंडेशन",
+      "releaseTag": "AOSF v2.0 (सक्रिय)",
+      "status": "स्वतंत्र ओपन-सोर्स निकाय",
+      "githubBtn": "फाउंडेशन रेपो",
+      "founderBtn": "संस्थापक प्रोफ़ाइल",
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). सर्वाधिकार सुरक्षित। मेरिटोक्रेसी द्वारा शासित।"
+    },
+    "nav": {
+      "foundation": "फाउंडेशन जानकारी",
+      "portal": "फाउंडेशन पोर्टल",
+      "charter": "फाउंडेशन चार्टर",
+      "governance": "शासन और योग्यता",
+      "incubation": "इनक्यूबेशन नीति",
+      "sponsorship": "प्रायोजन और समर्थन",
+      "tier1": "प्रमुख पुस्तकालय (TLP)",
+      "aiSpecs": "AI एजेंट प्रोटोकॉल"
+    },
+    "home": {
+      "pageTitle": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF) - आधिकारिक पोर्टल",
+      "title": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF)",
+      "subtitle": "क्लाउड टैक्स के बिना ऑन-डिवाइस AI और स्वायत्त प्रणालियों का लोकतंत्रीकरण",
+      "sepTitle": "फाउंडेशन और व्यक्तिगत प्रोफ़ाइल का पृथक्करण",
+      "sepDesc": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF) एक स्वतंत्र सार्वजनिक निकाय के रूप में संचालित होता है। संस्थापक Eunho Kim (@uno-km) के व्यक्तिगत करियर रिकॉर्ड को पर्सनल डिजिटल सीवी में अलग रखा गया है।",
+      "desc": "AOSF पारदर्शी योग्यता आधारित शासन वाला एक स्वतंत्र गैर-लाभकारी ओपन-सोर्स फाउंडेशन है। हम ऑन-डिवाइस AI, स्वायत्त मल्टी-एजेंट आर्केस्ट्रा और WebGPU इंजन को बढ़ावा देते हैं जो शून्य क्लाउड लागत के साथ 100% स्थानीय रूप से चलते हैं।",
+      "tier1Title": "टियर 1: फ्लैगशिप टॉप-लेवल प्रोजेक्ट्स (TLP)",
+      "tier1Desc": "प्रोडक्शन-रेडी · PyPI और npm सत्यापित · पूर्ण सॉफ्टवेयर और रनटाइम",
+      "matrixTitle": "संप्रभु ऑन-डिवाइस सॉफ्टवेयर स्टैक मैट्रिक्स"
+    },
+    "proj": {
+      "workstationTitle": "AMEVA Workstation (Web/Desktop)",
+      "workstationDesc": "दुनिया का पहला 100% ऑन-डिवाइस WebGPU स्थानीय AI (Qwen2.5), 3-सेकंड MapReduce PDF/DOCX संपादक, इन-ऐप वीडियो कटिंग और 1-सेकंड AI बैकग्राउंड रिमूवल।",
+      "playwrightTitle": "Termux-Playwright",
+      "playwrightDesc": "Android Termux (ARM64) पर नॉन-रूट क्रोमियम ब्राउज़र ऑटोमेशन। स्क्रैपिंग और ऑटोमेशन के लिए डायरेक्ट CDP नियंत्रण।",
+      "diffusionTitle": "Termux-Diffusion",
+      "diffusionDesc": "Android ARM64 के लिए नेटिव ऑन-डिवाइस Stable Diffusion रनटाइम। क्लाउड सर्वर के बिना छवियां उत्पन्न करता है।",
+      "sttTitle": "Termux-STT",
+      "sttDesc": "Whisper.cpp, Vosk और 128d स्पीकर डायराइजेशन के साथ ऑन-डिवाइस स्पीच-टू-टेक्स्ट फ्रेमवर्क।",
+      "trainTitle": "Termux-Train",
+      "trainDesc": "Android ARM64 के लिए अल्ट्रा-लाइटवेट ऑन-डिवाइस टेंसर और DAG ऑटोग्रैड डीप लर्निंग फ्रेमवर्क।",
+      "forgeTitle": "AMEVA-Forge",
+      "forgeDesc": "क्लाइंट-कंप्यूट ऑफलोडेड आर्किटेक्चर ब्राउज़र-मूल WebGPU ऑटोग्रैड डीप लर्निंग इंजन।"
+    },
+    "charter": {
+      "pageTitle": "Official Charter of the AMEVA Foundation",
+      "subtitle": "Adopted August 2026",
+      "missionTitle": "Mission Statement",
+      "missionText": "\"To liberate artificial intelligence and compute autonomy from centralized cloud enclosures by engineering high-performance, edge-first open-source software that operates entirely on sovereign end-user hardware.\"",
+      "art1Title": "Article I. Name and Core Purpose",
+      "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
+      "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
+      "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
+      "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
+      "art2Title": "Article II. Technical Scope",
+      "thDomain": "Domain",
+      "thTech": "Core Technologies",
+      "thObj": "Primary Objectives",
+      "r1Domain": "Mobile & Edge Runtimes",
+      "r1Tech": "Android Bionic ARM64, Termux, NEON SIMD",
+      "r1Obj": "Non-root browser automation (termux-playwright), on-device Stable Diffusion (termux-diffusion), and tensor autograd (termux-train).",
+      "r2Domain": "Browser & WebGPU AI",
+      "r2Tech": "WebGPU, WGSL, Pyodide WASM",
+      "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
+      "r3Domain": "Autonomous Systems",
+      "r3Tech": "Docker, SRE Mesh, Multi-CLI",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
+      "art3Title": "Article III. Licensing & Intellectual Property",
+      "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
+      "art4Title": "Article IV. Disclaimer of Liability",
+      "art4Text": "Deliverables are provided \"AS IS\", without warranty of any kind, express or implied."
+    },
+    "gov": {
+      "pageTitle": "Governance & Meritocracy Guidelines",
+      "subtitle": "AOSF Operating Regulations & Meritocratic Bylaws",
+      "meritTitle": "Meritocracy Principle",
+      "meritText": "The AMEVA Open-Source Foundation operates strictly on meritocracy: influence, committer rights, and Project Management Committee (PMC) seats are earned exclusively through sustained, high-quality technical and architectural contributions.",
+      "sec1Title": "1. Roles and Responsibilities",
+      "sec1Text": "Community roles are categorized into Users, Contributors, Committers, and PMC Members with clear, transparent promotion criteria.",
+      "sec2Title": "2. Decision-Making & Voting Protocols",
+      "sec2Text": "Consensus building is prioritized, followed by formal 72-hour lazy consensus votes where required for major architectural changes.",
+      "sec3Title": "3. Project Lifecycle",
+      "sec3Text": "Projects progress through Sandbox -> Incubation -> Top-Level Project (TLP) based on code maturity and multi-maintainer diversity.",
+      "sec4Title": "4. Conflict Resolution & Code of Conduct",
+      "sec4Text": "All participants adhere to the Contributor Covenant Code of Conduct, ensuring a professional, harassment-free environment."
+    },
+    "inc": {
+      "pageTitle": "Incubation Policy & Lifecycle",
+      "subtitle": "Standard Process for Onboarding New Sub-Projects",
+      "policyTitle": "AOSF Incubation Framework",
+      "policyText": "The AOSF Incubation Policy governs the ingestion, mentorship, and graduation of emerging edge-first AI projects into official Tier 1 Top-Level Projects.",
+      "stage1Title": "Stage 1: Proposal & Sponsor",
+      "stage1Text": "A proposal outlining the technical scope, zero-cloud architecture, and initial maintainers is submitted for PMC review.",
+      "stage2Title": "Stage 2: Mentored Incubation",
+      "stage2Text": "The project establishes transparent issue tracking, CI/CD, documentation, and releases on PyPI/npm under AOSF guidelines.",
+      "stage3Title": "Stage 3: Graduation to Tier 1 TLP",
+      "stage3Text": "Upon demonstrating production stability, complete unit test suites, and meritocratic governance, the project graduates to TLP.",
+      "gradTitle": "Graduation Requirements",
+      "gradText": "Projects must exhibit 100% data sovereignty, edge-first execution, clean Apache 2.0/MIT licensing, and comprehensive API documentation."
+    },
+    "spon": {
+      "pageTitle": "Sponsorship & Institutional Support",
+      "subtitle": "Funding Public Goods & Sovereign Edge AI Infrastructure",
+      "sponTitle": "Supporting Open-Source Public Goods",
+      "sponText": "AOSF is sustained by direct sponsorships, corporate grants, and compute hardware donations dedicated exclusively to open research and testbed infrastructure.",
+      "tier1Title": "Hardware & Compute Grants",
+      "tier1Text": "Testing devices (ARM64 devboards, smartphones, GPUs) are used directly in CI/CD pipelines to benchmark real hardware performance.",
+      "tier2Title": "Ecosystem Sustainer Tier",
+      "tier2Text": "Organizations providing annual financial grants receive prominent recognition across Foundation portals and documentation feeds.",
+      "tier3Title": "Individual Backers",
+      "tier3Text": "Individual developers supporting via GitHub Sponsors or OpenCollective help maintain domain infrastructure and package registries.",
+      "usageTitle": "Transparency of Funds",
+      "usageText": "All financial and hardware contributions are accounted for with public quarterly transparency reports."
+    }
+  },
   "ja": {
     "common": {
       "brand": "AMEVA オープンソース財団",
-      "releaseTag": "AOSF v2.0 (稼働中)",
-      "status": "独立オープンソース機関",
+      "releaseTag": "AOSF v2.0 (Active)",
+      "status": "独立非営利オープンソース機関",
       "githubBtn": "財団リポジトリ",
       "founderBtn": "創設者プロフィール",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy."
     },
     "nav": {
-      "foundation": "財団情報",
-      "portal": "財団ポータル",
-      "charter": "公式憲章",
-      "governance": "ガバナンス",
-      "incubation": "インキュベーション",
-      "sponsorship": "スポンサー案内",
-      "tier1": "フラグシップライブラリ",
-      "aiSpecs": "AI仕様書"
+      "foundation": "財団情報 (Info)",
+      "portal": "財団ポータル (Portal)",
+      "charter": "財団憲章 (Charter)",
+      "governance": "ガバナンスと実力主義",
+      "incubation": "インキュベーション方針",
+      "sponsorship": "スポンサーシップと支援",
+      "tier1": "フラッグシップライブラリ (TLP)",
+      "aiSpecs": "AIエージェント仕様"
     },
     "home": {
       "pageTitle": "AMEVA オープンソース財団 (AOSF) - 公式ポータル",
       "title": "AMEVA オープンソース財団 (AOSF)",
       "subtitle": "クラウド税のないオンデバイスAIと自律システムの民主化",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "財団の公的組織と個人プロフィールの厳格な分離",
+      "sepDesc": "AMEVA オープンソース財団 (AOSF) は独立した非営利の公的機関として運営されています。創設者 Eunho Kim (@uno-km) の個人経歴はデジタルCVにて厳格に分離管理されています。",
+      "desc": "AOSFは透明な能力主義ガバナンスによって運営される独立した非営利オープンソース財団です。クラウド費用ゼロでローカルで100%動作するソブリンAIやWebGPU自動微分エンジンを育成しています。",
+      "tier1Title": "Tier 1: フラッグシップ・トップレベルプロジェクト (TLP)",
+      "tier1Desc": "本番環境対応 · PyPI & npm 検証済み · 完全自律型ソフトウェアおよびランタイム",
+      "matrixTitle": "主権型オンデバイス・ソフトウェアスタック・マトリクス"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "世界初の完全オンデバイスWebGPUローカルAI (Qwen2.5)、3秒MapReduce PDF/DOCXリーダー＆エディター、動画カット、1秒AI背景透過機能を搭載。",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Android Termux (ARM64) 向け非ルートChromiumブラウザ自動化。スクレイピングと自動化のためのダイレクトCDP制御。",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Android ARM64向けネイティブオンデバイスStable Diffusionランタイム。クラウド不要で画像を生成。",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Whisper.cpp、Vosk、Sherpa-ONNXを統合したオンデバイス音声認識および話者分離フレームワーク。",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Android ARM64向けの超軽量オンバイステンソル演算＆DAG自動微分深層学習フレームワーク。",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "サーバー不要のブラウザネイティブWebGPU深層学習＆自動微分（Autograd）エンジン。"
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -362,45 +479,45 @@
     "common": {
       "brand": "AMEVA 开源基金会",
       "releaseTag": "AOSF v2.0 (活跃)",
-      "status": "独立开源公共机构",
+      "status": "独立非营利开源机构",
       "githubBtn": "基金会仓库",
       "founderBtn": "创始人履历",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). 保留所有权利。遵循精英治理准则。"
     },
     "nav": {
-      "foundation": "基金会信息",
+      "foundation": "基金会概况",
       "portal": "基金会门户",
-      "charter": "官方章程",
-      "governance": "治理与准则",
+      "charter": "基金会宪章",
+      "governance": "治理与英才制度",
       "incubation": "孵化政策",
-      "sponsorship": "赞助支持",
-      "tier1": "旗舰开源库",
-      "aiSpecs": "AI智能体规范"
+      "sponsorship": "赞助与支持",
+      "tier1": "旗舰顶级项目 (TLP)",
+      "aiSpecs": "AI 代理规范"
     },
     "home": {
       "pageTitle": "AMEVA 开源基金会 (AOSF) - 官方门户",
       "title": "AMEVA 开源基金会 (AOSF)",
       "subtitle": "无云端税的端侧 AI 与自主软件系统生态民主化",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "基金会公营机构与个人档案的严格分离",
+      "sepDesc": "AMEVA 开源基金会 (AOSF) 作为独立的非营利公共实体运作。创始人 Eunho Kim (@uno-km) 的个人履历与联系方式在个人数字简历中独立维护。",
+      "desc": "AOSF 是一个遵循透明英才治理准则的独立非营利开源基金会。我们致力于推动零云端服务器成本、100% 在用户本地硬件运行的主权端侧 AI、自主多智能体编排与 WebGPU 自动求导引擎。",
+      "tier1Title": "Tier 1: 旗舰顶级项目 (TLP)",
+      "tier1Desc": "生产就绪 · PyPI 与 npm 认证 · 独立完整软件与运行时",
+      "matrixTitle": "主权端侧软件技术栈矩阵"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "全球首个 100% 端侧 WebGPU 本地 AI (Qwen2.5)，3秒 MapReduce PDF/DOCX 文档编辑器，应用内视频剪辑与 1 秒 AI 背景去除。",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "适用于 Android Termux (ARM64) 的免 Root Chromium 自动化。直接 CDP 控制，赋能移动爬虫与自动化流水线。",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Android ARM64 原生端侧 Stable Diffusion 运行时。无需云端服务器即可本地生成图像。",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "集成 Whisper.cpp、Vosk 与 128 维声纹说话人分离的端侧语音转文本框架。",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "适用于 Android ARM64 的超轻量端侧张量运算与 DAG 自动求导深度学习框架。",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "零服务器成本的浏览器原生 WebGPU 自动求导与深度学习引擎。"
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -479,7 +596,7 @@
     "common": {
       "brand": "مؤسسة AMEVA مفتوحة المصدر",
       "releaseTag": "AOSF v2.0 (نشط)",
-      "status": "هيئة مفتوحة المصدر مستقلة",
+      "status": "هيئة مستقلة مفتوحة المصدر",
       "githubBtn": "مستودع المؤسسة",
       "founderBtn": "ملف المؤسس",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). جميع الحقوق محفوظة."
@@ -491,33 +608,33 @@
       "governance": "الحوكمة والجدارة",
       "incubation": "سياسة الاحتضان",
       "sponsorship": "الرعاية والدعم",
-      "tier1": "المكتبات الرائدة",
-      "aiSpecs": "مواصفات الذكاء الاصطناعي"
+      "tier1": "المكتبات الرائدة (TLP)",
+      "aiSpecs": "بروتوكولات الذكاء الاصطناعي"
     },
     "home": {
       "pageTitle": "مؤسسة AMEVA مفتوحة المصدر (AOSF) - البوابة الرسمية",
       "title": "مؤسسة AMEVA مفتوحة المصدر (AOSF)",
       "subtitle": "إضفاء الطابع الديمقراطي على الذكاء الاصطناعي على الأجهزة الطرفية بدون تكاليف سحابية",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "الفصل الصارم بين المؤسسة والملف الشخصي",
+      "sepDesc": "تعمل مؤسسة AMEVA مفتوحة المصدر ككيان عام مستقل. يتم الحفاظ على السيرة الذاتية للمؤسس Eunho Kim بشكل منفصل تماماً.",
+      "desc": "AOSF هي مؤسسة غير ربحية ومفتوحة المصدر تحكمها الجدارة الشفافة. نحن نرعى الذكاء الاصطناعي السيادي على الأجهزة ومحركات WebGPU المحلية.",
+      "tier1Title": "المستوى 1: المشاريع الرئيسية الرائدة (TLP)",
+      "tier1Desc": "جاهزة للإنتاج · معتمدة على PyPI و npm · برمجيات وبيئات تشغيل كاملة",
+      "matrixTitle": "مصفوفة حزمة البرمجيات السيادية على الأجهزة"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "أول ذكاء اصطناعي محلي WebGPU على الجهاز بنسبة 100%، محرر PDF/DOCX فائق السرعة، وتحرير الفيديو وإزالة الخلفية في ثانية واحدة.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "أتمتة متصفح Chromium بدون روت لنظام Android Termux (ARM64) مع تحكم مباشر عبر CDP.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "بيئة تشغيل Stable Diffusion الأصلية على أجهزة Android ARM64 لإنشاء الصور محلياً.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "إطار عمل موحد لتحويل الصوت إلى نص وفصل المتحدثين على الأجهزة المحمولة.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "إطار عمل فائق الخفة لحساب المشتقات التلقائية وتدريب النماذج على Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "محرك التعلم العميق والمشتقات التلقائية WebGPU الأصلي في المتصفح بدون تكلفة خادم."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -596,45 +713,45 @@
     "common": {
       "brand": "Fondation Open-Source AMEVA",
       "releaseTag": "AOSF v2.0 (Actif)",
-      "status": "Entité Open-Source Indépendante",
+      "status": "Organisme Open-Source Indépendant",
       "githubBtn": "Dépôt Fondation",
-      "founderBtn": "Profil Fondateur",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Tous droits réservés."
+      "founderBtn": "Profil du Fondateur",
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Tous droits réservés. Gouverné par la méritocratie."
     },
     "nav": {
-      "foundation": "Info Fondation",
+      "foundation": "Infos Fondation",
       "portal": "Portail Fondation",
-      "charter": "Charte Officielle",
+      "charter": "Charte de la Fondation",
       "governance": "Gouvernance & Mérite",
       "incubation": "Politique d'Incubation",
       "sponsorship": "Parrainage & Soutien",
-      "tier1": "Bibliothèques Phares",
-      "aiSpecs": "Protocoles IA"
+      "tier1": "Bibliothèques Phares (TLP)",
+      "aiSpecs": "Protocoles Agent IA"
     },
     "home": {
       "pageTitle": "Fondation Open-Source AMEVA (AOSF) - Portail Officiel",
       "title": "Fondation Open-Source AMEVA (AOSF)",
       "subtitle": "Démocratisation de l'IA On-Device sans taxe cloud",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Séparation de la Fondation et du Profil Personnel",
+      "sepDesc": "La Fondation AMEVA (AOSF) fonctionne comme une entité publique indépendante. Le CV et les coordonnées du fondateur Eunho Kim sont maintenus séparément.",
+      "desc": "L'AOSF est une fondation open-source indépendante régie par une méritocratie transparente. Nous développons une IA souveraine sur l'appareil et des moteurs WebGPU sans coût de serveur.",
+      "tier1Title": "Tier 1: Projets Phares de Premier Niveau (TLP)",
+      "tier1Desc": "Prêt pour la production · Vérifié sur PyPI & npm · Logiciels et runtimes autonomes",
+      "matrixTitle": "Matrice de la Suite Logicielle Souveraine On-Device"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Première IA locale 100% WebGPU (Qwen2.5), lecteur/éditeur PDF/DOCX ultra-rapide et découpe vidéo.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Automatisation du navigateur Chromium sans root sur Android Termux (ARM64) avec contrôle direct CDP.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Runtime Stable Diffusion natif sur appareil pour Android ARM64 générant des images sans serveur cloud.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Framework unifié de transcription vocale et de diarisation des locuteurs sur appareil.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Framework d'apprentissage profond et d'autodifférenciation DAG ultra-léger pour Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Moteur d'apprentissage profond et d'autodifférenciation WebGPU natif pour navigateur à coût serveur nul."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -716,42 +833,42 @@
       "status": "Unabhängige Open-Source-Organisation",
       "githubBtn": "Stiftungs-Repo",
       "founderBtn": "Gründerprofil",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Alle Rechte vorbehalten."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Alle Rechte vorbehalten. Durch Leistungsprinzip verwaltet."
     },
     "nav": {
       "foundation": "Stiftungsinformationen",
       "portal": "Stiftungsportal",
-      "charter": "Offizielle Charta",
+      "charter": "Stiftungscharta",
       "governance": "Governance & Verdienst",
       "incubation": "Inkubationsrichtlinie",
-      "sponsorship": "Sponsoring & Support",
-      "tier1": "Flaggschiff-Bibliotheken",
-      "aiSpecs": "KI-Protokolle"
+      "sponsorship": "Sponsoring & Förderung",
+      "tier1": "Flaggschiff-Bibliotheken (TLP)",
+      "aiSpecs": "KI-Agenten-Protokolle"
     },
     "home": {
       "pageTitle": "AMEVA Open-Source-Stiftung (AOSF) - Offizielles Portal",
       "title": "AMEVA Open-Source-Stiftung (AOSF)",
       "subtitle": "Demokratisierung von On-Device-KI ohne Cloud-Steuer",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Trennung von Stiftung und persönlichem Profil",
+      "sepDesc": "Die AMEVA Foundation (AOSF) agiert als unabhängige öffentliche Einrichtung. Der persönliche Werdegang von Gründer Eunho Kim wird separat geführt.",
+      "desc": "AOSF ist eine unabhängige Open-Source-Stiftung, die sich für souveräne On-Device-KI und WebGPU-Autograd-Engines ohne Cloud-Serverkosten einsetzt.",
+      "tier1Title": "Tier 1: Flaggschiff-Top-Level-Projekte (TLP)",
+      "tier1Desc": "Produktionsreif · PyPI & npm verifiziert · Vollständige Software & Runtimes",
+      "matrixTitle": "Souveräne On-Device-Software-Stack-Matrix"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Weltweit erste 100% On-Device WebGPU lokale KI (Qwen2.5), 3-Sekunden PDF/DOCX-Editor und Videoschnitt.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Root-lose Chromium-Browserautomatisierung auf Android Termux (ARM64) mit direkter CDP-Steuerung.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Natives On-Device Stable Diffusion Runtime für Android ARM64 ohne Cloud-Server.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "On-Device Speech-to-Text- und Sprecher-Diarisierungs-Framework.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Ultraleichtes On-Device-Tensor- und DAG-Autograd-Deep-Learning-Framework für Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Serverlose Browser-native WebGPU-Autograd-Deep-Learning-Engine."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -833,159 +950,42 @@
       "status": "Entidad Open-Source Independiente",
       "githubBtn": "Repo de la Fundación",
       "founderBtn": "Perfil del Fundador",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Todos los derechos reservados."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Todos los derechos reservados. Gobernado por meritocracia."
     },
     "nav": {
-      "foundation": "Info de la Fundación",
-      "portal": "Portal de la Fundación",
-      "charter": "Carta Oficial",
+      "foundation": "Información",
+      "portal": "Portal Oficial",
+      "charter": "Carta de la Fundación",
       "governance": "Gobernanza y Mérito",
       "incubation": "Política de Incubación",
-      "sponsorship": "Patrocinio y Soporte",
-      "tier1": "Bibliotecas Principales",
-      "aiSpecs": "Protocolos de IA"
+      "sponsorship": "Patrocinio y Apoyo",
+      "tier1": "Bibliotecas Principales (TLP)",
+      "aiSpecs": "Protocolos de Agente IA"
     },
     "home": {
       "pageTitle": "Fundación Open-Source AMEVA (AOSF) - Portal Oficial",
       "title": "Fundación Open-Source AMEVA (AOSF)",
       "subtitle": "Democratización de la IA en dispositivos sin costo de nube",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Separación de la Fundación y el Perfil Personal",
+      "sepDesc": "La Fundación AMEVA (AOSF) opera como una entidad pública independiente. La trayectoria personal de Eunho Kim se mantiene por separado.",
+      "desc": "AOSF es una fundación sin fines de lucro que impulsa la IA soberana en el dispositivo y motores WebGPU con cero costo de servidores en la nube.",
+      "tier1Title": "Tier 1: Proyectos Insignia de Nivel Superior (TLP)",
+      "tier1Desc": "Listo para producción · Verificado en PyPI y npm · Software completo",
+      "matrixTitle": "Matriz de Software Soberano en el Dispositivo"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Primera IA local 100% WebGPU en el dispositivo (Qwen2.5), editor PDF/DOCX en 3 segundos y corte de video.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Automatización de Chromium sin root en Android Termux (ARM64) con control CDP directo.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Runtime nativo de Stable Diffusion en el dispositivo para Android ARM64 sin servidores en la nube.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Framework unificado de voz a texto y diarización de interlocutores en el dispositivo.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Framework de aprendizaje profundo y autograd de tensores ultraligero para Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
-    },
-    "charter": {
-      "pageTitle": "Official Charter of the AMEVA Foundation",
-      "subtitle": "Adopted August 2026",
-      "missionTitle": "Mission Statement",
-      "missionText": "\"To liberate artificial intelligence and compute autonomy from centralized cloud enclosures by engineering high-performance, edge-first open-source software that operates entirely on sovereign end-user hardware.\"",
-      "art1Title": "Article I. Name and Core Purpose",
-      "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
-      "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
-      "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
-      "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
-      "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
-      "art2Title": "Article II. Technical Scope",
-      "thDomain": "Domain",
-      "thTech": "Core Technologies",
-      "thObj": "Primary Objectives",
-      "r1Domain": "Mobile & Edge Runtimes",
-      "r1Tech": "Android Bionic ARM64, Termux, NEON SIMD",
-      "r1Obj": "Non-root browser automation (termux-playwright), on-device Stable Diffusion (termux-diffusion), and tensor autograd (termux-train).",
-      "r2Domain": "Browser & WebGPU AI",
-      "r2Tech": "WebGPU, WGSL, Pyodide WASM",
-      "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
-      "r3Domain": "Autonomous Systems",
-      "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
-      "art3Title": "Article III. Licensing & Intellectual Property",
-      "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
-      "art4Title": "Article IV. Disclaimer of Liability",
-      "art4Text": "Deliverables are provided \"AS IS\", without warranty of any kind, express or implied."
-    },
-    "gov": {
-      "pageTitle": "Governance & Meritocracy Guidelines",
-      "subtitle": "AOSF Operating Regulations & Meritocratic Bylaws",
-      "meritTitle": "Meritocracy Principle",
-      "meritText": "The AMEVA Open-Source Foundation operates strictly on meritocracy: influence, committer rights, and Project Management Committee (PMC) seats are earned exclusively through sustained, high-quality technical and architectural contributions.",
-      "sec1Title": "1. Roles and Responsibilities",
-      "sec1Text": "Community roles are categorized into Users, Contributors, Committers, and PMC Members with clear, transparent promotion criteria.",
-      "sec2Title": "2. Decision-Making & Voting Protocols",
-      "sec2Text": "Consensus building is prioritized, followed by formal 72-hour lazy consensus votes where required for major architectural changes.",
-      "sec3Title": "3. Project Lifecycle",
-      "sec3Text": "Projects progress through Sandbox -> Incubation -> Top-Level Project (TLP) based on code maturity and multi-maintainer diversity.",
-      "sec4Title": "4. Conflict Resolution & Code of Conduct",
-      "sec4Text": "All participants adhere to the Contributor Covenant Code of Conduct, ensuring a professional, harassment-free environment."
-    },
-    "inc": {
-      "pageTitle": "Incubation Policy & Lifecycle",
-      "subtitle": "Standard Process for Onboarding New Sub-Projects",
-      "policyTitle": "AOSF Incubation Framework",
-      "policyText": "The AOSF Incubation Policy governs the ingestion, mentorship, and graduation of emerging edge-first AI projects into official Tier 1 Top-Level Projects.",
-      "stage1Title": "Stage 1: Proposal & Sponsor",
-      "stage1Text": "A proposal outlining the technical scope, zero-cloud architecture, and initial maintainers is submitted for PMC review.",
-      "stage2Title": "Stage 2: Mentored Incubation",
-      "stage2Text": "The project establishes transparent issue tracking, CI/CD, documentation, and releases on PyPI/npm under AOSF guidelines.",
-      "stage3Title": "Stage 3: Graduation to Tier 1 TLP",
-      "stage3Text": "Upon demonstrating production stability, complete unit test suites, and meritocratic governance, the project graduates to TLP.",
-      "gradTitle": "Graduation Requirements",
-      "gradText": "Projects must exhibit 100% data sovereignty, edge-first execution, clean Apache 2.0/MIT licensing, and comprehensive API documentation."
-    },
-    "spon": {
-      "pageTitle": "Sponsorship & Institutional Support",
-      "subtitle": "Funding Public Goods & Sovereign Edge AI Infrastructure",
-      "sponTitle": "Supporting Open-Source Public Goods",
-      "sponText": "AOSF is sustained by direct sponsorships, corporate grants, and compute hardware donations dedicated exclusively to open research and testbed infrastructure.",
-      "tier1Title": "Hardware & Compute Grants",
-      "tier1Text": "Testing devices (ARM64 devboards, smartphones, GPUs) are used directly in CI/CD pipelines to benchmark real hardware performance.",
-      "tier2Title": "Ecosystem Sustainer Tier",
-      "tier2Text": "Organizations providing annual financial grants receive prominent recognition across Foundation portals and documentation feeds.",
-      "tier3Title": "Individual Backers",
-      "tier3Text": "Individual developers supporting via GitHub Sponsors or OpenCollective help maintain domain infrastructure and package registries.",
-      "usageTitle": "Transparency of Funds",
-      "usageText": "All financial and hardware contributions are accounted for with public quarterly transparency reports."
-    }
-  },
-  "hi": {
-    "common": {
-      "brand": "AMEVA ओपन-सोर्स फाउंडेशन",
-      "releaseTag": "AOSF v2.0 (सक्रिय)",
-      "status": "स्वतंत्र ओपन-सोर्स संस्था",
-      "githubBtn": "फाउंडेशन रिपॉजिटरी",
-      "founderBtn": "संस्थापक प्रोफ़ाइल",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). सर्वाधिकार सुरक्षित। योग्यता तंत्र द्वारा संचालित।"
-    },
-    "nav": {
-      "foundation": "फाउंडेशन जानकारी",
-      "portal": "फाउंडेशन पोर्टल",
-      "charter": "फाउंडेशन चार्टर",
-      "governance": "शासन और योग्यता",
-      "incubation": "इनक्यूबेशन नीति",
-      "sponsorship": "प्रायोजन और समर्थन",
-      "tier1": "प्रमुख लाइब्रेरीज़",
-      "aiSpecs": "AI एजेंट प्रोटोकॉल"
-    },
-    "home": {
-      "pageTitle": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF) - आधिकारिक पोर्टल",
-      "title": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF)",
-      "subtitle": "क्लाउड टैक्स के बिना ऑन-डिवाइस AI और स्वायत्त प्रणालियों का लोकतंत्रीकरण",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
-    },
-    "proj": {
-      "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
-      "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
-      "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
-      "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
-      "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
-      "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Motor de aprendizaje profundo y autograd WebGPU nativo del navegador sin costo de servidor."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1064,45 +1064,45 @@
     "common": {
       "brand": "Опенсорс-фонд AMEVA",
       "releaseTag": "AOSF v2.0 (Активен)",
-      "status": "Независимая организация",
+      "status": "Независимая опенсорс-организация",
       "githubBtn": "Репозиторий фонда",
       "founderBtn": "Профиль основателя",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Все права защищены."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Все права защищены. Управляется меритократией."
     },
     "nav": {
       "foundation": "О фонде",
       "portal": "Портал фонда",
       "charter": "Устав фонда",
       "governance": "Управление и заслуги",
-      "incubation": "Инкубация",
-      "sponsorship": "Спонсорство",
-      "tier1": "Флагманские библиотеки",
-      "aiSpecs": "AI протоколы"
+      "incubation": "Политика инкубации",
+      "sponsorship": "Спонсорство и поддержка",
+      "tier1": "Флагманские библиотеки (TLP)",
+      "aiSpecs": "Протоколы ИИ-агентов"
     },
     "home": {
       "pageTitle": "Опенсорс-фонд AMEVA (AOSF) - Официальный портал",
       "title": "Опенсорс-фонд AMEVA (AOSF)",
       "subtitle": "Демократизация On-Device AI без облачных затрат",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Разделение фонда и личного профиля",
+      "sepDesc": "Фонд AMEVA (AOSF) действует как независимая общественная организация. Личное портфолио основателя Eunho Kim ведется строго отдельно.",
+      "desc": "AOSF — это независимый некоммерческий опенсорс-фонд, развивающий суверенный On-Device AI и движки WebGPU с нулевыми затратами на серверы.",
+      "tier1Title": "Уровень 1: Флагманские проекты высшего уровня (TLP)",
+      "tier1Desc": "Готово к продакшену · Проверено на PyPI и npm · Автономные среды выполнения",
+      "matrixTitle": "Матрица суверенного стека ПО на устройствах"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Первый в мире 100% локальный ИИ на WebGPU (Qwen2.5), 3-секундный редактор PDF/DOCX и обрезка видео.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Автоматизация Chromium без root на Android Termux (ARM64) с прямым управлением через CDP.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Нативная среда Stable Diffusion для Android ARM64, создающая изображения без облака.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Фреймворк распознавания речи и диаризации говорящих на устройстве.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Сверхлегкий фреймворк глубокого обучения и автографа тензоров для Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Браузерный движок глубокого обучения WebGPU без затрат на сервер."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1181,45 +1181,45 @@
     "common": {
       "brand": "Quỹ Mã Nguồn Mở AMEVA",
       "releaseTag": "AOSF v2.0 (Hoạt động)",
-      "status": "Tổ chức Mã Nguồn Mở Độc Lập",
-      "githubBtn": "Kho Lưu Trữ",
+      "status": "Tổ chức Mã Nguồn Mở Độc lập",
+      "githubBtn": "Kho Lưu Trữ Quỹ",
       "founderBtn": "Hồ Sơ Sáng Lập",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Mọi quyền được bảo lưu."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Bản quyền thuộc về Quỹ. Quản trị theo chế độ nhân tài."
     },
     "nav": {
-      "foundation": "Thông Tin Quỹ",
+      "foundation": "Thông tin Quỹ",
       "portal": "Cổng Thông Tin",
-      "charter": "Hiến Chương",
-      "governance": "Quản Trị & Đóng Góp",
-      "incubation": "Chính Sách Ươm Tạo",
-      "sponsorship": "Tài Trợ & Hỗ Trợ",
-      "tier1": "Thư Viện Trọng Điểm",
-      "aiSpecs": "Giao Thức AI"
+      "charter": "Hiến chương Quỹ",
+      "governance": "Quản trị & Thực tài",
+      "incubation": "Chính sách Ươm mầm",
+      "sponsorship": "Tài trợ & Ủng hộ",
+      "tier1": "Thư viện Chủ lực (TLP)",
+      "aiSpecs": "Giao thức Tác nhân AI"
     },
     "home": {
-      "pageTitle": "Quỹ Mã Nguồn Mở AMEVA (AOSF) - Cổng Thông Tin Chính Thức",
+      "pageTitle": "Quỹ Mã Nguồn Mở AMEVA (AOSF) - Cổng Chính Thức",
       "title": "Quỹ Mã Nguồn Mở AMEVA (AOSF)",
       "subtitle": "Phổ cập AI On-Device và hệ thống tự trị không phụ thuộc đám mây",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Tách biệt giữa Quỹ và Hồ sơ Cá nhân",
+      "sepDesc": "Quỹ AMEVA (AOSF) hoạt động như một thực thể công độc lập. Hồ sơ cá nhân của người sáng lập Eunho Kim được duy trì riêng biệt.",
+      "desc": "AOSF là quỹ mã nguồn mở phi lợi nhuận độc lập thúc đẩy AI tự chủ trên thiết bị và công cụ WebGPU với chi phí máy chủ bằng không.",
+      "tier1Title": "Cấp 1: Các Dự Án Hàng Đầu Chủ Lực (TLP)",
+      "tier1Desc": "Sẵn sàng sản xuất · Xác thực trên PyPI & npm · Phần mềm & môi trường chạy độc lập",
+      "matrixTitle": "Ma trận Bộ phần mềm Tự chủ Trên Thiết bị"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "AI cục bộ WebGPU 100% đầu tiên trên thiết bị (Qwen2.5), trình đọc/sửa PDF/DOCX 3 giây và cắt video.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Tự động hóa trình duyệt Chromium không cần root trên Android Termux (ARM64) với điều khiển CDP trực tiếp.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Môi trường thực thi Stable Diffusion gốc trên thiết bị Android ARM64 tạo hình ảnh không cần đám mây.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Khung nhận dạng giọng nói và phân tách người nói trên thiết bị.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Khung học sâu Tensor & DAG Autograd siêu nhẹ trên thiết bị cho Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Công cụ học sâu WebGPU Autograd gốc trên trình duyệt không tốn chi phí máy chủ."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1299,44 +1299,44 @@
       "brand": "Fundacja Open-Source AMEVA",
       "releaseTag": "AOSF v2.0 (Aktywny)",
       "status": "Niezależna Organizacja Open-Source",
-      "githubBtn": "Repozytorium",
+      "githubBtn": "Repozytorium Fundacji",
       "founderBtn": "Profil Założyciela",
-      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Wszelkie prawa zastrzeżone."
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Wszelkie prawa zastrzeżone. Rządzona merytokracją."
     },
     "nav": {
       "foundation": "O Fundacji",
       "portal": "Portal Fundacji",
-      "charter": "Statut Fundacji",
+      "charter": "Karta Fundacji",
       "governance": "Zarządzanie i Zasługi",
-      "incubation": "Inkubacja Projektów",
-      "sponsorship": "Wsparcie i Sponsoring",
-      "tier1": "Główne Biblioteki",
-      "aiSpecs": "Protokoły AI"
+      "incubation": "Polityka Inkubacji",
+      "sponsorship": "Sponsoring i Wsparcie",
+      "tier1": "Biblioteki Flagowe (TLP)",
+      "aiSpecs": "Protokoły Agentów AI"
     },
     "home": {
       "pageTitle": "Fundacja Open-Source AMEVA (AOSF) - Oficjalny Portal",
       "title": "Fundacja Open-Source AMEVA (AOSF)",
       "subtitle": "Demokratyzacja AI On-Device bez podatku chmurowego",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Oddzielenie Fundacji od Profilu Osobistego",
+      "sepDesc": "Fundacja AMEVA (AOSF) działa jako niezależny podmiot publiczny. Profil założyciela Eunho Kim jest prowadzony ściśle oddzielnie.",
+      "desc": "AOSF to niezależna fundacja open-source rozwijająca suwerenne AI na urządzeniach i silniki WebGPU bez kosztów serwerów chmurowych.",
+      "tier1Title": "Poziom 1: Flagowe Projekty Najwyższego Poziomu (TLP)",
+      "tier1Desc": "Gotowe do produkcji · Zweryfikowane na PyPI i npm · Kompletne oprogramowanie",
+      "matrixTitle": "Matryca Suwerennego Stosu Oprogramowania na Urządzeniach"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Pierwsze w 100% lokalne AI WebGPU na urządzeniu (Qwen2.5), 3-sekundowy edytor PDF/DOCX i edycja wideo.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Automatyzacja Chromium bez roota na Android Termux (ARM64) z bezpośrednią kontrolą CDP.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Natywne środowisko Stable Diffusion na urządzenia Android ARM64 generujące obrazy bez chmury.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Zunifikowany framework rozpoznawania mowy i diaryzacji mówców na urządzeniu.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Ultralekki framework uczenia głębokiego i autogradu tensorów dla Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Natywny silnik uczenia głębokiego WebGPU i autogradu w przeglądarce bez kosztów serwera."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1415,45 +1415,45 @@
     "common": {
       "brand": "Fundatio AMEVA Fontis Aperti",
       "releaseTag": "AOSF v2.0 (Activa)",
-      "status": "Institutio Libera et Publica",
-      "githubBtn": "Repositorium",
-      "founderBtn": "Conditoris Descriptio",
-      "footer": "© MMXXVI Fundatio AMEVA. Omnia iura reservata."
+      "status": "Corpus Fontis Aperti Sui Iuris",
+      "githubBtn": "Repositorium Fundationis",
+      "founderBtn": "Curriculum Conditoris",
+      "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Omnia Iura Reservata. Regitur Meritis."
     },
     "nav": {
-      "foundation": "De Fundatione",
+      "foundation": "Notitia Fundationis",
       "portal": "Porta Publica",
-      "charter": "Diploma Fundationis",
+      "charter": "Charta Fundationis",
       "governance": "Gubernatio et Meritum",
       "incubation": "Ratio Incubationis",
-      "sponsorship": "Patrocinium",
-      "tier1": "Bibliothecae Primariae",
-      "aiSpecs": "Regulae AI"
+      "sponsorship": "Patrocinium et Auxilium",
+      "tier1": "Bibliothecae Primariae (TLP)",
+      "aiSpecs": "Regulae Agentis AI"
     },
     "home": {
-      "pageTitle": "Fundatio AMEVA (AOSF) - Porta Publica",
+      "pageTitle": "Fundatio AMEVA Fontis Aperti (AOSF) - Porta Publica",
       "title": "Fundatio AMEVA Fontis Aperti",
       "subtitle": "Intelligentia Artificialis in machina propria sine vectigali nubis",
-      "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
-      "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
-      "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
-      "matrixTitle": "Official Released Packages & Ecosystem Matrix"
+      "sepTitle": "Secretio Fundationis et Curriculi Privati",
+      "sepDesc": "Fundatio AMEVA (AOSF) ut corpus publicum sui iuris operatur. Res gestae conditoris Eunho Kim seorsum servantur.",
+      "desc": "AOSF est fundatio fontis aperti sui iuris quae intelligentiam artificialem propriam et machinas WebGPU fovet.",
+      "tier1Title": "Ordo 1: Opera Primaria et Praecipua (TLP)",
+      "tier1Desc": "Paratum ad usum · Confirmatum in PyPI et npm · Syntaxis integra",
+      "matrixTitle": "Tabula Structurae Programmatum in Machina Propria"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Prima AI localis 100% in WebGPU (Qwen2.5), emendator PDF/DOCX et sectio pellicularum.",
       "playwrightTitle": "Termux-Playwright",
-      "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
+      "playwrightDesc": "Automatio navigatri Chromium sine privilegiis radicis in Android Termux (ARM64) per directum CDP.",
       "diffusionTitle": "Termux-Diffusion",
-      "diffusionDesc": "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.",
+      "diffusionDesc": "Syntaxis nativa Stable Diffusion pro Android ARM64 imagines sine nube formans.",
       "sttTitle": "Termux-STT",
-      "sttDesc": "Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.",
+      "sttDesc": "Syntaxis vocis in textum et secretio locutorum in apparatu mobili.",
       "trainTitle": "Termux-Train",
-      "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
+      "trainDesc": "Syntaxis levissima tensurae et autograd pro Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Machina WebGPU nativa in navigatro sine pretio ministri."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1534,7 +1534,6 @@
     module.exports = translations;
   } else {
     global.i18nTranslations = translations;
-    global.AOSF_i18n = translations;
     if (global.i18nManager) {
       global.i18nManager.registerTranslations(translations);
     }
