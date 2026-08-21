@@ -22,7 +22,7 @@
   <a href="https://uno-km.vercel.app/foundation/">
     <img src="https://img.shields.io/badge/Foundation-AMEVA_Open--Source-003399?style=for-the-badge" alt="AMEVA Foundation"/>
   </a>
-  <a href="https://opencollective.com/ameva-foundation">
+  <a href="https://opencollective.com/ameva-fund">
     <img src="https://img.shields.io/badge/Open_Collective-AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
   </a>
   <a href="https://github.com/sponsors/uno-km">
@@ -240,7 +240,7 @@ curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/s
   <a href="https://github.com/sponsors/uno-km">
     <img src="https://img.shields.io/badge/GitHub_Sponsors-💖_Sponsor_@uno--km-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"/>
   </a>
-  <a href="https://opencollective.com/ameva-foundation">
+  <a href="https://opencollective.com/ameva-fund">
     <img src="https://img.shields.io/badge/Open_Collective-🏛️_AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
   </a>
   <a href="https://uno-km.vercel.app/docs/foundation/sponsorship.html">

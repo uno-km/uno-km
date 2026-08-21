@@ -22,7 +22,7 @@ AMEVA Open-Source Foundation (AOSF)은 "클라우드 과금 없는 온디바이�
 AOSF는 글로벌 표준 결제 및 투명한 지출 내역 공개 플랫폼을 통해 후원을 받습니다:
 
 - GitHub Sponsors: https://github.com/sponsors/uno-km
-- Open Collective: https://opencollective.com/ameva-foundation
+- Open Collective: https://opencollective.com/ameva-fund
 
 ---
 
