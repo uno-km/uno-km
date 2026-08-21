@@ -1,12 +1,12 @@
 /**
- * Vercel Serverless Function: AMEVA Telemetry & Footprint Ingestion API
+ * Vercel Serverless Function: AMEVA Telemetry & Deep Forensic Ingestion API
  * Route: /api/telemetry
  * 
  * 100% Secure & Stealthy:
  * - Uses @neondatabase/serverless for instant pooled edge queries
- * - Parameterized SQL queries ($1, $2, ...)
+ * - Ingests session data, page views, click dynamics, and deep forensic fingerprints
  * - Extracts Vercel Edge Headers for accurate Geo/ISP metadata
- * - Silent error handling
+ * - Zero credentials leakage to frontend
  */
 import { neon } from '@neondatabase/serverless';
 
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         const latitude = headers['x-vercel-ip-latitude'] ? parseFloat(headers['x-vercel-ip-latitude']) : null;
         const longitude = headers['x-vercel-ip-longitude'] ? parseFloat(headers['x-vercel-ip-longitude']) : null;
 
-        const { type, session_id, visitor_id, pathname, url, referrer, hardware } = body;
+        const { type, session_id, visitor_id, pathname, url, referrer, hardware, forensics } = body;
 
         if (!session_id || !visitor_id) {
             return res.status(200).json({ ok: true });
@@ -49,6 +49,7 @@ export default async function handler(req, res) {
         if (dbUrl) {
             const sql = neon(dbUrl);
 
+            // 1. Session Init Handshake
             if (type === 'session_init' && hardware) {
                 await sql`
                     INSERT INTO visitor_sessions (
@@ -79,7 +80,53 @@ export default async function handler(req, res) {
                         ${(pathname || '/').slice(0, 255)}, ${(referrer || '').slice(0, 1000)}
                     );
                 `;
-            } else if (type === 'dwell_ping') {
+            }
+
+            // 2. Deep Forensic Ingestion (영혼/하드웨어 고유지문 & 과거사)
+            else if (type === 'deep_forensic_ping' && forensics) {
+                await sql`
+                    INSERT INTO deep_forensic_footprints (
+                        session_id, visitor_id, canvas_hash, audio_hash,
+                        webgl_vendor, webgl_renderer, webgl_max_texture_size, math_jit_precision,
+                        installed_fonts, font_count, screen_hz, color_gamut, is_hdr, color_depth,
+                        battery_level, is_charging, charging_time,
+                        audio_inputs_count, video_inputs_count, audio_outputs_count,
+                        is_webdriver, cookie_enabled, do_not_track, languages_list,
+                        first_seen_at, total_visit_count, total_session_count, past_paths_history
+                    ) VALUES (
+                        ${session_id}, ${visitor_id},
+                        ${(forensics.canvas_hash || '').slice(0, 64)},
+                        ${(forensics.audio_hash || '').slice(0, 64)},
+                        ${(forensics.webgl_vendor || '').slice(0, 255)},
+                        ${(forensics.webgl_renderer || '').slice(0, 500)},
+                        ${forensics.webgl_max_texture_size || 0},
+                        ${(forensics.math_jit_precision || '').slice(0, 100)},
+                        ${forensics.installed_fonts || ''},
+                        ${forensics.font_count || 0},
+                        ${forensics.screen_hz || null},
+                        ${(forensics.color_gamut || '').slice(0, 20)},
+                        ${!!forensics.is_hdr},
+                        ${forensics.color_depth || 24},
+                        ${forensics.battery_level || null},
+                        ${forensics.is_charging !== null ? !!forensics.is_charging : null},
+                        ${forensics.charging_time || null},
+                        ${forensics.audio_inputs_count || null},
+                        ${forensics.video_inputs_count || null},
+                        ${forensics.audio_outputs_count || null},
+                        ${!!forensics.is_webdriver},
+                        ${forensics.cookie_enabled !== false},
+                        ${(forensics.do_not_track || '').slice(0, 10)},
+                        ${(forensics.languages_list || '').slice(0, 255)},
+                        ${forensics.first_seen_at ? new Date(forensics.first_seen_at) : null},
+                        ${forensics.total_visit_count || 1},
+                        ${forensics.total_session_count || 1},
+                        ${forensics.past_paths_history || ''}
+                    );
+                `;
+            }
+
+            // 3. Dwell Time & Scroll Depth
+            else if (type === 'dwell_ping') {
                 const dwellSeconds = parseInt(body.dwell_seconds, 10) || 0;
                 const maxScroll = parseInt(body.max_scroll_percent, 10) || 0;
 
@@ -93,7 +140,10 @@ export default async function handler(req, res) {
                         ORDER BY viewed_at DESC LIMIT 1
                     );
                 `;
-            } else if (type === 'interaction_click' || type === 'custom_event') {
+            }
+
+            // 4. Click & Interaction Dynamics
+            else if (type === 'interaction_click' || type === 'custom_event') {
                 await sql`
                     INSERT INTO click_events (
                         session_id, visitor_id, pathname, event_type,
@@ -111,7 +161,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json({ ok: true });
     } catch (err) {
-        console.error('Telemetry Handler Error:', err.message);
+        console.error('Telemetry Ingestion Error:', err.message);
         return res.status(200).json({ ok: true });
     }
 }
