@@ -2,11 +2,11 @@
  * Vercel Serverless Function: AMEVA Telemetry & Deep Forensic Ingestion API
  * Route: /api/telemetry
  * 
- * 100% Secure & Stealthy:
- * - Uses @neondatabase/serverless for instant pooled edge queries
+ * Optimized Bulk Ingestion:
+ * - Handles client-buffered batch events in a single roundtrip
  * - Ingests session data, page views, click dynamics, and deep forensic fingerprints
- * - Extracts Vercel Edge Headers for accurate Geo/ISP metadata
- * - Zero credentials leakage to frontend
+ * - Parameterized SQL execution via @neondatabase/serverless
+ * - Zero credentials leakage
  */
 import { neon } from '@neondatabase/serverless';
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         if (dbUrl) {
             const sql = neon(dbUrl);
 
-            // 1. Session Init Handshake
+            // 1. Session Init Handshake (One-time)
             if (type === 'session_init' && hardware) {
                 await sql`
                     INSERT INTO visitor_sessions (
@@ -82,7 +82,7 @@ export default async function handler(req, res) {
                 `;
             }
 
-            // 2. Deep Forensic Ingestion (영혼/하드웨어 고유지문 & 과거사)
+            // 2. Deep Forensic Ingestion (One-time)
             else if (type === 'deep_forensic_ping' && forensics) {
                 await sql`
                     INSERT INTO deep_forensic_footprints (
@@ -125,7 +125,26 @@ export default async function handler(req, res) {
                 `;
             }
 
-            // 3. Dwell Time & Scroll Depth
+            // 3. 🚀 BATCH EVENTS INGESTION (브라우저에서 묶어 보낸 이벤트 1방에 벌크 적재)
+            else if (type === 'batch_events' && Array.isArray(body.batch) && body.batch.length > 0) {
+                // Execute all batched click & micro-interactions sequentially or concurrently in this single lambda
+                for (const ev of body.batch) {
+                    await sql`
+                        INSERT INTO click_events (
+                            session_id, visitor_id, pathname, event_type,
+                            target_tag, target_id, target_class, target_text, target_url, is_external
+                        ) VALUES (
+                            ${session_id}, ${visitor_id}, ${(ev.pathname || pathname || '/').slice(0, 255)},
+                            ${(ev.event_type || 'interaction_click').slice(0, 50)}, ${(ev.target_tag || '').slice(0, 30)},
+                            ${(ev.target_id || '').slice(0, 100)}, ${(ev.target_class || '').slice(0, 150)},
+                            ${(ev.target_text || '').slice(0, 250)}, ${(ev.target_url || '').slice(0, 1000)},
+                            ${!!ev.is_external}
+                        );
+                    `;
+                }
+            }
+
+            // 4. Dwell Time & Scroll Depth
             else if (type === 'dwell_ping') {
                 const dwellSeconds = parseInt(body.dwell_seconds, 10) || 0;
                 const maxScroll = parseInt(body.max_scroll_percent, 10) || 0;
@@ -138,22 +157,6 @@ export default async function handler(req, res) {
                         SELECT view_id FROM page_views
                         WHERE session_id = ${session_id} AND pathname = ${(pathname || '/').slice(0, 255)}
                         ORDER BY viewed_at DESC LIMIT 1
-                    );
-                `;
-            }
-
-            // 4. Click & Interaction Dynamics
-            else if (type === 'interaction_click' || type === 'custom_event') {
-                await sql`
-                    INSERT INTO click_events (
-                        session_id, visitor_id, pathname, event_type,
-                        target_tag, target_id, target_class, target_text, target_url, is_external
-                    ) VALUES (
-                        ${session_id}, ${visitor_id}, ${(pathname || '/').slice(0, 255)},
-                        ${(body.event_type || type).slice(0, 50)}, ${(body.target_tag || '').slice(0, 30)},
-                        ${(body.target_id || '').slice(0, 100)}, ${(body.target_class || '').slice(0, 150)},
-                        ${(body.target_text || '').slice(0, 250)}, ${(body.target_url || '').slice(0, 1000)},
-                        ${!!body.is_external}
                     );
                 `;
             }
