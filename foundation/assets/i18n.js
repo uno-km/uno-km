@@ -404,7 +404,7 @@
     "la": "Expositio Visus et Pinacotheca"
   },
   "High-resolution on-device output samples generated across 5 built-in presets on Samsung Galaxy hardware.": {
-    "ko": "삼성 갤럭시 단말에서 5대 내장 프리셋으로 100% 로컬 생성된 고해상도 결과물 샘플입니다.",
+    "ko": "삼성 갤럭시 단말에서 5대 내장 프리셋으로 완전한 온디바이스 (Client-Side Native) 생성된 고해상도 결과물 샘플입니다.",
     "zh": "在三星 Galaxy 硬件上通过 5 大内置预设 100% 本地生成的超高清图像示例。",
     "ja": "Samsung Galaxyハードウェア上の5つの組み込みプリセットで生成された高解像度サンプル。",
     "ar": "عينات إخراج عالية الدقة تم إنشاؤها عبر 5 إعدادات مسبقة مدمجة على أجهزة Samsung Galaxy.",

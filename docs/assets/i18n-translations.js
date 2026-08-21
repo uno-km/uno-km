@@ -29,7 +29,7 @@
     "home": {
       "pageTitle": "AMEVA Open-Source Foundation (AOSF) - Official Portal",
       "title": "AMEVA Open-Source Foundation (AOSF)",
-      "subtitle": "Democratizing On-Device AI & Autonomous Systems Without Cloud Tax",
+      "subtitle": "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency",
       "sepTitle": "Separation of Foundation & Personal Profile",
       "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
       "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
@@ -49,7 +49,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -59,7 +59,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -75,7 +75,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -149,7 +149,7 @@
       "subtitle": "클라우드 종속성 없는 100% 온디바이스 AI 및 자율 소프트웨어 생태계의 대중화",
       "sepTitle": "재단 공공 기구와 개인 프로필의 엄격한 분리",
       "sepDesc": "AMEVA 오픈소스 재단(AOSF)은 독립된 기술 공공 기구로 운영됩니다. 설립자 김은호(@uno-km)의 개인 커리어, 연락처 및 포트폴리오는 개인 디지털 이력서에서 완전히 분리되어 관리됩니다.",
-      "desc": "AOSF는 투명한 메리토크라시(실력주의)에 의해 운영되는 비영리 오픈소스 기술 재단입니다. 클라우드 서버 비용 없이 사용자의 기기에서 100% 로컬로 구동되는 소버린 온디바이스 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 엔진을 개발하고 육성합니다.",
+      "desc": "AOSF는 투명한 메리토크라시(실력주의)에 의해 운영되는 비영리 오픈소스 기술 재단입니다. 클라우드 서버 비용 없이 사용자의 기기에서 온디바이스 중심로 구동되는 소버린 온디바이스 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 엔진을 개발하고 육성합니다.",
       "tier1Title": "Tier 1: 공식 플래그십 탑레벨 프로젝트 (TLP)",
       "tier1Desc": "프로덕션 레디 · PyPI 및 npm 정식 배포 · 완성형 소프트웨어 런타임",
       "matrixTitle": "공식 배포 패키지 및 생태계 매트릭스"
@@ -176,8 +176,8 @@
       "art1Title": "제1조 (명칭 및 설립 목적)",
       "art1Name": "1.1 본 기구의 공식 명칭은 AMEVA 오픈소스 재단 (AMEVA Open-Source Foundation, 약칭 AOSF)으로 한다.",
       "art1Principles": "1.2 본 재단은 다음의 4대 핵심 원칙에 따라 절대적인 독립성을 유지한다:",
-      "p1": "엣지 퍼스트 & 제로 클라우드 비용: 모든 AI 추론 및 자동화 파이프라인은 클라우드 서버 의존 없이 엔드유저 하드웨어에서 100% 로컬 구동된다.",
-      "p2": "100% 데이터 주권: 사용자의 입력값, 프롬프트, 추론 결과는 기기 외부로 유출되지 않으며 클라이언트 내부 경계에 완벽히 격리된다.",
+      "p1": "엣지 퍼스트 & 제로 클라우드 비용: 모든 AI 추론 및 자동화 파이프라인은 클라우드 서버 의존 없이 엔드유저 하드웨어에서 완전한 온디바이스 (Client-Side Native) 구동된다.",
+      "p2": "프라이버시 중심 로컬 데이터 처리: 사용자의 입력값, 프롬프트, 추론 결과는 기기 외부로 유출되지 않으며 클라이언트 내부 경계에 완벽히 격리된다.",
       "p3": "공공재 및 오픈 스탠다드: 재단의 모든 산출물은 상업적 사유화 없이 영구히 오픈소스 공공재로 공개 및 라이선스된다.",
       "p4": "공공 기구와 개인 프로필의 엄격한 분리: 재단 자산 및 거버넌스는 설립자 김은호(@uno-km)의 개인 커리어와 완전히 독립되어 운영된다.",
       "art2Title": "제2조 (기술적 범위 및 핵심 영역)",
@@ -224,7 +224,7 @@
       "stage3Title": "3단계: TLP 정식 승격",
       "stage3Text": "안정성 지표와 메리토크라시 거버넌스가 입증되면 만장일치 투표를 통해 1등급 프로젝트로 승격됩니다.",
       "gradTitle": "승격 필수 요건",
-      "gradText": "100% 데이터 주권 보장, 엣지 퍼스트 구동 검증, 완벽한 단위 테스트 및 API 문서 구축이 요구됩니다."
+      "gradText": "프라이버시 중심 로컬 데이터 처리 보장, 엣지 퍼스트 구동 검증, 완벽한 단위 테스트 및 API 문서 구축이 요구됩니다."
     },
     "spon": {
       "pageTitle": "후원 및 인프라 지원 안내",
@@ -283,7 +283,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -293,7 +293,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -309,7 +309,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -400,7 +400,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -410,7 +410,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -426,7 +426,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -517,7 +517,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -527,7 +527,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -543,7 +543,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -634,7 +634,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -644,7 +644,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -660,7 +660,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -751,7 +751,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -761,7 +761,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -777,7 +777,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -868,7 +868,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -878,7 +878,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -894,7 +894,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -985,7 +985,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -995,7 +995,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -1011,7 +1011,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -1102,7 +1102,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1112,7 +1112,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -1128,7 +1128,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -1219,7 +1219,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1229,7 +1229,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -1245,7 +1245,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -1336,7 +1336,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1346,7 +1346,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -1362,7 +1362,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",
@@ -1453,7 +1453,7 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1463,7 +1463,7 @@
       "art1Title": "Article I. Name and Core Purpose",
       "art1Name": "1.1 The organization is formally established as the AMEVA Open-Source Foundation (AOSF).",
       "art1Principles": "1.2 The Foundation is governed by the following immutable core principles:",
-      "p1": "Edge-First & Zero-Cloud-Tax: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
+      "p1": "Edge-First & Serverless Edge Architecture: All AI inference and automation pipelines are engineered to execute on end-user hardware without mandatory cloud server dependencies.",
       "p2": "100% Data Sovereignty: User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.",
       "p3": "Public Good & Open Standards: Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.",
       "p4": "Strict Separation of Concerns: Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.",
@@ -1479,7 +1479,7 @@
       "r2Obj": "Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).",
       "r3Domain": "Autonomous Systems",
       "r3Tech": "Docker, SRE Mesh, Multi-CLI",
-      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).",
+      "r3Obj": "Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).",
       "art3Title": "Article III. Licensing & Intellectual Property",
       "art3Text": "All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.",
       "art4Title": "Article IV. Disclaimer of Liability",

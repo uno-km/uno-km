@@ -10,7 +10,7 @@
  * WHY:
  *   Allows users to seamlessly switch documentation across 6 languages:
  *   English (en), Korean (ko), Chinese (zh), Japanese (ja), Hindi (hi), Spanish (es).
- *   Guarantees persistent state across page transitions, reloads, and browser sessions.
+ *   Design properties persistent state across page transitions, reloads, and browser sessions.
  * 
  * HOW:
  *   1. I18nStorageAdapter: Provides unified async/sync storage access with graceful fallbacks.

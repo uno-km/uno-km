@@ -16,7 +16,7 @@
       "nodeId": "MLOps",
       "title": "⚙️ MLOps Infrastructure",
       "type": "category",
-      "description": "AI 모델의 안정적인 서빙, 파이프라인 관리, 그리고 데이터 인프라를 담당하는 운영 레이어입니다. Site Reliability Engineering(SRE) 원칙을 AI 추론 과정에 적용하여, 제한된 엣지 환경에서도 Mission-critical 수준의 안정성을 보장합니다.",
+      "description": "AI 모델의 안정적인 서빙, 파이프라인 관리, 그리고 데이터 인프라를 담당하는 운영 레이어입니다. Site Reliability Engineering(SRE) 원칙을 AI 추론 과정에 적용하여, 제한된 엣지 환경에서도 Mission-critical 수준의 안정성을 설계되었습니다.",
       "tech": "Python, FastAPI, SQLite, SRE Methodology, SCP, HTTPS"
     },
     {
@@ -33,7 +33,7 @@
       "title": "📡 Data Harvester",
       "type": "repo",
       "parentCategory": "MLOps",
-      "description": "데이터 손실 없는 극도의 복원력을 갖춘 엣지 데이터 수집기입니다. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로(SCP, HTTPS, Telegram Bot)를 통해 데이터를 수집하며, Payload Validation을 통한 제로-로스 검증 메커니즘으로 데이터 무결성을 보장합니다.",
+      "description": "데이터 손실 없는 극도의 복원력을 갖춘 엣지 데이터 수집기입니다. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로(SCP, HTTPS, Telegram Bot)를 통해 데이터를 수집하며, Payload Validation을 통한 제로-로스 검증 메커니즘으로 데이터 무결성을 설계되었습니다.",
       "tech": "Python, SCP, HTTPS, Telegram Bot API, Multi-Transport Backup",
       "github": "https://github.com/uno-km/AMEVA-Data-Harvester"
     },

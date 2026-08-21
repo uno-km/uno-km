@@ -1,6 +1,6 @@
 # AMEVA Open-Source Foundation (AOSF)
 
-Democratizing On-Device AI & Autonomous Systems Without Cloud Tax  
+Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency  
 클라우드 종속과 서버 비용 없는 순수 클라이언트 엣지 AI & 자율 시스템
 
 [Foundation Charter](https://uno-km.github.io/uno-km/docs/foundation/charter.html) | [Governance](https://uno-km.github.io/uno-km/docs/foundation/governance.html) | [Incubation Policy](https://uno-km.github.io/uno-km/docs/foundation/incubation.html) | [Sponsorship](https://uno-km.github.io/uno-km/docs/foundation/sponsorship.html) | [Foundation Portal](https://uno-km.github.io/uno-km/docs/foundation/)
@@ -11,7 +11,7 @@ Democratizing On-Device AI & Autonomous Systems Without Cloud Tax
 
 AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)은 개방형 거버넌스와 실력주의(Meritocracy) 모델을 기반으로 운영되는 독립 오픈소스 기술 협의체입니다.
 
-거대 클라우드 벤더의 인프라 과금과 프라이버시 침해 없이, 개인의 스마트폰(Android Termux), 브라우저(WebGPU/WASM), 엣지 임베디드 기기에서 100% 데이터 주권을 보장하는 자율 AI 및 자동화 생태계를 연구, 개발, 보급합니다.
+거대 클라우드 벤더의 인프라 과금과 프라이버시 침해 없이, 개인의 스마트폰(Android Termux), 브라우저(WebGPU/WASM), 엣지 임베디드 기기에서 프라이버시 중심 로컬 데이터 주권을 보장하는 자율 AI 및 자동화 생태계를 연구, 개발, 보급합니다.
 
 > 2원화 분리 원칙 (Separation of Concerns):  
 > AOSF 재단 기관과 설립자 개인(김은호 / Eunho Kim, @uno-km)의 엔지니어링 프로필은 공과 사를 명확히 분리하여 운영됩니다. 재단 산하의 모든 프로젝트는 특정 개인이나 기업에 종속되지 않고 영구적인 공공재(Public Good)로 관리됩니다.
@@ -32,7 +32,7 @@ AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 �
 | [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)<br/>termux-diffusion | On-Device AI<br/>Python, Node.js | 안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion. 모바일 엣지 기기에서 로컬 이미지 생성. | [문서](https://uno-km.github.io/termux-diffusion/) · [PyPI](https://pypi.org/project/termux-diffusion/) · [npm](https://www.npmjs.com/package/termux-diffusion) |
 | [Termux-STT](https://github.com/uno-km/termux-stt)<br/>termux-stt | On-Device STT<br/>Python, Node.js | 안드로이드 온디바이스 통합 음성인식(STT). Whisper.cpp, Vosk, Sherpa-ONNX 통합 및 순수 Python 화자 분리. | [문서](https://uno-km.github.io/termux-stt/) · [PyPI](https://pypi.org/project/termux-stt/) · [npm](https://www.npmjs.com/package/termux-stt) |
 | [Termux-Train](https://github.com/uno-km/termux-train)<br/>termux-train | Tensor & DL<br/>Python | 안드로이드 Bionic 네이티브 경량 텐서 & DAG Autograd 역전파, SafeTensors I/O, 온디바이스 LoRA 파인튜닝. | [문서](https://uno-km.github.io/termux-train/) · [PyPI](https://pypi.org/project/termux-train/) · [GitHub](https://github.com/uno-km/termux-train) |
-| [AMEVA-Forge](https://github.com/uno-km/ameva-forge)<br/>ameva-forge | WebGPU DL<br/>Python (Pyodide) | 서버 비용 제로의 Browser-Native WebGPU Autograd Engine. PyTorch 호환 및 WGSL 셰이더 기반 브라우저 훈련. | [문서](https://uno-km.github.io/ameva-forge/demo.html) · [PyPI](https://pypi.org/project/ameva/) · [GitHub](https://github.com/uno-km/ameva-forge) |
+| [AMEVA-Forge](https://github.com/uno-km/ameva-forge)<br/>ameva-forge | WebGPU DL<br/>Python (Pyodide) | 클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Autograd Engine. PyTorch 호환 및 WGSL 셰이더 기반 브라우저 훈련. | [문서](https://uno-km.github.io/ameva-forge/demo.html) · [PyPI](https://pypi.org/project/ameva/) · [GitHub](https://github.com/uno-km/ameva-forge) |
 | [AMEVA-Sentinel](https://github.com/uno-km/ameva-sentinel)<br/>@ameva/sentinel | Privacy Security<br/>TypeScript (Node/DOM) | 개인정보 침해 없는 0-Data 브라우저 관측 및 확정적 위험도 채점 보안 SDK. 0~100점 규칙 평가, 3대 브라우저 E2E 검증. | [문서](https://uno-km.github.io/ameva-sentinel/) · [npm](https://www.npmjs.com/package/@ameva/sentinel) · [GitHub](https://github.com/uno-km/ameva-sentinel) |
 
 ---
@@ -52,7 +52,7 @@ AOSF는 프로젝트의 성숙도, 안정성 및 커뮤니티 배포 상태에 �
 
 | 프로젝트 | 연구 영역 | 연구 목표 및 내용 |
 |:---|:---:|:---|
-| [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) | Simulation | Docker 기반 100% 자율 멀티에이전트 가상 사회 시뮬레이터. |
+| [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre) | Simulation | Docker 기반 자율 멀티에이전트 가상 사회 시뮬레이터. |
 | [AMEVA Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra) | Multi-Agent | Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션. |
 | [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI) | Terminal UI | 트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY & DevSecOps 가드레일. |
 | [AMEVA Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant) | Desktop AI | OCR-First 화면 인식 & 로컬 llama.cpp 추론 기반의 프라이버시 보호형 Windows AI. |

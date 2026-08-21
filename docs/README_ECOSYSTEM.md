@@ -49,7 +49,7 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
 | **[Benchmark Suite](https://github.com/uno-km/AMEVA-Benchmark-Suite)** | Validation | Empirical power/performance profiling for edge hardware |
 | **[Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)** | Interface | Privacy-first offline document intelligence pipeline |
 | **[Conductor](https://github.com/uno-km/AMEVA-Conductor)** | Control | Remote cross-platform UI for human-agent interaction |
-| **[Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)** | Data Layer | Hyper-resilient, zero-loss edge forwarder with multi-transport backup |
+| **[Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)** | Data Layer | Hyper-resilient, resilient retry-backed edge forwarder with multi-transport backup |
 | **[Database](https://github.com/uno-km/AMEVA-Database)** | Analytics | Lightweight SQLite & log inspector for distributed AMEVA ecosystem |
 | **[STT Trainer](https://github.com/uno-km/AMEVA-STT-Trainer)** | Perception | Whisper-based Korean STT with LoRA fine-tuning |
 | **[STT Agent](https://github.com/uno-km/AMEVA-STT-Agent)** | Perception | Speech recognition agent integration |
@@ -66,7 +66,7 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
 
 #### 1. ⚙️ MCP Wasm Toolkit (AMEVA OS Core)
 - **역할**: 로컬 기기 자원을 안전하게 보존하면서, 크롤러나 동적 파이썬 스크립트 등 위험도가 높은 연산을 100% 격리된 웹 브라우저 WASM(Pyodide) 샌드박스로 우회하여 안전하게 처리합니다.
-- **특징**: `https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 보장합니다.
+- **특징**: `https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 설계되었습니다.
 
 #### 2. 🧰 MCP Utils Toolkit (Dynamic Tool Hub)
 - **역할**: GitHub 원격 리포지토리에 저장된 `mcp_manifest.json` 설정과 도구 코드를 SSE(ntfy.sh) 실시간 핫리로드 채널을 통해 active 브라우저 세션에 3초 이내에 자동 업데이트 및 동적 등록합니다.
@@ -187,7 +187,7 @@ Windows 데스크톱 AI 어시스턴트로, 화면 이해를 OCR 기반으로 �
 ## 🗺 Evaluation & Future Directions: 최종 청사진
 
 ### 🚀 Phase 1: Local Supremacy (현재)
-복잡한 Agentic workflow를 100% 오프라인 환경에서 구현 완료. Local model fine-tuning을 통한 Data sovereignty 확보.
+복잡한 Agentic workflow를 오프라인 환경 지원 환경에서 구현 완료. Local model fine-tuning을 통한 Data sovereignty 확보.
 
 ### ⛓ Phase 2: Distributed Neural Fabric (중기)
 Federated Inference 도입. 로컬 네트워크 내의 여러 엣지 디바이스 가용 VRAM을 풀링(Pooling)하여, 단일 기기에서 불가능했던 대형 모델(30B+)을 분산 처리하는 기술 연구.

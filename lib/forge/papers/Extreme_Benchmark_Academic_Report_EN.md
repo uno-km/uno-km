@@ -43,7 +43,7 @@ The following section outlines architectural target projections and simulation e
 
 ### 6.1. Target Performance Projections (Unverified Simulation Target)
 
-The following section defines the cross-validated two distinct workloads: the **'Low-Extreme (Safe Memory Limit)'** test, which pushes the system just below its breaking point, and the **'Extreme'** test, which applies loads mathematically impossible for the browser to survive.
+The following section defines the cross-validated two distinct workloads: the **'Low-Extreme (Safe Memory Limit)'** test, which pushes the system just below its breaking point, and the **'Extreme'** test, which applies loads computationally infeasible under standard cryptographic assumptions for the browser to survive.
 
 ### 6.2 Projected Results, Not Measurements (Unverified Simulation Target)
 

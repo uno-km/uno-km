@@ -37,7 +37,7 @@
                 'solText': 'Termux-Playwright provides native Bionic binary orchestration, targeted session process isolation (ProcessReaper), persistent disk ledger recovery (.tp_ledger), prototype-safe anti-bot stealth, and flash memory wear protection.',
                 'capTitle': 'Key Capabilities & Built-in Hardening',
                 'cap1': 'Zero-Root Native Execution: Orchestrates Termux-compiled Chromium and Node.js without PRoot overhead.',
-                'cap2': 'Persistent Disk Session Ledger: Guarantees 100% orphan process reaping across hard kernel crashes (SIGKILL / LMK).',
+                'cap2': 'Persistent Disk Session Ledger: Design properties 100% orphan process reaping across hard kernel crashes (SIGKILL / LMK).',
                 'cap3': 'Prototype-Safe Stealth: Deletes navigator.webdriver from prototype to bypass Cloudflare Turnstile & DataDome.',
                 'cap4': 'Hardware Flash Wear Protection: Injects RAM-based caching to prevent eMMC mobile flash wear.',
                 'cap5': 'Virtualenv System Integration: Pre-flight diagnostics and auto-repair guidance for venv environments.',

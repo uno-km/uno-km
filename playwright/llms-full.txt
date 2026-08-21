@@ -14,7 +14,7 @@
 
 ### 1. Context Managers
 #### `async_playwright_termux()`
-Async context manager that pre-configures environment variables, checks native greenlet availability, launches Playwright, and guarantees worker-thread offloaded process cleanup on block exit.
+Async context manager that pre-configures environment variables, checks native greenlet availability, launches Playwright, and maintains worker-thread offloaded process cleanup on block exit.
 - Example:
 ```python
 async with async_playwright_termux() as p:

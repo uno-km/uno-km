@@ -12,11 +12,11 @@ Version: 1.0.0
 The name of this organization shall be the AMEVA Open-Source Foundation (hereinafter referred to as "AOSF" or the "Foundation"; 한국어 명칭: AMEVA 오픈소스 재단).
 
 ### 1.2 Mission Statement (사명 선언)
-> "Democratizing On-Device AI & Autonomous Systems Without Cloud Tax"  
-> "거대 클라우드 벤더의 서버 과금과 종속 없이, 개인의 기기에서 100% 자율 구동되는 엣지 AI와 오토메이션 기술을 전 인류의 공공재로 민주화한다."
+> "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency"  
+> "거대 클라우드 벤더의 서버 과금과 종속 없이, 개인의 기기에서 자율 구동되는 엣지 AI와 오토메이션 기술을 전 인류의 공공재로 민주화한다."
 
 ### 1.3 Core Principles (핵심 원칙)
-1. Edge-First & Zero-Cloud-Tax: 모든 AI 추론과 자동화 파이프라인은 중앙 집중형 유료 클라우드 없이 단말(스마트폰, 브라우저, 엣지 기기) 자체에서 완결되는 것을 최우선으로 설계한다.
+1. Edge-First & Serverless Edge Architecture: 모든 AI 추론과 자동화 파이프라인은 중앙 집중형 유료 클라우드 없이 단말(스마트폰, 브라우저, 엣지 기기) 자체에서 완결되는 것을 최우선으로 설계한다.
 2. 100% Data Sovereignty: 사용자의 모든 데이터, 프롬프트, 생성 결과물은 외부 서버로 전송되지 않고 로컬 샌드박스 내부에서 완벽히 보호된다.
 3. Public Good & Open Standards: 재단 산하의 모든 산출물은 영구적인 오픈소스 공공재(Public Good)로 제공되며, 특정 상업 기업이나 개인에게 종속되지 않는다.
 4. Strict Separation of Concerns (공사 분리): 재단 기관의 자산/운영과 설립자 개인(김은호 / Eunho Kim)의 사적 영역은 엄격히 2원화하여 투명하게 운영한다.
@@ -46,7 +46,7 @@ AOSF는 다음과 같은 핵심 기술 도메인에 대한 연구, 개발, 표�
 
 ## Article III. Intellectual Property & Licensing (지적재산권 및 라이선스)
 
-1. Standard Open Source Licenses: 재단 산하 모든 프로젝트의 소스 코드는 Apache License, Version 2.0 또는 MIT License를 표준으로 채택하여 전 세계 누구나 자유롭게 이용, 수정, 재배포할 수 있도록 보장합니다.
+1. Standard Open Source Licenses: 재단 산하 모든 프로젝트의 소스 코드는 Apache License, Version 2.0 또는 MIT License를 표준으로 채택하여 전 세계 누구나 자유롭게 이용, 수정, 재배포할 수 있도록 설계되었습니다.
 2. Trademark & Brand Protection: "AMEVA", "AOSF", "AMEVA-Forge", "Termux-Playwright", "Termux-Diffusion" 및 관련 로고는 재단의 공식 자산으로 보호되며, 생태계의 신뢰성을 훼손하는 악의적 도용을 방지합니다.
 3. Patents & Contributor Agreements: 기여자는 자신의 기여물이 제3자의 지적재산권을 침해하지 않음을 보증하며, 오픈소스 생태계 발전을 위해 영구적이고 비독점적인 라이선스를 부여합니다.
 

@@ -45,11 +45,11 @@
 - **A — Agentic**: 스스로 상황을 분석하고 계획을 수립하는 자율 추론 & 의사결정 지능.
 - **M — Multi-Agent**: 복잡한 작업을 원자 단위로 분해하여 전문 에이전트에 위임하는 계층적 오케스트레이션.
 - **E — Ecosystem**: Desktop, Web, Android(Termux), Edge 기기를 유기적으로 연결하는 통합 플랫폼.
-- **V — Virtualized**: 100% 클라이언트 브라우저 Pyodide WASM 샌드박스로 호스트를 완벽히 격리하는 보안 런타임.
-- **A — Automation**: 서버 비용 제로의 실시간 비주얼 파이프라인 및 자동화 워크플로우.
+- **V — Virtualized**: 클라이언트 중심 (Client-Side Native) 브라우저 Pyodide WASM 샌드박스로 호스트를 완벽히 격리하는 보안 런타임.
+- **A — Automation**: 클라이언트 중심 연산 오프로딩의 실시간 비주얼 파이프라인 및 자동화 워크플로우.
 
 ```text
-※ 보안 원칙: AMEVA는 웜이나 악성코드가 절대 아니며, 100% 클라이언트 격리 WASM 샌드박스에서 구동되는 합법적인 오픈소스 시스템 프레임워크입니다.
+※ 보안 원칙: AMEVA는 웜이나 악성코드가 절대 아니며, 클라이언트 중심 (Client-Side Native) 격리 WASM 샌드박스에서 구동되는 합법적인 오픈소스 시스템 프레임워크입니다.
 ```
 
 ---
@@ -173,11 +173,11 @@
 
 | 라이브러리 | 핵심 기술 및 런타임 | 주요 기능 및 특징 | 패키지 & 문서 바로가기 |
 |:---|:---:|:---|:---:|
-| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>[![PyPI](https://img.shields.io/pypi/v/ameva.svg?color=blue)](https://pypi.org/project/ameva/) | **WebGPU**<br/>TypeScript / Python | **서버 비용 제로의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/forge/)<br/>[⚡ 실시간 데모](https://uno-km.vercel.app/lib/forge/demo.html)<br/>[📦 PyPI](https://pypi.org/project/ameva/) · [🐙 GitHub](https://github.com/uno-km/ameva-forge) |
+| **⚡ [AMEVA-Forge](https://github.com/uno-km/ameva-forge)**<br/>[![PyPI](https://img.shields.io/pypi/v/ameva.svg?color=blue)](https://pypi.org/project/ameva/) | **WebGPU**<br/>TypeScript / Python | **클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Autograd Engine**<br/>PyTorch 완벽 호환 구문, WGSL 커스텀 셰이더 역전파, 제로 메모리 낭비 버퍼 풀 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/forge/)<br/>[⚡ 실시간 데모](https://uno-km.vercel.app/lib/forge/demo.html)<br/>[📦 PyPI](https://pypi.org/project/ameva/) · [🐙 GitHub](https://github.com/uno-km/ameva-forge) |
 | **📱 [Termux-Playwright](https://github.com/uno-km/termux-playwright)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/) [![npm](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright) | **Android Bionic**<br/>Python / Node.js | **안드로이드 Termux 환경 비루트(Non-root) 브라우저 자동화**<br/>ARM64 Chromium CDP 직접 제어, 헤드리스 웹 스크래핑 & 테스팅 파이프라인 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/playwright/)<br/>[📦 PyPI](https://pypi.org/project/termux-playwright/) · [📦 npm](https://www.npmjs.com/package/termux-playwright)<br/>[🐙 GitHub](https://github.com/uno-km/termux-playwright) |
 | **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue)](https://pypi.org/project/termux-diffusion/) [![npm](https://img.shields.io/npm/v/termux-diffusion.svg?color=red)](https://www.npmjs.com/package/termux-diffusion) | **On-Device AI**<br/>Python / Node.js | **안드로이드 ARM64 네이티브 온디바이스 Stable Diffusion 런타임**<br/>모바일 엣지 기기에서 클라우드 연결 없이 로컬 이미지 생성 및 가속 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/diffusion/)<br/>[📦 PyPI](https://pypi.org/project/termux-diffusion/) · [📦 npm](https://www.npmjs.com/package/termux-diffusion)<br/>[🐙 GitHub](https://github.com/uno-km/termux-diffusion) |
 | **🎙️ [Termux-STT](https://github.com/uno-km/termux-stt)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-stt.svg?color=blue)](https://pypi.org/project/termux-stt/) [![npm](https://img.shields.io/npm/v/termux-stt.svg?color=red)](https://www.npmjs.com/package/termux-stt) | **On-Device STT**<br/>Python / Node.js | **안드로이드 온디바이스 통합 음성인식(STT) & 화자 분리**<br/>Whisper.cpp, Vosk, Sherpa-ONNX 3줄 통합, 순수 Python K-Means 화자 분리 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/stt/)<br/>[📦 PyPI](https://pypi.org/project/termux-stt/) · [📦 npm](https://www.npmjs.com/package/termux-stt)<br/>[🐙 GitHub](https://github.com/uno-km/termux-stt) |
-| **🚂 [Termux-Train](https://github.com/uno-km/termux-train)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-train.svg?color=blue)](https://pypi.org/project/termux-train/) | **Autograd & DL**<br/>Python (ARM64 Bionic) | **안드로이드 및 엣지 임베디드 전용 경량 텐서 & 온디바이스 LoRA 훈련 엔진**<br/>SafeTensors zero-copy, RoPE 트랜스포머, DAG autograd 역전파, 100/100 오딧 통과 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/train/)<br/>[📦 PyPI](https://pypi.org/project/termux-train/) · [🐙 GitHub](https://github.com/uno-km/termux-train) |
+| **🚂 [Termux-Train](https://github.com/uno-km/termux-train)**<br/>[![PyPI](https://img.shields.io/pypi/v/termux-train.svg?color=blue)](https://pypi.org/project/termux-train/) | **Autograd & DL**<br/>Python (ARM64 Bionic) | **안드로이드 및 엣지 임베디드 전용 경량 텐서 & 온디바이스 LoRA 훈련 엔진**<br/>SafeTensors zero-copy, RoPE 트랜스포머, DAG autograd 역전파, 정밀 릴리즈 검증 통과 | [📖 Vercel 공식 문서](https://uno-km.vercel.app/lib/train/)<br/>[📦 PyPI](https://pypi.org/project/termux-train/) · [🐙 GitHub](https://github.com/uno-km/termux-train) |
 
 ---
 
@@ -189,7 +189,7 @@
 - **🏢 [AMEVA Workstation](https://github.com/uno-km/AMEVA-Workstation)**: 로컬 고성능 AI 모델 연동 및 엔터프라이즈급 통합 개발·작업대 환경.
 - **💻 [AMEVA-Multi-CLI](https://github.com/uno-km/AMEVA-Multi-CLI)**: 트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치 및 DevSecOps 가드레일 내장 터미널 워크벤치.
 - **🪟 [AMEVA Window Assistant](https://github.com/uno-km/AMEVA-Window-Assistant)**: OCR-First 화면 인식 & 로컬 llama.cpp 추론 기반의 프라이버시 보호형 Windows 데스크톱 AI 어시스턴트.
-- **🌐 [AMEVA Edge Browser](https://github.com/uno-km/AMEVA-Edge-Browser)**: 100% 로컬 보안 격리 및 엣지 AI 웹 에이전트 구동에 최적화된 전용 브라우저 런타임.
+- **🌐 [AMEVA Edge Browser](https://github.com/uno-km/AMEVA-Edge-Browser)**: 완전한 온디바이스 (Client-Side Native) 보안 격리 및 엣지 AI 웹 에이전트 구동에 최적화된 전용 브라우저 런타임.
 
 ### ⚙️ Layer 2. Model Context Protocol (MCP) & WASM Sandbox (MCP 및 보안 격리)
 - **⚙️ [MCP-Wasm-Toolkit](https://github.com/uno-km/MCP-Wasm-Toolkit)**: 웹 크롤러, 동적 코드 실행 등 위험도가 높은 연산을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 격리 구동 ([🚀 OS 실행](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html) | [✨ 체험관](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)).
@@ -197,14 +197,14 @@
 - **🚀 [AMEVA OS Playground](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경.
 
 ### 🤖 Layer 3. Autonomous Agents, Simulation & Perception (자율 에이전트, 사회 시뮬레이션 & 음성)
-- **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)**: Docker 기반 100% 자율 멀티에이전트 가상 사회 시뮬레이터 (에이전트 간 자율 상호작용 및 집단 담론 형성).
+- **🎭 [Dead Internet Theatre](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre)**: Docker 기반 자율 멀티에이전트 가상 사회 시뮬레이터 (에이전트 간 자율 상호작용 및 집단 담론 형성).
 - **🎼 [AMEVA Agent Orchestra](https://github.com/uno-km/AMEVA-Agent-Orchestra)**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 엔진 (Semantic Drift 방지).
 - **🎙️ [AMEVA STT Trainer & Agent](https://github.com/uno-km/AMEVA-STT-Trainer)**: Whisper 기반 한국어 음성 데이터 수집부터 LoRA 파인튜닝, 실시간 엣지 음성 인식 에이전트 파이프라인.
 
 ### 🧠 Layer 4. SRE Infrastructure & Resilient Data Pipeline (인프라 & 데이터)
 - **⚡ [AMEVA Model Nexus](https://github.com/uno-km/AMEVA-Model-Nexus)**: SRE 원칙 기반 다이내믹 스코프드 스로틀링(기기 온도/전력 실시간 감지) 및 우선순위 스케줄링 AI 게이트웨이.
-- **📄 [AMEVA Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)**: 데이터 유출이 원천 차단된 100% 오프라인 로컬 문서 인텔리전스 및 지식 기반 RAG 파이프라인.
-- **📦 [AMEVA Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)**: SCP, HTTPS, Telegram Bot 등 다중 전송 경로 기반의 무손실(Zero-loss) 엣지 데이터 전달기.
+- **📄 [AMEVA Doc AI](https://github.com/uno-km/AMEVA-Doc-AI)**: 데이터 유출이 원천 차단된 오프라인 환경 지원 로컬 문서 인텔리전스 및 지식 기반 RAG 파이프라인.
+- **📦 [AMEVA Data Harvester](https://github.com/uno-km/AMEVA-Data-Harvester)**: SCP, HTTPS, Telegram Bot 등 다중 전송 경로 기반의 무손실(Resilient retry-backed) 엣지 데이터 전달기.
 - **💾 [AMEVA Database](https://github.com/uno-km/AMEVA-Database)**: 분산 AMEVA 에코시스템 로그 분석 및 임베디드 SQLite 데이터 인스펙터.
 - **🕹️ [AMEVA Conductor](https://github.com/uno-km/AMEVA-Conductor)**: 원격 크로스플랫폼 환경에서 인간과 AI 에이전트 간의 상호작용을 제어하는 리모트 UI.
 
@@ -234,7 +234,7 @@ curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/s
 
 > **클라우드 종속성 없는 100% 온디바이스 AI, 브라우저 WebGPU 딥러닝, 자율 에이전트 공공재 연구를 후원해주세요.**
 
-모든 AMEVA 핵심 소프트웨어는 **상업적 장벽 없는 영구 오픈소스 공공재(Apache 2.0 / MIT)**로 전 세계에 배포됩니다. 수납된 모든 후원금은 **100% 투명한 공개 원장(Public Ledger)**을 통해 관리되며, ARM64 실기기 테스트베드 확보 및 CI/CD 멀티 GPU 러너 구동에 전액 집행됩니다.
+모든 AMEVA 핵심 소프트웨어는 **상업적 장벽 없는 영구 오픈소스 공공재(Apache 2.0 / MIT)**로 전 세계에 배포됩니다. 수납된 모든 후원금은 **투명한 공개 원장(Public Ledger)**을 통해 관리되며, ARM64 실기기 테스트베드 확보 및 CI/CD 멀티 GPU 러너 구동에 전액 집행됩니다.
 
 <div align="center">
   <a href="https://github.com/sponsors/uno-km">

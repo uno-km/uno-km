@@ -14,7 +14,7 @@ AMEVA Sentinel extracts minimal derived interaction statistics with zero raw coo
 - **Privacy-by-Design Zero Raw Telemetry**: Collects only derived interaction intervals and trusted event counters without recording keystrokes or cursor coordinates.
 - **Deterministic Policy Evaluation Engine**: Pure function evaluation guaranteeing algebraic score bounds, rule immutability, and transparent reasoning evidence.
 - **Shadow Mode Observability Architecture**: Operates safely in shadow mode with LocalStorage persistence and cross-tab real-time event synchronization.
-- **Cross-Browser Verified Zero-Drift SDK**: E2E automated verification across Chromium, Firefox, and WebKit ensuring identical behavior on all platforms.
+- **Cross-Browser Verified Deterministic Build Pipeline SDK**: E2E automated verification across Chromium, Firefox, and WebKit ensuring identical behavior on all platforms.
 
 ## 4. Canonical Implementation
 ```python

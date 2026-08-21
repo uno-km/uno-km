@@ -239,7 +239,7 @@ speedup = cpu_time / max(gpu_time, 0.001)
 print(f"NumPy CPU Time:  {cpu_time:.2f} ms")
 print(f"WebGPU Time:     {gpu_time:.2f} ms")
 print(f"Speedup:         {speedup:.2f}x faster on GPU")
-print(f"Max Math Diff:   {diff:.6e} (Parity 100% Verified)")
+print(f"Max Math Diff:   {diff:.6e} (Parity Validated by automated release checks)")
 
 del A_gpu, B_gpu, C_gpu
 import gc; gc.collect()

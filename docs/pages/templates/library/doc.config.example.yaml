@@ -1,6 +1,6 @@
 # ==============================================================================
 # AMEVA Ecosystem - Standard Library Documentation Specification (doc.config.yaml)
-# Single Source of Truth for Zero-Drift Documentation Generation
+# Single Source of Truth for Deterministic Build Pipeline Documentation Generation
 # ==============================================================================
 
 name: "AMEVA-Tensor"

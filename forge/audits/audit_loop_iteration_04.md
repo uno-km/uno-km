@@ -21,7 +21,7 @@
   2. **`key_padding_mask` 완벽 지원 및 4D 마스크 변환**:
      - `(B, S)` 불리언 마스크를 `(B, 1, 1, S)` 부동소수점 마스크(`True -> -1e9, False -> 0.0`)로 변환하여 `attn_mask`와 안전하게 융합.
   3. **4D Attention Mask 다중 헤드 3D 일괄 평탄화**:
-     - 4D 마스크 유입 시 `np.broadcast_to(m, (B, H, L, S)).reshape(B*H, L, S)`로 평탄화하여 `scores`와 `value`의 3D BMM 텐서 랭크를 100% 일치시킴.
+     - 4D 마스크 유입 시 `np.broadcast_to(m, (B, H, L, S)).reshape(B*H, L, S)`로 평탄화하여 `scores`와 `value`의 3D BMM 텐서 랭크를 결정론적 일치시킴.
 
 ---
 

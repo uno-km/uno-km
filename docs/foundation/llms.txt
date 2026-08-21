@@ -4,7 +4,7 @@
 
 ## 1. Organization Overview
 - **Name**: AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)
-- **Mission**: "Democratizing On-Device AI & Autonomous Systems Without Cloud Tax"
+- **Mission**: "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency"
 - **Governance**: Apache-Style Meritocracy (Board, PMC, Committers, Contributors)
 - **Founder & Chair**: Eunho Kim (@uno-km)
 - **Licensing**: Apache 2.0 / MIT standard
@@ -19,7 +19,7 @@
 - **Termux-Diffusion**: On-device ARM64 native Stable Diffusion runtime for Android without root. PyPI: `termux-diffusion`, npm: `termux-diffusion`.
 
 ### Tier 2: Incubating Projects
-- **AMEVA-Forge**: Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility and WGSL compute shaders.
+- **AMEVA-Forge**: Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility and WGSL compute shaders.
 - **Termux-Torch**: Android Bionic native lightweight Tensor & Autograd engine.
 - **Termux-Whisper**: On-device Korean speech recognition and LoRA fine-tuning for edge hardware.
 

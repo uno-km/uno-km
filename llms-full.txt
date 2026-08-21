@@ -20,7 +20,7 @@ This document contains the complete technical specification, APIs, mathematical 
 ## 1. Executive Identity & Engineering Philosophy
 - **Founder & Systems Architect**: Eunho Kim (김은호 / @uno-km)
 - **Education**: Ajou University Graduate School (M.S. in AI candidate), Hanyang Cyber University (B.S. in Applied Software Eng, 3.94/4.5)
-- **Philosophy**: Complete data sovereignty, 100% zero cloud tax, offline privacy by design.
+- **Philosophy**: Complete data sovereignty, 100% serverless edge architecture, offline privacy by design.
 
 ---
 
@@ -82,7 +82,7 @@ This document contains the complete technical specification, APIs, mathematical 
 - **Docs**: https://uno-km.vercel.app/lib/playwright/
 - **Features**:
   - Native Bionic Chromium CDP control without PRoot overhead.
-  - Persistent disk ledger (.tp_ledger) for guaranteed 100% orphan process reaping across kernel crashes.
+  - Persistent disk ledger (.tp_ledger) for validated under test environment 100% orphan process reaping across kernel crashes.
   - Prototype-safe anti-bot stealth deleting `navigator.webdriver`.
   - eMMC flash memory wear protection via RAM-based caching.
 
