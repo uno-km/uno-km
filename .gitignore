@@ -1,0 +1,137 @@
+# ==============================================================================
+# 🛡️ AMEVA Sovereign Ecosystem - Enterprise .gitignore
+# Strict Security, Privacy, and Git Cleanliness Policy
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. 🔒 Secrets, Credentials & Environment Variables (Absolute Isolation)
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.env
+*.key
+*.pem
+*.cert
+*.crt
+*.pfx
+*.p12
+*.token
+*.secret
+*credentials*
+*secret*
+.npmrc
+.pypirc
+*_token.txt
+*api_key*
+*id_rsa*
+*id_ed25519*
+
+# ------------------------------------------------------------------------------
+# 2. 📁 Dedicated Isolated Scratch Folders (Put all local/temp files here!)
+# ------------------------------------------------------------------------------
+.isolated/
+scratch/
+tmp/
+temp/
+.local/
+.cache/
+*.scratch.*
+test_*.py
+deploy_*.py
+sync_*.py
+temp_*.py
+run_*.py
+
+# ------------------------------------------------------------------------------
+# 3. 📦 Package Binaries, Builds & Wheel Artifacts
+# ------------------------------------------------------------------------------
+*.whl
+*.tar.gz
+*.tgz
+*.egg
+*.egg-info/
+*.so
+*.dylib
+*.dll
+*.exe
+*.diff
+*.patch
+pkg/
+*/pkg/
+dist/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+wheels/
+share/python-wheels/
+
+# ------------------------------------------------------------------------------
+# 4. 🐍 Python Runtimes & Cache
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
+env/
+.env/
+env_ai/
+temp_env_ai/
+ENV/
+*.bak/
+
+# ------------------------------------------------------------------------------
+# 5. ☕ Node.js & Web Bundler Artifacts
+# ------------------------------------------------------------------------------
+node_modules/
+.npm/
+.yarn/
+.turbo/
+.vercel/
+.next/
+.nuxt/
+.output/
+
+# ------------------------------------------------------------------------------
+# 6. 📊 Logs, Databases & System Generated
+# ------------------------------------------------------------------------------
+dashboard/models/
+dashboard/scripts/
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+*.coverage
+.nyc_output/
+test-results/
+playwright-report/
+.system_generated/
+.gemini/
+.claude/
+.cursor/
+
+# ------------------------------------------------------------------------------
+# 7. 🖥️ OS & IDE Specific
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sln
+*.sw?

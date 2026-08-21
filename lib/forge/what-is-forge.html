@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="whatIsForge.pageTitle">AMEVA-Forge: What is Forge?</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="alternate icon" href="./favicon.svg">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./dist/index.js"></script>
+    <script src="./i18n.js"></script>
+    <script src="./i18n-translations.js"></script>
+    <link rel="stylesheet" href="/shared/style.css">
+    <script src="/shared/common.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 data-i18n="common.headerTitle">AMEVA-Forge Documentation</h1>
+        <div class="header-badge-group">
+            <span class="apache-tag" data-i18n="common.releaseTag">Release 1.0.0</span>
+            <a href="./demo.html"><strong data-i18n="common.liveStudioBtn">[ Live WebGPU Studio ]</strong></a>
+            <a href="https://github.com/uno-km/ameva-forge" target="_blank" data-i18n="common.githubBtn">[ GitHub Repository ]</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3 data-i18n="common.nav.interactive">Interactive</h3>
+            <ul>
+                <li><a href="./demo.html"><strong data-i18n="common.nav.liveStudio">Live WebGPU Studio</strong></a></li>
+                <li><a href="experimental/playgrounds/mnist/index.html"><strong data-i18n="common.nav.mnist">1. MNIST Inference</strong></a></li>
+                <li><a href="experimental/playgrounds/benchmark/index.html"><strong data-i18n="common.nav.benchmark">2. Benchmark Test</strong></a></li>
+                <li><a href="experimental/playgrounds/training/index.html"><strong data-i18n="common.nav.training">3. Training Demo</strong></a></li>
+                <li><a href="experimental/playgrounds/vision/index.html"><strong data-i18n="common.nav.vision">4. Vision Center</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.documentation">Documentation</h3>
+            <ul>
+                <li><a href="index.html"><strong data-i18n="common.nav.home">Home</strong></a></li>
+                <li><a href="installation.html"><strong data-i18n="common.nav.installation">Installation</strong></a></li>
+                <li><a href="quickstart.html"><strong data-i18n="common.nav.quickstart">Quickstart</strong></a></li>
+                <li><a href="api-reference.html"><strong data-i18n="common.nav.apiReference">API Reference</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.concepts">Concepts</h3>
+            <ul>
+                <li><a href="what-is-forge.html" class="active"><strong data-i18n="common.nav.whatIsForge">What is Forge?</strong></a></li>
+                <li><a href="forge-vs-pytorch.html"><strong data-i18n="common.nav.forgeVsPytorch">Forge vs PyTorch</strong></a></li>
+            </ul>
+                    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+            <ul>
+                <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+                <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/foundation/">AMEVA Foundation</a></li>
+                <li><a href="/index.html">Founder Digital CV</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h2 data-i18n="whatIsForge.h2">What is AMEVA-Forge?</h2>
+            <p data-i18n-html="whatIsForge.desc"><strong>AMEVA-Forge</strong> is a browser-first deep learning acceleration framework designed to democratize machine learning education, research, and client-side privacy-preserving computation.</p>
+
+            <h3 data-i18n="whatIsForge.corePhilTitle">Core Philosophy</h3>
+            <ul>
+                <li data-i18n-html="whatIsForge.phil1"><strong>Zero Installation Barrier:</strong> Traditional deep learning setups require gigabytes of CUDA drivers and PyTorch binaries. Forge runs instantly inside any modern browser with a single URL visit.</li>
+                <li data-i18n-html="whatIsForge.phil2"><strong>Absolute Privacy:</strong> By executing forward and backward training passes on the client device's GPU, user data never traverses external network boundaries.</li>
+                <li data-i18n-html="whatIsForge.phil3"><strong>Mathematical Parity:</strong> Every kernel and backward step is verified against CPU analytical ground truth to ensure absolute numerical correctness.</li>
+            </ul>
+
+            <h3 data-i18n="whatIsForge.archTitle">System Architecture</h3>
+            <ol>
+                <li data-i18n-html="whatIsForge.arch1"><strong>Frontend (Python / Pyodide):</strong> Intercepts user model code (e.g. <code>nn.Linear</code>, <code>F.scaled_dot_product_attention</code>) and constructs computation graphs.</li>
+                <li data-i18n-html="whatIsForge.arch2"><strong>Bridge Layer (JS / WASM):</strong> Serializes graph instructions with shape validation and memory quota pre-checking.</li>
+                <li data-i18n-html="whatIsForge.arch3"><strong>Backend Engine (TypeScript / WebGPU):</strong> Compiles instructions into optimized WGSL shader dispatches using 8D uniform strides and pooled buffers.</li>
+            </ol>
+        </main>
+    </div>
+
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 AMEVA-Forge Team. Released under the Apache-2.0 License.</span>
+    </footer>
+</body>
+</html>

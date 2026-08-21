@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incubation Policy | AMEVA Open-Source Foundation</title>
+  <meta name="description" content="3-Tier Project Lifecycle and Graduation Policy of the AMEVA Open-Source Foundation (AOSF).">
+    <link rel="icon" type="image/svg+xml" href="/docs/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="/docs/assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="/docs/assets/i18n.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="/docs/assets/i18n-translations.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+    <!-- Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/docs/favicon.svg" alt="AMEVA Foundation Logo" onerror="this.onerror=null;this.src='favicon.svg';">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="hi">🇮🇳 हिन्दी</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="vi">🇻🇳 Tiếng Việt</option>
+          <option value="pl">🇵🇱 Polski</option>
+          <option value="la">🏛️ Latina</option>
+        </select>
+      </div>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
+      <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
+    </div>
+  </header>
+
+  <div class="container">
+        <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <h3 data-i18n="nav.foundation">Foundation</h3>
+      <ul>
+        <li><a href="index.html" data-i18n="nav.portal">Foundation Portal</a></li>
+        <li><a href="charter.html" data-i18n="nav.charter">Foundation Charter</a></li>
+        <li><a href="governance.html" data-i18n="nav.governance">Governance &amp; Merit</a></li>
+        <li><a href="incubation.html" class="active" data-i18n="nav.incubation">Incubation Policy</a></li>
+        <li><a href="sponsorship.html" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.tier1">Flagship Projects</h3>
+      <ul>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web)</a></li>
+        <li><a href="../../lib/playwright/">Termux-Playwright</a></li>
+        <li><a href="../../lib/diffusion/">Termux-Diffusion</a></li>
+        <li><a href="../../lib/stt/">Termux-STT</a></li>
+        <li><a href="../../lib/train/">Termux-Train</a></li>
+        <li><a href="../../lib/forge/">AMEVA-Forge</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h2 data-i18n="inc.pageTitle">Project Incubation &amp; Graduation Policy</h2>
+      <p class="subtitle" data-i18n="inc.subtitle">AMEVA 재단 3-Tier 프로젝트 인큐베이션 및 승격 정책</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="inc.structTitle">Lifecycle Structure</span>
+        <p style="margin-bottom: 0;" data-i18n="inc.structText">
+          AOSF employs a structured 3-tier lifecycle to guide projects from initial research prototypes to enterprise-grade Top-Level Projects (TLP).
+        </p>
+      </div>
+
+      <h3 data-i18n="inc.sec1Title">1. The 3-Tier Classification</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="inc.thTier">Tier</th>
+            <th data-i18n="inc.thStage">Maturity Stage</th>
+            <th data-i18n="inc.thExpect">Expectations &amp; Scope</th>
+            <th data-i18n="inc.thExamples">Current Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong data-i18n="inc.t1Tier">Tier 1: Flagship TLP</strong></td>
+            <td data-i18n="inc.t1Stage">Production-Ready</td>
+            <td data-i18n="inc.t1Expect">Official PyPI/npm releases, dual-runtime packaging, 100% test coverage, active community.</td>
+            <td data-i18n="inc.t1Ex">AMEVA Workstation, Termux-Playwright, Termux-Diffusion</td>
+          </tr>
+          <tr>
+            <td><strong data-i18n="inc.t2Tier">Tier 2: Incubating</strong></td>
+            <td data-i18n="inc.t2Stage">Standardization</td>
+            <td data-i18n="inc.t2Expect">Established core architecture, single-source op contracts, ongoing documentation and CI/CD hardening.</td>
+            <td data-i18n="inc.t2Ex">AMEVA-Forge, Termux-Torch, Termux-Whisper</td>
+          </tr>
+          <tr>
+            <td><strong data-i18n="inc.t3Tier">Tier 3: Labs &amp; Research</strong></td>
+            <td data-i18n="inc.t3Stage">Experimental / PoC</td>
+            <td data-i18n="inc.t3Expect">Exploratory architectures, bleeding-edge multi-agent systems, community collaboration PRs.</td>
+            <td data-i18n="inc.t3Ex">Dead Internet Theatre, Agent Orchestra, MCP-Wasm-Toolkit, BitNet</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="inc.sec2Title">2. Graduation Checkpoints</h3>
+      <h4 data-i18n="inc.cpATitle">Checkpoint A: Tier 3 → Tier 2 (Incubation Entry)</h4>
+      <ul>
+        <li data-i18n="inc.cpA1">Clear alignment with the Edge-First &amp; Zero-Cloud-Tax mission.</li>
+        <li data-i18n="inc.cpA2">Working proof-of-concept with reproducible local execution instructions.</li>
+        <li data-i18n="inc.cpA3">Standard open-source license adoption (Apache 2.0 or MIT).</li>
+        <li data-i18n="inc.cpA4">Sponsorship and recommendation by at least one active PMC member.</li>
+      </ul>
+
+      <h4 data-i18n="inc.cpBTitle">Checkpoint B: Tier 2 → Tier 1 (Graduation to Flagship TLP)</h4>
+      <ul>
+        <li data-i18n="inc.cpB1">Official publishing to global registries (PyPI, npm, or live Web App deployment).</li>
+        <li data-i18n="inc.cpB2">Automated CI/CD suite passing 100% on target platforms (Linux, Android Bionic, WebGPU).</li>
+        <li data-i18n="inc.cpB3">Comprehensive documentation portal following the standard template.</li>
+        <li data-i18n="inc.cpB4">Demonstrated production reliability and active issue triage.</li>
+        <li data-i18n="inc.cpB5">2/3 affirmative vote by the Foundation Board and PMC.</li>
+      </ul>
+
+      <h3 data-i18n="inc.sec3Title">3. Project Retirement (Attic)</h3>
+      <p data-i18n="inc.sec3Text">
+        Projects that have fulfilled their research purpose or are superseded by newer architectures are respectfully moved to the "Attic" archive. Their repositories and source code remain permanently open and accessible.
+      </p>
+    </main>
+  </div>
+
+  <!-- Footer -->
+    <footer>
+    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
+</body>
+</html>

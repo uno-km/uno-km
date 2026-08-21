@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMEVA Sovereign Live Telemetry & Observability Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="/shared/brand/favicon.svg">
+    <link rel="stylesheet" href="/shared/style.css">
+    <style>
+        :root {
+            --primary: #004499;
+            --primary-dark: #002b66;
+            --primary-light: #e8f0fe;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #cbd5e1;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --font-mono: "JetBrains Mono", Consolas, Menlo, monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--primary);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header-brand img { width: 28px; height: 28px; }
+        .header-brand h1 { margin: 0; color: var(--primary); font-size: 1.25em; font-weight: 800; }
+
+        .header-controls { display: flex; align-items: center; gap: 10px; }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #16a34a;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        }
+
+        .header-btn {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 12px;
+            font-size: 12.5px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .header-btn:hover { background: #f1f5f9; color: var(--primary); }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 20px auto 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px 20px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .metric-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-value { font-size: 2.2em; font-weight: 800; color: var(--primary); font-family: var(--font-mono); margin: 6px 0; }
+        .metric-sub { font-size: 12px; color: #64748b; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 18px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .panel-header {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .dash-table th, .dash-table td {
+            padding: 9px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: left;
+        }
+        .dash-table th { background: #f8fafc; font-weight: 700; color: var(--text-muted); font-size: 12px; }
+        .dash-table tr:hover { background: #f8fafc; }
+
+        .path-breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            background: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 4px;
+            color: #004499;
+            word-break: break-all;
+            margin-bottom: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+            background: #e2e8f0;
+            color: #334155;
+        }
+        .pill-primary { background: #e8f0fe; color: #004499; }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header>
+        <a href="/" class="header-brand">
+            <img src="/shared/brand/favicon.svg" alt="AMEVA Logo">
+            <h1>AMEVA Observability Manager</h1>
+        </a>
+        <div class="header-controls">
+            <div class="live-badge">
+                <div class="pulse-dot"></div>
+                <span>NEON POSTGRESQL LIVE</span>
+            </div>
+            <button class="header-btn" onclick="fetchLiveStats()">🔄 Refresh</button>
+            <a href="/docs/foundation/" class="header-btn">🏛️ Foundation Portal</a>
+            <a href="/" class="header-btn">Founder Profile</a>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- 1. Top KPI Metrics Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <span class="metric-label">Total Unique Visitors</span>
+                <div id="kpi-visitors" class="metric-value">--</div>
+                <span class="metric-sub">Deduplicated across fingerprint sessions</span>
+            </div>
+
+            <div class="metric-card">
+                <span class="metric-label">Total Active Sessions</span>
+                <div id="kpi-sessions" class="metric-value">--</div>
+                <span class="metric-sub">Session handshakes recorded in Neon DB</span>
+            </div>
+
+            <div class="metric-card">
+                <span class="metric-label">Top Location</span>
+                <div id="kpi-location" class="metric-value" style="font-size:1.6em;">--</div>
+                <span class="metric-sub">Vercel Edge Geolocation Ingestion</span>
+            </div>
+
+            <div class="metric-card">
+                <span class="metric-label">Primary GPU Renderer</span>
+                <div id="kpi-gpu" class="metric-value" style="font-size:1.3em; word-break:break-word;">--</div>
+                <span class="metric-sub">Unmasked WebGL / WebGPU Hardware</span>
+            </div>
+        </div>
+
+        <!-- 2. Two-Column Live Panels -->
+        <div class="content-grid">
+            <!-- Left: Top Locations & GPUs -->
+            <div class="panel-box">
+                <div class="panel-header">
+                    <span>🌍 Top Geographic Locations</span>
+                    <span class="pill pill-primary">Edge Geo</span>
+                </div>
+                <table class="dash-table">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>City</th>
+                            <th>Sessions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-countries-body">
+                        <tr><td colspan="3" style="text-align:center; color:#94a3b8;">Loading Neon DB data...</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="panel-header" style="margin-top:24px;">
+                    <span>🎮 Detected GPUs & Hardware Runtimes</span>
+                    <span class="pill pill-primary">WebGL / WebGPU</span>
+                </div>
+                <table class="dash-table">
+                    <thead>
+                        <tr>
+                            <th>GPU Model</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-gpus-body">
+                        <tr><td colspan="2" style="text-align:center; color:#94a3b8;">Loading Neon DB data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Right: Top Interactions & User Path Breadcrumbs -->
+            <div class="panel-box">
+                <div class="panel-header">
+                    <span>🖱️ Top User Interactions & Click Stream</span>
+                    <span class="pill pill-primary">Micro-Interactions</span>
+                </div>
+                <table class="dash-table">
+                    <thead>
+                        <tr>
+                            <th>Event Type</th>
+                            <th>Target Element</th>
+                            <th>Clicks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-interactions-body">
+                        <tr><td colspan="3" style="text-align:center; color:#94a3b8;">Loading Neon DB data...</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="panel-header" style="margin-top:24px;">
+                    <span>🐾 Recent User Journey (Path History)</span>
+                    <span class="pill pill-primary">Real-Time Traversal</span>
+                </div>
+                <div id="path-history-container">
+                    <p style="color:#94a3b8; font-style:italic;">Loading live path traversal...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Deep Forensic Footprint Inspector -->
+        <div class="panel-box">
+            <div class="panel-header">
+                <span>🔬 Deep Forensic Footprints (Device & Browser Signatures)</span>
+                <span class="pill pill-primary">Zero-PII Hashing</span>
+            </div>
+            <table class="dash-table">
+                <thead>
+                    <tr>
+                        <th>Visitor ID</th>
+                        <th>Location</th>
+                        <th>Canvas Hash</th>
+                        <th>Audio Hash</th>
+                        <th>Screen Hz</th>
+                        <th>Battery</th>
+                        <th>Captured At</th>
+                    </tr>
+                </thead>
+                <tbody id="table-forensics-body">
+                    <tr><td colspan="7" style="text-align:center; color:#94a3b8;">Loading forensic data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Live Polling Script -->
+    <script>
+        async function fetchLiveStats() {
+            try {
+                const res = await fetch('/api/stats?key=ameva_admin_secret_2026');
+                const data = await res.json();
+
+                if (data.status !== 'success') return;
+
+                // 1. KPIs
+                document.getElementById('kpi-visitors').innerText = data.metrics.total_visitors || '0';
+                document.getElementById('kpi-sessions').innerText = data.metrics.total_sessions || '0';
+
+                const topLoc = data.top_countries?.[0];
+                document.getElementById('kpi-location').innerText = topLoc ? `${topLoc.country} (${topLoc.city})` : 'N/A';
+
+                const topGpu = data.top_gpus?.[0];
+                document.getElementById('kpi-gpu').innerText = topGpu ? topGpu.gpu_renderer.replace('ANGLE (', '').split(' Direct3D')[0].split(' vs_')[0] : 'N/A';
+
+                // 2. Countries Table
+                const countryTbody = document.getElementById('table-countries-body');
+                if (data.top_countries && data.top_countries.length > 0) {
+                    countryTbody.innerHTML = data.top_countries.map(c => `
+                        <tr>
+                            <td><strong>${c.country}</strong></td>
+                            <td>${c.city}</td>
+                            <td><span class="pill">${c.sessions}</span></td>
+                        </tr>
+                    `).join('');
+                }
+
+                // 3. GPUs Table
+                const gpuTbody = document.getElementById('table-gpus-body');
+                if (data.top_gpus && data.top_gpus.length > 0) {
+                    gpuTbody.innerHTML = data.top_gpus.map(g => `
+                        <tr>
+                            <td><code>${g.gpu_renderer.slice(0, 50)}</code></td>
+                            <td><span class="pill">${g.count}</span></td>
+                        </tr>
+                    `).join('');
+                }
+
+                // 4. Interactions Table
+                const interTbody = document.getElementById('table-interactions-body');
+                if (data.top_interactions && data.top_interactions.length > 0) {
+                    interTbody.innerHTML = data.top_interactions.map(i => `
+                        <tr>
+                            <td><code>${i.event_type}</code></td>
+                            <td><strong>${i.target_text || '(blank)'}</strong></td>
+                            <td><span class="pill pill-primary">${i.count}</span></td>
+                        </tr>
+                    `).join('');
+                }
+
+                // 5. Path History Breadcrumbs
+                const pathContainer = document.getElementById('path-history-container');
+                if (data.deep_forensic_logs && data.deep_forensic_logs.length > 0) {
+                    pathContainer.innerHTML = data.deep_forensic_logs.slice(0, 5).map(f => `
+                        <div class="path-breadcrumb">
+                            📍 <strong>[${f.country || 'KR'}/${f.city || 'Local'}]</strong> ${f.past_paths_history || '/'}
+                        </div>
+                    `).join('');
+                }
+
+                // 6. Forensics Table
+                const forenTbody = document.getElementById('table-forensics-body');
+                if (data.deep_forensic_logs && data.deep_forensic_logs.length > 0) {
+                    forenTbody.innerHTML = data.deep_forensic_logs.map(f => `
+                        <tr>
+                            <td><code>${(f.visitor_id || '').slice(0, 14)}...</code></td>
+                            <td>${f.country || ''} (${f.city || ''})</td>
+                            <td><code>${f.canvas_hash || '--'}</code></td>
+                            <td><code>${f.audio_hash || '--'}</code></td>
+                            <td>${f.screen_hz ? f.screen_hz + 'Hz' : '--'}</td>
+                            <td>${f.battery_level ? f.battery_level + '%' : '--'}</td>
+                            <td>${new Date(f.captured_at).toLocaleTimeString()}</td>
+                        </tr>
+                    `).join('');
+                }
+
+            } catch (e) {
+                console.error('Failed to fetch live stats:', e);
+            }
+        }
+
+        // Auto fetch on load and every 5 seconds
+        fetchLiveStats();
+        setInterval(fetchLiveStats, 5000);
+    </script>
+</body>
+</html>

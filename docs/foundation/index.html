@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="home.pageTitle">AMEVA Open-Source Foundation (AOSF) - Official Portal</title>
+  <meta name="description" content="Democratizing on-device AI and autonomous software systems without cloud tax. Official Portal of AMEVA Open-Source Foundation.">
+  
+  <link rel="icon" type="image/svg+xml" href="/shared/brand/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <link rel="stylesheet" href="/docs/assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="/docs/assets/i18n-translations.js"></script>
+  <script src="/shared/i18n.js"></script>
+  <script src="/shared/common.js"></script>
+  <script src="/shared/telemetry.js"></script>
+
+  <style>
+    /* Sober, Zero-Effect Accordion Navigation (Apache / Tomcat Classic Style) */
+    .accordion-group {
+      margin-bottom: 12px;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: 4px;
+      background: var(--bg-surface, #f8f9fa);
+    }
+    .accordion-header {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted, #475569);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid transparent;
+      outline: none;
+      list-style: none;
+    }
+    .accordion-header::-webkit-details-marker {
+      display: none;
+    }
+    .accordion-group[open] .accordion-header {
+      border-bottom-color: var(--border-subtle, #e2e8f0);
+      background: #f1f5f9;
+      color: var(--primary-color, #004499);
+    }
+    .accordion-icon {
+      font-size: 11px;
+      transition: none;
+    }
+    .accordion-group[open] .accordion-icon::after {
+      content: "▾";
+    }
+    .accordion-group:not([open]) .accordion-icon::after {
+      content: "▸";
+    }
+    .accordion-content {
+      padding: 6px 0;
+      background: var(--bg-main, #ffffff);
+    }
+    .accordion-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .accordion-content li a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 13.5px;
+      color: var(--text-main, #0f172a);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+    }
+    .accordion-content li a:hover {
+      background: var(--primary-light, #e8f0fe);
+      color: var(--primary-color, #004499);
+    }
+    .accordion-content li a.active {
+      background: var(--primary-light, #e8f0fe);
+      color: var(--primary-color, #004499);
+      font-weight: 700;
+      border-left-color: var(--primary-color, #004499);
+    }
+    
+    /* SPA View Containers */
+    .spa-view {
+      display: none;
+    }
+    .spa-view.active {
+      display: block;
+    }
+    .external-badge {
+      font-size: 10px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/docs/favicon.svg" alt="AMEVA Foundation Logo" onerror="this.onerror=null;this.src='/shared/brand/favicon.svg';">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="hi">🇮🇳 हिन्दी</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="vi">🇻🇳 Tiếng Việt</option>
+          <option value="pl">🇵🇱 Polski</option>
+          <option value="la">🏛️ Latina</option>
+        </select>
+      </div>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
+      <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Sidebar with 4 Collapsible Categories -->
+    <nav class="sidebar">
+      
+      <!-- 1. 파운데이션 인포 (Foundation Info) -->
+      <details class="accordion-group" id="acc-foundation" open>
+        <summary class="accordion-header">
+          <span><span data-i18n="nav.foundation">Foundation Info</span></span>
+          <span class="accordion-icon"></span>
+        </summary>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="?view=portal" data-spa-target="portal" class="spa-nav-link active" data-i18n="nav.portal">Foundation Portal</a></li>
+            <li><a href="?view=charter" data-spa-target="charter" class="spa-nav-link" data-i18n="nav.charter">Foundation Charter</a></li>
+            <li><a href="?view=governance" data-spa-target="governance" class="spa-nav-link" data-i18n="nav.governance">Governance &amp; Merit</a></li>
+            <li><a href="?view=incubation" data-spa-target="incubation" class="spa-nav-link" data-i18n="nav.incubation">Incubation Policy</a></li>
+            <li><a href="?view=sponsorship" data-spa-target="sponsorship" class="spa-nav-link" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 2. 라이브러리 (Libraries - Flagship TLP) -->
+      <details class="accordion-group" id="acc-libraries" open>
+        <summary class="accordion-header">
+          <span><span data-i18n="nav.tier1">Libraries (Flagship TLP)</span></span>
+          <span class="accordion-icon"></span>
+        </summary>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="/lib/diffusion/" target="_self">Termux-Diffusion <span class="external-badge">Docs</span></a></li>
+            <li><a href="/lib/playwright/" target="_self">Termux-Playwright <span class="external-badge">Docs</span></a></li>
+            <li><a href="/lib/stt/" target="_self">Termux-STT <span class="external-badge">Docs</span></a></li>
+            <li><a href="/lib/train/" target="_self">Termux-Train <span class="external-badge">Docs</span></a></li>
+            <li><a href="/lib/forge/" target="_self">AMEVA-Forge <span class="external-badge">Studio</span></a></li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 3. 애플리케이션 (Applications) -->
+      <details class="accordion-group" id="acc-applications" open>
+        <summary class="accordion-header">
+          <span><span>Applications</span></span>
+          <span class="accordion-icon"></span>
+        </summary>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web) ↗</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 4. AI 에이전트 사양서 (AI Protocols & Specs) -->
+      <details class="accordion-group" id="acc-specs" open>
+        <summary class="accordion-header">
+          <span><span data-i18n="nav.aiSpecs">AI Agent Protocols</span></span>
+          <span class="accordion-icon"></span>
+        </summary>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix) ↗</a></li>
+            <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec) ↗</a></li>
+          </ul>
+        </div>
+      </details>
+
+    </nav>
+
+    <!-- Main Content Dynamic SPA Area -->
+    <main class="content">
+
+      <!-- VIEW 1: Portal Overview -->
+      <section id="view-portal" class="spa-view active">
+        <h2 data-i18n="home.title">AMEVA Open-Source Foundation (AOSF)</h2>
+        <p class="subtitle" data-i18n="home.subtitle">
+          Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Tax
+        </p>
+
+        <div class="badges-bar">
+          <span class="release-tag">AOSF Tier 1 TLP Ecosystem</span>
+          <img src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" alt="Apache 2.0">
+          <img src="https://img.shields.io/badge/governance-Meritocracy-brightgreen.svg" alt="Meritocracy">
+          <img src="https://img.shields.io/badge/on--device-100%25%20Sovereign-success" alt="Sovereign AI">
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-title" data-i18n="home.sepTitle">Separation of Foundation &amp; Personal Profile</span>
+          <p data-i18n="home.sepDesc">
+            AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong>Eunho Kim (@uno-km)</strong> are maintained strictly separately in the <a href="/">Personal Digital CV</a>.
+          </p>
+        </div>
+
+        <p data-i18n="home.desc">
+          AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.
+        </p>
+
+        <!-- Tier 1 Flagship Cards -->
+        <h3 data-i18n="home.tier1Title">Tier 1: Flagship Top-Level Projects (TLP)</h3>
+        <p class="subtitle" data-i18n="home.tier1Desc">Production-Ready · PyPI &amp; npm Verified · Complete Software &amp; Runtimes</p>
+        
+        <div class="features-grid">
+          <!-- Workstation -->
+          <div class="feature-card" style="border-left: 4px solid var(--primary-color);">
+            <h4 data-i18n="proj.workstationTitle">AMEVA Workstation (Web/Desktop)</h4>
+            <p data-i18n="proj.workstationDesc">World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.</p>
+            <div class="card-links">
+              <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-sm primary">Launch Web App</a>
+              <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux Playwright -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.playwrightTitle">Termux-Playwright</h4>
+            <p data-i18n="proj.playwrightDesc">Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.</p>
+            <div class="card-links">
+              <a href="/lib/playwright/" class="btn-sm primary">Docs &amp; API</a>
+              <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux Diffusion -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.diffusionTitle">Termux-Diffusion</h4>
+            <p data-i18n="proj.diffusionDesc">Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
+            <div class="card-links">
+              <a href="/lib/diffusion/" class="btn-sm primary">Gallery &amp; Docs</a>
+              <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux STT -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.sttTitle">Termux-STT</h4>
+            <p data-i18n="proj.sttDesc">Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.</p>
+            <div class="card-links">
+              <a href="/lib/stt/" class="btn-sm primary">Showcase &amp; Docs</a>
+              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/termux-stt" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux Train -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.trainTitle">Termux-Train</h4>
+            <p data-i18n="proj.trainDesc">Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.</p>
+            <div class="card-links">
+              <a href="/lib/train/" class="btn-sm primary">Training Guide</a>
+              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- AMEVA Forge -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.forgeTitle">AMEVA-Forge</h4>
+            <p data-i18n="proj.forgeDesc">Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.</p>
+            <div class="card-links">
+              <a href="/lib/forge/" class="btn-sm primary">Live Studio</a>
+              <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ecosystem Matrix Table -->
+        <h3 data-i18n="home.matrixTitle">Official Released Packages &amp; Ecosystem Matrix</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Package (PyPI / npm)</th>
+              <th>Runtime Environment</th>
+              <th>Primary Capability</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AMEVA Workstation</strong></td>
+              <td><code>Web / Desktop</code></td>
+              <td>WebGPU, Next.js, WASM</td>
+              <td>100% On-Device Local AI & Productivity Suite</td>
+              <td><span class="release-tag">Official Live App</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-Playwright</strong></td>
+              <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
+              <td>Android ARM64 Termux</td>
+              <td>Non-root Chromium Browser Automation & CDP</td>
+              <td><span class="release-tag">PyPI + npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-Diffusion</strong></td>
+              <td><code>pip: termux-diffusion</code><br/><code>npm: termux-diffusion</code></td>
+              <td>Android ARM64 Termux</td>
+              <td>On-Device Stable Diffusion Image Generation</td>
+              <td><span class="release-tag">PyPI + npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-STT</strong></td>
+              <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
+              <td>Android ARM64 Termux</td>
+              <td>Unified Whisper/Vosk STT & Pure Python Diarization</td>
+              <td><span class="release-tag">PyPI + npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-Train</strong></td>
+              <td><code>pip: termux-train</code></td>
+              <td>Android ARM64 Termux</td>
+              <td>Bionic Native Tensor, DAG Autograd & LoRA</td>
+              <td><span class="release-tag">PyPI Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA-Forge</strong></td>
+              <td><code>pip: ameva</code></td>
+              <td>WebGPU / Pyodide WASM</td>
+              <td>In-Browser WebGPU Deep Learning & Training</td>
+              <td><span class="release-tag">PyPI Released</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- VIEW 2: Charter -->
+      <section id="view-charter" class="spa-view">
+        <h2 data-i18n="charter.pageTitle">Official Charter of the AMEVA Foundation</h2>
+        <p class="subtitle" data-i18n="charter.subtitle">Adopted August 2026</p>
+
+        <div class="alert alert-tip">
+          <span class="alert-title" data-i18n="charter.missionTitle">Mission Statement</span>
+          <p style="font-style: italic; margin-bottom: 0;" data-i18n="charter.missionText">
+            "To liberate artificial intelligence and compute autonomy from centralized cloud enclosures by engineering high-performance, edge-first open-source software that operates entirely on sovereign end-user hardware."
+          </p>
+        </div>
+
+        <h3 data-i18n="charter.art1Title">Article I. Name and Core Purpose</h3>
+        <p data-i18n="charter.art1Name">
+          <strong>1.1</strong> The organization is formally established as the <strong>AMEVA Open-Source Foundation (AOSF)</strong>.
+        </p>
+        <p data-i18n="charter.art1Principles">
+          <strong>1.2</strong> The Foundation is governed by the following immutable core principles:
+        </p>
+        <ul>
+          <li data-i18n="charter.p1"><strong>Edge-First &amp; Zero-Cloud-Tax:</strong> All AI inference and automation pipelines are engineered to execute on end-user hardware (smartphones, browsers, edge boards) without mandatory cloud server dependencies.</li>
+          <li data-i18n="charter.p2"><strong>100% Data Sovereignty:</strong> User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.</li>
+          <li data-i18n="charter.p3"><strong>Public Good &amp; Open Standards:</strong> Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.</li>
+          <li data-i18n="charter.p4"><strong>Strict Separation of Concerns:</strong> Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.</li>
+        </ul>
+
+        <h3 data-i18n="charter.art2Title">Article II. Technical Scope</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="charter.thDomain">Domain</th>
+              <th data-i18n="charter.thTech">Core Technologies</th>
+              <th data-i18n="charter.thObj">Primary Objectives</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong data-i18n="charter.r1Domain">Mobile &amp; Edge Runtimes</strong></td>
+              <td data-i18n="charter.r1Tech">Android Bionic ARM64, Termux, NEON SIMD</td>
+              <td data-i18n="charter.r1Obj">Non-root browser automation (termux-playwright), on-device Stable Diffusion (termux-diffusion), and tensor autograd (termux-train).</td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="charter.r2Domain">Browser &amp; WebGPU AI</strong></td>
+              <td data-i18n="charter.r2Tech">WebGPU, WGSL, Pyodide WASM</td>
+              <td data-i18n="charter.r2Obj">Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (MCP-Wasm-Toolkit).</td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="charter.r3Domain">Autonomous Systems</strong></td>
+              <td data-i18n="charter.r3Tech">Docker, SRE Mesh, Multi-CLI</td>
+              <td data-i18n="charter.r3Obj">Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and zero-loss telemetry (Data Harvester).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 data-i18n="charter.art3Title">Article III. Licensing &amp; Intellectual Property</h3>
+        <p data-i18n="charter.art3Text">
+          All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.
+        </p>
+
+        <h3 data-i18n="charter.art4Title">Article IV. Disclaimer of Liability</h3>
+        <p data-i18n="charter.art4Text">
+          Deliverables are provided "AS IS", without warranty of any kind, express or implied.
+        </p>
+      </section>
+
+      <!-- VIEW 3: Governance -->
+      <section id="view-governance" class="spa-view">
+        <h2 data-i18n="gov.pageTitle">Governance &amp; Meritocracy Guidelines</h2>
+        <p class="subtitle" data-i18n="gov.subtitle">AOSF Operating Regulations &amp; Meritocratic Bylaws</p>
+
+        <div class="alert alert-tip">
+          <span class="alert-title" data-i18n="gov.meritTitle">Meritocracy Principle</span>
+          <p style="margin-bottom: 0;" data-i18n="gov.meritText">
+            The AMEVA Open-Source Foundation operates strictly on meritocracy: influence, committer rights, and Project Management Committee (PMC) seats are earned exclusively through sustained, high-quality technical and architectural contributions.
+          </p>
+        </div>
+
+        <h3 data-i18n="gov.sec1Title">1. Roles and Responsibilities</h3>
+        <p data-i18n="gov.sec1Text">Community roles are categorized into Users, Contributors, Committers, and PMC Members with clear, transparent promotion criteria.</p>
+
+        <h3 data-i18n="gov.sec2Title">2. Decision-Making &amp; Voting Protocols</h3>
+        <p data-i18n="gov.sec2Text">Consensus building is prioritized, followed by formal 72-hour lazy consensus votes where required for major architectural changes.</p>
+
+        <h3 data-i18n="gov.sec3Title">3. Project Lifecycle</h3>
+        <p data-i18n="gov.sec3Text">Projects progress through Sandbox -> Incubation -> Top-Level Project (TLP) based on code maturity and multi-maintainer diversity.</p>
+
+        <h3 data-i18n="gov.sec4Title">4. Conflict Resolution &amp; Code of Conduct</h3>
+        <p data-i18n="gov.sec4Text">All participants adhere to the Contributor Covenant Code of Conduct, ensuring a professional, harassment-free environment.</p>
+      </section>
+
+      <!-- VIEW 4: Incubation -->
+      <section id="view-incubation" class="spa-view">
+        <h2 data-i18n="inc.pageTitle">Incubation Policy &amp; Lifecycle</h2>
+        <p class="subtitle" data-i18n="inc.subtitle">Standard Process for Onboarding New Sub-Projects</p>
+
+        <div class="alert alert-info">
+          <span class="alert-title" data-i18n="inc.policyTitle">AOSF Incubation Framework</span>
+          <p style="margin-bottom: 0;" data-i18n="inc.policyText">
+            The AOSF Incubation Policy governs the ingestion, mentorship, and graduation of emerging edge-first AI projects into official Tier 1 Top-Level Projects.
+          </p>
+        </div>
+
+        <h3 data-i18n="inc.stage1Title">Stage 1: Proposal &amp; Sponsor</h3>
+        <p data-i18n="inc.stage1Text">A proposal outlining the technical scope, zero-cloud architecture, and initial maintainers is submitted for PMC review.</p>
+
+        <h3 data-i18n="inc.stage2Title">Stage 2: Mentored Incubation</h3>
+        <p data-i18n="inc.stage2Text">The project establishes transparent issue tracking, CI/CD, documentation, and releases on PyPI/npm under AOSF guidelines.</p>
+
+        <h3 data-i18n="inc.stage3Title">Stage 3: Graduation to Tier 1 TLP</h3>
+        <p data-i18n="inc.stage3Text">Upon demonstrating production stability, complete unit test suites, and meritocratic governance, the project graduates to TLP.</p>
+
+        <h3 data-i18n="inc.gradTitle">Graduation Requirements</h3>
+        <p data-i18n="inc.gradText">Projects must exhibit 100% data sovereignty, edge-first execution, clean Apache 2.0/MIT licensing, and comprehensive API documentation.</p>
+      </section>
+
+      <!-- VIEW 5: Sponsorship -->
+      <section id="view-sponsorship" class="spa-view">
+        <h2 data-i18n="spon.pageTitle">Sponsorship &amp; Institutional Support</h2>
+        <p class="subtitle" data-i18n="spon.subtitle">Funding Public Goods &amp; Sovereign Edge AI Infrastructure</p>
+
+        <div class="alert alert-tip">
+          <span class="alert-title" data-i18n="spon.sponTitle">Supporting Open-Source Public Goods</span>
+          <p style="margin-bottom: 0;" data-i18n="spon.sponText">
+            AOSF is sustained by direct sponsorships, corporate grants, and compute hardware donations dedicated exclusively to open research and testbed infrastructure.
+          </p>
+        </div>
+
+        <h3 data-i18n="spon.tier1Title">Hardware &amp; Compute Grants</h3>
+        <p data-i18n="spon.tier1Text">Testing devices (ARM64 devboards, smartphones, GPUs) are used directly in CI/CD pipelines to benchmark real hardware performance.</p>
+
+        <h3 data-i18n="spon.tier2Title">Ecosystem Sustainer Tier</h3>
+        <p data-i18n="spon.tier2Text">Organizations providing annual financial grants receive prominent recognition across Foundation portals and documentation feeds.</p>
+
+        <h3 data-i18n="spon.tier3Title">Individual Backers</h3>
+        <p data-i18n="spon.tier3Text">Individual developers supporting via GitHub Sponsors or OpenCollective help maintain domain infrastructure and package registries.</p>
+
+        <h3 data-i18n="spon.usageTitle">Transparency of Funds</h3>
+        <p data-i18n="spon.usageText">All financial and hardware contributions are accounted for with public quarterly transparency reports.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
+
+  <!-- SPA Router & GET Parameter Synchronization Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const validViews = ['portal', 'charter', 'governance', 'incubation', 'sponsorship'];
+      
+      function navigateTo(viewId, pushHistory) {
+        if (!validViews.includes(viewId)) {
+          viewId = 'portal';
+        }
+
+        // 1. Switch View Containers
+        document.querySelectorAll('.spa-view').forEach(function(sec) {
+          sec.classList.remove('active');
+        });
+        const targetSection = document.getElementById('view-' + viewId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+
+        // 2. Update Active Link in Sidebar
+        document.querySelectorAll('.spa-nav-link').forEach(function(link) {
+          if (link.getAttribute('data-spa-target') === viewId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        // 3. Ensure Foundation Accordion is Open
+        const foundationAcc = document.getElementById('acc-foundation');
+        if (foundationAcc) {
+          foundationAcc.open = true;
+        }
+
+        // 4. Update URL Query Parameter cleanly via History API
+        if (pushHistory) {
+          const newUrl = viewId === 'portal' 
+            ? window.location.pathname 
+            : window.location.pathname + '?view=' + viewId;
+          window.history.pushState({ view: viewId }, '', newUrl);
+        }
+
+        // 5. Scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      // Intercept SPA Nav Links
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('.spa-nav-link');
+        if (link) {
+          e.preventDefault();
+          const target = link.getAttribute('data-spa-target');
+          navigateTo(target, true);
+        }
+      });
+
+      // Handle Browser Back / Forward Button Navigation
+      window.addEventListener('popstate', function() {
+        const params = new URLSearchParams(window.location.search);
+        const viewParam = params.get('view') || 'portal';
+        navigateTo(viewParam, false);
+      });
+
+      // Initial Load Handler
+      document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const initialView = params.get('view') || 'portal';
+        navigateTo(initialView, false);
+      });
+    })();
+  </script>
+</body>
+</html>

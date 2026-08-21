@@ -1,0 +1,89 @@
+# ==============================================================================
+# AMEVA Ecosystem - Standard Library Documentation Specification (doc.config.yaml)
+# Single Source of Truth for Zero-Drift Documentation Generation
+# ==============================================================================
+
+name: "AMEVA-Tensor"
+package_name_pypi: "ameva-tensor"
+package_name_npm: "@ameva/tensor"
+version: "v1.2.0"
+release_name: "Unified Kernel"
+license: "Apache-2.0"
+platform: "WebGPU / ARM64 Bionic"
+github_repo_url: "https://github.com/uno-km/AMEVA-Tensor"
+
+# 1-Line Mission & Subtitle
+tagline_en: "High-Performance Edge & Browser Native Tensor Autograd Library"
+tagline_ko: "브라우저 및 엣지 환경을 위한 고성능 텐서 자동미분 오픈소스 라이브러리"
+tagline_ja: "ブラウザおよびエッジ環境向けの高性能テンソル自動微分ライブラリ"
+tagline_zh: "面向浏览器和边缘环境的高性能张量自动求导库"
+tagline_es: "Biblioteca de autodiferenciación de tensores nativa de alto rendimiento"
+tagline_de: "Hochleistungs-Tensor-Autodifferenzierungsbibliothek für Edge und Browser"
+
+# Quick Installation Command (1-Line or Multi-line)
+quick_install_cmd: "pip install ameva-tensor\n# or: npm install @ameva/tensor"
+
+# Problem & Architecture Breakthrough
+why_challenge_en: "Standard PyTorch/TensorFlow runtimes fail in browser sandboxes and Termux due to heavy multi-gigabyte binaries, glibc dependencies, and unmanaged memory growth."
+why_challenge_ko: "기존 PyTorch 및 TensorFlow는 수 기가바이트의 바이너리 크기, glibc 의존성, 통제되지 않는 메모리 점유로 인해 브라우저 샌드박스와 Termux 엣지 환경에서 구동하기 어렵습니다."
+
+description_en: "Compiles low-level tensor shaders directly to WebGPU/Bionic ARM64 with closed-form mathematical precision and zero-leak buffer pooling."
+description_ko: "저수준 텐서 셰이더를 WebGPU 및 Bionic ARM64로 직접 컴파일하고 엄밀한 닫힌 형태 수식과 무누수 버퍼 풀링을 결합하여 경량 네이티브 실행을 지원합니다."
+
+# Key Capabilities & Features (Strictly 3-6 items, NO EMOJIS)
+features:
+  - title_en: "Zero-Config Native Execution"
+    title_ko: "무설치 네이티브 실행"
+    desc_en: "Runs instantly on Android Termux and Chromium WebGPU with zero build bloat."
+    desc_ko: "별도의 빌드 도구 없이 안드로이드 Termux 및 Chromium WebGPU에서 즉시 네이티브 구동됩니다."
+
+  - title_en: "Closed-Form Autograd Engine"
+    title_ko: "닫힌 형태 자동 미분 엔진"
+    desc_en: "Deterministic backpropagation graph with zero floating-point drift."
+    desc_ko: "부동소수점 오차를 최소화한 결정론적 역전파 연산 그래프를 내장합니다."
+
+  - title_en: "Hardware Memory Protection"
+    title_ko: "하드웨어 메모리 보호 및 누수 방지"
+    desc_en: "Weakref lifecycle management and ring buffer pooling preventing VRAM leaks."
+    desc_ko: "Weakref 수명 주기 관리와 링 버퍼 풀링으로 VRAM 메모리 누수를 원천 방지합니다."
+
+# Module & Kernel Operations Matrix
+matrix_table:
+  - category: "Tensor Operations"
+    operations: "MatMul, Conv2D, LayerNorm, Softmax, GELU, RMSNorm"
+    status: "Production"
+  - category: "Backends"
+    operations: "WebGPU Compute Shaders (WGSL), CPU Vectorized C++"
+    status: "Production"
+  - category: "Memory Management"
+    operations: "Zero-Copy Ring Buffer, Weakref GC Allocation"
+    status: "Production"
+  - category: "Formats"
+    operations: "Safetensors, GGUF Parser, ONNX Lite"
+    status: "Production"
+
+# Canonical Code Examples
+code_example_py: |
+  import ameva_tensor as at
+
+  # 1. Initialize tensor on WebGPU accelerator
+  x = at.tensor([1.0, 2.0, 3.0, 4.0], device="webgpu", requires_grad=True)
+  w = at.tensor([0.5, 0.5, 0.5, 0.5], device="webgpu", requires_grad=True)
+
+  # 2. Compute forward pass & autograd
+  y = (x * w).sum()
+  y.backward()
+
+  print(f"Loss: {y.item()}, Grad: {x.grad}")
+
+code_example_js: |
+  import { Tensor } from '@ameva/tensor';
+
+  // 1. Initialize WebGPU Tensor
+  const x = new Tensor([1.0, 2.0, 3.0, 4.0], { device: 'webgpu', requiresGrad: true });
+  const w = new Tensor([0.5, 0.5, 0.5, 0.5], { device: 'webgpu', requiresGrad: true });
+
+  // 2. Compute forward pass
+  const y = x.mul(w).sum();
+  await y.backward();
+  console.log('Loss:', y.item(), 'Grad:', x.grad);

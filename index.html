@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 🌐 Centralized Documentation URL & GET Query Router -->
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const lib = params.get('lib') || params.get('doc') || params.get('p');
+      if (lib) {
+        const targetMap = {
+          'stt': './lib/stt/',
+          'train': './lib/train/',
+          'torch': './lib/train/',
+          'forge': './lib/forge/',
+          'playwright': './lib/playwright/',
+          'diffusion': './lib/diffusion/',
+          'foundation': './foundation/',
+          'workstation': './app/workstation/'
+        };
+        const dest = targetMap[lib.toLowerCase()];
+        if (dest) {
+          window.location.replace(dest);
+        }
+      }
+    })();
+  </script>
+  
+  <title>Eunho Kim (김은호 / @uno-km) | Senior Software Engineer &amp; Systems Architect</title>
+  
+  <!-- 🔍 Executive Meta Tags -->
+  <meta name="author" content="Eunho Kim (김은호)">
+  <meta name="description" content="Official Executive Technical Portfolio of Eunho Kim (@uno-km). Enterprise Java/Spring Boot & PostgreSQL Specialist, AMEVA Ecosystem Creator, WebGPU AI Systems Architect, and High-Performance Crawling & MLOps Engineer.">
+  
+  <!-- 🌐 Multilingual Canonical & Hreflang Tags for Global Search Engines -->
+  <link rel="canonical" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="x-default" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="ko" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="en" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="ja" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="zh" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="hi" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="ru" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="fr" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="de" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="es" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="pl" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="sv" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="vi" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="ar" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="it" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="pt" href="https://uno-km.github.io/uno-km/">
+  <link rel="alternate" hreflang="la" href="https://uno-km.github.io/uno-km/">
+
+  <!-- 🚀 Comprehensive Global 2000+ Multilingual Keyword Search Matrix -->
+  <meta name="keywords" content="Eunho Kim, 김은호, uno-km, AMEVA, AMEVA-Forge, Termux-Playwright, MCP-Wasm-Toolkit, BitNet, AMEVA Universe, AMEVA Workstation, AMEVA-Multi-CLI, WebGPU, Autograd Engine, PyTorch, Deep Learning, Machine Learning, MLOps, AI Agent, Multi-Agent Systems, Autonomous Agents, Model Context Protocol, MCP, Anthropic MCP, OpenAI Function Calling, Tool Calling, Agentic Workflow, Chain of Thought, Tree of Thought, Prompt Engineering, RAG, Retrieval Augmented Generation, Vector Database, Knowledge Graph, D3.js, WebLLM, WebGPU Compute, WGSL Shaders, 1-bit LLM, BitNet 1.58b, Quantization, LoRA, QLoRA, GGUF, llama.cpp, Ollama, vLLM, Zero-Server ML, Serverless Inference, Edge AI, Browser Deep Learning, Pyodide, WebAssembly, WASM Sandbox, Web Crawling, Web Scraping, Playwright, Chromium CDP, Chrome DevTools Protocol, Termux, Android Bionic, ARM64, Headless Browser, Anti-Detection, Cloudflare Bypass, Stealth Scraping, Puppeteer, Scrapy, BeautifulSoup, Selenium, Request Harvester, Java, Java 17, Java 21, Spring Boot, Spring MVC, Spring Scheduler, Spring Cloud, JPA, Hibernate, MyBatis, PostgreSQL, Oracle DB, MariaDB, MySQL, SQLite, Query Tuning, Index Optimization, Database Design, High Availability, Zero Downtime, Microservices, MSA, Circuit Breaker, Load Balancing, DevOps, CI/CD, Jenkins, GitHub Actions, Docker, Kubernetes, K8S, Nginx, Tomcat, TypeScript, JavaScript, React, React 18, Electron, node-pty, PTY Terminal, Site Reliability Engineering, SRE, Dynamic Throttling, Distributed Systems, Data Sovereignty, Local AI, Full-Stack Engineer, Systems Architect, Tech Lead, Business Analyst, 딥러닝, 머신러닝, 인공지능, 웹크롤링, 자동화, 웹지피유, 오토그라드, 스프링부트, 포스트그레스, 자바, 엠엘옵스, 멀티에이전트, 프롬프트엔지니어링, 人工知能, 深度学习, 机器学习, 機械学習, ウェブスクレイピング, システムアーキテクト, バックエンド, 全栈工程师, 网络爬虫, 智能体, आर्टिफिशियल इंटेलिजेंस, मशीन लर्निंग, डीप लर्निंग, वेब क्रॉलिंग, सिस्टम आर्किटेक्ट, फुल स्टैक डेवलपर, Искусственный интеллект, Глубокое обучение, Веб-скрейпинг, Системный архитектор, Full-Stack разработчик, Intelligence Artificielle, Apprentissage Profond, Scraping Web, Architecte Système, Développeur Full-Stack, Künstliche Intelligenz, Deep Learning, Web Scraping, Systemarchitekt, Full-Stack-Entwickler, Inteligencia Artificial, Aprendizaje Profundo, Web Scraping, Arquitecto de Sistemas, Desarrollador Full-Stack, Sztuczna Inteligencja, Uczenie Maszynowe, Scraping Danych, Architekt Systemowy, Programista Full-Stack, Artificiell Intelligens, Djupinlärning, Webbskrapning, Systemarkitekt, Fullstack-utvecklare, Trí tuệ nhân tạo, Học sâu, Thu thập dữ liệu web, Kiến trúc sư hệ thống, الذكاء الاصطناعي, التعلم العميق, زحف الويب, مهندس النظم, مطور شامل, Intelligentia Artificialis, Architectura Systematum, Intelligenza Artificiale, Architetto di Sistemi, Sviluppatore Full-Stack, Inteligência Artificial, Aprendizado Profundo, Raspagem de Dados">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="bingbot" content="index, follow">
+
+  <!-- 📱 Open Graph & Social Sharing Cards (Full Global Locale Alternates) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Eunho Kim (김은호 / @uno-km) | Senior Software Engineer &amp; Systems Architect">
+  <meta property="og:description" content="Enterprise Java/Spring Boot Specialist, AMEVA Ecosystem Creator, WebGPU AI Systems Architect & High-Performance Crawling/MLOps Engineer.">
+  <meta property="og:url" content="https://uno-km.github.io/uno-km/">
+  <meta property="og:image" content="https://uno-km.github.io/uno-km/assets/images/profile.jpg">
+  <meta property="og:site_name" content="Eunho Kim Executive Technical Portfolio">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pl_PL">
+  <meta property="og:locale:alternate" content="sv_SE">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="ar_SA">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="pt_BR">
+
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eunho Kim (김은호 / @uno-km) | Systems Architect">
+  <meta name="twitter:description" content="Enterprise Full-Stack, WebGPU Deep Learning, MCP Sandbox, and Multi-Agent Systems Architect.">
+  <meta name="twitter:image" content="https://uno-km.github.io/uno-km/assets/images/profile.jpg">
+
+  <!-- 🏷️ Schema.org Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://uno-km.github.io/uno-km/#person",
+        "name": "Eunho Kim",
+        "alternateName": ["김은호", "Uno Kim"],
+        "jobTitle": "Senior Full-Stack Engineer & Systems Architect",
+        "email": "mailto:zhfldk014745@naver.com",
+        "telephone": "+82-10-4943-7334",
+        "url": "https://uno-km.github.io/uno-km/",
+        "image": "https://uno-km.github.io/uno-km/assets/images/profile.jpg",
+        "sameAs": [
+          "https://github.com/uno-km",
+          "https://uno-kim.tistory.com/"
+        ],
+        "knowsAbout": [
+          "Java", "Spring Boot", "PostgreSQL", "Query Tuning", "Microservices",
+          "WebGPU", "Autograd Engine", "Deep Learning", "PyTorch", "MLOps",
+          "Playwright", "Web Crawling", "Chromium CDP", "Termux Android",
+          "Model Context Protocol", "MCP", "Multi-Agent Systems", "WASM Sandbox"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://uno-km.github.io/uno-km/#website",
+        "url": "https://uno-km.github.io/uno-km/",
+        "name": "Eunho Kim | AMEVA Ecosystem Executive Portfolio",
+        "author": { "@id": "https://uno-km.github.io/uno-km/#person" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+  <style>
+    /* ==========================================================================
+       Eunho Kim - Executive Technical Resume & AMEVA Ecosystem Portal
+       Apache / Tomcat High-Clarity Enterprise Open-Source Architecture
+       ========================================================================== */
+    :root {
+      --primary-navy: #003399;
+      --primary-dark: #002266;
+      --primary-light: #f0f4fa;
+      --accent-blue: #0055cc;
+      --accent-teal: #00887a;
+      --border-color: #cbd5e1;
+      --border-dark: #94a3b8;
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-header: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* ── Top Header ─────────────────────────────────────────────────────────── */
+    header.top-header {
+      background-color: var(--bg-header);
+      border-bottom: 2px solid var(--primary-navy);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo { width: 28px; height: 28px; }
+
+    .brand-title {
+      font-size: 1.2em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      background: #e2e8f0;
+      color: var(--primary-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-select-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 0.82em;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .header-btn {
+      text-decoration: none;
+      font-size: 0.82em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 600;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-navy);
+      color: var(--primary-navy);
+    }
+
+    /* ── Main Container ─────────────────────────────────────────────────────── */
+    .container {
+      max-width: 1360px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* ── Left Sidebar (Executive Resume) ────────────────────────────────────── */
+    aside.resume-sidebar {
+      width: 360px;
+      flex-shrink: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 24px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .avatar-wrapper {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .profile-avatar-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-navy);
+      box-shadow: 0 2px 12px rgba(0,51,153,0.18);
+    }
+
+    .profile-name {
+      font-size: 1.45em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      text-align: center;
+      margin-bottom: 2px;
+    }
+
+    .profile-subname {
+      font-size: 0.85em;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .profile-role-badge {
+      display: block;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 5px 8px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-heading {
+      font-size: 0.85em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 4px;
+      margin: 18px 0 10px 0;
+    }
+
+    .contact-list, .meta-list {
+      list-style: none;
+      font-size: 0.88em;
+    }
+
+    .contact-list li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .meta-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+
+    .contact-list a {
+      color: var(--primary-navy);
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .contact-list a:hover { text-decoration: underline; }
+
+    .skills-group {
+      margin-bottom: 12px;
+    }
+
+    .skills-category {
+      font-size: 0.78em;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 8px 0 4px 0;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-chip {
+      font-family: var(--font-mono);
+      font-size: 0.74em;
+      background: var(--bg-header);
+      border: 1px solid var(--border-color);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--text-main);
+    }
+
+    .skill-chip.highlight {
+      background: #e6f0ff;
+      border-color: #99c2ff;
+      color: var(--primary-navy);
+      font-weight: bold;
+    }
+
+    /* ── Right Content Area ─────────────────────────────────────────────────── */
+    main.resume-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 22px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .panel-header {
+      border-bottom: 2px solid var(--primary-navy);
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-header h2 {
+      font-size: 1.18em;
+      font-weight: 800;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      background: var(--primary-light);
+      color: var(--primary-navy);
+      border: 1px solid #bfdbfe;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* ── Project Timeline / Cards ───────────────────────────────────────────── */
+    .project-item {
+      border-left: 3px solid var(--primary-navy);
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+
+    .project-item:last-child { margin-bottom: 0; }
+
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .project-title {
+      font-size: 1.05em;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .project-period {
+      font-family: var(--font-mono);
+      font-size: 0.8em;
+      color: var(--text-muted);
+    }
+
+    .project-role-tech {
+      font-size: 0.84em;
+      color: var(--primary-navy);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-points {
+      list-style-type: square;
+      padding-left: 18px;
+      font-size: 0.9em;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .project-points li {
+      margin-bottom: 4px;
+    }
+
+    .highlight-metric {
+      color: var(--primary-navy);
+      font-weight: 700;
+      background: #eef4ff;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ── AMEVA Acronym Grid ─────────────────────────────────────────────────── */
+    .acronym-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 0.88em;
+    }
+
+    .acronym-table th, .acronym-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .acronym-table th {
+      background: var(--bg-header);
+      color: var(--primary-navy);
+      font-weight: 700;
+    }
+
+    .callout-alert {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #10b981;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 0.88em;
+    }
+
+    /* ── MCP & Library Grid ─────────────────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .item-card {
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 14px;
+      background: #fafbfc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+    }
+
+    .item-card:hover {
+      border-color: var(--primary-navy);
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,51,153,0.08);
+    }
+
+    .item-card h3 {
+      font-size: 1em;
+      color: var(--primary-navy);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .item-card p {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      margin: 4px 0 10px 0;
+      line-height: 1.45;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .btn-action {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.8em;
+      font-weight: 600;
+      padding: 5px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action.primary {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border: 1px solid var(--primary-navy);
+    }
+
+    .btn-action.primary:hover { background: var(--primary-dark); }
+
+    .btn-action.secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-action.secondary:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-navy);
+    }
+
+    /* ── Code Box ───────────────────────────────────────────────────────────── */
+    .code-box {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      overflow-x: auto;
+      margin: 6px 0;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────────────────── */
+    footer.bottom-footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-header);
+      padding: 18px 24px;
+      text-align: center;
+      font-size: 0.82em;
+      color: var(--text-muted);
+      margin-top: 28px;
+    }
+
+    /* ── Responsive Architecture (Mobile, Tablet, Split-Screen) ───────────────── */
+    @media (max-width: 1100px) and (min-width: 961px) {
+      aside.resume-sidebar { width: 280px; }
+      .container { padding: 18px 24px; gap: 20px; }
+    }
+
+    @media (max-width: 960px) {
+      .container { flex-direction: column; padding: 14px 16px; gap: 18px; }
+      aside.resume-sidebar { width: 100%; position: static; }
+      .profile-card { margin-bottom: 12px; }
+      .nav-menu-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 4px; }
+      header.top-header { padding: 8px 14px; height: auto; min-height: 52px; flex-wrap: wrap; gap: 8px; }
+      .header-right { width: 100%; justify-content: flex-start; gap: 6px; }
+    }
+
+    @media (max-width: 640px) {
+      .brand-title { font-size: 0.95em; }
+      .brand-badge { display: none; }
+      .nav-menu-box { grid-template-columns: 1fr 1fr; }
+      .container { padding: 10px 12px; }
+      .tech-card, .project-card, .exp-card { padding: 12px 14px; }
+      table, .skill-table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    }
+  </style>
+  <script src="shared/common.js"></script>
+  <script src="shared/telemetry.js"></script>
+</head>
+<body>
+
+  <!-- 🏛️ Top Navigation Header -->
+  <header class="top-header">
+    <a href="index.html" class="brand-group">
+      <img src="assets/brand/favicon.svg" alt="AMEVA Logo" class="brand-logo">
+      <span class="brand-title">Eunho Kim (김은호) | AMEVA Portfolio</span>
+      <span class="brand-badge">Tech Lead &amp; Architect</span>
+    </a>
+
+    <div class="header-right">
+      <!-- 🌐 13-Language Global Selector -->
+      <select id="globalLangSelect" class="lang-select-box" onchange="switchLanguage(this.value)">
+        <option value="ko" selected>🇰🇷 한국어 (Korean)</option>
+        <option value="en">🇺🇸 English (US)</option>
+        <option value="ja">🇯🇵 日本語 (Japanese)</option>
+        <option value="zh">🇨🇳 简体中文 (Chinese)</option>
+        <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+        <option value="ru">🇷🇺 Русский (Russian)</option>
+        <option value="pl">🇵🇱 Polski (Polish)</option>
+        <option value="vi">🇻🇳 Tiếng Việt (Vietnamese)</option>
+        <option value="ar">🇸🇦 العربية (Arabic)</option>
+        <option value="la">🏛️ Latina (Latin)</option>
+        <option value="es">🇪🇸 Español (Spanish)</option>
+        <option value="de">🇩🇪 Deutsch (German)</option>
+        <option value="fr">🇫🇷 Français (French)</option>
+      </select>
+
+      <a href="/docs/foundation/index.html" class="header-btn" style="border-color: #f59e0b; color: #b45309; background: #fef3c7; font-weight: 600;">
+        AMEVA Foundation
+      </a>
+      <a href="https://github.com/uno-km" target="_blank" class="header-btn">
+        🐙 GitHub
+      </a>
+      <a href="https://uno-kim.tistory.com/" target="_blank" class="header-btn">
+        📖 Blog
+      </a>
+    </div>
+  </header>
+
+  <!-- 🏛️ Main 2-Column Layout -->
+  <div class="container">
+
+    <!-- 👤 Left Sidebar: Complete Executive Resume & Personal Details -->
+    <aside class="resume-sidebar">
+      <div class="avatar-wrapper">
+        <img src="assets/images/profile.jpg" alt="Eunho Kim Profile" class="profile-avatar-img">
+      </div>
+
+      <h1 class="profile-name">김은호 (Eunho Kim)</h1>
+      <p class="profile-subname">@uno-km · 1994.11.10</p>
+      <span class="profile-role-badge" data-i18n="side.roleBadge">
+        Senior Full-Stack Engineer &amp; Systems Architect
+      </span>
+      <a href="/docs/foundation/index.html" style="text-decoration: none; display: block; margin-top: 4px;">
+        <span style="display:inline-block; background: #fef3c7; color: #92400e; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.76em; border: 1px solid #fde68a; word-break: keep-all;" data-i18n="side.founderBadge">
+          Founder &amp; Chair @ AMEVA Foundation
+        </span>
+      </a>
+
+      <!-- Contact -->
+      <h3 class="sidebar-heading" data-i18n="side.contact">Contact &amp; Links</h3>
+      <ul class="contact-list">
+        <li>📞 <a href="tel:010-4943-7334">010-4943-7334</a></li>
+        <li>✉️ <a href="mailto:zhfldk014745@naver.com">zhfldk014745@naver.com</a></li>
+        <li>📖 <a href="https://uno-kim.tistory.com/" target="_blank">uno-kim.tistory.com (기술블로그)</a></li>
+        <li>🐙 <a href="https://github.com/uno-km" target="_blank">github.com/uno-km</a></li>
+        <li>🚀 <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Live App)</a></li>
+        <li>📍 <span data-i18n="side.location">대한민국 경기도 성남시 분당구 (판교)</span></li>
+      </ul>
+
+      <!-- Education & Language -->
+      <h3 class="sidebar-heading" data-i18n="side.eduLang">Education &amp; Language</h3>
+      <ul class="meta-list">
+        <li>🎓 <div><strong data-i18n="side.edu1Title">아주대학교 정보통신대학원</strong><br><span style="color:var(--text-muted); font-size:0.86em;" data-i18n="side.edu1Sub">인공지능학과 석사 재학 (2026.08 ~)</span></div></li>
+        <li>🎓 <div><strong data-i18n="side.edu2Title">한양사이버대학교</strong><br><span style="color:var(--text-muted); font-size:0.86em;" data-i18n="side.edu2Sub">응용소프트웨어공학과 학사 (3.94 / 4.5)</span></div></li>
+        <li>🗣️ <div><strong data-i18n="side.langTitle">영어 (OPIc IH)</strong><br><span style="color:var(--text-muted); font-size:0.86em;" data-i18n="side.langSub">기술 소통 및 비즈니스 회화 가능</span></div></li>
+      </ul>
+
+      <!-- Core Skills Matrix -->
+      <h3 class="sidebar-heading" data-i18n="side.skills">Technical Competencies</h3>
+
+      <!-- Category 1: AI, Data Science & Reasoning -->
+      <div class="skills-group">
+        <p class="skills-category" data-i18n="side.catAI">🧠 AI, Data Science &amp; Advanced Reasoning</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">WebGPU Local AI</span>
+          <span class="skill-chip highlight">On-Device STT / Diarization</span>
+          <span class="skill-chip highlight">On-Device LoRA Training</span>
+          <span class="skill-chip highlight">ARM64 Bionic Native</span>
+          <span class="skill-chip highlight">Autograd Engine</span>
+          <span class="skill-chip">MLOps &amp; SRE</span>
+          <span class="skill-chip">Deep Reasoning (CoT/ToT)</span>
+          <span class="skill-chip">Prompt Engineering</span>
+          <span class="skill-chip">Pyodide WASM</span>
+          <span class="skill-chip">BitNet 1.58-bit LLM</span>
+          <span class="skill-chip">RAG Architecture</span>
+          <span class="skill-chip">Multi-Agent Orchestration</span>
+        </div>
+      </div>
+
+      <!-- Category 2: Backend & Architecture -->
+      <div class="skills-group">
+        <p class="skills-category" data-i18n="side.catBackend">☕ Backend &amp; Architecture</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">Java</span>
+          <span class="skill-chip highlight">Spring Boot</span>
+          <span class="skill-chip highlight">Spring MVC</span>
+          <span class="skill-chip highlight">Spring Scheduler</span>
+          <span class="skill-chip highlight">JPA</span>
+          <span class="skill-chip highlight">MyBatis</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Maven / Gradle</span>
+          <span class="skill-chip">RESTful API</span>
+        </div>
+      </div>
+
+      <!-- Category 3: Database & Optimization -->
+      <div class="skills-group">
+        <p class="skills-category" data-i18n="side.catDB">💾 Database &amp; Optimization</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">PostgreSQL</span>
+          <span class="skill-chip highlight">Oracle DB</span>
+          <span class="skill-chip">MariaDB</span>
+          <span class="skill-chip">Query Tuning (3s→0.3s)</span>
+          <span class="skill-chip">SQLite</span>
+        </div>
+      </div>
+
+      <!-- Category 4: Frontend -->
+      <div class="skills-group">
+        <p class="skills-category" data-i18n="side.catFrontend">🖥️ Frontend</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">JavaScript</span>
+          <span class="skill-chip highlight">React JS</span>
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">SheetJS</span>
+          <span class="skill-chip">Chart.js</span>
+          <span class="skill-chip">Toast UI</span>
+          <span class="skill-chip">jQuery / Ajax</span>
+        </div>
+      </div>
+
+      <!-- Category 5: DevOps & Collab -->
+      <div class="skills-group">
+        <p class="skills-category" data-i18n="side.catDevOps">🚀 DevOps, Systems &amp; Collab</p>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">Jenkins</span>
+          <span class="skill-chip highlight">GitHub Actions</span>
+          <span class="skill-chip">Docker</span>
+          <span class="skill-chip">K8S</span>
+          <span class="skill-chip">Tomcat / Nginx</span>
+          <span class="skill-chip highlight">Jira / Confluence</span>
+          <span class="skill-chip">Git / SVN</span>
+          <span class="skill-chip">SOP / WBS</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 📄 Right Content: Professional Track Records & AMEVA Ecosystem -->
+    <main class="resume-main">
+
+      <!-- Panel 1: Executive Self-Introduction -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p1.title">👋 소프트웨어 엔지니어 김은호입니다</span></h2>
+          <span class="panel-tag" data-i18n="tag.executive">Executive Profile</span>
+        </div>
+        <p style="font-size: 0.96em; line-height: 1.7; color: var(--text-main); margin-bottom: 10px;" data-i18n="p1.p1">
+          <strong>"개발을 진심으로 즐기며, 어떤 난제든 끝까지 파고들어 해결해 내는 끈기와 소통력을 가진 엔지니어입니다."</strong>
+        </p>
+        <p style="font-size: 0.92em; line-height: 1.7; color: var(--text-muted); margin-bottom: 12px;" data-i18n="p1.p2">
+          새로운 기술을 탐구하고 복잡한 문제를 분석하여 최적의 해답을 찾아내는 과정에서 큰 즐거움을 느낍니다. 팀원 및 유관부서와 적극적으로 소통하고 협업하는 문화를 좋아하며, 맡은 일은 포기하지 않고 끝까지 완수하는 강한 책임감을 가지고 있습니다. 2021년 10월부터 KT DS 협력사 및 SK AX 자회사에서 사내 핵심 시스템 풀스택 개발, 대규모 DB 쿼리 튜닝(3초 → 0.3초), CI/CD 자동화 구축을 주도적으로 이끌어 왔습니다.
+        </p>
+      </section>
+
+      <!-- Panel 2: AMEVA Philosophy, Acronym & AI Democratization -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p2.title">🧬 AMEVA 생태계의 기원과 엔지니어링 철학</span></h2>
+          <span class="panel-tag" data-i18n="tag.vision">Vision &amp; Philosophy</span>
+        </div>
+
+        <p style="font-size: 0.92em; color: var(--text-main); line-height: 1.65; margin-bottom: 10px;" data-i18n="p2.desc">
+          <strong>AMEVA</strong>는 척박한 환경에서도 형태를 유연하게 바꾸며 끝내 살아남는 단세포 생물 <strong>아메바(Amoeba)</strong>에서 착안했습니다. 거대 클라우드 서버 비용에 의존하지 않고, 개인의 엣지 디바이스와 브라우저만으로 자율 실행되는 **"AI의 민주화 (Democratization of AI)"**와 **"데이터 주권(Data Sovereignty)"**을 지향합니다.
+        </p>
+
+        <table class="acronym-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;" data-i18n="p2.thAcronym">Acronym</th>
+              <th style="width: 35%;" data-i18n="p2.thArch">Architecture Meaning</th>
+              <th style="width: 40%;" data-i18n="p2.thPurpose">Core Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>A — Agentic</strong></td>
+              <td data-i18n="p2.aArch">자율 추론 &amp; 의사결정 지능</td>
+              <td data-i18n="p2.aPurpose">스스로 상황을 분석하고 계획을 수립하는 AI 에이전트</td>
+            </tr>
+            <tr>
+              <td><strong>M — Multi-Agent</strong></td>
+              <td data-i18n="p2.mArch">계층적 오케스트레이션 (Nobles &amp; Workers)</td>
+              <td data-i18n="p2.mPurpose">작업을 원자 단위로 분해하여 전문 에이전트에게 위임</td>
+            </tr>
+            <tr>
+              <td><strong>E — Ecosystem</strong></td>
+              <td data-i18n="p2.eArch">통합 엔터프라이즈 플랫폼</td>
+              <td data-i18n="p2.ePurpose">Desktop, Web, Edge 기기를 유기적으로 연결</td>
+            </tr>
+            <tr>
+              <td><strong>V — Virtualized</strong></td>
+              <td data-i18n="p2.vArch">격리된 오프라인 런타임 샌드박스</td>
+              <td data-i18n="p2.vPurpose">100% Client-Side WASM 및 안전한 실행 격리 환경</td>
+            </tr>
+            <tr>
+              <td><strong>A — Automation</strong></td>
+              <td data-i18n="p2.autoArch">실시간 비주얼 파이프라인</td>
+              <td data-i18n="p2.autoPurpose">서버 비용 제로의 자동화 워크플로우 실행</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout-alert">
+          <strong data-i18n="p2.secHeading">🛡️ 보안 격리 원칙 명시:</strong><br>
+          <span style="color: var(--text-muted);" data-i18n="p2.securityNote">
+            ※ AMEVA는 웜이나 바이러스 같은 악성 프로그램이 절대 아니며, 호스트 자원을 완벽히 보호하는 100% 브라우저 WASM 샌드박스 및 무의존성 오픈소스 시스템 프레임워크입니다.
+          </span>
+        </div>
+      </section>
+
+      <!-- Panel 3: Professional Work History & Enterprise Projects -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p3.title">💼 Enterprise Career &amp; Project Track Records</span></h2>
+          <span class="panel-tag" data-i18n="tag.career">Enterprise Experience</span>
+        </div>
+
+        <!-- SK AX Subsidiary -->
+        <div class="project-item" style="border-left-color: #0055cc; margin-bottom: 22px;">
+          <div class="project-title-row">
+            <span class="project-title" data-i18n="p3.skTitle">🏢 SK AX 자회사</span>
+            <span class="project-period" data-i18n="p3.skPeriod">2026.02 ~ 현재 (재직중)</span>
+          </div>
+          <p class="project-role-tech" data-i18n="p3.skRole">직무: Tech Lead (TL), Business Analyst (BA), 사내 시스템 CI/CD 파이프라인 구축, 백엔드/프론트엔드 개발</p>
+          <ul class="project-points">
+            <li data-i18n="p3.skB1">사내 핵심 시스템 전사 CI/CD 배포 자동화 파이프라인 구축 및 백엔드(Java/Spring Boot) / 프론트엔드 풀스택 개발 총괄.</li>
+            <li data-i18n="p3.skB2">비즈니스 요구사항 분석(BA) 및 테크 리드(TL) 역할을 주도적으로 수행하며 사내 시스템 안정성과 개발 생산성 극대화.</li>
+          </ul>
+        </div>
+
+        <!-- KT DS Partner -->
+        <div class="project-item">
+          <div class="project-title-row">
+            <span class="project-title" data-i18n="p3.ktTitle">🏢 KT DS 협력사 (고객개발팀)</span>
+            <span class="project-period" data-i18n="p3.ktPeriod">2021.10 ~ 2026.01 (4년 4개월)</span>
+          </div>
+          <p class="project-role-tech" data-i18n="p3.ktRole">직무: Tech Lead (TL), PM/PL, 사내 핵심 시스템(B2B/PLM) 구축 및 운영(ITO) 개발</p>
+          <ul class="project-points">
+            <li data-i18n="p3.ktB1"><strong>KT 엔터프라이즈 B2B/PLM 시스템 풀스택 개발 및 고도화</strong>: 레거시 KOS의 웹/MSA 전환, 대규모 데이터 무중단(Zero-downtime) 이관 및 쿼리 튜닝(<span class="highlight-metric">3초 → 0.3초</span>), 비즈니스 룰 엔진 최적화로 <span class="highlight-metric">상품 출시 리드타임 2주 → 3일</span> 단축.</li>
+            <li data-i18n="p3.ktB2"><strong>ITO 운영 안정화 및 DevOps 자동화 (Tech Lead/PM)</strong>: 수수료 정산 배치 튜닝(<span class="highlight-metric">0.5초 → 0.05초</span>), Jenkins CI/CD 배포 시간 단축(<span class="highlight-metric">30분 → 5분</span>), 보안성 검토 자동화(누락 0건) 및 <span class="highlight-metric">장애 대응 체계 개선(1시간 → 10분)</span>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Panel 4: Model Context Protocol (MCP) Ecosystem -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p4.title">⚙️ Model Context Protocol (MCP) Hub</span></h2>
+          <span class="panel-tag" data-i18n="tag.tooling">Dynamic Tooling</span>
+        </div>
+        <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 10px;" data-i18n="p4.desc">
+          서버 재부팅 없이 AI 에이전트의 도구 셋을 3초 내 실시간 확장하는 AMEVA 공식 MCP 툴킷 생태계입니다.
+        </p>
+
+        <div class="cards-grid">
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span data-i18n="p4.mcp1Name">⚙️ MCP Wasm Toolkit</span> <span style="font-size: 0.75em;" data-i18n="p4.mcp1Badge">WASM OS Core</span></h3>
+              <p data-i18n="p4.mcp1Desc">위험 연산(크롤러, 동적 코드)을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 구동하는 런타임.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="btn-action primary" data-i18n="btn.launchApp">🚀 AMEVA OS 실행</a>
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/" target="_blank" class="btn-action secondary" data-i18n="btn.promoStudio">✨ 프로모션 체험관</a>
+            </div>
+          </div>
+
+          <div class="item-card">
+            <div class="item-card-top">
+              <h3><span data-i18n="p4.mcp2Name">🧰 MCP Dynamic Utils Hub</span> <span style="font-size: 0.75em;" data-i18n="p4.mcp2Badge">SSE Hot-Reload</span></h3>
+              <p data-i18n="p4.mcp2Desc">GitHub 원격 매니페스트와 도구 코드를 SSE(ntfy) 채널을 통해 액티브 세션에 3초 내 동적 핫리로드.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서 보기</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- Panel 5: Core Open-Source Libraries -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p5.title">📦 AMEVA Open-Source Flagship Software &amp; Core Libraries</span></h2>
+          <span class="panel-tag" data-i18n="tag.runtimes">Production-Ready &amp; Published</span>
+        </div>
+        <div class="cards-grid">
+          <!-- 1. Flagship AMEVA Workstation Web -->
+          <div class="item-card" style="border-left: 4px solid #004499; grid-column: 1 / -1;">
+            <div class="item-card-top">
+              <h3><span>🏢 AMEVA Workstation (Web / Desktop)</span> <span style="font-size:0.75em; background:#004499; color:#fff; padding:2px 6px; border-radius:3px;">🌟 Flagship App</span></h3>
+              <p data-i18n="p5.workstationDesc">세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 &amp; 1초 AI 누끼 스튜디오.</p>
+            </div>
+            <div class="card-actions" style="margin-top:8px;">
+              <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-action primary" style="background:#004499;">🚀 라이브 웹 앱 실행</a>
+              <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+
+          <!-- 1.5. AMEVA-Sentinel -->
+          <div class="item-card" style="border-left: 4px solid #10b981;">
+            <h3><span>🛡️ AMEVA-Sentinel</span> <span style="font-size:0.75em; background:#10b981; color:#fff; padding:2px 6px; border-radius:3px;">Security SDK</span></h3>
+            <p>웹 서비스 트래픽을 관측하고, 측정하고, 설명하고, 점수화하는 개인정보 최우선 자가 호스팅 보안 관측 계층 SDK.</p>
+            <div class="card-actions">
+              <a href="/sdk/sentinel/" class="btn-action primary" style="background:#10b981; border-color:#10b981;">📖 공식 문서</a>
+              <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="btn-action secondary">🐙 GitHub</a>
+              <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-action secondary">📦 npm</a>
+            </div>
+          </div>
+
+          <!-- 2. AMEVA-Forge -->
+          <div class="item-card">
+            <h3><span>⚡ AMEVA-Forge</span> <span style="font-size:0.75em;">PyPI: ameva</span></h3>
+            <p data-i18n="p5.forgeDesc">서버 비용 제로의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
+            <div class="card-actions">
+              <a href="./lib/forge/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="./lib/forge/" target="_blank" class="btn-action secondary" data-i18n="btn.liveDemo">⚡ 실시간 데모</a>
+            </div>
+          </div>
+
+          <!-- 3. Termux-STT -->
+          <div class="item-card">
+            <h3><span>🎙️ Termux-STT</span> <span style="font-size:0.75em;">pip / npm</span></h3>
+            <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
+            <div class="card-actions">
+              <a href="./lib/stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://uno-km.vercel.app/lib/stt/showcase.html" target="_blank" class="btn-action secondary">🎧 쇼케이스</a>
+            </div>
+          </div>
+
+          <!-- 4. Termux-Train -->
+          <div class="item-card">
+            <h3><span>🚂 Termux-Train</span> <span style="font-size:0.75em;">PyPI: termux-train</span></h3>
+            <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).</p>
+            <div class="card-actions">
+              <a href="./lib/train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">🐙 GitHub</a>
+            </div>
+          </div>
+
+          <!-- 5. Termux-Playwright -->
+          <div class="item-card">
+            <h3><span>📱 Termux-Playwright</span> <span style="font-size:0.75em;">pip / npm</span></h3>
+            <p data-i18n="p5.termuxDesc">안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.</p>
+            <div class="card-actions">
+              <a href="./lib/playwright/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+            </div>
+          </div>
+
+          <!-- 6. Termux-Diffusion -->
+          <div class="item-card">
+            <h3><span>🎨 Termux-Diffusion</span> <span style="font-size:0.75em;">pip / npm</span></h3>
+            <p data-i18n="p5.diffusionDesc">안드로이드 Termux & Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
+            <div class="card-actions">
+              <a href="./lib/diffusion/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+            </div>
+          </div>
+
+          <!-- 7. AMEVA-Multi-CLI -->
+          <div class="item-card">
+            <h3><span>💻 AMEVA-Multi-CLI</span> <span style="font-size:0.75em;">Desktop App</span></h3>
+            <p data-i18n="p5.multiCliDesc">트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치, DevSecOps 보안 가드레일 내장 터미널 워크벤치.</p>
+            <div class="card-actions">
+              <a href="https://github.com/uno-km/AMEVA-Multi-CLI" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+
+          <!-- 8. BitNet Engine -->
+          <div class="item-card">
+            <h3><span>🧠 BitNet Engine</span> <span style="font-size:0.75em;">1-Bit Inference</span></h3>
+            <p data-i18n="p5.bitnetDesc">1-bit 양자화 모델(1.58-bit LLM)을 엣지 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.</p>
+            <div class="card-actions">
+              <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 6: Universe & One-Click Installer -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p6.title">🌌 3D Neural Fabric &amp; Setup Universe</span></h2>
+          <span class="panel-tag" data-i18n="tag.universe">Universe Hub</span>
+        </div>
+        <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 8px;" data-i18n="p6.desc">
+          3D WebGPU 인터랙티브 지식 그래프 대시보드와 크로스플랫폼 1-Click 원클릭 설치 스크립트입니다:
+        </p>
+        <div style="display:flex; gap:10px; margin-bottom:12px;">
+          <a href="dashboard/index.html" target="_blank" class="btn-action primary" style="padding: 8px 14px;" data-i18n="btn.launchNeural">🔮 3D Neural Fabric 대시보드 입장</a>
+          <a href="docs/pages/templates/library/README.md" class="btn-action secondary" style="padding: 8px 14px;" data-i18n="btn.templateFoundry">📄 라이브러리 문서 주조소 (Template)</a>
+        </div>
+        <div class="code-box">Windows PowerShell: irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex</div>
+      </section>
+
+      <!-- Panel 7: Global Technology Semantic Index & Honey-Pot Keywords Hub -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <h2><span data-i18n="p7.title">🌐 Global Semantic Technology Matrix &amp; AI Discovery Index</span></h2>
+          <span class="panel-tag">2000+ Global Tech Tags</span>
+        </div>
+        <p style="font-size: 0.88em; color: var(--text-muted); margin-bottom: 12px;" data-i18n="p7.desc">
+          글로벌 검색 엔진(Google, Bing, Naver, Baidu, Yandex) 및 AI 크롤러/LLM 에이전트 인덱싱을 위한 전 도메인 핵심 기술 시맨틱 매트릭스입니다.
+        </p>
+
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          
+          <!-- Category 1: Crawling & Automation -->
+          <div class="item-card" style="background: #ffffff;">
+            <h4 style="font-size:0.92em; color:var(--primary-navy); margin-bottom:6px;">🕷️ Web Crawling &amp; Automation</h4>
+            <div class="skill-chips">
+              <span class="skill-chip highlight">Playwright</span>
+              <span class="skill-chip highlight">Chromium CDP</span>
+              <span class="skill-chip highlight">Termux Android Bionic</span>
+              <span class="skill-chip highlight">Anti-Bot Bypass</span>
+              <span class="skill-chip">Cloudflare Bypass</span>
+              <span class="skill-chip">Stealth Scraper</span>
+              <span class="skill-chip">Puppeteer</span>
+              <span class="skill-chip">Scrapy</span>
+              <span class="skill-chip">BeautifulSoup</span>
+              <span class="skill-chip">Selenium Wire</span>
+              <span class="skill-chip">Headless Browser Cluster</span>
+              <span class="skill-chip">Request Harvester</span>
+              <span class="skill-chip">DOM Tree Parsing</span>
+              <span class="skill-chip">Dynamic JS Rendering</span>
+              <span class="skill-chip">Proxy Rotation</span>
+              <span class="skill-chip">Browser Fingerprint Spoofing</span>
+            </div>
+          </div>
+
+          <!-- Category 2: AI Core & Deep Reasoning -->
+          <div class="item-card" style="background: #ffffff;">
+            <h4 style="font-size:0.92em; color:var(--primary-navy); margin-bottom:6px;">🧠 AI Core &amp; Deep Reasoning</h4>
+            <div class="skill-chips">
+              <span class="skill-chip highlight">WebGPU WGSL Compute</span>
+              <span class="skill-chip highlight">Autograd Engine</span>
+              <span class="skill-chip highlight">PyTorch Closed-Form</span>
+              <span class="skill-chip highlight">1-Bit LLM (BitNet 1.58b)</span>
+              <span class="skill-chip">Transformers</span>
+              <span class="skill-chip">Multi-Head Attention</span>
+              <span class="skill-chip">LoRA / QLoRA</span>
+              <span class="skill-chip">GGUF Quantization</span>
+              <span class="skill-chip">llama.cpp / Ollama / vLLM</span>
+              <span class="skill-chip">Chain-of-Thought (CoT)</span>
+              <span class="skill-chip">Tree-of-Thought (ToT)</span>
+              <span class="skill-chip">Prompt Engineering</span>
+              <span class="skill-chip">RAG Architecture</span>
+              <span class="skill-chip">Vector DB (Chroma/FAISS)</span>
+              <span class="skill-chip">Knowledge Graph (D3.js)</span>
+              <span class="skill-chip">Tensor Operations</span>
+            </div>
+          </div>
+
+          <!-- Category 3: MLOps & Agentic MCP -->
+          <div class="item-card" style="background: #ffffff;">
+            <h4 style="font-size:0.92em; color:var(--primary-navy); margin-bottom:6px;">⚙️ MLOps, SRE &amp; Agentic MCP</h4>
+            <div class="skill-chips">
+              <span class="skill-chip highlight">Model Nexus SRE</span>
+              <span class="skill-chip highlight">Pyodide WASM Sandbox</span>
+              <span class="skill-chip highlight">Model Context Protocol (MCP)</span>
+              <span class="skill-chip highlight">Multi-Agent Orchestration</span>
+              <span class="skill-chip">Zero-Server ML</span>
+              <span class="skill-chip">Dynamic Throttling</span>
+              <span class="skill-chip">Serverless Edge AI</span>
+              <span class="skill-chip">Autonomous Workflows</span>
+              <span class="skill-chip">Anthropic MCP Protocol</span>
+              <span class="skill-chip">OpenAI Function Calling</span>
+              <span class="skill-chip">Fault-Tolerant Distributed Runtime</span>
+              <span class="skill-chip">SSE Hot-Reloading</span>
+              <span class="skill-chip">Circuit Breaker</span>
+              <span class="skill-chip">Telemetry &amp; Metrics</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Enterprise Fullstack & DevOps -->
+          <div class="item-card" style="background: #ffffff;">
+            <h4 style="font-size:0.92em; color:var(--primary-navy); margin-bottom:6px;">☕ Enterprise Fullstack &amp; Systems</h4>
+            <div class="skill-chips">
+              <span class="skill-chip highlight">Java 17 / Java 21</span>
+              <span class="skill-chip highlight">Spring Boot 3</span>
+              <span class="skill-chip highlight">PostgreSQL Query Tuning (3s→0.3s)</span>
+              <span class="skill-chip highlight">Jenkins CI/CD (30m→5m)</span>
+              <span class="skill-chip">Spring MVC / Scheduler</span>
+              <span class="skill-chip">JPA / Hibernate / MyBatis</span>
+              <span class="skill-chip">Oracle DB / MariaDB</span>
+              <span class="skill-chip">Zero-Downtime Data Migration</span>
+              <span class="skill-chip">MSA Microservices</span>
+              <span class="skill-chip">Docker / Kubernetes (K8S)</span>
+              <span class="skill-chip">Tomcat / Nginx</span>
+              <span class="skill-chip">React 18 / TypeScript</span>
+              <span class="skill-chip">Electron / node-pty PTY</span>
+              <span class="skill-chip">Jira SOP / WBS</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Multilingual Global Search Anchors -->
+          <div class="item-card" style="background: #ffffff; grid-column: 1 / -1;">
+            <h4 style="font-size:0.92em; color:var(--primary-navy); margin-bottom:6px;">🌍 Multilingual Global Search Anchors (13 Languages)</h4>
+            <div class="skill-chips">
+              <span class="skill-chip">딥러닝 아키텍트</span>
+              <span class="skill-chip">인공지능 풀스택 엔지니어</span>
+              <span class="skill-chip">웹크롤링 자동화 전문가</span>
+              <span class="skill-chip">자바 스프링부트 백엔드</span>
+              <span class="skill-chip">포스트그레스 쿼리 튜닝</span>
+              <span class="skill-chip">Senior AI Systems Architect</span>
+              <span class="skill-chip">Enterprise Full-Stack Developer</span>
+              <span class="skill-chip">WebGPU Compute Engineer</span>
+              <span class="skill-chip">WASM Sandbox Developer</span>
+              <span class="skill-chip">人工知能システムアーキテクト</span>
+              <span class="skill-chip">フルスタックエンジニア</span>
+              <span class="skill-chip">ウェブスクレイピング自動化</span>
+              <span class="skill-chip">深度学习系统架构师</span>
+              <span class="skill-chip">企业级全栈开发工程师</span>
+              <span class="skill-chip">网络爬虫与自动化</span>
+              <span class="skill-chip">आर्टिफिशियल इंटेलिजेंस आर्किटेक्ट</span>
+              <span class="skill-chip">Архитектор ИИ-систем</span>
+              <span class="skill-chip">Architekt Systemów AI</span>
+              <span class="skill-chip">Kiến trúc sư hệ thống AI</span>
+              <span class="skill-chip">مهندس معماري لأنظمة الذكاء الاصطناعي</span>
+              <span class="skill-chip">Architectus Systematum AI</span>
+              <span class="skill-chip">Arquitecto de Sistemas IA</span>
+              <span class="skill-chip">KI-Systemarchitekt</span>
+              <span class="skill-chip">Architecte Systèmes IA</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 🏛️ Bottom Footer -->
+  <footer class="bottom-footer">
+    <p>&copy; 2026 <strong>Eunho Kim (김은호 / @uno-km)</strong> · Senior Full-Stack Engineer &amp; Systems Architect.</p>
+    <p style="margin-top: 4px;">High-Clarity Enterprise Open-Source Technical Portfolio · Powered by AMEVA Ecosystem.</p>
+  </footer>
+
+      <!-- 🌐 Global 13-Language Translation Dictionary Script -->
+  <script>
+    const i18nDictionary = {
+      "ko": {
+            "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
+            "side.founderBadge": "🏛️ Founder & Chair @ AMEVA Foundation (설립자 & 이사회 의장)",
+            "side.contact": "연락처 및 링크",
+            "side.location": "대한민국 경기도 성남시 분당구",
+            "side.eduLang": "학력 및 어학",
+            "side.edu1Title": "아주대학교 정보통신대학원",
+            "side.edu1Sub": "인공지능학과 석사 재학 (2026.08 ~)",
+            "side.edu2Title": "한양사이버대학교",
+            "side.edu2Sub": "응용소프트웨어공학과 학사 (3.94 / 4.5)",
+            "side.langTitle": "영어 (OPIc IH)",
+            "side.langSub": "기술 소통 및 비즈니스 회화 가능",
+            "side.skills": "핵심 기술 역량",
+            "side.catAI": "🧠 AI, Data Science & Advanced Reasoning",
+            "side.catBackend": "☕ Backend & Architecture",
+            "side.catDB": "💾 Database & Optimization",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systems & Collab",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 소프트웨어 엔지니어 김은호입니다",
+            "p1.p1": "\"개발을 진심으로 즐기며, 어떤 난제든 끝까지 파고들어 해결해 내는 끈기와 소통력을 가진 엔지니어입니다.\"",
+            "p1.p2": "새로운 기술을 탐구하고 복잡한 문제를 분석하여 최적의 해답을 찾아내는 과정에서 큰 즐거움을 느낍니다. 팀원 및 유관부서와 적극적으로 소통하고 협업하는 문화를 좋아하며, 맡은 일은 포기하지 않고 끝까지 완수하는 강한 책임감을 가지고 있습니다. 2021년 10월부터 KT DS 협력사 및 SK AX 자회사에서 사내 핵심 시스템 풀스택 개발, 대규모 DB 쿼리 튜닝(3초 → 0.3초), CI/CD 자동화 구축을 주도적으로 이끌어 왔습니다.",
+            "p2.title": "🧬 AMEVA 생태계의 기원과 엔지니어링 철학",
+            "p2.desc": "AMEVA는 척박한 환경에서도 형태를 유연하게 바꾸며 끝내 살아남는 단세포 생물 아메바(Amoeba)에서 착안했습니다. 거대 클라우드 서버 비용에 의존하지 않고, 개인의 엣지 디바이스와 브라우저만으로 자율 실행되는 AI의 민주화와 데이터 주권을 지향합니다.",
+            "p2.thAcronym": "Acronym",
+            "p2.thArch": "Architecture Meaning",
+            "p2.thPurpose": "Core Purpose",
+            "p2.aArch": "자율 추론 & 의사결정 지능",
+            "p2.aPurpose": "스스로 상황을 분석하고 계획을 수립하는 AI 에이전트",
+            "p2.mArch": "계층적 오케스트레이션 (Nobles & Workers)",
+            "p2.mPurpose": "작업을 원자 단위로 분해하여 전문 에이전트에게 위임",
+            "p2.eArch": "통합 엔터프라이즈 플랫폼",
+            "p2.ePurpose": "Desktop, Web, Edge 기기를 유기적으로 연결",
+            "p2.vArch": "격리된 오프라인 런타임 샌드박스",
+            "p2.vPurpose": "100% Client-Side WASM 및 안전한 실행 격리 환경",
+            "p2.autoArch": "실시간 비주얼 파이프라인",
+            "p2.autoPurpose": "서버 비용 제로의 자동화 워크플로우 실행",
+            "p2.secHeading": "🛡️ 보안 격리 원칙 명시:",
+            "p2.securityNote": "※ AMEVA는 웜이나 바이러스 같은 악성 프로그램이 절대 아니며, 호스트 자원을 완벽히 보호하는 100% 브라우저 WASM 샌드박스 및 무의존성 오픈소스 시스템 프레임워크입니다.",
+            "p3.title": "💼 Enterprise Career & Project Track Records",
+            "p3.skTitle": "🏢 SK AX 자회사",
+            "p3.skPeriod": "2026.02 ~ 현재 (재직중)",
+            "p3.skRole": "직무: Tech Lead (TL), Business Analyst (BA), 사내 시스템 CI/CD 파이프라인 구축, 백엔드/프론트엔드 개발",
+            "p3.skB1": "사내 핵심 시스템 전사 CI/CD 배포 자동화 파이프라인 구축 및 백엔드(Java/Spring Boot) / 프론트엔드 풀스택 개발 총괄.",
+            "p3.skB2": "비즈니스 요구사항 분석(BA) 및 테크 리드(TL) 역할을 주도적으로 수행하며 사내 시스템 안정성과 개발 생산성 극대화.",
+            "p3.ktTitle": "🏢 KT DS 협력사 (고객개발팀)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4년 4개월)",
+            "p3.ktRole": "직무: Tech Lead (TL), PM/PL, 사내 핵심 시스템(B2B/PLM) 구축 및 운영(ITO) 개발",
+            "p3.ktB1": "<strong>KT 엔터프라이즈 B2B/PLM 시스템 풀스택 개발 및 고도화</strong>: 레거시 KOS의 웹/MSA 전환, 대규모 데이터 무중단(Zero-downtime) 이관 및 쿼리 튜닝(<span class=\"highlight-metric\">3초 → 0.3초</span>), 비즈니스 룰 엔진 최적화로 <span class=\"highlight-metric\">상품 출시 리드타임 2주 → 3일</span> 단축.",
+            "p3.ktB2": "<strong>ITO 운영 안정화 및 DevOps 자동화 (Tech Lead/PM)</strong>: 수수료 정산 배치 튜닝(<span class=\"highlight-metric\">0.5초 → 0.05초</span>), Jenkins CI/CD 배포 시간 단축(<span class=\"highlight-metric\">30분 → 5분</span>), 보안성 검토 자동화(누락 0건) 및 <span class=\"highlight-metric\">장애 대응 체계 개선(1시간 → 10분)</span>.",
+            "p4.title": "⚙️ Model Context Protocol (MCP) Hub",
+            "p4.desc": "서버 재부팅 없이 AI 에이전트의 도구 셋을 3초 내 실시간 확장하는 AMEVA 공식 MCP 툴킷 생태계입니다.",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "위험 연산(크롤러, 동적 코드)을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 구동하는 런타임.",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "GitHub 원격 매니페스트와 도구 코드를 SSE(ntfy) 채널을 통해 액티브 세션에 3초 내 동적 핫리로드.",
+            "p5.title": "📦 AMEVA Open-Source Core Libraries",
+            "p5.workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 & 1초 AI 누끼 스튜디오.",
+            "p5.sttDesc": "안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (100/100 오딧 통과).",
+            "p5.forgeDesc": "서버 비용 제로의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.",
+            "p5.termuxDesc": "안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.",
+            "p5.diffusionDesc": "안드로이드 Termux & 삼성 갤럭시 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.",
+            "p5.multiCliDesc": "트리 기반 무한 분할 레이아웃, 80 FPS 저지연 스마트 PTY 배치, DevSecOps 보안 가드레일 내장 터미널 워크벤치.",
+            "p5.bitnetDesc": "1-bit 양자화 모델(1.58-bit LLM)을 엣지 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.",
+            "p6.title": "🌌 3D Neural Fabric & Setup Universe",
+            "p6.desc": "3D WebGPU 인터랙티브 지식 그래프 대시보드와 크로스플랫폼 1-Click 원클릭 설치 스크립트입니다:",
+            "btn.launchApp": "🚀 AMEVA OS 실행",
+            "btn.promoStudio": "✨ 프로모션 체험관",
+            "btn.viewDoc": "📖 공식 문서 보기",
+            "btn.liveDemo": "⚡ 실시간 데모",
+            "btn.viewRepo": "🐙 GitHub 저장소",
+            "btn.launchNeural": "🔮 3D Neural Fabric 대시보드 입장",
+            "btn.templateFoundry": "📄 라이브러리 문서 주조소 (Template)"
+      },
+      "en": {
+            "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
+            "side.founderBadge": "🏛️ Founder & Chair @ AMEVA Foundation",
+            "side.contact": "Contact & Links",
+            "side.location": "Bundang, Seongnam-si, South Korea",
+            "side.eduLang": "Education & Language",
+            "side.edu1Title": "Ajou University Graduate School",
+            "side.edu1Sub": "M.S. in Artificial Intelligence (2026.08 ~)",
+            "side.edu2Title": "Hanyang Cyber University",
+            "side.edu2Sub": "B.S. in Applied Software Engineering (3.94 / 4.5)",
+            "side.langTitle": "English (OPIc IH)",
+            "side.langSub": "Fluent Technical & Business Communication",
+            "side.skills": "Core Technical Competencies",
+            "side.catAI": "🧠 AI, Data Science & Advanced Reasoning",
+            "side.catBackend": "☕ Backend & Architecture",
+            "side.catDB": "💾 Database & Optimization",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systems & Collab",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 Hello, I am Software Engineer Eunho Kim",
+            "p1.p1": "\"A passionate engineer driven by relentless problem-solving tenacity, deep love for coding, and proactive communication.\"",
+            "p1.p2": "I find genuine joy in diving deep into complex technical hurdles and engineering elegant, robust solutions. Known for strong collaborative empathy and an unyielding commitment to seeing every challenge through to completion, I have spearheaded full-stack systems, large-scale DB query tuning (3s → 0.3s), and CI/CD automation across KT DS partners and SK AX subsidiaries since October 2021.",
+            "p2.title": "🧬 AMEVA Origin & Engineering Philosophy",
+            "p2.desc": "Inspired by the biological amoeba that thrives in resource-constrained environments, AMEVA aims for complete Data Sovereignty and AI Democratization by running autonomously inside edge devices without cloud server costs.",
+            "p2.thAcronym": "Acronym",
+            "p2.thArch": "Architecture Meaning",
+            "p2.thPurpose": "Core Purpose",
+            "p2.aArch": "Autonomous Reasoning & Decision Intelligence",
+            "p2.aPurpose": "AI agents that independently analyze contexts and plan actions",
+            "p2.mArch": "Hierarchical Orchestration (Nobles & Workers)",
+            "p2.mPurpose": "Decomposes complex workflows and delegates to specialized agents",
+            "p2.eArch": "Unified Enterprise Platform",
+            "p2.ePurpose": "Seamlessly interconnects Desktop, Web, and Edge devices",
+            "p2.vArch": "Isolated Offline Runtime Sandbox",
+            "p2.vPurpose": "100% Client-Side WASM and zero-leakage security boundaries",
+            "p2.autoArch": "Real-Time Visual Pipeline",
+            "p2.autoPurpose": "Executes automated workflows with zero server costs",
+            "p2.secHeading": "🛡️ Security Isolation Guarantee:",
+            "p2.securityNote": "※ AMEVA is strictly legitimate open-source systems software with zero malware/worm behavior, operating entirely within client-side isolated WASM sandboxes.",
+            "p3.title": "💼 Enterprise Career & Project Track Records",
+            "p3.skTitle": "🏢 SK AX Subsidiary",
+            "p3.skPeriod": "2026.02 ~ Present (Active)",
+            "p3.skRole": "Role: Tech Lead (TL), Business Analyst (BA), Enterprise CI/CD Pipelines, Full-Stack Development",
+            "p3.skB1": "Architected company-wide CI/CD automated deployment pipelines and led backend (Java/Spring Boot) and frontend full-stack engineering.",
+            "p3.skB2": "Spearheaded Business Analysis (BA) and Tech Leadership (TL) to maximize system reliability and team developer velocity.",
+            "p3.ktTitle": "🏢 KT DS Partner Company (Client Dev Team)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 Years 4 Months)",
+            "p3.ktRole": "Role: Tech Lead (TL), PM/PL, Enterprise Core Systems (B2B/PLM) Engineering & ITO Operations",
+            "p3.ktB1": "<strong>KT Enterprise B2B/PLM Full-Stack Modernization</strong>: Web/MSA transition from legacy CS, zero-downtime 100% data migration, DB query tuning (<span class=\"highlight-metric\">3s → 0.3s</span>), and BRMS rule engine optimization cutting product launch lead-time (<span class=\"highlight-metric\">2 weeks → 3 days</span>).",
+            "p3.ktB2": "<strong>ITO Reliability & DevOps Automation (TL/PM)</strong>: Batch fee calculation tuning (<span class=\"highlight-metric\">0.5s → 0.05s</span>), Jenkins CI/CD deployment speedup (<span class=\"highlight-metric\">30m → 5m</span>), automated security compliance (0 violations), and incident MTTR reduction (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Model Context Protocol (MCP) Hub",
+            "p4.desc": "Official AMEVA MCP ecosystem enabling dynamic tool registration into AI agent sessions within 3 seconds without server restarts.",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "Runs risky operations (crawlers, dynamic scripts) inside 100% isolated browser Pyodide WASM sandboxes.",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "Dynamically registers remote GitHub tools into active browser sessions within 3 seconds via SSE channels.",
+            "p5.title": "📦 AMEVA Open-Source Core Libraries",
+            "p5.workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+            "p5.sttDesc": "Android on-device unified Speech-to-Text and pure Python 128d X-Vector speaker diarization framework (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Android Bionic ARM64 native lightweight tensor, DAG autograd, RoPE transformer, and on-device LoRA fine-tuning framework (100/100 audit pass).",
+            "p5.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch compatibility and WGSL shaders.",
+            "p5.termuxDesc": "Non-root Chromium browser automation library optimized for Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "On-Device Generative AI pipeline running native ARM64 Bionic Stable Diffusion on Android Termux and Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Tree-based recursive multi-split terminal workbench with 80 FPS smart PTY batching and DevSecOps guardrails.",
+            "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
+            "p6.title": "🌌 3D Neural Fabric & Setup Universe",
+            "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
+            "btn.launchApp": "🚀 Launch AMEVA OS",
+            "btn.promoStudio": "✨ Promo Studio",
+            "btn.viewDoc": "📖 View Documentation",
+            "btn.liveDemo": "⚡ Live Demo",
+            "btn.viewRepo": "🐙 GitHub Repo",
+            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
+            "btn.templateFoundry": "📄 Library Docs Template"
+      },
+      "ar": {
+            "side.roleBadge": "مهندس برمجيات متكامل أول ومهندس معمارية النظم",
+            "side.founderBadge": "🏛️ المؤسس ورئيس مجلس الإدارة @ مؤسسة AMEVA",
+            "side.contact": "الاتصال والروابط",
+            "side.location": "بوندانغ، سيونغنام، كوريا الجنوبية",
+            "side.eduLang": "التعليم واللغات",
+            "side.edu1Title": "كلية الدراسات العليا بجامعة آجو",
+            "side.edu1Sub": "ماجستير في الذكاء الاصطناعي (2026.08 ~)",
+            "side.edu2Title": "جامعة هانيانغ الإلكترونية",
+            "side.edu2Sub": "بكالوريوس في هندسة البرمجيات التطبيقية (3.94 / 4.5)",
+            "side.langTitle": "الإنجليزية (OPIc IH)",
+            "side.langSub": "تواصل تقني وتجاري بطلاقة",
+            "side.skills": "الكفاءات التقنية الأساسية",
+            "side.catAI": "🧠 الذكاء الاصطناعي وعلوم البيانات والاستدلال المتقدم",
+            "side.catBackend": "☕ الواجهة الخلفية ومعمارية النظم",
+            "side.catDB": "💾 قواعد البيانات وتحسين الأداء",
+            "side.catFrontend": "🖥️ الواجهة الأمامية",
+            "side.catDevOps": "🚀 العمليات والأنظمة والتعاون (DevOps)",
+            "tag.executive": "الملف التنفيذي",
+            "tag.vision": "الرؤية والفلسفة",
+            "tag.career": "الخبرة المؤسسية",
+            "tag.tooling": "الأدوات الديناميكية",
+            "tag.runtimes": "بيئات التشغيل عالية الأداء",
+            "tag.universe": "الكون التقني",
+            "p1.title": "👋 مرحبًا، أنا مهندس البرمجيات كيم أونهو (Eunho Kim)",
+            "p1.p1": "\"مهندس شغوف مدفوع بالإصرار على حل المشكلات المعقدة، وحب عميق للبرمجة، وتواصل استباقي فعال.\"",
+            "p1.p2": "أجد متعة حقيقية في الخوض في التحديات التقنية المعقدة وهندسة حلول قوية وأنيقة. قادتُ بنجاح تطوير الأنظمة المتكاملة، وتحسين استعلامات قواعد البيانات الضخمة (من 3 ثوانٍ إلى 0.3 ثانية)، وأتمتة خطوط CI/CD عبر شركاء KT DS والشركات التابعة لـ SK AX منذ أكتوبر 2021.",
+            "p2.title": "🧬 أصل AMEVA وفلسفتها الهندسية",
+            "p2.desc": "مستوحاة من الأميبا البيولوجية التي تزدهر في البيئات محدودة الموارد، تهدف AMEVA إلى تحقيق سيادة البيانات الكاملة وديمقراطية الذكاء الاصطناعي من خلال التشغيل الذاتي داخل الأجهزة الطرفية دون تكاليف خوادم سحابية.",
+            "p2.thAcronym": "المصطلح (Acronym)",
+            "p2.thArch": "المعنى المعماري",
+            "p2.thPurpose": "الهدف الأساسي",
+            "p2.aArch": "الاستدلال الذاتي وذكاء اتخاذ القرار",
+            "p2.aPurpose": "وكلاء ذكاء اصطناعي يحللون السياقات ويخططون للإجراءات بشكل مستقل",
+            "p2.mArch": "التنسيق الهرمي متعدد الوكلاء (Nobles & Workers)",
+            "p2.mPurpose": "تفكيك مهام سير العمل المعقدة وتفويضها لوكلاء متخصصين",
+            "p2.eArch": "منصة مؤسسية موحدة",
+            "p2.ePurpose": "ربط سلس بين أجهزة سطح المكتب والويب والأجهزة الطرفية",
+            "p2.vArch": "بيئة رملية معزولة للتشغيل دون اتصال",
+            "p2.vPurpose": "بيئة WASM عميلة 100% مع حدود أمان مانعة للتسريب",
+            "p2.autoArch": "خط أنابيب مرئي في الوقت الفعلي",
+            "p2.autoPurpose": "تنفيذ مسارات العمل المؤتمتة بدون تكاليف خوادم",
+            "p2.secHeading": "🛡️ ضمان العزل الأمني:",
+            "p2.securityNote": "※ AMEVA هي برمجيات أنظمة مفتوحة المصدر شرعية 100% وخالية من أي سلوك ضار، وتعمل بالكامل داخل بيئات WASM الرملية المعزولة من جانب العميل.",
+            "p3.title": "💼 السجل المهني والمشاريع المؤسسية",
+            "p3.skTitle": "🏢 شركة تابعة لـ SK AX",
+            "p3.skPeriod": "2026.02 ~ حتى الآن (نشط)",
+            "p3.skRole": "الدور: قائد تقني (TL)، محلل أعمال (BA)، خطوط أنابيب CI/CD المؤسسية، تطوير شامل",
+            "p3.skB1": "هندسة خطوط أنابيب النشر المؤتمتة CI/CD على مستوى الشركة وقيادة هندسة الواجهة الخلفية (Java/Spring Boot) والأمامية.",
+            "p3.skB2": "قيادة تحليل الأعمال (BA) والقيادة التقنية (TL) لتعظيم موثوقية النظام وسرعة التطوير.",
+            "p3.ktTitle": "🏢 شركة شريكة لـ KT DS (فريق تطوير العملاء)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 سنوات و4 أشهر)",
+            "p3.ktRole": "الدور: قائد تقني (TL)، مدير مشروع (PM/PL)، هندسة الأنظمة الأساسية (B2B/PLM) وعمليات ITO",
+            "p3.ktB1": "<strong>تحديث شامل لنظام KT B2B/PLM المؤسسي</strong>: التحول من الأنظمة القديمة إلى Web/MSA، ونقل البيانات بدون توقف (Zero-downtime)، وتحسين استعلامات DB (<span class=\"highlight-metric\">3 ثوانٍ → 0.3 ثانية</span>)، وتقليص وقت إطلاق المنتجات (<span class=\"highlight-metric\">أسبوعين → 3 أيام</span>).",
+            "p3.ktB2": "<strong>استقرار عمليات ITO وأتمتة DevOps</strong>: تحسين معالجة دفعات الرسوم (<span class=\"highlight-metric\">0.5 ثانية → 0.05 ثانية</span>)، وتسريع نشر Jenkins CI/CD (<span class=\"highlight-metric\">30 دقيقة → 5 دقائق</span>)، وتقليل زمن معالجة الحوادث (<span class=\"highlight-metric\">ساعة → 10 دقائق</span>).",
+            "p4.title": "⚙️ مركز بروتوكول سياق النموذج (MCP Hub)",
+            "p4.desc": "منظومة أدوات AMEVA MCP الرسمية لتمكين تسجيل الأدوات ديناميكيًا في جلسات وكلاء الذكاء الاصطناعي خلال 3 ثوانٍ دون إعادة تشغيل الخادم.",
+            "p4.mcp1Name": "⚙️ مجموعة أدوات MCP Wasm",
+            "p4.mcp1Badge": "نواة نظام WASM",
+            "p4.mcp1Desc": "تشغيل العمليات الحساسة بأمان داخل بيئة Pyodide WASM المعزولة 100% في المتصفح.",
+            "p4.mcp2Name": "🧰 مركز أدوات MCP Dynamic Utils",
+            "p4.mcp2Badge": "إعادة تحميل ساخنة عبر SSE",
+            "p4.mcp2Desc": "تسجيل أدوات GitHub عن بُعد ديناميكيًا في جلسات المتصفح النشطة خلال 3 ثوانٍ عبر قنوات SSE.",
+            "p5.title": "📦 مكتبات AMEVA الأساسية مفتوحة المصدر",
+            "p5.workstationDesc": "أول نظام ذكاء اصطناعي محلي 100% يعمل على WebGPU في العالم، وقارئ ومحرر مستندات PDF/DOCX ملخص بـ MapReduce في 3 ثوانٍ، واستوديو قص الفيديو وإزالة الخلفية في ثانية واحدة.",
+            "p5.sttDesc": "إطار عمل التعرف الصوتي المدمج وفصل المتحدثين X-Vector على أندرويد بلغة بايثون الخالصة (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "إطار عمل خفيف الوزن للتدريب الدقيق LoRA والتفاضل التلقائي DAG على أندرويد Bionic ARM64 (اجتاز تدقيق 100/100).",
+            "p5.forgeDesc": "محرك تفاضل تلقائي للتعلم العميق يعمل على WebGPU في المتصفح بصفر تكلفة خادم، متوافق مع PyTorch ومظللات WGSL.",
+            "p5.termuxDesc": "مكتبة أتمتة متصفح Chromium دون الحاجة لصلاحيات Root مخصصة لبيئة Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "مسار توليد صور Stable Diffusion محلي بدون روت يعمل على أندرويد Termux وأجهزة سامسونج جالاكسي (بايثون وNode.js).",
+            "p5.multiCliDesc": "محطة طرفية متعددة النوافذ مبنية على هيكل شجري مع معالجة PTY ذكية بمعدل 80 إطارًا في الثانية وحواجز حماية أمنية.",
+            "p5.bitnetDesc": "محرك استدلال فائق الخفة لنماذج التكميم 1-bit (1.58-bit LLM) يعمل بكفاءة طاقة استثنائية على معالجات ARM الطرفية.",
+            "p6.title": "🌌 النسيج العصبي ثلاثي الأبعاد والتثبيت السريع",
+            "p6.desc": "لوحة معلومات بيانية معرفية تفاعلية ثلاثية الأبعاد بتقنية WebGPU وسكربت تثبيت بنقرة واحدة عبر الأنظمة الأساسية:",
+            "btn.launchApp": "🚀 تشغيل AMEVA OS",
+            "btn.promoStudio": "✨ استوديو العرض",
+            "btn.viewDoc": "📖 عرض التوثيق",
+            "btn.liveDemo": "⚡ تجربة حية",
+            "btn.viewRepo": "🐙 مستودع GitHub",
+            "btn.launchNeural": "🔮 دخول النسيج العصبي 3D",
+            "btn.templateFoundry": "📄 مصنع قوالب التوثيق"
+      },
+      "fr": {
+            "side.roleBadge": "Ingénieur Full-Stack Senior & Architecte Systèmes",
+            "side.founderBadge": "🏛️ Fondateur & Président @ Fondation AMEVA",
+            "side.contact": "Contact & Liens",
+            "side.location": "Bundang, Seongnam-si, Corée du Sud",
+            "side.eduLang": "Formation & Langues",
+            "side.edu1Title": "École doctorale de l'Université Ajou",
+            "side.edu1Sub": "Master en Intelligence Artificielle (2026.08 ~)",
+            "side.edu2Title": "Université Cyber Hanyang",
+            "side.edu2Sub": "Licence en génie logiciel appliqué (3.94 / 4.5)",
+            "side.langTitle": "Anglais (OPIc IH)",
+            "side.langSub": "Communication technique et commerciale fluide",
+            "side.skills": "Compétences Techniques Clés",
+            "side.catAI": "🧠 IA, Science des Données & Raisonnement Avancé",
+            "side.catBackend": "☕ Backend & Architecture",
+            "side.catDB": "💾 Bases de Données & Optimisation",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systèmes & Collaboration",
+            "tag.executive": "Profil Exécutif",
+            "tag.vision": "Vision & Philosophie",
+            "tag.career": "Expérience Entreprise",
+            "tag.tooling": "Outillage Dynamique",
+            "tag.runtimes": "Environnements Haute Performance",
+            "tag.universe": "Univers Technique",
+            "p1.title": "👋 Bonjour, je suis l'ingénieur logiciel Eunho Kim",
+            "p1.p1": "\"Un ingénieur passionné animé par une ténacité sans faille, un amour profond pour le code et une communication proactive.\"",
+            "p1.p2": "Je trouve une véritable joie à plonger dans les défis techniques complexes et à concevoir des solutions robustes et élégantes. Depuis octobre 2021, j'ai dirigé le développement de systèmes full-stack, le réglage de requêtes de bases de données à grande échelle (3s → 0,3s) et l'automatisation CI/CD auprès des partenaires de KT DS et des filiales de SK AX.",
+            "p2.title": "🧬 Origine & Philosophie d'Ingénierie d'AMEVA",
+            "p2.desc": "Inspiré par l'amibe biologique qui prospère dans des environnements à ressources limitées, AMEVA vise la souveraineté complète des données et la démocratisation de l'IA en s'exécutant de manière autonome sur les appareils périphériques sans frais de serveur cloud.",
+            "p2.thAcronym": "Acronyme",
+            "p2.thArch": "Signification Architecturale",
+            "p2.thPurpose": "Objectif Principal",
+            "p2.aArch": "Raisonnement Autonome & Décision Intelligente",
+            "p2.aPurpose": "Agents IA qui analysent le contexte et planifient des actions de manière autonome",
+            "p2.mArch": "Orchestration Hiérarchique Multi-Agents",
+            "p2.mPurpose": "Décompose les flux de travail complexes et délègue aux agents spécialisés",
+            "p2.eArch": "Plateforme d'Entreprise Unifiée",
+            "p2.ePurpose": "Interconnecte de manière fluide ordinateurs, Web et périphériques Edge",
+            "p2.vArch": "Bac à Sable Hors-Ligne Isolé",
+            "p2.vPurpose": "100% Client-Side WASM et frontières de sécurité étanches",
+            "p2.autoArch": "Pipeline Visuel en Temps Réel",
+            "p2.autoPurpose": "Exécute des flux de travail automatisés sans aucun coût de serveur",
+            "p2.secHeading": "🛡️ Garantie d'Isolation Sécurisée :",
+            "p2.securityNote": "※ AMEVA est un logiciel système open-source légitime sans comportement malveillant, fonctionnant entièrement dans des bacs à sable WASM isolés côté client.",
+            "p3.title": "💼 Carrière en Entreprise & Réalisations",
+            "p3.skTitle": "🏢 Filiale SK AX",
+            "p3.skPeriod": "2026.02 ~ Présent (Actif)",
+            "p3.skRole": "Rôle : Tech Lead (TL), Business Analyst (BA), Pipelines CI/CD, Développement Full-Stack",
+            "p3.skB1": "Architecture des pipelines de déploiement automatisés CI/CD à l'échelle de l'entreprise et direction du développement Java/Spring Boot et frontend.",
+            "p3.skB2": "Direction de l'analyse métier (BA) et du leadership technique (TL) pour maximiser la fiabilité et la productivité des développeurs.",
+            "p3.ktTitle": "🏢 Partenaire KT DS (Équipe Dev Client)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 ans et 4 mois)",
+            "p3.ktRole": "Rôle : Tech Lead (TL), PM/PL, Systèmes B2B/PLM & Exploitation ITO",
+            "p3.ktB1": "<strong>Modernisation Full-Stack du système KT B2B/PLM</strong> : Transition Web/MSA, migration de données sans interruption (Zero-downtime), optimisation de requêtes SQL (<span class=\"highlight-metric\">3s → 0,3s</span>) et réduction du délai de mise sur le marché (<span class=\"highlight-metric\">2 semaines → 3 jours</span>).",
+            "p3.ktB2": "<strong>Stabilité ITO & Automatisation DevOps</strong> : Optimisation du traitement par lots des commissions (<span class=\"highlight-metric\">0,5s → 0,05s</span>), accélération du déploiement Jenkins CI/CD (<span class=\"highlight-metric\">30m → 5m</span>) et réduction du temps de résolution des incidents (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Hub Model Context Protocol (MCP)",
+            "p4.desc": "Écosystème officiel AMEVA MCP permettant l'enregistrement dynamique d'outils dans les sessions d'agents IA en 3 secondes sans redémarrer le serveur.",
+            "p4.mcp1Name": "⚙️ Boîte à Outils MCP Wasm",
+            "p4.mcp1Badge": "Noyau WASM OS",
+            "p4.mcp1Desc": "Exécute les opérations à risque dans un bac à sable Pyodide WASM 100% isolé dans le navigateur.",
+            "p4.mcp2Name": "🧰 Hub d'Utilitaires Dynamiques MCP",
+            "p4.mcp2Badge": "Rechargement à Chaud SSE",
+            "p4.mcp2Desc": "Enregistre dynamiquement des outils distants GitHub dans la session active en 3 secondes via les canaux SSE.",
+            "p5.title": "📦 Bibliothèques Cœur Open-Source AMEVA",
+            "p5.workstationDesc": "Premier système d'IA locale 100% sur appareil WebGPU au monde, lecteur et éditeur de documents PDF/DOCX résumés par MapReduce en 3s, studio de découpe vidéo et détourage IA en 1s.",
+            "p5.sttDesc": "Framework unifié de reconnaissance vocale (STT) et diarisation du locuteur en pur Python 128d X-Vector sur Android (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Moteur tensoriel léger natif Android Bionic ARM64, rétropropagation DAG, transformateur RoPE et fine-tuning LoRA sur appareil (audit 100/100 réussi).",
+            "p5.forgeDesc": "Moteur d'autodifférenciation WebGPU natif pour le Deep Learning dans le navigateur, compatible PyTorch avec shaders WGSL à coût serveur nul.",
+            "p5.termuxDesc": "Bibliothèque d'automatisation de navigateur Chromium non-root optimisée pour Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "Pipeline d'IA générative locale exécutant Stable Diffusion natif ARM64 sur Android Termux et Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Terminal multifenêtre basé sur une structure arborescente avec gestion PTY fluide à 80 FPS et garde-fous de sécurité.",
+            "p5.bitnetDesc": "Moteur d'inférence LLM quantifié à 1-bit (1.58-bit) ultra-basse consommation optimisé pour les processeurs ARM Edge.",
+            "p6.title": "🌌 Tissu Neural 3D & Installation Rapide",
+            "p6.desc": "Tableau de bord interactif de graphe de connaissances 3D WebGPU et script d'installation universel en 1 clic :",
+            "btn.launchApp": "🚀 Lancer AMEVA OS",
+            "btn.promoStudio": "✨ Studio Démo",
+            "btn.viewDoc": "📖 Consulter la Documentation",
+            "btn.liveDemo": "⚡ Démo en Direct",
+            "btn.viewRepo": "🐙 Dépôt GitHub",
+            "btn.launchNeural": "🔮 Entrer dans le Tissu Neural 3D",
+            "btn.templateFoundry": "📄 Fonderie de Modèles de Docs"
+      },
+      "de": {
+            "side.roleBadge": "Senior Full-Stack Engineer & Systemarchitekt",
+            "side.founderBadge": "🏛️ Gründer & Vorstand @ AMEVA Stiftung",
+            "side.contact": "Kontakt & Links",
+            "side.location": "Bundang, Seongnam-si, Südkorea",
+            "side.eduLang": "Ausbildung & Sprachen",
+            "side.edu1Title": "Graduiertenschule der Ajou-Universität",
+            "side.edu1Sub": "Master in Künstlicher Intelligenz (2026.08 ~)",
+            "side.edu2Title": "Hanyang Cyber Universität",
+            "side.edu2Sub": "Bachelor in Angewandter Softwaretechnik (3.94 / 4.5)",
+            "side.langTitle": "Englisch (OPIc IH)",
+            "side.langSub": "Fließende technische & geschäftliche Kommunikation",
+            "side.skills": "Technische Kernkompetenzen",
+            "side.catAI": "🧠 KI, Datenwissenschaft & Fortgeschrittenes Reasoning",
+            "side.catBackend": "☕ Backend & Architektur",
+            "side.catDB": "💾 Datenbanken & Performance-Tuning",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systeme & Kollaboration",
+            "tag.executive": "Führungsprofil",
+            "tag.vision": "Vision & Philosophie",
+            "tag.career": "Unternehmenserfahrung",
+            "tag.tooling": "Dynamische Werkzeuge",
+            "tag.runtimes": "Hochleistungslaufzeiten",
+            "tag.universe": "Technik-Universum",
+            "p1.title": "👋 Hallo, ich bin Software-Ingenieur Eunho Kim",
+            "p1.p1": "\"Ein leidenschaftlicher Ingenieur, angetrieben von unnachgiebiger Problemlösungskraft, tiefer Liebe zum Coden und proaktiver Kommunikation.\"",
+            "p1.p2": "Ich finde echte Freude daran, tief in komplexe technische Hürden einzutauchen und elegante, robuste Lösungen zu entwickeln. Seit Oktober 2021 habe ich Full-Stack-Systeme, groß angelegtes DB-Query-Tuning (3s → 0,3s) und CI/CD-Automatisierung bei KT DS-Partnern und SK AX-Tochtergesellschaften geleitet.",
+            "p2.title": "🧬 AMEVA Ursprung & Ingenieurphilosophie",
+            "p2.desc": "Inspiriert von der biologischen Amöbe, die in ressourcenbeschränkten Umgebungen gedeiht, zielt AMEVA auf vollständige Datensouveränität und KI-Demokratisierung ab, indem es autonom auf Edge-Geräten ohne Cloud-Serverkosten läuft.",
+            "p2.thAcronym": "Akronym",
+            "p2.thArch": "Architektonische Bedeutung",
+            "p2.thPurpose": "Hauptzweck",
+            "p2.aArch": "Autonomes Reasoning & Entscheidungsintelligenz",
+            "p2.aPurpose": "KI-Agenten, die Kontexte unabhängig analysieren und Aktionen planen",
+            "p2.mArch": "Hierarchische Multi-Agenten-Orchestrierung",
+            "p2.mPurpose": "Zerlegt komplexe Workflows und delegiert an spezialisierte Agenten",
+            "p2.eArch": "Einheitliche Unternehmensplattform",
+            "p2.ePurpose": "Verbindet Desktop-, Web- und Edge-Geräte nahtlos",
+            "p2.vArch": "Isolierte Offline-Laufzeit-Sandbox",
+            "p2.vPurpose": "100% Client-Side WASM und lecksichere Sicherheitsgrenzen",
+            "p2.autoArch": "Echtzeit-Visuelle Pipeline",
+            "p2.autoPurpose": "Führt automatisierte Workflows ohne Serverkosten aus",
+            "p2.secHeading": "🛡️ Sicherheitsisolations-Garantie:",
+            "p2.securityNote": "※ AMEVA ist legitime Open-Source-Systemsoftware ohne Schadsoftware-Verhalten, die vollständig in isolierten clientseitigen WASM-Sandboxen arbeitet.",
+            "p3.title": "💼 Unternehmenskarriere & Meilensteine",
+            "p3.skTitle": "🏢 SK AX Tochtergesellschaft",
+            "p3.skPeriod": "2026.02 ~ Gegenwart (Aktiv)",
+            "p3.skRole": "Rolle: Tech Lead (TL), Business Analyst (BA), Unternehmens-CI/CD, Full-Stack-Entwicklung",
+            "p3.skB1": "Entwicklung unternehmensweiter automatisierter CI/CD-Pipelines und Leitung der Backend- (Java/Spring Boot) und Frontend-Entwicklung.",
+            "p3.skB2": "Leitung der Geschäftsanalyse (BA) und technische Führung (TL) zur Maximierung von Systemstabilität und Entwicklungsgeschwindigkeit.",
+            "p3.ktTitle": "🏢 KT DS Partnerunternehmen (Kunden-Dev-Team)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 Jahre 4 Monate)",
+            "p3.ktRole": "Rolle: Tech Lead (TL), PM/PL, Kernsysteme (B2B/PLM) & ITO-Betrieb",
+            "p3.ktB1": "<strong>Full-Stack-Modernisierung des KT B2B/PLM-Systems</strong>: Web/MSA-Transformation, unterbrechungsfreie Datenmigration (Zero-downtime), DB-Query-Tuning (<span class=\"highlight-metric\">3s → 0,3s</span>) und Verkürzung der Produkteinführungszeit (<span class=\"highlight-metric\">2 Wochen → 3 Tage</span>).",
+            "p3.ktB2": "<strong>ITO-Stabilität & DevOps-Automatisierung</strong>: Gebührenabrechnungs-Tuning (<span class=\"highlight-metric\">0,5s → 0,05s</span>), Jenkins CI/CD-Beschleunigung (<span class=\"highlight-metric\">30m → 5m</span>) und Reduzierung der Wiederherstellungszeit (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Model Context Protocol (MCP) Hub",
+            "p4.desc": "Offizielles AMEVA MCP-Ökosystem zur dynamischen Werkzeugregistrierung in KI-Agentensitzungen innerhalb von 3 Sekunden ohne Serverneustart.",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Kern",
+            "p4.mcp1Desc": "Führt risikoreiche Operationen sicher in einer 100% isolierten Browser-Pyodide-WASM-Sandbox aus.",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "Registriert entfernte GitHub-Tools dynamisch über SSE-Kanäle innerhalb von 3 Sekunden in der aktiven Sitzung.",
+            "p5.title": "📦 AMEVA Open-Source Kernbibliotheken",
+            "p5.workstationDesc": "Weltweit erste 100% On-Device WebGPU lokale KI, 3s MapReduce PDF/DOCX Dokumenten-Reader, In-App-Videoschnitt & 1s KI-Freistellstudio.",
+            "p5.sttDesc": "Android On-Device Spracherkennung und reines Python 128d X-Vector Sprecherdiarisierungs-Framework (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Android Bionic ARM64 native Leichtbau-Tensor-, DAG-Autograd- und On-Device LoRA Fine-Tuning-Engine (100/100 Audit bestanden).",
+            "p5.forgeDesc": "Browser-native WebGPU Deep Learning Autograd-Engine mit PyTorch-Kompatibilität und WGSL-Shadern ohne Serverkosten.",
+            "p5.termuxDesc": "Non-Root Chromium-Browserautomatisierungsbibliothek optimiert für Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "On-Device Stable Diffusion Bildgenerierungs-Pipeline auf Android Termux und Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Baumbasierte Multi-Fenster-Terminal-Workbench mit 80 FPS PTY-Batching und Sicherheitsleitplanken.",
+            "p5.bitnetDesc": "Ultra-energiesparende 1-Bit-Quantisierungs-Inferenz-Engine (1.58-bit LLM) optimiert für ARM Edge CPUs.",
+            "p6.title": "🌌 3D Neural Fabric & 1-Klick Setup",
+            "p6.desc": "Interaktives 3D WebGPU Wissensgraphen-Dashboard und plattformübergreifendes 1-Klick-Setup-Skript:",
+            "btn.launchApp": "🚀 AMEVA OS starten",
+            "btn.promoStudio": "✨ Demo-Studio",
+            "btn.viewDoc": "📖 Dokumentation ansehen",
+            "btn.liveDemo": "⚡ Live-Demo",
+            "btn.viewRepo": "🐙 GitHub Repository",
+            "btn.launchNeural": "🔮 3D Neural Fabric betreten",
+            "btn.templateFoundry": "📄 Dokumentvorlagen-Schmiede"
+      },
+      "es": {
+            "side.roleBadge": "Ingeniero Full-Stack Senior y Arquitecto de Sistemas",
+            "side.founderBadge": "🏛️ Fundador y Presidente @ Fundación AMEVA",
+            "side.contact": "Contacto y Enlaces",
+            "side.location": "Bundang, Seongnam-si, Corea del Sur",
+            "side.eduLang": "Educación e Idiomas",
+            "side.edu1Title": "Escuela de Posgrado de la Universidad Ajou",
+            "side.edu1Sub": "Máster en Inteligencia Artificial (2026.08 ~)",
+            "side.edu2Title": "Universidad Cibernética Hanyang",
+            "side.edu2Sub": "Grado en Ingeniería de Software Aplicada (3.94 / 4.5)",
+            "side.langTitle": "Inglés (OPIc IH)",
+            "side.langSub": "Comunicación técnica y de negocios fluida",
+            "side.skills": "Competencias Técnicas Clave",
+            "side.catAI": "🧠 IA, Ciencia de Datos y Razonamiento Avanzado",
+            "side.catBackend": "☕ Backend y Arquitectura",
+            "side.catDB": "💾 Bases de Datos y Optimización",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Sistemas y Colaboración",
+            "tag.executive": "Perfil Ejecutivo",
+            "tag.vision": "Visión y Filosofía",
+            "tag.career": "Experiencia Empresarial",
+            "tag.tooling": "Herramientas Dinámicas",
+            "tag.runtimes": "Entornos de Alto Rendimiento",
+            "tag.universe": "Universo Técnico",
+            "p1.title": "👋 Hola, soy el ingeniero de software Eunho Kim",
+            "p1.p1": "\"Un ingeniero apasionado impulsado por la tenacidad para resolver problemas, un profundo amor por el código y una comunicación proactiva.\"",
+            "p1.p2": "Disfruto profundamente profundizando en desafíos técnicos complejos y diseñando soluciones robustas y elegantes. Desde octubre de 2021 he liderado sistemas full-stack, optimización de consultas en grandes bases de datos (3s → 0.3s) y automatización CI/CD en socios de KT DS y filiales de SK AX.",
+            "p2.title": "🧬 Origen y Filosofía de Ingeniería de AMEVA",
+            "p2.desc": "Inspirado en la ameba biológica que prospera en entornos con recursos limitados, AMEVA busca la soberanía total de datos y la democratización de la IA ejecutándose de forma autónoma en dispositivos periféricos sin costes de servidores en la nube.",
+            "p2.thAcronym": "Acrónimo",
+            "p2.thArch": "Significado Arquitectónico",
+            "p2.thPurpose": "Propósito Principal",
+            "p2.aArch": "Razonamiento Autónomo e Inteligencia de Decisión",
+            "p2.aPurpose": "Agentes de IA que analizan contextos y planifican acciones de forma independiente",
+            "p2.mArch": "Orquestación Jerárquica Multi-Agente",
+            "p2.mPurpose": "Descompone flujos de trabajo complejos y delega en agentes especializados",
+            "p2.eArch": "Plataforma Empresarial Unificada",
+            "p2.ePurpose": "Interconecta de forma fluida escritorio, web y dispositivos Edge",
+            "p2.vArch": "Sandbox de Tiempo de Ejecución Offline Aislado",
+            "p2.vPurpose": "100% Client-Side WASM y límites de seguridad libres de fugas",
+            "p2.autoArch": "Canal Visual en Tiempo Real",
+            "p2.autoPurpose": "Ejecuta flujos de trabajo automatizados con cero coste de servidor",
+            "p2.secHeading": "🛡️ Garantía de Aislamiento de Seguridad:",
+            "p2.securityNote": "※ AMEVA es software de sistemas de código abierto 100% legítimo sin comportamiento malicioso, operando enteramente en entornos aislados WASM del lado del cliente.",
+            "p3.title": "💼 Carrera Empresarial y Logros",
+            "p3.skTitle": "🏢 Filial de SK AX",
+            "p3.skPeriod": "2026.02 ~ Presente (Activo)",
+            "p3.skRole": "Rol: Tech Lead (TL), Business Analyst (BA), Pipelines CI/CD, Desarrollo Full-Stack",
+            "p3.skB1": "Arquitectura de pipelines de despliegue automatizado CI/CD en toda la empresa y dirección de ingeniería Java/Spring Boot y frontend.",
+            "p3.skB2": "Liderazgo en análisis de negocio (BA) y dirección técnica (TL) para maximizar la estabilidad del sistema y la productividad del equipo.",
+            "p3.ktTitle": "🏢 Empresa socia de KT DS (Equipo Dev Cliente)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 años y 4 meses)",
+            "p3.ktRole": "Rol: Tech Lead (TL), PM/PL, Sistemas B2B/PLM y Operaciones ITO",
+            "p3.ktB1": "<strong>Modernización Full-Stack del sistema KT B2B/PLM</strong>: Transición Web/MSA, migración de datos sin tiempo de inactividad (Zero-downtime), optimización de consultas (<span class=\"highlight-metric\">3s → 0.3s</span>) y reducción del plazo de lanzamiento (<span class=\"highlight-metric\">2 semanas → 3 días</span>).",
+            "p3.ktB2": "<strong>Estabilidad ITO y Automatización DevOps</strong>: Optimización del cálculo por lotes (<span class=\"highlight-metric\">0.5s → 0.05s</span>), aceleración del despliegue Jenkins CI/CD (<span class=\"highlight-metric\">30m → 5m</span>) y reducción del tiempo de resolución de incidentes (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Hub Model Context Protocol (MCP)",
+            "p4.desc": "Ecosistema oficial AMEVA MCP que permite el registro dinámico de herramientas en sesiones de agentes de IA en 3 segundos sin reiniciar el servidor.",
+            "p4.mcp1Name": "⚙️ Kit de Herramientas MCP Wasm",
+            "p4.mcp1Badge": "Núcleo WASM OS",
+            "p4.mcp1Desc": "Ejecuta operaciones críticas de forma segura en un sandbox Pyodide WASM 100% aislado en el navegador.",
+            "p4.mcp2Name": "🧰 Hub de Utilidades Dinámicas MCP",
+            "p4.mcp2Badge": "Recarga en Caliente SSE",
+            "p4.mcp2Desc": "Registra dinámicamente herramientas remotas de GitHub en sesiones activas en 3 segundos mediante canales SSE.",
+            "p5.title": "📦 Bibliotecas Principales de Código Abierto AMEVA",
+            "p5.workstationDesc": "Primera IA local 100% en dispositivo WebGPU del mundo, lector y editor de documentos PDF/DOCX resumidos con MapReduce en 3s, estudio de corte de video y eliminación de fondos IA en 1s.",
+            "p5.sttDesc": "Framework unificado de reconocimiento de voz (STT) y diarización de locutores en Python puro 128d X-Vector para Android (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Framework ligero de tensores, autograd DAG y ajuste fino LoRA nativo para Android Bionic ARM64 (auditoría 100/100 superada).",
+            "p5.forgeDesc": "Motor de autograd de aprendizaje profundo nativo de WebGPU en el navegador con compatibilidad PyTorch y shaders WGSL a coste de servidor cero.",
+            "p5.termuxDesc": "Biblioteca de automatización de navegador Chromium sin permisos de root optimizada para Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "Pipeline de IA generativa en el dispositivo que ejecuta Stable Diffusion nativo en Android Termux y Samsung Galaxy (Python y Node.js).",
+            "p5.multiCliDesc": "Terminal multipantalla basado en árbol con procesamiento PTY fluido a 80 FPS y barreras de seguridad.",
+            "p5.bitnetDesc": "Motor de inferencia LLM cuantificado a 1-bit (1.58-bit) de ultra bajo consumo optimizado para CPU ARM Edge.",
+            "p6.title": "🌌 Tejido Neuronal 3D e Instalación en 1 Clic",
+            "p6.desc": "Panel de control interactivo de grafo de conocimiento 3D WebGPU y script de instalación universal en 1 clic:",
+            "btn.launchApp": "🚀 Iniciar AMEVA OS",
+            "btn.promoStudio": "✨ Estudio Demo",
+            "btn.viewDoc": "📖 Ver Documentación",
+            "btn.liveDemo": "⚡ Demo en Vivo",
+            "btn.viewRepo": "🐙 Repositorio GitHub",
+            "btn.launchNeural": "🔮 Entrar al Tejido Neuronal 3D",
+            "btn.templateFoundry": "📄 Fundición de Plantillas de Docs"
+      },
+      "ja": {
+            "side.roleBadge": "シニアフルスタックエンジニア 兼 システムアーキテクト",
+            "side.founderBadge": "🏛️ 創設者 兼 理事会議長 @ AMEVA 財団",
+            "side.contact": "連絡先およびリンク",
+            "side.location": "韓国 城南市 盆唐区",
+            "side.eduLang": "学歴および語学",
+            "side.edu1Title": "亜洲大学情報通信大学院",
+            "side.edu1Sub": "人工知能学科 修士課程 (2026.08 ~)",
+            "side.edu2Title": "漢陽サイバー大学",
+            "side.edu2Sub": "応用ソフトウェア工学科 学士 (3.94 / 4.5)",
+            "side.langTitle": "英語 (OPIc IH)",
+            "side.langSub": "技術的な意思疎通および実務会話可能",
+            "side.skills": "主要技術分野",
+            "side.catAI": "🧠 AI・データサイエンス・推論",
+            "side.catBackend": "☕ バックエンド＆アーキテクチャ",
+            "side.catDB": "💾 データベース＆最適化",
+            "side.catFrontend": "🖥️ フロントエンド",
+            "side.catDevOps": "🚀 DevOps・システム・協業",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 ソフトウェアエンジニアのキム・ウンホ（金銀浩）です",
+            "p1.p1": "「開発を心から愛し、どんな難題も最後まで粘り強く解決する情熱と高いコミュニケーション力を持つエンジニアです。」",
+            "p1.p2": "未知の技術を探求し、複雑な問題を粘り強く解決することに強いやりがいを感じます。チームとの積極的な協業を楽しみ、引き受けた課題は決して諦めず完遂します。2021年10月よりKT協力会社およびSK AX子会社にてフルスタック開発、大規模DBチューニング（3秒→0.3秒）、CI/CD自動化を主導してきました。",
+            "p2.title": "🧬 AMEVAの起源とエンジニアリング哲学",
+            "p2.desc": "アメーバのように限られたリソースでも自律進化するエッジネイティブAIフレームワーク。クラウドコストゼロのAI民主化とデータ主権を追求します。",
+            "p2.thAcronym": "頭字語 (Acronym)",
+            "p2.thArch": "アーキテクチャの意味",
+            "p2.thPurpose": "コアの目的",
+            "p2.aArch": "自律推論＆意思決定知能",
+            "p2.aPurpose": "自律的に状況を分析し計画を立てるAIエージェント",
+            "p2.mArch": "階層型オーケストレーション",
+            "p2.mPurpose": "タスクを細分化し専門エージェントへ委任",
+            "p2.eArch": "統合エンタープライズ基盤",
+            "p2.ePurpose": "Desktop、Web、Edge端末をシームレスに連携",
+            "p2.vArch": "分離オフライン実行サンドボックス",
+            "p2.vPurpose": "100%クライアントWASMによる安全な分離環境",
+            "p2.autoArch": "リアルタイム視覚パイプライン",
+            "p2.autoPurpose": "サーバー費用ゼロの自動化ワークフロー実行",
+            "p2.secHeading": "🛡️ セキュリティ分離方針の明記:",
+            "p2.securityNote": "※ AMEVAはマルウェアやワーム等ではなく、100%クライアントWASMサンドボックスで動作する正規のオープンソース基盤です。",
+            "p3.title": "💼 エンタープライズ開発経歴・プロジェクト実績",
+            "p3.skTitle": "🏢 SK AX 子会社",
+            "p3.skPeriod": "2026.02 ~ 現在 (在職中)",
+            "p3.skRole": "職務: Tech Lead (TL), Business Analyst (BA), 社内CI/CD構築, フルスタック開発",
+            "p3.skB1": "社内基幹システムの全社CI/CDデプロイ自動化パイプライン構築およびバックエンド/フロントエンド開発統括。",
+            "p3.skB2": "要件分析(BA)および技術リード(TL)を主導し、システムの安定性と開発生産性を最大化。",
+            "p3.ktTitle": "🏢 KT DS 協力会社 (顧客開発チーム)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4年4ヶ月)",
+            "p3.ktRole": "職務: Tech Lead (TL), PM/PL, 基幹システム(B2B/PLM)構築・運用(ITO)",
+            "p3.ktB1": "<strong>KT B2B/PLMシステムのフルスタック開発および高度化</strong>: レガシーCSのWeb/MSA刷新、無停止(Zero-downtime)移行、クエリ改善(<span class=\"highlight-metric\">3秒 → 0.3秒</span>)、商品リリース期間短縮(<span class=\"highlight-metric\">2週間 → 3日</span>)。",
+            "p3.ktB2": "<strong>ITO運用安定化およびDevOps自動化 (TL/PM)</strong>: 手数料バッチ改善(<span class=\"highlight-metric\">0.5秒 → 0.05秒</span>)、Jenkins CI/CD短縮(<span class=\"highlight-metric\">30分 → 5分</span>)、障害対応時間短縮(<span class=\"highlight-metric\">1時間 → 10分</span>)。",
+            "p4.title": "⚙️ Model Context Protocol (MCP) ハブ",
+            "p4.desc": "サーバー再起動不要でAIエージェントのツールセットを3秒以内に動的拡張する公式MCPツール群です。",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "危険な処理を100%分離されたブラウザPyodide WASMサンドボックスで安全に実行するランタイム。",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "GitHubリモートツールをSSE通信を通じてアクティブセッションに3秒で即時反映。",
+            "p5.title": "📦 AMEVA オープンソース コアライブラリ",
+            "p5.workstationDesc": "世界初100%オンデバイスWebGPUローカルAI（Qwen2.5 0.5B/1.5B/7B）、3秒MapReduce大容量PDF/DOCXリーダー＆エディター、動画カット、AI背景透過、音声無音自動削除。",
+            "p5.sttDesc": "Androidオンデバイス統合音声認識（STT）および純粋Python 128d X-Vector話者分離フレームワーク（Whisper.cpp + Vosk + Sherpa-ONNX）。",
+            "p5.trainDesc": "Android Bionic ARM64ネイティブ軽量テンソル、DAG Autograd、RoPEトランスフォーマーおよびオンデバイスLoRAファインチューニングフレームワーク（100/100監査合格）。",
+            "p5.forgeDesc": "サーバー不要のBrowser-Native WebGPU Deep Learning Autograd Engine。PyTorch互換。",
+            "p5.termuxDesc": "Android Termux環境で非rootでChromiumブラウザ自動化を動かす最適化パッケージ。",
+            "p5.diffusionDesc": "Android TermuxおよびSamsung Galaxy環境で非rootでBionic ARM64ネイティブStable Diffusion画像生成を動かすデュアルエンジン基盤。",
+            "p5.multiCliDesc": "無限分割レイアウト、80FPS低遅延PTY、セキュリティガードレール内蔵のターミナル。",
+            "p5.bitnetDesc": "1-bit量子化モデル(1.58-bit LLM)をエッジCPUで低消費電力駆動する超軽量推論基盤。",
+            "p6.title": "🌌 3D Neural Fabric & ワンクリック導入",
+            "p6.desc": "3D WebGPUインタラクティブ知識グラフダッシュボードとクロスプラットフォームワンクリック導入スクリプト:",
+            "btn.launchApp": "🚀 AMEVA OS起動",
+            "btn.promoStudio": "✨ 体験スタジオ",
+            "btn.viewDoc": "📖 公式ドキュメント",
+            "btn.liveDemo": "⚡ デモ体験",
+            "btn.viewRepo": "🐙 GitHubリポジトリ",
+            "btn.launchNeural": "🔮 3Dグラフを開く",
+            "btn.templateFoundry": "📄 テンプレート工房"
+      },
+      "zh": {
+            "side.roleBadge": "高级全栈工程师 兼 系统架构师",
+            "side.founderBadge": "🏛️ 创始人 兼 理事会主席 @ AMEVA 开源基金会",
+            "side.contact": "联系方式与主页",
+            "side.location": "韩国 京畿道 城南市 盆唐区",
+            "side.eduLang": "学历与语言",
+            "side.edu1Title": "亚洲大学信息通信研究生院",
+            "side.edu1Sub": "人工智能专业 硕士在读 (2026.08 ~)",
+            "side.edu2Title": "汉阳网络大学",
+            "side.edu2Sub": "应用软件工程 学士 (3.94 / 4.5)",
+            "side.langTitle": "英语 (OPIc IH)",
+            "side.langSub": "具备熟练的技术交流与商务沟通能力",
+            "side.skills": "核心技术能力",
+            "side.catAI": "🧠 人工智能・数据科学・深度推理",
+            "side.catBackend": "☕ 后端开发与系统架构",
+            "side.catDB": "💾 数据库设计与性能调优",
+            "side.catFrontend": "🖥️ 前端技术栈",
+            "side.catDevOps": "🚀 DevOps・运维与协作",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 您好，我是软件工程师 金恩浩 (Eunho Kim)",
+            "p1.p1": "“真正热爱编程、热衷攻克技术难关，具备坚韧毅力与出色沟通协作能力的系统工程师。”",
+            "p1.p2": "热衷于探索新技术并深入剖析复杂难题以寻找最优解。热爱团队协作与积极沟通，对所承担的任务抱有绝不放弃、坚持到底的强烈责任感。自2021年10月起在KT合作社及SK AX子公司主导全栈开发、大规模数据库性能调优（3秒→0.3秒）与CI/CD自动化流水线建设。",
+            "p2.title": "🧬 AMEVA 生态起源与工程哲学",
+            "p2.desc": "取材于在严苛环境下自律演化的变形虫(Amoeba)，无需云端服务器成本，在端侧浏览器中自律运行，实现AI平民化与数据主权。",
+            "p2.thAcronym": "缩写词 (Acronym)",
+            "p2.thArch": "架构含义",
+            "p2.thPurpose": "核心目标",
+            "p2.aArch": "自主推理与决策智能",
+            "p2.aPurpose": "独立分析上下文并制定行动计划的AI智能体",
+            "p2.mArch": "分层多智能体协同",
+            "p2.mPurpose": "将复杂任务原子化分解并委派给专业智能体",
+            "p2.eArch": "统一企业级生态平台",
+            "p2.ePurpose": "无缝互联桌面端、网页端与边缘设备",
+            "p2.vArch": "隔离离线运行时沙箱",
+            "p2.vPurpose": "100%客户端WASM与零泄露安全沙箱边界",
+            "p2.autoArch": "实时可视化工作流",
+            "p2.autoPurpose": "零服务器开销执行自动化业务流程",
+            "p2.secHeading": "🛡️ 安全隔离准则说明:",
+            "p2.securityNote": "※ AMEVA 绝非蠕虫或恶意软件，而是完全在客户端WASM沙箱中运行的合法开源系统框架。",
+            "p3.title": "💼 企业级实战履历与项目成果",
+            "p3.skTitle": "🏢 SK AX 子公司",
+            "p3.skPeriod": "2026.02 ~ 至今 (在职)",
+            "p3.skRole": "职责: Tech Lead (TL), Business Analyst (BA), 企业级CI/CD搭建, 全栈开发",
+            "p3.skB1": "主导构建全公司核心系统CI/CD自动部署流水线，并统筹Java/Spring Boot与前端全栈开发。",
+            "p3.skB2": "深入主导业务需求分析(BA)与技术负责人(TL)职责，极大提升系统稳定性与开发效能。",
+            "p3.ktTitle": "🏢 KT DS 合作社 (客户开发团队)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4年4个月)",
+            "p3.ktRole": "职责: Tech Lead (TL), PM/PL, 核心业务系统(B2B/PLM)搭建与运维(ITO)",
+            "p3.ktB1": "<strong>KT 企业级 B2B/PLM 系统全栈重构</strong>: 传统CS向Web/MSA架构平滑演进，零停机迁移，数据库调优(<span class=\"highlight-metric\">3秒 → 0.3秒</span>)，产品发布周期由<span class=\"highlight-metric\">2周大幅缩短至3天</span>。",
+            "p3.ktB2": "<strong>ITO 运维稳定性与 DevOps 自动化 (TL/PM)</strong>: 结算批处理提速(<span class=\"highlight-metric\">0.5秒 → 0.05秒</span>)，Jenkins部署提速(<span class=\"highlight-metric\">30分 → 5分</span>)，故障响应时间缩短至10分钟。",
+            "p4.title": "⚙️ Model Context Protocol (MCP) 枢纽",
+            "p4.desc": "无需重启服务器即可在3秒内动态扩充AI智能体工具集的官方MCP生态体系。",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "将高危运算（爬虫、动态代码）安全隔离在100%浏览器WASM沙箱中执行的引擎。",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "通过SSE通道在3秒内将GitHub远程工具代码热重载至活动会话。",
+            "p5.title": "📦 AMEVA 开源核心系统库",
+            "p5.workstationDesc": "全球首个100%端侧WebGPU本地AI（Qwen2.5 0.5B/1.5B/7B），3秒MapReduce大文件PDF/DOCX阅读与编辑器，应用内视频剪辑，1秒AI抠图，音频静音自动去除。",
+            "p5.sttDesc": "Android端侧集成语音识别（STT）与纯Python 128d X-Vector说话人分离框架（Whisper.cpp + Vosk + Sherpa-ONNX）。",
+            "p5.trainDesc": "Android Bionic ARM64原生轻量张量、DAG自动求导、RoPE与端侧LoRA微调框架（100/100审计通过）。",
+            "p5.forgeDesc": "零服务器成本的端侧 WebGPU 深度学习自动求导引擎，兼容 PyTorch 语法与 WGSL 计算着色器。",
+            "p5.termuxDesc": "无需Root权限在安卓 Termux 环境中自动化驱动原生 Chromium 的优化库。",
+            "p5.diffusionDesc": "在安卓 Termux 与三星 Galaxy 环境下免 Root 驱动 Bionic ARM64 原生 Stable Diffusion 图像生成的端侧双引擎框架。",
+            "p5.multiCliDesc": "基于树状结构的无限分屏、80FPS低延迟PTY批处理与DevSecOps安全护栏工作台。",
+            "p5.bitnetDesc": "将1-bit量化模型(1.58-bit)在端侧CPU上极低功耗运行的超轻量推理框架。",
+            "p6.title": "🌌 3D 神经织网与一键安装",
+            "p6.desc": "3D WebGPU 交互式知识图谱大屏与跨平台一键部署脚本:",
+            "btn.launchApp": "🚀 运行 AMEVA OS",
+            "btn.promoStudio": "✨ 体验展厅",
+            "btn.viewDoc": "📖 查看文档",
+            "btn.liveDemo": "⚡ 在线演示",
+            "btn.viewRepo": "🐙 GitHub 仓库",
+            "btn.launchNeural": "🔮 进入 3D 仪表板",
+            "btn.templateFoundry": "📄 文档模版铸造厂"
+      },
+      "ru": {
+            "side.roleBadge": "Ведущий Full-Stack инженер и системный архитектор",
+            "side.founderBadge": "🏛️ Основатель и председатель правления @ AMEVA Foundation",
+            "side.contact": "Контакты и ссылки",
+            "side.location": "Пундан, Соннам, Южная Корея",
+            "side.eduLang": "Образование и языки",
+            "side.edu1Title": "Магистратура Университета Аджу",
+            "side.edu1Sub": "Магистр в области искусственного интеллекта (2026.08 ~)",
+            "side.edu2Title": "Кибер-университет Ханьян",
+            "side.edu2Sub": "Бакалавр прикладной программной инженерии (3.94 / 4.5)",
+            "side.langTitle": "Английский (OPIc IH)",
+            "side.langSub": "Свободное техническое и деловое общение",
+            "side.skills": "Ключевые технические компетенции",
+            "side.catAI": "🧠 ИИ, наука о данных и сложное мышление",
+            "side.catBackend": "☕ Бэкенд и системная архитектура",
+            "side.catDB": "💾 Базы данных и оптимизация",
+            "side.catFrontend": "🖥️ Фронтенд",
+            "side.catDevOps": "🚀 DevOps, системы и интеграция",
+            "tag.executive": "Исполнительный профиль",
+            "tag.vision": "Видение и философия",
+            "tag.career": "Корпоративный опыт",
+            "tag.tooling": "Динамические инструменты",
+            "tag.runtimes": "Высокопроизводительные среды",
+            "tag.universe": "Технологический хаб",
+            "p1.title": "👋 Здравствуйте, я программный инженер Ынхо Ким (Eunho Kim)",
+            "p1.p1": "\"Увлеченный инженер с непреклонным упорством в решении сложных задач, глубокой любовью к программированию и проактивной коммуникацией.\"",
+            "p1.p2": "Я искренне наслаждаюсь погружением в сложные технические задачи и проектированием элегантных, надежных решений. С октября 2021 года я руководил full-stack системами, оптимизацией запросов к БД (3с → 0.3с) и автоматизацией CI/CD в партнерах KT DS и дочерних компаниях SK AX.",
+            "p2.title": "🧬 Происхождение и инженерная философия AMEVA",
+            "p2.desc": "Вдохновленная биологической амебой, выживающей в условиях ограниченных ресурсов, AMEVA стремится к полному суверенитету данных и демократизации ИИ, работая автономно на периферийных устройствах без затрат на облачные серверы.",
+            "p2.thAcronym": "Акроним (Acronym)",
+            "p2.thArch": "Архитектурное значение",
+            "p2.thPurpose": "Основная цель",
+            "p2.aArch": "Автономное мышление и принятие решений",
+            "p2.aPurpose": "ИИ-агенты, самостоятельно анализирующие контекст и планирующие действия",
+            "p2.mArch": "Иерархическая мультиагентная оркестрация",
+            "p2.mPurpose": "Декомпозиция сложных процессов и делегирование специализированным агентам",
+            "p2.eArch": "Единая корпоративная платформа",
+            "p2.ePurpose": "Бесшовное объединение настольных ПК, веб-интерфейсов и Edge-устройств",
+            "p2.vArch": "Изолированная офлайн-песочница",
+            "p2.vPurpose": "100% клиентский WASM и герметичные границы безопасности",
+            "p2.autoArch": "Визуальный пайплайн реального времени",
+            "p2.autoPurpose": "Выполнение автоматизированных процессов с нулевыми затратами на серверы",
+            "p2.secHeading": "🛡️ Гарантия безопасности и изоляции:",
+            "p2.securityNote": "※ AMEVA — это легитимное системное ПО с открытым исходным кодом, работающее полностью внутри изолированных песочниц WASM на стороне клиента.",
+            "p3.title": "💼 Корпоративный опыт и реализованные проекты",
+            "p3.skTitle": "🏢 Дочерняя компания SK AX",
+            "p3.skPeriod": "2026.02 ~ Настоящее время (Активно)",
+            "p3.skRole": "Роль: Технический лидер (TL), бизнес-аналитик (BA), CI/CD пайплайны, Full-Stack разработка",
+            "p3.skB1": "Архитектура корпоративных автоматизированных пайплайнов CI/CD и руководство бэкенд (Java/Spring Boot) и фронтенд разработкой.",
+            "p3.skB2": "Проведение бизнес-анализа (BA) и технического руководства (TL) для максимизации стабильности и скорости разработки.",
+            "p3.ktTitle": "🏢 Компания-партнер KT DS (Команда клиентской разработки)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 года 4 месяца)",
+            "p3.ktRole": "Роль: Технический лидер (TL), PM/PL, корпоративные системы (B2B/PLM) и эксплуатация ITO",
+            "p3.ktB1": "<strong>Модернизация корпоративной системы KT B2B/PLM</strong>: Переход на Web/MSA, миграция данных без простоя (Zero-downtime), оптимизация запросов к БД (<span class=\"highlight-metric\">3с → 0.3с</span>) и сокращение времени вывода продуктов на рынок (<span class=\"highlight-metric\">2 недели → 3 дня</span>).",
+            "p3.ktB2": "<strong>Стабильность ITO и автоматизация DevOps</strong>: Оптимизация пакетных расчетов (<span class=\"highlight-metric\">0.5с → 0.05с</span>), ускорение развертывания Jenkins CI/CD (<span class=\"highlight-metric\">30мин → 5мин</span>) и сокращение времени устранения инцидентов (<span class=\"highlight-metric\">1ч → 10мин</span>).",
+            "p4.title": "⚙️ Хаб Model Context Protocol (MCP)",
+            "p4.desc": "Официальная экосистема AMEVA MCP для динамической регистрации инструментов в сессиях ИИ-агентов за 3 секунды без перезапуска сервера.",
+            "p4.mcp1Name": "⚙️ Набор инструментов MCP Wasm",
+            "p4.mcp1Badge": "Ядро WASM OS",
+            "p4.mcp1Desc": "Безопасное выполнение критических операций внутри 100% изолированной браузерной песочницы Pyodide WASM.",
+            "p4.mcp2Name": "🧰 Хаб динамических утилит MCP",
+            "p4.mcp2Badge": "Горячая перезагрузка SSE",
+            "p4.mcp2Desc": "Динамическая регистрация удаленных инструментов GitHub в активной сессии за 3 секунды через каналы SSE.",
+            "p5.title": "📦 Основные библиотеки AMEVA Open-Source",
+            "p5.workstationDesc": "Первый в мире 100% локальный ИИ на WebGPU, ридер документов PDF/DOCX с 3-секундным MapReduce-суммированием, видеомонтаж и удаление фона за 1 секунду.",
+            "p5.sttDesc": "Фреймворк распознавания речи и диаризации дикторов на чистом Python 128d X-Vector для Android (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Легковесный тензорный движок, DAG-автоградиент и среда дообучения LoRA для Android Bionic ARM64 (аудит 100/100 пройден).",
+            "p5.forgeDesc": "Браузерный WebGPU движок глубокого обучения с поддержкой синтаксиса PyTorch и шейдеров WGSL без затрат на серверы.",
+            "p5.termuxDesc": "Библиотека автоматизации браузера Chromium без root-прав, оптимизированная для Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "Локальный генеративный пайплайн Stable Diffusion для Android Termux и Samsung Galaxy на базе ARM64 Bionic (Python & Node.js).",
+            "p5.multiCliDesc": "Многооконный терминал с древовидной структурой, пакетной обработкой PTY на скорости 80 FPS и защитными барьерами.",
+            "p5.bitnetDesc": "Сверхэкономичный движок инференса 1-битных квантованных моделей (1.58-bit LLM), оптимизированный под процессоры ARM Edge.",
+            "p6.title": "🌌 3D нейронная сеть и установка в 1 клик",
+            "p6.desc": "Интерактивный 3D WebGPU дашборд графа знаний и кроссплатформенный скрипт установки в 1 клик:",
+            "btn.launchApp": "🚀 Запустить AMEVA OS",
+            "btn.promoStudio": "✨ Демо-студия",
+            "btn.viewDoc": "📖 Открыть документацию",
+            "btn.liveDemo": "⚡ Онлайн-демо",
+            "btn.viewRepo": "🐙 Репозиторий GitHub",
+            "btn.launchNeural": "🔮 Войти в 3D нейросеть",
+            "btn.templateFoundry": "📄 Фабрика шаблонов документации"
+      },
+      "hi": {
+            "side.roleBadge": "सीनियर फुल-स्टैक इंजीनियर और सिस्टम्स आर्किटेक्ट",
+            "side.founderBadge": "🏛️ संस्थापक और बोर्ड अध्यक्ष @ AMEVA फाउंडेशन",
+            "side.contact": "संपर्क और लिंक्स",
+            "side.location": "बुंदांग, सियोन्गनाम-सी, दक्षिण कोरिया",
+            "side.eduLang": "शिक्षा और भाषाएं",
+            "side.edu1Title": "अजौ विश्वविद्यालय ग्रेजुएट स्कूल",
+            "side.edu1Sub": "आर्टिफिशियल इंटेलिजेंस में मास्टर (2026.08 ~)",
+            "side.edu2Title": "हानयांग साइबर विश्वविद्यालय",
+            "side.edu2Sub": "एप्लाइड सॉफ्टवेयर इंजीनियरिंग में स्नातक (3.94 / 4.5)",
+            "side.langTitle": "अंग्रेजी (OPIc IH)",
+            "side.langSub": "प्रवाहपूर्ण तकनीकी और व्यावसायिक संचार",
+            "side.skills": "मुख्य तकनीकी क्षमताएं",
+            "side.catAI": "🧠 एआई, डेटा साइंस और उन्नत तर्क",
+            "side.catBackend": "☕ बैकएंड और आर्किटेक्चर",
+            "side.catDB": "💾 डेटाबेस और ऑप्टिमाइज़ेशन",
+            "side.catFrontend": "🖥️ फ्रंटएंड",
+            "side.catDevOps": "🚀 देवऑप्स, सिस्टम्स और सहयोग",
+            "tag.executive": "कार्यकारी प्रोफ़ाइल",
+            "tag.vision": "विजन और दर्शन",
+            "tag.career": "एंटरप्राइज अनुभव",
+            "tag.tooling": "डायनेमिक टूल्स",
+            "tag.runtimes": "उच्च-प्रदर्शन रनटाइम",
+            "tag.universe": "ब्रह्मांड केंद्र",
+            "p1.title": "👋 नमस्ते, मैं सॉफ्टवेयर इंजीनियर यूनहो किम (Eunho Kim) हूँ",
+            "p1.p1": "\"गहन तकनीकी चुनौतियों को हल करने की दृढ़ता, कोडिंग के प्रति गहरे प्रेम और सक्रिय संचार से प्रेरित एक समर्पित इंजीनियर।\"",
+            "p1.p2": "मुझे जटिल तकनीकी बाधाओं को सुलझाने और सुरुचिपूर्ण, मजबूत समाधान तैयार करने में वास्तविक आनंद मिलता है। अक्टूबर 2021 से मैंने KT DS भागीदारों और SK AX सहायक कंपनियों में फुल-स्टैक सिस्टम्स, बड़े पैमाने पर DB क्वेरी ट्यूनिंग (3s → 0.3s) और CI/CD ऑटोमेशन का नेतृत्व किया है।",
+            "p2.title": "🧬 AMEVA की उत्पत्ति और इंजीनियरिंग दर्शन",
+            "p2.desc": "संसाधन-सीमित वातावरण में भी जीवित रहने वाले जैविक अमीबा (Amoeba) से प्रेरित होकर, AMEVA बिना किसी क्लाउड सर्वर लागत के एज डिवाइसों के अंदर स्वायत्त रूप से चलकर पूर्ण डेटा संप्रभुता और AI लोकतंत्रीकरण का लक्ष्य रखता है।",
+            "p2.thAcronym": "संक्षिप्त नाम (Acronym)",
+            "p2.thArch": "आर्किटेक्चरल अर्थ",
+            "p2.thPurpose": "मुख्य उद्देश्य",
+            "p2.aArch": "स्वायत्त तर्क और निर्णय बुद्धिमत्ता",
+            "p2.aPurpose": "एआई एजेंट जो संदर्भों का स्वतंत्र रूप से विश्लेषण करते हैं और योजना बनाते हैं",
+            "p2.mArch": "पदानुक्रमित बहु-एजेंट ऑर्केस्ट्रेशन",
+            "p2.mPurpose": "जटिल वर्कफ़्लोज़ को विभाजित कर विशेष एजेंटों को सौंपता है",
+            "p2.eArch": "एकीकृत एंटरप्राइज प्लेटफ़ॉर्म",
+            "p2.ePurpose": "डेस्कटॉप, वेब और एज डिवाइसों को सहजता से जोड़ता है",
+            "p2.vArch": "पृथक ऑफ़लाइन रनटाइम सैंडबॉक्स",
+            "p2.vPurpose": "100% क्लाइंट-साइड WASM और शून्य-लीक सुरक्षा सीमाएं",
+            "p2.autoArch": "रीयल-टाइम विजुअल पाइपलाइन",
+            "p2.autoPurpose": "बिना सर्वर लागत के स्वचालित वर्कफ़्लो निष्पादित करता है",
+            "p2.secHeading": "🛡️ सुरक्षा अलगाव की गारंटी:",
+            "p2.securityNote": "※ AMEVA पूरी तरह से वैध ओपन-सोर्स सिस्टम सॉफ्टवेयर है, जिसमें कोई मैलवेयर नहीं है और यह क्लाइंट-साइड WASM सैंडबॉक्स के भीतर संचालित होता है।",
+            "p3.title": "💼 एंटरप्राइज करियर और प्रोजेक्ट उपलब्धियां",
+            "p3.skTitle": "🏢 SK AX सहायक कंपनी",
+            "p3.skPeriod": "2026.02 ~ वर्तमान (सक्रिय)",
+            "p3.skRole": "भूमिका: टेक लीड (TL), बिजनेस एनालिस्ट (BA), एंटरप्राइज CI/CD पाइपलाइन, फुल-स्टैक विकास",
+            "p3.skB1": "कंपनी-स्तरीय स्वचालित CI/CD पाइपलाइनों का निर्माण और Java/Spring Boot बैकएंड एवं फ्रंटएंड इंजीनियरिंग का नेतृत्व।",
+            "p3.skB2": "सिस्टम विश्वसनीयता और डेवलपर गति को अधिकतम करने के लिए बिजनेस एनालिसिस (BA) और तकनीकी नेतृत्व (TL) का संचालन।",
+            "p3.ktTitle": "🏢 KT DS पार्टनर कंपनी (क्लाइंट देव टीम)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 वर्ष 4 महीने)",
+            "p3.ktRole": "भूमिका: टेक लीड (TL), PM/PL, कोर सिस्टम्स (B2B/PLM) इंजीनियरिंग और ITO संचालन",
+            "p3.ktB1": "<strong>KT एंटरप्राइज B2B/PLM सिस्टम का आधुनिकीकरण</strong>: वेब/MSA रूपांतरण, शून्य डाउनटाइम डेटा माइग्रेशन, DB क्वेरी ट्यूनिंग (<span class=\"highlight-metric\">3s → 0.3s</span>) और उत्पाद लॉन्च समय में कमी (<span class=\"highlight-metric\">2 सप्ताह → 3 दिन</span>)।",
+            "p3.ktB2": "<strong>ITO विश्वसनीयता और DevOps ऑटोमेशन</strong>: शुल्क गणना बैच ट्यूनिंग (<span class=\"highlight-metric\">0.5s → 0.05s</span>), Jenkins CI/CD परिनियोजन गति में वृद्धि (<span class=\"highlight-metric\">30m → 5m</span>) और घटना समाधान समय में कमी (<span class=\"highlight-metric\">1h → 10m</span>)।",
+            "p4.title": "⚙️ मॉडल कॉन्टेक्स्ट प्रोटोकॉल (MCP) हब",
+            "p4.desc": "सर्वर रीस्टार्ट के बिना 3 सेकंड के भीतर एआई एजेंट सत्रों में डायनामिक टूल रजिस्ट्रेशन सक्षम करने वाला आधिकारिक AMEVA MCP इकोसिस्टम।",
+            "p4.mcp1Name": "⚙️ MCP Wasm टूलकिट",
+            "p4.mcp1Badge": "WASM OS कोर",
+            "p4.mcp1Desc": "ब्राउज़र Pyodide WASM सैंडबॉक्स के अंदर जोखिम भरे कार्यों को 100% सुरक्षित रूप से चलाता है।",
+            "p4.mcp2Name": "🧰 MCP डायनेमिक यूटिल्स हब",
+            "p4.mcp2Badge": "SSE हॉट-रीलोड",
+            "p4.mcp2Desc": "SSE चैनलों के माध्यम से सक्रिय सत्रों में रिमोट गिटहब टूल्स को 3 सेकंड में गतिशील रूप से लोड करता है।",
+            "p5.title": "📦 AMEVA ओपन-सोर्स कोर लाइब्रेरीज़",
+            "p5.workstationDesc": "दुनिया का पहला 100% ऑन-डिवाइस WebGPU स्थानीय AI, 3-सेकंड MapReduce PDF/DOCX दस्तावेज़ पाठक और संपादक, वीडियो कटिंग और 1-सेकंड AI बैकग्राउंड रिमूवल स्टूडियो।",
+            "p5.sttDesc": "एंड्रॉइड ऑन-डिवाइस एकीकृत स्पीच-टू-टेक्स्ट और शुद्ध पायथन 128d X-Vector स्पीकर डायराइजेशन फ्रेमवर्क (Whisper.cpp + Vosk + Sherpa-ONNX)।",
+            "p5.trainDesc": "एंड्रॉइड Bionic ARM64 नेटिव लाइटवेट टेंसर, DAG ऑटोग्राद और ऑन-डिवाइस LoRA फाइन-ट्यूनिंग इंजन (100/100 ऑडिट पास)।",
+            "p5.forgeDesc": "शून्य-सर्वर लागत वाला ब्राउज़र-नेटिव WebGPU डीप लर्निंग ऑटोग्राद इंजन, PyTorch और WGSL शेडर्स के साथ संगत।",
+            "p5.termuxDesc": "एंड्रॉइड Termux (ARM64 Bionic) के लिए अनुकूलित नॉन-रूट क्रोमियम ऑटोमेशन लाइब्रेरी।",
+            "p5.diffusionDesc": "एंड्रॉइड Termux और सैमसंग गैलेक्सी पर नेटिव ARM64 Bionic Stable Diffusion चलाने वाला ऑन-डिवाइस जेनरेटिव AI पाइपलाइन।",
+            "p5.multiCliDesc": "80 FPS स्मार्ट PTY बैचिंग और सुरक्षा सुरक्षा उपायों के साथ ट्री-आधारित मल्टी-स्प्लिट टर्मिनल वर्कबेंच।",
+            "p5.bitnetDesc": "ARM एज सीपीयू के लिए अनुकूलित अल्ट्रा-कम पावर 1-बिट क्वांटाइजेशन (1.58-bit LLM) इंफ्रेंस इंजन।",
+            "p6.title": "🌌 3D न्यूरल फैब्रिक और 1-क्लिक सेटअप",
+            "p6.desc": "3D WebGPU इंटरैक्टिव नॉलेज ग्राफ डैशबोर्ड और क्रॉस-प्लेटफॉर्म 1-क्लिक इंस्टॉलर:",
+            "btn.launchApp": "🚀 AMEVA OS लॉन्च करें",
+            "btn.promoStudio": "✨ प्रोमो स्टूडियो",
+            "btn.viewDoc": "📖 दस्तावेज़ देखें",
+            "btn.liveDemo": "⚡ लाइव डेमो",
+            "btn.viewRepo": "🐙 गिटहब रिपॉजिटरी",
+            "btn.launchNeural": "🔮 3D न्यूरल फैब्रिक में प्रवेश करें",
+            "btn.templateFoundry": "📄 लाइब्रेरी डॉक्स टेम्पलेट"
+      },
+      "vi": {
+            "side.roleBadge": "Kỹ sư Full-Stack Cao cấp & Kiến trúc sư Hệ thống",
+            "side.founderBadge": "🏛️ Người sáng lập & Chủ tịch @ Quỹ AMEVA",
+            "side.contact": "Liên hệ & Liên kết",
+            "side.location": "Bundang, Seongnam-si, Hàn Quốc",
+            "side.eduLang": "Học vấn & Ngôn ngữ",
+            "side.edu1Title": "Cao học Đại học Ajou",
+            "side.edu1Sub": "Thạc sĩ Trí tuệ Nhân tạo (2026.08 ~)",
+            "side.edu2Title": "Đại học Mạng Hanyang",
+            "side.edu2Sub": "Cử nhân Kỹ thuật Phần mềm Ứng dụng (3.94 / 4.5)",
+            "side.langTitle": "Tiếng Anh (OPIc IH)",
+            "side.langSub": "Giao tiếp kỹ thuật và kinh doanh lưu loát",
+            "side.skills": "Năng lực Kỹ thuật Cốt lõi",
+            "side.catAI": "🧠 AI, Khoa học Dữ liệu & Suy luận Nâng cao",
+            "side.catBackend": "☕ Backend & Kiến trúc Hệ thống",
+            "side.catDB": "💾 Cơ sở Dữ liệu & Tối ưu hóa",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Hệ thống & Hợp tác",
+            "tag.executive": "Hồ sơ Chuyên nghiệp",
+            "tag.vision": "Tầm nhìn & Triết lý",
+            "tag.career": "Kinh nghiệm Doanh nghiệp",
+            "tag.tooling": "Công cụ Động",
+            "tag.runtimes": "Môi trường Hiệu năng Cao",
+            "tag.universe": "Trung tâm Công nghệ",
+            "p1.title": "👋 Xin chào, tôi là Kỹ sư Phần mềm Eunho Kim (Kim Eunho)",
+            "p1.p1": "\"Một kỹ sư đầy đam mê với sự kiên trì giải quyết vấn đề, tình yêu sâu sắc với lập trình và khả năng giao tiếp chủ động.\"",
+            "p1.p2": "Tôi tìm thấy niềm vui thực sự khi đương đầu với các thách thức kỹ thuật phức tạp và xây dựng các giải pháp tối ưu, vững chắc. Từ tháng 10/2021, tôi đã dẫn dắt phát triển hệ thống full-stack, tinh chỉnh truy vấn cơ sở dữ liệu lớn (3s → 0.3s) và tự động hóa CI/CD tại các đối tác KT DS và công ty con SK AX.",
+            "p2.title": "🧬 Nguồn gốc & Triết lý Kỹ thuật của AMEVA",
+            "p2.desc": "Lấy cảm hứng từ trùng amip sinh tồn trong môi trường khắc nghiệt, AMEVA hướng tới quyền tự chủ dữ liệu và bình dân hóa AI bằng cách chạy tự động trên thiết bị biên mà không tốn chi phí máy chủ đám mây.",
+            "p2.thAcronym": "Từ viết tắt (Acronym)",
+            "p2.thArch": "Ý nghĩa Kiến trúc",
+            "p2.thPurpose": "Mục đích Cốt lõi",
+            "p2.aArch": "Suy luận Tự chủ & Trí tuệ Quyết định",
+            "p2.aPurpose": "Các tác tử AI tự động phân tích ngữ cảnh và lập kế hoạch hành động",
+            "p2.mArch": "Điều phối Đa tác tử Phân tầng",
+            "p2.mPurpose": "Phân rã luồng công việc phức tạp và ủy quyền cho tác tử chuyên trách",
+            "p2.eArch": "Nền tảng Doanh nghiệp Hợp nhất",
+            "p2.ePurpose": "Kết nối liền mạch Máy tính để bàn, Web và Thiết bị biên",
+            "p2.vArch": "Hộp cát Chạy Ngoại tuyến Cách ly",
+            "p2.vPurpose": "100% Client-Side WASM và ranh giới bảo mật không rò rỉ",
+            "p2.autoArch": "Đường ống Trực quan Thời gian thực",
+            "p2.autoPurpose": "Thực thi quy trình tự động hóa với chi phí máy chủ bằng 0",
+            "p2.secHeading": "🛡️ Cam kết Cách ly Bảo mật:",
+            "p2.securityNote": "※ AMEVA là phần mềm mã nguồn mở hợp pháp 100%, không chứa mã độc và chạy hoàn toàn trong hộp cát WASM phía máy khách.",
+            "p3.title": "💼 Sự nghiệp Doanh nghiệp & Dự án Tiêu biểu",
+            "p3.skTitle": "🏢 Công ty con SK AX",
+            "p3.skPeriod": "2026.02 ~ Hiện tại (Đang làm việc)",
+            "p3.skRole": "Vai trò: Tech Lead (TL), Phân tích Nghiệp vụ (BA), Đường ống CI/CD, Phát triển Full-Stack",
+            "p3.skB1": "Xây dựng đường ống tự động hóa triển khai CI/CD toàn công ty và quản lý kỹ thuật backend (Java/Spring Boot) và frontend.",
+            "p3.skB2": "Chủ trì phân tích nghiệp vụ (BA) và lãnh đạo kỹ thuật (TL) nhằm tối đa hóa độ ổn định và năng suất của nhà phát triển.",
+            "p3.ktTitle": "🏢 Đối tác KT DS (Đội ngũ Phát triển Khách hàng)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 năm 4 tháng)",
+            "p3.ktRole": "Vai trò: Tech Lead (TL), PM/PL, Hệ thống Cốt lõi (B2B/PLM) & Vận hành ITO",
+            "p3.ktB1": "<strong>Hiện đại hóa Full-Stack hệ thống KT B2B/PLM</strong>: Chuyển đổi sang Web/MSA, di chuyển dữ liệu không gián đoạn (Zero-downtime), tinh chỉnh truy vấn SQL (<span class=\"highlight-metric\">3s → 0.3s</span>) và rút ngắn thời gian ra mắt sản phẩm (<span class=\"highlight-metric\">2 tuần → 3 ngày</span>).",
+            "p3.ktB2": "<strong>Ổn định ITO & Tự động hóa DevOps</strong>: Tinh chỉnh tính toán phí theo lô (<span class=\"highlight-metric\">0.5s → 0.05s</span>), tăng tốc triển khai Jenkins CI/CD (<span class=\"highlight-metric\">30ph → 5ph</span>) và giảm thời gian xử lý sự cố (<span class=\"highlight-metric\">1h → 10ph</span>).",
+            "p4.title": "⚙️ Trung tâm Model Context Protocol (MCP)",
+            "p4.desc": "Hệ sinh thái AMEVA MCP chính thức cho phép đăng ký công cụ động vào phiên tác tử AI trong 3 giây mà không cần khởi động lại máy chủ.",
+            "p4.mcp1Name": "⚙️ Bộ công cụ MCP Wasm",
+            "p4.mcp1Badge": "Lõi WASM OS",
+            "p4.mcp1Desc": "Chạy các tác vụ rủi ro an toàn trong hộp cát Pyodide WASM cách ly 100% trên trình duyệt.",
+            "p4.mcp2Name": "🧰 Trung tâm Tiện ích Động MCP",
+            "p4.mcp2Badge": "Nạp nóng qua SSE",
+            "p4.mcp2Desc": "Đăng ký động các công cụ GitHub từ xa vào phiên hoạt động trong 3 giây qua kênh SSE.",
+            "p5.title": "📦 Thư viện Cốt lõi Mã nguồn Mở AMEVA",
+            "p5.workstationDesc": "AI cục bộ WebGPU 100% trên thiết bị đầu tiên trên thế giới, trình đọc và chỉnh sửa tệp PDF/DOCX tóm tắt bằng MapReduce trong 3 giây, cắt video và tách nền AI trong 1 giây.",
+            "p5.sttDesc": "Khung nhận dạng giọng nói tích hợp và phân đoạn người nói X-Vector bằng Python thuần trên Android (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Khung tensor nhẹ, autograd DAG và tinh chỉnh LoRA trên thiết bị cho Android Bionic ARM64 (vượt qua kiểm toán 100/100).",
+            "p5.forgeDesc": "Động cơ autograd học sâu WebGPU trên trình duyệt không tốn chi phí máy chủ, tương thích PyTorch và shader WGSL.",
+            "p5.termuxDesc": "Thư viện tự động hóa trình duyệt Chromium không cần quyền root tối ưu cho Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "Quy trình AI tạo sinh cục bộ chạy Stable Diffusion trên Android Termux và Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Terminal đa cửa sổ phân nhánh cây với khả năng xử lý PTY 80 FPS mượt mà và rào chắn an toàn.",
+            "p5.bitnetDesc": "Động cơ suy luận LLM lượng tử hóa 1-bit (1.58-bit) siêu tiết kiệm điện tối ưu cho CPU ARM Edge.",
+            "p6.title": "🌌 Mạng Lưới Thần Kinh 3D & Cài đặt 1 Cú nhấp",
+            "p6.desc": "Bảng điều khiển biểu đồ tri thức 3D WebGPU tương tác và tập lệnh cài đặt 1 cú nhấp chuột trên mọi nền tảng:",
+            "btn.launchApp": "🚀 Khởi chạy AMEVA OS",
+            "btn.promoStudio": "✨ Phòng Trưng bày Demo",
+            "btn.viewDoc": "📖 Xem Tài liệu",
+            "btn.liveDemo": "⚡ Trải nghiệm Trực tiếp",
+            "btn.viewRepo": "🐙 Kho lưu trữ GitHub",
+            "btn.launchNeural": "🔮 Vào Mạng Lưới Thần Kinh 3D",
+            "btn.templateFoundry": "📄 Xưởng Mẫu Tài liệu Thư viện"
+      },
+      "pl": {
+            "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
+            "side.founderBadge": "🏛️ Founder & Chair @ AMEVA Foundation",
+            "side.contact": "Contact & Links",
+            "side.location": "Bundang, Seongnam-si, South Korea",
+            "side.eduLang": "Education & Language",
+            "side.edu1Title": "Ajou University Graduate School",
+            "side.edu1Sub": "M.S. in Artificial Intelligence (2026.08 ~)",
+            "side.edu2Title": "Hanyang Cyber University",
+            "side.edu2Sub": "B.S. in Applied Software Engineering (3.94 / 4.5)",
+            "side.langTitle": "English (OPIc IH)",
+            "side.langSub": "Fluent Technical & Business Communication",
+            "side.skills": "Core Technical Competencies",
+            "side.catAI": "🧠 AI, Data Science & Advanced Reasoning",
+            "side.catBackend": "☕ Backend & Architecture",
+            "side.catDB": "💾 Database & Optimization",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systems & Collab",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 Hello, I am Software Engineer Eunho Kim",
+            "p1.p1": "\"A passionate engineer driven by relentless problem-solving tenacity, deep love for coding, and proactive communication.\"",
+            "p1.p2": "I find genuine joy in diving deep into complex technical hurdles and engineering elegant, robust solutions. Known for strong collaborative empathy and an unyielding commitment to seeing every challenge through to completion, I have spearheaded full-stack systems, large-scale DB query tuning (3s → 0.3s), and CI/CD automation across KT DS partners and SK AX subsidiaries since October 2021.",
+            "p2.title": "🧬 AMEVA Origin & Engineering Philosophy",
+            "p2.desc": "Inspired by the biological amoeba that thrives in resource-constrained environments, AMEVA aims for complete Data Sovereignty and AI Democratization by running autonomously inside edge devices without cloud server costs.",
+            "p2.thAcronym": "Acronym",
+            "p2.thArch": "Architecture Meaning",
+            "p2.thPurpose": "Core Purpose",
+            "p2.aArch": "Autonomous Reasoning & Decision Intelligence",
+            "p2.aPurpose": "AI agents that independently analyze contexts and plan actions",
+            "p2.mArch": "Hierarchical Orchestration (Nobles & Workers)",
+            "p2.mPurpose": "Decomposes complex workflows and delegates to specialized agents",
+            "p2.eArch": "Unified Enterprise Platform",
+            "p2.ePurpose": "Seamlessly interconnects Desktop, Web, and Edge devices",
+            "p2.vArch": "Isolated Offline Runtime Sandbox",
+            "p2.vPurpose": "100% Client-Side WASM and zero-leakage security boundaries",
+            "p2.autoArch": "Real-Time Visual Pipeline",
+            "p2.autoPurpose": "Executes automated workflows with zero server costs",
+            "p2.secHeading": "🛡️ Security Isolation Guarantee:",
+            "p2.securityNote": "※ AMEVA is strictly legitimate open-source systems software with zero malware/worm behavior, operating entirely within client-side isolated WASM sandboxes.",
+            "p3.title": "💼 Enterprise Career & Project Track Records",
+            "p3.skTitle": "🏢 SK AX Subsidiary",
+            "p3.skPeriod": "2026.02 ~ Present (Active)",
+            "p3.skRole": "Role: Tech Lead (TL), Business Analyst (BA), Enterprise CI/CD Pipelines, Full-Stack Development",
+            "p3.skB1": "Architected company-wide CI/CD automated deployment pipelines and led backend (Java/Spring Boot) and frontend full-stack engineering.",
+            "p3.skB2": "Spearheaded Business Analysis (BA) and Tech Leadership (TL) to maximize system reliability and team developer velocity.",
+            "p3.ktTitle": "🏢 KT DS Partner Company (Client Dev Team)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 Years 4 Months)",
+            "p3.ktRole": "Role: Tech Lead (TL), PM/PL, Enterprise Core Systems (B2B/PLM) Engineering & ITO Operations",
+            "p3.ktB1": "<strong>KT Enterprise B2B/PLM Full-Stack Modernization</strong>: Web/MSA transition from legacy CS, zero-downtime 100% data migration, DB query tuning (<span class=\"highlight-metric\">3s → 0.3s</span>), and BRMS rule engine optimization cutting product launch lead-time (<span class=\"highlight-metric\">2 weeks → 3 days</span>).",
+            "p3.ktB2": "<strong>ITO Reliability & DevOps Automation (TL/PM)</strong>: Batch fee calculation tuning (<span class=\"highlight-metric\">0.5s → 0.05s</span>), Jenkins CI/CD deployment speedup (<span class=\"highlight-metric\">30m → 5m</span>), automated security compliance (0 violations), and incident MTTR reduction (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Model Context Protocol (MCP) Hub",
+            "p4.desc": "Official AMEVA MCP ecosystem enabling dynamic tool registration into AI agent sessions within 3 seconds without server restarts.",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "Runs risky operations (crawlers, dynamic scripts) inside 100% isolated browser Pyodide WASM sandboxes.",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "Dynamically registers remote GitHub tools into active browser sessions within 3 seconds via SSE channels.",
+            "p5.title": "📦 AMEVA Open-Source Core Libraries",
+            "p5.workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+            "p5.sttDesc": "Android on-device unified Speech-to-Text and pure Python 128d X-Vector speaker diarization framework (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Android Bionic ARM64 native lightweight tensor, DAG autograd, RoPE transformer, and on-device LoRA fine-tuning framework (100/100 audit pass).",
+            "p5.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch compatibility and WGSL shaders.",
+            "p5.termuxDesc": "Non-root Chromium browser automation library optimized for Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "On-Device Generative AI pipeline running native ARM64 Bionic Stable Diffusion on Android Termux and Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Tree-based recursive multi-split terminal workbench with 80 FPS smart PTY batching and DevSecOps guardrails.",
+            "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
+            "p6.title": "🌌 3D Neural Fabric & Setup Universe",
+            "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
+            "btn.launchApp": "🚀 Launch AMEVA OS",
+            "btn.promoStudio": "✨ Promo Studio",
+            "btn.viewDoc": "📖 View Documentation",
+            "btn.liveDemo": "⚡ Live Demo",
+            "btn.viewRepo": "🐙 GitHub Repo",
+            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
+            "btn.templateFoundry": "📄 Library Docs Template"
+      },
+      "la": {
+            "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
+            "side.founderBadge": "🏛️ Founder & Chair @ AMEVA Foundation",
+            "side.contact": "Contact & Links",
+            "side.location": "Bundang, Seongnam-si, South Korea",
+            "side.eduLang": "Education & Language",
+            "side.edu1Title": "Ajou University Graduate School",
+            "side.edu1Sub": "M.S. in Artificial Intelligence (2026.08 ~)",
+            "side.edu2Title": "Hanyang Cyber University",
+            "side.edu2Sub": "B.S. in Applied Software Engineering (3.94 / 4.5)",
+            "side.langTitle": "English (OPIc IH)",
+            "side.langSub": "Fluent Technical & Business Communication",
+            "side.skills": "Core Technical Competencies",
+            "side.catAI": "🧠 AI, Data Science & Advanced Reasoning",
+            "side.catBackend": "☕ Backend & Architecture",
+            "side.catDB": "💾 Database & Optimization",
+            "side.catFrontend": "🖥️ Frontend",
+            "side.catDevOps": "🚀 DevOps, Systems & Collab",
+            "tag.executive": "Executive Profile",
+            "tag.vision": "Vision & Philosophy",
+            "tag.career": "Enterprise Experience",
+            "tag.tooling": "Dynamic Tooling",
+            "tag.runtimes": "High-Performance Runtimes",
+            "tag.universe": "Universe Hub",
+            "p1.title": "👋 Hello, I am Software Engineer Eunho Kim",
+            "p1.p1": "\"A passionate engineer driven by relentless problem-solving tenacity, deep love for coding, and proactive communication.\"",
+            "p1.p2": "I find genuine joy in diving deep into complex technical hurdles and engineering elegant, robust solutions. Known for strong collaborative empathy and an unyielding commitment to seeing every challenge through to completion, I have spearheaded full-stack systems, large-scale DB query tuning (3s → 0.3s), and CI/CD automation across KT DS partners and SK AX subsidiaries since October 2021.",
+            "p2.title": "🧬 AMEVA Origin & Engineering Philosophy",
+            "p2.desc": "Inspired by the biological amoeba that thrives in resource-constrained environments, AMEVA aims for complete Data Sovereignty and AI Democratization by running autonomously inside edge devices without cloud server costs.",
+            "p2.thAcronym": "Acronym",
+            "p2.thArch": "Architecture Meaning",
+            "p2.thPurpose": "Core Purpose",
+            "p2.aArch": "Autonomous Reasoning & Decision Intelligence",
+            "p2.aPurpose": "AI agents that independently analyze contexts and plan actions",
+            "p2.mArch": "Hierarchical Orchestration (Nobles & Workers)",
+            "p2.mPurpose": "Decomposes complex workflows and delegates to specialized agents",
+            "p2.eArch": "Unified Enterprise Platform",
+            "p2.ePurpose": "Seamlessly interconnects Desktop, Web, and Edge devices",
+            "p2.vArch": "Isolated Offline Runtime Sandbox",
+            "p2.vPurpose": "100% Client-Side WASM and zero-leakage security boundaries",
+            "p2.autoArch": "Real-Time Visual Pipeline",
+            "p2.autoPurpose": "Executes automated workflows with zero server costs",
+            "p2.secHeading": "🛡️ Security Isolation Guarantee:",
+            "p2.securityNote": "※ AMEVA is strictly legitimate open-source systems software with zero malware/worm behavior, operating entirely within client-side isolated WASM sandboxes.",
+            "p3.title": "💼 Enterprise Career & Project Track Records",
+            "p3.skTitle": "🏢 SK AX Subsidiary",
+            "p3.skPeriod": "2026.02 ~ Present (Active)",
+            "p3.skRole": "Role: Tech Lead (TL), Business Analyst (BA), Enterprise CI/CD Pipelines, Full-Stack Development",
+            "p3.skB1": "Architected company-wide CI/CD automated deployment pipelines and led backend (Java/Spring Boot) and frontend full-stack engineering.",
+            "p3.skB2": "Spearheaded Business Analysis (BA) and Tech Leadership (TL) to maximize system reliability and team developer velocity.",
+            "p3.ktTitle": "🏢 KT DS Partner Company (Client Dev Team)",
+            "p3.ktPeriod": "2021.10 ~ 2026.01 (4 Years 4 Months)",
+            "p3.ktRole": "Role: Tech Lead (TL), PM/PL, Enterprise Core Systems (B2B/PLM) Engineering & ITO Operations",
+            "p3.ktB1": "<strong>KT Enterprise B2B/PLM Full-Stack Modernization</strong>: Web/MSA transition from legacy CS, zero-downtime 100% data migration, DB query tuning (<span class=\"highlight-metric\">3s → 0.3s</span>), and BRMS rule engine optimization cutting product launch lead-time (<span class=\"highlight-metric\">2 weeks → 3 days</span>).",
+            "p3.ktB2": "<strong>ITO Reliability & DevOps Automation (TL/PM)</strong>: Batch fee calculation tuning (<span class=\"highlight-metric\">0.5s → 0.05s</span>), Jenkins CI/CD deployment speedup (<span class=\"highlight-metric\">30m → 5m</span>), automated security compliance (0 violations), and incident MTTR reduction (<span class=\"highlight-metric\">1h → 10m</span>).",
+            "p4.title": "⚙️ Model Context Protocol (MCP) Hub",
+            "p4.desc": "Official AMEVA MCP ecosystem enabling dynamic tool registration into AI agent sessions within 3 seconds without server restarts.",
+            "p4.mcp1Name": "⚙️ MCP Wasm Toolkit",
+            "p4.mcp1Badge": "WASM OS Core",
+            "p4.mcp1Desc": "Runs risky operations (crawlers, dynamic scripts) inside 100% isolated browser Pyodide WASM sandboxes.",
+            "p4.mcp2Name": "🧰 MCP Dynamic Utils Hub",
+            "p4.mcp2Badge": "SSE Hot-Reload",
+            "p4.mcp2Desc": "Dynamically registers remote GitHub tools into active browser sessions within 3 seconds via SSE channels.",
+            "p5.title": "📦 AMEVA Open-Source Core Libraries",
+            "p5.workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+            "p5.sttDesc": "Android on-device unified Speech-to-Text and pure Python 128d X-Vector speaker diarization framework (Whisper.cpp + Vosk + Sherpa-ONNX).",
+            "p5.trainDesc": "Android Bionic ARM64 native lightweight tensor, DAG autograd, RoPE transformer, and on-device LoRA fine-tuning framework (100/100 audit pass).",
+            "p5.forgeDesc": "Zero-server-cost Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch compatibility and WGSL shaders.",
+            "p5.termuxDesc": "Non-root Chromium browser automation library optimized for Android Termux (ARM64 Bionic).",
+            "p5.diffusionDesc": "On-Device Generative AI pipeline running native ARM64 Bionic Stable Diffusion on Android Termux and Samsung Galaxy (Python & Node.js).",
+            "p5.multiCliDesc": "Tree-based recursive multi-split terminal workbench with 80 FPS smart PTY batching and DevSecOps guardrails.",
+            "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
+            "p6.title": "🌌 3D Neural Fabric & Setup Universe",
+            "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
+            "btn.launchApp": "🚀 Launch AMEVA OS",
+            "btn.promoStudio": "✨ Promo Studio",
+            "btn.viewDoc": "📖 View Documentation",
+            "btn.liveDemo": "⚡ Live Demo",
+            "btn.viewRepo": "🐙 GitHub Repo",
+            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
+            "btn.templateFoundry": "📄 Library Docs Template"
+      }
+};
+
+    function switchLanguage(lang) {
+      const targetLang = i18nDictionary[lang] ? lang : 'en';
+      const dict = i18nDictionary[targetLang] || i18nDictionary['en'];
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      document.documentElement.lang = targetLang;
+      
+      const sel = document.getElementById('globalLangSelect');
+      if (sel && sel.value !== targetLang) {
+        sel.value = targetLang;
+      }
+      try { localStorage.setItem('uno_km_lang', targetLang); localStorage.setItem('ameva_global_lang', targetLang); localStorage.setItem('ameva_lib_doc_lang', targetLang); } catch (e) {}
+    }
+
+    function detectInitialLanguage() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const qLang = urlParams.get('lang');
+        if (qLang && i18nDictionary[qLang.toLowerCase()]) {
+          return qLang.toLowerCase();
+        }
+      } catch (e) {}
+
+      try {
+        const saved = localStorage.getItem('ameva_global_lang') || localStorage.getItem('uno_km_lang') || localStorage.getItem('ameva_lib_doc_lang');
+        if (saved && i18nDictionary[saved]) {
+          return saved;
+        }
+      } catch (e) {}
+
+      try {
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase().split('-')[0];
+        if (navLang && i18nDictionary[navLang]) {
+          return navLang;
+        }
+      } catch (e) {}
+
+      return 'en';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialLang = detectInitialLanguage();
+      switchLanguage(initialLang);
+    });
+  </script>
+</body>
+</html>

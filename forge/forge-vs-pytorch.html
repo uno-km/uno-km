@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="forgeVsPytorch.pageTitle">AMEVA-Forge vs PyTorch</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="alternate icon" href="./favicon.svg">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./dist/index.js"></script>
+    <script src="./i18n.js"></script>
+    <script src="./i18n-translations.js"></script>
+    <link rel="stylesheet" href="/shared/style.css">
+    <script src="/shared/common.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 data-i18n="common.headerTitle">AMEVA-Forge Documentation</h1>
+        <div class="header-badge-group">
+            <span class="apache-tag" data-i18n="common.releaseTag">Release 1.0.0</span>
+            <a href="./demo.html"><strong data-i18n="common.liveStudioBtn">[ Live WebGPU Studio ]</strong></a>
+            <a href="https://github.com/uno-km/ameva-forge" target="_blank" data-i18n="common.githubBtn">[ GitHub Repository ]</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3 data-i18n="common.nav.interactive">Interactive</h3>
+            <ul>
+                <li><a href="./demo.html"><strong data-i18n="common.nav.liveStudio">Live WebGPU Studio</strong></a></li>
+                <li><a href="experimental/playgrounds/mnist/index.html"><strong data-i18n="common.nav.mnist">1. MNIST Inference</strong></a></li>
+                <li><a href="experimental/playgrounds/benchmark/index.html"><strong data-i18n="common.nav.benchmark">2. Benchmark Test</strong></a></li>
+                <li><a href="experimental/playgrounds/training/index.html"><strong data-i18n="common.nav.training">3. Training Demo</strong></a></li>
+                <li><a href="experimental/playgrounds/vision/index.html"><strong data-i18n="common.nav.vision">4. Vision Center</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.documentation">Documentation</h3>
+            <ul>
+                <li><a href="index.html"><strong data-i18n="common.nav.home">Home</strong></a></li>
+                <li><a href="installation.html"><strong data-i18n="common.nav.installation">Installation</strong></a></li>
+                <li><a href="quickstart.html"><strong data-i18n="common.nav.quickstart">Quickstart</strong></a></li>
+                <li><a href="api-reference.html"><strong data-i18n="common.nav.apiReference">API Reference</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.concepts">Concepts</h3>
+            <ul>
+                <li><a href="what-is-forge.html"><strong data-i18n="common.nav.whatIsForge">What is Forge?</strong></a></li>
+                <li><a href="forge-vs-pytorch.html" class="active"><strong data-i18n="common.nav.forgeVsPytorch">Forge vs PyTorch</strong></a></li>
+            </ul>
+                    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+            <ul>
+                <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+                <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/foundation/">AMEVA Foundation</a></li>
+                <li><a href="/index.html">Founder Digital CV</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h2 data-i18n="forgeVsPytorch.h2">AMEVA-Forge vs PyTorch Comparison</h2>
+            <p data-i18n="forgeVsPytorch.desc">AMEVA-Forge was built from the ground up to provide identical API ergonomics to PyTorch while operating natively within browser sandboxes.</p>
+
+            <h3 data-i18n="forgeVsPytorch.compTableTitle">Feature & Operational Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;" data-i18n="forgeVsPytorch.thFeature">Feature</th>
+                        <th style="width: 37%;" data-i18n="forgeVsPytorch.thPytorch">PyTorch</th>
+                        <th style="width: 38%;" data-i18n="forgeVsPytorch.thForge">AMEVA-Forge (Release 1.0)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong data-i18n="forgeVsPytorch.row1Label">Primary Runtime</strong></td>
+                        <td data-i18n="forgeVsPytorch.row1Pytorch">C++ Native / Python C-API (CUDA/ROCm/CPU)</td>
+                        <td data-i18n="forgeVsPytorch.row1Forge">Browser WebGPU (WGSL) / Pyodide WASM</td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="forgeVsPytorch.row2Label">Installation Footprint</strong></td>
+                        <td data-i18n="forgeVsPytorch.row2Pytorch">~1 GB - 4 GB (Heavy binary package)</td>
+                        <td data-i18n-html="forgeVsPytorch.row2Forge"><strong>&lt; 500 KB (Zero install via browser)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="forgeVsPytorch.row3Label">Target Workloads</strong></td>
+                        <td data-i18n="forgeVsPytorch.row3Pytorch">Data center LLMs, HPC, Distributed clusters</td>
+                        <td data-i18n-html="forgeVsPytorch.row3Forge"><strong>Educational AI, Edge Small Models, In-Browser Training</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="forgeVsPytorch.row4Label">API Style</strong></td>
+                        <td data-i18n-html="forgeVsPytorch.row4Pytorch"><code>torch.nn</code>, <code>torch.optim</code>, Autograd</td>
+                        <td data-i18n-html="forgeVsPytorch.row4Forge"><strong>100% PyTorch Compatible</strong> (<code>forge.nn</code>, <code>forge.optim</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="forgeVsPytorch.row5Label">Zero-Leak Memory</strong></td>
+                        <td data-i18n="forgeVsPytorch.row5Pytorch">Custom C++ Memory Caching Allocator</td>
+                        <td data-i18n-html="forgeVsPytorch.row5Forge"><strong>Weakref GC Finalizer + WebGPU Staging Buffer Pool</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 data-i18n="forgeVsPytorch.syntaxTitle">API Syntax Parity</h3>
+            <p data-i18n="forgeVsPytorch.syntaxDesc">Code written in AMEVA-Forge looks and feels identical to standard PyTorch code:</p>
+            <pre><code># ── PyTorch ──
+import torch
+import torch.nn as nn
+
+model = nn.Sequential(nn.Linear(2, 4), nn.ReLU(), nn.Linear(4, 1))
+out = model(torch.randn(4, 2))
+loss = out.sum()
+loss.backward()
+
+# ── AMEVA-Forge (Identical API!) ──
+import forge as torch
+import forge.nn as nn
+
+model = nn.Sequential(nn.Linear(2, 4), nn.ReLU(), nn.Linear(4, 1)).to("gpu")
+out = model(torch.randn(4, 2, device="gpu"))
+loss = out.sum()
+loss.backward()</code></pre>
+        </main>
+    </div>
+
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 AMEVA-Forge Team. Released under the Apache-2.0 License.</span>
+    </footer>
+</body>
+</html>

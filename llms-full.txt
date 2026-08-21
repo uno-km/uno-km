@@ -1,0 +1,103 @@
+# AMEVA Ecosystem: Comprehensive Technical Architecture & Full-Text AI Reference (llms-full.txt)
+
+This document contains the complete technical specification, APIs, mathematical models, architectural boundaries, and runtimes of the AMEVA ecosystem.
+
+---
+
+## Table of Contents
+1. Executive Identity & Engineering Philosophy
+2. AMEVA Acronym & 4-Layer Architecture
+3. AMEVA Workstation Web (WebGPU Sovereign Local AI)
+4. AMEVA-Forge (Browser-Native WebGPU Autograd Engine)
+5. Termux-STT (Integrated On-Device Speech Recognition & Diarization)
+6. Termux-Train (Bionic ARM64 DAG Autograd & LoRA Training Engine)
+7. Termux-Playwright (Non-Root Chromium CDP Automation)
+8. Termux-Diffusion (Bionic ARM64 Native Stable Diffusion)
+9. SRE Dynamic Throttling & Security Isolation
+
+---
+
+## 1. Executive Identity & Engineering Philosophy
+- **Founder & Systems Architect**: Eunho Kim (김은호 / @uno-km)
+- **Education**: Ajou University Graduate School (M.S. in AI candidate), Hanyang Cyber University (B.S. in Applied Software Eng, 3.94/4.5)
+- **Philosophy**: Complete data sovereignty, 100% zero cloud tax, offline privacy by design.
+
+---
+
+## 2. AMEVA Acronym & 4-Layer Architecture
+- **A — Agentic**: Autonomous reasoning and planning intelligence.
+- **M — Multi-Agent**: Hierarchical delegation (Nobles & Workers).
+- **E — Ecosystem**: Unified cross-platform integration (Web, Desktop, Mobile Termux, Edge).
+- **V — Virtualized**: 100% isolated client-side WASM sandbox.
+- **A — Automation**: Zero-server visual pipeline execution.
+
+---
+
+## 3. AMEVA Workstation Web
+- **URL**: https://ameva-workstation-web-core.vercel.app/
+- **Key Modules**:
+  - WebGPU Local AI: Qwen2.5 0.5B, 1.5B, 7B running in-browser via WebLLM/WGSL shaders.
+  - 3-Sec MapReduce PDF/DOCX Document Intelligence.
+  - In-App Video Trimming (FFmpeg WASM).
+  - 1-Sec AI Background Removal (WebAssembly Neural Segmentation).
+  - Silence Detection & Waveform Trimmer.
+
+---
+
+## 4. AMEVA-Forge
+- **PyPI**: `pip install ameva`
+- **Docs**: https://uno-km.vercel.app/lib/forge/
+- **Features**:
+  - Drop-in PyTorch compatibility (`torch.Tensor`, `nn.Linear`, `nn.LayerNorm`, `optim.SGD`, `loss.backward()`).
+  - WGSL 16x16 workgroup tiled matmul shaders.
+  - Closed-form GPU reverse-mode automatic differentiation.
+  - Deterministic GC finalizers and zero-leak staging buffer pools.
+
+---
+
+## 5. Termux-STT
+- **PyPI / npm**: `pip install termux-stt` | `npm install termux-stt`
+- **Docs**: https://uno-km.vercel.app/lib/stt/
+- **Features**:
+  - Unified 3-engine backend: Whisper.cpp (OpenBLAS NEON), Vosk (Kaldi), Sherpa-ONNX.
+  - Pure Python 128d X-Vector K-Means Speaker Diarization.
+  - Ultra-low memory footprint (<350MB RAM on Android Termux).
+
+---
+
+## 6. Termux-Train
+- **PyPI**: `pip install termux-train`
+- **Docs**: https://uno-km.vercel.app/lib/train/
+- **Features**:
+  - Pure Python Autograd Core with pluggable NumPy C-Acceleration.
+  - SafeTensors zero-copy parser & serialization.
+  - Rotary Position Embeddings (RoPE) & Causal Attention.
+  - Low-Rank Adaptation (LoRA) on-device training & weight freezing.
+  - 100/100 Audit Scorecard passed.
+
+---
+
+## 7. Termux-Playwright
+- **PyPI / npm**: `pip install termux-playwright` | `npm install termux-playwright`
+- **Docs**: https://uno-km.vercel.app/lib/playwright/
+- **Features**:
+  - Native Bionic Chromium CDP control without PRoot overhead.
+  - Persistent disk ledger (.tp_ledger) for guaranteed 100% orphan process reaping across kernel crashes.
+  - Prototype-safe anti-bot stealth deleting `navigator.webdriver`.
+  - eMMC flash memory wear protection via RAM-based caching.
+
+---
+
+## 8. Termux-Diffusion
+- **PyPI / npm**: `pip install termux-diffusion` | `npm install termux-diffusion`
+- **Docs**: https://uno-km.vercel.app/lib/diffusion/
+- **Features**:
+  - Dual-Engine (Python & Node.js) on-device Stable Diffusion.
+  - bfloat16 ARM NEON assembly acceleration for Samsung Galaxy hardware.
+  - Zero-root, zero-PRoot native execution.
+
+---
+
+## 9. SRE Dynamic Throttling & Security Isolation
+- **Security Guarantee**: AMEVA tools execute within safe client-side WASM or unprivileged user-space Termux sandboxes with zero root elevation.
+- **SRE Resilience**: Dynamic throttling based on device temperature, memory headroom, and battery state.

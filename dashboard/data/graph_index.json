@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {"id": "AMEVA Neural Fabric", "group": 1, "description": "The root of the AMEVA AI ecosystem.", "radius": 24},
+    
+    {"id": "Edge-Native LLM", "group": 2, "description": "In-browser WebGPU inference module.", "radius": 16},
+    {"id": "WebLLM (Qwen 1.5B)", "group": 2, "description": "Quantized Instruct model for fast code generation.", "radius": 12},
+    {"id": "Model Caching", "group": 2, "description": "IndexedDB local cache layer.", "radius": 10},
+    
+    {"id": "Local GraphRAG", "group": 3, "description": "Browser-based semantic search engine.", "radius": 16},
+    {"id": "Transformers.js", "group": 3, "description": "MiniLM-L6 embedding generation via WebWorker.", "radius": 12},
+    {"id": "Vector Search", "group": 3, "description": "Cosine similarity matching over local JSON.", "radius": 10},
+    
+    {"id": "Knowledge Graph", "group": 4, "description": "Visual representation of AMEVA codebase.", "radius": 16},
+    {"id": "D3.js Visualizer", "group": 4, "description": "Force-directed rendering engine.", "radius": 12},
+    {"id": "graph_index.json", "group": 4, "description": "Static repository map.", "radius": 10},
+    
+    {"id": "AMEVA-LLM-Trainer", "group": 5, "description": "Local Python-based fine-tuning project.", "radius": 16},
+    {"id": "setup.ps1", "group": 5, "description": "Environment bootstrap script.", "radius": 12},
+    {"id": "requirements.txt", "group": 5, "description": "Python dependencies.", "radius": 10}
+  ],
+  "links": [
+    {"source": "AMEVA Neural Fabric", "target": "Edge-Native LLM", "value": 2},
+    {"source": "AMEVA Neural Fabric", "target": "Local GraphRAG", "value": 2},
+    {"source": "AMEVA Neural Fabric", "target": "Knowledge Graph", "value": 2},
+    {"source": "AMEVA Neural Fabric", "target": "AMEVA-LLM-Trainer", "value": 2},
+    
+    {"source": "Edge-Native LLM", "target": "WebLLM (Qwen 1.5B)", "value": 1},
+    {"source": "Edge-Native LLM", "target": "Model Caching", "value": 1},
+    
+    {"source": "Local GraphRAG", "target": "Transformers.js", "value": 1},
+    {"source": "Local GraphRAG", "target": "Vector Search", "value": 1},
+    {"source": "Vector Search", "target": "graph_index.json", "value": 1},
+    
+    {"source": "Knowledge Graph", "target": "D3.js Visualizer", "value": 1},
+    {"source": "Knowledge Graph", "target": "graph_index.json", "value": 1},
+    
+    {"source": "AMEVA-LLM-Trainer", "target": "setup.ps1", "value": 1},
+    {"source": "AMEVA-LLM-Trainer", "target": "requirements.txt", "value": 1}
+  ]
+}

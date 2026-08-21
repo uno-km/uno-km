@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "version": "2026-S1",
+    "lastUpdated": "2026-06-12",
+    "description": "AMEVA Cinematic Tour Script — 이 파일을 수정하면 시네마틱 투어 콘텐츠가 자동으로 최신화됩니다."
+  },
+  "steps": [
+    {
+      "nodeId": "AMEVA Universe",
+      "title": "🌌 AMEVA Universe",
+      "type": "category",
+      "description": "AMEVA는 'Autonomous Multi-Agent Edge-AI Ecosystem'의 약자입니다. Data Privacy, Hardware-Software Co-Design, 그리고 SRE 원칙을 핵심 가치로 삼아, 클라우드 없이도 스스로 사고하고 진화하는 오프라인 AI 생태계를 구축하는 프로젝트입니다. 계층적 제어(Hierarchical Control), 하드웨어-소프트웨어 공동 설계, 그리고 설계에 의한 신뢰성(Reliability by Design)이라는 세 가지 핵심 패러다임 위에 구축되었습니다.",
+      "tech": "Python 3.9+, GGUF, llama.cpp, Ollama, WebGPU, Docker, D3.js"
+    },
+    {
+      "nodeId": "MLOps",
+      "title": "⚙️ MLOps Infrastructure",
+      "type": "category",
+      "description": "AI 모델의 안정적인 서빙, 파이프라인 관리, 그리고 데이터 인프라를 담당하는 운영 레이어입니다. Site Reliability Engineering(SRE) 원칙을 AI 추론 과정에 적용하여, 제한된 엣지 환경에서도 Mission-critical 수준의 안정성을 보장합니다.",
+      "tech": "Python, FastAPI, SQLite, SRE Methodology, SCP, HTTPS"
+    },
+    {
+      "nodeId": "AMEVA-Model-Nexus",
+      "title": "🔌 Model Nexus",
+      "type": "repo",
+      "parentCategory": "MLOps",
+      "description": "제한된 리소스 환경에서 AI를 안정적으로 서빙하기 위한 통합 API 게이트웨이입니다. 모델을 가상화된 리소스로 취급하며, Dynamic Scoped-Throttling 기술로 현재 하드웨어의 온도 및 전력 소모를 실시간 감지하여 Context Window와 Sampling 파라미터를 동적으로 조절합니다. 복잡한 Agent 요청을 단순 질의보다 우선 처리하는 High-Availability Serving도 제공합니다.",
+      "tech": "Python, FastAPI, Dynamic Throttling, HA Serving",
+      "github": "https://github.com/uno-km/AMEVA-Model-Nexus"
+    },
+    {
+      "nodeId": "AMEVA-Data-Harvester",
+      "title": "📡 Data Harvester",
+      "type": "repo",
+      "parentCategory": "MLOps",
+      "description": "데이터 손실 없는 극도의 복원력을 갖춘 엣지 데이터 수집기입니다. 데이터베이스 없이 엣지에서 직접 하이브리드 전송 경로(SCP, HTTPS, Telegram Bot)를 통해 데이터를 수집하며, Payload Validation을 통한 제로-로스 검증 메커니즘으로 데이터 무결성을 보장합니다.",
+      "tech": "Python, SCP, HTTPS, Telegram Bot API, Multi-Transport Backup",
+      "github": "https://github.com/uno-km/AMEVA-Data-Harvester"
+    },
+    {
+      "nodeId": "AMEVA-Conductor",
+      "title": "🎛️ Conductor",
+      "type": "repo",
+      "parentCategory": "MLOps",
+      "description": "AMEVA 생태계 전반을 원격으로 제어하는 크로스 플랫폼 UI입니다. Human-Agent 인터랙션을 위한 통합 컨트롤 인터페이스를 제공하여, 분산된 에이전트 시스템을 한 곳에서 모니터링하고 관리할 수 있습니다.",
+      "tech": "Cross-platform UI, WebSocket, Real-time Monitoring",
+      "github": "https://github.com/uno-km/AMEVA-Conductor"
+    },
+    {
+      "nodeId": "AMEVA-Database",
+      "title": "🗄️ Database",
+      "type": "repo",
+      "parentCategory": "MLOps",
+      "description": "분산된 AMEVA 에코시스템을 위한 경량 SQLite 기반 데이터베이스 및 로그 인스펙터입니다. 각 에이전트의 활동 로그, 시스템 메트릭, 추론 결과를 수집하고 분석하여 생태계 전반의 건강 상태를 파악합니다.",
+      "tech": "SQLite, Python, pandas, Log Analytics",
+      "github": "https://github.com/uno-km/AMEVA-Database"
+    },
+    {
+      "nodeId": "LLM",
+      "title": "🧠 LLM Core Engine",
+      "type": "category",
+      "description": "대규모 언어 모델의 훈련, 최적화, 그리고 에이전트 오케스트레이션 기술이 모인 허브입니다. 현대 LLM의 Long-context 내 '망각(Forgetting)' 현상을 해결하기 위해, User Intent를 Nobles(의사결정 레이어)로 추상화하고 원자 단위 서브 태스크로 분해하여 전문화된 Workers에게 위임하는 계층적 주권(Hierarchical Sovereignty) 아키텍처를 연구합니다.",
+      "tech": "GGUF, llama.cpp, LoRA, PyTorch, Quantization"
+    },
+    {
+      "nodeId": "LLM Applications",
+      "title": "📱 LLM Applications",
+      "type": "category",
+      "description": "LLM 코어 엔진을 바탕으로 구축된 실생활 응용 서비스와 벤치마크 툴셋입니다. 프라이버시 우선 문서 지능 파이프라인부터, 엣지 하드웨어의 전력-성능 프로파일링까지 다양한 응용을 포함합니다.",
+      "tech": "Python, Document AI, Benchmarking Frameworks"
+    },
+    {
+      "nodeId": "AMEVA-Doc-AI",
+      "title": "📄 Doc AI",
+      "type": "repo",
+      "parentCategory": "LLM Applications",
+      "description": "프라이버시 최우선 오프라인 문서 지능 파이프라인입니다. 인터넷 연결 없이 로컬 환경에서 문서를 분석하고 이해하는 완전한 오프라인 Document Intelligence를 구현합니다. 민감한 문서 데이터가 외부로 전송되지 않도록 설계된 Data Sovereignty 아키텍처가 핵심입니다.",
+      "tech": "Python, LLM, Document Parsing, Privacy-First Architecture",
+      "github": "https://github.com/uno-km/AMEVA-Doc-AI"
+    },
+    {
+      "nodeId": "AMEVA-Benchmark-Suite",
+      "title": "📊 Benchmark Suite (Singularity)",
+      "type": "repo",
+      "parentCategory": "LLM Applications",
+      "description": "'측정할 수 없으면 개선할 수 없다.' AMEVA 모든 최적화의 기술적 근거를 제공하는 실증적 벤치마크 스위트입니다. TPS(Tokens Per Second)와 mW(Milliwatt) 소모량을 동기화하여 분석하는 Synchronized Power Tracking을 통해 'Greener AI'의 첫걸음을 내딛습니다.",
+      "tech": "Python, Power Profiling, TPS Tracking, Synchronized Metrics",
+      "github": "https://github.com/uno-km/AMEVA-Benchmark-Suite"
+    },
+    {
+      "nodeId": "STT",
+      "title": "🎙️ STT Ecosystem",
+      "type": "category",
+      "description": "한국어 우선 음성 지능 생태계입니다. Whisper 기반 LoRA 파인 튜닝으로 한국어에 특화된 음성 인식(Speech-to-Text)을 구현하며, 데이터 스크래핑부터 모델 병합까지 전체 파이프라인을 제공합니다.",
+      "tech": "Whisper, LoRA, PyTorch, PEFT, Korean NLP"
+    },
+    {
+      "nodeId": "AMEVA-STT-Trainer",
+      "title": "🏋️ STT Trainer",
+      "type": "repo",
+      "parentCategory": "STT",
+      "description": "Whisper 기반 한국어 STT 모델을 LoRA 파인 튜닝하는 훈련기입니다. 한국어 음성 데이터 스크래핑부터 전처리, LoRA 어댑터 학습, 그리고 최종 모델 병합(Merge)까지 End-to-End 파이프라인을 자동화합니다.",
+      "tech": "Whisper, LoRA, PEFT, Korean ASR, Data Pipeline",
+      "github": "https://github.com/uno-km/AMEVA-STT-Trainer"
+    },
+    {
+      "nodeId": "AMEVA-STT-Agent",
+      "title": "🤖 STT Agent",
+      "type": "repo",
+      "parentCategory": "STT",
+      "description": "Edge Device에서 실시간 음성 처리 및 통합을 담당하는 음성 인식 에이전트입니다. 훈련된 STT 모델을 실제 에이전트 시스템에 통합하여 실시간 한국어 음성 명령 처리를 가능하게 합니다.",
+      "tech": "Whisper Runtime, Edge Inference, Real-time Processing",
+      "github": "https://github.com/uno-km/AMEVA-STT-Agent"
+    },
+    {
+      "nodeId": "Multiplex Applications",
+      "title": "🔧 Multiplex Applications",
+      "type": "category",
+      "description": "단일 기능을 넘어 시스템을 제어하고 자동화하는 복합 에이전트 및 데스크톱 어플리케이션입니다. 에이전트 오케스트레이션부터 OCR 기반 화면 이해까지, 사용자와 AI의 상호작용 최전선에 위치합니다.",
+      "tech": "Python, Tkinter, llama.cpp, OCR, Multi-Agent Systems"
+    },
+    {
+      "nodeId": "AMEVA-Agent-Orchestra",
+      "title": "🎼 Agent Orchestra",
+      "type": "repo",
+      "parentCategory": "Multiplex Applications",
+      "description": "AMEVA 생태계의 오케스트레이터입니다. User Intent를 Nobles(의사결정 레이어)로 추상화하고, 이를 원자 단위의 서브 태스크로 쪼개어 전문화된 Workers에게 위임합니다. Multi-turn 오케스트레이션 과정에서 Semantic Drift를 최소화하며, 로컬 GGUF 모델에 최적화된 Graph-based State Management 시스템을 구현합니다.",
+      "tech": "Python, GGUF, Graph State Management, Hierarchical Task Decomposition",
+      "github": "https://github.com/uno-km/AMEVA-Agent-Orchestra"
+    },
+    {
+      "nodeId": "AMEVA-Window-Assistant",
+      "title": "🖥️ Window Assistant",
+      "type": "repo",
+      "parentCategory": "Multiplex Applications",
+      "description": "Windows 네이티브 로컬 AI 데스크톱 어시스턴트입니다. OCR-First Perception 전략으로 화면을 우선 이해하며, OCR 실패 시 Vision 모델로 자동 전환하는 Multimodal Fallback을 지원합니다. 완전 오프라인 음성 입출력과 llama.cpp 기반 로컬 추론 엔진이 통합되어 있습니다.",
+      "tech": "Python, Tkinter, llama.cpp, OCR, Offline Voice I/O",
+      "github": "https://github.com/uno-km/AMEVA-Window-Assistant"
+    },
+    {
+      "nodeId": "Social Research",
+      "title": "🔬 Social Research",
+      "type": "category",
+      "description": "AI가 사회에 미치는 영향을 실험적으로 연구하는 분야입니다. 완전 자율적인 다중 에이전트 시뮬레이션을 통해, 인터넷 공간에서 AI 에이전트들이 만들어내는 사회적 역학을 관찰하고 분석합니다.",
+      "tech": "Docker, Docker Compose, Multi-Agent Simulation, Sociology"
+    },
+    {
+      "nodeId": "AMEVA-Dead-Internet-Threatre",
+      "title": "🎭 Dead Internet Theatre",
+      "type": "repo",
+      "parentCategory": "Social Research",
+      "description": "완전 자율적인 Docker 기반 다중 에이전트 시뮬레이션입니다. 'Dead Internet Theory'에서 영감을 받아, AI 에이전트들만으로 구성된 가상 인터넷 공간을 구축하고 이들의 상호작용을 관찰합니다. 각 에이전트는 독립적인 컨테이너에서 실행되며 자율적으로 콘텐츠를 생성하고 소통합니다.",
+      "tech": "Docker, Docker Compose, LLM, Autonomous Agent Simulation",
+      "github": "https://github.com/uno-km/AMEVA-Dead-Internet-Threatre"
+    }
+  ]
+}

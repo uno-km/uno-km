@@ -1,0 +1,67 @@
+# AMEVA Sovereign Ecosystem & Technical Architecture Documentation
+> Machine-Readable AI Context & Technical Manifest for LLM RAG Agents, Autonomous Assistants, and Search Indexers.
+
+## Project Summary
+AMEVA (Autonomous Multi-Agent Enterprise Virtualized Automation) is a next-generation sovereign, edge-native AI ecosystem founded by Eunho Kim (@uno-km). It democratizes on-device deep learning, browser-native WebGPU autograd, zero-root mobile automation, speech recognition, and LoRA training with zero cloud subscription costs and 100% data sovereignty.
+
+## Flagship Products & Core Open-Source Libraries
+
+### 1. AMEVA Workstation Web (Web / Desktop)
+- **Description**: World-first 100% on-device WebGPU local AI workstation featuring Qwen2.5 (0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX summarizer, in-app video trimmer, and 1-sec background remover.
+- **Runtime**: WebGPU, WebLLM, Pyodide WASM, Client-Side Vector Search.
+- **Live App**: https://ameva-workstation-web-core.vercel.app/
+- **Documentation**: https://uno-km.vercel.app/app/workstation/
+
+### 2. AMEVA-Forge
+- **Description**: Browser-Native WebGPU deep learning autograd engine with drop-in PyTorch syntax compatibility and custom WGSL compute shaders.
+- **Package**: PyPI `pip install ameva`
+- **Documentation**: https://uno-km.vercel.app/lib/forge/
+- **Live Studio Demo**: https://uno-km.vercel.app/lib/forge/demo.html
+
+### 3. Termux-STT
+- **Description**: Unified on-device speech-to-text (STT) and pure Python 128d X-Vector speaker diarization framework for Android Termux. Integrates Whisper.cpp, Vosk, and Sherpa-ONNX.
+- **Packages**: PyPI `pip install termux-stt` | npm `npm install termux-stt`
+- **Documentation**: https://uno-km.vercel.app/lib/stt/
+- **Audio Showcase**: https://uno-km.vercel.app/lib/stt/showcase.html
+
+### 4. Termux-Train
+- **Description**: Lightweight DAG autograd tensor and on-device LoRA training framework built for Android Bionic ARM64 without PyTorch dependency (100/100 audit score).
+- **Package**: PyPI `pip install termux-train`
+- **Documentation**: https://uno-km.vercel.app/lib/train/
+
+### 5. Termux-Playwright
+- **Description**: Non-root headless Chromium automation framework for Android Termux with persistent disk ledger recovery (.tp_ledger) and prototype-safe stealth.
+- **Packages**: PyPI `pip install termux-playwright` | npm `npm install termux-playwright`
+- **Documentation**: https://uno-km.vercel.app/lib/playwright/
+
+### 6. Termux-Diffusion
+- **Description**: Bionic ARM64 native on-device Stable Diffusion runtime for Android Termux and Samsung Galaxy hardware.
+- **Packages**: PyPI `pip install termux-diffusion` | npm `npm install termux-diffusion`
+### 7. AMEVA Sentinel (Security & Observability SDK)
+- **Description**: Privacy-first security observability and deterministic threat scoring layer for web applications. Zero raw coordinates/keystrokes collected, pure mathematical 0-100 policy evaluation, cross-browser verified across Chromium, Firefox, WebKit.
+- **Packages**: npm `npm install @ameva/sentinel@alpha @ameva/sentinel-browser@alpha @ameva/sentinel-risk-core@alpha`
+- **Documentation**: https://uno-km.github.io/ameva-sentinel/
+- **GitHub**: https://github.com/uno-km/ameva-sentinel
+
+## 1-Line Quick Installation Matrix
+
+```bash
+# Python Edition:
+pip install ameva                    # AMEVA-Forge WebGPU Autograd
+pip install termux-stt               # Termux-STT Audio Recognition
+pip install termux-train             # Termux-Train LoRA Engine
+pip install termux-playwright        # Termux-Playwright Automation
+pip install termux-diffusion         # Termux-Diffusion Image Generation
+
+# Node.js / TypeScript Edition:
+npm install @ameva/sentinel@alpha    # AMEVA-Sentinel Privacy Security SDK
+npm install termux-stt               # Termux-STT Node.js
+npm install termux-playwright        # Termux-Playwright Node.js
+npm install termux-diffusion         # Termux-Diffusion Node.js
+```
+
+## Documentation Sitemap Links
+- Main Portal & CV: https://uno-km.vercel.app/
+- Foundation Bylaws & Portal: https://uno-km.vercel.app/foundation/
+- Master Sitemap: https://uno-km.vercel.app/sitemap.xml
+- Full LLM Dump: https://uno-km.vercel.app/llms-full.txt
