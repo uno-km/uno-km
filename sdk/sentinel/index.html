@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMEVA-Sentinel: Privacy-First Security Observability Layer for Web Applications</title>
+    <meta name="description" content="Self-hosted, edge-native security observability and session risk scoring SDK. Observe, measure, explain, and score web traffic in 1 line of code.">
+    <link rel="icon" type="image/svg+xml" href="../../shared/brand/favicon.svg">
+    <link rel="stylesheet" href="../../shared/style.css">
+    <script src="../../shared/i18n.js"></script>
+    <script src="../../shared/i18n-translations.js"></script>
+    <script src="../../shared/common.js"></script>
+    <script src="../../shared/telemetry.js"></script>
+</head>
+<body>
+    <header class="top-header">
+        <a href="../../index.html" class="header-brand">
+            <img src="../../shared/brand/favicon.svg" alt="AMEVA Logo" style="width:28px; height:28px;">
+            <h1>AMEVA-Sentinel</h1>
+        </a>
+        <div class="header-controls">
+            <span class="release-tag">v1.0.0 SDK</span>
+            <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn">🐙 GitHub</a>
+            <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn primary">📦 npm</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Overview</h3>
+            <ul>
+                <li><a href="index.html" class="active"><strong>1. Architecture &amp; DX</strong></a></li>
+                <li><a href="#quickstart"><strong>2. 3-Minute Quickstart</strong></a></li>
+                <li><a href="#machine-evidence"><strong>3. Machine Evidence Spec</strong></a></li>
+                <li><a href="#policy-as-code"><strong>4. Policy as Code</strong></a></li>
+            </ul>
+            <h3>Packages Monorepo</h3>
+            <ul>
+                <li><a href="#sentinel-facade">@ameva/sentinel</a></li>
+                <li><a href="#browser-sdk">@ameva/sentinel-browser</a></li>
+                <li><a href="#risk-core">@ameva/sentinel-risk-core</a></li>
+            </ul>
+            <h3>Ecosystem Hub</h3>
+            <ul>
+                <li><a href="../../index.html">👤 Founder Digital CV</a></li>
+                <li><a href="../../foundation/">🏛️ AOSF Foundation Portal</a></li>
+                <li><a href="../../app/workstation/">🏢 Workstation Web</a></li>
+                <li><a href="../../lib/forge/">⚡ AMEVA-Forge</a></li>
+                <li><a href="../../lib/stt/">🎙️ Termux-STT</a></li>
+                <li><a href="../../lib/train/">🚂 Termux-Train</a></li>
+                <li><a href="../../lib/playwright/">🎭 Termux-Playwright</a></li>
+                <li><a href="../../lib/diffusion/">🎨 Termux-Diffusion</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="alert alert-tip">
+                <strong>📦 1-Line Quick Installation:</strong>
+                <code>npm install @ameva/sentinel</code> &bull; <code>pip install ameva-sentinel</code>
+            </div>
+
+            <div class="badges-bar">
+                <img src="https://img.shields.io/badge/npm-@ameva/sentinel-blue.svg" alt="npm">
+                <img src="https://img.shields.io/badge/PyPI-ameva--sentinel-blue.svg" alt="PyPI">
+                <img src="https://img.shields.io/badge/Browser_SDK-<15KB_gzip-brightgreen.svg" alt="Size">
+                <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License">
+            </div>
+
+            <h2>Privacy-First Security Observability Layer for Web Applications</h2>
+            <p><strong>"웹 서비스에 들어오는 트래픽을 관측하고, 측정하고, 설명하고, 점수화한다."</strong></p>
+            <p>AMEVA Sentinel is a self-hosted, sovereign security observability layer that evaluates session automation risk in customer-owned infrastructure without transmitting raw user data to 3rd-party SaaS providers.</p>
+
+            <h3 id="quickstart">⚡ 3-Minute Quickstart</h3>
+            
+            <h4>1. Backend / Edge Handler (1-Line Evaluation)</h4>
+            <pre><code>import { sentinel, SentinelAction } from '@ameva/sentinel';
+
+export async function POST(req: Request) {
+  const risk = await sentinel.score(req);
+
+  if (risk.action === SentinelAction.RATE_LIMIT) {
+    return new Response("Rate Limit Exceeded", { status: 429 });
+  }
+
+  if (risk.action === SentinelAction.REQUIRE_APP_VERIFICATION) {
+    return new Response(JSON.stringify({ error: "2FA Required" }), { status: 401 });
+  }
+
+  // Proceed with standard business logic...
+}</code></pre>
+
+            <h4>2. Frontend Client (React Hook)</h4>
+            <pre><code>import { useSentinel } from '@ameva/sentinel/react';
+
+export default function LoginForm() {
+  const { score, isSuspicious } = useSentinel();
+
+  return (
+    &lt;form&gt;
+      {isSuspicious &amp;&amp; &lt;p className="warning"&gt;추가 인증이 필요합니다.&lt;/p&gt;}
+      &lt;input type="text" placeholder="Username" /&gt;
+      &lt;input type="password" placeholder="Password" /&gt;
+      &lt;button type="submit"&gt;Login&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+
+            <h3 id="machine-evidence">📊 Machine-Readable Evidence Specification</h3>
+            <p>Every evaluation returns a structured, explainable breakdown suitable for automated dashboard parsing and human audit logs:</p>
+            <pre><code>{
+  "traceId": "trc_8fdc1a92e4b3",
+  "score": 73,
+  "confidence": 0.82,
+  "action": "RATE_LIMIT",
+  "policyVersion": "2026-08-21.1",
+  "evidence": [
+    {
+      "rule": "webdriver",
+      "score": 20,
+      "attributes": { "observed": true, "property": "navigator.webdriver" },
+      "message": "navigator.webdriver flag is active"
+    },
+    {
+      "rule": "burst_request",
+      "score": 30,
+      "attributes": { "window": "10s", "count": 47, "threshold": 30 },
+      "message": "High frequency burst (47 req / 10s)"
+    },
+    {
+      "rule": "no_user_interaction",
+      "score": 23,
+      "attributes": { "mouse_events": 0, "is_trusted_count": 0 },
+      "message": "Zero trusted user interaction physics observed"
+    }
+  ]
+}</code></pre>
+
+            <h3 id="policy-as-code">📜 Policy as Code</h3>
+            <p>Security rules are versioned and reviewed natively via <code>git diff</code>:</p>
+            <pre><code>import { createPolicy, rules } from '@ameva/sentinel';
+
+export const loginPolicy = createPolicy({
+  version: "2026-08-21.1",
+  rules: [
+    rules.webdriver({ weight: 20 }),
+    rules.burst({ weight: 30, threshold: 50, windowMs: 10000 }),
+    rules.suspiciousUA({ weight: 15 })
+  ]
+});</code></pre>
+        </main>
+    </div>
+
+    <footer>
+        <span>&copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; Eunho Kim. Released under the Apache 2.0 License.</span>
+        <div style="margin-top: 6px; font-size: 0.8em; color: var(--text-muted);">
+            <a href="../../index.html">Founder Digital CV</a> &bull; 
+            <a href="../../foundation/">AOSF Portal</a> &bull; 
+            <a href="../../app/workstation/">Workstation Web</a> &bull; 
+            <a href="../../sdk/sentinel/">AMEVA-Sentinel</a> &bull; 
+            <a href="../../lib/forge/">Forge</a> &bull; 
+            <a href="../../lib/stt/">STT</a> &bull; 
+            <a href="../../lib/train/">Train</a> &bull; 
+            <a href="../../lib/playwright/">Playwright</a> &bull; 
+            <a href="../../lib/diffusion/">Diffusion</a>
+        </div>
+    </footer>
+</body>
+</html>

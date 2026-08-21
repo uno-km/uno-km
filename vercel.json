@@ -14,7 +14,11 @@
     { "source": "/diffusion", "destination": "/lib/diffusion/index.html" },
     { "source": "/diffusion/(.*)", "destination": "/lib/diffusion/$1" },
     { "source": "/workstation", "destination": "/app/workstation/index.html" },
-    { "source": "/workstation/(.*)", "destination": "/app/workstation/$1" }
+    { "source": "/workstation/(.*)", "destination": "/app/workstation/$1" },
+    { "source": "/sentinel", "destination": "/sdk/sentinel/index.html" },
+    { "source": "/sentinel/(.*)", "destination": "/sdk/sentinel/$1" },
+    { "source": "/sdk/sentinel", "destination": "/sdk/sentinel/index.html" },
+    { "source": "/sdk/sentinel/(.*)", "destination": "/sdk/sentinel/$1" }
   ],
   "headers": [
     {
