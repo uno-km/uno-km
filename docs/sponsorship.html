@@ -4,9 +4,9 @@
   <link rel="stylesheet" href="/shared/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sponsorship &amp; Grants | AMEVA Open-Source Foundation</title>
+  <title>Sponsorship & Grants | AMEVA Open-Source Foundation (AOSF)</title>
   <meta name="description" content="Sponsorship tiers, financial transparency, and support channels for the AMEVA Open-Source Foundation (AOSF).">
-    <link rel="icon" type="image/svg+xml" href="/docs/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="/docs/favicon.svg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="/docs/assets/style.css">
   <link rel="stylesheet" href="assets/style.css">
@@ -14,9 +14,149 @@
   <script src="assets/i18n.js"></script>
   <script src="/docs/assets/i18n-translations.js"></script>
   <script src="assets/i18n-translations.js"></script>
+  <script src="/shared/common.js" defer></script>
+  <style>
+    /* ── Sponsorship Custom Styling ────────────────────────────────────────── */
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0 32px 0;
+    }
+    .sponsor-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .sponsor-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(0, 68, 153, 0.1);
+      transform: translateY(-2px);
+    }
+    .sponsor-card.featured {
+      border: 2px solid var(--primary-color);
+      background: #fcfdff;
+    }
+    .tier-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .tier-badge.community { background: #f1f5f9; color: #475569; }
+    .tier-badge.bronze { background: #fef3c7; color: #92400e; }
+    .tier-badge.silver { background: #e0e7ff; color: #3730a3; }
+    .tier-badge.gold { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+    .tier-badge.platinum { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+
+    .tier-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .tier-price span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .tier-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+    .tier-features li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.35;
+    }
+    .tier-features li::before {
+      content: "✓";
+      color: var(--accent-green);
+      font-weight: 800;
+    }
+    .sponsor-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 8px 14px;
+      background: var(--primary-color);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      box-sizing: border-box;
+    }
+    .sponsor-btn:hover {
+      background: var(--primary-dark);
+      color: #ffffff;
+    }
+    .sponsor-btn.secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      margin-top: 6px;
+    }
+    .sponsor-btn.secondary:hover {
+      background: var(--bg-alt);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    /* ── Fund Allocation Metrics ─────────────────────────────────────────────── */
+    .fund-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 16px 0 28px 0;
+    }
+    .fund-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .fund-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+    .fund-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
-    <!-- Top Header -->
+  <!-- Top Header -->
   <header>
     <a href="index.html" class="header-brand">
       <img src="/docs/favicon.svg" alt="AMEVA Foundation Logo" onerror="this.onerror=null;this.src='favicon.svg';">
@@ -41,13 +181,13 @@
           <option value="la">🏛️ Latina</option>
         </select>
       </div>
-      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
-      <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
+      <a href="https://opencollective.com/ameva-foundation" target="_blank" class="header-btn primary">💖 Open Collective</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn">GitHub Sponsors</a>
     </div>
   </header>
 
   <div class="container">
-        <!-- Left Sidebar -->
+    <!-- Left Sidebar -->
     <nav class="sidebar">
       <h3 data-i18n="nav.foundation">Foundation</h3>
       <ul>
@@ -58,89 +198,173 @@
         <li><a href="sponsorship.html" class="active" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
       </ul>
 
-      <h3 data-i18n="nav.tier1">Flagship Projects</h3>
+      <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
       <ul>
+        <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
         <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web)</a></li>
-        <li><a href="../lib/playwright/">Termux-Playwright</a></li>
-        <li><a href="../lib/diffusion/">Termux-Diffusion</a></li>
-        <li><a href="../lib/stt/">Termux-STT</a></li>
-        <li><a href="../lib/train/">Termux-Train</a></li>
-        <li><a href="../lib/forge/">AMEVA-Forge</a></li>
+        <li><a href="/foundation/">AMEVA Foundation</a></li>
+        <li><a href="/index.html">Founder Digital CV</a></li>
       </ul>
 
-      <h3 data-i18n="nav.aiSpecs">AI Agent Protocols</h3>
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
       <ul>
-        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
-        <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="/FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
       </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="content">
       <h2 data-i18n="spon.pageTitle">Sponsorship &amp; Financial Transparency</h2>
-      <p class="subtitle" data-i18n="spon.subtitle">AMEVA 재단 후원 및 재정 투명성 정책</p>
+      <p class="subtitle" data-i18n="spon.subtitle">AMEVA 오픈소스 재단 공식 후원 및 재정 투명성 포털</p>
 
+      <!-- Public Good Commitment Alert -->
       <div class="alert alert-tip">
-        <span class="alert-title" data-i18n="spon.commitTitle">Public Good Commitment</span>
-        <p style="margin-bottom: 0;" data-i18n="spon.commitText">
-          All software created by AOSF is free, open-source, and available to the world without commercial barriers. Sponsorship funds are strictly allocated to mobile test hardware, continuous integration infrastructure, and domain maintenance.
+        <span class="alert-title">🌱 100% Sovereign Public Good Commitment</span>
+        <p style="margin-bottom: 0;">
+          AMEVA 오픈소스 재단(AOSF)이 연구 개발하는 모든 소프트웨어(WebGPU 딥러닝, Termux AI 런타임, 제로-데이터 보안 레이어)는 <strong>상업적 장벽 없는 영구 오픈소스 공공재(Apache 2.0 / MIT)</strong>로 공급됩니다. 수납된 모든 후원금은 투명하게 공개되며 모바일 테스트 하드웨어 구입, CI/CD 테스트베드 구동, 인프라 유지에만 엄격히 집행됩니다.
         </p>
       </div>
 
-      <h3 data-i18n="spon.sec1Title">1. Official Support Channels</h3>
-      <p data-i18n="spon.sec1Text">AOSF accepts contributions through transparent, publicly auditable platforms:</p>
-      <ul>
-        <li><strong>GitHub Sponsors:</strong> <a href="https://github.com/sponsors/uno-km" target="_blank">https://github.com/sponsors/uno-km</a></li>
-        <li><strong>Open Collective:</strong> <a href="https://opencollective.com/ameva-foundation" target="_blank">https://opencollective.com/ameva-foundation</a></li>
-      </ul>
+      <!-- Live Badges Bar -->
+      <div class="badges-bar">
+        <a href="https://opencollective.com/ameva-foundation" target="_blank"><img src="https://img.shields.io/badge/Open_Collective-AOSF_Fund-004499?style=flat&logo=opencollective" alt="Open Collective"></a>
+        <a href="https://github.com/sponsors/uno-km" target="_blank"><img src="https://img.shields.io/badge/GitHub_Sponsors-uno--km-ea4aaa?style=flat&logo=githubsponsors" alt="GitHub Sponsors"></a>
+        <img src="https://img.shields.io/badge/501(c)(6)-Fiscal_Sponsored-16a34a?style=flat" alt="Fiscal Sponsorship">
+        <img src="https://img.shields.io/badge/Financial_Ledger-100%25_Public-blue?style=flat" alt="Public Ledger">
+      </div>
 
-      <h3 data-i18n="spon.sec2Title">2. Sponsor Tiers &amp; Recognition</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="spon.thTier">Tier Level</th>
-            <th data-i18n="spon.thMonthly">Monthly Contribution</th>
-            <th data-i18n="spon.thBenefits">Recognition &amp; Community Benefits</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong data-i18n="spon.s1Tier">Community Supporter</strong></td>
-            <td data-i18n="spon.s1Cost">$5 / mo</td>
-            <td data-i18n="spon.s1Ben">Listed in official repository SPONSORS.md directory.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="spon.s2Tier">Bronze Sponsor</strong></td>
-            <td data-i18n="spon.s2Cost">$25 / mo</td>
-            <td data-i18n="spon.s2Ben">Profile link featured on the official Foundation website.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="spon.s3Tier">Silver Sponsor</strong></td>
-            <td data-i18n="spon.s3Cost">$100 / mo</td>
-            <td data-i18n="spon.s3Ben">Silver sponsor badge displayed on all foundation project READMEs.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="spon.s4Tier">Gold Corporate Sponsor</strong></td>
-            <td data-i18n="spon.s4Cost">$500 / mo</td>
-            <td data-i18n="spon.s4Ben">Corporate logo and permanent link featured on main site and TLP repos.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="spon.s5Tier">Platinum Partner</strong></td>
-            <td data-i18n="spon.s5Cost">$2,000+ / mo</td>
-            <td data-i18n="spon.s5Ben">Quarterly technical advisory sessions and dedicated engineering workshops.</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- 1. Transparent Fund Allocation -->
+      <h3>1. 후원금 집행 및 인프라 목표 (Fund Allocation)</h3>
+      <p>AOSF는 클라우드 빅테크의 독점 없이 누구나 온디바이스에서 AI를 구동할 수 있도록 다음 3대 핵심 영역에 자금을 직접 투입합니다:</p>
+      
+      <div class="fund-grid">
+        <div class="fund-card">
+          <h4>📱 ARM64 물리 테스트베드 단말기</h4>
+          <p>삼성 갤럭시(S24/S25), 스냅드래곤 개발보드, NPU 단말기 실기기 확보 및 벤치마크 환경 구축</p>
+        </div>
+        <div class="fund-card">
+          <h4>⚡ WebGPU &amp; CI/CD 자동화 러너</h4>
+          <p>크로스 브라우저(Chrome/Firefox/Safari) 및 멀티 GPU 자동 리그레션 테스트 파이프라인 상시 가동</p>
+        </div>
+        <div class="fund-card">
+          <h4>🌐 글로벌 고성능 CDN &amp; 도메인</h4>
+          <p>전 세계 개발자를 위한 0ms 지연시간 정적 문서 배포 및 AI 에이전트 전용(llms.txt) 초고속 피드 호스팅</p>
+        </div>
+      </div>
 
-      <h3 data-i18n="spon.sec3Title">3. Financial Independence Principle</h3>
-      <p data-i18n="spon.sec3Text">
-        Sponsors do not receive preferential influence over project technical roadmaps, licensing decisions, or code review outcomes. All foundation ledgers and expenditures are published openly on Open Collective.
+      <!-- 2. Sponsorship Tiers Grid -->
+      <h3>2. 공식 후원 등급 및 파트너 혜택 (Sponsorship Tiers)</h3>
+      <p>개인 개발자부터 글로벌 테크 기업까지 모든 후원자는 AOSF 생태계의 공식 기여자로 등재됩니다:</p>
+
+      <div class="sponsor-grid">
+        <!-- Tier 1: Community -->
+        <div class="sponsor-card">
+          <div>
+            <span class="tier-badge community">Backer</span>
+            <div class="tier-price">$5 <span>/ month</span></div>
+            <div class="tier-desc">온디바이스 AI 공공재 연구를 응원하는 개인 개발자를 위한 베이직 티어</div>
+            <ul class="tier-features">
+              <li>공식 저장소 <code>SPONSORS.md</code> 명단 영구 등재</li>
+              <li>AOSF 공식 디스코드 후원자 배지 부여</li>
+              <li>신규 기능 릴리즈 노트 우선 뉴스레터 수신</li>
+            </ul>
+          </div>
+          <div>
+            <a href="https://opencollective.com/ameva-foundation/contribute/backer-89100" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($5)</a>
+          </div>
+        </div>
+
+        <!-- Tier 2: Bronze -->
+        <div class="sponsor-card">
+          <div>
+            <span class="tier-badge bronze">Bronze Sponsor</span>
+            <div class="tier-price">$25 <span>/ month</span></div>
+            <div class="tier-desc">적극적인 온디바이스 AI 도구 사용자와 스타트업 엔지니어를 위한 티어</div>
+            <ul class="tier-features">
+              <li>공식 재단 웹사이트 후원자 섹션에 프로필/링크 노출</li>
+              <li>모든 핵심 저장소 <code>SPONSORS.md</code> 상단 하이라이트</li>
+              <li>이슈 트래커 및 기술 문의 우선 멘션 지원</li>
+            </ul>
+          </div>
+          <div>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($25)</a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Silver -->
+        <div class="sponsor-card featured">
+          <div>
+            <span class="tier-badge silver">Silver Ecosystem Partner</span>
+            <div class="tier-price">$100 <span>/ month</span></div>
+            <div class="tier-desc">AMEVA 생태계를 제품에 도입하는 혁신 기업 및 파트너를 위한 추천 티어</div>
+            <ul class="tier-features">
+              <li>6대 플래그십 저장소 README에 <strong>실버 파트너 배지</strong> 노출</li>
+              <li>공식 문서 포털 사이드바 파트너사 목록 등재</li>
+              <li>아키텍처 Q&amp;A 및 최적화 기술 자문 우선권</li>
+            </ul>
+          </div>
+          <div>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($100)</a>
+          </div>
+        </div>
+
+        <!-- Tier 4: Gold -->
+        <div class="sponsor-card">
+          <div>
+            <span class="tier-badge gold">Gold Corporate Patron</span>
+            <div class="tier-price">$500 <span>/ month</span></div>
+            <div class="tier-desc">온디바이스 AI 기술 생태계의 표준화와 확장을 주도하는 기업 전용 티어</div>
+            <ul class="tier-features">
+              <li><strong>기업 공식 로고 &amp; 백링크</strong>를 메인 포털 최상단에 영구 게시</li>
+              <li>모든 PyPI / npm 패키지 공식 문서 헤더에 기업 로고 노출</li>
+              <li>분기별 기술 로드맵 공유 및 맞춤형 온디바이스 AI PoC 지원</li>
+              <li>기업 세금 공제용 비영리 공식 인보이스 즉시 발급</li>
+            </ul>
+          </div>
+          <div>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($500)</a>
+          </div>
+        </div>
+
+        <!-- Tier 5: Platinum -->
+        <div class="sponsor-card">
+          <div>
+            <span class="tier-badge platinum">Platinum Strategic Partner</span>
+            <div class="tier-price">$2,000+ <span>/ month</span></div>
+            <div class="tier-desc">글로벌 테크 기업, 칩셋 제조사, 하드웨어 벤더를 위한 최고 등급 전략적 파트너십</div>
+            <ul class="tier-features">
+              <li>공식 프레스 릴리즈 및 글로벌 보도자료 공동 배포</li>
+              <li>재단 거버넌스 자문 위원회(Advisory Board) 참여 자격</li>
+              <li>맞춤형 NPU/GPU 가속 커널 최적화 전담 워크샵 진행</li>
+            </ul>
+          </div>
+          <div>
+            <a href="https://opencollective.com/ameva-foundation" target="_blank" class="sponsor-btn">💖 Open Collective 후원</a>
+            <a href="https://github.com/sponsors/uno-km" target="_blank" class="sponsor-btn secondary">GitHub Sponsors ($2,000)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Financial Independence Principle -->
+      <h3>3. 재정적 독립성 및 중립성 원칙 (Financial Governance)</h3>
+      <p>
+        AOSF의 기술 로드맵과 아키텍처 결정은 오직 <strong>기술적 완성도와 능력주의(Meritocracy)</strong>에 의해서만 결정됩니다. 후원사는 프로젝트의 소유권을 가질 수 없으며, 코드 리뷰 및 라이선스 결정에 편향된 영향력을 행사할 수 없습니다. 모든 수입과 지출 내역은 Open Collective를 통해 1원 단위까지 전 세계에 100% 실시간 투명 공개됩니다.
       </p>
     </main>
   </div>
 
   <!-- Footer -->
-    <footer>
+  <footer>
     <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
   </footer>
 </body>
