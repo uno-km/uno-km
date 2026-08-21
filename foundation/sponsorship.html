@@ -9,7 +9,7 @@
   
   
   
-    <link rel="icon" type="image/svg+xml" href="../shared/brand/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="../shared/style.css">
     <script src="../shared/i18n.js"></script>
     <script src="../shared/i18n-translations.js"></script>
@@ -17,42 +17,55 @@
     <script src="../shared/telemetry.js"></script>
 </head>
 <body>
-  <!-- Top Header -->
+    <!-- Top Header -->
   <header>
     <a href="index.html" class="header-brand">
-      <img src="../../assets/brand/favicon.svg" alt="AOSF Logo">
-      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation (AOSF)</h1>
+      <img src="favicon.svg" alt="AMEVA Foundation Logo">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.status">Independent Open-Source Body</span>
-      <div class="lang-selector-wrapper"></div>
-      <a href="../../index.html" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile (@uno-km)</a>
-      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Central GitHub</a>
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
+      <a href="../../index.html" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
     </div>
   </header>
 
   <div class="container">
-    <!-- Left Sidebar -->
+        <!-- Left Sidebar -->
     <nav class="sidebar">
-      <h3 data-i18n="nav.overview">Foundation Overview</h3>
+      <h3 data-i18n="nav.foundation">Foundation</h3>
       <ul>
-        <li><a href="index.html" data-i18n="nav.home">Home / 3-Tier Portfolio</a></li>
-        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" data-i18n="nav.workstation">AMEVA Workstation Web</a></li>
-      </ul>
-
-      <h3 data-i18n="nav.documents">Governance &amp; Bylaws</h3>
-      <ul>
-        <li><a href="charter.html" data-i18n="nav.charter">Charter &amp; Mission</a></li>
-        <li><a href="governance.html" data-i18n="nav.governance">Governance &amp; Meritocracy</a></li>
+        <li><a href="index.html" data-i18n="nav.portal">Foundation Portal</a></li>
+        <li><a href="charter.html" data-i18n="nav.charter">Foundation Charter</a></li>
+        <li><a href="governance.html" data-i18n="nav.governance">Governance &amp; Merit</a></li>
         <li><a href="incubation.html" data-i18n="nav.incubation">Incubation Policy</a></li>
-        <li><a href="sponsorship.html" class="active" data-i18n="nav.sponsorship">Sponsorship &amp; Grants</a></li>
+        <li><a href="sponsorship.html" class="active" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
       </ul>
 
-      <h3 data-i18n="nav.aiSpecs">AI &amp; Machine Specs</h3>
+      <h3 data-i18n="nav.tier1">Flagship Projects</h3>
+      <ul>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web)</a></li>
+        <li><a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank">Termux-Playwright</a></li>
+        <li><a href="https://uno-km.github.io/termux-diffusion/" target="_blank">Termux-Diffusion</a></li>
+        <li><a href="https://uno-km.github.io/termux-stt/" target="_blank">Termux-STT</a></li>
+        <li><a href="https://uno-km.github.io/termux-train/" target="_blank">Termux-Train</a></li>
+        <li><a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank">AMEVA-Forge</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.aiSpecs">AI Agent Protocols</h3>
       <ul>
         <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
-        <li><a href="sitemap.xml" target="_blank">sitemap.xml</a></li>
-        <li><a href="robots.txt" target="_blank">robots.txt</a></li>
+        <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
       </ul>
     </nav>
 
@@ -121,18 +134,8 @@
   </div>
 
   <!-- Footer -->
-      <footer>
-        <span>&copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; Eunho Kim. Released under the Apache 2.0 License.</span>
-        <div style="margin-top: 6px; font-size: 0.8em; color: var(--text-muted);">
-            <a href="../index.html">Founder Digital CV</a> &bull; 
-            <a href="../foundation/">AOSF Portal</a> &bull; 
-            <a href="../app/workstation/">Workstation Web</a> &bull; 
-            <a href="../lib/forge/">Forge</a> &bull; 
-            <a href="../lib/stt/">STT</a> &bull; 
-            <a href="../lib/train/">Train</a> &bull; 
-            <a href="../lib/playwright/">Playwright</a> &bull; 
-            <a href="../lib/diffusion/">Diffusion</a>
-        </div>
-    </footer>
+        <footer>
+    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
 </body>
 </html>
