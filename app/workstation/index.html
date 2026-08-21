@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMEVA Workstation Web - 100% On-Device WebGPU Local AI & Productivity Studio</title>
     <meta name="description" content="World-first 100% on-device WebGPU local AI workstation featuring Qwen2.5, 3-sec MapReduce PDF summarization, and in-browser media editing with 0 server costs.">
-    <link rel="icon" type="image/svg+xml" href="../../assets/brand/favicon.svg">
-    <link rel="stylesheet" href="../../docs/assets/style.css">
-    <script src="../../docs/assets/i18n.js"></script>
+    
+    
+    
     <style>
         .launch-hero {
             background: linear-gradient(135deg, #003399 0%, #001f5c 100%);
@@ -48,6 +48,12 @@
         }
         .btn-launch-secondary:hover { background: rgba(255,255,255,0.25); }
     </style>
+    <link rel="icon" type="image/svg+xml" href="../../shared/brand/favicon.svg">
+    <link rel="stylesheet" href="../../shared/style.css">
+    <script src="../../shared/i18n.js"></script>
+    <script src="../../shared/i18n-translations.js"></script>
+    <script src="../../shared/common.js"></script>
+    <script src="../../shared/telemetry.js"></script>
 </head>
 <body>
     <header class="top-header">
@@ -127,8 +133,18 @@
         </main>
     </div>
 
-    <footer>
-        &copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; Eunho Kim. Released under the Apache 2.0 License.
+        <footer>
+        <span>&copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; Eunho Kim. Released under the Apache 2.0 License.</span>
+        <div style="margin-top: 6px; font-size: 0.8em; color: var(--text-muted);">
+            <a href="../../index.html">Founder Digital CV</a> &bull; 
+            <a href="../../foundation/">AOSF Portal</a> &bull; 
+            <a href="../../app/workstation/">Workstation Web</a> &bull; 
+            <a href="../../lib/forge/">Forge</a> &bull; 
+            <a href="../../lib/stt/">STT</a> &bull; 
+            <a href="../../lib/train/">Train</a> &bull; 
+            <a href="../../lib/playwright/">Playwright</a> &bull; 
+            <a href="../../lib/diffusion/">Diffusion</a>
+        </div>
     </footer>
 </body>
 </html>

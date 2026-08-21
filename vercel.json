@@ -2,6 +2,20 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/stt", "destination": "/lib/stt/index.html" },
+    { "source": "/stt/(.*)", "destination": "/lib/stt/$1" },
+    { "source": "/train", "destination": "/lib/train/index.html" },
+    { "source": "/train/(.*)", "destination": "/lib/train/$1" },
+    { "source": "/forge", "destination": "/lib/forge/index.html" },
+    { "source": "/forge/(.*)", "destination": "/lib/forge/$1" },
+    { "source": "/playwright", "destination": "/lib/playwright/index.html" },
+    { "source": "/playwright/(.*)", "destination": "/lib/playwright/$1" },
+    { "source": "/diffusion", "destination": "/lib/diffusion/index.html" },
+    { "source": "/diffusion/(.*)", "destination": "/lib/diffusion/$1" },
+    { "source": "/workstation", "destination": "/app/workstation/index.html" },
+    { "source": "/workstation/(.*)", "destination": "/app/workstation/$1" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
