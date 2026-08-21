@@ -230,6 +230,38 @@ curl -fsSL https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/s
 
 ---
 
+# 💖 Sponsorship & Sovereign Public Goods Support
+
+> **클라우드 종속성 없는 100% 온디바이스 AI, 브라우저 WebGPU 딥러닝, 자율 에이전트 공공재 연구를 후원해주세요.**
+
+모든 AMEVA 핵심 소프트웨어는 **상업적 장벽 없는 영구 오픈소스 공공재(Apache 2.0 / MIT)**로 전 세계에 배포됩니다. 수납된 모든 후원금은 **100% 투명한 공개 원장(Public Ledger)**을 통해 관리되며, ARM64 실기기 테스트베드 확보 및 CI/CD 멀티 GPU 러너 구동에 전액 집행됩니다.
+
+<div align="center">
+  <a href="https://github.com/sponsors/uno-km">
+    <img src="https://img.shields.io/badge/GitHub_Sponsors-💖_Sponsor_@uno--km-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"/>
+  </a>
+  <a href="https://opencollective.com/ameva-foundation">
+    <img src="https://img.shields.io/badge/Open_Collective-🏛️_AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
+  </a>
+  <a href="https://uno-km.vercel.app/docs/foundation/sponsorship.html">
+    <img src="https://img.shields.io/badge/Foundation_Portal-📊_Sponsorship_Tiers-16a34a?style=for-the-badge&logo=vercel&logoColor=white" alt="AOSF Sponsorship Portal"/>
+  </a>
+</div>
+
+<br/>
+
+### 💎 후원 등급 및 공식 기여자 혜택 (Sponsorship Tiers)
+
+| 등급 (Tier) | 월 기여 금액 | 대상 및 공식 혜택 | 직통 후원 링크 |
+| :--- | :---: | :--- | :---: |
+| **☕ Community Supporter** | **$5** / mo | 개인 개발자 · 공식 저장소 `SPONSORS.md` 영구 등재 및 디스코드 배지 | [💖 후원하기](https://github.com/sponsors/uno-km) |
+| **🥉 Bronze Sponsor** | **$25** / mo | 스타트업 엔지니어 · 공식 재단 웹사이트 후원자 프로필/링크 노출 | [💖 후원하기](https://github.com/sponsors/uno-km) |
+| **🥈 Silver Ecosystem Partner** | **$100** / mo | 도구 도입 파트너 · 6대 플래그십 README 실버 파트너 배지 노출 | [💖 후원하기](https://github.com/sponsors/uno-km) |
+| **🥇 Gold Corporate Patron** | **$500** / mo | 기업 파트너 · 메인 포털 최상단 기업 로고 & 백링크 게시 (인보이스 발급) | [💖 후원하기](https://github.com/sponsors/uno-km) |
+| **💎 Platinum Strategic Partner** | **$2,000+** / mo | 글로벌 테크 기업 · 재단 거버넌스 자문 위원회 & 맞춤형 GPU/NPU 최적화 지원 | [💖 후원하기](https://github.com/sponsors/uno-km) |
+
+---
+
 ### 🌐 Open-Source Contributions & Community PRs
 - [BitNet (microsoft/BitNet)](https://github.com/uno-km/BitNet): 1-bit LLM ARM NEON / I2_S 커널 및 환경 빌드 관련 풀 리퀘스트(PR) 및 코드 기여 참여
 
