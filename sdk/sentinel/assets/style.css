@@ -72,7 +72,7 @@ body {
 header {
   background-color: var(--bg-surface);
   border-bottom: 2px solid var(--primary-color);
-  padding: 0 24px;
+  padding: 0 20px;
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -81,14 +81,17 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: var(--text-main);
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .header-brand img {
@@ -98,17 +101,20 @@ header {
 }
 
 .header-brand h1 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--primary-color);
   letter-spacing: -0.01em;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .release-tag {
@@ -542,5 +548,72 @@ footer {
   }
   .sidebar-toggle-tab {
     display: none !important; /* Mobile: Hide desktop sidebar tab */
+  }
+}
+
+
+/* ── Ultra-Strict Mobile & Tablet Viewport Normalization ─────────────────── */
+@media (max-width: 960px) {
+  header {
+    padding: 0 12px;
+  }
+  .release-tag {
+    display: none !important;
+  }
+  .header-btn.founder {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 52px;
+  }
+  header {
+    height: 52px;
+    padding: 0 10px;
+  }
+  .header-brand {
+    gap: 8px;
+    max-width: 65%;
+  }
+  .header-brand img {
+    width: 24px;
+    height: 24px;
+  }
+  .header-brand h1 {
+    font-size: 0.95rem;
+  }
+  .release-tag {
+    display: none !important;
+  }
+  .header-btn {
+    display: none !important; /* Prevent header button wrapping/vertical blowout on mobile */
+  }
+  .lang-selector-wrapper {
+    margin: 0;
+  }
+  .lang-select {
+    padding: 4px 6px !important;
+    font-size: 0.78rem !important;
+    max-width: 115px !important;
+  }
+  .header-controls {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-brand h1 {
+    font-size: 0.85rem;
+  }
+  .header-brand img {
+    width: 22px;
+    height: 22px;
+  }
+  .lang-select {
+    font-size: 0.75rem !important;
+    padding: 3px 4px !important;
+    max-width: 105px !important;
   }
 }
