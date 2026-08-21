@@ -1,0 +1,9 @@
+{
+  "name": "uno-km-hub",
+  "version": "1.0.0",
+  "description": "AMEVA Centralized Documentation Hub & Portfolio",
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}
