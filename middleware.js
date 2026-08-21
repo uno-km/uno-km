@@ -147,6 +147,43 @@ export async function middleware(request) {
     }
 
     if (matchedBot) {
+        const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
+        if (dbUrl) {
+            const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+            const country = request.headers.get('x-vercel-ip-country') || 'GLOBAL';
+            const city = request.headers.get('x-vercel-ip-city') ? decodeURIComponent(request.headers.get('x-vercel-ip-city')) : 'Edge';
+
+            try {
+                const parsed = new URL(dbUrl.replace(/^postgres(ql)?:/, 'https:'));
+                const endpoint = `https://${parsed.hostname}/sql`;
+                const authHeader = 'Basic ' + btoa(`${parsed.username}:${parsed.password}`);
+
+                const query = `
+                    INSERT INTO bot_crawler_logs (bot_name, bot_category, requested_path, ip_address, country, city, user_agent)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7);
+                `;
+                const params = [
+                    matchedBot.name,
+                    matchedBot.category,
+                    path.slice(0, 255),
+                    ip.slice(0, 45),
+                    country.slice(0, 10),
+                    city.slice(0, 100),
+                    userAgent.slice(0, 1000)
+                ];
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': authHeader,
+                        'Content-Type': 'application/json',
+                        'Neon-Connection-String': dbUrl
+                    },
+                    body: JSON.stringify({ query, params })
+                }).catch(() => {});
+            } catch (e) {}
+        }
+
         const deepPayload = generateDeepAiPayload(path);
         return new Response(deepPayload, {
             status: 200,
