@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference | Termux-Playwright</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n.js"></script>
+    <script src="i18n-translations.js"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="header-brand">
+            <img src="favicon.svg" alt="Logo">
+            <h1 data-i18n="common.brand">Termux-Playwright</h1>
+        </a>
+        <div class="header-controls">
+            <span class="release-tag" data-i18n="common.releaseTag">v1.61.3 (Dual Engine)</span>
+            <div class="lang-selector-wrapper"></div>
+            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3 data-i18n="common.nav.overview">Overview</h3>
+            <ul>
+                <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+                <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+                <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+                <li><a href="nodejs.html" data-i18n="common.nav.nodejs">Node.js & Memory Guide</a></li>
+                <li><a href="api-reference.html" class="active" data-i18n="common.nav.apiReference">API Reference</a></li>
+                <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive & Notes</a></li>
+                <li><a href="phantom-process.html" data-i18n="common.nav.phantomProcess">Android 14+ Phantom Killer</a></li>
+                <li><a href="blog_post.md" data-i18n="common.nav.koreanBlog">Engineering Deep-Dive (KO)</a></li>
+            </ul>
+            <h3 data-i18n="common.nav.advanced">AI Specifications</h3>
+            <ul>
+                <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+                <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h2>API Reference Manual</h2>
+            <p>Comprehensive documentation of all public functions, classes, and parameter options in <code>termux_playwright</code> (Python) and <code>termux-playwright</code> (Node.js).</p>
+
+            <div class="alert alert-tip">
+                <span class="alert-title">📦 Package Identifiers</span>
+                <p><strong>Python (PyPI):</strong> <code>import termux_playwright</code></p>
+                <p><strong>Node.js (npm):</strong> <code>const termuxPlaywright = require('termux-playwright')</code></p>
+            </div>
+
+            <h3 style="color: #0055cc;">🐍 Python Public API Specification</h3>
+            
+            <h4><code>async_playwright_termux()</code></h4>
+            <p>Asynchronous context manager replacing upstream <code>async_playwright()</code>.</p>
+
+            <h4><code>sync_playwright_termux()</code></h4>
+            <p>Synchronous context manager replacing upstream <code>sync_playwright()</code>.</p>
+
+            <h4><code>launch(p, low_memory_mode=False, jitless=None, ignore_certificate_errors=False, standalone_mode=False, wake_lock=False, stealth=False, single_process=False, **kwargs)</code></h4>
+            <p>Launches hardened Chromium on Android Termux.</p>
+
+            <h4><code>setup_stealth_context(browser, ...)</code></h4>
+            <p>Creates an evasive BrowserContext bypassing Cloudflare Turnstile & DataDome.</p>
+
+            <h4><code>block_heavy_resources(page_or_context, images=True, media=True, fonts=True, stylesheets=False)</code></h4>
+            <p>Aborts heavy network asset requests to conserve mobile bandwidth and CPU.</p>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
+
+            <h3 style="color: #cb3837;">☕ Node.js / TypeScript API Specification</h3>
+            
+            <h4><code>launch(playwrightInstance?, options?: TermuxLaunchOptions): Promise&lt;Browser&gt;</code></h4>
+            <p>Launches Chromium in Node.js with automated session token tracking, eMMC RAM cache, and WakeLock.</p>
+
+            <h4><code>setupStealthContext(browser: Browser, options?: BrowserContextOptions): Promise&lt;BrowserContext&gt;</code></h4>
+            <p>Injects prototype-safe stealth script removing <code>navigator.webdriver</code> and mocking native C++ bindings.</p>
+
+            <h4><code>blockHeavyResources(pageOrContext, options?): Promise&lt;void&gt;</code></h4>
+            <p>Aborts image, media, and font downloads in Node.js.</p>
+
+            <h4><code>forceGarbageCollection(): boolean</code></h4>
+            <p>Triggers V8 garbage collection when <code>--expose-gc</code> is enabled.</p>
+        </main>
+    </div>
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 Termux-Playwright Project. Released under the MIT License.</span>
+    </footer>
+</body>
+</html>

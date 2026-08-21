@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMEVA-Forge: Browser-Native WebGPU Autograd & Deep Learning Framework</title>
+    <meta name="description" data-i18n="home.metaDesc" content="AMEVA-Forge is a PyTorch-compatible WebGPU deep learning framework for educational autograd and in-browser training.">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="alternate icon" href="./favicon.svg">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="./dist/index.js"></script>
+    <script src="./i18n.js"></script>
+    <script src="./i18n-translations.js"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="header-brand">
+            <img src="favicon.svg" alt="AMEVA-Forge Logo">
+            <h1 data-i18n="common.headerTitle">AMEVA-Forge</h1>
+        </a>
+        <div class="header-controls">
+            <span class="release-tag" data-i18n="common.releaseTag">Release 1.0.0</span>
+            <div class="lang-selector-wrapper">
+                <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                    <option value="zh">🇨🇳 简体中文</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                </select>
+            </div>
+            <a href="https://pypi.org/project/ameva-forge/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+            <a href="./demo.html" class="header-btn" data-i18n="common.liveStudioBtn">Live WebGPU Studio</a>
+            <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3 data-i18n="common.nav.interactive">Interactive</h3>
+            <ul>
+                <li><a href="./demo.html"><strong data-i18n="common.nav.liveStudio">Live WebGPU Studio</strong></a></li>
+                <li><a href="experimental/playgrounds/mnist/index.html"><strong data-i18n="common.nav.mnist">1. MNIST Inference</strong></a></li>
+                <li><a href="experimental/playgrounds/benchmark/index.html"><strong data-i18n="common.nav.benchmark">2. Benchmark Test</strong></a></li>
+                <li><a href="experimental/playgrounds/training/index.html"><strong data-i18n="common.nav.training">3. Training Demo</strong></a></li>
+                <li><a href="experimental/playgrounds/vision/index.html"><strong data-i18n="common.nav.vision">4. Vision Center</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.documentation">Documentation</h3>
+            <ul>
+                <li><a href="index.html" class="active"><strong data-i18n="common.nav.home">Home</strong></a></li>
+                <li><a href="installation.html"><strong data-i18n="common.nav.installation">Installation</strong></a></li>
+                <li><a href="quickstart.html"><strong data-i18n="common.nav.quickstart">Quickstart</strong></a></li>
+                <li><a href="api-reference.html"><strong data-i18n="common.nav.apiReference">API Reference</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.concepts">Concepts</h3>
+            <ul>
+                <li><a href="what-is-forge.html"><strong data-i18n="common.nav.whatIsForge">What is Forge?</strong></a></li>
+                <li><a href="forge-vs-pytorch.html"><strong data-i18n="common.nav.forgeVsPytorch">Forge vs PyTorch</strong></a></li>
+            </ul>
+            <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocol &amp; Feeds</h3>
+            <ul>
+                <li><a href="llms.txt" target="_blank">llms.txt (AI Context)</a></li>
+                <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+                <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+                <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h2 data-i18n="home.welcomeTitle">Welcome to AMEVA-Forge (Release 1.0.0)</h2>
+            <p class="subtitle" data-i18n-html="home.welcomeDesc"><strong>AMEVA-Forge</strong> is a lightweight deep learning framework engineered for educational autograd, small model experimentation, and client-side privacy-preserving computation across both native Python environments and modern web browsers via WebGPU.</p>
+
+            <div class="badges-bar">
+                <a href="https://pypi.org/project/ameva-forge/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=blue&logo=pypi&logoColor=white" alt="PyPI Version"></a>
+                <a href="https://pypi.org/project/ameva-forge/" target="_blank"><img src="https://img.shields.io/badge/pypi%20package-v0.1.0_Live-28a745?logo=pypi&logoColor=white" alt="PyPI Release"></a>
+                <img src="https://img.shields.io/badge/python-3.9+-blue.svg?logo=python&logoColor=white" alt="Python Version">
+                <img src="https://img.shields.io/badge/webgpu-WGSL%20Compute-brightgreen.svg" alt="WebGPU">
+                <img src="https://img.shields.io/badge/platform-Browser%20%7C%20Pyodide%20WASM-green.svg" alt="Platform">
+                <img src="https://img.shields.io/badge/tests-292%2F292_PASS-success" alt="Tests">
+            </div>
+
+            <!-- 1-Line Quick Installation -->
+            <div class="alert alert-tip" style="margin-top: 20px;">
+                <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+                <p data-i18n="home.quickInstallDesc">Install via pip for native/Pyodide usage, or launch the zero-install WebGPU Live Studio:</p>
+                <div style="margin-top: 12px;">
+                    <h4 style="margin: 8px 0 4px 0; color: #0055cc;">🐍 Python Edition (PyPI):</h4>
+                    <pre><code>pip install ameva-forge</code></pre>
+                </div>
+            </div>
+
+            <h3 data-i18n="home.releaseScopeTitle">Release 1.0 Scope: 2-Layer MLP & Causal Attention</h3>
+            <p data-i18n-html="home.releaseScopeDesc">Our Release 1.0 focus is laser-targeted on one goal: <strong>Enable users to build, train, and understand neural networks (2-Layer MLP, Causal Attention, In-Place SGD) entirely in the browser using Python without server compute costs.</strong></p>
+
+            <h3 data-i18n="home.coreCapabilitiesTitle">Core Capabilities</h3>
+            <ul>
+                <li data-i18n-html="home.cap1"><strong>100% PyTorch-like API:</strong> Drop-in compatibility with PyTorch syntax (<code>torch.Tensor</code>, <code>nn.Linear</code>, <code>nn.LayerNorm</code>, <code>optim.SGD</code>, <code>loss.backward()</code>).</li>
+                <li data-i18n-html="home.cap2"><strong>Browser WebGPU Execution:</strong> Empowers deep learning operations to run client-side using Pyodide (WASM) and native WGSL compute shaders.</li>
+                <li data-i18n-html="home.cap3"><strong>Autograd Engine:</strong> Implements reverse-mode automatic differentiation with mathematically closed-form GPU gradients.</li>
+                <li data-i18n-html="home.cap4"><strong>Memory Quota Manager:</strong> Zero-leak staging buffer recycling and deterministic garbage collection finalizers.</li>
+            </ul>
+
+            <h3 data-i18n="home.supportedOpsTitle">Supported Operations & Modules in Release 1.0</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;" data-i18n="home.thCategory">Category</th>
+                        <th data-i18n="home.thOps">Supported Operations & Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong data-i18n="home.catTensor">Tensor Operations</strong></td>
+                        <td data-i18n-html="home.catTensorOps"><code>add</code>, <code>sub</code>, <code>mul</code>, <code>div</code>, <code>matmul</code> (2D), <code>batched_matmul</code> (3D BMM), <code>transpose</code>, <code>permute</code>, <code>scatter</code>, <code>gather</code>, <code>8D broadcasting</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="home.catNN">Neural Network (nn)</strong></td>
+                        <td data-i18n-html="home.catNNOps"><code>nn.Linear</code>, <code>nn.LayerNorm</code>, <code>nn.BatchNorm2d</code> (train/eval), <code>nn.PositionalEncoding</code> (LRU cache), <code>nn.Dropout</code>, <code>nn.Sequential</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="home.catFunc">Functional & Loss</strong></td>
+                        <td data-i18n-html="home.catFuncOps"><code>F.scaled_dot_product_attention</code> (Causal), <code>F.softmax</code>, <code>F.log_softmax</code>, <code>F.cross_entropy</code>, <code>nn.MSELoss</code>, <code>F.relu</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="home.catOptim">Optimization (optim)</strong></td>
+                        <td data-i18n-html="home.catOptimOps"><code>optim.SGD</code> (In-place parameter updates with zero allocation overhead)</td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="home.catShaders">GPU Shader Kernels</strong></td>
+                        <td data-i18n-html="home.catShadersOps"><code>elementwise.wgsl</code>, <code>matmul.wgsl</code> (16x16 workgroup tiled), <code>softmax.wgsl</code>, <code>layernorm.wgsl</code>, <code>cross_entropy.wgsl</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; uno-km. Released under the Apache 2.0 License.</span>
+    </footer>
+</body>
+</html>

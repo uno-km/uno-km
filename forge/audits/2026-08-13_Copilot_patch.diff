@@ -1,0 +1,414 @@
+diff -ruN '--exclude=__pycache__' ameva_source_original/README.md ameva_source_patched/README.md
+--- ameva_source_original/README.md	2026-08-13 04:04:11.659958956 +0000
++++ ameva_source_patched/README.md	2026-08-13 04:15:48.189292484 +0000
+@@ -1,6 +1,6 @@
+ # AMEVA-Forge
+ 
+-> **Release 1 (Public Technical Preview)**: Browser-local Educational Autograd & Small Model Experimentation Framework
++> **Release 1 Candidate (Internal Alpha)**: Browser-local Educational Autograd & Small Model Experimentation Framework
+ 
+ ![AMEVA Forge Logo](https://img.shields.io/badge/WebGPU-Powered-blueviolet?style=for-the-badge) ![Python](https://img.shields.io/badge/Python-3.12+-blue?style=for-the-badge&logo=python) ![Pyodide](https://img.shields.io/badge/Browser_Ready-Pyodide-yellow?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+ 
+@@ -13,7 +13,7 @@
+ 
+ Unlike heavy production frameworks, AMEVA-Forge requires zero C++ infrastructure or server backends. It provides a pure Python interface that dispatches to WebGPU.
+ 
+-### Supported Features (Release 1)
++### Target Core Features for Release 1
+ - **Core Tensor Ops**: `tensor`, `upload`, `readback`, `dispose`
+ - **Basic Math**: `add`, `sub`, `mul`, `div`, `neg`
+ - **Matrix Operations**: `matmul` (2D)
+@@ -27,7 +27,7 @@
+ 
+ ### Installation
+ ```bash
+-pip install ameva-forge
++pip install ./packages/forge-py
+ ```
+ *(Requires a Pyodide/WebGPU compatible browser environment for execution)*
+ 
+@@ -48,9 +48,9 @@
+ loss.backward()
+ 
+ # 4. SGD Step
+-lr = 0.01
+-w.data -= lr * w.grad.data
+-b.data -= lr * b.grad.data
++optimizer = fg.optim.SGD([w, b], lr=0.01)
++optimizer.step()
++optimizer.zero_grad()
+ ```
+ 
+ ## 🤝 Roadmap
+diff -ruN '--exclude=__pycache__' ameva_source_original/docs/papers/benchmark/webgpu_benchmark_extreme.py ameva_source_patched/docs/papers/benchmark/webgpu_benchmark_extreme.py
+--- ameva_source_original/docs/papers/benchmark/webgpu_benchmark_extreme.py	2026-08-13 04:04:11.742960961 +0000
++++ ameva_source_patched/docs/papers/benchmark/webgpu_benchmark_extreme.py	2026-08-13 04:15:48.147290831 +0000
+@@ -3,10 +3,10 @@
+ import asyncio
+ try:
+     import ameva_tensor as at
+-except ImportError:
+-    # 로컬 터미널 실행 시 WebGPU 모듈 가짜(Mock) 객체 생성
+-    class MockAT:
+-        async def random(self, shape): return None
++except ImportError as exc:
++    raise RuntimeError("Real AMEVA-Forge Pyodide/WebGPU runtime required; synthetic benchmark results are disabled.") from exc
++
++async def random(self, shape): return None
+         async def add(self, a, b): return None
+         async def mul(self, a, b): return None
+         async def sin(self, a): return None
+diff -ruN '--exclude=__pycache__' ameva_source_original/docs/papers/benchmark/webgpu_benchmark_low_extreme.py ameva_source_patched/docs/papers/benchmark/webgpu_benchmark_low_extreme.py
+--- ameva_source_original/docs/papers/benchmark/webgpu_benchmark_low_extreme.py	2026-08-13 04:04:11.764961493 +0000
++++ ameva_source_patched/docs/papers/benchmark/webgpu_benchmark_low_extreme.py	2026-08-13 04:15:48.173291854 +0000
+@@ -4,10 +4,10 @@
+ 
+ try:
+     import ameva_tensor as at
+-except ImportError:
+-    # 로컬 터미널 실행 시 WebGPU 모듈 가짜(Mock) 객체 생성
+-    class MockAT:
+-        async def random(self, shape): return None
++except ImportError as exc:
++    raise RuntimeError("Real AMEVA-Forge Pyodide/WebGPU runtime required; synthetic benchmark results are disabled.") from exc
++
++async def random(self, shape): return None
+         async def add(self, a, b):
+             time.sleep(0.001) # WebGPU 매우 빠름 가정
+             return None
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge/package.json ameva_source_patched/packages/forge/package.json
+--- ameva_source_original/packages/forge/package.json	2026-08-13 04:04:11.899964754 +0000
++++ ameva_source_patched/packages/forge/package.json	2026-08-13 04:15:48.060287408 +0000
+@@ -1,6 +1,6 @@
+ {
+   "name": "@ameva/forge",
+-  "version": "2.0.0",
++  "version": "0.1.0",
+   "description": "Browser-native Tensor Runtime for WebGPU and Pyodide",
+   "main": "dist/index.js",
+   "module": "dist/index.esm.js",
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge/src/tensor/gpuCore.ts ameva_source_patched/packages/forge/src/tensor/gpuCore.ts
+--- ameva_source_original/packages/forge/src/tensor/gpuCore.ts	2026-08-13 04:04:12.101969634 +0000
++++ ameva_source_patched/packages/forge/src/tensor/gpuCore.ts	2026-08-13 04:15:03.769990959 +0000
+@@ -293,6 +293,9 @@
+  * HOW: 레지스트리에서 버퍼를 조회한 뒤 맵핑을 수행하고 반환된 스테이징 버퍼를 _pendingStagingBuffers에 저장합니다.
+  */
+ export async function mapBufferAsync(handle: TensorHandle): Promise<void> {
++  if (_pendingStagingBuffers.has(handle)) {
++    throw new Error(`[AMEVA] A readback is already pending for handle "${handle}".`);
++  }
+   /**
+    * WHAT: 매핑할 원본 텐서 레코드입니다.
+    * WHY: 복사 소스가 될 GPUBuffer와 크기 정보를 제공하기 위해 참조됩니다.
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge/src/tensor/graphExecutor.ts ameva_source_patched/packages/forge/src/tensor/graphExecutor.ts
+--- ameva_source_original/packages/forge/src/tensor/graphExecutor.ts	2026-08-13 04:04:12.133970406 +0000
++++ ameva_source_patched/packages/forge/src/tensor/graphExecutor.ts	2026-08-13 04:15:03.916994908 +0000
+@@ -345,6 +345,7 @@
+    * HOW: 디스패치를 하나 추가할 때마다 1씩 증가시킵니다.
+    */
+   let opsInCurrentBatch = 0;
++  let encoderHasCommands = false;
+   
+   /**
+    * WHAT: 현재 커맨드 인코더에 제출된 총 연산 원소 수(워크로드)입니다.
+@@ -863,7 +864,9 @@
+               throw new AMEVAForgeSecurityError(`Instruction op="${inst.op}" is missing 'in' field.`);
+           }
+           const REDUCTION_WG_SIZE = 256;
+-          let currentSize = byteLength / 4;
++          const reductionInputHandle = idToHandle[inst.in[0]];
++          if (!reductionInputHandle) throw new AMEVAForgeSecurityError(`Unresolved reduction input id ${inst.in[0]}`);
++          let currentSize = _globalRegistry.get(reductionInputHandle).byteLength / 4;
+           let currentInputBuf = idToBuffer[inst.in[0]];
+           const intermediateBuffers: GPUBuffer[] = [];
+           
+@@ -902,12 +905,13 @@
+               }));
+               passEncoder.dispatchWorkgroups(numWGs);
+               passEncoder.end();
+-              
++              encoderHasCommands = true;
+               currentInputBuf = passBuf;
+               currentSize = numWGs;
+           }
+           
+           commandEncoder.copyBufferToBuffer(currentInputBuf, 0, outBuffer, 0, 4);
++          encoderHasCommands = true;
+           
+           /**
+            * WHAT: 리덕션 연산 중 만들어진 중간 임시 버퍼들을 수집하는 루프입니다.
+@@ -1075,8 +1079,9 @@
+     throw err;
+   }
+ 
+-  if (opsInCurrentBatch > 0) {
++  if (encoderHasCommands || opsInCurrentBatch > 0) {
+     device.queue.submit([commandEncoder.finish()]);
++    encoderHasCommands = false;
+   }
+ 
+   // ── 5. Commit / Rollback (Async) ──
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge/src/webgpu/buffers.ts ameva_source_patched/packages/forge/src/webgpu/buffers.ts
+--- ameva_source_original/packages/forge/src/webgpu/buffers.ts	2026-08-13 04:04:13.420001470 +0000
++++ ameva_source_patched/packages/forge/src/webgpu/buffers.ts	2026-08-13 04:15:03.740990180 +0000
+@@ -26,7 +26,6 @@
+   kind: AllocationKind = 'tensor',
+   ownerGraph: string | null = null
+ ): { buffer: GPUBuffer, token: AllocationToken } {
+-  console.log("allocateBuffer called with byteLength:", byteLength, "kind:", kind);
+   const token = _globalQuotaManager.reserveToken(byteLength, kind, ownerGraph);
+   try {
+     const buffer = getDevice().createBuffer({ size: byteLength, usage });
+@@ -126,7 +125,11 @@
+ ): void {
+   try {
+     const arrayBuffer = stagingBuffer.getMappedRange();
+-    outArray.set(new Float32Array(arrayBuffer));
++    const mapped = new Float32Array(arrayBuffer);
++    if (outArray.length !== mapped.length) {
++      throw new RangeError(`readMappedInto destination length mismatch: expected ${mapped.length}, got ${outArray.length}`);
++    }
++    outArray.set(mapped);
+   } finally {
+     stagingBuffer.unmap();
+     stagingBuffer.destroy();
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge/tests/sourceContract.test.ts ameva_source_patched/packages/forge/tests/sourceContract.test.ts
+--- ameva_source_original/packages/forge/tests/sourceContract.test.ts	1970-01-01 00:00:00.000000000 +0000
++++ ameva_source_patched/packages/forge/tests/sourceContract.test.ts	2026-08-13 04:15:48.202292996 +0000
+@@ -0,0 +1,2 @@
++import { readFileSync } from "fs"; import { join } from "path";
++describe("R1 source contracts",()=>{it("reduction uses input size",()=>{const s=readFileSync(join(__dirname,"../src/tensor/graphExecutor.ts"),"utf8");expect(s).toContain("_globalRegistry.get(reductionInputHandle).byteLength / 4");expect(s).not.toContain("let currentSize = byteLength / 4");});it("duplicate readback is rejected",()=>{const s=readFileSync(join(__dirname,"../src/tensor/gpuCore.ts"),"utf8");expect(s).toContain("_pendingStagingBuffers.has(handle)");});});
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge-py/add_conv.py ameva_source_patched/packages/forge-py/add_conv.py
+--- ameva_source_original/packages/forge-py/add_conv.py	2026-08-13 04:04:13.882012629 +0000
++++ ameva_source_patched/packages/forge-py/add_conv.py	2026-08-13 04:15:48.214293468 +0000
+@@ -1,194 +1,2 @@
+-import sys
+-
+-with open('c:/Users/GAME/Desktop/uno-km/dev/AMEVA-Tensor/packages/forge-py/src/forge/ops.py', 'a', encoding='utf-8') as f:
+-    f.write('''
+-
+-class Conv2dFunction(Function):
+-    @staticmethod
+-    def forward(ctx: Context, x: Tensor, weight: Tensor, bias: Optional[Tensor], stride: int, padding: int) -> Tensor:
+-        ctx.save_for_backward(x, weight, bias)
+-        ctx.stride = stride
+-        ctx.padding = padding
+-        
+-        N, C, H, W = x.shape
+-        C_out, C_in, K_h, K_w = weight.shape
+-        if C != C_in:
+-            raise AMEVAForgeShapeError(f"Input channels {C} does not match weight channels {C_in}")
+-            
+-        H_out = (H + 2 * padding - K_h) // stride + 1
+-        W_out = (W + 2 * padding - K_w) // stride + 1
+-        
+-        if _should_use_gpu(x, weight):
+-            x_col = Tensor(shape=(N * H_out * W_out, C * K_h * K_w), dtype=x.dtype, device="gpu", requires_grad=False,
+-                           op="im2col", inputs=[x], params=[N, C, H, W, K_h, K_w, stride, padding, H_out, W_out])
+-            weight_reshaped = weight.reshape((C_out, C * K_h * K_w))
+-            weight_t = weight_reshaped.transpose(0, 1)
+-            
+-            out_2d = Tensor(shape=(N * H_out * W_out, C_out), dtype=x.dtype, device="gpu", requires_grad=False,
+-                            op="matmul", inputs=[x_col, weight_t], params=[N * H_out * W_out, C_out, C * K_h * K_w])
+-                            
+-            out = out_2d.reshape((N, H_out * W_out, C_out)).transpose(1, 2).reshape((N, C_out, H_out, W_out))
+-            if bias is not None:
+-                bias_reshaped = bias.reshape((1, C_out, 1, 1))
+-                out = out + bias_reshaped
+-            return out
+-        else:
+-            x_data = _require_cpu_data(x)
+-            weight_data = _require_cpu_data(weight)
+-            
+-            x_col = np.zeros((N, H_out * W_out, C * K_h * K_w), dtype=np.float32)
+-            for n in range(N):
+-                for h_out in range(H_out):
+-                    for w_out in range(W_out):
+-                        h_start = h_out * stride - padding
+-                        w_start = w_out * stride - padding
+-                        patch = np.zeros((C, K_h, K_w), dtype=np.float32)
+-                        for c in range(C):
+-                            for k_h in range(K_h):
+-                                for k_w in range(K_w):
+-                                    h_in = h_start + k_h
+-                                    w_in = w_start + k_w
+-                                    if 0 <= h_in < H and 0 <= w_in < W:
+-                                        patch[c, k_h, k_w] = x_data[n, c, h_in, w_in]
+-                        x_col[n, h_out * W_out + w_out, :] = patch.flatten()
+-            
+-            weight_reshaped = weight_data.reshape((C_out, C * K_h * K_w))
+-            out_data = np.zeros((N, C_out, H_out, W_out), dtype=np.float32)
+-            for n in range(N):
+-                out_2d = x_col[n] @ weight_reshaped.T
+-                out_data[n] = out_2d.T.reshape((C_out, H_out, W_out))
+-                
+-            if bias is not None:
+-                bias_data = _require_cpu_data(bias)
+-                out_data += bias_data.reshape((1, C_out, 1, 1))
+-                
+-            return Tensor(shape=(N, C_out, H_out, W_out), dtype=x.dtype, device="cpu", requires_grad=False, data=out_data)
+-
+-    @staticmethod
+-    def backward(ctx: Context, grad_output: Tensor) -> Tuple[Tensor, ...]:
+-        x, weight, bias = ctx.saved_tensors
+-        stride = ctx.stride
+-        padding = ctx.padding
+-        
+-        N, C, H, W = x.shape
+-        C_out, C_in, K_h, K_w = weight.shape
+-        H_out = grad_output.shape[2]
+-        W_out = grad_output.shape[3]
+-        
+-        grad_bias = None
+-        if bias is not None and bias.requires_grad:
+-            grad_bias = grad_output.sum(axis=(0, 2, 3)).reshape(bias.shape)
+-            
+-        if _should_use_gpu(x, weight):
+-            grad_out_2d = grad_output.transpose(1, 2).transpose(2, 3).reshape((N * H_out * W_out, C_out))
+-            x_col = Tensor(shape=(N * H_out * W_out, C * K_h * K_w), dtype=x.dtype, device="gpu", requires_grad=False,
+-                           op="im2col", inputs=[x], params=[N, C, H, W, K_h, K_w, stride, padding, H_out, W_out])
+-            
+-            x_col_t = x_col.transpose(0, 1)
+-            grad_weight_2d = Tensor(shape=(C * K_h * K_w, C_out), dtype=x.dtype, device="gpu", requires_grad=False,
+-                                    op="matmul", inputs=[x_col_t, grad_out_2d], params=[C * K_h * K_w, C_out, N * H_out * W_out])
+-            grad_weight = grad_weight_2d.transpose(0, 1).reshape(weight.shape)
+-            
+-            weight_reshaped = weight.reshape((C_out, C * K_h * K_w))
+-            grad_x_col_2d = Tensor(shape=(N * H_out * W_out, C * K_h * K_w), dtype=x.dtype, device="gpu", requires_grad=False,
+-                                   op="matmul", inputs=[grad_out_2d, weight_reshaped], params=[N * H_out * W_out, C * K_h * K_w, C_out])
+-            
+-            grad_x = Tensor(shape=(N, C, H, W), dtype=x.dtype, device="gpu", requires_grad=False,
+-                            op="col2im", inputs=[grad_x_col_2d], params=[N, C, H, W, K_h, K_w, stride, padding, H_out, W_out])
+-            
+-            return grad_x, grad_weight, grad_bias, None, None
+-        else:
+-            x_data = _require_cpu_data(x)
+-            weight_data = _require_cpu_data(weight)
+-            grad_out_data = _require_cpu_data(grad_output)
+-            
+-            x_col = np.zeros((N, H_out * W_out, C * K_h * K_w), dtype=np.float32)
+-            for n in range(N):
+-                for h_out in range(H_out):
+-                    for w_out in range(W_out):
+-                        h_start = h_out * stride - padding
+-                        w_start = w_out * stride - padding
+-                        patch = np.zeros((C, K_h, K_w), dtype=np.float32)
+-                        for c in range(C):
+-                            for k_h in range(K_h):
+-                                for k_w in range(K_w):
+-                                    h_in = h_start + k_h
+-                                    w_in = w_start + k_w
+-                                    if 0 <= h_in < H and 0 <= w_in < W:
+-                                        patch[c, k_h, k_w] = x_data[n, c, h_in, w_in]
+-                        x_col[n, h_out * W_out + w_out, :] = patch.flatten()
+-            
+-            grad_weight_data = np.zeros_like(weight_data)
+-            grad_x_data = np.zeros_like(x_data)
+-            weight_reshaped = weight_data.reshape((C_out, C * K_h * K_w))
+-            
+-            grad_out_2d = grad_out_data.transpose(0, 2, 3, 1).reshape(N, H_out * W_out, C_out)
+-            
+-            grad_x_col = np.zeros_like(x_col)
+-            for n in range(N):
+-                gw = x_col[n].T @ grad_out_2d[n]
+-                grad_weight_data += gw.T.reshape(weight.shape)
+-                
+-                gxc = grad_out_2d[n] @ weight_reshaped
+-                grad_x_col[n] = gxc
+-                
+-                for h_out in range(H_out):
+-                    for w_out in range(W_out):
+-                        patch = grad_x_col[n, h_out * W_out + w_out].reshape(C, K_h, K_w)
+-                        h_start = h_out * stride - padding
+-                        w_start = w_out * stride - padding
+-                        for c in range(C):
+-                            for k_h in range(K_h):
+-                                for k_w in range(K_w):
+-                                    h_in = h_start + k_h
+-                                    w_in = w_start + k_w
+-                                    if 0 <= h_in < H and 0 <= w_in < W:
+-                                        grad_x_data[n, c, h_in, w_in] += patch[c, k_h, k_w]
+-                                        
+-            grad_x = Tensor(shape=x.shape, dtype=x.dtype, device="cpu", requires_grad=False, data=grad_x_data)
+-            grad_weight = Tensor(shape=weight.shape, dtype=weight.dtype, device="cpu", requires_grad=False, data=grad_weight_data)
+-            
+-            return grad_x, grad_weight, grad_bias, None, None
+-
+-def conv2d(x: Tensor, weight: Tensor, bias: Optional[Tensor] = None, stride: int = 1, padding: int = 0) -> Tensor:
+-    return Conv2dFunction.apply(x, weight, bias, stride, padding)
+-''')
+-
+-with open('c:/Users/GAME/Desktop/uno-km/dev/AMEVA-Tensor/packages/forge-py/src/forge/nn.py', 'a', encoding='utf-8') as f:
+-    f.write('''
+-
+-class Conv2d(Module):
+-    def __init__(self, in_channels: int, out_channels: int, kernel_size: int, stride: int = 1, padding: int = 0, bias: bool = True):
+-        super().__init__()
+-        self.in_channels = in_channels
+-        self.out_channels = out_channels
+-        self.kernel_size = kernel_size
+-        self.stride = stride
+-        self.padding = padding
+-        
+-        import math
+-        k = 1 / math.sqrt(in_channels * kernel_size * kernel_size)
+-        from .ops import random, tensor
+-        import numpy as np
+-        
+-        weight_data = np.random.uniform(-k, k, (out_channels, in_channels, kernel_size, kernel_size))
+-        self.weight = tensor(weight_data, requires_grad=True)
+-        
+-        if bias:
+-            bias_data = np.random.uniform(-k, k, (out_channels,))
+-            self.bias = tensor(bias_data, requires_grad=True)
+-        else:
+-            self.bias = None
+-
+-    def forward(self, x: 'Tensor') -> 'Tensor':
+-        from .ops import conv2d
+-        
+-        if self.weight.device != x.device:
+-            self.weight = self.weight.to(x.device)
+-            self.weight.requires_grad = True
+-        if self.bias is not None and self.bias.device != x.device:
+-            self.bias = self.bias.to(x.device)
+-            self.bias.requires_grad = True
+-            
+-        return conv2d(x, self.weight, self.bias, self.stride, self.padding)
+-''')
+\ No newline at end of file
++"""Deprecated migration stub; direct source mutation is disabled."""
++raise RuntimeError("add_conv.py is disabled; maintain Conv2d in reviewed package source.")
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge-py/pyproject.toml ameva_source_patched/packages/forge-py/pyproject.toml
+--- ameva_source_original/packages/forge-py/pyproject.toml	2026-08-13 04:04:13.906013209 +0000
++++ ameva_source_patched/packages/forge-py/pyproject.toml	2026-08-13 04:15:48.088288509 +0000
+@@ -4,7 +4,7 @@
+ 
+ [project]
+ name = "forge"
+-version = "2.0.0"
++version = "0.1.0"
+ description = "WebGPU-accelerated tensor computation library with autograd for deep learning training"
+ readme = "README.md"
+ license = {text = "MIT"}
+@@ -13,7 +13,7 @@
+     {name = "AMEVA Team"}
+ ]
+ classifiers = [
+-    "Development Status :: 4 - Beta",
++    "Development Status :: 3 - Alpha",
+     "Intended Audience :: Developers",
+     "Intended Audience :: Science/Research",
+     "License :: OSI Approved :: MIT License",
+diff -ruN '--exclude=__pycache__' ameva_source_original/packages/forge-py/src/forge/__init__.py ameva_source_patched/packages/forge-py/src/forge/__init__.py
+--- ameva_source_original/packages/forge-py/src/forge/__init__.py	2026-08-13 04:04:14.367024345 +0000
++++ ameva_source_patched/packages/forge-py/src/forge/__init__.py	2026-08-13 04:15:48.121289808 +0000
+@@ -48,7 +48,7 @@
+ # WHAT: 패키지 버전을 정의하는 변수입니다.
+ # WHY: 패키지 사용자나 다른 도구가 현재 설치된 패키지의 버전을 확인할 수 있게 합니다.
+ # HOW: 문자열 형태로 버전을 저장하여 외부에서 접근 가능하게 합니다.
+-__version__ = "2.0.0"
++__version__ = "0.1.0"
+ 
+ # 기본 통계 및 수학 연산 함수들을 편의상 다른 이름으로 매핑하여 임포트
+ from .ops import sum_op as sum, mean_op as mean, exp_op as exp, log_op as log

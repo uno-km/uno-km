@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="home.pageTitle">AMEVA Open-Source Foundation (AOSF) - Official Portal</title>
+  <meta name="description" content="Democratizing on-device AI and autonomous software systems without cloud tax. Official Portal of AMEVA Open-Source Foundation.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/i18n-translations.js"></script>
+</head>
+<body>
+  <!-- Top Header -->
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA Foundation Logo">
+      <h1 data-i18n="common.brand">AMEVA Open-Source Foundation</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
+      <a href="../../index.html" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <h3 data-i18n="nav.foundation">Foundation</h3>
+      <ul>
+        <li><a href="index.html" class="active" data-i18n="nav.portal">Foundation Portal</a></li>
+        <li><a href="charter.html" data-i18n="nav.charter">Foundation Charter</a></li>
+        <li><a href="governance.html" data-i18n="nav.governance">Governance &amp; Merit</a></li>
+        <li><a href="incubation.html" data-i18n="nav.incubation">Incubation Policy</a></li>
+        <li><a href="sponsorship.html" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.tier1">Flagship Projects</h3>
+      <ul>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web)</a></li>
+        <li><a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank">Termux-Playwright</a></li>
+        <li><a href="https://uno-km.github.io/termux-diffusion/" target="_blank">Termux-Diffusion</a></li>
+        <li><a href="https://uno-km.github.io/termux-stt/" target="_blank">Termux-STT</a></li>
+        <li><a href="https://uno-km.github.io/termux-train/" target="_blank">Termux-Train</a></li>
+        <li><a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank">AMEVA-Forge</a></li>
+      </ul>
+
+      <h3 data-i18n="nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix)</a></li>
+        <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h2 data-i18n="home.title">AMEVA Open-Source Foundation (AOSF)</h2>
+      <p class="subtitle" data-i18n="home.subtitle">
+        Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Tax
+      </p>
+
+      <div class="badges-bar">
+        <span class="release-tag">AOSF Tier 1 TLP Ecosystem</span>
+        <img src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" alt="Apache 2.0">
+        <img src="https://img.shields.io/badge/governance-Meritocracy-brightgreen.svg" alt="Meritocracy">
+        <img src="https://img.shields.io/badge/on--device-100%25%20Sovereign-success" alt="Sovereign AI">
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.sepTitle">Separation of Foundation &amp; Personal Profile</span>
+        <p data-i18n="home.sepDesc">
+          AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong>Eunho Kim (@uno-km)</strong> are maintained strictly separately in the <a href="../../index.html">Personal Digital CV</a>.
+        </p>
+      </div>
+
+      <p data-i18n="home.desc">
+        AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.
+      </p>
+
+      <!-- Tier 1 Flagship -->
+      <h3 data-i18n="home.tier1Title">Tier 1: Flagship Top-Level Projects (TLP)</h3>
+      <p class="subtitle" data-i18n="home.tier1Desc">Production-Ready · PyPI &amp; npm Verified · Complete Software &amp; Runtimes</p>
+      
+      <div class="features-grid">
+        <!-- Workstation -->
+        <div class="feature-card" style="border-left: 4px solid var(--primary-color);">
+          <h4 data-i18n="proj.workstationTitle">AMEVA Workstation (Web/Desktop)</h4>
+          <p data-i18n="proj.workstationDesc">World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.</p>
+          <div class="card-links">
+            <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-sm primary">Launch Web App</a>
+            <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Termux Playwright -->
+        <div class="feature-card">
+          <h4 data-i18n="proj.playwrightTitle">Termux-Playwright</h4>
+          <p data-i18n="proj.playwrightDesc">Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.</p>
+          <div class="card-links">
+            <a href="https://uno-km.github.io/termux-playwright-demo/" target="_blank" class="btn-sm primary">Docs</a>
+            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-sm">PyPI (pip)</a>
+            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+            <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Termux Diffusion -->
+        <div class="feature-card">
+          <h4 data-i18n="proj.diffusionTitle">Termux-Diffusion</h4>
+          <p data-i18n="proj.diffusionDesc">Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
+          <div class="card-links">
+            <a href="https://uno-km.github.io/termux-diffusion/" target="_blank" class="btn-sm primary">Docs</a>
+            <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-sm">PyPI (pip)</a>
+            <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+            <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Termux STT -->
+        <div class="feature-card">
+          <h4 data-i18n="proj.sttTitle">Termux-STT</h4>
+          <p data-i18n="proj.sttDesc">Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.</p>
+          <div class="card-links">
+            <a href="https://uno-km.github.io/termux-stt/" target="_blank" class="btn-sm primary">Docs</a>
+            <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-sm">PyPI (pip)</a>
+            <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+            <a href="https://github.com/uno-km/termux-stt" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Termux Train -->
+        <div class="feature-card">
+          <h4 data-i18n="proj.trainTitle">Termux-Train</h4>
+          <p data-i18n="proj.trainDesc">Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.</p>
+          <div class="card-links">
+            <a href="https://uno-km.github.io/termux-train/" target="_blank" class="btn-sm primary">Docs</a>
+            <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-sm">PyPI (pip)</a>
+            <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+
+        <!-- AMEVA Forge -->
+        <div class="feature-card">
+          <h4 data-i18n="proj.forgeTitle">AMEVA-Forge</h4>
+          <p data-i18n="proj.forgeDesc">Zero-server-cost Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.</p>
+          <div class="card-links">
+            <a href="https://uno-km.github.io/ameva-forge/demo.html" target="_blank" class="btn-sm primary">Live Studio</a>
+            <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-sm">PyPI (pip)</a>
+            <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="btn-sm">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Foundation Matrix Table -->
+      <h3 data-i18n="home.matrixTitle">Official Released Packages &amp; Ecosystem Matrix</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Package (PyPI / npm)</th>
+            <th>Runtime Environment</th>
+            <th>Primary Capability</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AMEVA Workstation</strong></td>
+            <td><code>Web / Desktop</code></td>
+            <td>WebGPU, Next.js, WASM</td>
+            <td>100% On-Device Local AI & Productivity Suite</td>
+            <td><span class="release-tag">Official Live App</span></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-Playwright</strong></td>
+            <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
+            <td>Android ARM64 Termux</td>
+            <td>Non-root Chromium Browser Automation & CDP</td>
+            <td><span class="release-tag">PyPI + npm Released</span></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-Diffusion</strong></td>
+            <td><code>pip: termux-diffusion</code><br/><code>npm: termux-diffusion</code></td>
+            <td>Android ARM64 Termux</td>
+            <td>On-Device Stable Diffusion Image Generation</td>
+            <td><span class="release-tag">PyPI + npm Released</span></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-STT</strong></td>
+            <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
+            <td>Android ARM64 Termux</td>
+            <td>Unified Whisper/Vosk STT & Pure Python Diarization</td>
+            <td><span class="release-tag">PyPI + npm Released</span></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-Train</strong></td>
+            <td><code>pip: termux-train</code></td>
+            <td>Android ARM64 Termux</td>
+            <td>Bionic Native Tensor, DAG Autograd & LoRA</td>
+            <td><span class="release-tag">PyPI Released</span></td>
+          </tr>
+          <tr>
+            <td><strong>AMEVA-Forge</strong></td>
+            <td><code>pip: ameva</code></td>
+            <td>WebGPU / Pyodide WASM</td>
+            <td>In-Browser WebGPU Deep Learning & Training</td>
+            <td><span class="release-tag">PyPI Released</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
+</body>
+</html>

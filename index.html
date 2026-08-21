@@ -3,6 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 🌐 Centralized Documentation URL & GET Query Router -->
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const lib = params.get('lib') || params.get('doc') || params.get('p');
+      if (lib) {
+        const targetMap = {
+          'stt': './stt/',
+          'train': './train/',
+          'torch': './train/',
+          'forge': './forge/',
+          'playwright': './playwright/',
+          'diffusion': './diffusion/',
+          'foundation': './foundation/',
+          'workstation': 'https://ameva-workstation-web-core.vercel.app/'
+        };
+        const dest = targetMap[lib.toLowerCase()];
+        if (dest) {
+          window.location.replace(dest);
+        }
+      }
+    })();
+  </script>
+  
   <title>Eunho Kim (김은호 / @uno-km) | Senior Software Engineer &amp; Systems Architect</title>
   
   <!-- 🔍 Executive Meta Tags -->
