@@ -8,28 +8,28 @@
 </p>
 
 <p align="center">
-  <a href="https://uno-km.github.io/uno-km/"><b>🌐 Official Executive Portal & Digital CV</b></a> |
-  <a href="FOUNDATION.md"><b>AMEVA Foundation</b></a> |
-  <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric Dashboard</b></a> |
-  <a href="https://uno-km.github.io/ameva-forge/"><b>⚡ AMEVA-Forge Docs</b></a> |
+  <a href="https://uno-km.vercel.app/"><b>🌐 Official Executive Portal & Digital CV</b></a> |
+  <a href="https://uno-km.vercel.app/foundation/"><b>🏛️ AMEVA Foundation</b></a> |
+  <a href="https://uno-km.vercel.app/lib/forge/"><b>⚡ AMEVA-Forge Docs</b></a> |
+  <a href="https://uno-km.vercel.app/sentinel/"><b>🛡️ AMEVA-Sentinel</b></a> |
   <a href="https://uno-kim.tistory.com/"><b>📖 Tech Blog</b></a>
 </p>
 
 <div align="center">
-  <a href="https://uno-km.github.io/uno-km/">
-    <img src="https://img.shields.io/badge/Live_Portal-uno--km.github.io-003399?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portal"/>
+  <a href="https://uno-km.vercel.app/">
+    <img src="https://img.shields.io/badge/Live_Portal-uno--km.vercel.app-003399?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portal"/>
   </a>
-  <a href="FOUNDATION.md">
+  <a href="https://uno-km.vercel.app/foundation/">
     <img src="https://img.shields.io/badge/Foundation-AMEVA_Open--Source-003399?style=for-the-badge" alt="AMEVA Foundation"/>
   </a>
-  <a href="https://uno-km.github.io/uno-km/dashboard/">
-    <img src="https://img.shields.io/badge/3D_Universe-WebGPU_Dashboard-00887A?style=for-the-badge&logo=webgpu&logoColor=white" alt="3D Dashboard"/>
+  <a href="https://opencollective.com/ameva-foundation">
+    <img src="https://img.shields.io/badge/Open_Collective-AOSF_Fund-004499?style=for-the-badge&logo=opencollective&logoColor=white" alt="Open Collective"/>
+  </a>
+  <a href="https://github.com/sponsors/uno-km">
+    <img src="https://img.shields.io/badge/GitHub_Sponsors-uno--km-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"/>
   </a>
   <a href="https://uno-kim.tistory.com/">
     <img src="https://img.shields.io/badge/Tech_Blog-uno--kim.tistory.com-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog"/>
-  </a>
-  <a href="mailto:zhfldk014745@naver.com">
-    <img src="https://img.shields.io/badge/Contact-zhfldk014745@naver.com-03C75A?style=for-the-badge&logo=naver&logoColor=white" alt="Email"/>
   </a>
 </div>
 
