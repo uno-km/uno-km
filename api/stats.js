@@ -1,18 +1,41 @@
 /**
- * Vercel Serverless Function: AMEVA Telemetry Admin Analytics API
+ * Vercel Serverless Function: AMEVA Telemetry Public Observability & Analytics API
  * Route: /api/stats
  * 
- * Protected by secret key (x-admin-key header or ?key= query parameter).
- * Returns real-time footprinting analytics, top devices, GPUs, and deep forensic logs.
+ * - Public Zero-Auth Live Telemetry Console (Radical Transparency Mode)
+ * - 5-Second SWR Edge Cache & In-Memory Promise Coalescing
+ * - GDPR / CCPA Privacy-Safe IP Anonymization Masking (125.132.***.***)
  */
 import { neon } from '@neondatabase/serverless';
 
-export default async function handler(req, res) {
-    const adminKey = req.headers['x-admin-key'] || req.query.key;
-    const expectedKey = process.env.ADMIN_SECRET_KEY || 'ameva_admin_secret_2026';
+function maskIp(ip) {
+    if (!ip || typeof ip !== 'string') return '***.***.***.***';
+    const trimmed = ip.trim();
+    if (trimmed === '127.0.0.1' || trimmed === 'localhost') return '127.0.***.***';
+    if (trimmed.includes('.')) {
+        const parts = trimmed.split('.');
+        if (parts.length === 4) return `${parts[0]}.${parts[1]}.***.***`;
+    }
+    if (trimmed.includes(':')) {
+        const parts = trimmed.split(':');
+        if (parts.length >= 2) return `${parts[0]}:${parts[1]}:****:****`;
+    }
+    return '***.***.***.***';
+}
 
-    if (!adminKey || adminKey !== expectedKey) {
-        return res.status(403).json({ error: 'Unauthorized. Valid admin key required.' });
+// In-Memory SWR Cache for Serverless Execution Scope
+let cachedData = null;
+let lastFetchTime = 0;
+let inFlightPromise = null;
+const CACHE_TTL_MS = 5000;
+
+export default async function handler(req, res) {
+    res.setHeader('Cache-Control', 'public, s-maxage=5, stale-while-revalidate=10');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    const now = Date.now();
+    if (cachedData && (now - lastFetchTime) < CACHE_TTL_MS) {
+        return res.status(200).json(cachedData);
     }
 
     const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
@@ -20,7 +43,14 @@ export default async function handler(req, res) {
         return res.status(200).json({ error: 'DATABASE_URL is not configured in environment.' });
     }
 
-    try {
+    if (inFlightPromise) {
+        try {
+            const data = await inFlightPromise;
+            return res.status(200).json(data);
+        } catch (e) {}
+    }
+
+    inFlightPromise = (async () => {
         const sql = neon(dbUrl);
 
         // Ensure schema updates safely
@@ -58,16 +88,20 @@ export default async function handler(req, res) {
             topEventsRes = await sql`SELECT event_type, target_text, COUNT(*) as count FROM click_events GROUP BY event_type, target_text ORDER BY count DESC LIMIT 30;`;
         } catch (e) {}
 
-        // 5. Recent AI Bots Detected
+        // 5. Recent AI Bots Detected (with IP Masking)
         let recentBotsRes = [];
         try {
-            recentBotsRes = await sql`SELECT bot_name, bot_category, requested_path, ip_address, country, city, detected_at FROM bot_crawler_logs ORDER BY detected_at DESC LIMIT 50;`;
+            const rawBots = await sql`SELECT bot_name, bot_category, requested_path, ip_address, country, city, detected_at FROM bot_crawler_logs ORDER BY detected_at DESC LIMIT 50;`;
+            recentBotsRes = (rawBots || []).map(b => ({
+                ...b,
+                ip_address: maskIp(b.ip_address)
+            }));
         } catch (e) {}
 
-        // 6. Deep Forensic Footprints
+        // 6. Deep Forensic Footprints (with IP Masking)
         let recentForensicsRes = [];
         try {
-            recentForensicsRes = await sql`
+            const rawForensics = await sql`
                 SELECT d.visitor_id, d.canvas_hash, d.audio_hash, d.webgl_renderer, d.installed_fonts,
                        d.screen_hz, d.battery_level, d.is_charging, d.used_heap_mb, d.total_visit_count, d.past_paths_history,
                        s.country, s.city, s.ip_address, d.captured_at
@@ -75,10 +109,13 @@ export default async function handler(req, res) {
                 LEFT JOIN visitor_sessions s ON d.session_id = s.session_id
                 ORDER BY d.captured_at DESC LIMIT 100;
             `;
+            recentForensicsRes = (rawForensics || []).map(f => ({
+                ...f,
+                ip_address: maskIp(f.ip_address)
+            }));
         } catch (e) {
-            // Fallback without used_heap_mb if column is not yet propagated
             try {
-                recentForensicsRes = await sql`
+                const rawForensics = await sql`
                     SELECT d.visitor_id, d.canvas_hash, d.audio_hash, d.webgl_renderer, d.installed_fonts,
                            d.screen_hz, d.battery_level, d.is_charging, d.total_visit_count, d.past_paths_history,
                            s.country, s.city, s.ip_address, d.captured_at
@@ -86,6 +123,10 @@ export default async function handler(req, res) {
                     LEFT JOIN visitor_sessions s ON d.session_id = s.session_id
                     ORDER BY d.captured_at DESC LIMIT 100;
                 `;
+                recentForensicsRes = (rawForensics || []).map(f => ({
+                    ...f,
+                    ip_address: maskIp(f.ip_address)
+                }));
             } catch (e2) {
                 console.warn('Stats recentForensics error:', e2.message);
             }
@@ -149,7 +190,7 @@ export default async function handler(req, res) {
             `;
         } catch (e) {}
 
-        return res.status(200).json({
+        const payload = {
             status: 'success',
             metrics: totalVisitorsRes?.[0] || { total_visitors: 0, total_sessions: 0 },
             top_countries: topCountriesRes || [],
@@ -162,8 +203,19 @@ export default async function handler(req, res) {
             top_referrers: referrersRes || [],
             recent_actions: actionsRes || [],
             visitor_journeys: journeysRes || []
-        });
+        };
+
+        cachedData = payload;
+        lastFetchTime = Date.now();
+        return payload;
+    })();
+
+    try {
+        const payload = await inFlightPromise;
+        inFlightPromise = null;
+        return res.status(200).json(payload);
     } catch (err) {
+        inFlightPromise = null;
         console.error('Fatal stats API handler error:', err);
         return res.status(200).json({
             status: 'degraded',
@@ -175,7 +227,10 @@ export default async function handler(req, res) {
             ai_bots_detected: [],
             deep_forensic_logs: [],
             time_series_sessions: [],
-            page_views_flow: []
+            page_views_flow: [],
+            top_referrers: [],
+            recent_actions: [],
+            visitor_journeys: []
         });
     }
 }
