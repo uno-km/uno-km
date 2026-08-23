@@ -81,7 +81,7 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .header-brand {
@@ -724,4 +724,59 @@ footer {
     padding: 3px 7px !important;
     font-size: 0.70rem !important;
   }
+}
+
+
+/* ── Unified Package Dropdown ────────────────────────────────────────────── */
+.pkg-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.pkg-dropdown .header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pkg-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  min-width: 155px;
+  z-index: 1000;
+  padding: 4px;
+}
+
+.pkg-dropdown:hover .pkg-dropdown-menu,
+.pkg-dropdown:focus-within .pkg-dropdown-menu {
+  display: block;
+}
+
+.pkg-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.12s ease;
+  white-space: nowrap;
+}
+
+.pkg-dropdown-item:hover {
+  background-color: var(--bg-alt);
+  color: var(--primary-color);
+}
+
+.pkg-dropdown-item.npm:hover {
+  color: #cb3837;
 }

@@ -112,8 +112,22 @@
           <option value="la">🏛️ Latina</option>
         </select>
       </div>
-            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
-            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <div class="pkg-dropdown">
+                <button class="header-btn" type="button" aria-haspopup="true">
+                    <span>📦 Packages</span>
+                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
+                </button>
+                <div class="pkg-dropdown-menu">
+                    <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pkg-dropdown-item">
+                        <span>🐍</span>
+                        <span>PyPI (Python)</span>
+                    </a>
+                    <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pkg-dropdown-item npm">
+                        <span style="color:#cb3837;">🔴</span>
+                        <span>npm (Node.js)</span>
+                    </a>
+                </div>
+            </div>
             <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
       <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
@@ -158,8 +172,22 @@
             <p data-i18n="home.subtitle">Dual-engine (Python & Node.js) Chromium browser automation on ARM64 mobile hardware without root, PRoot, or X11 virtualization.</p>
 
             <div class="badges-bar">
-                <a href="https://pypi.org/project/termux-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-playwright.svg?color=blue" alt="PyPI Version"></a>
-                <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/v/termux-playwright.svg?color=red" alt="npm Version"></a>
+                <div class="pkg-dropdown">
+                <button class="header-btn" type="button" aria-haspopup="true">
+                    <span>📦 Packages</span>
+                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
+                </button>
+                <div class="pkg-dropdown-menu">
+                    <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pkg-dropdown-item">
+                        <span>🐍</span>
+                        <span>PyPI (Python)</span>
+                    </a>
+                    <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pkg-dropdown-item npm">
+                        <span style="color:#cb3837;">🔴</span>
+                        <span>npm (Node.js)</span>
+                    </a>
+                </div>
+            </div>
                 <a href="https://pepy.tech/projects/termux-playwright" target="_blank"><img src="https://img.shields.io/pepy/dt/termux-playwright?color=orange" alt="Total Downloads"></a>
                 <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python Version">
                 <img src="https://img.shields.io/badge/node-16+-brightgreen.svg" alt="Node Version">
