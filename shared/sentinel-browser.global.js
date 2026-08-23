@@ -26,7 +26,8 @@ var SentinelBrowser = (() => {
     createBrowserTelemetry: () => createBrowserTelemetry,
     getHeapMemoryUsage: () => getHeapMemoryUsage,
     getLocalSessionId: () => getLocalSessionId,
-    getSoulHistory: () => getSoulHistory
+    getSoulHistory: () => getSoulHistory,
+    mountDashboard: () => mountDashboard
   });
   function getHeapMemoryUsage() {
     if (typeof performance !== "undefined" && performance.memory) {
@@ -229,5 +230,135 @@ var SentinelBrowser = (() => {
     return new BrowserTelemetryCollector(options);
   }
   var browserTelemetry = new BrowserTelemetryCollector();
+  function mountDashboard(container, options = {}) {
+    if (typeof document === "undefined") {
+      return {
+        destroy: () => {
+        },
+        refresh: async () => {
+        }
+      };
+    }
+    const el = typeof container === "string" ? document.querySelector(container) : container;
+    if (!el) {
+      console.warn("[AMEVA-Sentinel] Container element not found for mountDashboard:", container);
+      return {
+        destroy: () => {
+        },
+        refresh: async () => {
+        }
+      };
+    }
+    let timer = null;
+    const title = options.title || "AMEVA-Sentinel Observability Console";
+    el.innerHTML = `
+    <div class="sentinel-embed-dash" style="background:#090d16; color:#f8fafc; font-family:system-ui,-apple-system,sans-serif; padding:20px; border-radius:8px; border:1px solid #1e293b;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1e293b; padding-bottom:12px; margin-bottom:16px;">
+        <h3 style="margin:0; font-size:1.2rem; color:#38bdf8; font-weight:800;">${title}</h3>
+        <button id="__sentinel_refresh_btn" style="background:#0284c7; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.8rem; font-weight:600;">\u21BB Refresh</button>
+      </div>
+      <div id="__sentinel_stats_grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;"></div>
+      <div id="__sentinel_briefing_box" style="background:#0f172a; border:1px solid #1e293b; border-radius:6px; padding:14px; margin-bottom:16px;">
+        <div style="font-size:0.85rem; font-weight:700; color:#38bdf8; margin-bottom:8px;">Heuristic Persona Briefing</div>
+        <div id="__sentinel_briefings" style="display:flex; flex-direction:column; gap:8px; font-size:0.85rem;">Loading diagnostics...</div>
+      </div>
+      <div id="__sentinel_flow_box" style="background:#0f172a; border:1px solid #1e293b; border-radius:6px; padding:14px; margin-bottom:16px;">
+        <div style="font-size:0.85rem; font-weight:700; color:#38bdf8; margin-bottom:8px;">Path Traversal Flow</div>
+        <div id="__sentinel_flow_diagram" style="display:flex; flex-wrap:wrap; gap:8px; font-size:0.85rem;">Aggregating paths...</div>
+      </div>
+    </div>
+  `;
+    async function renderData(payload) {
+      if (!payload) return;
+      const grid = el.querySelector("#__sentinel_stats_grid");
+      const briefings = el.querySelector("#__sentinel_briefings");
+      const flowDiagram = el.querySelector("#__sentinel_flow_diagram");
+      const metrics = payload.metrics || payload.overview || {};
+      if (grid) {
+        grid.innerHTML = `
+        <div style="background:#0f172a; padding:12px; border-radius:6px; border:1px solid #1e293b;">
+          <div style="font-size:0.75rem; color:#94a3b8; font-weight:700;">VISITORS</div>
+          <div style="font-size:1.5rem; font-weight:800; color:#38bdf8; margin-top:2px;">${metrics.total_visitors ?? metrics.totalVisitors ?? metrics.totalRecords ?? 0}</div>
+        </div>
+        <div style="background:#0f172a; padding:12px; border-radius:6px; border:1px solid #1e293b;">
+          <div style="font-size:0.75rem; color:#94a3b8; font-weight:700;">ACTIVE SESSIONS</div>
+          <div style="font-size:1.5rem; font-weight:800; color:#38bdf8; margin-top:2px;">${metrics.total_sessions ?? metrics.totalSessions ?? 0}</div>
+        </div>
+        <div style="background:#0f172a; padding:12px; border-radius:6px; border:1px solid #1e293b;">
+          <div style="font-size:0.75rem; color:#94a3b8; font-weight:700;">BOTS IDENTIFIED</div>
+          <div style="font-size:1.5rem; font-weight:800; color:#ef4444; margin-top:2px;">${payload.ai_bots_detected?.length ?? metrics.botCount ?? 0}</div>
+        </div>
+      `;
+      }
+      const logs = payload.deep_forensic_logs || payload.verdicts || [];
+      if (briefings) {
+        if (logs.length === 0) {
+          briefings.innerHTML = '<div style="color:#94a3b8;">No forensic footprints logged yet.</div>';
+        } else {
+          briefings.innerHTML = logs.slice(0, 5).map((l) => {
+            const text = l.summaryNarrative || l.narrative || `Visitor ${l.visitor_id || l.visitorId} active from ${l.country || "GLOBAL"}`;
+            const isBot = text.includes("\uBD07") || text.includes("BOT");
+            const isDev = text.includes("\uAC1C\uBC1C\uC790") || text.includes("ENGINEER");
+            const border = isBot ? "#ef4444" : isDev ? "#10b981" : "#38bdf8";
+            const bg = isBot ? "rgba(239,68,68,0.1)" : isDev ? "rgba(16,185,129,0.1)" : "#0b1329";
+            return `<div style="background:${bg}; border-left:3px solid ${border}; padding:8px 12px; border-radius:0 4px 4px 0;">${text}</div>`;
+          }).join("");
+        }
+      }
+      if (flowDiagram) {
+        const transitions = /* @__PURE__ */ new Map();
+        logs.forEach((l) => {
+          const hist = l.past_paths_history || l.pastPathsHistory || "";
+          const segs = hist.split(/\s*(?:->|──>)\s*/).filter(Boolean);
+          for (let i = 0; i < segs.length - 1; i++) {
+            const k = `${segs[i]} ===> ${segs[i + 1]}`;
+            transitions.set(k, (transitions.get(k) || 0) + 1);
+          }
+        });
+        if (transitions.size === 0) {
+          flowDiagram.innerHTML = '<div style="color:#94a3b8;">No multi-hop traversal recorded.</div>';
+        } else {
+          let flowHtml = "";
+          transitions.forEach((cnt, k) => {
+            const [s, t] = k.split(" ===> ");
+            flowHtml += `<div style="display:flex; align-items:center; gap:6px; background:#0b1329; padding:6px 10px; border-radius:4px; font-family:monospace; font-size:0.8rem;"><span style="color:#38bdf8;">${s}</span><span style="color:#94a3b8;">\u2500\u2500></span><span style="color:#38bdf8;">${t} <span style="background:#0284c7; color:#fff; padding:1px 5px; border-radius:8px; font-size:0.7rem;">${cnt}</span></span></div>`;
+          });
+          flowDiagram.innerHTML = flowHtml;
+        }
+      }
+    }
+    async function fetchAndRender() {
+      if (options.data) {
+        renderData(options.data);
+        return;
+      }
+      if (options.endpoint) {
+        try {
+          const res = await fetch(options.endpoint, { headers: options.headers });
+          if (res.ok) {
+            const json = await res.json();
+            renderData(json);
+          }
+        } catch (e) {
+          console.warn("[AMEVA-Sentinel] Failed to fetch dashboard data:", e);
+        }
+      }
+    }
+    const refreshBtn = el.querySelector("#__sentinel_refresh_btn");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", () => fetchAndRender());
+    }
+    fetchAndRender();
+    if (options.refreshIntervalMs && options.refreshIntervalMs > 0) {
+      timer = setInterval(fetchAndRender, options.refreshIntervalMs);
+    }
+    return {
+      destroy: () => {
+        if (timer) clearInterval(timer);
+        el.innerHTML = "";
+      },
+      refresh: fetchAndRender
+    };
+  }
   return __toCommonJS(index_exports);
 })();
