@@ -26,21 +26,34 @@ export default async function handler(req, res) {
         // 1. Overall stats
         const totalVisitorsRes = await sql`SELECT COUNT(DISTINCT visitor_id) as total_visitors, COUNT(*) as total_sessions FROM visitor_sessions;`;
         // 2. Top Countries
-        const topCountriesRes = await sql`SELECT country, city, COUNT(*) as sessions FROM visitor_sessions GROUP BY country, city ORDER BY sessions DESC LIMIT 10;`;
+        const topCountriesRes = await sql`SELECT country, city, COUNT(*) as sessions FROM visitor_sessions GROUP BY country, city ORDER BY sessions DESC LIMIT 50;`;
         // 3. Top Hardware / GPUs
-        const topGpuRes = await sql`SELECT gpu_renderer, COUNT(*) as count FROM visitor_sessions WHERE gpu_renderer != 'unknown' GROUP BY gpu_renderer ORDER BY count DESC LIMIT 8;`;
+        const topGpuRes = await sql`SELECT gpu_renderer, COUNT(*) as count FROM visitor_sessions WHERE gpu_renderer != 'unknown' GROUP BY gpu_renderer ORDER BY count DESC LIMIT 30;`;
         // 4. Top Click Events & Code Copies
-        const topEventsRes = await sql`SELECT event_type, target_text, COUNT(*) as count FROM click_events GROUP BY event_type, target_text ORDER BY count DESC LIMIT 15;`;
+        const topEventsRes = await sql`SELECT event_type, target_text, COUNT(*) as count FROM click_events GROUP BY event_type, target_text ORDER BY count DESC LIMIT 30;`;
         // 5. Recent AI Bots Detected
-        const recentBotsRes = await sql`SELECT bot_name, bot_category, requested_path, ip_address, country, city, detected_at FROM bot_crawler_logs ORDER BY detected_at DESC LIMIT 15;`;
-        // 6. Recent Deep Forensic Footprints (영혼 & 과거사)
+        const recentBotsRes = await sql`SELECT bot_name, bot_category, requested_path, ip_address, country, city, detected_at FROM bot_crawler_logs ORDER BY detected_at DESC LIMIT 50;`;
+        // 6. Deep Forensic Footprints
         const recentForensicsRes = await sql`
             SELECT d.visitor_id, d.canvas_hash, d.audio_hash, d.webgl_renderer, d.installed_fonts,
-                   d.screen_hz, d.battery_level, d.is_charging, d.total_visit_count, d.past_paths_history,
+                   d.screen_hz, d.battery_level, d.is_charging, d.used_heap_mb, d.total_visit_count, d.past_paths_history,
                    s.country, s.city, s.ip_address, d.captured_at
             FROM deep_forensic_footprints d
             LEFT JOIN visitor_sessions s ON d.session_id = s.session_id
-            ORDER BY d.captured_at DESC LIMIT 15;
+            ORDER BY d.captured_at DESC LIMIT 100;
+        `;
+        // 7. Time-series Session Inflow (for Multi-Timeframe Candlestick & Granular Bucketing)
+        const timeSeriesRes = await sql`
+            SELECT created_at, country, city, gpu_renderer
+            FROM visitor_sessions
+            ORDER BY created_at ASC LIMIT 1000;
+        `;
+        // 8. Page Views Flow
+        const pageFlowRes = await sql`
+            SELECT pathname, COUNT(*) as views, COUNT(DISTINCT visitor_id) as visitors
+            FROM page_views
+            GROUP BY pathname
+            ORDER BY views DESC LIMIT 30;
         `;
 
         return res.status(200).json({
@@ -50,7 +63,9 @@ export default async function handler(req, res) {
             top_gpus: topGpuRes || [],
             top_interactions: topEventsRes || [],
             ai_bots_detected: recentBotsRes || [],
-            deep_forensic_logs: recentForensicsRes || []
+            deep_forensic_logs: recentForensicsRes || [],
+            time_series_sessions: timeSeriesRes || [],
+            page_views_flow: pageFlowRes || []
         });
     } catch (err) {
         return res.status(500).json({ error: err.message });
