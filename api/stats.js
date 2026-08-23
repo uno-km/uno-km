@@ -114,6 +114,41 @@ export default async function handler(req, res) {
             `;
         } catch (e) {}
 
+        // 9. Traffic Acquisition & Inflow Sources ("왜 접속했는지")
+        let referrersRes = [];
+        try {
+            referrersRes = await sql`
+                SELECT COALESCE(NULLIF(referrer, ''), 'Direct / Bookmark / Clean URL') as source, COUNT(*) as count
+                FROM page_views
+                GROUP BY source
+                ORDER BY count DESC LIMIT 30;
+            `;
+        } catch (e) {}
+
+        // 10. Granular User Micro-Interactions & Actions ("들어와서 뭘했는지")
+        let actionsRes = [];
+        try {
+            actionsRes = await sql`
+                SELECT c.visitor_id, c.pathname, c.event_type, c.target_tag, c.target_text, c.target_url, c.occurred_at,
+                       s.country, s.city
+                FROM click_events c
+                LEFT JOIN visitor_sessions s ON c.session_id = s.session_id
+                ORDER BY c.occurred_at DESC LIMIT 60;
+            `;
+        } catch (e) {}
+
+        // 11. Visitor Page Journey & Dwell Depth Ledger
+        let journeysRes = [];
+        try {
+            journeysRes = await sql`
+                SELECT p.visitor_id, p.pathname, p.referrer, p.dwell_seconds, p.max_scroll_percent, p.viewed_at,
+                       s.country, s.city, s.platform
+                FROM page_views p
+                LEFT JOIN visitor_sessions s ON p.session_id = s.session_id
+                ORDER BY p.viewed_at DESC LIMIT 100;
+            `;
+        } catch (e) {}
+
         return res.status(200).json({
             status: 'success',
             metrics: totalVisitorsRes?.[0] || { total_visitors: 0, total_sessions: 0 },
@@ -123,7 +158,10 @@ export default async function handler(req, res) {
             ai_bots_detected: recentBotsRes || [],
             deep_forensic_logs: recentForensicsRes || [],
             time_series_sessions: timeSeriesRes || [],
-            page_views_flow: pageFlowRes || []
+            page_views_flow: pageFlowRes || [],
+            top_referrers: referrersRes || [],
+            recent_actions: actionsRes || [],
+            visitor_journeys: journeysRes || []
         });
     } catch (err) {
         console.error('Fatal stats API handler error:', err);

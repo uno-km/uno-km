@@ -515,6 +515,21 @@
         });
     }, { passive: true });
 
+    // Track Code Copy and Snippet Copy Actions ("뭘했는지")
+    document.addEventListener('copy', () => {
+        try {
+            const sel = window.getSelection() ? window.getSelection().toString().trim().slice(0, 100) : '';
+            if (sel) {
+                enqueueEvent({
+                    event_type: 'copy_snippet',
+                    target_tag: 'clipboard',
+                    target_text: sel,
+                    target_url: window.location.pathname
+                });
+            }
+        } catch (e) {}
+    }, { passive: true });
+
     window.AMEVA_TELEMETRY = {
         trackEvent: (eventType, customData) => {
             enqueueEvent({ event_type: eventType, ...customData });
