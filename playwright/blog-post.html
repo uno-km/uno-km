@@ -158,68 +158,115 @@
 <h3 style='margin-top:28px; border-bottom:1px solid #cbd5e1; padding-bottom:6px;'>4. 설치 및 환경 구축</h3>
 <h4 style='margin-top:20px; color:#003399;'>4.1 초간단 1줄 자동 설치 (추천)</h4>
 <pre><code class='language-bash'>
-<p style='margin:10px 0; line-height:1.7;'>pip install termux-playwright && termux-playwright-install</p>
+pip install termux-playwright && termux-playwright-install
 </code></pre>
 <h4 style='margin-top:20px; color:#003399;'>4.2 수동 정석 5단계 설치 파이프라인</h4>
 <pre><code class='language-bash'>
-<h2>1단계: OS 시스템 패키지 설치</h2>
-<p style='margin:10px 0; line-height:1.7;'>pkg update -y && pkg install -y python python-pip python-greenlet chromium nodejs-lts procps termux-api</p>
-<h2>2단계: 가상환경 생성 (venv 사용 시 필수)</h2>
-<p style='margin:10px 0; line-height:1.7;'>python -m venv --system-site-packages myenv</p>
-<p style='margin:10px 0; line-height:1.7;'>source myenv/bin/activate</p>
-<h2>3단계: 파이썬 패키지 설치</h2>
-<p style='margin:10px 0; line-height:1.7;'>pip install termux-playwright</p>
-<h2>4단계: 핵심 드라이버 원자적 패치</h2>
-<p style='margin:10px 0; line-height:1.7;'>termux-playwright-patch</p>
-<h2>5단계: 시스템 무결성 자가 진단</h2>
-<p style='margin:10px 0; line-height:1.7;'>termux-playwright-doctor</p>
+# 1단계: OS 시스템 패키지 설치
+
+pkg update -y && pkg install -y python python-pip python-greenlet chromium nodejs-lts procps termux-api
+
+# 2단계: 가상환경 생성 (venv 사용 시 필수)
+
+python -m venv --system-site-packages myenv
+
+source myenv/bin/activate
+
+# 3단계: 파이썬 패키지 설치
+
+pip install termux-playwright
+
+# 4단계: 핵심 드라이버 원자적 패치
+
+termux-playwright-patch
+
+# 5단계: 시스템 무결성 자가 진단
+
+termux-playwright-doctor
 </code></pre>
 <hr style='margin:24px 0; border:0; border-top:1px solid #e2e8f0;'/>
 <h3 style='margin-top:28px; border-bottom:1px solid #cbd5e1; padding-bottom:6px;'>5. 실전 프로덕션 코드 레시피</h3>
 <h4 style='margin-top:20px; color:#003399;'>레시피 1: Cloudflare Turnstile 우회 스텔스 크롤러</h4>
 <pre><code class='language-python'>
-<p style='margin:10px 0; line-height:1.7;'>import asyncio</p>
-<p style='margin:10px 0; line-height:1.7;'>from termux_playwright import async_playwright_termux, launch, setup_stealth_context</p>
-<p style='margin:10px 0; line-height:1.7;'>async def main():</p>
-<p style='margin:10px 0; line-height:1.7;'>    async with async_playwright_termux() as p:</p>
-<p style='margin:10px 0; line-height:1.7;'>        # 스텔스 엔진 및 크로미움 기동</p>
-<p style='margin:10px 0; line-height:1.7;'>        browser = await launch(p, headless=True, stealth=True)</p>
-<p style='margin:10px 0; line-height:1.7;'>        context = await setup_stealth_context(</p>
-<p style='margin:10px 0; line-height:1.7;'>            browser,</p>
-<p style='margin:10px 0; line-height:1.7;'>            locale="en-US",</p>
-<p style='margin:10px 0; line-height:1.7;'>            timezone_id="America/New_York",</p>
-<p style='margin:10px 0; line-height:1.7;'>            extra_headers={"Accept-Language": "en-US,en;q=0.9"}</p>
-<p style='margin:10px 0; line-height:1.7;'>        )</p>
-<p style='margin:10px 0; line-height:1.7;'>        page = await context.new_page()</p>
-<p style='margin:10px 0; line-height:1.7;'>        await page.goto("https://bot.sannysoft.com", timeout=60000)</p>
-<p style='margin:10px 0; line-height:1.7;'>        title = await page.title()</p>
-<p style='margin:10px 0; line-height:1.7;'>        print(f"탐지 테스트 페이지 타이틀: {title}")</p>
-<p style='margin:10px 0; line-height:1.7;'>        await browser.close()</p>
-<p style='margin:10px 0; line-height:1.7;'>if __name__ == "__main__":</p>
-<p style='margin:10px 0; line-height:1.7;'>    asyncio.run(main())</p>
+import asyncio
+
+from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+
+async def main():
+
+    async with async_playwright_termux() as p:
+
+        # 스텔스 엔진 및 크로미움 기동
+
+        browser = await launch(p, headless=True, stealth=True)
+
+        context = await setup_stealth_context(
+
+            browser,
+
+            locale="en-US",
+
+            timezone_id="America/New_York",
+
+            extra_headers={"Accept-Language": "en-US,en;q=0.9"}
+
+        )
+
+        page = await context.new_page()
+
+        await page.goto("https://bot.sannysoft.com", timeout=60000)
+
+        title = await page.title()
+
+        print(f"탐지 테스트 페이지 타이틀: {title}")
+
+        await browser.close()
+
+if __name__ == "__main__":
+
+    asyncio.run(main())
 </code></pre>
 <h4 style='margin-top:20px; color:#003399;'>레시피 2: 24시간 무인 가동 저전력 데몬 (WakeLock & 리소스 차단)</h4>
 <pre><code class='language-python'>
-<p style='margin:10px 0; line-height:1.7;'>import asyncio</p>
-<p style='margin:10px 0; line-height:1.7;'>from termux_playwright import async_playwright_termux, launch, block_heavy_resources</p>
-<p style='margin:10px 0; line-height:1.7;'>async def run_worker():</p>
-<p style='margin:10px 0; line-height:1.7;'>    while True:</p>
-<p style='margin:10px 0; line-height:1.7;'>        try:</p>
-<p style='margin:10px 0; line-height:1.7;'>            async with async_playwright_termux() as p:</p>
-<p style='margin:10px 0; line-height:1.7;'>                # CPU 절전 방지 WakeLock 및 저메모리 모드 적용</p>
-<p style='margin:10px 0; line-height:1.7;'>                browser = await launch(p, headless=True, low_memory_mode=True, wake_lock=True)</p>
-<p style='margin:10px 0; line-height:1.7;'>                page = await browser.new_page()</p>
-<p style='margin:10px 0; line-height:1.7;'>                # 이미지, 폰트, 미디어 차단으로 트래픽/CPU 70% 절감</p>
-<p style='margin:10px 0; line-height:1.7;'>                await block_heavy_resources(page, images=True, media=True, fonts=True)</p>
-<p style='margin:10px 0; line-height:1.7;'>                await page.goto("https://news.ycombinator.com", timeout=45000, wait_until="domcontentloaded")</p>
-<p style='margin:10px 0; line-height:1.7;'>                title = await page.title()</p>
-<p style='margin:10px 0; line-height:1.7;'>                print(f"데이터 수집 완료: {title}")</p>
-<p style='margin:10px 0; line-height:1.7;'>                await browser.close()</p>
-<p style='margin:10px 0; line-height:1.7;'>        except Exception as e:</p>
-<p style='margin:10px 0; line-height:1.7;'>            print(f"사이클 예외 발생 (자동 복구 중): {e}")</p>
-<p style='margin:10px 0; line-height:1.7;'>        await asyncio.sleep(60)</p>
-<p style='margin:10px 0; line-height:1.7;'>if __name__ == "__main__":</p>
-<p style='margin:10px 0; line-height:1.7;'>    asyncio.run(run_worker())</p>
+import asyncio
+
+from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+
+async def run_worker():
+
+    while True:
+
+        try:
+
+            async with async_playwright_termux() as p:
+
+                # CPU 절전 방지 WakeLock 및 저메모리 모드 적용
+
+                browser = await launch(p, headless=True, low_memory_mode=True, wake_lock=True)
+
+                page = await browser.new_page()
+
+                # 이미지, 폰트, 미디어 차단으로 트래픽/CPU 70% 절감
+
+                await block_heavy_resources(page, images=True, media=True, fonts=True)
+
+                await page.goto("https://news.ycombinator.com", timeout=45000, wait_until="domcontentloaded")
+
+                title = await page.title()
+
+                print(f"데이터 수집 완료: {title}")
+
+                await browser.close()
+
+        except Exception as e:
+
+            print(f"사이클 예외 발생 (자동 복구 중): {e}")
+
+        await asyncio.sleep(60)
+
+if __name__ == "__main__":
+
+    asyncio.run(run_worker())
 </code></pre>
 <hr style='margin:24px 0; border:0; border-top:1px solid #e2e8f0;'/>
 <h3 style='margin-top:28px; border-bottom:1px solid #cbd5e1; padding-bottom:6px;'>6. 벤치마크 및 성능 비교</h3>
