@@ -31,15 +31,15 @@
       "title": "AMEVA Open-Source Foundation (AOSF)",
       "subtitle": "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency",
       "sepTitle": "Separation of Foundation & Personal Profile",
-      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder Eunho Kim (@uno-km) are maintained strictly separately in the Personal Digital CV.",
-      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.",
+      "sepDesc": "AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder @uno-km are maintained strictly separately in the Personal Digital CV.",
+      "desc": "AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run locally on user hardware with zero cloud server costs.",
       "tier1Title": "Tier 1: Flagship Top-Level Projects (TLP)",
       "tier1Desc": "Production-Ready · PyPI & npm Verified · Complete Software & Runtimes",
       "matrixTitle": "Official Released Packages & Ecosystem Matrix"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.",
+      "workstationDesc": "Client-side WebGPU local AI (Qwen2.5), spatial map and canvas node sharing, nested documents-in-document hierarchy, MapReduce large-document summarization, and autonomous AI multi-agent orchestration.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.",
       "diffusionTitle": "Termux-Diffusion",
@@ -49,7 +49,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool."
+      "forgeDesc": "Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. Zero keystroke logging, verified across major browser engines."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -146,17 +148,17 @@
     "home": {
       "pageTitle": "AMEVA 오픈소스 재단 (AOSF) - 공식 포털",
       "title": "AMEVA 오픈소스 재단 (AOSF)",
-      "subtitle": "클라우드 종속성 없는 100% 온디바이스 AI 및 자율 소프트웨어 생태계의 대중화",
+      "subtitle": "클라우드 종속성 없는 소버린 온디바이스 AI 및 자율 소프트웨어 생태계의 대중화",
       "sepTitle": "재단 공공 기구와 개인 프로필의 엄격한 분리",
-      "sepDesc": "AMEVA 오픈소스 재단(AOSF)은 독립적인 비영리 공공 기구로 운영됩니다. 창립자 김은호(@uno-km)의 개인 커리어, 연락처 및 포트폴리오는 개인 디지털 이력서(Personal Digital CV)에서 엄격히 분리되어 관리됩니다.",
-      "desc": "AOSF는 투명한 메리토크라시(능력주의) 거버넌스로 운영되는 독립 비영리 오픈소스 재단입니다. 클라우드 서버 비용 없이 사용자의 로컬 하드웨어에서 100% 온디바이스로 구동되는 소버린 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 텐서 엔진을 연구 및 육성합니다.",
+      "sepDesc": "AMEVA 오픈소스 재단(AOSF)은 독립적인 비영리 공공 기구로 운영됩니다. 창립자 @uno-km의 개인 커리어, 연락처 및 포트폴리오는 개인 디지털 이력서(Personal Digital CV)에서 엄격히 분리되어 관리됩니다.",
+      "desc": "AOSF는 투명한 메리토크라시(능력주의) 거버넌스로 운영되는 독립 비영리 오픈소스 재단입니다. 클라우드 서버 비용 없이 사용자의 로컬 하드웨어에서 소버린 온디바이스로 구동되는 소버린 AI, 자율 멀티 에이전트 오케스트레이션, 브라우저 WebGPU 딥러닝 텐서 엔진을 연구 및 육성합니다.",
       "tier1Title": "Tier 1: 플래그십 탑레벨 프로젝트 (TLP)",
       "tier1Desc": "프로덕션 레디 · PyPI 및 npm 인증 완료 · 독립 완전체 소프트웨어 및 런타임",
       "matrixTitle": "자립형 온디바이스 소프트웨어 생태계 아키텍처"
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "세계 최초 100% 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 3초 MapReduce PDF/DOCX 문서 뷰어 & 에디터, 인앱 동영상 컷편집, 1초 AI 배경제거 및 무음 자동 컷 기능 탑재.",
+      "workstationDesc": "WebGPU 기반 클라이언트 로컬 AI(Qwen2.5), 캔버스 공간 내 지도 및 노드 실시간 공유, 문서 속의 문서(Nested Documents) 계층 뷰어, MapReduce 대용량 문서 요약 및 자율 AI 멀티 에이전트 오케스트레이션 탑재.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "안드로이드 Termux(ARM64) 환경을 위한 비루팅 크로미움 브라우저 자동화 프레임워크. CDP 제어를 통해 모바일 상에서 무인 크롤링 및 웹 자동화 파이프라인 구동.",
       "diffusionTitle": "Termux-Diffusion",
@@ -166,7 +168,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "SafeTensors 인코딩 및 LoRA 어댑터 미세조정을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분 딥러닝 엔진.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "서버 비용 없는 브라우저 네이티브 WebGPU 딥러닝 & 자동미분(Autograd) 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 최적화 지원."
+      "forgeDesc": "서버 비용 없는 브라우저 네이티브 WebGPU 딥러닝 & 자동미분(Autograd) 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 최적화 지원.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "개인정보 침해 없는 0-Data 브라우저 관측 및 0~100점 확정적 위험도 채점 보안 SDK. 키로깅 제로, 주요 브라우저 엔진 검증 완료."
     },
     "charter": {
       "pageTitle": "AMEVA 재단 공식 헌장 (Charter)",
@@ -265,7 +269,7 @@
       "title": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF)",
       "subtitle": "क्लाउड टैक्स के बिना ऑन-डिवाइस AI और स्वायत्त प्रणालियों का लोकतंत्रीकरण",
       "sepTitle": "फाउंडेशन और व्यक्तिगत प्रोफ़ाइल का पृथक्करण",
-      "sepDesc": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF) एक स्वतंत्र सार्वजनिक निकाय के रूप में संचालित होता है। संस्थापक Eunho Kim (@uno-km) के व्यक्तिगत करियर रिकॉर्ड को पर्सनल डिजिटल सीवी में अलग रखा गया है।",
+      "sepDesc": "AMEVA ओपन-सोर्स फाउंडेशन (AOSF) एक स्वतंत्र सार्वजनिक निकाय के रूप में संचालित होता है। संस्थापक @uno-km के व्यक्तिगत करियर रिकॉर्ड को पर्सनल डिजिटल सीवी में अलग रखा गया है।",
       "desc": "AOSF पारदर्शी योग्यता आधारित शासन वाला एक स्वतंत्र गैर-लाभकारी ओपन-सोर्स फाउंडेशन है। हम ऑन-डिवाइस AI, स्वायत्त मल्टी-एजेंट आर्केस्ट्रा और WebGPU इंजन को बढ़ावा देते हैं जो शून्य क्लाउड लागत के साथ 100% स्थानीय रूप से चलते हैं।",
       "tier1Title": "टियर 1: फ्लैगशिप टॉप-लेवल प्रोजेक्ट्स (TLP)",
       "tier1Desc": "प्रोडक्शन-रेडी · PyPI और npm सत्यापित · पूर्ण सॉफ्टवेयर और रनटाइम",
@@ -273,7 +277,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "दुनिया का पहला 100% ऑन-डिवाइस WebGPU स्थानीय AI (Qwen2.5), 3-सेकंड MapReduce PDF/DOCX संपादक, इन-ऐप वीडियो कटिंग और 1-सेकंड AI बैकग्राउंड रिमूवल।",
+      "workstationDesc": "क्लाइंट-साइड WebGPU स्थानीय AI (Qwen2.5), स्थानिक मानचित्र और कैनवास नोड साझाकरण, नेस्टेड दस्तावेज़ व्यूअर, MapReduce बड़े दस्तावेज़ सारांश और स्वायत्त AI मल्टी-एजेंट ऑर्केस्ट्रेशन।",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Android Termux (ARM64) पर नॉन-रूट क्रोमियम ब्राउज़र ऑटोमेशन। स्क्रैपिंग और ऑटोमेशन के लिए डायरेक्ट CDP नियंत्रण।",
       "diffusionTitle": "Termux-Diffusion",
@@ -283,7 +287,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Android ARM64 के लिए अल्ट्रा-लाइटवेट ऑन-डिवाइस टेंसर और DAG ऑटोग्रैड डीप लर्निंग फ्रेमवर्क।",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "क्लाइंट-कंप्यूट ऑफलोडेड आर्किटेक्चर ब्राउज़र-मूल WebGPU ऑटोग्रैड डीप लर्निंग इंजन।"
+      "forgeDesc": "क्लाइंट-कंप्यूट ऑफलोडेड आर्किटेक्चर ब्राउज़र-मूल WebGPU ऑटोग्रैड डीप लर्निंग इंजन।",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "गोपनीयता-प्रथम 0-डेटा ब्राउज़र अवलोकन और 0~100 नियतात्मक खतरा स्कोरिंग सुरक्षा SDK।"
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -382,7 +388,7 @@
       "title": "AMEVA オープンソース財団 (AOSF)",
       "subtitle": "クラウド税のないオンデバイスAIと自律システムの民主化",
       "sepTitle": "財団の公的組織と個人プロフィールの厳格な分離",
-      "sepDesc": "AMEVA オープンソース財団 (AOSF) は独立した非営利の公的機関として運営されています。創設者 Eunho Kim (@uno-km) の個人経歴はデジタルCVにて厳格に分離管理されています。",
+      "sepDesc": "AMEVA オープンソース財団 (AOSF) は独立した非営利の公的機関として運営されています。創設者 @uno-km の個人経歴はデジタルCVにて厳格に分離管理されています。",
       "desc": "AOSFは透明な能力主義ガバナンスによって運営される独立した非営利オープンソース財団です。クラウド費用ゼロでローカルで100%動作するソブリンAIやWebGPU自動微分エンジンを育成しています。",
       "tier1Title": "Tier 1: フラッグシップ・トップレベルプロジェクト (TLP)",
       "tier1Desc": "本番環境対応 · PyPI & npm 検証済み · 完全自律型ソフトウェアおよびランタイム",
@@ -390,7 +396,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "世界初の完全オンデバイスWebGPUローカルAI (Qwen2.5)、3秒MapReduce PDF/DOCXリーダー＆エディター、動画カット、1秒AI背景透過機能を搭載。",
+      "workstationDesc": "WebGPUベースのクライアントローカルAI (Qwen2.5)、マップ・キャンバス空間ノード共有、ネストされた文書階層ビューア、MapReduce大規模文書要約、自律型AIマルチエージェントオーケストレーションを搭載。",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Android Termux (ARM64) 向け非ルートChromiumブラウザ自動化。スクレイピングと自動化のためのダイレクトCDP制御。",
       "diffusionTitle": "Termux-Diffusion",
@@ -400,7 +406,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Android ARM64向けの超軽量オンバイステンソル演算＆DAG自動微分深層学習フレームワーク。",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "サーバー不要のブラウザネイティブWebGPU深層学習＆自動微分（Autograd）エンジン。"
+      "forgeDesc": "サーバー不要のブラウザネイティブWebGPU深層学習＆自動微分（Autograd）エンジン。",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "プライバシーを保護する0-Dataブラウザ可観測性および0〜100点の決定論的脅威スコアリングSDK。主要ブラウザ検証済み。"
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -499,7 +507,7 @@
       "title": "AMEVA 开源基金会 (AOSF)",
       "subtitle": "无云端税的端侧 AI 与自主软件系统生态民主化",
       "sepTitle": "基金会公营机构与个人档案的严格分离",
-      "sepDesc": "AMEVA 开源基金会 (AOSF) 作为独立的非营利公共实体运作。创始人 Eunho Kim (@uno-km) 的个人履历与联系方式在个人数字简历中独立维护。",
+      "sepDesc": "AMEVA 开源基金会 (AOSF) 作为独立的非营利公共实体运作。创始人 @uno-km 的个人履历与联系方式在个人数字简历中独立维护。",
       "desc": "AOSF 是一个遵循透明英才治理准则的独立非营利开源基金会。我们致力于推动零云端服务器成本、100% 在用户本地硬件运行的主权端侧 AI、自主多智能体编排与 WebGPU 自动求导引擎。",
       "tier1Title": "Tier 1: 旗舰顶级项目 (TLP)",
       "tier1Desc": "生产就绪 · PyPI 与 npm 认证 · 独立完整软件与运行时",
@@ -507,7 +515,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "全球首个 100% 端侧 WebGPU 本地 AI (Qwen2.5)，3秒 MapReduce PDF/DOCX 文档编辑器，应用内视频剪辑与 1 秒 AI 背景去除。",
+      "workstationDesc": "基于 WebGPU 的客户端本地 AI (Qwen2.5)、空间地图与画布节点共享、嵌套文档查看器、MapReduce 大文档智能摘要以及自主 AI 多智能体编排。",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "适用于 Android Termux (ARM64) 的免 Root Chromium 自动化。直接 CDP 控制，赋能移动爬虫与自动化流水线。",
       "diffusionTitle": "Termux-Diffusion",
@@ -517,7 +525,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "适用于 Android ARM64 的超轻量端侧张量运算与 DAG 自动求导深度学习框架。",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "零服务器成本的浏览器原生 WebGPU 自动求导与深度学习引擎。"
+      "forgeDesc": "零服务器成本的浏览器原生 WebGPU 自动求导与深度学习引擎。",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "零隐私侵犯的 0-Data 浏览器可观测性与 0~100 确定性风险评分安全 SDK。无击键记录，主流浏览器引擎全面验证。"
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -616,7 +626,7 @@
       "title": "مؤسسة AMEVA مفتوحة المصدر (AOSF)",
       "subtitle": "إضفاء الطابع الديمقراطي على الذكاء الاصطناعي على الأجهزة الطرفية بدون تكاليف سحابية",
       "sepTitle": "الفصل الصارم بين المؤسسة والملف الشخصي",
-      "sepDesc": "تعمل مؤسسة AMEVA مفتوحة المصدر ككيان عام مستقل. يتم الحفاظ على السيرة الذاتية للمؤسس Eunho Kim بشكل منفصل تماماً.",
+      "sepDesc": "تعمل مؤسسة AMEVA مفتوحة المصدر ككيان عام مستقل. يتم الحفاظ على السيرة الذاتية للمؤسس @uno-km بشكل منفصل تماماً.",
       "desc": "AOSF هي مؤسسة غير ربحية ومفتوحة المصدر تحكمها الجدارة الشفافة. نحن نرعى الذكاء الاصطناعي السيادي على الأجهزة ومحركات WebGPU المحلية.",
       "tier1Title": "المستوى 1: المشاريع الرئيسية الرائدة (TLP)",
       "tier1Desc": "جاهزة للإنتاج · معتمدة على PyPI و npm · برمجيات وبيئات تشغيل كاملة",
@@ -624,7 +634,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "أول ذكاء اصطناعي محلي WebGPU على الجهاز بنسبة 100%، محرر PDF/DOCX فائق السرعة، وتحرير الفيديو وإزالة الخلفية في ثانية واحدة.",
+      "workstationDesc": "ذكاء اصطناعي محلي WebGPU على جانب العميل (Qwen2.5)، ومشاركة الخرائط والعقد في مساحة اللوحة، وعارض المستندات المتداخلة، وتلخيص المستندات الكبيرة عبر MapReduce، وتنسيق الوكلاء المتعددين الذاتيين.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "أتمتة متصفح Chromium بدون روت لنظام Android Termux (ARM64) مع تحكم مباشر عبر CDP.",
       "diffusionTitle": "Termux-Diffusion",
@@ -634,7 +644,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "إطار عمل فائق الخفة لحساب المشتقات التلقائية وتدريب النماذج على Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "محرك التعلم العميق والمشتقات التلقائية WebGPU الأصلي في المتصفح بدون تكلفة خادم."
+      "forgeDesc": "محرك التعلم العميق والمشتقات التلقائية WebGPU الأصلي في المتصفح بدون تكلفة خادم.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "مجموعة أدوات أمان لمراقبة المتصفح بدون جمع بيانات خاصة مع تقييم حتمي للتهديدات من 0 إلى 100."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -733,7 +745,7 @@
       "title": "Fondation Open-Source AMEVA (AOSF)",
       "subtitle": "Démocratisation de l'IA On-Device sans taxe cloud",
       "sepTitle": "Séparation de la Fondation et du Profil Personnel",
-      "sepDesc": "La Fondation AMEVA (AOSF) fonctionne comme une entité publique indépendante. Le CV et les coordonnées du fondateur Eunho Kim sont maintenus séparément.",
+      "sepDesc": "La Fondation AMEVA (AOSF) fonctionne comme une entité publique indépendante. Le CV et les coordonnées du fondateur @uno-km sont maintenus séparément.",
       "desc": "L'AOSF est une fondation open-source indépendante régie par une méritocratie transparente. Nous développons une IA souveraine sur l'appareil et des moteurs WebGPU sans coût de serveur.",
       "tier1Title": "Tier 1: Projets Phares de Premier Niveau (TLP)",
       "tier1Desc": "Prêt pour la production · Vérifié sur PyPI & npm · Logiciels et runtimes autonomes",
@@ -741,7 +753,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Première IA locale 100% WebGPU (Qwen2.5), lecteur/éditeur PDF/DOCX ultra-rapide et découpe vidéo.",
+      "workstationDesc": "IA locale WebGPU côté client (Qwen2.5), partage de cartes et de nœuds sur canevas spatial, visualiseur de documents imbriqués, résumé de documents volumineux par MapReduce et orchestration d'agents IA autonomes.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Automatisation du navigateur Chromium sans root sur Android Termux (ARM64) avec contrôle direct CDP.",
       "diffusionTitle": "Termux-Diffusion",
@@ -751,7 +763,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Framework d'apprentissage profond et d'autodifférenciation DAG ultra-léger pour Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Moteur d'apprentissage profond et d'autodifférenciation WebGPU natif pour navigateur à coût serveur nul."
+      "forgeDesc": "Moteur d'apprentissage profond et d'autodifférenciation WebGPU natif pour navigateur à coût serveur nul.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "SDK de sécurité et d'observabilité 0-Data sans collecte de données privées avec notation déterministe des menaces de 0 à 100."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -850,7 +864,7 @@
       "title": "AMEVA Open-Source-Stiftung (AOSF)",
       "subtitle": "Demokratisierung von On-Device-KI ohne Cloud-Steuer",
       "sepTitle": "Trennung von Stiftung und persönlichem Profil",
-      "sepDesc": "Die AMEVA Foundation (AOSF) agiert als unabhängige öffentliche Einrichtung. Der persönliche Werdegang von Gründer Eunho Kim wird separat geführt.",
+      "sepDesc": "Die AMEVA Foundation (AOSF) agiert als unabhängige öffentliche Einrichtung. Der persönliche Werdegang von Gründer @uno-km wird separat geführt.",
       "desc": "AOSF ist eine unabhängige Open-Source-Stiftung, die sich für souveräne On-Device-KI und WebGPU-Autograd-Engines ohne Cloud-Serverkosten einsetzt.",
       "tier1Title": "Tier 1: Flaggschiff-Top-Level-Projekte (TLP)",
       "tier1Desc": "Produktionsreif · PyPI & npm verifiziert · Vollständige Software & Runtimes",
@@ -858,7 +872,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Weltweit erste 100% On-Device WebGPU lokale KI (Qwen2.5), 3-Sekunden PDF/DOCX-Editor und Videoschnitt.",
+      "workstationDesc": "Client-seitige WebGPU-Lokale KI (Qwen2.5), Teilen von Karten und Canvas-Knoten, hierarchischer Betrachter für verschachtelte Dokumente, MapReduce-Dokumentenzusammenfassung und autonome KI-Multi-Agenten-Orchestrierung.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Root-lose Chromium-Browserautomatisierung auf Android Termux (ARM64) mit direkter CDP-Steuerung.",
       "diffusionTitle": "Termux-Diffusion",
@@ -868,7 +882,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultraleichtes On-Device-Tensor- und DAG-Autograd-Deep-Learning-Framework für Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Serverlose Browser-native WebGPU-Autograd-Deep-Learning-Engine."
+      "forgeDesc": "Serverlose Browser-native WebGPU-Autograd-Deep-Learning-Engine.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "Datenschutzfreundliches 0-Data Browser-Observability & deterministisches 0~100 Bedrohungs-Scoring-SDK."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -967,7 +983,7 @@
       "title": "Fundación Open-Source AMEVA (AOSF)",
       "subtitle": "Democratización de la IA en dispositivos sin costo de nube",
       "sepTitle": "Separación de la Fundación y el Perfil Personal",
-      "sepDesc": "La Fundación AMEVA (AOSF) opera como una entidad pública independiente. La trayectoria personal de Eunho Kim se mantiene por separado.",
+      "sepDesc": "La Fundación AMEVA (AOSF) opera como una entidad pública independiente. La trayectoria personal de @uno-km se mantiene por separado.",
       "desc": "AOSF es una fundación sin fines de lucro que impulsa la IA soberana en el dispositivo y motores WebGPU con cero costo de servidores en la nube.",
       "tier1Title": "Tier 1: Proyectos Insignia de Nivel Superior (TLP)",
       "tier1Desc": "Listo para producción · Verificado en PyPI y npm · Software completo",
@@ -975,7 +991,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Primera IA local 100% WebGPU en el dispositivo (Qwen2.5), editor PDF/DOCX en 3 segundos y corte de video.",
+      "workstationDesc": "IA local WebGPU del lado del cliente (Qwen2.5), uso compartido de mapas y nodos en lienzo espacial, visor de documentos anidados, resumen de documentos grandes mediante MapReduce y orquestación de multiagentes de IA autónomos.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Automatización de Chromium sin root en Android Termux (ARM64) con control CDP directo.",
       "diffusionTitle": "Termux-Diffusion",
@@ -985,7 +1001,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Framework de aprendizaje profundo y autograd de tensores ultraligero para Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Motor de aprendizaje profundo y autograd WebGPU nativo del navegador sin costo de servidor."
+      "forgeDesc": "Motor de aprendizaje profundo y autograd WebGPU nativo del navegador sin costo de servidor.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "SDK de seguridad y observabilidad 0-Data sin recopilación de datos privados con puntuación determinista de amenazas de 0 a 100."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1084,7 +1102,7 @@
       "title": "Опенсорс-фонд AMEVA (AOSF)",
       "subtitle": "Демократизация On-Device AI без облачных затрат",
       "sepTitle": "Разделение фонда и личного профиля",
-      "sepDesc": "Фонд AMEVA (AOSF) действует как независимая общественная организация. Личное портфолио основателя Eunho Kim ведется строго отдельно.",
+      "sepDesc": "Фонд AMEVA (AOSF) действует как независимая общественная организация. Личное портфолио основателя @uno-km ведется строго отдельно.",
       "desc": "AOSF — это независимый некоммерческий опенсорс-фонд, развивающий суверенный On-Device AI и движки WebGPU с нулевыми затратами на серверы.",
       "tier1Title": "Уровень 1: Флагманские проекты высшего уровня (TLP)",
       "tier1Desc": "Готово к продакшену · Проверено на PyPI и npm · Автономные среды выполнения",
@@ -1092,7 +1110,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Первый в мире 100% локальный ИИ на WebGPU (Qwen2.5), 3-секундный редактор PDF/DOCX и обрезка видео.",
+      "workstationDesc": "Локальный ИИ WebGPU на стороне клиента (Qwen2.5), совместное использование карт и узлов на холсте, иерархический просмотрщик вложенных документов, суммаризация больших документов MapReduce и оркестрация автономных ИИ-агентов.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Автоматизация Chromium без root на Android Termux (ARM64) с прямым управлением через CDP.",
       "diffusionTitle": "Termux-Diffusion",
@@ -1102,7 +1120,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Сверхлегкий фреймворк глубокого обучения и автографа тензоров для Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Браузерный движок глубокого обучения WebGPU без затрат на сервер."
+      "forgeDesc": "Браузерный движок глубокого обучения WebGPU без затрат на сервер.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "SDK безопасности 0-Data для мониторинга браузера с детерминированной оценкой угроз от 0 до 100 без сбора персональных данных."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1201,7 +1221,7 @@
       "title": "Quỹ Mã Nguồn Mở AMEVA (AOSF)",
       "subtitle": "Phổ cập AI On-Device và hệ thống tự trị không phụ thuộc đám mây",
       "sepTitle": "Tách biệt giữa Quỹ và Hồ sơ Cá nhân",
-      "sepDesc": "Quỹ AMEVA (AOSF) hoạt động như một thực thể công độc lập. Hồ sơ cá nhân của người sáng lập Eunho Kim được duy trì riêng biệt.",
+      "sepDesc": "Quỹ AMEVA (AOSF) hoạt động như một thực thể công độc lập. Hồ sơ cá nhân của người sáng lập @uno-km được duy trì riêng biệt.",
       "desc": "AOSF là quỹ mã nguồn mở phi lợi nhuận độc lập thúc đẩy AI tự chủ trên thiết bị và công cụ WebGPU với chi phí máy chủ bằng không.",
       "tier1Title": "Cấp 1: Các Dự Án Hàng Đầu Chủ Lực (TLP)",
       "tier1Desc": "Sẵn sàng sản xuất · Xác thực trên PyPI & npm · Phần mềm & môi trường chạy độc lập",
@@ -1209,7 +1229,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "AI cục bộ WebGPU 100% đầu tiên trên thiết bị (Qwen2.5), trình đọc/sửa PDF/DOCX 3 giây và cắt video.",
+      "workstationDesc": "AI cục bộ WebGPU phía máy khách (Qwen2.5), chia sẻ bản đồ và nút canvas không gian, trình xem tài liệu lồng nhau, tóm tắt tài liệu lớn MapReduce và điều phối đa tác nhân AI tự trị.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Tự động hóa trình duyệt Chromium không cần root trên Android Termux (ARM64) với điều khiển CDP trực tiếp.",
       "diffusionTitle": "Termux-Diffusion",
@@ -1219,7 +1239,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Khung học sâu Tensor & DAG Autograd siêu nhẹ trên thiết bị cho Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Công cụ học sâu WebGPU Autograd gốc trên trình duyệt không tốn chi phí máy chủ."
+      "forgeDesc": "Công cụ học sâu WebGPU Autograd gốc trên trình duyệt không tốn chi phí máy chủ.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "SDK bảo mật và quan sát trình duyệt 0-Data bảo vệ quyền riêng tư với chấm điểm mối đe dọa xác định 0~100."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1318,7 +1340,7 @@
       "title": "Fundacja Open-Source AMEVA (AOSF)",
       "subtitle": "Demokratyzacja AI On-Device bez podatku chmurowego",
       "sepTitle": "Oddzielenie Fundacji od Profilu Osobistego",
-      "sepDesc": "Fundacja AMEVA (AOSF) działa jako niezależny podmiot publiczny. Profil założyciela Eunho Kim jest prowadzony ściśle oddzielnie.",
+      "sepDesc": "Fundacja AMEVA (AOSF) działa jako niezależny podmiot publiczny. Profil założyciela @uno-km jest prowadzony ściśle oddzielnie.",
       "desc": "AOSF to niezależna fundacja open-source rozwijająca suwerenne AI na urządzeniach i silniki WebGPU bez kosztów serwerów chmurowych.",
       "tier1Title": "Poziom 1: Flagowe Projekty Najwyższego Poziomu (TLP)",
       "tier1Desc": "Gotowe do produkcji · Zweryfikowane na PyPI i npm · Kompletne oprogramowanie",
@@ -1326,7 +1348,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Pierwsze w 100% lokalne AI WebGPU na urządzeniu (Qwen2.5), 3-sekundowy edytor PDF/DOCX i edycja wideo.",
+      "workstationDesc": "Lokalna sztuczna inteligencja WebGPU po stronie klienta (Qwen2.5), udostępnianie map i węzłów na płótnie, przeglądarka zagnieżdżonych dokumentów, podsumowywanie dużych dokumentów metodą MapReduce i orkiestracja autonomicznych multi-agentów AI.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Automatyzacja Chromium bez roota na Android Termux (ARM64) z bezpośrednią kontrolą CDP.",
       "diffusionTitle": "Termux-Diffusion",
@@ -1336,7 +1358,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Ultralekki framework uczenia głębokiego i autogradu tensorów dla Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Natywny silnik uczenia głębokiego WebGPU i autogradu w przeglądarce bez kosztów serwera."
+      "forgeDesc": "Natywny silnik uczenia głębokiego WebGPU i autogradu w przeglądarce bez kosztów serwera.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "Bezpieczne SDK do obserwowalności przeglądarki 0-Data i deterministycznej oceny zagrożeń w skali 0~100."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",
@@ -1435,7 +1459,7 @@
       "title": "Fundatio AMEVA Fontis Aperti",
       "subtitle": "Intelligentia Artificialis in machina propria sine vectigali nubis",
       "sepTitle": "Secretio Fundationis et Curriculi Privati",
-      "sepDesc": "Fundatio AMEVA (AOSF) ut corpus publicum sui iuris operatur. Res gestae conditoris Eunho Kim seorsum servantur.",
+      "sepDesc": "Fundatio AMEVA (AOSF) ut corpus publicum sui iuris operatur. Res gestae conditoris @uno-km seorsum servantur.",
       "desc": "AOSF est fundatio fontis aperti sui iuris quae intelligentiam artificialem propriam et machinas WebGPU fovet.",
       "tier1Title": "Ordo 1: Opera Primaria et Praecipua (TLP)",
       "tier1Desc": "Paratum ad usum · Confirmatum in PyPI et npm · Syntaxis integra",
@@ -1443,7 +1467,7 @@
     },
     "proj": {
       "workstationTitle": "AMEVA Workstation (Web/Desktop)",
-      "workstationDesc": "Prima AI localis 100% in WebGPU (Qwen2.5), emendator PDF/DOCX et sectio pellicularum.",
+      "workstationDesc": "Intelligentia Artificialis WebGPU in cliente (Qwen2.5), communicatio tabularum et nodorum in spatio, prospectus documentorum insertorum, compendium documentorum per MapReduce et ordinatio agentium AI autonomorum.",
       "playwrightTitle": "Termux-Playwright",
       "playwrightDesc": "Automatio navigatri Chromium sine privilegiis radicis in Android Termux (ARM64) per directum CDP.",
       "diffusionTitle": "Termux-Diffusion",
@@ -1453,7 +1477,9 @@
       "trainTitle": "Termux-Train",
       "trainDesc": "Syntaxis levissima tensurae et autograd pro Android ARM64.",
       "forgeTitle": "AMEVA-Forge",
-      "forgeDesc": "Machina WebGPU nativa in navigatro sine pretio ministri."
+      "forgeDesc": "Machina WebGPU nativa in navigatro sine pretio ministri.",
+      "sentinelTitle": "AMEVA-Sentinel",
+      "sentinelDesc": "Syntaxis securitatis 0-Data ad explorationem navigatri cum aestimatione minarum a 0 ad 100 sine colligendis privatis datis."
     },
     "charter": {
       "pageTitle": "Official Charter of the AMEVA Foundation",

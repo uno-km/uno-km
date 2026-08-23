@@ -165,6 +165,7 @@
         </summary>
         <div class="accordion-content">
           <ul>
+            <li><a href="/sdk/sentinel/" target="_self">AMEVA-Sentinel <span class="external-badge">SDK</span></a></li>
             <li><a href="/lib/diffusion/" target="_self">Termux-Diffusion <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/playwright/" target="_self">Termux-Playwright <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/stt/" target="_self">Termux-STT <span class="external-badge">Docs</span></a></li>
@@ -223,7 +224,7 @@
         <div class="alert alert-info">
           <span class="alert-title" data-i18n="home.sepTitle">Separation of Foundation &amp; Personal Profile</span>
           <p data-i18n="home.sepDesc">
-            AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong>Eunho Kim (@uno-km)</strong> are maintained strictly separately in the <a href="/">Personal Digital CV</a>.
+            AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong><a href="https://uno-km.vercel.app/" target="_blank">@uno-km</a></strong> are maintained strictly separately in the <a href="/">Personal Digital CV</a>.
           </p>
         </div>
 
@@ -239,10 +240,21 @@
           <!-- Workstation -->
           <div class="feature-card" style="border-left: 4px solid var(--primary-color);">
             <h4 data-i18n="proj.workstationTitle">AMEVA Workstation (Web/Desktop)</h4>
-            <p data-i18n="proj.workstationDesc">World's first 100% on-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-second MapReduce PDF/DOCX doc reader & editor, in-app video cutting, 1-sec AI background removal, and audio silence auto-cut.</p>
+            <p data-i18n="proj.workstationDesc">Client-side WebGPU local AI (Qwen2.5), spatial map and canvas node sharing, nested documents-in-document hierarchy, MapReduce large-document summarization, and autonomous AI multi-agent orchestration.</p>
             <div class="card-links">
               <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-sm primary">Launch Web App</a>
               <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- AMEVA Sentinel -->
+          <div class="feature-card" style="border-left: 4px solid #2563eb;">
+            <h4 data-i18n="proj.sentinelTitle">AMEVA-Sentinel</h4>
+            <p data-i18n="proj.sentinelDesc">Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. Zero keystroke logging, verified across major browser engines.</p>
+            <div class="card-links">
+              <a href="/sdk/sentinel/" class="btn-sm primary">Docs &amp; Console</a>
+              <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="btn-sm">GitHub</a>
             </div>
           </div>
 
@@ -322,8 +334,15 @@
               <td><strong>AMEVA Workstation</strong></td>
               <td><code>Web / Desktop</code></td>
               <td>WebGPU, Next.js, WASM</td>
-              <td>100% On-Device Local AI & Productivity Suite</td>
+              <td>Client-Side WebGPU Local AI, Spatial Map Canvas, Nested Docs & MapReduce</td>
               <td><span class="release-tag">Official Live App</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA-Sentinel</strong></td>
+              <td><code>npm: @ameva/sentinel</code></td>
+              <td>TypeScript, WebCrypto, Node</td>
+              <td>0-Data Privacy Threat Scoring & Traffic Governance</td>
+              <td><span class="release-tag">npm Released</span></td>
             </tr>
             <tr>
               <td><strong>Termux-Playwright</strong></td>
@@ -387,7 +406,7 @@
           <li data-i18n="charter.p1"><strong>Edge-First &amp; Serverless Edge Architecture:</strong> All AI inference and automation pipelines are engineered to execute on end-user hardware (smartphones, browsers, edge boards) without mandatory cloud server dependencies.</li>
           <li data-i18n="charter.p2"><strong>100% Data Sovereignty:</strong> User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.</li>
           <li data-i18n="charter.p3"><strong>Public Good &amp; Open Standards:</strong> Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.</li>
-          <li data-i18n="charter.p4"><strong>Strict Separation of Concerns:</strong> Foundation institutional assets and governance are operated strictly independently from Founder Eunho Kim (@uno-km)'s private career track records.</li>
+          <li data-i18n="charter.p4"><strong>Strict Separation of Concerns:</strong> Foundation institutional assets and governance are operated strictly independently from Founder <a href="https://uno-km.vercel.app/" target="_blank">@uno-km</a>'s private career track records.</li>
         </ul>
 
         <h3 data-i18n="charter.art2Title">Article II. Technical Scope</h3>

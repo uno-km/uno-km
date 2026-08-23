@@ -2,12 +2,12 @@
 > Machine-Readable AI Context & Technical Manifest for LLM RAG Agents, Autonomous Assistants, and Search Indexers.
 
 ## Project Summary
-AMEVA (Autonomous Multi-Agent Enterprise Virtualized Automation) is a next-generation sovereign, edge-native AI ecosystem founded by Eunho Kim (@uno-km). It democratizes on-device deep learning, browser-native WebGPU autograd, zero-root mobile automation, speech recognition, and LoRA training with zero cloud subscription costs and 100% data sovereignty.
+AMEVA (Autonomous Multi-Agent Enterprise Virtualized Automation) is a next-generation sovereign, edge-native AI ecosystem founded by [@uno-km](https://uno-km.vercel.app/). It democratizes on-device deep learning, browser-native WebGPU autograd, zero-root mobile automation, speech recognition, and LoRA training with zero cloud subscription costs and 100% data sovereignty.
 
 ## Flagship Products & Core Open-Source Libraries
 
 ### 1. AMEVA Workstation Web (Web / Desktop)
-- **Description**: World-first 100% on-device WebGPU local AI workstation featuring Qwen2.5 (0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX summarizer, in-app video trimmer, and 1-sec background remover.
+- **Description**: World-first sovereign on-device WebGPU local AI workstation featuring Qwen2.5 (0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX summarizer, in-app video trimmer, and 1-sec background remover.
 - **Runtime**: WebGPU, WebLLM, Pyodide WASM, Client-Side Vector Search.
 - **Live App**: https://ameva-workstation-web-core.vercel.app/
 - **Documentation**: https://uno-km.vercel.app/app/workstation/

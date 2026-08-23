@@ -71,7 +71,7 @@
 빅테크 클라우드 벤더의 가파른 API 과금과 프라이버시 침해로부터 개발자와 사용자를 보호하기 위해, 사용자가 이미 소유하고 있는 **스마트폰(Android Termux), 개인 PC 브라우저(WebGPU/WASM), 엣지 임베디드 디바이스(ARM64)**의 로컬 하드웨어 자원을 극한까지 활용하는 **소버린 온디바이스(Sovereign On-Device) AI 및 자율 자동화 인프라**를 연구, 개발, 보급합니다.
 
 > **[원칙] 재단 공공 기구와 설립자 개인 프로필의 엄격한 분리 (Separation of Concerns)**  
-> AMEVA 오픈소스 재단(AOSF)은 특정 개인이나 사기업에 종속되지 않는 영구적인 공공재(Public Good)로 관리됩니다. 설립자 김은호(Eunho Kim, [@uno-km](https://github.com/uno-km))의 개인 커리어 및 개발자 포트폴리오는 [개인 디지털 CV](https://uno-km.vercel.app/)를 통해 명확히 분리 운영됩니다.
+> AMEVA 오픈소스 재단(AOSF)은 특정 개인이나 사기업에 종속되지 않는 영구적인 공공재(Public Good)로 관리됩니다. 설립자 [@uno-km](https://uno-km.vercel.app/)의 개인 커리어 및 개발자 포트폴리오는 [개인 디지털 CV](https://uno-km.vercel.app/)를 통해 명확히 분리 운영됩니다.
 
 ---
 
@@ -110,7 +110,7 @@ flowchart TD
 
 | 프로젝트 명 | 기술 스택 & 런타임 | 핵심 기능 및 공학적 해결 과제 | 패키지 설치 및 레퍼런스 |
 | :--- | :--- | :--- | :--- |
-| **`AMEVA Workstation`** | WebGPU, WASM, React | 세계 최초 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
+| **`AMEVA Workstation`** | WebGPU, WASM, React | 클라이언트 중심 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.github.io/termux-playwright/) |
 | **`termux-diffusion`** | C++ NEON, GGUF, Python | 클라우드 서버 없이 안드로이드 ARM64 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>[공식 문서](https://uno-km.github.io/termux-diffusion/) |
 | **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>[공식 문서](https://uno-km.github.io/termux-stt/) |
