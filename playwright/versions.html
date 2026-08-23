@@ -20,7 +20,7 @@
             <h1 data-i18n="common.brand">Termux-Playwright</h1>
         </a>
         <div class="header-controls">
-            <span class="release-tag" data-i18n="common.releaseTag">v1.61.3 (Dual Engine)</span>
+            <span class="release-tag" data-i18n="common.releaseTag">v1.70.0 (Dual Engine)</span>
             <div class="lang-selector-wrapper">
         <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
           <option value="en">🇺🇸 English</option>
@@ -98,14 +98,28 @@
             <p>Chronological breakdown of architecture milestones, security hardening, and engine evolutions.</p>
 
             <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchVersionTab('v1.61.3')">v1.61.3 (Latest)</button>
+                <button class="tab-btn active" onclick="switchVersionTab('v1.70.0')">v1.70.0 (Latest)</button>
+                <button class="tab-btn" onclick="switchVersionTab('v1.61.3')">v1.61.3</button>
                 <button class="tab-btn" onclick="switchVersionTab('v1.61.2')">v1.61.2</button>
                 <button class="tab-btn" onclick="switchVersionTab('v1.61.1')">v1.61.1</button>
                 <button class="tab-btn" onclick="switchVersionTab('v1.61.0')">v1.61.0</button>
                 <button class="tab-btn" onclick="switchVersionTab('v1.60.0')">v1.60.0</button>
             </div>
 
-            <div id="v1.61.3" class="tab-pane active">
+            <div id="v1.70.0" class="tab-pane active">
+                <div class="card">
+                    <h3>v1.70.0 — Physical Real-Device E2E Validation & Dual-Engine Milestone Release</h3>
+                    <p class="release-date">Release Date: 2026-08-23 | PyPI & npm Synchronized</p>
+                    <ul>
+                        <li><strong>Physical Real-Device E2E Validation (Galaxy S20):</strong> 100.0/100.0 Grade A+ baseline certification across Python and Node.js engines on Android 13 Termux (aarch64).</li>
+                        <li><strong>HTML5 Canvas WebGL Context Proxy:</strong> Injected realistic UNMASKED_VENDOR and UNMASKED_RENDERER spoofing (55/55 bot detection pass on <code>bot.sannysoft.com</code>).</li>
+                        <li><strong>Automated Bionic coreBundle Patcher:</strong> Dynamic byte-level patcher for seamless Playwright driver execution without glibc errors.</li>
+                        <li><strong>Triple-Registry Auto Publishing:</strong> Automated simultaneous release to PyPI, public npm, and GitHub Packages.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="v1.61.3" class="tab-pane">
                 <div class="card">
                     <h3>v1.61.3 — Dual-Engine (Python & Node.js) Synchronization Release</h3>
                     <p class="release-date">Release Date: 2026-08-19 | PyPI & npm Synchronized</p>
