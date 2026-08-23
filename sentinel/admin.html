@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Forensic Command & Heuristic Intelligence Console | AMEVA-Sentinel</title>
+  <meta name="description" content="Enterprise-grade live deep forensic intelligence, heuristic persona diagnostics, and interactive Sankey flow analytics for AMEVA-Sentinel.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="/shared/common.js" defer></script>
+  <script src="/shared/sentinel-browser.global.js" defer></script>
+  <style>
+    :root {
+      --admin-bg: #090d16;
+      --admin-card: #0f172a;
+      --admin-border: #1e293b;
+      --admin-text: #f8fafc;
+      --admin-muted: #94a3b8;
+      --admin-accent: #38bdf8;
+      --admin-red: #ef4444;
+      --admin-amber: #f59e0b;
+      --admin-green: #10b981;
+      --admin-purple: #a855f7;
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: var(--font-sans);
+    }
+
+    header {
+      background-color: #0b1120;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .admin-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px 60px 20px;
+    }
+
+    .admin-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-title-group h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--admin-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--primary-color);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #0055cc;
+    }
+
+    .key-input {
+      background: #0b1329;
+      border: 1px solid var(--admin-border);
+      color: #38bdf8;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      width: 220px;
+    }
+
+    /* Grid Stats */
+    .admin-grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--admin-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--admin-accent);
+      font-family: var(--font-mono);
+      margin-top: 4px;
+    }
+
+    /* Narrative Card */
+    .narrative-container {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .narrative-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--admin-accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .briefing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .briefing-item {
+      background: #0b1329;
+      border-left: 3px solid var(--admin-accent);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .briefing-item.bot {
+      border-left-color: var(--admin-red);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .briefing-item.dev {
+      border-left-color: var(--admin-green);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .briefing-item.power {
+      border-left-color: var(--admin-purple);
+      background: rgba(168, 85, 247, 0.08);
+    }
+
+    /* Flow Chart */
+    .flow-container {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .flow-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .flow-node {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .flow-arrow {
+      color: var(--admin-muted);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .flow-badge {
+      font-size: 0.72rem;
+      background: #0284c7;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 6px;
+    }
+
+    /* Forensic Table */
+    .table-container {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    .forensic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+    }
+
+    .forensic-table th, .forensic-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--admin-border);
+      text-align: left;
+    }
+
+    .forensic-table th {
+      background: #0b1329;
+      color: var(--admin-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-persona {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .badge-bot { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid #ef4444; }
+    .badge-dev { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid #10b981; }
+    .badge-power { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid #a855f7; }
+    .badge-std { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid #64748b; }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <div class="admin-header-bar">
+      <div class="admin-title-group">
+        <h1>AMEVA-Sentinel Admin Forensic Intelligence Console</h1>
+        <p style="color: var(--admin-muted); font-size: 0.88rem; margin-top: 4px;">Zero-PII Deep Forensic Telemetry, Heuristic Verdicts &amp; Interactive Flow Analytics</p>
+      </div>
+      <div class="admin-controls">
+        <input type="password" id="adminKeyInput" class="key-input" placeholder="Admin Secret Key" value="ameva_admin_secret_2026">
+        <button id="btnFetch" class="btn-action" onclick="fetchAdminTelemetry()">↻ Live Fetch</button>
+        <label style="font-size: 0.8rem; color: var(--admin-muted); display: flex; align-items: center; gap: 4px; cursor: pointer;">
+          <input type="checkbox" id="autoRefreshToggle" checked onchange="toggleAutoRefresh(this.checked)"> Auto-Refresh (8s)
+        </label>
+      </div>
+    </div>
+
+    <!-- 1. Key Metrics Cards -->
+    <div class="admin-grid-stats">
+      <div class="stat-card">
+        <div class="stat-label">Total Unique Visitors</div>
+        <div class="stat-val" id="metricVisitors">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Active Sessions</div>
+        <div class="stat-val" id="metricSessions">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Identified AI Crawlers</div>
+        <div class="stat-val" id="metricBots" style="color: var(--admin-red);">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Forensic Footprint Records</div>
+        <div class="stat-val" id="metricForensics" style="color: var(--admin-green);">-</div>
+      </div>
+    </div>
+
+    <!-- 2. Automated Natural Language Heuristic Briefing -->
+    <div class="narrative-container">
+      <div class="narrative-title">
+        <span>Executive Heuristic Diagnostics &amp; Persona Briefing</span>
+        <span style="font-size:0.75rem; color: var(--admin-muted);" id="briefingTime">Updated: -</span>
+      </div>
+      <div class="briefing-list" id="briefingList">
+        <div class="briefing-item">Connecting to Neon PostgreSQL forensic ledger...</div>
+      </div>
+    </div>
+
+    <!-- 3. Visual Path Flow / Sankey Transitions -->
+    <div class="flow-container">
+      <div class="narrative-title">
+        <span>Interactive Navigation Flow &amp; Path Traversal Matrix</span>
+        <span style="font-size:0.75rem; color: var(--admin-muted);" id="flowStats">Total Hops: -</span>
+      </div>
+      <div class="flow-diagram" id="flowDiagram">
+        <span style="color: var(--admin-muted); font-size: 0.85rem;">Aggregating traversal links...</span>
+      </div>
+    </div>
+
+    <!-- 4. Deep Forensic Ledger Table -->
+    <div class="table-container">
+      <div class="narrative-title" style="margin-bottom: 14px;">
+        <span>Deep Forensic Footprint Ledger (Raw Ground Truth)</span>
+      </div>
+      <table class="forensic-table">
+        <thead>
+          <tr>
+            <th>Time (UTC)</th>
+            <th>Visitor ID</th>
+            <th>Location &amp; IP</th>
+            <th>Persona &amp; Verdict</th>
+            <th>Hardware / GPU Renderer</th>
+            <th>Probed Fonts</th>
+            <th>Battery / Hz</th>
+            <th>Soul History Hops</th>
+          </tr>
+        </thead>
+        <tbody id="forensicTableBody">
+          <tr><td colspan="8" style="text-align: center; color: var(--admin-muted);">Loading forensic ledger...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let refreshTimer = null;
+
+    function profilePersona(footprint) {
+      const renderer = (footprint.webgl_renderer || '').toLowerCase();
+      const fonts = (footprint.installed_fonts || '').toLowerCase();
+      const visits = Number(footprint.total_visit_count || 1);
+      const country = footprint.country || 'GLOBAL';
+      const city = footprint.city || 'Edge';
+
+      const isCloud = renderer.includes('swiftshader') || renderer.includes('llvmpipe') || renderer.includes('subzero');
+      if (isCloud) {
+        return {
+          persona: 'CLOUD_AUTOMATION_BOT',
+          badgeClass: 'badge-bot',
+          narrative: `[자동화 봇 의심] ${country} (${city}) 데이터센터에서 SwiftShader 가상 렌더러로 접근한 헤드리스 봇입니다.`
+        };
+      }
+
+      const devFonts = ['d2coding', 'cascadia code', 'consolas', 'fira code', 'jetbrains mono'].filter(f => fonts.includes(f));
+      if (devFonts.length >= 2) {
+        return {
+          persona: 'SOFTWARE_ENGINEER',
+          badgeClass: 'badge-dev',
+          narrative: `[개발자/엔지니어] ${country} (${city})에서 개발자 폰트(${devFonts.slice(0,2).join(', ')}) 및 인텔/NVIDIA 환경으로 접근한 고관여 개발자 세션입니다.`
+        };
+      }
+
+      if (visits >= 5) {
+        return {
+          persona: 'POWER_USER',
+          badgeClass: 'badge-power',
+          narrative: `[코어 충성 사용자] ${country} (${city})에서 ${visits}회 이상 반복 방문하며 에코시스템 문서를 탐색한 사용자입니다.`
+        };
+      }
+
+      return {
+        persona: 'DESKTOP_STANDARD',
+        badgeClass: 'badge-std',
+        narrative: `[일반 방문자] ${country} (${city})에서 유입된 표준 브라우징 세션입니다.`
+      };
+    }
+
+    function renderPathFlow(logs) {
+      const transitions = new Map();
+      let totalHops = 0;
+
+      logs.forEach(log => {
+        const hist = log.past_paths_history || '';
+        const segments = hist.split(/\s*(?:->|──>)\s*/).filter(Boolean);
+        for (let i = 0; i < segments.length - 1; i++) {
+          const key = `${segments[i]} ===> ${segments[i+1]}`;
+          transitions.set(key, (transitions.get(key) || 0) + 1);
+          totalHops++;
+        }
+      });
+
+      const flowContainer = document.getElementById('flowDiagram');
+      document.getElementById('flowStats').innerText = `Total Transitions Analyzed: ${totalHops}`;
+
+      if (transitions.size === 0) {
+        flowContainer.innerHTML = '<span style="color: var(--admin-muted); font-size: 0.85rem;">No multi-hop traversal recorded yet.</span>';
+        return;
+      }
+
+      let html = '';
+      transitions.forEach((count, key) => {
+        const [src, tgt] = key.split(' ===> ');
+        html += `
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; background:#0b1329; padding:8px 12px; border-radius:6px;">
+            <span class="flow-node">${src}</span>
+            <span class="flow-arrow">──></span>
+            <span class="flow-node">${tgt} <span class="flow-badge">${count} Hops</span></span>
+          </div>
+        `;
+      });
+
+      flowContainer.innerHTML = html;
+    }
+
+    async function fetchAdminTelemetry() {
+      const key = document.getElementById('adminKeyInput').value.trim();
+      if (!key) {
+        alert('Please enter valid Admin Secret Key.');
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/stats?key=${encodeURIComponent(key)}`);
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: Unauthorized or Server Error`);
+        }
+        const data = await res.json();
+
+        // 1. Update Metrics
+        document.getElementById('metricVisitors').innerText = data.metrics?.total_visitors || 0;
+        document.getElementById('metricSessions').innerText = data.metrics?.total_sessions || 0;
+        document.getElementById('metricBots').innerText = data.ai_bots_detected?.length || 0;
+        document.getElementById('metricForensics').innerText = data.deep_forensic_logs?.length || 0;
+        document.getElementById('briefingTime').innerText = `Updated: ${new Date().toLocaleTimeString()}`;
+
+        // 2. Render Briefings & Table
+        const logs = data.deep_forensic_logs || [];
+        const briefingList = document.getElementById('briefingList');
+        const tableBody = document.getElementById('forensicTableBody');
+
+        if (logs.length === 0) {
+          briefingList.innerHTML = '<div class="briefing-item">No forensic records captured yet.</div>';
+          tableBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--admin-muted);">No records found.</td></tr>';
+          return;
+        }
+
+        let briefingHtml = '';
+        let tableHtml = '';
+
+        logs.forEach(log => {
+          const profile = profilePersona(log);
+          const pClass = profile.persona === 'CLOUD_AUTOMATION_BOT' ? 'bot' : profile.persona === 'SOFTWARE_ENGINEER' ? 'dev' : profile.persona === 'POWER_USER' ? 'power' : '';
+
+          briefingHtml += `
+            <div class="briefing-item ${pClass}">
+              <strong>${log.visitor_id.slice(0, 14)}...</strong> ${profile.narrative}
+            </div>
+          `;
+
+          const timeStr = log.captured_at ? new Date(log.captured_at).toISOString().replace('T', ' ').slice(0, 19) : '-';
+          const locStr = `${log.country || 'GLOBAL'} (${log.city || 'Edge'})<br><span style="color:#64748b;">${log.ip_address || '-'}</span>`;
+          const batStr = log.battery_level ? `${log.battery_level}% ${log.is_charging ? '(AC)' : '(Bat)'} / ${log.screen_hz || 60}Hz` : '-';
+          const gpuStr = log.webgl_renderer ? log.webgl_renderer.slice(0, 36) + '...' : 'unknown';
+
+          tableHtml += `
+            <tr>
+              <td>${timeStr}</td>
+              <td style="color:#38bdf8;">${log.visitor_id.slice(0, 16)}</td>
+              <td>${locStr}</td>
+              <td><span class="badge-persona ${profile.badgeClass}">${profile.persona}</span></td>
+              <td title="${log.webgl_renderer || ''}">${gpuStr}</td>
+              <td style="font-size:0.75rem; color:#94a3b8;" title="${log.installed_fonts || ''}">${(log.installed_fonts || '-').slice(0, 30)}...</td>
+              <td>${batStr}</td>
+              <td style="color:#cbd5e1; font-size:0.75rem;">${log.past_paths_history || '-'}</td>
+            </tr>
+          `;
+        });
+
+        briefingList.innerHTML = briefingHtml;
+        tableBody.innerHTML = tableHtml;
+
+        // 3. Render Path Flow
+        renderPathFlow(logs);
+
+      } catch (err) {
+        console.error('Failed to fetch admin stats:', err);
+        document.getElementById('briefingList').innerHTML = `<div class="briefing-item bot">Failed to load admin stats: ${err.message}</div>`;
+      }
+    }
+
+    function toggleAutoRefresh(enabled) {
+      if (refreshTimer) {
+        clearInterval(refreshTimer);
+        refreshTimer = null;
+      }
+      if (enabled) {
+        refreshTimer = setInterval(fetchAdminTelemetry, 8000);
+      }
+    }
+
+    // Initial load
+    fetchAdminTelemetry();
+    toggleAutoRefresh(true);
+  </script>
+</body>
+</html>

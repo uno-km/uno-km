@@ -291,6 +291,15 @@
             }
         } catch (e) {}
 
+        let usedHeapMb = 0;
+        let totalHeapMb = 0;
+        try {
+            if (window.performance && window.performance.memory) {
+                usedHeapMb = Math.round(((window.performance.memory.usedJSHeapSize || 0) / (1024 * 1024)) * 10) / 10;
+                totalHeapMb = Math.round(((window.performance.memory.totalJSHeapSize || 0) / (1024 * 1024)) * 10) / 10;
+            }
+        } catch (e) {}
+
         const nav = navigator || {};
 
         return {
@@ -312,6 +321,8 @@
             audio_inputs_count: media.audio_inputs_count,
             video_inputs_count: media.video_inputs_count,
             audio_outputs_count: media.audio_outputs_count,
+            used_heap_mb: usedHeapMb,
+            total_heap_mb: totalHeapMb,
             is_webdriver: !!nav.webdriver,
             cookie_enabled: nav.cookieEnabled,
             do_not_track: nav.doNotTrack || 'unspecified',
