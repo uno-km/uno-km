@@ -185,19 +185,19 @@ async function renderGraph(data) {
     .attr('pointer-events', 'all')
     .attr('cursor', 'pointer');
 
-  // 2. Visible Visual Node Circle
+  // 2. Visible Visual Node Circle (Full radius set immediately on load!)
   node = nodeGroup.append('circle')
     .attr('class', 'node-visual')
     .attr('stroke', 'var(--bg-deep)')
     .attr('stroke-width', 1.5)
-    .attr('r', 0)
+    .attr('r', d => Math.max(8, (d.radius || 14)))
     .attr('fill', d => colorScale(d.group))
     .attr('pointer-events', 'none');
 
-  // 3. Text Label
+  // 3. Text Label (Always visible on load)
   labels = nodeGroup.append('text')
     .attr('class', 'node-label')
-    .attr('dx', d => (d.radius || 12) + 8)
+    .attr('dx', d => (d.radius || 14) + 8)
     .attr('dy', 4)
     .text(d => d.name || d.id)
     .attr('font-family', 'var(--font-mono)')
@@ -206,7 +206,7 @@ async function renderGraph(data) {
     .attr('fill', 'var(--text-secondary)')
     .attr('pointer-events', 'all')
     .attr('cursor', 'pointer')
-    .attr('opacity', 0);
+    .attr('opacity', 1);
 
   window.nodeElements = node;
   window.nodeGroups = nodeGroup;
@@ -215,21 +215,14 @@ async function renderGraph(data) {
   // Bind Interactions IMMEDIATELY so clicks work without waiting for animation end
   bindNodeEvents();
 
-  // Cascade Animation (Fly-in / Grow)
+  // Cascade Animation & Physics Launch
   return new Promise(resolve => {
     link.transition()
-      .duration(800)
-      .attr('opacity', 1);
-
-    node.transition()
-      .duration(400)
-      .delay((d, i) => i * 20)
-      .attr('r', d => d.radius);
-
-    labels.transition()
       .duration(600)
-      .delay(200)
-      .attr('opacity', 1);
+      .attr('opacity', 0.6);
+
+    node.attr('r', d => Math.max(8, (d.radius || 14)));
+    labels.attr('opacity', 1);
 
     simulation.on('tick', tick);
     simulation.alpha(1).alphaTarget(0.05).restart();
