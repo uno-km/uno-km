@@ -264,13 +264,13 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
                 <div style="font-weight: 700; color: var(--text-main); font-size: 0.95em; display:flex; align-items:center; gap:10px;">
                     <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
-                    <div style="display:flex; gap:4px;">
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1m')">1m</button>
-                        <button class="btn-tomcat primary" style="padding:2px 8px; font-size:0.75em;" id="dash-tf-5m" onclick="setDashTimeframe('5m')">5m</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1h')">1h</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1D')">1D</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1W')">1W</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1M')">1M</button>
+                    <div class="dash-tf-btn-group" style="display:flex; gap:4px;">
+                        <button type="button" class="btn-tomcat dash-tf-btn" data-tf="1m" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1m</button>
+                        <button type="button" class="btn-tomcat primary dash-tf-btn" data-tf="5m" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">5m</button>
+                        <button type="button" class="btn-tomcat dash-tf-btn" data-tf="1h" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1h</button>
+                        <button type="button" class="btn-tomcat dash-tf-btn" data-tf="1D" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1D</button>
+                        <button type="button" class="btn-tomcat dash-tf-btn" data-tf="1W" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1W</button>
+                        <button type="button" class="btn-tomcat dash-tf-btn" data-tf="1M" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1M</button>
                     </div>
                 </div>
                 <span id="dashChartTimestamp" style="font-size: 0.78em; color: var(--text-muted); font-family: monospace;">Live Stream</span>
@@ -531,6 +531,7 @@
                     serverAnalytics = await res.json();
                     if (serverAnalytics && Array.isArray(serverAnalytics.events) && serverAnalytics.events.length > 0) {
                         reports = serverAnalytics.events;
+                        window.lastLoadedServerEvents = reports;
                         const bannerStoreBadge = document.querySelector('.status-title .badge-demo');
                         if (bannerStoreBadge) {
                             bannerStoreBadge.textContent = 'Neon PostgreSQL (Live Serverless Event Store)';
@@ -1089,14 +1090,28 @@
 
         function setDashTimeframe(tf) {
             currentDashTf = tf;
+
+            // 1. Update UI active button state
+            document.querySelectorAll('.dash-tf-btn').forEach(btn => {
+                if (btn.getAttribute('data-tf') === tf) {
+                    btn.classList.add('primary');
+                } else {
+                    btn.classList.remove('primary');
+                }
+            });
+
             updateDashboardChart();
         }
 
+        window.setDashTimeframe = setDashTimeframe;
+
         function updateDashboardChart() {
-            if (!dashTrendChart || dashTimeSeriesData.length === 0) return;
+            if (!dashTrendChart) return;
+
             const now = Date.now();
             let bucketSizeMs = 5 * 60 * 1000;
             let windowMs = 4 * 60 * 60 * 1000;
+
             if (currentDashTf === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
             else if (currentDashTf === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
             else if (currentDashTf === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
@@ -1107,32 +1122,57 @@
             const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
             const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
             const buckets = new Map();
-            for (let t = startMs; t <= endMs; t += bucketSizeMs) buckets.set(t, 0);
+            for (let t = startMs; t <= endMs; t += bucketSizeMs) {
+                buckets.set(t, 0);
+            }
 
-            dashTimeSeriesData.forEach(s => {
-                const t = new Date(s.created_at || s.evaluated_at || s.evaluatedAt).getTime();
+            // Gather all timestamp events from serverAnalytics, store, and dashTimeSeriesData
+            const allItems = [...dashTimeSeriesData];
+            if (Array.isArray(window.lastLoadedServerEvents)) {
+                allItems.push(...window.lastLoadedServerEvents);
+            }
+
+            allItems.forEach(s => {
+                const rawDate = s.created_at || s.evaluated_at || s.evaluatedAt || s.timestamp;
+                if (!rawDate) return;
+                const t = new Date(rawDate).getTime();
                 if (t >= startMs && t <= endMs + bucketSizeMs) {
                     const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
-                    if (buckets.has(key)) buckets.set(key, buckets.get(key) + 1);
+                    if (buckets.has(key)) {
+                        buckets.set(key, buckets.get(key) + 1);
+                    }
                 }
             });
 
             const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
+            const tz = getSelectedTimezone();
+
             const labels = sortedKeys.map(k => {
                 const d = new Date(k);
-                if (currentDashTf === '1D' || currentDashTf === '1W' || currentDashTf === '1M') return (d.getMonth()+1) + '/' + d.getDate();
-                return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+                if (currentDashTf === '1D' || currentDashTf === '1W' || currentDashTf === '1M') {
+                    return (d.getMonth() + 1) + '/' + d.getDate();
+                }
+                const hrs = d.getHours().toString().padStart(2, '0');
+                const mins = d.getMinutes().toString().padStart(2, '0');
+                return `${hrs}:${mins}`;
             });
+
             const volData = sortedKeys.map(k => buckets.get(k));
+            
+            // Calculate natural baseline cumulative inflow trend
             let cumulative = 0;
-            const trendData = volData.map(v => { cumulative += v; return cumulative; });
+            const trendData = volData.map(v => {
+                cumulative += v;
+                return cumulative;
+            });
 
             dashTrendChart.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
-            dashTrendChart.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
-            dashTrendChart.data.datasets[1].data = volData.length > 0 ? volData : [0];
+            dashTrendChart.data.datasets[0].data = trendData;
+            dashTrendChart.data.datasets[1].data = volData;
             dashTrendChart.update();
+
             const tsEl = document.getElementById('dashChartTimestamp');
-            if (tsEl) tsEl.innerText = 'Updated: ' + new Date().toLocaleTimeString();
+            if (tsEl) tsEl.innerText = 'Updated: ' + formatTimestamp(new Date(), { timezone: tz, format: 'time' });
         }
 
         async function fetchDashChartStats() {
