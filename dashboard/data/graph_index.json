@@ -1,40 +1,694 @@
 {
   "nodes": [
-    {"id": "AMEVA Neural Fabric", "group": 1, "description": "The root of the AMEVA AI ecosystem.", "radius": 24},
-    
-    {"id": "Edge-Native LLM", "group": 2, "description": "In-browser WebGPU inference module.", "radius": 16},
-    {"id": "WebLLM (Qwen 1.5B)", "group": 2, "description": "Quantized Instruct model for fast code generation.", "radius": 12},
-    {"id": "Model Caching", "group": 2, "description": "IndexedDB local cache layer.", "radius": 10},
-    
-    {"id": "Local GraphRAG", "group": 3, "description": "Browser-based semantic search engine.", "radius": 16},
-    {"id": "Transformers.js", "group": 3, "description": "MiniLM-L6 embedding generation via WebWorker.", "radius": 12},
-    {"id": "Vector Search", "group": 3, "description": "Cosine similarity matching over local JSON.", "radius": 10},
-    
-    {"id": "Knowledge Graph", "group": 4, "description": "Visual representation of AMEVA codebase.", "radius": 16},
-    {"id": "D3.js Visualizer", "group": 4, "description": "Force-directed rendering engine.", "radius": 12},
-    {"id": "graph_index.json", "group": 4, "description": "Static repository map.", "radius": 10},
-    
-    {"id": "AMEVA-LLM-Trainer", "group": 5, "description": "Local Python-based fine-tuning project.", "radius": 16},
-    {"id": "setup.ps1", "group": 5, "description": "Environment bootstrap script.", "radius": 12},
-    {"id": "requirements.txt", "group": 5, "description": "Python dependencies.", "radius": 10}
+    {
+      "id": "AMEVA-Universe",
+      "name": "AMEVA Universe",
+      "group": 1,
+      "category": "ROOT",
+      "radius": 32.0,
+      "description": "Sovereign On-Device AI & Autonomous Systems Ecosystem without Cloud Dependency.",
+      "tech_stack": [
+        "WebGPU",
+        "ARM64 Bionic",
+        "Pyodide WASM",
+        "C++17",
+        "TypeScript"
+      ],
+      "tags": [
+        "root",
+        "sovereign-ai",
+        "edge-native",
+        "meritocracy"
+      ],
+      "url": "https://uno-km.vercel.app/foundation/",
+      "repo_url": "https://github.com/uno-km",
+      "docs_url": "https://uno-km.vercel.app/foundation/",
+      "phaseX": 0,
+      "phaseY": 0,
+      "freqX": 0.001,
+      "freqY": 0.001,
+      "metadata": {
+        "root": true,
+        "depth": 1
+      }
+    },
+    {
+      "id": "Mobile-Bionic-AI",
+      "name": "Mobile & Bionic ARM64",
+      "group": 2,
+      "category": "DOMAIN",
+      "radius": 24.0,
+      "description": "Non-root Android Termux user-space AI runtimes with ARM NEON SIMD acceleration.",
+      "tech_stack": [
+        "Android Bionic",
+        "ARM64 NEON",
+        "Clang",
+        "C++17"
+      ],
+      "tags": [
+        "mobile-ai",
+        "arm64",
+        "termux",
+        "simd"
+      ],
+      "url": "https://uno-km.vercel.app/foundation/charter.html",
+      "repo_url": "https://github.com/uno-km",
+      "docs_url": "https://uno-km.vercel.app/foundation/charter.html",
+      "phaseX": 0.5,
+      "phaseY": 0.5,
+      "freqX": 0.002,
+      "freqY": 0.002,
+      "metadata": {
+        "depth": 2
+      }
+    },
+    {
+      "id": "WebGPU-Browser-AI",
+      "name": "Browser & WebGPU AI",
+      "group": 2,
+      "category": "DOMAIN",
+      "radius": 24.0,
+      "description": "Browser-native WebGPU tensor compute shaders and zero-server client execution.",
+      "tech_stack": [
+        "WebGPU",
+        "WGSL",
+        "WASM",
+        "Next.js",
+        "TypeScript"
+      ],
+      "tags": [
+        "webgpu",
+        "in-browser-ai",
+        "client-compute",
+        "wgsl"
+      ],
+      "url": "https://uno-km.vercel.app/lib/forge/",
+      "repo_url": "https://github.com/uno-km",
+      "docs_url": "https://uno-km.vercel.app/lib/forge/",
+      "phaseX": 1.2,
+      "phaseY": 1.2,
+      "freqX": 0.002,
+      "freqY": 0.002,
+      "metadata": {
+        "depth": 2
+      }
+    },
+    {
+      "id": "Security-Observability",
+      "name": "Security & Traffic Governance",
+      "group": 2,
+      "category": "DOMAIN",
+      "radius": 24.0,
+      "description": "0-Data privacy-first browser observability, bot classification, and deterministic threat scoring.",
+      "tech_stack": [
+        "WebCrypto",
+        "TypeScript",
+        "Edge Middleware",
+        "Neon PostgreSQL"
+      ],
+      "tags": [
+        "security",
+        "observability",
+        "bot-detection",
+        "privacy"
+      ],
+      "url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "repo_url": "https://github.com/uno-km/ameva-sentinel",
+      "docs_url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "phaseX": 2.0,
+      "phaseY": 2.0,
+      "freqX": 0.002,
+      "freqY": 0.002,
+      "metadata": {
+        "depth": 2
+      }
+    },
+    {
+      "id": "Autonomous-Systems",
+      "name": "Autonomous Systems & Multi-Agent",
+      "group": 2,
+      "category": "DOMAIN",
+      "radius": 24.0,
+      "description": "Decentralized multi-agent state machines, SRE terminal mesh, and generative simulations.",
+      "tech_stack": [
+        "Docker",
+        "node-pty",
+        "WebSocket",
+        "Multi-Agent DAG"
+      ],
+      "tags": [
+        "multi-agent",
+        "orchestra",
+        "sre",
+        "terminal"
+      ],
+      "url": "https://uno-km.vercel.app/foundation/",
+      "repo_url": "https://github.com/uno-km",
+      "docs_url": "https://uno-km.vercel.app/foundation/",
+      "phaseX": 2.8,
+      "phaseY": 2.8,
+      "freqX": 0.002,
+      "freqY": 0.002,
+      "metadata": {
+        "depth": 2
+      }
+    },
+    {
+      "id": "termux-bitnet",
+      "name": "Termux-BitNet",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "1.58-bit (i2_s) On-Device LLM Inference Engine with ARM64 NEON DotProd SIMD acceleration.",
+      "tech_stack": [
+        "C++17",
+        "ARM64 NEON",
+        "DotProd",
+        "Python ctypes",
+        "Node.js npm"
+      ],
+      "tags": [
+        "bitnet",
+        "1.58-bit",
+        "llm",
+        "on-device",
+        "neon"
+      ],
+      "url": "https://uno-km.vercel.app/lib/bitnet/",
+      "repo_url": "https://github.com/uno-km/termux-bitnet",
+      "docs_url": "https://uno-km.vercel.app/lib/bitnet/",
+      "phaseX": 0.8,
+      "phaseY": 0.8,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "termux-bitnet",
+        "npm": "termux-bitnet"
+      }
+    },
+    {
+      "id": "termux-train",
+      "name": "Termux-Train",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "Bionic Native Tensor, Dynamic DAG Autograd, SafeTensors zero-copy, and On-Device LoRA Training.",
+      "tech_stack": [
+        "Python",
+        "OpenBLAS NEON",
+        "SafeTensors",
+        "LoRA"
+      ],
+      "tags": [
+        "autograd",
+        "lora",
+        "training",
+        "transformer",
+        "rope"
+      ],
+      "url": "https://uno-km.vercel.app/lib/train/",
+      "repo_url": "https://github.com/uno-km/termux-train",
+      "docs_url": "https://uno-km.vercel.app/lib/train/",
+      "phaseX": 1.0,
+      "phaseY": 1.0,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "termux-train"
+      }
+    },
+    {
+      "id": "termux-stt",
+      "name": "Termux-STT",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "Unified Whisper.cpp, Vosk, Sherpa-ONNX with Pure-Python 128d Speaker Diarization.",
+      "tech_stack": [
+        "Whisper.cpp",
+        "Vosk",
+        "Sherpa-ONNX",
+        "Python"
+      ],
+      "tags": [
+        "stt",
+        "whisper",
+        "diarization",
+        "audio-ai"
+      ],
+      "url": "https://uno-km.vercel.app/lib/stt/",
+      "repo_url": "https://github.com/uno-km/termux-stt",
+      "docs_url": "https://uno-km.vercel.app/lib/stt/",
+      "phaseX": 1.4,
+      "phaseY": 1.4,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "termux-stt",
+        "npm": "termux-stt"
+      }
+    },
+    {
+      "id": "termux-diffusion",
+      "name": "Termux-Diffusion",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "Native On-Device Stable Diffusion Image Generation for Android ARM64.",
+      "tech_stack": [
+        "C++ NEON",
+        "GGUF",
+        "Stable Diffusion",
+        "Python"
+      ],
+      "tags": [
+        "diffusion",
+        "image-generation",
+        "arm64",
+        "gguf"
+      ],
+      "url": "https://uno-km.vercel.app/lib/diffusion/",
+      "repo_url": "https://github.com/uno-km/termux-diffusion",
+      "docs_url": "https://uno-km.vercel.app/lib/diffusion/",
+      "phaseX": 1.8,
+      "phaseY": 1.8,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "termux-diffusion",
+        "npm": "termux-diffusion"
+      }
+    },
+    {
+      "id": "termux-playwright",
+      "name": "Termux-Playwright",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "Non-root Chromium browser automation and direct CDP control on Android Termux.",
+      "tech_stack": [
+        "Chromium CDP",
+        "Node.js",
+        "Python",
+        "Bionic ARM64"
+      ],
+      "tags": [
+        "browser-automation",
+        "playwright",
+        "scraping",
+        "cdp"
+      ],
+      "url": "https://uno-km.vercel.app/lib/playwright/",
+      "repo_url": "https://github.com/uno-km/termux-playwright-demo",
+      "docs_url": "https://uno-km.vercel.app/lib/playwright/",
+      "phaseX": 2.2,
+      "phaseY": 2.2,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "termux-playwright",
+        "npm": "termux-playwright"
+      }
+    },
+    {
+      "id": "AMEVA-Forge",
+      "name": "AMEVA-Forge",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "Browser-Native WebGPU Autograd Engine with PyTorch compatibility and WGSL compute shaders.",
+      "tech_stack": [
+        "WebGPU",
+        "WGSL",
+        "Pyodide",
+        "WASM"
+      ],
+      "tags": [
+        "webgpu",
+        "autograd",
+        "browser-dl",
+        "pytorch-compat"
+      ],
+      "url": "https://uno-km.vercel.app/lib/forge/",
+      "repo_url": "https://github.com/uno-km/AMEVA-Forge",
+      "docs_url": "https://uno-km.vercel.app/lib/forge/",
+      "phaseX": 0.7,
+      "phaseY": 0.7,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "pypi": "ameva"
+      }
+    },
+    {
+      "id": "AMEVA-Workstation",
+      "name": "AMEVA Workstation",
+      "group": 3,
+      "category": "APPLICATION",
+      "radius": 20.0,
+      "description": "Client-side WebGPU local AI, spatial canvas map, nested documents, and autonomous agent orchestration.",
+      "tech_stack": [
+        "React",
+        "Next.js",
+        "WebLLM",
+        "Qwen2.5",
+        "Canvas"
+      ],
+      "tags": [
+        "workstation",
+        "pwa",
+        "local-llm",
+        "spatial-canvas"
+      ],
+      "url": "https://ameva-workstation-web-core.vercel.app/",
+      "repo_url": "https://github.com/uno-km/AMEVA-Workstation-Web",
+      "docs_url": "https://ameva-workstation-web-core.vercel.app/",
+      "phaseX": 1.3,
+      "phaseY": 1.3,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3
+      }
+    },
+    {
+      "id": "AMEVA-Sentinel",
+      "name": "AMEVA-Sentinel",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 18.0,
+      "description": "0-Data privacy threat scoring and automated bot traffic governance SDK.",
+      "tech_stack": [
+        "TypeScript",
+        "WebCrypto",
+        "Node.js",
+        "PostgreSQL"
+      ],
+      "tags": [
+        "bot-governance",
+        "privacy",
+        "security-sdk",
+        "risk-scoring"
+      ],
+      "url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "repo_url": "https://github.com/uno-km/ameva-sentinel",
+      "docs_url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "phaseX": 2.1,
+      "phaseY": 2.1,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "npm": "@ameva/sentinel"
+      }
+    },
+    {
+      "id": "AMEVA-DocFold",
+      "name": "AMEVA-DocFold",
+      "group": 3,
+      "category": "TLP_LIBRARY",
+      "radius": 16.0,
+      "description": "Multi-layer semantic folding pipeline compressing complex context without semantic loss.",
+      "tech_stack": [
+        "Python",
+        "Semantic DAG",
+        "Lossless Folding"
+      ],
+      "tags": [
+        "docfold",
+        "semantic-compression",
+        "context-folding"
+      ],
+      "url": "https://uno-km.vercel.app/",
+      "repo_url": "https://github.com/uno-km/ameva-docfold",
+      "docs_url": "https://uno-km.vercel.app/",
+      "phaseX": 2.7,
+      "phaseY": 2.7,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3
+      }
+    },
+    {
+      "id": "ARM64-NEON-DotProd",
+      "name": "ARM64 NEON vdotq_s32",
+      "group": 4,
+      "category": "CORE_ENGINE",
+      "radius": 12.0,
+      "description": "Vectorized assembly dot product kernel executing 16 ternary integer weights per cycle.",
+      "tech_stack": [
+        "ARMv8.2-A",
+        "NEON",
+        "DotProd",
+        "vdotq_s32"
+      ],
+      "tags": [
+        "neon",
+        "dotprod",
+        "assembly",
+        "kernel"
+      ],
+      "phaseX": 0.9,
+      "phaseY": 0.9,
+      "freqX": 0.004,
+      "freqY": 0.004,
+      "metadata": {
+        "depth": 4
+      }
+    },
+    {
+      "id": "LoRA-Adapter-Engine",
+      "name": "LoRA Low-Rank Tuning",
+      "group": 4,
+      "category": "ALGORITHM",
+      "radius": 12.0,
+      "description": "Low-rank matrix decomposition adapter fine-tuning with SafeTensors weight checkpoints.",
+      "tech_stack": [
+        "SafeTensors",
+        "LoRA",
+        "Gradient Descent"
+      ],
+      "tags": [
+        "lora",
+        "fine-tuning",
+        "adapter"
+      ],
+      "phaseX": 1.1,
+      "phaseY": 1.1,
+      "freqX": 0.004,
+      "freqY": 0.004,
+      "metadata": {
+        "depth": 4
+      }
+    },
+    {
+      "id": "WGSL-Compute-Shaders",
+      "name": "WGSL Tensor Shaders",
+      "group": 4,
+      "category": "CORE_ENGINE",
+      "radius": 12.0,
+      "description": "Parallel WebGPU compute pipelines with zero-allocation ring buffer pooling.",
+      "tech_stack": [
+        "WGSL",
+        "WebGPU",
+        "Buffer Pooling"
+      ],
+      "tags": [
+        "wgsl",
+        "shader",
+        "gpu-compute"
+      ],
+      "phaseX": 0.8,
+      "phaseY": 0.8,
+      "freqX": 0.004,
+      "freqY": 0.004,
+      "metadata": {
+        "depth": 4
+      }
+    },
+    {
+      "id": "Pure-Python-Diarization",
+      "name": "128d X-Vector Diarization",
+      "group": 4,
+      "category": "ALGORITHM",
+      "radius": 12.0,
+      "description": "Pure Python K-Means clustering and cosine distance speaker separation.",
+      "tech_stack": [
+        "Python",
+        "X-Vector",
+        "K-Means"
+      ],
+      "tags": [
+        "diarization",
+        "clustering",
+        "audio"
+      ],
+      "phaseX": 1.5,
+      "phaseY": 1.5,
+      "freqX": 0.004,
+      "freqY": 0.004,
+      "metadata": {
+        "depth": 4
+      }
+    },
+    {
+      "id": "Deterministic-Risk-Core",
+      "name": "0~100 Threat Scoring Core",
+      "group": 4,
+      "category": "ALGORITHM",
+      "radius": 12.0,
+      "description": "Multi-factor rule matrix assessing client anomaly without capturing user keystrokes.",
+      "tech_stack": [
+        "Rule Engine",
+        "Entropy Matrix"
+      ],
+      "tags": [
+        "risk-scoring",
+        "entropy",
+        "bot-rules"
+      ],
+      "phaseX": 2.2,
+      "phaseY": 2.2,
+      "freqX": 0.004,
+      "freqY": 0.004,
+      "metadata": {
+        "depth": 4
+      }
+    }
   ],
   "links": [
-    {"source": "AMEVA Neural Fabric", "target": "Edge-Native LLM", "value": 2},
-    {"source": "AMEVA Neural Fabric", "target": "Local GraphRAG", "value": 2},
-    {"source": "AMEVA Neural Fabric", "target": "Knowledge Graph", "value": 2},
-    {"source": "AMEVA Neural Fabric", "target": "AMEVA-LLM-Trainer", "value": 2},
-    
-    {"source": "Edge-Native LLM", "target": "WebLLM (Qwen 1.5B)", "value": 1},
-    {"source": "Edge-Native LLM", "target": "Model Caching", "value": 1},
-    
-    {"source": "Local GraphRAG", "target": "Transformers.js", "value": 1},
-    {"source": "Local GraphRAG", "target": "Vector Search", "value": 1},
-    {"source": "Vector Search", "target": "graph_index.json", "value": 1},
-    
-    {"source": "Knowledge Graph", "target": "D3.js Visualizer", "value": 1},
-    {"source": "Knowledge Graph", "target": "graph_index.json", "value": 1},
-    
-    {"source": "AMEVA-LLM-Trainer", "target": "setup.ps1", "value": 1},
-    {"source": "AMEVA-LLM-Trainer", "target": "requirements.txt", "value": 1}
+    {
+      "source": "AMEVA-Universe",
+      "target": "Mobile-Bionic-AI",
+      "value": 4.0,
+      "label": "Ecosystem Pillar"
+    },
+    {
+      "source": "AMEVA-Universe",
+      "target": "WebGPU-Browser-AI",
+      "value": 4.0,
+      "label": "Ecosystem Pillar"
+    },
+    {
+      "source": "AMEVA-Universe",
+      "target": "Security-Observability",
+      "value": 4.0,
+      "label": "Ecosystem Pillar"
+    },
+    {
+      "source": "AMEVA-Universe",
+      "target": "Autonomous-Systems",
+      "value": 4.0,
+      "label": "Ecosystem Pillar"
+    },
+    {
+      "source": "Mobile-Bionic-AI",
+      "target": "termux-bitnet",
+      "value": 3.0,
+      "label": "Flagship LLM"
+    },
+    {
+      "source": "Mobile-Bionic-AI",
+      "target": "termux-train",
+      "value": 3.0,
+      "label": "Tensor & Autograd"
+    },
+    {
+      "source": "Mobile-Bionic-AI",
+      "target": "termux-stt",
+      "value": 3.0,
+      "label": "Voice STT"
+    },
+    {
+      "source": "Mobile-Bionic-AI",
+      "target": "termux-diffusion",
+      "value": 3.0,
+      "label": "Image Gen"
+    },
+    {
+      "source": "Mobile-Bionic-AI",
+      "target": "termux-playwright",
+      "value": 3.0,
+      "label": "Automation"
+    },
+    {
+      "source": "WebGPU-Browser-AI",
+      "target": "AMEVA-Forge",
+      "value": 3.0,
+      "label": "Tensor Engine"
+    },
+    {
+      "source": "WebGPU-Browser-AI",
+      "target": "AMEVA-Workstation",
+      "value": 3.5,
+      "label": "Primary Web App"
+    },
+    {
+      "source": "Security-Observability",
+      "target": "AMEVA-Sentinel",
+      "value": 3.0,
+      "label": "Security SDK"
+    },
+    {
+      "source": "Autonomous-Systems",
+      "target": "AMEVA-DocFold",
+      "value": 3.0,
+      "label": "Semantic Compression"
+    },
+    {
+      "source": "termux-train",
+      "target": "termux-bitnet",
+      "value": 2.0,
+      "label": "Weight Quantization"
+    },
+    {
+      "source": "AMEVA-Workstation",
+      "target": "AMEVA-Forge",
+      "value": 2.5,
+      "label": "Client GPU Acceleration"
+    },
+    {
+      "source": "AMEVA-Sentinel",
+      "target": "AMEVA-Workstation",
+      "value": 2.0,
+      "label": "Traffic Shield"
+    },
+    {
+      "source": "termux-bitnet",
+      "target": "ARM64-NEON-DotProd",
+      "value": 2.0,
+      "label": "SIMD Acceleration"
+    },
+    {
+      "source": "termux-train",
+      "target": "LoRA-Adapter-Engine",
+      "value": 2.0,
+      "label": "Adapter Tuning"
+    },
+    {
+      "source": "AMEVA-Forge",
+      "target": "WGSL-Compute-Shaders",
+      "value": 2.0,
+      "label": "GPU Pipeline"
+    },
+    {
+      "source": "termux-stt",
+      "target": "Pure-Python-Diarization",
+      "value": 2.0,
+      "label": "Speaker Diarization"
+    },
+    {
+      "source": "AMEVA-Sentinel",
+      "target": "Deterministic-Risk-Core",
+      "value": 2.0,
+      "label": "Risk Evaluation"
+    }
   ]
 }

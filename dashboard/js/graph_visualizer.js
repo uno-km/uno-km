@@ -34,14 +34,13 @@ let zoomBehavior = null;  // Module-scope zoom (was local to renderGraph — cau
 export async function initGraph() {
   const subtextEl = document.getElementById('loading-subtext');
 
-  // Fake Hacker-style log sequence
+  // Hacker/Engineering log sequence
   const logs = [
-    "Establishing secure connection to GitHub API...",
-    "Querying uno-km repository list...",
-    "Filtering repositories by 'AMEVA' prefix...",
-    "Parsing metadata and categorizing nodes...",
-    "Allocating D3.js physics layout memory...",
-    "Igniting Neural Fabric synapses..."
+    "Connecting to Neon PostgreSQL Knowledge Graph Engine...",
+    "Querying 4-Tier Hierarchical Graph Nodes & N:M Relations...",
+    "Hydrating 3D physics coordinates and SIMD metadata...",
+    "Allocating D3.js force simulation memory buffer...",
+    "Igniting AMEVA Neural Fabric synapses..."
   ];
   let logIdx = 0;
   const logInterval = setInterval(() => {
@@ -49,123 +48,38 @@ export async function initGraph() {
       subtextEl.textContent = logs[logIdx % logs.length];
       logIdx++;
     }
-  }, 400);
+  }, 350);
 
   try {
-    // 1. Fetch from GitHub API dynamically
-    const username = 'uno-km'; // GitHub username
-    const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+    let data = null;
 
-    let data;
-
-    if (response.ok) {
-      const repos = await response.json();
-
-      // 1. Fetch Ecosystem DB
-      const dbResponse = await fetch('data/ecosystem_db.json');
-      const dbRoot = await dbResponse.json();
-
-      const nodes = [];
-      const links = [];
-      const branchMap = new Map(); // topic -> branchNodeId
-
-      // 재귀적으로 DB 트리를 파싱하여 노드와 링크 배열 생성
-      function parseTree(nodeData, parentId = null) {
-        const nodeObj = {
-          id: nodeData.id,
-          group: parentId ? 2 : 1, // Root is 1, branches are 2
-          radius: nodeData.metadata?.root ? 28 : (parentId ? 20 : 16),
-          description: nodeData.description || "",
-          metadata: nodeData.metadata || {},
-          matchTopics: nodeData.match_topics || [],
-          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
-          freqX: 0.001 + Math.random() * 0.001, freqY: 0.001 + Math.random() * 0.001
-        };
-        nodes.push(nodeObj);
-
-        if (parentId) {
-          links.push({ source: parentId, target: nodeData.id, value: 3 });
-        }
-
-        if (nodeData.match_topics) {
-          nodeData.match_topics.forEach(t => {
-            branchMap.set(t.toLowerCase(), nodeData.id);
-          });
-        }
-
-        if (nodeData.children) {
-          nodeData.children.forEach(child => parseTree(child, nodeData.id));
+    // 1. Primary: Fetch 4-Tier Graph dynamically from Neon PostgreSQL API
+    try {
+      const apiRes = await fetch('/api/graph');
+      if (apiRes.ok) {
+        const json = await apiRes.json();
+        if (json.ok && json.data && json.data.nodes && json.data.nodes.length > 0) {
+          data = json.data;
+          console.log(`[AMEVA Graph] Successfully loaded ${data.nodes.length} nodes from ${json.source}.`);
         }
       }
+    } catch (apiErr) {
+      console.warn('[AMEVA Graph] Neon DB API fetch failed, trying local fallback:', apiErr.message);
+    }
 
-      parseTree(dbRoot);
-
-      repos.forEach(repo => {
-        const name = repo.name;
-        if (!name.startsWith('AMEVA')) return; // AMEVA 프리픽스만 허용
-
-        const topics = (repo.topics || []).map(t => t.toLowerCase());
-        let attached = false;
-        const linkedParents = new Set();
-
-        topics.forEach(topic => {
-          if (branchMap.has(topic)) {
-            // DB에 정의된 브랜치에 매칭
-            const targetId = branchMap.get(topic);
-            if (!linkedParents.has(targetId)) {
-              links.push({ source: targetId, target: repo.name, value: 1 });
-              linkedParents.add(targetId);
-            }
-            attached = true;
-          } else {
-            // DB에 없는 새로운 토픽 발견! 동적으로 새로운 중간 브랜치 생성
-            const newBranchId = `Category: ${topic}`;
-            if (!nodes.find(n => n.id === newBranchId)) {
-              nodes.push({
-                id: newBranchId,
-                group: 4,
-                radius: 16,
-                description: `동적으로 생성된 [${topic}] 토픽 브랜치입니다.`,
-                metadata: { dynamic: true },
-                phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
-                freqX: 0.002, freqY: 0.002
-              });
-              // 루트(dbRoot.id)에 새 브랜치를 붙임
-              links.push({ source: dbRoot.id, target: newBranchId, value: 2 });
-              branchMap.set(topic, newBranchId);
-            }
-            if (!linkedParents.has(newBranchId)) {
-              links.push({ source: newBranchId, target: repo.name, value: 1 });
-              linkedParents.add(newBranchId);
-            }
-            attached = true;
-          }
-        });
-
-        // 토픽이 없거나 매칭 실패 시 루트 노드에 직접 연결 (Fallback)
-        if (!attached) {
-          links.push({ source: dbRoot.id, target: repo.name, value: 1 });
-        }
-
-        // 레포지토리 노드 추가
-        nodes.push({
-          id: repo.name,
-          group: 5,
-          radius: 12,
-          description: repo.description || "No description provided.",
-          url: repo.html_url,
-          isRepo: true,
-          matchTopics: topics,
-          phaseX: Math.random() * Math.PI * 2, phaseY: Math.random() * Math.PI * 2,
-          freqX: 0.003 + Math.random() * 0.003, freqY: 0.003 + Math.random() * 0.003
-        });
-      });
-
-      data = { nodes, links };
-    } else {
-      console.warn("GitHub API limit exceeded or failed. Falling back to local index.");
-      const fallback = await fetch('data/graph_index.json');
-      data = await fallback.json();
+    // 2. Secondary Fallback: Load static 4-tier index if API fails or offline
+    if (!data) {
+      let fallback;
+      try {
+        fallback = await fetch('data/graph_index.json');
+        if (!fallback.ok) fallback = await fetch('/dashboard/data/graph_index.json');
+      } catch (e) {
+        fallback = await fetch('/dashboard/data/graph_index.json');
+      }
+      if (fallback && fallback.ok) {
+        data = await fallback.json();
+        console.log('[AMEVA Graph] Loaded graph from local graph_index.json fallback.');
+      }
     }
 
     if (window.tagCloud) {

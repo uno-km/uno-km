@@ -87,6 +87,7 @@ flowchart TD
         Playwright["termux-playwright<br/>(ARM64 비루팅 모바일 브라우저 자동화)"]
         Diffusion["termux-diffusion<br/>(ARM64 네이티브 온디바이스 Stable Diffusion)"]
         STT["termux-stt<br/>(통합 온디바이스 음성인식 & 128d 화자분리)"]
+        BitNet["termux-bitnet<br/>(1.58-bit 온디바이스 BitNet 초고속 추론)"]
         Train["termux-train<br/>(초경량 온디바이스 텐서 & DAG 자동미분)"]
         Forge["AMEVA-Forge<br/>(브라우저 네이티브 WebGPU 텐서 가속 엔진)"]
         Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]
@@ -111,6 +112,7 @@ flowchart TD
 | 프로젝트 명 | 기술 스택 & 런타임 | 핵심 기능 및 공학적 해결 과제 | 패키지 설치 및 레퍼런스 |
 | :--- | :--- | :--- | :--- |
 | **`AMEVA Workstation`** | WebGPU, WASM, React | 클라이언트 중심 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
+| **`termux-bitnet`** | C++17 NEON, GGUF, Python, npm | Android Termux 및 ARM64 환경에서의 1.58-bit (i2_s) BitNet 온디바이스 초고속 추론 엔진. C ABI 단일 코어와 Python/Node.js 듀얼 씬 게이트웨이 제공. | `pip install termux-bitnet`<br/>`npm install termux-bitnet`<br/>[GitHub 저장소](https://github.com/uno-km/termux-bitnet) |
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.github.io/termux-playwright/) |
 | **`termux-diffusion`** | C++ NEON, GGUF, Python | 클라우드 서버 없이 안드로이드 ARM64 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>[공식 문서](https://uno-km.github.io/termux-diffusion/) |
 | **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>[공식 문서](https://uno-km.github.io/termux-stt/) |

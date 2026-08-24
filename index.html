@@ -149,7 +149,7 @@
       --text-muted: #475569;
       --code-bg: #0f172a;
       --code-text: #f8fafc;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
 
@@ -159,8 +159,21 @@
       background-color: var(--bg-body);
       color: var(--text-main);
       font-family: var(--font-sans);
-      line-height: 1.6;
-      font-size: 14px;
+      line-height: 1.65;
+      font-size: 14.5px;
+      font-weight: 450;
+      letter-spacing: -0.25px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    p, li, td, th {
+      font-weight: 450;
+      color: var(--text-main);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      letter-spacing: -0.3px;
     }
 
     /* ── Top Header ─────────────────────────────────────────────────────────── */
@@ -1056,12 +1069,15 @@
             </div>
           </div>
 
-          <!-- 8. BitNet Engine -->
+          <!-- 8. Termux-BitNet -->
           <div class="item-card">
-            <h3><span>🧠 BitNet Engine</span> <span style="font-size:0.75em;">1-Bit Inference</span></h3>
-            <p data-i18n="p5.bitnetDesc">1-bit 양자화 모델(1.58-bit LLM)을 엣지 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.</p>
+            <h3><span>🧠 Termux-BitNet</span> <span style="font-size:0.75em;">pip / npm</span></h3>
+            <p data-i18n="p5.bitnetDesc">ARM64 NEON DotProd 가속 기반 C++ 단일 코어 및 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크.</p>
             <div class="card-actions">
-              <a href="https://github.com/uno-km/BitNet" target="_blank" class="btn-action primary" data-i18n="btn.viewRepo">🐙 GitHub 저장소</a>
+              <a href="./lib/bitnet/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-action secondary">📦 PyPI</a>
+              <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-action secondary">🐙 GitHub</a>
             </div>
           </div>
         </div>

@@ -44,37 +44,22 @@ window.knowledgeEngine = {
         }
       }
 
-      // 2. Fetch from GitHub API
-      const username = 'uno-km';
+      // 2. Hydrate directly from Neon DB Knowledge Graph API
       try {
-        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-        if (reposRes.ok) {
-          const repos = await reposRes.json();
-          const amevaRepos = repos.filter(r => r.name.startsWith('AMEVA'));
-
-          // Fetch all READMEs concurrently
-          const fetchPromises = amevaRepos.map(async repo => {
-            try {
-              const branch = repo.default_branch || 'main';
-              const readmeUrl = `https://raw.githubusercontent.com/${username}/${repo.name}/${branch}/README.md`;
-              
-              const readmeRes = await fetch(readmeUrl);
-              if (readmeRes.ok) {
-                const text = await readmeRes.text();
-                this.readmeMap.set(repo.name, text);
-                this._chunkAndStore(repo.name, text);
-              }
-            } catch (e) {
-              console.warn(`[Knowledge Engine] Failed to fetch README for ${repo.name}`, e);
-            }
-          });
-
-          await Promise.all(fetchPromises);
-        } else {
-          console.warn("[Knowledge Engine] GitHub API request not OK. Using local/fallback only.");
+        const graphRes = await fetch('/api/graph');
+        if (graphRes.ok) {
+          const graphJson = await graphRes.json();
+          if (graphJson.ok && graphJson.data && graphJson.data.nodes) {
+            graphJson.data.nodes.forEach(node => {
+              const summary = `${node.name} (${node.id}) [Tier ${node.group} ${node.category || ''}]: ${node.description || ''} Tech: ${(node.tech_stack || []).join(', ')} Tags: ${(node.tags || []).join(', ')}`;
+              this.readmeMap.set(node.id, summary);
+              this._chunkAndStore(node.name || node.id, summary);
+            });
+            console.log(`[Knowledge Engine] Indexed ${graphJson.data.nodes.length} nodes from Neon PostgreSQL.`);
+          }
         }
       } catch (err) {
-        console.warn("[Knowledge Engine] GitHub API fetch error:", err);
+        console.warn("[Knowledge Engine] Neon DB graph indexing fallback:", err.message);
       }
 
       console.log(`[Knowledge Engine] Loaded ${this.readmeMap.size} READMEs into memory.`);

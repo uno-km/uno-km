@@ -1,0 +1,40 @@
+# Termux-BitNet Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+High-Performance 1.58-bit (i2_s) BitNet On-Device LLM Inference Runtime for ARM64 & Android Termux
+Engineered with a single C++17 core utilizing ARM64 NEON DotProd (vdotq_s32) SIMD instructions and dual lightweight thin gateways (Python ctypes FFI and Node.js CLI IPC), delivering low-latency 1.58-bit ternary quantized LLM execution directly on device memory without background server daemons.
+
+## 2. Package & Installation
+- PyPI: termux-bitnet
+- Command: pip install termux-bitnet
+# or: npm install termux-bitnet
+- Repository: https://github.com/uno-km/termux-bitnet
+
+## 3. Core Capabilities
+- **ARM64 NEON & DotProd Acceleration**: Native SIMD assembly kernels (vdotq_s32 and vmlal_s8 fallback) providing high throughput integer dot product computation on mobile processors.
+- **Single Core & Dual Thin Gateways**: All heavy compute is consolidated in pure C++ libtermux_bitnet.so, while Python and Node.js serve as thin, zero-overhead entry gateways.
+- **Zero-Daemon Direct Execution**: Runs in-process via direct C ABI calls without requiring background server daemons, port listeners, or network socket layers.
+- **Ternary Weight (i2_s) Quantization**: Consumes only 1.58 bits per parameter (-1, 0, +1), reducing model storage and memory bandwidth footprint by up to 70% compared to 8-bit models.
+- **Verified Model Registry Downloader**: Built-in automated download engine supporting official Microsoft and community BitNet GGUF models with automatic HTTP range resume.
+
+## 4. Canonical Implementation
+```python
+from termux_bitnet import BitNetEngine, BitNetConfig
+
+# 1. Configure engine parameters
+config = BitNetConfig(
+    model_path="~/.cache/termux-bitnet/models/bitnet-2b-ggml-model-i2_s.gguf",
+    n_threads=8,
+    temperature=0.7,
+    top_p=0.95,
+    top_k=40,
+    repeat_penalty=1.15
+)
+
+# 2. Stream generation directly from ARM64 C++ core
+with BitNetEngine(config) as engine:
+    for token in engine.generate_stream("Summarize the architectural benefit of 1.58-bit weights:"):
+        print(token, end="", flush=True)
+
+```

@@ -76,6 +76,21 @@
       "source": "/forge",
       "destination": "/lib/forge/",
       "permanent": false
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/bitnet",
+      "destination": "/lib/bitnet/",
+      "permanent": false
+    },
+    {
+      "source": "/bitnet",
+      "destination": "/lib/bitnet/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -174,6 +189,18 @@
     {
       "source": "/app/workstation/:match*",
       "destination": "/app/workstation/:match*"
+    },
+    {
+      "source": "/dashboard/:match*",
+      "destination": "/dashboard/:match*"
+    },
+    {
+      "source": "/lib/bitnet/:match*",
+      "destination": "/lib/bitnet/:match*"
+    },
+    {
+      "source": "/bitnet/:match*",
+      "destination": "/lib/bitnet/:match*"
     }
   ],
   "headers": [

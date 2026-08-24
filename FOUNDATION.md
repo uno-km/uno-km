@@ -88,6 +88,7 @@ flowchart TD
         Diffusion["termux-diffusion<br/>(ARM64 네이티브 온디바이스 Stable Diffusion)"]
         STT["termux-stt<br/>(통합 온디바이스 음성인식 & 128d 화자분리)"]
         Train["termux-train<br/>(초경량 온디바이스 텐서 & DAG 자동미분)"]
+        BitNet["termux-bitnet<br/>(ARM64 NEON 1.58비트 온디바이스 LLM 추론)"]
         Forge["AMEVA-Forge<br/>(브라우저 네이티브 WebGPU 텐서 가속 엔진)"]
         Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]
     end
@@ -115,6 +116,7 @@ flowchart TD
 | **`termux-diffusion`** | C++ NEON, GGUF, Python | 클라우드 서버 없이 안드로이드 ARM64 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>[공식 문서](https://uno-km.github.io/termux-diffusion/) |
 | **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>[공식 문서](https://uno-km.github.io/termux-stt/) |
 | **`termux-train`** | C++, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.github.io/termux-train/) |
+| **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.github.io/termux-bitnet/) |
 | **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 가속 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `npm install @uno-km/ameva-forge`<br/>[공식 데모](https://uno-km.github.io/ameva-forge/demo.html) |
 | **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install @ameva/sentinel`<br/>[공식 문서](https://uno-km.vercel.app/sdk/sentinel/) |
 

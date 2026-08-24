@@ -3,6 +3,7 @@
 
 <head>
   <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
+  <script>if(location.pathname.match(/\/(dashboard|lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
@@ -229,6 +230,12 @@
         <span>TPS:</span>
         <span class="metric-value" id="tps-header">0.00</span>
       </div>
+    </div>
+
+    <!-- Navigation Hub Links -->
+    <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
+      <a href="/" style="color:var(--text-primary); background:rgba(255,255,255,0.08); padding:5px 12px; border-radius:6px; font-size:0.8rem; text-decoration:none; border:1px solid var(--border-subtle); display:flex; align-items:center; gap:5px; transition:all 0.2s;">🏠 Founder CV</a>
+      <a href="/foundation/" style="color:var(--accent-cyan); background:rgba(0,239,255,0.08); padding:5px 12px; border-radius:6px; font-size:0.8rem; text-decoration:none; border:1px solid rgba(0,239,255,0.25); display:flex; align-items:center; gap:5px; transition:all 0.2s;">🏛️ Foundation</a>
     </div>
   </header>
 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version Archive | Termux-BitNet</title>
+  <meta name="description" content="Changelog and version history for Termux-BitNet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Termux-BitNet Logo">
+      <h1 data-i18n="common.brand">Termux-BitNet</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (NEON Accelerated)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference & C ABI</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Ollama Comparison & Benchmarks</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters & Quant</a></li>
+      <li><a href="versions.html" class="active" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <ul>
+      <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+      <li><a href="/foundation/">AMEVA Foundation</a></li>
+      <li><a href="/index.html">Founder Digital CV</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Version Archive &amp; Changelog</h2>
+      <p class="subtitle">History of verified releases and architectural evolutions.</p>
+
+      <h3>v1.0.0 &mdash; NEON Accelerated Release (Current)</h3>
+      <p class="release-date">Release Date: August 2026</p>
+      <ul>
+        <li>Implemented pure C++17 inference core (<code>libtermux_bitnet.so</code>) with ARM64 NEON <code>vdotq_s32</code> hardware acceleration.</li>
+        <li>Delivered Dual Thin Gateways: Python ctypes FFI (<code>pip install termux-bitnet</code>) and Node.js IPC (<code>npm install termux-bitnet</code>).</li>
+        <li>Engineered automated GGUF model registry with HTTP range resumable downloads.</li>
+        <li>Standardized on AOSF classic Tomcat/Apache documentation layout with 6-language client-side i18n DOM translation engine.</li>
+        <li>Completed 10/10 unit and hardware verification tests on Qualcomm Snapdragon 865 testbed.</li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
+      🏛️ <strong>Engineered by AMEVA Foundation (아메바 오픈소스 재단)</strong> &mdash; Democratizing Sovereign Edge AI.
+    </div>
+    <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
+      <strong>Disclaimer:</strong> Termux-BitNet is an independent open-source project designed for ARM64 / Android Termux environments and is not officially affiliated with Microsoft or Termux project.
+    </div>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under Apache License 2.0.</span>
+  </footer>
+</body>
+</html>

@@ -138,3 +138,64 @@ CREATE INDEX IF NOT EXISTS idx_forensic_canvas_hash ON deep_forensic_footprints(
 CREATE INDEX IF NOT EXISTS idx_forensic_audio_hash ON deep_forensic_footprints(audio_hash);
 
 
+
+
+-- ==============================================================================
+-- 6. Multi-Tier Hierarchical & 3D Dynamic Knowledge Graph (Neon PostgreSQL)
+-- Multi-level (1~4 depth), N:M relations, 3D physics coordinates & dynamic metadata
+-- ==============================================================================
+
+CREATE TABLE IF NOT EXISTS graph_nodes (
+    node_id VARCHAR(100) PRIMARY KEY,              -- 'AMEVA-Universe', 'termux-bitnet', 'ARM64-NEON-DotProd'
+    name VARCHAR(150) NOT NULL,                    -- UI Display Name
+    category VARCHAR(50) NOT NULL,                 -- 'ROOT', 'DOMAIN', 'TLP_LIBRARY', 'CORE_ENGINE', 'ALGORITHM', 'APP'
+    depth_level INT DEFAULT 1,                     -- 1=Root, 2=Domain Category, 3=Project/TLP, 4=Kernel/Module
+    parent_id VARCHAR(100) REFERENCES graph_nodes(node_id) ON DELETE SET NULL,
+    description TEXT,                              -- Technical Description
+    tech_stack TEXT[],                             -- ARRAY['ARM64', 'NEON', 'C++17', 'Python']
+    tags TEXT[],                                   -- ARRAY['llm', '1.58-bit', 'quantization']
+    
+    -- 3D Visual & Physics Attributes
+    node_radius NUMERIC(5,2) DEFAULT 16.0,
+    node_weight NUMERIC(5,2) DEFAULT 1.0,
+    group_color VARCHAR(30) DEFAULT '#7C3AED',
+    pos_x NUMERIC(8,3) DEFAULT 0.0,
+    pos_y NUMERIC(8,3) DEFAULT 0.0,
+    pos_z NUMERIC(8,3) DEFAULT 0.0,
+    orbit_phase NUMERIC(6,4) DEFAULT 0.0,
+    orbit_freq NUMERIC(6,4) DEFAULT 0.002,
+    
+    -- Ecosystem Integration & Links
+    repo_url TEXT,
+    docs_url TEXT,
+    demo_url TEXT,
+    pypi_package VARCHAR(100),
+    npm_package VARCHAR(100),
+    
+    -- Cinematic Tour & Voice Narration
+    tour_order INT,
+    audio_narrative TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_graph_nodes_category ON graph_nodes(category);
+CREATE INDEX IF NOT EXISTS idx_graph_nodes_depth ON graph_nodes(depth_level);
+CREATE INDEX IF NOT EXISTS idx_graph_nodes_parent ON graph_nodes(parent_id);
+
+CREATE TABLE IF NOT EXISTS graph_edges (
+    edge_id BIGSERIAL PRIMARY KEY,
+    source_node_id VARCHAR(100) NOT NULL REFERENCES graph_nodes(node_id) ON DELETE CASCADE,
+    target_node_id VARCHAR(100) NOT NULL REFERENCES graph_nodes(node_id) ON DELETE CASCADE,
+    relation_type VARCHAR(50) DEFAULT 'HIERARCHY', -- 'HIERARCHY', 'DEPENDENCY', 'DATA_FLOW', 'HARDWARE_BINDING'
+    edge_weight NUMERIC(4,2) DEFAULT 1.0,
+    is_bidirectional BOOLEAN DEFAULT FALSE,
+    label VARCHAR(100),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_graph_edge UNIQUE (source_node_id, target_node_id, relation_type)
+);
+
+CREATE INDEX IF NOT EXISTS idx_graph_edges_source ON graph_edges(source_node_id);
+CREATE INDEX IF NOT EXISTS idx_graph_edges_target ON graph_edges(target_node_id);
+CREATE INDEX IF NOT EXISTS idx_graph_edges_type ON graph_edges(relation_type);

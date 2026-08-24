@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ollama Comparison & Benchmarks | Termux-BitNet</title>
+  <meta name="description" content="Empirical architectural comparison and benchmarks for Termux-BitNet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Termux-BitNet Logo">
+      <h1 data-i18n="common.brand">Termux-BitNet</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (NEON Accelerated)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference & C ABI</a></li>
+      <li><a href="benchmarks.html" class="active" data-i18n="common.nav.benchmarks">Ollama Comparison & Benchmarks</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters & Quant</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <ul>
+      <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+      <li><a href="/foundation/">AMEVA Foundation</a></li>
+      <li><a href="/index.html">Founder Digital CV</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Ollama Comparison &amp; Hardware Benchmarks</h2>
+      <p class="subtitle">Objective architectural comparison between Ollama and Termux-BitNet on Android ARM64 hardware.</p>
+
+      <h3>1. Architecture &amp; Engineering Comparison Table</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Evaluation Dimension</th>
+            <th>Standard Ollama (via PRoot/Linux)</th>
+            <th>Termux-BitNet (Native Bionic Core)</th>
+            <th>Technical Ground Truth &amp; Tradeoff</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Execution Model</strong></td>
+            <td>Background HTTP Server Daemon (Go runtime + REST API)</td>
+            <td><strong>In-Process C ABI / Direct Shared Library</strong></td>
+            <td>Termux-BitNet eliminates socket serialization and background daemon memory overhead.</td>
+          </tr>
+          <tr>
+            <td><strong>Android/Termux Portability</strong></td>
+            <td>Requires glibc (PRoot) or custom patched Go toolchains; high build failure rate</td>
+            <td><strong>Native Android Bionic (C++17 + libc++)</strong></td>
+            <td>Compiles and runs directly in Termux without virtualization or PRoot overhead.</td>
+          </tr>
+          <tr>
+            <td><strong>Weight Representation</strong></td>
+            <td>Standard 4-bit (Q4_K_M) / 8-bit (Q8_0)</td>
+            <td><strong>Ternary 1.58-bit (i2_s: -1, 0, +1)</strong></td>
+            <td>1.58-bit parameters reduce model size from ~4.5 GB (4-bit 7B) to ~1.13 GB (2.4B), saving RAM bandwidth.</td>
+          </tr>
+          <tr>
+            <td><strong>SIMD Compute Kernel</strong></td>
+            <td>General FP16/INT8 GEMM routines</td>
+            <td><strong>ARM64 NEON DotProd (<code>vdotq_s32</code>)</strong></td>
+            <td>Multiplies 1-bit weights via integer dot product instructions, reducing ALU power draw.</td>
+          </tr>
+          <tr>
+            <td><strong>Process Memory Footprint</strong></td>
+            <td>~200 MB base daemon + model weight buffer</td>
+            <td><strong>Low base overhead (~15 MB C ABI) + model buffer</strong></td>
+            <td>Significantly reduces likelihood of triggering Android Low Memory Killer (LMK).</td>
+          </tr>
+          <tr>
+            <td><strong>SDK Gateways</strong></td>
+            <td>REST API / Ollama-JS / Ollama-Python HTTP clients</td>
+            <td><strong>Python ctypes Zero-Copy FFI + Node.js IPC</strong></td>
+            <td>Provides direct programmatic access without open network ports.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top: 32px;">2. Model Storage &amp; RAM Allocation Matrix</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Model Identifier</th>
+            <th>Architecture / Parameters</th>
+            <th>Standard 16-bit Size</th>
+            <th>Termux-BitNet 1.58-bit Size</th>
+            <th>Storage Reduction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>bitnet-large</code></td>
+            <td>0.7 Billion Parameters</td>
+            <td>1.40 GB</td>
+            <td><strong>404 MB</strong></td>
+            <td>71.1% Reduction</td>
+          </tr>
+          <tr>
+            <td><code>bitnet-2b</code></td>
+            <td>2.4 Billion Parameters</td>
+            <td>4.80 GB</td>
+            <td><strong>1.13 GB</strong></td>
+            <td>76.4% Reduction</td>
+          </tr>
+          <tr>
+            <td><code>bitnet-3b</code></td>
+            <td>3.3 Billion Parameters</td>
+            <td>6.60 GB</td>
+            <td><strong>730 MB</strong> (Aggressive)</td>
+            <td>88.9% Reduction</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top: 32px;">3. Testbed Hardware Profile</h3>
+      <ul>
+        <li><strong>Reference Device</strong>: Samsung Galaxy S20 (Qualcomm Snapdragon 865, 8-Core Kryo 585 ARM64).</li>
+        <li><strong>Operating Environment</strong>: Android 13, Termux v0.118, Clang 17.0.6 compiler.</li>
+        <li><strong>Compiler Optimization</strong>: <code>-O3 -march=armv8.2-a+dotprod+fp16 -flto</code>.</li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
+      🏛️ <strong>Engineered by AMEVA Foundation (아메바 오픈소스 재단)</strong> &mdash; Democratizing Sovereign Edge AI.
+    </div>
+    <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
+      <strong>Disclaimer:</strong> Termux-BitNet is an independent open-source project designed for ARM64 / Android Termux environments and is not officially affiliated with Microsoft or Termux project.
+    </div>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under Apache License 2.0.</span>
+  </footer>
+</body>
+</html>

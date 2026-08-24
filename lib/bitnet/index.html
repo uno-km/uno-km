@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-BitNet | Official Documentation | Termux-BitNet</title>
+  <meta name="description" content="High-performance 1.58-bit BitNet inference engine for Android Termux">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Termux-BitNet Logo">
+      <h1 data-i18n="common.brand">Termux-BitNet</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (NEON Accelerated)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" class="active" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference & C ABI</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Ollama Comparison & Benchmarks</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters & Quant</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <ul>
+      <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/" class="active">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+      <li><a href="/foundation/">AMEVA Foundation</a></li>
+      <li><a href="/index.html">Founder Digital CV</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2 data-i18n="home.title">Termux-BitNet</h2>
+      <p class="subtitle" data-i18n="home.subtitle">High-Performance 1.58-bit (i2_s) BitNet On-Device LLM Inference Runtime for ARM64 &amp; Android Termux</p>
+
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-bitnet/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-bitnet.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://pypistats.org/packages/termux-bitnet" target="_blank"><img src="https://img.shields.io/pypi/dm/termux-bitnet.svg?color=2563eb&label=PyPI%20Downloads" alt="PyPI Downloads"></a>
+        <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank"><img src="https://img.shields.io/npm/v/termux-bitnet.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank"><img src="https://img.shields.io/npm/dm/termux-bitnet.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-10%2F10_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-ARM64_Bionic-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your Python or Node.js runtime:</p>
+        <pre><code>pip install termux-bitnet
+# or: npm install termux-bitnet</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Standard LLM runtimes (such as Ollama or heavy llama.cpp daemon wrappers) face significant constraints on Android Termux due to multi-hundred megabyte binary bloat, mandatory glibc dependencies, background HTTP daemon overhead, and multi-gigabyte memory footprints that trigger Android Low Memory Killer (LMK).</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Engineered with a single C++17 core utilizing ARM64 NEON DotProd (vdotq_s32) SIMD instructions and dual lightweight thin gateways (Python ctypes FFI and Node.js CLI IPC), delivering low-latency 1.58-bit ternary quantized LLM execution directly on device memory without background server daemons.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">ARM64 NEON &amp; DotProd Acceleration</h4>
+          <p data-i18n="home.features.0.desc">Native SIMD assembly kernels (vdotq_s32 and vmlal_s8 fallback) providing high throughput integer dot product computation on mobile processors.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">Single Core &amp; Dual Thin Gateways</h4>
+          <p data-i18n="home.features.1.desc">All heavy compute is consolidated in pure C++ libtermux_bitnet.so, while Python and Node.js serve as thin, zero-overhead entry gateways.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Zero-Daemon Direct Execution</h4>
+          <p data-i18n="home.features.2.desc">Runs in-process via direct C ABI calls without requiring background server daemons, port listeners, or network socket layers.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">Ternary Weight (i2_s) Quantization</h4>
+          <p data-i18n="home.features.3.desc">Consumes only 1.58 bits per parameter (-1, 0, +1), reducing model storage and memory bandwidth footprint by up to 70% compared to 8-bit models.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">Verified Model Registry Downloader</h4>
+          <p data-i18n="home.features.4.desc">Built-in automated download engine supporting official Microsoft and community BitNet GGUF models with automatic HTTP range resume.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">Architectural &amp; Kernel Matrix</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inference Core</strong></td>
+            <td>C++17 Native Engine (libtermux_bitnet.so), QK=128 Block Quant</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hardware Accelerators</strong></td>
+            <td>ARM64 NEON DotProd (vdotq_s32), ARM64 NEON FMA (vmlal_s8)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gateways &amp; Interfaces</strong></td>
+            <td>Python ctypes Zero-Copy FFI, Node.js IPC, Native POSIX CLI</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Model Formats</strong></td>
+            <td>GGUF (i2_s, Q4_0, Q8_0), Microsoft BitNet-b1.58 Architecture</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sampling Algorithms</strong></td>
+            <td>Greedy, Temperature, Nucleus Top-P, Top-K, Min-P, Repeat Penalty</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from termux_bitnet import BitNetEngine, BitNetConfig
+
+# 1. Configure engine parameters
+config = BitNetConfig(
+    model_path="~/.cache/termux-bitnet/models/bitnet-2b-ggml-model-i2_s.gguf",
+    n_threads=8,
+    temperature=0.7,
+    top_p=0.95,
+    top_k=40,
+    repeat_penalty=1.15
+)
+
+# 2. Stream generation directly from ARM64 C++ core
+with BitNetEngine(config) as engine:
+    for token in engine.generate_stream("Summarize the architectural benefit of 1.58-bit weights:"):
+        print(token, end="", flush=True)</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>const { createEngine } = require('termux-bitnet');
+
+// 1. Initialize lightweight gateway
+const engine = createEngine({
+  threads: 8,
+  temperature: 0.7,
+  topP: 0.95,
+  topK: 40,
+  repeatPenalty: 1.15
+});
+
+// 2. Stream tokens via CLI/IPC
+await engine.generateStream('Summarize the architectural benefit of 1.58-bit weights:', 128, (token) => {
+  process.stdout.write(token);
+});</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, C++ compilation)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="benchmarks.html">Ollama vs Termux-BitNet Comparative Architecture &amp; Profiling</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">Full API Reference &amp; C ABI Struct Definitions</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
+      🏛️ <strong>Engineered by AMEVA Foundation (아메바 오픈소스 재단)</strong> &mdash; Democratizing Sovereign Edge AI.
+    </div>
+    <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
+      <strong>Disclaimer:</strong> Termux-BitNet is an independent open-source project designed for ARM64 / Android Termux environments and is not officially affiliated with Microsoft or Termux project.
+    </div>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under Apache License 2.0.</span>
+  </footer>
+</body>
+</html>

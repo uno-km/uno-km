@@ -1,0 +1,104 @@
+﻿name: "Termux-BitNet"
+package_name_pypi: "termux-bitnet"
+package_name_npm: "termux-bitnet"
+version: "v1.0.0"
+release_name: "NEON Accelerated"
+license: "Apache-2.0"
+platform: "Android Termux / ARM64 / Bionic"
+github_repo_url: "https://github.com/uno-km/termux-bitnet"
+
+# 1-Line Mission Statements
+tagline_en: "High-Performance 1.58-bit (i2_s) BitNet On-Device LLM Inference Runtime for ARM64 & Android Termux"
+tagline_ko: "ARM64 및 안드로이드 Termux 환경을 위한 고성능 1.58비트(i2_s) BitNet 온디바이스 LLM 추론 런타임"
+tagline_ja: "ARM64およびAndroid Termux向けの高パフォーマンス1.58ビット(i2_s) BitNetオンデバイスLLM推論ランタイム"
+tagline_zh: "面向ARM64与Android Termux的高性能1.58比特(i2_s) BitNet端侧LLM推理运行时"
+tagline_es: "Entorno de ejecución de inferencia LLM en dispositivo BitNet de 1.58 bits (i2_s) de alto rendimiento para ARM64 y Android Termux"
+tagline_de: "Hochleistungsfähige 1,58-Bit (i2_s) BitNet On-Device-LLM-Inferenz-Laufzeit für ARM64 und Android Termux"
+
+# Quick Install Command
+quick_install_cmd: "pip install termux-bitnet\n# or: npm install termux-bitnet"
+
+# Technical Challenge & Breakthrough
+why_challenge_en: "Standard LLM runtimes (such as Ollama or heavy llama.cpp daemon wrappers) face significant constraints on Android Termux due to multi-hundred megabyte binary bloat, mandatory glibc dependencies, background HTTP daemon overhead, and multi-gigabyte memory footprints that trigger Android Low Memory Killer (LMK)."
+why_challenge_ko: "기존 LLM 런타임(Ollama 또는 무거운 데몬 래퍼)은 수백 메가바이트의 바이너리 크기, glibc 의존성, 백그라운드 HTTP 데몬 오버헤드, 대용량 메모리 점유로 인해 안드로이드 Termux 엣지 환경에서 OOM(Out of Memory) 킬러에 의해 강제 종료되거나 빌드가 불안정합니다."
+
+description_en: "Engineered with a single C++17 core utilizing ARM64 NEON DotProd (vdotq_s32) SIMD instructions and dual lightweight thin gateways (Python ctypes FFI and Node.js CLI IPC), delivering low-latency 1.58-bit ternary quantized LLM execution directly on device memory without background server daemons."
+description_ko: "ARM64 NEON DotProd(vdotq_s32) SIMD 가속 기반의 단일 C++17 코어와 제로 오버헤드 듀얼 경량 게이트웨이(Python ctypes FFI 및 Node.js CLI IPC)로 설계되어, 백그라운드 데몬 없이 최소한의 메모리로 1.58비트 3진 양자화 LLM을 디바이스에서 직접 고속 실행합니다."
+
+# Key Capabilities (Strictly No-Emoji)
+features:
+  - title_en: "ARM64 NEON & DotProd Acceleration"
+    title_ko: "ARM64 NEON 및 DotProd 하드웨어 가속"
+    desc_en: "Native SIMD assembly kernels (vdotq_s32 and vmlal_s8 fallback) providing high throughput integer dot product computation on mobile processors."
+    desc_ko: "vdotq_s32 및 vmlal_s8 폴백 기반 네이티브 SIMD 커널로 모바일 프로세서에서 정수 내적 연산 처리량을 극대화합니다."
+  - title_en: "Single Core & Dual Thin Gateways"
+    title_ko: "단일 C++ 코어 및 듀얼 경량 게이트웨이"
+    desc_en: "All heavy compute is consolidated in pure C++ libtermux_bitnet.so, while Python and Node.js serve as thin, zero-overhead entry gateways."
+    desc_ko: "모든 핵심 연산은 순수 C++ 공유 라이브러리(libtermux_bitnet.so)에서 처리되며, Python과 Node.js는 오버헤드가 거의 없는 경량 인터페이스로 진입합니다."
+  - title_en: "Zero-Daemon Direct Execution"
+    title_ko: "데몬 없는 직접 인메모리 추론"
+    desc_en: "Runs in-process via direct C ABI calls without requiring background server daemons, port listeners, or network socket layers."
+    desc_ko: "백그라운드 서버 데몬이나 포트 리스너 없이 직접 C ABI 호출을 통해 프로세스 내에서 즉시 실행됩니다."
+  - title_en: "Ternary Weight (i2_s) Quantization"
+    title_ko: "1.58비트 3진 가중치(i2_s) 양자화"
+    desc_en: "Consumes only 1.58 bits per parameter (-1, 0, +1), reducing model storage and memory bandwidth footprint by up to 70% compared to 8-bit models."
+    desc_ko: "파라미터당 1.58비트(-1, 0, +1)만을 점유하여 8비트 모델 대비 스토리지 및 메모리 대역폭 점유를 최대 70%까지 절감합니다."
+  - title_en: "Verified Model Registry Downloader"
+    title_ko: "검증된 모델 레지스트리 및 이어받기"
+    desc_en: "Built-in automated download engine supporting official Microsoft and community BitNet GGUF models with automatic HTTP range resume."
+    desc_ko: "공식 Microsoft 및 커뮤니티 BitNet GGUF 모델을 지원하며, HTTP Range 기반 원터치 다운로드 및 이어받기를 지원합니다."
+
+# Architectural & Kernel Matrix
+matrix_table:
+  - category: "Inference Core"
+    operations: "C++17 Native Engine (libtermux_bitnet.so), QK=128 Block Quant"
+    status: "Production"
+  - category: "Hardware Accelerators"
+    operations: "ARM64 NEON DotProd (vdotq_s32), ARM64 NEON FMA (vmlal_s8)"
+    status: "Production"
+  - category: "Gateways & Interfaces"
+    operations: "Python ctypes Zero-Copy FFI, Node.js IPC, Native POSIX CLI"
+    status: "Production"
+  - category: "Model Formats"
+    operations: "GGUF (i2_s, Q4_0, Q8_0), Microsoft BitNet-b1.58 Architecture"
+    status: "Production"
+  - category: "Sampling Algorithms"
+    operations: "Greedy, Temperature, Nucleus Top-P, Top-K, Min-P, Repeat Penalty"
+    status: "Production"
+
+# Canonical Code Example (Python)
+code_example_py: |
+  from termux_bitnet import BitNetEngine, BitNetConfig
+
+  # 1. Configure engine parameters
+  config = BitNetConfig(
+      model_path="~/.cache/termux-bitnet/models/bitnet-2b-ggml-model-i2_s.gguf",
+      n_threads=8,
+      temperature=0.7,
+      top_p=0.95,
+      top_k=40,
+      repeat_penalty=1.15
+  )
+
+  # 2. Stream generation directly from ARM64 C++ core
+  with BitNetEngine(config) as engine:
+      for token in engine.generate_stream("Summarize the architectural benefit of 1.58-bit weights:"):
+          print(token, end="", flush=True)
+
+# Canonical Code Example (Node.js)
+code_example_js: |
+  const { createEngine } = require('termux-bitnet');
+
+  // 1. Initialize lightweight gateway
+  const engine = createEngine({
+    threads: 8,
+    temperature: 0.7,
+    topP: 0.95,
+    topK: 40,
+    repeatPenalty: 1.15
+  });
+
+  // 2. Stream tokens via CLI/IPC
+  await engine.generateStream('Summarize the architectural benefit of 1.58-bit weights:', 128, (token) => {
+    process.stdout.write(token);
+  });

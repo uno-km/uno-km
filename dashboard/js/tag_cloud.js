@@ -46,11 +46,11 @@ class TagCloud {
 
     const topicCounts = {};
     graphData.nodes.forEach(node => {
-      if (node.matchTopics) {
-        node.matchTopics.forEach(topic => {
-          topicCounts[topic] = (topicCounts[topic] || 0) + 1;
-        });
-      }
+      const allTags = [...(node.tags || []), ...(node.matchTopics || [])];
+      allTags.forEach(topic => {
+        const t = topic.toLowerCase();
+        topicCounts[t] = (topicCounts[t] || 0) + 1;
+      });
     });
 
     const sortedTopics = Object.entries(topicCounts)

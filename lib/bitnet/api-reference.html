@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference | Termux-BitNet</title>
+  <meta name="description" content="Complete API and C ABI reference for Termux-BitNet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Termux-BitNet Logo">
+      <h1 data-i18n="common.brand">Termux-BitNet</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (NEON Accelerated)</span>
+      <div class="lang-selector-wrapper">
+        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="zh">🇨🇳 简体中文</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="de">🇩🇪 Deutsch</option>
+        </select>
+      </div>
+      <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" class="active" data-i18n="common.nav.apiReference">API Reference & C ABI</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Ollama Comparison & Benchmarks</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters & Quant</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <ul>
+      <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+      <li><a href="/foundation/">AMEVA Foundation</a></li>
+      <li><a href="/index.html">Founder Digital CV</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Complete API Reference &amp; C ABI</h2>
+      <p class="subtitle">Complete programmatic reference for Python SDK, Node.js Gateway, and C ABI.</p>
+
+      <h3>1. Python SDK Reference (<code>termux_bitnet</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Class / Method</th><th>Signature</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>BitNetConfig</code></td>
+            <td><code>(model_path, n_threads=8, n_ctx=2048, temperature=0.7, top_p=0.95, top_k=40, min_p=0.05, repeat_penalty=1.15, seed=0)</code></td>
+            <td>Immutable configuration dataclass for runtime parameters.</td>
+          </tr>
+          <tr>
+            <td><code>BitNetEngine.__init__</code></td>
+            <td><code>(config: BitNetConfig)</code></td>
+            <td>Loads native shared library and initializes context.</td>
+          </tr>
+          <tr>
+            <td><code>BitNetEngine.generate_stream</code></td>
+            <td><code>(prompt: str, max_tokens: int = 128) -&gt; Iterator[str]</code></td>
+            <td>Yields generated tokens in real-time via C ABI streaming callback.</td>
+          </tr>
+          <tr>
+            <td><code>BitNetEngine.close</code></td>
+            <td><code>() -&gt; None</code></td>
+            <td>Releases C++ context and frees KV cache memory.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top: 32px;">2. Node.js Gateway Reference</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Function / Method</th><th>Signature</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>createEngine(options)</code></td>
+            <td><code>(options: BitNetOptions) =&gt; BitNetEngineInstance</code></td>
+            <td>Instantiates engine wrapper managing native CLI/IPC child process.</td>
+          </tr>
+          <tr>
+            <td><code>engine.generateStream</code></td>
+            <td><code>(prompt: string, maxTokens: number, onToken: (t: string) =&gt; void) =&gt; Promise&lt;string&gt;</code></td>
+            <td>Streams output tokens asynchronously to the provided callback.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top: 32px;">3. Native C ABI (<code>termux_bitnet.h</code>)</h3>
+      <pre><code>typedef struct {
+    const char* model_path;
+    int32_t     n_threads;
+    int32_t     n_ctx;
+    int32_t     n_batch;
+    float       temperature;
+    float       top_p;
+    int32_t     top_k;
+    float       min_p;
+    float       repeat_penalty;
+    uint32_t    seed;
+} bitnet_params_t;
+
+bitnet_params_t bitnet_default_params(void);
+bitnet_context_t bitnet_init(const bitnet_params_t* params);
+bool bitnet_generate_stream(bitnet_context_t ctx, const char* prompt, int32_t max_tokens, bitnet_token_callback_t cb, void* user_data);
+void bitnet_free(bitnet_context_t ctx);</code></pre>
+    </main>
+  </div>
+
+  <footer>
+    <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
+      🏛️ <strong>Engineered by AMEVA Foundation (아메바 오픈소스 재단)</strong> &mdash; Democratizing Sovereign Edge AI.
+    </div>
+    <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
+      <strong>Disclaimer:</strong> Termux-BitNet is an independent open-source project designed for ARM64 / Android Termux environments and is not officially affiliated with Microsoft or Termux project.
+    </div>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under Apache License 2.0.</span>
+  </footer>
+</body>
+</html>
