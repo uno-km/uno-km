@@ -445,6 +445,11 @@ export default async function handler(req, res) {
 
   // Handle Ingestion Scoring (POST)
   try {
+    // Ensure signals is always a valid object (fail-safe guard)
+    if (req.body && (req.body.signals === null || req.body.signals === undefined)) {
+      req.body.signals = {};
+    }
+    if (!req.body) { req.body = { signals: {} }; }
     const report = await sentinel.score(req);
 
     // Extract Micro-Precision Physical & Route Forensics
