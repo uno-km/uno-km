@@ -251,6 +251,27 @@
             </div>
         </div>
 
+        <!-- Multi-Timeframe Traffic Inflow & Volume Stream Chart -->
+        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 4px; padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <div style="font-weight: 700; color: var(--text-main); font-size: 0.95em; display:flex; align-items:center; gap:10px;">
+                    <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
+                    <div style="display:flex; gap:4px;">
+                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1m')">1m</button>
+                        <button class="btn-tomcat primary" style="padding:2px 8px; font-size:0.75em;" id="dash-tf-5m" onclick="setDashTimeframe('5m')">5m</button>
+                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1h')">1h</button>
+                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1D')">1D</button>
+                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1W')">1W</button>
+                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1M')">1M</button>
+                    </div>
+                </div>
+                <span id="dashChartTimestamp" style="font-size: 0.78em; color: var(--text-muted); font-family: monospace;">Live Stream</span>
+            </div>
+            <div style="height: 240px; position: relative;">
+                <canvas id="dashTrafficTrendChart"></canvas>
+            </div>
+        </div>
+
         <div class="tomcat-grid">
             <div class="tomcat-card">
                 <div class="card-label">Total Observed Events</div>
@@ -989,12 +1010,123 @@
         window.addEventListener('storage', () => renderDashboard());
         window.addEventListener('sentinel:risk-event-appended', () => renderDashboard());
 
+        // Multi-Timeframe Traffic Chart Logic
+        let dashTrendChart = null;
+        let dashTimeSeriesData = [];
+        let currentDashTf = '5m';
+
+        function initDashboardChart() {
+            const ctx = document.getElementById('dashTrafficTrendChart');
+            if (!ctx) return;
+            dashTrendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [
+                        {
+                            label: 'Cumulative Inflow Trend',
+                            data: [0, 10, 45, 120, 210, 276],
+                            borderColor: '#004499',
+                            borderWidth: 2,
+                            backgroundColor: 'rgba(0, 68, 153, 0.06)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'bar',
+                            label: 'Session Volume Bucket',
+                            data: [0, 4, 12, 35, 48, 62],
+                            backgroundColor: '#0284c7',
+                            borderRadius: 3,
+                            barPercentage: 0.5,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } },
+                        y: { type: 'linear', position: 'left', grid: { color: '#f1f5f9' }, ticks: { font: { size: 10, family: 'monospace' } } },
+                        y1: { type: 'linear', position: 'right', grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } }
+                    },
+                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11, weight: '600' } } } }
+                }
+            });
+        }
+
+        function setDashTimeframe(tf) {
+            currentDashTf = tf;
+            updateDashboardChart();
+        }
+
+        function updateDashboardChart() {
+            if (!dashTrendChart || dashTimeSeriesData.length === 0) return;
+            const now = Date.now();
+            let bucketSizeMs = 5 * 60 * 1000;
+            let windowMs = 4 * 60 * 60 * 1000;
+            if (currentDashTf === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
+            else if (currentDashTf === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
+            else if (currentDashTf === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
+            else if (currentDashTf === '1D') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 7 * 24 * 60 * 60 * 1000; }
+            else if (currentDashTf === '1W') { bucketSizeMs = 7 * 24 * 60 * 60 * 1000; windowMs = 30 * 24 * 60 * 60 * 1000; }
+            else if (currentDashTf === '1M') { bucketSizeMs = 30 * 24 * 60 * 60 * 1000; windowMs = 180 * 24 * 60 * 60 * 1000; }
+
+            const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
+            const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
+            const buckets = new Map();
+            for (let t = startMs; t <= endMs; t += bucketSizeMs) buckets.set(t, 0);
+
+            dashTimeSeriesData.forEach(s => {
+                const t = new Date(s.created_at || s.evaluated_at || s.evaluatedAt).getTime();
+                if (t >= startMs && t <= endMs + bucketSizeMs) {
+                    const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
+                    if (buckets.has(key)) buckets.set(key, buckets.get(key) + 1);
+                }
+            });
+
+            const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
+            const labels = sortedKeys.map(k => {
+                const d = new Date(k);
+                if (currentDashTf === '1D' || currentDashTf === '1W' || currentDashTf === '1M') return (d.getMonth()+1) + '/' + d.getDate();
+                return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+            });
+            const volData = sortedKeys.map(k => buckets.get(k));
+            let cumulative = 0;
+            const trendData = volData.map(v => { cumulative += v; return cumulative; });
+
+            dashTrendChart.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
+            dashTrendChart.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
+            dashTrendChart.data.datasets[1].data = volData.length > 0 ? volData : [0];
+            dashTrendChart.update();
+            const tsEl = document.getElementById('dashChartTimestamp');
+            if (tsEl) tsEl.innerText = 'Updated: ' + new Date().toLocaleTimeString();
+        }
+
+        async function fetchDashChartStats() {
+            try {
+                const res = await fetch('/api/stats?key=ameva_admin_secret_2026');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.time_series_sessions) {
+                        dashTimeSeriesData = data.time_series_sessions;
+                        updateDashboardChart();
+                    }
+                }
+            } catch(e) {}
+        }
+
         // Auto-Ingest on Page Visit:
-        // Automatically snapshot and record the current visiting browser session (including Playwright or human)
         (async function autoRecordVisit() {
             try {
+                initDashboardChart();
+                fetchDashChartStats();
+                setInterval(fetchDashChartStats, 5000);
                 browserTelemetry.start();
-                // Check if this page load is a new session visit
                 const sessionKey = 'sentinel:visited:' + (window.sessionStorage?.getItem('sentinel:session-id') || 'init');
                 if (!window.sessionStorage || !window.sessionStorage.getItem(sessionKey)) {
                     if (window.sessionStorage) window.sessionStorage.setItem(sessionKey, '1');

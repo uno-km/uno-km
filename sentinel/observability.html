@@ -780,14 +780,16 @@
                 }
               }).join('');
 
-              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal('' + (item.visitor_id || item.trace_id) + '')"><div style="display:flex; justify-content:space-between; margin-bottom:6px;"><strong>Session: <code>' + (item.visitor_id || item.trace_id || '').slice(0, 18) + '...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(Open Dossier)</span></strong><span style="color:#64748b;">' + (item.country || 'KR') + ' (' + (item.city || 'Local') + ') &bull; ' + (item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard') + '</span></div><div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">' + hopBadgesHtml + '</div></div>';
+              const vId = item.visitor_id || item.trace_id || '';
+              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal(\'' + vId + '\')"><div style="display:flex; justify-content:space-between; margin-bottom:6px;"><strong>Session: <code>' + vId.slice(0, 18) + '...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(Open Dossier)</span></strong><span style="color:#64748b;">' + (item.country || 'KR') + ' (' + (item.city || 'Local') + ') &bull; ' + (item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard') + '</span></div><div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">' + hopBadgesHtml + '</div></div>';
             }).join('');
           }
 
           const forensicTbody = document.getElementById('forensicTableBody');
           if (globalForensicsCache.length > 0) {
             forensicTbody.innerHTML = globalForensicsCache.slice(0, 15).map(f => {
-              return '<tr style="cursor:pointer;" onclick="openVisitorModal('' + (f.visitor_id || f.trace_id) + '')" title="Click to view full traversal dossier"><td><code style="color:#004499; font-weight:700; text-decoration:underline;">' + (f.visitor_id || f.trace_id || '').slice(0, 16) + '...</code></td><td>' + (f.country || '') + ' (' + (f.city || '') + ')</td><td><code>' + (f.canvas_hash || '--') + '</code></td><td><code>' + (f.audio_hash || '--') + '</code></td><td>' + (f.screen_hz ? f.screen_hz + 'Hz' : '60Hz') + '</td><td>' + (f.is_charging || '100%') + '</td><td>' + new Date(f.captured_at).toLocaleTimeString() + '</td></tr>';
+              const fId = f.visitor_id || f.trace_id || '';
+              return '<tr style="cursor:pointer;" onclick="openVisitorModal(\'' + fId + '\')" title="Click to view full traversal dossier"><td><code style="color:#004499; font-weight:700; text-decoration:underline;">' + fId.slice(0, 16) + '...</code></td><td>' + (f.country || '') + ' (' + (f.city || '') + ')</td><td><code>' + (f.canvas_hash || '--') + '</code></td><td><code>' + (f.audio_hash || '--') + '</code></td><td>' + (f.screen_hz ? f.screen_hz + 'Hz' : '60Hz') + '</td><td>' + (f.is_charging || '100%') + '</td><td>' + new Date(f.captured_at).toLocaleTimeString() + '</td></tr>';
             }).join('');
           }
         }
