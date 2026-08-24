@@ -61,6 +61,9 @@ pkg/
 */pkg/
 dist/
 build/
+!browser-sdk/dist/
+!risk-core/dist/
+!sentinel-sdk/dist/
 develop-eggs/
 downloads/
 eggs/
