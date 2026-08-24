@@ -83,28 +83,18 @@
       "permanent": false
     },
     {
-      "source": "/sentinel/observability.html",
-      "destination": "/analytics/",
-      "permanent": false
-    },
-    {
-      "source": "/sdk/sentinel/observability.html",
-      "destination": "/analytics/",
-      "permanent": false
-    },
-    {
-      "source": "/docs/sentinel/observability.html",
-      "destination": "/analytics/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/sentinel/observability.html",
-      "destination": "/analytics/",
-      "permanent": false
-    },
-    {
       "source": "/observability",
-      "destination": "/analytics/",
+      "destination": "/sentinel/observability.html",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel/observability",
+      "destination": "/sentinel/observability.html",
+      "permanent": false
+    },
+    {
+      "source": "/sdk/sentinel/observability",
+      "destination": "/sentinel/observability.html",
       "permanent": false
     },
     {
