@@ -873,138 +873,155 @@ async function loadReadmeContent(d) {
 
 export function renderNodeModal(d) {
   if (!d) return;
+  console.log('[AMEVA Docent] renderNodeModal triggered for:', d.id || d.name);
+
   const modalNode = document.getElementById('modal-node-detail');
   const mTitle = document.getElementById('node-modal-title');
   const mDesc = document.getElementById('node-modal-desc');
   const mLink = document.getElementById('node-modal-link');
-  if (!modalNode || !mTitle || !mDesc) return;
+
+  if (!modalNode || !mTitle || !mDesc) {
+    console.error('[AMEVA Docent] Modal DOM elements missing!');
+    return;
+  }
+
+  // 1. GUARANTEED ZERO-DELAY MODAL DISPLAY (Open first before anything else)
+  modalNode.classList.add('is-active');
+  modalNode.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important; z-index: 999999 !important; pointer-events: auto !important; position: fixed !important; inset: 0 !important;';
 
   const tierBadge = d.group ? `<span style="font-size:0.75rem; background:rgba(0,239,255,0.15); color:var(--accent-cyan); padding:3px 10px; border-radius:6px; margin-left:10px; border:1px solid rgba(0,239,255,0.3); font-weight:600;">Tier ${d.group} ${d.category || ''}</span>` : '';
   mTitle.innerHTML = `${d.name || d.id} ${tierBadge}`;
 
-  // 1. Parent Node Navigation Button
-  let backBtnHTML = '';
-  const parentLink = (link && typeof link.data === 'function') ? link.data().find(l => l.target.id === d.id) : null;
-  if (parentLink) {
-    const parentNode = parentLink.source;
-    backBtnHTML = `<div class="back-btn-container" style="margin-bottom:14px;">
-      <button class="btn-node-back" data-id="${parentNode.id}" style="background:rgba(124,58,237,0.15); border:1px solid var(--accent-purple); color:#c4b5fd; padding:6px 14px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; transition:all 0.2s ease;">
-        ⬅️ 상위: ${parentNode.name || parentNode.id} (으)로 이동
-      </button>
-    </div>`;
-  }
+  try {
+    // 2. Safe Parent Node Navigation Button
+    let backBtnHTML = '';
+    let parentNode = null;
+    if (window.linkElements && typeof window.linkElements.data === 'function') {
+      const parentLink = window.linkElements.data().find(l => {
+        const targetId = l.target ? (l.target.id || l.target) : null;
+        return targetId === d.id;
+      });
+      if (parentLink && parentLink.source) {
+        parentNode = parentLink.source;
+        backBtnHTML = `<div class="back-btn-container" style="margin-bottom:14px;">
+          <button class="btn-node-back" data-id="${parentNode.id || parentNode}" style="background:rgba(124,58,237,0.15); border:1px solid var(--accent-purple); color:#c4b5fd; padding:6px 14px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; transition:all 0.2s ease;">
+            ⬅️ 상위: ${parentNode.name || parentNode.id || parentNode} (으)로 이동
+          </button>
+        </div>`;
+      }
+    }
 
-  // 2. Child Nodes Hierarchy
-  let childrenHTML = '';
-  const children = (link && typeof link.data === 'function') ? link.data().filter(l => l.source.id === d.id).map(l => l.target) : [];
-  if (children.length > 0) {
-    childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:16px;">';
-    childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">🪐 하위 연결 노드 (' + children.length + '개)</h4>';
-    childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:8px;">';
-    children.forEach(child => {
-      childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s ease;">
-         <span style="margin-right:6px;">🔹</span> <strong>${child.name || child.id}</strong>
-      </li>`;
-    });
-    childrenHTML += '</ul></div>';
-  }
+    // 3. Safe Child Nodes Hierarchy
+    let childrenHTML = '';
+    if (window.linkElements && typeof window.linkElements.data === 'function') {
+      const childLinks = window.linkElements.data().filter(l => {
+        const sourceId = l.source ? (l.source.id || l.source) : null;
+        return sourceId === d.id;
+      });
+      const children = childLinks.map(l => l.target).filter(Boolean);
+      if (children.length > 0) {
+        childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:16px;">';
+        childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">🪐 하위 연결 노드 (' + children.length + '개)</h4>';
+        childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:8px;">';
+        children.forEach(child => {
+          childrenHTML += `<li class="child-node-item" data-id="${child.id || child}" style="background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s ease;">
+             <span style="margin-right:6px;">🔹</span> <strong>${child.name || child.id || child}</strong>
+          </li>`;
+        });
+        childrenHTML += '</ul></div>';
+      }
+    }
 
-  // 3. Executive Summary 3-Line Card (한눈에 들어오는 프로젝트 핵심 요약)
-  let executiveCardHTML = `
-    <div style="background:linear-gradient(135deg, rgba(124,58,237,0.12), rgba(0,239,255,0.08)); border:1px solid rgba(0,239,255,0.3); border-radius:8px; padding:14px; margin-bottom:16px;">
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold; font-size:0.85rem;">
-        <span>📌 Executive Summary &amp; Core Specs</span>
-      </div>
-      <p style="font-size:0.92rem; color:#f8fafc; line-height:1.55; margin:0 0 10px 0; font-weight:500;">
-        ${d.description || 'Sovereign On-Device AI & Autonomous Software Engineering Component.'}
-      </p>
-  `;
+    // 4. Executive Summary 3-Line Card
+    let executiveCardHTML = `
+      <div style="background:linear-gradient(135deg, rgba(124,58,237,0.12), rgba(0,239,255,0.08)); border:1px solid rgba(0,239,255,0.3); border-radius:8px; padding:14px; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold; font-size:0.85rem;">
+          <span>📌 Executive Summary &amp; Core Specs</span>
+        </div>
+        <p style="font-size:0.92rem; color:#f8fafc; line-height:1.55; margin:0 0 10px 0; font-weight:500;">
+          ${d.description || 'Sovereign On-Device AI & Autonomous Software Engineering Component.'}
+        </p>
+    `;
 
-  if (d.tech_stack && d.tech_stack.length > 0) {
-    const badges = d.tech_stack.map(t => `<span style="font-size:0.75rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.2); padding:2px 8px; border-radius:4px; margin-right:4px; color:#e2e8f0; font-family:var(--font-mono);">${t}</span>`).join('');
-    executiveCardHTML += `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px;">${badges}</div>`;
-  }
+    if (d.tech_stack && d.tech_stack.length > 0) {
+      const badges = d.tech_stack.map(t => `<span style="font-size:0.75rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.2); padding:2px 8px; border-radius:4px; margin-right:4px; color:#e2e8f0; font-family:var(--font-mono);">${t}</span>`).join('');
+      executiveCardHTML += `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px;">${badges}</div>`;
+    }
 
-  if ((d.metadata && d.metadata.pypi) || (d.metadata && d.metadata.npm) || d.repo_url) {
-    executiveCardHTML += `<div style="background:rgba(0,0,0,0.5); padding:8px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; border:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:4px;">`;
-    if (d.metadata && d.metadata.pypi) executiveCardHTML += `<div style="color:#3ECF8E;">$ pip install ${d.metadata.pypi}</div>`;
-    if (d.metadata && d.metadata.npm) executiveCardHTML += `<div style="color:#00EFFF;">$ npm install ${d.metadata.npm}</div>`;
-    if (d.repo_url) executiveCardHTML += `<div style="color:#cbd5e1; font-size:0.75rem;">📦 Repo: <a href="${d.repo_url}" target="_blank" style="color:var(--accent-cyan);">${d.repo_url}</a></div>`;
+    if ((d.metadata && d.metadata.pypi) || (d.metadata && d.metadata.npm) || d.repo_url) {
+      executiveCardHTML += `<div style="background:rgba(0,0,0,0.5); padding:8px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; border:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:4px;">`;
+      if (d.metadata && d.metadata.pypi) executiveCardHTML += `<div style="color:#3ECF8E;">$ pip install ${d.metadata.pypi}</div>`;
+      if (d.metadata && d.metadata.npm) executiveCardHTML += `<div style="color:#00EFFF;">$ npm install ${d.metadata.npm}</div>`;
+      if (d.repo_url) executiveCardHTML += `<div style="color:#cbd5e1; font-size:0.75rem;">📦 Repo: <a href="${d.repo_url}" target="_blank" style="color:var(--accent-cyan);">${d.repo_url}</a></div>`;
+      executiveCardHTML += `</div>`;
+    }
     executiveCardHTML += `</div>`;
-  }
 
-  executiveCardHTML += `</div>`;
+    // 5. Initial placeholder with loading spinner for README
+    const readmeContainerId = `readme-body-${Date.now()}`;
+    const initialReadmeHTML = `<div id="${readmeContainerId}" class="markdown-body" style="background:rgba(15,23,42,0.6); padding:20px; border-radius:10px; border:1px solid var(--border-subtle); max-height:50vh; overflow-y:auto; font-size:0.9rem; line-height:1.65;">
+      <div style="display:flex; align-items:center; gap:10px; color:var(--text-secondary);">
+        <div class="spinner" style="width:18px; height:18px; border:2px solid var(--accent-cyan); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <span>📖 Fetching repository README documentation from GitHub...</span>
+      </div>
+    </div>`;
 
-  // 4. Initial placeholder with loading spinner for README
-  const readmeContainerId = `readme-body-${Date.now()}`;
-  const initialReadmeHTML = `<div id="${readmeContainerId}" class="markdown-body" style="background:rgba(15,23,42,0.6); padding:20px; border-radius:10px; border:1px solid var(--border-subtle); max-height:50vh; overflow-y:auto; font-size:0.9rem; line-height:1.65;">
-    <div style="display:flex; align-items:center; gap:10px; color:var(--text-secondary);">
-      <div class="spinner" style="width:18px; height:18px; border:2px solid var(--accent-cyan); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
-      <span>📖 Fetching repository README documentation from GitHub...</span>
-    </div>
-  </div>`;
+    mDesc.innerHTML = `${backBtnHTML}${executiveCardHTML}${initialReadmeHTML}${childrenHTML}`;
 
-  mDesc.innerHTML = `${backBtnHTML}${executiveCardHTML}${initialReadmeHTML}${childrenHTML}`;
+    // Asynchronously load and parse full README markdown
+    loadReadmeContent(d).then(rawMd => {
+      const el = document.getElementById(readmeContainerId);
+      if (el) {
+        if (typeof marked !== 'undefined' && rawMd) {
+          el.innerHTML = marked.parse(rawMd);
+        } else {
+          el.innerHTML = `<pre style="white-space:pre-wrap;">${rawMd}</pre>`;
+        }
+      }
+    });
 
-  // Asynchronously load and parse full README markdown
-  loadReadmeContent(d).then(rawMd => {
-    const el = document.getElementById(readmeContainerId);
-    if (el) {
-      if (typeof marked !== 'undefined' && rawMd) {
-        el.innerHTML = marked.parse(rawMd);
+    // 6. Action Button Link
+    const targetUrl = d.docs_url || d.url || d.repo_url;
+    if (mLink) {
+      if (targetUrl) {
+        mLink.href = targetUrl;
+        mLink.style.display = 'inline-flex';
+        mLink.innerHTML = `<span>Explore Documentation &amp; Code</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px; height:18px; margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>`;
       } else {
-        el.innerHTML = `<pre style="white-space:pre-wrap;">${rawMd}</pre>`;
+        mLink.style.display = 'none';
       }
     }
-  });
 
-  // Action Button
-  const targetUrl = d.docs_url || d.url || d.repo_url;
-  if (targetUrl) {
-    mLink.href = targetUrl;
-    mLink.style.display = 'inline-flex';
-    mLink.innerHTML = `<span>Explore Documentation &amp; Code</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>`;
-  } else {
-    mLink.style.display = 'none';
+    // 7. Event Delegation for child and parent navigation
+    mDesc.onclick = (e) => {
+      const backBtn = e.target.closest('.btn-node-back');
+      if (backBtn && window.nodeGroups && typeof window.nodeGroups.data === 'function') {
+        const parentId = backBtn.getAttribute('data-id');
+        const pNode = window.nodeGroups.data().find(n => n.id === parentId);
+        if (pNode) {
+          zoomToNode(pNode);
+          renderNodeModal(pNode);
+        }
+        return;
+      }
+
+      const item = e.target.closest('.child-node-item');
+      if (item && window.nodeGroups && typeof window.nodeGroups.data === 'function') {
+        const childId = item.getAttribute('data-id');
+        const childNode = window.nodeGroups.data().find(n => n.id === childId);
+        if (childNode) {
+          zoomToNode(childNode);
+          renderNodeModal(childNode);
+        }
+      }
+    };
+  } catch (renderErr) {
+    console.error('[AMEVA Docent] renderNodeModal error:', renderErr);
+    mDesc.innerHTML = `<div style="padding:16px; color:#f87171;"><h4>${d.name || d.id}</h4><p>${d.description || ''}</p></div>`;
   }
 
-  // Event Delegation for child and parent navigation
-  mDesc.onclick = (e) => {
-    const backBtn = e.target.closest('.btn-node-back');
-    if (backBtn) {
-      const parentId = backBtn.getAttribute('data-id');
-      const pNode = node.data().find(n => n.id === parentId);
-      if (pNode) {
-        zoomToNode(pNode);
-        renderNodeModal(pNode);
-      }
-      return;
-    }
-
-    const item = e.target.closest('.child-node-item');
-    if (item) {
-      const childId = item.getAttribute('data-id');
-      const childNode = node.data().find(n => n.id === childId);
-      if (childNode) {
-        zoomToNode(childNode);
-        renderNodeModal(childNode);
-      }
-    }
-  };
-
-    modalNode.classList.add('is-active');
-  modalNode.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important; z-index: 999999 !important; pointer-events: auto !important; position: fixed !important; inset: 0 !important;';
   zoomToNode(d);
 }
-
-// Global hook to open any node detail from anywhere
-window.openNodeDetail = function(nodeId) {
-  if (!nodeId || !node || typeof node.data !== 'function') return;
-  const target = node.data().find(n => n.id === nodeId || n.name === nodeId);
-  if (target) {
-    renderNodeModal(target);
-  }
-};
 
 export function selectNodeById(id) {
   if (!node || !node.data) return false;
@@ -1087,4 +1104,16 @@ export function zoomToNode(d) {
   } catch (err) {
     console.warn('[ZoomToNode] Transition warning:', err);
   }
+}
+
+
+// GLOBAL WINDOW-LEVEL DIRECT CLICK DISPATCHER (100% UNCONDITIONAL TRIGGER)
+if (typeof window !== 'undefined') {
+  window.addEventListener('click', (e) => {
+    const nodeEl = e.target.closest('.node-item, circle, text');
+    if (nodeEl && nodeEl.__data__) {
+      console.log('[Global Window Click] Node detected:', nodeEl.__data__.id);
+      renderNodeModal(nodeEl.__data__);
+    }
+  }, true);
 }
