@@ -190,7 +190,8 @@
             <h1>AMEVA-Sentinel</h1>
         </div>
         <div class="header-controls">
-            <span class="tomcat-badge badge-shadow">v0.6.0-alpha.1</span>
+            <span class="tomcat-badge badge-shadow">v0.7.0</span>
+            <a href="/sentinel/observability.html" class="header-btn" style="background:#004499; color:#fff; font-weight:700;">Promotional Observability Console</a>
             <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn primary">GitHub</a>
         </div>
     </header>
@@ -199,51 +200,51 @@
         <div class="status-header-box">
             <div>
                 <div class="status-title">
-                    <span>🛡️ Security Observability Manager</span>
+                    <span>Security Observability Manager</span>
                     <span class="tomcat-badge badge-shadow">Shadow Mode</span>
-                    <span class="tomcat-badge badge-demo">LocalStorage (v0.6.0-alpha.1 Event Store)</span>
+                    <span class="tomcat-badge badge-demo">Neon PostgreSQL (Live Serverless Event Store)</span>
                 </div>
                 <div style="font-size: 0.85em; color: var(--text-muted); margin-top: 4px;">
-                    Policy: <strong>v2026-08-21.1</strong> &bull; 
+                    Policy: <strong>v2026-08-24.1</strong> &bull; 
                     Storage: <span id="banner-events-count"><strong>0 Events</strong></span> &bull; 
                     Multi-Tab Sync: <span class="tomcat-badge badge-live">Active</span> &bull;
                     Last Evaluation: <span id="banner-last-event">None</span>
                 </div>
             </div>
             <div>
-                <button class="btn-tomcat" id="btn-refresh">🔄 Refresh Status</button>
+                <button class="btn-tomcat" id="btn-refresh">Refresh Status</button>
             </div>
         </div>
 
         <div class="control-panel">
             <div style="font-weight: 700; color: var(--primary-color);">
-                ⚡ Live Ingestion Controls:
+                Live Ingestion Controls:
                 <span style="font-size:0.85em; font-weight:normal; color:#64748b;">Telemetry observations evaluated via deterministic Risk Core engine.</span>
             </div>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button class="btn-tomcat primary" id="btn-eval-browser">🌐 Evaluate Real Browser (Live SDK)</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-playwright">🎭 Sim Playwright Stealth</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-curl">💻 Sim cURL Spoofing</button>
-                <button class="btn-tomcat" style="color:#7e22ce; border-color:#d8b4fe;" id="btn-sim-ai">🤖 Sim GPT/Claude AI Bot</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-burst">⚡ Sim Burst Attack</button>
-                <button class="btn-tomcat danger" id="btn-clear">🗑️ Clear Store</button>
+                <button class="btn-tomcat primary" id="btn-eval-browser">Evaluate Real Browser (Live SDK)</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-playwright">Sim Playwright Stealth</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-curl">Sim cURL Spoofing</button>
+                <button class="btn-tomcat" style="color:#7e22ce; border-color:#d8b4fe;" id="btn-sim-ai">Sim GPT/Claude AI Bot</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-burst">Sim Burst Attack</button>
+                <button class="btn-tomcat danger" id="btn-clear">Clear Store</button>
             </div>
         </div>
 
         <!-- 3대 대분류 Top-Level Triage KPI Grid -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
             <div class="tomcat-card" style="border-left: 4px solid #16a34a;">
-                <div class="card-label">👤 1. Human Visitors (사람)</div>
+                <div class="card-label">1. Human Visitors (Verified Sessions)</div>
                 <div class="card-value" id="triage-human-total" style="color:#15803d;">0</div>
                 <div class="card-sub" id="triage-human-sub">Dev / Power / Standard / Mobile</div>
             </div>
             <div class="tomcat-card" style="border-left: 4px solid #7e22ce;">
-                <div class="card-label">🤖 2. AI Agents &amp; LLMs (AI 봇)</div>
+                <div class="card-label">2. AI Agents &amp; LLMs (Automated Indexers)</div>
                 <div class="card-value" id="triage-ai-total" style="color:#7e22ce;">0</div>
                 <div class="card-sub" id="triage-ai-sub">OpenAI / Anthropic / Google / Perplexity / Bytespider</div>
             </div>
             <div class="tomcat-card" style="border-left: 4px solid #dc2626;">
-                <div class="card-label">🕷️ 3. Crawlers &amp; Tools (크롤러/도구)</div>
+                <div class="card-label">3. Crawlers &amp; Tools (CLI / Drivers)</div>
                 <div class="card-value" id="triage-crawler-total" style="color:#b91c1c;">0</div>
                 <div class="card-sub" id="triage-crawler-sub">Search Engine / Playwright / cURL / Python</div>
             </div>
@@ -281,7 +282,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:12px;">
             <div class="tomcat-section">
                 <div class="section-header">
-                    <span>👤 Human Users Breakdown</span>
+                    <span>Human Users Breakdown</span>
                 </div>
                 <div id="breakdown-human-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
                     <div style="color:#64748b;">No human sessions recorded yet.</div>
@@ -289,7 +290,7 @@
             </div>
             <div class="tomcat-section">
                 <div class="section-header">
-                    <span>🤖 AI Bots &amp; LLMs Breakdown</span>
+                    <span>AI Bots &amp; LLMs Breakdown</span>
                 </div>
                 <div id="breakdown-ai-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
                     <div style="color:#64748b;">No AI agent sessions recorded yet.</div>
@@ -297,7 +298,7 @@
             </div>
             <div class="tomcat-section">
                 <div class="section-header">
-                    <span>🕷️ Crawlers &amp; Scrapers Breakdown</span>
+                    <span>Crawlers &amp; Scrapers Breakdown</span>
                 </div>
                 <div id="breakdown-crawler-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
                     <div style="color:#64748b;">No crawler sessions recorded yet.</div>
@@ -308,7 +309,7 @@
         <!-- 4. AI GEO Delivery & Bandwidth Optimization Section -->
         <div class="tomcat-section" style="border-left: 4px solid #7e22ce; margin-bottom: 12px;">
             <div class="section-header">
-                <span>⚡ AI GEO Delivery &amp; Bandwidth Savings Optimizer</span>
+                <span>AI GEO Delivery &amp; Bandwidth Savings Optimizer</span>
                 <span class="tomcat-badge badge-demo" id="geo-status-badge">Dynamic Markdown Negotiation Active</span>
             </div>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 10px 0;">
@@ -334,7 +335,7 @@
         <div class="management-split">
             <div class="tomcat-section">
                 <div class="section-header">
-                    <span>📊 Traffic Risk Distribution</span>
+                    <span>Traffic Risk Distribution</span>
                     <span style="font-size:0.8em; font-weight:normal; color:#64748b;" id="dist-count-label">0 events</span>
                 </div>
 
@@ -345,9 +346,9 @@
                 </div>
 
                 <div style="display:flex; justify-content:space-between; font-size:0.82em; color:var(--text-muted);">
-                    <span>🟢 0~29 Low Risk: <strong id="legend-low-pct">0% (0)</strong></span>
-                    <span>🟡 30~69 Suspicious: <strong id="legend-med-pct">0% (0)</strong></span>
-                    <span>🔴 70+ High Risk: <strong id="legend-high-pct">0% (0)</strong></span>
+                    <span>[Low Risk 0~29]: <strong id="legend-low-pct">0% (0)</strong></span>
+                    <span>[Suspicious 30~69]: <strong id="legend-med-pct">0% (0)</strong></span>
+                    <span>[High Risk 70+]: <strong id="legend-high-pct">0% (0)</strong></span>
                 </div>
 
                 <div style="margin-top:10px;">
@@ -359,7 +360,7 @@
 
             <div class="tomcat-section">
                 <div class="section-header">
-                    <span>⚙️ Policy-as-Code Re-Evaluation</span>
+                    <span>Policy-as-Code Re-Evaluation</span>
                 </div>
                 <p style="font-size:0.82em; color:#64748b;">
                     Simulate policy weight adjustments against stored events in real-time.
@@ -396,7 +397,7 @@
 
         <div class="tomcat-section">
             <div class="section-header">
-                <span>📋 Recent Evaluated Sessions Stream</span>
+                <span>Recent Evaluated Sessions Stream</span>
                 <span style="font-size:0.8em; font-weight:normal; color:#64748b;" id="table-count-label">0 total entries</span>
             </div>
 
@@ -424,7 +425,7 @@
         <div class="modal-box" id="modal-box">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
                 <div style="font-weight:800; font-size:1.1em; color:var(--primary-color);" id="modal-trace-id">Session Detail</div>
-                <button class="btn-tomcat" id="btn-close-modal">✕ Close</button>
+                <button class="btn-tomcat" id="btn-close-modal">Close</button>
             </div>
 
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
@@ -443,7 +444,7 @@
             </div>
 
             <div>
-                <div style="font-size:0.88em; font-weight:700; color:var(--primary-color); margin-bottom:6px;">📌 Triggered Evidence Attributes</div>
+                <div style="font-size:0.88em; font-weight:700; color:var(--primary-color); margin-bottom:6px;">Triggered Evidence Attributes</div>
                 <div id="modal-evidence-list" style="display:flex; flex-direction:column; gap:6px;">
                 </div>
             </div>
