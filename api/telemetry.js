@@ -269,7 +269,8 @@ export default async function handler(req, res) {
                             ${session_id}, ${visitor_id}, ${(ev.pathname || pathname || '/').slice(0, 255)},
                             ${(ev.event_type || 'interaction_click').slice(0, 50)}, ${(ev.target_tag || '').slice(0, 30)},
                             ${(ev.target_id || '').slice(0, 100)}, ${(ev.target_class || '').slice(0, 150)},
-                            ${normalizeTargetType(ev.target_text)}, ${(ev.target_url || '').slice(0, 1000)},
+                            ${null},
+                            ${(ev.target_url || '').slice(0, 1000)},
                             ${!!ev.is_external}
                         );
                     `;
