@@ -435,27 +435,27 @@
         </div>
       </div>
 
-      <!-- 1. Raw Telemetry Baseline Cards (담백한 원천 데이터) -->
+      <!-- 1. Raw Telemetry Baseline Cards (수학적 일치: Total = Human + AI) -->
       <div class="metrics-row">
         <div class="metric-card">
-          <div class="metric-card-title">Total Active Sessions</div>
-          <div class="metric-card-value" id="valSessions">200</div>
-          <div class="metric-card-footer">Zero-drift Session Store</div>
+          <div class="metric-card-title">Total Observed Traffic</div>
+          <div class="metric-card-value" id="valTotalEvents">283</div>
+          <div class="metric-card-footer" id="valTotalFooter">201 Human + 82 AI</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">Unique Client Footprints</div>
-          <div class="metric-card-value" id="valVisitors">94</div>
-          <div class="metric-card-footer">Cryptographic Fingerprints</div>
+          <div class="metric-card-title">Verified Human Visitors</div>
+          <div class="metric-card-value" id="valSessions" style="color: #16a34a;">201</div>
+          <div class="metric-card-footer" id="valHumanShare">71% of Total Traffic</div>
         </div>
         <div class="metric-card">
           <div class="metric-card-title">Identified AI Bots &amp; Crawlers</div>
           <div class="metric-card-value" id="valBots" style="color: #7c3aed;">82</div>
-          <div class="metric-card-footer" style="color: #7c3aed;">Autonomous LLM Indexers</div>
+          <div class="metric-card-footer" id="valAiShare" style="color: #7c3aed;">29% of Total Traffic</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">WebGPU Hardware Adoption</div>
-          <div class="metric-card-value" id="valWebGPU" style="color: #059669;">78%</div>
-          <div class="metric-card-footer" style="color: #059669;">Hardware-Accelerated Web</div>
+          <div class="metric-card-title">Unique Client Footprints</div>
+          <div class="metric-card-value" id="valVisitors" style="color: #004499;">94</div>
+          <div class="metric-card-footer">Cryptographic Fingerprints</div>
         </div>
       </div>
 
@@ -523,17 +523,17 @@
         </div>
       </div>
 
-      <!-- 4. Real Traffic Split Bar -->
+      <!-- 4. Real Traffic Split Bar (완벽한 수학적 일치: Human(X) + AI(Y) = Total(N)) -->
       <div class="split-container">
         <h3 style="margin-top: 0; font-size: 1.05rem;">Real Traffic Composition (Ground Truth)</h3>
         <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Deterministic classification of human browsers versus autonomous AI agent crawlers.</p>
         <div class="split-bar-track">
-          <div class="split-bar-human" id="barHuman" style="width: 71%;">Human: 71%</div>
-          <div class="split-bar-bot" id="barBot" style="width: 29%;">AI Bots: 29%</div>
+          <div class="split-bar-human" id="barHuman" style="width: 71%;">Human: 71% (201)</div>
+          <div class="split-bar-bot" id="barBot" style="width: 29%;">AI Bots: 29% (82)</div>
         </div>
         <div class="split-legend">
-          <span style="color: #004499; font-weight: 700;">Verified Human Browsers (200)</span>
-          <span style="color: #7c3aed; font-weight: 700;">Autonomous AI Scrapers &amp; Indexers (82)</span>
+          <span style="color: #004499; font-weight: 700;" id="legendHumanText">Verified Human Browsers (201)</span>
+          <span style="color: #7c3aed; font-weight: 700;" id="legendAiText">Autonomous AI Scrapers &amp; Indexers (82)</span>
         </div>
       </div>
 
@@ -792,7 +792,6 @@
       const isVirtualGpu = /swiftshader|llvmpipe|virtual|mesa/i.test(gpuName);
       const isPhysicalGpu = /apple|nvidia|geforce|radeon|adreno|mali|intel/i.test(gpuName);
 
-      // Canvas Hash
       let canvasHash = 'be6f2023';
       try {
         const c = document.createElement('canvas');
@@ -803,10 +802,8 @@
         canvasHash = c.toDataURL().slice(-8);
       } catch(e){}
 
-      // Math JIT Precision
       const mathJit = Math.sin(1.0).toString().slice(0, 10);
 
-      // Evaluate Scores
       let humanScore = 85;
       let aiScore = 5;
       let toolScore = 10;
@@ -820,7 +817,6 @@
         toolScore = 2;
       }
 
-      // Update UI
       document.getElementById('diagScoreHuman').innerText = humanScore + '%';
       document.getElementById('diagScoreAi').innerText = aiScore + '%';
       document.getElementById('diagScoreTool').innerText = toolScore + '%';
@@ -1274,22 +1270,34 @@
         const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
 
         if (pubData) {
-          const humanCount = pubData.summary?.human_count ?? pubData.summary?.total_active_sessions ?? 200;
+          const humanCount = pubData.summary?.human_count ?? pubData.summary?.total_active_sessions ?? 201;
           const aiCount = pubData.summary?.ai_count ?? pubData.summary?.ai_crawlers_identified ?? 82;
+          const totalAll = pubData.summary?.total_all_events ?? (humanCount + aiCount);
+
+          const humanPct = pubData.traffic_distribution?.human_percent ?? (totalAll > 0 ? Math.round((humanCount / totalAll) * 100) : 71);
+          const aiPct = pubData.traffic_distribution?.ai_bots_percent ?? (totalAll > 0 ? Math.round((aiCount / totalAll) * 100) : 29);
+
+          // 1. Top 4 Baseline Cards (Mathematically Exact: Total = Human + AI)
+          document.getElementById('valTotalEvents').innerText = totalAll;
+          document.getElementById('valTotalFooter').innerText = humanCount + ' Human + ' + aiCount + ' AI';
 
           document.getElementById('valSessions').innerText = humanCount;
-          document.getElementById('valVisitors').innerText = pubData.summary?.total_unique_visitors || 94;
+          document.getElementById('valHumanShare').innerText = humanPct + '% of Total Traffic';
+
           document.getElementById('valBots').innerText = aiCount;
-          document.getElementById('valWebGPU').innerText = (pubData.hardware_adoption?.webgpu_supported_percent || 78) + '%';
+          document.getElementById('valAiShare').innerText = aiPct + '% of Total Traffic';
 
-          const human = pubData.traffic_distribution?.human_percent || 71;
-          const bot = pubData.traffic_distribution?.ai_bots_percent || 29;
-          document.getElementById('barHuman').style.width = human + '%';
-          document.getElementById('barHuman').innerText = 'Human: ' + human + '% (' + humanCount + ')';
-          document.getElementById('barBot').style.width = bot + '%';
-          document.getElementById('barBot').innerText = bot > 0 ? 'AI Bots: ' + bot + '% (' + aiCount + ')' : '';
+          document.getElementById('valVisitors').innerText = pubData.summary?.total_unique_visitors || 94;
 
-          document.getElementById('lastUpdated').innerText = 'Updated: ' + formatTimeInObsTz(new Date(), 'time');
+          // 2. Real Traffic Split Bar (Exact Percent & Exact Counts)
+          document.getElementById('barHuman').style.width = humanPct + '%';
+          document.getElementById('barHuman').innerText = 'Human: ' + humanPct + '% (' + humanCount + ')';
+          document.getElementById('barBot').style.width = aiPct + '%';
+          document.getElementById('barBot').innerText = aiPct > 0 ? 'AI Bots: ' + aiPct + '% (' + aiCount + ')' : '';
+
+          // 3. Dynamic Legend Under Bar
+          document.getElementById('legendHumanText').innerText = 'Verified Human Browsers (' + humanCount + ')';
+          document.getElementById('legendAiText').innerText = 'Autonomous AI Scrapers & Indexers (' + aiCount + ')';
 
           globalCountryClustersCache = pubData.country_clusters || [];
           globalGeoClustersCache = pubData.geo_clusters || [];
