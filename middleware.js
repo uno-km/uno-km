@@ -147,6 +147,12 @@ export async function middleware(request) {
     }
 
     if (matchedBot) {
+        const deepPayload = generateDeepAiPayload(path);
+        const servedBytes = new TextEncoder().encode(deepPayload).length;
+        const originalBytes = 180000;
+        const savedBytes = Math.max(0, originalBytes - servedBytes);
+        const savingsRatio = Number(((savedBytes / originalBytes) * 100).toFixed(1));
+
         const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
         if (dbUrl) {
             const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
@@ -158,11 +164,12 @@ export async function middleware(request) {
                 const endpoint = `https://${parsed.hostname}/sql`;
                 const authHeader = 'Basic ' + btoa(`${parsed.username}:${parsed.password}`);
 
-                const query = `
+                // 1. Insert to bot_crawler_logs
+                const queryLogs = `
                     INSERT INTO bot_crawler_logs (bot_name, bot_category, requested_path, ip_address, country, city, user_agent)
                     VALUES ($1, $2, $3, $4, $5, $6, $7);
                 `;
-                const params = [
+                const paramsLogs = [
                     matchedBot.name,
                     matchedBot.category,
                     path.slice(0, 255),
@@ -179,19 +186,48 @@ export async function middleware(request) {
                         'Content-Type': 'application/json',
                         'Neon-Connection-String': dbUrl
                     },
-                    body: JSON.stringify({ query, params })
+                    body: JSON.stringify({ query: queryLogs, params: paramsLogs })
+                }).catch(() => {});
+
+                // 2. Insert to sentinel_geo_deliveries
+                const queryGeo = `
+                    INSERT INTO sentinel_geo_deliveries (bot_name, bot_vendor, requested_path, served_format, bytes_served, bytes_saved, savings_ratio, ip_address, country, city, delivered_at)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, CURRENT_TIMESTAMP);
+                `;
+                const vendorName = matchedBot.name.includes('OpenAI') ? 'OpenAI' : matchedBot.name.includes('Anthropic') ? 'Anthropic' : matchedBot.name.includes('Perplexity') ? 'Perplexity' : matchedBot.name.includes('DeepSeek') ? 'DeepSeek' : 'OtherAI';
+                const paramsGeo = [
+                    matchedBot.name,
+                    vendorName,
+                    path.slice(0, 255),
+                    'text/markdown; charset=utf-8',
+                    servedBytes,
+                    savedBytes,
+                    savingsRatio,
+                    ip.slice(0, 45),
+                    country.slice(0, 20),
+                    city.slice(0, 100)
+                ];
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': authHeader,
+                        'Content-Type': 'application/json',
+                        'Neon-Connection-String': dbUrl
+                    },
+                    body: JSON.stringify({ query: queryGeo, params: paramsGeo })
                 }).catch(() => {});
             } catch (e) {}
         }
 
-        const deepPayload = generateDeepAiPayload(path);
         return new Response(deepPayload, {
             status: 200,
             headers: {
                 'Content-Type': 'text/markdown; charset=utf-8',
                 'X-Robots-Tag': 'all',
-                'X-Powered-By': 'AMEVA-Sentinel-GEO',
+                'X-Powered-By': 'AMEVA-Sentinel-GEO-v0.7.0',
                 'X-Sentinel-Score': '0',
+                'X-Sentinel-Bandwidth-Saved': `${(savedBytes / 1024).toFixed(1)}KB (${savingsRatio}%)`,
                 'Cache-Control': 'public, max-age=86400, s-maxage=86400'
             }
         });
