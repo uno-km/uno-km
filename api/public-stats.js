@@ -8,33 +8,97 @@
  * - Strict PII Anonymization: Zero raw IP exposure (Aggregated by Country/City)
  */
 const GEO_COORDS = {
+    // South Korea
     'goyang-si': { lat: 37.6584, lng: 126.8320, name: 'Goyang-si, South Korea' },
+    'goyang': { lat: 37.6584, lng: 126.8320, name: 'Goyang-si, South Korea' },
     'seoul': { lat: 37.5665, lng: 126.9780, name: 'Seoul, South Korea' },
     'seongnam-si': { lat: 37.4200, lng: 127.1265, name: 'Seongnam-si, South Korea' },
+    'seongnam': { lat: 37.4200, lng: 127.1265, name: 'Seongnam-si, South Korea' },
     'incheon': { lat: 37.4563, lng: 126.7052, name: 'Incheon, South Korea' },
     'busan': { lat: 35.1796, lng: 129.0756, name: 'Busan, South Korea' },
     'daejeon': { lat: 36.3504, lng: 127.3845, name: 'Daejeon, South Korea' },
+    'daegu': { lat: 35.8714, lng: 128.6014, name: 'Daegu, South Korea' },
+    'gwangju': { lat: 35.1595, lng: 126.8526, name: 'Gwangju, South Korea' },
+    'suwon': { lat: 37.2636, lng: 127.0286, name: 'Suwon, South Korea' },
+    'yongin': { lat: 37.2411, lng: 127.1776, name: 'Yongin, South Korea' },
+    'cheongju': { lat: 36.6424, lng: 127.4890, name: 'Cheongju, South Korea' },
+    'jeonju': { lat: 35.8242, lng: 127.1480, name: 'Jeonju, South Korea' },
+    'jeju': { lat: 33.4996, lng: 126.5312, name: 'Jeju, South Korea' },
+
+    // United States (Key Cloud Regions & Metros)
+    'ashburn': { lat: 39.0438, lng: -77.4874, name: 'Ashburn (VA), United States' },
+    'boydton': { lat: 36.6679, lng: -78.3875, name: 'Boydton (VA), United States' },
+    'reston': { lat: 38.9586, lng: -77.3570, name: 'Reston (VA), United States' },
+    'sterling': { lat: 39.0068, lng: -77.4291, name: 'Sterling (VA), United States' },
+    'richmond': { lat: 37.5407, lng: -77.4360, name: 'Richmond (VA), United States' },
+    'san jose': { lat: 37.3382, lng: -121.8863, name: 'San Jose (CA), United States' },
+    'san francisco': { lat: 37.7749, lng: -122.4194, name: 'San Francisco (CA), United States' },
+    'los angeles': { lat: 34.0522, lng: -118.2437, name: 'Los Angeles (CA), United States' },
+    'mountain view': { lat: 37.3861, lng: -122.0839, name: 'Mountain View (CA), United States' },
+    'sunnyvale': { lat: 37.3688, lng: -122.0363, name: 'Sunnyvale (CA), United States' },
+    'seattle': { lat: 47.6062, lng: -122.3321, name: 'Seattle (WA), United States' },
+    'boardman': { lat: 45.8399, lng: -119.7006, name: 'Boardman (OR), United States' },
+    'the dalles': { lat: 45.5946, lng: -121.1787, name: 'The Dalles (OR), United States' },
+    'hillsboro': { lat: 45.5229, lng: -122.9898, name: 'Hillsboro (OR), United States' },
+    'portland': { lat: 45.5152, lng: -122.6784, name: 'Portland (OR), United States' },
+    'columbus': { lat: 39.9612, lng: -82.9988, name: 'Columbus (OH), United States' },
+    'chicago': { lat: 41.8781, lng: -87.6298, name: 'Chicago (IL), United States' },
+    'council bluffs': { lat: 41.2619, lng: -95.8608, name: 'Council Bluffs (IA), United States' },
+    'des moines': { lat: 41.5868, lng: -93.6250, name: 'Des Moines (IA), United States' },
+    'dallas': { lat: 32.7767, lng: -96.7970, name: 'Dallas (TX), United States' },
+    'austin': { lat: 30.2672, lng: -97.7431, name: 'Austin (TX), United States' },
+    'houston': { lat: 29.7604, lng: -95.3698, name: 'Houston (TX), United States' },
+    'san antonio': { lat: 29.4241, lng: -98.4936, name: 'San Antonio (TX), United States' },
+    'atlanta': { lat: 33.7490, lng: -84.3880, name: 'Atlanta (GA), United States' },
+    'miami': { lat: 25.7617, lng: -80.1918, name: 'Miami (FL), United States' },
+    'new york': { lat: 40.7128, lng: -74.0060, name: 'New York (NY), United States' },
+    'newark': { lat: 40.7357, lng: -74.1724, name: 'Newark (NJ), United States' },
+    'north bergen': { lat: 40.7998, lng: -74.0238, name: 'North Bergen (NJ), United States' },
+    'secaucus': { lat: 40.7895, lng: -74.0565, name: 'Secaucus (NJ), United States' },
+    'salt lake city': { lat: 40.7608, lng: -111.8910, name: 'Salt Lake City (UT), United States' },
+    'phoenix': { lat: 33.4484, lng: -112.0740, name: 'Phoenix (AZ), United States' },
+    'denver': { lat: 39.7392, lng: -104.9903, name: 'Denver (CO), United States' },
+    'minneapolis': { lat: 44.9778, lng: -93.2650, name: 'Minneapolis (MN), United States' },
+    'charleston': { lat: 32.7765, lng: -79.9311, name: 'Charleston (SC), United States' },
+    'las vegas': { lat: 36.1699, lng: -115.1398, name: 'Las Vegas (NV), United States' },
+
+    // Japan
     'tokyo': { lat: 35.6762, lng: 139.6503, name: 'Tokyo, Japan' },
     'osaka': { lat: 34.6937, lng: 135.5023, name: 'Osaka, Japan' },
-    'ashburn': { lat: 39.0438, lng: -77.4874, name: 'Ashburn (VA), United States' },
-    'san francisco': { lat: 37.7749, lng: -122.4194, name: 'San Francisco (CA), United States' },
-    'new york': { lat: 40.7128, lng: -74.0060, name: 'New York (NY), United States' },
-    'seattle': { lat: 47.6062, lng: -122.3321, name: 'Seattle (WA), United States' },
-    'los angeles': { lat: 34.0522, lng: -118.2437, name: 'Los Angeles (CA), United States' },
+    'nagoya': { lat: 35.1815, lng: 136.9066, name: 'Nagoya, Japan' },
+    'fukuoka': { lat: 33.5904, lng: 130.4017, name: 'Fukuoka, Japan' },
+    'yokohama': { lat: 35.4437, lng: 139.6380, name: 'Yokohama, Japan' },
+
+    // Europe
     'frankfurt': { lat: 50.1109, lng: 8.6821, name: 'Frankfurt, Germany' },
+    'berlin': { lat: 52.5200, lng: 13.4050, name: 'Berlin, Germany' },
+    'munich': { lat: 48.1351, lng: 11.5820, name: 'Munich, Germany' },
     'london': { lat: 51.5074, lng: -0.1278, name: 'London, United Kingdom' },
-    'paris': { lat: 48.8566, lng: 2.3522, name: 'Paris, France' },
-    'amsterdam': { lat: 52.3676, lng: 4.9041, name: 'Amsterdam, Netherlands' },
+    'manchester': { lat: 53.4808, lng: -2.2426, name: 'Manchester, United Kingdom' },
     'dublin': { lat: 53.3498, lng: -6.2603, name: 'Dublin, Ireland' },
+    'paris': { lat: 48.8566, lng: 2.3522, name: 'Paris, France' },
+    'marseille': { lat: 43.2965, lng: 5.3698, name: 'Marseille, France' },
+    'amsterdam': { lat: 52.3676, lng: 4.9041, name: 'Amsterdam, Netherlands' },
+    'stockholm': { lat: 59.3293, lng: 18.0686, name: 'Stockholm, Sweden' },
+    'helsinki': { lat: 60.1699, lng: 24.9384, name: 'Helsinki, Finland' },
+    'madrid': { lat: 40.4168, lng: -3.7038, name: 'Madrid, Spain' },
+    'milan': { lat: 45.4642, lng: 9.1900, name: 'Milan, Italy' },
+    'zurich': { lat: 47.3769, lng: 8.5417, name: 'Zurich, Switzerland' },
+    'warsaw': { lat: 52.2297, lng: 21.0122, name: 'Warsaw, Poland' },
+
+    // Asia & Pacific & Others
     'singapore': { lat: 1.3521, lng: 103.8198, name: 'Singapore' },
-    'sydney': { lat: -33.8688, lng: 151.2093, name: 'Sydney, Australia' },
     'hong kong': { lat: 22.3193, lng: 114.1694, name: 'Hong Kong' },
     'taipei': { lat: 25.0330, lng: 121.5654, name: 'Taipei, Taiwan' },
+    'sydney': { lat: -33.8688, lng: 151.2093, name: 'Sydney, Australia' },
+    'melbourne': { lat: -37.8136, lng: 144.9631, name: 'Melbourne, Australia' },
     'toronto': { lat: 43.6532, lng: -79.3832, name: 'Toronto, Canada' },
-    'sao paulo': { lat: -23.5505, lng: -46.6333, name: 'São Paulo, Brazil' },
+    'montreal': { lat: 45.5017, lng: -73.5673, name: 'Montreal, Canada' },
     'mumbai': { lat: 19.0760, lng: 72.8777, name: 'Mumbai, India' },
+    'bengaluru': { lat: 12.9716, lng: 77.5946, name: 'Bengaluru, India' },
     'beijing': { lat: 39.9042, lng: 116.4074, name: 'Beijing, China' },
-    'shanghai': { lat: 31.2304, lng: 121.4737, name: 'Shanghai, China' }
+    'shanghai': { lat: 31.2304, lng: 121.4737, name: 'Shanghai, China' },
+    'sao paulo': { lat: -23.5505, lng: -46.6333, name: 'São Paulo, Brazil' }
 };
 
 const COUNTRY_COORDS = {
@@ -53,6 +117,18 @@ const COUNTRY_COORDS = {
     'CN': { lat: 35.8, lng: 104.1, name: 'China' },
     'GLOBAL': { lat: 20.0, lng: 0.0, name: 'Global Anycast' }
 };
+
+// Simple deterministic hash for coordinate offset in case of unknown cities
+function getDeterministicCityOffset(cityName) {
+    let hash = 0;
+    for (let i = 0; i < cityName.length; i++) {
+        hash = (hash << 5) - hash + cityName.charCodeAt(i);
+        hash |= 0;
+    }
+    const latOffset = ((Math.abs(hash) % 100) / 100 - 0.5) * 3.5;
+    const lngOffset = ((Math.abs(hash >> 3) % 100) / 100 - 0.5) * 6.0;
+    return { latOffset, lngOffset };
+}
 
 // Global Singleton DB Client (Zero Pool Thrashing)
 let globalStatsSql = null;
@@ -277,7 +353,16 @@ export default async function handler(req, res) {
         const geoClusters = regionStats.map(r => {
             const cityKey = (r.city || '').toLowerCase().trim();
             const countryKey = (r.country || 'GLOBAL').toUpperCase().trim();
-            const coord = GEO_COORDS[cityKey] || COUNTRY_COORDS[countryKey] || { lat: 20.0 + (Math.random()*10 - 5), lng: 0.0 + (Math.random()*10 - 5), name: `${r.country} (${r.city})` };
+            let coord = GEO_COORDS[cityKey];
+            if (!coord) {
+                const base = COUNTRY_COORDS[countryKey] || { lat: 20.0, lng: 0.0, name: r.country };
+                const offset = getDeterministicCityOffset(r.city || 'default');
+                coord = {
+                    lat: base.lat + offset.latOffset,
+                    lng: base.lng + offset.lngOffset,
+                    name: `${r.city || 'Edge'}, ${r.country || 'GLOBAL'}`
+                };
+            }
 
             return {
                 country: r.country,
