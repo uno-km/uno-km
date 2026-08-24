@@ -455,7 +455,7 @@
         <div class="metric-card">
           <div class="metric-card-title">Unique Pseudonymous Keys</div>
           <div class="metric-card-value" id="valVisitors" style="color: #004499;">94</div>
-          <div class="metric-card-footer">Rotating Session Keys</div>
+          <div class="metric-card-footer">Pseudonymous Session Keys</div>
         </div>
       </div>
 
@@ -488,6 +488,7 @@
           <div>
             <span>Global Traffic &amp; Threat Cluster Origin Map</span>
             <span id="mapCurrentModeLabel" style="font-size:0.78rem; font-weight:normal; color:var(--text-muted, #64748b); margin-left:8px;">Global View (1 Consolidated Point per Country)</span>
+            <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">Markers represent regional centroids, not visitor coordinates.</div>
           </div>
           <div class="tf-pill-group" id="regionBtnGroup">
             <button class="tf-pill" id="btn-reg-KR" onclick="focusRegion('KR', 36.5, 127.8, 6)">South Korea</button>
@@ -830,6 +831,18 @@
       document.getElementById('evJit').innerText = mathJit;
       document.getElementById('evCanvas').innerText = canvasHash;
 
+      // Signal Coverage: count available telemetry categories out of expected set
+      const expectedSignals = ['HTTP_HEADERS', 'AUTOMATION_ARTIFACTS', 'CLIENT_RUNTIME', 'INTERACTION', 'SESSION_BEHAVIOR'];
+      const collectedSignals = new Set();
+      collectedSignals.add('HTTP_HEADERS'); // always available from request
+      if (typeof navigator.webdriver !== 'undefined') collectedSignals.add('AUTOMATION_ARTIFACTS');
+      if (gpuName !== 'Standard Software Device' || canvasHash !== 'be6f2023') collectedSignals.add('CLIENT_RUNTIME');
+      if (typeof navigator.maxTouchPoints !== 'undefined') collectedSignals.add('INTERACTION');
+      collectedSignals.add('SESSION_BEHAVIOR'); // session timing always observable
+      const coverageRatio = collectedSignals.size / expectedSignals.length;
+      const coverageLabel = coverageRatio >= 0.8 ? 'High' : coverageRatio >= 0.5 ? 'Medium' : 'Low';
+      const coveragePct = Math.round(coverageRatio * 100);
+
       const verdictBanner = document.getElementById('diagVerdictBanner');
       const verdictText = document.getElementById('diagVerdictText');
       const verdictExpl = document.getElementById('diagVerdictExplanation');
@@ -840,7 +853,7 @@
         verdictBanner.style.borderColor = '#bbf7d0';
         verdictText.innerText = '현재 세션의 자동화 위험이 낮은 수준입니다. 이 결과는 인간 사용자 증명이 아닙니다.';
         verdictText.style.color = '#15803d';
-        verdictConf.innerText = 'Signal Coverage: High';
+        verdictConf.innerText = 'Signal Coverage: ' + coverageLabel + ' (' + coveragePct + '%)';
         verdictConf.style.background = '#dcfce7';
         verdictConf.style.color = '#15803d';
         verdictExpl.innerHTML = 'GPU 렌더러(<code>' + gpuName.slice(0, 28) + '</code>) 및 Canvas 서명이 관측되었으며, 강한 자동화 증거는 발견되지 않았습니다.';
