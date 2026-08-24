@@ -84,47 +84,27 @@
     },
     {
       "source": "/observability",
-      "destination": "/sentinel/observability.html",
-      "permanent": false
-    },
-    {
-      "source": "/sentinel/observability",
-      "destination": "/sentinel/observability.html",
-      "permanent": false
-    },
-    {
-      "source": "/sdk/sentinel/observability",
-      "destination": "/sentinel/observability.html",
-      "permanent": false
-    },
-    {
-      "source": "/lib/bitnet",
-      "destination": "/lib/bitnet/",
-      "permanent": false
-    },
-    {
-      "source": "/bitnet",
-      "destination": "/lib/bitnet/",
+      "destination": "/sentinel/observability",
       "permanent": false
     },
     {
       "source": "/status",
-      "destination": "/sentinel/observability.html",
+      "destination": "/sentinel/observability",
       "permanent": false
     },
     {
       "source": "/ops",
-      "destination": "/sentinel/observability.html",
+      "destination": "/sentinel/observability",
       "permanent": false
     },
     {
       "source": "/telemetry",
-      "destination": "/sentinel/observability.html",
+      "destination": "/sentinel/observability",
       "permanent": false
     },
     {
       "source": "/sentinel/status",
-      "destination": "/sentinel/observability.html",
+      "destination": "/sentinel/observability",
       "permanent": false
     },
     {
