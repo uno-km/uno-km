@@ -24,11 +24,98 @@ var SentinelBrowser = (() => {
     BrowserTelemetryCollector: () => BrowserTelemetryCollector,
     browserTelemetry: () => browserTelemetry,
     createBrowserTelemetry: () => createBrowserTelemetry,
+    detectHeadlessEvasions: () => detectHeadlessEvasions,
     getHeapMemoryUsage: () => getHeapMemoryUsage,
     getLocalSessionId: () => getLocalSessionId,
     getSoulHistory: () => getSoulHistory,
     mountDashboard: () => mountDashboard
   });
+  function detectHeadlessEvasions() {
+    const reasons = [];
+    let isHeadlessRenderer = false;
+    let headlessEvasionsDetected = false;
+    let webglVendor = "unknown";
+    let webglRenderer = "unknown";
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return {
+        isHeadlessRenderer: false,
+        headlessEvasionsDetected: false,
+        webglVendor: "server-runtime",
+        webglRenderer: "server-runtime",
+        evasionReasons: []
+      };
+    }
+    try {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (gl) {
+        const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+        if (debugInfo) {
+          webglVendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) || "unknown";
+          webglRenderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "unknown";
+        } else {
+          webglVendor = gl.getParameter(gl.VENDOR) || "unknown";
+          webglRenderer = gl.getParameter(gl.RENDERER) || "unknown";
+        }
+        const lowerRenderer = webglRenderer.toLowerCase();
+        if (lowerRenderer.includes("swiftshader") || lowerRenderer.includes("llvmpipe") || lowerRenderer.includes("softpipe") || lowerRenderer.includes("virtualbox") || lowerRenderer.includes("vmware") || lowerRenderer.includes("mesa offscreen")) {
+          isHeadlessRenderer = true;
+          reasons.push(`Virtual software WebGL renderer detected (${webglRenderer})`);
+        }
+      } else {
+        isHeadlessRenderer = true;
+        reasons.push("WebGL context initialization failed or disabled");
+      }
+    } catch (e) {
+      isHeadlessRenderer = true;
+      reasons.push("WebGL inspection threw exception");
+    }
+    try {
+      const nav = navigator;
+      const isDesktop = !/Android|iPhone|iPad|iPod/i.test(nav.userAgent || "");
+      if (isDesktop && nav.plugins && nav.plugins.length === 0) {
+        headlessEvasionsDetected = true;
+        reasons.push("Desktop browser with empty navigator.plugins (Headless signature)");
+      }
+    } catch (e) {
+    }
+    try {
+      const nav = navigator;
+      if (!nav.languages || Array.isArray(nav.languages) && nav.languages.length === 0) {
+        headlessEvasionsDetected = true;
+        reasons.push("navigator.languages missing or empty");
+      }
+    } catch (e) {
+    }
+    try {
+      const nav = navigator;
+      const isChromeUA = /Chrome\//i.test(nav.userAgent || "") && !/Edge|Edg|OPR/i.test(nav.userAgent || "");
+      const hasChromeObj = typeof window.chrome !== "undefined";
+      if (isChromeUA && !hasChromeObj) {
+        headlessEvasionsDetected = true;
+        reasons.push("Chrome UA claiming browser lacks window.chrome object");
+      }
+    } catch (e) {
+    }
+    try {
+      if (typeof Notification !== "undefined" && Notification.permission === "denied") {
+        const nav = navigator;
+        if (nav.permissions && typeof nav.permissions.query === "function") {
+        }
+      }
+    } catch (e) {
+    }
+    if (isHeadlessRenderer || reasons.length > 0) {
+      headlessEvasionsDetected = true;
+    }
+    return {
+      isHeadlessRenderer,
+      headlessEvasionsDetected,
+      webglVendor,
+      webglRenderer,
+      evasionReasons: reasons
+    };
+  }
   function getHeapMemoryUsage() {
     if (typeof performance !== "undefined" && performance.memory) {
       const mem = performance.memory;
@@ -174,6 +261,10 @@ var SentinelBrowser = (() => {
           keyboardEventCount: 0,
           touchMismatch: false,
           suspiciousUA: false,
+          isHeadlessRenderer: false,
+          headlessEvasionsDetected: false,
+          webglVendor: "server-runtime",
+          webglRenderer: "server-runtime",
           usedHeapMb: 0,
           totalHeapMb: 0,
           heapLimitMb: 0,
@@ -191,6 +282,7 @@ var SentinelBrowser = (() => {
       const isSuspiciousUA = !nav.userAgent || /HeadlessChrome|PhantomJS|Selenium|Playwright|curl|wget|python-requests/i.test(nav.userAgent);
       const heap = getHeapMemoryUsage();
       const soul = getSoulHistory();
+      const headless = detectHeadlessEvasions();
       return {
         telemetryObserved: this.isListening,
         sampleComplete: elapsed >= this.samplingWindowMs,
@@ -202,6 +294,10 @@ var SentinelBrowser = (() => {
         keyboardEventCount: this.keyboardEvents,
         touchMismatch: isTouchMismatch,
         suspiciousUA: isSuspiciousUA,
+        isHeadlessRenderer: headless.isHeadlessRenderer,
+        headlessEvasionsDetected: headless.headlessEvasionsDetected,
+        webglVendor: headless.webglVendor,
+        webglRenderer: headless.webglRenderer,
         usedHeapMb: heap.usedHeapMb,
         totalHeapMb: heap.totalHeapMb,
         heapLimitMb: heap.heapLimitMb,
