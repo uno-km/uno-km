@@ -141,7 +141,7 @@ def render_header(cfg: dict, active_page: str) -> str:
   </header>"""
 
 
-def render_sidebar(active_page: str) -> str:
+def render_sidebar(active_page: str, current_lib: str = "") -> str:
     pages_overview = [
         ("index.html", "common.nav.home", "Home / Architecture"),
         ("installation.html", "common.nav.installation", "Installation Guide"),
@@ -152,6 +152,19 @@ def render_sidebar(active_page: str) -> str:
         ("benchmarks.html", "common.nav.benchmarks", "Benchmarks & Profiling"),
         ("advanced-parameters.html", "common.nav.advancedParams", "Advanced Parameters"),
         ("versions.html", "common.nav.versions", "Version Archive")
+    ]
+    pages_ecosystem = [
+        ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
+        ("/lib/sentinel/", "sentinel", "AMEVA Sentinel (Security SDK)"),
+        ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
+        ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
+        ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
+        ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
+        ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
+        ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
+        ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)"),
+        ("/foundation/", "foundation", "AMEVA Foundation"),
+        ("/", "cv", "Founder Digital CV")
     ]
     pages_ai = [
         ("llms.txt", "llms.txt (AI Fast Context)"),
@@ -176,6 +189,16 @@ def render_sidebar(active_page: str) -> str:
         act = ' class="active"' if href == active_page else ''
         html += f"""
       <li><a href="{href}"{act} data-i18n="{i18n_key}">{title}</a></li>"""
+
+    html += """
+    </ul>
+    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <ul>"""
+    for href, lib_key, title in pages_ecosystem:
+        act = ' class="active"' if lib_key == current_lib else ''
+        target = ' target="_blank"' if href.startswith("http") else ''
+        html += f"""
+      <li><a href="{href}"{act}{target}>{title}</a></li>"""
 
     html += """
     </ul>
@@ -267,6 +290,8 @@ def render_index_html(cfg: dict) -> str:
     else:
         code_block = f"""      <pre><code>{code_py or code_js}</code></pre>"""
 
+    lib_slug = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -283,7 +308,7 @@ def render_index_html(cfg: dict) -> str:
 {render_header(cfg, "index.html")}
 
   <div class="container">
-{render_sidebar("index.html")}
+{render_sidebar("index.html", lib_slug)}
 
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
@@ -352,6 +377,7 @@ def render_index_html(cfg: dict) -> str:
 def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, body_html: str) -> str:
     name = cfg.get("name", "AMEVA-Library")
     desc = cfg.get("description_en", "")
+    lib_slug = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -369,7 +395,7 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
 {render_header(cfg, active_page)}
 
   <div class="container">
-{render_sidebar(active_page)}
+{render_sidebar(active_page, lib_slug)}
 
     <main class="content">
       <h2>{title}</h2>
@@ -417,6 +443,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "Overview",
                     "reference": "Official Reference",
+                    "ecosystem": "AMEVA Ecosystem",
                     "aiSpecs": "AI Agent Protocols",
                     "home": "Home / Architecture",
                     "installation": "Installation Guide",
@@ -465,6 +492,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "개요",
                     "reference": "공식 레퍼런스",
+                    "ecosystem": "AMEVA 생태계",
                     "aiSpecs": "AI 에이전트 프로토콜",
                     "home": "홈 / 아키텍처",
                     "installation": "설치 가이드",
@@ -513,6 +541,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "概要",
                     "reference": "公式リファレンス",
+                    "ecosystem": "AMEVA エコシステム",
                     "aiSpecs": "AIエージェント仕様",
                     "home": "ホーム / アーキテクチャ",
                     "installation": "インストールガイド",
@@ -555,6 +584,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "概述",
                     "reference": "官方参考",
+                    "ecosystem": "AMEVA 生态系统",
                     "aiSpecs": "AI 协议",
                     "home": "主页 / 架构",
                     "installation": "安装指南",
@@ -597,6 +627,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "Visión General",
                     "reference": "Referencia Oficial",
+                    "ecosystem": "Ecosistema AMEVA",
                     "aiSpecs": "Protocolos de IA",
                     "home": "Inicio / Arquitectura",
                     "installation": "Guía de Instalación",
@@ -639,6 +670,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "nav": {
                     "overview": "Überblick",
                     "reference": "Offizielle Referenz",
+                    "ecosystem": "AMEVA Ökosystem",
                     "aiSpecs": "KI-Agenten-Protokolle",
                     "home": "Startseite / Architektur",
                     "installation": "Installationsanleitung",

@@ -166,7 +166,9 @@
         </summary>
         <div class="accordion-content">
           <ul>
-            <li><a href="/sdk/sentinel/" target="_self">AMEVA-Sentinel <span class="external-badge">SDK</span></a></li>
+            <li><a href="/lib/sentinel/" target="_self">AMEVA-Sentinel <span class="external-badge">SDK</span></a></li>
+            <li><a href="/lib/mcp/" target="_self">AMEVA-MCP-Hub <span class="external-badge">Hub</span></a></li>
+            <li><a href="/lib/bitnet/" target="_self">Termux-BitNet <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/diffusion/" target="_self">Termux-Diffusion <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/playwright/" target="_self">Termux-Playwright <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/stt/" target="_self">Termux-STT <span class="external-badge">Docs</span></a></li>
@@ -237,7 +239,7 @@
         <h3 data-i18n="home.tier1Title">Tier 1: Flagship Top-Level Projects (TLP)</h3>
         <p class="subtitle" data-i18n="home.tier1Desc">Production-Ready · PyPI &amp; npm Verified · Complete Software &amp; Runtimes</p>
         
-        <div class="features-grid">
+                <div class="features-grid">
           <!-- Workstation -->
           <div class="feature-card" style="border-left: 4px solid var(--primary-color);">
             <h4 data-i18n="proj.workstationTitle">AMEVA Workstation (Web/Desktop)</h4>
@@ -249,18 +251,41 @@
           </div>
 
           <!-- AMEVA Sentinel -->
-          <div class="feature-card" style="border-left: 4px solid #2563eb;">
+          <div class="feature-card" style="border-left: 4px solid #10b981;">
             <h4 data-i18n="proj.sentinelTitle">AMEVA-Sentinel</h4>
             <p data-i18n="proj.sentinelDesc">Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. Zero keystroke logging, verified across major browser engines.</p>
             <div class="card-links">
-              <a href="/sdk/sentinel/" class="btn-sm primary">Docs &amp; Console</a>
-              <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="/lib/sentinel/" class="btn-sm primary">Docs &amp; Console</a>
+              <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
               <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="btn-sm">GitHub</a>
             </div>
           </div>
 
+          <!-- AMEVA-MCP-Hub -->
+          <div class="feature-card" style="border-left: 4px solid #004499;">
+            <h4 data-i18n="proj.mcpTitle">AMEVA-MCP-Hub</h4>
+            <p data-i18n="proj.mcpDesc">Universal polyglot WASM and dynamic GitHub multi-repo tool subscription Model Context Protocol hub & SDK with zero-install in-memory engine.</p>
+            <div class="card-links">
+              <a href="/lib/mcp/" class="btn-sm primary">Docs &amp; Studio</a>
+              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux-BitNet -->
+          <div class="feature-card" style="border-left: 4px solid #059669;">
+            <h4 data-i18n="proj.bitnetTitle">Termux-BitNet</h4>
+            <p data-i18n="proj.bitnetDesc">High-performance 1.58-bit on-device LLM inference engine with ARM64 NEON DotProd assembly acceleration and smartphone runtime.</p>
+            <div class="card-links">
+              <a href="/lib/bitnet/" class="btn-sm primary">Docs &amp; Bench</a>
+              <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
           <!-- Termux Playwright -->
-          <div class="feature-card">
+          <div class="feature-card" style="border-left: 4px solid #2563eb;">
             <h4 data-i18n="proj.playwrightTitle">Termux-Playwright</h4>
             <p data-i18n="proj.playwrightDesc">Non-root Chromium browser automation on Android Termux (ARM64). Direct CDP control for scraping and automated web pipelines.</p>
             <div class="card-links">
@@ -272,7 +297,7 @@
           </div>
 
           <!-- Termux Diffusion -->
-          <div class="feature-card">
+          <div class="feature-card" style="border-left: 4px solid #db2777;">
             <h4 data-i18n="proj.diffusionTitle">Termux-Diffusion</h4>
             <p data-i18n="proj.diffusionDesc">Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
             <div class="card-links">
@@ -284,7 +309,7 @@
           </div>
 
           <!-- Termux STT -->
-          <div class="feature-card">
+          <div class="feature-card" style="border-left: 4px solid #7c3aed;">
             <h4 data-i18n="proj.sttTitle">Termux-STT</h4>
             <p data-i18n="proj.sttDesc">Unified on-device Speech-to-Text framework combining Whisper.cpp, Vosk, and Sherpa-ONNX with pure Python speaker diarization.</p>
             <div class="card-links">
@@ -296,7 +321,7 @@
           </div>
 
           <!-- Termux Train -->
-          <div class="feature-card">
+          <div class="feature-card" style="border-left: 4px solid #d97706;">
             <h4 data-i18n="proj.trainTitle">Termux-Train</h4>
             <p data-i18n="proj.trainDesc">Ultra-lightweight on-device Tensor & DAG Autograd deep learning framework with SafeTensors zero-copy and LoRA fine-tuning.</p>
             <div class="card-links">
@@ -307,13 +332,13 @@
           </div>
 
           <!-- AMEVA Forge -->
-          <div class="feature-card">
+          <div class="feature-card" style="border-left: 4px solid #0891b2;">
             <h4 data-i18n="proj.forgeTitle">AMEVA-Forge</h4>
             <p data-i18n="proj.forgeDesc">Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility, WGSL compute shaders, and zero memory waste buffer pool.</p>
             <div class="card-links">
               <a href="/lib/forge/" class="btn-sm primary">Live Studio</a>
               <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-sm">PyPI (pip)</a>
-              <a href="https://github.com/uno-km/ameva-forge" target="_blank" class="btn-sm">GitHub</a>
+              <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="btn-sm">GitHub</a>
             </div>
           </div>
         </div>
@@ -335,21 +360,35 @@
               <td><strong>AMEVA Workstation</strong></td>
               <td><code>Web / Desktop</code></td>
               <td>WebGPU, Next.js, WASM</td>
-              <td>Client-Side WebGPU Local AI, Spatial Map Canvas, Nested Docs & MapReduce</td>
+              <td>Client-Side WebGPU Local AI, Spatial Map Canvas, Nested Docs &amp; MapReduce</td>
               <td><span class="release-tag">Official Live App</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA-Sentinel</strong></td>
-              <td><code>npm: @ameva/sentinel</code></td>
+              <td><code>npm: ameva-sentinel</code></td>
               <td>TypeScript, WebCrypto, Node</td>
-              <td>0-Data Privacy Threat Scoring & Traffic Governance</td>
+              <td>0-Data Privacy Threat Scoring &amp; Traffic Governance</td>
               <td><span class="release-tag">npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA-MCP-Hub</strong></td>
+              <td><code>npm: ameva-mcp-hub</code></td>
+              <td>WASI WebAssembly, Node.js</td>
+              <td>Polyglot WASM Tools &amp; AI Vector MCP Live Hub</td>
+              <td><span class="release-tag">npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-BitNet</strong></td>
+              <td><code>pip: termux-bitnet</code><br/><code>npm: termux-bitnet</code></td>
+              <td>ARM64 NEON, C++17, Python</td>
+              <td>1.58-bit (i2_s) On-Device LLM Inference SIMD Engine</td>
+              <td><span class="release-tag">PyPI + npm Released</span></td>
             </tr>
             <tr>
               <td><strong>Termux-Playwright</strong></td>
               <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
               <td>Android ARM64 Termux</td>
-              <td>Non-root Chromium Browser Automation & CDP</td>
+              <td>Non-root Chromium Browser Automation &amp; CDP</td>
               <td><span class="release-tag">PyPI + npm Released</span></td>
             </tr>
             <tr>
@@ -363,21 +402,21 @@
               <td><strong>Termux-STT</strong></td>
               <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
               <td>Android ARM64 Termux</td>
-              <td>Unified Whisper/Vosk STT & Pure Python Diarization</td>
+              <td>Unified Speech-to-Text &amp; 128d Speaker Diarization</td>
               <td><span class="release-tag">PyPI + npm Released</span></td>
             </tr>
             <tr>
               <td><strong>Termux-Train</strong></td>
               <td><code>pip: termux-train</code></td>
               <td>Android ARM64 Termux</td>
-              <td>Bionic Native Tensor, DAG Autograd & LoRA</td>
+              <td>On-Device DAG Tensor Autograd &amp; LoRA Training</td>
               <td><span class="release-tag">PyPI Released</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA-Forge</strong></td>
               <td><code>pip: ameva</code></td>
-              <td>WebGPU / Pyodide WASM</td>
-              <td>In-Browser WebGPU Deep Learning & Training</td>
+              <td>Browser WebGPU, WASM</td>
+              <td>Browser-Native WebGPU Tensor Autograd Deep Learning Engine</td>
               <td><span class="release-tag">PyPI Released</span></td>
             </tr>
           </tbody>

@@ -12,6 +12,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "Overview",
         "reference": "Official Reference",
+        "ecosystem": "AMEVA Ecosystem",
         "aiSpecs": "AI Agent Protocols",
         "home": "Home / Architecture",
         "installation": "Installation Guide",
@@ -68,6 +69,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "개요",
         "reference": "공식 레퍼런스",
+        "ecosystem": "AMEVA 생태계",
         "aiSpecs": "AI 에이전트 프로토콜",
         "home": "홈 / 아키텍처",
         "installation": "설치 가이드",
@@ -124,6 +126,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "概要",
         "reference": "公式リファレンス",
+        "ecosystem": "AMEVA エコシステム",
         "aiSpecs": "AIエージェント仕様",
         "home": "ホーム / アーキテクチャ",
         "installation": "インストールガイド",
@@ -166,6 +169,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "概述",
         "reference": "官方参考",
+        "ecosystem": "AMEVA 生态系统",
         "aiSpecs": "AI 协议",
         "home": "主页 / 架构",
         "installation": "安装指南",
@@ -208,6 +212,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "Visión General",
         "reference": "Referencia Oficial",
+        "ecosystem": "Ecosistema AMEVA",
         "aiSpecs": "Protocolos de IA",
         "home": "Inicio / Arquitectura",
         "installation": "Guía de Instalación",
@@ -250,6 +255,7 @@ if (window.i18nManager) {
       "nav": {
         "overview": "Überblick",
         "reference": "Offizielle Referenz",
+        "ecosystem": "AMEVA Ökosystem",
         "aiSpecs": "KI-Agenten-Protokolle",
         "home": "Startseite / Architektur",
         "installation": "Installationsanleitung",
