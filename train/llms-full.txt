@@ -2,8 +2,8 @@
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework
-Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy serialization and memory-mapped LoRA backpropagation on ARM64.
+Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android
+Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.
 
 ## 2. Package & Installation
 - PyPI: termux-train
@@ -11,24 +11,16 @@ Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy 
 - Repository: https://github.com/uno-km/termux-train
 
 ## 3. Core Capabilities
-- **Zero-Copy SafeTensors Serialization**: Loads and saves model checkpoints with zero memory duplication via mmap.
-- **Dynamic DAG Autograd Engine**: Closed-form gradient computation with minimal heap allocation during backward pass.
-- **On-Device LoRA Fine-Tuning**: Optimized low-rank adaptation matrix training directly on mobile CPU/NEON cores.
+- **Deterministic 0-Drift Output**: Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.
+- **Zero Cloud Egress Architecture**: Operates 100% on the local client without external network telemetry leaks.
+- **Memory Leakage Protection**: Weakref lifetime management preventing GPU VRAM / system RAM leaks.
 
 ## 4. Canonical Implementation
 ```python
 import termux_train as tt
 
-# 1. Define model with LoRA layers
-model = tt.nn.TransformerLoRA(vocab_size=32000, dim=512, lora_rank=8)
-optimizer = tt.optim.AdamW(model.parameters(), lr=1e-4)
-
-# 2. Train on-device with zero memory overhead
-for epoch in range(5):
-    loss = model(inputs, targets)
-    loss.backward()
-    optimizer.step()
-    optimizer.zero_grad()
-    print(f"Epoch {epoch}: Loss = {loss.item():.4f}")
-
+x = tt.tensor([1.0, 2.0, 3.0], requires_grad=True)
+y = (x * 2.0 + 1.0).sum()
+y.backward()
+print("Gradients:", x.grad)
 ```

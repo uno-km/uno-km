@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Playwright | Official Documentation</title>
-  <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.">
+  <meta name="description" content="Directly interfaces with Termux Chromium via Chrome DevTools Protocol over isolated Unix domain sockets, enabling full scraping and automation with zero root requirements.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">Termux-Playwright</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0 (Active Stable)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Bionic Chromium CDP Driver)</span>
       <div class="lang-selector-wrapper"></div>
       <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
@@ -39,6 +40,8 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="nodejs.html">Node.js & Python Dual Runtime Integration</a></li>
+      <li><a href="phantom-process.html">Android Phantom Process Killer Guardrails</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -66,7 +69,7 @@
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
       <h2 data-i18n="home.title">Termux-Playwright</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Non-Root Chromium Browser Automation & CDP Engine for Android Termux</p>
+      <p class="subtitle" data-i18n="home.subtitle">Non-Root Real Chromium Automation & CDP Control Package for Android Termux</p>
 
       <!-- Section 2: Badges Bar -->
       <div class="badges-bar">
@@ -76,7 +79,7 @@
         <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/dm/termux-playwright.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
         <img src="https://img.shields.io/badge/license-Apache-2.0-success.svg" alt="License">
         <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
-        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-ARM64_/_WebGPU_/_Web_Standard-blueviolet.svg" alt="Platform">
       </div>
 
       <!-- Section 3: 1-Line Quick Installation Alert -->
@@ -84,30 +87,31 @@
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
         <pre><code>pip install termux-playwright
-# or: npm install termux-playwright</code></pre>
+# or:
+npm install termux-playwright</code></pre>
       </div>
 
       <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers, glibc vs bionic ABI incompatibility, and sandboxing constraints.</p>
+      <p data-i18n="home.challengeText">Official Playwright binaries fail on Android Termux due to glibc dependencies, missing X11/Wayland display servers, and seccomp sandbox restrictions.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.</p>
+      <p data-i18n="home.breakthroughText">Directly interfaces with Termux Chromium via Chrome DevTools Protocol over isolated Unix domain sockets, enabling full scraping and automation with zero root requirements.</p>
 
       <!-- Section 5: Key Capabilities Grid -->
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Direct CDP Control Channel</h4>
-          <p data-i18n="home.features.0.desc">Connects directly via Chrome DevTools Protocol without heavy WebDriver server binaries.</p>
+          <h4 data-i18n="home.features.0.title">Deterministic 0-Drift Output</h4>
+          <p data-i18n="home.features.0.desc">Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Non-Root Mobile Execution</h4>
-          <p data-i18n="home.features.1.desc">Fully operational inside standard Termux without root privileges or custom ROMs.</p>
+          <h4 data-i18n="home.features.1.title">Zero Cloud Egress Architecture</h4>
+          <p data-i18n="home.features.1.desc">Operates 100% on the local client without external network telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Full Python & JavaScript APIs</h4>
-          <p data-i18n="home.features.2.desc">Offers familiar Playwright-compatible async page navigation, selectors, and evaluation.</p>
+          <h4 data-i18n="home.features.2.title">Memory Leakage Protection</h4>
+          <p data-i18n="home.features.2.desc">Weakref lifetime management preventing GPU VRAM / system RAM leaks.</p>
         </div>
       </div>
 
@@ -123,18 +127,18 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Automation Driver</strong></td>
-            <td>CDP WebSocket Session, Headless Chromium, Bionic Port</td>
+            <td><strong>Compute Kernel</strong></td>
+            <td>Hardware Native Accelerated Kernels</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Page Capabilities</strong></td>
-            <td>DOM Evaluation, Screenshots, Network Request Interception</td>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers & Weakref GC</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Platform Runtimes</strong></td>
-            <td>Python asyncio, Node.js async/await, Termux CLI</td>
+            <td><strong>Runtime Compatibility</strong></td>
+            <td>Android Termux Bionic / Browser WebGPU</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
@@ -148,29 +152,22 @@
           <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
         <div class="code-tab-content" style="display:block;">
-          <pre><code>from termux_playwright import chromium
+          <pre><code>from termux_playwright import TermuxBrowser
 
-async def main():
-    browser = await chromium.launch(headless=True)
-    page = await browser.new_page()
-    await page.goto("https://uno-km.github.io/uno-km/")
-    title = await page.title()
-    print(f"Page Title: {title}")
-    await browser.close()
-
-import asyncio
-asyncio.run(main())
-</code></pre>
+browser = TermuxBrowser.launch(headless=True)
+page = browser.new_page()
+page.goto("https://uno-km.vercel.app")
+page.screenshot(path="termux_capture.png")
+browser.close()</code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code>import { chromium } from "termux-playwright";
+          <pre><code>import { TermuxBrowser } from "termux-playwright";
 
-const browser = await chromium.launch({ headless: true });
+const browser = await TermuxBrowser.launch({ headless: true });
 const page = await browser.newPage();
-await page.goto("https://uno-km.github.io/uno-km/");
-console.log("Title:", await page.title());
-await browser.close();
-</code></pre>
+await page.goto("https://uno-km.vercel.app");
+await page.screenshot({ path: "capture.png" });
+await browser.close();</code></pre>
         </div>
       </div>
 

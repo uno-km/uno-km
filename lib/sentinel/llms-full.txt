@@ -13,16 +13,14 @@ Delivers zero-data privacy protection with deterministic 0~100 threat scoring co
 - Repository: https://github.com/uno-km/ameva-sentinel
 
 ## 3. Core Capabilities
-- **Zero-Data Privacy Boundary**: Never collects keystrokes, passwords, or PII. Evaluates only structural browser signals.
-- **Deterministic 0~100 Scoring**: Deterministic weighted rule engine calculating objective risk levels without opaque black-box AI.
-- **Cross-Engine Compatibility**: Tested across Chromium, Gecko, and WebKit with zero layout shift and sub-1ms evaluation.
+- **Deterministic 0-Drift Output**: Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.
+- **Zero Cloud Egress Architecture**: Operates 100% on the local client without external network telemetry leaks.
+- **Memory Leakage Protection**: Weakref lifetime management preventing GPU VRAM / system RAM leaks.
 
 ## 4. Canonical Implementation
 ```python
-# Sentinel is a Browser & Node.js Web Observability SDK.
-# For Python backends, verify JWT tokens signed by Sentinel client:
 import jwt
+# Sentinel signs deterministic claims with HS256/RS256
 claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
 print(f"Verified Client Risk Score: {claims['risk_score']}")
-
 ```

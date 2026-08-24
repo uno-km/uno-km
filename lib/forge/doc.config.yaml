@@ -1,70 +1,79 @@
-# docs/doc.config.yaml
-name: "AMEVA-Forge"
-package_name_pypi: "ameva"
-package_name_npm: ""
-version: "v1.0.0"
-release_name: "WebGPU Stable"
-license: "Apache-2.0"
-platform: "Browser WebGPU / Pyodide WASM"
-github_repo_url: "https://github.com/uno-km/AMEVA-Forge"
-
-tagline_en: "Browser-Native WebGPU Autograd Deep Learning Engine & Real-Time Interactive Studio"
-tagline_ko: "WebGPU 컴퓨트 셰이더 기반 브라우저 네이티브 Autograd 딥러닝 텐서 엔진 및 실시간 스튜디오"
-
-quick_install_cmd: "pip install ameva"
-
-why_challenge_en: "Running deep learning and autograd workloads in client browsers typically suffers from sluggish JavaScript CPU emulation and heavy GPU VRAM memory leaks."
-why_challenge_ko: "웹 브라우저 내부에서 딥러닝 및 역전파를 수행할 때 순수 JavaScript CPU 연산의 심각한 지연과 GPU 버퍼 고갈 문제가 발생합니다."
-
-description_en: "Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks."
-description_ko: "PyTorch 구문 호환 텐서 연산을 순수 WebGPU WGSL 컴퓨트 셰이더로 병렬 컴파일하고, weakref 기반 링 버퍼 풀링으로 VRAM 누수 없는 무결점 클라이언트 연산을 제공합니다."
-
-features:
-  - title_en: "Pure WebGPU WGSL Compute Shaders"
-    title_ko: "순수 WebGPU WGSL 컴퓨트 셰이더"
-    desc_en: "Direct GPU hardware dispatching for forward and backward passes with zero JS overhead."
-    desc_ko: "순방향 및 역방향 연산을 브라우저 GPU 하드웨어에 직접 디스패치하여 초고속 병렬 처리를 수행합니다."
-  - title_en: "PyTorch Syntax Compatibility"
-    title_ko: "PyTorch 구문 완벽 호환"
-    desc_en: "Supports familiar Tensor API, autograd DAG, backward(), and standard optimizers."
-    desc_ko: "PyTorch와 완벽히 호환되는 Tensor API, DAG 역전파, backward(), 옵티마이저를 지원합니다."
-  - title_en: "Leak-Free GPU Buffer Pooling"
-    title_ko: "무누수 GPU 버퍼 풀링 및 수명 주기 관리"
-    desc_en: "Weakref lifecycle management preventing VRAM exhaustion during long training runs."
-    desc_ko: "Weakref 수명 주기 관리와 버퍼 풀링으로 장시간 모델 학습 시 GPU 메모리 고갈을 원천 차단합니다."
-
-matrix_table:
-  - category: "Compute Backend"
-    operations: "WebGPU WGSL Shaders, FP16/FP32 Tensors, Dynamic DAG"
-    status: "Production"
-  - category: "Deep Learning Layers"
-    operations: "Linear, Conv2D, LayerNorm, Multi-Head Attention, RoPE"
-    status: "Production"
-  - category: "Runtime Environments"
-    operations: "Modern Browsers (Chrome/Edge/Safari), Pyodide WASM, Web Workers"
-    status: "Production"
-
-code_example_py: |
-  import ameva as am
-
-  # 1. Initialize WebGPU tensor computation
-  device = am.device("webgpu" if am.cuda.is_available() else "cpu")
-  x = am.randn(64, 128, device=device, requires_grad=True)
-  w = am.randn(128, 10, device=device, requires_grad=True)
-
-  # 2. Forward pass and backpropagation
-  y = am.matmul(x, w).relu().sum()
-  y.backward()
-  print("Gradients computed on WebGPU:", w.grad.shape)
-
-code_example_js: |
-  import { Tensor, Device } from "https://uno-km.github.io/uno-km/lib/forge/dist/forge.esm.js";
-
-  const dev = new Device("webgpu");
-  await dev.init();
-
-  const x = Tensor.randn([64, 128], { device: dev, requiresGrad: true });
-  const w = Tensor.randn([128, 10], { device: dev, requiresGrad: true });
-  const y = x.matmul(w).relu().sum();
-  y.backward();
-  console.log("WebGPU Gradient Output:", w.grad);
+{
+  "name": "AMEVA-Forge",
+  "lib_slug": "forge",
+  "package_name_pypi": "ameva",
+  "package_name_npm": "",
+  "version": "v1.0.0",
+  "release_name": "Browser-Native WebGPU Autograd Engine",
+  "license": "Apache-2.0",
+  "platform": "ARM64 / WebGPU / Web Standard",
+  "github_repo_url": "https://github.com/uno-km/AMEVA-Forge",
+  "tagline_en": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+  "tagline_ko": "PyTorch 구문 호환 및 클라이언트 연산 오프로딩의 브라우저 네이티브 WebGPU 딥러닝 텐서 엔진",
+  "quick_install_cmd": "pip install ameva\n# or in browser:\n<script src=\"https://uno-km.github.io/uno-km/lib/forge/ameva.js\"></script>",
+  "why_challenge_en": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+  "why_challenge_ko": "서버 측 GPU 연산 비용은 사용자 수에 비례하여 폭증하는 반면, 사용자 브라우저의 고성능 GPU는 유휴 상태로 방치됩니다.",
+  "description_en": "Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.",
+  "description_ko": "자동미분 연산 그래프를 WGSL WebGPU 셰이더로 직접 컴파일하여 서버 비용 0원으로 클라이언트 브라우저에서 딥러닝 연산을 직접 가속합니다.",
+  "code_example_py": "import ameva as am\n\n# PyTorch-compatible WebGPU Engine\nx = am.tensor([[1.0, 2.0], [3.0, 4.0]], device=\"webgpu\", requires_grad=True)\ny = (x ** 2).sum()\ny.backward()\nprint(\"WebGPU Gradients:\", x.grad)",
+  "code_example_js": "import { Tensor, AutoGrad } from \"https://uno-km.github.io/uno-km/lib/forge/ameva.js\";\n\nconst x = new Tensor([1.0, 2.0, 3.0, 4.0], { shape: [2, 2], requiresGrad: true });\nconst y = x.pow(2).sum();\ny.backward();\nconsole.log(\"Gradients:\", x.grad.data);",
+  "custom_pages_overview": [
+    {
+      "href": "what-is-forge.html",
+      "title": "Why Client-Compute Offloading",
+      "subtitle": "Zero-server-cost paradigm with browser WebGPU",
+      "body": "<h3>Client-Compute Paradigm</h3><p>How AMEVA-Forge offloads heavy mathematical matrix operations to the client browser GPU.</p>"
+    }
+  ],
+  "custom_pages_reference": [
+    {
+      "href": "forge-vs-pytorch.html",
+      "title": "PyTorch Compatibility & Operator Mapping",
+      "subtitle": "1:1 equivalence table with torch.Tensor and torch.nn",
+      "body": "<h3>PyTorch Equivalence Table</h3><p>Comprehensive API mapping between PyTorch operators and WGSL compute shaders.</p>"
+    },
+    {
+      "href": "demo.html",
+      "title": "Interactive WebGPU Live Autograd Studio",
+      "subtitle": "Live in-browser neural network training with real-time loss graph",
+      "body": "<h3>WebGPU Live Studio</h3><p>Interactive playground executing WebGPU shaders in real time.</p>"
+    }
+  ],
+  "features": [
+    {
+      "title_en": "Deterministic 0-Drift Output",
+      "title_ko": "결정론적 0% 오차 연산",
+      "desc_en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+      "desc_ko": "이기종 하드웨어 간 비트 단위로 동일한 결정론적 수치 정밀도를 보장합니다."
+    },
+    {
+      "title_en": "Zero Cloud Egress Architecture",
+      "title_ko": "서버 비용 0원 완전 온디바이스",
+      "desc_en": "Operates 100% on the local client without external network telemetry leaks.",
+      "desc_ko": "외부 네트워크 통신 없이 100% 로컬 클라이언트에서 독립 구동됩니다."
+    },
+    {
+      "title_en": "Memory Leakage Protection",
+      "title_ko": "자동 메모리 버퍼 풀링 보호",
+      "desc_en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+      "desc_ko": "Weakref 수명 주기 관리로 메모리 누수를 원천 차단합니다."
+    }
+  ],
+  "matrix_table": [
+    {
+      "category": "Compute Kernel",
+      "operations": "Hardware Native Accelerated Kernels",
+      "status": "Production"
+    },
+    {
+      "category": "Memory Subsystem",
+      "operations": "Zero-Copy Ring Buffers & Weakref GC",
+      "status": "Production"
+    },
+    {
+      "category": "Runtime Compatibility",
+      "operations": "Android Termux Bionic / Browser WebGPU",
+      "status": "Production"
+    }
+  ]
+}

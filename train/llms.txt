@@ -1,27 +1,19 @@
 # Termux-Train (v1.0.0)
-> Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework
+> Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android
 
 ## Quick Specification for AI Coding Agents
 - Official Repo: https://github.com/uno-km/termux-train
 - Installation: `pip install termux-train`
-- Architecture: Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy serialization and memory-mapped LoRA backpropagation on ARM64.
+- Architecture: Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.
 
 ## Canonical Code Pattern
 ```python
 import termux_train as tt
 
-# 1. Define model with LoRA layers
-model = tt.nn.TransformerLoRA(vocab_size=32000, dim=512, lora_rank=8)
-optimizer = tt.optim.AdamW(model.parameters(), lr=1e-4)
-
-# 2. Train on-device with zero memory overhead
-for epoch in range(5):
-    loss = model(inputs, targets)
-    loss.backward()
-    optimizer.step()
-    optimizer.zero_grad()
-    print(f"Epoch {epoch}: Loss = {loss.item():.4f}")
-
+x = tt.tensor([1.0, 2.0, 3.0], requires_grad=True)
+y = (x * 2.0 + 1.0).sum()
+y.backward()
+print("Gradients:", x.grad)
 ```
 
 ## Key Constraints

@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | AMEVA-Forge</title>
-  <meta name="description" content="Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks.">
+  <meta name="description" content="Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (WebGPU Stable)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Browser-Native WebGPU Autograd Engine)</span>
       <div class="lang-selector-wrapper"></div>
       <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       
@@ -32,6 +33,7 @@
       <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
       <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
       <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="what-is-forge.html">Why Client-Compute Offloading</a></li>
     </ul>
     <h3 data-i18n="common.nav.reference">Official Reference</h3>
     <ul>
@@ -39,6 +41,8 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" class="active" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="forge-vs-pytorch.html">PyTorch Compatibility & Operator Mapping</a></li>
+      <li><a href="demo.html">Interactive WebGPU Live Autograd Studio</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -66,7 +70,7 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v1.0.0 - WebGPU Stable (Current)</h3>
+      <h3>v1.0.0 - Browser-Native WebGPU Autograd Engine (Current)</h3>
          <ul>
            <li>Standardized on Tomcat/Apache Classic Engineering Design System.</li>
            <li>Integrated 6-language client-side i18n DOM translation engine.</li>

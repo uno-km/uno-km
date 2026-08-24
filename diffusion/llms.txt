@@ -1,24 +1,20 @@
-# Termux-Diffusion (v1.1.1)
-> Native On-Device Stable Diffusion Runtime for Android Termux & ARM64
+# Termux-Diffusion (v1.0.0)
+> Non-Root On-Device Stable Diffusion Image Generation Framework for Android Termux
 
 ## Quick Specification for AI Coding Agents
 - Official Repo: https://github.com/uno-km/termux-diffusion
 - Installation: `pip install termux-diffusion
-# or: npm install termux-diffusion`
-- Architecture: Executes quantized Stable Diffusion models directly on Android Bionic libc with NEON SIMD vector acceleration and direct Samsung Gallery indexing.
+# or:
+npm install termux-diffusion`
+- Architecture: Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 / Turbo entirely locally within 4GB RAM.
 
 ## Canonical Code Pattern
 ```python
 import termux_diffusion as td
 
-# 1. Generate image on Android hardware
-image_path = td.generate(
-    prompt="Cyberpunk Seoul city at night, neon lights, 8k",
-    model="sd-turbo",
-    steps=4
-)
-print(f"Generated and saved to Gallery: {image_path}")
-
+pipe = td.DiffusionPipeline.from_pretrained("sd-turbo-arm64")
+image = pipe.generate("A cinematic futuristic laboratory in Seoul", steps=4)
+image.save("output.png")
 ```
 
 ## Key Constraints

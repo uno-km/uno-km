@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMEVA-Forge | Official Documentation</title>
-  <meta name="description" content="Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks.">
+  <meta name="description" content="Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (WebGPU Stable)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Browser-Native WebGPU Autograd Engine)</span>
       <div class="lang-selector-wrapper"></div>
       <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       
@@ -32,6 +33,7 @@
       <li><a href="index.html" class="active" data-i18n="common.nav.home">Home / Architecture</a></li>
       <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
       <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="what-is-forge.html">Why Client-Compute Offloading</a></li>
     </ul>
     <h3 data-i18n="common.nav.reference">Official Reference</h3>
     <ul>
@@ -39,6 +41,8 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="forge-vs-pytorch.html">PyTorch Compatibility & Operator Mapping</a></li>
+      <li><a href="demo.html">Interactive WebGPU Live Autograd Studio</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -66,7 +70,7 @@
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
       <h2 data-i18n="home.title">AMEVA-Forge</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Browser-Native WebGPU Autograd Deep Learning Engine & Real-Time Interactive Studio</p>
+      <p class="subtitle" data-i18n="home.subtitle">Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax</p>
 
       <!-- Section 2: Badges Bar -->
       <div class="badges-bar">
@@ -74,37 +78,39 @@
         <a href="https://pypistats.org/packages/ameva" target="_blank"><img src="https://img.shields.io/pypi/dm/ameva.svg?color=2563eb&label=PyPI%20Downloads" alt="PyPI Downloads"></a>
         <img src="https://img.shields.io/badge/license-Apache-2.0-success.svg" alt="License">
         <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
-        <img src="https://img.shields.io/badge/platform-Browser_WebGPU_/_Pyodide_WASM-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-ARM64_/_WebGPU_/_Web_Standard-blueviolet.svg" alt="Platform">
       </div>
 
       <!-- Section 3: 1-Line Quick Installation Alert -->
       <div class="alert alert-tip">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
-        <pre><code>pip install ameva</code></pre>
+        <pre><code>pip install ameva
+# or in browser:
+<script src="https://uno-km.github.io/uno-km/lib/forge/ameva.js"></script></code></pre>
       </div>
 
       <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Running deep learning and autograd workloads in client browsers typically suffers from sluggish JavaScript CPU emulation and heavy GPU VRAM memory leaks.</p>
+      <p data-i18n="home.challengeText">Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks.</p>
+      <p data-i18n="home.breakthroughText">Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.</p>
 
       <!-- Section 5: Key Capabilities Grid -->
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Pure WebGPU WGSL Compute Shaders</h4>
-          <p data-i18n="home.features.0.desc">Direct GPU hardware dispatching for forward and backward passes with zero JS overhead.</p>
+          <h4 data-i18n="home.features.0.title">Deterministic 0-Drift Output</h4>
+          <p data-i18n="home.features.0.desc">Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">PyTorch Syntax Compatibility</h4>
-          <p data-i18n="home.features.1.desc">Supports familiar Tensor API, autograd DAG, backward(), and standard optimizers.</p>
+          <h4 data-i18n="home.features.1.title">Zero Cloud Egress Architecture</h4>
+          <p data-i18n="home.features.1.desc">Operates 100% on the local client without external network telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Leak-Free GPU Buffer Pooling</h4>
-          <p data-i18n="home.features.2.desc">Weakref lifecycle management preventing VRAM exhaustion during long training runs.</p>
+          <h4 data-i18n="home.features.2.title">Memory Leakage Protection</h4>
+          <p data-i18n="home.features.2.desc">Weakref lifetime management preventing GPU VRAM / system RAM leaks.</p>
         </div>
       </div>
 
@@ -120,18 +126,18 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Compute Backend</strong></td>
-            <td>WebGPU WGSL Shaders, FP16/FP32 Tensors, Dynamic DAG</td>
+            <td><strong>Compute Kernel</strong></td>
+            <td>Hardware Native Accelerated Kernels</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Deep Learning Layers</strong></td>
-            <td>Linear, Conv2D, LayerNorm, Multi-Head Attention, RoPE</td>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers & Weakref GC</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Runtime Environments</strong></td>
-            <td>Modern Browsers (Chrome/Edge/Safari), Pyodide WASM, Web Workers</td>
+            <td><strong>Runtime Compatibility</strong></td>
+            <td>Android Termux Bionic / Browser WebGPU</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
@@ -147,29 +153,19 @@
         <div class="code-tab-content" style="display:block;">
           <pre><code>import ameva as am
 
-# 1. Initialize WebGPU tensor computation
-device = am.device("webgpu" if am.cuda.is_available() else "cpu")
-x = am.randn(64, 128, device=device, requires_grad=True)
-w = am.randn(128, 10, device=device, requires_grad=True)
-
-# 2. Forward pass and backpropagation
-y = am.matmul(x, w).relu().sum()
+# PyTorch-compatible WebGPU Engine
+x = am.tensor([[1.0, 2.0], [3.0, 4.0]], device="webgpu", requires_grad=True)
+y = (x ** 2).sum()
 y.backward()
-print("Gradients computed on WebGPU:", w.grad.shape)
-</code></pre>
+print("WebGPU Gradients:", x.grad)</code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code>import { Tensor, Device } from "https://uno-km.github.io/uno-km/lib/forge/dist/forge.esm.js";
+          <pre><code>import { Tensor, AutoGrad } from "https://uno-km.github.io/uno-km/lib/forge/ameva.js";
 
-const dev = new Device("webgpu");
-await dev.init();
-
-const x = Tensor.randn([64, 128], { device: dev, requiresGrad: true });
-const w = Tensor.randn([128, 10], { device: dev, requiresGrad: true });
-const y = x.matmul(w).relu().sum();
+const x = new Tensor([1.0, 2.0, 3.0, 4.0], { shape: [2, 2], requiresGrad: true });
+const y = x.pow(2).sum();
 y.backward();
-console.log("WebGPU Gradient Output:", w.grad);
-</code></pre>
+console.log("Gradients:", x.grad.data);</code></pre>
         </div>
       </div>
 

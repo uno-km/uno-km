@@ -141,18 +141,26 @@ def render_header(cfg: dict, active_page: str) -> str:
   </header>"""
 
 
-def render_sidebar(active_page: str, current_lib: str = "") -> str:
+def render_sidebar(cfg: dict, active_page: str) -> str:
+    current_lib = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
+    
     pages_overview = [
         ("index.html", "common.nav.home", "Home / Architecture"),
         ("installation.html", "common.nav.installation", "Installation Guide"),
         ("quickstart.html", "common.nav.quickstart", "Quickstart & Recipes"),
     ]
+    for cp in cfg.get("custom_pages_overview", []):
+        pages_overview.append((cp["href"], cp.get("i18n_key", ""), cp["title"]))
+
     pages_reference = [
         ("api-reference.html", "common.nav.apiReference", "API Reference"),
         ("benchmarks.html", "common.nav.benchmarks", "Benchmarks & Profiling"),
         ("advanced-parameters.html", "common.nav.advancedParams", "Advanced Parameters"),
         ("versions.html", "common.nav.versions", "Version Archive")
     ]
+    for cp in cfg.get("custom_pages_reference", []):
+        pages_reference.append((cp["href"], cp.get("i18n_key", ""), cp["title"]))
+
     pages_ecosystem = [
         ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
         ("/lib/sentinel/", "sentinel", "AMEVA Sentinel (Security SDK)"),
@@ -178,8 +186,9 @@ def render_sidebar(active_page: str, current_lib: str = "") -> str:
     <ul>"""
     for href, i18n_key, title in pages_overview:
         act = ' class="active"' if href == active_page else ''
+        i18n_attr = f' data-i18n="{i18n_key}"' if i18n_key else ''
         html += f"""
-      <li><a href="{href}"{act} data-i18n="{i18n_key}">{title}</a></li>"""
+      <li><a href="{href}"{act}{i18n_attr}>{title}</a></li>"""
     
     html += """
     </ul>
@@ -187,8 +196,9 @@ def render_sidebar(active_page: str, current_lib: str = "") -> str:
     <ul>"""
     for href, i18n_key, title in pages_reference:
         act = ' class="active"' if href == active_page else ''
+        i18n_attr = f' data-i18n="{i18n_key}"' if i18n_key else ''
         html += f"""
-      <li><a href="{href}"{act} data-i18n="{i18n_key}">{title}</a></li>"""
+      <li><a href="{href}"{act}{i18n_attr}>{title}</a></li>"""
 
     html += """
     </ul>
@@ -302,13 +312,14 @@ def render_index_html(cfg: dict) -> str:
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
 {render_header(cfg, "index.html")}
 
   <div class="container">
-{render_sidebar("index.html", lib_slug)}
+{render_sidebar(cfg, "index.html")}
 
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
@@ -389,13 +400,14 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
 {render_header(cfg, active_page)}
 
   <div class="container">
-{render_sidebar(active_page, lib_slug)}
+{render_sidebar(cfg, active_page)}
 
     <main class="content">
       <h2>{title}</h2>
@@ -829,6 +841,12 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
             shutil.copy2(fav_src, output_dir / "favicon.svg")
             shutil.copy2(fav_src, assets_out / "favicon.svg")
 
+        # Copy common.js from shared/common.js
+    shared_common = Path(r"c:\Users\GAME\Desktop\uno-km\dev\uno-km\shared\common.js")
+    if shared_common.exists():
+        shutil.copy2(shared_common, assets_out / "common.js")
+        shutil.copy2(shared_common, output_dir / "common.js")
+
     # 2. Build index.html
     index_html = render_index_html(cfg)
     (output_dir / "index.html").write_text(index_html, encoding="utf-8")
@@ -882,6 +900,16 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
     for filename, title, subtitle, body in subpages:
         page_html = render_generic_page(cfg, filename, title, subtitle, body)
         (output_dir / filename).write_text(page_html, encoding="utf-8")
+
+        # 3.1 Build Custom Subpages
+    for cp in cfg.get("custom_pages_overview", []) + cfg.get("custom_pages_reference", []):
+        cp_href = cp.get("href", "")
+        cp_title = cp.get("title", "")
+        cp_subtitle = cp.get("subtitle", "")
+        cp_body = cp.get("body", f"<p>{cp_subtitle}</p>")
+        if cp_href and not (output_dir / cp_href).exists():
+            cp_html = render_generic_page(cfg, cp_href, cp_title, cp_subtitle, cp_body)
+            (output_dir / cp_href).write_text(cp_html, encoding="utf-8")
 
     # 4. Generate AI Feeds
     render_ai_feeds(cfg, output_dir)

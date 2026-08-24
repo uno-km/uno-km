@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMEVA-MCP-Hub | Official Documentation</title>
-  <meta name="description" content="Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.">
+  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v3.0.0 (Universal Polyglot & AI Vector Hub)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v3.0.0 (Universal Polyglot & AI Vector MCP Hub)</span>
       <div class="lang-selector-wrapper"></div>
       
       <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
@@ -39,10 +40,11 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="tools.html">Polyglot WASM Tool Catalog & Manifests</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
-      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/mcp/" class="active">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
       <li><a href="/lib/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
@@ -72,9 +74,9 @@
       <div class="badges-bar">
         <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="npm Version"></a>
         <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/dm/ameva-mcp-hub.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
-        <img src="https://img.shields.io/badge/license-MIT-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/license-Apache-2.0-success.svg" alt="License">
         <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
-        <img src="https://img.shields.io/badge/platform-WebAssembly_WASI_/_Node.js_18+-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-ARM64_/_WebGPU_/_Web_Standard-blueviolet.svg" alt="Platform">
       </div>
 
       <!-- Section 3: 1-Line Quick Installation Alert -->
@@ -88,37 +90,25 @@ npm install ameva-mcp-hub</code></pre>
 
       <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Traditional MCP server setups require heavy local compilers (JDK, Rust, Clang, Python venvs) and multiple background daemons for each repository, causing massive memory overhead and frequent dependency conflicts across client platforms.</p>
+      <p data-i18n="home.challengeText">Traditional MCP setups require gigabytes of compiler toolchains (JDK, Rust, Python virtualenvs) for each repository on the host machine with heavy memory overhead.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.</p>
+      <p data-i18n="home.breakthroughText">Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.</p>
 
       <!-- Section 5: Key Capabilities Grid -->
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Zero-Toolchain Polyglot WASM Engine</h4>
-          <p data-i18n="home.features.0.desc">Executes C++, Rust, Java (TeaVM), and Go binaries in memory with zero local compiler requirements.</p>
+          <h4 data-i18n="home.features.0.title">Deterministic 0-Drift Output</h4>
+          <p data-i18n="home.features.0.desc">Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Dynamic Multi-Repository Subscription</h4>
-          <p data-i18n="home.features.1.desc">Subscribe to multiple GitHub tool repositories on the fly with real-time notifications/tools/list_changed propagation.</p>
+          <h4 data-i18n="home.features.1.title">Zero Cloud Egress Architecture</h4>
+          <p data-i18n="home.features.1.desc">Operates 100% on the local client without external network telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">AI Vector & Semantic Ranking Engine</h4>
-          <p data-i18n="home.features.2.desc">High-dimensional Cosine Similarity and in-memory Top-K semantic search for local RAG pipelines.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">Heuristic Adaptive Route Dispatcher</h4>
-          <p data-i18n="home.features.3.desc">Automatically probes host environment and task risk to route execution between HOST_NATIVE and WASM_SANDBOX.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">Zero-Browser Pure Node.js Architecture</h4>
-          <p data-i18n="home.features.4.desc">450ms cold boot and 30MB low memory footprint completely eliminating browser/Puppeteer background windows.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.5.title">Dual-Purpose CLI & Embeddable SDK</h4>
-          <p data-i18n="home.features.5.desc">Usable as a standalone MCP server via npx or as an isolated execution engine inside custom JS/TS backends.</p>
+          <h4 data-i18n="home.features.2.title">Memory Leakage Protection</h4>
+          <p data-i18n="home.features.2.desc">Weakref lifetime management preventing GPU VRAM / system RAM leaks.</p>
         </div>
       </div>
 
@@ -134,23 +124,18 @@ npm install ameva-mcp-hub</code></pre>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Polyglot WASM Runtimes</strong></td>
-            <td>C++ (Clang), Rust (wasm32-wasip1), Java (TeaVM/GraalVM), Go (TinyGo)</td>
-            <td><span class="status-badge active">Production (<1ms)</span></td>
+            <td><strong>Compute Kernel</strong></td>
+            <td>Hardware Native Accelerated Kernels</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>AI & Vector Search</strong></td>
-            <td>Cosine Similarity (384/1536-dim), Semantic Top-K Search, Memory Buffer Pooling</td>
-            <td><span class="status-badge active">Production (<0.1ms)</span></td>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers & Weakref GC</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Execution Routing</strong></td>
-            <td>HOST_NATIVE (OS full speed), WASM_SANDBOX (Isolated memory), Fallback</td>
-            <td><span class="status-badge active">Production (Auto)</span></td>
-          </tr>
-          <tr>
-            <td><strong>Multi-Repo Management</strong></td>
-            <td>Parallel Manifest Fetch, SSE Real-Time Sync, Zero-Downtime Hot-Reload</td>
+            <td><strong>Runtime Compatibility</strong></td>
+            <td>Android Termux Bionic / Browser WebGPU</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
@@ -158,34 +143,15 @@ npm install ameva-mcp-hub</code></pre>
 
       <!-- Section 7: Canonical Usage Example -->
       <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
-      <div class="code-tab-group">
-        <div class="code-tabs-header">
-          <button class="code-tab-btn active" type="button">Python (pip)</button>
-          <button class="code-tab-btn" type="button">Node.js (npm)</button>
-        </div>
-        <div class="code-tab-content" style="display:block;">
-          <pre><code># Connect Claude Desktop / Cursor via npx:
-# { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
-</code></pre>
-        </div>
-        <div class="code-tab-content" style="display:none;">
-          <pre><code>import { WasiRunner, NodeExecutor, heuristicRouter } from "ameva-mcp-hub";
+      <pre><code>import { MCPHub } from "ameva-mcp-hub";
 
-// 1. Execute C++/Rust/Java WASM in memory
-const runner = new WasiRunner({ args: ["1234", "5678"] });
-const result = await runner.run(wasmBuffer);
-console.log("Result:", result.stdout);
+// 1. Connect to Universal WASM Hub
+const hub = new MCPHub({ port: 3000, vectorSearch: true });
+await hub.start();
 
-// 2. Compute AI Cosine Similarity
-const executor = new NodeExecutor();
-const sim = await executor.executeTool("vector_cosine_similarity", {
-  vecA: [0.8, 0.6, 0.0],
-  vecB: [0.79, 0.61, 0.05]
-});
-console.log("Similarity:", sim.content[0].text);
-</code></pre>
-        </div>
-      </div>
+// 2. Execute polyglot WASM tools instantly without installing host compilers
+const result = await hub.executeTool("calc_hash", { input: "AMEVA Sovereign Data" });
+console.log("Output:", result);</code></pre>
 
       <!-- Section 8: Getting Started Navigation -->
       <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
@@ -198,7 +164,7 @@ console.log("Similarity:", sim.content[0].text);
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the MIT License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

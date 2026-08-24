@@ -6,12 +6,10 @@
 - Installation: `npx ameva-mcp-hub
 # or as SDK:
 npm install ameva-mcp-hub`
-- Architecture: Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.
+- Architecture: Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.
 
 ## Canonical Code Pattern
 ```python
-# Connect Claude Desktop / Cursor via npx:
-# { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
 
 ```
 

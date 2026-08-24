@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | Termux-Train</title>
-  <meta name="description" content="Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy serialization and memory-mapped LoRA backpropagation on ARM64.">
+  <meta name="description" content="Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">Termux-Train</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Stable Release)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (Bionic C SafeTensors DAG Autograd)</span>
       <div class="lang-selector-wrapper"></div>
       <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       
@@ -39,6 +40,8 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="training-guide.html">On-Device LoRA Fine-Tuning Step-by-Step</a></li>
+      <li><a href="models.html">Supported Transformer Architecture DAGs</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>

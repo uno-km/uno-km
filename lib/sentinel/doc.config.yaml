@@ -1,63 +1,66 @@
-# docs/doc.config.yaml
-name: "AMEVA-Sentinel"
-package_name_pypi: ""
-package_name_npm: "ameva-sentinel"
-version: "v1.0.0"
-release_name: "Stable Release"
-license: "Apache-2.0"
-platform: "Universal Browser / Web Standard"
-github_repo_url: "https://github.com/uno-km/ameva-sentinel"
-
-tagline_en: "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK"
-tagline_ko: "개인정보 침해 없는 0-Data 브라우저 관측 및 0~100점 확정적 위험도 채점 보안 SDK"
-
-quick_install_cmd: "npm install ameva-sentinel\n# or via CDN script:\n<script src=\"https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js\"></script>"
-
-why_challenge_en: "Conventional client security SDKs compromise user privacy by capturing sensitive keystrokes, form inputs, and behavioral telemetry back to central cloud collectors."
-why_challenge_ko: "기존의 클라이언트 보안 SDK는 민감한 키 입력, 폼 데이터, 행동 데이터를 중앙 클라우드로 전송하여 사용자 개인정보 침해 위험을 초래합니다."
-
-description_en: "Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage."
-description_ko: "입력값 수집 없이 확정적 0~100점 위험도 채점 알고리즘을 클라이언트 내부에서 완전히 연산하며, 외부 유출 없이 브라우저 무결성을 검증합니다."
-
-features:
-  - title_en: "Zero-Data Privacy Boundary"
-    title_ko: "개인정보 0-Data 무결성 경계"
-    desc_en: "Never collects keystrokes, passwords, or PII. Evaluates only structural browser signals."
-    desc_ko: "키보드 입력이나 개인정보를 일절 수집하지 않으며, 오직 브라우저 구조적 무결성 시그널만 분석합니다."
-  - title_en: "Deterministic 0~100 Scoring"
-    title_ko: "0~100점 확정적 위험도 채점"
-    desc_en: "Deterministic weighted rule engine calculating objective risk levels without opaque black-box AI."
-    desc_ko: "블랙박스 인공지능 대신 검증 가능한 확정적 가중치 룰 엔진으로 객관적인 위험 점수를 산출합니다."
-  - title_en: "Cross-Engine Compatibility"
-    title_ko: "주요 브라우저 엔진 표준 호환"
-    desc_en: "Tested across Chromium, Gecko, and WebKit with zero layout shift and sub-1ms evaluation."
-    desc_ko: "크로미움, 게코, 웹킷 등 주요 브라우저 엔진에서 1ms 미만의 지연시간과 무간섭 실행을 보장합니다."
-
-matrix_table:
-  - category: "Observability Engine"
-    operations: "CDP Signal Audit, DOM Tree Integrity, Extension Injection Probe"
-    status: "Production"
-  - category: "Scoring Matrix"
-    operations: "0~100 Weighted Deterministic Rules, Anomaly Flagging"
-    status: "Production"
-  - category: "Runtime Envelope"
-    operations: "Vanilla JS, React / Next.js, Web Worker Sandbox"
-    status: "Production"
-
-code_example_py: |
-  # Sentinel is a Browser & Node.js Web Observability SDK.
-  # For Python backends, verify JWT tokens signed by Sentinel client:
-  import jwt
-  claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
-  print(f"Verified Client Risk Score: {claims['risk_score']}")
-
-code_example_js: |
-  import { Sentinel } from "ameva-sentinel";
-
-  // 1. Initialize Sentinel SDK
-  const sentinel = new Sentinel({ sampleRate: 1.0, debug: false });
-  await sentinel.init();
-
-  // 2. Obtain deterministic client health score
-  const report = await sentinel.evaluate();
-  console.log("Client Risk Score:", report.score); // 0 (Safe) ~ 100 (High Risk)
+{
+  "name": "AMEVA-Sentinel",
+  "lib_slug": "sentinel",
+  "package_name_pypi": "",
+  "package_name_npm": "ameva-sentinel",
+  "version": "v1.0.0",
+  "release_name": "Target Discrimination & Trust Boundary Standard",
+  "license": "Apache-2.0",
+  "platform": "ARM64 / WebGPU / Web Standard",
+  "github_repo_url": "https://github.com/uno-km/ameva-sentinel",
+  "tagline_en": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+  "tagline_ko": "개인정보 침해 없는 0-Data 브라우저 관측 및 0~100점 확정적 위험도 채점 보안 SDK",
+  "quick_install_cmd": "npm install ameva-sentinel\n# or via CDN script:\n<script src=\"https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js\"></script>",
+  "why_challenge_en": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes, form inputs, and behavioral telemetry back to central cloud collectors.",
+  "why_challenge_ko": "기존의 클라이언트 보안 SDK는 민감한 키 입력, 폼 데이터, 행동 데이터를 중앙 클라우드로 전송하여 사용자 개인정보 침해 위험을 초래합니다.",
+  "description_en": "Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage.",
+  "description_ko": "입력값 수집 없이 확정적 0~100점 위험도 채점 알고리즘을 클라이언트 내부에서 완전히 연산하며, 외부 유출 없이 브라우저 무결성을 검증합니다.",
+  "code_example_py": "import jwt\n# Sentinel signs deterministic claims with HS256/RS256\nclaims = jwt.decode(sentinel_token, secret_key, algorithms=[\"HS256\"])\nprint(f\"Verified Client Risk Score: {claims['risk_score']}\")",
+  "code_example_js": "import { Sentinel } from \"ameva-sentinel\";\n\nconst sentinel = new Sentinel({ sampleRate: 1.0 });\nawait sentinel.init();\nconst report = await sentinel.evaluate();\nconsole.log(\"Client Risk Score:\", report.score); // 0 (Safe) ~ 100 (Risk)",
+  "custom_pages_overview": [],
+  "custom_pages_reference": [
+    {
+      "href": "admin.html",
+      "title": "Observability & Threat Discrimination Console",
+      "subtitle": "Deterministic rule engine live inspector and risk threshold tuning",
+      "body": "<h3>Threat Discrimination Engine</h3><p>Real-time client telemetry evaluation and token verification without PII collection.</p>"
+    }
+  ],
+  "features": [
+    {
+      "title_en": "Deterministic 0-Drift Output",
+      "title_ko": "결정론적 0% 오차 연산",
+      "desc_en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+      "desc_ko": "이기종 하드웨어 간 비트 단위로 동일한 결정론적 수치 정밀도를 보장합니다."
+    },
+    {
+      "title_en": "Zero Cloud Egress Architecture",
+      "title_ko": "서버 비용 0원 완전 온디바이스",
+      "desc_en": "Operates 100% on the local client without external network telemetry leaks.",
+      "desc_ko": "외부 네트워크 통신 없이 100% 로컬 클라이언트에서 독립 구동됩니다."
+    },
+    {
+      "title_en": "Memory Leakage Protection",
+      "title_ko": "자동 메모리 버퍼 풀링 보호",
+      "desc_en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+      "desc_ko": "Weakref 수명 주기 관리로 메모리 누수를 원천 차단합니다."
+    }
+  ],
+  "matrix_table": [
+    {
+      "category": "Compute Kernel",
+      "operations": "Hardware Native Accelerated Kernels",
+      "status": "Production"
+    },
+    {
+      "category": "Memory Subsystem",
+      "operations": "Zero-Copy Ring Buffers & Weakref GC",
+      "status": "Production"
+    },
+    {
+      "category": "Runtime Compatibility",
+      "operations": "Android Termux Bionic / Browser WebGPU",
+      "status": "Production"
+    }
+  ]
+}

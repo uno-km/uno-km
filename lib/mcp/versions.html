@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.">
+  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
+  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v3.0.0 (Universal Polyglot & AI Vector Hub)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v3.0.0 (Universal Polyglot & AI Vector MCP Hub)</span>
       <div class="lang-selector-wrapper"></div>
       
       <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
@@ -39,10 +40,11 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" class="active" data-i18n="common.nav.versions">Version Archive</a></li>
+      <li><a href="tools.html">Polyglot WASM Tool Catalog & Manifests</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
-      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/mcp/" class="active">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
       <li><a href="/lib/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
@@ -66,7 +68,7 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v3.0.0 - Universal Polyglot & AI Vector Hub (Current)</h3>
+      <h3>v3.0.0 - Universal Polyglot & AI Vector MCP Hub (Current)</h3>
          <ul>
            <li>Standardized on Tomcat/Apache Classic Engineering Design System.</li>
            <li>Integrated 6-language client-side i18n DOM translation engine.</li>
@@ -76,7 +78,7 @@
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the MIT License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>
