@@ -133,6 +133,9 @@ async function ensureSchema(sql) {
             );
         `;
 
+        // ── Privacy: target_type enum column (replacing deprecated target_text) ──
+        await sql`ALTER TABLE click_events ADD COLUMN IF NOT EXISTS target_type VARCHAR(20);`;
+
         isSchemaInitialized = true;
     } catch (e) {
         console.warn('Schema init note:', e.message);
@@ -264,14 +267,16 @@ export default async function handler(req, res) {
                     await sql`
                         INSERT INTO click_events (
                             session_id, visitor_id, pathname, event_type,
-                            target_tag, target_id, target_class, target_text, target_url, is_external
+                            target_tag, target_id, target_class, target_text, target_url, is_external,
+                            target_type
                         ) VALUES (
                             ${session_id}, ${visitor_id}, ${(ev.pathname || pathname || '/').slice(0, 255)},
                             ${(ev.event_type || 'interaction_click').slice(0, 50)}, ${(ev.target_tag || '').slice(0, 30)},
                             ${(ev.target_id || '').slice(0, 100)}, ${(ev.target_class || '').slice(0, 150)},
                             ${null},
                             ${(ev.target_url || '').slice(0, 1000)},
-                            ${!!ev.is_external}
+                            ${!!ev.is_external},
+                            ${normalizeTargetType(ev.target_type)}
                         );
                     `;
                 }

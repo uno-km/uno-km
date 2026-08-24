@@ -319,17 +319,17 @@
         <!-- 3-Way Triage Breakdown Cards (Exact Math: Human + AI + Tool = Total) -->
         <div class="tomcat-grid">
             <div class="tomcat-card" style="border-left: 4px solid #16a34a;">
-                <span class="card-label">1. Human Visitors (Verified Sessions)</span>
+                <span class="card-label">1. Low Automation Risk Sessions</span>
                 <div class="card-value" id="card-human-count" style="color: #16a34a;">0</div>
                 <span class="card-sub" id="card-human-pct">0% of total traffic</span>
             </div>
             <div class="tomcat-card" style="border-left: 4px solid #7c3aed;">
-                <span class="card-label">2. AI Agents &amp; LLMs (Automated Indexers)</span>
+                <span class="card-label">2. Claimed AI &amp; Bot Operators (Unverified)</span>
                 <div class="card-value" id="card-ai-count" style="color: #7c3aed;">0</div>
                 <span class="card-sub" id="card-ai-pct">0% of total traffic</span>
             </div>
             <div class="tomcat-card" style="border-left: 4px solid #b91c1c;">
-                <span class="card-label">3. Crawlers &amp; Tools (CLI / Drivers)</span>
+                <span class="card-label">3. High Automation Risk (Drivers / Tools)</span>
                 <div class="card-value" id="card-tool-count" style="color: #b91c1c;">0</div>
                 <span class="card-sub" id="card-tool-pct">0% of total traffic</span>
             </div>
@@ -580,7 +580,7 @@
                         html: '<span style="pointer-events:none;">' + c.country + '</span>'
                     });
                     const marker = L.marker([c.lat, c.lng], { icon: icon });
-                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.name + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Human: ' + c.human_count + ' &bull; AI: ' + c.ai_count + '</div>');
+                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.name + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>');
                     marker.on('click', () => focusDashRegion(c.country, c.lat, c.lng, 6));
                     dashMapMarkersLayer.addLayer(marker);
                 });
@@ -603,7 +603,7 @@
                         iconAnchor: [radius / 2, radius / 2]
                     });
                     const marker = L.marker([c.lat, c.lng], { icon: icon });
-                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.city + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Human: ' + c.human_count + ' &bull; AI: ' + c.ai_count + '</div>');
+                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.city + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>');
                     dashMapMarkersLayer.addLayer(marker);
                 });
             }
@@ -754,7 +754,7 @@
                     const aiCount = pubData.summary?.ai_count ?? pubData.summary?.ai_crawlers_identified ?? 82;
                     const totalAll = pubData.summary?.total_all_events ?? (humanCount + aiCount);
 
-                    document.getElementById('banner-events-count').innerHTML = '<strong>' + totalAll + ' Events (' + humanCount + ' Human + ' + aiCount + ' AI)</strong>';
+                    document.getElementById('banner-events-count').innerHTML = '<strong>' + totalAll + ' Events (' + humanCount + ' Low Risk + ' + aiCount + ' Bot Claims)</strong>';
                     document.getElementById('banner-last-event').innerText = formatDashTime(new Date(), 'time');
 
                     const humanPct = pubData.traffic_distribution?.human_percent ?? (totalAll > 0 ? Math.round((humanCount / totalAll) * 100) : 100);

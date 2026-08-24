@@ -391,7 +391,7 @@
       <div class="diagnosis-panel">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #cbd5e1; padding-bottom:10px;">
           <div>
-            <strong style="font-size:1.05rem; color:var(--primary-color, #004499);">Live Client Identity Matrix &amp; Triangle Triage Diagnosis</strong>
+            <strong style="font-size:1.05rem; color:var(--primary-color, #004499);">Live Client Risk Matrix &amp; Automation Triage Assessment</strong>
             <div style="font-size:0.8rem; color:#64748b; margin-top:2px;">Real-time passive evaluation of your current browser session against AMEVA-Sentinel engine.</div>
           </div>
           <button class="header-btn" onclick="runLiveClientDiagnosis()" style="background:#004499; color:#ffffff; font-weight:700; cursor:pointer;">Re-Scan My Session</button>
@@ -400,14 +400,14 @@
         <div class="diagnosis-grid">
           <!-- Triangle Radar Chart Canvas -->
           <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-            <div style="font-size:0.78rem; font-weight:700; color:#475569; margin-bottom:4px;">3-Way Identity Radar</div>
+            <div style="font-size:0.78rem; font-weight:700; color:#475569; margin-bottom:4px;">Automation & Client Risk Assessment</div>
             <div style="width:230px; height:200px; position:relative;">
               <canvas id="triangleRadarCanvas"></canvas>
             </div>
             <div style="font-family:var(--font-mono, monospace); font-size:0.72rem; color:#64748b; margin-top:4px;">
-              H: <strong id="diagScoreHuman" style="color:#16a34a;">--%</strong> &bull; 
-              AI: <strong id="diagScoreAi" style="color:#7c3aed;">--%</strong> &bull; 
-              Tool: <strong id="diagScoreTool" style="color:#b91c1c;">--%</strong>
+              Consistency: <strong id="diagScoreHuman" style="color:#16a34a;">--%</strong> &bull; 
+              Automation: <strong id="diagScoreAi" style="color:#7c3aed;">--%</strong> &bull; 
+              Abuse: <strong id="diagScoreTool" style="color:#b91c1c;">--%</strong>
             </div>
           </div>
 
@@ -416,15 +416,15 @@
             <div class="verdict-banner" id="diagVerdictBanner">
               <div class="verdict-title">
                 <span id="diagVerdictText">Analyzing your browser session...</span>
-                <span id="diagVerdictConfidence" style="font-family:var(--font-mono, monospace); font-size:0.85rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:3px; border:1px solid #bbf7d0;">Confidence: 98%</span>
+                <span id="diagVerdictConfidence" style="font-family:var(--font-mono, monospace); font-size:0.85rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:3px; border:1px solid #bbf7d0;">Signal Coverage: High</span>
               </div>
               <p id="diagVerdictExplanation" style="font-size:0.84rem; color:#334155; margin:6px 0 0 0;">
-                당신의 브라우저는 실제 물리 GPU 하드웨어 가속 및 정밀 렌더링 서명이 감지되어 <strong>인증된 인간 브라우저(Verified Human)</strong>에 가장 가깝습니다.
+                현재 세션에서 관측된 신호 기준, 자동화 증거가 낮은 수준입니다. <strong>이 결과는 인간 사용자임을 증명하지 않습니다.</strong>
               </p>
             </div>
 
             <!-- Evidence Breakdown Checklist -->
-            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:6px;">Deterministic Evidence Signals:</div>
+            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:6px;">Observed Evidence Signals:</div>
             <div id="diagEvidenceList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:6px;">
               <div class="evidence-tag"><span>WebGL Physical GPU:</span> <strong id="evGpu" style="color:#16a34a;">Scanning...</strong></div>
               <div class="evidence-tag"><span>Webdriver Flag:</span> <strong id="evWebdriver" style="color:#16a34a;">Scanning...</strong></div>
@@ -443,19 +443,19 @@
           <div class="metric-card-footer" id="valTotalFooter">201 Human + 82 AI</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">Verified Human Visitors</div>
+          <div class="metric-card-title">Low Automation Risk Sessions</div>
           <div class="metric-card-value" id="valSessions" style="color: #16a34a;">201</div>
           <div class="metric-card-footer" id="valHumanShare">71% of Total Traffic</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">Identified AI Bots &amp; Crawlers</div>
+          <div class="metric-card-title">Bot Claims &amp; Automation Signals</div>
           <div class="metric-card-value" id="valBots" style="color: #7c3aed;">82</div>
           <div class="metric-card-footer" id="valAiShare" style="color: #7c3aed;">29% of Total Traffic</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">Unique Client Footprints</div>
+          <div class="metric-card-title">Unique Pseudonymous Keys</div>
           <div class="metric-card-value" id="valVisitors" style="color: #004499;">94</div>
-          <div class="metric-card-footer">Cryptographic Fingerprints</div>
+          <div class="metric-card-footer">Rotating Session Keys</div>
         </div>
       </div>
 
@@ -585,7 +585,7 @@
       <!-- 7. 2 Columns Grid: Top AI Bots & Top Regions -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 24px;">
         <div class="chart-panel" style="margin-bottom: 0;">
-          <h3 style="margin-top: 0; font-size: 1.02rem;">Identified AI Agent Breakdown</h3>
+          <h3 style="margin-top: 0; font-size: 1.02rem;">Claimed AI Operator Breakdown</h3>
           <table class="stream-table">
             <thead>
               <tr>
@@ -642,8 +642,8 @@
 
       <!-- 9. Real Forensics Audit Ledger -->
       <div class="chart-panel" style="border-left: 4px solid #004499;">
-        <h3 style="margin-top: 0; font-size: 1.05rem;">Deep Forensic Fingerprint Ledger</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Live cryptographic footprints collected under strict GDPR-compliant zero-raw-storage policy:</p>
+        <h3 style="margin-top: 0; font-size: 1.05rem;">Client Signal Observation Ledger</h3>
+        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Observed client signals collected during active sessions. These signals are auxiliary evidence, not identity proof.</p>
         <div style="overflow-x: auto;">
           <table class="stream-table">
             <thead>
@@ -658,7 +658,7 @@
               </tr>
             </thead>
             <tbody id="forensicTableBody">
-              <tr><td colspan="7" style="text-align:center; color:var(--text-muted, #64748b);">Syncing cryptographic ledger...</td></tr>
+              <tr><td colspan="7" style="text-align:center; color:var(--text-muted, #64748b);">Loading signal observations...</td></tr>
             </tbody>
           </table>
         </div>
@@ -703,7 +703,7 @@
       </div>
 
       <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:4px; padding:12px; font-size:0.82rem;">
-        <div style="font-weight:700; margin-bottom:6px; color:#1e293b;">Client Hardware &amp; Cryptographic Signatures</div>
+        <div style="font-weight:700; margin-bottom:6px; color:#1e293b;">Client Hardware &amp; Observed Signals</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:var(--font-mono, monospace); font-size:0.78rem;">
           <div>WebGL Renderer: <strong id="mGpu">--</strong></div>
           <div>Display Refresh: <strong id="mHz">60Hz</strong></div>
@@ -735,9 +735,9 @@
       triangleRadarInstance = new Chart(canvas, {
         type: 'radar',
         data: {
-          labels: ['Human (Verified)', 'AI Agent (LLM)', 'Crawler / Tool'],
+          labels: ['Client Consistency', 'Automation Evidence', 'Abuse Indicators'],
           datasets: [{
-            label: 'Your Current Identity Match',
+            label: 'Automation Risk Assessment',
             data: [humanScore, aiScore, toolScore],
             backgroundColor: 'rgba(0, 68, 153, 0.25)',
             borderColor: '#004499',
@@ -838,30 +838,30 @@
       if (humanScore >= 70) {
         verdictBanner.style.background = '#f0fdf4';
         verdictBanner.style.borderColor = '#bbf7d0';
-        verdictText.innerText = '당신은 인증된 인간 브라우저(Verified Human)에 96% 가깝습니다!';
+        verdictText.innerText = '현재 세션의 자동화 위험이 낮은 수준입니다. 이 결과는 인간 사용자 증명이 아닙니다.';
         verdictText.style.color = '#15803d';
-        verdictConf.innerText = 'Confidence: 98%';
+        verdictConf.innerText = 'Signal Coverage: High';
         verdictConf.style.background = '#dcfce7';
         verdictConf.style.color = '#15803d';
-        verdictExpl.innerHTML = '물리적 GPU 가속(<code>' + gpuName.slice(0, 28) + '</code>) 및 정상적인 Canvas 서명이 확인되어 인간 브라우저로 최종 판정되었습니다.';
+        verdictExpl.innerHTML = 'GPU 렌더러(<code>' + gpuName.slice(0, 28) + '</code>) 및 Canvas 서명이 관측되었으며, 강한 자동화 증거는 발견되지 않았습니다.';
       } else if (toolScore >= 50) {
         verdictBanner.style.background = '#fef2f2';
         verdictBanner.style.borderColor = '#fecaca';
-        verdictText.innerText = '당신은 자동화 크롤러 / 드라이버(Tool/Crawler)에 가깝습니다!';
+        verdictText.innerText = '높은 자동화 위험이 관측되었습니다. 자동화 도구 또는 드라이버 신호가 감지되었습니다.';
         verdictText.style.color = '#b91c1c';
-        verdictConf.innerText = 'Risk Score: ' + toolScore + '/100';
+        verdictConf.innerText = 'Automation Risk: ' + toolScore + '/100';
         verdictConf.style.background = '#fee2e2';
         verdictConf.style.color = '#b91c1c';
-        verdictExpl.innerHTML = '가상 디바이스 서명 또는 자동화 Webdriver 플래그가 감지되어 도구/크롤러 카테고리로 판정되었습니다.';
+        verdictExpl.innerHTML = '가상 렌더러 또는 Webdriver 플래그가 관측되었습니다. 합법적 QA/RPA일 수 있습니다.';
       } else {
         verdictBanner.style.background = '#faf5ff';
         verdictBanner.style.borderColor = '#e9d5ff';
-        verdictText.innerText = '당신은 AI 에이전트 / LLM 인덱서에 가깝습니다!';
+        verdictText.innerText = '자동화 가능성이 관측되었습니다. AI 에이전트 UA가 주장(Claimed)되었으나 미검증 상태입니다.';
         verdictText.style.color = '#7e22ce';
-        verdictConf.innerText = 'Bot Score: ' + aiScore + '%';
+        verdictConf.innerText = 'Claim: Unverified';
         verdictConf.style.background = '#f3e8ff';
         verdictConf.style.color = '#7e22ce';
-        verdictExpl.innerHTML = 'AI 인덱싱 패턴이 감지되었습니다.';
+        verdictExpl.innerHTML = 'AI 인덱서 User-Agent 패턴이 매칭되었습니다. 역방향 DNS 검증은 미구현입니다.';
       }
 
       initTriangleRadar(humanScore, aiScore, toolScore);
@@ -965,8 +965,8 @@
             '<div style="font-size:13px; font-weight:800; color:' + markerColor + ';">' + country.name + ' (' + country.country + ')</div>' +
             '<div style="margin:4px 0; color:#475569;">Consolidated Traffic: <strong>' + country.count + ' sessions (' + country.percentage + '%)</strong></div>' +
             '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
-              '<span style="color:#004499; font-weight:700;">Human: ' + country.human_count + '</span>' +
-              '<span style="color:#7c3aed; font-weight:700;">AI Bots: ' + country.ai_count + '</span>' +
+              '<span style="color:#004499; font-weight:700;">Low Risk: ' + country.human_count + '</span>' +
+              '<span style="color:#7c3aed; font-weight:700;">Bot Claims: ' + country.ai_count + '</span>' +
             '</div>' +
             '<div style="margin-top:8px; text-align:center;">' +
               '<button class="btn-tomcat primary" style="padding:3px 10px; font-size:11px; width:100%;" onclick="focusRegion(&quot;' + country.country + '&quot;, ' + country.lat + ', ' + country.lng + ', 6)">' +
@@ -1015,10 +1015,10 @@
             '<strong style="font-size:13px; color:' + markerColor + ';">' + cluster.city + ' (' + cluster.country + ')</strong>' +
             '<div style="margin:4px 0; color:#475569;">City Traffic: <strong>' + cluster.count + ' sessions (' + cluster.percentage + '%)</strong></div>' +
             '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
-              '<span style="color:#004499; font-weight:700;">Human: ' + cluster.human_count + '</span>' +
-              '<span style="color:#7c3aed; font-weight:700;">AI Bots: ' + cluster.ai_count + '</span>' +
+              '<span style="color:#004499; font-weight:700;">Low Risk: ' + cluster.human_count + '</span>' +
+              '<span style="color:#7c3aed; font-weight:700;">Bot Claims: ' + cluster.ai_count + '</span>' +
             '</div>' +
-            '<div style="margin-top:6px; font-family:monospace; font-size:10px; color:#64748b;">Coord: [' + cluster.lat.toFixed(2) + ', ' + cluster.lng.toFixed(2) + ']</div>' +
+            '<div style="margin-top:6px; font-family:monospace; font-size:10px; color:#64748b;">Regional aggregate</div>' +
           '</div>';
 
           marker.bindPopup(popupContent);
@@ -1035,7 +1035,7 @@
             return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + c.country + '&quot;, ' + c.lat + ', ' + c.lng + ', 6)">' +
               '<div>' +
                 '<strong>' + c.name + ' (' + c.country + ')</strong>' +
-                '<div style="font-size:0.72rem; color:#64748b;">Human: ' + c.human_count + ' &bull; AI: ' + c.ai_count + '</div>' +
+                '<div style="font-size:0.72rem; color:#64748b;">Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>' +
               '</div>' +
               '<div style="text-align:right;">' +
                 '<strong style="color:#004499;">' + c.count + ' sessions</strong>' +
@@ -1055,7 +1055,7 @@
             return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + g.country + '&quot;, ' + g.lat + ', ' + g.lng + ', 8)">' +
               '<div>' +
                 '<strong>' + g.city + ', ' + g.country + '</strong>' +
-                '<div style="font-size:0.72rem; color:#64748b;">Coord: ' + g.lat.toFixed(2) + ', ' + g.lng.toFixed(2) + '</div>' +
+                '<div style="font-size:0.72rem; color:#64748b;">Regional centroid</div>' +
               '</div>' +
               '<div style="text-align:right;">' +
                 '<strong style="color:#7c3aed;">' + g.count + ' sessions</strong>' +
@@ -1279,7 +1279,7 @@
 
           // 1. Top 4 Baseline Cards (Mathematically Exact: Total = Human + AI)
           document.getElementById('valTotalEvents').innerText = totalAll;
-          document.getElementById('valTotalFooter').innerText = humanCount + ' Human + ' + aiCount + ' AI';
+          document.getElementById('valTotalFooter').innerText = humanCount + ' Low Risk + ' + aiCount + ' Bot Claims';
 
           document.getElementById('valSessions').innerText = humanCount;
           document.getElementById('valHumanShare').innerText = humanPct + '% of Total Traffic';
@@ -1291,12 +1291,12 @@
 
           // 2. Real Traffic Split Bar (Exact Percent & Exact Counts)
           document.getElementById('barHuman').style.width = humanPct + '%';
-          document.getElementById('barHuman').innerText = 'Human: ' + humanPct + '% (' + humanCount + ')';
+          document.getElementById('barHuman').innerText = 'Low Risk: ' + humanPct + '% (' + humanCount + ')';
           document.getElementById('barBot').style.width = aiPct + '%';
           document.getElementById('barBot').innerText = aiPct > 0 ? 'AI Bots: ' + aiPct + '% (' + aiCount + ')' : '';
 
           // 3. Dynamic Legend Under Bar
-          document.getElementById('legendHumanText').innerText = 'Verified Human Browsers (' + humanCount + ')';
+          document.getElementById('legendHumanText').innerText = 'Low Automation Risk (' + humanCount + ')';
           document.getElementById('legendAiText').innerText = 'Autonomous AI Scrapers & Indexers (' + aiCount + ')';
 
           globalCountryClustersCache = pubData.country_clusters || [];
