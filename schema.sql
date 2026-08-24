@@ -199,3 +199,25 @@ CREATE TABLE IF NOT EXISTS graph_edges (
 CREATE INDEX IF NOT EXISTS idx_graph_edges_source ON graph_edges(source_node_id);
 CREATE INDEX IF NOT EXISTS idx_graph_edges_target ON graph_edges(target_node_id);
 CREATE INDEX IF NOT EXISTS idx_graph_edges_type ON graph_edges(relation_type);
+
+-- 5. Real-Time Guestbook & Visitor Analytics
+CREATE TABLE IF NOT EXISTS guestbook_entries (
+    id BIGSERIAL PRIMARY KEY,
+    author VARCHAR(100) DEFAULT '익명 엔지니어',
+    message TEXT NOT NULL,
+    ip_country VARCHAR(50) DEFAULT 'KR',
+    avatar_color VARCHAR(20) DEFAULT '#00EFFF',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_guestbook_created_at ON guestbook_entries(created_at DESC);
+
+CREATE TABLE IF NOT EXISTS analytics_visitors (
+    id INT PRIMARY KEY DEFAULT 1,
+    visitor_count BIGINT DEFAULT 1420,
+    last_visited TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO analytics_visitors (id, visitor_count)
+VALUES (1, 1420)
+ON CONFLICT (id) DO NOTHING;

@@ -183,15 +183,20 @@ async function renderGraph(data) {
     .data(data.nodes)
     .join('text')
     .attr('dx', d => d.radius + 8)
-    .attr('dx', d => d.radius + 8)
     .attr('dy', 4)
-    .text(d => d.id)
+    .text(d => d.name || d.id)
     .attr('font-family', 'var(--font-mono)')
-    .attr('font-size', '14px')
+    .attr('font-size', '13px')
     .attr('font-weight', 'bold')
     .attr('fill', 'var(--text-secondary)')
-    .attr('pointer-events', 'none')
-    .attr('opacity', 0); // start invisible
+    .attr('cursor', 'pointer')
+    .attr('pointer-events', 'all')
+    .attr('opacity', 0)
+    .on('click', function(event, d) {
+      event.stopPropagation();
+      if (window.audioEngine) window.audioEngine.playDeepBass();
+      renderNodeModal(d);
+    });
 
   // Cascade Animation (Fly-in / Grow)
   // We return a Promise that resolves when the animation finishes
@@ -751,6 +756,7 @@ async function loadReadmeContent(d) {
 }
 
 export function renderNodeModal(d) {
+  if (!d) return;
   const modalNode = document.getElementById('modal-node-detail');
   const mTitle = document.getElementById('node-modal-title');
   const mDesc = document.getElementById('node-modal-desc');
@@ -787,22 +793,31 @@ export function renderNodeModal(d) {
     childrenHTML += '</ul></div>';
   }
 
-  // 3. Quick Metadata Header (Tech Stack & Packages)
-  let metaHeaderHTML = '<div style="margin-bottom:16px; display:flex; flex-direction:column; gap:8px;">';
-  if (d.description) {
-    metaHeaderHTML += `<p style="font-size:0.95rem; color:#cbd5e1; line-height:1.6; margin:0;">${d.description}</p>`;
-  }
+  // 3. Executive Summary 3-Line Card (한눈에 들어오는 프로젝트 핵심 요약)
+  let executiveCardHTML = `
+    <div style="background:linear-gradient(135deg, rgba(124,58,237,0.12), rgba(0,239,255,0.08)); border:1px solid rgba(0,239,255,0.3); border-radius:8px; padding:14px; margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold; font-size:0.85rem;">
+        <span>📌 Executive Summary &amp; Core Specs</span>
+      </div>
+      <p style="font-size:0.92rem; color:#f8fafc; line-height:1.55; margin:0 0 10px 0; font-weight:500;">
+        ${d.description || 'Sovereign On-Device AI & Autonomous Software Engineering Component.'}
+      </p>
+  `;
+
   if (d.tech_stack && d.tech_stack.length > 0) {
-    const badges = d.tech_stack.map(t => `<span style="font-size:0.75rem; background:rgba(255,255,255,0.08); border:1px solid var(--border-subtle); padding:2px 8px; border-radius:4px; margin-right:6px; color:#e2e8f0;">${t}</span>`).join('');
-    metaHeaderHTML += `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${badges}</div>`;
+    const badges = d.tech_stack.map(t => `<span style="font-size:0.75rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.2); padding:2px 8px; border-radius:4px; margin-right:4px; color:#e2e8f0; font-family:var(--font-mono);">${t}</span>`).join('');
+    executiveCardHTML += `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px;">${badges}</div>`;
   }
-  if ((d.metadata && d.metadata.pypi) || (d.metadata && d.metadata.npm)) {
-    metaHeaderHTML += `<div style="background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; border:1px solid var(--border-subtle); margin-top:4px;">`;
-    if (d.metadata.pypi) metaHeaderHTML += `<div style="color:#3ECF8E;">$ pip install ${d.metadata.pypi}</div>`;
-    if (d.metadata.npm) metaHeaderHTML += `<div style="color:#00EFFF;">$ npm install ${d.metadata.npm}</div>`;
-    metaHeaderHTML += `</div>`;
+
+  if ((d.metadata && d.metadata.pypi) || (d.metadata && d.metadata.npm) || d.repo_url) {
+    executiveCardHTML += `<div style="background:rgba(0,0,0,0.5); padding:8px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; border:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:4px;">`;
+    if (d.metadata && d.metadata.pypi) executiveCardHTML += `<div style="color:#3ECF8E;">$ pip install ${d.metadata.pypi}</div>`;
+    if (d.metadata && d.metadata.npm) executiveCardHTML += `<div style="color:#00EFFF;">$ npm install ${d.metadata.npm}</div>`;
+    if (d.repo_url) executiveCardHTML += `<div style="color:#cbd5e1; font-size:0.75rem;">📦 Repo: <a href="${d.repo_url}" target="_blank" style="color:var(--accent-cyan);">${d.repo_url}</a></div>`;
+    executiveCardHTML += `</div>`;
   }
-  metaHeaderHTML += '</div>';
+
+  executiveCardHTML += `</div>`;
 
   // 4. Initial placeholder with loading spinner for README
   const readmeContainerId = `readme-body-${Date.now()}`;
@@ -813,7 +828,7 @@ export function renderNodeModal(d) {
     </div>
   </div>`;
 
-  mDesc.innerHTML = `${backBtnHTML}${metaHeaderHTML}${initialReadmeHTML}${childrenHTML}`;
+  mDesc.innerHTML = `${backBtnHTML}${executiveCardHTML}${initialReadmeHTML}${childrenHTML}`;
 
   // Asynchronously load and parse full README markdown
   loadReadmeContent(d).then(rawMd => {

@@ -421,22 +421,69 @@ if (btnBlog && modalBlog) {
   });
 }
 
-// ─── Profile Modal Logic ────────────────────────────────────
+// ─── Profile Modal Logic (Who Made This?) ────────────────────
 const btnWhoMade = document.getElementById('btn-who-made');
 const modalProfile = document.getElementById('modal-profile');
 const btnCloseProfile = document.getElementById('btn-close-profile');
 const profileContent = document.getElementById('profile-content');
 
+const founderProfileMarkdown = `# 👨‍💻 Eunho Kim (김은호 / @uno-km)
+### Senior Systems Architect & Enterprise Full-Stack Tech Lead
+- **Ecosystem Founder**: Creator of **AMEVA Sovereign On-Device AI Architecture**
+- **Core Specialization**: Enterprise Java 21, Spring Boot, PostgreSQL HA & Advanced Query Tuning, Browser-Native WebGPU Autograd, ARM64 NEON DotProd SIMD Assembly.
+
+---
+
+### 🏛️ Engineering Philosophy & Meritocracy
+> **"Zero-Server Cost, 100% Privacy Sovereign AI"** — Cloud subscriptions and vendor lock-in are unnecessary. We engineer ultra-optimized on-device runtimes running directly on user smartphones and browser GPUs with mathematical determinism.
+
+---
+
+### 📬 Official Channels & Verification
+- **GitHub**: [github.com/uno-km](https://github.com/uno-km)
+- **Official Technical CV**: [uno-km.vercel.app](https://uno-km.vercel.app/)
+- **Foundation Portal**: [uno-km.vercel.app/foundation](https://uno-km.vercel.app/foundation/)
+- **Engineering Blog**: [uno-kim.tistory.com](https://uno-kim.tistory.com/)
+- **Direct Email**: [zhfldk014745@naver.com](mailto:zhfldk014745@naver.com)
+`;
+
 if (btnWhoMade && modalProfile) {
   btnWhoMade.addEventListener('click', async () => {
     modalProfile.classList.add('is-active');
-    try {
-      const res = await fetch('README.md');
-      if (!res.ok) throw new Error("Profile not found");
-      const text = await res.text();
-      profileContent.innerHTML = marked.parse(text);
-    } catch (e) {
-      profileContent.innerHTML = `<div style="color:var(--danger)">프로필을 불러오지 못했습니다. (${e.message})</div>`;
+    if (profileContent) {
+      profileContent.innerHTML = '<div style="display:flex; align-items:center; gap:10px; padding:20px 0;"><div class="spinner"></div><span>Loading Executive Profile...</span></div>';
+    }
+
+    const urlsToTry = [
+      'https://raw.githubusercontent.com/uno-km/uno-km/main/README.md',
+      '/README.md',
+      '../README.md'
+    ];
+
+    let loadedText = null;
+    for (const u of urlsToTry) {
+      try {
+        const res = await fetch(u);
+        if (res.ok) {
+          const t = await res.text();
+          if (t && t.length > 50 && !t.includes('404: Not Found')) {
+            loadedText = t;
+            break;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (!loadedText) {
+      loadedText = founderProfileMarkdown;
+    }
+
+    if (profileContent) {
+      if (typeof marked !== 'undefined') {
+        profileContent.innerHTML = marked.parse(loadedText);
+      } else {
+        profileContent.innerHTML = `<pre style="white-space:pre-wrap;">${loadedText}</pre>`;
+      }
     }
   });
 }

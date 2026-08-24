@@ -46,10 +46,17 @@ class TagCloud {
 
     const topicCounts = {};
     graphData.nodes.forEach(node => {
-      const allTags = [...(node.tags || []), ...(node.matchTopics || [])];
+      const allTags = [
+        ...(node.tags || []),
+        ...(node.tech_stack || []),
+        ...(node.matchTopics || [])
+      ];
       allTags.forEach(topic => {
-        const t = topic.toLowerCase();
-        topicCounts[t] = (topicCounts[t] || 0) + 1;
+        if (!topic || typeof topic !== 'string') return;
+        const t = topic.toLowerCase().trim();
+        if (t.length > 1 && !['all', 'core', 'null'].includes(t)) {
+          topicCounts[t] = (topicCounts[t] || 0) + 1;
+        }
       });
     });
 
@@ -233,18 +240,48 @@ class TagCloud {
 // Global hooks for Graph Visualizer
 window.resetGraphFilter = function () {
   if (window.nodeElements) {
-    window.nodeElements.style("opacity", 1);
+    window.nodeElements.style("opacity", 1).style("filter", "none");
+  }
+  if (window.linkElements) {
     window.linkElements.style("opacity", 0.6);
   }
 };
 
 window.filterGraphByTopic = function (topic) {
+  if (!topic) return;
+  const target = topic.toLowerCase().trim();
   if (window.nodeElements) {
-    window.nodeElements.style("opacity", d => {
-      if (d.matchTopics && d.matchTopics.includes(topic)) return 1;
-      return 0.1;
-    });
-    window.linkElements.style("opacity", 0.1);
+    window.nodeElements
+      .style("opacity", d => {
+        const tags = [
+          ...(d.tags || []),
+          ...(d.tech_stack || []),
+          ...(d.matchTopics || []),
+          d.id,
+          d.name || '',
+          d.category || ''
+        ].map(x => (x || '').toString().toLowerCase());
+
+        const isMatch = tags.some(t => t.includes(target) || target.includes(t));
+        return isMatch ? 1 : 0.12;
+      })
+      .style("filter", d => {
+        const tags = [
+          ...(d.tags || []),
+          ...(d.tech_stack || []),
+          ...(d.matchTopics || []),
+          d.id,
+          d.name || '',
+          d.category || ''
+        ].map(x => (x || '').toString().toLowerCase());
+
+        const isMatch = tags.some(t => t.includes(target) || target.includes(t));
+        return isMatch ? "drop-shadow(0 0 10px #00EFFF)" : "none";
+      });
+
+    if (window.linkElements) {
+      window.linkElements.style("opacity", 0.08);
+    }
   }
 };
 
