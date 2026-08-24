@@ -21,6 +21,7 @@ import {
 // In-Memory Fallback Stores
 const memoryEventStore = new MemoryRiskEventStore({ maxItems: 1000 });
 const memoryCounterStore = new MemoryCounterStore();
+const memoryGeoLogs = [];
 
 const sentinel = createSentinel({
   mode: 'shadow',
@@ -73,6 +74,23 @@ async function ensureSentinelTable(sql) {
         evaluated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS sentinel_geo_deliveries (
+        id BIGSERIAL PRIMARY KEY,
+        bot_name VARCHAR(100) NOT NULL,
+        bot_vendor VARCHAR(100) NOT NULL,
+        requested_path VARCHAR(255) NOT NULL,
+        served_format VARCHAR(50) NOT NULL,
+        bytes_served INT NOT NULL,
+        bytes_saved INT NOT NULL,
+        savings_ratio NUMERIC(5,2) NOT NULL,
+        ip_address VARCHAR(45),
+        country VARCHAR(20),
+        city VARCHAR(100),
+        delivered_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
     isDbInitialized = true;
   } catch (err) {
     console.warn('[Sentinel DB Init Warning]', err.message);
@@ -110,7 +128,7 @@ export default async function handler(req, res) {
     if (action === 'ping') {
       return res.status(200).json({
         status: 'ok',
-        engine: 'AMEVA-Sentinel v0.7.0 Micro-Precision Engine',
+        engine: 'AMEVA-Sentinel v0.7.0 Micro-Precision Engine (GEO Enabled)',
         mode: 'SHADOW',
         timestamp: new Date().toISOString()
       });
@@ -118,7 +136,7 @@ export default async function handler(req, res) {
 
     if (action === 'analytics') {
       let events = [];
-      let footprints = [];
+      let geoLogs = [];
 
       // Query from Neon DB if available
       if (sql) {
@@ -176,15 +194,37 @@ export default async function handler(req, res) {
             evidence: row.evidence || [],
             evaluatedAt: row.evaluatedAt
           }));
+
+          const dbGeoRows = await sql`
+            SELECT
+              id,
+              bot_name as "botName",
+              bot_vendor as "botVendor",
+              requested_path as "requestedPath",
+              served_format as "servedFormat",
+              bytes_served as "bytesServed",
+              bytes_saved as "bytesSaved",
+              savings_ratio as "savingsRatio",
+              ip_address as "ipAddress",
+              country,
+              city,
+              delivered_at as "deliveredAt"
+            FROM sentinel_geo_deliveries
+            ORDER BY delivered_at DESC
+            LIMIT 100;
+          `;
+          geoLogs = dbGeoRows;
         } catch (dbErr) {
           console.warn('[Sentinel DB Query Fallback to Memory]', dbErr.message);
           events = await memoryEventStore.list({ limit: 500 });
+          geoLogs = memoryGeoLogs;
         }
       } else {
         events = await memoryEventStore.list({ limit: 500 });
+        geoLogs = memoryGeoLogs;
       }
 
-      const analytics = sentinel.getForensicAnalytics({ events });
+      const analytics = sentinel.getForensicAnalytics({ events, geoLogs });
       return res.status(200).json(analytics);
     }
   }
@@ -261,9 +301,50 @@ export default async function handler(req, res) {
       });
     }
 
+    // 2. Resolve GEO Markdown Delivery for AI Agents
+    const geoResult = sentinel.resolveGeoPayload(req);
+    if (geoResult.shouldDeliver) {
+      const geoRecord = {
+        botName: geoResult.botName,
+        botVendor: geoResult.botVendor,
+        requestedPath: geoResult.requestedPath,
+        servedFormat: geoResult.contentType,
+        bytesServed: geoResult.servedBytes,
+        bytesSaved: geoResult.savedBytes,
+        savingsRatio: geoResult.savingsRatio,
+        ipAddress: maskedIp,
+        country,
+        city,
+        deliveredAt: geoResult.deliveredAt
+      };
+      memoryGeoLogs.unshift(geoRecord);
+      if (memoryGeoLogs.length > 500) memoryGeoLogs.pop();
+
+      if (sql) {
+        sql`
+          INSERT INTO sentinel_geo_deliveries (
+            bot_name, bot_vendor, requested_path, served_format, bytes_served, bytes_saved, savings_ratio, ip_address, country, city, delivered_at
+          ) VALUES (
+            ${geoResult.botName},
+            ${geoResult.botVendor},
+            ${geoResult.requestedPath},
+            ${geoResult.contentType},
+            ${geoResult.servedBytes},
+            ${geoResult.savedBytes},
+            ${geoResult.savingsRatio},
+            ${maskedIp},
+            ${country},
+            ${city},
+            ${new Date(geoResult.deliveredAt)}
+          );
+        `.catch(e => console.warn('[Sentinel Geo DB Insert Warning]', e.message));
+      }
+    }
+
     return res.status(200).json({
       status: 'success',
       report,
+      geo: geoResult.shouldDeliver ? geoResult : undefined,
       debugHeaders: {
         ua: headers['user-agent'],
         secFetchDest: headers['sec-fetch-dest'],
