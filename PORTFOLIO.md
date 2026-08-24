@@ -29,15 +29,18 @@
 ---
 
 ### 1.2 AMEVA-MCP-Hub
-단일 Node.js 프로세스 내부에서 WASI WebAssembly 바이트코드를 인메모리로 실행하고, 깃허브 다중 리포지토리의 도구를 동기화하는 모델 컨텍스트 프로토콜(MCP) 허브 및 SDK입니다.
+Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 도구(C++, Rust, Java, Python 등)를 PC에 별도 컴파일러나 런타임을 깔지 않고 명령어 한 줄로 즉시 구동해 주는 통합 MCP 허브 & SDK입니다.
 
 - **카테고리**: 개발자 도구 / AI 에이전트 인프라
-- **기술 스택**: Node.js, TypeScript, WebAssembly (WASI), Vector Embeddings
+- **기술 스택**: Node.js, TypeScript, WebAssembly (WASI), In-Memory Execution
 - **배포 버전**: `v3.0.0`
-- **주요 기능**:
-  - 호스트 컴파일러(C++, Rust, Java, Go, Python) 없이 인메모리 WASM 도구 실행 (<1ms 콜드 스타트)
-  - 코사인 유사도 기반 AI 벡터 도구 시맨틱 라우팅
-  - GitHub 다중 리포지토리 도구 매니페스트 실시간 구독 및 핫리로드
+- **실제 사용자가 겪는 문제와 해결**:
+  - **기존 문제**: AI 에이전트에 새 기능을 붙이려면 언어마다 Python 가상환경, Rust 컴파일러, Java JDK 등을 PC에 일일이 설치해야 하고, 도구마다 백그라운드 프로세스가 떠서 메모리를 많이 차지함.
+  - **해결 방식**: 미리 빌드된 WebAssembly(WASM) 바이너리를 단일 Node.js 프로세스 메모리에 직접 띄워, 개발 환경 오염 없이 <1ms 속도로 도구를 실행함.
+- **실제 동작 및 주요 사용 기능**:
+  1. **설치 없는 1초 실행**: `npx ameva-mcp-hub` 실행 후 Claude/Cursor 설정 파일에 포트만 적으면 즉시 수십 가지 도구 사용 가능.
+  2. **자연어 도구 자동 검색**: 사용자가 "이 파일 해시값 계산해줘" 또는 "데이터 암호화해줘"라고 질문하면, 질문 의도에 딱 맞는 도구를 수많은 도구 목록에서 스스로 찾아내 실행.
+  3. **GitHub 저장소 실시간 도구 추가**: 원하는 도구가 담긴 GitHub 주소만 등록해 두면, 허브를 재부팅하지 않아도 새 도구를 자동으로 내려받아 즉시 활성화.
 - **설치 및 실행**:
   ```bash
   # 즉시 실행
@@ -210,7 +213,7 @@ Whisper.cpp, Vosk, Sherpa-ONNX 음성인식 엔진을 단일 인터페이스로 
   pip install ameva
   ```
 - **관련 링크**:
-  - [PyPI 패키지](https://pypi.org/project/ameva/)
+  - [PyPI 패키지](https://pypi.org/project/termux-train/)
   - [공식 문서](https://uno-km.vercel.app/lib/forge/)
   - [GitHub 저장소](https://github.com/uno-km/AMEVA-Forge)
 
@@ -221,7 +224,7 @@ Whisper.cpp, Vosk, Sherpa-ONNX 음성인식 엔진을 단일 인터페이스로 
 | 카테고리 | 프로젝트 | 핵심 기술 스택 | 공통 특징 |
 | :--- | :--- | :--- | :--- |
 | **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 송수신 없이 브라우저 로컬 하드웨어 가속 및 데이터 격리 |
-| **개발자 도구 & 인프라** | AMEVA-MCP-Hub | Node.js, TypeScript, WASI WebAssembly, Vector Math | 언어 중립적 인메모리 도구 실행 및 실시간 에이전트 연동 |
+| **개발자 도구 & 인프라** | AMEVA-MCP-Hub | Node.js, TypeScript, WASI WebAssembly, In-Memory Multi-Repo | 언어 중립적 인메모리 도구 실행 및 실시간 에이전트 연동 |
 | **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-Train | C/C++17, ARM64 NEON SIMD, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 어셈블리/C 커널 직접 구동 |
 | **모바일 시스템 자동화 (Termux)** | Termux-Playwright | Android Bionic, Node.js, Python, Chrome DevTools Protocol | 저전력 모바일 유저스페이스 기반 브라우저 프로세스 제어 |
 
