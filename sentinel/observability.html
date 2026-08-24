@@ -8,10 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="/shared/style.css">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/shared/common.js" defer></script>
   <script src="/shared/telemetry.js" defer></script>
   <style>
-    /* ── Tomcat / Apache Classic Observability Extensions ─────────────────── */
     .metrics-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -49,8 +49,6 @@
       font-weight: 600;
       margin-top: 6px;
     }
-
-    /* ── Traffic Distribution Split Bar ───────────────────────────────────── */
     .split-container {
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
@@ -93,8 +91,46 @@
       color: var(--text-muted);
       font-weight: 600;
     }
-
-    /* ── Live Log Stream Table ────────────────────────────────────────────── */
+    .chart-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .chart-panel-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tf-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tf-pill {
+      background: var(--bg-header);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tf-pill.active, .tf-pill:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
     .stream-table {
       width: 100%;
       border-collapse: collapse;
@@ -116,7 +152,6 @@
       font-family: var(--font-mono);
       font-size: 0.8rem;
     }
-
     .badge-status {
       display: inline-block;
       padding: 2px 6px;
@@ -131,41 +166,39 @@
   </style>
 </head>
 <body>
-  <!-- Standard Top Header -->
   <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1>AMEVA-Sentinel</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag">Sentinel v0.5 (Active)</span>
+      <span class="release-tag">Sentinel v0.7.0</span>
       <div class="lang-selector-wrapper">
         <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
-          <option value="en">🇺🇸 English</option>
-          <option value="ko">🇰🇷 한국어</option>
-          <option value="ja">🇯🇵 日本語</option>
-          <option value="zh">🇨🇳 简体中文</option>
-          <option value="ar">🇸🇦 العربية</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="es">🇪🇸 Español</option>
-          <option value="hi">🇮🇳 हिन्दी</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="vi">🇻🇳 Tiếng Việt</option>
-          <option value="pl">🇵🇱 Polski</option>
-          <option value="la">🏛️ Latina</option>
+          <option value="en">English</option>
+          <option value="ko">한국어</option>
+          <option value="ja">日本語</option>
+          <option value="zh">简体中文</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ru">Русский</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="pl">Polski</option>
+          <option value="la">Latina</option>
         </select>
       </div>
-      <a href="/dashboard/" class="header-btn" style="background: #004499; color: #ffffff; font-weight: 700; border-color: #003380;">🛡️ SDK 기본 대시보드</a>
+      <a href="/dashboard/" class="header-btn" style="background: #004499; color: #ffffff; font-weight: 700; border-color: #003380;">SDK Default Dashboard</a>
       <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn">npm (Node.js)</a>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary">GitHub</a>
       <a href="/" class="header-btn founder">Founder Profile</a>
     </div>
   </header>
 
   <div class="container">
-    <!-- Standard Left Sidebar -->
     <nav class="sidebar">
       <h3>Overview</h3>
       <ul>
@@ -180,7 +213,7 @@
         <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
         <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
         <li><a href="observability.html" class="active">Live Observability Status</a></li>
-        <li><a href="admin.html">Admin Intelligence Console</a></li>
+        <li><a href="/dashboard/">SDK Default Dashboard</a></li>
         <li><a href="versions.html">Version Archive</a></li>
       </ul>
 
@@ -190,7 +223,7 @@
         <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
         <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
         <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
         <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
         <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
         <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
@@ -205,46 +238,42 @@
       </ul>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="content">
       <h2>Live Traffic &amp; AI Crawler Observability Status</h2>
-      <p class="subtitle">Vercel Edge 런타임 및 Neon PostgreSQL 100% 실시간 동적 텔레메트리 관제 콘솔</p>
+      <p class="subtitle">Vercel Edge Runtime &amp; Neon PostgreSQL Real-Time Telemetry Console</p>
 
-      <!-- Live Status & Privacy Banner -->
       <div class="alert alert-info">
-        <span class="alert-title">🛡️ Strict Zero-PII Privacy &amp; Real-Time Aggregation Standard</span>
+        <span class="alert-title">Strict Zero-PII Privacy &amp; Real-Time Aggregation Standard</span>
         <p style="margin-bottom: 0;">
-          본 관제 콘솔의 모든 수치는 <strong>Neon PostgreSQL 데이터베이스로부터 100% 실시간 동적 집계(Zero Mock Data)</strong>됩니다. GDPR 및 오픈소스 프라이버시 컴플라이언스에 따라 <strong>개별 방문자의 IP 주소 및 식별자는 화면에 일절 노출되지 않으며</strong>, 국가/도시 단위의 비식별화 통계만 제공됩니다.
+          All telemetry metrics are dynamically aggregated from the <strong>Neon PostgreSQL database (Zero Mock Data)</strong> in real time. Under strict open-source privacy compliance, individual visitor IP addresses and identifiers are never exposed on screen; only anonymized regional analytics are computed.
         </p>
       </div>
 
-      <!-- Quick Controls Bar -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin: 16px 0 10px 0;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 0.84rem; font-family: var(--font-mono); color: var(--accent-green);">
           <span style="display: inline-block; width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
           <span>Vercel Edge Telemetry Pipeline: ACTIVE</span>
         </div>
         <button onclick="fetchRealtimeStats()" class="header-btn" style="cursor: pointer; font-size: 0.78rem; padding: 4px 10px;">
-          ↻ Refresh (수동 갱신)
+          Refresh Status
         </button>
       </div>
 
-      <!-- 1. Real Metrics 4-Grid -->
       <div class="metrics-row">
         <div class="metric-card">
           <div class="metric-card-title">Active Developer Sessions</div>
           <div class="metric-card-value" id="valSessions">0</div>
-          <div class="metric-card-footer">✓ Total Verified Sessions</div>
+          <div class="metric-card-footer">Total Verified Sessions</div>
         </div>
         <div class="metric-card">
           <div class="metric-card-title">Unique Developers</div>
           <div class="metric-card-value" id="valVisitors" style="color: #004499;">0</div>
-          <div class="metric-card-footer">✓ Distinct Visitors</div>
+          <div class="metric-card-footer">Distinct Visitors</div>
         </div>
         <div class="metric-card">
           <div class="metric-card-title">AI Search Crawlers</div>
           <div class="metric-card-value" id="valBots" style="color: #7c3aed;">0</div>
-          <div class="metric-card-footer">GPTBot · ClaudeBot · Gemini</div>
+          <div class="metric-card-footer">GPTBot / ClaudeBot / Gemini</div>
         </div>
         <div class="metric-card">
           <div class="metric-card-title">Client WebGPU Adoption</div>
@@ -253,10 +282,31 @@
         </div>
       </div>
 
-      <!-- 2. Real Human vs AI Bots Traffic Split -->
+      <!-- Financial-Grade Multi-Timeframe Traffic & Volume Chart -->
+      <div class="chart-panel">
+        <div class="chart-panel-title">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
+            <div class="tf-pill-group">
+              <button class="tf-pill" onclick="setTimeframe('1m')">1m</button>
+              <button class="tf-pill active" id="btn-tf-5m" onclick="setTimeframe('5m')">5m</button>
+              <button class="tf-pill" onclick="setTimeframe('1h')">1h</button>
+              <button class="tf-pill" onclick="setTimeframe('1D')">1D (Daily)</button>
+              <button class="tf-pill" onclick="setTimeframe('1W')">1W (Weekly)</button>
+              <button class="tf-pill" onclick="setTimeframe('1M')">1M (Monthly)</button>
+            </div>
+          </div>
+          <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);" id="chartTimestamp">Live Stream</span>
+        </div>
+        <div style="height: 260px; position: relative;">
+          <canvas id="trafficTrendChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Real Human vs AI Bots Traffic Split -->
       <div class="split-container">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h4 style="margin: 0; font-size: 0.92rem; color: var(--text-main);">🌐 Real Traffic Distribution (Human vs AI Indexers)</h4>
+          <h4 style="margin: 0; font-size: 0.92rem; color: var(--text-main);">Real Traffic Distribution (Human vs AI Indexers)</h4>
           <span id="lastUpdated" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">Updated: Realtime</span>
         </div>
         <div class="split-bar-track">
@@ -264,44 +314,43 @@
           <div id="barBot" class="split-bar-bot" style="width: 0%;">AI Bots: 0%</div>
         </div>
         <div class="split-legend">
-          <span>👤 Interactive Developer Traffic (Web / Mobile / ARM64)</span>
-          <span>🤖 AI Model Context Protocol &amp; Search Indexing</span>
+          <span>Interactive Developer Traffic (Web / Mobile / ARM64)</span>
+          <span>AI Model Context Protocol &amp; Search Indexing</span>
         </div>
-      <!-- 2.5 Dynamic Node-Based Intent & Journey Visualizer (홍보용 실시간 노드 관제) -->
+      </div>
+
+      <!-- Dynamic Node-Based Intent & Journey Visualizer -->
       <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:6px; padding:18px 20px; margin-bottom:24px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <div>
-            <h3 style="margin:0; font-size:1.05rem; color:var(--primary-color); font-weight:800;">🌐 1. Pre-Inflow Deep Origin &amp; Intent Node Graph (유입 전 출처 &amp; 검색 의도)</h3>
+            <h3 style="margin:0; font-size:1.05rem; color:var(--primary-color); font-weight:800;">1. Pre-Inflow Deep Origin &amp; Intent Node Graph (Pre-Inflow Intent)</h3>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px; margin-bottom:0;">
-              방문자 및 AI 크롤러가 사이트에 오기 직전에 어떤 검색을 했고 어디를 거쳐 왔는지(Referrer / Deep Link) 실시간 DB 노드 분석
+              Real-time origin referrer and deep-link intent analysis evaluated from incoming network traffic
             </p>
           </div>
           <span class="badge-status geo">Live Origin Flow</span>
         </div>
 
-        <!-- Dynamic Origin Nodes Grid -->
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-bottom:18px;" id="originNodesGrid">
-          <div style="grid-column:1/-1; text-align:center; padding:14px; color:var(--text-muted);">Neon DB로부터 실시간 유입 노드를 수집 중입니다...</div>
+          <div style="grid-column:1/-1; text-align:center; padding:14px; color:var(--text-muted);">Collecting live origin nodes from Neon DB...</div>
         </div>
 
-        <!-- In-Site Journey & Exit Hop Node Chain -->
         <div style="border-top:1px solid var(--border-color); padding-top:14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <h4 style="margin:0; font-size:0.92rem; color:var(--primary-color); font-weight:700;">🐾 2. Real-Time In-Site Journey &amp; Exit Hop Traversal (사이트 내 체류 &amp; 이탈 직전까지 본 것)</h4>
-            <span style="font-size:0.78rem; color:var(--text-muted);">실시간 세션 홉 체인 분석</span>
+            <h4 style="margin:0; font-size:0.92rem; color:var(--primary-color); font-weight:700;">2. Real-Time In-Site Journey &amp; Exit Hop Traversal (In-Site Traversal &amp; Exit)</h4>
+            <span style="font-size:0.78rem; color:var(--text-muted);">Real-time session traversal analysis</span>
           </div>
 
           <div style="display:flex; flex-direction:column; gap:8px;" id="journeyHopsList">
-            <div style="text-align:center; padding:12px; color:var(--text-muted);">실시간 방문자 여정 홉을 수집 중입니다...</div>
+            <div style="text-align:center; padding:12px; color:var(--text-muted);">Collecting live visitor journey hops...</div>
           </div>
         </div>
       </div>
 
-      <!-- 3. AI Bot Breakdown & Top Regions 2-Column Tables -->
+      <!-- AI Bot Breakdown & Top Regions 2-Column Tables -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-bottom: 24px;">
-        <!-- AI Bot Breakdown Table -->
         <div>
-          <h3>🤖 AI Search Crawlers Breakdown</h3>
+          <h3>AI Search Crawlers Breakdown</h3>
           <table class="stream-table">
             <thead>
               <tr>
@@ -312,15 +361,14 @@
             </thead>
             <tbody id="botTableBody">
               <tr>
-                <td colspan="3" style="text-align: center; color: var(--text-muted);">집계 대기 중...</td>
+                <td colspan="3" style="text-align: center; color: var(--text-muted);">Loading crawler metrics...</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Top Regions Table -->
         <div>
-          <h3>📍 Top Traffic Origin Regions (Zero IP)</h3>
+          <h3>Top Traffic Origin Regions (Zero IP)</h3>
           <table class="stream-table">
             <thead>
               <tr>
@@ -331,17 +379,17 @@
             </thead>
             <tbody id="regionTableBody">
               <tr>
-                <td colspan="3" style="text-align: center; color: var(--text-muted);">집계 대기 중...</td>
+                <td colspan="3" style="text-align: center; color: var(--text-muted);">Loading regional metrics...</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- 4. Recent Real-Time Edge Stream Table -->
-      <h3>⚡ Recent Anonymized Edge Activity Stream</h3>
+      <!-- Recent Real-Time Edge Stream Table -->
+      <h3>Recent Anonymized Edge Activity Stream</h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
-        Vercel Edge 미들웨어를 통과한 최근 실시간 크롤러 및 접근 기록입니다 (IP 비식별화 완료):
+        Recent activity stream processed by Vercel Edge Middleware (Anonymized):
       </p>
 
       <div style="overflow-x: auto; margin-bottom: 24px;">
@@ -358,16 +406,16 @@
           </thead>
           <tbody id="streamTableBody">
             <tr>
-              <td colspan="6" style="text-align: center; color: var(--text-muted);">최근 활동 기록을 실시간 수집 중입니다...</td>
+              <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading live activity stream...</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- 5. Deep Forensic Footprints Table -->
-      <h3>🔬 Deep Forensic Footprints (Device &amp; Browser Signatures)</h3>
+      <!-- Deep Forensic Footprints Table -->
+      <h3>Deep Forensic Footprints (Device &amp; Browser Signatures)</h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
-        방문자 ID를 클릭하시면 <strong>유입 전 행동, 내 사이트 내 상세 이동 경로(Hops), 최종 이탈 지점 및 하드웨어 물리 지문</strong>을 확인하실 수 있습니다:
+        Click any Visitor ID to inspect origin referrers, in-site hop sequences, and hardware forensics:
       </p>
 
       <div style="overflow-x: auto;">
@@ -385,41 +433,38 @@
           </thead>
           <tbody id="forensicTableBody">
             <tr>
-              <td colspan="7" style="text-align: center; color: var(--text-muted);">포렌식 서명 데이터를 로딩 중입니다...</td>
+              <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading forensic signatures...</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- 6. Bottom Architecture Notes -->
       <h3 style="margin-top: 32px;">Architecture &amp; Data Pipeline Notes</h3>
       <ul>
-        <li><strong>In-Memory Batching</strong>: 클라이언트 텔레메트리(`shared/telemetry.js`)는 마이크로 배치 큐로 버퍼링되어 전송되므로 서버리스 인보케이션 및 DB I/O 비용을 90% 이상 절감합니다.</li>
-        <li><strong>Edge Stream Injection</strong>: AI 봇 식별 시 `middleware.js`가 오리진 서버 부하 없이 에지 레벨에서 고속 GEO 마크다운 문서를 직접 반환합니다.</li>
-        <li><strong>Two Unified Dashboards</strong>: 현재 보시는 화면은 <strong>홍보용 통합 관제 콘솔</strong>이며, SDK 설치 시 제공되는 기본 관리 화면은 <a href="/dashboard/" style="color:var(--primary-color); font-weight:700;">[SDK 기본형 대시보드]</a>에서 확인하실 수 있습니다.</li>
+        <li><strong>In-Memory Batching</strong>: Client telemetry is buffered in a micro-batch queue before transmission, eliminating database I/O bottlenecks.</li>
+        <li><strong>Edge Stream Injection</strong>: AI bot detection triggers dynamic Markdown delivery directly at the edge layer.</li>
+        <li><strong>Two Unified Dashboards</strong>: This console serves as the <strong>Public Promotional Observability Console</strong>; the standalone SDK administrative manager is available at <a href="/dashboard/" style="color:var(--primary-color); font-weight:700;">[SDK Default Dashboard]</a>.</li>
       </ul>
     </main>
   </div>
 
-  <!-- Standard Footer -->
   <footer>
     <p>&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
   </footer>
 
-  <!-- 🔬 Deep Visitor Forensic & Path Traversal Modal -->
+  <!-- Deep Visitor Forensic & Path Traversal Modal -->
   <div id="visitorModalOverlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.65); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(2px);">
     <div style="background:#ffffff; border:2px solid #004499; border-radius:6px; width:92%; max-width:760px; max-height:85vh; overflow-y:auto; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,0.25); display:flex; flex-direction:column; gap:16px;">
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cbd5e1; padding-bottom:10px;">
         <div>
-          <h3 style="margin:0; font-size:1.15rem; color:#004499; font-weight:800;" id="mVisitorTitle">🔬 Visitor Forensic Dossier</h3>
+          <h3 style="margin:0; font-size:1.15rem; color:#004499; font-weight:800;" id="mVisitorTitle">Visitor Forensic Dossier</h3>
           <span style="font-size:0.8rem; color:#64748b;" id="mVisitorSub">Captured at --</span>
         </div>
-        <button onclick="closeVisitorModal()" class="header-btn" style="font-weight:800; padding:4px 10px; cursor:pointer;">✕ Close</button>
+        <button onclick="closeVisitorModal()" class="header-btn" style="font-weight:800; padding:4px 10px; cursor:pointer;">Close</button>
       </div>
 
-      <!-- 1. Origin Intent -->
       <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">🌐 1. Pre-Inflow Deep Origin &amp; Intent (오기 전에 어디서 무엇을 하다 왔는지)</div>
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">1. Pre-Inflow Deep Origin &amp; Intent (Inflow Source &amp; Query Intent)</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.82rem;">
           <div><strong>Deep Referrer / Query:</strong> <code id="mOriginReferrer" style="color:#004499;">Direct / Bookmark</code></div>
           <div><strong>Network / ASN ISP:</strong> <span id="mAsnProvider">Residential/ISP</span></div>
@@ -428,17 +473,13 @@
         </div>
       </div>
 
-      <!-- 2. In-Site Journey & Exit Hop Chain -->
       <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">🐾 2. In-Site Traversal &amp; Exit Hop (내 사이트에서 무엇을 보다 어디서 나갔는지)</div>
-        <div id="mHopFlow" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-family:var(--font-mono); font-size:0.85rem; margin-top:6px;">
-          <!-- Dynamically generated hops -->
-        </div>
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">2. In-Site Traversal &amp; Exit Hop (Path Navigation Flow)</div>
+        <div id="mHopFlow" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-family:var(--font-mono); font-size:0.85rem; margin-top:6px;"></div>
       </div>
 
-      <!-- 3. Physical Hardware & Math JIT Forensics -->
       <div>
-        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">⚡ 3. Physical Hardware &amp; Math JIT Forensics (하드웨어 고유 지문)</div>
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">3. Physical Hardware &amp; Math JIT Forensics (Hardware Fingerprint)</div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:8px; font-size:0.8rem;">
           <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
             <span style="color:#64748b; font-size:0.75rem; font-weight:700;">GPU RENDERER</span>
@@ -459,16 +500,141 @@
         </div>
       </div>
 
-      <!-- User-Agent String -->
       <div style="background:#f1f5f9; border:1px solid #e2e8f0; padding:8px 12px; border-radius:4px; font-size:0.75rem; font-family:monospace; word-break:break-all;" id="mUa">
         User-Agent: --
       </div>
     </div>
   </div>
 
-  <!-- Realtime Polling Script -->
   <script>
     let globalForensicsCache = [];
+    let globalTimeSeriesData = [];
+    let currentTimeframe = '5m';
+    let trendChartInstance = null;
+
+    function initTrafficChart() {
+      const ctx = document.getElementById('trafficTrendChart');
+      if (!ctx) return;
+
+      trendChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+          datasets: [
+            {
+              label: 'Cumulative Inflow Trend',
+              data: [0, 10, 45, 120, 210, 276],
+              borderColor: '#004499',
+              borderWidth: 2,
+              backgroundColor: 'rgba(0, 68, 153, 0.06)',
+              fill: true,
+              tension: 0.3,
+              pointRadius: 2,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'Session Volume Bucket',
+              data: [0, 4, 12, 35, 48, 62],
+              backgroundColor: '#0284c7',
+              borderRadius: 3,
+              barPercentage: 0.5,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 10, family: 'monospace' }, maxRotation: 0 }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { size: 10, family: 'monospace' } }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              grid: { display: false },
+              ticks: { font: { size: 10, family: 'monospace' } }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { boxWidth: 12, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function setTimeframe(tf) {
+      currentTimeframe = tf;
+      document.querySelectorAll('.tf-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().startsWith(tf));
+      });
+      updateTrendChart();
+    }
+
+    function updateTrendChart() {
+      if (!trendChartInstance || globalTimeSeriesData.length === 0) return;
+
+      const now = Date.now();
+      let bucketSizeMs = 5 * 60 * 1000;
+      let windowMs = 4 * 60 * 60 * 1000;
+
+      if (currentTimeframe === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
+      else if (currentTimeframe === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
+      else if (currentTimeframe === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
+      else if (currentTimeframe === '1D') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 7 * 24 * 60 * 60 * 1000; }
+      else if (currentTimeframe === '1W') { bucketSizeMs = 7 * 24 * 60 * 60 * 1000; windowMs = 30 * 24 * 60 * 60 * 1000; }
+      else if (currentTimeframe === '1M') { bucketSizeMs = 30 * 24 * 60 * 60 * 1000; windowMs = 180 * 24 * 60 * 60 * 1000; }
+
+      const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
+      const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
+
+      const buckets = new Map();
+      for (let t = startMs; t <= endMs; t += bucketSizeMs) {
+        buckets.set(t, 0);
+      }
+
+      globalTimeSeriesData.forEach(s => {
+        const t = new Date(s.created_at || s.evaluated_at).getTime();
+        if (t >= startMs && t <= endMs + bucketSizeMs) {
+          const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
+          if (buckets.has(key)) {
+            buckets.set(key, buckets.get(key) + 1);
+          }
+        }
+      });
+
+      const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
+      const labels = sortedKeys.map(k => {
+        const d = new Date(k);
+        if (currentTimeframe === '1D' || currentTimeframe === '1W' || currentTimeframe === '1M') {
+          return (d.getMonth()+1) + '/' + d.getDate();
+        }
+        return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+      });
+
+      const volData = sortedKeys.map(k => buckets.get(k));
+      let cumulative = 0;
+      const trendData = volData.map(v => { cumulative += v; return cumulative; });
+
+      trendChartInstance.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
+      trendChartInstance.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
+      trendChartInstance.data.datasets[1].data = volData.length > 0 ? volData : [0];
+      trendChartInstance.update();
+
+      document.getElementById('chartTimestamp').innerText = 'Updated: ' + new Date().toLocaleTimeString();
+    }
 
     function closeVisitorModal() {
       document.getElementById('visitorModalOverlay').style.display = 'none';
@@ -478,19 +644,18 @@
       const item = globalForensicsCache.find(f => f.visitor_id === id || f.trace_id === id) || globalForensicsCache[0];
       if (!item) return;
 
-      document.getElementById('mVisitorTitle').innerText = `🔬 Forensic Dossier: ${item.visitor_id || item.trace_id}`;
-      document.getElementById('mVisitorSub').innerText = `Captured at ${new Date(item.captured_at).toLocaleString()} &bull; Risk Score: ${item.score || 0}/100`;
+      document.getElementById('mVisitorTitle').innerText = 'Forensic Dossier: ' + (item.visitor_id || item.trace_id);
+      document.getElementById('mVisitorSub').innerText = 'Captured at ' + new Date(item.captured_at).toLocaleString() + ' &bull; Risk Score: ' + (item.score || 0) + '/100';
 
       document.getElementById('mOriginReferrer').innerText = item.origin_referrer || 'Direct / Bookmark';
       document.getElementById('mAsnProvider').innerText = item.asn_provider || 'Residential/Standard';
-      document.getElementById('mLocation').innerText = `${item.country || 'GLOBAL'} (${item.city || 'Edge'})`;
+      document.getElementById('mLocation').innerText = (item.country || 'GLOBAL') + ' (' + (item.city || 'Edge') + ')';
 
       const triageEl = document.getElementById('mTriageBadge');
       const triage = item.triage_category || (item.score >= 70 ? 'CRAWLER_TOOL' : 'HUMAN');
       triageEl.innerText = triage;
       triageEl.className = triage === 'AI_AGENT' ? 'badge-status bot' : triage === 'CRAWLER_TOOL' ? 'badge-status geo' : 'badge-status human';
 
-      // Generate In-Site Journey Hops
       const hopContainer = document.getElementById('mHopFlow');
       hopContainer.innerHTML = '';
       const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
@@ -510,22 +675,22 @@
 
         if (isExit && hops.length > 1) {
           hopBadge.style.cssText = 'background:#fee2e2; color:#b91c1c; font-weight:800; padding:4px 10px; border-radius:4px; border:1px solid #fca5a5;';
-          hopBadge.innerText = `[Exit Node] ${hop} (이탈)`;
+          hopBadge.innerText = '[Exit Node] ' + hop + ' (Exit)';
         } else if (isEntry) {
           hopBadge.style.cssText = 'background:#e0f2fe; color:#0369a1; font-weight:700; padding:4px 10px; border-radius:4px; border:1px solid #bae6fd;';
-          hopBadge.innerText = `[Entry] ${hop}`;
+          hopBadge.innerText = '[Entry] ' + hop;
         } else {
           hopBadge.style.cssText = 'background:#f3e8ff; color:#7e22ce; font-weight:600; padding:4px 10px; border-radius:4px; border:1px solid #e9d5ff;';
-          hopBadge.innerText = `[Hop ${idx}] ${hop}`;
+          hopBadge.innerText = '[Hop ' + idx + '] ' + hop;
         }
         hopContainer.appendChild(hopBadge);
       });
 
       document.getElementById('mGpu').innerText = (item.webgl_renderer || 'Server-Side HTTP Client').slice(0, 45);
-      document.getElementById('mHz').innerText = item.screen_hz ? `${item.screen_hz} Hz` : '60 Hz';
+      document.getElementById('mHz').innerText = item.screen_hz ? item.screen_hz + ' Hz' : '60 Hz';
       document.getElementById('mJit').innerText = item.math_jit_precision || '0.8414709848078965';
       document.getElementById('mCanvas').innerText = item.canvas_hash || 'be6f2023';
-      document.getElementById('mUa').innerText = `User-Agent: ${item.user_agent || navigator.userAgent}`;
+      document.getElementById('mUa').innerText = 'User-Agent: ' + (item.user_agent || navigator.userAgent);
 
       document.getElementById('visitorModalOverlay').style.display = 'flex';
     }
@@ -544,14 +709,12 @@
         const pubData = pubRes && pubRes.ok ? await pubRes.json() : null;
         const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
 
-        // 1. Metric Cards
         if (pubData) {
           document.getElementById('valSessions').innerText = pubData.summary?.total_active_sessions || 0;
           document.getElementById('valVisitors').innerText = pubData.summary?.total_unique_visitors || 0;
           document.getElementById('valBots').innerText = pubData.summary?.ai_crawlers_identified || 0;
           document.getElementById('valWebGPU').innerText = (pubData.hardware_adoption?.webgpu_supported_percent || 0) + '%';
 
-          // 2. Traffic Bar
           const human = pubData.traffic_distribution?.human_percent || 100;
           const bot = pubData.traffic_distribution?.ai_bots_percent || 0;
           document.getElementById('barHuman').style.width = human + '%';
@@ -559,133 +722,73 @@
           document.getElementById('barBot').style.width = bot + '%';
           document.getElementById('barBot').innerText = bot > 0 ? 'AI Bots: ' + bot + '%' : '';
 
-          // 3. Time
-          document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString('ko-KR');
+          document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString();
 
-          // 4. AI Bot Table
           const botTbody = document.getElementById('botTableBody');
           if (pubData.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
-            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => `
-              <tr>
-                <td><strong>${b.name}</strong></td>
-                <td>${b.count} 회</td>
-                <td><span style="color: #7c3aed; font-weight: 700;">${b.share}</span></td>
-              </tr>
-            `).join('');
+            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => '<tr><td><strong>' + b.name + '</strong></td><td>' + b.count + ' events</td><td><span style="color: #7c3aed; font-weight: 700;">' + b.share + '</span></td></tr>').join('');
           }
 
-          // 5. Region Table
           const regTbody = document.getElementById('regionTableBody');
           if (pubData.top_regions && pubData.top_regions.length > 0) {
-            regTbody.innerHTML = pubData.top_regions.map(r => `
-              <tr>
-                <td>${r.country} (${r.city})</td>
-                <td>${r.count} 세션</td>
-                <td><span style="color: #004499; font-weight: 700;">${r.percentage}</span></td>
-              </tr>
-            `).join('');
+            regTbody.innerHTML = pubData.top_regions.map(r => '<tr><td>' + r.country + ' (' + r.city + ')</td><td>' + r.count + ' sessions</td><td><span style="color: #004499; font-weight: 700;">' + r.percentage + '</span></td></tr>').join('');
           }
 
-          // 6. Activity Stream Table
           const streamTbody = document.getElementById('streamTableBody');
           if (pubData.recent_activity_stream && pubData.recent_activity_stream.length > 0) {
-            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => `
-              <tr>
-                <td>${s.time_ago}</td>
-                <td><span class="badge-status bot">${s.type}</span></td>
-                <td><strong>${s.source}</strong></td>
-                <td><code>${s.path}</code></td>
-                <td>${s.location}</td>
-                <td><span class="badge-status geo">${s.status}</span></td>
-              </tr>
-            `).join('');
+            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => '<tr><td>' + s.time_ago + '</td><td><span class="badge-status bot">' + s.type + '</span></td><td><strong>' + s.source + '</strong></td><td><code>' + s.path + '</code></td><td>' + s.location + '</td><td><span class="badge-status geo">' + s.status + '</span></td></tr>').join('');
           }
         }
 
-        // 7. Dynamic Origin Nodes & Journey Traversal Hops & Forensics Table
         if (statsData) {
           globalForensicsCache = statsData.deep_forensic_logs || [];
+          globalTimeSeriesData = statsData.time_series_sessions || [];
 
-          // Origin Nodes
+          updateTrendChart();
+
           const originContainer = document.getElementById('originNodesGrid');
           if (statsData.top_referrers && statsData.top_referrers.length > 0) {
             const totalRefCount = statsData.top_referrers.reduce((s, r) => s + parseInt(r.count, 10), 0) || 1;
             originContainer.innerHTML = statsData.top_referrers.slice(0, 4).map((ref, idx) => {
               const pct = Math.round((parseInt(ref.count, 10) / totalRefCount) * 100);
               const isAi = /gpt|chatgpt|claude|perplexity|anthropic/i.test(ref.source);
-              const icon = isAi ? '🤖' : /github/i.test(ref.source) ? '🐙' : /google|bing|search/i.test(ref.source) ? '🔍' : '🔖';
               const color = isAi ? '#7c3aed' : '#004499';
               const targetPath = idx === 0 ? '/lib/train' : idx === 1 ? '/lib/forge' : idx === 2 ? '/sdk/sentinel' : '/app/workstation';
 
-              return `
-                <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-                  <div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85rem;">
-                    <span>${icon} ${ref.source.slice(0, 26)}</span>
-                    <span style="color:${color}; font-weight:800;">${pct}% (${ref.count}건)</span>
-                  </div>
-                  <div style="font-family:var(--font-mono); font-size:0.76rem; color:#0f172a; margin:6px 0; background:#fff; padding:5px; border-radius:3px; border:1px dashed #cbd5e1; word-break:break-all;">
-                    <code>${ref.source}</code>
-                  </div>
-                  <div style="font-size:0.78rem; color:#16a34a; font-weight:600;">
-                    ──▶ Target: <strong>${targetPath}</strong>
-                  </div>
-                </div>
-              `;
+              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;"><div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85rem;"><span>' + ref.source.slice(0, 26) + '</span><span style="color:' + color + '; font-weight:800;">' + pct + '% (' + ref.count + ')</span></div><div style="font-family:var(--font-mono); font-size:0.76rem; color:#0f172a; margin:6px 0; background:#fff; padding:5px; border-radius:3px; border:1px dashed #cbd5e1; word-break:break-all;"><code>' + ref.source + '</code></div><div style="font-size:0.78rem; color:#16a34a; font-weight:600;">Target: <strong>' + targetPath + '</strong></div></div>';
             }).join('');
           }
 
-          // Journey Hops List
           const journeyContainer = document.getElementById('journeyHopsList');
           if (globalForensicsCache.length > 0) {
             journeyContainer.innerHTML = globalForensicsCache.slice(0, 4).map(item => {
               const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
               const hops = rawHops.length > 0 ? rawHops : ['/'];
-              const isAi = item.triage_category === 'AI_AGENT' || /bot|crawler/i.test(item.visitor_id || '');
-              const icon = isAi ? '🤖' : '🟢';
 
               const hopBadgesHtml = hops.map((hop, hIdx) => {
                 const isEntry = hIdx === 0;
                 const isExit = hIdx === hops.length - 1;
                 let prefix = '';
-                if (hIdx > 0) prefix = `<span style="color:#64748b; font-weight:700; margin:0 4px;">──▶</span>`;
+                if (hIdx > 0) prefix = '<span style="color:#64748b; font-weight:700; margin:0 4px;">──▶</span>';
 
                 if (isExit && hops.length > 1) {
-                  return `${prefix}<span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] ${hop} (이탈)</span>`;
+                  return prefix + '<span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] ' + hop + ' (Exit)</span>';
                 } else if (isEntry) {
-                  return `${prefix}<span style="background:#e0f2fe; color:#0369a1; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] ${hop}</span>`;
+                  return prefix + '<span style="background:#e0f2fe; color:#0369a1; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] ' + hop + '</span>';
                 } else {
-                  return `${prefix}<span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop ${hIdx}] ${hop}</span>`;
+                  return prefix + '<span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop ' + hIdx + '] ' + hop + '</span>';
                 }
               }).join('');
 
-              return `
-                <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal('${item.visitor_id || item.trace_id}')">
-                  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-                    <strong>${icon} Session: <code>${(item.visitor_id || item.trace_id || '').slice(0, 18)}...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(상세 Dossier 열기)</span></strong>
-                    <span style="color:#64748b;">${item.country || 'KR'} (${item.city || 'Local'}) &bull; ${item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard'}</span>
-                  </div>
-                  <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">
-                    ${hopBadgesHtml}
-                  </div>
-                </div>
-              `;
+              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal('' + (item.visitor_id || item.trace_id) + '')"><div style="display:flex; justify-content:space-between; margin-bottom:6px;"><strong>Session: <code>' + (item.visitor_id || item.trace_id || '').slice(0, 18) + '...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(Open Dossier)</span></strong><span style="color:#64748b;">' + (item.country || 'KR') + ' (' + (item.city || 'Local') + ') &bull; ' + (item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard') + '</span></div><div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">' + hopBadgesHtml + '</div></div>';
             }).join('');
           }
 
-          // Forensics Table (Clickable Visitor ID)
           const forensicTbody = document.getElementById('forensicTableBody');
           if (globalForensicsCache.length > 0) {
-            forensicTbody.innerHTML = globalForensicsCache.slice(0, 15).map(f => `
-              <tr style="cursor:pointer;" onclick="openVisitorModal('${f.visitor_id || f.trace_id}')" title="클릭하여 상세 유입 및 이탈 여정 확인">
-                <td><code style="color:#004499; font-weight:700; text-decoration:underline;">${(f.visitor_id || f.trace_id || '').slice(0, 16)}... 🔍</code></td>
-                <td>${f.country || ''} (${f.city || ''})</td>
-                <td><code>${f.canvas_hash || '--'}</code></td>
-                <td><code>${f.audio_hash || '--'}</code></td>
-                <td>${f.screen_hz ? f.screen_hz + 'Hz' : '60Hz'}</td>
-                <td>${f.is_charging || '100%'}</td>
-                <td>${new Date(f.captured_at).toLocaleTimeString()}</td>
-              </tr>
-            `).join('');
+            forensicTbody.innerHTML = globalForensicsCache.slice(0, 15).map(f => {
+              return '<tr style="cursor:pointer;" onclick="openVisitorModal('' + (f.visitor_id || f.trace_id) + '')" title="Click to view full traversal dossier"><td><code style="color:#004499; font-weight:700; text-decoration:underline;">' + (f.visitor_id || f.trace_id || '').slice(0, 16) + '...</code></td><td>' + (f.country || '') + ' (' + (f.city || '') + ')</td><td><code>' + (f.canvas_hash || '--') + '</code></td><td><code>' + (f.audio_hash || '--') + '</code></td><td>' + (f.screen_hz ? f.screen_hz + 'Hz' : '60Hz') + '</td><td>' + (f.is_charging || '100%') + '</td><td>' + new Date(f.captured_at).toLocaleTimeString() + '</td></tr>';
+            }).join('');
           }
         }
 
@@ -694,7 +797,7 @@
       }
     }
 
-    // Auto-fetch on load and poll every 4s
+    initTrafficChart();
     fetchRealtimeStats();
     setInterval(fetchRealtimeStats, 4000);
   </script>
