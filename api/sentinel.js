@@ -264,6 +264,13 @@ export default async function handler(req, res) {
     return res.status(200).json({
       status: 'success',
       report,
+      debugHeaders: {
+        ua: headers['user-agent'],
+        secFetchDest: headers['sec-fetch-dest'],
+        secChUa: headers['sec-ch-ua'],
+        acceptLang: headers['accept-language'],
+        allHeaderKeys: Object.keys(headers)
+      },
       forensics: {
         origin: originReferrer,
         hopChain: pastPaths,
