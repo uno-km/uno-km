@@ -8,21 +8,59 @@
  * - Strict PII Anonymization: Zero raw IP exposure (Aggregated by Country/City)
  */
 const GEO_COORDS = {
-    // South Korea
+    // South Korea (Seoul Districts, Tech Hubs & Major Metros)
+    'seocho-gu': { lat: 37.4837, lng: 127.0324, name: 'Seocho-gu (Seoul), South Korea' },
+    'seocho': { lat: 37.4837, lng: 127.0324, name: 'Seocho-gu (Seoul), South Korea' },
+    'gangnam-gu': { lat: 37.4979, lng: 127.0276, name: 'Gangnam-gu (Seoul), South Korea' },
+    'gangnam': { lat: 37.4979, lng: 127.0276, name: 'Gangnam-gu (Seoul), South Korea' },
+    'songpa-gu': { lat: 37.5145, lng: 127.1058, name: 'Songpa-gu (Seoul), South Korea' },
+    'songpa': { lat: 37.5145, lng: 127.1058, name: 'Songpa-gu (Seoul), South Korea' },
+    'mapo-gu': { lat: 37.5663, lng: 126.9016, name: 'Mapo-gu (Seoul), South Korea' },
+    'mapo': { lat: 37.5663, lng: 126.9016, name: 'Mapo-gu (Seoul), South Korea' },
+    'yeongdeungpo-gu': { lat: 37.5264, lng: 126.8962, name: 'Yeouido / Yeongdeungpo (Seoul), South Korea' },
+    'yeongdeungpo': { lat: 37.5264, lng: 126.8962, name: 'Yeouido / Yeongdeungpo (Seoul), South Korea' },
+    'guro-gu': { lat: 37.4954, lng: 126.8874, name: 'Guro Digital Valley (Seoul), South Korea' },
+    'guro': { lat: 37.4954, lng: 126.8874, name: 'Guro Digital Valley (Seoul), South Korea' },
+    'jongno-gu': { lat: 37.5730, lng: 126.9794, name: 'Jongno-gu (Seoul), South Korea' },
+    'jongno': { lat: 37.5730, lng: 126.9794, name: 'Jongno-gu (Seoul), South Korea' },
+    'jung-gu': { lat: 37.5637, lng: 126.9975, name: 'Jung-gu (Seoul), South Korea' },
+    'yongsan-gu': { lat: 37.5326, lng: 126.9900, name: 'Yongsan-gu (Seoul), South Korea' },
+    'yongsan': { lat: 37.5326, lng: 126.9900, name: 'Yongsan-gu (Seoul), South Korea' },
+    'gangdong-gu': { lat: 37.5301, lng: 127.1238, name: 'Gangdong-gu (Seoul), South Korea' },
+    'seongdong-gu': { lat: 37.5634, lng: 127.0369, name: 'Seongsu / Seongdong (Seoul), South Korea' },
+    'seongsu': { lat: 37.5634, lng: 127.0369, name: 'Seongsu / Seongdong (Seoul), South Korea' },
     'goyang-si': { lat: 37.6584, lng: 126.8320, name: 'Goyang-si, South Korea' },
     'goyang': { lat: 37.6584, lng: 126.8320, name: 'Goyang-si, South Korea' },
+    'ilsan': { lat: 37.6584, lng: 126.8320, name: 'Ilsan / Goyang-si, South Korea' },
     'seoul': { lat: 37.5665, lng: 126.9780, name: 'Seoul, South Korea' },
     'seongnam-si': { lat: 37.4200, lng: 127.1265, name: 'Seongnam-si, South Korea' },
     'seongnam': { lat: 37.4200, lng: 127.1265, name: 'Seongnam-si, South Korea' },
+    'bundang': { lat: 37.3827, lng: 127.1189, name: 'Bundang-gu (Seongnam), South Korea' },
+    'pangyo': { lat: 37.3948, lng: 127.1119, name: 'Pangyo Techno Valley (Seongnam), South Korea' },
     'incheon': { lat: 37.4563, lng: 126.7052, name: 'Incheon, South Korea' },
+    'songdo': { lat: 37.3888, lng: 126.6534, name: 'Songdo (Incheon), South Korea' },
+    'suwon': { lat: 37.2636, lng: 127.0286, name: 'Suwon, South Korea' },
+    'yongin': { lat: 37.2411, lng: 127.1776, name: 'Yongin, South Korea' },
+    'hwaseong': { lat: 37.1995, lng: 126.8315, name: 'Hwaseong / Dongtan, South Korea' },
+    'dongtan': { lat: 37.2002, lng: 127.0747, name: 'Dongtan, South Korea' },
+    'pyeongtaek': { lat: 36.9921, lng: 127.1129, name: 'Pyeongtaek, South Korea' },
+    'bucheon': { lat: 37.5034, lng: 126.7660, name: 'Bucheon, South Korea' },
+    'anyang': { lat: 37.3943, lng: 126.9568, name: 'Anyang, South Korea' },
+    'ansan': { lat: 37.3219, lng: 126.8309, name: 'Ansan, South Korea' },
+    'gimpo': { lat: 37.6152, lng: 126.7156, name: 'Gimpo, South Korea' },
+    'paju': { lat: 37.7599, lng: 126.7801, name: 'Paju, South Korea' },
+    'namyangju': { lat: 37.6360, lng: 127.2165, name: 'Namyangju, South Korea' },
     'busan': { lat: 35.1796, lng: 129.0756, name: 'Busan, South Korea' },
     'daejeon': { lat: 36.3504, lng: 127.3845, name: 'Daejeon, South Korea' },
     'daegu': { lat: 35.8714, lng: 128.6014, name: 'Daegu, South Korea' },
     'gwangju': { lat: 35.1595, lng: 126.8526, name: 'Gwangju, South Korea' },
-    'suwon': { lat: 37.2636, lng: 127.0286, name: 'Suwon, South Korea' },
-    'yongin': { lat: 37.2411, lng: 127.1776, name: 'Yongin, South Korea' },
+    'ulsan': { lat: 35.5384, lng: 129.3114, name: 'Ulsan, South Korea' },
+    'sejong': { lat: 36.4800, lng: 127.2890, name: 'Sejong, South Korea' },
     'cheongju': { lat: 36.6424, lng: 127.4890, name: 'Cheongju, South Korea' },
+    'cheonan': { lat: 36.8151, lng: 127.1139, name: 'Cheonan, South Korea' },
     'jeonju': { lat: 35.8242, lng: 127.1480, name: 'Jeonju, South Korea' },
+    'pohang': { lat: 36.0190, lng: 129.3435, name: 'Pohang, South Korea' },
+    'changwon': { lat: 35.2280, lng: 128.6811, name: 'Changwon, South Korea' },
     'jeju': { lat: 33.4996, lng: 126.5312, name: 'Jeju, South Korea' },
 
     // United States (Key Cloud Regions & Metros)
@@ -118,16 +156,26 @@ const COUNTRY_COORDS = {
     'GLOBAL': { lat: 20.0, lng: 0.0, name: 'Global Anycast' }
 };
 
-// Simple deterministic hash for coordinate offset in case of unknown cities
-function getDeterministicCityOffset(cityName) {
+// Safe deterministic hash for coordinate offset in case of unknown cities
+function getDeterministicCityOffset(cityName, countryCode = 'GLOBAL') {
     let hash = 0;
-    for (let i = 0; i < cityName.length; i++) {
-        hash = (hash << 5) - hash + cityName.charCodeAt(i);
+    const str = (cityName || 'default').toLowerCase();
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
         hash |= 0;
     }
-    const latOffset = ((Math.abs(hash) % 100) / 100 - 0.5) * 3.5;
-    const lngOffset = ((Math.abs(hash >> 3) % 100) / 100 - 0.5) * 6.0;
-    return { latOffset, lngOffset };
+    const norm1 = ((Math.abs(hash) % 100) / 100 - 0.5);
+    const norm2 = ((Math.abs(hash >> 3) % 100) / 100 - 0.5);
+
+    if (countryCode === 'KR') {
+        // Safe inland Korean bounds (Capital / Gyeonggi area)
+        return { latOffset: norm1 * 0.08, lngOffset: norm2 * 0.08 };
+    } else if (countryCode === 'US') {
+        return { latOffset: norm1 * 1.5, lngOffset: norm2 * 2.5 };
+    } else if (countryCode === 'JP') {
+        return { latOffset: norm1 * 0.2, lngOffset: norm2 * 0.2 };
+    }
+    return { latOffset: norm1 * 0.3, lngOffset: norm2 * 0.3 };
 }
 
 // Global Singleton DB Client (Zero Pool Thrashing)
@@ -356,7 +404,7 @@ export default async function handler(req, res) {
             let coord = GEO_COORDS[cityKey];
             if (!coord) {
                 const base = COUNTRY_COORDS[countryKey] || { lat: 20.0, lng: 0.0, name: r.country };
-                const offset = getDeterministicCityOffset(r.city || 'default');
+                const offset = getDeterministicCityOffset(r.city || 'default', countryKey);
                 coord = {
                     lat: base.lat + offset.latOffset,
                     lng: base.lng + offset.lngOffset,
