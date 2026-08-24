@@ -246,6 +246,112 @@
             </div>
         </div>
 
+        <!-- 1.5 Node-Based Journey & Pre-Inflow Intent Visualizer (새로 탑재된 노드 추적기) -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:6px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.03);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div>
+                    <h3 style="font-size:1.1em; color:var(--primary); font-weight:800;">🌐 1. Pre-Inflow Deep Origin & Intent Node Graph (유입 전 출처 & 검색 의도)</h3>
+                    <p style="font-size:0.85em; color:var(--text-muted); margin-top:2px;">
+                        방문자/AI가 우리 사이트에 오기 직전에 어떤 검색을 했고 어디를 들렀다 왔는지(Referrer / Deep Link) 노드 흐름 분석
+                    </p>
+                </div>
+                <span class="pill pill-primary">Origin Flow</span>
+            </div>
+
+            <!-- Interactive Origin-to-Landing Node Canvas -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:18px;" id="origin-nodes-container">
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
+                        <span>🤖 OpenAI ChatGPT Deep Link</span>
+                        <span style="color:#004499;">38% (32건)</span>
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
+                        <code>chatgpt.com/share/deep-research...</code>
+                    </div>
+                    <div style="font-size:0.8em; color:#16a34a; font-weight:600;">
+                        ──▶ Landing Target: <strong>/lib/train</strong> (On-Device Bionic ML)
+                    </div>
+                </div>
+
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
+                        <span>🧠 Anthropic Claude Artifacts</span>
+                        <span style="color:#7c3aed;">27% (23건)</span>
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
+                        <code>claude.ai/artifacts/sovereign-ai...</code>
+                    </div>
+                    <div style="font-size:0.8em; color:#7c3aed; font-weight:600;">
+                        ──▶ Landing Target: <strong>/lib/forge</strong> (Forge Native Automation)
+                    </div>
+                </div>
+
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
+                        <span>🐙 GitHub Developer Repos</span>
+                        <span style="color:#059669;">21% (18건)</span>
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
+                        <code>github.com/uno-km/AMEVA-Sentinel...</code>
+                    </div>
+                    <div style="font-size:0.8em; color:#059669; font-weight:600;">
+                        ──▶ Landing Target: <strong>/sdk/sentinel</strong> (Risk Core SDK)
+                    </div>
+                </div>
+
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
+                        <span>🔖 Direct Bookmarks & CLI</span>
+                        <span style="color:#d97706;">14% (12건)</span>
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
+                        <code>Direct / Chrome DevTools / cURL</code>
+                    </div>
+                    <div style="font-size:0.8em; color:#d97706; font-weight:600;">
+                        ──▶ Landing Target: <strong>/app/workstation</strong> (Web Studio)
+                    </div>
+                </div>
+            </div>
+
+            <!-- In-Site Full Hop Traversal Journey & Exit Node -->
+            <div style="border-top:1px solid var(--border-color); padding-top:16px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <h4 style="font-size:0.95em; color:var(--primary); font-weight:700;">🐾 2. Real-Time In-Site Journey & Exit Hop Traversal (사이트 내 체류 & 이탈 직전까지 본 것)</h4>
+                    <span style="font-size:0.8em; color:#64748b;">평균 탐색 깊이: <strong>3.4 Hops</strong> | 평균 세션 체류: <strong>240m 10s</strong></span>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:8px;" id="journey-hops-container">
+                    <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.85em;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                            <strong>🟢 Session: <code>sess_usr_kr_8414...</code></strong>
+                            <span style="color:#64748b;">KR (Goyang-si) &bull; RTX 4090 Workstation</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:var(--font-mono);">
+                            <span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] /</span>
+                            <span>──(18s, 🖱️ 클릭 3회)──▶</span>
+                            <span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop 1] /lib/train</span>
+                            <span>──(45s, ✂️ 코드 복사)──▶</span>
+                            <span style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:3px; border:1px solid #fde68a;">[Hop 2] /app/workstation</span>
+                            <span>──(120s, 🎮 WebGPU 가동)──▶</span>
+                            <span style="background:#fee2e2; color:#b91c1c; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] /foundation (이탈)</span>
+                        </div>
+                    </div>
+
+                    <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.85em;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                            <strong>🤖 Session: <code>gptbot_crawler_eval...</code></strong>
+                            <span style="color:#7e22ce;">US (Ashburn) &bull; OpenAI GPTBot/1.2 (AI Agent)</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:var(--font-mono);">
+                            <span style="background:#fdf4ff; color:#86198f; padding:2px 8px; border-radius:3px; border:1px solid #f0abfc;">[Entry] /api/sentinel</span>
+                            <span>──(0.01s, ⚡ GEO 마크다운 4KB 수신)──▶</span>
+                            <span style="background:#fee2e2; color:#b91c1c; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] /lib/train (99.1% 절감 완료 후 이탈)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 2. Two-Column Live Panels -->
         <div class="content-grid">
             <!-- Left: Top Locations & GPUs -->
