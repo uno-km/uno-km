@@ -2059,3 +2059,294 @@ body {
   background: rgba(124, 58, 237, 0.1);
   box-shadow: 0 0 12px rgba(124, 58, 237, 0.3);
 }
+
+/* ═════════════════════════════════════════════════════════════
+   AMEVA SOVEREIGN MUSEUM DOCENT TOUR DESIGN SYSTEM
+   ═════════════════════════════════════════════════════════════ */
+.museum-header-bar {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(0, 239, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 239, 255, 0.2);
+  backdrop-filter: blur(16px);
+  z-index: 450;
+  animation: slide-down 0.4s var(--ease-smooth);
+}
+
+.museum-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.docent-track-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.museum-step-counter {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: rgba(124, 58, 237, 0.25);
+  border: 1px solid var(--accent-purple);
+  color: #c4b5fd;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.btn-museum-exit {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.btn-museum-exit:hover {
+  background: rgba(239, 68, 68, 0.4);
+  transform: scale(1.1);
+}
+
+/* Floating Curator Exhibition Card */
+.museum-curator-card {
+  position: fixed;
+  top: 130px;
+  right: 24px;
+  width: 360px;
+  max-width: 90vw;
+  background: rgba(20, 20, 25, 0.85);
+  border: 1px solid rgba(0, 239, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 20px rgba(124, 58, 237, 0.15);
+  backdrop-filter: blur(14px);
+  z-index: 450;
+  animation: slide-left 0.4s var(--ease-smooth);
+}
+
+.curator-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.curator-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(62, 207, 142, 0.2);
+  color: var(--accent-green);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(62, 207, 142, 0.3);
+}
+
+.museum-curator-card h3 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.curator-note {
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.curator-spec-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 10px;
+}
+.spec-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* Real-time Cinematic Subtitle HUD */
+.docent-subtitle-hud {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 860px;
+  background: rgba(10, 15, 30, 0.88);
+  border: 1px solid rgba(0, 239, 255, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 239, 255, 0.25);
+  backdrop-filter: blur(16px);
+  z-index: 450;
+  text-align: center;
+}
+
+.docent-speaker-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.docent-transcript-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  min-height: 2.8em;
+}
+
+/* Museum Bottom Controls Bar */
+.museum-controls-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 8px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 450;
+}
+
+.btn-tour-ctrl {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-tour-ctrl:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--accent-cyan);
+}
+
+.btn-tour-playpause {
+  background: linear-gradient(135deg, #7C3AED, #00EFFF);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(0, 239, 255, 0.4);
+  transition: all 0.2s ease;
+}
+.btn-tour-playpause:hover {
+  transform: scale(1.1);
+}
+
+/* STT Voice Waveform HUD */
+.voice-hud-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  z-index: 400;
+  animation: slide-up 0.3s var(--ease-smooth);
+}
+.voice-hud-container.is-hidden { display: none !important; }
+
+.voice-hud-card {
+  width: 320px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--accent-purple);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(124, 58, 237, 0.3);
+  backdrop-filter: blur(12px);
+}
+.voice-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.voice-hud-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+}
+.pulse-ring {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00EFFF;
+  box-shadow: 0 0 8px #00EFFF;
+  animation: pulse-dot 1s infinite;
+}
+.voice-hud-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.voice-transcript-box {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  min-height: 1.4em;
+  font-style: italic;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translate(-50%, -20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}

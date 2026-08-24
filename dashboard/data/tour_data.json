@@ -1,101 +1,251 @@
 {
   "meta": {
-    "version": "2026-AOSF-v1",
+    "version": "2026-Museum-Docent-v2",
     "lastUpdated": "2026-08-24",
-    "description": "AMEVA Neural Fabric 4-Tier Cinematic Tour Script synchronized with Neon PostgreSQL."
+    "title": "🏛️ AMEVA Sovereign Edge AI Museum Docent Script"
   },
+  "tracks": [
+    {
+      "id": "full",
+      "name": "🌌 AMEVA Grand Universe (23개 전관 마스터 코스)"
+    },
+    {
+      "id": "mobile",
+      "name": "📱 Sovereign Mobile AI (비루팅 ARM64 혁신관)"
+    },
+    {
+      "id": "webgpu",
+      "name": "⚡ Browser WebGPU & Autograd (클라이언트 딥러닝관)"
+    }
+  ],
   "steps": [
     {
       "nodeId": "AMEVA-Universe",
-      "title": "🌌 AMEVA Universe (Ecosystem Root)",
+      "track": [
+        "full"
+      ],
+      "title": "제1전시실: 🌌 AMEVA Universe (생태계 중앙 루트)",
       "type": "category",
-      "description": "클라우드 서버 비용과 외부 빅테크 종속에서 벗어나, 순수 온디바이스(On-Device)와 브라우저만으로 자율 실행되는 주권형 AI 및 시스템 프레임워크 생태계입니다.",
-      "tech": "ARM64 Bionic, WebGPU, WGSL, Pyodide WASM, C++17, TypeScript"
+      "curatorNote": "클라우드 빅테크 종속을 탈피한 주권형 온디바이스 AI 생태계의 기원",
+      "description": "관람객 여러분, AMEVA 유니버스에 오신 것을 환영합니다. AMEVA는 거대 클라우드 서버 비용과 외부 API 종속에서 완전히 벗어나, 개인의 스마트폰과 웹 브라우저만으로 자율 실행되는 주권형 AI 생태계입니다.",
+      "tech": "WebGPU, ARM64 Bionic, Pyodide WASM, C++17, TypeScript",
+      "command": "https://uno-km.vercel.app/foundation/"
+    },
+    {
+      "nodeId": "AMEVA-Foundation",
+      "track": [
+        "full"
+      ],
+      "title": "제2전시실: 🏛️ AMEVA Foundation (AOSF 오픈소스 재단)",
+      "type": "category",
+      "curatorNote": "메리토크라시 거버넌스 및 RFC-001 오픈 아키텍처 표준",
+      "description": "이곳은 생태계의 헌장과 기술 명세를 수립하는 아메바 오픈소스 재단입니다. 검증된 오픈소스 컴플라이언스와 기여 기반의 엄격한 거버넌스를 통해 최고급 엔지니어링 표준을 유지합니다.",
+      "tech": "AOSF-RFC-001, Open Governance, Meritocracy, Apache-2.0",
+      "command": "https://uno-km.vercel.app/foundation/charter.html"
     },
     {
       "nodeId": "Mobile-Bionic-AI",
-      "title": "📱 Mobile & Bionic ARM64 AI",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제3전시실: 📱 Mobile & Bionic ARM64 도메인",
       "type": "category",
-      "description": "루팅(Rooting)과 glibc 가상화 없이 안드로이드 Bionic 네이티브 C++ 및 ARM64 NEON 하드웨어 가속을 활용하는 모바일 고성능 연산 도메인입니다.",
+      "curatorNote": "안드로이드 비루팅 유저스페이스 및 Bionic C++ 가속 원천 기술",
+      "description": "현재 마주하고 계신 영역은 스마트폰 하드웨어를 극한으로 활용하는 모바일 바이오닉 도메인입니다. 루팅 없이도 ARM64 NEON 어셈블리 SIMD 연산을 통해 데스크톱급 인공지능을 구현합니다.",
       "tech": "Android Bionic libc++, ARM64 NEON DotProd, Clang 17, OpenBLAS"
     },
     {
       "nodeId": "termux-bitnet",
-      "title": "⚡ Termux-BitNet (1.58-bit LLM)",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제4전시실: ⚡ Termux-BitNet (1.58-bit LLM 추론 엔진)",
       "type": "repo",
-      "description": "ARM64 NEON vdotq_s32 하드웨어 명령어를 탑재하여 스마트폰 RAM 대역폭 소모를 최소화한 1.58비트 삼진(-1, 0, +1) 양자화 온디바이스 LLM 추론 엔진입니다.",
+      "curatorNote": "PyPI / npm 공식 릴리즈 & ARM64 NEON vdotq_s32 하드웨어 가속",
+      "description": "이번 전시물은 플래그십 LLM 엔진인 Termux-BitNet입니다. 가중치를 1.58비트 삼진(-1, 0, +1)으로 압축하고 정수 내적 하드웨어 명령어를 사용하여 스마트폰에서 과열 없이 거대 언어 모델을 초고속 추론합니다.",
       "tech": "C++17, NEON DotProd, GGUF i2_s, ctypes FFI, Node.js IPC",
+      "command": "pip install termux-bitnet | npm install termux-bitnet",
       "github": "https://github.com/uno-km/termux-bitnet"
     },
     {
+      "nodeId": "ARM64-NEON-DotProd",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제5전시실: ⚙️ ARM64 NEON vdotq_s32 (원천 연산 커널)",
+      "type": "kernel",
+      "curatorNote": "사이클당 16개 삼진 가중치를 병렬 연산하는 벡터화 어셈블리",
+      "description": "이 작은 노드는 BitNet의 심장부인 vdotq_s32 어셈블리 커널입니다. 모바일 CPU의 SIMD 레지스터에서 정수 곱셈과 누적을 단 1사이클에 처리하여 연산 전력 소모를 획기적으로 절감합니다.",
+      "tech": "ARMv8.2-A, NEON DotProd, Vectorized Assembly"
+    },
+    {
       "nodeId": "termux-train",
-      "title": "🚂 Termux-Train (LoRA Engine)",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제6전시실: 🚂 Termux-Train (온디바이스 LoRA 학습 엔진)",
       "type": "repo",
-      "description": "Bionic 환경에서 외부 의존성 없이 동적 DAG Autograd 역전파와 SafeTensors Zero-Copy 파서로 구동되는 온디바이스 파인튜닝 프레임워크입니다.",
+      "curatorNote": "동적 DAG 역전파 자동미분 및 SafeTensors Zero-Copy",
+      "description": "스마트폰에서 직접 인공지능을 파인튜닝할 수 있는 Termux-Train입니다. Bionic 환경에 최적화된 동적 DAG Autograd 엔진과 LoRA 어댑터를 통해 외부 서버 없이 나만의 모델을 훈련시킵니다.",
       "tech": "Python, OpenBLAS, SafeTensors, LoRA Adapters, RoPE Attention",
+      "command": "pip install termux-train",
       "github": "https://github.com/uno-km/termux-train"
     },
     {
       "nodeId": "termux-stt",
-      "title": "🎙️ Termux-STT (Voice & Diarization)",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제7전시실: 🎙️ Termux-STT (음성인식 & 화자분리 엔진)",
       "type": "repo",
-      "description": "Whisper.cpp, Vosk, Sherpa-ONNX 3대 엔진과 순수 파이썬 기반 128차원 X-Vector K-Means 화자분리를 결합한 모바일 음성 전사 라이브러리입니다.",
+      "curatorNote": "Whisper / Vosk / Sherpa & 순수 Python 128차원 화자분리",
+      "description": "Termux-STT는 모바일 음성 비서의 핵심입니다. Whisper.cpp와 Vosk 엔진뿐 아니라, 순수 파이썬으로 구현된 128차원 X-Vector K-Means 클러스터링을 통해 여러 사람의 목소리를 실시간 분리합니다.",
       "tech": "Whisper.cpp NEON, Vosk, Sherpa-ONNX, Pure-Python Diarization",
+      "command": "pip install termux-stt | npm install termux-stt",
       "github": "https://github.com/uno-km/termux-stt"
     },
     {
       "nodeId": "termux-diffusion",
-      "title": "🎨 Termux-Diffusion (Image AI)",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제8전시실: 🎨 Termux-Diffusion (온디바이스 이미지 생성)",
       "type": "repo",
-      "description": "안드로이드 ARM64 네이티브 C++ 코어에서 실행되는 고해상도 Stable Diffusion 온디바이스 이미지 생성 엔진입니다.",
+      "curatorNote": "ARM64 네이티브 Stable Diffusion 파이프라인",
+      "description": "네트워크 연결이 차단된 비행기 모드에서도 스마트폰에서 512x512 고해상도 AI 이미지를 직접 그려내는 ARM64 네이티브 Stable Diffusion 엔진입니다.",
       "tech": "C++ NEON, GGUF, Stable Diffusion Pipeline, Python SDK",
+      "command": "pip install termux-diffusion",
       "github": "https://github.com/uno-km/termux-diffusion"
     },
     {
       "nodeId": "termux-playwright",
-      "title": "🕷️ Termux-Playwright (Automation)",
+      "track": [
+        "full",
+        "mobile"
+      ],
+      "title": "제9전시실: 🕷️ Termux-Playwright (비루팅 브라우저 자동화)",
       "type": "repo",
-      "description": "비루팅 스마트폰의 Chromium CDP 인터페이스를 직접 제어하여 모바일 기기를 5W 분산 웹 스크래핑 노드로 전환하는 자동화 라이브러리입니다.",
+      "curatorNote": "Chromium CDP 직접 제어로 모바일을 분산 크롤러로 전환",
+      "description": "공기계 스마트폰을 5와트 초절전 분산 웹 스크래핑 노드로 탈바꿈시키는 자동화 프레임워크입니다. 루트 권한 없이 Chromium CDP 포트를 직접 제어하여 완벽한 브라우저 제어를 구현합니다.",
       "tech": "Chromium CDP, Node.js, Python, ARM64 Bionic",
+      "command": "pip install termux-playwright | npm install termux-playwright",
       "github": "https://github.com/uno-km/termux-playwright-demo"
     },
     {
       "nodeId": "WebGPU-Browser-AI",
-      "title": "⚡ WebGPU & Browser AI",
+      "track": [
+        "full",
+        "webgpu"
+      ],
+      "title": "제10전시실: ⚡ WebGPU & Browser AI 도메인",
       "type": "category",
-      "description": "클라우드 GPU 비용 없이 사용자의 브라우저 그래픽 카드를 직접 활용하여 딥러닝 텐서 연산을 수행하는 클라이언트 중심 연산 도메인입니다.",
+      "curatorNote": "브라우저 그래픽 하드웨어 직결 딥러닝 연산",
+      "description": "이 영역은 웹 브라우저의 GPU를 직접 프로그래밍하는 WebGPU 도메인입니다. 서버로 단 1바이트의 데이터를 보내지 않고도 사용자의 고성능 그래픽 카드를 풀가동합니다.",
       "tech": "WebGPU, WGSL Shaders, Ring Buffer Pooling, WASM"
     },
     {
       "nodeId": "AMEVA-Forge",
-      "title": "🔨 AMEVA-Forge (Autograd Engine)",
+      "track": [
+        "full",
+        "webgpu"
+      ],
+      "title": "제11전시실: 🔨 AMEVA-Forge (브라우저 WebGPU Autograd)",
       "type": "repo",
-      "description": "브라우저 네이티브 WGSL 셰이더와 PyTorch 호환 텐서 API를 제공하는 브라우저 딥러닝 자동미분 프레임워크입니다.",
+      "curatorNote": "PyTorch 호환 텐서 API & 무할당 링 버퍼 풀링",
+      "description": "AMEVA-Forge는 브라우저 네이티브 자동미분 텐서 엔진입니다. WGSL 병렬 셰이더와 무누수 링 버퍼 풀링을 통해 브라우저에서 인공신경망 역전파 학습을 실현합니다.",
       "tech": "WebGPU, WGSL, Pyodide, Zero-Allocation Buffer",
+      "command": "pip install ameva",
       "github": "https://github.com/uno-km/AMEVA-Forge"
     },
     {
       "nodeId": "AMEVA-Workstation",
-      "title": "💻 AMEVA Workstation",
+      "track": [
+        "full",
+        "webgpu"
+      ],
+      "title": "제12전시실: 💻 AMEVA Workstation (차세대 데스크톱 웹앱)",
       "type": "repo",
-      "description": "브라우저 내장 Qwen2.5 로컬 AI와 무한 스페이셜 캔버스, 계층 문서, 멀티 에이전트 오케스트레이션을 결합한 차세대 데스크톱 웹 앱입니다.",
+      "curatorNote": "Qwen2.5 온디바이스 로컬 AI & 무한 스페이셜 캔버스",
+      "description": "생태계의 플래그십 웹 애플리케이션인 AMEVA Workstation입니다. 브라우저 내장 Qwen AI와 무한 스페이셜 캔버스, 지능형 다계층 문서를 결합하여 온전한 오프라인 작업 환경을 선사합니다.",
       "tech": "React, Next.js, WebLLM, Infinite Canvas, Multi-Agent",
+      "command": "https://ameva-workstation-web-core.vercel.app/",
       "github": "https://github.com/uno-km/AMEVA-Workstation-Web"
     },
     {
       "nodeId": "Security-Observability",
-      "title": "🛡️ Security & Observability",
+      "track": [
+        "full"
+      ],
+      "title": "제13전시실: 🛡️ Security & Observability 도메인",
       "type": "category",
-      "description": "사용자 키스트로크를 일절 수집하지 않는 0-Data 원칙 하에, 엣지 미들웨어와 결정론적 위협 평가를 수행하는 보안 거버넌스 도메인입니다.",
+      "curatorNote": "0-Data 프라이버시 원칙 & 엣지 미들웨어 위협 방어",
+      "description": "사용자의 키스트로크나 개인정보를 일절 수집하지 않는 0-Data 원칙 하에, 엣지 미들웨어와 18종 AI 봇 식별 체계를 통해 생태계를 안전하게 방어하는 보안 도메인입니다.",
       "tech": "TypeScript, WebCrypto, Edge Middleware, Neon PostgreSQL"
     },
     {
       "nodeId": "AMEVA-Sentinel",
-      "title": "👁️ AMEVA-Sentinel (Security SDK)",
+      "track": [
+        "full"
+      ],
+      "title": "제14전시실: 👁️ AMEVA-Sentinel (0-Data 보안 거버넌스 SDK)",
       "type": "repo",
-      "description": "0~100 결정론적 세션 위험도 평가 및 18종 AI 크롤러 분류, 포렌식 이상 징후 감지를 수행하는 엔터프라이즈 보안 SDK입니다.",
+      "curatorNote": "0~100 결정론적 세션 위험도 평가 및 엔트로피 분석",
+      "description": "AMEVA-Sentinel은 클라이언트 부작용 없이 세션 위협 지수를 0에서 100점 척도로 평가하는 보안 SDK입니다. 악의적 취약점 스캐너와 인공지능 크롤러를 지능적으로 차단합니다.",
       "tech": "WebCrypto Fingerprint, Rule Engine, PostgreSQL Logging",
+      "command": "npm install @ameva/sentinel",
       "github": "https://github.com/uno-km/ameva-sentinel"
+    },
+    {
+      "nodeId": "Autonomous-Systems",
+      "track": [
+        "full"
+      ],
+      "title": "제15전시실: 🤖 Autonomous Systems 도메인",
+      "type": "category",
+      "curatorNote": "계층형 멀티에이전트 오케스트레이션 및 상태 머신",
+      "description": "전문가 에이전트 간의 자율적 작업 분해와 분산 터미널 메시를 구축하여 복잡한 엔지니어링 문제를 스스로 해결하는 자율 시스템 도메인입니다.",
+      "tech": "Multi-Agent DAG, SRE Mesh, WebSocket, Terminal Protocols"
+    },
+    {
+      "nodeId": "AMEVA-DocFold",
+      "track": [
+        "full"
+      ],
+      "title": "제16전시실: 📑 AMEVA-DocFold (무손실 시맨틱 컨텍스트 압축)",
+      "type": "repo",
+      "curatorNote": "다계층 시맨틱 폴딩으로 토큰 한계 돌파",
+      "description": "DocFold는 거대한 기술 문서를 손실 없이 압축하여 AI 컨텍스트 윈도우에 주입하는 프레임워크입니다. 증거와 인용을 완벽히 보존하며 압도적인 토큰 효율을 달성합니다.",
+      "tech": "Python, Semantic DAG, Lossless Folding",
+      "github": "https://github.com/uno-km/ameva-docfold"
+    },
+    {
+      "nodeId": "Developer-Tooling-Docs",
+      "track": [
+        "full"
+      ],
+      "title": "제17전시실: 🛠️ Developer Tooling & Docs 도메인",
+      "type": "category",
+      "curatorNote": "Zero-Drift 클래식 문서 컴파일러 및 자동화 파이프라인",
+      "description": "선언적 YAML 기반으로 6개 국어 문서 사이트와 AI 에이전트 전용 피드(llms.txt)를 오차 없이 기계적으로 컴파일하는 개발자 도구 영역입니다.",
+      "tech": "Python 3, YAML Engine, Jinja, i18n Automation"
+    },
+    {
+      "nodeId": "Eunho-Kim-CV",
+      "track": [
+        "full"
+      ],
+      "title": "제18전시실: 👤 Eunho Kim (김은호 창립자 CV)",
+      "type": "category",
+      "curatorNote": "수석 시스템 아키텍트 & 엔터프라이즈 풀스택 엔지니어",
+      "description": "지금까지 관람하신 AMEVA 유니버스를 설계하고 구현한 창립자 김은호 엔지니어의 공식 포트폴리오입니다. 엔터프라이즈 시스템, 고성능 쿼리 튜닝, WebGPU 아키텍처의 정수가 담겨 있습니다. 관람해 주셔서 진심으로 감사드립니다.",
+      "tech": "Java 21, Spring Boot, PostgreSQL HA, WebGPU, ARM64 Bionic",
+      "command": "https://uno-km.vercel.app/"
     }
   ]
 }

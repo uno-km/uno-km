@@ -451,251 +451,246 @@ function estimateTTSDuration(text) {
   return Math.max(MIN_STEP_DURATION_MS, estimatedMs) + TRANSITION_BUFFER_MS;
 }
 
-window.startTour = async function () {
-  const tourOverlay = document.getElementById('tour-overlay');
-  if (!tourOverlay || !node) return;
-
-  // Load tour data
-  const tourData = await loadTourData();
-  if (!tourData || !tourData.steps || tourData.steps.length === 0) {
-    if (window.showToast) window.showToast('투어 데이터를 불러올 수 없습니다.');
-    return;
-  }
-
-  tourSteps = tourData.steps;
-
-  // UI Elements
-  let btnNext = document.getElementById('btn-tour-next');
-  let btnPrev = document.getElementById('btn-tour-prev');
-  let btnExit = document.getElementById('btn-tour-exit');
-  let btnTts = document.getElementById('btn-tour-tts');
-  let ttsSpeedSelect = document.getElementById('tts-speed-select');
-
-  const titleEl = document.getElementById('tour-title');
-  const descEl = document.getElementById('tour-desc');
-  const detailsEl = document.getElementById('tour-details');
-  const techEl = document.getElementById('tour-tech');
-  const algEl = document.getElementById('tour-alg');
-
-  // Clear old listeners by cloning
-  btnNext.replaceWith(btnNext.cloneNode(true)); btnNext = document.getElementById('btn-tour-next');
-  btnPrev.replaceWith(btnPrev.cloneNode(true)); btnPrev = document.getElementById('btn-tour-prev');
-  btnExit.replaceWith(btnExit.cloneNode(true)); btnExit = document.getElementById('btn-tour-exit');
-  btnTts.replaceWith(btnTts.cloneNode(true)); btnTts = document.getElementById('btn-tour-tts');
-  if (ttsSpeedSelect) {
-    ttsSpeedSelect.replaceWith(ttsSpeedSelect.cloneNode(true));
-    ttsSpeedSelect = document.getElementById('tts-speed-select');
-    // Initialize select to current rate
-    ttsSpeedSelect.value = currentTtsRate.toFixed(1);
-  }
-
-  // Select DOM elements inside wrappers AFTER cloning
-  let ttsIcon = document.getElementById('tts-icon');
-  const progressRing = document.getElementById('tour-progress-circle');
-
-  isTourActive = true;
-  currentTourIndex = 0;
-  tourOverlay.classList.remove('is-hidden');
-  if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] TTS Tour', '시네마틱 투어 시작됨');
-
-  // Stop TTS + timers + ring
-  const stopAll = () => {
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
-    clearTimeout(autoAdvanceTimer);
-    cancelAnimationFrame(ringAnimFrame);
-    if (progressRing) {
-      progressRing.style.strokeDashoffset = CIRCUMFERENCE;
-      progressRing.classList.remove('ring-intense');
-    }
-  };
-
-  // Exit tour
-  const exitTour = () => {
-    isTourActive = false;
-    stopAll();
-    tourOverlay.classList.add('is-hidden');
-    // Zoom out
-    if (svg && zoomBehavior) {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      svg.transition().duration(1500)
-        .call(zoomBehavior.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.8).translate(-width / 2, -height / 2));
-    }
-    const completed = (currentTourIndex + 1 === tourSteps.length);
-    if (window.logTelemetryEvent) {
-      window.logTelemetryEvent('[LOG] TTS Tour Exit', `투어 종료 - ${currentTourIndex + 1}단계에서 종료 (완주 여부: ${completed ? '예' : '아니오'})`);
-    }
-    if (window.showToast) window.showToast('웰컴 아메바 유니버스!');
-  };
-
-  // Show a tour step
-  const showStep = (index) => {
-    if (!isTourActive || index < 0 || index >= tourSteps.length) return;
-    stopAll();
-
-    const step = tourSteps[index];
-    if (window.logTelemetryEvent) {
-      window.logTelemetryEvent('[LOG] TTS Tour Step', `${index + 1}단계: ${step.title} (Node: ${step.nodeId})`);
-    }
-
-    // Update UI
-    titleEl.textContent = step.title;
-    descEl.textContent = step.description || '';
-    detailsEl.style.display = 'block';
-    techEl.textContent = step.tech || '';
-
-    // Show/hide algorithm field (repurpose as GitHub link for repos)
-    if (step.github) {
-      algEl.innerHTML = `<a href="${step.github}" target="_blank" rel="noopener noreferrer" class="tour-github-link">🔗 GitHub 리포지토리</a>`;
-    } else {
-      algEl.innerHTML = step.type === 'category' ? '<span class="tour-tech-badge">카테고리 노드</span>' : '';
-    }
-
-    // Step counter — inject or update
-    let counterEl = tourOverlay.querySelector('.tour-step-counter');
-    if (!counterEl) {
-      counterEl = document.createElement('div');
-      counterEl.className = 'tour-step-counter';
-      tourOverlay.querySelector('.tour-content').prepend(counterEl);
-    }
-    counterEl.textContent = `${index + 1} / ${tourSteps.length}`;
-
-    // Find matching D3 node and zoom to it
-    let targetNode = null;
-    node.each(function (d) {
-      if (d.id === step.nodeId) targetNode = d;
-    });
-
-    if (targetNode) {
-      zoomToNode(targetNode);
-    }
-
-    // Build speech text
-    // Remove emojis and special markdown/symbol characters
-    const cleanTtsText = (str) => {
-      if (!str) return '';
-      return str
-        .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
-        .replace(/[\[\]*#_~`>+\-=/|\\(){}]/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-    };
-
-    const rawText = `${step.title}. ${step.description}. 핵심 기술 스택은 ${step.tech} 입니다.`;
-    const speechText = cleanTtsText(rawText);
-    const estimatedDurationMs = estimateTTSDuration(speechText);
-
-    // ── Progress Ring Animation (drives auto-advance) ──
-    const ringStartTime = performance.now();
-    const animateRing = (now) => {
-      if (!isTourActive) return;
-      const elapsed = now - ringStartTime;
-      const progress = Math.min(1, elapsed / estimatedDurationMs);
-      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * progress);
-      if (progressRing) {
-        progressRing.style.strokeDashoffset = offset;
-        // 75% intensity change
-        if (progress >= 0.75) {
-          progressRing.classList.add('ring-intense');
-        } else {
-          progressRing.classList.remove('ring-intense');
-        }
-      }
-
-      if (progress < 1) {
-        ringAnimFrame = requestAnimationFrame(animateRing);
-      } else {
-        // Ring complete → auto-advance
-        if (currentTourIndex + 1 < tourSteps.length) {
-          currentTourIndex++;
-          showStep(currentTourIndex);
-        } else {
-          exitTour();
-        }
-      }
-    };
-    ringAnimFrame = requestAnimationFrame(animateRing);
-
-    // ── TTS (plays alongside ring, doesn't control timing) ──
-    if (isTtsEnabled && 'speechSynthesis' in window) {
-      try {
-        window.speechSynthesis.cancel(); // Cancel any pending
-        currentUtterance = new SpeechSynthesisUtterance(speechText);
-        currentUtterance.lang = 'ko-KR';
-        currentUtterance.rate = currentTtsRate;
-
-        const koVoice = getKoreanVoice();
-        if (koVoice) currentUtterance.voice = koVoice;
-
-        currentUtterance.onerror = (e) => {
-          console.warn('[AMEVA TTS] Speech error:', e.error);
-        };
-
-        window.speechSynthesis.speak(currentUtterance);
-      } catch (e) {
-        console.warn('[AMEVA TTS] Failed to speak:', e);
-      }
-    }
-  };
-
-  // ── Navigation Controls ──
-  btnNext.addEventListener('click', () => {
-    if (currentTourIndex + 1 < tourSteps.length) {
-      currentTourIndex++;
-      showStep(currentTourIndex);
-    } else {
-      exitTour();
-    }
-  });
-
-  btnPrev.addEventListener('click', () => {
-    if (currentTourIndex > 0) {
-      currentTourIndex--;
-      showStep(currentTourIndex);
-    }
-  });
-
-  btnTts.addEventListener('click', () => {
-    isTtsEnabled = !isTtsEnabled;
-    if (ttsIcon) ttsIcon.textContent = isTtsEnabled ? '🔈' : '🔇';
-    if (!isTtsEnabled && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
-    // Re-show current step (restarts ring + optionally TTS)
-    showStep(currentTourIndex);
-  });
-
-  if (ttsSpeedSelect) {
-    ttsSpeedSelect.addEventListener('change', (e) => {
-      currentTtsRate = parseFloat(e.target.value);
-      showStep(currentTourIndex);
-    });
-  }
-
-  btnExit.addEventListener('click', exitTour);
-
-  // Start first step
-  showStep(currentTourIndex);
-};
 
 /**
- * Helper to smoothly zoom and pan to a specific node
+ * ═════════════════════════════════════════════════════════════
+ * AMEVA SOVEREIGN MUSEUM DOCENT ENGINE (Cinematic Audio Guide)
+ * ═════════════════════════════════════════════════════════════
  */
-export function zoomToNode(targetNode) {
-  if (targetNode && svg && zoomBehavior) {
-    const scale = 2.0;
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    const tx = -targetNode.x * scale + width / 2;
-    const ty = -targetNode.y * scale + height / 2;
-    svg.transition().duration(1200).ease(d3.easeCubicOut)
-      .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+let docentTourSteps = [];
+let currentDocentTrack = 'full';
+let currentDocentIndex = 0;
+let isDocentPaused = false;
+let docentProgressInterval = null;
+let docentTypewriterTimeout = null;
+
+async function loadMuseumDocentData() {
+  try {
+    let tourRes;
+    try {
+      tourRes = await fetch('data/tour_data.json');
+      if (!tourRes.ok) tourRes = await fetch('/dashboard/data/tour_data.json');
+    } catch(e) {
+      tourRes = await fetch('/dashboard/data/tour_data.json');
+    }
+    const tourJson = await tourRes.json();
+    return tourJson.steps || [];
+  } catch (err) {
+    console.warn('[DocentTour] Failed to load tour_data.json:', err);
+    return [];
   }
 }
 
-/**
- * Render the modal detail card for a selected node
- */
+function filterTrackSteps(rawSteps, trackId) {
+  if (!rawSteps || rawSteps.length === 0) return [];
+  if (trackId === 'full') return rawSteps;
+  return rawSteps.filter(s => s.track && s.track.includes(trackId));
+}
+
+window.startMuseumDocentTour = async function(track = 'full') {
+  const overlay = document.getElementById('tour-overlay');
+  if (!overlay) return;
+
+  const rawSteps = await loadMuseumDocentData();
+  docentTourSteps = filterTrackSteps(rawSteps, track);
+  if (docentTourSteps.length === 0) {
+    if (window.showToast) window.showToast('도슨트 해설 대본을 불러올 수 없습니다.');
+    return;
+  }
+
+  overlay.classList.remove('is-hidden');
+  isDocentPaused = false;
+
+  const btnPrev = document.getElementById('btn-tour-prev');
+  const btnNext = document.getElementById('btn-tour-next');
+  const btnPlayPause = document.getElementById('btn-tour-playpause');
+  const playPauseIcon = document.getElementById('tour-playpause-icon');
+  const btnExit = document.getElementById('btn-tour-exit');
+  const btnTts = document.getElementById('btn-tour-tts');
+  const ttsIcon = document.getElementById('tts-icon');
+  const ttsSpeedSelect = document.getElementById('tts-speed-select');
+  const trackSelect = document.getElementById('docent-track-select');
+  
+  const stepCounter = document.getElementById('tour-step-counter');
+  const tourTitle = document.getElementById('tour-title');
+  const tourCuratorNote = document.getElementById('tour-curator-note');
+  const tourTypeTag = document.getElementById('tour-type-tag');
+  const tourTech = document.getElementById('tour-tech');
+  const tourCommand = document.getElementById('tour-command');
+  const commandContainer = document.getElementById('tour-command-container');
+  const tourDesc = document.getElementById('tour-desc');
+  const progressCircle = document.getElementById('tour-progress-circle');
+
+  if (trackSelect) trackSelect.value = track;
+  if (playPauseIcon) playPauseIcon.textContent = '⏸';
+
+  function showExhibitionStep(index) {
+    if (index < 0 || index >= docentTourSteps.length) return;
+
+    currentDocentIndex = index;
+    const step = docentTourSteps[index];
+
+    if (docentProgressInterval) clearInterval(docentProgressInterval);
+    if (docentTypewriterTimeout) clearTimeout(docentTypewriterTimeout);
+    if (window.audioEngine) window.audioEngine.stopSpeech();
+
+    // 1. Update UI
+    if (stepCounter) stepCounter.textContent = `전시실 ${index + 1} / ${docentTourSteps.length}`;
+    if (tourTitle) tourTitle.textContent = step.title;
+    if (tourCuratorNote) tourCuratorNote.textContent = step.curatorNote || '';
+    if (tourTypeTag) tourTypeTag.textContent = step.type === 'repo' ? 'TLP 프로젝트' : (step.type === 'kernel' ? '핵심 커널' : '전시관');
+    if (tourTech) tourTech.textContent = step.tech || 'AMEVA Native';
+    if (commandContainer && tourCommand) {
+      if (step.command) {
+        tourCommand.textContent = step.command;
+        commandContainer.style.display = 'block';
+      } else {
+        commandContainer.style.display = 'none';
+      }
+    }
+
+    // 2. 3D Camera Warp & Chime
+    let targetNode = null;
+    if (node && typeof node.each === 'function') {
+      node.each(function(d) {
+        if (d.id === step.nodeId) targetNode = d;
+      });
+    }
+    if (targetNode) {
+      zoomToNode(targetNode);
+      if (window.audioEngine) window.audioEngine.playMuseumChime();
+    }
+
+    // 3. Subtitle Typewriter
+    if (tourDesc) {
+      tourDesc.textContent = '';
+      const text = step.description;
+      let charIdx = 0;
+      const typeNext = () => {
+        if (charIdx < text.length) {
+          tourDesc.textContent += text.charAt(charIdx);
+          charIdx++;
+          docentTypewriterTimeout = setTimeout(typeNext, 30);
+        }
+      };
+      typeNext();
+    }
+
+    // 4. Progress Ring & Timer
+    const totalDurationMs = Math.max(6500, (step.description.length * 80));
+    let elapsedMs = 0;
+    const updateFreqMs = 50;
+
+    if (progressCircle) {
+      const radius = 16;
+      const circ = 2 * Math.PI * radius;
+      progressCircle.style.strokeDasharray = `${circ}`;
+      progressCircle.style.strokeDashoffset = `${circ}`;
+
+      docentProgressInterval = setInterval(() => {
+        if (isDocentPaused) return;
+        elapsedMs += updateFreqMs;
+        const pct = Math.min(1.0, elapsedMs / totalDurationMs);
+        progressCircle.style.strokeDashoffset = `${circ * (1 - pct)}`;
+
+        if (pct >= 1.0) {
+          clearInterval(docentProgressInterval);
+          if (currentDocentIndex + 1 < docentTourSteps.length) {
+            showExhibitionStep(currentDocentIndex + 1);
+          } else {
+            exitMuseumTour();
+          }
+        }
+      }, updateFreqMs);
+    }
+
+    // 5. Voice Narration
+    if (window.audioEngine && !window.audioEngine.isMuted) {
+      window.audioEngine.speakDocentNarration(step.description);
+    }
+  }
+
+  function exitMuseumTour() {
+    overlay.classList.add('is-hidden');
+    if (docentProgressInterval) clearInterval(docentProgressInterval);
+    if (docentTypewriterTimeout) clearTimeout(docentTypewriterTimeout);
+    if (window.audioEngine) window.audioEngine.stopSpeech();
+    isDocentPaused = false;
+    if (svg && zoomBehavior) {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      svg.transition().duration(1200)
+        .call(zoomBehavior.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.8).translate(-width / 2, -height / 2));
+    }
+  }
+
+  // Controls Event Listeners
+  if (btnNext) {
+    btnNext.onclick = () => {
+      if (currentDocentIndex + 1 < docentTourSteps.length) {
+        showExhibitionStep(currentDocentIndex + 1);
+      } else {
+        exitMuseumTour();
+      }
+    };
+  }
+
+  if (btnPrev) {
+    btnPrev.onclick = () => {
+      if (currentDocentIndex > 0) {
+        showExhibitionStep(currentDocentIndex - 1);
+      }
+    };
+  }
+
+  if (btnPlayPause) {
+    btnPlayPause.onclick = () => {
+      isDocentPaused = !isDocentPaused;
+      if (playPauseIcon) playPauseIcon.textContent = isDocentPaused ? '▶' : '⏸';
+      if (isDocentPaused && window.audioEngine) {
+        window.audioEngine.stopSpeech();
+      } else if (!isDocentPaused && window.audioEngine) {
+        const step = docentTourSteps[currentDocentIndex];
+        if (step) window.audioEngine.speakDocentNarration(step.description);
+      }
+    };
+  }
+
+  if (btnTts) {
+    btnTts.onclick = () => {
+      if (window.audioEngine) {
+        const muted = window.audioEngine.toggleMute();
+        if (ttsIcon) ttsIcon.textContent = muted ? '🔇' : '🔈';
+      }
+    };
+  }
+
+  if (ttsSpeedSelect) {
+    ttsSpeedSelect.onchange = (e) => {
+      if (window.audioEngine) {
+        window.audioEngine.setSpeechRate(e.target.value);
+      }
+    };
+  }
+
+  if (trackSelect) {
+    trackSelect.onchange = (e) => {
+      window.startMuseumDocentTour(e.target.value);
+    };
+  }
+
+  if (btnExit) {
+    btnExit.onclick = exitMuseumTour;
+  }
+
+  // Start from Step 0
+  showExhibitionStep(0);
+};
+
+window.startTour = function() {
+  window.startMuseumDocentTour('full');
+};
+
 
 // Global In-Memory Cache for fetched Readmes
 const readmeCache = new Map();

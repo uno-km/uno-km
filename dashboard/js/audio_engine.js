@@ -1,12 +1,17 @@
-/**
- * AMEVA Neural Fabric - Audio Engine
- * Procedural UI sound effects using Web Audio API
+﻿/**
+ * AMEVA Neural Fabric — Premium Audio & Docent Voice Synthesizer Engine
+ * High-fidelity Web Audio API chimes & Natural Voice Speech Synthesis
  */
 class AudioEngine {
   constructor() {
     this.ctx = null;
     this.enabled = false;
+    this.currentUtterance = null;
+    this.preferredVoice = null;
+    this.isMuted = false;
+    this.speechRate = 1.05;
     this.init();
+    this.initVoiceSelector();
   }
 
   init() {
@@ -21,12 +26,11 @@ class AudioEngine {
           }
           if (this.ctx.state === 'running') {
             this.enabled = true;
-            // Clean up listeners once running
             events.forEach(e => document.removeEventListener(e, unlock));
           }
         }
       } catch (err) {
-        console.warn('AudioContext failed to start:', err);
+        console.warn('[AudioEngine] AudioContext init note:', err);
       }
     };
     
@@ -34,112 +38,157 @@ class AudioEngine {
     events.forEach(e => document.addEventListener(e, unlock, { passive: true }));
   }
 
+  initVoiceSelector() {
+    if ('speechSynthesis' in window) {
+      const loadVoices = () => {
+        const voices = window.speechSynthesis.getVoices();
+        // Look for premium natural Korean voices
+        const naturalKo = voices.find(v => v.lang.startsWith('ko') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Heami') || v.name.includes('SunHi') || v.name.includes('Yuna')));
+        const standardKo = voices.find(v => v.lang.startsWith('ko'));
+        const englishNatural = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Guy') || v.name.includes('Jenny')));
+        
+        this.preferredVoice = naturalKo || standardKo || englishNatural || voices[0];
+        if (this.preferredVoice) {
+          console.log('[AudioEngine] Selected Natural Voice:', this.preferredVoice.name, this.preferredVoice.lang);
+        }
+      };
+
+      loadVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+    }
+  }
+
+  /**
+   * Speak museum docent narration with typewriter subtitle sync
+   */
+  speakDocentNarration(text, onWordCallback, onEndCallback) {
+    if (this.isMuted || !('speechSynthesis' in window) || !text) {
+      if (onEndCallback) onEndCallback();
+      return;
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+
+      // Clean markdown tags for natural speech
+      const cleanText = text.replace(/[*_#`~\[\]\(\)>]/g, '').replace(/https?:\/\/\S+/g, '');
+
+      this.currentUtterance = new SpeechSynthesisUtterance(cleanText);
+      if (this.preferredVoice) {
+        this.currentUtterance.voice = this.preferredVoice;
+        this.currentUtterance.lang = this.preferredVoice.lang;
+      } else {
+        this.currentUtterance.lang = 'ko-KR';
+      }
+
+      this.currentUtterance.rate = this.speechRate;
+      this.currentUtterance.pitch = 1.03; // Gentle natural tone
+
+      this.currentUtterance.onboundary = (event) => {
+        if (event.name === 'word' && onWordCallback) {
+          onWordCallback(event.charIndex, event.charLength);
+        }
+      };
+
+      this.currentUtterance.onend = () => {
+        if (onEndCallback) onEndCallback();
+      };
+
+      this.currentUtterance.onerror = (err) => {
+        console.warn('[AudioEngine] Narration error:', err);
+        if (onEndCallback) onEndCallback();
+      };
+
+      this.playMuseumChime();
+      window.speechSynthesis.speak(this.currentUtterance);
+    } catch (e) {
+      console.warn('[AudioEngine] Failed to speak:', e);
+      if (onEndCallback) onEndCallback();
+    }
+  }
+
+  stopSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  setSpeechRate(rate) {
+    this.speechRate = parseFloat(rate) || 1.05;
+  }
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    if (this.isMuted) this.stopSpeech();
+    return this.isMuted;
+  }
+
+  /**
+   * Procedural Sci-Fi Museum Ethereal Chime on node warp
+   */
+  playMuseumChime() {
+    if (!this.enabled || !this.ctx) return;
+    try {
+      const now = this.ctx.currentTime;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+        
+        gain.gain.setValueAtTime(0.04, now + idx * 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.06 + 0.6);
+        
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        
+        osc.start(now + idx * 0.06);
+        osc.stop(now + idx * 0.06 + 0.65);
+      });
+    } catch (e) {}
+  }
+
   playTick() {
     if (!this.enabled || !this.ctx) return;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(800, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.05);
-    
-    gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
-    
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.05);
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.04);
+    } catch(e) {}
   }
 
   playSwoosh() {
     if (!this.enabled || !this.ctx) return;
-    const bufferSize = this.ctx.sampleRate * 0.5; // 0.5 seconds of noise
-    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = Math.random() * 2 - 1;
-    }
-
-    const noise = this.ctx.createBufferSource();
-    noise.buffer = buffer;
-
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(1000, this.ctx.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.5);
-
-    const gain = this.ctx.createGain();
-    gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.5);
-
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    noise.start();
-  }
-
-  playDeepBass() {
-    if (!this.enabled || !this.ctx) return;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(100, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.5);
-    
-    gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.5);
-    
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.5);
-  }
-
-  playPowerUp() {
-    if (!this.enabled || !this.ctx) return;
-    const osc = this.ctx.createOscillator();
-    const osc2 = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    
-    osc.type = 'sawtooth';
-    osc2.type = 'triangle';
-    
-    const now = this.ctx.currentTime;
-    
-    osc.frequency.setValueAtTime(80, now);
-    osc.frequency.exponentialRampToValueAtTime(880, now + 0.3);
-    osc.frequency.exponentialRampToValueAtTime(150, now + 1.2);
-    
-    osc2.frequency.setValueAtTime(85, now);
-    osc2.frequency.exponentialRampToValueAtTime(885, now + 0.3);
-    osc2.frequency.exponentialRampToValueAtTime(145, now + 1.2);
-    
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(200, now);
-    filter.frequency.exponentialRampToValueAtTime(2000, now + 0.4);
-    filter.frequency.exponentialRampToValueAtTime(300, now + 1.2);
-    
-    gain.gain.setValueAtTime(0.001, now);
-    gain.gain.linearRampToValueAtTime(0.15, now + 0.3);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-    
-    osc.connect(filter);
-    osc2.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.ctx.destination);
-    
-    osc.start(now);
-    osc2.start(now);
-    
-    osc.stop(now + 1.2);
-    osc2.stop(now + 1.2);
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(300, now);
+      osc.frequency.exponentialRampToValueAtTime(80, now + 0.3);
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(now + 0.3);
+    } catch(e) {}
   }
 }
 
-window.audioEngine = new AudioEngine();
+document.addEventListener('DOMContentLoaded', () => {
+  window.audioEngine = new AudioEngine();
+});

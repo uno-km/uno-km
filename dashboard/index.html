@@ -90,23 +90,55 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       TOUR OVERLAY (Cinematic Mode)
+       AMEVA MUSEUM DOCENT TOUR OVERLAY (Cinematic Audio Guide)
        ═══════════════════════════════════════════════════════════ -->
   <div id="tour-overlay" class="tour-overlay is-hidden">
-    <div class="tour-content">
-      <h3 id="tour-title">Touring AMEVA</h3>
-      <div id="tour-desc-container">
-        <p id="tour-desc">Initializing cinematic sequence...</p>
-        <div id="tour-details" style="display:none; margin-top: 10px;">
-          <strong style="color:var(--accent-cyan)">Tech Stack:</strong> <span id="tour-tech">...</span><br />
-          <strong style="color:var(--accent-purple)">Core Alg:</strong> <span id="tour-alg">...</span>
-        </div>
+    <!-- Top Museum Track & Progress Banner -->
+    <div class="museum-header-bar">
+      <div class="museum-badge">🏛️ AMEVA Sovereign Museum</div>
+      <select id="docent-track-select" class="docent-track-select">
+        <option value="full">🌌 전관 마스터 코스 (18개 전시관)</option>
+        <option value="mobile">📱 온디바이스 모바일 AI 혁신관</option>
+        <option value="webgpu">⚡ 브라우저 WebGPU 미래관</option>
+      </select>
+      <div class="museum-step-counter" id="tour-step-counter">전시실 1 / 18</div>
+      <button class="btn-museum-exit" id="btn-tour-exit" title="관람 종료">✕</button>
+    </div>
+
+    <!-- Curator Exhibition Panel (Floating Card) -->
+    <div class="museum-curator-card" id="museum-curator-card">
+      <div class="curator-card-header">
+        <span class="curator-tag" id="tour-type-tag">전시관</span>
+        <h3 id="tour-title">전시실 타이틀</h3>
+      </div>
+      <div class="curator-note" id="tour-curator-note">큐레이터 핵심 노트...</div>
+      
+      <div class="curator-spec-grid" id="tour-spec-grid">
+        <div class="spec-item"><span class="spec-label">Tech Stack:</span> <span id="tour-tech">...</span></div>
+        <div class="spec-item" id="tour-command-container" style="display:none;"><span class="spec-label">Terminal:</span> <code id="tour-command" style="color:var(--accent-green); font-family:var(--font-mono);">...</code></div>
       </div>
     </div>
-    <div class="tour-controls-new">
-      <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
 
-      <div class="tour-progress-wrapper" id="btn-tour-tts">
+    <!-- Real-time Cinematic Subtitle Transcript Box -->
+    <div class="docent-subtitle-hud" id="docent-subtitle-hud">
+      <div class="docent-speaker-label">
+        <span class="audio-wave-icon">🔊</span>
+        <span>AI Curator Audio Guide</span>
+      </div>
+      <p class="docent-transcript-text" id="tour-desc">해설을 준비하고 있습니다...</p>
+    </div>
+
+    <!-- Docent Bottom Control Bar -->
+    <div class="museum-controls-bar">
+      <button class="btn-tour-ctrl" id="btn-tour-prev" title="이전 전시실">⏮ 이전</button>
+      
+      <button class="btn-tour-playpause" id="btn-tour-playpause" title="재생/일시정지">
+        <span id="tour-playpause-icon">⏸</span>
+      </button>
+
+      <button class="btn-tour-ctrl" id="btn-tour-next" title="다음 전시실">다음 ⏭</button>
+
+      <div class="tour-progress-wrapper" id="btn-tour-tts" title="음성 해설 토글">
         <svg class="tour-progress-ring" viewBox="0 0 36 36">
           <circle class="ring-bg" cx="18" cy="18" r="16" />
           <circle class="ring-progress" cx="18" cy="18" r="16" id="tour-progress-circle" />
@@ -114,17 +146,12 @@
         <span class="tts-icon" id="tts-icon">🔈</span>
       </div>
 
-      <select id="tts-speed-select" class="tts-speed-select" aria-label="TTS Speed"
-        style="background: rgba(255,255,255,0.1); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 5px; font-size: 0.8rem; outline: none; cursor: pointer; margin-left: 10px;">
-        <option value="1.0" style="color: black;">1.0x</option>
-        <option value="1.2" style="color: black;" selected>1.2x</option>
-        <option value="1.5" style="color: black;">1.5x</option>
-        <option value="2.0" style="color: black;">2.0x</option>
+      <select id="tts-speed-select" class="tts-speed-select" title="해설 배속">
+        <option value="0.9">0.9x</option>
+        <option value="1.05" selected>1.0x</option>
+        <option value="1.2">1.2x</option>
+        <option value="1.5">1.5x</option>
       </select>
-
-      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next" style="margin-left: 10px;">❯</button>
-      <button class="btn-tour-nav" id="btn-tour-exit" aria-label="Exit"
-        style="margin-left: 10px; font-size: 1.2rem; background: rgba(255,50,50,0.2);">✕</button>
     </div>
   </div>
 
