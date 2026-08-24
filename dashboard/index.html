@@ -3,19 +3,51 @@
 
 <head>
   <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
-  <script>if(location.pathname.match(/\/(dashboard|lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+  <script>if(location.pathname==='/dashboard'){location.replace('/dashboard/'+location.search+location.hash);}</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="AMEVA Edge-Native AI Portfolio — A serverless, browser-only dashboard featuring WebGPU LLM inference and interactive knowledge graph visualization." />
-  <meta name="theme-color" content="#181818" />
+  <meta name="theme-color" content="#0f0f0f" />
 
   <title>AMEVA Neural Fabric — Edge-Native AI Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-  <!-- Prevent 404 favicon error -->
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <!-- Critical Inline CSS Guardrail to prevent FOUC & huge SVG spill -->
+  <style>
+    html, body {
+      background-color: #0f0f0f !important;
+      color: #ededed !important;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Segoe UI", Roboto, sans-serif;
+    }
+    #graph-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      color: #8b8d98;
+      font-size: 0.95rem;
+    }
+    #graph-placeholder svg {
+      width: 56px !important;
+      height: 56px !important;
+      stroke: #00EFFF !important;
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
 
-  <!-- Stylesheet -->
+  <!-- Dual-Route Stylesheets (Absolute & Relative Fallback) -->
+  <link rel="stylesheet" href="/dashboard/css/styles.css" />
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Preconnect for font performance -->
@@ -593,18 +625,18 @@
 
   <!-- Fuse.js & Knowledge Engine -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-  <script src="js/knowledge_engine.js"></script>
+  <script src="/dashboard/js/knowledge_engine.js"></script>
 
   <!-- Mad Science Add-ons -->
-  <script src="js/audio_engine.js"></script>
-  <script src="js/particle_compute.js"></script>
-  <script src="js/tag_cloud.js"></script>
-  <script src="js/voice_shell.js"></script>
-  <script src="js/social_engine.js"></script>
-  <script src="js/sandbox_emulator.js"></script>
+  <script src="/dashboard/js/audio_engine.js"></script>
+  <script src="/dashboard/js/particle_compute.js"></script>
+  <script src="/dashboard/js/tag_cloud.js"></script>
+  <script src="/dashboard/js/voice_shell.js"></script>
+  <script src="/dashboard/js/social_engine.js"></script>
+  <script src="/dashboard/js/sandbox_emulator.js"></script>
 
-  <script type="module" src="js/app.js"></script>
-  <script type="module" src="js/graph_visualizer.js"></script>
+  <script type="module" src="/dashboard/js/app.js"></script>
+  <script type="module" src="/dashboard/js/graph_visualizer.js"></script>
 
 </body>
 
