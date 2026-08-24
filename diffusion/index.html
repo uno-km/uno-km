@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
   <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,13 +92,13 @@
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="assets/i18n.js"></script>
     <script src="assets/i18n-translations.js"></script>
     <script src="i18n.js"></script>
     <script src="i18n-translations.js"></script>
     <link rel="stylesheet" href="/shared/style.css">
     <script src="/shared/common.js" defer></script>
-    <script src="/shared/telemetry.js" defer></script>
 </head>
 <body>
     <header>
@@ -117,24 +116,9 @@
                     <option value="zh">🇨🇳 简体中文</option>
                 </select>
             </div>
-            <div class="pkg-dropdown">
-                <button class="header-btn" type="button" aria-haspopup="true">
-                    <span>📦 Packages</span>
-                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
-                </button>
-                <div class="pkg-dropdown-menu">
-                    <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="pkg-dropdown-item">
-                        <span>🐍</span>
-                        <span>PyPI (Python)</span>
-                    </a>
-                    <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="pkg-dropdown-item npm">
-                        <span style="color:#cb3837;">🔴</span>
-                        <span>npm (Node.js)</span>
-                    </a>
-                </div>
-            </div>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
-      <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+            <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;" data-i18n="common.npmBtn">npm (Node.js)</a>
+            <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
     </header>
 
@@ -154,14 +138,16 @@
             </ul>
                         <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
             <ul>
-                <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+                <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
                 <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
                 <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
                 <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
                 <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-                <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/foundation/">AMEVA Foundation</a></li>
+                <li><a href="/index.html">Founder Digital CV</a></li>
             </ul>
 
             <h3 data-i18n="common.nav.advanced">AI Agent Protocol &amp; Feeds</h3>
@@ -178,22 +164,8 @@
             <p data-i18n="home.subtitle">A unified dual-engine (Python &amp; Node.js) diffusion framework designed for Samsung Galaxy and Android ARM64 hardware without container virtualization or root privileges.</p>
 
                                     <div class="badges-bar">
-                <div class="pkg-dropdown">
-                <button class="header-btn" type="button" aria-haspopup="true">
-                    <span>📦 Packages</span>
-                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
-                </button>
-                <div class="pkg-dropdown-menu">
-                    <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="pkg-dropdown-item">
-                        <span>🐍</span>
-                        <span>PyPI (Python)</span>
-                    </a>
-                    <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="pkg-dropdown-item npm">
-                        <span style="color:#cb3837;">🔴</span>
-                        <span>npm (Node.js)</span>
-                    </a>
-                </div>
-            </div>
+                <a href="https://pypi.org/project/termux-diffusion/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-diffusion.svg?color=blue" alt="PyPI Version"></a>
+                <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank"><img src="https://img.shields.io/npm/v/termux-diffusion.svg?color=red" alt="npm Version"></a>
                 <a href="https://pepy.tech/projects/termux-diffusion" target="_blank"><img src="https://img.shields.io/pepy/dt/termux-diffusion?color=orange" alt="Total Downloads"></a>
                 <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python Version">
                 <img src="https://img.shields.io/badge/node-16+-brightgreen.svg" alt="Node Version">

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-MCP-Hub | Official Documentation</title>
+  <meta name="description" content="Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
+      <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v3.0.0 (Universal Polyglot & AI Vector Hub)</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" class="active" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <!-- Section 1: Main Title & Subtitle -->
+      <h2 data-i18n="home.title">AMEVA-MCP-Hub</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Install Universal Polyglot WASM & AI Vector Model Context Protocol Hub</p>
+
+      <!-- Section 2: Badges Bar -->
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://pypistats.org/packages/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/pypi/dm/ameva-mcp-hub.svg?color=2563eb&label=PyPI%20Downloads" alt="PyPI Downloads"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/dm/ameva-mcp-hub.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
+        <img src="https://img.shields.io/badge/license-MIT-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-WebAssembly_WASI_/_Node.js_18+-blueviolet.svg" alt="Platform">
+      </div>
+
+      <!-- Section 3: 1-Line Quick Installation Alert -->
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>npx ameva-mcp-hub
+# or as SDK:
+npm install ameva-mcp-hub</code></pre>
+      </div>
+
+      <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Traditional MCP server setups require heavy local compilers (JDK, Rust, Clang, Python venvs) and multiple background daemons for each repository, causing massive memory overhead and frequent dependency conflicts across client platforms.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.</p>
+
+      <!-- Section 5: Key Capabilities Grid -->
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Zero-Toolchain Polyglot WASM Engine</h4>
+          <p data-i18n="home.features.0.desc">Executes C++, Rust, Java (TeaVM), and Go binaries in memory with zero local compiler requirements.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">Dynamic Multi-Repository Subscription</h4>
+          <p data-i18n="home.features.1.desc">Subscribe to multiple GitHub tool repositories on the fly with real-time notifications/tools/list_changed propagation.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">AI Vector & Semantic Ranking Engine</h4>
+          <p data-i18n="home.features.2.desc">High-dimensional Cosine Similarity and in-memory Top-K semantic search for local RAG pipelines.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">Heuristic Adaptive Route Dispatcher</h4>
+          <p data-i18n="home.features.3.desc">Automatically probes host environment and task risk to route execution between HOST_NATIVE and WASM_SANDBOX.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">Zero-Browser Pure Node.js Architecture</h4>
+          <p data-i18n="home.features.4.desc">450ms cold boot and 30MB low memory footprint completely eliminating browser/Puppeteer background windows.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">Dual-Purpose CLI & Embeddable SDK</h4>
+          <p data-i18n="home.features.5.desc">Usable as a standalone MCP server via npx or as an isolated execution engine inside custom JS/TS backends.</p>
+        </div>
+      </div>
+
+      <!-- Section 6: Compute & Module Matrix -->
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Polyglot WASM Runtimes</strong></td>
+            <td>C++ (Clang), Rust (wasm32-wasip1), Java (TeaVM/GraalVM), Go (TinyGo)</td>
+            <td><span class="status-badge active">Production (<1ms)</span></td>
+          </tr>
+          <tr>
+            <td><strong>AI & Vector Search</strong></td>
+            <td>Cosine Similarity (384/1536-dim), Semantic Top-K Search, Memory Buffer Pooling</td>
+            <td><span class="status-badge active">Production (<0.1ms)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Execution Routing</strong></td>
+            <td>HOST_NATIVE (OS full speed), WASM_SANDBOX (Isolated memory), Fallback</td>
+            <td><span class="status-badge active">Production (Auto)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Repo Management</strong></td>
+            <td>Parallel Manifest Fetch, SSE Real-Time Sync, Zero-Downtime Hot-Reload</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Section 7: Canonical Usage Example -->
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code># Connect Claude Desktop / Cursor via npx:
+# { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { WasiRunner, NodeExecutor, heuristicRouter } from "ameva-mcp-hub";
+
+// Execute C++/Rust/Java WASM in memory
+const runner = new WasiRunner({ args: ["1234", "5678"] });
+const result = await runner.run(wasmBuffer);
+console.log("Result:", result.stdout);
+
+// Compute AI Cosine Similarity
+const executor = new NodeExecutor();
+const sim = await executor.executeTool("vector_cosine_similarity", {
+  vecA: [0.8, 0.6, 0.0],
+  vecB: [0.79, 0.61, 0.05]
+});
+console.log("Similarity:", sim.content[0].text);
+</code></pre>
+        </div>
+      </div>
+
+      <!-- Section 8: Getting Started Navigation -->
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the MIT License.</span>
+  </footer>
+</body>
+</html>

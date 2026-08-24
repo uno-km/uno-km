@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
   <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,11 +80,11 @@
     }
     </script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
     <script src="i18n.js"></script>
     <script src="i18n-translations.js"></script>
     <link rel="stylesheet" href="/shared/style.css">
     <script src="/shared/common.js" defer></script>
-    <script src="/shared/telemetry.js" defer></script>
 </head>
 <body>
     <header>
@@ -95,41 +94,10 @@
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v1.61.3 (Dual Engine)</span>
-            <div class="lang-selector-wrapper">
-        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
-          <option value="en">🇺🇸 English</option>
-          <option value="ko">🇰🇷 한국어</option>
-          <option value="ja">🇯🇵 日本語</option>
-          <option value="zh">🇨🇳 简体中文</option>
-          <option value="ar">🇸🇦 العربية</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="es">🇪🇸 Español</option>
-          <option value="hi">🇮🇳 हिन्दी</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="vi">🇻🇳 Tiếng Việt</option>
-          <option value="pl">🇵🇱 Polski</option>
-          <option value="la">🏛️ Latina</option>
-        </select>
-      </div>
-            <div class="pkg-dropdown">
-                <button class="header-btn" type="button" aria-haspopup="true">
-                    <span>📦 Packages</span>
-                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
-                </button>
-                <div class="pkg-dropdown-menu">
-                    <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pkg-dropdown-item">
-                        <span>🐍</span>
-                        <span>PyPI (Python)</span>
-                    </a>
-                    <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pkg-dropdown-item npm">
-                        <span style="color:#cb3837;">🔴</span>
-                        <span>npm (Node.js)</span>
-                    </a>
-                </div>
-            </div>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
-      <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+            <div class="lang-selector-wrapper"></div>
+            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
     </header>
 
@@ -149,14 +117,16 @@
             </ul>
                         <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
             <ul>
-                <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+                <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
                 <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
                 <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
                 <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
                 <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-                <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/foundation/">AMEVA Foundation</a></li>
+                <li><a href="/index.html">Founder Digital CV</a></li>
             </ul>
 
             <h3 data-i18n="common.nav.advanced">AI Specifications</h3>
@@ -171,22 +141,8 @@
             <p data-i18n="home.subtitle">Dual-engine (Python & Node.js) Chromium browser automation on ARM64 mobile hardware without root, PRoot, or X11 virtualization.</p>
 
             <div class="badges-bar">
-                <div class="pkg-dropdown">
-                <button class="header-btn" type="button" aria-haspopup="true">
-                    <span>📦 Packages</span>
-                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
-                </button>
-                <div class="pkg-dropdown-menu">
-                    <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pkg-dropdown-item">
-                        <span>🐍</span>
-                        <span>PyPI (Python)</span>
-                    </a>
-                    <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pkg-dropdown-item npm">
-                        <span style="color:#cb3837;">🔴</span>
-                        <span>npm (Node.js)</span>
-                    </a>
-                </div>
-            </div>
+                <a href="https://pypi.org/project/termux-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-playwright.svg?color=blue" alt="PyPI Version"></a>
+                <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/v/termux-playwright.svg?color=red" alt="npm Version"></a>
                 <a href="https://pepy.tech/projects/termux-playwright" target="_blank"><img src="https://img.shields.io/pepy/dt/termux-playwright?color=orange" alt="Total Downloads"></a>
                 <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python Version">
                 <img src="https://img.shields.io/badge/node-16+-brightgreen.svg" alt="Node Version">
@@ -219,7 +175,7 @@
                 </div>
                 <div class="feature-card">
                     <h4>Persistent Disk Ledger</h4>
-                    <p data-i18n="home.cap2">Design properties 100% orphan process reaping across hard kernel crashes (SIGKILL / LMK).</p>
+                    <p data-i18n="home.cap2">Guarantees 100% orphan process reaping across hard kernel crashes (SIGKILL / LMK).</p>
                 </div>
                 <div class="feature-card">
                     <h4>Prototype-Safe Stealth</h4>

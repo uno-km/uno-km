@@ -1,0 +1,28 @@
+# AMEVA-MCP-Hub Full Technical Specification (v3.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Zero-Install Universal Polyglot WASM & AI Vector Model Context Protocol Hub
+Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.
+
+## 2. Package & Installation
+- PyPI: ameva-mcp-hub
+- Command: npx ameva-mcp-hub
+# or as SDK:
+npm install ameva-mcp-hub
+- Repository: https://github.com/uno-km/MCP-Wasm-Toolkit
+
+## 3. Core Capabilities
+- **Zero-Toolchain Polyglot WASM Engine**: Executes C++, Rust, Java (TeaVM), and Go binaries in memory with zero local compiler requirements.
+- **Dynamic Multi-Repository Subscription**: Subscribe to multiple GitHub tool repositories on the fly with real-time notifications/tools/list_changed propagation.
+- **AI Vector & Semantic Ranking Engine**: High-dimensional Cosine Similarity and in-memory Top-K semantic search for local RAG pipelines.
+- **Heuristic Adaptive Route Dispatcher**: Automatically probes host environment and task risk to route execution between HOST_NATIVE and WASM_SANDBOX.
+- **Zero-Browser Pure Node.js Architecture**: 450ms cold boot and 30MB low memory footprint completely eliminating browser/Puppeteer background windows.
+- **Dual-Purpose CLI & Embeddable SDK**: Usable as a standalone MCP server via npx or as an isolated execution engine inside custom JS/TS backends.
+
+## 4. Canonical Implementation
+```python
+# Connect Claude Desktop / Cursor via npx:
+# { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
+
+```

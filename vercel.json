@@ -3,6 +3,16 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/lib/mcp",
+      "destination": "/lib/mcp/",
+      "permanent": false
+    },
+    {
+      "source": "/mcp",
+      "destination": "/lib/mcp/",
+      "permanent": false
+    },
+    {
       "source": "/lib/playwright",
       "destination": "/lib/playwright/",
       "permanent": false

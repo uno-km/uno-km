@@ -8,8 +8,8 @@
   <title>Galaxy S20 Real-Device Audit Report (v1.61.4) | Termux-Playwright</title>
   <meta name="description" content="Technical verification, benchmark telemetry, and platform compatibility audit report for Termux-Playwright on physical Samsung Galaxy S20 5G hardware.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <script src="/shared/i18n.js"></script>
-  <script src="/shared/i18n-translations.js"></script>
+  <script src="i18n.js"></script>
+  <script src="i18n-translations.js"></script>
   <link rel="stylesheet" href="/shared/style.css">
   <script src="/shared/common.js" defer></script>
   <script src="/shared/telemetry.js" defer></script>
@@ -114,42 +114,11 @@
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v1.61.4 (Dual Engine)</span>
-            <div class="lang-selector-wrapper">
-        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
-          <option value="en">🇺🇸 English</option>
-          <option value="ko">🇰🇷 한국어</option>
-          <option value="ja">🇯🇵 日本語</option>
-          <option value="zh">🇨🇳 简体中文</option>
-          <option value="ar">🇸🇦 العربية</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="es">🇪🇸 Español</option>
-          <option value="hi">🇮🇳 हिन्दी</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="vi">🇻🇳 Tiếng Việt</option>
-          <option value="pl">🇵🇱 Polski</option>
-          <option value="la">🏛️ Latina</option>
-        </select>
-      </div>
-            <div class="pkg-dropdown">
-                <button class="header-btn" type="button" aria-haspopup="true">
-                    <span>📦 Packages</span>
-                    <span style="font-size: 0.65rem; margin-left: 2px;">▾</span>
-                </button>
-                <div class="pkg-dropdown-menu">
-                    <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pkg-dropdown-item">
-                        <span>🐍</span>
-                        <span>PyPI (Python)</span>
-                    </a>
-                    <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pkg-dropdown-item npm">
-                        <span style="color:#cb3837;">🔴</span>
-                        <span>npm (Node.js)</span>
-                    </a>
-                </div>
-            </div>
+            <div class="lang-selector-wrapper"></div>
+            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
             <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
             <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
-            <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
         </div>
     </header>
 
@@ -170,14 +139,16 @@
 
             <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
             <ul>
-                <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+                <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
                 <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
                 <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
                 <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
                 <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-                <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
+                <li><a href="/foundation/">AMEVA Foundation</a></li>
+                <li><a href="/index.html">Founder Digital CV</a></li>
             </ul>
 
             <h3 data-i18n="common.nav.advanced">AI Specifications</h3>
@@ -188,46 +159,42 @@
         </nav>
 
         <main class="content">
-            <h2 data-i18n="report.title">Galaxy S20 Real-Device E2E Validation &amp; Audit Report</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n-html="report.subtitle">
-              Technical Verification, Benchmark Telemetry &amp; Platform Compatibility Analysis | Date: <strong>2026-08-23</strong> | Target Version: <strong>v1.61.4</strong>
-            </p>
+            <h2>Galaxy S20 Real-Device E2E Validation &amp; Audit Report</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Technical Verification, Benchmark Telemetry &amp; Platform Compatibility Analysis | Date: <strong>2026-08-23</strong> | Target Version: <strong>v1.61.4</strong></p>
 
             <div class="score-banner">
                 <div>
-                    <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:#166534; letter-spacing:0.04em;" data-i18n="report.scoreLabel">0-Point Baseline Granular Score</span>
+                    <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:#166534; letter-spacing:0.04em;">0-Point Baseline Granular Score</span>
                     <div class="score-num">100.0 / 100.0</div>
                 </div>
                 <div class="score-desc">
-                    <strong data-i18n="report.scoreVerdict">Verdict: ALL EVALUATION CRITERIA SATISFIED (PASS)</strong><br>
-                    <span data-i18n-html="report.scoreDetails">
-                      Physical hardware verification on Samsung Galaxy S20 5G (Android 13 / aarch64 Termux Bionic libc).<br>
-                      0 Orphan processes detected across 30 consecutive stress cycles. 55/55 SannySoft anti-bot tests passed.
-                    </span>
+                    <strong>Verdict: ALL EVALUATION CRITERIA SATISFIED (PASS)</strong><br>
+                    Physical hardware verification on Samsung Galaxy S20 5G (Android 13 / aarch64 Termux Bionic libc).<br>
+                    0 Orphan processes detected across 30 consecutive stress cycles. 55/55 SannySoft anti-bot tests passed.
                 </div>
             </div>
 
             <div class="audit-meta-grid">
                 <div class="audit-meta-card">
-                    <div class="audit-meta-label" data-i18n="report.metaTargetDevice">Target Device</div>
+                    <div class="audit-meta-label">Target Device</div>
                     <div class="audit-meta-val">Galaxy S20 5G</div>
                 </div>
                 <div class="audit-meta-card">
-                    <div class="audit-meta-label" data-i18n="report.metaArchOs">Architecture / OS</div>
+                    <div class="audit-meta-label">Architecture / OS</div>
                     <div class="audit-meta-val">aarch64 / Android 13</div>
                 </div>
                 <div class="audit-meta-card">
-                    <div class="audit-meta-label" data-i18n="report.metaMemory">Memory Footprint</div>
-                    <div class="audit-meta-val" data-i18n="report.metaMemoryVal">40.2 MB (Stable)</div>
+                    <div class="audit-meta-label">Memory Footprint</div>
+                    <div class="audit-meta-val">40.2 MB (Stable)</div>
                 </div>
                 <div class="audit-meta-card">
-                    <div class="audit-meta-label" data-i18n="report.metaAntiBot">Anti-Bot Audit</div>
-                    <div class="audit-meta-val" data-i18n="report.metaAntiBotVal">55 / 55 Passed</div>
+                    <div class="audit-meta-label">Anti-Bot Audit</div>
+                    <div class="audit-meta-val">55 / 55 Passed</div>
                 </div>
             </div>
 
-            <h3 data-i18n="report.sec1Title">1. Physical Hardware &amp; Execution Environment</h3>
-            <p data-i18n="report.sec1Desc">This validation was conducted on physical mobile hardware (Samsung Galaxy S20 5G) via a dedicated remote SSH connection to collect genuine ground-truth metrics, without virtualization or container emulation.</p>
+            <h3>1. Physical Hardware &amp; Execution Environment</h3>
+            <p>This validation was conducted on physical mobile hardware (Samsung Galaxy S20 5G) via a dedicated remote SSH connection to collect genuine ground-truth metrics, without virtualization or container emulation.</p>
 
             <div class="spec-block">================================================================================
 Hardware & Software Configuration (Ground Truth Telemetry)
@@ -243,178 +210,178 @@ Hardware & Software Configuration (Ground Truth Telemetry)
 • Target Version     : termux-playwright v1.61.4 (Commit aded78e)
 ================================================================================</div>
 
-            <h3 data-i18n="report.sec2Title">2. 0-Point Baseline 4-Phase E2E Verification Results</h3>
-            <p data-i18n="report.sec2Desc">Every operational criterion was evaluated starting from a baseline score of 0 points. Points were accrued strictly upon automated verification of latency (ms), precision, process isolation, and memory stability.</p>
+            <h3>2. 0-Point Baseline 4-Phase E2E Verification Results</h3>
+            <p>Every operational criterion was evaluated starting from a baseline score of 0 points. Points were accrued strictly upon automated verification of latency (ms), precision, process isolation, and memory stability.</p>
 
             <div class="table-responsive">
                 <table class="audit-table">
                     <thead>
                         <tr>
-                            <th data-i18n="report.thPhase">Phase</th>
-                            <th data-i18n="report.thDomain">Verification Domain</th>
-                            <th data-i18n="report.thMaxPts">Max Pts</th>
-                            <th data-i18n="report.thScore">Score</th>
-                            <th data-i18n="report.thObserved">Observed Performance Metric</th>
-                            <th data-i18n="report.thStatus">Status</th>
+                            <th>Phase</th>
+                            <th>Verification Domain</th>
+                            <th>Max Pts</th>
+                            <th>Score</th>
+                            <th>Observed Performance Metric</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>Phase 1</strong></td>
-                            <td data-i18n="report.p1Domain">One-Touch Installation &amp; Bionic Doctor Diagnostics</td>
+                            <td>One-Touch Installation &amp; Bionic Doctor Diagnostics</td>
                             <td>30.0</td>
                             <td>30.0</td>
-                            <td data-i18n-html="report.p1Obs">Wheel injection &amp; Bionic linker binding verified (Health Check: HEALTHY)</td>
+                            <td>Wheel injection &amp; Bionic linker binding verified (Health Check: HEALTHY)</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
                             <td><strong>Phase 2</strong></td>
-                            <td data-i18n="report.p2Domain">Live Headless Browsing &amp; DOM Rendering</td>
+                            <td>Live Headless Browsing &amp; DOM Rendering</td>
                             <td>30.0</td>
                             <td>30.0</td>
-                            <td data-i18n-html="report.p2Obs">Launch: <strong>254.2ms</strong>, Page Load: <strong>887.5ms</strong>, DOM snapshot verified</td>
+                            <td>Launch: <strong>254.2ms</strong>, Page Load: <strong>887.5ms</strong>, DOM snapshot verified</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
                             <td><strong>Phase 3</strong></td>
-                            <td data-i18n="report.p3Domain">Edge Cases &amp; Process Reaper Execution</td>
+                            <td>Edge Cases &amp; Process Reaper Execution</td>
                             <td>20.0</td>
                             <td>20.0</td>
-                            <td data-i18n-html="report.p3Obs">4-Tier process reaper active, residual zombie processes: <strong>0</strong></td>
+                            <td>4-Tier process reaper active, residual zombie processes: <strong>0</strong></td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
                             <td><strong>Phase 4</strong></td>
-                            <td data-i18n="report.p4Domain">Consecutive Stress &amp; Memory Footprint</td>
+                            <td>Consecutive Stress &amp; Memory Footprint</td>
                             <td>20.0</td>
                             <td>20.0</td>
-                            <td data-i18n-html="report.p4Obs">30-Cycle mean latency: <strong>786.0ms</strong>, RSS memory converged to <strong>40.2 MB</strong></td>
+                            <td>30-Cycle mean latency: <strong>786.0ms</strong>, RSS memory converged to <strong>40.2 MB</strong></td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr style="background: var(--bg-surface); font-weight:700;">
-                            <td colspan="2" data-i18n="report.cumulativeTotal">Cumulative Total</td>
+                            <td colspan="2">Cumulative Total</td>
                             <td>100.0</td>
                             <td>100.0</td>
-                            <td data-i18n="report.allBaselinePassed">All Baseline Requirements Satisfied</td>
+                            <td>All Baseline Requirements Satisfied</td>
                             <td><span class="status-pass">100% PASS</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3 data-i18n="report.sec3Title">3. Advanced Benchmark &amp; Edge-Case Verification</h3>
-            <p data-i18n="report.sec3Desc">Extended tests were executed across enterprise WAF targets, anti-bot fingerprint suites, SPA streaming platforms, and continuous memory stress conditions.</p>
+            <h3>3. Advanced Benchmark &amp; Edge-Case Verification</h3>
+            <p>Extended tests were executed across enterprise WAF targets, anti-bot fingerprint suites, SPA streaming platforms, and continuous memory stress conditions.</p>
 
             <div class="table-responsive">
                 <table class="audit-table">
                     <thead>
                         <tr>
-                            <th data-i18n="report.thCategory">Test Category</th>
-                            <th data-i18n="report.thTarget">Target Endpoint / Platform</th>
-                            <th data-i18n="report.thResult">Observed Result &amp; Telemetry</th>
-                            <th data-i18n="report.thStatus">Status</th>
+                            <th>Test Category</th>
+                            <th>Target Endpoint / Platform</th>
+                            <th>Observed Result &amp; Telemetry</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong data-i18n="report.optA">Option A: Anti-Bot Audit</strong></td>
+                            <td><strong>Option A: Anti-Bot Audit</strong></td>
                             <td><code>bot.sannysoft.com</code></td>
-                            <td data-i18n-html="report.optAObs"><strong>55 / 55 Items Passed</strong> (WebDriver missing, WebGL Vendor/Renderer mocked, Canvas Hash: 1165917394)</td>
+                            <td><strong>55 / 55 Items Passed</strong> (WebDriver missing, WebGL Vendor/Renderer mocked, Canvas Hash: 1165917394)</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
-                            <td><strong data-i18n="report.optB">Option B: Enterprise WAF</strong></td>
+                            <td><strong>Option B: Enterprise WAF</strong></td>
                             <td><code>data.go.kr</code> / <code>law.go.kr</code></td>
-                            <td data-i18n-html="report.optBObs"><strong>HTTP 200 OK</strong> (Latency 3,393.5ms &amp; 2,204.6ms, 167 DOM links extracted)</td>
+                            <td><strong>HTTP 200 OK</strong> (Latency 3,393.5ms &amp; 2,204.6ms, 167 DOM links extracted)</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
-                            <td><strong data-i18n="report.optE">Option E: Sentinel Telemetry</strong></td>
+                            <td><strong>Option E: Sentinel Telemetry</strong></td>
                             <td><code>uno-km.vercel.app</code> (5 Subpages)</td>
-                            <td data-i18n-html="report.optEObs"><code>botDetected: False</code> (Telemetry packets received, HTTP 200 across 5 subpages)</td>
+                            <td><code>botDetected: False</code> (Telemetry packets received, HTTP 200 across 5 subpages)</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
-                            <td><strong data-i18n="report.optC">Option C: 24/7 Doze &amp; LMK</strong></td>
+                            <td><strong>Option C: 24/7 Doze &amp; LMK</strong></td>
                             <td>30 Cycles Sequential Stress</td>
-                            <td data-i18n-html="report.optCObs"><strong>23.58s Total</strong>, RSS: 37.7MB &rarr; <strong>40.2MB</strong>, Residual Zombie: <strong>0</strong></td>
+                            <td><strong>23.58s Total</strong>, RSS: 37.7MB &rarr; <strong>40.2MB</strong>, Residual Zombie: <strong>0</strong></td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
-                            <td><strong data-i18n="report.optD">Option D: Challenge Intercept</strong></td>
+                            <td><strong>Option D: Challenge Intercept</strong></td>
                             <td>Cloudflare Turnstile &amp; reCAPTCHA v2</td>
-                            <td data-i18n="report.optDObs">6 Backend challenge endpoint packets intercepted and resolved</td>
+                            <td>6 Backend challenge endpoint packets intercepted and resolved</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                         <tr>
-                            <td><strong data-i18n="report.optMedia">Advanced: Media SPA Sniff</strong></td>
+                            <td><strong>Advanced: Media SPA Sniff</strong></td>
                             <td>NASA Open Media (<code>images.nasa.gov</code>)</td>
-                            <td data-i18n-html="report.optMediaObs"><strong>HTTP 200 OK</strong>, Lazy-loaded grid triggered via virtual wheel, JSON &amp; video packets intercepted</td>
+                            <td><strong>HTTP 200 OK</strong>, Lazy-loaded grid triggered via virtual wheel, JSON &amp; video packets intercepted</td>
                             <td><span class="status-pass">PASS</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3 data-i18n="report.sec4Title">4. Historical Audit Findings Resolution Matrix</h3>
-            <p data-i18n="report.sec4Desc">Verification of corrective actions implemented against previous independent audit findings (v1.61.1 &rarr; v1.61.4):</p>
+            <h3>4. Historical Audit Findings Resolution Matrix</h3>
+            <p>Verification of corrective actions implemented against previous independent audit findings (v1.61.1 &rarr; v1.61.4):</p>
 
             <div class="table-responsive">
                 <table class="audit-table">
                     <thead>
                         <tr>
-                            <th data-i18n="report.thFinding">Finding Domain</th>
-                            <th data-i18n="report.thSeverity">Severity</th>
-                            <th data-i18n="report.thMitigation">Implemented Technical Mitigation</th>
-                            <th data-i18n="report.thVerdict">Audit Verdict</th>
+                            <th>Finding Domain</th>
+                            <th>Severity</th>
+                            <th>Implemented Technical Mitigation</th>
+                            <th>Audit Verdict</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-i18n="report.f1Domain">Playwright Non-Existent Version Hardcoding</td>
+                            <td>Playwright Non-Existent Version Hardcoding</td>
                             <td>High</td>
-                            <td data-i18n-html="report.f1Mit">LTS <code>1.48.0</code> &amp; dynamic PyPI resolver (<code>resolve_latest_compatible_version</code>)</td>
+                            <td>LTS <code>1.48.0</code> &amp; dynamic PyPI resolver (<code>resolve_latest_compatible_version</code>)</td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                         <tr>
-                            <td data-i18n="report.f2Domain">Toybox ps 80-Column Truncation</td>
+                            <td>Toybox ps 80-Column Truncation</td>
                             <td>High</td>
-                            <td data-i18n-html="report.f2Mit">Zero-allocation <code>/proc</code> direct scanning + <code>COLUMNS=4096</code> fallback</td>
+                            <td>Zero-allocation <code>/proc</code> direct scanning + <code>COLUMNS=4096</code> fallback</td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                         <tr>
-                            <td data-i18n="report.f3Domain">Premature Token Cleanup on Disconnect</td>
+                            <td>Premature Token Cleanup on Disconnect</td>
                             <td>High</td>
-                            <td data-i18n-html="report.f3Mit"><code>_on_disconnect</code> asynchronous worker with renderer-first harvesting</td>
+                            <td><code>_on_disconnect</code> asynchronous worker with renderer-first harvesting</td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                         <tr>
-                            <td data-i18n="report.f4Domain">Signal Handler Subprocess Deadlock</td>
+                            <td>Signal Handler Subprocess Deadlock</td>
                             <td>High</td>
-                            <td data-i18n-html="report.f4Mit">Pure C syscall invocation in <code>_signal_safe_kill_all()</code></td>
+                            <td>Pure C syscall invocation in <code>_signal_safe_kill_all()</code></td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                         <tr>
-                            <td data-i18n="report.f5Domain">WakeLock Leak under Sudden Process Termination</td>
+                            <td>WakeLock Leak under Sudden Process Termination</td>
                             <td>Medium</td>
-                            <td data-i18n-html="report.f5Mit"><code>atexit</code> registry &amp; Context Manager automated release pipeline</td>
+                            <td><code>atexit</code> registry &amp; Context Manager automated release pipeline</td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                         <tr>
-                            <td data-i18n="report.f6Domain">Installation Script Missing System Dependencies</td>
+                            <td>Installation Script Missing System Dependencies</td>
                             <td>Medium</td>
-                            <td data-i18n-html="report.f6Mit"><code>REQUIRED_TERMUX_SYSTEM_PACKAGES</code> includes <code>termux-api</code>, <code>procps</code></td>
+                            <td><code>REQUIRED_TERMUX_SYSTEM_PACKAGES</code> includes <code>termux-api</code>, <code>procps</code></td>
                             <td><span class="status-pass">RESOLVED</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3 data-i18n="report.sec5Title">5. Execution Payloads &amp; Reproducible Scripts</h3>
-            <p data-i18n="report.sec5Desc">Executable code snippets and CLI commands used to reproduce the real-device audit results:</p>
+            <h3>5. Execution Payloads &amp; Reproducible Scripts</h3>
+            <p>Executable code snippets and CLI commands used to reproduce the real-device audit results:</p>
 
             <div class="card" style="margin-bottom: 16px;">
-                <h4 style="margin-bottom: 8px;" data-i18n="report.sec5Sub1">5.1 Anti-Bot 55-Item Audit Script (<code>bot_audit.py</code>)</h4>
+                <h4 style="margin-bottom: 8px;">5.1 Anti-Bot 55-Item Audit Script (<code>bot_audit.py</code>)</h4>
                 <div class="code-block">
                     <pre><code>from playwright.sync_api import sync_playwright
 from termux_playwright.browser import launch_sync, setup_stealth_context_sync
@@ -456,7 +423,7 @@ def run_bot_audit():
             </div>
 
             <div class="card" style="margin-bottom: 16px;">
-                <h4 style="margin-bottom: 8px;" data-i18n="report.sec5Sub2">5.2 24/7 Doze Defense &amp; 30-Cycle LMK Stress Benchmark (<code>lmk_stress_test.py</code>)</h4>
+                <h4 style="margin-bottom: 8px;">5.2 24/7 Doze Defense &amp; 30-Cycle LMK Stress Benchmark (<code>lmk_stress_test.py</code>)</h4>
                 <div class="code-block">
                     <pre><code>import os, time
 from playwright.sync_api import sync_playwright
@@ -489,8 +456,8 @@ def run_lmk_stress(cycles=30):
                 </div>
             </div>
 
-            <h3 data-i18n="report.sec6Title">6. Conclusion &amp; Production Readiness Verdict</h3>
-            <p data-i18n-html="report.sec6Desc">Based on comprehensive physical hardware evaluation on the Samsung Galaxy S20 (Android 13 / Termux aarch64), <code>termux-playwright</code> (v1.61.4) satisfies all engineering requirements for <strong>zero-root execution, Bionic libc syscall compatibility, anti-bot evasion, and persistent process reaping</strong>.</p>
+            <h3>6. Conclusion &amp; Production Readiness Verdict</h3>
+            <p>Based on comprehensive physical hardware evaluation on the Samsung Galaxy S20 (Android 13 / Termux aarch64), <code>termux-playwright</code> (v1.61.4) satisfies all engineering requirements for <strong>zero-root execution, Bionic libc syscall compatibility, anti-bot evasion, and persistent process reaping</strong>.</p>
         </main>
     </div>
 

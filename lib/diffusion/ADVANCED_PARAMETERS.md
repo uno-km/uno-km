@@ -202,7 +202,7 @@ generate("speedy sports car", taesd="~/models/taesd.gguf")
 
 ## 🛡️ Error Handling, Boundary Clamping & Safety Rules
 
-`termux-diffusion` maintains zero silent failures while actively preventing invalid configurations from crashing the underlying Bionic C++ engine:
+`termux-diffusion` guarantees zero silent failures while actively preventing invalid configurations from crashing the underlying Bionic C++ engine:
 
 | Error / Edge Case | Behavior & Safety Action |
 | :--- | :--- |

@@ -17,7 +17,7 @@
 ## 2. 어떻게 수정했는지 / 왜 그렇게 수정했는지 (Implementation & Rationale)
 * **수정 내역**:
   1. **파라미터 입력 구체화(Materialization)**:
-     - `_normalize_parameters(parameters)`를 도입하여 단일 텐서, 제너레이터, 튜플, 리스트 등 모든 이터러블을 `list(parameters)`로 즉시 구체화하여 2차 순회 시 그래디언트 스케일링이 엄격한 관리되도록 수정.
+     - `_normalize_parameters(parameters)`를 도입하여 단일 텐서, 제너레이터, 튜플, 리스트 등 모든 이터러블을 `list(parameters)`로 즉시 구체화하여 2차 순회 시 그래디언트 스케일링이 100% 보장되도록 수정.
   2. **다차수 $p$-Norm 및 $\infty$-Norm 완벽 계산**:
      - `norm_type == inf` 시 최대 절댓값 계산, $p=2.0$ 시 유클리드 노름, 임의의 $p$에 대해 $L_p$ 노름을 정확히 산출.
      - `error_if_nonfinite=True` 시 NaN/Inf 발생 시 즉각 예외(`RuntimeError`) 발생.

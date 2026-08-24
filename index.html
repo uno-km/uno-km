@@ -19,6 +19,8 @@
           'forge': './lib/forge/',
           'playwright': './lib/playwright/',
           'diffusion': './lib/diffusion/',
+          'mcp': './lib/mcp/',
+          'hub': './lib/mcp/',
           'foundation': './foundation/',
           'workstation': './app/workstation/'
         };
@@ -982,24 +984,15 @@
         </p>
 
         <div class="cards-grid">
-          <div class="item-card">
+          <div class="item-card" style="border-left: 4px solid #004499; grid-column: 1 / -1;">
             <div class="item-card-top">
-              <h3><span data-i18n="p4.mcp1Name">⚙️ MCP Wasm Toolkit</span> <span style="font-size: 0.75em;" data-i18n="p4.mcp1Badge">WASM OS Core</span></h3>
-              <p data-i18n="p4.mcp1Desc">위험 연산(크롤러, 동적 코드)을 100% 격리된 브라우저 Pyodide WASM 샌드박스로 안전하게 구동하는 런타임.</p>
+              <h3><span>🌐 AMEVA-MCP-Hub</span> <span class="card-badge" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm v3.0.0</span></h3>
+              <p>단 1개의 Node 프로세스로 C++, Rust, Java, Python, Go 다국어 WASM 도구를 무설치 인메모리 실행하고, 깃허브 다중 리포지토리를 실시간 구독/전파하는 유니버설 AI 벡터 MCP 허브 &amp; SDK.</p>
             </div>
             <div class="card-actions">
-              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html" target="_blank" class="btn-action primary" data-i18n="btn.launchApp">🚀 AMEVA OS 실행</a>
-              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/" target="_blank" class="btn-action secondary" data-i18n="btn.promoStudio">✨ 프로모션 체험관</a>
-            </div>
-          </div>
-
-          <div class="item-card">
-            <div class="item-card-top">
-              <h3><span data-i18n="p4.mcp2Name">🧰 MCP Dynamic Utils Hub</span> <span style="font-size: 0.75em;" data-i18n="p4.mcp2Badge">SSE Hot-Reload</span></h3>
-              <p data-i18n="p4.mcp2Desc">GitHub 원격 매니페스트와 도구 코드를 SSE(ntfy) 채널을 통해 액티브 세션에 3초 내 동적 핫리로드.</p>
-            </div>
-            <div class="card-actions">
-              <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서 보기</a>
+              <a href="./lib/mcp/" target="_blank" class="btn-action primary" style="background:#004499; border-color:#004499;">📖 공식 문서 보기</a>
+              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm (npx ameva-mcp-hub)</a>
+              <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
             </div>
           </div>
         </div>

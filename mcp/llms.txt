@@ -1,0 +1,20 @@
+# AMEVA-MCP-Hub (v3.0.0)
+> Zero-Install Universal Polyglot WASM & AI Vector Model Context Protocol Hub
+
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/MCP-Wasm-Toolkit
+- Installation: `npx ameva-mcp-hub
+# or as SDK:
+npm install ameva-mcp-hub`
+- Architecture: Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching.
+
+## Canonical Code Pattern
+```python
+# Connect Claude Desktop / Cursor via npx:
+# { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
+
+```
+
+## Key Constraints
+- Pure non-blocking architecture, zero memory leaks.
+- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.
