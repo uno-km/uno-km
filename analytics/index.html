@@ -279,6 +279,7 @@
                         <button type="button" id="tf-btn-1D" class="btn-tomcat dash-tf-btn" data-tf="1D" onclick="window.setDashTimeframe('1D')" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1D</button>
                         <button type="button" id="tf-btn-1W" class="btn-tomcat dash-tf-btn" data-tf="1W" onclick="window.setDashTimeframe('1W')" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1W</button>
                         <button type="button" id="tf-btn-1M" class="btn-tomcat dash-tf-btn" data-tf="1M" onclick="window.setDashTimeframe('1M')" style="padding:2px 8px; font-size:0.75em; cursor:pointer;">1M</button>
+                        <button type="button" id="tf-btn-ALL" class="btn-tomcat dash-tf-btn" data-tf="ALL" onclick="window.setDashTimeframe('ALL')" style="padding:2px 8px; font-size:0.75em; cursor:pointer; font-weight:bold;">ALL (전체)</button>
                     </div>
                 </div>
                 <span id="dashChartTimestamp" style="font-size: 0.78em; color: var(--text-muted); font-family: monospace;">Live Stream</span>
@@ -1126,6 +1127,12 @@
             let bucketSizeMs = 5 * 60 * 1000;
             let windowMs = 4 * 60 * 60 * 1000;
 
+            // Gather all timestamp events
+            const allItems = [...dashTimeSeriesData];
+            if (Array.isArray(window.lastLoadedServerEvents)) {
+                allItems.push(...window.lastLoadedServerEvents);
+            }
+
             if (currentDashTf === '1m') { 
                 bucketSizeMs = 60 * 1000; 
                 windowMs = 60 * 60 * 1000; // 60 mins
@@ -1144,6 +1151,19 @@
             } else if (currentDashTf === '1M') { 
                 bucketSizeMs = 30 * 24 * 60 * 60 * 1000; 
                 windowMs = 180 * 24 * 60 * 60 * 1000; // 6 months
+            } else if (currentDashTf === 'ALL') {
+                // Find oldest recorded timestamp
+                let oldestTs = now - (30 * 24 * 60 * 60 * 1000); // default 30 days
+                allItems.forEach(s => {
+                    const rawDate = s.created_at || s.evaluated_at || s.evaluatedAt || s.timestamp;
+                    if (rawDate) {
+                        const t = new Date(rawDate).getTime();
+                        if (t > 0 && t < oldestTs) oldestTs = t;
+                    }
+                });
+                windowMs = Math.max(24 * 60 * 60 * 1000, now - oldestTs);
+                // Divide all-time span into ~20-30 discrete buckets
+                bucketSizeMs = Math.max(3600 * 1000, Math.floor(windowMs / 24));
             }
 
             const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
@@ -1176,6 +1196,9 @@
 
             const labels = sortedKeys.map(k => {
                 const d = new Date(k);
+                if (currentDashTf === 'ALL') {
+                    return `${d.getMonth() + 1}/${d.getDate()}`;
+                }
                 if (currentDashTf === '1D' || currentDashTf === '1W') {
                     return `${d.getMonth() + 1}/${d.getDate()}`;
                 }
