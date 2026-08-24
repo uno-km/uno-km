@@ -21,13 +21,13 @@
   "custom_pages_reference": [
     {
       "href": "showcase.html",
-      "title": "Audio STT & 128d Diarization Live Showcase",
+      "title": "Diarization Showcase",
       "subtitle": "Interactive audio transcription and speaker clustering waveforms",
       "body": "<h3>Diarization Showcase</h3><p>Pure Python 128-dimensional embedding cosine similarity clustering live demonstrator.</p>"
     },
     {
       "href": "models.html",
-      "title": "Acoustic Models & Language Packs",
+      "title": "Acoustic Models Catalog",
       "subtitle": "Korean, English, Japanese quantized acoustic model packs",
       "body": "<h3>Model Packs</h3><p>Pre-packaged acoustic models for sub-50MB RAM footprints.</p>"
     }

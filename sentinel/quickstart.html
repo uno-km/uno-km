@@ -40,7 +40,7 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
-      <li><a href="admin.html">Observability & Threat Discrimination Console</a></li>
+      <li><a href="admin.html">Observability Console</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -70,7 +70,6 @@
       <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
       <h3>Basic Execution Recipe</h3>
          <pre><code>import jwt
-# Sentinel signs deterministic claims with HS256/RS256
 claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
 print(f"Verified Client Risk Score: {claims['risk_score']}")</code></pre>
          <h3>Production Asynchronous Batching</h3>

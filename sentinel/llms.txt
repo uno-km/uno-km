@@ -11,7 +11,6 @@
 ## Canonical Code Pattern
 ```python
 import jwt
-# Sentinel signs deterministic claims with HS256/RS256
 claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
 print(f"Verified Client Risk Score: {claims['risk_score']}")
 ```

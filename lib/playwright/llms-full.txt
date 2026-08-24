@@ -2,14 +2,13 @@
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Non-Root Real Chromium Automation & CDP Control Package for Android Termux
-Directly interfaces with Termux Chromium via Chrome DevTools Protocol over isolated Unix domain sockets, enabling full scraping and automation with zero root requirements.
+Non-Root Real Chromium Automation & CDP Engine for Android Termux
+Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.
 
 ## 2. Package & Installation
 - PyPI: termux-playwright
 - Command: pip install termux-playwright
-# or:
-npm install termux-playwright
+# or: npm install termux-playwright
 - Repository: https://github.com/uno-km/termux-playwright-demo
 
 ## 3. Core Capabilities

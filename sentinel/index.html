@@ -40,7 +40,7 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
-      <li><a href="admin.html">Observability & Threat Discrimination Console</a></li>
+      <li><a href="admin.html">Observability Console</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -150,7 +150,6 @@
         </div>
         <div class="code-tab-content" style="display:block;">
           <pre><code>import jwt
-# Sentinel signs deterministic claims with HS256/RS256
 claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
 print(f"Verified Client Risk Score: {claims['risk_score']}")</code></pre>
         </div>
@@ -160,7 +159,7 @@ print(f"Verified Client Risk Score: {claims['risk_score']}")</code></pre>
 const sentinel = new Sentinel({ sampleRate: 1.0 });
 await sentinel.init();
 const report = await sentinel.evaluate();
-console.log("Client Risk Score:", report.score); // 0 (Safe) ~ 100 (Risk)</code></pre>
+console.log("Client Risk Score:", report.score);</code></pre>
         </div>
       </div>
 

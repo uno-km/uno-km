@@ -15,13 +15,13 @@
   "why_challenge_ko": "기존의 클라이언트 보안 SDK는 민감한 키 입력, 폼 데이터, 행동 데이터를 중앙 클라우드로 전송하여 사용자 개인정보 침해 위험을 초래합니다.",
   "description_en": "Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage.",
   "description_ko": "입력값 수집 없이 확정적 0~100점 위험도 채점 알고리즘을 클라이언트 내부에서 완전히 연산하며, 외부 유출 없이 브라우저 무결성을 검증합니다.",
-  "code_example_py": "import jwt\n# Sentinel signs deterministic claims with HS256/RS256\nclaims = jwt.decode(sentinel_token, secret_key, algorithms=[\"HS256\"])\nprint(f\"Verified Client Risk Score: {claims['risk_score']}\")",
-  "code_example_js": "import { Sentinel } from \"ameva-sentinel\";\n\nconst sentinel = new Sentinel({ sampleRate: 1.0 });\nawait sentinel.init();\nconst report = await sentinel.evaluate();\nconsole.log(\"Client Risk Score:\", report.score); // 0 (Safe) ~ 100 (Risk)",
+  "code_example_py": "import jwt\nclaims = jwt.decode(sentinel_token, secret_key, algorithms=[\"HS256\"])\nprint(f\"Verified Client Risk Score: {claims['risk_score']}\")",
+  "code_example_js": "import { Sentinel } from \"ameva-sentinel\";\n\nconst sentinel = new Sentinel({ sampleRate: 1.0 });\nawait sentinel.init();\nconst report = await sentinel.evaluate();\nconsole.log(\"Client Risk Score:\", report.score);",
   "custom_pages_overview": [],
   "custom_pages_reference": [
     {
       "href": "admin.html",
-      "title": "Observability & Threat Discrimination Console",
+      "title": "Observability Console",
       "subtitle": "Deterministic rule engine live inspector and risk threshold tuning",
       "body": "<h3>Threat Discrimination Engine</h3><p>Real-time client telemetry evaluation and token verification without PII collection.</p>"
     }

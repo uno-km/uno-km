@@ -21,15 +21,9 @@
   "custom_pages_reference": [
     {
       "href": "training-guide.html",
-      "title": "On-Device LoRA Fine-Tuning Step-by-Step",
+      "title": "LoRA Fine-Tuning Guide",
       "subtitle": "Low-rank adaptation on smartphone CPU without OOM kills",
       "body": "<h3>LoRA Fine-Tuning Pipeline</h3><p>Step-by-step workflow for fine-tuning transformer adapters directly on mobile devices.</p>"
-    },
-    {
-      "href": "models.html",
-      "title": "Supported Transformer Architecture DAGs",
-      "subtitle": "Llama, Qwen, Mistral LoRA graph templates",
-      "body": "<h3>Model Graph Templates</h3><p>Pre-constructed autograd DAG graphs for edge training.</p>"
     }
   ],
   "features": [

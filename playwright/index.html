@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Playwright | Official Documentation</title>
-  <meta name="description" content="Directly interfaces with Termux Chromium via Chrome DevTools Protocol over isolated Unix domain sockets, enabling full scraping and automation with zero root requirements.">
+  <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -40,8 +40,6 @@
       <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
       <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
-      <li><a href="nodejs.html">Node.js & Python Dual Runtime Integration</a></li>
-      <li><a href="phantom-process.html">Android Phantom Process Killer Guardrails</a></li>
     </ul>
     <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
     <ul>
@@ -69,7 +67,7 @@
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
       <h2 data-i18n="home.title">Termux-Playwright</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Non-Root Real Chromium Automation & CDP Control Package for Android Termux</p>
+      <p class="subtitle" data-i18n="home.subtitle">Non-Root Real Chromium Automation & CDP Engine for Android Termux</p>
 
       <!-- Section 2: Badges Bar -->
       <div class="badges-bar">
@@ -87,16 +85,15 @@
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
         <pre><code>pip install termux-playwright
-# or:
-npm install termux-playwright</code></pre>
+# or: npm install termux-playwright</code></pre>
       </div>
 
       <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Official Playwright binaries fail on Android Termux due to glibc dependencies, missing X11/Wayland display servers, and seccomp sandbox restrictions.</p>
+      <p data-i18n="home.challengeText">Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers, glibc vs bionic ABI incompatibility, and sandboxing constraints.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Directly interfaces with Termux Chromium via Chrome DevTools Protocol over isolated Unix domain sockets, enabling full scraping and automation with zero root requirements.</p>
+      <p data-i18n="home.breakthroughText">Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.</p>
 
       <!-- Section 5: Key Capabilities Grid -->
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>

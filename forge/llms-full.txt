@@ -21,7 +21,6 @@ Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, ex
 ```python
 import ameva as am
 
-# PyTorch-compatible WebGPU Engine
 x = am.tensor([[1.0, 2.0], [3.0, 4.0]], device="webgpu", requires_grad=True)
 y = (x ** 2).sum()
 y.backward()

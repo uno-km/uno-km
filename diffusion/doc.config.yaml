@@ -21,13 +21,13 @@
   "custom_pages_reference": [
     {
       "href": "gallery.html",
-      "title": "On-Device Generated Visual Showcase Gallery",
+      "title": "Visual Showcase Gallery",
       "subtitle": "Samples generated entirely locally on Samsung Galaxy S20/S24",
       "body": "<h3>On-Device Image Samples</h3><p>Gallery of 512x512 images generated directly on mobile ARM64 hardware without server egress.</p>"
     },
     {
       "href": "models.html",
-      "title": "GGUF Quantized Checkpoint Downloads",
+      "title": "SD Checkpoint Models",
       "subtitle": "Optimized SD 1.5, SD-Turbo, and LCM models for mobile RAM",
       "body": "<h3>Supported Checkpoints</h3><p>Quantized checkpoint weights formatted for Bionic C++ NEON inference.</p>"
     }

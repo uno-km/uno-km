@@ -16,13 +16,13 @@
   "description_en": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.",
   "description_ko": "단일 Node.js 프로세스 내부에서 WASI WebAssembly 바이트코드를 인메모리로 실행하여 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 <1ms 속도로 구동하며, 동적 깃허브 다중 리포지토리 구독과 실시간 AI 도구 전파를 지원합니다.",
   "code_example_py": "",
-  "code_example_js": "import { MCPHub } from \"ameva-mcp-hub\";\n\n// 1. Connect to Universal WASM Hub\nconst hub = new MCPHub({ port: 3000, vectorSearch: true });\nawait hub.start();\n\n// 2. Execute polyglot WASM tools instantly without installing host compilers\nconst result = await hub.executeTool(\"calc_hash\", { input: \"AMEVA Sovereign Data\" });\nconsole.log(\"Output:\", result);",
+  "code_example_js": "import { MCPHub } from \"ameva-mcp-hub\";\n\nconst hub = new MCPHub({ port: 3000, vectorSearch: true });\nawait hub.start();\nconst result = await hub.executeTool(\"calc_hash\", { input: \"AMEVA Sovereign Data\" });\nconsole.log(\"Output:\", result);",
   "custom_pages_overview": [],
   "custom_pages_reference": [
     {
       "href": "tools.html",
-      "title": "Polyglot WASM Tool Catalog & Manifests",
-      "subtitle": "C++, Rust, Java, Python, Go in-memory execution manifests",
+      "title": "WASM Tools Catalog",
+      "subtitle": "Polyglot WASI in-memory tool manifests",
       "body": "<h3>Supported In-Memory WASM Binaries</h3><p>Pre-compiled WASI micro-tools executing with sub-millisecond cold starts and zero local compiler prerequisites.</p>"
     }
   ],

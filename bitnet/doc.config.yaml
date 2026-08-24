@@ -21,7 +21,7 @@
   "custom_pages_reference": [
     {
       "href": "models.html",
-      "title": "Model Weights & BitNet Quantization Catalog",
+      "title": "Model Weights Catalog",
       "subtitle": "Pre-quantized BitNet b1.58 0.7B / 1.3B / 3B model downloads",
       "body": "<h3>Supported BitNet Models</h3><p>Direct download links for 1.58-bit ternary GGUF/TBN model checkpoints optimized for smartphone RAM limits.</p>"
     }
