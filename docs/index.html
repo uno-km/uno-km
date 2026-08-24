@@ -106,105 +106,65 @@
 </head>
 <body>
   <!-- Top Header -->
-  <header>
-    <a href="index.html" class="header-brand">
-      <img src="/docs/favicon.svg" alt="AMEVA Foundation Logo" onerror="this.onerror=null;this.src='/shared/brand/favicon.svg';">
+    <header>
+    <a href="/foundation/index.html" class="header-brand">
+      <img src="favicon.svg" alt="AOSF Logo">
       <h1 data-i18n="common.brand">AMEVA Open-Source Foundation</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
-      <div class="lang-selector-wrapper">
-        <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
-          <option value="en">🇺🇸 English</option>
-          <option value="ko">🇰🇷 한국어</option>
-          <option value="ja">🇯🇵 日本語</option>
-          <option value="zh">🇨🇳 简体中文</option>
-          <option value="ar">🇸🇦 العربية</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="es">🇪🇸 Español</option>
-          <option value="hi">🇮🇳 हिन्दी</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="vi">🇻🇳 Tiếng Việt</option>
-          <option value="pl">🇵🇱 Polski</option>
-          <option value="la">🏛️ Latina</option>
-        </select>
-      </div>
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF Tier 1 TLP Ecosystem</span>
+      <div class="lang-selector-wrapper"></div>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
-      <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
     <!-- Left Sidebar with 4 Collapsible Categories -->
-    <nav class="sidebar">
-      
-      <!-- 1. 파운데이션 인포 (Foundation Info) -->
-      <details class="accordion-group" id="acc-foundation" open>
-        <summary class="accordion-header">
-          <span><span data-i18n="nav.foundation">Foundation Info</span></span>
-          <span class="accordion-icon"></span>
-        </summary>
-        <div class="accordion-content">
-          <ul>
-            <li><a href="?view=portal" data-spa-target="portal" class="spa-nav-link active" data-i18n="nav.portal">Foundation Portal</a></li>
-            <li><a href="?view=charter" data-spa-target="charter" class="spa-nav-link" data-i18n="nav.charter">Foundation Charter</a></li>
-            <li><a href="?view=governance" data-spa-target="governance" class="spa-nav-link" data-i18n="nav.governance">Governance &amp; Merit</a></li>
-            <li><a href="?view=incubation" data-spa-target="incubation" class="spa-nav-link" data-i18n="nav.incubation">Incubation Policy</a></li>
-            <li><a href="?view=sponsorship" data-spa-target="sponsorship" class="spa-nav-link" data-i18n="nav.sponsorship">Sponsorship &amp; Support</a></li>
-          </ul>
-        </div>
-      </details>
-
-      <!-- 2. 라이브러리 (Libraries - Flagship TLP) -->
-      <details class="accordion-group" id="acc-libraries" open>
-        <summary class="accordion-header">
-          <span><span data-i18n="nav.tier1">Libraries (Flagship TLP)</span></span>
-          <span class="accordion-icon"></span>
-        </summary>
-        <div class="accordion-content">
-          <ul>
-            <li><a href="/lib/sentinel/" target="_self">AMEVA-Sentinel <span class="external-badge">SDK</span></a></li>
-            <li><a href="/lib/mcp/" target="_self">AMEVA-MCP-Hub <span class="external-badge">Hub</span></a></li>
-            <li><a href="/lib/bitnet/" target="_self">Termux-BitNet <span class="external-badge">Docs</span></a></li>
-            <li><a href="/lib/diffusion/" target="_self">Termux-Diffusion <span class="external-badge">Docs</span></a></li>
-            <li><a href="/lib/playwright/" target="_self">Termux-Playwright <span class="external-badge">Docs</span></a></li>
-            <li><a href="/lib/stt/" target="_self">Termux-STT <span class="external-badge">Docs</span></a></li>
-            <li><a href="/lib/train/" target="_self">Termux-Train <span class="external-badge">Docs</span></a></li>
-            <li><a href="/lib/forge/" target="_self">AMEVA-Forge <span class="external-badge">Studio</span></a></li>
-          </ul>
-        </div>
-      </details>
-
-      <!-- 3. 애플리케이션 (Applications) -->
-      <details class="accordion-group" id="acc-applications" open>
-        <summary class="accordion-header">
-          <span><span>Applications</span></span>
-          <span class="accordion-icon"></span>
-        </summary>
-        <div class="accordion-content">
-          <ul>
-            <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web) ↗</a></li>
-          </ul>
-        </div>
-      </details>
-
-      <!-- 4. AI 에이전트 사양서 (AI Protocols & Specs) -->
-      <details class="accordion-group" id="acc-specs" open>
-        <summary class="accordion-header">
-          <span><span data-i18n="nav.aiSpecs">AI Agent Protocols</span></span>
-          <span class="accordion-icon"></span>
-        </summary>
-        <div class="accordion-content">
-          <ul>
-            <li><a href="llms.txt" target="_blank">llms.txt (AI Matrix) ↗</a></li>
-            <li><a href="../../FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec) ↗</a></li>
-          </ul>
-        </div>
-      </details>
-
-    </nav>
+      <nav class="sidebar">
+    <!-- Tier 1: Foundation Info -->
+    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
+    <ul>
+      <li><a href="/foundation/index.html" class="active">Foundation Portal</a></li>
+      <li><a href="/foundation/charter.html">Foundation Charter</a></li>
+      <li><a href="/foundation/governance.html">Governance &amp; Merit</a></li>
+      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+      <li><a href="/foundation/sponsorship.html">Sponsorship &amp; Support</a></li>
+      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: Foundation Sections -->
+    <h3 data-i18n="common.nav.docNav">Foundation Navigation</h3>
+    <ul>
+      <li><a href="/foundation/index.html" class="active">Overview &amp; Mission</a></li>
+      <li><a href="/foundation/charter.html">Charter &amp; Values</a></li>
+      <li><a href="/foundation/governance.html">Meritocracy Model</a></li>
+      <li><a href="/foundation/incubation.html">Incubation Lifecycle</a></li>
+      <li><a href="/foundation/sponsorship.html">Sponsorship Grants</a></li>
+    </ul>
+    <!-- Tier 4: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="/docs/llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="/FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
+      <li><a href="/robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="/sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="/" target="_blank">Founder Digital CV</a></li>
+    </ul>
+  </nav>
 
     <!-- Main Content Dynamic SPA Area -->
     <main class="content">

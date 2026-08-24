@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 """
 AMEVA Ecosystem - Deterministic Headless Documentation Engine (ameva_doc)
-Version: 2.0.0 (Zero-Drift Architecture)
+Version: 3.0.0 (Master SSOT Unified Navigation Standard)
 
-Compiles declarative configuration (doc.config.yaml / json) and Markdown files into
-100% pixel-perfect, Tomcat/Apache classic engineering documentation sites.
-Enforces:
-  1. Strict No-Emoji Condition
-  2. Tone & Monospace Typography
-  3. Homepage 8-Section Layout with Download Badges & Copy Buttons
-  4. 3-Tier Sidebar Navigation Hierarchy
+Single unified architecture for:
+  1. AOSF Foundation Portal (/foundation/*)
+  2. 8 Flagship TLP Libraries (/lib/*)
+  3. Strict No-Emoji Header & Buttons
+  4. 4-Tier Unified Master Sidebar Navigation
   5. 6-Language (en, ko, ja, zh, es, de) i18n DOM Engine & Translations
   6. AI Agent feeds (llms.txt, llms-full.txt, robots.txt, sitemap.xml)
 """
@@ -28,7 +26,6 @@ if hasattr(sys.stdout, 'reconfigure'):
 if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
-# Try importing yaml, fallback to json if yaml not installed
 try:
     import yaml
     HAS_YAML = True
@@ -79,52 +76,50 @@ DEFAULT_CONFIG = {
     "matrix_table": [
         {"category": "Compute Engine", "operations": "WebGPU Compute Shaders (WGSL), FP16/FP32", "status": "Production"},
         {"category": "Memory Subsystem", "operations": "Zero-Copy Ring Buffers, Weakref GC Pooling", "status": "Production"},
-        {"category": "Platform Runtimes", "operations": "Node.js, Chromium WebGPU, Android Termux Bionic", "status": "Production"},
-        {"category": "Serialization", "operations": "Safetensors, Protocol Buffers, FlatBuffers", "status": "Production"}
+        {"category": "Platform Runtimes", "operations": "Node.js, Chromium WebGPU, Android Termux Bionic", "status": "Production"}
     ],
-    "code_example_py": """import ameva_core as ac
-
-# 1. Initialize hardware engine with automatic acceleration
-engine = ac.Engine(device="auto", precision="fp16")
-
-# 2. Execute deterministic tensor operations
-result = engine.compute([1.0, 2.0, 3.0, 4.0])
-print(f"Output: {result}")""",
-    "code_example_js": """import { Engine } from '@ameva/core';
-
-// 1. Initialize WebGPU Engine
-const engine = new Engine({ device: 'webgpu', precision: 'fp16' });
-
-// 2. Execute parallel kernel computation
-const result = await engine.compute([1.0, 2.0, 3.0, 4.0]);
-console.log('Output:', result);"""
+    "code_example_py": "import ameva_core as ac\nengine = ac.Engine()\nprint(engine.compute([1.0, 2.0]))",
+    "code_example_js": "import { Engine } from '@ameva/core';\nconst engine = new Engine();"
 }
 
 
 def load_config(config_path: Path) -> dict:
     if not config_path.exists():
-        return DEFAULT_CONFIG
+        print(f"Warning: {config_path} not found. Using default config.")
+        return DEFAULT_CONFIG.copy()
     
-    text = config_path.read_text(encoding="utf-8")
-    if config_path.suffix in [".yaml", ".yml"]:
-        if HAS_YAML:
-            return yaml.safe_load(text)
-        else:
-            print("⚠️ [WARN] PyYAML is not installed. Attempting JSON parsing...")
-            return json.loads(text)
-    return json.loads(text)
+    txt = config_path.read_text(encoding="utf-8")
+    if HAS_YAML:
+        try:
+            cfg = yaml.safe_load(txt)
+            if isinstance(cfg, dict):
+                return {**DEFAULT_CONFIG, **cfg}
+        except Exception:
+            pass
+    try:
+        cfg = json.loads(txt)
+        if isinstance(cfg, dict):
+            return {**DEFAULT_CONFIG, **cfg}
+    except Exception:
+        pass
+    return DEFAULT_CONFIG.copy()
 
 
 def render_header(cfg: dict, active_page: str) -> str:
     name = cfg.get("name", "AMEVA-Library")
     version = cfg.get("version", "v1.0.0")
-    release_name = cfg.get("release_name", "Release")
+    release_name = cfg.get("release_name", "Stable")
     pypi_pkg = cfg.get("package_name_pypi", "")
     npm_pkg = cfg.get("package_name_npm", "")
     github_url = cfg.get("github_repo_url", "https://github.com/uno-km/uno-km")
 
-    pypi_btn = f'<a href="https://pypi.org/project/{pypi_pkg}/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>' if pypi_pkg else ""
-    npm_btn = f'<a href="https://www.npmjs.com/package/{npm_pkg}" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>' if npm_pkg else ""
+    header_btn_pypi = ""
+    if pypi_pkg:
+        header_btn_pypi = f'<a href="https://pypi.org/project/{pypi_pkg}/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>'
+    
+    header_btn_npm = ""
+    if npm_pkg:
+        header_btn_npm = f'<a href="https://www.npmjs.com/package/{npm_pkg}" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>'
 
     return f"""  <header>
     <a href="index.html" class="header-brand">
@@ -134,89 +129,104 @@ def render_header(cfg: dict, active_page: str) -> str:
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">{version} ({release_name})</span>
       <div class="lang-selector-wrapper"></div>
-      {pypi_btn}
-      {npm_btn}
+      {header_btn_pypi}
+      {header_btn_npm}
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="{github_url}" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>"""
 
 
 def render_sidebar(cfg: dict, active_page: str) -> str:
     current_lib = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
-    
-    pages_overview = [
+    is_foundation = cfg.get("is_foundation", False) or current_lib == "foundation"
+
+    # Tier 1: Foundation Hub
+    foundation_links = [
+        ("/foundation/index.html", "foundation_portal", "Foundation Portal"),
+        ("/foundation/charter.html", "foundation_charter", "Foundation Charter"),
+        ("/foundation/governance.html", "foundation_gov", "Governance & Merit"),
+        ("/foundation/incubation.html", "foundation_inc", "Incubation Policy"),
+        ("/foundation/sponsorship.html", "foundation_spon", "Sponsorship & Support"),
+        ("/foundation/dashboard/", "foundation_dash", "3D Neural Fabric Map")
+    ]
+
+    # Tier 2: Flagship TLP Libraries
+    library_links = [
+        ("/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"),
+        ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
+        ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
+        ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
+        ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
+        ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
+        ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
+        ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
+        ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)")
+    ]
+
+    # Tier 3: Active Document Sub-navigation
+    pages_doc = [
         ("index.html", "common.nav.home", "Home / Architecture"),
         ("installation.html", "common.nav.installation", "Installation Guide"),
         ("quickstart.html", "common.nav.quickstart", "Quickstart & Recipes"),
-    ]
-    for cp in cfg.get("custom_pages_overview", []):
-        pages_overview.append((cp["href"], cp.get("i18n_key", ""), cp["title"]))
-
-    pages_reference = [
         ("api-reference.html", "common.nav.apiReference", "API Reference"),
         ("benchmarks.html", "common.nav.benchmarks", "Benchmarks & Profiling"),
         ("advanced-parameters.html", "common.nav.advancedParams", "Advanced Parameters"),
         ("versions.html", "common.nav.versions", "Version Archive")
     ]
     for cp in cfg.get("custom_pages_reference", []):
-        pages_reference.append((cp["href"], cp.get("i18n_key", ""), cp["title"]))
+        pages_doc.append((cp["href"], cp.get("i18n_key", ""), cp["title"]))
 
-    pages_ecosystem = [
-        ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
-        ("/lib/sentinel/", "sentinel", "AMEVA Sentinel (Security SDK)"),
-        ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
-        ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
-        ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
-        ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
-        ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
-        ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
-        ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)"),
-        ("/foundation/", "foundation", "AMEVA Foundation"),
-        ("/", "cv", "Founder Digital CV")
-    ]
+    # Tier 4: AI Agent Protocols
     pages_ai = [
         ("llms.txt", "llms.txt (AI Fast Context)"),
         ("llms-full.txt", "llms-full.txt (Full Spec)"),
         ("robots.txt", "robots.txt (AI Crawlers)"),
-        ("sitemap.xml", "sitemap.xml (Sitemap)")
+        ("sitemap.xml", "sitemap.xml (Sitemap)"),
+        ("/", "Founder Digital CV")
     ]
 
     html = """  <nav class="sidebar">
-    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <!-- Tier 1: Foundation Info -->
+    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
     <ul>"""
-    for href, i18n_key, title in pages_overview:
-        act = ' class="active"' if href == active_page else ''
-        i18n_attr = f' data-i18n="{i18n_key}"' if i18n_key else ''
+    for href, f_key, title in foundation_links:
+        act = ' class="active"' if (is_foundation and (href.endswith(active_page) or (active_page == "index.html" and "index.html" in href))) else ''
         html += f"""
-      <li><a href="{href}"{act}{i18n_attr}>{title}</a></li>"""
-    
-    html += """
-    </ul>
-    <h3 data-i18n="common.nav.reference">Official Reference</h3>
-    <ul>"""
-    for href, i18n_key, title in pages_reference:
-        act = ' class="active"' if href == active_page else ''
-        i18n_attr = f' data-i18n="{i18n_key}"' if i18n_key else ''
-        html += f"""
-      <li><a href="{href}"{act}{i18n_attr}>{title}</a></li>"""
+      <li><a href="{href}"{act}>{title}</a></li>"""
 
     html += """
     </ul>
-    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>"""
-    for href, lib_key, title in pages_ecosystem:
-        act = ' class="active"' if lib_key == current_lib else ''
+    for href, lib_key, title in library_links:
+        act = ' class="active"' if (not is_foundation and lib_key == current_lib) else ''
         target = ' target="_blank"' if href.startswith("http") else ''
         html += f"""
       <li><a href="{href}"{act}{target}>{title}</a></li>"""
 
     html += """
     </ul>
+    <!-- Tier 3: Active Document Sections -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>"""
+    for href, i18n_key, title in pages_doc:
+        act = ' class="active"' if href == active_page else ''
+        i18n_attr = f' data-i18n="{i18n_key}"' if i18n_key else ''
+        html += f"""
+      <li><a href="{href}"{act}{i18n_attr}>{title}</a></li>"""
+
+    html += """
+    </ul>
+    <!-- Tier 4: AI Protocols & Specifications -->
     <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>"""
     for href, title in pages_ai:
+        target = ' target="_blank"' if (href.endswith(".txt") or href.endswith(".xml") or href == "/") else ''
         html += f"""
-      <li><a href="{href}" target="_blank">{title}</a></li>"""
+      <li><a href="{href}"{target}>{title}</a></li>"""
 
     html += """
     </ul>
@@ -245,7 +255,6 @@ def render_index_html(cfg: dict) -> str:
     code_py = cfg.get("code_example_py", "")
     code_js = cfg.get("code_example_js", "")
 
-    # Badges bar
     badges_html = []
     if pypi_pkg:
         badges_html.append(f'<a href="https://pypi.org/project/{pypi_pkg}/" target="_blank"><img src="https://img.shields.io/pypi/v/{pypi_pkg}.svg?color=004499" alt="PyPI Version"></a>')
@@ -259,7 +268,6 @@ def render_index_html(cfg: dict) -> str:
 
     badges_bar_str = "\n        ".join(badges_html)
 
-    # Features Cards
     features_html = []
     for idx, feat in enumerate(cfg.get("features", [])):
         t_en = feat.get("title_en", "")
@@ -270,7 +278,6 @@ def render_index_html(cfg: dict) -> str:
         </div>""")
     features_str = "\n".join(features_html)
 
-    # Matrix Table
     matrix_rows = []
     for row in cfg.get("matrix_table", []):
         cat = row.get("category", "")
@@ -283,7 +290,6 @@ def render_index_html(cfg: dict) -> str:
           </tr>""")
     matrix_str = "\n".join(matrix_rows)
 
-    # Dual-engine or single code example
     if code_js and code_py:
         code_block = f"""      <div class="code-tab-group">
         <div class="code-tabs-header">
@@ -300,8 +306,6 @@ def render_index_html(cfg: dict) -> str:
     else:
         code_block = f"""      <pre><code>{code_py or code_js}</code></pre>"""
 
-    lib_slug = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
-
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -312,8 +316,8 @@ def render_index_html(cfg: dict) -> str:
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
-  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
 </head>
 <body>
 {render_header(cfg, "index.html")}
@@ -388,7 +392,6 @@ def render_index_html(cfg: dict) -> str:
 def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, body_html: str) -> str:
     name = cfg.get("name", "AMEVA-Library")
     desc = cfg.get("description_en", "")
-    lib_slug = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -400,8 +403,8 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
-  <script src="assets/common.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
 </head>
 <body>
 {render_header(cfg, active_page)}
@@ -443,7 +446,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
     why_en = cfg.get("why_challenge_en", "")
     why_ko = cfg.get("why_challenge_ko", why_en)
 
-    base = {
+    return {
         "en": {
             "common": {
                 "brand": name,
@@ -451,11 +454,12 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "pypiBtn": "PyPI (pip)",
                 "npmBtn": "npm (Node.js)",
                 "githubBtn": "GitHub",
+                "founderBtn": "Founder CV",
                 "footerText": f"© 2026 AMEVA Open-Source Foundation. Released under the {cfg.get('license', 'Apache-2.0')} License.",
                 "nav": {
-                    "overview": "Overview",
-                    "reference": "Official Reference",
-                    "ecosystem": "AMEVA Ecosystem",
+                    "foundation": "Foundation Info",
+                    "libraries": "Flagship Libraries",
+                    "docNav": "Document Navigation",
                     "aiSpecs": "AI Agent Protocols",
                     "home": "Home / Architecture",
                     "installation": "Installation Guide",
@@ -482,9 +486,9 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "matrixCol3": "Status",
                 "codeExampleTitle": "Canonical Usage Example",
                 "nextStepsTitle": "Getting Started & Deep Guides",
-                "linkInstall": "Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)",
-                "linkQuickstart": "Quickstart Recipes & Common Execution Patterns",
-                "linkApi": "100% Full API Reference & Struct Definitions",
+                "linkInstall": "Detailed Installation Guide",
+                "linkQuickstart": "Quickstart Recipes",
+                "linkApi": "API Reference Specification",
                 "features": {
                     str(i): {
                         "title": f.get("title_en", ""),
@@ -500,19 +504,20 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "pypiBtn": "PyPI 패키지",
                 "npmBtn": "npm 패키지",
                 "githubBtn": "GitHub 저장소",
+                "founderBtn": "설립자 CV",
                 "footerText": f"© 2026 AMEVA 오픈소스 재단. {cfg.get('license', 'Apache-2.0')} 라이선스로 배포됨.",
                 "nav": {
-                    "overview": "개요",
-                    "reference": "공식 레퍼런스",
-                    "ecosystem": "AMEVA 생태계",
+                    "foundation": "재단 소개 (AOSF)",
+                    "libraries": "플래그십 라이브러리",
+                    "docNav": "문서 상세 목차",
                     "aiSpecs": "AI 에이전트 프로토콜",
                     "home": "홈 / 아키텍처",
                     "installation": "설치 가이드",
                     "quickstart": "퀵스타트 & 레시피",
                     "apiReference": "전체 API 명세",
                     "benchmarks": "벤치마크 & 하드웨어",
-                    "advancedParams": "고급 파라미터",
-                    "versions": "버전 아카이브"
+                    "advancedParams": "고급 파라미터 제어",
+                    "versions": "버전 릴리즈 아카이브"
                 }
             },
             "home": {
@@ -531,9 +536,9 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "matrixCol3": "상태",
                 "codeExampleTitle": "정석 사용법 코드 예제",
                 "nextStepsTitle": "시작하기 & 심층 가이드",
-                "linkInstall": "상세 설치 가이드 (하드웨어 의존성, Termux 설정, WebGPU 플래그)",
-                "linkQuickstart": "퀵스타트 레시피 및 주요 실행 패턴",
-                "linkApi": "100% 전체 API 명세 및 구조체 정의",
+                "linkInstall": "상세 설치 가이드",
+                "linkQuickstart": "퀵스타트 & 실무 레시피",
+                "linkApi": "전체 API 상세 규격서",
                 "features": {
                     str(i): {
                         "title": f.get("title_ko", f.get("title_en", "")),
@@ -549,11 +554,12 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "pypiBtn": "PyPIパッケージ",
                 "npmBtn": "npmパッケージ",
                 "githubBtn": "GitHub",
+                "founderBtn": "創設者CV",
                 "footerText": f"© 2026 AMEVA Open-Source Foundation. {cfg.get('license', 'Apache-2.0')} ライセンスの下で公開。",
                 "nav": {
-                    "overview": "概要",
-                    "reference": "公式リファレンス",
-                    "ecosystem": "AMEVA エコシステム",
+                    "foundation": "財団情報 (AOSF)",
+                    "libraries": "フラッグシップライブラリ",
+                    "docNav": "ドキュメント目次",
                     "aiSpecs": "AIエージェント仕様",
                     "home": "ホーム / アーキテクチャ",
                     "installation": "インストールガイド",
@@ -584,138 +590,8 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "linkQuickstart": "クイックスタートレシピ",
                 "linkApi": "API仕様書"
             }
-        },
-        "zh": {
-            "common": {
-                "brand": name,
-                "releaseTag": f"{version} ({release_name})",
-                "pypiBtn": "PyPI (pip)",
-                "npmBtn": "npm (Node.js)",
-                "githubBtn": "GitHub",
-                "footerText": f"© 2026 AMEVA 开源基金会。在 {cfg.get('license', 'Apache-2.0')} 许可下发布。",
-                "nav": {
-                    "overview": "概述",
-                    "reference": "官方参考",
-                    "ecosystem": "AMEVA 生态系统",
-                    "aiSpecs": "AI 协议",
-                    "home": "主页 / 架构",
-                    "installation": "安装指南",
-                    "quickstart": "快速入门",
-                    "apiReference": "API 参考",
-                    "benchmarks": "基准测试",
-                    "advancedParams": "高级参数",
-                    "versions": "版本归档"
-                }
-            },
-            "home": {
-                "title": name,
-                "subtitle": tag_zh,
-                "quickInstallTitle": "一键快速安装",
-                "quickInstallDesc": "直接将官方包安装到您的环境中:",
-                "challengeTitle": "工程挑战",
-                "challengeText": why_en,
-                "breakthroughTitle": "架构突破",
-                "breakthroughText": desc_zh,
-                "featuresTitle": "核心特性与加固",
-                "matrixTitle": "支持的计算内核与操作",
-                "matrixCol1": "分类",
-                "matrixCol2": "操作与模块",
-                "matrixCol3": "状态",
-                "codeExampleTitle": "标准代码示例",
-                "nextStepsTitle": "开始使用",
-                "linkInstall": "详细安装指南",
-                "linkQuickstart": "快速入门方案",
-                "linkApi": "完整 API 规范"
-            }
-        },
-        "es": {
-            "common": {
-                "brand": name,
-                "releaseTag": f"{version} ({release_name})",
-                "pypiBtn": "PyPI (pip)",
-                "npmBtn": "npm (Node.js)",
-                "githubBtn": "GitHub",
-                "footerText": f"© 2026 Fundación AMEVA. Licencia {cfg.get('license', 'Apache-2.0')}.",
-                "nav": {
-                    "overview": "Visión General",
-                    "reference": "Referencia Oficial",
-                    "ecosystem": "Ecosistema AMEVA",
-                    "aiSpecs": "Protocolos de IA",
-                    "home": "Inicio / Arquitectura",
-                    "installation": "Guía de Instalación",
-                    "quickstart": "Inicio Rápido",
-                    "apiReference": "Referencia de API",
-                    "benchmarks": "Evaluaciones de Rendimiento",
-                    "advancedParams": "Parámetros Avanzados",
-                    "versions": "Archivo de Versiones"
-                }
-            },
-            "home": {
-                "title": name,
-                "subtitle": tag_es,
-                "quickInstallTitle": "Instalación Rápida en 1 Línea",
-                "quickInstallDesc": "Instale el paquete oficial directamente en su entorno:",
-                "challengeTitle": "El Desafío de Ingeniería",
-                "challengeText": why_en,
-                "breakthroughTitle": "El Avance Arquitectónico",
-                "breakthroughText": desc_es,
-                "featuresTitle": "Capacidades Clave y Seguridad",
-                "matrixTitle": "Operaciones y Núcleos Soportados",
-                "matrixCol1": "Categoría",
-                "matrixCol2": "Operaciones",
-                "matrixCol3": "Estado",
-                "codeExampleTitle": "Ejemplo de Uso Estándar",
-                "nextStepsTitle": "Primeros Pasos",
-                "linkInstall": "Guía Detallada de Instalación",
-                "linkQuickstart": "Recetas de Inicio Rápido",
-                "linkApi": "Especificación de API"
-            }
-        },
-        "de": {
-            "common": {
-                "brand": name,
-                "releaseTag": f"{version} ({release_name})",
-                "pypiBtn": "PyPI (pip)",
-                "npmBtn": "npm (Node.js)",
-                "githubBtn": "GitHub",
-                "footerText": f"© 2026 AMEVA Open-Source Foundation. Lizenziert unter {cfg.get('license', 'Apache-2.0')}.",
-                "nav": {
-                    "overview": "Überblick",
-                    "reference": "Offizielle Referenz",
-                    "ecosystem": "AMEVA Ökosystem",
-                    "aiSpecs": "KI-Agenten-Protokolle",
-                    "home": "Startseite / Architektur",
-                    "installation": "Installationsanleitung",
-                    "quickstart": "Schnellstart & Rezepte",
-                    "apiReference": "API-Referenz",
-                    "benchmarks": "Benchmarks & Profiling",
-                    "advancedParams": "Erweiterte Parameter",
-                    "versions": "Versionsarchiv"
-                }
-            },
-            "home": {
-                "title": name,
-                "subtitle": tag_de,
-                "quickInstallTitle": "1-Zeilen-Schnellinstallation",
-                "quickInstallDesc": "Installieren Sie das offizielle Paket direkt in Ihre Laufzeitumgebung:",
-                "challengeTitle": "Die Technische Herausforderung",
-                "challengeText": why_en,
-                "breakthroughTitle": "Der Architektonische Durchbruch",
-                "breakthroughText": desc_de,
-                "featuresTitle": "Kernfunktionen & Stabilität",
-                "matrixTitle": "Unterstützte Rechenkerne & Operationen",
-                "matrixCol1": "Kategorie",
-                "matrixCol2": "Operationen",
-                "matrixCol3": "Status",
-                "codeExampleTitle": "Standard-Codebeispiel",
-                "nextStepsTitle": "Erste Schritte",
-                "linkInstall": "Detaillierte Installationsanleitung",
-                "linkQuickstart": "Schnellstartanleitung",
-                "linkApi": "API-Spezifikation"
-            }
         }
     }
-    return base
 
 
 def render_ai_feeds(cfg: dict, out_dir: Path):
@@ -778,7 +654,6 @@ Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
     robots_txt = """User-agent: *
 Allow: /
 
-# Allow all AI Crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -818,11 +693,10 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
     assets_out = output_dir / "assets"
     assets_out.mkdir(parents=True, exist_ok=True)
 
-    print(f"📦 [BUILD] Generating docs for '{cfg.get('name')}' -> {output_dir.resolve()}")
+    print(f"[BUILD] Generating unified docs for '{cfg.get('name')}' -> {output_dir.resolve()}")
 
-    # 1. Sync Static Assets (CSS, JS, Favicon)
+    # 1. Sync Static Assets (CSS, JS, Favicon, Common.js)
     if assets_src_dir and assets_src_dir.exists():
-        # Copy style.css & i18n.js
         css_src = assets_src_dir / "css/engine-v1.css"
         if not css_src.exists():
             css_src = assets_src_dir / "style.css"
@@ -841,7 +715,6 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
             shutil.copy2(fav_src, output_dir / "favicon.svg")
             shutil.copy2(fav_src, assets_out / "favicon.svg")
 
-        # Copy common.js from shared/common.js
     shared_common = Path(r"c:\Users\GAME\Desktop\uno-km\dev\uno-km\shared\common.js")
     if shared_common.exists():
         shutil.copy2(shared_common, assets_out / "common.js")
@@ -901,8 +774,8 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
         page_html = render_generic_page(cfg, filename, title, subtitle, body)
         (output_dir / filename).write_text(page_html, encoding="utf-8")
 
-        # 3.1 Build Custom Subpages
-    for cp in cfg.get("custom_pages_overview", []) + cfg.get("custom_pages_reference", []):
+    # Custom Subpages
+    for cp in cfg.get("custom_pages_reference", []):
         cp_href = cp.get("href", "")
         cp_title = cp.get("title", "")
         cp_subtitle = cp.get("subtitle", "")
@@ -919,11 +792,11 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
     i18n_js_content = f"// AMEVA Auto-Generated i18n Dictionary\nif (window.i18nManager) {{\n  window.i18nManager.registerTranslations({json.dumps(i18n_dict, indent=2, ensure_ascii=False)});\n}};\n"
     (assets_out / "i18n-translations.js").write_text(i18n_js_content, encoding="utf-8")
 
-    print(f"✅ [SUCCESS] Documentation site compiled with 0% drift in {output_dir.resolve()}")
+    print(f"[OK] Documentation compiled with unified SSOT in {output_dir.resolve()}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="AMEVA Ecosystem Deterministic Docs Builder")
+    parser = argparse.ArgumentParser(description="AMEVA Master Unified Documentation Builder")
     parser.add_argument("--config", "-c", default="docs/doc.config.yaml", help="Path to doc.config.yaml / json")
     parser.add_argument("--output", "-o", default="docs", help="Target output directory")
     parser.add_argument("--assets", "-a", default="c:/Users/GAME/Desktop/uno-km/dev/ameva_assets", help="Path to centralized ameva_assets")
