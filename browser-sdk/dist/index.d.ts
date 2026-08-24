@@ -15,6 +15,8 @@ export interface BrowserTelemetryOptions {
     maxEventsCap?: number;
     pointerSampleIntervalMs?: number;
     autoStart?: boolean;
+    timezone?: string;
+    locale?: string;
 }
 export interface BrowserTelemetrySnapshot {
     telemetryObserved: boolean;
@@ -37,7 +39,21 @@ export interface BrowserTelemetrySnapshot {
     totalVisitCount: number;
     pastPathsHistory: string;
     collectedAt: string;
+    timezone: string;
+    timezoneOffset: number;
+    locale: string;
+    formattedCollectedAt: string;
 }
+export interface TimezoneFormatOptions {
+    timezone?: string;
+    locale?: string;
+    format?: 'full' | 'time' | 'date' | 'iso' | 'relative';
+}
+/**
+ * High-precision deterministic timezone formatter.
+ * Supports IANA timezones ('Asia/Seoul', 'UTC', 'America/New_York', etc.), 'local', and RFC 3339.
+ */
+export declare function formatTimestamp(dateInput: Date | string | number, options?: TimezoneFormatOptions): string;
 export interface HeadlessDiagnostics {
     isHeadlessRenderer: boolean;
     headlessEvasionsDetected: boolean;
@@ -83,6 +99,7 @@ export declare class BrowserTelemetryCollector {
     private samplingWindowMs;
     private lastPointerSampleAt;
     private abortController;
+    private options;
     private trustedEvents;
     private pointerEvents;
     private touchEvents;

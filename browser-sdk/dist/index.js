@@ -1,4 +1,50 @@
 // src/index.ts
+function formatTimestamp(dateInput, options = {}) {
+  const date = typeof dateInput === "object" ? dateInput : new Date(dateInput);
+  if (isNaN(date.getTime())) return "--";
+  const tz = options.timezone && options.timezone !== "local" ? options.timezone : void 0;
+  const loc = options.locale || (typeof navigator !== "undefined" ? navigator.language : "en-US");
+  const fmt = options.format || "full";
+  if (fmt === "iso") return date.toISOString();
+  if (fmt === "relative") {
+    const sec = Math.max(0, Math.round((Date.now() - date.getTime()) / 1e3));
+    if (sec < 60) return `${sec}s ago`;
+    if (sec < 3600) return `${Math.round(sec / 60)}m ago`;
+    if (sec < 86400) return `${Math.round(sec / 3600)}h ago`;
+    return `${Math.round(sec / 86400)}d ago`;
+  }
+  try {
+    if (fmt === "time") {
+      return date.toLocaleTimeString(loc, {
+        timeZone: tz,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+    }
+    if (fmt === "date") {
+      return date.toLocaleDateString(loc, {
+        timeZone: tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      });
+    }
+    return date.toLocaleString(loc, {
+      timeZone: tz,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+  } catch {
+    return date.toLocaleString();
+  }
+}
 function detectHeadlessEvasions() {
   const reasons = [];
   let isHeadlessRenderer = false;
@@ -168,12 +214,14 @@ var BrowserTelemetryCollector = class {
   samplingWindowMs;
   lastPointerSampleAt = 0;
   abortController = null;
+  options;
   // Interaction Counters
   trustedEvents = 0;
   pointerEvents = 0;
   touchEvents = 0;
   keyboardEvents = 0;
   constructor(options = {}) {
+    this.options = options;
     this.maxEventsCap = options.maxEventsCap ?? 500;
     this.pointerIntervalMs = options.pointerSampleIntervalMs ?? 100;
     this.samplingWindowMs = options.samplingWindowMs ?? 5e3;
@@ -219,6 +267,7 @@ var BrowserTelemetryCollector = class {
   snapshot() {
     const isBrowser = typeof window !== "undefined" && typeof navigator !== "undefined";
     if (!isBrowser) {
+      const now2 = /* @__PURE__ */ new Date();
       return {
         telemetryObserved: false,
         sampleComplete: false,
@@ -239,7 +288,11 @@ var BrowserTelemetryCollector = class {
         heapLimitMb: 0,
         totalVisitCount: 1,
         pastPathsHistory: "/",
-        collectedAt: (/* @__PURE__ */ new Date()).toISOString()
+        collectedAt: now2.toISOString(),
+        timezone: this.options.timezone || "UTC",
+        timezoneOffset: 0,
+        locale: this.options.locale || "en-US",
+        formattedCollectedAt: formatTimestamp(now2, { timezone: this.options.timezone, locale: this.options.locale })
       };
     }
     const elapsed = Math.max(0, Date.now() - this.startTime);
@@ -252,6 +305,14 @@ var BrowserTelemetryCollector = class {
     const heap = getHeapMemoryUsage();
     const soul = getSoulHistory();
     const headless = detectHeadlessEvasions();
+    const now = /* @__PURE__ */ new Date();
+    let detectedTz = "UTC";
+    try {
+      detectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    } catch {
+    }
+    const activeTz = this.options.timezone && this.options.timezone !== "local" ? this.options.timezone : detectedTz;
+    const activeLocale = this.options.locale || nav.language || "en-US";
     return {
       telemetryObserved: this.isListening,
       sampleComplete: elapsed >= this.samplingWindowMs,
@@ -272,7 +333,11 @@ var BrowserTelemetryCollector = class {
       heapLimitMb: heap.heapLimitMb,
       totalVisitCount: soul.totalVisitCount,
       pastPathsHistory: soul.pastPathsHistory,
-      collectedAt: (/* @__PURE__ */ new Date()).toISOString()
+      collectedAt: now.toISOString(),
+      timezone: activeTz,
+      timezoneOffset: now.getTimezoneOffset(),
+      locale: activeLocale,
+      formattedCollectedAt: formatTimestamp(now, { timezone: activeTz, locale: activeLocale })
     };
   }
   reset() {
@@ -430,6 +495,7 @@ export {
   browserTelemetry,
   createBrowserTelemetry,
   detectHeadlessEvasions,
+  formatTimestamp,
   getHeapMemoryUsage,
   getLocalSessionId,
   getSoulHistory,

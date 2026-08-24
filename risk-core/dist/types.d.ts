@@ -229,6 +229,10 @@ export interface SentinelRiskReport {
     policyVersion: string;
     evidence: EvidenceItem[];
     evaluatedAt: string;
+    timezone?: string;
+    timezoneOffset?: number;
+    locale?: string;
+    formattedEvaluatedAt?: string;
     signals?: TelemetrySignals;
 }
 export interface StoredRiskEventV1 {

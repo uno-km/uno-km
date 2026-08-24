@@ -1148,6 +1148,31 @@ function evaluateWithTrust(signals = {}, trustedState, optionsOrPolicy = default
       action = "OBSERVE" /* OBSERVE */;
     }
   }
+  const evaluatedDate = /* @__PURE__ */ new Date();
+  let resolvedTz = "UTC";
+  try {
+    if (typeof Intl !== "undefined" && Intl.DateTimeFormat) {
+      resolvedTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    }
+  } catch {
+  }
+  const activeTz = typeof optionsOrPolicy === "object" && "timezone" in optionsOrPolicy && optionsOrPolicy.timezone ? optionsOrPolicy.timezone : signals.timezone || resolvedTz;
+  const activeLocale = typeof optionsOrPolicy === "object" && "locale" in optionsOrPolicy && optionsOrPolicy.locale ? optionsOrPolicy.locale : signals.locale || "en-US";
+  let formattedEvaluatedAt;
+  try {
+    formattedEvaluatedAt = evaluatedDate.toLocaleString(activeLocale, {
+      timeZone: activeTz && activeTz !== "local" ? activeTz : void 0,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+  } catch {
+    formattedEvaluatedAt = evaluatedDate.toLocaleString();
+  }
   return {
     traceId: currentTraceId,
     score: finalScore,
@@ -1164,7 +1189,11 @@ function evaluateWithTrust(signals = {}, trustedState, optionsOrPolicy = default
     enforcementMode,
     policyVersion: policy.version,
     evidence,
-    evaluatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+    evaluatedAt: evaluatedDate.toISOString(),
+    timezone: activeTz,
+    timezoneOffset: evaluatedDate.getTimezoneOffset(),
+    locale: activeLocale,
+    formattedEvaluatedAt,
     signals: safeSignals
   };
 }

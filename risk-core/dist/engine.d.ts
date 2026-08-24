@@ -4,6 +4,8 @@ export interface EvaluateOptions {
     policy?: SentinelPolicy;
     traceId?: string;
     enforcementMode?: EnforcementMode;
+    timezone?: string;
+    locale?: string;
 }
 /**
  * Pure risk evaluation engine (4-Stage Pipeline).

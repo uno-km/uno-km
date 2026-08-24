@@ -57,6 +57,8 @@ var Sentinel = class {
   stateFailureMode;
   onOperationalError;
   geoEngine;
+  timezone;
+  locale;
   constructor(options = {}) {
     this.policy = options.policy || defaultPolicy;
     this.mode = options.mode || "shadow";
@@ -74,6 +76,8 @@ var Sentinel = class {
     this.allowedRedirectHosts = options.allowedRedirectHosts;
     this.allowRedirectSubdomains = options.allowRedirectSubdomains ?? true;
     this.geoEngine = new GeoDeliveryEngine(options.geo);
+    this.timezone = options.timezone;
+    this.locale = options.locale;
     if (this.policy.botPolicy?.targetMode === "VERIFIED_PARTNERS_ONLY") {
       if (!this.keyResolver) {
         throw new Error('Sentinel configuration error: keyResolver is mandatory when botPolicy.targetMode is "VERIFIED_PARTNERS_ONLY"');
@@ -130,7 +134,9 @@ var Sentinel = class {
     }
     const report = evaluateVerified(enrichedSignals, verificationOutcome.context, {
       policy: this.policy,
-      enforcementMode: this.mode === "enforce" ? "ENFORCE" : "SHADOW"
+      enforcementMode: this.mode === "enforce" ? "ENFORCE" : "SHADOW",
+      timezone: this.timezone,
+      locale: this.locale
     });
     const footprint = this.synthesizeFootprint(report, req);
     if (!report.signals) report.signals = enrichedSignals;

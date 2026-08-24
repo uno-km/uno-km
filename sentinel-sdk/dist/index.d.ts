@@ -21,6 +21,8 @@ export interface SentinelOptions {
     onOperationalError?: (err: Error, context: string) => void;
     eventSink?: EventSink;
     geo?: GeoDeliveryConfig;
+    timezone?: string;
+    locale?: string;
 }
 export declare class Sentinel {
     private globalAnalyticsCache;
@@ -41,6 +43,8 @@ export declare class Sentinel {
     private stateFailureMode;
     private onOperationalError?;
     geoEngine: GeoDeliveryEngine;
+    private timezone?;
+    private locale?;
     constructor(options?: SentinelOptions);
     score(req: any): Promise<SentinelRiskReport>;
     deriveRateKey(req: any): string | null;
