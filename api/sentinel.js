@@ -99,6 +99,16 @@ async function ensureSentinelTables(sql) {
         delivered_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
+
+    // ── v2 Shadow Observability Schema Extension ──────────────────────
+    // Zero-downtime column addition for multi-axis assessment persistence.
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS risk_level VARCHAR(40);`;
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS actor_claim_type VARCHAR(40);`;
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS actor_claim_state VARCHAR(40);`;
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS actor_claim_verification VARCHAR(40);`;
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS evidence_codes JSONB;`;
+    await sql`ALTER TABLE sentinel_risk_events ADD COLUMN IF NOT EXISTS policy_version VARCHAR(40);`;
+
     isSchemaEnsured = true;
   } catch (err) {
     console.warn('[Sentinel DB Init Warning]', err.message);
@@ -143,7 +153,7 @@ async function flushBatchQueue(force = false) {
         eventsToFlush.map(ev => 
           sql`
             INSERT INTO sentinel_risk_events (
-              trace_id, visitor_id, ip_address, country, city, asn_provider, origin_referrer, path_hop_chain, score, action, recommended_action, triage_category, vendor_group, user_agent, webgl_renderer, canvas_subpixel_hash, audio_oscillator_hash, math_jit_precision, battery_charge_status, screen_refresh_hz, evidence, evaluated_at
+              trace_id, visitor_id, ip_address, country, city, asn_provider, origin_referrer, path_hop_chain, score, action, recommended_action, triage_category, vendor_group, user_agent, webgl_renderer, canvas_subpixel_hash, audio_oscillator_hash, math_jit_precision, battery_charge_status, screen_refresh_hz, evidence, evaluated_at, risk_level, actor_claim_type, actor_claim_state, actor_claim_verification, evidence_codes, policy_version
             ) VALUES (
               ${ev.trace_id},
               ${ev.visitor_id},
@@ -166,7 +176,13 @@ async function flushBatchQueue(force = false) {
               ${ev.battery_charge_status},
               ${ev.screen_refresh_hz},
               ${ev.evidence},
-              ${ev.evaluated_at}
+              ${ev.evaluated_at},
+              ${ev.risk_level || null},
+              ${ev.actor_claim_type || null},
+              ${ev.actor_claim_state || null},
+              ${ev.actor_claim_verification || null},
+              ${ev.evidence_codes || null},
+              ${ev.policy_version || null}
             )
             ON CONFLICT (trace_id) DO NOTHING;
           `
@@ -463,6 +479,10 @@ export default async function handler(req, res) {
     const footprint = sentinel.synthesizeFootprint(report, req);
 
     // 1. Buffer Risk Event into In-Memory Batch Queue (Zero Millisecond Hit)
+    const eventActorClaim = report.actorClaim || { type: 'UNKNOWN', name: null, state: 'NONE', verification: 'NOT_APPLICABLE', basis: [] };
+    const evidenceCodes = Array.isArray(report.evidence)
+      ? report.evidence.map(function(e) { return e && e.rule || null; }).filter(Boolean)
+      : [];
     pendingRiskEvents.push({
       trace_id: report.traceId,
       visitor_id: footprint.visitorId,
@@ -485,7 +505,14 @@ export default async function handler(req, res) {
       battery_charge_status: batteryStatus,
       screen_refresh_hz: screenHz,
       evidence: JSON.stringify(report.evidence),
-      evaluated_at: new Date(report.evaluatedAt)
+      evaluated_at: new Date(report.evaluatedAt),
+      // ── v2 Shadow Observability Fields ──────────────────────────────
+      risk_level: report.riskLevel || 'LOW_AUTOMATION_RISK',
+      actor_claim_type: eventActorClaim.type,
+      actor_claim_state: eventActorClaim.state || 'NONE',
+      actor_claim_verification: eventActorClaim.verification || 'NOT_APPLICABLE',
+      evidence_codes: JSON.stringify(evidenceCodes),
+      policy_version: report.policyVersion || 'sentinel-2.0-shadow.1'
     });
 
     // 2. Resolve GEO Markdown Delivery for AI Agents
@@ -548,6 +575,15 @@ export default async function handler(req, res) {
           batteryStatus,
           mathJitPrecision
         }
+      },
+      // ── v2 Semantic Separation Assessment ─────────────────────────
+      assessment: report.assessment || {
+        schemaVersion: "2.0",
+        riskLevel: report.riskLevel || "LOW_AUTOMATION_RISK",
+        actorClaim: report.actorClaim || { type: "UNKNOWN", name: null, state: "NONE", verification: "NOT_APPLICABLE", basis: [] },
+        evidence: Array.isArray(report.evidence) ? report.evidence.map(function(e) { return e && e.rule || null; }).filter(Boolean) : [],
+        decision: { mode: "SHADOW", proposedAction: report.recommendedAction || "ALLOW", enforcedAction: report.action || "ALLOW", policyVersion: "sentinel-2.0-shadow.1" },
+        legacy: { triageCategory: triage, deprecated: true }
       }
     });
   } catch (err) {

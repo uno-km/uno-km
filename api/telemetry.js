@@ -10,6 +10,8 @@
  * - Zero credentials leakage
  */
 // Global Singleton DB Client (Zero Pool Thrashing)
+import { maskIpAddress, normalizeTargetType } from '../lib/privacy/network-identifiers.js';
+
 let globalTelemetrySql = null;
 let isSchemaInitialized = false;
 
@@ -162,12 +164,14 @@ export default async function handler(req, res) {
         const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
 
         const headers = req.headers || {};
-        const ip = headers['x-forwarded-for'] ? headers['x-forwarded-for'].split(',')[0].trim() : (req.socket?.remoteAddress || '127.0.0.1');
+        const raw_ip = headers['x-forwarded-for'] ? headers['x-forwarded-for'].split(',')[0].trim() : (req.socket?.remoteAddress || '127.0.0.1');
+        const ip = maskIpAddress(raw_ip);
         const country = headers['x-vercel-ip-country'] || 'LOCAL';
         const city = headers['x-vercel-ip-city'] ? decodeURIComponent(headers['x-vercel-ip-city']) : 'Localhost';
         const region = headers['x-vercel-ip-country-region'] || '';
-        const latitude = headers['x-vercel-ip-latitude'] ? parseFloat(headers['x-vercel-ip-latitude']) : null;
-        const longitude = headers['x-vercel-ip-longitude'] ? parseFloat(headers['x-vercel-ip-longitude']) : null;
+        // Privacy: geo coordinates collection disabled per sentinel-privacy-1
+        const latitude = null;
+        const longitude = null;
 
         const { type, session_id, visitor_id, pathname, url, referrer, hardware, forensics } = body;
 
@@ -256,6 +260,7 @@ export default async function handler(req, res) {
             // 3. Batch Micro-Interactions & Clicks
             else if (type === 'batch_events' && Array.isArray(body.batch) && body.batch.length > 0) {
                 for (const ev of body.batch) {
+                    // Privacy: raw clipboard/target text collection disabled per sentinel-privacy-1
                     await sql`
                         INSERT INTO click_events (
                             session_id, visitor_id, pathname, event_type,
@@ -264,7 +269,7 @@ export default async function handler(req, res) {
                             ${session_id}, ${visitor_id}, ${(ev.pathname || pathname || '/').slice(0, 255)},
                             ${(ev.event_type || 'interaction_click').slice(0, 50)}, ${(ev.target_tag || '').slice(0, 30)},
                             ${(ev.target_id || '').slice(0, 100)}, ${(ev.target_class || '').slice(0, 150)},
-                            ${(ev.target_text || '').slice(0, 250)}, ${(ev.target_url || '').slice(0, 1000)},
+                            ${normalizeTargetType(ev.target_text)}, ${(ev.target_url || '').slice(0, 1000)},
                             ${!!ev.is_external}
                         );
                     `;
