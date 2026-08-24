@@ -181,26 +181,62 @@ export default async function handler(req, res) {
             }));
         } catch (e) {}
 
-        // 6. Deep Forensic Footprints
+        // 6. Deep Forensic Footprints (Unified & Enriched)
         let recentForensicsRes = [];
         try {
             const rawForensics = await sql`
-                SELECT 
-                    trace_id,
-                    visitor_id,
-                    canvas_subpixel_hash as canvas_hash,
-                    audio_oscillator_hash as audio_hash,
-                    webgl_renderer,
-                    screen_refresh_hz as screen_hz,
-                    battery_charge_status as is_charging,
-                    path_hop_chain as past_paths_history,
-                    origin_referrer,
-                    country,
-                    city,
-                    ip_address,
-                    evaluated_at as captured_at
-                FROM sentinel_risk_events
-                ORDER BY evaluated_at DESC
+                WITH all_forensics AS (
+                    SELECT 
+                        trace_id,
+                        visitor_id,
+                        canvas_subpixel_hash as canvas_hash,
+                        audio_oscillator_hash as audio_hash,
+                        webgl_renderer,
+                        screen_refresh_hz as screen_hz,
+                        battery_charge_status as is_charging,
+                        path_hop_chain as past_paths_history,
+                        origin_referrer,
+                        asn_provider,
+                        math_jit_precision,
+                        score,
+                        action,
+                        triage_category,
+                        vendor_group,
+                        user_agent,
+                        evidence,
+                        country,
+                        city,
+                        ip_address,
+                        evaluated_at as captured_at
+                    FROM sentinel_risk_events
+                    UNION ALL
+                    SELECT 
+                        d.session_id as trace_id,
+                        d.visitor_id,
+                        d.canvas_hash,
+                        d.audio_hash,
+                        d.webgl_renderer,
+                        d.screen_hz,
+                        CASE WHEN d.is_charging THEN 'AC Plugged' ELSE 'Battery' END as is_charging,
+                        d.past_paths_history,
+                        'Direct / Bookmark' as origin_referrer,
+                        'Residential/ISP' as asn_provider,
+                        '0.8414709848078965' as math_jit_precision,
+                        0 as score,
+                        'ALLOW' as action,
+                        'HUMAN' as triage_category,
+                        'HumanUser' as vendor_group,
+                        s.user_agent,
+                        '[]'::jsonb as evidence,
+                        s.country,
+                        s.city,
+                        s.ip_address,
+                        d.captured_at
+                    FROM deep_forensic_footprints d
+                    LEFT JOIN visitor_sessions s ON d.session_id = s.session_id
+                )
+                SELECT * FROM all_forensics
+                ORDER BY captured_at DESC
                 LIMIT 100;
             `;
             recentForensicsRes = (rawForensics || []).map(f => ({

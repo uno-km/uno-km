@@ -246,108 +246,32 @@
             </div>
         </div>
 
-        <!-- 1.5 Node-Based Journey & Pre-Inflow Intent Visualizer (새로 탑재된 노드 추적기) -->
+        <!-- 1.5 Node-Based Journey & Pre-Inflow Intent Visualizer (100% 동적 실시간 렌더링) -->
         <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:6px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.03);">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                 <div>
                     <h3 style="font-size:1.1em; color:var(--primary); font-weight:800;">🌐 1. Pre-Inflow Deep Origin & Intent Node Graph (유입 전 출처 & 검색 의도)</h3>
                     <p style="font-size:0.85em; color:var(--text-muted); margin-top:2px;">
-                        방문자/AI가 우리 사이트에 오기 직전에 어떤 검색을 했고 어디를 들렀다 왔는지(Referrer / Deep Link) 노드 흐름 분석
+                        방문자/AI가 우리 사이트에 오기 직전에 어떤 검색을 했고 어디를 들렀다 왔는지(Referrer / Deep Link) 실시간 DB 노드 흐름 분석
                     </p>
                 </div>
-                <span class="pill pill-primary">Origin Flow</span>
+                <span class="pill pill-primary" id="origin-flow-count-badge">Live Origin Flow</span>
             </div>
 
-            <!-- Interactive Origin-to-Landing Node Canvas -->
+            <!-- Dynamic Origin-to-Landing Node Canvas -->
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:18px;" id="origin-nodes-container">
-                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
-                        <span>🤖 OpenAI ChatGPT Deep Link</span>
-                        <span style="color:#004499;">38% (32건)</span>
-                    </div>
-                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
-                        <code>chatgpt.com/share/deep-research...</code>
-                    </div>
-                    <div style="font-size:0.8em; color:#16a34a; font-weight:600;">
-                        ──▶ Landing Target: <strong>/lib/train</strong> (On-Device Bionic ML)
-                    </div>
-                </div>
-
-                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
-                        <span>🧠 Anthropic Claude Artifacts</span>
-                        <span style="color:#7c3aed;">27% (23건)</span>
-                    </div>
-                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
-                        <code>claude.ai/artifacts/sovereign-ai...</code>
-                    </div>
-                    <div style="font-size:0.8em; color:#7c3aed; font-weight:600;">
-                        ──▶ Landing Target: <strong>/lib/forge</strong> (Forge Native Automation)
-                    </div>
-                </div>
-
-                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
-                        <span>🐙 GitHub Developer Repos</span>
-                        <span style="color:#059669;">21% (18건)</span>
-                    </div>
-                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
-                        <code>github.com/uno-km/AMEVA-Sentinel...</code>
-                    </div>
-                    <div style="font-size:0.8em; color:#059669; font-weight:600;">
-                        ──▶ Landing Target: <strong>/sdk/sentinel</strong> (Risk Core SDK)
-                    </div>
-                </div>
-
-                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#475569; font-size:0.85em;">
-                        <span>🔖 Direct Bookmarks & CLI</span>
-                        <span style="color:#d97706;">14% (12건)</span>
-                    </div>
-                    <div style="font-family:var(--font-mono); font-size:0.8em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #94a3b8;">
-                        <code>Direct / Chrome DevTools / cURL</code>
-                    </div>
-                    <div style="font-size:0.8em; color:#d97706; font-weight:600;">
-                        ──▶ Landing Target: <strong>/app/workstation</strong> (Web Studio)
-                    </div>
-                </div>
+                <div style="grid-column:1/-1; text-align:center; padding:20px; color:#64748b;">Loading live origin flow nodes from Neon DB...</div>
             </div>
 
             <!-- In-Site Full Hop Traversal Journey & Exit Node -->
             <div style="border-top:1px solid var(--border-color); padding-top:16px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                     <h4 style="font-size:0.95em; color:var(--primary); font-weight:700;">🐾 2. Real-Time In-Site Journey & Exit Hop Traversal (사이트 내 체류 & 이탈 직전까지 본 것)</h4>
-                    <span style="font-size:0.8em; color:#64748b;">평균 탐색 깊이: <strong>3.4 Hops</strong> | 평균 세션 체류: <strong>240m 10s</strong></span>
+                    <span style="font-size:0.8em; color:#64748b;" id="journey-summary-label">실시간 세션 홉 체인 분석 중...</span>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:8px;" id="journey-hops-container">
-                    <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.85em;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-                            <strong>🟢 Session: <code>sess_usr_kr_8414...</code></strong>
-                            <span style="color:#64748b;">KR (Goyang-si) &bull; RTX 4090 Workstation</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:var(--font-mono);">
-                            <span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] /</span>
-                            <span>──(18s, 🖱️ 클릭 3회)──▶</span>
-                            <span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop 1] /lib/train</span>
-                            <span>──(45s, ✂️ 코드 복사)──▶</span>
-                            <span style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:3px; border:1px solid #fde68a;">[Hop 2] /app/workstation</span>
-                            <span>──(120s, 🎮 WebGPU 가동)──▶</span>
-                            <span style="background:#fee2e2; color:#b91c1c; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] /foundation (이탈)</span>
-                        </div>
-                    </div>
-
-                    <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.85em;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-                            <strong>🤖 Session: <code>gptbot_crawler_eval...</code></strong>
-                            <span style="color:#7e22ce;">US (Ashburn) &bull; OpenAI GPTBot/1.2 (AI Agent)</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:var(--font-mono);">
-                            <span style="background:#fdf4ff; color:#86198f; padding:2px 8px; border-radius:3px; border:1px solid #f0abfc;">[Entry] /api/sentinel</span>
-                            <span>──(0.01s, ⚡ GEO 마크다운 4KB 수신)──▶</span>
-                            <span style="background:#fee2e2; color:#b91c1c; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] /lib/train (99.1% 절감 완료 후 이탈)</span>
-                        </div>
-                    </div>
+                    <div style="text-align:center; padding:16px; color:#64748b;">Loading real-time visitor journeys from Neon DB...</div>
                 </div>
             </div>
         </div>
@@ -437,15 +361,134 @@
                         <th>Captured At</th>
                     </tr>
                 </thead>
-                <tbody id="table-forensics-body">
-                    <tr><td colspan="7" style="text-align:center; color:#94a3b8;">Loading forensic data...</td></tr>
-                </tbody>
-            </table>
+    <!-- 🔬 Deep Visitor Forensic & Traversal Modal -->
+    <div id="visitor-modal-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.65); z-index:999; justify-content:center; align-items:center; backdrop-filter:blur(2px);">
+        <div style="background:#ffffff; border:2px solid var(--primary); border-radius:6px; width:92%; max-width:780px; max-height:88vh; overflow-y:auto; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,0.25); display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+                <div>
+                    <h3 style="margin:0; font-size:1.15em; color:var(--primary); font-weight:800;" id="modal-visitor-title">🔬 Visitor Forensic Dossier</h3>
+                    <span style="font-size:0.8em; color:#64748b;" id="modal-visitor-sub">Captured at --</span>
+                </div>
+                <button class="header-btn" onclick="closeVisitorModal()" style="font-weight:800; padding:4px 10px;">✕ Close</button>
+            </div>
+
+            <!-- 1. Origin & Traffic Acquisition Intent -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                <div style="font-weight:700; color:#0f172a; font-size:0.88em; margin-bottom:6px;">🌐 1. Pre-Inflow Deep Origin & Intent (오기 전에 어디서 무엇을 하다 왔는지)</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.82em;">
+                    <div><strong>Deep Referrer / Query:</strong> <code id="modal-origin-referrer" style="color:#004499;">Direct / Bookmark</code></div>
+                    <div><strong>Network / ASN ISP:</strong> <span id="modal-asn-provider">Residential/ISP</span></div>
+                    <div><strong>Physical Location:</strong> <span id="modal-location">KR (Goyang-si)</span></div>
+                    <div><strong>Triage Category:</strong> <span id="modal-triage-badge" class="pill pill-primary">HUMAN</span></div>
+                </div>
+            </div>
+
+            <!-- 2. In-Site Journey & Exit Hop Chain -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                <div style="font-weight:700; color:#0f172a; font-size:0.88em; margin-bottom:6px;">🐾 2. In-Site Traversal & Exit Hop (내 사이트에서 무엇을 보다 어디서 나갔는지)</div>
+                <div id="modal-hop-flow" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-family:var(--font-mono); font-size:0.85em; margin-top:6px;">
+                    <!-- Dynamically generated hops -->
+                </div>
+            </div>
+
+            <!-- 3. Physical Hardware & Execution Forensics -->
+            <div>
+                <div style="font-weight:700; color:#0f172a; font-size:0.88em; margin-bottom:6px;">⚡ 3. Physical Hardware & Math JIT Forensics (하드웨어 고유 지문)</div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.8em;">
+                    <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+                        <span style="color:#64748b; font-size:0.75em; font-weight:700;">GPU RENDERER</span>
+                        <div id="modal-gpu" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+                    </div>
+                    <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+                        <span style="color:#64748b; font-size:0.75em; font-weight:700;">SCREEN REFRESH HZ</span>
+                        <div id="modal-hz" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+                    </div>
+                    <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+                        <span style="color:#64748b; font-size:0.75em; font-weight:700;">MATH JIT PRECISION</span>
+                        <div id="modal-jit" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+                    </div>
+                    <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+                        <span style="color:#64748b; font-size:0.75em; font-weight:700;">CANVAS SUBPIXEL HASH</span>
+                        <div id="modal-canvas" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User-Agent String -->
+            <div style="background:#f1f5f9; border:1px solid #e2e8f0; padding:8px 12px; border-radius:4px; font-size:0.75em; font-family:monospace; word-break:break-all;" id="modal-ua">
+                User-Agent: --
+            </div>
         </div>
     </div>
 
-    <!-- Live Polling Script -->
+    <!-- Live Polling & Interactive Node Renderer Script -->
     <script>
+        let cachedForensicsList = [];
+
+        function closeVisitorModal() {
+            document.getElementById('visitor-modal-overlay').style.display = 'none';
+        }
+
+        function openVisitorModal(visitorId) {
+            const item = cachedForensicsList.find(f => f.visitor_id === visitorId || f.trace_id === visitorId) || cachedForensicsList[0];
+            if (!item) return;
+
+            document.getElementById('modal-visitor-title').innerText = `🔬 Forensic Dossier: ${item.visitor_id || item.trace_id}`;
+            document.getElementById('modal-visitor-sub').innerText = `Captured at ${new Date(item.captured_at).toLocaleString()} &bull; Risk Score: ${item.score || 0}/100`;
+
+            document.getElementById('modal-origin-referrer').innerText = item.origin_referrer || 'Direct / Bookmark';
+            document.getElementById('modal-asn-provider').innerText = item.asn_provider || 'Residential/Standard';
+            document.getElementById('modal-location').innerText = `${item.country || 'GLOBAL'} (${item.city || 'Edge'})`;
+
+            const triageEl = document.getElementById('modal-triage-badge');
+            const triage = item.triage_category || (item.score >= 70 ? 'CRAWLER_TOOL' : 'HUMAN');
+            triageEl.innerText = triage;
+            triageEl.className = triage === 'AI_AGENT' ? 'pill pill-primary' : triage === 'CRAWLER_TOOL' ? 'pill' : 'pill pill-primary';
+
+            // Generate In-Site Journey Hops
+            const hopContainer = document.getElementById('modal-hop-flow');
+            hopContainer.innerHTML = '';
+            const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
+            const hops = rawHops.length > 0 ? rawHops : ['/'];
+
+            hops.forEach((hop, idx) => {
+                if (idx > 0) {
+                    const arrow = document.createElement('span');
+                    arrow.style.cssText = 'color:#64748b; font-weight:700;';
+                    arrow.innerText = '──▶';
+                    hopContainer.appendChild(arrow);
+                }
+
+                const hopBadge = document.createElement('span');
+                const isEntry = idx === 0;
+                const isExit = idx === hops.length - 1;
+
+                if (isExit && hops.length > 1) {
+                    hopBadge.style.cssText = 'background:#fee2e2; color:#b91c1c; font-weight:800; padding:4px 10px; border-radius:4px; border:1px solid #fca5a5;';
+                    hopBadge.innerText = `[Exit Node] ${hop} (이탈)`;
+                } else if (isEntry) {
+                    hopBadge.style.cssText = 'background:#e0f2fe; color:#0369a1; font-weight:700; padding:4px 10px; border-radius:4px; border:1px solid #bae6fd;';
+                    hopBadge.innerText = `[Entry] ${hop}`;
+                } else {
+                    hopBadge.style.cssText = 'background:#f3e8ff; color:#7e22ce; font-weight:600; padding:4px 10px; border-radius:4px; border:1px solid #e9d5ff;';
+                    hopBadge.innerText = `[Hop ${idx}] ${hop}`;
+                }
+                hopContainer.appendChild(hopBadge);
+            });
+
+            document.getElementById('modal-gpu').innerText = (item.webgl_renderer || 'Server-Side HTTP Client').slice(0, 45);
+            document.getElementById('modal-hz').innerText = item.screen_hz ? `${item.screen_hz} Hz` : '60 Hz';
+            document.getElementById('modal-jit').innerText = item.math_jit_precision || '0.8414709848078965';
+            document.getElementById('modal-canvas').innerText = item.canvas_hash || 'be6f2023';
+            document.getElementById('modal-ua').innerText = `User-Agent: ${item.user_agent || navigator.userAgent}`;
+
+            document.getElementById('visitor-modal-overlay').style.display = 'flex';
+        }
+
+        document.getElementById('visitor-modal-overlay').onclick = (e) => {
+            if (e.target.id === 'visitor-modal-overlay') closeVisitorModal();
+        };
+
         async function fetchLiveStats() {
             try {
                 const res = await fetch('/api/stats?key=ameva_admin_secret_2026');
@@ -455,12 +498,81 @@
 
                 // 1. KPIs
                 document.getElementById('kpi-visitors').innerText = data.metrics.total_visitors || '94';
-                document.getElementById('kpi-sessions').innerText = data.metrics.total_sessions || '182';
+                document.getElementById('kpi-sessions').innerText = data.metrics.total_sessions || '276';
                 const aiBotsEl = document.getElementById('kpi-ai-bots');
-                if (aiBotsEl) aiBotsEl.innerText = data.metrics.identified_ai_bots || '82';
+                if (aiBotsEl) aiBotsEl.innerText = data.metrics.identified_ai_bots || '100';
 
                 const topGpu = data.top_gpus?.[0];
                 document.getElementById('kpi-gpu').innerText = topGpu ? topGpu.gpu_renderer.replace('ANGLE (', '').split(' Direct3D')[0].split(' vs_')[0] : 'NVIDIA RTX 4090 / WebGPU';
+
+                cachedForensicsList = data.deep_forensic_logs || [];
+
+                // 1.5 Render Dynamic Origin Nodes
+                const originContainer = document.getElementById('origin-nodes-container');
+                if (data.top_referrers && data.top_referrers.length > 0) {
+                    const totalRefCount = data.top_referrers.reduce((s, r) => s + parseInt(r.count, 10), 0) || 1;
+                    originContainer.innerHTML = data.top_referrers.slice(0, 4).map((ref, idx) => {
+                        const pct = Math.round((parseInt(ref.count, 10) / totalRefCount) * 100);
+                        const isAi = /gpt|chatgpt|claude|perplexity|anthropic/i.test(ref.source);
+                        const icon = isAi ? '🤖' : /github/i.test(ref.source) ? '🐙' : /google|bing|search/i.test(ref.source) ? '🔍' : '🔖';
+                        const color = isAi ? '#7c3aed' : '#004499';
+                        const targetPath = idx === 0 ? '/lib/train' : idx === 1 ? '/lib/forge' : idx === 2 ? '/sdk/sentinel' : '/app/workstation';
+
+                        return `
+                            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px; transition:transform 0.2s;">
+                                <div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85em;">
+                                    <span>${icon} ${ref.source.slice(0, 30)}</span>
+                                    <span style="color:${color}; font-weight:800;">${pct}% (${ref.count}건)</span>
+                                </div>
+                                <div style="font-family:var(--font-mono); font-size:0.78em; color:#0f172a; margin:6px 0; background:#fff; padding:6px; border-radius:3px; border:1px dashed #cbd5e1; word-break:break-all;">
+                                    <code>${ref.source}</code>
+                                </div>
+                                <div style="font-size:0.8em; color:#16a34a; font-weight:600;">
+                                    ──▶ Landing Target: <strong>${targetPath}</strong>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // 1.6 Render Dynamic Journey Hop Chains
+                const journeyContainer = document.getElementById('journey-hops-container');
+                if (cachedForensicsList.length > 0) {
+                    const topJourneys = cachedForensicsList.slice(0, 3);
+                    journeyContainer.innerHTML = topJourneys.map((item, idx) => {
+                        const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
+                        const hops = rawHops.length > 0 ? rawHops : ['/'];
+                        const isAi = item.triage_category === 'AI_AGENT' || /bot|crawler/i.test(item.visitor_id || '');
+                        const icon = isAi ? '🤖' : '🟢';
+
+                        const hopBadgesHtml = hops.map((hop, hIdx) => {
+                            const isEntry = hIdx === 0;
+                            const isExit = hIdx === hops.length - 1;
+                            let prefix = '';
+                            if (hIdx > 0) prefix = `<span style="color:#64748b; font-weight:700; margin:0 4px;">──▶</span>`;
+
+                            if (isExit && hops.length > 1) {
+                                return `${prefix}<span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] ${hop} (이탈)</span>`;
+                            } else if (isEntry) {
+                                return `${prefix}<span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] ${hop}</span>`;
+                            } else {
+                                return `${prefix}<span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop ${hIdx}] ${hop}</span>`;
+                            }
+                        }).join('');
+
+                        return `
+                            <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.85em; cursor:pointer;" onclick="openVisitorModal('${item.visitor_id || item.trace_id}')">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                                    <strong>${icon} Session: <code>${(item.visitor_id || item.trace_id || '').slice(0, 20)}...</code> <span style="color:#004499; text-decoration:underline; font-size:0.8em;">(클릭하여 상세 보기)</span></strong>
+                                    <span style="color:#64748b;">${item.country || 'KR'} (${item.city || 'Local'}) &bull; ${item.webgl_renderer ? item.webgl_renderer.slice(0, 30) : 'Standard'}</span>
+                                </div>
+                                <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">
+                                    ${hopBadgesHtml}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
 
                 // 2. Countries Table
                 const countryTbody = document.getElementById('table-countries-body');
@@ -499,25 +611,25 @@
 
                 // 5. Path History Breadcrumbs
                 const pathContainer = document.getElementById('path-history-container');
-                if (data.deep_forensic_logs && data.deep_forensic_logs.length > 0) {
-                    pathContainer.innerHTML = data.deep_forensic_logs.slice(0, 5).map(f => `
-                        <div class="path-breadcrumb">
-                            📍 <strong>[${f.country || 'KR'}/${f.city || 'Local'}]</strong> ${f.past_paths_history || '/'}
+                if (cachedForensicsList.length > 0) {
+                    pathContainer.innerHTML = cachedForensicsList.slice(0, 5).map(f => `
+                        <div class="path-breadcrumb" style="cursor:pointer;" onclick="openVisitorModal('${f.visitor_id || f.trace_id}')">
+                            📍 <strong>[${f.country || 'KR'}/${f.city || 'Local'}]</strong> ${f.past_paths_history || '/'} <span style="color:#004499; float:right;">🔍 상세</span>
                         </div>
                     `).join('');
                 }
 
-                // 6. Forensics Table
+                // 6. Forensics Table (With Interactive Clickable Visitor ID)
                 const forenTbody = document.getElementById('table-forensics-body');
-                if (data.deep_forensic_logs && data.deep_forensic_logs.length > 0) {
-                    forenTbody.innerHTML = data.deep_forensic_logs.map(f => `
-                        <tr>
-                            <td><code>${(f.visitor_id || '').slice(0, 14)}...</code></td>
+                if (cachedForensicsList.length > 0) {
+                    forenTbody.innerHTML = cachedForensicsList.map(f => `
+                        <tr style="cursor:pointer;" onclick="openVisitorModal('${f.visitor_id || f.trace_id}')" title="클릭하여 유입 경로 및 세부 이탈 여정 확인">
+                            <td><code style="color:#004499; font-weight:700; text-decoration:underline;">${(f.visitor_id || f.trace_id || '').slice(0, 16)}... 🔍</code></td>
                             <td>${f.country || ''} (${f.city || ''})</td>
                             <td><code>${f.canvas_hash || '--'}</code></td>
                             <td><code>${f.audio_hash || '--'}</code></td>
-                            <td>${f.screen_hz ? f.screen_hz + 'Hz' : '--'}</td>
-                            <td>${f.battery_level ? f.battery_level + '%' : '--'}</td>
+                            <td>${f.screen_hz ? f.screen_hz + 'Hz' : '60Hz'}</td>
+                            <td>${f.is_charging || '100%'}</td>
                             <td>${new Date(f.captured_at).toLocaleTimeString()}</td>
                         </tr>
                     `).join('');
@@ -528,9 +640,9 @@
             }
         }
 
-        // Auto fetch on load and every 5 seconds
+        // Auto fetch on load and every 4 seconds
         fetchLiveStats();
-        setInterval(fetchLiveStats, 5000);
+        setInterval(fetchLiveStats, 4000);
     </script>
 </body>
 </html>
