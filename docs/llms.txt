@@ -15,20 +15,19 @@
 
 ### Tier 1: Flagship Top-Level Projects (TLP)
 - **AMEVA-Workstation**: 100% On-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX doc reader & editor, video cutter, 1-sec AI background removal, audio silence auto-cut. Web App: https://ameva-workstation-web-core.vercel.app/
+- **AMEVA-Sentinel**: Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. npm: `ameva-sentinel`.
+- **AMEVA-MCP-Hub**: Universal polyglot WASM & AI vector Model Context Protocol hub & SDK with live multi-repo subscriptions. npm: `ameva-mcp-hub`.
+- **Termux-BitNet**: High-performance 1.58-bit on-device LLM inference engine with ARM64 NEON DotProd acceleration. PyPI: `termux-bitnet`, npm: `termux-bitnet`.
 - **Termux-Playwright**: Non-root Chromium browser automation on Android Termux (ARM64 Bionic). PyPI: `termux-playwright`, npm: `termux-playwright`.
 - **Termux-Diffusion**: On-device ARM64 native Stable Diffusion runtime for Android without root. PyPI: `termux-diffusion`, npm: `termux-diffusion`.
+- **Termux-STT**: Unified on-device Speech-to-Text framework with Whisper.cpp/Vosk/Sherpa-ONNX & pure-Python 128d speaker diarization. PyPI: `termux-stt`, npm: `termux-stt`.
+- **Termux-Train**: SafeTensors zero-copy & LoRA fine-tuning lightweight on-device DAG Autograd framework. PyPI: `termux-train`.
+- **AMEVA-Forge**: Browser-native WebGPU Autograd deep learning tensor engine & interactive studio. PyPI: `ameva`.
 
-### Tier 2: Incubating Projects
-- **AMEVA-Forge**: Client-compute offloaded architecture Browser-Native WebGPU Autograd Engine with PyTorch compatibility and WGSL compute shaders.
-- **Termux-Torch**: Android Bionic native lightweight Tensor & Autograd engine.
-- **Termux-Whisper**: On-device Korean speech recognition and LoRA fine-tuning for edge hardware.
-
-### Tier 3: Labs & Research
+### Tier 2: Labs & Autonomous Systems
 - **Dead Internet Theatre**: Docker-based autonomous multi-agent social simulation.
 - **AMEVA Agent Orchestra**: Hierarchical multi-agent orchestration (Nobles & Workers).
-- **MCP-Wasm-Toolkit**: 100% browser Pyodide WASM isolated execution sandbox.
 - **AMEVA-Multi-CLI**: Recursive multi-split terminal workbench with 80 FPS smart PTY.
-- **BitNet**: 1-bit quantization (1.58-bit) LLM ARM NEON / I2_S kernel contributions.
 
 ## 3. Governance & Policy Files
 - Charter: https://uno-km.github.io/uno-km/docs/foundation/CHARTER.md

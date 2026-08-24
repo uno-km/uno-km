@@ -1,125 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="installation.pageTitle">AMEVA-Forge: Installation</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-    <link rel="alternate icon" href="./favicon.svg">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./dist/index.js"></script>
-    <script src="./i18n.js"></script>
-    <script src="./i18n-translations.js"></script>
-    <link rel="stylesheet" href="/shared/style.css">
-    <script src="/shared/common.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation & Setup Guide | AMEVA-Forge</title>
+  <meta name="description" content="Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1 data-i18n="common.headerTitle">AMEVA-Forge Documentation</h1>
-        <div class="header-badge-group">
-            <span class="apache-tag" data-i18n="common.releaseTag">Release 1.0.0</span>
-            <a href="./demo.html"><strong data-i18n="common.liveStudioBtn">[ Live WebGPU Studio ]</strong></a>
-            <a href="https://github.com/uno-km/ameva-forge" target="_blank" data-i18n="common.githubBtn">[ GitHub Repository ]</a>
-        </div>
-    </header>
-
-    <div class="container">
-        <nav class="sidebar">
-            <h3 data-i18n="common.nav.interactive">Interactive</h3>
-            <ul>
-                <li><a href="./demo.html"><strong data-i18n="common.nav.liveStudio">Live WebGPU Studio</strong></a></li>
-                <li><a href="experimental/playgrounds/mnist/index.html"><strong data-i18n="common.nav.mnist">1. MNIST Inference</strong></a></li>
-                <li><a href="experimental/playgrounds/benchmark/index.html"><strong data-i18n="common.nav.benchmark">2. Benchmark Test</strong></a></li>
-                <li><a href="experimental/playgrounds/training/index.html"><strong data-i18n="common.nav.training">3. Training Demo</strong></a></li>
-                <li><a href="experimental/playgrounds/vision/index.html"><strong data-i18n="common.nav.vision">4. Vision Center</strong></a></li>
-            </ul>
-            <h3 data-i18n="common.nav.documentation">Documentation</h3>
-            <ul>
-                <li><a href="index.html"><strong data-i18n="common.nav.home">Home</strong></a></li>
-                <li><a href="installation.html" class="active"><strong data-i18n="common.nav.installation">Installation</strong></a></li>
-                <li><a href="quickstart.html"><strong data-i18n="common.nav.quickstart">Quickstart</strong></a></li>
-                <li><a href="api-reference.html"><strong data-i18n="common.nav.apiReference">API Reference</strong></a></li>
-            </ul>
-            <h3 data-i18n="common.nav.concepts">Concepts</h3>
-            <ul>
-                <li><a href="what-is-forge.html"><strong data-i18n="common.nav.whatIsForge">What is Forge?</strong></a></li>
-                <li><a href="forge-vs-pytorch.html"><strong data-i18n="common.nav.forgeVsPytorch">Forge vs PyTorch</strong></a></li>
-            </ul>
-                    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
-            <ul>
-                <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-                <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
-                <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-                <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
-                <li><a href="/foundation/">AMEVA Foundation</a></li>
-                <li><a href="/index.html">Founder Digital CV</a></li>
-            </ul>
-        </nav>
-
-        <main class="content">
-            <h2 data-i18n="installation.h2">Installation & Setup</h2>
-            <p data-i18n="installation.desc">AMEVA-Forge supports multiple execution targets: pure Python (CPython for testing/prototyping), TypeScript/JavaScript for web apps, and in-browser Pyodide with WebGPU.</p>
-
-            <h3 data-i18n="installation.sec1Title">1. Python Package Installation (PyPI & Pip)</h3>
-            <p data-i18n="installation.sec1Desc">Install the official package from PyPI, or from pre-built wheel:</p>
-            <pre><code># Official PyPI Release (Recommended)
-pip install ameva-forge
-
-# Option B: Install directly from GitHub
-pip install git+https://github.com/uno-km/ameva-forge.git#subdirectory=packages/forge-py
-
-# Option C: Download pre-built wheel artifact
-# Download: https://uno-km.github.io/ameva-forge/pkg/ameva_forge-0.1.0-py3-none-any.whl
-pip install ameva_forge-0.1.0-py3-none-any.whl
-
-# Option D: Local editable development mode
-pip install -e packages/forge-py</code></pre>
-
-            <h3 data-i18n="installation.sec2Title">2. NPM Package for Node / Webpack</h3>
-            <pre><code>npm install @ameva/forge</code></pre>
-
-            <h3 data-i18n="installation.sec3Title">3. In-Browser Pyodide Integration</h3>
-            <p data-i18n="installation.sec3Desc">Include the TypeScript bundle and load Pyodide from CDN:</p>
-            <pre><code>&lt;!-- Load AMEVA-Forge WebGPU Backend --&gt;
-&lt;script src="./dist/index.js"&gt;&lt;/script&gt;
-
-&lt;!-- Load Pyodide WASM Runtime --&gt;
-&lt;script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  async function setup() {
-    // 1. Initialize WebGPU
-    await window.forge.initWebGPU();
-    
-    // 2. Initialize Pyodide & Install Forge Wheel
-    const pyodide = await loadPyodide();
-    await pyodide.loadPackage("micropip");
-    const micropip = pyodide.pyimport("micropip");
-    await micropip.install("https://uno-km.github.io/ameva-forge/pkg/forge-0.1.0-py3-none-any.whl");
-    
-    // 3. Ready to train models on GPU!
-    await pyodide.runPythonAsync(`
-      import forge as torch
-      print("Forge WebGPU ready:", torch.tensor([1.0, 2.0], device="gpu"))
-    `);
-  }
-  setup();
-&lt;/script&gt;</code></pre>
-
-            <h3 data-i18n="installation.hwReqTitle">Browser Hardware Requirements</h3>
-            <ul>
-                <li data-i18n-html="installation.hwReq1"><strong>WebGPU Compatible Browser:</strong> Chrome 113+, Edge 113+, Safari 18+ (macOS Sonoma / iOS 17+), or Firefox Nightly.</li>
-                <li data-i18n-html="installation.hwReq2"><strong>GPU Backend:</strong> Metal (macOS/iOS), DirectX 12 / Vulkan (Windows/Linux).</li>
-            </ul>
-        </main>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Forge Logo">
+      <h1 data-i18n="common.brand">AMEVA-Forge</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0 (WebGPU Stable)</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      
+      <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
+  </header>
 
-    <footer>
-        <span data-i18n="common.footerText">&copy; 2026 AMEVA-Forge Team. Released under the Apache-2.0 License.</span>
-    </footer>
+  <div class="container">
+  <nav class="sidebar">
+    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" class="active" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+    <ul>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install ameva</code></pre>
+         <h3>Verification Check</h3>
+         <pre><code>python -c "import ameva; print('Installation OK')"</code></pre>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

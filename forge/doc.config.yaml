@@ -1,0 +1,70 @@
+# docs/doc.config.yaml
+name: "AMEVA-Forge"
+package_name_pypi: "ameva"
+package_name_npm: ""
+version: "v1.0.0"
+release_name: "WebGPU Stable"
+license: "Apache-2.0"
+platform: "Browser WebGPU / Pyodide WASM"
+github_repo_url: "https://github.com/uno-km/AMEVA-Forge"
+
+tagline_en: "Browser-Native WebGPU Autograd Deep Learning Engine & Real-Time Interactive Studio"
+tagline_ko: "WebGPU 컴퓨트 셰이더 기반 브라우저 네이티브 Autograd 딥러닝 텐서 엔진 및 실시간 스튜디오"
+
+quick_install_cmd: "pip install ameva"
+
+why_challenge_en: "Running deep learning and autograd workloads in client browsers typically suffers from sluggish JavaScript CPU emulation and heavy GPU VRAM memory leaks."
+why_challenge_ko: "웹 브라우저 내부에서 딥러닝 및 역전파를 수행할 때 순수 JavaScript CPU 연산의 심각한 지연과 GPU 버퍼 고갈 문제가 발생합니다."
+
+description_en: "Executes PyTorch-compatible dynamic tensor computations via raw WebGPU WGSL compute shaders with deterministic weakref buffer pooling and zero memory leaks."
+description_ko: "PyTorch 구문 호환 텐서 연산을 순수 WebGPU WGSL 컴퓨트 셰이더로 병렬 컴파일하고, weakref 기반 링 버퍼 풀링으로 VRAM 누수 없는 무결점 클라이언트 연산을 제공합니다."
+
+features:
+  - title_en: "Pure WebGPU WGSL Compute Shaders"
+    title_ko: "순수 WebGPU WGSL 컴퓨트 셰이더"
+    desc_en: "Direct GPU hardware dispatching for forward and backward passes with zero JS overhead."
+    desc_ko: "순방향 및 역방향 연산을 브라우저 GPU 하드웨어에 직접 디스패치하여 초고속 병렬 처리를 수행합니다."
+  - title_en: "PyTorch Syntax Compatibility"
+    title_ko: "PyTorch 구문 완벽 호환"
+    desc_en: "Supports familiar Tensor API, autograd DAG, backward(), and standard optimizers."
+    desc_ko: "PyTorch와 완벽히 호환되는 Tensor API, DAG 역전파, backward(), 옵티마이저를 지원합니다."
+  - title_en: "Leak-Free GPU Buffer Pooling"
+    title_ko: "무누수 GPU 버퍼 풀링 및 수명 주기 관리"
+    desc_en: "Weakref lifecycle management preventing VRAM exhaustion during long training runs."
+    desc_ko: "Weakref 수명 주기 관리와 버퍼 풀링으로 장시간 모델 학습 시 GPU 메모리 고갈을 원천 차단합니다."
+
+matrix_table:
+  - category: "Compute Backend"
+    operations: "WebGPU WGSL Shaders, FP16/FP32 Tensors, Dynamic DAG"
+    status: "Production"
+  - category: "Deep Learning Layers"
+    operations: "Linear, Conv2D, LayerNorm, Multi-Head Attention, RoPE"
+    status: "Production"
+  - category: "Runtime Environments"
+    operations: "Modern Browsers (Chrome/Edge/Safari), Pyodide WASM, Web Workers"
+    status: "Production"
+
+code_example_py: |
+  import ameva as am
+
+  # 1. Initialize WebGPU tensor computation
+  device = am.device("webgpu" if am.cuda.is_available() else "cpu")
+  x = am.randn(64, 128, device=device, requires_grad=True)
+  w = am.randn(128, 10, device=device, requires_grad=True)
+
+  # 2. Forward pass and backpropagation
+  y = am.matmul(x, w).relu().sum()
+  y.backward()
+  print("Gradients computed on WebGPU:", w.grad.shape)
+
+code_example_js: |
+  import { Tensor, Device } from "https://uno-km.github.io/uno-km/lib/forge/dist/forge.esm.js";
+
+  const dev = new Device("webgpu");
+  await dev.init();
+
+  const x = Tensor.randn([64, 128], { device: dev, requiresGrad: true });
+  const w = Tensor.randn([128, 10], { device: dev, requiresGrad: true });
+  const y = x.matmul(w).relu().sum();
+  y.backward();
+  console.log("WebGPU Gradient Output:", w.grad);

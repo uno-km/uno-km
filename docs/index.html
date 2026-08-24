@@ -130,7 +130,7 @@
           <option value="la">🏛️ Latina</option>
         </select>
       </div>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">Foundation Repo</a>
       <a href="/" class="header-btn founder" data-i18n="common.founderBtn">Founder Profile</a>
     </div>
@@ -165,6 +165,9 @@
         </summary>
         <div class="accordion-content">
           <ul>
+            <li><a href="/lib/sentinel/" target="_self">AMEVA-Sentinel <span class="external-badge">SDK</span></a></li>
+            <li><a href="/lib/mcp/" target="_self">AMEVA-MCP-Hub <span class="external-badge">Hub</span></a></li>
+            <li><a href="/lib/bitnet/" target="_self">Termux-BitNet <span class="external-badge">LLM</span></a></li>
             <li><a href="/lib/diffusion/" target="_self">Termux-Diffusion <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/playwright/" target="_self">Termux-Playwright <span class="external-badge">Docs</span></a></li>
             <li><a href="/lib/stt/" target="_self">Termux-STT <span class="external-badge">Docs</span></a></li>
@@ -246,6 +249,40 @@
             </div>
           </div>
 
+          <!-- AMEVA-Sentinel -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.sentinelTitle">AMEVA-Sentinel</h4>
+            <p data-i18n="proj.sentinelDesc">Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. Zero keystroke logging, verified across major browser engines.</p>
+            <div class="card-links">
+              <a href="/lib/sentinel/" class="btn-sm primary">Docs &amp; Console</a>
+              <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- AMEVA-MCP-Hub -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.mcpTitle">AMEVA-MCP-Hub</h4>
+            <p data-i18n="proj.mcpDesc">Universal Polyglot WASM & AI Vector MCP Hub. Zero-toolchain in-memory execution across C++, Rust, Java, Python, Go with live multi-repo subscription.</p>
+            <div class="card-links">
+              <a href="/lib/mcp/" class="btn-sm primary">Docs &amp; Studio</a>
+              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Termux BitNet -->
+          <div class="feature-card">
+            <h4 data-i18n="proj.bitnetTitle">Termux-BitNet</h4>
+            <p data-i18n="proj.bitnetDesc">High-performance 1.58-bit (i2_s) BitNet on-device LLM inference engine with ARM64 NEON DotProd acceleration, pure C++ core, and dual Python/Node.js thin gateways.</p>
+            <div class="card-links">
+              <a href="/lib/bitnet/" class="btn-sm primary">Docs &amp; Bench</a>
+              <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-sm">PyPI (pip)</a>
+              <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-sm" style="background:#cb3837;color:#fff;">npm</a>
+              <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-sm">GitHub</a>
+            </div>
+          </div>
+
           <!-- Termux Playwright -->
           <div class="feature-card">
             <h4 data-i18n="proj.playwrightTitle">Termux-Playwright</h4>
@@ -324,6 +361,27 @@
               <td>WebGPU, Next.js, WASM</td>
               <td>100% On-Device Local AI & Productivity Suite</td>
               <td><span class="release-tag">Official Live App</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA-Sentinel</strong></td>
+              <td><code>npm: ameva-sentinel</code></td>
+              <td>Browser / Web Standard</td>
+              <td>0-Data Observability & Risk Scoring Security SDK</td>
+              <td><span class="release-tag">npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA-MCP-Hub</strong></td>
+              <td><code>npm: ameva-mcp-hub</code></td>
+              <td>Node.js 18+, WASI WASM</td>
+              <td>Universal Polyglot WASM & AI Vector MCP Hub</td>
+              <td><span class="release-tag">npm Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-BitNet</strong></td>
+              <td><code>pip: termux-bitnet</code><br/><code>npm: termux-bitnet</code></td>
+              <td>Android ARM64 Termux</td>
+              <td>1.58-bit BitNet On-Device LLM Inference Engine</td>
+              <td><span class="release-tag">PyPI + npm Released</span></td>
             </tr>
             <tr>
               <td><strong>Termux-Playwright</strong></td>

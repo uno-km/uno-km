@@ -1,28 +1,24 @@
 # docs/doc.config.yaml
 name: "AMEVA-MCP-Hub"
-package_name_pypi: "ameva-mcp-hub"
+package_name_pypi: ""
 package_name_npm: "ameva-mcp-hub"
 version: "v3.0.0"
 release_name: "Universal Polyglot & AI Vector Hub"
 license: "MIT"
 platform: "WebAssembly WASI / Node.js 18+"
-github_repo_url: "https://github.com/uno-km/MCP-Wasm-Toolkit"
+github_repo_url: "https://github.com/uno-km/ameva-mcp-hub"
 
-# 1줄 핵심 사명 (다국어)
 tagline_en: "Zero-Install Universal Polyglot WASM & AI Vector Model Context Protocol Hub"
 tagline_ko: "무설치 다국어 WebAssembly 및 AI 벡터 지원 유니버설 MCP 허브"
 
-# 빠른 설치 명령어
 quick_install_cmd: "npx ameva-mcp-hub\n# or as SDK:\nnpm install ameva-mcp-hub"
 
-# 기술 과제 및 혁신 설명
 why_challenge_en: "Traditional MCP server setups require heavy local compilers (JDK, Rust, Clang, Python venvs) and multiple background daemons for each repository, causing massive memory overhead and frequent dependency conflicts across client platforms."
 why_challenge_ko: "기존의 MCP 서버 구성은 리포지토리마다 호스트 PC에 JDK, Rust, Clang, Python 가상환경 등 수 기가바이트의 컴파일러를 요구하며, 다중 데몬 프로세스로 인한 높은 메모리 점유와 플랫폼 간 의존성 충돌을 유발합니다."
 
 description_en: "Executes multi-language open-source tools (C++, Rust, Java, Python, Go) in-memory via WASI WebAssembly inside a single Node.js process with dynamic multi-repo subscriptions, real-time AI tool propagation, and heuristic route dispatching."
 description_ko: "단일 Node.js 프로세스 내부에서 WASI WebAssembly 바이트코드를 인메모리로 실행하여 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 <1ms 속도로 구동하며, 동적 깃허브 다중 리포지토리 구독과 실시간 AI 도구 전파 및 지능형 휴리스틱 라우팅을 지원합니다."
 
-# 핵심 역량 (이모지 절대 금지)
 features:
   - title_en: "Zero-Toolchain Polyglot WASM Engine"
     title_ko: "무설치 다국어 WebAssembly 엔진"
@@ -49,7 +45,6 @@ features:
     desc_en: "Usable as a standalone MCP server via npx or as an isolated execution engine inside custom JS/TS backends."
     desc_ko: "npx 단독 실행뿐만 아니라 백엔드 및 에이전트 프레임워크에 직접 임베딩할 수 있는 TypeScript SDK를 제공합니다."
 
-# 연산 매트릭스 표
 matrix_table:
   - category: "Polyglot WASM Runtimes"
     operations: "C++ (Clang), Rust (wasm32-wasip1), Java (TeaVM/GraalVM), Go (TinyGo)"
@@ -64,7 +59,6 @@ matrix_table:
     operations: "Parallel Manifest Fetch, SSE Real-Time Sync, Zero-Downtime Hot-Reload"
     status: "Production"
 
-# 정석 실행 코드
 code_example_py: |
   # Connect Claude Desktop / Cursor via npx:
   # { "mcpServers": { "hub": { "command": "npx", "args": ["-y", "ameva-mcp-hub"] } } }
@@ -72,12 +66,12 @@ code_example_py: |
 code_example_js: |
   import { WasiRunner, NodeExecutor, heuristicRouter } from "ameva-mcp-hub";
 
-  // Execute C++/Rust/Java WASM in memory
+  // 1. Execute C++/Rust/Java WASM in memory
   const runner = new WasiRunner({ args: ["1234", "5678"] });
   const result = await runner.run(wasmBuffer);
   console.log("Result:", result.stdout);
 
-  // Compute AI Cosine Similarity
+  // 2. Compute AI Cosine Similarity
   const executor = new NodeExecutor();
   const sim = await executor.executeTool("vector_cosine_similarity", {
     vecA: [0.8, 0.6, 0.0],

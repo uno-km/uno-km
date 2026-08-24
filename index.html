@@ -19,9 +19,11 @@
           'forge': './lib/forge/',
           'playwright': './lib/playwright/',
           'diffusion': './lib/diffusion/',
+          'bitnet': './lib/bitnet/',
+          'sentinel': './lib/sentinel/',
           'mcp': './lib/mcp/',
           'hub': './lib/mcp/',
-          'foundation': './foundation/',
+          'foundation': './docs/',
           'workstation': './app/workstation/'
         };
         const dest = targetMap[lib.toLowerCase()];
@@ -602,23 +604,40 @@
     }
 
     .card-actions {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 6px;
       margin-top: auto;
+      width: 100%;
+    }
+
+    .card-actions.cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-actions.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card-actions.cols-4 {
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .btn-action {
-      flex: 1;
       text-align: center;
       text-decoration: none;
-      font-size: 0.8em;
+      font-size: 0.78em;
       font-weight: 600;
-      padding: 5px 8px;
+      padding: 6px 4px;
       border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
       transition: all 0.15s ease;
     }
 
@@ -720,7 +739,7 @@
       </select>
 
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ffffff; background: #ea4aaa; font-weight: 700; box-shadow: 0 1px 4px rgba(234,74,170,0.3);">
-        💖 Sponsor
+        Sponsor
       </a>
       <a href="https://opencollective.com/ameva-fund" target="_blank" class="header-btn" style="border-color: #004499; color: #004499; background: #e8f0fe; font-weight: 600;">
         Open Collective
@@ -729,10 +748,10 @@
         AMEVA Foundation
       </a>
       <a href="https://github.com/uno-km" target="_blank" class="header-btn">
-        🐙 GitHub
+        GitHub
       </a>
       <a href="https://uno-kim.tistory.com/" target="_blank" class="header-btn">
-        📖 Blog
+        Blog
       </a>
     </div>
   </header>
@@ -989,16 +1008,16 @@
               <h3><span>🌐 AMEVA-MCP-Hub</span> <span class="card-badge" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm v3.0.0</span></h3>
               <p>단 1개의 Node 프로세스로 C++, Rust, Java, Python, Go 다국어 WASM 도구를 무설치 인메모리 실행하고, 깃허브 다중 리포지토리를 실시간 구독/전파하는 유니버설 AI 벡터 MCP 허브 &amp; SDK.</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/mcp/" target="_blank" class="btn-action primary" style="background:#004499; border-color:#004499;">📖 공식 문서 보기</a>
-              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm (npx ameva-mcp-hub)</a>
-              <a href="https://github.com/uno-km/MCP-Wasm-Toolkit" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/mcp/" target="_blank" class="btn-action primary" style="background:#004499; border-color:#004499;">공식 문서 보기</a>
+              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-action secondary">npm</a>
+              <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
         </div>
       </section>
 
-                  <!-- Panel 5: Core Open-Source Libraries -->
+      <!-- Panel 5: Core Open-Source Libraries -->
       <section class="panel-box">
         <div class="panel-header">
           <h2><span data-i18n="p5.title">📦 AMEVA Open-Source Flagship Software &amp; Core Libraries</span></h2>
@@ -1011,9 +1030,9 @@
               <h3><span>🏢 AMEVA Workstation (Web / Desktop)</span> <span class="card-badge" style="background:#004499; color:#fff; border:1px solid #003380;">🌟 Flagship App</span></h3>
               <p data-i18n="p5.workstationDesc">WebGPU 기반 클라이언트 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 &amp; 1초 AI 누끼 스튜디오.</p>
             </div>
-            <div class="card-actions">
-              <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-action primary" style="background:#004499;">🚀 라이브 웹 앱 실행</a>
-              <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
+            <div class="card-actions cols-2">
+              <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-action primary" style="background:#004499;">라이브 웹 앱 실행</a>
+              <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-action secondary">GitHub 저장소</a>
             </div>
           </div>
 
@@ -1023,50 +1042,49 @@
               <h3><span>🛡️ AMEVA-Sentinel</span> <span class="card-badge badge-green">Security SDK</span></h3>
               <p>웹 서비스 트래픽을 관측하고, 측정하고, 설명하고, 점수화하는 개인정보 최우선 자가 호스팅 보안 관측 계층 SDK.</p>
             </div>
-            <div class="card-actions">
-              <a href="/sdk/sentinel/" class="btn-action primary" style="background:#10b981; border-color:#10b981;">📖 공식 문서 보기</a>
-              <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="btn-action secondary">🐙 GitHub</a>
-              <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-action secondary">📦 npm</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/sentinel/" class="btn-action primary" style="background:#10b981; border-color:#10b981;">공식 문서 보기</a>
+              <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="btn-action secondary">npm</a>
+              <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
-          <!-- 3. AMEVA-Forge -->
-          <div class="item-card" style="border-left: 4px solid #0891b2;">
+          <!-- 3. AMEVA-MCP-Hub -->
+          <div class="item-card" style="border-left: 4px solid #004499;">
             <div class="item-card-top">
-              <h3><span>⚡ AMEVA-Forge</span> <span class="card-badge badge-cyan">PyPI: ameva</span></h3>
-              <p data-i18n="p5.forgeDesc">클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
+              <h3><span>🌐 AMEVA-MCP-Hub</span> <span class="card-badge" style="background:#cb3837; color:#fff;">npm</span></h3>
+              <p>다국어 WASM 바이트코드 인메모리 실행 및 동적 깃허브 도구 리포지토리 실시간 구독 MCP 허브 &amp; SDK.</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/forge/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#0891b2; border-color:#0891b2;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="./lib/forge/" target="_blank" class="btn-action secondary" data-i18n="btn.liveDemo">⚡ 실시간 데모</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/mcp/" target="_blank" class="btn-action primary" style="background:#004499; border-color:#004499;">공식 문서 보기</a>
+              <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-action secondary">npm</a>
+              <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
-          <!-- 4. Termux-STT -->
-          <div class="item-card" style="border-left: 4px solid #7c3aed;">
+          <!-- 4. Termux-BitNet -->
+          <div class="item-card" style="border-left: 4px solid #059669;">
             <div class="item-card-top">
-              <h3><span>🎙️ Termux-STT</span> <span class="card-badge badge-purple">pip / npm</span></h3>
-              <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
+              <h3><span>🧠 Termux-BitNet</span> <span class="card-badge badge-green">pip / npm</span></h3>
+              <p data-i18n="p5.bitnetDesc">1.58-bit (i2_s) On-Device LLM 추론 엔진. ARM64 NEON DotProd SIMD 어셈블리 가속 및 스마트폰 네이티브 런타임.</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#7c3aed; border-color:#7c3aed;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
-              <a href="https://uno-km.vercel.app/lib/stt/showcase.html" target="_blank" class="btn-action secondary">🎧 쇼케이스</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/bitnet/" target="_blank" class="btn-action primary" style="background:#059669; border-color:#059669;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-action secondary">PyPI · npm</a>
+              <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
-          <!-- 5. Termux-Train -->
-          <div class="item-card" style="border-left: 4px solid #d97706;">
+          <!-- 5. Termux-Diffusion -->
+          <div class="item-card" style="border-left: 4px solid #db2777;">
             <div class="item-card-top">
-              <h3><span>🚂 Termux-Train</span> <span class="card-badge badge-amber">PyPI: termux-train</span></h3>
-              <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (정밀 릴리즈 검증 통과).</p>
+              <h3><span>🎨 Termux-Diffusion</span> <span class="card-badge badge-pink">pip / npm</span></h3>
+              <p data-i18n="p5.diffusionDesc">안드로이드 Termux &amp; Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#d97706; border-color:#d97706;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">🐙 GitHub</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/diffusion/" target="_blank" class="btn-action primary" style="background:#db2777; border-color:#db2777;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-action secondary">PyPI · npm</a>
+              <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
@@ -1076,37 +1094,50 @@
               <h3><span>📱 Termux-Playwright</span> <span class="card-badge badge-blue">pip / npm</span></h3>
               <p data-i18n="p5.termuxDesc">안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/playwright/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#2563eb; border-color:#2563eb;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/playwright/" target="_blank" class="btn-action primary" style="background:#2563eb; border-color:#2563eb;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-action secondary">PyPI · npm</a>
+              <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
-          <!-- 7. Termux-Diffusion -->
-          <div class="item-card" style="border-left: 4px solid #db2777;">
+          <!-- 7. Termux-STT -->
+          <div class="item-card" style="border-left: 4px solid #7c3aed;">
             <div class="item-card-top">
-              <h3><span>🎨 Termux-Diffusion</span> <span class="card-badge badge-pink">pip / npm</span></h3>
-              <p data-i18n="p5.diffusionDesc">안드로이드 Termux &amp; Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
+              <h3><span>🎙️ Termux-STT</span> <span class="card-badge badge-purple">pip / npm</span></h3>
+              <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/diffusion/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#db2777; border-color:#db2777;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/stt/" target="_blank" class="btn-action primary" style="background:#7c3aed; border-color:#7c3aed;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">PyPI · npm</a>
+              <a href="https://github.com/uno-km/termux-stt" target="_blank" class="btn-action secondary">GitHub</a>
             </div>
           </div>
 
-          <!-- 8. Termux-BitNet -->
-          <div class="item-card" style="border-left: 4px solid #059669;">
+          <!-- 8. Termux-Train -->
+          <div class="item-card" style="border-left: 4px solid #d97706;">
             <div class="item-card-top">
-              <h3><span>🧠 Termux-BitNet</span> <span class="card-badge badge-green">pip / npm</span></h3>
-              <p data-i18n="p5.bitnetDesc">1.58-bit (i2_s) On-Device LLM 추론 엔진. ARM64 NEON DotProd SIMD 어셈블리 가속 및 스마트폰 네이티브 런타임.</p>
+              <h3><span>🚂 Termux-Train</span> <span class="card-badge badge-amber">PyPI: termux-train</span></h3>
+              <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (정밀 릴리즈 검증 통과).</p>
             </div>
-            <div class="card-actions">
-              <a href="./lib/bitnet/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#059669; border-color:#059669;">📖 공식 문서 보기</a>
-              <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
-              <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-action secondary">🐙 GitHub</a>
+            <div class="card-actions cols-3">
+              <a href="./lib/train/" target="_blank" class="btn-action primary" style="background:#d97706; border-color:#d97706;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">PyPI</a>
+              <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">GitHub</a>
+            </div>
+          </div>
+
+          <!-- 9. AMEVA-Forge -->
+          <div class="item-card" style="border-left: 4px solid #0891b2;">
+            <div class="item-card-top">
+              <h3><span>⚡ AMEVA-Forge</span> <span class="card-badge badge-cyan">PyPI: ameva</span></h3>
+              <p data-i18n="p5.forgeDesc">클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
+            </div>
+            <div class="card-actions cols-4">
+              <a href="./lib/forge/" target="_blank" class="btn-action primary" style="background:#0891b2; border-color:#0891b2;">공식 문서 보기</a>
+              <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-action secondary">PyPI</a>
+              <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="btn-action secondary">GitHub</a>
+              <a href="./lib/forge/" target="_blank" class="btn-action secondary">실시간 데모</a>
             </div>
           </div>
         </div>
@@ -1122,8 +1153,8 @@
           3D WebGPU 인터랙티브 지식 그래프 대시보드와 크로스플랫폼 1-Click 원클릭 설치 스크립트입니다:
         </p>
         <div style="display:flex; gap:10px; margin-bottom:12px;">
-          <a href="dashboard/index.html" target="_blank" class="btn-action primary" style="padding: 8px 14px;" data-i18n="btn.launchNeural">🔮 3D Neural Fabric 대시보드 입장</a>
-          <a href="docs/pages/templates/library/README.md" class="btn-action secondary" style="padding: 8px 14px;" data-i18n="btn.templateFoundry">📄 라이브러리 문서 주조소 (Template)</a>
+          <a href="dashboard/index.html" target="_blank" class="btn-action primary" style="padding: 8px 14px;" data-i18n="btn.launchNeural">3D Neural Fabric 대시보드 입장</a>
+          <a href="docs/pages/templates/library/README.md" class="btn-action secondary" style="padding: 8px 14px;" data-i18n="btn.templateFoundry">라이브러리 문서 주조소 (Template)</a>
         </div>
         <div class="code-box">Windows PowerShell: irm https://raw.githubusercontent.com/uno-km/uno-km/main/setup-universe/setup.ps1 | iex</div>
       </section>
@@ -1348,13 +1379,13 @@
             "p5.bitnetDesc": "1-bit 양자화 모델(1.58-bit LLM)을 엣지 CPU에서 극한의 전력 효율로 구동하는 초경량 추론 프레임워크.",
             "p6.title": "🌌 3D Neural Fabric & Setup Universe",
             "p6.desc": "3D WebGPU 인터랙티브 지식 그래프 대시보드와 크로스플랫폼 1-Click 원클릭 설치 스크립트입니다:",
-            "btn.launchApp": "🚀 AMEVA OS 실행",
-            "btn.promoStudio": "✨ 프로모션 체험관",
-            "btn.viewDoc": "📖 공식 문서 보기",
-            "btn.liveDemo": "⚡ 실시간 데모",
-            "btn.viewRepo": "🐙 GitHub 저장소",
-            "btn.launchNeural": "🔮 3D Neural Fabric 대시보드 입장",
-            "btn.templateFoundry": "📄 라이브러리 문서 주조소 (Template)"
+            "btn.launchApp": "AMEVA OS 실행",
+            "btn.promoStudio": "프로모션 체험관",
+            "btn.viewDoc": "공식 문서 보기",
+            "btn.liveDemo": "실시간 데모",
+            "btn.viewRepo": "GitHub 저장소",
+            "btn.launchNeural": "3D Neural Fabric 대시보드 입장",
+            "btn.templateFoundry": "라이브러리 문서 주조소 (Template)"
       },
       "en": {
             "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
@@ -1430,13 +1461,13 @@
             "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
             "p6.title": "🌌 3D Neural Fabric & Setup Universe",
             "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
-            "btn.launchApp": "🚀 Launch AMEVA OS",
-            "btn.promoStudio": "✨ Promo Studio",
-            "btn.viewDoc": "📖 View Documentation",
-            "btn.liveDemo": "⚡ Live Demo",
-            "btn.viewRepo": "🐙 GitHub Repo",
-            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
-            "btn.templateFoundry": "📄 Library Docs Template"
+            "btn.launchApp": "Launch AMEVA OS",
+            "btn.promoStudio": "Promo Studio",
+            "btn.viewDoc": "View Documentation",
+            "btn.liveDemo": "Live Demo",
+            "btn.viewRepo": "GitHub Repo",
+            "btn.launchNeural": "Enter 3D Neural Fabric",
+            "btn.templateFoundry": "Library Docs Template"
       },
       "ar": {
             "side.roleBadge": "مهندس برمجيات متكامل أول ومهندس معمارية النظم",
@@ -1512,13 +1543,13 @@
             "p5.bitnetDesc": "محرك استدلال فائق الخفة لنماذج التكميم 1-bit (1.58-bit LLM) يعمل بكفاءة طاقة استثنائية على معالجات ARM الطرفية.",
             "p6.title": "🌌 النسيج العصبي ثلاثي الأبعاد والتثبيت السريع",
             "p6.desc": "لوحة معلومات بيانية معرفية تفاعلية ثلاثية الأبعاد بتقنية WebGPU وسكربت تثبيت بنقرة واحدة عبر الأنظمة الأساسية:",
-            "btn.launchApp": "🚀 تشغيل AMEVA OS",
-            "btn.promoStudio": "✨ استوديو العرض",
-            "btn.viewDoc": "📖 عرض التوثيق",
-            "btn.liveDemo": "⚡ تجربة حية",
-            "btn.viewRepo": "🐙 مستودع GitHub",
-            "btn.launchNeural": "🔮 دخول النسيج العصبي 3D",
-            "btn.templateFoundry": "📄 مصنع قوالب التوثيق"
+            "btn.launchApp": "تشغيل AMEVA OS",
+            "btn.promoStudio": "استوديو العرض",
+            "btn.viewDoc": "عرض التوثيق",
+            "btn.liveDemo": "تجربة حية",
+            "btn.viewRepo": "مستودع GitHub",
+            "btn.launchNeural": "دخول النسيج العصبي 3D",
+            "btn.templateFoundry": "مصنع قوالب التوثيق"
       },
       "fr": {
             "side.roleBadge": "Ingénieur Full-Stack Senior & Architecte Systèmes",
@@ -1594,13 +1625,13 @@
             "p5.bitnetDesc": "Moteur d'inférence LLM quantifié à 1-bit (1.58-bit) ultra-basse consommation optimisé pour les processeurs ARM Edge.",
             "p6.title": "🌌 Tissu Neural 3D & Installation Rapide",
             "p6.desc": "Tableau de bord interactif de graphe de connaissances 3D WebGPU et script d'installation universel en 1 clic :",
-            "btn.launchApp": "🚀 Lancer AMEVA OS",
-            "btn.promoStudio": "✨ Studio Démo",
-            "btn.viewDoc": "📖 Consulter la Documentation",
-            "btn.liveDemo": "⚡ Démo en Direct",
-            "btn.viewRepo": "🐙 Dépôt GitHub",
-            "btn.launchNeural": "🔮 Entrer dans le Tissu Neural 3D",
-            "btn.templateFoundry": "📄 Fonderie de Modèles de Docs"
+            "btn.launchApp": "Lancer AMEVA OS",
+            "btn.promoStudio": "Studio Démo",
+            "btn.viewDoc": "Consulter la Documentation",
+            "btn.liveDemo": "Démo en Direct",
+            "btn.viewRepo": "Dépôt GitHub",
+            "btn.launchNeural": "Entrer dans le Tissu Neural 3D",
+            "btn.templateFoundry": "Fonderie de Modèles de Docs"
       },
       "de": {
             "side.roleBadge": "Senior Full-Stack Engineer & Systemarchitekt",
@@ -1676,13 +1707,13 @@
             "p5.bitnetDesc": "Ultra-energiesparende 1-Bit-Quantisierungs-Inferenz-Engine (1.58-bit LLM) optimiert für ARM Edge CPUs.",
             "p6.title": "🌌 3D Neural Fabric & 1-Klick Setup",
             "p6.desc": "Interaktives 3D WebGPU Wissensgraphen-Dashboard und plattformübergreifendes 1-Klick-Setup-Skript:",
-            "btn.launchApp": "🚀 AMEVA OS starten",
-            "btn.promoStudio": "✨ Demo-Studio",
-            "btn.viewDoc": "📖 Dokumentation ansehen",
-            "btn.liveDemo": "⚡ Live-Demo",
-            "btn.viewRepo": "🐙 GitHub Repository",
-            "btn.launchNeural": "🔮 3D Neural Fabric betreten",
-            "btn.templateFoundry": "📄 Dokumentvorlagen-Schmiede"
+            "btn.launchApp": "AMEVA OS starten",
+            "btn.promoStudio": "Demo-Studio",
+            "btn.viewDoc": "Dokumentation ansehen",
+            "btn.liveDemo": "Live-Demo",
+            "btn.viewRepo": "GitHub Repository",
+            "btn.launchNeural": "3D Neural Fabric betreten",
+            "btn.templateFoundry": "Dokumentvorlagen-Schmiede"
       },
       "es": {
             "side.roleBadge": "Ingeniero Full-Stack Senior y Arquitecto de Sistemas",
@@ -1758,13 +1789,13 @@
             "p5.bitnetDesc": "Motor de inferencia LLM cuantificado a 1-bit (1.58-bit) de ultra bajo consumo optimizado para CPU ARM Edge.",
             "p6.title": "🌌 Tejido Neuronal 3D e Instalación en 1 Clic",
             "p6.desc": "Panel de control interactivo de grafo de conocimiento 3D WebGPU y script de instalación universal en 1 clic:",
-            "btn.launchApp": "🚀 Iniciar AMEVA OS",
-            "btn.promoStudio": "✨ Estudio Demo",
-            "btn.viewDoc": "📖 Ver Documentación",
-            "btn.liveDemo": "⚡ Demo en Vivo",
-            "btn.viewRepo": "🐙 Repositorio GitHub",
-            "btn.launchNeural": "🔮 Entrar al Tejido Neuronal 3D",
-            "btn.templateFoundry": "📄 Fundición de Plantillas de Docs"
+            "btn.launchApp": "Iniciar AMEVA OS",
+            "btn.promoStudio": "Estudio Demo",
+            "btn.viewDoc": "Ver Documentación",
+            "btn.liveDemo": "Demo en Vivo",
+            "btn.viewRepo": "Repositorio GitHub",
+            "btn.launchNeural": "Entrar al Tejido Neuronal 3D",
+            "btn.templateFoundry": "Fundición de Plantillas de Docs"
       },
       "ja": {
             "side.roleBadge": "シニアフルスタックエンジニア 兼 システムアーキテクト",
@@ -1840,13 +1871,13 @@
             "p5.bitnetDesc": "1-bit量子化モデル(1.58-bit LLM)をエッジCPUで低消費電力駆動する超軽量推論基盤。",
             "p6.title": "🌌 3D Neural Fabric & ワンクリック導入",
             "p6.desc": "3D WebGPUインタラクティブ知識グラフダッシュボードとクロスプラットフォームワンクリック導入スクリプト:",
-            "btn.launchApp": "🚀 AMEVA OS起動",
-            "btn.promoStudio": "✨ 体験スタジオ",
-            "btn.viewDoc": "📖 公式ドキュメント",
-            "btn.liveDemo": "⚡ デモ体験",
-            "btn.viewRepo": "🐙 GitHubリポジトリ",
-            "btn.launchNeural": "🔮 3Dグラフを開く",
-            "btn.templateFoundry": "📄 テンプレート工房"
+            "btn.launchApp": "AMEVA OS起動",
+            "btn.promoStudio": "体験スタジオ",
+            "btn.viewDoc": "公式ドキュメント",
+            "btn.liveDemo": "デモ体験",
+            "btn.viewRepo": "GitHubリポジトリ",
+            "btn.launchNeural": "3Dグラフを開く",
+            "btn.templateFoundry": "テンプレート工房"
       },
       "zh": {
             "side.roleBadge": "高级全栈工程师 兼 系统架构师",
@@ -1922,13 +1953,13 @@
             "p5.bitnetDesc": "将1-bit量化模型(1.58-bit)在端侧CPU上极低功耗运行的超轻量推理框架。",
             "p6.title": "🌌 3D 神经织网与一键安装",
             "p6.desc": "3D WebGPU 交互式知识图谱大屏与跨平台一键部署脚本:",
-            "btn.launchApp": "🚀 运行 AMEVA OS",
-            "btn.promoStudio": "✨ 体验展厅",
-            "btn.viewDoc": "📖 查看文档",
-            "btn.liveDemo": "⚡ 在线演示",
-            "btn.viewRepo": "🐙 GitHub 仓库",
-            "btn.launchNeural": "🔮 进入 3D 仪表板",
-            "btn.templateFoundry": "📄 文档模版铸造厂"
+            "btn.launchApp": "运行 AMEVA OS",
+            "btn.promoStudio": "体验展厅",
+            "btn.viewDoc": "查看文档",
+            "btn.liveDemo": "在线演示",
+            "btn.viewRepo": "GitHub 仓库",
+            "btn.launchNeural": "进入 3D 仪表板",
+            "btn.templateFoundry": "文档模版铸造厂"
       },
       "ru": {
             "side.roleBadge": "Ведущий Full-Stack инженер и системный архитектор",
@@ -2004,13 +2035,13 @@
             "p5.bitnetDesc": "Сверхэкономичный движок инференса 1-битных квантованных моделей (1.58-bit LLM), оптимизированный под процессоры ARM Edge.",
             "p6.title": "🌌 3D нейронная сеть и установка в 1 клик",
             "p6.desc": "Интерактивный 3D WebGPU дашборд графа знаний и кроссплатформенный скрипт установки в 1 клик:",
-            "btn.launchApp": "🚀 Запустить AMEVA OS",
-            "btn.promoStudio": "✨ Демо-студия",
-            "btn.viewDoc": "📖 Открыть документацию",
-            "btn.liveDemo": "⚡ Онлайн-демо",
-            "btn.viewRepo": "🐙 Репозиторий GitHub",
-            "btn.launchNeural": "🔮 Войти в 3D нейросеть",
-            "btn.templateFoundry": "📄 Фабрика шаблонов документации"
+            "btn.launchApp": "Запустить AMEVA OS",
+            "btn.promoStudio": "Демо-студия",
+            "btn.viewDoc": "Открыть документацию",
+            "btn.liveDemo": "Онлайн-демо",
+            "btn.viewRepo": "Репозиторий GitHub",
+            "btn.launchNeural": "Войти в 3D нейросеть",
+            "btn.templateFoundry": "Фабрика шаблонов документации"
       },
       "hi": {
             "side.roleBadge": "सीनियर फुल-स्टैक इंजीनियर और सिस्टम्स आर्किटेक्ट",
@@ -2086,13 +2117,13 @@
             "p5.bitnetDesc": "ARM एज सीपीयू के लिए अनुकूलित अल्ट्रा-कम पावर 1-बिट क्वांटाइजेशन (1.58-bit LLM) इंफ्रेंस इंजन।",
             "p6.title": "🌌 3D न्यूरल फैब्रिक और 1-क्लिक सेटअप",
             "p6.desc": "3D WebGPU इंटरैक्टिव नॉलेज ग्राफ डैशबोर्ड और क्रॉस-प्लेटफॉर्म 1-क्लिक इंस्टॉलर:",
-            "btn.launchApp": "🚀 AMEVA OS लॉन्च करें",
-            "btn.promoStudio": "✨ प्रोमो स्टूडियो",
-            "btn.viewDoc": "📖 दस्तावेज़ देखें",
-            "btn.liveDemo": "⚡ लाइव डेमो",
-            "btn.viewRepo": "🐙 गिटहब रिपॉजिटरी",
-            "btn.launchNeural": "🔮 3D न्यूरल फैब्रिक में प्रवेश करें",
-            "btn.templateFoundry": "📄 लाइब्रेरी डॉक्स टेम्पलेट"
+            "btn.launchApp": "AMEVA OS लॉन्च करें",
+            "btn.promoStudio": "प्रोमो स्टूडियो",
+            "btn.viewDoc": "दस्तावेज़ देखें",
+            "btn.liveDemo": "लाइव डेमो",
+            "btn.viewRepo": "गिटहब रिपॉजिटरी",
+            "btn.launchNeural": "3D न्यूरल फैब्रिक में प्रवेश करें",
+            "btn.templateFoundry": "लाइब्रेरी डॉक्स टेम्पलेट"
       },
       "vi": {
             "side.roleBadge": "Kỹ sư Full-Stack Cao cấp & Kiến trúc sư Hệ thống",
@@ -2168,13 +2199,13 @@
             "p5.bitnetDesc": "Động cơ suy luận LLM lượng tử hóa 1-bit (1.58-bit) siêu tiết kiệm điện tối ưu cho CPU ARM Edge.",
             "p6.title": "🌌 Mạng Lưới Thần Kinh 3D & Cài đặt 1 Cú nhấp",
             "p6.desc": "Bảng điều khiển biểu đồ tri thức 3D WebGPU tương tác và tập lệnh cài đặt 1 cú nhấp chuột trên mọi nền tảng:",
-            "btn.launchApp": "🚀 Khởi chạy AMEVA OS",
-            "btn.promoStudio": "✨ Phòng Trưng bày Demo",
-            "btn.viewDoc": "📖 Xem Tài liệu",
-            "btn.liveDemo": "⚡ Trải nghiệm Trực tiếp",
-            "btn.viewRepo": "🐙 Kho lưu trữ GitHub",
-            "btn.launchNeural": "🔮 Vào Mạng Lưới Thần Kinh 3D",
-            "btn.templateFoundry": "📄 Xưởng Mẫu Tài liệu Thư viện"
+            "btn.launchApp": "Khởi chạy AMEVA OS",
+            "btn.promoStudio": "Phòng Trưng bày Demo",
+            "btn.viewDoc": "Xem Tài liệu",
+            "btn.liveDemo": "Trải nghiệm Trực tiếp",
+            "btn.viewRepo": "Kho lưu trữ GitHub",
+            "btn.launchNeural": "Vào Mạng Lưới Thần Kinh 3D",
+            "btn.templateFoundry": "Xưởng Mẫu Tài liệu Thư viện"
       },
       "pl": {
             "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
@@ -2250,13 +2281,13 @@
             "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
             "p6.title": "🌌 3D Neural Fabric & Setup Universe",
             "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
-            "btn.launchApp": "🚀 Launch AMEVA OS",
-            "btn.promoStudio": "✨ Promo Studio",
-            "btn.viewDoc": "📖 View Documentation",
-            "btn.liveDemo": "⚡ Live Demo",
-            "btn.viewRepo": "🐙 GitHub Repo",
-            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
-            "btn.templateFoundry": "📄 Library Docs Template"
+            "btn.launchApp": "Launch AMEVA OS",
+            "btn.promoStudio": "Promo Studio",
+            "btn.viewDoc": "View Documentation",
+            "btn.liveDemo": "Live Demo",
+            "btn.viewRepo": "GitHub Repo",
+            "btn.launchNeural": "Enter 3D Neural Fabric",
+            "btn.templateFoundry": "Library Docs Template"
       },
       "la": {
             "side.roleBadge": "Senior Full-Stack Engineer & Systems Architect",
@@ -2332,13 +2363,13 @@
             "p5.bitnetDesc": "Ultra-low power 1-bit quantization (1.58-bit) LLM inference engine optimized for ARM edge CPUs.",
             "p6.title": "🌌 3D Neural Fabric & Setup Universe",
             "p6.desc": "3D WebGPU interactive knowledge graph dashboard and cross-platform 1-click bootstrap installer:",
-            "btn.launchApp": "🚀 Launch AMEVA OS",
-            "btn.promoStudio": "✨ Promo Studio",
-            "btn.viewDoc": "📖 View Documentation",
-            "btn.liveDemo": "⚡ Live Demo",
-            "btn.viewRepo": "🐙 GitHub Repo",
-            "btn.launchNeural": "🔮 Enter 3D Neural Fabric",
-            "btn.templateFoundry": "📄 Library Docs Template"
+            "btn.launchApp": "Launch AMEVA OS",
+            "btn.promoStudio": "Promo Studio",
+            "btn.viewDoc": "View Documentation",
+            "btn.liveDemo": "Live Demo",
+            "btn.viewRepo": "GitHub Repo",
+            "btn.launchNeural": "Enter 3D Neural Fabric",
+            "btn.templateFoundry": "Library Docs Template"
       }
 };
 
