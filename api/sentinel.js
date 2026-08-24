@@ -302,6 +302,7 @@ export default async function handler(req, res) {
       const sql = await getGlobalSql();
       if (sql) {
         try {
+          // Query sentinel risk events
           const dbRows = await sql`
             SELECT 
               trace_id as "traceId",
@@ -329,7 +330,15 @@ export default async function handler(req, res) {
             FROM sentinel_risk_events
             ORDER BY evaluated_at DESC
             LIMIT 500;
-          `;
+          `.catch(() => []);
+
+          // Also query visitor_sessions for true total counts
+          const totalSessionsCount = await sql`
+            SELECT 
+              (COALESCE((SELECT COUNT(*) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_human,
+              COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_geo_deliveries), 0) as total_ai,
+              COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) + COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0) as total_crawler;
+          `.catch(() => [{ total_human: 0, total_ai: 0, total_crawler: 0 }]);
           events = dbRows.map(row => ({
             traceId: row.traceId,
             sessionId: row.sessionId,
@@ -386,6 +395,32 @@ export default async function handler(req, res) {
       }
 
       const analytics = sentinel.getForensicAnalytics({ events, geoLogs });
+      
+      // Inject global DB total aggregates so dashboard never truncates true history
+      if (sql) {
+        try {
+          const totals = await sql`
+            SELECT 
+              (COALESCE((SELECT COUNT(*) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as human_total,
+              (COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_geo_deliveries), 0)) as ai_total,
+              (COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) + COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0)) as crawler_total,
+              COALESCE((SELECT COUNT(*) FROM sentinel_risk_events), 0) as total_risk_events;
+          `.catch(() => null);
+
+          if (totals && totals.length > 0) {
+            const row = totals[0];
+            if (analytics.triageBreakdown) {
+              analytics.triageBreakdown.human.total = Math.max(analytics.triageBreakdown.human.total, Number(row.human_total || 0));
+              analytics.triageBreakdown.aiAgent.total = Math.max(analytics.triageBreakdown.aiAgent.total, Number(row.ai_total || 0));
+              analytics.triageBreakdown.crawlerTool.total = Math.max(analytics.triageBreakdown.crawlerTool.total, Number(row.crawler_total || 0));
+            }
+            analytics.totalObserved = Math.max(analytics.totalObserved || 0, Number(row.total_risk_events || events.length));
+          }
+        } catch (aggErr) {
+          console.warn('[Sentinel Aggregation Error]', aggErr.message);
+        }
+      }
+
       return res.status(200).json(analytics);
     }
   }

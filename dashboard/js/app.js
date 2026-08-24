@@ -479,10 +479,16 @@ if (btnWhoMade && modalProfile) {
     }
 
     if (profileContent) {
+      // Bulletproof relative image path resolution for profile and badges
+      let cleanText = loadedText
+        .replace(/src="assets\/images\/profile\.jpg"/g, 'src="https://raw.githubusercontent.com/uno-km/uno-km/main/assets/images/profile.jpg" onerror="this.onerror=null;this.src=\'https://avatars.githubusercontent.com/u/103262132?v=4\';"')
+        .replace(/src="assets\/images\//g, 'src="https://raw.githubusercontent.com/uno-km/uno-km/main/assets/images/')
+        .replace(/src="assets\//g, 'src="https://raw.githubusercontent.com/uno-km/uno-km/main/assets/');
+
       if (typeof marked !== 'undefined') {
-        profileContent.innerHTML = marked.parse(loadedText);
+        profileContent.innerHTML = marked.parse(cleanText);
       } else {
-        profileContent.innerHTML = `<pre style="white-space:pre-wrap;">${loadedText}</pre>`;
+        profileContent.innerHTML = `<pre style="white-space:pre-wrap;">${cleanText}</pre>`;
       }
     }
   });
