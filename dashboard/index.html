@@ -107,17 +107,43 @@
       <button class="btn-museum-exit" id="btn-tour-exit" title="관람 종료">✕</button>
     </div>
 
-    <!-- Curator Exhibition Panel (Floating Card) -->
+    <!-- Curator Exhibition Panel with Live Showcase & Smooth Auto-Scroll -->
     <div class="museum-curator-card" id="museum-curator-card">
       <div class="curator-card-header">
-        <span class="curator-tag" id="tour-type-tag">전시관</span>
-        <h3 id="tour-title">전시실 타이틀</h3>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="curator-tag" id="tour-type-tag">전시관</span>
+          <span class="curator-badge-tier" id="tour-tier-tag">TLP Flagship</span>
+        </div>
+        <a id="tour-live-link" href="#" target="_blank" class="btn-tour-live-doc" title="공식 문서 / 저장소 바로가기">
+          <span>Explore Live</span> ↗
+        </a>
       </div>
+      
+      <h3 id="tour-title" style="margin: 6px 0 4px 0;">전시실 타이틀</h3>
       <div class="curator-note" id="tour-curator-note">큐레이터 핵심 노트...</div>
       
       <div class="curator-spec-grid" id="tour-spec-grid">
         <div class="spec-item"><span class="spec-label">Tech Stack:</span> <span id="tour-tech">...</span></div>
         <div class="spec-item" id="tour-command-container" style="display:none;"><span class="spec-label">Terminal:</span> <code id="tour-command" style="color:var(--accent-green); font-family:var(--font-mono);">...</code></div>
+      </div>
+
+      <!-- Live Interactive Showcase & Smooth Auto-Scroller Window -->
+      <div class="museum-showcase-window" id="museum-showcase-window">
+        <div class="showcase-window-header">
+          <div class="showcase-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="showcase-title">Live Architecture &amp; Markdown Showcase</span>
+          <span class="showcase-scroll-status" id="showcase-scroll-status">⚡ Auto-Scrolling</span>
+        </div>
+        <div class="showcase-viewport markdown-body" id="showcase-viewport">
+          <div class="showcase-loading">
+            <div class="spinner"></div>
+            <span>Rendering live exhibition documentation...</span>
+          </div>
+        </div>
       </div>
     </div>
 

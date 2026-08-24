@@ -566,23 +566,102 @@ window.startMuseumDocentTour = async function(track = 'full') {
       if (window.audioEngine) window.audioEngine.playMuseumChime();
     }
 
-    // 3. Subtitle Typewriter
+    // 3. Live Markdown & Architecture Showcase Rendering & Auto-Scroll
+    const showcaseViewport = document.getElementById('showcase-viewport');
+    const showcaseScrollStatus = document.getElementById('showcase-scroll-status');
+    const tourTierTag = document.getElementById('tour-tier-tag');
+    const tourLiveLink = document.getElementById('tour-live-link');
+
+    if (tourTierTag) {
+      tourTierTag.textContent = targetNode ? `Tier ${targetNode.group || 1} ${targetNode.category || ''}` : 'TLP Project';
+    }
+
+    if (tourLiveLink && targetNode) {
+      const targetUrl = targetNode.docs_url || targetNode.url || targetNode.repo_url || '#';
+      tourLiveLink.href = targetUrl;
+      tourLiveLink.style.display = targetUrl !== '#' ? 'inline-flex' : 'none';
+    }
+
+    // Calculate total duration for this exhibition step
+    const totalDurationMs = Math.max(7500, (step.description.length * 85));
+
+    if (showcaseViewport) {
+      showcaseViewport.scrollTop = 0;
+      showcaseViewport.innerHTML = `
+        <div class="showcase-loading">
+          <div class="spinner" style="width:16px; height:16px; border:2px solid var(--accent-cyan); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+          <span>Rendering live documentation for <strong>${step.title}</strong>...</span>
+        </div>
+      `;
+
+      // Cancel previous auto-scroll animation frame
+      if (window.docentScrollRaf) cancelAnimationFrame(window.docentScrollRaf);
+
+      // Fetch & Render README / Specs
+      const nodeForReadme = targetNode || { id: step.nodeId, name: step.title };
+      loadReadmeContent(nodeForReadme).then(rawMd => {
+        if (!showcaseViewport) return;
+        if (typeof marked !== 'undefined' && rawMd) {
+          showcaseViewport.innerHTML = marked.parse(rawMd);
+        } else {
+          showcaseViewport.innerHTML = `<div style="padding:10px 0;"><h4>${step.title}</h4><p>${step.description}</p></div>`;
+        }
+
+        // Start Smooth Cinematic Auto-Scroll
+        let scrollStart = null;
+        let isHovered = false;
+
+        showcaseViewport.onmouseenter = () => {
+          isHovered = true;
+          if (showcaseScrollStatus) {
+            showcaseScrollStatus.textContent = '⏸ Paused (Manual Scroll)';
+            showcaseScrollStatus.style.color = '#f59e0b';
+          }
+        };
+        showcaseViewport.onmouseleave = () => {
+          isHovered = false;
+          if (showcaseScrollStatus) {
+            showcaseScrollStatus.textContent = '⚡ Auto-Scrolling';
+            showcaseScrollStatus.style.color = '#3ECF8E';
+          }
+        };
+
+        function smoothScrollStep(timestamp) {
+          if (!scrollStart) scrollStart = timestamp;
+          const elapsed = timestamp - scrollStart;
+          const maxScroll = showcaseViewport.scrollHeight - showcaseViewport.clientHeight;
+
+          if (maxScroll > 0 && !isHovered && !isDocentPaused) {
+            // Eased cinematic progression from top to bottom
+            const progress = Math.min(1, elapsed / (totalDurationMs - 1000));
+            showcaseViewport.scrollTop = maxScroll * progress;
+          }
+
+          if (elapsed < totalDurationMs && currentDocentIndex === index) {
+            window.docentScrollRaf = requestAnimationFrame(smoothScrollStep);
+          }
+        }
+
+        window.docentScrollRaf = requestAnimationFrame(smoothScrollStep);
+      });
+    }
+
+    // 4. Subtitle Typewriter
     if (tourDesc) {
       tourDesc.textContent = '';
       const text = step.description;
       let charIdx = 0;
       const typeNext = () => {
-        if (charIdx < text.length) {
+        if (charIdx < text.length && currentDocentIndex === index) {
           tourDesc.textContent += text.charAt(charIdx);
           charIdx++;
-          docentTypewriterTimeout = setTimeout(typeNext, 30);
+          docentTypewriterTimeout = setTimeout(typeNext, 28);
         }
       };
       typeNext();
     }
 
-    // 4. Progress Ring & Timer
-    const totalDurationMs = Math.max(6500, (step.description.length * 80));
+    // 5. Progress Ring & Auto-Advance Timer
     let elapsedMs = 0;
     const updateFreqMs = 50;
 
@@ -609,7 +688,7 @@ window.startMuseumDocentTour = async function(track = 'full') {
       }, updateFreqMs);
     }
 
-    // 5. Voice Narration
+    // 6. Voice Narration
     if (window.audioEngine && !window.audioEngine.isMuted) {
       window.audioEngine.speakDocentNarration(step.description);
     }
@@ -619,6 +698,7 @@ window.startMuseumDocentTour = async function(track = 'full') {
     overlay.classList.add('is-hidden');
     if (docentProgressInterval) clearInterval(docentProgressInterval);
     if (docentTypewriterTimeout) clearTimeout(docentTypewriterTimeout);
+    if (window.docentScrollRaf) cancelAnimationFrame(window.docentScrollRaf);
     if (window.audioEngine) window.audioEngine.stopSpeech();
     isDocentPaused = false;
     if (svg && zoomBehavior) {
