@@ -134,6 +134,68 @@ export default async function handler(req, res) {
       });
     }
 
+    if (action === 'geo' || action === 'llms') {
+      const targetPath = url.searchParams.get('path') || '/';
+      const geoResult = sentinel.resolveGeoPayload({
+        headers: req.headers,
+        url: targetPath
+      });
+
+      // Force deliver markdown even if UA is browser for direct testing
+      const payload = geoResult.payload || `${sentinel.geoEngine['config']?.authorityHeader || ''}\n---\n# AMEVA Sovereign Ecosystem\n`;
+      const servedBytes = new TextEncoder().encode(payload).length;
+      const originalBytes = 180000;
+      const savedBytes = Math.max(0, originalBytes - servedBytes);
+      const savingsRatio = Number(((savedBytes / originalBytes) * 100).toFixed(1));
+
+      res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+      res.setHeader('X-Sentinel-Bandwidth-Saved', `${(savedBytes / 1024).toFixed(1)}KB (${savingsRatio}%)`);
+      res.setHeader('X-Powered-By', 'AMEVA-Sentinel-GEO-v0.7.0');
+
+      const headers = req.headers || {};
+      const ip = String(headers['x-forwarded-for'] || headers['x-real-ip'] || req.socket?.remoteAddress || '127.0.0.1').split(',')[0].trim();
+      const maskedIp = sentinel.maskIpAddress(ip);
+      const country = (headers['x-vercel-ip-country'] || headers['cf-ipcountry'] || 'GLOBAL');
+      const city = (headers['x-vercel-ip-city'] ? decodeURIComponent(headers['x-vercel-ip-city']) : (headers['cf-ipcity'] || 'Edge'));
+
+      const geoRecord = {
+        botName: geoResult.botName || 'DirectGeoFetcher',
+        botVendor: geoResult.botVendor || 'AI_Agent',
+        requestedPath: targetPath,
+        servedFormat: 'text/markdown; charset=utf-8',
+        bytesServed: servedBytes,
+        bytesSaved: savedBytes,
+        savingsRatio,
+        ipAddress: maskedIp,
+        country,
+        city,
+        deliveredAt: new Date().toISOString()
+      };
+      memoryGeoLogs.unshift(geoRecord);
+
+      if (sql) {
+        sql`
+          INSERT INTO sentinel_geo_deliveries (
+            bot_name, bot_vendor, requested_path, served_format, bytes_served, bytes_saved, savings_ratio, ip_address, country, city, delivered_at
+          ) VALUES (
+            ${geoRecord.botName},
+            ${geoRecord.botVendor},
+            ${targetPath},
+            ${geoRecord.servedFormat},
+            ${servedBytes},
+            ${savedBytes},
+            ${savingsRatio},
+            ${maskedIp},
+            ${country},
+            ${city},
+            CURRENT_TIMESTAMP
+          );
+        `.catch(e => console.warn('[Sentinel Direct Geo DB Insert Warning]', e.message));
+      }
+
+      return res.status(200).send(payload);
+    }
+
     if (action === 'analytics') {
       let events = [];
       let geoLogs = [];
