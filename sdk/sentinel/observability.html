@@ -180,30 +180,43 @@
     
     /* Map Marker Pulse Effect */
     .pulse-marker {
-      background: rgba(0, 68, 153, 0.75);
+      background: rgba(0, 68, 153, 0.8);
       border-radius: 50%;
       border: 2px solid #ffffff;
-      box-shadow: 0 0 10px rgba(0, 68, 153, 0.8);
+      box-shadow: 0 0 12px rgba(0, 68, 153, 0.8);
       position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-family: var(--font-mono, monospace);
+      font-weight: 800;
+      font-size: 10px;
+    }
+    .pulse-marker.country-pin {
+      background: #004499;
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 16px rgba(0, 68, 153, 0.9);
     }
     .pulse-marker.bot {
-      background: rgba(124, 58, 237, 0.75);
-      box-shadow: 0 0 10px rgba(124, 58, 237, 0.8);
+      background: rgba(124, 58, 237, 0.85);
+      box-shadow: 0 0 12px rgba(124, 58, 237, 0.9);
     }
     .pulse-marker::after {
       content: '';
       position: absolute;
-      top: -6px; left: -6px; right: -6px; bottom: -6px;
+      top: -8px; left: -8px; right: -8px; bottom: -8px;
       border-radius: 50%;
-      border: 1.5px solid rgba(0, 68, 153, 0.4);
-      animation: mapPulse 2s infinite ease-out;
+      border: 1.5px solid rgba(0, 68, 153, 0.5);
+      animation: mapPulse 2.2s infinite ease-out;
     }
     .pulse-marker.bot::after {
-      border-color: rgba(124, 58, 237, 0.4);
+      border-color: rgba(124, 58, 237, 0.5);
     }
     @keyframes mapPulse {
       0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
+      100% { transform: scale(2.4); opacity: 0; }
     }
   </style>
 </head>
@@ -353,14 +366,14 @@
         <div class="chart-panel-title">
           <div>
             <span>Global Traffic &amp; Threat Cluster Origin Map</span>
-            <span style="font-size:0.78rem; font-weight:normal; color:var(--text-muted, #64748b); margin-left:8px;">Real-time Inflow Clusters &amp; Bot Origins</span>
+            <span id="mapCurrentModeLabel" style="font-size:0.78rem; font-weight:normal; color:var(--text-muted, #64748b); margin-left:8px;">Global View (Single Point per Country)</span>
           </div>
-          <div class="tf-pill-group">
-            <button class="tf-pill" onclick="flyToMap(37.5665, 126.9780, 6)">South Korea</button>
-            <button class="tf-pill" onclick="flyToMap(38.0, -97.0, 4)">United States</button>
-            <button class="tf-pill" onclick="flyToMap(50.1109, 8.6821, 5)">Europe</button>
-            <button class="tf-pill" onclick="flyToMap(35.6762, 139.6503, 5)">Japan</button>
-            <button class="tf-pill active" onclick="flyToMap(20.0, 0.0, 2)">Global Reset</button>
+          <div class="tf-pill-group" id="regionBtnGroup">
+            <button class="tf-pill" id="btn-reg-KR" onclick="focusRegion('KR', 36.5, 127.8, 6)">South Korea</button>
+            <button class="tf-pill" id="btn-reg-US" onclick="focusRegion('US', 38.0, -97.0, 4)">United States</button>
+            <button class="tf-pill" id="btn-reg-EU" onclick="focusRegion('EU', 50.1109, 8.6821, 5)">Europe</button>
+            <button class="tf-pill" id="btn-reg-JP" onclick="focusRegion('JP', 35.6762, 139.6503, 6)">Japan</button>
+            <button class="tf-pill active" id="btn-reg-GLOBAL" onclick="focusRegion('GLOBAL', 20.0, 0.0, 2)">Global (Country Point)</button>
           </div>
         </div>
         
@@ -372,7 +385,7 @@
           <div style="background:#f8fafc; border:1px solid var(--border-color, #cbd5e1); border-radius:4px; padding:12px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
               <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Top Inflow Countries (Clustered)</strong>
-              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Click row to Fly on Map</span>
+              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Click country to Drill-Down</span>
             </div>
             <div id="countryClusterList" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto;">
               <div style="color:#64748b; font-size:0.8rem;">Loading country clusters...</div>
@@ -383,7 +396,7 @@
           <div style="background:#f8fafc; border:1px solid var(--border-color, #cbd5e1); border-radius:4px; padding:12px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
               <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Precision City Nodes &amp; Gateways</strong>
-              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Pulsing Radar Density</span>
+              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Regional Pulsing Pins</span>
             </div>
             <div id="cityClusterList" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto;">
               <div style="color:#64748b; font-size:0.8rem;">Loading city clusters...</div>
@@ -592,11 +605,12 @@
   </footer>
 
   <script>
-    // Leaflet World Map Engine
+    // Leaflet World Map Engine with Hierarchical Dynamic Geo Clustering
     let mapInstance = null;
     let mapMarkersLayer = null;
     let globalGeoClustersCache = [];
     let globalCountryClustersCache = [];
+    let activeRegionFocus = 'GLOBAL';
 
     function initGlobalGeoMap() {
       const mapContainer = document.getElementById('globalGeoMap');
@@ -619,51 +633,147 @@
         }).addTo(mapInstance);
 
         mapMarkersLayer = L.layerGroup().addTo(mapInstance);
+
+        // Zoom change listener for automatic hierarchical level switching
+        mapInstance.on('zoomend', () => {
+          const currentZoom = mapInstance.getZoom();
+          if (currentZoom <= 3 && activeRegionFocus !== 'GLOBAL') {
+            activeRegionFocus = 'GLOBAL';
+            updateRegionButtonUI('GLOBAL');
+          } else if (currentZoom >= 4 && activeRegionFocus === 'GLOBAL') {
+            // Auto detect focused region or show granular cities
+            activeRegionFocus = 'ALL_CITIES';
+            updateRegionButtonUI('ALL_CITIES');
+          }
+          renderMapMarkers();
+        });
+
       } catch (err) {
         console.warn('[Map Init Warning]', err);
       }
     }
 
-    function flyToMap(lat, lng, zoom) {
-      if (!mapInstance) return;
-      mapInstance.flyTo([lat, lng], zoom || 5, { duration: 1.2 });
+    function updateRegionButtonUI(regionCode) {
+      document.querySelectorAll('#regionBtnGroup .tf-pill').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-reg-' + regionCode);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const modeLabel = document.getElementById('mapCurrentModeLabel');
+      if (modeLabel) {
+        if (regionCode === 'GLOBAL') {
+          modeLabel.innerText = 'Global View (1 Consolidated Point per Country)';
+        } else {
+          modeLabel.innerText = 'Regional Breakdown Mode: ' + regionCode + ' (Granular City Radar Nodes)';
+        }
+      }
     }
 
-    function updateGeoMapMarkers(geoClusters) {
+    function focusRegion(regionCode, lat, lng, zoomLevel) {
+      activeRegionFocus = regionCode;
+      updateRegionButtonUI(regionCode);
+      if (mapInstance) {
+        mapInstance.flyTo([lat, lng], zoomLevel, { duration: 1.2 });
+      }
+      setTimeout(renderMapMarkers, 300);
+    }
+
+    function renderMapMarkers() {
       if (!mapInstance || !mapMarkersLayer) return;
       mapMarkersLayer.clearLayers();
 
-      globalGeoClustersCache = geoClusters || [];
-      if (globalGeoClustersCache.length === 0) return;
+      const currentZoom = mapInstance.getZoom();
+      const isGlobalMode = (activeRegionFocus === 'GLOBAL' && currentZoom <= 3.5);
 
-      globalGeoClustersCache.forEach(cluster => {
-        if (typeof cluster.lat !== 'number' || typeof cluster.lng !== 'number') return;
+      if (isGlobalMode) {
+        // ═══════════════════════════════════════════════════════════
+        // 1. GLOBAL VIEW: EXACTLY ONE POINT PER COUNTRY
+        // ═══════════════════════════════════════════════════════════
+        if (!globalCountryClustersCache || globalCountryClustersCache.length === 0) return;
 
-        const isBotDominated = cluster.ai_count > cluster.human_count;
-        const radius = Math.min(24, Math.max(10, Math.round(Math.sqrt(cluster.count || 1) * 4)));
-        const markerColor = isBotDominated ? '#7c3aed' : '#004499';
+        globalCountryClustersCache.forEach(country => {
+          if (typeof country.lat !== 'number' || typeof country.lng !== 'number') return;
 
-        const customIcon = L.divIcon({
-          className: isBotDominated ? 'pulse-marker bot' : 'pulse-marker',
-          iconSize: [radius, radius],
-          iconAnchor: [radius / 2, radius / 2]
+          const isBotDominated = country.ai_count > country.human_count;
+          const radius = Math.min(30, Math.max(16, Math.round(Math.sqrt(country.count || 1) * 5)));
+          const markerColor = isBotDominated ? '#7c3aed' : '#004499';
+
+          const customIcon = L.divIcon({
+            className: isBotDominated ? 'pulse-marker bot country-pin' : 'pulse-marker country-pin',
+            iconSize: [radius, radius],
+            iconAnchor: [radius / 2, radius / 2],
+            html: '<span style="pointer-events:none;">' + country.country + '</span>'
+          });
+
+          const marker = L.marker([country.lat, country.lng], { icon: customIcon });
+
+          const popupContent = '<div style="font-family:sans-serif; font-size:12px; min-width:200px; padding:4px;">' +
+            '<div style="font-size:13px; font-weight:800; color:' + markerColor + ';">' + country.name + ' (' + country.country + ')</div>' +
+            '<div style="margin:4px 0; color:#475569;">Consolidated Traffic: <strong>' + country.count + ' sessions (' + country.percentage + '%)</strong></div>' +
+            '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
+              '<span style="color:#004499; font-weight:700;">Human: ' + country.human_count + '</span>' +
+              '<span style="color:#7c3aed; font-weight:700;">AI Bots: ' + country.ai_count + '</span>' +
+            '</div>' +
+            '<div style="margin-top:8px; text-align:center;">' +
+              '<button class="btn-tomcat primary" style="padding:3px 10px; font-size:11px; width:100%;" onclick="focusRegion(&quot;' + country.country + '&quot;, ' + country.lat + ', ' + country.lng + ', 6)">' +
+                'Drill-down to City Nodes &rarr;' +
+              '</button>' +
+            '</div>' +
+          '</div>';
+
+          marker.bindPopup(popupContent);
+          marker.on('click', () => {
+            // Smooth zoom on marker click
+            focusRegion(country.country, country.lat, country.lng, 6);
+          });
+
+          mapMarkersLayer.addLayer(marker);
         });
 
-        const marker = L.marker([cluster.lat, cluster.lng], { icon: customIcon });
+      } else {
+        // ═══════════════════════════════════════════════════════════
+        // 2. REGIONAL VIEW: GRANULAR CITY NODES
+        // ═══════════════════════════════════════════════════════════
+        if (!globalGeoClustersCache || globalGeoClustersCache.length === 0) return;
 
-        const popupContent = '<div style="font-family:sans-serif; font-size:12px; min-width:180px; padding:2px;">' +
-          '<strong style="font-size:13px; color:' + markerColor + ';">' + cluster.city + ' (' + cluster.country + ')</strong>' +
-          '<div style="margin:4px 0; color:#475569;">Total Traffic: <strong>' + cluster.count + ' sessions (' + cluster.percentage + '%)</strong></div>' +
-          '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
-            '<span style="color:#004499; font-weight:700;">Human: ' + cluster.human_count + '</span>' +
-            '<span style="color:#7c3aed; font-weight:700;">AI Bots: ' + cluster.ai_count + '</span>' +
-          '</div>' +
-          '<div style="margin-top:6px; font-family:monospace; font-size:10px; color:#64748b;">Coord: [' + cluster.lat.toFixed(2) + ', ' + cluster.lng.toFixed(2) + ']</div>' +
-        '</div>';
+        let filteredCities = globalGeoClustersCache;
+        if (activeRegionFocus !== 'GLOBAL' && activeRegionFocus !== 'ALL_CITIES') {
+          if (activeRegionFocus === 'EU') {
+            filteredCities = globalGeoClustersCache.filter(c => ['DE', 'GB', 'FR', 'NL', 'IE'].includes(c.country));
+          } else {
+            filteredCities = globalGeoClustersCache.filter(c => c.country === activeRegionFocus);
+          }
+          if (filteredCities.length === 0) filteredCities = globalGeoClustersCache;
+        }
 
-        marker.bindPopup(popupContent);
-        mapMarkersLayer.addLayer(marker);
-      });
+        filteredCities.forEach(cluster => {
+          if (typeof cluster.lat !== 'number' || typeof cluster.lng !== 'number') return;
+
+          const isBotDominated = cluster.ai_count > cluster.human_count;
+          const radius = Math.min(24, Math.max(10, Math.round(Math.sqrt(cluster.count || 1) * 4)));
+          const markerColor = isBotDominated ? '#7c3aed' : '#004499';
+
+          const customIcon = L.divIcon({
+            className: isBotDominated ? 'pulse-marker bot' : 'pulse-marker',
+            iconSize: [radius, radius],
+            iconAnchor: [radius / 2, radius / 2]
+          });
+
+          const marker = L.marker([cluster.lat, cluster.lng], { icon: customIcon });
+
+          const popupContent = '<div style="font-family:sans-serif; font-size:12px; min-width:180px; padding:2px;">' +
+            '<strong style="font-size:13px; color:' + markerColor + ';">' + cluster.city + ' (' + cluster.country + ')</strong>' +
+            '<div style="margin:4px 0; color:#475569;">City Traffic: <strong>' + cluster.count + ' sessions (' + cluster.percentage + '%)</strong></div>' +
+            '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
+              '<span style="color:#004499; font-weight:700;">Human: ' + cluster.human_count + '</span>' +
+              '<span style="color:#7c3aed; font-weight:700;">AI Bots: ' + cluster.ai_count + '</span>' +
+            '</div>' +
+            '<div style="margin-top:6px; font-family:monospace; font-size:10px; color:#64748b;">Coord: [' + cluster.lat.toFixed(2) + ', ' + cluster.lng.toFixed(2) + ']</div>' +
+          '</div>';
+
+          marker.bindPopup(popupContent);
+          mapMarkersLayer.addLayer(marker);
+        });
+      }
     }
 
     function renderClusterLists(countryClusters, geoClusters) {
@@ -671,7 +781,7 @@
       if (countryListEl) {
         if (countryClusters && countryClusters.length > 0) {
           countryListEl.innerHTML = countryClusters.map(c => {
-            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="flyToMap(' + c.lat + ', ' + c.lng + ', 5)">' +
+            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + c.country + '&quot;, ' + c.lat + ', ' + c.lng + ', 6)">' +
               '<div>' +
                 '<strong>' + c.name + ' (' + c.country + ')</strong>' +
                 '<div style="font-size:0.72rem; color:#64748b;">Human: ' + c.human_count + ' &bull; AI: ' + c.ai_count + '</div>' +
@@ -691,7 +801,7 @@
       if (cityListEl) {
         if (geoClusters && geoClusters.length > 0) {
           cityListEl.innerHTML = geoClusters.map(g => {
-            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="flyToMap(' + g.lat + ', ' + g.lng + ', 7)">' +
+            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + g.country + '&quot;, ' + g.lat + ', ' + g.lng + ', 8)">' +
               '<div>' +
                 '<strong>' + g.city + ', ' + g.country + '</strong>' +
                 '<div style="font-size:0.72rem; color:#64748b;">Coord: ' + g.lat.toFixed(2) + ', ' + g.lng.toFixed(2) + '</div>' +
@@ -923,11 +1033,11 @@
 
           document.getElementById('lastUpdated').innerText = 'Updated: ' + formatTimeInObsTz(new Date(), 'time');
 
-          // Update Leaflet Map & Clusters
-          if (pubData.geo_clusters && pubData.geo_clusters.length > 0) {
-            updateGeoMapMarkers(pubData.geo_clusters);
-          }
-          renderClusterLists(pubData.country_clusters, pubData.geo_clusters);
+          globalCountryClustersCache = pubData.country_clusters || [];
+          globalGeoClustersCache = pubData.geo_clusters || [];
+
+          renderMapMarkers();
+          renderClusterLists(globalCountryClustersCache, globalGeoClustersCache);
 
           const botTbody = document.getElementById('botTableBody');
           if (pubData.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
