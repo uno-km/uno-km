@@ -193,7 +193,7 @@ export default async function handler(req, res) {
         `.catch(e => console.warn('[Sentinel Direct Geo DB Insert Warning]', e.message));
       }
 
-      return res.status(200).send(payload);
+      return res.status(200).end(payload);
     }
 
     if (action === 'analytics') {
