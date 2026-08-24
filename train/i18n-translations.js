@@ -16,6 +16,13 @@
       "founderBtn": "Founder Profile",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
+        "foundationDashboard": "3D-Stiftungs-Dashboard",
+        "foundationDashboard": "Tableau de Bord 3D de la Fondation",
+        "foundationDashboard": "Panel 3D de la Fundación",
+        "foundationDashboard": "全景基金会 (3D仪表板)",
+        "foundationDashboard": "3D財団マップ (ダッシュボード)",
+        "foundationDashboard": "한눈에 재단보기 (3D 대시보드)",
+        "foundationDashboard": "3D Neural Dashboard",
         "testReport": "Real-Device Audit Report"
       }
     },
