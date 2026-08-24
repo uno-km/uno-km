@@ -136,9 +136,42 @@
       "source": "/sentinel/status",
       "destination": "/sentinel/observability.html",
       "permanent": false
+    },
+    {
+      "source": "/app/dashboard",
+      "destination": "/app/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/foundation/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/docs/foundation/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/foundation/daskborad",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/app/daskborad",
+      "destination": "/app/dashboard/",
+      "permanent": false
     }
   ],
   "rewrites": [
+    {
+      "source": "/foundation/dashboard/:match*",
+      "destination": "/foundation/dashboard/:match*"
+    },
+    {
+      "source": "/app/dashboard/:match*",
+      "destination": "/app/dashboard/:match*"
+    },
     {
       "source": "/admin/(.*)",
       "destination": "/analytics/$1"
