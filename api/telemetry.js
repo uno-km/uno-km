@@ -9,9 +9,27 @@
  * - Parameterized SQL execution via @neondatabase/serverless
  * - Zero credentials leakage
  */
-import { neon } from '@neondatabase/serverless';
-
+// Global Singleton DB Client (Zero Pool Thrashing)
+let globalTelemetrySql = null;
 let isSchemaInitialized = false;
+
+async function getGlobalTelemetrySql() {
+    const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) return null;
+    if (globalTelemetrySql) return globalTelemetrySql;
+
+    try {
+        const neonModule = await import('@neondatabase/serverless').catch(() => null);
+        if (neonModule && typeof neonModule.neon === 'function') {
+            globalTelemetrySql = neonModule.neon(dbUrl);
+            await ensureSchema(globalTelemetrySql);
+            return globalTelemetrySql;
+        }
+    } catch (e) {
+        console.warn('[Telemetry DB Connect Error]', e.message);
+    }
+    return null;
+}
 
 async function ensureSchema(sql) {
     if (isSchemaInitialized) return;
@@ -157,10 +175,8 @@ export default async function handler(req, res) {
             return res.status(200).json({ ok: true, note: 'missing session_id/visitor_id' });
         }
 
-        if (dbUrl) {
-            const sql = neon(dbUrl);
-            await ensureSchema(sql);
-
+        const sql = await getGlobalTelemetrySql();
+        if (sql) {
             // 1. Session Init & Pageview Handshake
             if (type === 'session_init' && hardware) {
                 await sql`

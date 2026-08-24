@@ -7,7 +7,25 @@
  * - Real queries: visitor_sessions, bot_crawler_logs, deep_forensic_footprints
  * - Strict PII Anonymization: Zero raw IP exposure (Aggregated by Country/City)
  */
-import { neon } from '@neondatabase/serverless';
+// Global Singleton DB Client (Zero Pool Thrashing)
+let globalStatsSql = null;
+
+async function getGlobalStatsSql() {
+    const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) return null;
+    if (globalStatsSql) return globalStatsSql;
+
+    try {
+        const neonModule = await import('@neondatabase/serverless').catch(() => null);
+        if (neonModule && typeof neonModule.neon === 'function') {
+            globalStatsSql = neonModule.neon(dbUrl);
+            return globalStatsSql;
+        }
+    } catch (e) {
+        console.warn('[Public Stats DB Connect Error]', e.message);
+    }
+    return null;
+}
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,9 +36,9 @@ export default async function handler(req, res) {
         return res.status(200).end();
     }
 
-    const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
+    const sql = await getGlobalStatsSql();
 
-    if (!dbUrl) {
+    if (!sql) {
         return res.status(200).json({
             status: 'db_unconfigured',
             database_connected: false,
@@ -47,7 +65,6 @@ export default async function handler(req, res) {
     }
 
     try {
-        const sql = neon(dbUrl);
 
         // 1. Real Session and Unique Visitor Aggregation
         const sessionStats = await sql`
