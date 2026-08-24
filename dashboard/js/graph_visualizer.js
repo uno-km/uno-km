@@ -278,6 +278,7 @@ function bindNodeEvents() {
   if (btnCloseModal) {
     btnCloseModal.addEventListener('click', () => {
       modalNode.classList.remove('is-active');
+      modalNode.style.display = 'none';
     });
   }
 
@@ -286,6 +287,7 @@ function bindNodeEvents() {
       // Close only if the backdrop itself was clicked (not the modal card inside)
       if (e.target === modalNode) {
         modalNode.classList.remove('is-active');
+        modalNode.style.display = 'none';
       }
     });
   }
@@ -333,13 +335,12 @@ function bindNodeEvents() {
       }
     })
     .on('click', function (event, d) {
+      if (isNodeDragging) return;
+      event.stopPropagation();
+      event.preventDefault();
       if (window.audioEngine) window.audioEngine.playDeepBass();
-      // Hide small tooltip
       if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
-
       if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] Node clicked', `${d.id} 노드 클릭됨`);
-
-      // 렌더링 함수 호출
       renderNodeModal(d);
     });
 
@@ -349,15 +350,24 @@ function bindNodeEvents() {
 /**
  * Handle Drag events
  */
+let isNodeDragging = false;
+let dragStartCoords = { x: 0, y: 0 };
+
 function drag(simulation) {
   function dragstarted(event) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
     event.subject.fx = event.subject.x;
     event.subject.fy = event.subject.y;
-    if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] Node drag started', `${event.subject.id} 노드 드래그 시작`);
+    isNodeDragging = false;
+    dragStartCoords = { x: event.x, y: event.y };
   }
 
   function dragged(event) {
+    const dx = Math.abs(event.x - dragStartCoords.x);
+    const dy = Math.abs(event.y - dragStartCoords.y);
+    if (dx > 4 || dy > 4) {
+      isNodeDragging = true;
+    }
     event.subject.fx = event.x;
     event.subject.fy = event.y;
   }
@@ -957,6 +967,7 @@ export function renderNodeModal(d) {
   };
 
   modalNode.classList.add('is-active');
+  modalNode.style.display = 'flex';
   zoomToNode(d);
 }
 
@@ -1014,3 +1025,31 @@ export function triggerGenesisGlow() {
 window.triggerGenesisGlow = triggerGenesisGlow;
 
 
+
+
+/**
+ * Smoothly zoom and center 3D camera to target node
+ */
+export function zoomToNode(d) {
+  if (!d || !svg || !zoomBehavior || !container) return;
+  try {
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+    const targetX = (typeof d.x === 'number') ? d.x : width / 2;
+    const targetY = (typeof d.y === 'number') ? d.y : height / 2;
+    const scale = 1.35;
+
+    svg.transition()
+      .duration(850)
+      .ease(d3.easeCubicOut)
+      .call(
+        zoomBehavior.transform,
+        d3.zoomIdentity
+          .translate(width / 2, height / 2)
+          .scale(scale)
+          .translate(-targetX, -targetY)
+      );
+  } catch (err) {
+    console.warn('[ZoomToNode] Transition warning:', err);
+  }
+}
