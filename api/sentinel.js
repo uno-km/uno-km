@@ -588,9 +588,26 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('[Sentinel API Ingest Error]', err);
-    return res.status(500).json({
-      status: 'error',
-      message: err.message || 'Internal Sentinel Evaluation Error'
+    // ── Fail-open: Sentinel errors must never block the origin service ──
+    return res.status(200).json({
+      status: 'degraded',
+      failOpen: true,
+      message: 'Sentinel evaluation failed; request allowed by fail-open policy.',
+      report: {
+        score: 0,
+        action: 'ALLOW',
+        recommendedAction: 'ALLOW',
+        classification: { category: 'UNKNOWN', isBotLikely: false },
+        evidence: []
+      },
+      assessment: {
+        schemaVersion: '2.0',
+        riskLevel: 'EVALUATION_FAILED',
+        actorClaim: { type: 'UNKNOWN', name: null, state: 'NONE', verification: 'NOT_APPLICABLE', basis: [] },
+        evidence: [],
+        decision: { mode: 'FAIL_OPEN', proposedAction: 'ALLOW', enforcedAction: 'ALLOW', policyVersion: 'sentinel-2.0-shadow.1' },
+        legacy: { triageCategory: 'UNKNOWN', deprecated: true }
+      }
     });
   }
 }

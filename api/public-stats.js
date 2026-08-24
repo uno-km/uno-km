@@ -296,22 +296,21 @@ export default async function handler(req, res) {
         `.catch(() => []);
 
         // 3. Real Origin Regions & Global Geo Clustering (Zero IP Exposure)
+        // Source: visitor_sessions + sentinel_risk_events (same as summary)
         const regionStats = await sql`
             WITH all_regions AS (
-                SELECT country, city, triage_category FROM sentinel_risk_events
+                SELECT country, city, 'LOW_RISK' as risk_category FROM visitor_sessions
                 UNION ALL
-                SELECT country, city, 'HUMAN' as triage_category FROM visitor_sessions
-                UNION ALL
-                SELECT country, city, 'AI_AGENT' as triage_category FROM sentinel_geo_deliveries
+                SELECT country, city, triage_category as risk_category FROM sentinel_risk_events
+                    WHERE triage_category IN ('AI_AGENT', 'CRAWLER_TOOL')
             )
             SELECT 
                 COALESCE(country, 'GLOBAL') as country,
                 COALESCE(city, 'Edge Gateway') as city,
                 COUNT(*) as session_count,
-                COUNT(CASE WHEN triage_category = 'HUMAN' THEN 1 END) as human_count,
-                COUNT(CASE WHEN triage_category = 'AI_AGENT' THEN 1 END) as ai_count,
-                COUNT(CASE WHEN triage_category = 'CRAWLER_TOOL' THEN 1 END) as tool_count,
-                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM all_regions), 0)), 1) as percentage
+                COUNT(CASE WHEN risk_category = 'LOW_RISK' THEN 1 END) as human_count,
+                COUNT(CASE WHEN risk_category IN ('AI_AGENT', 'CRAWLER_TOOL') THEN 1 END) as ai_count,
+                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM visitor_sessions) + (SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category IN ('AI_AGENT', 'CRAWLER_TOOL')), 0)), 1) as percentage
             FROM all_regions
             WHERE country IS NOT NULL AND country != ''
             GROUP BY country, city
@@ -319,21 +318,20 @@ export default async function handler(req, res) {
             LIMIT 25;
         `.catch(() => []);
 
-        // 3.1 Aggregated by Country
+        // 3.1 Aggregated by Country (same source as above)
         const countryStats = await sql`
             WITH all_regions AS (
-                SELECT country, triage_category FROM sentinel_risk_events
+                SELECT country, 'LOW_RISK' as risk_category FROM visitor_sessions
                 UNION ALL
-                SELECT country, 'HUMAN' as triage_category FROM visitor_sessions
-                UNION ALL
-                SELECT country, 'AI_AGENT' as triage_category FROM sentinel_geo_deliveries
+                SELECT country, triage_category as risk_category FROM sentinel_risk_events
+                    WHERE triage_category IN ('AI_AGENT', 'CRAWLER_TOOL')
             )
             SELECT 
                 COALESCE(country, 'GLOBAL') as country,
                 COUNT(*) as session_count,
-                COUNT(CASE WHEN triage_category = 'HUMAN' THEN 1 END) as human_count,
-                COUNT(CASE WHEN triage_category = 'AI_AGENT' THEN 1 END) as ai_count,
-                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM all_regions), 0)), 1) as percentage
+                COUNT(CASE WHEN risk_category = 'LOW_RISK' THEN 1 END) as human_count,
+                COUNT(CASE WHEN risk_category IN ('AI_AGENT', 'CRAWLER_TOOL') THEN 1 END) as ai_count,
+                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM visitor_sessions) + (SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category IN ('AI_AGENT', 'CRAWLER_TOOL')), 0)), 1) as percentage
             FROM all_regions
             WHERE country IS NOT NULL AND country != ''
             GROUP BY country
@@ -477,7 +475,12 @@ export default async function handler(req, res) {
             },
             traffic_distribution: {
                 human_percent: humanPct,
-                ai_bots_percent: botPct
+                ai_percent: botPct,
+                ai_bots_percent: botPct,
+                metric: 'sessions',
+                window: 'all_time',
+                updated_at: new Date().toISOString(),
+                dedup_key: 'visitor_id'
             },
             ai_crawlers_breakdown: botBreakdown.map(b => ({
                 name: b.bot_name,

@@ -440,7 +440,8 @@
         <div class="metric-card">
           <div class="metric-card-title">Total Observed Traffic</div>
           <div class="metric-card-value" id="valTotalEvents">283</div>
-          <div class="metric-card-footer" id="valTotalFooter">201 Human + 82 AI</div>
+          <div class="metric-card-footer" id="valTotalFooter">201 Low Risk + 82 Bot Claims</div>
+          <div style="font-size:0.6rem; color:#94a3b8; margin-top:2px;" id="valMetaMeta">Metric: sessions · Window: all time</div>
         </div>
         <div class="metric-card">
           <div class="metric-card-title">Low Automation Risk Sessions</div>
@@ -514,7 +515,7 @@
 
           <div style="background:#f8fafc; border:1px solid var(--border-color, #cbd5e1); border-radius:4px; padding:12px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Precision City Nodes &amp; Gateways</strong>
+              <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Regional Traffic Nodes &amp; Gateways</strong>
               <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Regional Pulsing Pins</span>
             </div>
             <div id="cityClusterList" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto;">
@@ -526,15 +527,15 @@
 
       <!-- 4. Real Traffic Split Bar (완벽한 수학적 일치: Human(X) + AI(Y) = Total(N)) -->
       <div class="split-container">
-        <h3 style="margin-top: 0; font-size: 1.05rem;">Real Traffic Composition (Ground Truth)</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Deterministic classification of human browsers versus autonomous AI agent crawlers.</p>
+        <h3 style="margin-top: 0; font-size: 1.05rem;">Observed Traffic Composition</h3>
+        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Observed automation risk distribution across all sessions.</p>
         <div class="split-bar-track">
-          <div class="split-bar-human" id="barHuman" style="width: 71%;">Human: 71% (201)</div>
-          <div class="split-bar-bot" id="barBot" style="width: 29%;">AI Bots: 29% (82)</div>
+          <div class="split-bar-human" id="barHuman" style="width: 71%;">Low Risk: 71% (201)</div>
+          <div class="split-bar-bot" id="barBot" style="width: 29%;">Bot Claims: 29% (82)</div>
         </div>
         <div class="split-legend">
-          <span style="color: #004499; font-weight: 700;" id="legendHumanText">Verified Human Browsers (201)</span>
-          <span style="color: #7c3aed; font-weight: 700;" id="legendAiText">Autonomous AI Scrapers &amp; Indexers (82)</span>
+          <span style="color: #004499; font-weight: 700;" id="legendHumanText">Low Automation Risk (201)</span>
+          <span style="color: #7c3aed; font-weight: 700;" id="legendAiText">Claimed Bot Operators &amp; Automation Signals (82)</span>
         </div>
       </div>
 
@@ -691,8 +692,8 @@
           <div id="mLocation" style="font-family:var(--font-mono, monospace); font-size:0.82rem; font-weight:700;">KR (Goyang-si)</div>
         </div>
         <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px;">
-          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">TRIAGE CLASSIFICATION</div>
-          <div id="mTriageBadge" class="badge-status human" style="margin-top:2px;">HUMAN</div>
+          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">RISK ASSESSMENT</div>
+          <div id="mTriageBadge" class="badge-status human" style="margin-top:2px;">LOW_RISK</div>
         </div>
       </div>
 
