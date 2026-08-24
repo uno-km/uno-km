@@ -450,6 +450,9 @@ export default async function handler(req, res) {
                 total_active_sessions: totalSessions,
                 total_unique_visitors: totalVisitors,
                 ai_crawlers_identified: totalBots,
+                human_count: totalSessions,
+                ai_count: totalBots,
+                total_all_events: totalAll,
                 webgpu_enabled_sessions: webgpuCount
             },
             traffic_distribution: {

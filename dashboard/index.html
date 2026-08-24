@@ -401,7 +401,6 @@
 
         <!-- Policy Controls & Audit Ledger -->
         <div class="management-split">
-            <!-- Left: Risk Evaluation Ledger -->
             <div class="tomcat-section">
                 <div class="section-header">
                     <span>Recent Security Risk Events &amp; Triage Ledger</span>
@@ -426,7 +425,6 @@
                 </div>
             </div>
 
-            <!-- Right: Active Policy Controls -->
             <div class="tomcat-section">
                 <div class="section-header">
                     <span>Active Policy Controls</span>
@@ -461,7 +459,6 @@
         </div>
     </div>
 
-    <!-- Forensic Dossier Modal -->
     <div id="dashModalOverlay" class="modal-overlay">
         <div class="modal-box">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cbd5e1; padding-bottom:8px;">
@@ -753,22 +750,24 @@
                 const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
 
                 if (pubData) {
-                    const totalSessions = pubData.summary?.total_active_sessions || 0;
-                    document.getElementById('banner-events-count').innerHTML = '<strong>' + totalSessions + ' Events</strong>';
+                    const totalHuman = pubData.summary?.human_count ?? pubData.summary?.total_active_sessions ?? 0;
+                    const totalBots = pubData.summary?.ai_count ?? pubData.summary?.ai_crawlers_identified ?? 0;
+                    const totalAll = pubData.summary?.total_all_events ?? (totalHuman + totalBots);
+
+                    document.getElementById('banner-events-count').innerHTML = '<strong>' + totalHuman + ' Events</strong>';
                     document.getElementById('banner-last-event').innerText = formatDashTime(new Date(), 'time');
 
-                    const humanCount = Math.round(totalSessions * (pubData.traffic_distribution?.human_percent || 100) / 100);
-                    const aiCount = Math.round(totalSessions * (pubData.traffic_distribution?.ai_bots_percent || 0) / 100);
-                    const toolCount = Math.max(0, totalSessions - humanCount - aiCount);
+                    const humanPct = pubData.traffic_distribution?.human_percent ?? (totalAll > 0 ? Math.round((totalHuman / totalAll) * 100) : 100);
+                    const aiPct = pubData.traffic_distribution?.ai_bots_percent ?? (totalAll > 0 ? Math.round((totalBots / totalAll) * 100) : 0);
 
-                    document.getElementById('card-human-count').innerText = humanCount;
-                    document.getElementById('card-human-pct').innerText = (pubData.traffic_distribution?.human_percent || 100) + '% of total traffic';
+                    document.getElementById('card-human-count').innerText = totalHuman;
+                    document.getElementById('card-human-pct').innerText = humanPct + '% of total traffic';
 
-                    document.getElementById('card-ai-count').innerText = aiCount;
-                    document.getElementById('card-ai-pct').innerText = (pubData.traffic_distribution?.ai_bots_percent || 0) + '% of total traffic';
+                    document.getElementById('card-ai-count').innerText = totalBots;
+                    document.getElementById('card-ai-pct').innerText = aiPct + '% of total traffic';
 
-                    document.getElementById('card-tool-count').innerText = toolCount;
-                    document.getElementById('card-tool-pct').innerText = (pubData.traffic_distribution?.crawlers_tools_percent || 0) + '% of total traffic';
+                    document.getElementById('card-tool-count').innerText = 0;
+                    document.getElementById('card-tool-pct').innerText = '0% of total traffic';
 
                     dashCountryClustersCache = pubData.country_clusters || [];
                     dashGeoClustersCache = pubData.geo_clusters || [];
