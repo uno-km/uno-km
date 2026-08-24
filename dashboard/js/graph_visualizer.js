@@ -165,36 +165,52 @@ async function renderGraph(data) {
     .attr('stroke-width', d => Math.sqrt(d.value))
     .attr('opacity', 0); // start invisible
 
-  node = g.append('g')
-    .attr('class', 'nodes-layer')
+  // Create Node Groups with Hitboxes & Labels
+  const nodeGroup = g.append('g')
+    .attr('class', 'nodes-container')
+    .selectAll('g.node-item')
+    .data(data.nodes)
+    .join('g')
+    .attr('class', 'node-item')
+    .attr('cursor', 'pointer')
+    .attr('pointer-events', 'all')
+    .attr('data-id', d => d.id);
+
+  // 1. Invisible generous Hitbox circle (Radius = 32px for effortless clicking)
+  nodeGroup.append('circle')
+    .attr('class', 'node-hitbox')
+    .attr('r', d => Math.max(32, (d.radius || 12) + 16))
+    .attr('fill', 'transparent')
+    .attr('stroke', 'transparent')
+    .attr('pointer-events', 'all')
+    .attr('cursor', 'pointer');
+
+  // 2. Visible Visual Node Circle
+  node = nodeGroup.append('circle')
+    .attr('class', 'node-visual')
     .attr('stroke', 'var(--bg-deep)')
     .attr('stroke-width', 1.5)
-    .selectAll('circle')
-    .data(data.nodes)
-    .join('circle')
-    .attr('r', 0) // start radius 0
+    .attr('r', 0)
     .attr('fill', d => colorScale(d.group))
-    .attr('cursor', 'pointer')
-    .attr('pointer-events', 'all');
+    .attr('pointer-events', 'none');
 
-  window.nodeElements = node;
-  window.linkElements = link;
-
-  labels = g.append('g')
-    .attr('class', 'labels-layer')
-    .selectAll('text')
-    .data(data.nodes)
-    .join('text')
-    .attr('dx', d => d.radius + 8)
+  // 3. Text Label
+  labels = nodeGroup.append('text')
+    .attr('class', 'node-label')
+    .attr('dx', d => (d.radius || 12) + 8)
     .attr('dy', 4)
     .text(d => d.name || d.id)
     .attr('font-family', 'var(--font-mono)')
     .attr('font-size', '13px')
     .attr('font-weight', 'bold')
     .attr('fill', 'var(--text-secondary)')
-    .attr('cursor', 'pointer')
     .attr('pointer-events', 'all')
+    .attr('cursor', 'pointer')
     .attr('opacity', 0);
+
+  window.nodeElements = node;
+  window.nodeGroups = nodeGroup;
+  window.linkElements = link;
 
   // Bind Interactions IMMEDIATELY so clicks work without waiting for animation end
   bindNodeEvents();
@@ -224,42 +240,37 @@ async function renderGraph(data) {
 let time = 0;
 function tick() {
   time += 0.05;
-  // 부드러운 아메바(Amoeba) 무빙 이펙트: 모든 노드에 아주 미세한 사인 곡선 힘을 가함 (제자리 둥실둥실)
-  if (node && node.data) {
-    node.data().forEach((d, i) => {
+  if (window.nodeGroups && typeof window.nodeGroups.data === 'function') {
+    window.nodeGroups.data().forEach((d, i) => {
       d.vx += Math.sin(time + i) * 0.04;
       d.vy += Math.cos(time + i * 0.8) * 0.2;
     });
   }
 
-  link
-    .attr('x1', d => d.source.x)
-    .attr('y1', d => d.source.y)
-    .attr('x2', d => d.target.x)
-    .attr('y2', d => d.target.y);
+  if (link) {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+  }
 
-  node
-    .attr('cx', d => d.x)
-    .attr('cy', d => d.y);
-
-  if (labels) {
-    labels
-      .attr('x', d => d.x)
-      .attr('y', d => d.y);
+  if (window.nodeGroups) {
+    window.nodeGroups.attr('transform', d => `translate(${d.x || 0}, ${d.y || 0})`);
   }
 }
 
 function bindNodeEvents() {
-  const tooltipSmall = document.getElementById('graph-tooltip-small');
-  const tTitle = document.getElementById('tooltip-small-title');
   const modalNode = document.getElementById('modal-node-detail');
   const btnCloseModal = document.getElementById('btn-close-node-modal');
+  const tooltipSmall = document.getElementById('graph-tooltip-small');
+  const tTitle = document.getElementById('tooltip-small-title');
 
   if (btnCloseModal && modalNode) {
     btnCloseModal.onclick = (e) => {
       e.stopPropagation();
       modalNode.classList.remove('is-active');
-      modalNode.style.display = 'none';
+      modalNode.style.cssText = 'display: none !important;';
     };
   }
 
@@ -267,87 +278,99 @@ function bindNodeEvents() {
     modalNode.onclick = (e) => {
       if (e.target === modalNode) {
         modalNode.classList.remove('is-active');
-        modalNode.style.display = 'none';
+        modalNode.style.cssText = 'display: none !important;';
       }
     };
   }
 
-  // Pointer tracking for guaranteed click detection (drag vs click separation)
-  let pointerStart = { x: 0, y: 0, time: 0 };
-
-  function handleNodePointerDown(event, d) {
-    pointerStart = { x: event.clientX || event.pageX, y: event.clientY || event.pageY, time: Date.now() };
+  // Attach D3 Drag to node groups
+  if (window.nodeGroups) {
+    window.nodeGroups.call(drag(simulation));
   }
 
-  function handleNodePointerUp(event, d) {
-    const endX = event.clientX || event.pageX;
-    const endY = event.clientY || event.pageY;
-    const dist = Math.hypot(endX - pointerStart.x, endY - pointerStart.y);
-    const elapsed = Date.now() - pointerStart.time;
+  // NATIVE CAPTURE EVENT DELEGATION ON SVG ROOT (Cannot be stopped by D3 zoom or drag!)
+  const svgRoot = document.querySelector('#graph-container svg');
+  if (svgRoot && !svgRoot.__hasCaptureListeners) {
+    svgRoot.__hasCaptureListeners = true;
 
-    // If moved less than 8px and released within 800ms -> 100% Guaranateed Click!
-    if (dist <= 8 && elapsed <= 800) {
-      event.stopPropagation();
-      event.preventDefault();
-      if (window.audioEngine) window.audioEngine.playDeepBass();
-      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
-      renderNodeModal(d);
-    }
+    let pDown = { x: 0, y: 0, time: 0, targetData: null };
+
+    svgRoot.addEventListener('pointerdown', (e) => {
+      const group = e.target.closest('.node-item');
+      if (group && group.__data__) {
+        pDown = { x: e.clientX, y: e.clientY, time: Date.now(), targetData: group.__data__ };
+      } else {
+        pDown.targetData = null;
+      }
+    }, true); // CAPTURE PHASE!
+
+    svgRoot.addEventListener('pointerup', (e) => {
+      if (pDown.targetData) {
+        const dx = Math.abs(e.clientX - pDown.x);
+        const dy = Math.abs(e.clientY - pDown.y);
+        const dt = Date.now() - pDown.time;
+
+        // If moved less than 10px and released within 1000ms -> 100% UNCONDITIONAL CLICK!
+        if (dx <= 10 && dy <= 10 && dt <= 1000) {
+          e.stopPropagation();
+          e.preventDefault();
+          if (window.audioEngine) window.audioEngine.playDeepBass();
+          if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+          console.log('[Capture Click] Opening node modal for:', pDown.targetData.id);
+          renderNodeModal(pDown.targetData);
+        }
+        pDown.targetData = null;
+      }
+    }, true); // CAPTURE PHASE!
+
+    // Direct click fallback
+    svgRoot.addEventListener('click', (e) => {
+      const group = e.target.closest('.node-item');
+      if (group && group.__data__) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (window.audioEngine) window.audioEngine.playDeepBass();
+        if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+        console.log('[Direct Click] Opening node modal for:', group.__data__.id);
+        renderNodeModal(group.__data__);
+      }
+    }, true);
   }
 
-  // Attach D3 Drag & Hover & Click to Node Circles
-  node
-    .call(drag(simulation))
-    .on('pointerdown', handleNodePointerDown)
-    .on('pointerup', handleNodePointerUp)
-    .on('click', function(event, d) {
-      event.stopPropagation();
-      event.preventDefault();
-      if (window.audioEngine) window.audioEngine.playDeepBass();
-      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
-      renderNodeModal(d);
-    })
-    .on('mouseover', function (event, d) {
-      if (window.audioEngine) window.audioEngine.playTick();
-      d3.select(this)
-        .transition().duration(150)
-        .attr('r', d.radius * 1.3)
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 2.5);
+  // Hover animations on node groups
+  if (window.nodeGroups) {
+    window.nodeGroups
+      .on('mouseover', function (event, d) {
+        if (window.audioEngine) window.audioEngine.playTick();
+        d3.select(this).select('.node-visual')
+          .transition().duration(150)
+          .attr('r', (d.radius || 12) * 1.3)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 2.5);
 
-      if (tooltipSmall && tTitle) {
-        tTitle.textContent = d.name || d.id;
-        tooltipSmall.classList.add('is-visible');
-        tooltipSmall.style.left = (event.pageX + 15) + 'px';
-        tooltipSmall.style.top = (event.pageY + 15) + 'px';
-      }
-    })
-    .on('mousemove', function (event) {
-      if (tooltipSmall) {
-        tooltipSmall.style.left = (event.pageX + 15) + 'px';
-        tooltipSmall.style.top = (event.pageY + 15) + 'px';
-      }
-    })
-    .on('mouseout', function (event, d) {
-      d3.select(this)
-        .transition().duration(150)
-        .attr('r', d.radius)
-        .attr('stroke', 'var(--bg-deep)')
-        .attr('stroke-width', 1.5);
+        if (tooltipSmall && tTitle) {
+          tTitle.textContent = d.name || d.id;
+          tooltipSmall.classList.add('is-visible');
+          tooltipSmall.style.left = (event.pageX + 15) + 'px';
+          tooltipSmall.style.top = (event.pageY + 15) + 'px';
+        }
+      })
+      .on('mousemove', function (event) {
+        if (tooltipSmall) {
+          tooltipSmall.style.left = (event.pageX + 15) + 'px';
+          tooltipSmall.style.top = (event.pageY + 15) + 'px';
+        }
+      })
+      .on('mouseout', function (event, d) {
+        d3.select(this).select('.node-visual')
+          .transition().duration(150)
+          .attr('r', d.radius || 12)
+          .attr('stroke', 'var(--bg-deep)')
+          .attr('stroke-width', 1.5);
 
-      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
-    });
-
-  // Attach Guaranteed Click to Text Labels as well
-  labels
-    .on('pointerdown', handleNodePointerDown)
-    .on('pointerup', handleNodePointerUp)
-    .on('click', function(event, d) {
-      event.stopPropagation();
-      event.preventDefault();
-      if (window.audioEngine) window.audioEngine.playDeepBass();
-      renderNodeModal(d);
-    });
+        if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+      });
+  }
 }
 
 /**
@@ -970,10 +993,7 @@ export function renderNodeModal(d) {
   };
 
     modalNode.classList.add('is-active');
-  modalNode.style.display = 'flex';
-  modalNode.style.visibility = 'visible';
-  modalNode.style.opacity = '1';
-  modalNode.style.pointerEvents = 'auto';
+  modalNode.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important; z-index: 999999 !important; pointer-events: auto !important; position: fixed !important; inset: 0 !important;';
   zoomToNode(d);
 }
 
