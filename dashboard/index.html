@@ -264,25 +264,31 @@
   <!-- ═══════════════════════════════════════════════════════════
        NODE DETAIL MODAL (Click to open)
        ═══════════════════════════════════════════════════════════ -->
-  <div class="modal-backdrop" id="modal-node-detail" role="dialog" aria-hidden="true">
-    <div class="modal-card modal-medium">
-      <button type="button" class="btn-close-modal" id="btn-close-node-modal" aria-label="Close">
+  <div class="modal-backdrop" id="modal-node-detail" role="dialog" aria-hidden="true" style="z-index: 9999;">
+    <div class="modal-card modal-medium" style="max-width: 780px; width: 92vw; max-height: 88vh; overflow-y: auto; text-align: left; background: rgba(15, 23, 42, 0.96); border: 1px solid rgba(0, 239, 255, 0.4); box-shadow: 0 24px 64px rgba(0,0,0,0.85), 0 0 30px rgba(0, 239, 255, 0.2);">
+      <button type="button" class="btn-close-modal" id="btn-close-node-modal" aria-label="Close" style="cursor: pointer; z-index: 10;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
-      <div class="node-modal-icon">🚀</div>
-      <h2 id="node-modal-title">Node Title</h2>
-      <p id="node-modal-desc">Detailed description goes here...</p>
-      <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download"
-        style="width: 100%; justify-content: center; margin-top: 10px;">
-        Explore Repo
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </a>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <span class="node-modal-icon" style="font-size: 1.6rem;">🚀</span>
+        <h2 id="node-modal-title" style="margin: 0; font-size: 1.35rem; color: #fff; font-family: var(--font-sans);">Node Title</h2>
+      </div>
+      <div id="node-modal-desc" style="width: 100%;">
+        <!-- Detailed Executive Summary & Readme goes here -->
+      </div>
+      <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+        <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download"
+          style="padding: 10px 20px; font-size: 0.9rem; font-weight: bold; border-radius: 6px;">
+          <span>Explore Documentation &amp; Code</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width: 18px; height: 18px; margin-left: 6px;">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 

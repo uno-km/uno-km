@@ -2491,3 +2491,36 @@ body {
   padding: 20px 0;
   justify-content: center;
 }
+
+/* ═════════════════════════════════════════════════════════════
+   NODE DETAIL MODAL BULLETPROOF DISPLAY OVERRIDE
+   ═════════════════════════════════════════════════════════════ */
+#modal-node-detail {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  background: rgba(8, 10, 18, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  display: none;
+}
+
+#modal-node-detail.is-active {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.nodes-layer circle {
+  cursor: pointer !important;
+  pointer-events: all !important;
+}
+
+.labels-layer text {
+  cursor: pointer !important;
+  pointer-events: all !important;
+  user-select: none;
+}

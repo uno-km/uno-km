@@ -166,6 +166,7 @@ async function renderGraph(data) {
     .attr('opacity', 0); // start invisible
 
   node = g.append('g')
+    .attr('class', 'nodes-layer')
     .attr('stroke', 'var(--bg-deep)')
     .attr('stroke-width', 1.5)
     .selectAll('circle')
@@ -173,12 +174,14 @@ async function renderGraph(data) {
     .join('circle')
     .attr('r', 0) // start radius 0
     .attr('fill', d => colorScale(d.group))
-    .attr('cursor', d => d.url ? 'pointer' : 'grab');
+    .attr('cursor', 'pointer')
+    .attr('pointer-events', 'all');
 
   window.nodeElements = node;
   window.linkElements = link;
 
   labels = g.append('g')
+    .attr('class', 'labels-layer')
     .selectAll('text')
     .data(data.nodes)
     .join('text')
@@ -191,45 +194,30 @@ async function renderGraph(data) {
     .attr('fill', 'var(--text-secondary)')
     .attr('cursor', 'pointer')
     .attr('pointer-events', 'all')
-    .attr('opacity', 0)
-    .on('click', function(event, d) {
-      event.stopPropagation();
-      if (window.audioEngine) window.audioEngine.playDeepBass();
-      renderNodeModal(d);
-    });
+    .attr('opacity', 0);
+
+  // Bind Interactions IMMEDIATELY so clicks work without waiting for animation end
+  bindNodeEvents();
 
   // Cascade Animation (Fly-in / Grow)
-  // We return a Promise that resolves when the animation finishes
   return new Promise(resolve => {
-    // 1. Links fade in slowly
     link.transition()
       .duration(800)
       .attr('opacity', 1);
 
-    // 2. Nodes pop in one by one (cascade)
-    const totalNodes = data.nodes.length;
-    let finishedNodes = 0;
-
     node.transition()
       .duration(400)
-      .delay((d, i) => i * 30) // cascade effect
-      .attr('r', d => d.radius)
-      .on('end', () => {
-        finishedNodes++;
-        if (finishedNodes === totalNodes) {
-          // Show labels
-          labels.transition().duration(400).attr('opacity', 1);
+      .delay((d, i) => i * 20)
+      .attr('r', d => d.radius);
 
-          // 3. Start simulation AFTER all nodes are drawn
-          simulation.on('tick', tick);
-          // alphaTarget을 조금 더 높여서(0.05) 물리 엔진이 더 활발하게 반응하도록 함
-          simulation.alpha(1).alphaTarget(0.05).restart();
+    labels.transition()
+      .duration(600)
+      .delay(200)
+      .attr('opacity', 1);
 
-          // 4. Bind Interactions AFTER rendering
-          bindNodeEvents();
-          resolve();
-        }
-      });
+    simulation.on('tick', tick);
+    simulation.alpha(1).alphaTarget(0.05).restart();
+    resolve();
   });
 }
 
@@ -262,57 +250,78 @@ function tick() {
 }
 
 function bindNodeEvents() {
-  node.call(drag(simulation));
-
-  // UI Elements
   const tooltipSmall = document.getElementById('graph-tooltip-small');
   const tTitle = document.getElementById('tooltip-small-title');
-
   const modalNode = document.getElementById('modal-node-detail');
-  const mTitle = document.getElementById('node-modal-title');
-  const mDesc = document.getElementById('node-modal-desc');
-  const mLink = document.getElementById('node-modal-link');
   const btnCloseModal = document.getElementById('btn-close-node-modal');
 
-  // Close modal event
-  if (btnCloseModal) {
-    btnCloseModal.addEventListener('click', () => {
+  if (btnCloseModal && modalNode) {
+    btnCloseModal.onclick = (e) => {
+      e.stopPropagation();
       modalNode.classList.remove('is-active');
       modalNode.style.display = 'none';
-    });
+    };
   }
 
   if (modalNode) {
-    modalNode.addEventListener('click', (e) => {
-      // Close only if the backdrop itself was clicked (not the modal card inside)
+    modalNode.onclick = (e) => {
       if (e.target === modalNode) {
         modalNode.classList.remove('is-active');
         modalNode.style.display = 'none';
       }
-    });
+    };
   }
 
-  // Node Interactions
-  node.on('mouseover', function (event, d) {
-    if (window.audioEngine) window.audioEngine.playTick();
-    d3.select(this)
-      .transition().duration(200)
-      .attr('r', d.radius * 1.3)
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 2);
+  // Pointer tracking for guaranteed click detection (drag vs click separation)
+  let pointerStart = { x: 0, y: 0, time: 0 };
 
-    link.transition().duration(200)
-      .attr('stroke', l => l.source.id === d.id || l.target.id === d.id ? colorScale(d.group) : 'var(--border-subtle)')
-      .attr('stroke-opacity', l => l.source.id === d.id || l.target.id === d.id ? 1 : 0.2);
+  function handleNodePointerDown(event, d) {
+    pointerStart = { x: event.clientX || event.pageX, y: event.clientY || event.pageY, time: Date.now() };
+  }
 
-    // Show Small Tooltip tracking mouse
-    if (tooltipSmall && tTitle) {
-      tTitle.textContent = d.id;
-      tooltipSmall.classList.add('is-visible');
-      tooltipSmall.style.left = (event.pageX + 15) + 'px';
-      tooltipSmall.style.top = (event.pageY + 15) + 'px';
+  function handleNodePointerUp(event, d) {
+    const endX = event.clientX || event.pageX;
+    const endY = event.clientY || event.pageY;
+    const dist = Math.hypot(endX - pointerStart.x, endY - pointerStart.y);
+    const elapsed = Date.now() - pointerStart.time;
+
+    // If moved less than 8px and released within 800ms -> 100% Guaranateed Click!
+    if (dist <= 8 && elapsed <= 800) {
+      event.stopPropagation();
+      event.preventDefault();
+      if (window.audioEngine) window.audioEngine.playDeepBass();
+      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+      renderNodeModal(d);
     }
-  })
+  }
+
+  // Attach D3 Drag & Hover & Click to Node Circles
+  node
+    .call(drag(simulation))
+    .on('pointerdown', handleNodePointerDown)
+    .on('pointerup', handleNodePointerUp)
+    .on('click', function(event, d) {
+      event.stopPropagation();
+      event.preventDefault();
+      if (window.audioEngine) window.audioEngine.playDeepBass();
+      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+      renderNodeModal(d);
+    })
+    .on('mouseover', function (event, d) {
+      if (window.audioEngine) window.audioEngine.playTick();
+      d3.select(this)
+        .transition().duration(150)
+        .attr('r', d.radius * 1.3)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 2.5);
+
+      if (tooltipSmall && tTitle) {
+        tTitle.textContent = d.name || d.id;
+        tooltipSmall.classList.add('is-visible');
+        tooltipSmall.style.left = (event.pageX + 15) + 'px';
+        tooltipSmall.style.top = (event.pageY + 15) + 'px';
+      }
+    })
     .on('mousemove', function (event) {
       if (tooltipSmall) {
         tooltipSmall.style.left = (event.pageX + 15) + 'px';
@@ -321,30 +330,24 @@ function bindNodeEvents() {
     })
     .on('mouseout', function (event, d) {
       d3.select(this)
-        .transition().duration(200)
+        .transition().duration(150)
         .attr('r', d.radius)
         .attr('stroke', 'var(--bg-deep)')
         .attr('stroke-width', 1.5);
 
-      link.transition().duration(200)
-        .attr('stroke', 'var(--border-subtle)')
-        .attr('stroke-opacity', 0.6);
+      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
+    });
 
-      if (tooltipSmall) {
-        tooltipSmall.classList.remove('is-visible');
-      }
-    })
-    .on('click', function (event, d) {
-      if (isNodeDragging) return;
+  // Attach Guaranteed Click to Text Labels as well
+  labels
+    .on('pointerdown', handleNodePointerDown)
+    .on('pointerup', handleNodePointerUp)
+    .on('click', function(event, d) {
       event.stopPropagation();
       event.preventDefault();
       if (window.audioEngine) window.audioEngine.playDeepBass();
-      if (tooltipSmall) tooltipSmall.classList.remove('is-visible');
-      if (window.logTelemetryEvent) window.logTelemetryEvent('[LOG] Node clicked', `${d.id} 노드 클릭됨`);
       renderNodeModal(d);
     });
-
-  // End of bindNodeEvents
 }
 
 /**
@@ -966,10 +969,22 @@ export function renderNodeModal(d) {
     }
   };
 
-  modalNode.classList.add('is-active');
+    modalNode.classList.add('is-active');
   modalNode.style.display = 'flex';
+  modalNode.style.visibility = 'visible';
+  modalNode.style.opacity = '1';
+  modalNode.style.pointerEvents = 'auto';
   zoomToNode(d);
 }
+
+// Global hook to open any node detail from anywhere
+window.openNodeDetail = function(nodeId) {
+  if (!nodeId || !node || typeof node.data !== 'function') return;
+  const target = node.data().find(n => n.id === nodeId || n.name === nodeId);
+  if (target) {
+    renderNodeModal(target);
+  }
+};
 
 export function selectNodeById(id) {
   if (!node || !node.data) return false;
