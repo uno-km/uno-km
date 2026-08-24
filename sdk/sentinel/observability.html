@@ -1173,11 +1173,7 @@
                 buckets.set(t, 0);
             }
 
-            // Gather all timestamp events from serverAnalytics, store, and dashTimeSeriesData
-            const allItems = [...dashTimeSeriesData];
-            if (Array.isArray(window.lastLoadedServerEvents)) {
-                allItems.push(...window.lastLoadedServerEvents);
-            }
+
 
             allItems.forEach(s => {
                 const rawDate = s.created_at || s.evaluated_at || s.evaluatedAt || s.timestamp;
