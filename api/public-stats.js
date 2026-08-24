@@ -66,43 +66,63 @@ export default async function handler(req, res) {
 
     try {
 
-        // 1. Real Session and Unique Visitor Aggregation
+        // 1. Unified Session and Unique Visitor Aggregation (visitor_sessions + sentinel_risk_events)
         const sessionStats = await sql`
             SELECT 
-                COUNT(*) as total_sessions,
-                COUNT(DISTINCT visitor_id) as total_visitors,
-                COUNT(*) FILTER (WHERE has_webgpu = true) as webgpu_count
-            FROM visitor_sessions;
+                (COALESCE((SELECT COUNT(*) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_sessions,
+                (COALESCE((SELECT COUNT(DISTINCT visitor_id) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(DISTINCT visitor_id) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_visitors,
+                COALESCE((SELECT COUNT(*) FROM visitor_sessions WHERE has_webgpu = true), 0) as webgpu_count;
         `.catch(() => [{ total_sessions: 0, total_visitors: 0, webgpu_count: 0 }]);
 
-        // 2. Real AI Bot Crawler Aggregation
+        // 2. Real Unified AI Bot & Crawler Aggregation (sentinel_risk_events + sentinel_geo_deliveries + bot_crawler_logs)
         const botStats = await sql`
-            SELECT COUNT(*) as total_bots FROM bot_crawler_logs;
-        `.catch(() => [{ total_bots: 0 }]);
+            SELECT 
+                (
+                    COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'), 0) +
+                    COALESCE((SELECT COUNT(*) FROM sentinel_geo_deliveries), 0) +
+                    COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0)
+                ) as total_bots,
+                COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) as total_crawlers;
+        `.catch(() => [{ total_bots: 0, total_crawlers: 0 }]);
 
         const botBreakdown = await sql`
+            WITH all_ai_bots AS (
+                SELECT vendor_group as bot_name FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'
+                UNION ALL
+                SELECT bot_vendor as bot_name FROM sentinel_geo_deliveries
+                UNION ALL
+                SELECT bot_name FROM bot_crawler_logs
+            )
             SELECT 
                 bot_name, 
                 COUNT(*) as count,
-                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM bot_crawler_logs), 0)), 1) as percentage
-            FROM bot_crawler_logs
+                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM all_ai_bots), 0)), 1) as percentage
+            FROM all_ai_bots
+            WHERE bot_name IS NOT NULL AND bot_name != ''
             GROUP BY bot_name
             ORDER BY count DESC
-            LIMIT 6;
+            LIMIT 10;
         `.catch(() => []);
 
         // 3. Real Origin Regions (Zero IP Exposure)
         const regionStats = await sql`
+            WITH all_regions AS (
+                SELECT country, city FROM visitor_sessions
+                UNION ALL
+                SELECT country, city FROM sentinel_risk_events
+                UNION ALL
+                SELECT country, city FROM sentinel_geo_deliveries
+            )
             SELECT 
                 COALESCE(country, 'GLOBAL') as country,
                 COALESCE(city, 'Cloud Gateway') as city,
                 COUNT(*) as session_count,
-                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM visitor_sessions), 0)), 1) as percentage
-            FROM visitor_sessions
-            WHERE country IS NOT NULL AND country != 'UNKNOWN'
+                ROUND((COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM all_regions), 0)), 1) as percentage
+            FROM all_regions
+            WHERE country IS NOT NULL AND country != ''
             GROUP BY country, city
             ORDER BY session_count DESC
-            LIMIT 5;
+            LIMIT 6;
         `.catch(() => []);
 
         // 4. Real Top GPU / Hardware Renderers
@@ -117,18 +137,39 @@ export default async function handler(req, res) {
             LIMIT 5;
         `.catch(() => []);
 
-        // 5. Real Anonymized Incident & Crawler Stream (Recent 12 entries)
+        // 5. Recent Activity Stream (Unified)
         const recentBots = await sql`
-            SELECT 
-                bot_name, 
-                bot_category,
-                requested_path, 
-                country, 
-                city, 
-                detected_at
-            FROM bot_crawler_logs
+            WITH all_streams AS (
+                SELECT 
+                    triage_category as bot_category,
+                    COALESCE(vendor_group, 'Unknown') as bot_name,
+                    path_hop_chain as requested_path,
+                    country,
+                    city,
+                    evaluated_at as detected_at
+                FROM sentinel_risk_events
+                UNION ALL
+                SELECT 
+                    'AI_AGENT' as bot_category,
+                    bot_name,
+                    requested_path,
+                    country,
+                    city,
+                    delivered_at as detected_at
+                FROM sentinel_geo_deliveries
+                UNION ALL
+                SELECT 
+                    bot_category,
+                    bot_name,
+                    requested_path,
+                    country,
+                    city,
+                    detected_at
+                FROM bot_crawler_logs
+            )
+            SELECT * FROM all_streams
             ORDER BY detected_at DESC
-            LIMIT 10;
+            LIMIT 12;
         `.catch(() => []);
 
         const totalSessions = parseInt(sessionStats[0]?.total_sessions || 0, 10);
