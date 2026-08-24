@@ -736,7 +736,10 @@
 
           const streamTbody = document.getElementById('streamTableBody');
           if (pubData.recent_activity_stream && pubData.recent_activity_stream.length > 0) {
-            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => '<tr><td>' + s.time_ago + '</td><td><span class="badge-status bot">' + s.type + '</span></td><td><strong>' + s.source + '</strong></td><td><code>' + s.path + '</code></td><td>' + s.location + '</td><td><span class="badge-status geo">' + s.status + '</span></td></tr>').join('');
+            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => {
+              const displayTime = s.timestamp ? new Date(s.timestamp).toLocaleTimeString() : (s.time_ago || '--');
+              return '<tr><td>' + displayTime + '</td><td><span class="badge-status bot">' + s.type + '</span></td><td><strong>' + s.source + '</strong></td><td><code>' + s.path + '</code></td><td>' + s.location + '</td><td><span class="badge-status geo">' + s.status + '</span></td></tr>';
+            }).join('');
           }
         }
 

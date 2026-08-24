@@ -182,14 +182,25 @@ export default async function handler(req, res) {
         const botPct = totalAll > 0 ? Math.round((totalBots / totalAll) * 100) : 0;
         const webgpuPct = totalSessions > 0 ? Math.round((webgpuCount / totalSessions) * 100) : 0;
 
-        const stream = recentBots.map(b => ({
-            type: b.bot_category || 'AI_AGENT',
-            source: b.bot_name,
-            path: b.requested_path,
-            status: 'GEO STREAM 200',
-            location: `${b.country || 'GLOBAL'} (${b.city || 'Edge'})`,
-            time_ago: new Date(b.detected_at).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-        }));
+        const stream = recentBots.map(b => {
+            const rawIso = b.detected_at ? new Date(b.detected_at).toISOString() : new Date().toISOString();
+            const kstTime = new Date(rawIso).toLocaleTimeString('ko-KR', {
+                timeZone: 'Asia/Seoul',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            return {
+                type: b.bot_category || 'AI_AGENT',
+                source: b.bot_name,
+                path: b.requested_path,
+                status: 'GEO STREAM 200',
+                location: `${b.country || 'GLOBAL'} (${b.city || 'Edge'})`,
+                timestamp: rawIso,
+                time_ago: kstTime
+            };
+        });
 
         return res.status(200).json({
             status: 'online',
