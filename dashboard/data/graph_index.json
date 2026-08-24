@@ -23,13 +23,80 @@
       "url": "https://uno-km.vercel.app/foundation/",
       "repo_url": "https://github.com/uno-km",
       "docs_url": "https://uno-km.vercel.app/foundation/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/README.md",
       "phaseX": 0,
       "phaseY": 0,
       "freqX": 0.001,
       "freqY": 0.001,
       "metadata": {
         "root": true,
-        "depth": 1
+        "depth": 1,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/README.md"
+      }
+    },
+    {
+      "id": "AMEVA-Foundation",
+      "name": "AMEVA Foundation (AOSF)",
+      "group": 1,
+      "category": "ROOT",
+      "radius": 26.0,
+      "description": "Open-Source Foundation Portal, Governance Charter, RFC Specifications & Project Directory.",
+      "tech_stack": [
+        "AOSF-RFC-001",
+        "Open Governance",
+        "Meritocracy",
+        "Apache-2.0"
+      ],
+      "tags": [
+        "foundation",
+        "charter",
+        "governance",
+        "sponsorship"
+      ],
+      "url": "https://uno-km.vercel.app/foundation/",
+      "repo_url": "https://github.com/uno-km/uno-km/tree/main/foundation",
+      "docs_url": "https://uno-km.vercel.app/foundation/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/FOUNDATION.md",
+      "phaseX": 0.3,
+      "phaseY": 0.3,
+      "freqX": 0.0015,
+      "freqY": 0.0015,
+      "metadata": {
+        "depth": 1,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/FOUNDATION.md"
+      }
+    },
+    {
+      "id": "Eunho-Kim-CV",
+      "name": "Founder Executive CV",
+      "group": 1,
+      "category": "ROOT",
+      "radius": 24.0,
+      "description": "Eunho Kim (김은호) Senior Systems Architect & Full-Stack Engineer Technical Portfolio.",
+      "tech_stack": [
+        "Java 21",
+        "Spring Boot",
+        "PostgreSQL HA",
+        "WebGPU",
+        "ARM64 Bionic"
+      ],
+      "tags": [
+        "founder",
+        "architect",
+        "portfolio",
+        "systems-engineer"
+      ],
+      "url": "https://uno-km.vercel.app/",
+      "repo_url": "https://github.com/uno-km/uno-km",
+      "docs_url": "https://uno-km.vercel.app/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/README.md",
+      "phaseX": 0.6,
+      "phaseY": 0.6,
+      "freqX": 0.0015,
+      "freqY": 0.0015,
+      "metadata": {
+        "depth": 1,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/uno-km/main/README.md"
       }
     },
     {
@@ -42,7 +109,7 @@
       "tech_stack": [
         "Android Bionic",
         "ARM64 NEON",
-        "Clang",
+        "Clang 17",
         "C++17"
       ],
       "tags": [
@@ -115,12 +182,14 @@
       "url": "https://uno-km.vercel.app/sdk/sentinel/",
       "repo_url": "https://github.com/uno-km/ameva-sentinel",
       "docs_url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-sentinel/main/README.md",
       "phaseX": 2.0,
       "phaseY": 2.0,
       "freqX": 0.002,
       "freqY": 0.002,
       "metadata": {
-        "depth": 2
+        "depth": 2,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-sentinel/main/README.md"
       }
     },
     {
@@ -154,6 +223,36 @@
       }
     },
     {
+      "id": "Developer-Tooling-Docs",
+      "name": "Developer Tooling & Docs",
+      "group": 2,
+      "category": "DOMAIN",
+      "radius": 22.0,
+      "description": "Zero-Drift classic engineering documentation compilers, template generators, and CI/CD pipelines.",
+      "tech_stack": [
+        "Python 3",
+        "YAML",
+        "i18n Multi-lingual Engine",
+        "Jinja"
+      ],
+      "tags": [
+        "tooling",
+        "doc-builder",
+        "templates",
+        "i18n"
+      ],
+      "url": "https://uno-km.vercel.app/",
+      "repo_url": "https://github.com/uno-km/uno-km/tree/main/tools",
+      "docs_url": "https://uno-km.vercel.app/",
+      "phaseX": 3.2,
+      "phaseY": 3.2,
+      "freqX": 0.002,
+      "freqY": 0.002,
+      "metadata": {
+        "depth": 2
+      }
+    },
+    {
       "id": "termux-bitnet",
       "name": "Termux-BitNet",
       "group": 3,
@@ -177,6 +276,7 @@
       "url": "https://uno-km.vercel.app/lib/bitnet/",
       "repo_url": "https://github.com/uno-km/termux-bitnet",
       "docs_url": "https://uno-km.vercel.app/lib/bitnet/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/termux-bitnet/main/README.md",
       "phaseX": 0.8,
       "phaseY": 0.8,
       "freqX": 0.003,
@@ -184,7 +284,8 @@
       "metadata": {
         "depth": 3,
         "pypi": "termux-bitnet",
-        "npm": "termux-bitnet"
+        "npm": "termux-bitnet",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/termux-bitnet/main/README.md"
       }
     },
     {
@@ -198,7 +299,8 @@
         "Python",
         "OpenBLAS NEON",
         "SafeTensors",
-        "LoRA"
+        "LoRA",
+        "RoPE"
       ],
       "tags": [
         "autograd",
@@ -210,13 +312,15 @@
       "url": "https://uno-km.vercel.app/lib/train/",
       "repo_url": "https://github.com/uno-km/termux-train",
       "docs_url": "https://uno-km.vercel.app/lib/train/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/termux-train/main/README.md",
       "phaseX": 1.0,
       "phaseY": 1.0,
       "freqX": 0.003,
       "freqY": 0.003,
       "metadata": {
         "depth": 3,
-        "pypi": "termux-train"
+        "pypi": "termux-train",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/termux-train/main/README.md"
       }
     },
     {
@@ -241,6 +345,7 @@
       "url": "https://uno-km.vercel.app/lib/stt/",
       "repo_url": "https://github.com/uno-km/termux-stt",
       "docs_url": "https://uno-km.vercel.app/lib/stt/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/termux-stt/main/README.md",
       "phaseX": 1.4,
       "phaseY": 1.4,
       "freqX": 0.003,
@@ -248,7 +353,8 @@
       "metadata": {
         "depth": 3,
         "pypi": "termux-stt",
-        "npm": "termux-stt"
+        "npm": "termux-stt",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/termux-stt/main/README.md"
       }
     },
     {
@@ -273,6 +379,7 @@
       "url": "https://uno-km.vercel.app/lib/diffusion/",
       "repo_url": "https://github.com/uno-km/termux-diffusion",
       "docs_url": "https://uno-km.vercel.app/lib/diffusion/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/termux-diffusion/main/README.md",
       "phaseX": 1.8,
       "phaseY": 1.8,
       "freqX": 0.003,
@@ -280,7 +387,8 @@
       "metadata": {
         "depth": 3,
         "pypi": "termux-diffusion",
-        "npm": "termux-diffusion"
+        "npm": "termux-diffusion",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/termux-diffusion/main/README.md"
       }
     },
     {
@@ -305,6 +413,7 @@
       "url": "https://uno-km.vercel.app/lib/playwright/",
       "repo_url": "https://github.com/uno-km/termux-playwright-demo",
       "docs_url": "https://uno-km.vercel.app/lib/playwright/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/termux-playwright-demo/main/README.md",
       "phaseX": 2.2,
       "phaseY": 2.2,
       "freqX": 0.003,
@@ -312,7 +421,8 @@
       "metadata": {
         "depth": 3,
         "pypi": "termux-playwright",
-        "npm": "termux-playwright"
+        "npm": "termux-playwright",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/termux-playwright-demo/main/README.md"
       }
     },
     {
@@ -337,13 +447,15 @@
       "url": "https://uno-km.vercel.app/lib/forge/",
       "repo_url": "https://github.com/uno-km/AMEVA-Forge",
       "docs_url": "https://uno-km.vercel.app/lib/forge/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/AMEVA-Forge/main/README.md",
       "phaseX": 0.7,
       "phaseY": 0.7,
       "freqX": 0.003,
       "freqY": 0.003,
       "metadata": {
         "depth": 3,
-        "pypi": "ameva"
+        "pypi": "ameva",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/AMEVA-Forge/main/README.md"
       }
     },
     {
@@ -369,12 +481,14 @@
       "url": "https://ameva-workstation-web-core.vercel.app/",
       "repo_url": "https://github.com/uno-km/AMEVA-Workstation-Web",
       "docs_url": "https://ameva-workstation-web-core.vercel.app/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/AMEVA-Workstation-Web/main/README.md",
       "phaseX": 1.3,
       "phaseY": 1.3,
       "freqX": 0.003,
       "freqY": 0.003,
       "metadata": {
-        "depth": 3
+        "depth": 3,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/AMEVA-Workstation-Web/main/README.md"
       }
     },
     {
@@ -399,13 +513,15 @@
       "url": "https://uno-km.vercel.app/sdk/sentinel/",
       "repo_url": "https://github.com/uno-km/ameva-sentinel",
       "docs_url": "https://uno-km.vercel.app/sdk/sentinel/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-sentinel/main/README.md",
       "phaseX": 2.1,
       "phaseY": 2.1,
       "freqX": 0.003,
       "freqY": 0.003,
       "metadata": {
         "depth": 3,
-        "npm": "@ameva/sentinel"
+        "npm": "@ameva/sentinel",
+        "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-sentinel/main/README.md"
       }
     },
     {
@@ -428,8 +544,40 @@
       "url": "https://uno-km.vercel.app/",
       "repo_url": "https://github.com/uno-km/ameva-docfold",
       "docs_url": "https://uno-km.vercel.app/",
+      "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-docfold/main/README.md",
       "phaseX": 2.7,
       "phaseY": 2.7,
+      "freqX": 0.003,
+      "freqY": 0.003,
+      "metadata": {
+        "depth": 3,
+        "readme_url": "https://raw.githubusercontent.com/uno-km/ameva-docfold/main/README.md"
+      }
+    },
+    {
+      "id": "AMEVA-Doc-Builder",
+      "name": "AMEVA Doc-Builder",
+      "group": 3,
+      "category": "TOOLING",
+      "radius": 16.0,
+      "description": "Automated 100% Zero-Drift documentation compiler generating Apache/Tomcat classic sites & i18n feeds.",
+      "tech_stack": [
+        "Python 3",
+        "YAML Engine",
+        "Markdown Parser",
+        "JSON-LD"
+      ],
+      "tags": [
+        "doc-builder",
+        "github-pages",
+        "seo",
+        "zero-drift"
+      ],
+      "url": "https://uno-km.vercel.app/",
+      "repo_url": "https://github.com/uno-km/uno-km/tree/main/tools/doc_builder",
+      "docs_url": "https://uno-km.vercel.app/",
+      "phaseX": 3.3,
+      "phaseY": 3.3,
       "freqX": 0.003,
       "freqY": 0.003,
       "metadata": {
@@ -566,6 +714,18 @@
   "links": [
     {
       "source": "AMEVA-Universe",
+      "target": "AMEVA-Foundation",
+      "value": 5.0,
+      "label": "Foundation Charter"
+    },
+    {
+      "source": "AMEVA-Universe",
+      "target": "Eunho-Kim-CV",
+      "value": 5.0,
+      "label": "Systems Architect"
+    },
+    {
+      "source": "AMEVA-Universe",
       "target": "Mobile-Bionic-AI",
       "value": 4.0,
       "label": "Ecosystem Pillar"
@@ -587,6 +747,12 @@
       "target": "Autonomous-Systems",
       "value": 4.0,
       "label": "Ecosystem Pillar"
+    },
+    {
+      "source": "AMEVA-Universe",
+      "target": "Developer-Tooling-Docs",
+      "value": 3.5,
+      "label": "Tooling & CI/CD"
     },
     {
       "source": "Mobile-Bionic-AI",
@@ -641,6 +807,12 @@
       "target": "AMEVA-DocFold",
       "value": 3.0,
       "label": "Semantic Compression"
+    },
+    {
+      "source": "Developer-Tooling-Docs",
+      "target": "AMEVA-Doc-Builder",
+      "value": 3.0,
+      "label": "Doc Compiler"
     },
     {
       "source": "termux-train",

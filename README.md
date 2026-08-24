@@ -64,6 +64,51 @@
 
 ---
 
+## Founder & Chief Architect
+
+<table>
+  <tr>
+    <td width="34%" align="center" valign="top">
+      <br/>
+      <img src="assets/images/profile.jpg" width="150" height="150" style="border-radius: 50%; object-fit: cover;" alt="김은호 (Eunho Kim)"/><br/><br/>
+      <h3 align="center" style="margin: 4px 0 2px 0;">김은호 (Eunho Kim)</h3>
+      <p align="center" style="color: #64748b; font-size: 0.88em; margin-bottom: 12px;"><code>@uno-km</code> · <code>1994.11.10</code></p>
+      <a href="https://uno-km.vercel.app/"><img src="https://img.shields.io/badge/Senior%20Full--Stack%20Engineer%20%26%20Systems%20Architect-003399?style=flat-square&logoColor=white" alt="Role"></a><br/><br/>
+      <a href="https://uno-km.vercel.app/foundation/index.html"><img src="https://img.shields.io/badge/Founder%20%26%20Chair%20%40%20AMEVA%20Foundation-FEF3C7?style=flat-square&labelColor=FEF3C7&color=92400E" alt="Founder"></a><br/><br/>
+      <a href="https://github.com/sponsors/uno-km"><img src="https://img.shields.io/badge/GitHub%20Sponsor-%40uno--km-EA4AAA?style=flat-square" alt="Sponsor"></a><br/><br/>
+      <a href="https://opencollective.com/ameva-fund"><img src="https://img.shields.io/badge/Open%20Collective-(AOSF%20Fund)-004499?style=flat-square&color=E8F0FE&labelColor=E8F0FE" alt="OpenCollective"></a>
+    </td>
+    <td width="66%" valign="top">
+      <h4>Contact &amp; Links</h4>
+      <ul>
+        <li>Phone: <b>010-4943-7334</b></li>
+        <li>Email: <a href="mailto:zhfldk014745@naver.com"><b>zhfldk014745@naver.com</b></a></li>
+        <li>Tech Blog: <a href="https://uno-kim.tistory.com/" target="_blank"><b>uno-kim.tistory.com (기술블로그)</b></a></li>
+        <li>GitHub: <a href="https://github.com/uno-km" target="_blank"><b>github.com/uno-km</b></a></li>
+        <li>Live Workstation: <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank"><b>AMEVA Workstation</b></a></li>
+        <li>Location: <b>대한민국 경기도 성남시 분당구 (판교)</b></li>
+      </ul>
+      <hr/>
+      <h4>Education &amp; Language</h4>
+      <ul>
+        <li><b>아주대학교 정보통신대학원</b> — 인공지능학과 석사 재학 (2026.08 ~)</li>
+        <li><b>한양사이버대학교</b> — 응용소프트웨어공학과 학사 (3.94 / 4.5)</li>
+        <li><b>영어 (OPIc IH)</b> — 기술 소통 및 비즈니스 회화 가능</li>
+      </ul>
+      <hr/>
+      <h4>Technical Competencies (Core)</h4>
+      <p><b>Systems &amp; Edge AI</b><br/>
+      <code>WebGPU Local AI</code> <code>On-Device Autograd (DAG)</code> <code>ARM64 NEON SIMD</code> <code>1.58-bit BitNet Quantization</code> <code>WASM Sandbox</code> <code>SafeTensors Zero-Copy</code></p>
+      <p><b>Enterprise Backend &amp; Database</b><br/>
+      <code>Java 17/21</code> <code>Spring Boot</code> <code>JPA / MyBatis</code> <code>PostgreSQL / Oracle DB</code> <code>Query Tuning (3s → 0.3s)</code> <code>MSA / RESTful API</code></p>
+      <p><b>Architecture &amp; DevOps</b><br/>
+      <code>Distributed AI Orchestration</code> <code>CI/CD (Jenkins, GitHub Actions)</code> <code>Docker / K8S</code> <code>Site Reliability Engineering (SRE)</code></p>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## 1. About AMEVA Open-Source Foundation (AOSF)
 
 **AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)**은 투명한 개방형 거버넌스와 실력주의(Meritocracy) 모델을 기반으로 운영되는 독립 비영리 오픈소스 기술 연구 협의체입니다.
@@ -161,4 +206,12 @@ AOSF는 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원의 코
 - **개발자 기술 블로그**: [https://uno-kim.tistory.com/](https://uno-kim.tistory.com/) (쌩초보코딩단, 천천히 앞으로)
 - **AI 에이전트 전용 명세서**: [https://uno-km.vercel.app/llms.txt](https://uno-km.vercel.app/llms.txt)
 
-> *"화려한 미사여구나 마케팅 수사 대신, 정확한 수학적 모델과 투명한 오픈소스 코드로 증명하겠습니다. 자유로운 클라이언트 엣지 AI의 미래를 함께 만들어 갈 여러분의 깃허브 방문과 스타(Star), 피드백을 기다립니다."*
+---
+
+<p align="center">
+  &copy; 2026 <b>Eunho Kim (김은호 / @uno-km)</b> · Senior Full-Stack Engineer & Systems Architect.<br/>
+  High-Clarity Enterprise Open-Source Technical Portfolio · Powered by AMEVA Ecosystem.
+</p>
+
+
+

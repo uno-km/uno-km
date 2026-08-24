@@ -696,6 +696,65 @@ export function zoomToNode(targetNode) {
 /**
  * Render the modal detail card for a selected node
  */
+
+// Global In-Memory Cache for fetched Readmes
+const readmeCache = new Map();
+
+async function loadReadmeContent(d) {
+  if (readmeCache.has(d.id)) {
+    return readmeCache.get(d.id);
+  }
+
+  const urlsToTry = [];
+  if (d.readme_url) urlsToTry.push(d.readme_url);
+  if (d.metadata && d.metadata.readme_url) urlsToTry.push(d.metadata.readme_url);
+  
+  const repoName = d.id;
+  urlsToTry.push(`https://raw.githubusercontent.com/uno-km/${repoName}/main/README.md`);
+  urlsToTry.push(`https://raw.githubusercontent.com/uno-km/${repoName}/master/README.md`);
+  if (repoName === 'AMEVA-Universe' || repoName === 'Eunho-Kim-CV') {
+    urlsToTry.push('https://raw.githubusercontent.com/uno-km/uno-km/main/README.md');
+  }
+  if (repoName === 'AMEVA-Foundation') {
+    urlsToTry.push('https://raw.githubusercontent.com/uno-km/uno-km/main/FOUNDATION.md');
+  }
+  if (repoName === 'termux-playwright') {
+    urlsToTry.push('https://raw.githubusercontent.com/uno-km/termux-playwright-demo/main/README.md');
+  }
+  if (repoName === 'AMEVA-Workstation') {
+    urlsToTry.push('https://raw.githubusercontent.com/uno-km/AMEVA-Workstation-Web/main/README.md');
+  }
+
+  for (const url of urlsToTry) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.length > 50 && !text.includes('404: Not Found')) {
+          readmeCache.set(d.id, text);
+          return text;
+        }
+      }
+    } catch (e) {
+      // Continue next candidate
+    }
+  }
+
+  // Structured Fallback Markdown
+  let fallbackMd = `# ${d.name || d.id}\n\n${d.description || 'AMEVA Sovereign Edge AI Ecosystem Component'}\n\n`;
+  if (d.tech_stack && d.tech_stack.length > 0) {
+    fallbackMd += '### 🛠️ Tech Stack\n' + d.tech_stack.map(t => `- **${t}**`).join('\n') + '\n\n';
+  }
+  if (d.docs_url) {
+    fallbackMd += `### 📖 Official Documentation\n- [Visit Documentation Portal](${d.docs_url})\n`;
+  }
+  if (d.repo_url) {
+    fallbackMd += `### 📦 GitHub Repository\n- [View Source Code](${d.repo_url})\n`;
+  }
+  readmeCache.set(d.id, fallbackMd);
+  return fallbackMd;
+}
+
 export function renderNodeModal(d) {
   const modalNode = document.getElementById('modal-node-detail');
   const mTitle = document.getElementById('node-modal-title');
@@ -703,58 +762,87 @@ export function renderNodeModal(d) {
   const mLink = document.getElementById('node-modal-link');
   if (!modalNode || !mTitle || !mDesc) return;
 
-  mTitle.textContent = d.id;
+  const tierBadge = d.group ? `<span style="font-size:0.75rem; background:rgba(0,239,255,0.15); color:var(--accent-cyan); padding:3px 10px; border-radius:6px; margin-left:10px; border:1px solid rgba(0,239,255,0.3); font-weight:600;">Tier ${d.group} ${d.category || ''}</span>` : '';
+  mTitle.innerHTML = `${d.name || d.id} ${tierBadge}`;
 
-  // 1. Parent Node Back Button
+  // 1. Parent Node Navigation Button
   let backBtnHTML = '';
-  const parentLink = link.data().find(l => l.target.id === d.id);
+  const parentLink = (link && typeof link.data === 'function') ? link.data().find(l => l.target.id === d.id) : null;
   if (parentLink) {
     const parentNode = parentLink.source;
-    backBtnHTML = `<div class="back-btn-container" style="margin-bottom:15px;">
-      <button class="btn-node-back" data-id="${parentNode.id}" style="background:transparent; border:1px solid var(--accent-purple); color:var(--accent-purple); padding:6px 12px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.8rem; transition:all 0.2s ease;">
-        ⬅️ ${parentNode.id} (으)로 돌아가기
+    backBtnHTML = `<div class="back-btn-container" style="margin-bottom:14px;">
+      <button class="btn-node-back" data-id="${parentNode.id}" style="background:rgba(124,58,237,0.15); border:1px solid var(--accent-purple); color:#c4b5fd; padding:6px 14px; border-radius:6px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; transition:all 0.2s ease;">
+        ⬅️ 상위: ${parentNode.name || parentNode.id} (으)로 이동
       </button>
     </div>`;
   }
 
-  // 2. Child Nodes List
+  // 2. Child Nodes Hierarchy
   let childrenHTML = '';
-  const children = link.data()
-    .filter(l => l.source.id === d.id)
-    .map(l => l.target);
-
+  const children = (link && typeof link.data === 'function') ? link.data().filter(l => l.source.id === d.id).map(l => l.target) : [];
   if (children.length > 0) {
-    childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:15px;">';
-    childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">👇 하위 노드 목록</h4>';
-    childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">';
+    childrenHTML = '<div class="child-nodes-container" style="margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:16px;">';
+    childrenHTML += '<h4 style="color:var(--accent-cyan); font-family:var(--font-mono); margin-bottom:12px; font-size:0.9rem;">🪐 하위 연결 노드 (' + children.length + '개)</h4>';
+    childrenHTML += '<ul class="child-node-list" style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:8px;">';
     children.forEach(child => {
-      childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.85rem; border:1px solid transparent; transition:all 0.2s ease;">
-         <span style="margin-right:8px;">${child.isRepo ? '📦' : '📂'}</span> ${child.id}
+      childrenHTML += `<li class="child-node-item" data-id="${child.id}" style="background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; cursor:pointer; font-family:var(--font-mono); font-size:0.82rem; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s ease;">
+         <span style="margin-right:6px;">🔹</span> <strong>${child.name || child.id}</strong>
       </li>`;
     });
     childrenHTML += '</ul></div>';
   }
 
-  let descHTML = d.description || 'No description provided.';
-  if (d.isRepo && window.knowledgeEngine && window.knowledgeEngine.readmeMap.has(d.id)) {
-    const readmeMarkdown = window.knowledgeEngine.readmeMap.get(d.id);
-    if (typeof marked !== 'undefined') {
-      descHTML = marked.parse(readmeMarkdown);
-    }
-  } else {
-    descHTML = `<p>${descHTML}</p>`;
+  // 3. Quick Metadata Header (Tech Stack & Packages)
+  let metaHeaderHTML = '<div style="margin-bottom:16px; display:flex; flex-direction:column; gap:8px;">';
+  if (d.description) {
+    metaHeaderHTML += `<p style="font-size:0.95rem; color:#cbd5e1; line-height:1.6; margin:0;">${d.description}</p>`;
   }
+  if (d.tech_stack && d.tech_stack.length > 0) {
+    const badges = d.tech_stack.map(t => `<span style="font-size:0.75rem; background:rgba(255,255,255,0.08); border:1px solid var(--border-subtle); padding:2px 8px; border-radius:4px; margin-right:6px; color:#e2e8f0;">${t}</span>`).join('');
+    metaHeaderHTML += `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${badges}</div>`;
+  }
+  if ((d.metadata && d.metadata.pypi) || (d.metadata && d.metadata.npm)) {
+    metaHeaderHTML += `<div style="background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; border:1px solid var(--border-subtle); margin-top:4px;">`;
+    if (d.metadata.pypi) metaHeaderHTML += `<div style="color:#3ECF8E;">$ pip install ${d.metadata.pypi}</div>`;
+    if (d.metadata.npm) metaHeaderHTML += `<div style="color:#00EFFF;">$ npm install ${d.metadata.npm}</div>`;
+    metaHeaderHTML += `</div>`;
+  }
+  metaHeaderHTML += '</div>';
 
-  mDesc.innerHTML = `${backBtnHTML}${descHTML}${childrenHTML}`;
+  // 4. Initial placeholder with loading spinner for README
+  const readmeContainerId = `readme-body-${Date.now()}`;
+  const initialReadmeHTML = `<div id="${readmeContainerId}" class="markdown-body" style="background:rgba(15,23,42,0.6); padding:20px; border-radius:10px; border:1px solid var(--border-subtle); max-height:50vh; overflow-y:auto; font-size:0.9rem; line-height:1.65;">
+    <div style="display:flex; align-items:center; gap:10px; color:var(--text-secondary);">
+      <div class="spinner" style="width:18px; height:18px; border:2px solid var(--accent-cyan); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+      <span>📖 Fetching repository README documentation from GitHub...</span>
+    </div>
+  </div>`;
 
-  if (d.url) {
-    mLink.href = d.url;
+  mDesc.innerHTML = `${backBtnHTML}${metaHeaderHTML}${initialReadmeHTML}${childrenHTML}`;
+
+  // Asynchronously load and parse full README markdown
+  loadReadmeContent(d).then(rawMd => {
+    const el = document.getElementById(readmeContainerId);
+    if (el) {
+      if (typeof marked !== 'undefined' && rawMd) {
+        el.innerHTML = marked.parse(rawMd);
+      } else {
+        el.innerHTML = `<pre style="white-space:pre-wrap;">${rawMd}</pre>`;
+      }
+    }
+  });
+
+  // Action Button
+  const targetUrl = d.docs_url || d.url || d.repo_url;
+  if (targetUrl) {
+    mLink.href = targetUrl;
     mLink.style.display = 'inline-flex';
+    mLink.innerHTML = `<span>Explore Documentation &amp; Code</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>`;
   } else {
     mLink.style.display = 'none';
   }
 
-  // Event delegation
+  // Event Delegation for child and parent navigation
   mDesc.onclick = (e) => {
     const backBtn = e.target.closest('.btn-node-back');
     if (backBtn) {
@@ -782,9 +870,6 @@ export function renderNodeModal(d) {
   zoomToNode(d);
 }
 
-/**
- * Expose selecting and navigating to a node by ID to the window object
- */
 export function selectNodeById(id) {
   if (!node || !node.data) return false;
   const targetNode = node.data().find(n => n.id === id || n.id.toLowerCase() === id.toLowerCase());
