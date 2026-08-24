@@ -83,6 +83,31 @@
       "permanent": false
     },
     {
+      "source": "/sentinel/observability.html",
+      "destination": "/analytics/",
+      "permanent": false
+    },
+    {
+      "source": "/sdk/sentinel/observability.html",
+      "destination": "/analytics/",
+      "permanent": false
+    },
+    {
+      "source": "/docs/sentinel/observability.html",
+      "destination": "/analytics/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/sentinel/observability.html",
+      "destination": "/analytics/",
+      "permanent": false
+    },
+    {
+      "source": "/observability",
+      "destination": "/analytics/",
+      "permanent": false
+    },
+    {
       "source": "/lib/bitnet",
       "destination": "/lib/bitnet/",
       "permanent": false

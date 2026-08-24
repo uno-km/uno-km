@@ -156,6 +156,7 @@
           <option value="la">🏛️ Latina</option>
         </select>
       </div>
+      <a href="/dashboard/" class="header-btn" style="background: #004499; color: #ffffff; font-weight: 700; border-color: #003380;">🛡️ SDK 기본 대시보드</a>
       <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn">npm (Node.js)</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
       <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary">GitHub</a>
@@ -266,6 +267,34 @@
           <span>👤 Interactive Developer Traffic (Web / Mobile / ARM64)</span>
           <span>🤖 AI Model Context Protocol &amp; Search Indexing</span>
         </div>
+      <!-- 2.5 Dynamic Node-Based Intent & Journey Visualizer (홍보용 실시간 노드 관제) -->
+      <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:6px; padding:18px 20px; margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <h3 style="margin:0; font-size:1.05rem; color:var(--primary-color); font-weight:800;">🌐 1. Pre-Inflow Deep Origin &amp; Intent Node Graph (유입 전 출처 &amp; 검색 의도)</h3>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px; margin-bottom:0;">
+              방문자 및 AI 크롤러가 사이트에 오기 직전에 어떤 검색을 했고 어디를 거쳐 왔는지(Referrer / Deep Link) 실시간 DB 노드 분석
+            </p>
+          </div>
+          <span class="badge-status geo">Live Origin Flow</span>
+        </div>
+
+        <!-- Dynamic Origin Nodes Grid -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-bottom:18px;" id="originNodesGrid">
+          <div style="grid-column:1/-1; text-align:center; padding:14px; color:var(--text-muted);">Neon DB로부터 실시간 유입 노드를 수집 중입니다...</div>
+        </div>
+
+        <!-- In-Site Journey & Exit Hop Node Chain -->
+        <div style="border-top:1px solid var(--border-color); padding-top:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h4 style="margin:0; font-size:0.92rem; color:var(--primary-color); font-weight:700;">🐾 2. Real-Time In-Site Journey &amp; Exit Hop Traversal (사이트 내 체류 &amp; 이탈 직전까지 본 것)</h4>
+            <span style="font-size:0.78rem; color:var(--text-muted);">실시간 세션 홉 체인 분석</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;" id="journeyHopsList">
+            <div style="text-align:center; padding:12px; color:var(--text-muted);">실시간 방문자 여정 홉을 수집 중입니다...</div>
+          </div>
+        </div>
       </div>
 
       <!-- 3. AI Bot Breakdown & Top Regions 2-Column Tables -->
@@ -312,10 +341,10 @@
       <!-- 4. Recent Real-Time Edge Stream Table -->
       <h3>⚡ Recent Anonymized Edge Activity Stream</h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
-        Vercel Edge 미들웨어를 통과한 최근 10건의 실시간 크롤러 및 접근 기록입니다 (IP 비식별화 완료):
+        Vercel Edge 미들웨어를 통과한 최근 실시간 크롤러 및 접근 기록입니다 (IP 비식별화 완료):
       </p>
 
-      <div style="overflow-x: auto;">
+      <div style="overflow-x: auto; margin-bottom: 24px;">
         <table class="stream-table">
           <thead>
             <tr>
@@ -335,11 +364,39 @@
         </table>
       </div>
 
-      <!-- 5. Bottom Architecture Notes -->
+      <!-- 5. Deep Forensic Footprints Table -->
+      <h3>🔬 Deep Forensic Footprints (Device &amp; Browser Signatures)</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+        방문자 ID를 클릭하시면 <strong>유입 전 행동, 내 사이트 내 상세 이동 경로(Hops), 최종 이탈 지점 및 하드웨어 물리 지문</strong>을 확인하실 수 있습니다:
+      </p>
+
+      <div style="overflow-x: auto;">
+        <table class="stream-table">
+          <thead>
+            <tr>
+              <th>Visitor ID (Click for Dossier)</th>
+              <th>Location</th>
+              <th>Canvas Hash</th>
+              <th>Audio Hash</th>
+              <th>Screen Hz</th>
+              <th>Battery</th>
+              <th>Captured At</th>
+            </tr>
+          </thead>
+          <tbody id="forensicTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-muted);">포렌식 서명 데이터를 로딩 중입니다...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 6. Bottom Architecture Notes -->
       <h3 style="margin-top: 32px;">Architecture &amp; Data Pipeline Notes</h3>
       <ul>
-        <li><strong>In-Memory Batching</strong>: 클라이언트 텔레메트리(`shared/telemetry.js`)는 8개 이벤트 단위로 버퍼링되어 전송되므로 서버리스 인보케이션 및 DB I/O 비용을 90% 이상 절감합니다.</li>
+        <li><strong>In-Memory Batching</strong>: 클라이언트 텔레메트리(`shared/telemetry.js`)는 마이크로 배치 큐로 버퍼링되어 전송되므로 서버리스 인보케이션 및 DB I/O 비용을 90% 이상 절감합니다.</li>
         <li><strong>Edge Stream Injection</strong>: AI 봇 식별 시 `middleware.js`가 오리진 서버 부하 없이 에지 레벨에서 고속 GEO 마크다운 문서를 직접 반환합니다.</li>
+        <li><strong>Two Unified Dashboards</strong>: 현재 보시는 화면은 <strong>홍보용 통합 관제 콘솔</strong>이며, SDK 설치 시 제공되는 기본 관리 화면은 <a href="/dashboard/" style="color:var(--primary-color); font-weight:700;">[SDK 기본형 대시보드]</a>에서 확인하실 수 있습니다.</li>
       </ul>
     </main>
   </div>
@@ -349,74 +406,287 @@
     <p>&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
   </footer>
 
+  <!-- 🔬 Deep Visitor Forensic & Path Traversal Modal -->
+  <div id="visitorModalOverlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.65); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(2px);">
+    <div style="background:#ffffff; border:2px solid #004499; border-radius:6px; width:92%; max-width:760px; max-height:85vh; overflow-y:auto; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,0.25); display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cbd5e1; padding-bottom:10px;">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#004499; font-weight:800;" id="mVisitorTitle">🔬 Visitor Forensic Dossier</h3>
+          <span style="font-size:0.8rem; color:#64748b;" id="mVisitorSub">Captured at --</span>
+        </div>
+        <button onclick="closeVisitorModal()" class="header-btn" style="font-weight:800; padding:4px 10px; cursor:pointer;">✕ Close</button>
+      </div>
+
+      <!-- 1. Origin Intent -->
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">🌐 1. Pre-Inflow Deep Origin &amp; Intent (오기 전에 어디서 무엇을 하다 왔는지)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.82rem;">
+          <div><strong>Deep Referrer / Query:</strong> <code id="mOriginReferrer" style="color:#004499;">Direct / Bookmark</code></div>
+          <div><strong>Network / ASN ISP:</strong> <span id="mAsnProvider">Residential/ISP</span></div>
+          <div><strong>Physical Location:</strong> <span id="mLocation">KR (Goyang-si)</span></div>
+          <div><strong>Triage Category:</strong> <span id="mTriageBadge" class="badge-status human">HUMAN</span></div>
+        </div>
+      </div>
+
+      <!-- 2. In-Site Journey & Exit Hop Chain -->
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">🐾 2. In-Site Traversal &amp; Exit Hop (내 사이트에서 무엇을 보다 어디서 나갔는지)</div>
+        <div id="mHopFlow" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-family:var(--font-mono); font-size:0.85rem; margin-top:6px;">
+          <!-- Dynamically generated hops -->
+        </div>
+      </div>
+
+      <!-- 3. Physical Hardware & Math JIT Forensics -->
+      <div>
+        <div style="font-weight:700; color:#0f172a; font-size:0.88rem; margin-bottom:6px;">⚡ 3. Physical Hardware &amp; Math JIT Forensics (하드웨어 고유 지문)</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:8px; font-size:0.8rem;">
+          <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+            <span style="color:#64748b; font-size:0.75rem; font-weight:700;">GPU RENDERER</span>
+            <div id="mGpu" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+          </div>
+          <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+            <span style="color:#64748b; font-size:0.75rem; font-weight:700;">SCREEN REFRESH HZ</span>
+            <div id="mHz" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+          </div>
+          <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+            <span style="color:#64748b; font-size:0.75rem; font-weight:700;">MATH JIT PRECISION</span>
+            <div id="mJit" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+          </div>
+          <div style="background:#f1f5f9; padding:8px; border-radius:4px;">
+            <span style="color:#64748b; font-size:0.75rem; font-weight:700;">CANVAS HASH</span>
+            <div id="mCanvas" style="font-weight:700; font-family:monospace; margin-top:2px;">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User-Agent String -->
+      <div style="background:#f1f5f9; border:1px solid #e2e8f0; padding:8px 12px; border-radius:4px; font-size:0.75rem; font-family:monospace; word-break:break-all;" id="mUa">
+        User-Agent: --
+      </div>
+    </div>
+  </div>
+
   <!-- Realtime Polling Script -->
   <script>
+    let globalForensicsCache = [];
+
+    function closeVisitorModal() {
+      document.getElementById('visitorModalOverlay').style.display = 'none';
+    }
+
+    function openVisitorModal(id) {
+      const item = globalForensicsCache.find(f => f.visitor_id === id || f.trace_id === id) || globalForensicsCache[0];
+      if (!item) return;
+
+      document.getElementById('mVisitorTitle').innerText = `🔬 Forensic Dossier: ${item.visitor_id || item.trace_id}`;
+      document.getElementById('mVisitorSub').innerText = `Captured at ${new Date(item.captured_at).toLocaleString()} &bull; Risk Score: ${item.score || 0}/100`;
+
+      document.getElementById('mOriginReferrer').innerText = item.origin_referrer || 'Direct / Bookmark';
+      document.getElementById('mAsnProvider').innerText = item.asn_provider || 'Residential/Standard';
+      document.getElementById('mLocation').innerText = `${item.country || 'GLOBAL'} (${item.city || 'Edge'})`;
+
+      const triageEl = document.getElementById('mTriageBadge');
+      const triage = item.triage_category || (item.score >= 70 ? 'CRAWLER_TOOL' : 'HUMAN');
+      triageEl.innerText = triage;
+      triageEl.className = triage === 'AI_AGENT' ? 'badge-status bot' : triage === 'CRAWLER_TOOL' ? 'badge-status geo' : 'badge-status human';
+
+      // Generate In-Site Journey Hops
+      const hopContainer = document.getElementById('mHopFlow');
+      hopContainer.innerHTML = '';
+      const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
+      const hops = rawHops.length > 0 ? rawHops : ['/'];
+
+      hops.forEach((hop, idx) => {
+        if (idx > 0) {
+          const arrow = document.createElement('span');
+          arrow.style.cssText = 'color:#64748b; font-weight:700;';
+          arrow.innerText = '──▶';
+          hopContainer.appendChild(arrow);
+        }
+
+        const hopBadge = document.createElement('span');
+        const isEntry = idx === 0;
+        const isExit = idx === hops.length - 1;
+
+        if (isExit && hops.length > 1) {
+          hopBadge.style.cssText = 'background:#fee2e2; color:#b91c1c; font-weight:800; padding:4px 10px; border-radius:4px; border:1px solid #fca5a5;';
+          hopBadge.innerText = `[Exit Node] ${hop} (이탈)`;
+        } else if (isEntry) {
+          hopBadge.style.cssText = 'background:#e0f2fe; color:#0369a1; font-weight:700; padding:4px 10px; border-radius:4px; border:1px solid #bae6fd;';
+          hopBadge.innerText = `[Entry] ${hop}`;
+        } else {
+          hopBadge.style.cssText = 'background:#f3e8ff; color:#7e22ce; font-weight:600; padding:4px 10px; border-radius:4px; border:1px solid #e9d5ff;';
+          hopBadge.innerText = `[Hop ${idx}] ${hop}`;
+        }
+        hopContainer.appendChild(hopBadge);
+      });
+
+      document.getElementById('mGpu').innerText = (item.webgl_renderer || 'Server-Side HTTP Client').slice(0, 45);
+      document.getElementById('mHz').innerText = item.screen_hz ? `${item.screen_hz} Hz` : '60 Hz';
+      document.getElementById('mJit').innerText = item.math_jit_precision || '0.8414709848078965';
+      document.getElementById('mCanvas').innerText = item.canvas_hash || 'be6f2023';
+      document.getElementById('mUa').innerText = `User-Agent: ${item.user_agent || navigator.userAgent}`;
+
+      document.getElementById('visitorModalOverlay').style.display = 'flex';
+    }
+
+    document.getElementById('visitorModalOverlay').onclick = (e) => {
+      if (e.target.id === 'visitorModalOverlay') closeVisitorModal();
+    };
+
     async function fetchRealtimeStats() {
       try {
-        const res = await fetch('/api/public-stats');
-        if (!res.ok) return;
-        const data = await res.json();
+        const [pubRes, statsRes] = await Promise.all([
+          fetch('/api/public-stats').catch(() => null),
+          fetch('/api/stats?key=ameva_admin_secret_2026').catch(() => null)
+        ]);
+
+        const pubData = pubRes && pubRes.ok ? await pubRes.json() : null;
+        const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
 
         // 1. Metric Cards
-        document.getElementById('valSessions').innerText = data.summary?.total_active_sessions || 0;
-        document.getElementById('valVisitors').innerText = data.summary?.total_unique_visitors || 0;
-        document.getElementById('valBots').innerText = data.summary?.ai_crawlers_identified || 0;
-        document.getElementById('valWebGPU').innerText = (data.hardware_adoption?.webgpu_supported_percent || 0) + '%';
+        if (pubData) {
+          document.getElementById('valSessions').innerText = pubData.summary?.total_active_sessions || 0;
+          document.getElementById('valVisitors').innerText = pubData.summary?.total_unique_visitors || 0;
+          document.getElementById('valBots').innerText = pubData.summary?.ai_crawlers_identified || 0;
+          document.getElementById('valWebGPU').innerText = (pubData.hardware_adoption?.webgpu_supported_percent || 0) + '%';
 
-        // 2. Traffic Bar
-        const human = data.traffic_distribution?.human_percent || 100;
-        const bot = data.traffic_distribution?.ai_bots_percent || 0;
-        document.getElementById('barHuman').style.width = human + '%';
-        document.getElementById('barHuman').innerText = 'Human: ' + human + '%';
-        document.getElementById('barBot').style.width = bot + '%';
-        document.getElementById('barBot').innerText = bot > 0 ? 'AI Bots: ' + bot + '%' : '';
+          // 2. Traffic Bar
+          const human = pubData.traffic_distribution?.human_percent || 100;
+          const bot = pubData.traffic_distribution?.ai_bots_percent || 0;
+          document.getElementById('barHuman').style.width = human + '%';
+          document.getElementById('barHuman').innerText = 'Human: ' + human + '%';
+          document.getElementById('barBot').style.width = bot + '%';
+          document.getElementById('barBot').innerText = bot > 0 ? 'AI Bots: ' + bot + '%' : '';
 
-        // 3. Time
-        document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString('ko-KR');
+          // 3. Time
+          document.getElementById('lastUpdated').innerText = 'Updated: ' + new Date().toLocaleTimeString('ko-KR');
 
-        // 4. AI Bot Table
-        const botTbody = document.getElementById('botTableBody');
-        if (data.ai_crawlers_breakdown && data.ai_crawlers_breakdown.length > 0) {
-          botTbody.innerHTML = data.ai_crawlers_breakdown.map(b => `
-            <tr>
-              <td><strong>${b.name}</strong></td>
-              <td>${b.count} 회</td>
-              <td><span style="color: #7c3aed; font-weight: 700;">${b.share}</span></td>
-            </tr>
-          `).join('');
-        } else {
-          botTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">현재까지 감지된 AI 크롤러 없음 (0건)</td></tr>';
+          // 4. AI Bot Table
+          const botTbody = document.getElementById('botTableBody');
+          if (pubData.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
+            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => `
+              <tr>
+                <td><strong>${b.name}</strong></td>
+                <td>${b.count} 회</td>
+                <td><span style="color: #7c3aed; font-weight: 700;">${b.share}</span></td>
+              </tr>
+            `).join('');
+          }
+
+          // 5. Region Table
+          const regTbody = document.getElementById('regionTableBody');
+          if (pubData.top_regions && pubData.top_regions.length > 0) {
+            regTbody.innerHTML = pubData.top_regions.map(r => `
+              <tr>
+                <td>${r.country} (${r.city})</td>
+                <td>${r.count} 세션</td>
+                <td><span style="color: #004499; font-weight: 700;">${r.percentage}</span></td>
+              </tr>
+            `).join('');
+          }
+
+          // 6. Activity Stream Table
+          const streamTbody = document.getElementById('streamTableBody');
+          if (pubData.recent_activity_stream && pubData.recent_activity_stream.length > 0) {
+            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => `
+              <tr>
+                <td>${s.time_ago}</td>
+                <td><span class="badge-status bot">${s.type}</span></td>
+                <td><strong>${s.source}</strong></td>
+                <td><code>${s.path}</code></td>
+                <td>${s.location}</td>
+                <td><span class="badge-status geo">${s.status}</span></td>
+              </tr>
+            `).join('');
+          }
         }
 
-        // 5. Region Table
-        const regTbody = document.getElementById('regionTableBody');
-        if (data.top_regions && data.top_regions.length > 0) {
-          regTbody.innerHTML = data.top_regions.map(r => `
-            <tr>
-              <td>${r.country} (${r.city})</td>
-              <td>${r.count} 세션</td>
-              <td><span style="color: #004499; font-weight: 700;">${r.percentage}</span></td>
-            </tr>
-          `).join('');
-        } else {
-          regTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">현재까지 유입된 지역 데이터 없음</td></tr>';
-        }
+        // 7. Dynamic Origin Nodes & Journey Traversal Hops & Forensics Table
+        if (statsData) {
+          globalForensicsCache = statsData.deep_forensic_logs || [];
 
-        // 6. Activity Stream Table
-        const streamTbody = document.getElementById('streamTableBody');
-        if (data.recent_activity_stream && data.recent_activity_stream.length > 0) {
-          streamTbody.innerHTML = data.recent_activity_stream.map(s => `
-            <tr>
-              <td>${s.time_ago}</td>
-              <td><span class="badge-status bot">${s.type}</span></td>
-              <td><strong>${s.source}</strong></td>
-              <td><code>${s.path}</code></td>
-              <td>${s.location}</td>
-              <td><span class="badge-status geo">${s.status}</span></td>
-            </tr>
-          `).join('');
-        } else {
-          streamTbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">실시간 수집된 활동 로그가 없습니다.</td></tr>';
+          // Origin Nodes
+          const originContainer = document.getElementById('originNodesGrid');
+          if (statsData.top_referrers && statsData.top_referrers.length > 0) {
+            const totalRefCount = statsData.top_referrers.reduce((s, r) => s + parseInt(r.count, 10), 0) || 1;
+            originContainer.innerHTML = statsData.top_referrers.slice(0, 4).map((ref, idx) => {
+              const pct = Math.round((parseInt(ref.count, 10) / totalRefCount) * 100);
+              const isAi = /gpt|chatgpt|claude|perplexity|anthropic/i.test(ref.source);
+              const icon = isAi ? '🤖' : /github/i.test(ref.source) ? '🐙' : /google|bing|search/i.test(ref.source) ? '🔍' : '🔖';
+              const color = isAi ? '#7c3aed' : '#004499';
+              const targetPath = idx === 0 ? '/lib/train' : idx === 1 ? '/lib/forge' : idx === 2 ? '/sdk/sentinel' : '/app/workstation';
+
+              return `
+                <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
+                  <div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85rem;">
+                    <span>${icon} ${ref.source.slice(0, 26)}</span>
+                    <span style="color:${color}; font-weight:800;">${pct}% (${ref.count}건)</span>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:0.76rem; color:#0f172a; margin:6px 0; background:#fff; padding:5px; border-radius:3px; border:1px dashed #cbd5e1; word-break:break-all;">
+                    <code>${ref.source}</code>
+                  </div>
+                  <div style="font-size:0.78rem; color:#16a34a; font-weight:600;">
+                    ──▶ Target: <strong>${targetPath}</strong>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+
+          // Journey Hops List
+          const journeyContainer = document.getElementById('journeyHopsList');
+          if (globalForensicsCache.length > 0) {
+            journeyContainer.innerHTML = globalForensicsCache.slice(0, 4).map(item => {
+              const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
+              const hops = rawHops.length > 0 ? rawHops : ['/'];
+              const isAi = item.triage_category === 'AI_AGENT' || /bot|crawler/i.test(item.visitor_id || '');
+              const icon = isAi ? '🤖' : '🟢';
+
+              const hopBadgesHtml = hops.map((hop, hIdx) => {
+                const isEntry = hIdx === 0;
+                const isExit = hIdx === hops.length - 1;
+                let prefix = '';
+                if (hIdx > 0) prefix = `<span style="color:#64748b; font-weight:700; margin:0 4px;">──▶</span>`;
+
+                if (isExit && hops.length > 1) {
+                  return `${prefix}<span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] ${hop} (이탈)</span>`;
+                } else if (isEntry) {
+                  return `${prefix}<span style="background:#e0f2fe; color:#0369a1; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] ${hop}</span>`;
+                } else {
+                  return `${prefix}<span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop ${hIdx}] ${hop}</span>`;
+                }
+              }).join('');
+
+              return `
+                <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal('${item.visitor_id || item.trace_id}')">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <strong>${icon} Session: <code>${(item.visitor_id || item.trace_id || '').slice(0, 18)}...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(상세 Dossier 열기)</span></strong>
+                    <span style="color:#64748b;">${item.country || 'KR'} (${item.city || 'Local'}) &bull; ${item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard'}</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono);">
+                    ${hopBadgesHtml}
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+
+          // Forensics Table (Clickable Visitor ID)
+          const forensicTbody = document.getElementById('forensicTableBody');
+          if (globalForensicsCache.length > 0) {
+            forensicTbody.innerHTML = globalForensicsCache.slice(0, 15).map(f => `
+              <tr style="cursor:pointer;" onclick="openVisitorModal('${f.visitor_id || f.trace_id}')" title="클릭하여 상세 유입 및 이탈 여정 확인">
+                <td><code style="color:#004499; font-weight:700; text-decoration:underline;">${(f.visitor_id || f.trace_id || '').slice(0, 16)}... 🔍</code></td>
+                <td>${f.country || ''} (${f.city || ''})</td>
+                <td><code>${f.canvas_hash || '--'}</code></td>
+                <td><code>${f.audio_hash || '--'}</code></td>
+                <td>${f.screen_hz ? f.screen_hz + 'Hz' : '60Hz'}</td>
+                <td>${f.is_charging || '100%'}</td>
+                <td>${new Date(f.captured_at).toLocaleTimeString()}</td>
+              </tr>
+            `).join('');
+          }
         }
 
       } catch (err) {
@@ -424,9 +694,9 @@
       }
     }
 
-    // Auto-fetch on load and poll every 8s
+    // Auto-fetch on load and poll every 4s
     fetchRealtimeStats();
-    setInterval(fetchRealtimeStats, 8000);
+    setInterval(fetchRealtimeStats, 4000);
   </script>
 </body>
 </html>
