@@ -396,6 +396,37 @@
       font-weight: bold;
     }
 
+    
+    /* Card Badges Uniform Design */
+    .card-badge {
+      font-size: 0.72em;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+    .badge-green { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+    .badge-cyan { background: #ecfeff; color: #0891b2; border: 1px solid #a5f3fc; }
+    .badge-purple { background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+    .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+    .badge-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+    .badge-pink { background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8; }
+    
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .card-actions .btn-action {
+      white-space: nowrap;
+      padding: 5px 10px;
+      font-size: 0.8em;
+    }
+
     /* ── Right Content Area ─────────────────────────────────────────────────── */
     main.resume-main {
       flex: 1;
@@ -974,7 +1005,7 @@
         </div>
       </section>
 
-            <!-- Panel 5: Core Open-Source Libraries -->
+                  <!-- Panel 5: Core Open-Source Libraries -->
       <section class="panel-box">
         <div class="panel-header">
           <h2><span data-i18n="p5.title">📦 AMEVA Open-Source Flagship Software &amp; Core Libraries</span></h2>
@@ -984,88 +1015,102 @@
           <!-- 1. Flagship AMEVA Workstation Web -->
           <div class="item-card" style="border-left: 4px solid #004499; grid-column: 1 / -1;">
             <div class="item-card-top">
-              <h3><span>🏢 AMEVA Workstation (Web / Desktop)</span> <span style="font-size:0.75em; background:#004499; color:#fff; padding:2px 6px; border-radius:3px;">🌟 Flagship App</span></h3>
+              <h3><span>🏢 AMEVA Workstation (Web / Desktop)</span> <span class="card-badge" style="background:#004499; color:#fff; border:1px solid #003380;">🌟 Flagship App</span></h3>
               <p data-i18n="p5.workstationDesc">WebGPU 기반 클라이언트 온디바이스 WebGPU 로컬 AI (Qwen2.5 0.5B/1.5B/7B), 대용량 PDF/DOCX 3초 맵리듀스 요약 리더, 인앱 비디오 컷팅 &amp; 1초 AI 누끼 스튜디오.</p>
             </div>
-            <div class="card-actions" style="margin-top:8px;">
+            <div class="card-actions">
               <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-action primary" style="background:#004499;">🚀 라이브 웹 앱 실행</a>
               <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-action secondary">🐙 GitHub 저장소</a>
             </div>
           </div>
 
-          <!-- 1.5. AMEVA-Sentinel -->
+          <!-- 2. AMEVA-Sentinel -->
           <div class="item-card" style="border-left: 4px solid #10b981;">
-            <h3><span>🛡️ AMEVA-Sentinel</span> <span style="font-size:0.75em; background:#10b981; color:#fff; padding:2px 6px; border-radius:3px;">Security SDK</span></h3>
-            <p>웹 서비스 트래픽을 관측하고, 측정하고, 설명하고, 점수화하는 개인정보 최우선 자가 호스팅 보안 관측 계층 SDK.</p>
+            <div class="item-card-top">
+              <h3><span>🛡️ AMEVA-Sentinel</span> <span class="card-badge badge-green">Security SDK</span></h3>
+              <p>웹 서비스 트래픽을 관측하고, 측정하고, 설명하고, 점수화하는 개인정보 최우선 자가 호스팅 보안 관측 계층 SDK.</p>
+            </div>
             <div class="card-actions">
-              <a href="/sdk/sentinel/" class="btn-action primary" style="background:#10b981; border-color:#10b981;">📖 공식 문서</a>
+              <a href="/sdk/sentinel/" class="btn-action primary" style="background:#10b981; border-color:#10b981;">📖 공식 문서 보기</a>
               <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="btn-action secondary">🐙 GitHub</a>
               <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-action secondary">📦 npm</a>
             </div>
           </div>
 
-          <!-- 2. AMEVA-Forge -->
-          <div class="item-card">
-            <h3><span>⚡ AMEVA-Forge</span> <span style="font-size:0.75em;">PyPI: ameva</span></h3>
-            <p data-i18n="p5.forgeDesc">클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
+          <!-- 3. AMEVA-Forge -->
+          <div class="item-card" style="border-left: 4px solid #0891b2;">
+            <div class="item-card-top">
+              <h3><span>⚡ AMEVA-Forge</span> <span class="card-badge badge-cyan">PyPI: ameva</span></h3>
+              <p data-i18n="p5.forgeDesc">클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU Deep Learning Autograd Engine. PyTorch 구문 호환 및 WGSL 역전파.</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/forge/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="./lib/forge/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#0891b2; border-color:#0891b2;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/ameva/" target="_blank" class="btn-action secondary">📦 PyPI</a>
               <a href="./lib/forge/" target="_blank" class="btn-action secondary" data-i18n="btn.liveDemo">⚡ 실시간 데모</a>
             </div>
           </div>
 
-          <!-- 3. Termux-STT -->
-          <div class="item-card">
-            <h3><span>🎙️ Termux-STT</span> <span style="font-size:0.75em;">pip / npm</span></h3>
-            <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
+          <!-- 4. Termux-STT -->
+          <div class="item-card" style="border-left: 4px solid #7c3aed;">
+            <div class="item-card-top">
+              <h3><span>🎙️ Termux-STT</span> <span class="card-badge badge-purple">pip / npm</span></h3>
+              <p data-i18n="p5.sttDesc">안드로이드 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX).</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="./lib/stt/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#7c3aed; border-color:#7c3aed;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
               <a href="https://uno-km.vercel.app/lib/stt/showcase.html" target="_blank" class="btn-action secondary">🎧 쇼케이스</a>
             </div>
           </div>
 
-          <!-- 4. Termux-Train -->
-          <div class="item-card">
-            <h3><span>🚂 Termux-Train</span> <span style="font-size:0.75em;">PyPI: termux-train</span></h3>
-            <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (정밀 릴리즈 검증 통과).</p>
+          <!-- 5. Termux-Train -->
+          <div class="item-card" style="border-left: 4px solid #d97706;">
+            <div class="item-card-top">
+              <h3><span>🚂 Termux-Train</span> <span class="card-badge badge-amber">PyPI: termux-train</span></h3>
+              <p data-i18n="p5.trainDesc">안드로이드 Bionic 네이티브 경량 텐서, DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크 (정밀 릴리즈 검증 통과).</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="./lib/train/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#d97706; border-color:#d97706;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-action secondary">📦 PyPI</a>
               <a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-action secondary">🐙 GitHub</a>
             </div>
           </div>
 
-          <!-- 5. Termux-Playwright -->
-          <div class="item-card">
-            <h3><span>📱 Termux-Playwright</span> <span style="font-size:0.75em;">pip / npm</span></h3>
-            <p data-i18n="p5.termuxDesc">안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.</p>
+          <!-- 6. Termux-Playwright -->
+          <div class="item-card" style="border-left: 4px solid #2563eb;">
+            <div class="item-card-top">
+              <h3><span>📱 Termux-Playwright</span> <span class="card-badge badge-blue">pip / npm</span></h3>
+              <p data-i18n="p5.termuxDesc">안드로이드 Termux 환경에서 비루트로 정품 Chromium 브라우저 자동화를 구동하는 런타임 최적화 패키지.</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/playwright/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="./lib/playwright/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#2563eb; border-color:#2563eb;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
             </div>
           </div>
 
-          <!-- 6. Termux-Diffusion -->
-          <div class="item-card">
-            <h3><span>🎨 Termux-Diffusion</span> <span style="font-size:0.75em;">pip / npm</span></h3>
-            <p data-i18n="p5.diffusionDesc">안드로이드 Termux & Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
+          <!-- 7. Termux-Diffusion -->
+          <div class="item-card" style="border-left: 4px solid #db2777;">
+            <div class="item-card-top">
+              <h3><span>🎨 Termux-Diffusion</span> <span class="card-badge badge-pink">pip / npm</span></h3>
+              <p data-i18n="p5.diffusionDesc">안드로이드 Termux &amp; Samsung Galaxy 환경에서 비루트로 Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성을 구동하는 듀얼 엔진 프레임워크.</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/diffusion/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc">📖 공식 문서</a>
+              <a href="./lib/diffusion/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#db2777; border-color:#db2777;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-action secondary">📦 PyPI</a>
-              <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-action secondary" style="background:#cb3837;color:#fff;">📦 npm</a>
+              <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
             </div>
           </div>
 
-          <!-- 7. Termux-BitNet (Flagship On-Device 1.58-bit LLM) -->
-          <div class="item-card" style="border-left: 4px solid #3ECF8E;">
-            <h3><span>🧠 Termux-BitNet</span> <span style="font-size:0.75em; background:rgba(62,207,142,0.15); color:#3ECF8E; padding:2px 6px; border-radius:3px; border:1px solid rgba(62,207,142,0.3); font-weight:600;">pip / npm</span></h3>
-            <p data-i18n="p5.bitnetDesc">1.58-bit (i2_s) On-Device LLM 추론 엔진. ARM64 NEON DotProd SIMD 어셈블리 가속 및 스마트폰 네이티브 런타임.</p>
+          <!-- 8. Termux-BitNet -->
+          <div class="item-card" style="border-left: 4px solid #059669;">
+            <div class="item-card-top">
+              <h3><span>🧠 Termux-BitNet</span> <span class="card-badge badge-green">pip / npm</span></h3>
+              <p data-i18n="p5.bitnetDesc">1.58-bit (i2_s) On-Device LLM 추론 엔진. ARM64 NEON DotProd SIMD 어셈블리 가속 및 스마트폰 네이티브 런타임.</p>
+            </div>
             <div class="card-actions">
-              <a href="./lib/bitnet/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#10b981; border-color:#10b981;">📖 공식 문서 보기</a>
+              <a href="./lib/bitnet/" target="_blank" class="btn-action primary" data-i18n="btn.viewDoc" style="background:#059669; border-color:#059669;">📖 공식 문서 보기</a>
               <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-action secondary">📦 PyPI</a>
               <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-action secondary" style="background:#cb3837; color:#fff; border-color:#cb3837;">📦 npm</a>
               <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-action secondary">🐙 GitHub</a>
