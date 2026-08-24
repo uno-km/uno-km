@@ -26,7 +26,7 @@ class SocialEngine {
 
     this.sessionId = 'sess-' + Math.random().toString(36).substr(2, 9);
     this.startTime = Date.now();
-    this.visitorCount = 1482;
+    this.visitorCount = 1;
     this.entries = [];
 
     this.initGuestbookUI();
@@ -118,7 +118,7 @@ class SocialEngine {
 
       let listHtml = '';
       if (this.entries.length === 0) {
-        listHtml = '<div style="color:var(--text-secondary); font-size:0.75rem; text-align:center; padding:12px 0;">첫 방명록을 남겨보세요! 🚀</div>';
+        listHtml = '<div style="color:var(--text-secondary); font-size:0.75rem; text-align:center; padding:12px 0;">방명록을 작성해보세요! ✍️</div>';
       } else {
         listHtml = '<div class="guestbook-msg-list" style="max-height:140px; overflow-y:auto; margin:10px 0; display:flex; flex-direction:column; gap:6px; padding-right:4px;">';
         this.entries.slice(0, 8).forEach(entry => {

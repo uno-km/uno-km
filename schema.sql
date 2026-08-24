@@ -214,10 +214,10 @@ CREATE INDEX IF NOT EXISTS idx_guestbook_created_at ON guestbook_entries(created
 
 CREATE TABLE IF NOT EXISTS analytics_visitors (
     id INT PRIMARY KEY DEFAULT 1,
-    visitor_count BIGINT DEFAULT 1420,
+    visitor_count BIGINT DEFAULT 1,
     last_visited TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO analytics_visitors (id, visitor_count)
-VALUES (1, 1420)
+VALUES (1, 1)
 ON CONFLICT (id) DO NOTHING;

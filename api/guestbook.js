@@ -19,14 +19,14 @@ async function ensureGuestbookSchema(sql) {
         await sql`
             CREATE TABLE IF NOT EXISTS analytics_visitors (
                 id INT PRIMARY KEY DEFAULT 1,
-                visitor_count BIGINT DEFAULT 1280,
+                visitor_count BIGINT DEFAULT 1,
                 last_visited TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
         `;
 
         await sql`
             INSERT INTO analytics_visitors (id, visitor_count)
-            VALUES (1, 1420)
+            VALUES (1, 1)
             ON CONFLICT (id) DO NOTHING;
         `;
 
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
         return res.status(200).json({
             ok: true,
             source: 'fallback_memory',
-            visitor_count: 1485,
+            visitor_count: 1,
             entries: [
                 { id: 1, author: '김은호 (@uno-km)', message: 'AMEVA Sovereign Edge-Native AI Universe에 오신 것을 환영합니다.', created_at: new Date().toISOString(), avatar_color: '#7C3AED' },
                 { id: 2, author: 'Systems Architect', message: 'WebGPU Autograd 및 ARM64 NEON DotProd 엔진이 성공적으로 구동 중입니다.', created_at: new Date().toISOString(), avatar_color: '#00EFFF' },
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         if (req.method === 'GET') {
             const isNoCount = req.query && req.query.nocount === 'true';
             
-            let visitorCount = 1420;
+            let visitorCount = 1;
             if (!isNoCount) {
                 const countRes = await sql`
                     UPDATE analytics_visitors
