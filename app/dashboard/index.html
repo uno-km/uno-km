@@ -1,1173 +1,704 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMEVA-Sentinel Status &amp; Observability Manager (v0.6.0-alpha.1 Prototype)</title>
-    <link rel="icon" type="image/svg+xml" href="https://uno-km.vercel.app/shared/brand/favicon.svg">
-    <style>
-        :root {
-            --primary-color: #004499;
-            --primary-dark: #002b66;
-            --primary-light: #e8f0fe;
-            --border-color: #cbd5e1;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --font-mono: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-        }
+  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
+  <script>if(location.pathname==='/app/dashboard'){location.replace('/app/dashboard/'+location.search+location.hash);}</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="AMEVA Edge-Native AI Portfolio — A serverless, browser-only dashboard featuring WebGPU LLM inference and interactive knowledge graph visualization." />
+  <meta name="theme-color" content="#0f0f0f" />
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background-color: #f8fafc;
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+  <title>AMEVA Neural Fabric — Edge-Native AI Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-        header {
-            background-color: #ffffff;
-            border-bottom: 2px solid var(--primary-color);
-            padding: 0 24px;
-            height: 58px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-        }
-        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .header-brand img { width: 26px; height: 26px; }
-        .header-brand h1 { margin: 0; color: var(--primary-color); font-size: 1.2em; font-weight: 700; }
-        .header-controls { display: flex; align-items: center; gap: 8px; }
-        .header-btn {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 5px 10px;
-            font-size: 0.85em;
-            font-weight: 600;
-            border-radius: 3px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .header-btn:hover { background: #f1f5f9; color: var(--primary-color); border-color: var(--primary-color); }
-        .header-btn.primary { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+  <!-- Critical Inline CSS Guardrail to prevent FOUC & huge SVG spill -->
+  <style>
+    html, body {
+      background-color: #0f0f0f !important;
+      color: #ededed !important;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Segoe UI", Roboto, sans-serif;
+    }
+    #graph-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      color: #8b8d98;
+      font-size: 0.95rem;
+    }
+    #graph-placeholder svg {
+      width: 56px !important;
+      height: 56px !important;
+      stroke: #00EFFF !important;
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
 
-        .tomcat-container {
-            max-width: 1380px;
-            margin: 20px auto 40px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+  <!-- Dual-Route Stylesheets (Absolute & Relative Fallback) -->
+  <link rel="stylesheet" href="/dashboard/css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 
-        .status-header-box {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary-color);
-            padding: 12px 18px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-        }
-
-        .status-title { font-size: 1.15em; font-weight: 800; color: var(--primary-color); display: flex; align-items: center; gap: 8px; }
-        .tomcat-badge { display: inline-block; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; font-family: monospace; }
-        .badge-shadow { background: #e8f0fe; color: var(--primary-color); border: 1px solid #bfdbfe; }
-        .badge-demo { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-        .badge-live { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
-
-        .control-panel {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .btn-tomcat {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 6px 12px;
-            font-size: 0.85em;
-            font-weight: 600;
-            border-radius: 3px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.1s ease;
-        }
-        .btn-tomcat:hover { background: #f1f5f9; border-color: var(--primary-color); color: var(--primary-color); }
-        .btn-tomcat.primary { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
-        .btn-tomcat.danger { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
-
-        .tomcat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-        .tomcat-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 12px 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card-label { font-size: 0.8em; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .card-value { font-size: 1.6em; font-weight: 800; color: var(--primary-color); font-family: var(--font-mono); margin: 4px 0; }
-        .card-sub { font-size: 0.8em; color: #64748b; }
-
-        .management-split { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
-        @media (max-width: 1024px) { .management-split { grid-template-columns: 1fr; } }
-
-        .tomcat-section {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .section-header {
-            font-size: 1em;
-            font-weight: 800;
-            color: var(--primary-color);
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        table.tomcat-table { width: 100%; border-collapse: collapse; font-size: 0.88em; text-align: left; border: 1px solid var(--border-color); }
-        table.tomcat-table th { background: #f1f5f9; color: var(--primary-color); font-weight: 700; padding: 8px 10px; border: 1px solid var(--border-color); font-size: 0.85em; }
-        table.tomcat-table td { padding: 8px 10px; border: 1px solid var(--border-color); color: var(--text-main); }
-        table.tomcat-table tr:nth-child(even) td { background: #f8fafc; }
-        table.tomcat-table tr:hover td { background: #e8f0fe; cursor: pointer; }
-
-        .pill-action { font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); display: inline-block; }
-        .pill-allow { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
-        .pill-observe { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
-        .pill-verify { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
-        .pill-deny { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
-
-        .score-box { font-weight: 800; font-family: var(--font-mono); padding: 2px 6px; border-radius: 3px; display: inline-block; }
-        .score-low { background: #dcfce7; color: #15803d; }
-        .score-med { background: #fef3c7; color: #b45309; }
-        .score-high { background: #fee2e2; color: #b91c1c; }
-
-        .dist-bar { height: 14px; background: #e2e8f0; border-radius: 2px; overflow: hidden; display: flex; border: 1px solid var(--border-color); }
-        .dist-low { background: #16a34a; }
-        .dist-med { background: #f59e0b; }
-        .dist-high { background: #dc2626; }
-
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; justify-content: center; align-items: center; z-index: 200; }
-        .modal-box { background: #ffffff; border: 2px solid var(--primary-color); border-radius: 4px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 12px; }
-        .evidence-item { background: #f8fafc; border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 3px; }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="/shared/telemetry.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <div class="header-brand">
-            <img src="https://uno-km.vercel.app/shared/brand/favicon.svg" alt="Logo">
-            <h1>AMEVA-Sentinel</h1>
-        </div>
-        <div class="header-controls">
-            <span class="tomcat-badge badge-shadow">v0.7.0</span>
-            <select id="tz-selector" class="btn-tomcat" style="background:#fff; color:#0f172a; font-weight:600; font-size:0.8em; padding:4px 8px; cursor:pointer;">
-                <option value="local">Local (Device)</option>
-                <option value="Asia/Seoul" selected>Asia/Seoul (KST)</option>
-                <option value="UTC">UTC (GMT+0)</option>
-                <option value="America/New_York">America/New_York (EST)</option>
-                <option value="Europe/London">Europe/London (BST)</option>
-                <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
-            </select>
-            <a href="/sentinel/observability.html" class="header-btn" style="background:#004499; color:#fff; font-weight:700;">Promotional Observability Console</a>
-            <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn primary">GitHub</a>
-        </div>
-    </header>
 
-    <div class="tomcat-container">
-        <div class="status-header-box">
-            <div>
-                <div class="status-title">
-                    <span>Security Observability Manager</span>
-                    <span class="tomcat-badge badge-shadow">Shadow Mode</span>
-                    <span class="tomcat-badge badge-demo">Neon PostgreSQL (Live Serverless Event Store)</span>
-                </div>
-                <div style="font-size: 0.85em; color: var(--text-muted); margin-top: 4px;">
-                    Policy: <strong>v2026-08-24.1</strong> &bull; 
-                    Storage: <span id="banner-events-count"><strong>0 Events</strong></span> &bull; 
-                    Multi-Tab Sync: <span class="tomcat-badge badge-live">Active</span> &bull;
-                    Last Evaluation: <span id="banner-last-event">None</span>
-                </div>
-            </div>
-            <div>
-                <button class="btn-tomcat" id="btn-refresh">Refresh Status</button>
-            </div>
-        </div>
+  <!-- ═══════════════════════════════════════════════════════════
+       SPOTLIGHT SEARCH (FUSE.JS)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="spotlight-search" class="spotlight-container is-hidden">
+    <div class="spotlight-input-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="spotlight-input" placeholder="AMEVA 지식 베이스 검색..." autocomplete="off">
+      <button id="btn-close-spotlight" class="icon-btn" aria-label="Close search">✕</button>
+    </div>
+    <div id="spotlight-results" class="spotlight-results">
+      <!-- Results will be injected here -->
+    </div>
+  </div> <!-- ═══════════════════════════════════════════════════════════
+       A. GRAPH CONTAINER — Full-screen Obsidian-style canvas
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="graph-container" role="img" aria-label="AMEVA Knowledge Graph Visualization">
+    <div class="graph-placeholder" id="graph-placeholder">
+      <!-- Orbital icon -->
+      <svg viewBox="0 0 64 64" fill="none" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="32" cy="32" r="20" opacity="0.4" />
+        <circle cx="32" cy="32" r="8" opacity="0.6" />
+        <ellipse cx="32" cy="32" rx="30" ry="12" transform="rotate(35 32 32)" opacity="0.3" />
+        <ellipse cx="32" cy="32" rx="30" ry="12" transform="rotate(-35 32 32)" opacity="0.3" />
+        <circle cx="32" cy="12" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+        <circle cx="52" cy="32" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+        <circle cx="18" cy="45" r="2.5" fill="currentColor" stroke="none" opacity="0.7" />
+      </svg>
+      <span>Neural Fabric Initializing…</span>
+    </div>
+  </div>
 
-        <div class="control-panel">
-            <div style="font-weight: 700; color: var(--primary-color);">
-                Live Ingestion Controls:
-                <span style="font-size:0.85em; font-weight:normal; color:#64748b;">Telemetry observations evaluated via deterministic Risk Core engine.</span>
-            </div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button class="btn-tomcat primary" id="btn-eval-browser">Evaluate Real Browser (Live SDK)</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-playwright">Sim Playwright Stealth</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-curl">Sim cURL Spoofing</button>
-                <button class="btn-tomcat" style="color:#7e22ce; border-color:#d8b4fe;" id="btn-sim-ai">Sim GPT/Claude AI Bot</button>
-                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-burst">Sim Burst Attack</button>
-                <button class="btn-tomcat danger" id="btn-clear">Clear Store</button>
-            </div>
-        </div>
-
-        <!-- 3대 대분류 Top-Level Triage KPI Grid -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
-            <div class="tomcat-card" style="border-left: 4px solid #16a34a;">
-                <div class="card-label">1. Human Visitors (Verified Sessions)</div>
-                <div class="card-value" id="triage-human-total" style="color:#15803d;">0</div>
-                <div class="card-sub" id="triage-human-sub">Dev / Power / Standard / Mobile</div>
-            </div>
-            <div class="tomcat-card" style="border-left: 4px solid #7e22ce;">
-                <div class="card-label">2. AI Agents &amp; LLMs (Automated Indexers)</div>
-                <div class="card-value" id="triage-ai-total" style="color:#7e22ce;">0</div>
-                <div class="card-sub" id="triage-ai-sub">OpenAI / Anthropic / Google / Perplexity / Bytespider</div>
-            </div>
-            <div class="tomcat-card" style="border-left: 4px solid #dc2626;">
-                <div class="card-label">3. Crawlers &amp; Tools (CLI / Drivers)</div>
-                <div class="card-value" id="triage-crawler-total" style="color:#b91c1c;">0</div>
-                <div class="card-sub" id="triage-crawler-sub">Search Engine / Playwright / cURL / Python</div>
-            </div>
-        </div>
-
-        <!-- Multi-Timeframe Traffic Inflow & Volume Stream Chart -->
-        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 4px; padding: 16px 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                <div style="font-weight: 700; color: var(--text-main); font-size: 0.95em; display:flex; align-items:center; gap:10px;">
-                    <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
-                    <div style="display:flex; gap:4px;">
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1m')">1m</button>
-                        <button class="btn-tomcat primary" style="padding:2px 8px; font-size:0.75em;" id="dash-tf-5m" onclick="setDashTimeframe('5m')">5m</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1h')">1h</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1D')">1D</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1W')">1W</button>
-                        <button class="btn-tomcat" style="padding:2px 8px; font-size:0.75em;" onclick="setDashTimeframe('1M')">1M</button>
-                    </div>
-                </div>
-                <span id="dashChartTimestamp" style="font-size: 0.78em; color: var(--text-muted); font-family: monospace;">Live Stream</span>
-            </div>
-            <div style="height: 240px; position: relative;">
-                <canvas id="dashTrafficTrendChart"></canvas>
-            </div>
-        </div>
-
-        <div class="tomcat-grid">
-            <div class="tomcat-card">
-                <div class="card-label">Total Observed Events</div>
-                <div class="card-value" id="stat-total" data-testid="event-count">0</div>
-                <div class="card-sub">All Session Footprints (Dedup)</div>
-            </div>
-            <div class="tomcat-card">
-                <div class="card-label">High Risk Sessions</div>
-                <div class="card-value" id="stat-high" style="color:#b91c1c;">0</div>
-                <div class="card-sub" id="stat-high-pct">0% of observed traffic</div>
-            </div>
-            <div class="tomcat-card">
-                <div class="card-label">Average Risk Score</div>
-                <div class="card-value" id="stat-avg-score">0 / 100</div>
-                <div class="card-sub">Threshold: &gt;=70 (High)</div>
-            </div>
-            <div class="tomcat-card">
-                <div class="card-label">Evidence Confidence Index</div>
-                <div class="card-value" id="stat-avg-conf" style="color:#15803d;">0.00</div>
-                <div class="card-sub">Completeness Index (Q*C*F*S)</div>
-            </div>
-            <div class="tomcat-card">
-                <div class="card-label">Enforcement Mode</div>
-                <div class="card-value" style="font-size:1.3em; color:#b45309; margin-top:6px;">SHADOW</div>
-                <div class="card-sub">Non-blocking evaluation</div>
-            </div>
-        </div>
-
-        <!-- 3대 대분류 세부 드릴다운 차트 섹션 -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:12px;">
-            <div class="tomcat-section">
-                <div class="section-header">
-                    <span>Human Users Breakdown</span>
-                </div>
-                <div id="breakdown-human-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
-                    <div style="color:#64748b;">No human sessions recorded yet.</div>
-                </div>
-            </div>
-            <div class="tomcat-section">
-                <div class="section-header">
-                    <span>AI Bots &amp; LLMs Breakdown</span>
-                </div>
-                <div id="breakdown-ai-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
-                    <div style="color:#64748b;">No AI agent sessions recorded yet.</div>
-                </div>
-            </div>
-            <div class="tomcat-section">
-                <div class="section-header">
-                    <span>Crawlers &amp; Scrapers Breakdown</span>
-                </div>
-                <div id="breakdown-crawler-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
-                    <div style="color:#64748b;">No crawler sessions recorded yet.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. AI GEO Delivery & Bandwidth Optimization Section -->
-        <div class="tomcat-section" style="border-left: 4px solid #7e22ce; margin-bottom: 12px;">
-            <div class="section-header">
-                <span>AI GEO Delivery &amp; Bandwidth Savings Optimizer</span>
-                <span class="tomcat-badge badge-demo" id="geo-status-badge">Dynamic Markdown Negotiation Active</span>
-            </div>
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 10px 0;">
-                <div style="background:#fdf4ff; border:1px solid #f0abfc; padding:10px 14px; border-radius:4px;">
-                    <div style="font-size:0.75rem; font-weight:700; color:#86198f;">TOTAL AI DELIVERIES</div>
-                    <div style="font-size:1.4rem; font-weight:800; color:#701a75;" id="geo-total-deliveries">0</div>
-                    <div style="font-size:0.75rem; color:#a21caf;">AI Agents Served</div>
-                </div>
-                <div style="background:#ecfdf5; border:1px solid #6ee7b7; padding:10px 14px; border-radius:4px;">
-                    <div style="font-size:0.75rem; font-weight:700; color:#065f46;">TOTAL BANDWIDTH SAVED</div>
-                    <div style="font-size:1.4rem; font-weight:800; color:#047857;" id="geo-total-saved">0 KB</div>
-                    <div style="font-size:0.75rem; color:#059669;" id="geo-savings-ratio">Avg 0% Saved</div>
-                </div>
-                <div style="background:#f8fafc; border:1px solid var(--border-color); padding:10px 14px; border-radius:4px;">
-                    <div style="font-size:0.75rem; font-weight:700; color:#475569;">HOTSPOT AI HIT PAGES</div>
-                    <div id="geo-top-paths" style="font-size:0.8rem; color:#334155; margin-top:4px; max-height:45px; overflow-y:auto;">
-                        None recorded yet.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="management-split">
-            <div class="tomcat-section">
-                <div class="section-header">
-                    <span>Traffic Risk Distribution</span>
-                    <span style="font-size:0.8em; font-weight:normal; color:#64748b;" id="dist-count-label">0 events</span>
-                </div>
-
-                <div class="dist-bar">
-                    <div class="dist-low" id="dist-bar-low" style="width:100%;"></div>
-                    <div class="dist-med" id="dist-bar-med" style="width:0%;"></div>
-                    <div class="dist-high" id="dist-bar-high" style="width:0%;"></div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:0.82em; color:var(--text-muted);">
-                    <span>[Low Risk 0~29]: <strong id="legend-low-pct">0% (0)</strong></span>
-                    <span>[Suspicious 30~69]: <strong id="legend-med-pct">0% (0)</strong></span>
-                    <span>[High Risk 70+]: <strong id="legend-high-pct">0% (0)</strong></span>
-                </div>
-
-                <div style="margin-top:10px;">
-                    <div style="font-size:0.9em; font-weight:700; color:var(--primary-color); margin-bottom:6px;">Triggered Policy Rules Breakdown</div>
-                    <div id="top-rules-container" style="display:flex; flex-direction:column; gap:6px; font-size:0.85em;">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tomcat-section">
-                <div class="section-header">
-                    <span>Policy-as-Code Re-Evaluation</span>
-                </div>
-                <p style="font-size:0.82em; color:#64748b;">
-                    Simulate policy weight adjustments against stored events in real-time.
-                </p>
-
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <div>
-                        <div style="display:flex; justify-content:space-between; font-size:0.82em; font-weight:600;">
-                            <span><code>automation.webdriver</code> Weight:</span>
-                            <span id="val-webdriver" style="color:var(--primary-color); font-family:monospace;">25</span>
-                        </div>
-                        <input type="range" id="slider-webdriver" min="5" max="50" value="25" style="width:100%;">
-                    </div>
-
-                    <div>
-                        <div style="display:flex; justify-content:space-between; font-size:0.82em; font-weight:600;">
-                            <span><code>rate.burst_request</code> Weight:</span>
-                            <span id="val-burst" style="color:var(--primary-color); font-family:monospace;">30</span>
-                        </div>
-                        <input type="range" id="slider-burst" min="10" max="60" value="30" style="width:100%;">
-                    </div>
-                </div>
-
-                <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:3px; padding:10px; margin-top:6px;">
-                    <div style="font-size:0.82em; font-weight:700; color:var(--primary-color); margin-bottom:4px;">Simulation Summary</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:0.82em;">
-                        <div>Original High Risk: <strong id="sim-orig-high">0</strong></div>
-                        <div>Simulated High Risk: <strong id="sim-new-high" style="color:#b45309;">0 (+0)</strong></div>
-                    </div>
-                    <div style="margin-top:4px; font-size:0.78em; color:#64748b;" id="sim-reclassified-ids">Reclassified: None</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tomcat-section">
-            <div class="section-header">
-                <span>Recent Evaluated Sessions Stream</span>
-                <span style="font-size:0.8em; font-weight:normal; color:#64748b;" id="table-count-label">0 total entries</span>
-            </div>
-
-            <div style="overflow-x:auto;">
-                <table class="tomcat-table">
-                    <thead>
-                        <tr>
-                            <th style="width:140px;">Trace ID</th>
-                            <th style="width:80px;">Score</th>
-                            <th style="width:90px;">Evidence Conf</th>
-                            <th style="width:110px;">Action (Shadow)</th>
-                            <th style="width:140px;">Recommended</th>
-                            <th>Triggered Evidence</th>
-                            <th style="width:90px;">Time</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sessions-tbody">
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <!-- ═══════════════════════════════════════════════════════════
+       AMEVA MUSEUM DOCENT TOUR OVERLAY (Cinematic Audio Guide)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="tour-overlay" class="tour-overlay is-hidden">
+    <!-- Top Museum Track & Progress Banner -->
+    <div class="museum-header-bar">
+      <div class="museum-badge">🏛️ AMEVA Sovereign Museum</div>
+      <select id="docent-track-select" class="docent-track-select">
+        <option value="full">🌌 전관 마스터 코스 (32개 생태계 전관)</option>
+        <option value="mobile">📱 온디바이스 모바일 AI 혁신관</option>
+        <option value="webgpu">⚡ 브라우저 WebGPU & 워크스페이스관</option>
+        <option value="multiagent">🤖 자율 멀티에이전트 & 스웜관</option>
+        <option value="sre">🛡️ 보안 & SRE 인프라관</option>
+      </select>
+      <div class="museum-step-counter" id="tour-step-counter">전시실 1 / 18</div>
+      <button class="btn-museum-exit" id="btn-tour-exit" title="관람 종료">✕</button>
     </div>
 
-    <div class="modal-overlay" id="session-modal">
-        <div class="modal-box" id="modal-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
-                <div style="font-weight:800; font-size:1.1em; color:var(--primary-color);" id="modal-trace-id">Session Detail</div>
-                <button class="btn-tomcat" id="btn-close-modal">Close</button>
-            </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-                <div style="background:#f8fafc; border:1px solid var(--border-color); padding:8px; border-radius:3px;">
-                    <div style="font-size:0.75em; color:#64748b; font-weight:700;">SCORE</div>
-                    <div style="font-size:1.3em; font-weight:800; font-family:monospace;" id="modal-score">0</div>
-                </div>
-                <div style="background:#f8fafc; border:1px solid var(--border-color); padding:8px; border-radius:3px;">
-                    <div style="font-size:0.75em; color:#64748b; font-weight:700;">EVIDENCE CONF</div>
-                    <div style="font-size:1.3em; font-weight:800; font-family:monospace;" id="modal-confidence">0.00</div>
-                </div>
-                <div style="background:#f8fafc; border:1px solid var(--border-color); padding:8px; border-radius:3px;">
-                    <div style="font-size:0.75em; color:#64748b; font-weight:700;">RECOMMENDED</div>
-                    <div style="font-size:0.95em; font-weight:800; margin-top:4px;" id="modal-action">ALLOW</div>
-                </div>
-            </div>
-
-            <div>
-                <div style="font-size:0.88em; font-weight:700; color:var(--primary-color); margin-bottom:6px;">Triggered Evidence Attributes</div>
-                <div id="modal-evidence-list" style="display:flex; flex-direction:column; gap:6px;">
-                </div>
-            </div>
+    <!-- Curator Exhibition Panel with Live Showcase & Smooth Auto-Scroll -->
+    <div class="museum-curator-card" id="museum-curator-card">
+      <div class="curator-card-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="curator-tag" id="tour-type-tag">전시관</span>
+          <span class="curator-badge-tier" id="tour-tier-tag">TLP Flagship</span>
         </div>
+        <a id="tour-live-link" href="#" target="_blank" class="btn-tour-live-doc" title="공식 문서 / 저장소 바로가기">
+          <span>Explore Live</span> ↗
+        </a>
+      </div>
+      
+      <h3 id="tour-title" style="margin: 6px 0 4px 0;">전시실 타이틀</h3>
+      <div class="curator-note" id="tour-curator-note">큐레이터 핵심 노트...</div>
+      
+      <div class="curator-spec-grid" id="tour-spec-grid">
+        <div class="spec-item"><span class="spec-label">Tech Stack:</span> <span id="tour-tech">...</span></div>
+        <div class="spec-item" id="tour-command-container" style="display:none;"><span class="spec-label">Terminal:</span> <code id="tour-command" style="color:var(--accent-green); font-family:var(--font-mono);">...</code></div>
+      </div>
+
+      <!-- Live Interactive Showcase & Smooth Auto-Scroller Window -->
+      <div class="museum-showcase-window" id="museum-showcase-window">
+        <div class="showcase-window-header">
+          <div class="showcase-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="showcase-title">Live Architecture &amp; Markdown Showcase</span>
+          <span class="showcase-scroll-status" id="showcase-scroll-status">⚡ Auto-Scrolling</span>
+        </div>
+        <div class="showcase-viewport markdown-body" id="showcase-viewport">
+          <div class="showcase-loading">
+            <div class="spinner"></div>
+            <span>Rendering live exhibition documentation...</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script type="module">
-        import {
-            evaluate,
-            createPolicy,
-            rules,
-            LocalStorageRiskEventStore
-        } from '/risk-core/dist/index.js';
-
-        import {
-            browserTelemetry,
-            formatTimestamp
-        } from '/browser-sdk/dist/index.js';
-
-        const store = new LocalStorageRiskEventStore();
-
-        function getSelectedTimezone() {
-            const el = document.getElementById('tz-selector');
-            return el ? el.value : 'Asia/Seoul';
-        }
-
-        function createTextCell(row, text, className = '') {
-            const cell = row.insertCell();
-            cell.textContent = String(text ?? '');
-            if (className) cell.className = className;
-            return cell;
-        }
-
-        function formatDisplayTime(dateInput) {
-            const tz = getSelectedTimezone();
-            return formatTimestamp(dateInput, { timezone: tz, format: 'full' });
-        }
-
-        function formatTimeAgo(date) {
-            const sec = Math.max(0, Math.round((Date.now() - new Date(date).getTime()) / 1000));
-            if (sec < 60) return `${sec}s ago`;
-            if (sec < 3600) return `${Math.round(sec / 60)}m ago`;
-            const tz = getSelectedTimezone();
-            return formatTimestamp(date, { timezone: tz, format: 'time' });
-        }
-
-        async function renderDashboard() {
-            let reports = [];
-            let serverAnalytics = null;
-
-            try {
-                const res = await fetch('/api/sentinel?action=analytics');
-                if (res.ok) {
-                    serverAnalytics = await res.json();
-                    if (serverAnalytics && Array.isArray(serverAnalytics.events) && serverAnalytics.events.length > 0) {
-                        reports = serverAnalytics.events;
-                        const bannerStoreBadge = document.querySelector('.status-title .badge-demo');
-                        if (bannerStoreBadge) {
-                            bannerStoreBadge.textContent = 'Neon PostgreSQL (Live Serverless Event Store)';
-                            bannerStoreBadge.style.background = '#dcfce7';
-                            bannerStoreBadge.style.color = '#15803d';
-                            bannerStoreBadge.style.borderColor = '#86efac';
-                        }
-                    }
-                }
-            } catch (err) {
-                console.warn('[Dashboard Server Sync Fallback to LocalStorage]', err);
-            }
-
-            // Fallback to local store if server returns empty
-            if (reports.length === 0) {
-                reports = await store.list();
-            }
-
-            const total = reports.length;
-            const bannerCountEl = document.getElementById('banner-events-count');
-            if (bannerCountEl) bannerCountEl.innerHTML = `<strong>${total.toLocaleString()} Events</strong>`;
-            const bannerLastEl = document.getElementById('banner-last-event');
-            if (bannerLastEl && reports.length > 0) bannerLastEl.textContent = formatTimeAgo(new Date(reports[0].evaluatedAt));
-
-            const low = reports.filter(r => r.score < 30).length;
-            const med = reports.filter(r => r.score >= 30 && r.score < 70).length;
-            const high = reports.filter(r => r.score >= 70).length;
-
-            const avgScore = total === 0 ? 0 : Math.round(reports.reduce((s, r) => s + (r.score || 0), 0) / total);
-            const avgConf = total === 0 ? 0 : (reports.reduce((s, r) => s + (r.evidenceConfidence || 0.8), 0) / total).toFixed(2);
-
-            // 3대 대분류 통계 집계
-            let humanCount = 0;
-            let aiCount = 0;
-            let crawlerCount = 0;
-
-            const humanPersonas = { 'Software Engineer': 0, 'Power User': 0, 'Desktop Standard': 0, 'Mobile Casual': 0 };
-            let aiVendors = {};
-            let crawlerTools = {};
-
-            if (serverAnalytics && serverAnalytics.triageBreakdown) {
-                humanCount = serverAnalytics.triageBreakdown.human?.total || 0;
-                aiCount = serverAnalytics.triageBreakdown.aiAgent?.total || 0;
-                crawlerCount = serverAnalytics.triageBreakdown.crawlerTool?.total || 0;
-                aiVendors = serverAnalytics.triageBreakdown.aiAgent?.byVendor || {};
-                crawlerTools = serverAnalytics.triageBreakdown.crawlerTool?.byTool || {};
-                
-                // Estimate human personas
-                humanPersonas['Software Engineer'] = Math.round(humanCount * 0.45);
-                humanPersonas['Power User'] = Math.round(humanCount * 0.3);
-                humanPersonas['Desktop Standard'] = Math.round(humanCount * 0.15);
-                humanPersonas['Mobile Casual'] = Math.round(humanCount * 0.1);
-            } else {
-                reports.forEach(r => {
-                    const triage = r.classification?.triageCategory || (r.score >= 70 ? 'CRAWLER_TOOL' : 'HUMAN');
-                    const vendor = r.classification?.vendorGroup || r.classification?.claimedName || 'Unknown';
-
-                    if (triage === 'HUMAN') {
-                        humanCount++;
-                        if (r.score === 0 && r.signals?.telemetryObserved) humanPersonas['Software Engineer']++;
-                        else if (r.signals?.totalVisitCount >= 5) humanPersonas['Power User']++;
-                        else if (r.signals?.touchMismatch) humanPersonas['Mobile Casual']++;
-                        else humanPersonas['Desktop Standard']++;
-                    } else if (triage === 'AI_AGENT') {
-                        aiCount++;
-                        aiVendors[vendor] = (aiVendors[vendor] || 0) + 1;
-                    } else {
-                        crawlerCount++;
-                        crawlerTools[vendor] = (crawlerTools[vendor] || 0) + 1;
-                    }
-                });
-            }
-
-            document.getElementById('triage-human-total').textContent = humanCount.toLocaleString();
-            document.getElementById('triage-ai-total').textContent = aiCount.toLocaleString();
-            document.getElementById('triage-crawler-total').textContent = crawlerCount.toLocaleString();
-
-            const sumTriage = (humanCount + aiCount + crawlerCount) || 1;
-            document.getElementById('triage-human-sub').textContent = `${Math.round((humanCount/sumTriage)*100)}% of total traffic`;
-            document.getElementById('triage-ai-sub').textContent = `${Math.round((aiCount/sumTriage)*100)}% of total traffic`;
-            document.getElementById('triage-crawler-sub').textContent = `${Math.round((crawlerCount/sumTriage)*100)}% of total traffic`;
-
-            function renderBreakdownList(containerId, mapData, totalCategory) {
-                const container = document.getElementById(containerId);
-                container.textContent = '';
-                const entries = Object.entries(mapData).filter(([_, cnt]) => cnt > 0);
-                if (entries.length === 0) {
-                    const emptyMsg = document.createElement('div');
-                    emptyMsg.style.color = '#64748b';
-                    emptyMsg.textContent = 'No records in this category.';
-                    container.appendChild(emptyMsg);
-                    return;
-                }
-                entries.sort((a, b) => b[1] - a[1]).forEach(([name, count]) => {
-                    const pct = Math.round((count / (totalCategory || 1)) * 100);
-                    const item = document.createElement('div');
-                    item.style.cssText = 'background:#f8fafc; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px;';
-                    item.innerHTML = `
-                        <div style="display:flex; justify-content:space-between; margin-bottom:2px;">
-                            <strong>${name}</strong>
-                            <span>${count} (${pct}%)</span>
-                        </div>
-                        <div style="height:6px; background:#e2e8f0; border-radius:2px; overflow:hidden;">
-                            <div style="height:100%; width:${pct}%; background:#004499;"></div>
-                        </div>
-                    `;
-                    container.appendChild(item);
-                });
-            }
-
-            renderBreakdownList('breakdown-human-container', humanPersonas, humanCount);
-            renderBreakdownList('breakdown-ai-container', aiVendors, aiCount);
-            renderBreakdownList('breakdown-crawler-container', crawlerTools, crawlerCount);
-
-            // Update GEO Delivery Optimizer Stats from Live Server
-            let totalGeoDeliveries = aiCount;
-            let totalGeoSavedBytes = totalGeoDeliveries * 178000;
-            let geoSavingsRatio = 99.1;
-            let topAiPaths = [
-                { path: '/lib/train', count: Math.ceil(totalGeoDeliveries * 0.4) },
-                { path: '/lib/forge', count: Math.ceil(totalGeoDeliveries * 0.3) },
-                { path: '/lib/stt', count: Math.floor(totalGeoDeliveries * 0.3) }
-            ];
-
-            if (serverAnalytics && serverAnalytics.geoDeliveryStats) {
-                totalGeoDeliveries = serverAnalytics.geoDeliveryStats.totalDeliveries || totalGeoDeliveries;
-                totalGeoSavedBytes = serverAnalytics.geoDeliveryStats.totalBytesSaved || totalGeoSavedBytes;
-                geoSavingsRatio = serverAnalytics.geoDeliveryStats.averageSavingsRatio || geoSavingsRatio;
-                if (Array.isArray(serverAnalytics.geoDeliveryStats.topAiPaths) && serverAnalytics.geoDeliveryStats.topAiPaths.length > 0) {
-                    topAiPaths = serverAnalytics.geoDeliveryStats.topAiPaths;
-                }
-            }
-
-            const geoDeliveriesEl = document.getElementById('geo-total-deliveries');
-            const geoSavedEl = document.getElementById('geo-total-saved');
-            const geoRatioEl = document.getElementById('geo-savings-ratio');
-            const geoPathsEl = document.getElementById('geo-top-paths');
-
-            if (geoDeliveriesEl) geoDeliveriesEl.textContent = totalGeoDeliveries.toLocaleString();
-            if (geoSavedEl) {
-                const mb = (totalGeoSavedBytes / (1024 * 1024)).toFixed(2);
-                const kb = (totalGeoSavedBytes / 1024).toFixed(1);
-                geoSavedEl.textContent = totalGeoSavedBytes >= (1024 * 1024) ? `${mb} MB` : `${kb} KB`;
-            }
-            if (geoRatioEl) geoRatioEl.textContent = totalGeoDeliveries > 0 ? `Avg ${geoSavingsRatio}% Bandwidth Saved` : `Avg 0% Saved`;
-            if (geoPathsEl) {
-                geoPathsEl.innerHTML = topAiPaths.length > 0
-                    ? topAiPaths.map(p => `<div style="display:flex; justify-content:space-between; margin-bottom:2px;"><code>${p.path}</code><span>${p.count} hits</span></div>`).join('')
-                    : 'None recorded yet.';
-            }
-
-            document.getElementById('stat-total').textContent = total.toLocaleString();
-            document.getElementById('stat-high').textContent = high.toLocaleString();
-            document.getElementById('stat-high-pct').textContent = total === 0 ? '0%' : `${Math.round((high / total) * 100)}% of traffic`;
-            document.getElementById('stat-avg-score').textContent = `${avgScore} / 100`;
-            document.getElementById('stat-avg-conf').textContent = String(avgConf);
-
-            document.getElementById('banner-events-count').textContent = `${total} Events`;
-            document.getElementById('banner-last-event').textContent = total > 0 ? new Date(reports[0].evaluatedAt).toLocaleTimeString() : 'None';
-            document.getElementById('dist-count-label').textContent = `${total} events`;
-            document.getElementById('table-count-label').textContent = `${total} total entries`;
-
-            const lowPct = total === 0 ? 100 : Math.round((low / total) * 100);
-            const medPct = total === 0 ? 0 : Math.round((med / total) * 100);
-            const highPct = total === 0 ? 0 : Math.round((high / total) * 100);
-
-            document.getElementById('dist-bar-low').style.width = `${lowPct}%`;
-            document.getElementById('dist-bar-med').style.width = `${medPct}%`;
-            document.getElementById('dist-bar-high').style.width = `${highPct}%`;
-
-            document.getElementById('legend-low-pct').textContent = `${lowPct}% (${low})`;
-            document.getElementById('legend-med-pct').textContent = `${medPct}% (${med})`;
-            document.getElementById('legend-high-pct').textContent = `${highPct}% (${high})`;
-
-            const ruleCounts = {};
-            reports.forEach(r => {
-                (r.evidence || []).forEach(e => {
-                    ruleCounts[e.rule] = (ruleCounts[e.rule] || 0) + 1;
-                });
-            });
-
-            const topRulesContainer = document.getElementById('top-rules-container');
-            topRulesContainer.textContent = '';
-
-            const sortedRules = Object.entries(ruleCounts).sort((a, b) => b[1] - a[1]);
-            if (sortedRules.length === 0) {
-                const emptyMsg = document.createElement('div');
-                emptyMsg.style.color = '#64748b';
-                emptyMsg.textContent = 'No rules triggered in stored events.';
-                topRulesContainer.appendChild(emptyMsg);
-            } else {
-                sortedRules.forEach(([rule, count]) => {
-                    const pct = total === 0 ? 0 : Math.round((count / total) * 100);
-                    const itemBox = document.createElement('div');
-                    itemBox.style.cssText = 'background:#f8fafc; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px;';
-
-                    const rowFlex = document.createElement('div');
-                    rowFlex.style.cssText = 'display:flex; justify-content:space-between; margin-bottom:2px;';
-
-                    const codeElem = document.createElement('code');
-                    codeElem.textContent = rule;
-
-                    const strongElem = document.createElement('strong');
-                    strongElem.textContent = `${count} (${pct}%)`;
-
-                    rowFlex.appendChild(codeElem);
-                    rowFlex.appendChild(strongElem);
-                    itemBox.appendChild(rowFlex);
-                    topRulesContainer.appendChild(itemBox);
-                });
-            }
-
-            const tbody = document.getElementById('sessions-tbody');
-            tbody.textContent = '';
-
-            if (reports.length === 0) {
-                const emptyRow = tbody.insertRow();
-                const cell = emptyRow.insertCell();
-                cell.colSpan = 7;
-                cell.style.cssText = 'text-align:center; color:#64748b; padding:20px;';
-                cell.textContent = 'No events in store. Click buttons above to generate real events!';
-            } else {
-                reports.forEach((r, idx) => {
-                    const row = tbody.insertRow();
-                    row.setAttribute('data-trace-id', r.traceId);
-                    row.onclick = () => showReportDetail(r);
-
-                    const traceCell = row.insertCell();
-                    const code = document.createElement('code');
-                    code.textContent = r.traceId;
-                    if (idx === 0) code.setAttribute('data-testid', 'latest-trace-id');
-                    traceCell.appendChild(code);
-
-                    const scoreCell = row.insertCell();
-                    const scoreBox = document.createElement('span');
-                    scoreBox.className = 'score-box ' + (r.score >= 70 ? 'score-high' : r.score >= 30 ? 'score-med' : 'score-low');
-                    scoreBox.textContent = String(r.score);
-                    scoreCell.appendChild(scoreBox);
-
-                    const confCell = createTextCell(row, r.evidenceConfidence || 0.85);
-                    confCell.style.fontFamily = 'monospace';
-
-                    const actionCell = row.insertCell();
-                    const actionPill = document.createElement('span');
-                    actionPill.className = 'pill-action pill-observe';
-                    actionPill.textContent = r.action;
-                    actionCell.appendChild(actionPill);
-
-                    const recCell = row.insertCell();
-                    const recPill = document.createElement('span');
-                    const pillCls = r.recommendedAction === 'ALLOW' ? 'pill-allow' : r.recommendedAction === 'RATE_LIMIT' ? 'pill-deny' : r.recommendedAction === 'REQUIRE_APP_VERIFICATION' ? 'pill-verify' : 'pill-observe';
-                    recPill.className = `pill-action ${pillCls}`;
-                    recPill.textContent = r.recommendedAction;
-                    recCell.appendChild(recPill);
-
-                    const evidenceCell = row.insertCell();
-                    if (!r.evidence || r.evidence.length === 0) {
-                        const cleanSpan = document.createElement('span');
-                        cleanSpan.style.color = '#16a34a';
-                        cleanSpan.textContent = 'Clean';
-                        evidenceCell.appendChild(cleanSpan);
-                    } else {
-                        r.evidence.forEach((e, i) => {
-                            if (i > 0) evidenceCell.appendChild(document.createTextNode(', '));
-                            const ruleCode = document.createElement('code');
-                            ruleCode.textContent = `${e.rule.split('.')[1] || e.rule} (+${e.score})`;
-                            evidenceCell.appendChild(ruleCode);
-                        });
-                    }
-
-                    const timeCell = createTextCell(row, formatTimeAgo(new Date(r.evaluatedAt)));
-                    timeCell.style.color = '#64748b';
-                });
-            }
-
-            runPolicySimulation();
-        }
-
-        function showReportDetail(r) {
-            if (!r) return;
-            document.getElementById('modal-trace-id').textContent = `Session Trace: ${r.traceId}`;
-            document.getElementById('modal-score').textContent = String(r.score);
-            document.getElementById('modal-confidence').textContent = String(r.evidenceConfidence || 0.85);
-            document.getElementById('modal-action').textContent = r.recommendedAction;
-
-            const modalEvidenceList = document.getElementById('modal-evidence-list');
-            modalEvidenceList.textContent = '';
-
-            if (!r.evidence || r.evidence.length === 0) {
-                const cleanMsg = document.createElement('div');
-                cleanMsg.style.cssText = 'color:#15803d; padding:10px;';
-                cleanMsg.textContent = 'Clean session. Zero suspicious evidence rules triggered.';
-                modalEvidenceList.appendChild(cleanMsg);
-            } else {
-                r.evidence.forEach((e, i) => {
-                    const itemBox = document.createElement('div');
-                    itemBox.className = 'evidence-item';
-
-                    const headerFlex = document.createElement('div');
-                    headerFlex.style.cssText = 'display:flex; justify-content:space-between; font-weight:700; color:#004499;';
-                    
-                    const ruleName = document.createElement('span');
-                    ruleName.textContent = `${i + 1}. ${e.rule}`;
-
-                    const scoreVal = document.createElement('span');
-                    scoreVal.style.color = '#b91c1c';
-                    scoreVal.textContent = `+${e.score}`;
-
-                    headerFlex.appendChild(ruleName);
-                    headerFlex.appendChild(scoreVal);
-
-                    const messageElem = document.createElement('div');
-                    messageElem.style.cssText = 'font-size:0.85em; color:#0f172a; margin:2px 0;';
-                    messageElem.textContent = e.message;
-
-                    const attrBox = document.createElement('pre');
-                    attrBox.style.cssText = 'font-size:0.8em; color:#64748b; font-family:monospace; background:#ffffff; padding:4px 6px; border:1px solid #cbd5e1; border-radius:2px;';
-                    attrBox.textContent = JSON.stringify(e.attributes, null, 2);
-
-                    itemBox.appendChild(headerFlex);
-                    itemBox.appendChild(messageElem);
-                    itemBox.appendChild(attrBox);
-                    modalEvidenceList.appendChild(itemBox);
-                });
-            }
-
-            document.getElementById('session-modal').style.display = 'flex';
-        }
-
-        async function runPolicySimulation() {
-            const w1 = parseInt(document.getElementById('slider-webdriver').value, 10);
-            const w2 = parseInt(document.getElementById('slider-burst').value, 10);
-
-            document.getElementById('val-webdriver').textContent = String(w1);
-            document.getElementById('val-burst').textContent = String(w2);
-
-            const customPolicy = createPolicy({
-                rules: [
-                    rules.webdriver({ weight: w1 }),
-                    rules.burst({ weight: w2 }),
-                    rules.trustedInputAbsent(),
-                    rules.touchMismatch(),
-                    rules.suspiciousUA()
-                ]
-            });
-
-            const reports = await store.list();
-            const origHigh = reports.filter(r => r.score >= 70).length;
-
-            let reclassifiedHigh = 0;
-            const reclassifiedIds = [];
-
-            reports.forEach(r => {
-                const simSignals = {
-                    webdriver: r.derivedSignals?.webdriver,
-                    telemetryObserved: true,
-                    observationDurationMs: 6000,
-                    isTrustedEventsCount: 0,
-                    burstCount10s: r.derivedSignals?.burstCount10s || 1
-                };
-
-                const simReport = evaluate(simSignals, { policy: customPolicy, enforcementMode: 'SHADOW' });
-                if (simReport.score >= 70) {
-                    reclassifiedHigh++;
-                    if (r.score < 70) reclassifiedIds.push(r.traceId);
-                }
-            });
-
-            const diff = reclassifiedHigh - origHigh;
-            document.getElementById('sim-orig-high').textContent = String(origHigh);
-            document.getElementById('sim-new-high').textContent = `${reclassifiedHigh} (${diff >= 0 ? '+' : ''}${diff})`;
-
-            const idLabel = reclassifiedIds.length > 0
-                ? `Reclassified: ${reclassifiedIds.slice(0, 3).join(', ')}${reclassifiedIds.length > 3 ? '...' : ''}`
-                : 'Reclassified: None';
-            document.getElementById('sim-reclassified-ids').textContent = idLabel;
-        }
-
-        async function evaluateRealBrowser() {
-            const snap = browserTelemetry.snapshot();
-            const signals = {
-                webdriver: snap.webdriverObserved,
-                telemetryObserved: snap.telemetryObserved,
-                observationDurationMs: snap.observationDurationMs,
-                isTrustedEventsCount: snap.trustedInputCount,
-                touchMismatch: snap.touchMismatch,
-                suspiciousUA: snap.suspiciousUA,
-                isHeadlessRenderer: snap.isHeadlessRenderer,
-                headlessEvasionsDetected: snap.headlessEvasionsDetected,
-                webglRenderer: snap.webglRenderer,
-                webglVendor: snap.webglVendor,
-                totalVisitCount: snap.totalVisitCount,
-                pastPathsHistory: snap.pastPathsHistory,
-                tokenPresented: false,
-                burstCount10s: 1
-            };
-
-            const report = evaluate(signals, { enforcementMode: 'SHADOW' });
-            await store.append(report);
-
-            // Sync with Serverless API
-            try {
-                await fetch('/api/sentinel', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ path: window.location.pathname, signals })
-                });
-            } catch (e) {}
-
-            await renderDashboard();
-        }
-
-        async function simulateEvent(type) {
-            let signals = {};
-            let customHeaders = {};
-
-            if (type === 'playwright') {
-                signals = {
-                    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-                    webdriver: false, // Stealth masked!
-                    isHeadlessRenderer: true,
-                    headlessEvasionsDetected: true,
-                    webglRenderer: 'Google SwiftShader (Direct3D11 Synthetic Device)',
-                    webglVendor: 'Google Inc.',
-                    telemetryObserved: true,
-                    observationDurationMs: 1200,
-                    isTrustedEventsCount: 0,
-                    burstCount10s: 1
-                };
-                customHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
-            } else if (type === 'curl') {
-                signals = {
-                    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                    httpMissingHeaders: true, // Spoofing Chrome without Sec-Fetch-* headers
-                    telemetryObserved: false,
-                    burstCount10s: 1
-                };
-                customHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36';
-            } else if (type === 'ai') {
-                signals = {
-                    userAgent: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)',
-                    telemetryObserved: false,
-                    burstCount10s: 1
-                };
-                customHeaders['User-Agent'] = 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)';
-                customHeaders['Referer'] = 'https://chatgpt.com/search';
-            } else if (type === 'burst') {
-                signals = {
-                    webdriver: false,
-                    burstCount10s: 65,
-                    telemetryObserved: true,
-                    observationDurationMs: 6000,
-                    isTrustedEventsCount: 0,
-                    touchMismatch: true
-                };
-            }
-            const report = evaluate(signals, { enforcementMode: 'SHADOW' });
-            await store.append(report);
-
-            // Sync with Live Serverless API
-            try {
-                await fetch('/api/sentinel', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        ...customHeaders
-                    },
-                    body: JSON.stringify({ path: '/lib/train', signals })
-                });
-            } catch (e) {}
-
-            await renderDashboard();
-        }
-
-        document.getElementById('btn-refresh').onclick = renderDashboard;
-        document.getElementById('btn-eval-browser').onclick = evaluateRealBrowser;
-        document.getElementById('btn-sim-playwright').onclick = () => simulateEvent('playwright');
-        document.getElementById('btn-sim-curl').onclick = () => simulateEvent('curl');
-        document.getElementById('btn-sim-ai').onclick = () => simulateEvent('ai');
-        document.getElementById('btn-sim-burst').onclick = () => simulateEvent('burst');
-        document.getElementById('btn-clear').onclick = async () => {
-            await store.clear();
-            renderDashboard();
-        };
-
-        const tzSelectorEl = document.getElementById('tz-selector');
-        if (tzSelectorEl) {
-            tzSelectorEl.onchange = () => {
-                renderDashboard();
-                updateDashboardChart();
-            };
-        }
-
-        document.getElementById('slider-webdriver').oninput = runPolicySimulation;
-        document.getElementById('slider-burst').oninput = runPolicySimulation;
-        document.getElementById('btn-close-modal').onclick = () => {
-            document.getElementById('session-modal').style.display = 'none';
-        };
-        document.getElementById('session-modal').onclick = (e) => {
-            if (e.target === document.getElementById('session-modal')) {
-                document.getElementById('session-modal').style.display = 'none';
-            }
-        };
-
-        window.addEventListener('storage', () => renderDashboard());
-        window.addEventListener('sentinel:risk-event-appended', () => renderDashboard());
-
-        // Multi-Timeframe Traffic Chart Logic
-        let dashTrendChart = null;
-        let dashTimeSeriesData = [];
-        let currentDashTf = '5m';
-
-        function initDashboardChart() {
-            const ctx = document.getElementById('dashTrafficTrendChart');
-            if (!ctx) return;
-            dashTrendChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
-                    datasets: [
-                        {
-                            label: 'Cumulative Inflow Trend',
-                            data: [0, 10, 45, 120, 210, 276],
-                            borderColor: '#004499',
-                            borderWidth: 2,
-                            backgroundColor: 'rgba(0, 68, 153, 0.06)',
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 2,
-                            yAxisID: 'y'
-                        },
-                        {
-                            type: 'bar',
-                            label: 'Session Volume Bucket',
-                            data: [0, 4, 12, 35, 48, 62],
-                            backgroundColor: '#0284c7',
-                            borderRadius: 3,
-                            barPercentage: 0.5,
-                            yAxisID: 'y1'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    scales: {
-                        x: { grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } },
-                        y: { type: 'linear', position: 'left', grid: { color: '#f1f5f9' }, ticks: { font: { size: 10, family: 'monospace' } } },
-                        y1: { type: 'linear', position: 'right', grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } }
-                    },
-                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11, weight: '600' } } } }
-                }
-            });
-        }
-
-        function setDashTimeframe(tf) {
-            currentDashTf = tf;
-            updateDashboardChart();
-        }
-
-        function updateDashboardChart() {
-            if (!dashTrendChart || dashTimeSeriesData.length === 0) return;
-            const now = Date.now();
-            let bucketSizeMs = 5 * 60 * 1000;
-            let windowMs = 4 * 60 * 60 * 1000;
-            if (currentDashTf === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
-            else if (currentDashTf === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
-            else if (currentDashTf === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
-            else if (currentDashTf === '1D') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 7 * 24 * 60 * 60 * 1000; }
-            else if (currentDashTf === '1W') { bucketSizeMs = 7 * 24 * 60 * 60 * 1000; windowMs = 30 * 24 * 60 * 60 * 1000; }
-            else if (currentDashTf === '1M') { bucketSizeMs = 30 * 24 * 60 * 60 * 1000; windowMs = 180 * 24 * 60 * 60 * 1000; }
-
-            const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
-            const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
-            const buckets = new Map();
-            for (let t = startMs; t <= endMs; t += bucketSizeMs) buckets.set(t, 0);
-
-            dashTimeSeriesData.forEach(s => {
-                const t = new Date(s.created_at || s.evaluated_at || s.evaluatedAt).getTime();
-                if (t >= startMs && t <= endMs + bucketSizeMs) {
-                    const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
-                    if (buckets.has(key)) buckets.set(key, buckets.get(key) + 1);
-                }
-            });
-
-            const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
-            const labels = sortedKeys.map(k => {
-                const d = new Date(k);
-                if (currentDashTf === '1D' || currentDashTf === '1W' || currentDashTf === '1M') return (d.getMonth()+1) + '/' + d.getDate();
-                return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
-            });
-            const volData = sortedKeys.map(k => buckets.get(k));
-            let cumulative = 0;
-            const trendData = volData.map(v => { cumulative += v; return cumulative; });
-
-            dashTrendChart.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
-            dashTrendChart.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
-            dashTrendChart.data.datasets[1].data = volData.length > 0 ? volData : [0];
-            dashTrendChart.update();
-            const tsEl = document.getElementById('dashChartTimestamp');
-            if (tsEl) tsEl.innerText = 'Updated: ' + new Date().toLocaleTimeString();
-        }
-
-        async function fetchDashChartStats() {
-            try {
-                const res = await fetch('/api/stats?key=ameva_admin_secret_2026');
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data && data.time_series_sessions) {
-                        dashTimeSeriesData = data.time_series_sessions;
-                        updateDashboardChart();
-                    }
-                }
-            } catch(e) {}
-        }
-
-        // Auto-Ingest on Page Visit:
-        (async function autoRecordVisit() {
-            try {
-                initDashboardChart();
-                fetchDashChartStats();
-                setInterval(fetchDashChartStats, 5000);
-                browserTelemetry.start();
-                const sessionKey = 'sentinel:visited:' + (window.sessionStorage?.getItem('sentinel:session-id') || 'init');
-                if (!window.sessionStorage || !window.sessionStorage.getItem(sessionKey)) {
-                    if (window.sessionStorage) window.sessionStorage.setItem(sessionKey, '1');
-                    await evaluateRealBrowser();
-                } else {
-                    await renderDashboard();
-                }
-            } catch (e) {
-                console.error('[Sentinel Auto-Ingest Error]', e);
-                await renderDashboard();
-            }
-        })();
-    </script>
+    <!-- Real-time Cinematic Subtitle Transcript Box -->
+    <div class="docent-subtitle-hud" id="docent-subtitle-hud">
+      <div class="docent-speaker-label">
+        <span class="audio-wave-icon">🔊</span>
+        <span>AI Curator Audio Guide</span>
+      </div>
+      <p class="docent-transcript-text" id="tour-desc">해설을 준비하고 있습니다...</p>
+    </div>
+
+    <!-- Docent Bottom Control Bar -->
+    <div class="museum-controls-bar">
+      <button class="btn-tour-ctrl" id="btn-tour-prev" title="이전 전시실">⏮ 이전</button>
+      
+      <button class="btn-tour-playpause" id="btn-tour-playpause" title="재생/일시정지">
+        <span id="tour-playpause-icon">⏸</span>
+      </button>
+
+      <button class="btn-tour-ctrl" id="btn-tour-next" title="다음 전시실">다음 ⏭</button>
+
+      <div class="tour-progress-wrapper" id="btn-tour-tts" title="음성 해설 토글">
+        <svg class="tour-progress-ring" viewBox="0 0 36 36">
+          <circle class="ring-bg" cx="18" cy="18" r="16" />
+          <circle class="ring-progress" cx="18" cy="18" r="16" id="tour-progress-circle" />
+        </svg>
+        <span class="tts-icon" id="tts-icon">🔈</span>
+      </div>
+
+      <select id="tts-speed-select" class="tts-speed-select" title="해설 배속">
+        <option value="0.9">0.9x</option>
+        <option value="1.05" selected>1.0x</option>
+        <option value="1.2">1.2x</option>
+        <option value="1.5">1.5x</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LOADING OVERLAY
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="global-loading" class="global-loading">
+    <div class="spinner-large"></div>
+    <div class="loading-text">Exploring AMEVA Universe...</div>
+    <div id="loading-subtext" class="loading-subtext">시스템 신경망 연결 중...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CODEX PANEL (Fallback Mode UI)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="codex-panel" class="chat-panel">
+    <div class="chat-header">
+      <div class="chat-title">
+        <span class="status-dot online"></span> AMEVA Codex
+      </div>
+      <button id="btn-close-codex" class="icon-btn" aria-label="Close codex">✕</button>
+    </div>
+    <div class="chat-log" id="codex-content">
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          <strong>AMEVA 은하계 도감 (Codex)</strong><br><br>
+          로컬 LLM 코어를 사용할 수 없는 환경이므로, 경량화된 도감 모드로 대체되었습니다.<br>
+          아래 투어를 통해 생태계를 둘러보세요.
+        </div>
+      </div>
+      <div class="codex-actions">
+        <button id="btn-start-tour" class="btn-download"
+          style="width: 100%; justify-content: center; margin-bottom: 15px;">
+          ▶ 시네마틱 가이드 투어 시작
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MODALS
+       ═══════════════════════════════════════════════════════════ -->
+
+  <div class="modal-backdrop" id="modal-mobile" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger">Mobile / Unsupported Device Detected</h2>
+      </div>
+      <div class="modal-body">
+        <p>This Edge-native AI dashboard requires heavy WebGPU compute capabilities usually found on desktop browsers.
+        </p>
+        <p>We've switched you to <strong>Codex Mode</strong> so you can still explore the architecture safely.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-dismiss-mobile" class="btn btn-primary">Enter Codex Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-webgpu" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger">WebGPU Not Supported</h2>
+      </div>
+      <div class="modal-body">
+        <p>Your browser does not support WebGPU, which is strictly required for the local LLM engine.</p>
+        <p>We've switched you to <strong>Codex Mode</strong> so you can explore the network without local AI.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-dismiss-webgpu" class="btn btn-primary">Enter Codex Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       GRAPH HOVER TOOLTIP (Small, follows mouse)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="graph-tooltip-small" class="graph-tooltip-small is-hidden" aria-hidden="true">
+    <span id="tooltip-small-title">Node</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NODE DETAIL MODAL (Click to open)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-node-detail" role="dialog" aria-hidden="true" style="z-index: 9999;">
+    <div class="modal-card modal-medium" style="max-width: 780px; width: 92vw; max-height: 88vh; overflow-y: auto; text-align: left; background: rgba(15, 23, 42, 0.96); border: 1px solid rgba(0, 239, 255, 0.4); box-shadow: 0 24px 64px rgba(0,0,0,0.85), 0 0 30px rgba(0, 239, 255, 0.2);">
+      <button type="button" class="btn-close-modal" id="btn-close-node-modal" aria-label="Close" style="cursor: pointer; z-index: 10;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <span class="node-modal-icon" style="font-size: 1.6rem;">🚀</span>
+        <h2 id="node-modal-title" style="margin: 0; font-size: 1.35rem; color: #fff; font-family: var(--font-sans);">Node Title</h2>
+      </div>
+      <div id="node-modal-desc" style="width: 100%;">
+        <!-- Detailed Executive Summary & Readme goes here -->
+      </div>
+      <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+        <a id="node-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-download"
+          style="padding: 10px 20px; font-size: 0.9rem; font-weight: bold; border-radius: 6px;">
+          <span>Explore Documentation &amp; Code</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width: 18px; height: 18px; margin-left: 6px;">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       B. HEADER — Glassmorphism SRE Metrics Bar
+       ═══════════════════════════════════════════════════════════ -->
+  <header id="header" role="banner">
+    <!-- Logo -->
+    <div class="header-logo">
+      <div class="logo-icon" aria-hidden="true">A</div>
+      <h1>AMEVA <span>Neural Fabric</span></h1>
+    </div>
+
+    <!-- SRE Metrics Cluster -->
+    <div class="sre-metrics" aria-label="System metrics">
+      <!-- WebGPU Status -->
+      <div class="metric-badge" id="metric-webgpu">
+        <span class="status-dot loading" id="webgpu-dot"></span>
+        <span>WebGPU:</span>
+        <span class="metric-value" id="webgpu-status">Checking</span>
+      </div>
+
+      <!-- Model Info -->
+      <div class="metric-badge" id="metric-model">
+        <span>Model:</span>
+        <span class="metric-value" id="model-name" style="color: var(--accent-cyan);">Qwen 1.5B</span>
+      </div>
+
+      <!-- TPS (Tokens Per Second) -->
+      <div class="metric-badge" id="metric-tps">
+        <span>TPS:</span>
+        <span class="metric-value" id="tps-header">0.00</span>
+      </div>
+    </div>
+
+    <!-- Navigation Hub Links -->
+    <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
+      <a href="/" style="color:var(--text-primary); background:rgba(255,255,255,0.08); padding:5px 12px; border-radius:6px; font-size:0.8rem; text-decoration:none; border:1px solid var(--border-subtle); display:flex; align-items:center; gap:5px; transition:all 0.2s;">🏠 Founder CV</a>
+      <a href="/foundation/" style="color:var(--accent-cyan); background:rgba(0,239,255,0.08); padding:5px 12px; border-radius:6px; font-size:0.8rem; text-decoration:none; border:1px solid rgba(0,239,255,0.25); display:flex; align-items:center; gap:5px; transition:all 0.2s;">🏛️ Foundation</a>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       C. UNIFIED FAB MENU CLUSTER
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="fab-group" class="fab-group">
+    <!-- 1. Blog (Tistory) FAB -->
+    <button id="fab-blog" class="fab-sub" aria-label="Open Blog" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+        <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+      </svg>
+    </button>
+
+    <!-- 2. Spotlight Search FAB -->
+    <button id="fab-search" class="fab-sub" aria-label="Open Search" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+    </button>
+
+    <!-- 3. AI Chat FAB -->
+    <button id="fab-chat" class="fab-sub" aria-label="Open AI chat" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
+        <path d="M5 10h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" />
+        <circle cx="9" cy="15" r="1" fill="currentColor" />
+        <circle cx="15" cy="15" r="1" fill="currentColor" />
+        <path d="M9 22v-2" />
+        <path d="M15 22v-2" />
+      </svg>
+    </button>
+
+    <!-- Main Trigger Button -->
+    <button id="fab-trigger" aria-label="Toggle Controls Menu" type="button">
+      <span class="trigger-icon">⚡</span>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       C-2. FLOATING ACTION BUTTON — Who Made AMEVA? (Centered - Stays Independent)
+       ═══════════════════════════════════════════════════════════ -->
+  <button id="btn-who-made" class="fab-who-made" aria-label="Who Made AMEVA?">
+    Who Made AMEVA?
+  </button>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       D. CHAT PANEL — The Command Center
+       ═══════════════════════════════════════════════════════════ -->
+  <aside id="chat-panel" class="chat-panel" role="complementary" aria-label="AI Chat Panel">
+
+    <!-- ─── Panel Header ───────────────────────────────────── -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="ai-avatar" aria-hidden="true">⚡</div>
+        <div class="chat-title-group">
+          <span class="chat-title">AMEVA Cortex</span>
+          <span class="chat-subtitle" id="chat-engine-status">engine: standby</span>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <!-- Tour on PC -->
+        <button type="button" id="btn-start-tour-pc" class="btn-tour-pc" aria-label="Start Cinematic Tour"
+          title="시네마틱 가이드 투어">
+          ▶ 투어 시작
+        </button>
+        <!-- Clear chat -->
+        <button type="button" id="btn-clear-chat" aria-label="Clear chat history" title="Clear chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+          </svg>
+        </button>
+        <!-- Close panel -->
+        <button type="button" id="btn-close-chat" aria-label="Close chat panel" title="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── TPS Metrics Strip ──────────────────────────────── -->
+    <div class="tps-strip" id="tps-strip">
+      <div class="tps-item">
+        <span class="tps-label">Speed</span>
+        <span class="tps-value dim" id="tps-speed">— t/s</span>
+      </div>
+      <div class="tps-item">
+        <span class="tps-label">Tokens</span>
+        <span class="tps-value dim" id="tps-tokens">0</span>
+      </div>
+      <div class="tps-item">
+        <span class="tps-label">Latency</span>
+        <span class="tps-value dim" id="tps-latency">— ms</span>
+      </div>
+    </div>
+
+    <!-- ─── Download Overlay (shown on first visit) ────────── -->
+    <div class="download-overlay" id="download-overlay">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      </div>
+
+      <h3>Edge AI Engine Required</h3>
+      <span class="model-tag">Qwen2.5-1.5B-Instruct-q4f16_1-MLC</span>
+      <p>
+        이 대시보드는 브라우저 내에서 직접 LLM을 구동합니다.
+        최초 1회 약 <strong style="color:var(--text-primary)">900MB</strong>의 모델 다운로드가 필요합니다.
+        (이후 IndexedDB에 캐싱됩니다.)
+      </p>
+
+      <!-- Progress UI (hidden until download starts) -->
+      <div class="download-progress" id="download-progress" style="display:none;">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+        <span class="progress-text" id="progress-text">Preparing download…</span>
+        <span class="progress-percent" id="progress-percent">0%</span>
+      </div>
+
+      <!-- CTA Button -->
+      <button type="button" class="btn-download" id="btn-start-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download &amp; Initialize
+      </button>
+
+      <!-- Just view Codex button -->
+      <button type="button" id="btn-just-view-codex"
+        style="width: 100%; margin-top: 10px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease;">
+        그냥 코덱스(가이드 투어)만 볼래요
+      </button>
+    </div>
+
+    <!-- ─── Chat Message Log ───────────────────────────────── -->
+    <div class="chat-log" id="chat-log">
+
+      <!-- System welcome message -->
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          안녕하세요! 저는 <strong>AMEVA Cortex</strong>입니다. 🧠<br />
+          AMEVA 생태계의 아키텍처, 코드 구조, 배포 파이프라인에 대해 질문해 주세요.<br />
+          브라우저 내 로컬 GraphRAG 엔진이 관련 소스 코드를 검색하여 답변합니다.
+        </div>
+        <div class="source-badges">
+          <a class="source-badge" href="#" title="Knowledge Graph loaded">
+            <span class="badge-icon">📊</span>
+            <span>graph_index.json</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sample User message -->
+      <div class="chat-msg user">
+        <div class="msg-bubble">
+          AMEVA 프로젝트의 <code>setup.ps1</code> 스크립트는 무슨 역할을 해?
+        </div>
+      </div>
+
+      <!-- Sample AI response with source badges -->
+      <div class="chat-msg ai">
+        <div class="msg-bubble">
+          <code>setup.ps1</code>은 AMEVA 개발 환경의 초기 설정을 자동화하는 PowerShell 스크립트입니다.
+          주요 역할은 다음과 같습니다:<br /><br />
+          <strong>1.</strong> Python 가상 환경 생성 및 의존성 설치<br />
+          <strong>2.</strong> 환경 변수 설정 (<code>.env</code> 파일 생성)<br />
+          <strong>3.</strong> GPU 드라이버 호환성 체크<br />
+          <strong>4.</strong> 초기 모델 가중치 다운로드 트리거
+        </div>
+        <div class="source-badges">
+          <a class="source-badge" href="https://github.com/ameva-project/setup.ps1" target="_blank"
+            rel="noopener noreferrer" title="View source on GitHub">
+            <span class="badge-icon">🔗</span>
+            <span>setup.ps1</span>
+          </a>
+          <a class="source-badge" href="https://github.com/ameva-project/requirements.txt" target="_blank"
+            rel="noopener noreferrer" title="View source on GitHub">
+            <span class="badge-icon">🔗</span>
+            <span>requirements.txt</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Typing indicator (hidden by default, shown via JS) -->
+      <!--
+      <div class="typing-indicator" id="typing-indicator">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      -->
+
+    </div><!-- /.chat-log -->
+
+    <!-- ─── Chat Input Area ────────────────────────────────── -->
+    <div class="chat-input-area">
+      <textarea id="chat-input" placeholder="AMEVA에 대해 질문하세요…" rows="1" disabled
+        aria-label="Type your message"></textarea>
+      <!-- Stop Generation button (hidden by default) -->
+      <button type="button" id="btn-stop-gen" aria-label="Stop generation" class="is-hidden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="6" y="6" width="12" height="12"></rect>
+        </svg>
+      </button>
+      <!-- Send button -->
+      <button type="button" id="btn-send" aria-label="Send message" disabled>
+        <!-- Send arrow icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+
+  </aside><!-- /#chat-panel -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       E. MOBILE BLOCK MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-mobile" role="dialog" aria-modal="true" aria-labelledby="modal-mobile-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">🖥️</span>
+      <h2 id="modal-mobile-title">Desktop Environment Required</h2>
+      <p>
+        해당 AI 엔진은 PC 환경의 <strong>WebGPU</strong> 자원을 필요로 합니다.<br />
+        Chrome 또는 Edge 데스크톱 브라우저에서 접속해 주세요.
+      </p>
+      <span class="modal-tag">WebGPU · OOM Prevention</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       F. WEBGPU FALLBACK MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-webgpu" role="dialog" aria-modal="true" aria-labelledby="modal-webgpu-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">⚠️</span>
+      <h2 id="modal-webgpu-title">WebGPU Not Detected</h2>
+      <p>
+        브라우저에서 WebGPU가 감지되지 않습니다.<br />
+        Chrome/Edge에서 <code>chrome://flags/#enable-unsafe-webgpu</code>를
+        활성화한 후 재시작해 주세요.
+      </p>
+      <span class="modal-tag">Hardware Acceleration Required</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       G. STORAGE QUOTA EXCEEDED MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-storage" role="dialog" aria-modal="true" aria-labelledby="modal-storage-title">
+    <div class="modal-card">
+      <span class="modal-icon" aria-hidden="true">💾</span>
+      <h2 id="modal-storage-title">Storage Quota Exceeded</h2>
+      <p>
+        브라우저 저장소 공간이 부족합니다.<br />
+        불필요한 사이트 데이터를 삭제하거나 저장소 권한을 허용해 주세요.
+      </p>
+      <span class="modal-tag">IndexedDB · Cache Failure</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       H. TOUR OVERLAY CONTROLS (ADDED)
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- Tour Navigation Controls added dynamically inside tour-overlay -->
+  <template id="tour-controls-template">
+    <div class="tour-controls">
+      <button class="btn-tour-nav" id="btn-tour-prev" aria-label="Previous">❮</button>
+
+      <div class="tour-progress-wrapper">
+        <svg class="tour-progress-ring" viewBox="0 0 36 36">
+          <circle class="ring-bg" cx="18" cy="18" r="16" />
+          <circle class="ring-progress" cx="18" cy="18" r="16" id="tour-progress-circle" />
+        </svg>
+        <button class="btn-tour-tts" id="btn-tour-tts" aria-label="Toggle TTS">🔊</button>
+      </div>
+
+      <button class="btn-tour-nav" id="btn-tour-next" aria-label="Next">❯</button>
+    </div>
+  </template>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       I. WHO MADE AMEVA PROFILE MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-profile" role="dialog" aria-modal="true" aria-labelledby="modal-profile-title">
+    <div class="modal-card profile-card">
+      <button class="btn-close-modal" id="btn-close-profile" aria-label="Close Profile">✕</button>
+      <div id="profile-content" class="markdown-body">
+        <div class="spinner"></div> Loading Profile...
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       J. TOAST NOTIFICATION CONTAINER
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       K. BLOG IFRAME MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-blog" role="dialog" aria-modal="true" aria-labelledby="modal-blog-title">
+    <div class="modal-card profile-card"
+      style="width: 90vw; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+      <div
+        style="height: 40px; background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; padding: 0 16px; flex-shrink: 0;">
+        <a href="https://uno-kim.tistory.com/" target="_blank" rel="noopener noreferrer"
+          style="color: var(--accent-cyan); font-family: var(--font-sans); font-size: 0.95rem; font-weight: bold; text-decoration: none; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; transition: color 0.2s;">
+          🔗 uno-kim.tistory.com
+        </a>
+        <button id="btn-close-blog" aria-label="Close Blog"
+          style="background: rgba(255,255,255,0.1); border: none; color: #fff; cursor: pointer; font-size: 1rem; width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; transition: background 0.2s;">✕</button>
+      </div>
+      <iframe id="blog-iframe" src="about:blank" data-src="https://uno-kim.tistory.com/"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        style="flex: 1; width: 100%; border: none; background: #fff;"></iframe>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS — Loaded as ES Modules
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Markdown Parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Fuse.js & Knowledge Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script src="/dashboard/js/knowledge_engine.js"></script>
+
+  <!-- Mad Science Add-ons -->
+  <script src="/dashboard/js/audio_engine.js"></script>
+  <script src="/dashboard/js/particle_compute.js"></script>
+  <script src="/dashboard/js/tag_cloud.js"></script>
+  <script src="/dashboard/js/voice_shell.js"></script>
+  <script src="/dashboard/js/social_engine.js"></script>
+  <script src="/dashboard/js/sandbox_emulator.js"></script>
+
+  <script type="module" src="/dashboard/js/app.js"></script>
+  <script type="module" src="/dashboard/js/graph_visualizer.js"></script>
+
 </body>
-</html>
 
+</html>
