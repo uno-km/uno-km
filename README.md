@@ -70,7 +70,7 @@
   <tr>
     <td width="34%" align="center" valign="top">
       <br/>
-      <img src="assets/images/profile.png" width="150" height="150" alt="김은호 (Eunho Kim)"/><br/><br/>
+      <img src="assets/images/profile.jpg" width="150" height="150" style="border-radius: 50%; object-fit: cover;" alt="김은호 (Eunho Kim)"/><br/><br/>
       <h3 align="center" style="margin: 4px 0 2px 0;">김은호 (Eunho Kim)</h3>
       <p align="center" style="color: #64748b; font-size: 0.88em; margin-bottom: 12px;"><code>@uno-km</code> · <code>1994.11.10</code></p>
       <a href="https://uno-km.vercel.app/"><img src="https://img.shields.io/badge/Senior%20Full--Stack%20Engineer%20%26%20Systems%20Architect-003399?style=flat-square&logoColor=white" alt="Role"></a><br/><br/>
