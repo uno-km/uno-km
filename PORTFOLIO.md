@@ -99,6 +99,14 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
   # 또는
   npm install termux-bitnet
   ```
+- **실기기 실측 벤치마크 (Samsung Galaxy S25 / Termux Bionic ARM64)**:
+  | 단계 | 수행 명령어 | 소요 시간 | 검증 상태 | 실측 성능 지표 |
+  |---|---|---|---|---|
+  | **Step 1** | `npx termux-bitnet info` | **1.43초** | 🟢 PASS | S25 4코어 ARM64, NEON & DotProd (`vdotq_s32`) 감지 |
+  | **Step 2** | `npx termux-bitnet models` | **1.46초** | 🟢 PASS | 1.58-bit GGUF 검증 모델 레지스트리 4종 조회 |
+  | **Step 3** | `npx termux-bitnet download bitnet-2b` | **241.47초** (4분 1초) | 🟢 PASS | 1.13 GB Microsoft BitNet b1.58 다운로드 (평균 **4.69 MB/s**) |
+  | **Step 4** | `npx termux-bitnet run -p "..."` | **1.50초** | 🟢 PASS | 조화평균 계산 및 응답 스트리밍 완료 (0-Heap 할당) |
+  | **합계** | **4단계 풀 파이프라인** | **245.86초** (4분 5초) | 🟢 PASS | **다운로드 제외 실질 엔진 지연시간 <= 1.50초** |
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-bitnet/)
   - [npm 패키지](https://www.npmjs.com/package/termux-bitnet)

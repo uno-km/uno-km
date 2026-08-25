@@ -479,6 +479,8 @@ export default async function handler(req, res) {
                 ai_bots_percent: botPct,
                 metric: 'sessions',
                 window: 'all_time',
+                consistency_model: 'EVENTUAL',
+                expected_tolerance_percent: 10,
                 updated_at: new Date().toISOString(),
                 dedup_key: 'visitor_id'
             },
