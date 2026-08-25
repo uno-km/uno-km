@@ -449,7 +449,7 @@
           <div class="metric-card-footer" id="valHumanShare">71% of Total Traffic</div>
         </div>
         <div class="metric-card">
-          <div class="metric-card-title">Bot Claims &amp; Automation Signals</div>
+          <div class="metric-card-title">Bot Claims &amp; Automation Signals <span style="font-size:0.68rem; font-weight:600; color:#64748b; background:#f1f5f9; border:1px solid #cbd5e1; padding:1px 4px; border-radius:3px; vertical-align:middle;">Unverified</span></div>
           <div class="metric-card-value" id="valBots" style="color: #7c3aed;">82</div>
           <div class="metric-card-footer" id="valAiShare" style="color: #7c3aed;">29% of Total Traffic</div>
         </div>
@@ -597,7 +597,7 @@
               </tr>
             </thead>
             <tbody id="botTableBody">
-              <tr><td><strong>OpenAI / GPTBot</strong></td><td>0 events</td><td>0%</td></tr>
+              <tr><td><strong>OpenAI / GPTBot</strong> <span style="font-size:0.65rem; background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; padding:1px 5px; border-radius:3px; font-weight:600; margin-left:4px;">Unverified</span></td><td>0 events</td><td>0%</td></tr>
             </tbody>
           </table>
         </div>
@@ -1321,7 +1321,7 @@
 
           const botTbody = document.getElementById('botTableBody');
           if (pubData.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
-            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => '<tr><td><strong>' + b.name + '</strong></td><td>' + b.count + ' events</td><td><span style="color: #7c3aed; font-weight: 700;">' + b.share + '</span></td></tr>').join('');
+            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => '<tr><td><strong>' + b.name + '</strong> <span style="font-size:0.65rem; background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; padding:1px 5px; border-radius:3px; font-weight:600; margin-left:4px;">Unverified</span></td><td>' + b.count + ' events</td><td><span style="color: #7c3aed; font-weight: 700;">' + b.share + '</span></td></tr>').join('');
           }
 
           const regTbody = document.getElementById('regionTableBody');

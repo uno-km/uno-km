@@ -482,10 +482,20 @@ export default async function handler(req, res) {
                 updated_at: new Date().toISOString(),
                 dedup_key: 'visitor_id'
             },
+            actor_claims_breakdown: {
+                claimed_ai_operators: totalBots,
+                low_risk_sessions: totalSessions,
+                verification: {
+                    unverified_claims: totalBots,
+                    verified_claims: 0,
+                    not_applicable: totalSessions
+                }
+            },
             ai_crawlers_breakdown: botBreakdown.map(b => ({
                 name: b.bot_name,
                 count: parseInt(b.count, 10),
-                share: `${b.percentage || 0}%`
+                share: `${b.percentage || 0}%`,
+                verification: 'UNVERIFIED'
             })),
             top_regions: regionStats.map(r => ({
                 country: r.country,

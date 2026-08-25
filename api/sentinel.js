@@ -16,7 +16,9 @@ import {
   SentinelAction,
   MemoryRiskEventStore,
   MemoryCounterStore,
-  toStoredRiskEvent
+  toStoredRiskEvent,
+  resolveProviderAdapter,
+  evaluateEdgePolicy
 } from '../lib/sentinel/index.js';
 
 // In-Memory Fast Fallback Stores
@@ -344,7 +346,13 @@ export default async function handler(req, res) {
               battery_charge_status as "batteryStatus",
               screen_refresh_hz as "screenHz",
               evidence,
-              evaluated_at as "evaluatedAt"
+              evaluated_at as "evaluatedAt",
+              risk_level as "riskLevel",
+              actor_claim_type as "actorClaimType",
+              actor_claim_state as "actorClaimState",
+              actor_claim_verification as "actorClaimVerification",
+              evidence_codes as "evidenceCodes",
+              policy_version as "policyVersion"
             FROM sentinel_risk_events
             ORDER BY evaluated_at DESC
             LIMIT 500;
@@ -363,6 +371,13 @@ export default async function handler(req, res) {
             score: row.score,
             action: row.action,
             recommendedAction: row.recommendedAction,
+            riskLevel: row.riskLevel || 'LOW_AUTOMATION_RISK',
+            actorClaim: {
+              type: row.actorClaimType || (row.triageCategory === 'AI_AGENT' ? 'AI_OPERATOR' : row.triageCategory === 'CRAWLER_TOOL' ? 'AUTOMATION_TOOL' : 'UNKNOWN'),
+              state: row.actorClaimState || (row.triageCategory === 'AI_AGENT' ? 'CLAIMED' : 'NONE'),
+              verification: row.actorClaimVerification || 'UNVERIFIED',
+              basis: []
+            },
             classification: {
               triageCategory: row.triageCategory,
               vendorGroup: row.vendorGroup
@@ -414,6 +429,56 @@ export default async function handler(req, res) {
 
       const analytics = sentinel.getForensicAnalytics({ events, geoLogs });
       
+      // Calculate actor claims distribution & risk level breakdown from events
+      const actorClaimDistribution = {
+        UNKNOWN: 0,
+        AI_OPERATOR: 0,
+        AUTOMATION_TOOL: 0,
+        BROWSER_USER: 0
+      };
+      const verificationBreakdown = {
+        UNVERIFIED: 0,
+        VERIFIED: 0,
+        NOT_APPLICABLE: 0,
+        CONTRADICTORY: 0
+      };
+      const riskLevelDistribution = {
+        LOW_AUTOMATION_RISK: 0,
+        ELEVATED_AUTOMATION_RISK: 0,
+        HIGH_AUTOMATION_RISK: 0
+      };
+
+      for (const ev of events) {
+        const claimType = ev.actorClaim?.type || 'UNKNOWN';
+        if (actorClaimDistribution[claimType] !== undefined) {
+          actorClaimDistribution[claimType]++;
+        } else {
+          actorClaimDistribution[claimType] = 1;
+        }
+
+        const verif = ev.actorClaim?.verification || 'NOT_APPLICABLE';
+        if (verificationBreakdown[verif] !== undefined) {
+          verificationBreakdown[verif]++;
+        } else {
+          verificationBreakdown[verif] = 1;
+        }
+
+        const rLvl = ev.riskLevel || 'LOW_AUTOMATION_RISK';
+        if (riskLevelDistribution[rLvl] !== undefined) {
+          riskLevelDistribution[rLvl]++;
+        } else {
+          riskLevelDistribution[rLvl] = 1;
+        }
+      }
+
+      analytics.actorClaimsBreakdown = {
+        distribution: actorClaimDistribution,
+        verification: verificationBreakdown,
+        totalEvaluated: events.length
+      };
+      analytics.actorClaimDistribution = actorClaimDistribution;
+      analytics.riskLevelDistribution = riskLevelDistribution;
+      
       // Inject global DB total aggregates so dashboard never truncates true history
       if (sql) {
         try {
@@ -452,6 +517,10 @@ export default async function handler(req, res) {
     if (!req.body) { req.body = { signals: {} }; }
     const report = await sentinel.score(req);
 
+    // ── v2.1 Edge Provider Adapter Resolution ─────────────────────
+    const edgeAdapter = resolveProviderAdapter(req);
+    const clientInfo = edgeAdapter.extractClientInfo(req);
+
     // Extract Micro-Precision Physical & Route Forensics
     const headers = req.headers || {};
     const body = req.body || {};
@@ -461,17 +530,11 @@ export default async function handler(req, res) {
     const clientPath = req.url || body?.path || signals?.pastPathsHistory || '/';
     const pastPaths = signals?.pastPathsHistory || body?.past_paths || clientPath;
 
-    // Detect Cloud Infrastructure / Datacenter ASN Provider
-    const ip = String(headers['x-forwarded-for'] || headers['x-real-ip'] || req.socket?.remoteAddress || '127.0.0.1').split(',')[0].trim();
-    const maskedIp = sentinel.maskIpAddress(ip);
-    const country = (headers['x-vercel-ip-country'] || headers['cf-ipcountry'] || 'GLOBAL');
-    const city = (headers['x-vercel-ip-city'] ? decodeURIComponent(headers['x-vercel-ip-city']) : (headers['cf-ipcity'] || 'Edge'));
-
-    let asnProvider = headers['x-vercel-ip-as-number'] ? `AS${headers['x-vercel-ip-as-number']}` : 'Residential/Standard';
-    if (/amazon|aws/i.test(headers['user-agent'] || '')) asnProvider = 'AWS Cloud Infrastructure';
-    else if (/azure/i.test(headers['user-agent'] || '')) asnProvider = 'Microsoft Azure Cloud';
-    else if (/google/i.test(headers['user-agent'] || '')) asnProvider = 'Google Cloud / Crawler Network';
-    else if (/cloudflare/i.test(headers['user-agent'] || '')) asnProvider = 'Cloudflare Edge Proxy';
+    // Detect Cloud Infrastructure / Datacenter ASN Provider via Edge Adapter
+    const maskedIp = clientInfo.maskedIp || sentinel.maskIpAddress(clientInfo.rawIp);
+    const country = clientInfo.country || 'GLOBAL';
+    const city = clientInfo.city || 'Edge';
+    const asnProvider = clientInfo.asn || 'Residential/Standard';
 
     // Physical Hardware Fingerprints
     const webglRenderer = signals?.webglRenderer || body?.webgl_renderer || 'server-http-client';
@@ -583,15 +646,15 @@ export default async function handler(req, res) {
           mathJitPrecision
         }
       },
-      // ── v2 Semantic Separation Assessment ─────────────────────────
-      assessment: report.assessment || {
+      // ── v2 Semantic Separation & v2.1 Edge Policy Assessment ─────
+      assessment: evaluateEdgePolicy(clientInfo, report.assessment || {
         schemaVersion: "2.0",
         riskLevel: report.riskLevel || "LOW_AUTOMATION_RISK",
         actorClaim: report.actorClaim || { type: "UNKNOWN", name: null, state: "NONE", verification: "NOT_APPLICABLE", basis: [] },
         evidence: Array.isArray(report.evidence) ? report.evidence.map(function(e) { return e && e.rule || null; }).filter(Boolean) : [],
         decision: { mode: "SHADOW", proposedAction: report.recommendedAction || "ALLOW", enforcedAction: report.action || "ALLOW", policyVersion: "sentinel-2.0-shadow.1" },
         legacy: { triageCategory: triage, deprecated: true }
-      }
+      })
     });
   } catch (err) {
     console.error('[Sentinel API Ingest Error]', err);
