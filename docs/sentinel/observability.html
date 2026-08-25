@@ -416,11 +416,14 @@
             <div class="verdict-banner" id="diagVerdictBanner">
               <div class="verdict-title">
                 <span id="diagVerdictText">Analyzing your browser session...</span>
-                <span id="diagVerdictConfidence" style="font-family:var(--font-mono, monospace); font-size:0.85rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:3px; border:1px solid #bbf7d0;">Signal Coverage: High</span>
+                <span id="diagVerdictConfidence" title="Signal Coverage represents the proportion of expected telemetry categories available for this assessment. It does not represent model accuracy or human identity confidence." style="font-family:var(--font-mono, monospace); font-size:0.85rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:3px; border:1px solid #bbf7d0; cursor:help;">Signal Coverage: High</span>
               </div>
               <p id="diagVerdictExplanation" style="font-size:0.84rem; color:#334155; margin:6px 0 0 0;">
                 현재 세션에서 관측된 신호 기준, 자동화 증거가 낮은 수준입니다. <strong>이 결과는 인간 사용자임을 증명하지 않습니다.</strong>
               </p>
+              <div style="font-size:0.72rem; color:#64748b; margin-top:4px;">
+                Signal Categories: 1. HTTP context &bull; 2. Runtime automation indicators &bull; 3. Browser environment consistency &bull; 4. Interaction signals &bull; 5. Session behavior
+              </div>
             </div>
 
             <!-- Evidence Breakdown Checklist -->
