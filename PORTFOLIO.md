@@ -99,14 +99,22 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
   # 또는
   npm install termux-bitnet
   ```
-- **실기기 실측 벤치마크 (Samsung Galaxy S25 / Termux Bionic ARM64)**:
-  | 단계 | 수행 명령어 | 소요 시간 | 검증 상태 | 실측 성능 지표 |
-  |---|---|---|---|---|
-  | **Step 1** | `npx termux-bitnet info` | **1.43초** | 🟢 PASS | S25 4코어 ARM64, NEON & DotProd (`vdotq_s32`) 감지 |
-  | **Step 2** | `npx termux-bitnet models` | **1.46초** | 🟢 PASS | 1.58-bit GGUF 검증 모델 레지스트리 4종 조회 |
-  | **Step 3** | `npx termux-bitnet download bitnet-2b` | **241.47초** (4분 1초) | 🟢 PASS | 1.13 GB Microsoft BitNet b1.58 다운로드 (평균 **4.69 MB/s**) |
-  | **Step 4** | `npx termux-bitnet run -p "..."` | **1.50초** | 🟢 PASS | 조화평균 계산 및 응답 스트리밍 완료 (0-Heap 할당) |
-  | **합계** | **4단계 풀 파이프라인** | **245.86초** (4분 5초) | 🟢 PASS | **다운로드 제외 실질 엔진 지연시간 <= 1.50초** |
+- **실기기 실측 벤치마크 (Samsung Galaxy S25 / Snapdragon 8 Elite / Termux Bionic ARM64)**:
+  - **4단계 풀 파이프라인 지연시간**:
+    | 단계 | 수행 명령어 | 소요 시간 | 검증 상태 | 실측 성능 지표 |
+    |---|---|---|---|---|
+    | **Step 1** | `npx termux-bitnet info` | **1.43초** | 🟢 PASS | S25 4코어 ARM64, NEON & DotProd (`vdotq_s32`) 감지 |
+    | **Step 2** | `npx termux-bitnet models` | **1.46초** | 🟢 PASS | 1.58-bit GGUF 검증 모델 레지스트리 4종 조회 |
+    | **Step 3** | `npx termux-bitnet download bitnet-2b` | **241.47초** (4분 1초) | 🟢 PASS | 1.13 GB Microsoft BitNet b1.58 다운로드 (평균 **4.69 MB/s**) |
+    | **Step 4** | `npx termux-bitnet run -p "..."` | **1.50초** | 🟢 PASS | 조화평균 계산 및 응답 스트리밍 완료 (0-Heap 할당) |
+    | **합계** | **4단계 풀 파이프라인** | **245.86초** (4분 5초) | 🟢 PASS | **다운로드 제외 실질 엔진 지연시간 <= 1.50초** |
+  - **파라미터 매트릭스 & 페르소나별 생성 품질 실측** (*"Explain quantum entanglement in two sentences."*):
+    | 프리셋 구분 | 적용 파라미터 설정 | 추론 처리 속도 | 지연시간 | 생성 텍스트 / 퀄리티 특성 |
+    |---|---|---|---|---|
+    | **Greedy (정밀)** | `--temp 0.0` `--top-k 1` | **5,931.93 tok/sec** | **11.7 ms** | **학술적 결정론적 정의**: *"Quantum entanglement is a physical phenomenon where two particles remain interconnected..."* |
+    | **Physicist (표준)** | `--temp 0.7` `--system-prompt "Senior Physicist"` | **991.30 tok/sec** | **65.3 ms** | **수석 물리학자 페르소나**: *"From a theoretical physics perspective, this phenomenon demonstrates quantum non-locality..."* |
+    | **Poet (창의)** | `--temp 1.2` `--system-prompt "Poet"` | **938.53 tok/sec** | **69.0 ms** | **시인 페르소나 & 다채로운 은유**: *"Two twin souls of light dances across the cosmic void, whispering their secret state..."* |
+
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-bitnet/)
   - [npm 패키지](https://www.npmjs.com/package/termux-bitnet)
