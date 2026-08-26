@@ -16,19 +16,24 @@
   
   
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  
+  
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-      <header>
+        <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.4</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
       <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
@@ -39,9 +44,9 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+          <nav class="sidebar">
+    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
+    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
@@ -53,7 +58,7 @@
       <li><a href="admin.html">Observability Console</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
     <ul>
       <li><a href="/lib/sentinel/" class="active">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
@@ -67,12 +72,12 @@
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
     </ul>
   </nav>
 
@@ -85,13 +90,22 @@
         <p>You can inspect real-time forensic telemetry, risk score distributions, and visitor heuristics directly in the <a href="admin.html"><strong>Observability Console</strong></a>.</p>
       </div>
 
-      <h3>v1.0.4 - Enterprise Edge Providers &amp; Signal Coverage Standard (Current)</h3>
+      <h3>v2.1.0 - Multi-Axis Risk Observation &amp; Edge Provider Standard (Current)</h3>
       <p class="meta-tag">Released: August 2026 &bull; Status: Production LTS</p>
       <ul>
-        <li><strong>Live Observability Dashboard (<a href="admin.html">admin.html</a>)</strong>: Integrated forensic session telemetry, WebGL fingerprinting, memory heap profiling, and real-time micro-action journey tracing.</li>
-        <li><strong>Enterprise Edge Adapters</strong>: Added zero-latency threat verification adapters for Cloudflare Workers, Fastly Compute, and Vercel Edge.</li>
-        <li><strong>Signal Coverage Tooltip &amp; Trust Boundaries</strong>: Enhanced client-side heuristics with explicit actorClaim breakdown and untrusted signal gating.</li>
-        <li><strong>Zero-Data Compliance</strong>: Full privacy audit verified—0 keystroke logging, 0 mouse recording, GDPR/CCPA compliant.</li>
+        <li><strong>Multi-Axis Semantic Separation (v2.0 Schema)</strong>: Decoupled monolithic triage into independent <code>riskLevel</code>, <code>actorClaim</code>, <code>verification</code>, and <code>decision</code> dimensions. Absences of automation signatures default to <code>UNKNOWN</code>.</li>
+        <li><strong>Enterprise Edge Provider Adapters</strong>: Added modular adapter architecture (<code>CloudflareEdgeAdapter</code>, <code>VercelEdgeAdapter</code>, <code>FastlyEdgeAdapter</code>, <code>GenericEdgeAdapter</code>) with explicit capabilities contracts.</li>
+        <li><strong>Trust Boundary Verification Guardrail</strong>: Enforced strict network validation rules—verified bot escalation requires authenticated edge-to-origin channels and direct-origin blocking.</li>
+        <li><strong>Zero Raw IP Persistence in Application Tables</strong>: IPv4/IPv6 masking (<code>maskIpAddress()</code>), coordinate logging dropped (<code>null</code>), free-text click logging sanitized with strict <code>target_type</code> enum.</li>
+        <li><strong>Fail-Open Architecture</strong>: Ingestion errors return HTTP 200 with degraded safe allowance; 55+ automated multi-dimension test scenarios verified.</li>
+        <li><strong>Signal Coverage Precision</strong>: Replaced hardcoded confidence with a dynamic 5-category availability metric on observability dashboard.</li>
+      </ul>
+
+      <h3>v1.0.4 - Target Discrimination Architecture</h3>
+      <p class="meta-tag">Released: August 2026 &bull; Status: Superseded by v2.1</p>
+      <ul>
+        <li><strong>Live Observability Dashboard</strong>: Integrated forensic session telemetry, WebGL fingerprinting, memory heap profiling, and real-time journey tracing.</li>
+        <li><strong>Signal Coverage Tooltip</strong>: Enhanced client-side heuristics with preliminary actorClaim breakdown.</li>
       </ul>
 
       <h3>v1.0.0 - Target Discrimination Standard</h3>
