@@ -224,3 +224,34 @@ window.AmevaUI.withLoading = async function(target, asyncFn, message) {
     window.AmevaUI.hideLoading(target);
   }
 };
+
+
+// ── 7. Smooth Count-Up Easing Animation (Global API) ──────────────────────
+window.AmevaUI.animateCount = function(element, targetValue, duration = 750, suffix = '', prefix = '') {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!el) return;
+
+  const startValue = parseInt(el.getAttribute('data-current-val') || '0', 10);
+  const diff = targetValue - startValue;
+  if (diff === 0 && el.textContent.trim()) return;
+
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const currentVal = Math.round(startValue + diff * easeOut);
+
+    el.textContent = prefix + currentVal.toLocaleString() + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.setAttribute('data-current-val', targetValue);
+      el.textContent = prefix + targetValue.toLocaleString() + suffix;
+    }
+  }
+
+  requestAnimationFrame(update);
+};

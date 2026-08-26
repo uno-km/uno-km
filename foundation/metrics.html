@@ -140,7 +140,7 @@
       <div class="metrics-summary-grid">
         <div class="metric-card">
           <div class="metric-label"><span class="live-pulse"></span>Total Verified Downloads</div>
-          <div class="metric-val" id="kpi-total-dl">4,180+</div>
+          <div class="metric-val" id="kpi-total-dl" data-current-val="0">0+</div>
           <p style="font-size:0.82em; color:var(--text-muted); margin:0;" id="kpi-sync-status">NPM &amp; PyPI 레지스트리 실시간 동기화 중...</p>
         </div>
         <div class="metric-card green">
@@ -186,49 +186,49 @@
               <td><strong>Termux-Playwright</strong></td>
               <td>모바일 웹 자동화 &amp; CDP</td>
               <td><code>v1.80.0</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">710</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">841</span></td>
-              <td><span class="stat-badge badge-total cell-total">1,551</span></td>
+              <td><span class="stat-badge badge-total cell-total">841</span></td>
             </tr>
             <tr data-npm="termux-diffusion" data-pypi="362" data-repo="https://github.com/uno-km/termux-diffusion">
               <td><strong>Termux-Diffusion</strong></td>
               <td>모바일 Stable Diffusion 이미지 생성</td>
               <td><code>v1.3.0</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">611</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">362</span></td>
-              <td><span class="stat-badge badge-total cell-total">973</span></td>
+              <td><span class="stat-badge badge-total cell-total">362</span></td>
             </tr>
             <tr data-npm="termux-bitnet" data-pypi="404" data-repo="https://github.com/uno-km/termux-bitnet">
               <td><strong>Termux-BitNet</strong></td>
               <td>1.58-bit 온디바이스 LLM 추론</td>
               <td><code>v1.0.5</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">255</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">404</span></td>
-              <td><span class="stat-badge badge-total cell-total">659</span></td>
+              <td><span class="stat-badge badge-total cell-total">404</span></td>
             </tr>
             <tr data-npm="termux-stt" data-pypi="127" data-repo="https://github.com/uno-km/termux-stt">
               <td><strong>Termux-STT</strong></td>
               <td>온디바이스 음성인식 &amp; 화자 분리</td>
               <td><code>v1.0.9</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">275</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">127</span></td>
-              <td><span class="stat-badge badge-total cell-total">402</span></td>
+              <td><span class="stat-badge badge-total cell-total">127</span></td>
             </tr>
             <tr data-npm="@ameva/sentinel" data-pypi="0" data-repo="https://github.com/uno-km/ameva-sentinel">
               <td><strong>AMEVA-Sentinel</strong></td>
               <td>클라이언트 행동 이상 관측 SDK</td>
               <td><code>v0.5.0-alpha.1</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">219</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-total cell-total">219</span></td>
+              <td><span class="stat-badge badge-total cell-total">0</span></td>
             </tr>
             <tr data-npm="ameva-mcp-hub" data-pypi="0" data-repo="https://github.com/uno-km/ameva-mcp-hub">
               <td><strong>AMEVA-MCP-Hub</strong></td>
               <td>WASI 인메모리 AI 도구 허브 &amp; SDK</td>
               <td><code>v3.0.0</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">149</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-total cell-total">149</span></td>
+              <td><span class="stat-badge badge-total cell-total">0</span></td>
             </tr>
             <tr data-pypi="117" data-repo="https://github.com/uno-km/termux-train">
               <td><strong>Termux-Train</strong></td>
@@ -250,9 +250,9 @@
               <td><strong>Termux-AIChain</strong></td>
               <td>Zero-Dependency AI 체이닝 에이전트</td>
               <td><code>v1.0.2</code></td>
-              <td><span class="stat-badge badge-npm cell-npm">20</span></td>
+              <td><span class="stat-badge badge-npm cell-npm">0</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">20</span></td>
-              <td><span class="stat-badge badge-total cell-total">40</span></td>
+              <td><span class="stat-badge badge-total cell-total">20</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA Workstation</strong></td>
@@ -278,21 +278,36 @@
     </main>
   </div>
 
-  <!-- Real-Time Dynamic Fetcher with Scoped Loading Overlay & Descending Sorter -->
+  <!-- Real-Time Stream Incremental Count-Up & Sorter -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       const wrapper = document.getElementById('metrics-table-wrapper');
       const tbody = document.getElementById('metrics-tbody');
+      const kpiTotal = document.getElementById('kpi-total-dl');
       if (!tbody) return;
 
-      const fetchAndSortMetrics = async () => {
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        let totalLiveEcosystem = 0;
+      let currentRunningTotal = 0;
+      const rows = Array.from(tbody.querySelectorAll('tr'));
 
+      // Calculate initial baseline from fixed PyPI counts
+      rows.forEach(row => {
+        const pypiRaw = row.getAttribute('data-pypi');
+        const pypiCount = pypiRaw ? parseInt(pypiRaw, 10) : 0;
+        row._rowTotal = pypiCount;
+        currentRunningTotal += pypiCount;
+      });
+
+      // Animate initial baseline
+      if (window.AmevaUI && window.AmevaUI.animateCount && kpiTotal) {
+        window.AmevaUI.animateCount(kpiTotal, currentRunningTotal, 500, '+');
+      }
+
+      const runLiveStreamFetch = async () => {
+        // Fetch each package and progressively count up as each resolves
         await Promise.all(rows.map(async (row) => {
           const npmPkg = row.getAttribute('data-npm');
           const pypiRaw = row.getAttribute('data-pypi');
-          let pypiCount = pypiRaw ? parseInt(pypiRaw, 10) : 0;
+          const pypiCount = pypiRaw ? parseInt(pypiRaw, 10) : 0;
           let npmCount = 0;
 
           if (npmPkg) {
@@ -309,22 +324,28 @@
             }
           }
 
-          const npmCell = row.querySelector('.cell-npm');
-          if (npmCell && npmPkg) {
-            npmCell.textContent = npmCount > 0 ? npmCount.toLocaleString() : '-';
-          }
-
           const rowTotal = npmCount + pypiCount;
           row._rowTotal = rowTotal;
-          totalLiveEcosystem += rowTotal;
 
+          const npmCell = row.querySelector('.cell-npm');
           const totalCell = row.querySelector('.cell-total');
-          if (totalCell) {
-            totalCell.textContent = rowTotal > 0 ? rowTotal.toLocaleString() : '-';
+
+          if (window.AmevaUI && window.AmevaUI.animateCount) {
+            if (npmCell && npmPkg) window.AmevaUI.animateCount(npmCell, npmCount, 600);
+            if (totalCell && rowTotal > 0) window.AmevaUI.animateCount(totalCell, rowTotal, 600);
+          } else {
+            if (npmCell && npmPkg) npmCell.textContent = npmCount > 0 ? npmCount.toLocaleString() : '0';
+            if (totalCell) totalCell.textContent = rowTotal > 0 ? rowTotal.toLocaleString() : '-';
+          }
+
+          // Progressively increment KPI total
+          currentRunningTotal += npmCount;
+          if (window.AmevaUI && window.AmevaUI.animateCount && kpiTotal) {
+            window.AmevaUI.animateCount(kpiTotal, currentRunningTotal, 600, '+');
           }
         }));
 
-        // Sort descending by total download count
+        // Sort descending after all live data arrived
         rows.sort((a, b) => {
           const totalA = a._rowTotal !== undefined ? a._rowTotal : -1;
           const totalB = b._rowTotal !== undefined ? b._rowTotal : -1;
@@ -334,11 +355,6 @@
         tbody.innerHTML = '';
         rows.forEach(row => tbody.appendChild(row));
 
-        const kpiTotal = document.getElementById('kpi-total-dl');
-        if (kpiTotal && totalLiveEcosystem > 0) {
-          kpiTotal.textContent = totalLiveEcosystem.toLocaleString() + '+';
-        }
-
         const syncStatus = document.getElementById('kpi-sync-status');
         if (syncStatus) {
           syncStatus.textContent = '실시간 레지스트리 동기화 완료 (' + new Date().toLocaleTimeString() + ')';
@@ -346,9 +362,9 @@
       };
 
       if (window.AmevaUI && window.AmevaUI.withLoading && wrapper) {
-        await window.AmevaUI.withLoading(wrapper, fetchAndSortMetrics, 'Syncing Registry Telemetry...');
+        await window.AmevaUI.withLoading(wrapper, runLiveStreamFetch, 'Syncing Real-Time Package Downloads...');
       } else {
-        await fetchAndSortMetrics();
+        await runLiveStreamFetch();
       }
     });
   </script>
