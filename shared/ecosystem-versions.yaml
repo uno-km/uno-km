@@ -53,9 +53,9 @@ libraries:
 
   aichain:
     name: "Termux-AIChain"
-    version: "1.0.0"
-    release_date: "2026-06-20"
-    npm_package: null
+    version: "1.1.0"
+    release_date: "2026-08-27"
+    npm_package: "termux-aichain"
     pypi_package: "termux-aichain"
     github_repo: "uno-km/termux-aichain"
     lib_path: "lib/aichain"
