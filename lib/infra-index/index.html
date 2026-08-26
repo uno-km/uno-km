@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Infra-Index Platform - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Infra-Index Logo">
+      <h1 data-i18n="common.brand">Infra-Index Platform</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="header-btn primary" style="background:#2563eb;border-color:#2563eb;">Live App</a>
+      <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="header-btn" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Document Navigation -->
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html" class="active">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Ecosystem -->
+      <h3 data-i18n="common.nav.libraries">Flagship Ecosystem</h3>
+      <ul>
+        <li><a href="/lib/infra-index/" class="active">Infra-Index Platform (App)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (App)</a></li>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Infra-Index Platform</h2>
+      <p class="subtitle">Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform</p>
+
+      <div class="badges-bar">
+        <span class="badge" style="background:#2563eb;color:#fff;border-color:#1d4ed8;">App Standard</span>
+        <span class="badge" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;">Next.js 16 + FastAPI</span>
+        <span class="badge" style="background:#f0fdf4;color:#15803d;border-color:#bbf7d0;">Neon Serverless PostgreSQL</span>
+        <span class="badge" style="background:#fffbeb;color:#b45309;border-color:#fde68a;">Upstash 4-Tier Redis</span>
+        <span class="badge" style="background:#faf5ff;color:#6b21a8;border-color:#e9d5ff;">Apache-2.0 License</span>
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Platform Overview & Live Deployment</span>
+        <p>Infra-Index aggregates compute resource offerings from 69 global cloud service providers (CSPs) in real time. It monitors spot and on-demand pricing across 159+ GPU models, 23+ server CPUs, 90+ object storage tiers, and 220+ bare-metal configurations with bit-exact sub-second response times.</p>
+        <div class="code-box">
+          <pre><code># Live Web Application
+https://infraindex-platform-front.vercel.app/
+
+# Serverless ASGI API Endpoint
+https://infraindex-platform.vercel.app/api/v1/data/list?menu_id=gpu&limit=10</code></pre>
+        </div>
+      </div>
+
+      <h3>System Architecture & Topology</h3>
+      <p>The platform is architected across three decoupled, high-availability tiers engineered for zero data drift and ultra-low latency:</p>
+
+      <div class="features-grid">
+        <div class="metric-card">
+          <h4>Edge Presentation Tier</h4>
+          <p>Next.js 16 App Router hosted on Vercel Global Edge CDN with Turbopack, TailwindCSS v4, React Query v5 optimistic caching, and Recharts financial candlestick charts.</p>
+        </div>
+        <div class="metric-card">
+          <h4>Serverless ASGI Backend Tier</h4>
+          <p>High-throughput FastAPI engine running on Python 3.12 with asyncpg connection pooling, 4-tier Upstash Redis memory cache fallback, and universal CORS routing.</p>
+        </div>
+        <div class="metric-card">
+          <h4>Dual Neon Storage & Batch Tier</h4>
+          <p>Serverless PostgreSQL clusters with composite B-Tree indexing on (model, provider, region, timestamp) and 153 isolated crawlers partitioned into DEV and PRD schedules.</p>
+        </div>
+      </div>
+
+      <h3>Global Data Inventory & Coverage</h3>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Resource Domain</th>
+            <th>Tracked Entities</th>
+            <th>Primary Providers</th>
+            <th>Update Frequency</th>
+            <th>Cache Layer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GPU Compute</strong></td>
+            <td>159 Models (H100, B200, RTX 4090, A100, L40S)</td>
+            <td>AWS, Lambda, RunPod, Vast.ai, Nebius, KT Cloud</td>
+            <td>Real-time / 1 Hour</td>
+            <td>Upstash Redis Tier 1</td>
+          </tr>
+          <tr>
+            <td><strong>CPU Instances</strong></td>
+            <td>23 Enterprise Models (EPYC, Xeon, Graviton)</td>
+            <td>GCP, Azure, Hetzner, OVHcloud, Vultr</td>
+            <td>Daily Periodic</td>
+            <td>Upstash Redis Tier 1</td>
+          </tr>
+          <tr>
+            <td><strong>Object Storage</strong></td>
+            <td>90 S3/Blob Storage Providers</td>
+            <td>AWS S3, Wasabi, Backblaze B2, Cloudflare R2</td>
+            <td>Daily Periodic</td>
+            <td>Upstash Redis Tier 1</td>
+          </tr>
+          <tr>
+            <td><strong>Bare-Metal Servers</strong></td>
+            <td>220 Dedicated Server SKUs</td>
+            <td>Hetzner, OVH, Leaseweb, Equinix Metal</td>
+            <td>Daily Periodic</td>
+            <td>Upstash Redis Tier 1</td>
+          </tr>
+          <tr>
+            <td><strong>Semiconductor & Research</strong></td>
+            <td>DRAM/NAND Spot + ArXiv Papers + Tech News</td>
+            <td>TrendForce, ArXiv, OSF, HuggingFace, SemiAnalysis</td>
+            <td>Continuous</td>
+            <td>Daily Brief Cache</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Key Architectural Breakthroughs</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>4-Tier Upstash Redis Fallback</h4>
+          <p>Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (<code>infraindex:prod:</code> &rarr; <code>infraindex:dev:</code> &rarr; root envelope keys) before touching disk.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Neon Composite B-Tree Indexing</h4>
+          <p>Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Dual-Tier Crawler Isolation</h4>
+          <p>Isolates development testing from production data integrity through dedicated CLI run configurations (<code>run_dev_crawl.ps1</code> vs <code>run_prd_crawl.ps1</code>).</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

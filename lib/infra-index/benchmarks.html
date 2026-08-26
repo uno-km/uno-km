@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Benchmarks & Profiling - Infra-Index Platform - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Infra-Index Logo">
+      <h1 data-i18n="common.brand">Infra-Index Platform</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="header-btn primary" style="background:#2563eb;border-color:#2563eb;">Live App</a>
+      <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="header-btn" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Document Navigation -->
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html" class="active">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Ecosystem -->
+      <h3 data-i18n="common.nav.libraries">Flagship Ecosystem</h3>
+      <ul>
+        <li><a href="/lib/infra-index/" class="active">Infra-Index Platform (App)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (App)</a></li>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Performance Benchmarks & Latency Profiling</h2>
+      <p class="subtitle">Empirical latency, throughput, and cache efficiency metrics measured across global regions.</p>
+
+      <h3>Real Production Latency Benchmark (Live Measurements)</h3>
+      <p>Benchmark tests executed against Vercel Edge Serverless backend connected to Upstash Redis and Neon PostgreSQL clusters:</p>
+
+      <div class="features-grid">
+        <div class="metric-card">
+          <h4>Upstash Redis L1 Hit</h4>
+          <span class="metric-value">0.35s ~ 0.41s</span>
+          <p>End-to-end HTTP response time through Vercel Edge and global Upstash Redis cluster.</p>
+        </div>
+        <div class="metric-card">
+          <h4>Neon DB Cold Query</h4>
+          <span class="metric-value">0.82s ~ 0.95s</span>
+          <p>Database fallback time across 32,000+ time-series records with Composite B-Tree indexes.</p>
+        </div>
+        <div class="metric-card">
+          <h4>Previous Unindexed Cold Scan</h4>
+          <span class="metric-value">15.46s</span>
+          <p>95% performance improvement achieved via (model, provider, region, timestamp) composite indexing.</p>
+        </div>
+      </div>
+
+      <h3>Endpoint Response Time Comparison Table</h3>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Endpoint & Menu Category</th>
+            <th>Payload Size</th>
+            <th>Item Count</th>
+            <th>Cached Latency (L1)</th>
+            <th>DB Cold Query</th>
+            <th>Cache Hit Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/api/v1/data/list?menu_id=gpu</code></td>
+            <td>29.0 KB</td>
+            <td>159 Models</td>
+            <td><strong>0.412s</strong></td>
+            <td>0.821s</td>
+            <td>99.9%</td>
+          </tr>
+          <tr>
+            <td><code>/api/v1/data/list?menu_id=cpu</code></td>
+            <td>2.9 KB</td>
+            <td>23 Models</td>
+            <td><strong>0.354s</strong></td>
+            <td>0.958s</td>
+            <td>99.9%</td>
+          </tr>
+          <tr>
+            <td><code>/api/v1/data/list?menu_id=storage</code></td>
+            <td>3.1 KB</td>
+            <td>90 Providers</td>
+            <td><strong>0.388s</strong></td>
+            <td>0.672s</td>
+            <td>99.8%</td>
+          </tr>
+          <tr>
+            <td><code>/api/v1/data/list?menu_id=baremetal</code></td>
+            <td>2.7 KB</td>
+            <td>220 Servers</td>
+            <td><strong>0.369s</strong></td>
+            <td>0.708s</td>
+            <td>99.8%</td>
+          </tr>
+          <tr>
+            <td><code>/api/v1/health/ping</code></td>
+            <td>0.1 KB</td>
+            <td>1 Health Obj</td>
+            <td><strong>0.045s</strong></td>
+            <td>0.082s</td>
+            <td>100.0%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Database Index Optimization Profile</h3>
+      <div class="code-box">
+        <pre><code>-- Neon PostgreSQL Indexing Benchmark
+-- Table: tbl_cpu_prc_hist (31,906 rows)
+
+-- BEFORE INDEX (Full Sequential Scan):
+-- Execution Time: 15,463 ms | Planning Time: 12.4 ms | Memory Sort: 14.8 MB
+
+-- AFTER COMPOSITE INDEX CREATION:
+CREATE INDEX idx_cpu_mdl_prv_region_ts ON "tbl_cpu_prc_hist" (cpu_mdl, prv_id, region, ts DESC);
+-- Execution Time: 71.9 ms (99.5% reduction in PostgreSQL execution overhead)</code></pre>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

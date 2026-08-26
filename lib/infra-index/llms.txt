@@ -1,0 +1,28 @@
+# Infra-Index Platform — AI Agent Fast Context
+# Generated: 2026-08-26  |  Version: 1.0.0
+
+## Library
+Name: Infra-Index Platform
+Version: 1.0.0
+GitHub: https://github.com/uno-km/infraindex-platform
+Documentation: https://uno-km.vercel.app/lib/infra-index/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/infra-index/index.html
+  - /lib/infra-index/installation.html
+  - /lib/infra-index/quickstart.html
+  - /lib/infra-index/api-reference.html
+  - /lib/infra-index/benchmarks.html
+  - /lib/infra-index/advanced-parameters.html
+  - /lib/infra-index/versions.html
+
+## Quick Install
+# See installation guide
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/infra-index/llms-full.txt

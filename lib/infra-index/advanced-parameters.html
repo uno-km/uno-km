@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Advanced Parameters - Infra-Index Platform - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Infra-Index Logo">
+      <h1 data-i18n="common.brand">Infra-Index Platform</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="header-btn primary" style="background:#2563eb;border-color:#2563eb;">Live App</a>
+      <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="header-btn" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Document Navigation -->
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Ecosystem -->
+      <h3 data-i18n="common.nav.libraries">Flagship Ecosystem</h3>
+      <ul>
+        <li><a href="/lib/infra-index/" class="active">Infra-Index Platform (App)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (App)</a></li>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Advanced Configuration & Enterprise Parameters</h2>
+      <p class="subtitle">Fine-grained environment variables, connection pool tuning, and 4-tier cache cascade controls.</p>
+
+      <h3>1. Server Settings Specification (<code>shared/config/settings.py</code>)</h3>
+      <table class="doc-table param-table">
+        <thead>
+          <tr>
+            <th>Parameter Key</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ENVIRONMENT</code></td>
+            <td>string</td>
+            <td><code>prod</code></td>
+            <td>Operational environment: <code>prod</code>, <code>dev</code>, <code>local</code>. Normalizes Redis key prefixes.</td>
+          </tr>
+          <tr>
+            <td><code>DATABASE_URL</code></td>
+            <td>string</td>
+            <td><em>Required</em></td>
+            <td>AsyncPG PostgreSQL connection URI with SSL mode enabled.</td>
+          </tr>
+          <tr>
+            <td><code>REDIS_URL</code></td>
+            <td>string</td>
+            <td><em>Required</em></td>
+            <td>Upstash rediss:// endpoint URI supporting database index 0.</td>
+          </tr>
+          <tr>
+            <td><code>BACKEND_CORS_ORIGINS</code></td>
+            <td>list[string]</td>
+            <td><code>["*"]</code></td>
+            <td>Whitelisted CORS origins supporting Vercel frontend domains.</td>
+          </tr>
+          <tr>
+            <td><code>CACHE_TTL_SHORT</code></td>
+            <td>integer</td>
+            <td><code>60</code></td>
+            <td>L1 memory cache lifespan for volatile spot price data (seconds).</td>
+          </tr>
+          <tr>
+            <td><code>CACHE_TTL_LONG</code></td>
+            <td>integer</td>
+            <td><code>86400</code></td>
+            <td>L1 memory cache lifespan for daily market intelligence briefs (seconds).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 4-Tier Upstash Redis Fallback Cascade</h3>
+      <p>The search query engine implements a 4-tier key resolution algorithm to guarantee high cache availability across diverse build environments:</p>
+      
+      <div class="code-box">
+        <pre><code># Cache Resolution Order:
+1. infraindex:{ENVIRONMENT}:global_view:{hw_type}:list   # Active Environment Key
+2. infraindex:prod:global_view:{hw_type}:list             # Production Snapshot Key
+3. infraindex:dev:global_view:{hw_type}:list              # Development Backup Key
+4. global_view:{hw_type}:list                             # Unprefixed Root Key
+5. DB Fallback (Neon PostgreSQL Composite Index)         # Cold Database Query</code></pre>
+      </div>
+
+      <h3>3. Crawler Concurrency & Rate Limiting</h3>
+      <div class="code-box">
+        <pre><code># Crawler Pool Settings (apps/batch/worker/crawler_pool.py)
+MAX_CONCURRENT_CRAWLERS = 5      # Maximum simultaneous HTTP workers
+REQUEST_TIMEOUT_SECONDS = 30     # Network socket timeout per CSP
+RETRY_MAX_ATTEMPTS = 3           # Exponential backoff retry limit
+CACHE_WARM_ON_COMPLETE = True    # Automatically triggers Vercel Edge cache warm</code></pre>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

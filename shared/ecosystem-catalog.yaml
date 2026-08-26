@@ -22,6 +22,16 @@ apps:
       launch: "https://ameva-workstation-web-core.vercel.app/"
       github: "https://github.com/uno-km/AMEVA-Workstation-Web"
 
+  - id: infra-index
+    name: "Infra-Index Platform"
+    badge: "App"
+    tagline_ko: "글로벌 69개 클라우드 GPU/CPU/스토리지 실시간 시세 집계, AI 반도체 시황 및 논문/뉴스 인텔리전스 플랫폼."
+    tagline_en: "Real-time global 69-cloud GPU/CPU/Storage price aggregation, AI semiconductor market intelligence, and paper/news analytics platform."
+    links:
+      docs: "/lib/infra-index/"
+      launch: "https://infraindex-platform-front.vercel.app/"
+      github: "https://github.com/uno-km/infraindex-platform"
+
 sdks:
   - id: sentinel
     name: "AMEVA-Sentinel"

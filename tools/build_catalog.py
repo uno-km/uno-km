@@ -51,8 +51,10 @@ def parse_catalog():
         # Top-level category
         m = re.match(r'^(apps|sdks|libs):', line)
         if m:
+            if current_item and current_cat:
+                result[current_cat].append(current_item)
+                current_item = None
             current_cat = m.group(1)
-            current_item = None
             continue
 
         if current_cat is None:

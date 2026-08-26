@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Quickstart & Recipes - Infra-Index Platform - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Infra-Index Logo">
+      <h1 data-i18n="common.brand">Infra-Index Platform</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="header-btn primary" style="background:#2563eb;border-color:#2563eb;">Live App</a>
+      <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="header-btn" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Document Navigation -->
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html" class="active">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Ecosystem -->
+      <h3 data-i18n="common.nav.libraries">Flagship Ecosystem</h3>
+      <ul>
+        <li><a href="/lib/infra-index/" class="active">Infra-Index Platform (App)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (App)</a></li>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Quickstart & Code Recipes</h2>
+      <p class="subtitle">Production-ready code examples for consuming real-time GPU pricing, historical charts, and news feeds.</p>
+
+      <h3>Recipe 1. Fetching Lowest GPU Hourly Rental Rates (Python)</h3>
+      <div class="code-box">
+        <pre><code>import urllib.request
+import json
+
+def get_cheapest_gpus(gpu_name="H100", limit=5):
+    url = f"https://infraindex-platform.vercel.app/api/v1/data/list?menu_id=gpu&limit={{limit}}&sort=PRICE_ASC"
+    req = urllib.request.Request(url, headers={{"User-Agent": "InfraIndex-SDK/1.0"}})
+    
+    with urllib.request.urlopen(req) as resp:
+        payload = json.loads(resp.read().decode("utf-8"))
+        items = payload.get("data", [])
+        
+        print(f"=== Lowest {{gpu_name}} Hourly Rates ===")
+        for item in items:
+            name = item.get("name")
+            offers = item.get("offers", [])
+            if offers:
+                best_offer = min(offers, key=lambda x: x.get("price_per_hour", 9999))
+                print(f"{{name:<20}} | ${{best_offer['price_per_hour']:.2f}}/hr | Provider: {{best_offer['provider']}}")
+
+if __name__ == "__main__":
+    get_cheapest_gpus("H100")</code></pre>
+      </div>
+
+      <h3>Recipe 2. React / TypeScript Query Hook (Next.js 16)</h3>
+      <div class="code-box">
+        <pre><code>import { useQuery } from '@tanstack/react-query';
+
+interface HardwareItem {
+  id: string;
+  name: string;
+  vram_gb: number;
+  offers: Array<{
+    provider: string;
+    price_per_hour: number;
+    region?: string;
+  }>;
+}
+
+export function useHardwareList(menuId: 'gpu' | 'cpu' | 'storage' | 'baremetal') {
+  return useQuery<HardwareItem[]>({
+    queryKey: ['hardware', menuId],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://infraindex-platform.vercel.app/api/v1/data/list?menu_id=${{menuId}}&limit=50&sort=PROVIDERS_DESC`
+      );
+      if (!res.ok) throw new Error(`HTTP error: ${{res.status}}`);
+      const json = await res.json();
+      return json.data || [];
+    },
+    staleTime: 60 * 1000, // 1 minute fresh
+  });
+}</code></pre>
+      </div>
+
+      <h3>Recipe 3. Real-Time Price Candlestick & Historical OHLC (cURL / Bash)</h3>
+      <div class="code-box">
+        <pre><code># Query 30-day historical daily candlestick for NVIDIA A100
+curl -s -X GET "https://infraindex-platform.vercel.app/api/v1/data/chart?menu_id=candlestick&hw_typ=gpu&target_ids=A100&timeframe=30d" \
+  -H "Accept: application/json" | jq .
+
+# Expected Output Envelope:
+# {
+#   "menu_id": "candlestick",
+#   "data": {
+#     "A100": [
+#       { "x": "2026-08-01T00:00:00Z", "y": [1.45, 1.60, 1.35, 1.40], "highProvider": "vast-ai" }
+#     ]
+#   }
+# }</code></pre>
+      </div>
+
+      <h3>Recipe 4. Executing Scheduled Crawler Batch (PowerShell)</h3>
+      <div class="code-box">
+        <pre><code># Run Development Batch (Isolated to DEV DB & Redis DB 0 prefix infraindex:dev:)
+.\run_dev_crawl.ps1
+
+# Run Production Batch with Automatic Vercel Edge Cache Invalidation
+.\run_prd_crawl.ps1</code></pre>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

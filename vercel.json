@@ -1,4 +1,4 @@
-﻿{
+{
   "version": 2,
   "cleanUrls": true,
   "redirects": [
@@ -20,6 +20,8 @@
     { "source": "/diffusion",       "destination": "/lib/diffusion/",   "permanent": false },
     { "source": "/lib/forge",       "destination": "/lib/forge/",       "permanent": false },
     { "source": "/forge",           "destination": "/lib/forge/",       "permanent": false },
+    { "source": "/lib/infra-index", "destination": "/lib/infra-index/", "permanent": false },
+    { "source": "/infra-index",     "destination": "/lib/infra-index/", "permanent": false },
     { "source": "/sdk/sentinel",    "destination": "/sdk/sentinel/",    "permanent": false },
     { "source": "/foundation",      "destination": "/foundation/",      "permanent": false },
     { "source": "/docs/foundation", "destination": "/foundation/",      "permanent": false },
@@ -63,6 +65,7 @@
     { "source": "/lib/playwright/:match*",  "destination": "/lib/playwright/:match*" },
     { "source": "/lib/stt/:match*",         "destination": "/lib/stt/:match*" },
     { "source": "/lib/train/:match*",       "destination": "/lib/train/:match*" },
+    { "source": "/lib/infra-index/:match*", "destination": "/lib/infra-index/:match*" },
     { "source": "/sdk/sentinel/:match*",    "destination": "/sdk/sentinel/:match*" },
     { "source": "/workstation/:match*",     "destination": "/app/workstation/index.html" },
     { "source": "/app/workstation/:match*", "destination": "/app/workstation/:match*" },

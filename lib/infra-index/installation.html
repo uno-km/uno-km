@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Installation Guide - Infra-Index Platform - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Infra-Index Logo">
+      <h1 data-i18n="common.brand">Infra-Index Platform</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="header-btn primary" style="background:#2563eb;border-color:#2563eb;">Live App</a>
+      <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="header-btn" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Document Navigation -->
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html" class="active">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Ecosystem -->
+      <h3 data-i18n="common.nav.libraries">Flagship Ecosystem</h3>
+      <ul>
+        <li><a href="/lib/infra-index/" class="active">Infra-Index Platform (App)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (App)</a></li>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Installation & Deployment Guide</h2>
+      <p class="subtitle">Step-by-step local development setup, serverless deployment topology, and environment configuration.</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Prerequisites & System Requirements</span>
+        <p>Infra-Index Platform can be deployed directly to Vercel Serverless or run locally for engineering, testing, and continuous crawling.</p>
+        <ul>
+          <li><strong>Python 3.11+ / 3.12</strong> with <code>uv</code> or <code>pip</code> virtual environment</li>
+          <li><strong>Node.js 20+ / 22+</strong> with <code>pnpm 9+</code></li>
+          <li><strong>PostgreSQL 15+ / Neon Serverless Postgres</strong></li>
+          <li><strong>Upstash Redis (Serverless cluster)</strong></li>
+        </ul>
+      </div>
+
+      <h3>1. Repository Clone & Structure</h3>
+      <div class="code-box">
+        <pre><code># Clone official repository
+git clone https://github.com/uno-km/infraindex-platform.git
+cd infraindex-platform
+
+# Directory Topology:
+# ├── api/               # Vercel Serverless ASGI entrypoints (index.py)
+# ├── apps/server/       # FastAPI application & business logic
+# ├── apps/batch/        # Modular crawler workers & schedulers
+# ├── shared/            # Shared database models, schemas & settings
+# └── vercel.json        # Edge routing, rewrites & CORS headers</code></pre>
+      </div>
+
+      <h3>2. Backend Setup (FastAPI & Python 3.12)</h3>
+      <div class="code-box">
+        <pre><code># Create and activate virtual environment
+python -m venv .venv
+# On Windows PowerShell:
+.venv\Scripts\Activate.ps1
+# On Linux / macOS:
+source .venv/bin/activate
+
+# Install core dependencies
+pip install fastapi uvicorn asyncpg sqlalchemy orjson redis pydantic-settings httpx
+
+# Configure environment variables (.env)
+DATABASE_URL="postgresql://neondb_owner:YOUR_SECRET@ep-sweet-silence...neon.tech/neondb?sslmode=require"
+REDIS_URL="rediss://default:YOUR_KEY@moved-narwhal-119056.upstash.io:6379/0"
+ENVIRONMENT="prod"
+
+# Start local ASGI server
+uvicorn apps.server.main:app --host 0.0.0.0 --port 8000 --reload</code></pre>
+      </div>
+
+      <h3>3. Frontend Setup (Next.js 16 & pnpm)</h3>
+      <div class="code-box">
+        <pre><code># Navigate to frontend repository
+cd ../infraindex-platform-front
+
+# Install pnpm dependencies
+pnpm install
+
+# Configure frontend environment (.env.local)
+NEXT_PUBLIC_API_URL="http://localhost:8000/api/v1"
+
+# Run local development server
+pnpm dev</code></pre>
+      </div>
+
+      <h3>4. Environment Compatibility Matrix</h3>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Environment</th>
+            <th>Database Cluster</th>
+            <th>Redis Namespace</th>
+            <th>Concurrency</th>
+            <th>Alert Dispatch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Development (DEV)</strong></td>
+            <td>Neon DEV (<code>ep-hidden-resonance</code>)</td>
+            <td><code>infraindex:dev:*</code> (DB 0)</td>
+            <td>3 Workers</td>
+            <td>Disabled (Local Logging)</td>
+          </tr>
+          <tr>
+            <td><strong>Production (PRD)</strong></td>
+            <td>Neon PRD (<code>ep-sweet-silence</code>)</td>
+            <td><code>infraindex:prod:*</code> (DB 0)</td>
+            <td>5 Workers</td>
+            <td>Enabled (Discord/Webhook)</td>
+          </tr>
+          <tr>
+            <td><strong>Vercel Edge</strong></td>
+            <td>Neon Connection Pooler</td>
+            <td>Upstash Global Cluster</td>
+            <td>Dynamic Serverless</td>
+            <td>Automatic Rollbar/Log</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

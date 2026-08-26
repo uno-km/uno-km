@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 tools/build_pages.py — AMEVA Ecosystem Unified Builder
 AMV-BUILD-20260826  |  v1.0.0
@@ -64,10 +64,10 @@ def parse_versions_yaml():
             eco['release_date'] = m.group(1).strip(); continue
 
         # libraries block
-        m = re.match(r'^  (\w+):$', line)
+        m = re.match(r'^  ([\w-]+):$', line)
         if m and not stripped.endswith(":") == False:
             pass
-        m2 = re.match(r'^  (\w+):\s*$', line)
+        m2 = re.match(r'^  ([\w-]+):\s*$', line)
         if m2:
             if in_doc_pages and current_lib:
                 libs[current_lib]['doc_pages'] = doc_pages
