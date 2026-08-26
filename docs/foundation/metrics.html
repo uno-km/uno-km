@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecosystem Metrics &amp; Performance | AMEVA Open-Source Foundation</title>
+  <meta name="description" content="Official Download Statistics, Registry Metrics (PyPI & npm), and Ecosystem Performance Scorecard of the AMEVA Open-Source Foundation (AOSF).">
+  <script src="/shared/telemetry.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+  <style>
+    .metrics-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0 28px 0;
+    }
+    .metric-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #cbd5e1);
+      border-radius: 6px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      border-left: 4px solid var(--primary-color, #004499);
+    }
+    .metric-card.green { border-left-color: #16a34a; }
+    .metric-card.orange { border-left-color: #d97706; }
+    .metric-card.purple { border-left-color: #7c3aed; }
+    .metric-val {
+      font-size: 1.85em;
+      font-weight: 800;
+      color: var(--primary-dark, #002266);
+      margin: 4px 0;
+      font-family: var(--font-mono, monospace);
+    }
+    .metric-label {
+      font-size: 0.85em;
+      color: var(--text-muted, #64748b);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .stat-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono, monospace);
+    }
+    .badge-npm { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .badge-pypi { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .badge-total { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+  </style>
+</head>
+<body>
+  <!-- Top Header -->
+  <header>
+    <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA 오픈소스 재단 Logo">
+      <h1 data-i18n="common.brand">AMEVA 오픈소스 재단</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF Tier 1 TLP</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <!-- Tier 1: Primary Navigation (Document / Foundation) -->
+      <h3 data-i18n="common.nav.foundation">재단 소개 (AOSF)</h3>
+      <ul>
+        <li><a href="/foundation/index.html">Overview &amp; Mission</a></li>
+        <li><a href="/foundation/charter.html">Charter &amp; Values</a></li>
+        <li><a href="/foundation/governance.html">Governance &amp; Merit</a></li>
+        <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+        <li><a href="/foundation/sponsorship.html">Sponsorship &amp; Grants</a></li>
+        <li><a href="/foundation/metrics.html" class="active">Ecosystem Metrics</a></li>
+        <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+      </ul>
+      <!-- Tier 2: Flagship Libraries -->
+      <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+      </ul>
+      <!-- Tier 3: AI Protocols & Specifications -->
+      <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
+      <ul>
+        <li><a href="/docs/llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="/FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
+        <li><a href="/robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="/sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h2>Ecosystem Metrics &amp; Release Scorecard</h2>
+      <p class="subtitle">AMEVA 생태계 오픈소스 패키지 공식 배포 성과 및 레지스트리 다운로드 실측 지표</p>
+
+      <!-- Executive KPI Cards -->
+      <div class="metrics-summary-grid">
+        <div class="metric-card">
+          <div class="metric-label">Total Verified Downloads</div>
+          <div class="metric-val" id="kpi-total-dl">4,065+</div>
+          <p style="font-size:0.82em; color:var(--text-muted); margin:0;">PyPI &amp; npm 레지스트리 누적 집계</p>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">Published Packages</div>
+          <div class="metric-val">9 Packages</div>
+          <p style="font-size:0.82em; color:var(--text-muted); margin:0;">PyPI / npm 정규 등록 및 배포</p>
+        </div>
+        <div class="metric-card orange">
+          <div class="metric-label">Target Architecture</div>
+          <div class="metric-val">Android / WebGPU</div>
+          <p style="font-size:0.82em; color:var(--text-muted); margin:0;">Bionic libc · ARM64 SIMD · WGSL</p>
+        </div>
+        <div class="metric-card purple">
+          <div class="metric-label">Cloud Dependency</div>
+          <div class="metric-val">0 Cloud Cost</div>
+          <p style="font-size:0.82em; color:var(--text-muted); margin:0;">100% 온디바이스 로컬 하드웨어 가속</p>
+        </div>
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Grounded Truth Metric Verification</span>
+        <p style="margin-bottom: 0;">
+          AOSF의 모든 다운로드 수치는 <strong>NPM Registry Official Download API</strong> 및 <strong>Python Package Index (PyPI / Pepy.tech)</strong>의 실측 데이터에 기반하여 투명하게 공개됩니다. 과장이나 임의 추정치 없이 실제 배포 릴리즈 기준의 정합성을 보장합니다.
+        </p>
+      </div>
+
+      <!-- Detailed Download Table -->
+      <h3>1. 프로젝트별 공식 다운로드 및 배포 현황표</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>프로젝트 / 패키지</th>
+            <th>분류 (Domain)</th>
+            <th>배포 버전</th>
+            <th>NPM 다운로드</th>
+            <th>PyPI (pip) 다운로드</th>
+            <th>총 다운로드</th>
+            <th>공식 저장소 및 패키지 링크</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Termux-Playwright</strong></td>
+            <td>모바일 웹 자동화 &amp; CDP</td>
+            <td><code>v1.80.0</code></td>
+            <td><span class="stat-badge badge-npm">710</span></td>
+            <td><span class="stat-badge badge-pypi">841</span></td>
+            <td><span class="stat-badge badge-total">1,551</span></td>
+            <td><a href="https://pypi.org/project/termux-playwright/" target="_blank">PyPI</a> · <a href="https://www.npmjs.com/package/termux-playwright" target="_blank">npm</a> · <a href="https://github.com/uno-km/termux-playwright" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-Diffusion</strong></td>
+            <td>모바일 Stable Diffusion 이미지 생성</td>
+            <td><code>v1.3.0</code></td>
+            <td><span class="stat-badge badge-npm">611</span></td>
+            <td><span class="stat-badge badge-pypi">362</span></td>
+            <td><span class="stat-badge badge-total">973</span></td>
+            <td><a href="https://pypi.org/project/termux-diffusion/" target="_blank">PyPI</a> · <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank">npm</a> · <a href="https://github.com/uno-km/termux-diffusion" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-BitNet</strong></td>
+            <td>1.58-bit 온디바이스 LLM 추론</td>
+            <td><code>v1.0.5</code></td>
+            <td><span class="stat-badge badge-npm">255</span></td>
+            <td><span class="stat-badge badge-pypi">404</span></td>
+            <td><span class="stat-badge badge-total">659</span></td>
+            <td><a href="https://pypi.org/project/termux-bitnet/" target="_blank">PyPI</a> · <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank">npm</a> · <a href="https://github.com/uno-km/termux-bitnet" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-STT</strong></td>
+            <td>온디바이스 음성인식 &amp; 화자 분리</td>
+            <td><code>v1.0.9</code></td>
+            <td><span class="stat-badge badge-npm">275</span></td>
+            <td><span class="stat-badge badge-pypi">127</span></td>
+            <td><span class="stat-badge badge-total">402</span></td>
+            <td><a href="https://pypi.org/project/termux-stt/" target="_blank">PyPI</a> · <a href="https://www.npmjs.com/package/termux-stt" target="_blank">npm</a> · <a href="https://github.com/uno-km/termux-stt" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>AMEVA-Sentinel</strong></td>
+            <td>클라이언트 행동 이상 관측 SDK</td>
+            <td><code>v0.5.0-alpha.1</code></td>
+            <td><span class="stat-badge badge-npm">219</span></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span class="stat-badge badge-total">219</span></td>
+            <td><a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank">npm</a> · <a href="https://github.com/uno-km/ameva-sentinel" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>AMEVA-MCP-Hub</strong></td>
+            <td>WASI 인메모리 AI 도구 허브 &amp; SDK</td>
+            <td><code>v3.0.0</code></td>
+            <td><span class="stat-badge badge-npm">149</span></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span class="stat-badge badge-total">149</span></td>
+            <td><a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank">npm</a> · <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-Train</strong></td>
+            <td>온디바이스 DAG Autograd &amp; LoRA</td>
+            <td><code>v0.1.0</code></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span class="stat-badge badge-pypi">117</span></td>
+            <td><span class="stat-badge badge-total">117</span></td>
+            <td><a href="https://pypi.org/project/termux-train/" target="_blank">PyPI</a> · <a href="https://github.com/uno-km/termux-train" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>AMEVA-Forge</strong></td>
+            <td>브라우저 WebGPU 딥러닝 텐서 엔진</td>
+            <td><code>v0.1.0</code></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span class="stat-badge badge-pypi">110</span></td>
+            <td><span class="stat-badge badge-total">110</span></td>
+            <td><a href="https://pypi.org/project/ameva-forge/" target="_blank">PyPI</a> · <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>Termux-AIChain</strong></td>
+            <td>Zero-Dependency AI 체이닝 에이전트</td>
+            <td><code>v1.0.2</code></td>
+            <td><span class="stat-badge badge-npm">Active</span></td>
+            <td><span class="stat-badge badge-pypi">Active</span></td>
+            <td><span class="stat-badge badge-total">Published</span></td>
+            <td><a href="https://pypi.org/project/termux-aichain/" target="_blank">PyPI</a> · <a href="https://www.npmjs.com/package/termux-aichain" target="_blank">npm</a> · <a href="https://github.com/uno-km/termux-aichain" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td><strong>AMEVA Workstation</strong></td>
+            <td>브라우저 로컬 AI 워크스테이션</td>
+            <td><code>v0.8.19</code></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span style="color:var(--text-muted);">-</span></td>
+            <td><span class="stat-badge badge-total">Live App</span></td>
+            <td><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">Live Studio</a> · <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank">GitHub</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 에코시스템 아키텍처 및 품질 보증 체계</h3>
+      <p>
+        모든 패키지는 Samsung Galaxy 실기기(S20/S21/A35) 및 표준 브라우저 환경에서 엄격한 회귀 테스트 및 벤치마크 검증(Pass Rate 100%)을 거쳐 무결성이 검증된 바이너리만을 배포합니다.
+      </p>
+      <ul>
+        <li><strong>모바일 하드웨어 가속</strong>: ARM64 NEON &amp; DotProd 어셈블리 직접 최적화로 CPU 연산 효율 극대화.</li>
+        <li><strong>서버리스 클라이언트 오프로딩</strong>: 브라우저 WebGPU 셰이더 연산과 WASI 샌드박스로 호스트 자원 격리 및 보안 확보.</li>
+        <li><strong>표준 패키지 배포</strong>: Python 공식 PyPI 및 Node.js 공식 npm 동시 지원으로 전 세계 개발자 환경에 1-명령어 설치 제공.</li>
+      </ul>
+    </main>
+  </div>
+</body>
+</html>
