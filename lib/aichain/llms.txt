@@ -1,17 +1,15 @@
-# Termux-AIChain (v1.0.0)
-> Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux
+# AMEVA-Core (v1.0.0)
+> High-Performance Edge & Browser Native Open-Source Systems Library
 
 ## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-aichain
-- Installation: `pip install termux-aichain
-# or:
-npm install termux-aichain`
-- Architecture: Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.
+- Official Repo: https://github.com/uno-km/uno-km
+- Installation: `pip install ameva-core
+# or: npm install @ameva/core`
+- Architecture: Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.
 
 ## Canonical Code Pattern
 ```python
-from termux_aichain import Chain, Agent
-agent = Agent(model='termux-bitnet')
-chain = Chain([agent])
-print(chain.run('Summarize task'))
+import ameva_core as ac
+engine = ac.Engine()
+print(engine.compute([1.0, 2.0]))
 ```
