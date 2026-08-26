@@ -50,7 +50,9 @@
 * **Signal Coverage Metric**: Replaces hardcoded confidence with a dynamic 5-category availability ratio:
   $$\text{Coverage} = \frac{\text{Available Categories}}{\text{Expected Categories}} \quad (\ge 0.8: \text{High}, \ge 0.4: \text{Medium}, < 0.4: \text{Low})$$
 * **Aggregation Alignment**: Replaced multi-table UNION queries with unified session deduplication (`metric: 'sessions'`, `consistency_model: 'EVENTUAL'`).
-* **Regional Disclaimer**: Added explicit notices stating map markers denote regional centroids, not visitor coordinates.
+#### 7. Official Python SDK Package (`pip install ameva-sentinel`)
+* **FastAPI, Starlette & Flask Middleware**: Native Python integration for Sentinel v2.1 with ASGI middleware (`SentinelMiddleware`), multi-CDN edge provider resolution, and IP subnet masking.
+* **Pure Python Direct Evaluator**: Lightweight zero-heavy-dependency Python implementation supporting direct assessment and 3-tier Fail-Open safety.
 
 ---
 
