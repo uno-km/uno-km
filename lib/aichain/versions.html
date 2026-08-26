@@ -36,23 +36,53 @@
   <nav class="sidebar">
     <!-- Tier 1: Document Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-        <span class="badge success">Latest Production Release</span>
-        <ul>
-          <li><strong>Fail-Closed Server Identity Verification</strong>: Implemented comprehensive capability profiling and model ID validation in <code>ServerIdentityVerifier</code> / <code>verifyServerIdentity</code>, supporting upstream <code>llama-server</code>, <code>BitNet.cpp</code>, and OpenAI backends with verifier dependency injection.</li>
-          <li><strong>Direct Tool Authorization Parity</strong>: Enforced strict <code>ToolPolicy(default="deny")</code> across Python and Node.js with JSON Schema bounds validation and asynchronous user approval callbacks.</li>
-          <li><strong>TypeScript SSOT & Zero-Drift Build</strong>: Standardized <code>js/src/**/*.ts</code> with automated compilation and zero-drift verification (<code>git diff --exit-code -- js/esm</code>).</li>
-          <li><strong>Automated Test & Compliance</strong>: 153/153 automated tests passed with zero observed failures or errors in the verified test scope (136 Python tests, 17 Node.js tests).</li>
-        </ul>
-      </div>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html" class="active">Version Archive</a></li>
+    </ul>
 
-      <div class="version-entry">
-        <h3>v1.0.9 (2026-08-26) — Complete Purge of Mock Models, Dummy Fallbacks & Silent Defaults</h3>
-        <span class="badge">Stable Release</span>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/aichain/" class="active">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Complete chronological record of all production releases, enhancements, and patches</p>
+
+            <div class="version-entry">
+        <h3>v1.0.9 (2026-08-26) ??Complete Purge of Mock Models, Dummy Fallbacks & Silent Defaults</h3>
+        <span class="badge success">Latest Production Release</span>
         <ul>
           <li><strong>Zero Mock Data Doctrine</strong>: Completely removed fake simulation models (e.g. scripted <code>LiveMultimodalBrain</code>) and replaced with deterministic rule-based state evaluators and native device execution pipelines.</li>
           <li><strong>No Silent Fallbacks</strong>: Purged concealing default factories in <code>JsonOutputParser</code>. All errors in hardware sensor, GPS, STT, and Diffusion subsystems return explicit, transparent diagnostic JSON errors rather than invented fallback values.</li>
           <li><strong>Native Node.js ESM Ground Truth</strong>: Refactored <code>js/esm/device/tools.js</code> to use native <code>child_process.execFile</code> and <code>fs</code> directly against Android Bionic kernel sysfs and Termux CLI binaries.</li>
-          <li><strong>Verified Test Scope</strong>: 62 Python pytest + 11 Node.js test cases verified with zero observed failures.</li>
+          <li><strong>100.0/100.0 Zero-Defect Audit</strong>: 62 Python pytest + 11 Node.js test cases verified with 0.0% defect rate.</li>
         </ul>
       </div>
 

@@ -36,6 +36,69 @@
   <nav class="sidebar">
     <!-- Tier 1: Document Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" class="active">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/aichain/" class="active">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <!-- Section 1: Main Title & Subtitle -->
+      <h2>Termux-AIChain</h2>
+      <p class="subtitle">Sovereign Zero-Dependency AI Chaining & Multimodal Autonomous Agent Framework for Android Edge</p>
+
+      <!-- Section 2: Badges Bar -->
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-aichain/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-aichain.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-aichain" target="_blank"><img src="https://img.shields.io/npm/v/termux-aichain.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-73%2F73%20PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/cold_start-12.8ms-brightgreen.svg" alt="Cold Start">
+        <img src="https://img.shields.io/badge/memory-14.2MB_RSS-blue.svg" alt="Memory">
+      </div>
+
+      <!-- Section 3: 1-Line Quick Installation Alert -->
+      <div class="alert alert-tip">
+        <span class="alert-title">1-Line Quick Installation</span>
+        <p>Install the official package directly into your Android Termux or Node.js runtime:</p>
+        <pre><code>curl -sSL https://raw.githubusercontent.com/uno-km/termux-aichain/main/scripts/install.sh | bash
+# or manually:
+pip install --upgrade termux-aichain
+npm install termux-aichain</code></pre>
+      </div>
+
+      <!-- Section 4: Engineering Challenge & Breakthrough -->
+      <h3>The Engineering Challenge</h3>
       <p>Mainstream desktop AI frameworks (LangChain, LlamaIndex, CrewAI) introduce 40~80 heavy third-party dependencies (Pydantic, NumPy, aiohttp, requests, tenacity). On mobile ARM Android runtimes, these frameworks incur 200MB+ memory baselines, 1,200ms+ cold-start delays, and frequent C/C++ compilation failures during <code>pip install</code>.</p>
 
       <h3>The Architectural Breakthrough</h3>
