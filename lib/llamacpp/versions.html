@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
+      <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html" class="">Home / Architecture</a></li>
+        <li><a href="installation.html" class="">Installation Guide</a></li>
+        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html" class="">API Reference</a></li>
+        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
+        <li><a href="versions.html" class="active">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
+        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+
+      <h2>Version Archive & Release History</h2>
+      <p>
+        Comprehensive release changelog and cryptographic artifact digest history for Termux-LlamaCpp.
+      </p>
+
+      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Release Date</th>
+              <th>Upstream llama.cpp Commit</th>
+              <th>Key Enhancements</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>v1.0.0b1</strong></td>
+              <td>2026-08-27</td>
+              <td><code>5e6a37cb115dc1074e274ac004373f5661909695</code></td>
+              <td>
+                • Zero-compilation prebuilt Android ARM64 binary installer (<3s).<br>
+                • Real-device S20+ validation: 16.19 t/s prompt, 10.23 t/s generation.<br>
+                • OpenAI v1 REST & SSE streaming reverse proxy supervisor.<br>
+                • Dual PyPI (pip) and npm package releases.<br>
+                • Ed25519 cryptographic manifest and symlink traversal defense.
+              </td>
+              <td><span class="badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">Production Beta</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Cryptographic Integrity Hashes (v1.0.0b1)</h3>
+      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Artifact Package</th>
+              <th>Format</th>
+              <th>SHA-256 Digest</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>termux_llamacpp-1.0.0b1-py3-none-any.whl</code></td>
+              <td>Python Wheel</td>
+              <td><code>5DBFD785247886E9B6FC9F24105B243001CF2CE890D7B7687FBC3F0B8DFAA1E6</code></td>
+            </tr>
+            <tr>
+              <td><code>termux_llamacpp-1.0.0b1.tar.gz</code></td>
+              <td>Python Source Tarball</td>
+              <td><code>F8D59B2D61CD14D7D1660D2F49D72E1F69A206116213D3CC084F9D1C6ABD405C</code></td>
+            </tr>
+            <tr>
+              <td><code>termux-llamacpp@1.0.0</code></td>
+              <td>npm Package</td>
+              <td><code>2df46a16e99b367d335c1fac44f7cde277ad039a</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </main>
+  </div>
+</body>
+</html>

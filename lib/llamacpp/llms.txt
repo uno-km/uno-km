@@ -1,0 +1,29 @@
+# Termux-LlamaCpp — AI Agent Fast Context
+# Generated: 2026-08-27  |  Version: 1.0.0b1
+
+## Library
+Name: Termux-LlamaCpp
+Version: 1.0.0b1
+GitHub: https://github.com/uno-km/termux-llamacpp
+Documentation: https://uno-km.vercel.app/lib/llamacpp/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/llamacpp/index.html
+  - /lib/llamacpp/installation.html
+  - /lib/llamacpp/quickstart.html
+  - /lib/llamacpp/api-reference.html
+  - /lib/llamacpp/benchmarks.html
+  - /lib/llamacpp/advanced-parameters.html
+  - /lib/llamacpp/versions.html
+
+## Quick Install
+pip install termux-llamacpp
+npm install termux-llamacpp
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/llamacpp/llms-full.txt

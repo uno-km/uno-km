@@ -129,3 +129,15 @@ libs:
       docs: "/lib/train/"
       pypi: "https://pypi.org/project/termux-train/"
       github: "https://github.com/uno-km/termux-train"
+
+  - id: llamacpp
+    name: "Termux-LlamaCpp"
+    badge: "pip / npm"
+    tagline_ko: "Android Termux ARM64 전용 제로 컴파일 사전 빌드 GGUF LLM 런타임, 모델 매니저 및 OpenAI 호환 REST/SSE 수퍼바이저 서버."
+    tagline_en: "Production-grade prebuilt GGUF LLM runtime, model manager & OpenAI-compatible REST/SSE server for Android Termux & ARM64."
+    links:
+      docs: "/lib/llamacpp/"
+      pypi: "https://pypi.org/project/termux-llamacpp/"
+      npm: "https://www.npmjs.com/package/termux-llamacpp"
+      github: "https://github.com/uno-km/termux-llamacpp"
+

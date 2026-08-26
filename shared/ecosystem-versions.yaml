@@ -203,3 +203,21 @@ libraries:
       - advanced-parameters.html
       - versions.html
     status: "stable"
+
+  llamacpp:
+    name: "Termux-LlamaCpp"
+    version: "1.0.0b1"
+    release_date: "2026-08-27"
+    npm_package: "termux-llamacpp"
+    pypi_package: "termux-llamacpp"
+    github_repo: "uno-km/termux-llamacpp"
+    lib_path: "lib/llamacpp"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"

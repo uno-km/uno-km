@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
+      <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html" class="">Home / Architecture</a></li>
+        <li><a href="installation.html" class="active">Installation Guide</a></li>
+        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
+        <li><a href="api-reference.html" class="">API Reference</a></li>
+        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
+        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
+        <li><a href="versions.html" class="">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
+        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+
+      <h2>Installation & Environment Setup</h2>
+      <p>
+        Termux-LlamaCpp provides two installation paradigms: <strong>Zero-Compilation Prebuilt Binary Installation</strong> (recommended default) and <strong>Manual Native Source Compilation</strong>.
+      </p>
+
+      <h3>1. Default Prebuilt Binary Installation (Recommended)</h3>
+      <p>
+        The automated installer downloads verified ARM64 binaries and bundled shared libraries directly to <code>$HOME/.termux-llama/</code> and registers wrapper scripts in <code>$PREFIX/bin/</code>.
+      </p>
+
+      <div class="code-box">
+        <div class="code-header"><span>Bash Command (Android Termux)</span></div>
+        <pre><code># 1-Line Prebuilt Installation
+curl -sSL https://raw.githubusercontent.com/uno-km/termux-llamacpp/master/scripts/install.sh | bash</code></pre>
+      </div>
+
+      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Installed File Path</th>
+              <th>File Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>$HOME/.termux-llama/bin/llama-server</code></td>
+              <td>ELF 64-bit ARM64</td>
+              <td>Native HTTP server binary compiled with NEON/DotProd SIMD flags.</td>
+            </tr>
+            <tr>
+              <td><code>$HOME/.termux-llama/bin/llama-cli</code></td>
+              <td>ELF 64-bit ARM64</td>
+              <td>Interactive CLI text generation and prompt debugging binary.</td>
+            </tr>
+            <tr>
+              <td><code>$HOME/.termux-llama/lib/*.so*</code></td>
+              <td>Shared Libraries</td>
+              <td>Bundled dependency libraries (libllama.so, libggml.so, libllama-server-impl.so).</td>
+            </tr>
+            <tr>
+              <td><code>$PREFIX/bin/llama-server</code></td>
+              <td>Bash Wrapper</td>
+              <td>Executable wrapper configuring dedicated LD_LIBRARY_PATH resolution.</td>
+            </tr>
+            <tr>
+              <td><code>$PREFIX/bin/llama-cli</code></td>
+              <td>Bash Wrapper</td>
+              <td>Executable wrapper for direct CLI command access from any directory.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2. Dual Ecosystem Package Installation (Python & Node.js)</h3>
+      <p>
+        For developers integrating with existing Python or JavaScript/TypeScript codebases:
+      </p>
+
+      <div class="code-box">
+        <div class="code-header"><span>Package Managers</span></div>
+        <pre><code># Python (PyPI)
+pip install termux-llamacpp
+
+# Node.js (npm)
+npm install termux-llamacpp</code></pre>
+      </div>
+
+      <h3>3. Manual Pinned-Commit Source Compilation (--from-source)</h3>
+      <p>
+        For custom hardware architectures or developers compiling locally from the pinned upstream commit:
+      </p>
+
+      <div class="code-box">
+        <div class="code-header"><span>Source Compilation Option</span></div>
+        <pre><code># Compiles from pinned commit 5e6a37cb115dc1074e274ac004373f5661909695
+bash scripts/install.sh --from-source</code></pre>
+      </div>
+
+      <h3>4. Verification & Diagnostic Doctor</h3>
+      <p>
+        Verify installation health and inspect Android SIMD hardware capabilities:
+      </p>
+
+      <div class="code-box">
+        <div class="code-header"><span>Verification Command</span></div>
+        <pre><code>termux-llama doctor
+# or
+termux-llama hardware</code></pre>
+      </div>
+    
+    </main>
+  </div>
+</body>
+</html>

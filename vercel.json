@@ -103,6 +103,26 @@
       "permanent": false
     },
     {
+      "source": "/lib/llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
       "source": "/sdk/sentinel",
       "destination": "/sdk/sentinel/",
       "permanent": false
@@ -292,6 +312,10 @@
     {
       "source": "/lib/infra-index/:match*",
       "destination": "/lib/infra-index/:match*"
+    },
+    {
+      "source": "/lib/llamacpp/:match*",
+      "destination": "/lib/llamacpp/:match*"
     },
     {
       "source": "/sdk/sentinel/:match*",
