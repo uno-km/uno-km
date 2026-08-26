@@ -177,3 +177,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+// ── 6. Scoped Element Loading Utility (Global API) ─────────────────────────
+window.AmevaUI = window.AmevaUI || {};
+
+window.AmevaUI.showLoading = function(target, message = 'Loading Data...') {
+  const el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return null;
+
+  el.classList.add('ameva-loading-container');
+
+  let overlay = el.querySelector(':scope > .ameva-loading-overlay');
+  if (overlay) return overlay;
+
+  overlay = document.createElement('div');
+  overlay.className = 'ameva-loading-overlay';
+  overlay.innerHTML = `
+    <div class="ameva-spinner"></div>
+    <div class="ameva-loading-text">${message}</div>
+  `;
+
+  el.appendChild(overlay);
+  return overlay;
+};
+
+window.AmevaUI.hideLoading = function(target) {
+  const el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return;
+
+  const overlay = el.querySelector(':scope > .ameva-loading-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      overlay.remove();
+      el.classList.remove('ameva-loading-container');
+    }, 200);
+  }
+};
+
+window.AmevaUI.withLoading = async function(target, asyncFn, message) {
+  window.AmevaUI.showLoading(target, message);
+  try {
+    return await asyncFn();
+  } finally {
+    window.AmevaUI.hideLoading(target);
+  }
+};

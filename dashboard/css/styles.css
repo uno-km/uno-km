@@ -2687,3 +2687,56 @@ body {
   border-color: #2563eb !important;
   color: #ffffff !important;
 }
+
+
+/* ── Scoped Element Loading Overlay (AMEVA Engineering Standard) ────────── */
+.ameva-loading-container {
+  position: relative !important;
+  min-height: 80px;
+}
+
+.ameva-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 50;
+  border-radius: inherit;
+  transition: opacity 0.2s ease;
+  pointer-events: all;
+}
+
+.dark-mode .ameva-loading-overlay {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.ameva-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(0, 68, 153, 0.15);
+  border-top-color: #004499;
+  border-right-color: #004499;
+  border-radius: 50%;
+  animation: ameva-spin 0.75s linear infinite;
+}
+
+.ameva-loading-text {
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--text-main, #334155);
+  letter-spacing: 0.3px;
+  font-family: var(--font-mono, monospace);
+}
+
+@keyframes ameva-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
