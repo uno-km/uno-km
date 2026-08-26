@@ -4,27 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | AMEVA-Forge</title>
-  <meta name="description" content="Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="Hardware dependencies, WebGPU flags, and package installation">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -32,7 +12,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-          <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
@@ -49,7 +29,7 @@
   </header>
 
   <div class="container">
-          <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -88,15 +68,47 @@
 
     <main class="content">
       <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <p class="subtitle">Hardware dependencies, WebGPU flags, and package installation</p>
+
       <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>pip install ameva
-# or CDN:
-<script src="https://uno-km.github.io/uno-km/lib/forge/ameva.js"></script></code></pre>
+        <span class="alert-title">Hardware Acceleration Requirements</span>
+        <p>AMEVA-Forge requires a WebGPU-enabled runtime (Chromium 113+, Safari 18+, Edge 113+, or Node.js with <code>@webgpu/wgpu</code>). No native CUDA compilation or cloud GPUs required.</p>
+      </div>
+
+      <h3>1. Python Package Installation (PyPI)</h3>
+      <p>Install the official AMEVA-Forge Python package into your local or virtual environment:</p>
+      <pre><code class="language-bash">pip install ameva</code></pre>
+
+      <h3>2. Browser CDN &amp; Standalone ESM Import</h3>
+      <p>Embed the hardware WebGPU compute engine directly into your web applications with zero build steps:</p>
+      <pre><code class="language-html">&lt;!-- IIFE Standalone Bundle --&gt;
+&lt;script src="https://uno-km.github.io/uno-km/lib/forge/dist/index.iife.js"&gt;&lt;/script&gt;
+
+&lt;!-- Or Modern ES Module --&gt;
+&lt;script type="module"&gt;
+  import { Tensor, nn, optim } from 'https://uno-km.github.io/uno-km/lib/forge/dist/index.esm.js';
+  
+  // Initialize GPU Device Context
+  const x = new Tensor([1.0, 2.0, 3.0, 4.0], { requiresGrad: true, device: 'gpu' });
+  console.log('WebGPU Tensor Allocated:', x);
+&lt;/script&gt;</code></pre>
+
+      <h3>3. Browser WebGPU Feature Verification</h3>
+      <p>Verify that your browser environment supports native WebGPU compute shaders:</p>
+      <pre><code class="language-javascript">if (!navigator.gpu) {
+  console.error("WebGPU is not supported on this browser. Please enable 'chrome://flags/#enable-unsafe-webgpu' or use Chrome 113+.");
+} else {
+  const adapter = await navigator.gpu.requestAdapter();
+  const device = await adapter.requestDevice();
+  console.log("WebGPU Hardware Adapter Active:", adapter.info);
+}</code></pre>
+
+      <h3>4. Node.js Native Backend Execution</h3>
+      <p>For headless CI/CD and server environments without display servers:</p>
+      <pre><code class="language-bash">npm install ameva-forge
+# or run in headless WebGPU runtime
+node --enable-source-maps index.js</code></pre>
+
     </main>
   </div>
 

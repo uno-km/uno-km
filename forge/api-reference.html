@@ -4,27 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | AMEVA-Forge</title>
-  <meta name="description" content="Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="100% Full Class, Struct, and Method Documentation">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -32,7 +12,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-          <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
@@ -49,7 +29,7 @@
   </header>
 
   <div class="container">
-          <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -89,13 +69,139 @@
     <main class="content">
       <h2>Complete API Reference</h2>
       <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Hardware WGSL Compute Kernel Bindings</span>
+        <p>All methods map directly to WebGPU compute pipelines with asynchronous promise resolution and zero-copy staging buffers.</p>
+      </div>
+
+      <h3>1. WebGPU Tensor Class (<code>forge.Tensor</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Member / Method</th>
+            <th>Type Signature</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Tensor(data, device='cpu', requires_grad=False)</code></td>
+            <td><code>Constructor</code></td>
+            <td>Allocates multidimensional tensor memory in CPU RAM or GPU VRAM.</td>
+          </tr>
+          <tr>
+            <td><code>.to(device)</code></td>
+            <td><code>('cpu' | 'gpu') -&gt; Tensor</code></td>
+            <td>Transfers tensor storage between host RAM and WebGPU buffer memory.</td>
+          </tr>
+          <tr>
+            <td><code>.numpy_async()</code></td>
+            <td><code>() -&gt; Promise[np.ndarray]</code></td>
+            <td>Asynchronously maps GPU staging buffer and copies array data back to CPU without blocking UI thread.</td>
+          </tr>
+          <tr>
+            <td><code>.backward(gradient=None)</code></td>
+            <td><code>(Tensor) -&gt; None</code></td>
+            <td>Executes backward pass traversing WGSL compute shader gradient operations.</td>
+          </tr>
+          <tr>
+            <td><code>.zero_grad()</code></td>
+            <td><code>() -&gt; None</code></td>
+            <td>Clears accumulated gradient buffers for all leaf parameters.</td>
+          </tr>
+          <tr>
+            <td><code>.matmul(other) / @</code></td>
+            <td><code>(Tensor) -&gt; Tensor</code></td>
+            <td>WGSL 16x16 tiled matrix multiplication compute shader dispatch.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Neural Network Modules (<code>forge.nn</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Class Name</th>
+            <th>Parameters</th>
+            <th>Forward Signature</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nn.Module</code></td>
+            <td><code>()</code></td>
+            <td><code>*args -&gt; Any</code></td>
+            <td>Base module managing parameters, submodules, and <code>.to('gpu')</code> recursive transfers.</td>
+          </tr>
+          <tr>
+            <td><code>nn.Linear</code></td>
+            <td><code>(in_features, out_features, bias=True)</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Applies linear transformation \( y = xW^T + b \) accelerated via WGSL shaders.</td>
+          </tr>
+          <tr>
+            <td><code>nn.RMSNorm</code></td>
+            <td><code>(dim, eps=1e-6)</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Root Mean Square Layer Normalization running directly on WebGPU with fused scaling.</td>
+          </tr>
+          <tr>
+            <td><code>nn.LayerNorm</code></td>
+            <td><code>(normalized_shape, eps=1e-5)</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Standard Layer Normalization over trailing dimensions.</td>
+          </tr>
+          <tr>
+            <td><code>nn.PositionalEncoding</code></td>
+            <td><code>(d_model, max_len=512)</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Sinusoidal positional encoding precomputed in GPU buffer memory.</td>
+          </tr>
+          <tr>
+            <td><code>nn.MSELoss</code></td>
+            <td><code>(reduction='mean')</code></td>
+            <td><code>(pred, target) -&gt; Tensor</code></td>
+            <td>Mean squared error loss compute kernel with fused reduction.</td>
+          </tr>
+          <tr>
+            <td><code>nn.CrossEntropyLoss</code></td>
+            <td><code>(reduction='mean')</code></td>
+            <td><code>(logits, targets) -&gt; Tensor</code></td>
+            <td>Numerically stable LogSoftmax + NLLLoss fused compute shader.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Functional Operators (<code>forge.functional</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Signature</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>scaled_dot_product_attention</code></td>
+            <td><code>(q, k, v, is_causal=False)</code></td>
+            <td>Fused Scaled Dot-Product Attention compute pipeline with optional lower-triangular causal mask.</td>
+          </tr>
+          <tr>
+            <td><code>silu / swish</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Elementwise SiLU activation function: \( 	ext{SiLU}(x) = x \cdot \sigma(x) \).</td>
+          </tr>
+          <tr>
+            <td><code>gelu</code></td>
+            <td><code>(x: Tensor) -&gt; Tensor</code></td>
+            <td>Gaussian Error Linear Unit approximation compute kernel.</td>
+          </tr>
+        </tbody>
+      </table>
+
     </main>
   </div>
 

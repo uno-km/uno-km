@@ -4,27 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | AMEVA-Forge</title>
-  <meta name="description" content="Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="WGSL workgroup sizing, buffer quota management, and FP16 half precision">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -32,7 +12,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-          <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
@@ -49,7 +29,7 @@
   </header>
 
   <div class="container">
-          <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -88,9 +68,61 @@
 
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
-      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
+      <p class="subtitle">WGSL workgroup sizing, buffer quota management, and FP16 half precision</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">WGSL Shader &amp; Pipeline Optimization</span>
+        <p>Fine-tune workgroup tiling dimensions, staging buffer pools, and precision modes to extract maximum FLOPS from heterogeneous client GPUs.</p>
+      </div>
+
+      <h3>1. WGSL Workgroup Tiling Dimensions</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workgroup Configuration</th>
+            <th>Optimal Device Class</th>
+            <th>Trade-offs &amp; Tuning Guide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>@workgroup_size(16, 16)</code> (Default)</td>
+            <td>Desktop GPUs (NVIDIA / AMD)</td>
+            <td>256 threads per workgroup. Optimal register occupancy and cache reuse for tiled matrix multiplication.</td>
+          </tr>
+          <tr>
+            <td><code>@workgroup_size(8, 8)</code></td>
+            <td>Mobile GPUs (Adreno / Mali)</td>
+            <td>64 threads per workgroup. Reduces shared memory pressure on mobile tile-based deferred renderers (TBDR).</td>
+          </tr>
+          <tr>
+            <td><code>@workgroup_size(32, 1)</code></td>
+            <td>Apple Silicon M-Series</td>
+            <td>Aligns with SIMD32 execution width for coalesced memory access on Metal unified memory architectures.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Buffer Pool Quota &amp; WeakRef Lifetime Management</h3>
+      <p>Configure internal buffer pool limits to avoid GPU memory exhaustion on low-spec client machines:</p>
+      <pre><code class="language-javascript">import { BufferPool } from 'https://uno-km.github.io/uno-km/lib/forge/dist/index.esm.js';
+
+// Configure Maximum VRAM Pool Threshold (e.g., 256 MB)
+BufferPool.setMaxPoolSize(256 * 1024 * 1024);
+
+// Enable Immediate Garbage Collection of Unreferenced Intermediate Tensors
+BufferPool.enableWeakRefGC(true);</code></pre>
+
+      <h3>3. Float16 (FP16) Half-Precision Acceleration</h3>
+      <p>Enable native 16-bit floating point compute shaders on GPUs supporting the <code>shader-f16</code> WebGPU extension:</p>
+      <pre><code class="language-javascript">const adapter = await navigator.gpu.requestAdapter();
+const features = [];
+if (adapter.features.has('shader-f16')) {
+  features.push('shader-f16');
+  console.log("Hardware FP16 Half-Precision Enabled: 2x Theoretical FLOPS");
+}
+const device = await adapter.requestDevice({ requiredFeatures: features });</code></pre>
+
     </main>
   </div>
 
