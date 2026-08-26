@@ -724,50 +724,75 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
     index_html = render_index_html(cfg)
     (output_dir / "index.html").write_text(index_html, encoding="utf-8")
 
+    # Prepare dynamic versions/changelog body
+    versions_body = cfg.get("versions_body", "")
+    if not versions_body and "changelog" in cfg:
+        cards = []
+        for rel in cfg.get("changelog", []):
+            ver = rel.get("version", "v1.0.0")
+            date = rel.get("date", "")
+            title = rel.get("title", "Release")
+            rel_type = rel.get("type", "Production Release")
+            changes_html = "".join([f"          <li>{c}</li>\n" for c in rel.get("changes", [])])
+            badge_class = "status-badge active" if "Latest" in rel_type or "Production" in rel_type else "status-badge"
+            cards.append(f"""      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">{ver} - {title}</h3>
+          <div>
+            <span class="{badge_class}" style="margin-right: 6px;">{rel_type}</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">{date}</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+{changes_html}        </ul>
+      </div>""")
+        versions_body = "\n".join(cards)
+    elif not versions_body:
+        versions_body = f"""<h3>{cfg.get('version', 'v1.0.0')} - {cfg.get('release_name', 'Release')} (Current)</h3>
+         <ul>
+           <li>Standardized on Tomcat/Apache Classic Engineering Design System.</li>
+           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
+           <li>Implemented AI Agent feed generation (llms.txt, llms-full.txt).</li>
+         </ul>"""
+
     # 3. Build Subpages
     subpages = [
         ("installation.html", "Installation & Setup Guide", "Hardware acceleration, Termux setup, and dependency management",
-         f"""<div class="alert alert-tip">
+         cfg.get("installation_body", f"""<div class="alert alert-tip">
            <span class="alert-title">Prerequisites</span>
            <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
          </div>
          <h3>Package Managers</h3>
          <pre><code>{cfg.get('quick_install_cmd', 'pip install ameva-core')}</code></pre>
          <h3>Verification Check</h3>
-         <pre><code>python -c "import {cfg.get('package_name_pypi', 'ameva_core')}; print('Installation OK')"</code></pre>"""),
+         <pre><code>python -c "import {cfg.get('package_name_pypi', 'ameva_core')}; print('Installation OK')"</code></pre>""")),
         ("quickstart.html", "Quickstart & Execution Recipes", "Standard usage patterns and rapid prototyping code",
-         f"""<h3>Basic Execution Recipe</h3>
+         cfg.get("quickstart_body", f"""<h3>Basic Execution Recipe</h3>
          <pre><code>{cfg.get('code_example_py', '# Python recipe')}</code></pre>
          <h3>Production Asynchronous Batching</h3>
-         <p>Utilize weakref pooling and zero-copy streaming buffers for continuous pipelines.</p>"""),
+         <p>Utilize weakref pooling and zero-copy streaming buffers for continuous pipelines.</p>""")),
         ("api-reference.html", "Complete API Reference", "100% Full Class, Struct, and Method Documentation",
-         f"""<h3>Engine Subsystem</h3>
+         cfg.get("api_body", f"""<h3>Engine Subsystem</h3>
          <table class="data-table">
            <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
            <tbody>
              <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
              <tr><td><code>Engine.compute</code></td><td><code>(inputs: Tensor) -&gt; Tensor</code></td><td>Executes closed-form calculation with memory protection</td></tr>
            </tbody>
-         </table>"""),
+         </table>""")),
         ("benchmarks.html", "Benchmarks & Profiling", "Deterministic latency and VRAM allocation statistics",
-         f"""<table class="data-table">
+         cfg.get("benchmarks_body", f"""<table class="data-table">
            <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
            <tbody>
              <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
              <tr><td>Apple M-Series (WebGPU)</td><td>0.8 ms</td><td>12.0 MB</td><td>100.0% Exact</td></tr>
              <tr><td>Standard Intel x86_64</td><td>2.1 ms</td><td>16.5 MB</td><td>100.0% Exact</td></tr>
            </tbody>
-         </table>"""),
+         </table>""")),
         ("advanced-parameters.html", "Advanced Parameters & Tuning", "Kernel-level tuning, buffer pool sizing, and thread configuration",
-         f"""<h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>"""),
-        ("versions.html", "Version Archive & Changelog", "Changelog history and immutable releases",
-         f"""<h3>{cfg.get('version', 'v1.0.0')} - {cfg.get('release_name', 'Release')} (Current)</h3>
-         <ul>
-           <li>Standardized on Tomcat/Apache Classic Engineering Design System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-           <li>Implemented AI Agent feed generation (llms.txt, llms-full.txt).</li>
-         </ul>""")
+         cfg.get("advanced_parameters_body", f"""<h3>Memory Buffer Pool Configuration</h3>
+         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>""")),
+        ("versions.html", "Version Archive & Changelog", "Changelog history and immutable releases", versions_body)
     ]
 
     for filename, title, subtitle, body in subpages:
