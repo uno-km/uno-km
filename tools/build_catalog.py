@@ -186,7 +186,7 @@ def build_foundation_cards(catalog: dict) -> str:
             lines.append(f'        {_link_buttons_foundation(item["links"], cat_key)}')
             lines.append(f'      </div>')
         lines.append(f'    </div>')
-    lines.append(f'  </div>')
+        lines.append(f'  </div>')
 
     render_category("app", catalog["apps"], "Applications")
     render_category("sdk", catalog["sdks"], "SDKs & Runtime Engines")

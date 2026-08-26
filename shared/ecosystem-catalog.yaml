@@ -40,7 +40,7 @@ sdks:
     tagline_en: "Privacy-first, self-hosted behavioral risk scoring and HMAC-SHA256 security observation SDK. Zero PII capture."
     links:
       docs: "/lib/sentinel/"
-      npm: "https://www.npmjs.com/package/ameva-sentinel"
+      npm: "https://www.npmjs.com/package/@ameva/sentinel"
       github: "https://github.com/uno-km/ameva-sentinel"
 
   - id: mcp
@@ -55,12 +55,12 @@ sdks:
 
   - id: forge
     name: "AMEVA-Forge"
-    badge: "PyPI: ameva"
+    badge: "PyPI: ameva-forge"
     tagline_ko: "클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU 딥러닝 Autograd 엔진. PyTorch 구문 호환 및 WGSL 역전파."
     tagline_en: "Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch-compatible API, WGSL compute shaders, and zero-waste buffer pool."
     links:
       docs: "/lib/forge/"
-      pypi: "https://pypi.org/project/ameva/"
+      pypi: "https://pypi.org/project/ameva-forge/"
       github: "https://github.com/uno-km/AMEVA-Forge"
       demo: "/lib/forge/"
 
@@ -96,7 +96,7 @@ libs:
       docs: "/lib/playwright/"
       pypi: "https://pypi.org/project/termux-playwright/"
       npm: "https://www.npmjs.com/package/termux-playwright"
-      github: "https://github.com/uno-km/termux-playwright-demo"
+      github: "https://github.com/uno-km/termux-playwright"
 
   - id: diffusion
     name: "Termux-Diffusion"
