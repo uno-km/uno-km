@@ -1,0 +1,44 @@
+# Termux-AIChain (v1.0.0)
+> Sovereign Zero-Dependency AI Chaining & Multimodal Autonomous Agent Framework for Android Edge
+
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-aichain
+- Installation: `curl -sSL https://raw.githubusercontent.com/uno-km/termux-aichain/main/scripts/install.sh | bash
+# or manually:
+pip install termux-aichain
+npm install @termux-ai/chain`
+- Architecture: Engineered under the Zero-Heavy-Dependency doctrine: Pure Python stdlib and pure Node.js ESM orchestration for local llama-server, BitNet 1.58b, StateGraph cyclic ReAct loops, SQLite ACID memory, and native Termux hardware APIs.
+
+## Canonical Code Pattern
+```python
+from termux_aichain import (
+    create_react_agent,
+    BitNetChat,
+    get_battery_status,
+    transcribe_speech,
+    generate_diffusion_image,
+    vibrate_device,
+    HumanMessage
+)
+
+# 1. Initialize local 1-bit / GGUF model brain
+llm = BitNetChat(base_url="http://127.0.0.1:8080/v1", temperature=0.1)
+
+# 2. Assemble multimodal sovereign agent
+agent = create_react_agent(
+    model=llm,
+    tools=[get_battery_status, transcribe_speech, generate_diffusion_image, vibrate_device],
+    system_prompt="You are a sovereign multimodal agent running on Android Termux."
+)
+
+# 3. Autonomous multi-step execution
+state = agent.invoke({
+    "messages": [HumanMessage(content="Check battery and generate cyberpunk emblem.")]
+})
+print("Final Output:", state["messages"][-1].content)
+
+```
+
+## Key Constraints
+- Pure non-blocking architecture, zero memory leaks.
+- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.

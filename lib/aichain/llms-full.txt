@@ -1,0 +1,52 @@
+# Termux-AIChain Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Sovereign Zero-Dependency AI Chaining & Multimodal Autonomous Agent Framework for Android Edge
+Engineered under the Zero-Heavy-Dependency doctrine: Pure Python stdlib and pure Node.js ESM orchestration for local llama-server, BitNet 1.58b, StateGraph cyclic ReAct loops, SQLite ACID memory, and native Termux hardware APIs.
+
+## 2. Package & Installation
+- PyPI: termux-aichain
+- Command: curl -sSL https://raw.githubusercontent.com/uno-km/termux-aichain/main/scripts/install.sh | bash
+# or manually:
+pip install termux-aichain
+npm install @termux-ai/chain
+- Repository: https://github.com/uno-km/termux-aichain
+
+## 3. Core Capabilities
+- **Zero External Heavy Dependencies**: Pure Python standard library and pure Node.js ESM. Cold start import in under 12.8ms with less than 268KB disk footprint.
+- **StateGraph & Autonomous ReAct Engine**: Deterministic cyclic state machines and autonomous tool-calling loops (LangGraph lightweight edge alternative).
+- **Local Server Hardware Fine-Tuning**: 12 hardware tuning flags (threads, ctx, batch, GPU layers, FlashAttention, KV quantization q8_0/q4_0, RoPE) for 0.5B to 14B models.
+- **SQLite Long-Term Memory & Cosine RAG**: Persistent entity key-value storage and pure cosine vector search without ChromaDB or NumPy.
+- **1-Line REST, SSE & Live Web Dashboard**: Exposes any agent over local mobile WiFi with Server-Sent Events, live chat, interactive graph visualizer, and trace profiler table.
+- **Native Android Hardware & Ecosystem Actuation**: Direct tool-calling wrappers for Termux-API (battery, sensors, GPS, STT, TTS, vibration) and uno-km ecosystem (STT, Diffusion, Playwright).
+
+## 4. Canonical Implementation
+```python
+from termux_aichain import (
+    create_react_agent,
+    BitNetChat,
+    get_battery_status,
+    transcribe_speech,
+    generate_diffusion_image,
+    vibrate_device,
+    HumanMessage
+)
+
+# 1. Initialize local 1-bit / GGUF model brain
+llm = BitNetChat(base_url="http://127.0.0.1:8080/v1", temperature=0.1)
+
+# 2. Assemble multimodal sovereign agent
+agent = create_react_agent(
+    model=llm,
+    tools=[get_battery_status, transcribe_speech, generate_diffusion_image, vibrate_device],
+    system_prompt="You are a sovereign multimodal agent running on Android Termux."
+)
+
+# 3. Autonomous multi-step execution
+state = agent.invoke({
+    "messages": [HumanMessage(content="Check battery and generate cyberpunk emblem.")]
+})
+print("Final Output:", state["messages"][-1].content)
+
+```
