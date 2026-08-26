@@ -1,14 +1,29 @@
-# AMEVA-Sentinel (v1.0.0)
-> Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK
+# AMEVA-Sentinel — AI Agent Fast Context
+# Generated: 2026-08-26  |  Version: 1.0.0
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/ameva-sentinel
-- Installation: `npm install ameva-sentinel
-# or CDN:
-<script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"></script>`
-- Architecture: Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.
+## Library
+Name: AMEVA-Sentinel
+Version: 1.0.0
+GitHub: https://github.com/uno-km/ameva-sentinel
+Documentation: https://uno-km.vercel.app/lib/sentinel/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
+## Description
 
-```
+
+## Documentation Pages
+  - /lib/sentinel/index.html
+  - /lib/sentinel/installation.html
+  - /lib/sentinel/quickstart.html
+  - /lib/sentinel/api-reference.html
+  - /lib/sentinel/benchmarks.html
+  - /lib/sentinel/advanced-parameters.html
+  - /lib/sentinel/versions.html
+  - /lib/sentinel/admin.html
+
+## Quick Install
+npm install ameva-sentinel
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/sentinel/llms-full.txt

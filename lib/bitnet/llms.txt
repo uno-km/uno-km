@@ -1,27 +1,29 @@
-# Termux-BitNet (v1.0.6)
-> ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine
+# Termux-BitNet — AI Agent Fast Context
+# Generated: 2026-08-26  |  Version: 1.0.0
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-bitnet
-- Installation: `pip install termux-bitnet
-# or: npm install -g termux-bitnet`
-- Architecture: Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.
+## Library
+Name: Termux-BitNet
+Version: 1.0.0
+GitHub: https://github.com/uno-km/termux-bitnet
+Documentation: https://uno-km.vercel.app/lib/bitnet/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-from termux_bitnet import BitNetEngine, BitNetConfig
+## Description
 
-# 1. Initialize engine with model & thread configuration
-config = BitNetConfig(
-    model_path="models/bitnet-2b.gguf",
-    n_threads=4,
-    temperature=0.7,
-    top_p=0.95
-)
 
-# 2. Stream tokens in real time
-with BitNetEngine(config) as engine:
-    for token in engine.generate_stream("Explain quantum computing in one sentence:"):
-        print(token, end="", flush=True)
+## Documentation Pages
+  - /lib/bitnet/index.html
+  - /lib/bitnet/installation.html
+  - /lib/bitnet/quickstart.html
+  - /lib/bitnet/api-reference.html
+  - /lib/bitnet/models.html
+  - /lib/bitnet/benchmarks.html
+  - /lib/bitnet/advanced-parameters.html
+  - /lib/bitnet/versions.html
 
-```
+## Quick Install
+pip install termux-bitnet
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/bitnet/llms-full.txt

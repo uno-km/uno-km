@@ -1,26 +1,31 @@
-# Termux-Diffusion (v1.1.1)
-> Native On-Device Stable Diffusion Runtime for Android Termux & ARM64
+# Termux-Diffusion — AI Agent Fast Context
+# Generated: 2026-08-26  |  Version: 1.0.0
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-diffusion
-- Installation: `pip install termux-diffusion
-# or: npm install termux-diffusion`
-- Architecture: Executes quantized Stable Diffusion models directly on Android Bionic libc with NEON SIMD vector acceleration and direct Samsung Gallery indexing.
+## Library
+Name: Termux-Diffusion
+Version: 1.0.0
+GitHub: https://github.com/uno-km/termux-diffusion
+Documentation: https://uno-km.vercel.app/lib/diffusion/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-import termux_diffusion as td
+## Description
 
-# 1. Generate image on Android hardware
-image_path = td.generate(
-    prompt="Cyberpunk Seoul city at night, neon lights, 8k",
-    model="sd-turbo",
-    steps=4
-)
-print(f"Generated and saved to Gallery: {image_path}")
 
-```
+## Documentation Pages
+  - /lib/diffusion/index.html
+  - /lib/diffusion/installation.html
+  - /lib/diffusion/quickstart.html
+  - /lib/diffusion/api-reference.html
+  - /lib/diffusion/models.html
+  - /lib/diffusion/gallery.html
+  - /lib/diffusion/benchmarks.html
+  - /lib/diffusion/advanced-parameters.html
+  - /lib/diffusion/versions.html
 
-## Key Constraints
-- Pure non-blocking architecture, zero memory leaks.
-- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.
+## Quick Install
+pip install termux-diffusion
+npm install termux-diffusion
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/diffusion/llms-full.txt
