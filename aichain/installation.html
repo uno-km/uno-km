@@ -4,17 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | Termux-AIChain</title>
-  <meta name="description" content="Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="Hardware acceleration, Termux Bionic ARM64 setup, and one-touch CLI diagnostics">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   
   
@@ -27,7 +17,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+    <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-AIChain Logo">
       <h1 data-i18n="common.brand">Termux-AIChain</h1>
@@ -44,9 +34,9 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
-    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
-    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
+    <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html" class="active">Installation Guide</a></li>
@@ -58,7 +48,7 @@
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
@@ -72,31 +62,60 @@
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
 
     <main class="content">
       <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <p class="subtitle">Hardware acceleration, Termux Bionic ARM64 setup, and one-touch CLI diagnostics</p>
+
       <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>pip install termux-aichain
-# or:
-npm install termux-aichain</code></pre>
+        <span class="alert-title">Hardware Prerequisites</span>
+        <p>Ensure Python 3.10+ or Node.js 18+ is installed on your Android Termux, Linux ARM64/x86_64, or macOS/Windows environment.</p>
+      </div>
+
+      <h3>1. One-Touch Automatic Bootstrap (Android Termux)</h3>
+      <p>The single-line bootstrap script automatically installs required system packages (<code>python</code>, <code>nodejs-lts</code>, <code>termux-api</code>, <code>ffmpeg</code>, <code>git</code>) and sets up the latest <code>termux-aichain</code> package:</p>
+      <pre><code>curl -sSL https://raw.githubusercontent.com/uno-km/termux-aichain/main/scripts/install.sh | bash</code></pre>
+
+      <h3>2. Manual Package Manager Installation</h3>
+      
+      <h4>Python (PyPI):</h4>
+      <pre><code>pip install --upgrade termux-aichain</code></pre>
+
+      <h4>Node.js / TypeScript (npm):</h4>
+      <pre><code>npm install termux-aichain</code></pre>
+
+      <h3>3. Command Line Interface (CLI) Diagnostics</h3>
+      <p><code>termux-aichain</code> provides a dedicated CLI utility for rapid hardware and environment diagnostics:</p>
+
+      <h4>Verify Environment & Termux APIs:</h4>
+      <pre><code>termux-aichain setup</code></pre>
+      <p>Output verifies Python version, SQLite3 ACID support, Termux-API presence, and kernel sysfs battery fallback paths.</p>
+
+      <h4>Download Verified GGUF Model Checkpoints:</h4>
+      <pre><code># Download Qwen-2.5-1.5B-Instruct quantized GGUF
+termux-aichain pull qwen-2.5-1.5b
+
+# Download Llama-3.2-3B-Instruct quantized GGUF
+termux-aichain pull llama-3.2-3b
+
+# Download BitNet-3B 1.58-bit quantized GGUF
+termux-aichain pull bitnet-3b</code></pre>
+
+      <h4>Start 1-Line REST, SSE & Web Dashboard Server:</h4>
+      <pre><code>termux-aichain serve --port 8080 --host 0.0.0.0</code></pre>
     </main>
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation (AOSF). Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

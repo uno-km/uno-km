@@ -4,17 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | Termux-AIChain</title>
-  <meta name="description" content="Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="Practical production patterns for local LLMs, StateGraph agents, memory, and multimodal tools">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   
   
@@ -27,7 +17,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+    <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-AIChain Logo">
       <h1 data-i18n="common.brand">Termux-AIChain</h1>
@@ -44,9 +34,9 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
-    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
-    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
+    <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
@@ -58,7 +48,7 @@
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
@@ -72,28 +62,134 @@
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
 
     <main class="content">
       <h2>Quickstart & Execution Recipes</h2>
-      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
-      <h3>Basic Execution Recipe</h3>
-         <pre><code>from termux_aichain import Chain, Agent
-agent = Agent(model='termux-bitnet')
-chain = Chain([agent])
-print(chain.run('Summarize task'))</code></pre>
+      <p class="subtitle">Practical production patterns for local LLMs, StateGraph agents, memory, and multimodal tools</p>
+
+      <h3>Recipe 1: 1-Line LCEL Pipe Chaining</h3>
+      <p>Compose deterministic prompt templates, local model inferencing, and JSON output parsing using the standard pipe operator (<code>|</code>):</p>
+      <pre><code>from termux_aichain import PromptTemplate, JsonOutputParser, OpenAICompatibleChat
+
+# 1. Define prompt template and JSON parser
+prompt = PromptTemplate.from_template(
+    "Extract structured system status from log:\n{log}\nRespond in JSON with fields 'level', 'code', 'message'."
+)
+parser = JsonOutputParser()
+
+# 2. Connect to local llama-server / BitNet endpoint
+llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", temperature=0.1)
+
+# 3. Assemble LCEL pipe chain
+chain = prompt | llm | parser
+
+# 4. Execute synchronously
+result = chain.invoke({"log": "CRITICAL: Kernel thermal throttling triggered at 48C (Code 104)"})
+print("Parsed JSON Result:", result)</code></pre>
+
+      <h3>Recipe 2: Autonomous ReAct Multi-Agent with StateGraph</h3>
+      <p>Assemble autonomous reasoning and tool-calling agents with cyclic routing and safety iteration limits:</p>
+      <pre><code>from termux_aichain import (
+    create_react_agent,
+    BitNetChat,
+    HumanMessage,
+    get_battery_status,
+    vibrate_device,
+    transcribe_speech
+)
+
+# 1. Initialize local brain
+model = BitNetChat(base_url="http://127.0.0.1:8080/v1", temperature=0.1)
+
+# 2. Construct autonomous ReAct agent with hardware tools
+agent = create_react_agent(
+    model=model,
+    tools=[get_battery_status, transcribe_speech, vibrate_device],
+    system_prompt="You are a sovereign mobile agent running on Android Termux."
+)
+
+# 3. Execute multi-step reasoning and acting loop
+state = agent.invoke({
+    "messages": [HumanMessage(content="Check battery percentage and vibrate device for 500ms if battery > 50%.")]
+})
+
+print("Agent Final Response:", state["messages"][-1].content)</code></pre>
+
+      <h3>Recipe 3: SQLite Long-Term Memory & Pure Cosine Vector RAG</h3>
+      <p>Persistent ACID key-value storage and vector similarity search without ChromaDB, FAISS, or NumPy:</p>
+      <pre><code>from termux_aichain import SQLiteEntityMemory, SQLiteVectorStore
+
+# 1. Persistent Key-Value Entity Memory
+memory = SQLiteEntityMemory(db_path="mobile_agent.db")
+memory.save_entity("device_owner", "Dr. Uno Kim")
+memory.save_entity("preferred_model", "BitNet-3B-1.58b")
+
+print("Retrieved Owner:", memory.get_entity("device_owner"))
+
+# 2. Pure Cosine Vector Store (No NumPy / ChromaDB needed)
+vector_store = SQLiteVectorStore(db_path="vector_rag.db")
+vector_store.add_texts(
+    texts=["Android Bionic Subsystem Architecture", "WebGPU Neural Compute Shaders"],
+    embeddings=[[0.92, 0.38, 0.05], [0.12, 0.44, 0.89]],
+    metadatas=[{"source": "os_doc"}, {"source": "gpu_doc"}]
+)
+
+matches = vector_store.similarity_search_by_vector([0.90, 0.40, 0.00], k=1)
+print("Top RAG Match:", matches[0].page_content, f"(Score: {matches[0].score:.4f})")</code></pre>
+
+      <h3>Recipe 4: 1-Line REST, SSE Streaming Server & Web Dashboard</h3>
+      <pre><code>from termux_aichain import create_react_agent, OpenAICompatibleChat, serve, get_battery_status
+
+llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1")
+agent = create_react_agent(model=llm, tools=[get_battery_status])
+
+# Starts REST API (POST /v1/agent/invoke, POST /v1/agent/stream) and Web Dashboard UI
+serve(agent, host="0.0.0.0", port=8000)</code></pre>
+
+      <h3>Recipe 5: Node.js ESM Native Autonomous Agent</h3>
+      <pre><code>import {
+  PromptTemplate,
+  JsonOutputParser,
+  OpenAICompatibleChat,
+  StateGraph,
+  START,
+  END,
+  MicroVectorStore,
+  getDefaultDeviceTools
+} from "termux-aichain";
+
+// 1. In-Memory Micro Vector Store
+const vectorStore = new MicroVectorStore();
+vectorStore.addTexts(
+  ["Linux Kernel Bionic", "ARM NEON SIMD"],
+  [[1.0, 0.0], [0.0, 1.0]]
+);
+
+const matches = vectorStore.similaritySearchByVector([0.98, 0.02], 1);
+console.log("Vector Match:", matches[0].content, `(Score: ${matches[0].score.toFixed(4)})`);
+
+// 2. Cyclic StateGraph Compilation
+const workflow = new StateGraph();
+workflow.addNode("counter", (state) => ({ step: (state.step || 0) + 1 }));
+workflow.setEntryPoint("counter");
+workflow.addConditionalEdges("counter", (state) => (state.step >= 3 ? END : "counter"));
+
+const app = workflow.compile();
+const result = await app.invoke({ step: 0 });
+console.log("Graph Execution Result:", result);</code></pre>
     </main>
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation (AOSF). Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

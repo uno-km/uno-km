@@ -4,17 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Train</title>
-  <meta name="description" content="Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="Changelog history and immutable releases">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   
   
@@ -27,7 +17,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+    <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-Train Logo">
       <h1 data-i18n="common.brand">Termux-Train</h1>
@@ -44,22 +34,21 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
-    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
-    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
+    <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="models.html">Tiny Models & LoRA Hub</a></li>
-      <li><a href="training-guide.html">Training Manual</a></li>
+      <li><a href="training-guide.html">Training Guide</a></li>
       <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html" class="active">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
@@ -73,23 +62,62 @@
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
 
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v1.0.0 - Bionic C SafeTensors DAG Autograd (Current)</h3>
-         <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-         </ul>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Production Release Track</span>
+        <p>Every release is published immutably on PyPI and cryptographically tagged on GitHub with automated regression testing.</p>
+      </div>
+
+      <h3>v1.0.0 - Production General Availability (Current)</h3>
+      <p class="meta-tag">Released: August 2026 &bull; Status: Production LTS</p>
+      <ul>
+        <li><strong>Native DAG Autograd Engine</strong>: Pure Python reverse-mode automatic differentiation with topological sort.</li>
+        <li><strong>Low-Rank Adaptation (LoRA)</strong>: Complete <code>LoRALinear</code> module with adapter isolation and SafeTensors serialization.</li>
+        <li><strong>RoPE Transformer Decoder</strong>: Rotary positional embeddings, RMSNorm, and multi-head attention blocks.</li>
+        <li><strong>Optimizers</strong>: Full implementations of SGD (with momentum), Adam, and AdamW.</li>
+        <li><strong>SafeTensors Integration</strong>: Zero-pickle, zero-copy binary weights checkpoint engine.</li>
+        <li><strong>Physical Testbed Verification</strong>: Benchmarked on Samsung Galaxy S25 / S20 with 0.00% memory leak.</li>
+      </ul>
+
+      <h3>v0.9.5 - LoRA Adapter I/O &amp; Checkpoint Milestone</h3>
+      <p class="meta-tag">Released: August 2026 &bull; Status: Archived</p>
+      <ul>
+        <li>Added adapter weight merging utility (<code>merge_lora()</code>) for inference offloading.</li>
+        <li>Enhanced <code>gradcheck</code> analytical vs numerical gradient verification suite.</li>
+      </ul>
+
+      <h3>v0.9.0 - RoPE &amp; Attention Blocks</h3>
+      <p class="meta-tag">Released: August 2026 &bull; Status: Archived</p>
+      <ul>
+        <li>Implemented multi-head attention with causal triangular masking.</li>
+        <li>Added precomputed sinusoidal rotary frequency table caches.</li>
+      </ul>
+
+      <h3>v0.8.0 - AdamW &amp; Loss Functions</h3>
+      <p class="meta-tag">Released: July 2026 &bull; Status: Archived</p>
+      <ul>
+        <li>Added decoupled weight decay AdamW optimizer.</li>
+        <li>Integrated numerically stable CrossEntropyLoss and NLLLoss.</li>
+      </ul>
+
+      <h3>v0.5.0 - Core Tensor DAG Prototype</h3>
+      <p class="meta-tag">Released: July 2026 &bull; Status: Archived</p>
+      <ul>
+        <li>Initial prototype of Python autograd computation graph and backward traversal.</li>
+      </ul>
+
     </main>
   </div>
 
