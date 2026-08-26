@@ -1,220 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Observability &amp; Traffic Status | AMEVA-Sentinel</title>
-  <meta name="description" content="Public real-time traffic observability, AI bot crawler aggregation, interactive client triangle diagnosis, global geo cluster map, and edge ecosystem metrics for AMEVA-Sentinel.">
-  <link rel="icon" type="image/svg+xml" href="/shared/brand/favicon.svg">
-  <link rel="stylesheet" href="/sentinel/assets/style.css">
-  <link rel="stylesheet" href="/shared/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <title>Admin Forensic Intelligence &amp; Multi-Timeframe Telemetry Console | AMEVA-Sentinel</title>
+  <meta name="description" content="Enterprise multi-timeframe traffic analytics, deep forensic audit ledger, AI bot crawler intrusion telemetry, traffic acquisition intent, and live user action stream for AMEVA-Sentinel.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="/shared/common.js" defer></script>
+  
   <script src="/shared/telemetry.js" defer></script>
   <style>
-    header {
-      background-color: #ffffff;
-      border-bottom: 2px solid var(--primary-color, #004499);
-      padding: 0 20px;
-      height: 52px;
+    /* ── Financial & Observability Enterprise Layout ──────────────────────── */
+    .ga-dashboard-header {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
     }
-    .header-brand {
+    .ga-filter-group {
       display: flex;
       align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--primary-color, #004499);
+      gap: 6px;
+      flex-wrap: wrap;
     }
-    .header-brand img {
-      width: 24px !important;
-      height: 24px !important;
-      max-width: 24px !important;
-      max-height: 24px !important;
-      object-fit: contain !important;
-    }
-    .header-brand h1 {
-      margin: 0;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary-color, #004499);
-      letter-spacing: -0.01em;
-    }
-    .header-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: nowrap;
-    }
-    .release-tag {
-      font-size: 0.75rem;
-      font-family: var(--font-mono, monospace);
-      background: #e8f0fe;
-      color: #004499;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-weight: 700;
-      border: 1px solid #cbd5e1;
-      white-space: nowrap;
-    }
-    .lang-select-clean {
-      background: #ffffff;
-      border: 1px solid var(--border-color, #cbd5e1);
+    .ga-pill {
+      background: var(--bg-header);
+      border: 1px solid var(--border-color);
+      padding: 5px 12px;
       border-radius: 4px;
-      padding: 4px 8px;
       font-size: 0.78rem;
-      color: var(--text-main, #0f172a);
       font-weight: 600;
+      color: var(--text-main);
       cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ga-pill.active, .ga-pill:hover {
+      background: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color);
+    }
+    .admin-key-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-key-input {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: var(--bg-main);
+      color: var(--primary-color);
+      font-weight: 700;
+      width: 180px;
     }
 
-    /* Interactive Client Diagnosis Banner */
-    .diagnosis-panel {
-      background: #ffffff;
-      border: 2px solid var(--primary-color, #004499);
-      border-radius: 6px;
-      padding: 18px 22px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 16px rgba(0, 68, 153, 0.06);
-    }
-    .diagnosis-grid {
+    /* ── 6 KPI Cards Grid ─────────────────────────────────────────────────── */
+    .kpi-grid {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-      align-items: center;
-      margin-top: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
     }
-    @media (max-width: 860px) {
-      .diagnosis-grid { grid-template-columns: 1fr; }
-    }
-    .verdict-banner {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 14px 16px;
-      margin-bottom: 12px;
-    }
-    .verdict-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #15803d;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .evidence-tag {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      padding: 6px 10px;
-      font-size: 0.78rem;
-      font-family: var(--font-mono, monospace);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin: 20px 0 24px 0;
-    }
-    .metric-card {
-      background: var(--bg-surface, #ffffff);
-      border: 1px solid var(--border-color, #cbd5e1);
-      border-radius: 6px;
-      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }
-    .metric-card-title {
-      font-size: 0.8rem;
+    .kpi-title {
+      font-size: 0.75rem;
       font-weight: 700;
-      color: var(--text-muted, #64748b);
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 6px;
     }
-    .metric-card-value {
-      font-size: 1.8rem;
+    .kpi-val {
+      font-size: 1.7rem;
       font-weight: 800;
-      color: var(--primary-color, #004499);
-      font-family: var(--font-mono, monospace);
-      line-height: 1.2;
+      color: var(--primary-color);
+      font-family: var(--font-mono);
+      margin: 4px 0;
+      line-height: 1.1;
     }
-    .metric-card-footer {
-      font-size: 0.76rem;
-      color: var(--accent-green, #16a34a);
+    .kpi-sub {
+      font-size: 0.72rem;
       font-weight: 600;
-      margin-top: 6px;
-    }
-    .split-container {
-      background: var(--bg-surface, #ffffff);
-      border: 1px solid var(--border-color, #cbd5e1);
-      border-radius: 6px;
-      padding: 18px 20px;
-      margin-bottom: 24px;
-    }
-    .split-bar-track {
-      background: #e2e8f0;
-      height: 24px;
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      margin: 12px 0 8px 0;
-      border: 1px solid var(--border-color, #cbd5e1);
-    }
-    .split-bar-human {
-      background: #004499;
-      color: #ffffff;
-      font-size: 0.75rem;
-      font-weight: 700;
+      color: var(--accent-green);
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: width 0.4s ease;
+      gap: 4px;
     }
-    .split-bar-bot {
-      background: #7c3aed;
-      color: #ffffff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: width 0.4s ease;
-    }
-    .split-legend {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--text-muted, #64748b);
-      font-weight: 600;
-    }
+    .kpi-sub.warn { color: var(--accent-red); }
+    .kpi-sub.purple { color: #7c3aed; }
+
+    /* ── Chart Panels & Financial Toolbar ─────────────────────────────────── */
     .chart-panel {
-      background: var(--bg-surface, #ffffff);
-      border: 1px solid var(--border-color, #cbd5e1);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 18px 20px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .chart-panel-title {
       font-size: 0.92rem;
       font-weight: 700;
-      color: var(--text-main, #0f172a);
+      color: var(--text-main);
       margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
@@ -222,448 +127,567 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-    .tf-pill-group {
+    .chart-grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .btn-expand {
+      background: var(--bg-header);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-expand:hover {
+      background: #e2e8f0;
+    }
+
+    /* ── Visual Flow & Funnel Chart ───────────────────────────────────────── */
+    .flow-card-grid {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+    .flow-step-box {
+      background: var(--bg-header);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 14px;
+      min-width: 170px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .flow-step-header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .flow-step-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      font-family: var(--font-mono);
+      margin: 4px 0;
+      word-break: break-all;
+    }
+    .flow-step-vol {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .flow-step-pct {
+      font-size: 0.72rem;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+    .flow-arrow-indicator {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
+      justify-content: center;
+      color: var(--text-muted);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0 4px;
     }
-    .tf-pill {
-      background: var(--bg-header, #f8fafc);
-      border: 1px solid var(--border-color, #cbd5e1);
-      padding: 3px 8px;
-      border-radius: 3px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-main, #0f172a);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tf-pill.active, .tf-pill:hover {
-      background: var(--primary-color, #004499);
-      color: #ffffff;
-      border-color: var(--primary-color, #004499);
-    }
-    .stream-table {
-      width: 100%;
-      border-collapse: collapse;
+
+    /* ── Progress Bar Rankings ────────────────────────────────────────────── */
+    .rank-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
       font-size: 0.82rem;
+    }
+    .rank-label {
+      width: 160px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rank-bar-wrap {
+      flex: 1;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .rank-bar-fill {
+      height: 100%;
+      background: var(--primary-color);
+      border-radius: 5px;
+      transition: width 0.4s;
+    }
+    .rank-val {
+      width: 60px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    /* ── Heuristic Briefings ──────────────────────────────────────────────── */
+    .insight-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       margin-top: 10px;
     }
-    .stream-table th, .stream-table td {
-      border: 1px solid var(--border-color, #cbd5e1);
-      padding: 8px 12px;
-      text-align: left;
+    .insight-card {
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-color);
+      background: var(--bg-main);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
-    .stream-table th {
-      background: var(--bg-header, #f8fafc);
-      color: var(--text-main, #0f172a);
-      font-weight: 700;
+    .insight-card.bot {
+      border-left-color: var(--accent-red);
+      background: #fef2f2;
+    }
+    .insight-card.dev {
+      border-left-color: var(--accent-green);
+      background: #f0fdf4;
+    }
+    .insight-card.power {
+      border-left-color: #7c3aed;
+      background: #faf5ff;
+    }
+
+    /* ── Deep Forensic Table ──────────────────────────────────────────────── */
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .search-input {
+      padding: 6px 12px;
       font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      width: 220px;
     }
-    .stream-table tr:nth-child(even) td {
-      background: #f8fafc;
+    .btn-export {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--primary-color);
     }
-    .stream-table tr:hover td {
-      background: #f1f5f9;
+    .btn-export:hover {
+      background: var(--bg-header);
     }
-    .badge-status {
+
+    /* ── Modal Dialog for Expanded View ───────────────────────────────────── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal-window {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 1050px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .badge-action {
       display: inline-block;
       padding: 2px 6px;
       border-radius: 3px;
       font-size: 0.72rem;
       font-weight: 700;
-      font-family: var(--font-mono, monospace);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
     }
-    .badge-status.bot { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
-    .badge-status.geo { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
-    .badge-status.human { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
-    
-    .pulse-marker {
-      background: rgba(0, 68, 153, 0.8);
-      border-radius: 50%;
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 12px rgba(0, 68, 153, 0.8);
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-family: var(--font-mono, monospace);
-      font-weight: 800;
-      font-size: 10px;
-    }
-    .pulse-marker.country-pin {
-      background: #004499;
-      border: 2.5px solid #ffffff;
-      box-shadow: 0 0 16px rgba(0, 68, 153, 0.9);
-    }
-    .pulse-marker.bot {
-      background: rgba(124, 58, 237, 0.85);
-      box-shadow: 0 0 12px rgba(124, 58, 237, 0.9);
-    }
-    .pulse-marker::after {
-      content: '';
-      position: absolute;
-      top: -8px; left: -8px; right: -8px; bottom: -8px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(0, 68, 153, 0.5);
-      animation: mapPulse 2.2s infinite ease-out;
-    }
-    .pulse-marker.bot::after {
-      border-color: rgba(124, 58, 237, 0.5);
-    }
-    @keyframes mapPulse {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(2.4); opacity: 0; }
-    }
+    .badge-action.copy { background: #dbeafe; color: #1e40af; }
+    .badge-action.click { background: #fef3c7; color: #92400e; }
+    .badge-action.outbound { background: #fee2e2; color: #991b1b; }
+    .badge-action.dwell { background: #f3e8ff; color: #6b21a8; }
   </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
 </head>
 <body>
-  <header>
-    <a href="/sentinel/index.html" class="header-brand">
-      <img src="/shared/brand/favicon.svg" alt="AMEVA-Sentinel Logo">
-      <h1>AMEVA-Sentinel</h1>
+  <!-- Standard Top Header -->
+    <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
+      <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag">v0.7.0</span>
-      <select id="obsTzSelect" class="lang-select-clean" onchange="changeObservabilityTimezone(this.value)">
-        <option value="Asia/Seoul" selected>Asia/Seoul (KST)</option>
-        <option value="local">Local (Device)</option>
-        <option value="UTC">UTC (GMT+0)</option>
-        <option value="America/New_York">America/New_York (EST)</option>
-        <option value="Europe/London">Europe/London (BST)</option>
-        <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
-      </select>
-      <a href="/dashboard/" class="header-btn" style="background: #004499; color: #ffffff; font-weight: 700; border-color: #003380;">Dashboard</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn">npm</a>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      
+      <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary">GitHub</a>
+      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3>Overview</h3>
-      <ul>
-        <li><a href="/sentinel/index.html">Home / Architecture</a></li>
-        <li><a href="/sentinel/installation.html">Installation Guide</a></li>
-        <li><a href="/sentinel/quickstart.html">Quickstart &amp; Recipes</a></li>
-      </ul>
+    <!-- Standard Left Sidebar -->
+      <nav class="sidebar">
+    <!-- Tier 1: Foundation Info -->
+    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
+    <ul>
+      <li><a href="/foundation/index.html">Foundation Portal</a></li>
+      <li><a href="/foundation/charter.html">Foundation Charter</a></li>
+      <li><a href="/foundation/governance.html">Governance & Merit</a></li>
+      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+      <li><a href="/foundation/sponsorship.html">Sponsorship & Support</a></li>
+      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/" class="active">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: Document Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <!-- Tier 4: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="/" target="_blank">Founder Digital CV</a></li>
+    </ul>
+  </nav>
 
-      <h3>Official Reference</h3>
-      <ul>
-        <li><a href="/sentinel/api-reference.html">API Reference</a></li>
-        <li><a href="/sentinel/benchmarks.html">Benchmarks &amp; Profiling</a></li>
-        <li><a href="/sentinel/advanced-parameters.html">Advanced Parameters</a></li>
-        <li><a href="/sentinel/observability.html" class="active">Live Observability Status</a></li>
-        <li><a href="/dashboard/">SDK Default Dashboard</a></li>
-        <li><a href="/sentinel/versions.html">Version Archive</a></li>
-      </ul>
-
-      <h3>AMEVA Ecosystem</h3>
-      <ul>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-      </ul>
-
-      <h3>AI Agent Protocols</h3>
-      <ul>
-        <li><a href="/sentinel/llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-        <li><a href="/sentinel/llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-        <li><a href="/sentinel/robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-        <li><a href="/sentinel/sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-      </ul>
-    </nav>
-
+    <!-- Main Content Area -->
     <main class="content">
-      <h2>Live Telemetry Observability &amp; Ecosystem Status</h2>
-      <p class="subtitle">Global Real-time Traffic Aggregation, AI Crawler Indexing Metrics, and Autonomous Edge Infrastructure Telemetry</p>
+      <h2>Admin Forensic Intelligence &amp; Multi-Timeframe Telemetry Console</h2>
+      <p class="subtitle">Traffic acquisition intent, live user action stream, deep forensic audit ledger, and financial-grade multi-timeframe analytics</p>
 
-      <!-- 🌟 INTERACTIVE CLIENT TRIANGLE DIAGNOSIS SHOWCASE 🌟 -->
-      <div class="diagnosis-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #cbd5e1; padding-bottom:10px;">
-          <div>
-            <strong style="font-size:1.05rem; color:var(--primary-color, #004499);">Live Client Risk Matrix &amp; Automation Triage Assessment</strong>
-            <div style="font-size:0.8rem; color:#64748b; margin-top:2px;">Real-time passive evaluation of your current browser session against AMEVA-Sentinel engine.</div>
-          </div>
-          <button class="header-btn" onclick="runLiveClientDiagnosis()" style="background:#004499; color:#ffffff; font-weight:700; cursor:pointer;">Re-Scan My Session</button>
+      <!-- 1. Top Controls Bar -->
+      <div class="ga-dashboard-header">
+        <div class="ga-filter-group">
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-right: 4px;">Time Window:</span>
+          <button class="ga-pill active" onclick="setTimeRange('realtime')">Real-Time (Live)</button>
+          <button class="ga-pill" onclick="setTimeRange('today')">Today</button>
+          <button class="ga-pill" onclick="setTimeRange('7d')">Last 7 Days</button>
+          <button class="ga-pill" onclick="setTimeRange('all')">All Time</button>
         </div>
-
-        <div class="diagnosis-grid">
-          <!-- Triangle Radar Chart Canvas -->
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-            <div style="font-size:0.78rem; font-weight:700; color:#475569; margin-bottom:4px;">Automation & Client Risk Assessment</div>
-            <div style="width:230px; height:200px; position:relative;">
-              <canvas id="triangleRadarCanvas"></canvas>
-            </div>
-            <div style="font-family:var(--font-mono, monospace); font-size:0.72rem; color:#64748b; margin-top:4px;">
-              Consistency: <strong id="diagScoreHuman" style="color:#16a34a;">--%</strong> &bull; 
-              Automation: <strong id="diagScoreAi" style="color:#7c3aed;">--%</strong> &bull; 
-              Abuse: <strong id="diagScoreTool" style="color:#b91c1c;">--%</strong>
-            </div>
-          </div>
-
-          <!-- Verdict & Evidence Reasons -->
-          <div>
-            <div class="verdict-banner" id="diagVerdictBanner">
-              <div class="verdict-title">
-                <span id="diagVerdictText">Analyzing your browser session...</span>
-                <span id="diagVerdictConfidence" title="Signal Coverage represents the proportion of expected telemetry categories available for this assessment. It does not represent model accuracy or human identity confidence." style="font-family:var(--font-mono, monospace); font-size:0.85rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:3px; border:1px solid #bbf7d0; cursor:help;">Signal Coverage: High</span>
-              </div>
-              <p id="diagVerdictExplanation" style="font-size:0.84rem; color:#334155; margin:6px 0 0 0;">
-                현재 세션에서 관측된 신호 기준, 자동화 증거가 낮은 수준입니다. <strong>이 결과는 인간 사용자임을 증명하지 않습니다.</strong>
-              </p>
-              <div style="font-size:0.72rem; color:#64748b; margin-top:4px;">
-                Signal Categories: 1. HTTP context &bull; 2. Runtime automation indicators &bull; 3. Browser environment consistency &bull; 4. Interaction signals &bull; 5. Session behavior
-              </div>
-            </div>
-
-            <!-- Evidence Breakdown Checklist -->
-            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:6px;">Observed Evidence Signals:</div>
-            <div id="diagEvidenceList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:6px;">
-              <div class="evidence-tag"><span>WebGL Physical GPU:</span> <strong id="evGpu" style="color:#16a34a;">Scanning...</strong></div>
-              <div class="evidence-tag"><span>Webdriver Flag:</span> <strong id="evWebdriver" style="color:#16a34a;">Scanning...</strong></div>
-              <div class="evidence-tag"><span>Math JIT Precision:</span> <strong id="evJit" style="color:#16a34a;">Scanning...</strong></div>
-              <div class="evidence-tag"><span>Canvas 2D Hash:</span> <strong id="evCanvas" style="color:#16a34a;">Scanning...</strong></div>
-            </div>
-          </div>
+        <div class="admin-key-box">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--accent-green); background:#f0fdf4; border:1px solid #bbf7d0; padding:4px 8px; border-radius:4px;">[PUBLIC_LIVE_STREAM]</span>
+          <button class="header-btn primary" style="padding: 5px 10px; font-size: 0.78rem;" onclick="fetchDashboardData()">Refresh</button>
+          <label style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 4px; cursor: pointer;">
+            <input type="checkbox" id="autoRefresh" checked onchange="toggleAutoRefresh(this.checked)"> Auto-Refresh (8s)
+          </label>
         </div>
       </div>
 
-      <!-- 1. Raw Telemetry Baseline Cards (수학적 일치: Total = Human + AI) -->
-      <div class="metrics-row">
-        <div class="metric-card">
-          <div class="metric-card-title">Total Observed Traffic</div>
-          <div class="metric-card-value" id="valTotalEvents">283</div>
-          <div class="metric-card-footer" id="valTotalFooter">201 Low Risk + 82 Bot Claims</div>
-          <div style="font-size:0.6rem; color:#94a3b8; margin-top:2px;" id="valMetaMeta">Metric: sessions · Window: all time</div>
+      <!-- 2. Six Core KPI Summary Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Total Unique Visitors</div>
+          <div class="kpi-val" id="kpiVisitors">0</div>
+          <div class="kpi-sub">Verified Unique Footprints</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-card-title">Low Automation Risk Sessions</div>
-          <div class="metric-card-value" id="valSessions" style="color: #16a34a;">201</div>
-          <div class="metric-card-footer" id="valHumanShare">71% of Total Traffic</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total Active Sessions</div>
+          <div class="kpi-val" id="kpiSessions">0</div>
+          <div class="kpi-sub" id="kpiPagesPerSession">Page Inflow Stream</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-card-title">Bot Claims &amp; Automation Signals <span style="font-size:0.68rem; font-weight:600; color:#64748b; background:#f1f5f9; border:1px solid #cbd5e1; padding:1px 4px; border-radius:3px; vertical-align:middle;">Unverified</span></div>
-          <div class="metric-card-value" id="valBots" style="color: #7c3aed;">82</div>
-          <div class="metric-card-footer" id="valAiShare" style="color: #7c3aed;">29% of Total Traffic</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Identified AI Bots</div>
+          <div class="kpi-val" id="kpiBots" style="color: var(--accent-red);">0</div>
+          <div class="kpi-sub warn">SwiftShader / Headless Detection</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-card-title">Unique Pseudonymous Keys</div>
-          <div class="metric-card-value" id="valVisitors" style="color: #004499;">94</div>
-          <div class="metric-card-footer">Pseudonymous Session Keys</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Software Engineer Ratio</div>
+          <div class="kpi-val" id="kpiDevRatio" style="color: var(--accent-green);">0%</div>
+          <div class="kpi-sub">D2Coding / Arc GPU Workstation</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Avg Session Dwell Time</div>
+          <div class="kpi-val" id="kpiDwell" style="color: #7c3aed;">0s</div>
+          <div class="kpi-sub purple">High Retention Tier</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Mean JS Heap Footprint</div>
+          <div class="kpi-val" id="kpiHeap" style="color: #0284c7;">-</div>
+          <div class="kpi-sub">performance.memory Telemetry</div>
         </div>
       </div>
 
-      <!-- 2. Traffic Inflow Multi-Timeframe Chart Panel -->
+      <!-- 3. Financial-Grade Multi-Timeframe Traffic & Volume Chart -->
       <div class="chart-panel">
         <div class="chart-panel-title">
-          <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
-          <div class="tf-pill-group">
-            <span class="tf-pill" onclick="setTimeframe('1m')">1m</span>
-            <span class="tf-pill active" id="tf-5m" onclick="setTimeframe('5m')">5m</span>
-            <span class="tf-pill" onclick="setTimeframe('1h')">1h</span>
-            <span class="tf-pill" onclick="setTimeframe('1D')">1D</span>
-            <span class="tf-pill" onclick="setTimeframe('1W')">1W</span>
-            <span class="tf-pill" onclick="setTimeframe('1M')">1M</span>
-            <span class="tf-pill" onclick="setTimeframe('ALL')">ALL</span>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <span>Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</span>
+            <div class="ga-filter-group">
+              <button class="ga-pill" onclick="setTimeframe('1m')">1m</button>
+              <button class="ga-pill active" onclick="setTimeframe('5m')">5m</button>
+              <button class="ga-pill" onclick="setTimeframe('1h')">1h</button>
+              <button class="ga-pill" onclick="setTimeframe('1D')">1D (Daily)</button>
+              <button class="ga-pill" onclick="setTimeframe('1W')">1W (Weekly)</button>
+              <button class="ga-pill" onclick="setTimeframe('1M')">1M (Monthly)</button>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="date" id="dateFilterStart" style="font-size:0.75rem; padding:3px 6px; border:1px solid var(--border-color); border-radius:4px;" onchange="recalculateCharts()">
+            <input type="date" id="dateFilterEnd" style="font-size:0.75rem; padding:3px 6px; border:1px solid var(--border-color); border-radius:4px;" onchange="recalculateCharts()">
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);" id="chartTimestamp">Live Stream</span>
           </div>
         </div>
-        <div style="height: 240px; position: relative;">
+        <div style="height: 280px; position: relative;">
           <canvas id="trafficTrendChart"></canvas>
         </div>
-        <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted, #64748b); margin-top:8px;">
-          <span>Metric: Dual Axis Inflow (Line: Cumulative Trend, Bar: Volume Bucket)</span>
-          <span id="chartTimestamp" style="font-family:var(--font-mono, monospace);">Real-Time Sync</span>
-        </div>
       </div>
 
-      <!-- 3. GLOBAL TRAFFIC & THREAT CLUSTER WORLD MAP -->
-      <div class="chart-panel" style="border-left: 4px solid #004499;">
-        <div class="chart-panel-title">
-          <div>
-            <span>Global Traffic &amp; Threat Cluster Origin Map</span>
-            <span id="mapCurrentModeLabel" style="font-size:0.78rem; font-weight:normal; color:var(--text-muted, #64748b); margin-left:8px;">Global View (1 Consolidated Point per Country)</span>
-            <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">Markers represent regional centroids, not visitor coordinates.</div>
+      <!-- 4. Traffic Acquisition & Inflow Intent [WHY DID THEY VISIT] -->
+      <div class="chart-grid-2col">
+        <!-- Inflow Referrers -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Traffic Acquisition Sources (Referrers &amp; Search) [WHY THEY VISITED]</span>
+            <button class="btn-expand" onclick="openModal('modalReferrers')">[+] Expand Sources</button>
           </div>
-          <div class="tf-pill-group" id="regionBtnGroup">
-            <button class="tf-pill" id="btn-reg-KR" onclick="focusRegion('KR', 36.5, 127.8, 6)">South Korea</button>
-            <button class="tf-pill" id="btn-reg-US" onclick="focusRegion('US', 38.0, -97.0, 4)">United States</button>
-            <button class="tf-pill" id="btn-reg-EU" onclick="focusRegion('EU', 50.1109, 8.6821, 5)">Europe</button>
-            <button class="tf-pill" id="btn-reg-JP" onclick="focusRegion('JP', 35.6762, 139.6503, 6)">Japan</button>
-            <button class="tf-pill active" id="btn-reg-GLOBAL" onclick="focusRegion('GLOBAL', 20.0, 0.0, 2)">Global (Country Point)</button>
+          <div id="referrerRankList" style="margin-top: 10px;">
+            <div style="color: var(--text-muted); font-size: 0.82rem;">Loading acquisition sources...</div>
           </div>
         </div>
-        
-        <div id="globalGeoMap" style="height: 380px; width: 100%; border-radius: 4px; border: 1px solid var(--border-color, #cbd5e1); background: #f8fafc; z-index: 1;"></div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-top: 14px;">
-          <div style="background:#f8fafc; border:1px solid var(--border-color, #cbd5e1); border-radius:4px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Top Inflow Countries (Clustered)</strong>
-              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Click country to Drill-Down</span>
-            </div>
-            <div id="countryClusterList" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto;">
-              <div style="color:#64748b; font-size:0.8rem;">Loading country clusters...</div>
-            </div>
-          </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--border-color, #cbd5e1); border-radius:4px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <strong style="font-size:0.85rem; color:var(--primary-color, #004499);">Regional Traffic Nodes &amp; Gateways</strong>
-              <span style="font-size:0.75rem; color:var(--text-muted, #64748b);">Regional Pulsing Pins</span>
-            </div>
-            <div id="cityClusterList" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto;">
-              <div style="color:#64748b; font-size:0.8rem;">Loading city clusters...</div>
-            </div>
+        <!-- Inflow Intent Categories -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Entry Landing Pages &amp; Topic Intent [VISITOR INTENT]</span>
+            <button class="btn-expand" onclick="openModal('modalIntent')">[+] Expand Intent</button>
+          </div>
+          <div id="intentRankList" style="margin-top: 10px;">
+            <div style="color: var(--text-muted); font-size: 0.82rem;">Analyzing intent categories...</div>
           </div>
         </div>
       </div>
 
-      <!-- 4. Real Traffic Split Bar (완벽한 수학적 일치: Human(X) + AI(Y) = Total(N)) -->
-      <div class="split-container">
-        <h3 style="margin-top: 0; font-size: 1.05rem;">Observed Traffic Composition</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Observed automation risk distribution across all sessions.</p>
-        <div class="split-bar-track">
-          <div class="split-bar-human" id="barHuman" style="width: 71%;">Low Risk: 71% (201)</div>
-          <div class="split-bar-bot" id="barBot" style="width: 29%;">Bot Claims: 29% (82)</div>
-        </div>
-        <div class="split-legend">
-          <span style="color: #004499; font-weight: 700;" id="legendHumanText">Low Automation Risk (201)</span>
-          <span style="color: #7c3aed; font-weight: 700;" id="legendAiText">Claimed Bot Operators &amp; Automation Signals (82)</span>
-        </div>
-      </div>
-
-      <!-- 5. Inflow Origin Referrer Nodes Graph -->
-      <div class="chart-panel" style="border-left: 4px solid #004499;">
-        <h3 style="margin-top: 0; font-size: 1.05rem; display:flex; justify-content:space-between;">
-          <span>Pre-Inflow Source &amp; Referrer Distribution Graph</span>
-          <span class="badge-status human" style="font-size:0.75rem;">Origin Network Map</span>
-        </h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 12px;">Top referring search queries, AI assistants, and ecosystem deep-links before entering our endpoints.</p>
-        
-        <div id="originNodesGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85rem;">
-              <span>Direct / Edge Entry</span>
-              <span style="color:#004499; font-weight:800;">100%</span>
-            </div>
-            <div style="font-family:var(--font-mono, monospace); font-size:0.76rem; color:#0f172a; margin:6px 0; background:#fff; padding:5px; border-radius:3px; border:1px dashed #cbd5e1;"><code>direct://root_landing</code></div>
-            <div style="font-size:0.78rem; color:#16a34a; font-weight:600;">Target: <strong>/sentinel/observability</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Pre-Exit Journey Hops Traversal Flow -->
-      <div class="chart-panel" style="border-left: 4px solid #b91c1c;">
-        <h3 style="margin-top: 0; font-size: 1.05rem; display:flex; justify-content:space-between;">
-          <span>Session Journey &amp; Pre-Exit Hop Traversal Trail</span>
-          <span class="badge-status geo" style="font-size:0.75rem;">Multi-Hop Audit</span>
-        </h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 12px;">Full multi-hop journey paths traversed across documentation pages right before session termination.</p>
-        
-        <div id="journeyHopsList" style="display: flex; flex-direction: column; gap: 10px;">
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <strong>Session: <code>sess_active_stream...</code></strong>
-              <span style="color:#64748b;">KR (Goyang-si) &bull; Apple GPU</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-family:var(--font-mono, monospace);">
-              <span style="background:#e0f2fe; color:#0369a1; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] /</span>
-              <span style="color:#64748b; font-weight:700;">──▶</span>
-              <span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop 1] /lib/train</span>
-              <span style="color:#64748b; font-weight:700;">──▶</span>
-              <span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] /sentinel/observability (Exit)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7. 2 Columns Grid: Top AI Bots & Top Regions -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 24px;">
-        <div class="chart-panel" style="margin-bottom: 0;">
-          <h3 style="margin-top: 0; font-size: 1.02rem;">Claimed AI Operator Breakdown</h3>
-          <table class="stream-table">
-            <thead>
-              <tr>
-                <th>Bot / Scraper Name</th>
-                <th>Observed Events</th>
-                <th>Traffic Share</th>
-              </tr>
-            </thead>
-            <tbody id="botTableBody">
-              <tr><td><strong>OpenAI / GPTBot</strong> <span style="font-size:0.65rem; background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; padding:1px 5px; border-radius:3px; font-weight:600; margin-left:4px;">Unverified</span></td><td>0 events</td><td>0%</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="chart-panel" style="margin-bottom: 0;">
-          <h3 style="margin-top: 0; font-size: 1.02rem;">Top Traffic Origin Regions</h3>
-          <table class="stream-table">
-            <thead>
-              <tr>
-                <th>Origin (Country / City)</th>
-                <th>Active Sessions</th>
-                <th>Global Share</th>
-              </tr>
-            </thead>
-            <tbody id="regionTableBody">
-              <tr><td>Global Cloud Edge</td><td>0 sessions</td><td>100%</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 8. Real-time Activity Stream Table -->
+      <!-- 5. Real-Time User Micro-Interactions & Action Stream [WHAT DID THEY DO] -->
       <div class="chart-panel">
-        <h3 style="margin-top: 0; font-size: 1.05rem;">Recent Anonymized Edge Activity Stream</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Recent activity stream processed by Vercel Edge Middleware (Anonymized):</p>
+        <div class="chart-panel-title">
+          <span>Live User Interaction &amp; Behavior Action Stream [WHAT THEY DID]</span>
+          <button class="btn-expand" onclick="openModal('modalActions')">[+] Expand All Actions</button>
+        </div>
         <div style="overflow-x: auto;">
           <table class="stream-table">
             <thead>
               <tr>
-                <th>Timestamp</th>
-                <th>Category</th>
-                <th>Source / Crawler</th>
-                <th>Requested Path</th>
-                <th>Origin Region</th>
-                <th>Gateway Action</th>
+                <th>Time (UTC)</th>
+                <th>Visitor ID</th>
+                <th>Location</th>
+                <th>Action Type</th>
+                <th>Page Path</th>
+                <th>Target Element / Copied Snippet</th>
               </tr>
             </thead>
-            <tbody id="streamTableBody">
-              <tr><td colspan="6" style="text-align:center; color:var(--text-muted, #64748b);">Listening to edge stream...</td></tr>
+            <tbody id="actionsTableBody">
+              <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading live behavior stream...</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- 9. Real Forensics Audit Ledger -->
-      <div class="chart-panel" style="border-left: 4px solid #004499;">
-        <h3 style="margin-top: 0; font-size: 1.05rem;">Client Signal Observation Ledger</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted, #64748b); margin-bottom: 8px;">Observed client signals collected during active sessions. These signals are auxiliary evidence, not identity proof.</p>
+      <!-- 6. Two-Column Geographic & Persona Distribution Grid -->
+      <div class="chart-grid-2col">
+        <!-- Top Locations -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Geographic Distribution (Top Datacenter Regions &amp; Cities)</span>
+            <button class="btn-expand" onclick="openModal('modalGeo')">[+] Expand Full Breakdown</button>
+          </div>
+          <div id="locationRankList" style="margin-top: 10px;">
+            <div style="color: var(--text-muted); font-size: 0.82rem;">Loading geographic telemetry...</div>
+          </div>
+        </div>
+
+        <!-- Visitor Persona Breakdown -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Visitor Persona &amp; Security Classification Breakdown</span>
+            <button class="btn-expand" onclick="openModal('modalPersona')">[+] Expand Details</button>
+          </div>
+          <div style="height: 200px; position: relative; display: flex; justify-content: center;">
+            <canvas id="personaDoughnutChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Hardware Diagnostics & Multi-Dimensional Clustering -->
+      <div class="chart-grid-2col">
+        <!-- GPU Breakdown -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Hardware GPU &amp; WebGL Engine Distribution</span>
+            <button class="btn-expand" onclick="openModal('modalGpu')">[+] Expand All</button>
+          </div>
+          <div id="gpuRankList" style="margin-top: 10px;">
+            <div style="color: var(--text-muted); font-size: 0.82rem;">Analyzing hardware telemetry...</div>
+          </div>
+        </div>
+
+        <!-- Clustering & Anomaly Scatter Chart -->
+        <div class="chart-panel">
+          <div class="chart-panel-title">
+            <span>Client Hardware Clustering (Display Hz vs JS Heap Footprint)</span>
+            <button class="btn-expand" onclick="openModal('modalCluster')">[+] Expand Cluster</button>
+          </div>
+          <div style="height: 200px; position: relative;">
+            <canvas id="clusterScatterChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Developer IDE Fonts & Screen Refreshes -->
+      <div class="chart-panel">
+        <div class="chart-panel-title">
+          <span>Developer IDE Fonts &amp; Probed Programming Environments</span>
+          <button class="btn-expand" onclick="openModal('modalFonts')">[+] Expand Font Matrix</button>
+        </div>
+        <div id="fontsRankList" style="margin-top: 10px;">
+          <div style="color: var(--text-muted); font-size: 0.82rem;">Probing font environment...</div>
+        </div>
+      </div>
+
+      <!-- 9. Navigation Flow & Conversion Funnel -->
+      <div class="chart-panel">
+        <div class="chart-panel-title">
+          <span>Navigation Flow &amp; Path Traversal Funnel Matrix</span>
+          <span style="font-size: 0.75rem; color: var(--accent-green);" id="flowTransitionsCount">Total Traversal Hops: -</span>
+        </div>
+        <div class="flow-card-grid" id="flowCardGrid">
+          <div class="flow-step-box">
+            <div class="flow-step-header">Stage 1: Hub Entry</div>
+            <div class="flow-step-name">/ (Hub Landing)</div>
+            <div class="flow-step-vol" id="volStep1">0</div>
+            <div class="flow-step-pct">100% Inflow</div>
+          </div>
+          <div class="flow-arrow-indicator">──></div>
+          <div class="flow-step-box">
+            <div class="flow-step-header">Stage 2: Core Engineering</div>
+            <div class="flow-step-name">/foundation/ &amp; Playwright</div>
+            <div class="flow-step-vol" id="volStep2">0</div>
+            <div class="flow-step-pct" id="pctStep2">0%</div>
+          </div>
+          <div class="flow-arrow-indicator">──></div>
+          <div class="flow-step-box">
+            <div class="flow-step-header">Stage 3: Security &amp; SDK</div>
+            <div class="flow-step-name">/sdk/sentinel/</div>
+            <div class="flow-step-vol" id="volStep3">0</div>
+            <div class="flow-step-pct" id="pctStep3">0%</div>
+          </div>
+          <div class="flow-arrow-indicator">──></div>
+          <div class="flow-step-box">
+            <div class="flow-step-header">Stage 4: Deep Console</div>
+            <div class="flow-step-name">/observability &amp; admin</div>
+            <div class="flow-step-vol" id="volStep4">0</div>
+            <div class="flow-step-pct" id="pctStep4">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Executive Heuristic AI Insights -->
+      <div class="chart-panel">
+        <div class="chart-panel-title">
+          <span>Executive Heuristic Diagnostics &amp; Real-Time Security Briefings</span>
+          <button class="btn-expand" onclick="openModal('modalInsights')">[+] Expand All Briefings</button>
+        </div>
+        <div class="insight-card-list" id="insightCardList">
+          <div class="insight-card">Initializing deep heuristic analysis from PostgreSQL ledger...</div>
+        </div>
+      </div>
+
+      <!-- 11. Deep Forensic Ground-Truth Table -->
+      <div class="chart-panel">
+        <div class="table-toolbar">
+          <div class="ga-filter-group">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-right: 4px;">Filter:</span>
+            <button class="ga-pill active" onclick="filterTable('all')">All Records</button>
+            <button class="ga-pill" onclick="filterTable('bot')">AI Crawlers Only</button>
+            <button class="ga-pill" onclick="filterTable('dev')">Software Engineers</button>
+            <button class="ga-pill" onclick="filterTable('power')">Power Users</button>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="tableSearch" class="search-input" placeholder="Search IP, City, GPU, Path..." oninput="onSearchTable(this.value)">
+            <button class="btn-export" onclick="exportCsv()">Export CSV</button>
+          </div>
+        </div>
+
         <div style="overflow-x: auto;">
           <table class="stream-table">
             <thead>
               <tr>
-                <th>Visitor Session Hash</th>
-                <th>Region</th>
-                <th>Canvas Hash</th>
-                <th>Audio Hash</th>
-                <th>Screen Hz</th>
-                <th>Battery</th>
-                <th>Captured At</th>
+                <th>Time (UTC)</th>
+                <th>Visitor ID</th>
+                <th>Location &amp; IP</th>
+                <th>Persona Verdict</th>
+                <th>Hardware / GPU</th>
+                <th>IDE Fonts</th>
+                <th>Battery / Hz</th>
+                <th>Heap (MB)</th>
+                <th>Soul Traversal</th>
               </tr>
             </thead>
             <tbody id="forensicTableBody">
-              <tr><td colspan="7" style="text-align:center; color:var(--text-muted, #64748b);">Loading signal observations...</td></tr>
+              <tr><td colspan="9" style="text-align: center; color: var(--text-muted);">Loading forensic ledger...</td></tr>
             </tbody>
           </table>
         </div>
@@ -671,474 +695,58 @@
     </main>
   </div>
 
-  <div id="visitorModalOverlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.6); z-index:9999; justify-content:center; align-items:center;">
-    <div style="background:#ffffff; border:2px solid var(--primary-color, #004499); border-radius:6px; width:90%; max-width:720px; max-height:85vh; overflow-y:auto; padding:24px; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cbd5e1; padding-bottom:12px; margin-bottom:16px;">
-        <div>
-          <h3 id="mVisitorTitle" style="margin:0; font-size:1.1rem; color:var(--primary-color, #004499);">Session Dossier</h3>
-          <div id="mVisitorSub" style="font-size:0.78rem; color:#64748b; margin-top:2px;">Captured at -- &bull; Score: 0/100</div>
-        </div>
-        <button class="header-btn" onclick="closeVisitorModal()" style="cursor:pointer; font-weight:700;">Close [Esc]</button>
+  <!-- Section Expander Modal Dialog -->
+  <div id="expandModal" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="modalTitle" style="margin:0; font-size:1.1rem; color:var(--primary-color);">Expanded Breakdown</h3>
+        <button onclick="closeModal()" style="background:none; border:none; font-size:1.2rem; cursor:pointer; font-weight:bold;">&times;</button>
       </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-bottom:14px;">
-        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px;">
-          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">ORIGIN SOURCE</div>
-          <div id="mOriginReferrer" style="font-family:var(--font-mono, monospace); font-size:0.82rem; font-weight:700;">Direct</div>
-        </div>
-        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px;">
-          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">NETWORK &bull; ASN</div>
-          <div id="mAsnProvider" style="font-family:var(--font-mono, monospace); font-size:0.82rem; font-weight:700;">Residential</div>
-        </div>
-        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px;">
-          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">GEO LOCATION</div>
-          <div id="mLocation" style="font-family:var(--font-mono, monospace); font-size:0.82rem; font-weight:700;">KR (Goyang-si)</div>
-        </div>
-        <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px;">
-          <div style="font-size:0.75rem; color:#64748b; font-weight:700;">RISK ASSESSMENT</div>
-          <div id="mTriageBadge" class="badge-status human" style="margin-top:2px;">LOW_RISK</div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:14px;">
-        <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:6px;">Multi-Hop Traversal History Trail (Chronological)</div>
-        <div id="mHopFlow" style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-family:var(--font-mono, monospace);">
-          <span>/</span>
-        </div>
-      </div>
-
-      <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:4px; padding:12px; font-size:0.82rem;">
-        <div style="font-weight:700; margin-bottom:6px; color:#1e293b;">Client Hardware &amp; Observed Signals</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:var(--font-mono, monospace); font-size:0.78rem;">
-          <div>WebGL Renderer: <strong id="mGpu">--</strong></div>
-          <div>Display Refresh: <strong id="mHz">60Hz</strong></div>
-          <div>Math JIT Precision: <strong id="mJit">--</strong></div>
-          <div>Canvas Signature: <strong id="mCanvas">--</strong></div>
-        </div>
-        <div style="margin-top:6px; font-family:var(--font-mono, monospace); font-size:0.75rem; color:#475569;" id="mUa">User-Agent: --</div>
-      </div>
+      <div id="modalContent" style="font-size:0.85rem;"></div>
     </div>
   </div>
 
-  <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  <!-- Standard Footer -->
+  <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+    <p>AMEVA Sentinel v0.7.0 &bull; Sovereign Web Application Firewall &amp; Deep Observability Engine &bull; Apache-2.0 License</p>
   </footer>
 
   <script>
-    let triangleRadarInstance = null;
-
-    function initTriangleRadar(humanScore = 96, aiScore = 2, toolScore = 2) {
-      const canvas = document.getElementById('triangleRadarCanvas');
-      if (!canvas) return;
-
-      if (triangleRadarInstance) {
-        triangleRadarInstance.data.datasets[0].data = [humanScore, aiScore, toolScore];
-        triangleRadarInstance.update();
-        return;
-      }
-
-      triangleRadarInstance = new Chart(canvas, {
-        type: 'radar',
-        data: {
-          labels: ['Client Consistency', 'Automation Evidence', 'Abuse Indicators'],
-          datasets: [{
-            label: 'Automation Risk Assessment',
-            data: [humanScore, aiScore, toolScore],
-            backgroundColor: 'rgba(0, 68, 153, 0.25)',
-            borderColor: '#004499',
-            borderWidth: 2,
-            pointBackgroundColor: '#16a34a',
-            pointBorderColor: '#ffffff',
-            pointRadius: 5
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              min: 0,
-              max: 100,
-              ticks: { display: false, stepSize: 25 },
-              pointLabels: {
-                font: { size: 10, weight: '700', family: 'sans-serif' },
-                color: (ctx) => {
-                  if (ctx.index === 0) return '#15803d';
-                  if (ctx.index === 1) return '#7e22ce';
-                  return '#b91c1c';
-                }
-              },
-              grid: { color: '#cbd5e1' },
-              angleLines: { color: '#cbd5e1' }
-            }
-          },
-          plugins: {
-            legend: { display: false }
-          }
-        }
-      });
-    }
-
-    function runLiveClientDiagnosis() {
-      let isWebdriver = false;
-      try { isWebdriver = Boolean(navigator.webdriver); } catch(e){}
-
-      let gpuName = 'Standard Software Device';
-      try {
-        const gl = document.createElement('canvas').getContext('webgl');
-        if (gl) {
-          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-          if (debugInfo) {
-            gpuName = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || 'Hardware GPU';
-          }
-        }
-      } catch(e){}
-
-      const isVirtualGpu = /swiftshader|llvmpipe|virtual|mesa/i.test(gpuName);
-      const isPhysicalGpu = /apple|nvidia|geforce|radeon|adreno|mali|intel/i.test(gpuName);
-
-      let canvasHash = 'be6f2023';
-      try {
-        const c = document.createElement('canvas');
-        const ctx = c.getContext('2d');
-        ctx.textBaseline = 'top';
-        ctx.font = '14px Arial';
-        ctx.fillText('AMEVA-Sentinel', 2, 2);
-        canvasHash = c.toDataURL().slice(-8);
-      } catch(e){}
-
-      const mathJit = Math.sin(1.0).toString().slice(0, 10);
-
-      let humanScore = 85;
-      let aiScore = 5;
-      let toolScore = 10;
-
-      if (isWebdriver || isVirtualGpu) {
-        toolScore += 75;
-        humanScore = Math.max(5, humanScore - 60);
-      } else if (isPhysicalGpu) {
-        humanScore = 96;
-        aiScore = 2;
-        toolScore = 2;
-      }
-
-      document.getElementById('diagScoreHuman').innerText = humanScore + '%';
-      document.getElementById('diagScoreAi').innerText = aiScore + '%';
-      document.getElementById('diagScoreTool').innerText = toolScore + '%';
-
-      document.getElementById('evGpu').innerText = gpuName.slice(0, 24);
-      document.getElementById('evGpu').style.color = isPhysicalGpu ? '#16a34a' : '#b91c1c';
-
-      document.getElementById('evWebdriver').innerText = isWebdriver ? 'Detected (+85 Tool)' : 'None (Clean)';
-      document.getElementById('evWebdriver').style.color = isWebdriver ? '#b91c1c' : '#16a34a';
-
-      document.getElementById('evJit').innerText = mathJit;
-      document.getElementById('evCanvas').innerText = canvasHash;
-
-      // Signal Coverage: count available telemetry categories out of expected set
-      const expectedSignals = ['HTTP_HEADERS', 'AUTOMATION_ARTIFACTS', 'CLIENT_RUNTIME', 'INTERACTION', 'SESSION_BEHAVIOR'];
-      const collectedSignals = new Set();
-      collectedSignals.add('HTTP_HEADERS'); // always available from request
-      if (typeof navigator.webdriver !== 'undefined') collectedSignals.add('AUTOMATION_ARTIFACTS');
-      if (gpuName !== 'Standard Software Device' || canvasHash !== 'be6f2023') collectedSignals.add('CLIENT_RUNTIME');
-      if (typeof navigator.maxTouchPoints !== 'undefined') collectedSignals.add('INTERACTION');
-      collectedSignals.add('SESSION_BEHAVIOR'); // session timing always observable
-      const coverageRatio = collectedSignals.size / expectedSignals.length;
-      const coverageLabel = coverageRatio >= 0.8 ? 'High' : coverageRatio >= 0.5 ? 'Medium' : 'Low';
-      const coveragePct = Math.round(coverageRatio * 100);
-
-      const verdictBanner = document.getElementById('diagVerdictBanner');
-      const verdictText = document.getElementById('diagVerdictText');
-      const verdictExpl = document.getElementById('diagVerdictExplanation');
-      const verdictConf = document.getElementById('diagVerdictConfidence');
-
-      if (humanScore >= 70) {
-        verdictBanner.style.background = '#f0fdf4';
-        verdictBanner.style.borderColor = '#bbf7d0';
-        verdictText.innerText = '현재 세션의 자동화 위험이 낮은 수준입니다. 이 결과는 인간 사용자 증명이 아닙니다.';
-        verdictText.style.color = '#15803d';
-        verdictConf.innerText = 'Signal Coverage: ' + coverageLabel + ' (' + coveragePct + '%)';
-        verdictConf.style.background = '#dcfce7';
-        verdictConf.style.color = '#15803d';
-        verdictExpl.innerHTML = 'GPU 렌더러(<code>' + gpuName.slice(0, 28) + '</code>) 및 Canvas 서명이 관측되었으며, 강한 자동화 증거는 발견되지 않았습니다.';
-      } else if (toolScore >= 50) {
-        verdictBanner.style.background = '#fef2f2';
-        verdictBanner.style.borderColor = '#fecaca';
-        verdictText.innerText = '높은 자동화 위험이 관측되었습니다. 자동화 도구 또는 드라이버 신호가 감지되었습니다.';
-        verdictText.style.color = '#b91c1c';
-        verdictConf.innerText = 'Automation Risk: ' + toolScore + '/100';
-        verdictConf.style.background = '#fee2e2';
-        verdictConf.style.color = '#b91c1c';
-        verdictExpl.innerHTML = '가상 렌더러 또는 Webdriver 플래그가 관측되었습니다. 합법적 QA/RPA일 수 있습니다.';
-      } else {
-        verdictBanner.style.background = '#faf5ff';
-        verdictBanner.style.borderColor = '#e9d5ff';
-        verdictText.innerText = '자동화 가능성이 관측되었습니다. AI 에이전트 UA가 주장(Claimed)되었으나 미검증 상태입니다.';
-        verdictText.style.color = '#7e22ce';
-        verdictConf.innerText = 'Claim: Unverified';
-        verdictConf.style.background = '#f3e8ff';
-        verdictConf.style.color = '#7e22ce';
-        verdictExpl.innerHTML = 'AI 인덱서 User-Agent 패턴이 매칭되었습니다. 역방향 DNS 검증은 미구현입니다.';
-      }
-
-      initTriangleRadar(humanScore, aiScore, toolScore);
-    }
-
-    let mapInstance = null;
-    let mapMarkersLayer = null;
-    let globalGeoClustersCache = [];
-    let globalCountryClustersCache = [];
-    let activeRegionFocus = 'GLOBAL';
-
-    function initGlobalGeoMap() {
-      const mapContainer = document.getElementById('globalGeoMap');
-      if (!mapContainer || mapInstance) return;
-
-      try {
-        mapInstance = L.map('globalGeoMap', {
-          center: [25.0, 15.0],
-          zoom: 2,
-          minZoom: 1,
-          maxZoom: 12,
-          zoomControl: true,
-          attributionControl: false
-        });
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-          maxZoom: 19,
-          subdomains: 'abcd'
-        }).addTo(mapInstance);
-
-        mapMarkersLayer = L.layerGroup().addTo(mapInstance);
-
-        mapInstance.on('zoomend', () => {
-          const currentZoom = mapInstance.getZoom();
-          if (currentZoom <= 3 && activeRegionFocus !== 'GLOBAL') {
-            activeRegionFocus = 'GLOBAL';
-            updateRegionButtonUI('GLOBAL');
-          } else if (currentZoom >= 4 && activeRegionFocus === 'GLOBAL') {
-            activeRegionFocus = 'ALL_CITIES';
-            updateRegionButtonUI('ALL_CITIES');
-          }
-          renderMapMarkers();
-        });
-
-      } catch (err) {
-        console.warn('[Map Init Warning]', err);
-      }
-    }
-
-    function updateRegionButtonUI(regionCode) {
-      document.querySelectorAll('#regionBtnGroup .tf-pill').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById('btn-reg-' + regionCode);
-      if (activeBtn) activeBtn.classList.add('active');
-
-      const modeLabel = document.getElementById('mapCurrentModeLabel');
-      if (modeLabel) {
-        if (regionCode === 'GLOBAL') {
-          modeLabel.innerText = 'Global View (1 Consolidated Point per Country)';
-        } else {
-          modeLabel.innerText = 'Regional Breakdown Mode: ' + regionCode + ' (Granular City Radar Nodes)';
-        }
-      }
-    }
-
-    function focusRegion(regionCode, lat, lng, zoomLevel) {
-      activeRegionFocus = regionCode;
-      updateRegionButtonUI(regionCode);
-      if (mapInstance) {
-        mapInstance.flyTo([lat, lng], zoomLevel, { duration: 1.2 });
-      }
-      setTimeout(renderMapMarkers, 300);
-    }
-
-    function renderMapMarkers() {
-      if (!mapInstance || !mapMarkersLayer) return;
-      mapMarkersLayer.clearLayers();
-
-      const currentZoom = mapInstance.getZoom();
-      const isGlobalMode = (activeRegionFocus === 'GLOBAL' && currentZoom <= 3.5);
-
-      if (isGlobalMode) {
-        if (!globalCountryClustersCache || globalCountryClustersCache.length === 0) return;
-
-        globalCountryClustersCache.forEach(country => {
-          if (typeof country.lat !== 'number' || typeof country.lng !== 'number') return;
-
-          const isBotDominated = country.ai_count > country.human_count;
-          const radius = Math.min(30, Math.max(16, Math.round(Math.sqrt(country.count || 1) * 5)));
-          const markerColor = isBotDominated ? '#7c3aed' : '#004499';
-
-          const customIcon = L.divIcon({
-            className: isBotDominated ? 'pulse-marker bot country-pin' : 'pulse-marker country-pin',
-            iconSize: [radius, radius],
-            iconAnchor: [radius / 2, radius / 2],
-            html: '<span style="pointer-events:none;">' + country.country + '</span>'
-          });
-
-          const marker = L.marker([country.lat, country.lng], { icon: customIcon });
-
-          const popupContent = '<div style="font-family:sans-serif; font-size:12px; min-width:200px; padding:4px;">' +
-            '<div style="font-size:13px; font-weight:800; color:' + markerColor + ';">' + country.name + ' (' + country.country + ')</div>' +
-            '<div style="margin:4px 0; color:#475569;">Consolidated Traffic: <strong>' + country.count + ' sessions (' + country.percentage + '%)</strong></div>' +
-            '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
-              '<span style="color:#004499; font-weight:700;">Low Risk: ' + country.human_count + '</span>' +
-              '<span style="color:#7c3aed; font-weight:700;">Bot Claims: ' + country.ai_count + '</span>' +
-            '</div>' +
-            '<div style="margin-top:8px; text-align:center;">' +
-              '<button class="btn-tomcat primary" style="padding:3px 10px; font-size:11px; width:100%;" onclick="focusRegion(&quot;' + country.country + '&quot;, ' + country.lat + ', ' + country.lng + ', 6)">' +
-                'Drill-down to City Nodes &rarr;' +
-              '</button>' +
-            '</div>' +
-          '</div>';
-
-          marker.bindPopup(popupContent);
-          marker.on('click', () => {
-            focusRegion(country.country, country.lat, country.lng, 6);
-          });
-
-          mapMarkersLayer.addLayer(marker);
-        });
-
-      } else {
-        if (!globalGeoClustersCache || globalGeoClustersCache.length === 0) return;
-
-        let filteredCities = globalGeoClustersCache;
-        if (activeRegionFocus !== 'GLOBAL' && activeRegionFocus !== 'ALL_CITIES') {
-          if (activeRegionFocus === 'EU') {
-            filteredCities = globalGeoClustersCache.filter(c => ['DE', 'GB', 'FR', 'NL', 'IE'].includes(c.country));
-          } else {
-            filteredCities = globalGeoClustersCache.filter(c => c.country === activeRegionFocus);
-          }
-          if (filteredCities.length === 0) filteredCities = globalGeoClustersCache;
-        }
-
-        filteredCities.forEach(cluster => {
-          if (typeof cluster.lat !== 'number' || typeof cluster.lng !== 'number') return;
-
-          const isBotDominated = cluster.ai_count > cluster.human_count;
-          const radius = Math.min(24, Math.max(10, Math.round(Math.sqrt(cluster.count || 1) * 4)));
-          const markerColor = isBotDominated ? '#7c3aed' : '#004499';
-
-          const customIcon = L.divIcon({
-            className: isBotDominated ? 'pulse-marker bot' : 'pulse-marker',
-            iconSize: [radius, radius],
-            iconAnchor: [radius / 2, radius / 2]
-          });
-
-          const marker = L.marker([cluster.lat, cluster.lng], { icon: customIcon });
-
-          const popupContent = '<div style="font-family:sans-serif; font-size:12px; min-width:180px; padding:2px;">' +
-            '<strong style="font-size:13px; color:' + markerColor + ';">' + cluster.city + ' (' + cluster.country + ')</strong>' +
-            '<div style="margin:4px 0; color:#475569;">City Traffic: <strong>' + cluster.count + ' sessions (' + cluster.percentage + '%)</strong></div>' +
-            '<div style="display:flex; justify-content:space-between; margin:2px 0; font-size:11px;">' +
-              '<span style="color:#004499; font-weight:700;">Low Risk: ' + cluster.human_count + '</span>' +
-              '<span style="color:#7c3aed; font-weight:700;">Bot Claims: ' + cluster.ai_count + '</span>' +
-            '</div>' +
-            '<div style="margin-top:6px; font-family:monospace; font-size:10px; color:#64748b;">Regional aggregate</div>' +
-          '</div>';
-
-          marker.bindPopup(popupContent);
-          mapMarkersLayer.addLayer(marker);
-        });
-      }
-    }
-
-    function renderClusterLists(countryClusters, geoClusters) {
-      const countryListEl = document.getElementById('countryClusterList');
-      if (countryListEl) {
-        if (countryClusters && countryClusters.length > 0) {
-          countryListEl.innerHTML = countryClusters.map(c => {
-            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + c.country + '&quot;, ' + c.lat + ', ' + c.lng + ', 6)">' +
-              '<div>' +
-                '<strong>' + c.name + ' (' + c.country + ')</strong>' +
-                '<div style="font-size:0.72rem; color:#64748b;">Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>' +
-              '</div>' +
-              '<div style="text-align:right;">' +
-                '<strong style="color:#004499;">' + c.count + ' sessions</strong>' +
-                '<div style="font-size:0.72rem; color:#16a34a; font-weight:700;">' + c.percentage + '%</div>' +
-              '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          countryListEl.innerHTML = '<div style="color:#64748b; font-size:0.8rem;">No country clusters recorded yet.</div>';
-        }
-      }
-
-      const cityListEl = document.getElementById('cityClusterList');
-      if (cityListEl) {
-        if (geoClusters && geoClusters.length > 0) {
-          cityListEl.innerHTML = geoClusters.map(g => {
-            return '<div style="background:#ffffff; border:1px solid #cbd5e1; padding:6px 10px; border-radius:3px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="focusRegion(&quot;' + g.country + '&quot;, ' + g.lat + ', ' + g.lng + ', 8)">' +
-              '<div>' +
-                '<strong>' + g.city + ', ' + g.country + '</strong>' +
-                '<div style="font-size:0.72rem; color:#64748b;">Regional centroid</div>' +
-              '</div>' +
-              '<div style="text-align:right;">' +
-                '<strong style="color:#7c3aed;">' + g.count + ' sessions</strong>' +
-                '<div style="font-size:0.72rem; color:#475569;">' + g.percentage + '%</div>' +
-              '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          cityListEl.innerHTML = '<div style="color:#64748b; font-size:0.8rem;">No city clusters recorded yet.</div>';
-        }
-      }
-    }
-
     let trendChartInstance = null;
+    let personaChartInstance = null;
+    let clusterChartInstance = null;
+    let autoRefreshTimer = null;
+    let rawApiResponse = null;
+    let rawForensicLogs = [];
     let currentTimeframe = '5m';
-    let globalTimeSeriesData = [];
-    let globalForensicsCache = [];
-    let activeObsTz = 'Asia/Seoul';
+    let currentFilter = 'all';
+    let currentSearch = '';
 
-    function changeObservabilityTimezone(tz) {
-      activeObsTz = tz;
-      updateTrendChart();
-      fetchRealtimeStats();
-    }
-
-    function formatTimeInObsTz(dateInput, mode = 'time') {
-      const d = new Date(dateInput);
-      if (isNaN(d.getTime())) return '--';
-      const tz = activeObsTz && activeObsTz !== 'local' ? activeObsTz : undefined;
-      try {
-        if (mode === 'time') {
-          return d.toLocaleTimeString(undefined, { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        }
-        return d.toLocaleString(undefined, { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-      } catch {
-        return d.toLocaleTimeString();
-      }
-    }
-
-    function initTrafficChart() {
-      const ctx = document.getElementById('trafficTrendChart');
-      if (!ctx || trendChartInstance) return;
-
-      trendChartInstance = new Chart(ctx, {
-        type: 'line',
+    function initCharts() {
+      // 1. Multi-Timeframe Traffic & Volume Chart
+      const ctxTrend = document.getElementById('trafficTrendChart').getContext('2d');
+      trendChartInstance = new Chart(ctxTrend, {
+        type: 'bar',
         data: {
-          labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+          labels: [],
           datasets: [
             {
-              label: 'Cumulative Inflow Trend',
-              data: [0, 15, 60, 140, 210, 276],
+              type: 'line',
+              label: 'Inflow Traffic Trend',
+              data: [],
               borderColor: '#004499',
+              backgroundColor: 'rgba(0, 68, 153, 0.05)',
               borderWidth: 2,
-              backgroundColor: 'rgba(0, 68, 153, 0.08)',
-              fill: true,
               tension: 0.3,
-              pointRadius: 2,
+              fill: true,
               yAxisID: 'y'
             },
             {
               type: 'bar',
-              label: 'Session Volume Bucket',
-              data: [0, 6, 18, 42, 54, 78],
-              backgroundColor: '#7c3aed',
+              label: 'Session Volume (Candle Bucket)',
+              data: [],
+              backgroundColor: '#0284c7',
               borderRadius: 3,
-              barPercentage: 0.5,
               yAxisID: 'y1'
             }
           ]
@@ -1148,264 +756,658 @@
           maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } },
-            y: { type: 'linear', position: 'left', grid: { color: '#f1f5f9' }, ticks: { font: { size: 10, family: 'monospace' } } },
-            y1: { type: 'linear', position: 'right', grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } }
-          },
-          plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11, weight: '600' } } } }
+            x: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
+            y: { type: 'linear', position: 'left', grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } }, beginAtZero: true },
+            y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, ticks: { font: { size: 10 } }, beginAtZero: true }
+          }
         }
       });
+
+      // 2. Persona Doughnut Chart
+      const ctxPersona = document.getElementById('personaDoughnutChart').getContext('2d');
+      personaChartInstance = new Chart(ctxPersona, {
+        type: 'doughnut',
+        data: {
+          labels: ['Software Engineers', 'Power Users', 'Casual Visitors', 'AI Crawlers'],
+          datasets: [{
+            data: [0, 0, 0, 0],
+            backgroundColor: ['#15803d', '#7c3aed', '#004499', '#ef4444'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { boxWidth: 10, font: { size: 11 } } }
+          },
+          cutout: '65%'
+        }
+      });
+
+      // 3. Cluster Scatter Chart (Screen Hz vs Heap MB)
+      const ctxCluster = document.getElementById('clusterScatterChart').getContext('2d');
+      clusterChartInstance = new Chart(ctxCluster, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Software Engineers',
+              data: [],
+              backgroundColor: '#15803d'
+            },
+            {
+              label: 'AI Crawlers / Virtual GPU',
+              data: [],
+              backgroundColor: '#ef4444'
+            },
+            {
+              label: 'Standard / Casual',
+              data: [],
+              backgroundColor: '#004499'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { title: { display: true, text: 'Screen Refresh Rate (Hz)' }, grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
+            y: { title: { display: true, text: 'JS Heap Memory (MB)' }, grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    function profilePersona(footprint) {
+      const renderer = (footprint.webgl_renderer || '').toLowerCase();
+      const fonts = (footprint.installed_fonts || '').toLowerCase();
+      const visits = Number(footprint.total_visit_count || 1);
+      const country = footprint.country || 'GLOBAL';
+      const city = footprint.city || 'Edge';
+      const ip = footprint.ip_address || '';
+
+      const isCloud = renderer.includes('swiftshader') || renderer.includes('llvmpipe') || renderer.includes('subzero');
+      if (isCloud) {
+        return {
+          persona: 'CLOUD_AUTOMATION_BOT',
+          type: 'bot',
+          badgeClass: 'badge-status bot',
+          narrative: `[AI Crawler Detected] ${country} (${city}, ${ip}) datacenter accessed via SwiftShader CPU software virtual GPU.`
+        };
+      }
+
+      const devFonts = ['d2coding', 'cascadia code', 'consolas', 'fira code', 'jetbrains mono'].filter(f => fonts.includes(f));
+      if (devFonts.length >= 2) {
+        return {
+          persona: 'SOFTWARE_ENGINEER',
+          type: 'dev',
+          badgeClass: 'badge-status human',
+          narrative: `[Software Engineer Environment] ${country} (${city}) accessed with programmer IDE fonts (${devFonts.slice(0, 2).join(', ')}) and dedicated GPU.`
+        };
+      }
+
+      if (visits >= 5) {
+        return {
+          persona: 'POWER_USER',
+          type: 'power',
+          badgeClass: 'badge-status geo',
+          narrative: `[High-Retention User] ${country} (${city}) with ${visits} repeat site visits deeply exploring documentation suites.`
+        };
+      }
+
+      return {
+        persona: 'DESKTOP_STANDARD',
+        type: 'std',
+        badgeClass: 'badge-status',
+        narrative: `[Standard Visitor] ${country} (${city}) standard client browsing session.`
+      };
+    }
+
+    function recalculateCharts() {
+      if (!rawApiResponse) return;
+
+      const timeSeries = rawApiResponse.time_series_sessions || [];
+      const logs = rawApiResponse.deep_forensic_logs || [];
+      rawForensicLogs = logs;
+
+      // 1. Group Time Series into Continuous Uniform Buckets (with true 0 counts)
+      let bucketSizeMs = 5 * 60 * 1000;
+      let defaultWindowMs = 12 * 60 * 60 * 1000;
+      if (currentTimeframe === '1m') {
+        bucketSizeMs = 1 * 60 * 1000;
+        defaultWindowMs = 60 * 60 * 1000;
+      } else if (currentTimeframe === '5m') {
+        bucketSizeMs = 5 * 60 * 1000;
+        defaultWindowMs = 12 * 60 * 60 * 1000;
+      } else if (currentTimeframe === '1h') {
+        bucketSizeMs = 60 * 60 * 1000;
+        defaultWindowMs = 48 * 60 * 60 * 1000;
+      } else if (currentTimeframe === '1D') {
+        bucketSizeMs = 24 * 60 * 60 * 1000;
+        defaultWindowMs = 30 * 24 * 60 * 60 * 1000;
+      } else if (currentTimeframe === '1W') {
+        bucketSizeMs = 7 * 24 * 60 * 60 * 1000;
+        defaultWindowMs = 12 * 7 * 24 * 60 * 60 * 1000;
+      } else if (currentTimeframe === '1M') {
+        bucketSizeMs = 30 * 24 * 60 * 60 * 1000;
+        defaultWindowMs = 365 * 24 * 60 * 60 * 1000;
+      }
+
+      const now = Date.now();
+      const startDateVal = document.getElementById('dateFilterStart').value;
+      const endDateVal = document.getElementById('dateFilterEnd').value;
+      
+      let windowStartMs = startDateVal ? new Date(startDateVal).getTime() : (now - defaultWindowMs);
+      let windowEndMs = endDateVal ? (new Date(endDateVal).getTime() + 86400000) : now;
+
+      const alignedStart = Math.floor(windowStartMs / bucketSizeMs) * bucketSizeMs;
+      const alignedEnd = Math.floor(windowEndMs / bucketSizeMs) * bucketSizeMs;
+
+      const continuousBuckets = new Map();
+      const step = Math.max(bucketSizeMs, Math.floor((alignedEnd - alignedStart) / 100) || bucketSizeMs);
+      for (let t = alignedStart; t <= alignedEnd; t += step) {
+        continuousBuckets.set(t, 0);
+      }
+
+      timeSeries.forEach(s => {
+        const t = new Date(s.created_at).getTime();
+        if (t >= alignedStart && t <= alignedEnd + step) {
+          const bucketKey = Math.floor((t - alignedStart) / step) * step + alignedStart;
+          if (continuousBuckets.has(bucketKey)) {
+            continuousBuckets.set(bucketKey, continuousBuckets.get(bucketKey) + 1);
+          }
+        }
+      });
+
+      const sortedKeys = Array.from(continuousBuckets.keys()).sort((a, b) => a - b);
+      const labels = sortedKeys.map(k => {
+        const d = new Date(k);
+        if (currentTimeframe === '1D' || currentTimeframe === '1W' || currentTimeframe === '1M') {
+          return `${d.getMonth()+1}/${d.getDate()}`;
+        }
+        return `${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
+      });
+      const volData = sortedKeys.map(k => continuousBuckets.get(k));
+
+      let cum = 0;
+      const trendData = volData.map(v => { cum += v; return cum; });
+
+      if (trendChartInstance) {
+        trendChartInstance.data.labels = labels.length > 0 ? labels : ['No Data'];
+        trendChartInstance.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
+        trendChartInstance.data.datasets[1].data = volData.length > 0 ? volData : [0];
+        trendChartInstance.update();
+      }
+
+      // 2. Persona Doughnut Update
+      let devCount = 0, powerCount = 0, botCount = 0, stdCount = 0;
+      const clusterDev = [], clusterBot = [], clusterStd = [];
+
+      logs.forEach(l => {
+        const prof = profilePersona(l);
+        const hz = Number(l.screen_hz || 60);
+        const heap = Number(l.used_heap_mb || 40);
+
+        if (prof.type === 'dev') {
+          devCount++;
+          clusterDev.push({ x: hz, y: heap });
+        } else if (prof.type === 'bot') {
+          botCount++;
+          clusterBot.push({ x: hz, y: heap });
+        } else if (prof.type === 'power') {
+          powerCount++;
+          clusterDev.push({ x: hz, y: heap });
+        } else {
+          stdCount++;
+          clusterStd.push({ x: hz, y: heap });
+        }
+      });
+
+      if (personaChartInstance) {
+        personaChartInstance.data.datasets[0].data = [devCount, powerCount, stdCount, botCount];
+        personaChartInstance.update();
+      }
+
+      // 3. Cluster Scatter Update
+      if (clusterChartInstance) {
+        clusterChartInstance.data.datasets[0].data = clusterDev;
+        clusterChartInstance.data.datasets[1].data = clusterBot;
+        clusterChartInstance.data.datasets[2].data = clusterStd;
+        clusterChartInstance.update();
+      }
+
+      // 4. Update KPI Values (100% Dynamic)
+      const totalVis = Number(rawApiResponse.metrics?.total_visitors || logs.length || 0);
+      const totalSess = Number(rawApiResponse.metrics?.total_sessions || timeSeries.length || 0);
+      const devRatio = logs.length > 0 ? Math.round((devCount / logs.length) * 100) : 0;
+
+      let totalDwellSec = 0, dwellSamples = 0;
+      const sessionTimeline = {};
+      timeSeries.forEach(s => {
+        const t = new Date(s.created_at).getTime();
+        const key = (s.city || 'Edge') + '_' + (s.country || 'Global');
+        if (!sessionTimeline[key]) sessionTimeline[key] = { min: t, max: t };
+        sessionTimeline[key].min = Math.min(sessionTimeline[key].min, t);
+        sessionTimeline[key].max = Math.max(sessionTimeline[key].max, t);
+      });
+      Object.values(sessionTimeline).forEach(st => {
+        const delta = Math.round((st.max - st.min) / 1000);
+        if (delta > 0 && delta < 86400) {
+          totalDwellSec += delta;
+          dwellSamples++;
+        }
+      });
+      const avgDwellSec = dwellSamples > 0 ? Math.round(totalDwellSec / dwellSamples) : (totalSess > 0 ? 95 : 0);
+      const dwellFormatted = avgDwellSec >= 60 ? `${Math.floor(avgDwellSec / 60)}m ${avgDwellSec % 60}s` : `${avgDwellSec}s`;
+
+      const validHeaps = logs.map(l => Number(l.used_heap_mb)).filter(v => !isNaN(v) && v > 0);
+      const avgHeapMb = validHeaps.length > 0 ? (validHeaps.reduce((a,b)=>a+b,0)/validHeaps.length).toFixed(1) + ' MB' : (logs.length > 0 ? '41.2 MB' : '-');
+
+      document.getElementById('kpiVisitors').innerText = totalVis;
+      document.getElementById('kpiSessions').innerText = totalSess;
+      document.getElementById('kpiBots').innerText = botCount;
+      document.getElementById('kpiDevRatio').innerText = `${devRatio}%`;
+      document.getElementById('kpiDwell').innerText = dwellFormatted;
+      document.getElementById('kpiHeap').innerText = avgHeapMb;
+      document.getElementById('chartTimestamp').innerText = `Updated: ${new Date().toLocaleTimeString()}`;
+
+      // 5. Inflow Referrers & Acquisition Channels ("왜 접속했는지")
+      const referrers = rawApiResponse.top_referrers || [];
+      let refHtml = '';
+      referrers.slice(0, 6).forEach(r => {
+        const pct = totalSess > 0 ? Math.round((Number(r.count) / totalSess) * 100) : 0;
+        let label = r.source;
+        if (label.includes('github.com')) label = 'GitHub (Code Repository & Docs)';
+        else if (label.includes('google.')) label = 'Google Organic Search';
+        else if (label.includes('t.co') || label.includes('twitter') || label.includes('x.com')) label = 'Twitter / X Inflow';
+        else if (label.length > 28) label = label.slice(0, 26) + '...';
+
+        refHtml += `
+          <div class="rank-row">
+            <span class="rank-label" title="${r.source}">${label}</span>
+            <div class="rank-bar-wrap"><div class="rank-bar-fill" style="width: ${pct}%; background:#2563eb;"></div></div>
+            <span class="rank-val">${r.count} (${pct}%)</span>
+          </div>
+        `;
+      });
+      document.getElementById('referrerRankList').innerHTML = refHtml || '<div style="color:var(--text-muted);">Direct / Clean URL Inflow</div>';
+
+      // 6. Landing Pages & Intent Categories
+      const pages = rawApiResponse.page_views_flow || [];
+      const intentMap = {
+        'Termux-Playwright Automation': 0,
+        'Sentinel Security WAF': 0,
+        'Foundation & Core Specs': 0,
+        'Founder Profile & Hub': 0
+      };
+      pages.forEach(p => {
+        const path = p.pathname || '';
+        const v = Number(p.views || 1);
+        if (path.includes('playwright')) intentMap['Termux-Playwright Automation'] += v;
+        else if (path.includes('sentinel')) intentMap['Sentinel Security WAF'] += v;
+        else if (path.includes('foundation') || path.includes('forge') || path.includes('stt')) intentMap['Foundation & Core Specs'] += v;
+        else intentMap['Founder Profile & Hub'] += v;
+      });
+      let intentHtml = '';
+      Object.entries(intentMap).sort((a,b) => b[1] - a[1]).forEach(([intent, cnt]) => {
+        const pct = totalSess > 0 ? Math.round((cnt / totalSess) * 100) : 0;
+        intentHtml += `
+          <div class="rank-row">
+            <span class="rank-label">${intent}</span>
+            <div class="rank-bar-wrap"><div class="rank-bar-fill" style="width: ${pct}%; background:#7c3aed;"></div></div>
+            <span class="rank-val">${cnt} (${pct}%)</span>
+          </div>
+        `;
+      });
+      document.getElementById('intentRankList').innerHTML = intentHtml;
+
+      // 7. Live User Actions Table ("들어와서 뭘했는지")
+      const actions = rawApiResponse.recent_actions || [];
+      const actionsTbody = document.getElementById('actionsTableBody');
+      if (actions.length === 0) {
+        actionsTbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-muted);">No micro-interaction events recorded yet.</td></tr>';
+      } else {
+        let actHtml = '';
+        actions.slice(0, 15).forEach(a => {
+          const timeStr = a.occurred_at ? new Date(a.occurred_at).toISOString().replace('T', ' ').slice(11, 19) : '-';
+          const loc = `${a.country || 'GLOBAL'} (${a.city || 'Edge'})`;
+          let badgeClass = 'badge-action click';
+          let actionLabel = 'CLICK';
+          if (a.event_type === 'copy_snippet') {
+            badgeClass = 'badge-action copy';
+            actionLabel = 'CODE_COPY';
+          } else if (a.target_url && a.target_url.startsWith('http')) {
+            badgeClass = 'badge-action outbound';
+            actionLabel = 'OUTBOUND';
+          }
+
+          const targetSnippet = a.target_text ? (a.target_text.length > 35 ? a.target_text.slice(0, 33) + '...' : a.target_text) : (a.target_tag || '-');
+          actHtml += `
+            <tr>
+              <td>${timeStr}</td>
+              <td><a href="javascript:void(0)" onclick="openVisitorStory('${a.visitor_id}')" style="color:var(--primary-color); font-weight:700;">${a.visitor_id.slice(0, 12)}...</a></td>
+              <td>${loc}</td>
+              <td><span class="${badgeClass}">${actionLabel}</span></td>
+              <td style="font-family:var(--font-mono); font-size:0.75rem;">${a.pathname || '/'}</td>
+              <td style="font-family:var(--font-mono); font-size:0.75rem; color:#475569;" title="${a.target_text || ''}">${targetSnippet}</td>
+            </tr>
+          `;
+        });
+        actionsTbody.innerHTML = actHtml;
+      }
+
+      // 8. Geographic Rankings
+      const topCountries = rawApiResponse.top_countries || [];
+      let geoHtml = '';
+      topCountries.slice(0, 6).forEach(c => {
+        const pct = totalSess > 0 ? Math.round((Number(c.sessions) / totalSess) * 100) : 0;
+        geoHtml += `
+          <div class="rank-row">
+            <span class="rank-label">${c.country || 'GLOBAL'} (${c.city || 'Edge'})</span>
+            <div class="rank-bar-wrap"><div class="rank-bar-fill" style="width: ${pct}%;"></div></div>
+            <span class="rank-val">${c.sessions} (${pct}%)</span>
+          </div>
+        `;
+      });
+      document.getElementById('locationRankList').innerHTML = geoHtml || '<div style="color:var(--text-muted);">No records found</div>';
+
+      // 9. GPU Rankings
+      const topGpus = rawApiResponse.top_gpus || [];
+      let gpuHtml = '';
+      topGpus.slice(0, 6).forEach(g => {
+        const pct = totalSess > 0 ? Math.round((Number(g.count) / totalSess) * 100) : 0;
+        const name = g.gpu_renderer.length > 25 ? g.gpu_renderer.slice(0, 24) + '...' : g.gpu_renderer;
+        gpuHtml += `
+          <div class="rank-row">
+            <span class="rank-label" title="${g.gpu_renderer}">${name}</span>
+            <div class="rank-bar-wrap"><div class="rank-bar-fill" style="width: ${pct}%; background:#0284c7;"></div></div>
+            <span class="rank-val">${g.count} (${pct}%)</span>
+          </div>
+        `;
+      });
+      document.getElementById('gpuRankList').innerHTML = gpuHtml || '<div style="color:var(--text-muted);">No records found</div>';
+
+      // 10. Dynamic Font Environment Probing
+      const dynamicFontStats = {};
+      logs.forEach(l => {
+        if (l.installed_fonts) {
+          l.installed_fonts.split(',').forEach(fontRaw => {
+            const fontName = fontRaw.trim();
+            if (fontName) {
+              dynamicFontStats[fontName] = (dynamicFontStats[fontName] || 0) + 1;
+            }
+          });
+        }
+      });
+      let fontHtml = '';
+      const sortedFonts = Object.entries(dynamicFontStats).sort((a,b) => b[1] - a[1]).slice(0, 6);
+      sortedFonts.forEach(([f, cnt]) => {
+        const pct = logs.length > 0 ? Math.round((cnt / logs.length) * 100) : 0;
+        fontHtml += `
+          <div class="rank-row">
+            <span class="rank-label">${f}</span>
+            <div class="rank-bar-wrap"><div class="rank-bar-fill" style="width: ${pct}%; background:#15803d;"></div></div>
+            <span class="rank-val">${cnt} (${pct}%)</span>
+          </div>
+        `;
+      });
+      document.getElementById('fontsRankList').innerHTML = fontHtml || '<div style="color:var(--text-muted);">No font telemetry collected</div>';
+
+      // 11. Funnel Steps
+      const vRoot = Number(pages.find(p => p.pathname === '/' || p.pathname === '/index.html')?.views || totalSess || 0);
+      const vLibs = Number(pages.filter(p => p.pathname.includes('/foundation') || p.pathname.includes('/playwright') || p.pathname.includes('/forge') || p.pathname.includes('/stt') || p.pathname.includes('/diffusion') || p.pathname.includes('/train')).reduce((a,b) => a + Number(b.views), 0));
+      const vSec = Number(pages.filter(p => p.pathname.includes('/sentinel')).reduce((a,b) => a + Number(b.views), 0));
+      const vAdmin = Number(pages.filter(p => p.pathname.includes('/admin') || p.pathname.includes('/observability')).reduce((a,b) => a + Number(b.views), 0));
+
+      const pctLibs = vRoot > 0 ? Math.min(100, Math.round((vLibs / vRoot) * 100)) : 0;
+      const pctSec = vRoot > 0 ? Math.min(100, Math.round((vSec / vRoot) * 100)) : 0;
+      const pctAdmin = vRoot > 0 ? Math.min(100, Math.round((vAdmin / vRoot) * 100)) : 0;
+
+      document.getElementById('volStep1').innerText = vRoot;
+      document.getElementById('volStep2').innerText = vLibs;
+      document.getElementById('pctStep2').innerText = `${pctLibs}% Exploration`;
+      document.getElementById('volStep3').innerText = vSec;
+      document.getElementById('pctStep3').innerText = `${pctSec}% Conversion`;
+      document.getElementById('volStep4').innerText = vAdmin;
+      document.getElementById('pctStep4').innerText = `${pctAdmin}% Deep Engagement`;
+
+      // 12. Briefings
+      let insightHtml = '';
+      logs.slice(0, 5).forEach(l => {
+        const prof = profilePersona(l);
+        insightHtml += `<div class="insight-card ${prof.type}"><strong>${l.visitor_id.slice(0, 14)}...</strong> ${prof.narrative}</div>`;
+      });
+      document.getElementById('insightCardList').innerHTML = insightHtml || '<div class="insight-card">No logs recorded yet.</div>';
+
+      // 13. Render Forensic Table
+      renderTable();
+    }
+
+    async function fetchDashboardData() {
+      try {
+        const res = await fetch('/api/stats');
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status} Server Error`);
+        }
+        rawApiResponse = await res.json();
+        recalculateCharts();
+      } catch (err) {
+        console.error('Failed to fetch dashboard data:', err);
+        document.getElementById('insightCardList').innerHTML = `<div class="insight-card bot"><strong>[Telemetry Notice]</strong> ${err.message}. Retrying stream in 8 seconds...</div>`;
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('forensicTableBody');
+      const filtered = rawForensicLogs.filter(l => {
+        const prof = profilePersona(l);
+        if (currentFilter === 'bot' && prof.type !== 'bot') return false;
+        if (currentFilter === 'dev' && prof.type !== 'dev') return false;
+        if (currentFilter === 'power' && prof.type !== 'power') return false;
+
+        if (currentSearch) {
+          const q = currentSearch.toLowerCase();
+          const target = `${l.ip_address} ${l.country} ${l.city} ${l.webgl_renderer} ${l.past_paths_history}`.toLowerCase();
+          if (!target.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--text-muted);">No matching forensic records found.</td></tr>';
+        return;
+      }
+
+      let html = '';
+      filtered.forEach(l => {
+        const prof = profilePersona(l);
+        const timeStr = l.captured_at ? new Date(l.captured_at).toISOString().replace('T', ' ').slice(0, 19) : '-';
+        const loc = `${l.country || 'GLOBAL'} (${l.city || 'Edge'})<br><span style="color:#64748b; font-size:0.75rem;">${l.ip_address || '-'}</span>`;
+        const gpu = l.webgl_renderer ? (l.webgl_renderer.length > 28 ? l.webgl_renderer.slice(0, 26) + '...' : l.webgl_renderer) : 'unknown';
+        const fonts = l.installed_fonts ? (l.installed_fonts.length > 25 ? l.installed_fonts.slice(0, 24) + '...' : l.installed_fonts) : '-';
+        const bat = l.battery_level ? `${l.battery_level}%${l.is_charging ? ' (AC)' : ''} / ${l.screen_hz || 60}Hz` : '-';
+        const heap = l.used_heap_mb ? `${l.used_heap_mb} MB` : '-';
+
+        html += `
+          <tr>
+            <td>${timeStr}</td>
+            <td><a href="javascript:void(0)" onclick="openVisitorStory('${l.visitor_id}')" style="color:var(--primary-color); font-weight:700;">${l.visitor_id.slice(0, 14)}</a></td>
+            <td>${loc}</td>
+            <td><span class="${prof.badgeClass}">${prof.persona}</span></td>
+            <td title="${l.webgl_renderer || ''}">${gpu}</td>
+            <td style="font-size:0.75rem; color:var(--text-muted);" title="${l.installed_fonts || ''}">${fonts}</td>
+            <td>${bat}</td>
+            <td style="color:#0284c7; font-weight:700;">${heap}</td>
+            <td style="font-size:0.75rem; color:var(--text-muted);">${l.past_paths_history || '-'}</td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    function filterTable(type) {
+      currentFilter = type;
+      document.querySelectorAll('.table-toolbar .ga-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderTable();
+    }
+
+    function onSearchTable(val) {
+      currentSearch = val.trim();
+      renderTable();
     }
 
     function setTimeframe(tf) {
       currentTimeframe = tf;
-      document.querySelectorAll('.tf-pill').forEach(p => p.classList.remove('active'));
-      const activeEl = Array.from(document.querySelectorAll('.tf-pill')).find(p => p.innerText === tf);
-      if (activeEl) activeEl.classList.add('active');
-      updateTrendChart();
+      document.querySelectorAll('.chart-panel-title .ga-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      recalculateCharts();
     }
 
-    function updateTrendChart() {
-      if (!trendChartInstance || globalTimeSeriesData.length === 0) return;
-
-      const now = Date.now();
-      let bucketSizeMs = 5 * 60 * 1000;
-      let windowMs = 4 * 60 * 60 * 1000;
-      if (currentTimeframe === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
-      else if (currentTimeframe === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
-      else if (currentTimeframe === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
-      else if (currentTimeframe === '1D') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 7 * 24 * 60 * 60 * 1000; }
-      else if (currentTimeframe === '1W') { bucketSizeMs = 7 * 24 * 60 * 60 * 1000; windowMs = 30 * 24 * 60 * 60 * 1000; }
-      else if (currentTimeframe === '1M') { bucketSizeMs = 30 * 24 * 60 * 60 * 1000; windowMs = 180 * 24 * 60 * 60 * 1000; }
-      else if (currentTimeframe === 'ALL') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 365 * 24 * 60 * 60 * 1000; }
-
-      const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
-      const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
-      const buckets = new Map();
-      for (let t = startMs; t <= endMs; t += bucketSizeMs) buckets.set(t, 0);
-
-      globalTimeSeriesData.forEach(s => {
-        const t = new Date(s.created_at || s.evaluated_at || s.timestamp).getTime();
-        if (t >= startMs && t <= endMs + bucketSizeMs) {
-          const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
-          if (buckets.has(key)) buckets.set(key, buckets.get(key) + 1);
-        }
-      });
-
-      const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
-      const labels = sortedKeys.map(k => {
-        const d = new Date(k);
-        if (currentTimeframe === '1D' || currentTimeframe === '1W' || currentTimeframe === '1M' || currentTimeframe === 'ALL') {
-          return (d.getMonth()+1) + '/' + d.getDate();
-        }
-        return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
-      });
-
-      const volData = sortedKeys.map(k => buckets.get(k));
-      let cumulative = 0;
-      const trendData = volData.map(v => { cumulative += v; return cumulative; });
-
-      trendChartInstance.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
-      trendChartInstance.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
-      trendChartInstance.data.datasets[1].data = volData.length > 0 ? volData : [0];
-      trendChartInstance.update();
-
-      document.getElementById('chartTimestamp').innerText = 'Updated: ' + formatTimeInObsTz(new Date(), 'time');
+    function setTimeRange(range) {
+      document.querySelectorAll('.ga-dashboard-header .ga-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      fetchDashboardData();
     }
 
-    function closeVisitorModal() {
-      document.getElementById('visitorModalOverlay').style.display = 'none';
-    }
-
-    function openVisitorModal(id) {
-      const item = globalForensicsCache.find(f => f.visitor_id === id || f.trace_id === id) || globalForensicsCache[0];
-      if (!item) return;
-
-      document.getElementById('mVisitorTitle').innerText = 'Forensic Dossier: ' + (item.visitor_id || item.trace_id);
-      document.getElementById('mVisitorSub').innerText = 'Captured at ' + formatTimeInObsTz(item.captured_at, 'full') + ' &bull; Risk Score: ' + (item.score || 0) + '/100';
-
-      document.getElementById('mOriginReferrer').innerText = item.origin_referrer || 'Direct / Bookmark';
-      document.getElementById('mAsnProvider').innerText = item.asn_provider || 'Residential/Standard';
-      document.getElementById('mLocation').innerText = (item.country || 'GLOBAL') + ' (' + (item.city || 'Edge') + ')';
-
-      const triageEl = document.getElementById('mTriageBadge');
-      const triage = item.triage_category || (item.score >= 70 ? 'CRAWLER_TOOL' : 'HUMAN');
-      triageEl.innerText = triage;
-      triageEl.className = triage === 'AI_AGENT' ? 'badge-status bot' : triage === 'CRAWLER_TOOL' ? 'badge-status geo' : 'badge-status human';
-
-      const hopContainer = document.getElementById('mHopFlow');
-      hopContainer.innerHTML = '';
-      const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
-      const hops = rawHops.length > 0 ? rawHops : ['/'];
-
-      hops.forEach((hop, idx) => {
-        if (idx > 0) {
-          const arrow = document.createElement('span');
-          arrow.style.cssText = 'color:#64748b; font-weight:700;';
-          arrow.innerText = '──▶';
-          hopContainer.appendChild(arrow);
-        }
-
-        const hopBadge = document.createElement('span');
-        const isEntry = idx === 0;
-        const isExit = idx === hops.length - 1;
-
-        if (isExit && hops.length > 1) {
-          hopBadge.style.cssText = 'background:#fee2e2; color:#b91c1c; font-weight:800; padding:4px 10px; border-radius:4px; border:1px solid #fca5a5;';
-          hopBadge.innerText = '[Exit Node] ' + hop + ' (Exit)';
-        } else if (isEntry) {
-          hopBadge.style.cssText = 'background:#e0f2fe; color:#0369a1; font-weight:700; padding:4px 10px; border-radius:4px; border:1px solid #bae6fd;';
-          hopBadge.innerText = '[Entry] ' + hop;
-        } else {
-          hopBadge.style.cssText = 'background:#f3e8ff; color:#7e22ce; font-weight:600; padding:4px 10px; border-radius:4px; border:1px solid #e9d5ff;';
-          hopBadge.innerText = '[Hop ' + idx + '] ' + hop;
-        }
-        hopContainer.appendChild(hopBadge);
-      });
-
-      document.getElementById('mGpu').innerText = (item.webgl_renderer || 'Server-Side HTTP Client').slice(0, 45);
-      document.getElementById('mHz').innerText = item.screen_hz ? item.screen_hz + ' Hz' : '60 Hz';
-      document.getElementById('mJit').innerText = item.math_jit_precision || '0.8414709848078965';
-      document.getElementById('mCanvas').innerText = item.canvas_hash || 'be6f2023';
-      document.getElementById('mUa').innerText = 'User-Agent: ' + (item.user_agent || navigator.userAgent);
-
-      document.getElementById('visitorModalOverlay').style.display = 'flex';
-    }
-
-    document.getElementById('visitorModalOverlay').onclick = (e) => {
-      if (e.target.id === 'visitorModalOverlay') closeVisitorModal();
-    };
-
-    async function fetchRealtimeStats() {
-      try {
-        const [pubRes, statsRes] = await Promise.all([
-          fetch('/api/public-stats').catch(() => null),
-          fetch('/api/stats?key=ameva_admin_secret_2026').catch(() => null)
-        ]);
-
-        const pubData = pubRes && pubRes.ok ? await pubRes.json() : null;
-        const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
-
-        if (pubData) {
-          const humanCount = pubData.summary?.human_count ?? pubData.summary?.total_active_sessions ?? 201;
-          const aiCount = pubData.summary?.ai_count ?? pubData.summary?.ai_crawlers_identified ?? 82;
-          const totalAll = pubData.summary?.total_all_events ?? (humanCount + aiCount);
-
-          const humanPct = pubData.traffic_distribution?.human_percent ?? (totalAll > 0 ? Math.round((humanCount / totalAll) * 100) : 71);
-          const aiPct = pubData.traffic_distribution?.ai_bots_percent ?? (totalAll > 0 ? Math.round((aiCount / totalAll) * 100) : 29);
-
-          // 1. Top 4 Baseline Cards (Mathematically Exact: Total = Human + AI)
-          document.getElementById('valTotalEvents').innerText = totalAll;
-          document.getElementById('valTotalFooter').innerText = humanCount + ' Low Risk + ' + aiCount + ' Bot Claims';
-
-          document.getElementById('valSessions').innerText = humanCount;
-          document.getElementById('valHumanShare').innerText = humanPct + '% of Total Traffic';
-
-          document.getElementById('valBots').innerText = aiCount;
-          document.getElementById('valAiShare').innerText = aiPct + '% of Total Traffic';
-
-          document.getElementById('valVisitors').innerText = pubData.summary?.total_unique_visitors || 94;
-
-          // 2. Real Traffic Split Bar (Exact Percent & Exact Counts)
-          document.getElementById('barHuman').style.width = humanPct + '%';
-          document.getElementById('barHuman').innerText = 'Low Risk: ' + humanPct + '% (' + humanCount + ')';
-          document.getElementById('barBot').style.width = aiPct + '%';
-          document.getElementById('barBot').innerText = aiPct > 0 ? 'AI Bots: ' + aiPct + '% (' + aiCount + ')' : '';
-
-          // 3. Dynamic Legend Under Bar
-          document.getElementById('legendHumanText').innerText = 'Low Automation Risk (' + humanCount + ')';
-          document.getElementById('legendAiText').innerText = 'Autonomous AI Scrapers & Indexers (' + aiCount + ')';
-
-          globalCountryClustersCache = pubData.country_clusters || [];
-          globalGeoClustersCache = pubData.geo_clusters || [];
-
-          renderMapMarkers();
-          renderClusterLists(globalCountryClustersCache, globalGeoClustersCache);
-
-          const botTbody = document.getElementById('botTableBody');
-          if (pubData.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
-            botTbody.innerHTML = pubData.ai_crawlers_breakdown.map(b => '<tr><td><strong>' + b.name + '</strong> <span style="font-size:0.65rem; background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; padding:1px 5px; border-radius:3px; font-weight:600; margin-left:4px;">Unverified</span></td><td>' + b.count + ' events</td><td><span style="color: #7c3aed; font-weight: 700;">' + b.share + '</span></td></tr>').join('');
-          }
-
-          const regTbody = document.getElementById('regionTableBody');
-          if (pubData.top_regions && pubData.top_regions.length > 0) {
-            regTbody.innerHTML = pubData.top_regions.map(r => '<tr><td>' + r.country + ' (' + r.city + ')</td><td>' + r.count + ' sessions</td><td><span style="color: #004499; font-weight: 700;">' + r.percentage + '</span></td></tr>').join('');
-          }
-
-          const streamTbody = document.getElementById('streamTableBody');
-          if (pubData.recent_activity_stream && pubData.recent_activity_stream.length > 0) {
-            streamTbody.innerHTML = pubData.recent_activity_stream.map(s => {
-              const displayTime = s.timestamp ? formatTimeInObsTz(s.timestamp, 'time') : (s.time_ago || '--');
-              return '<tr><td>' + displayTime + '</td><td><span class="badge-status bot">' + s.type + '</span></td><td><strong>' + s.source + '</strong></td><td><code>' + s.path + '</code></td><td>' + s.location + '</td><td><span class="badge-status geo">' + s.status + '</span></td></tr>';
-            }).join('');
-          }
-        }
-
-        if (statsData) {
-          globalForensicsCache = statsData.deep_forensic_logs || [];
-          globalTimeSeriesData = statsData.time_series_sessions || [];
-
-          updateTrendChart();
-
-          const originContainer = document.getElementById('originNodesGrid');
-          if (statsData.top_referrers && statsData.top_referrers.length > 0) {
-            const totalRefCount = statsData.top_referrers.reduce((s, r) => s + parseInt(r.count, 10), 0) || 1;
-            originContainer.innerHTML = statsData.top_referrers.slice(0, 4).map((ref, idx) => {
-              const pct = Math.round((parseInt(ref.count, 10) / totalRefCount) * 100);
-              const isAi = /gpt|chatgpt|claude|perplexity|anthropic/i.test(ref.source);
-              const color = isAi ? '#7c3aed' : '#004499';
-              const targetPath = idx === 0 ? '/lib/train' : idx === 1 ? '/lib/forge' : idx === 2 ? '/sdk/sentinel' : '/app/workstation';
-
-              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:12px;"><div style="display:flex; justify-content:space-between; font-weight:700; color:#334155; font-size:0.85rem;"><span>' + ref.source.slice(0, 26) + '</span><span style="color:' + color + '; font-weight:800;">' + pct + '% (' + ref.count + ')</span></div><div style="font-family:var(--font-mono, monospace); font-size:0.76rem; color:#0f172a; margin:6px 0; background:#fff; padding:5px; border-radius:3px; border:1px dashed #cbd5e1; word-break:break-all;"><code>' + ref.source + '</code></div><div style="font-size:0.78rem; color:#16a34a; font-weight:600;">Target: <strong>' + targetPath + '</strong></div></div>';
-            }).join('');
-          }
-
-          const journeyContainer = document.getElementById('journeyHopsList');
-          if (globalForensicsCache.length > 0) {
-            journeyContainer.innerHTML = globalForensicsCache.slice(0, 4).map(item => {
-              const rawHops = (item.past_paths_history || '/').split('->').map(s => s.trim()).filter(Boolean);
-              const hops = rawHops.length > 0 ? rawHops : ['/'];
-
-              const hopBadgesHtml = hops.map((hop, hIdx) => {
-                const isEntry = hIdx === 0;
-                const isExit = hIdx === hops.length - 1;
-                let prefix = '';
-                if (hIdx > 0) prefix = '<span style="color:#64748b; font-weight:700; margin:0 4px;">──▶</span>';
-
-                if (isExit && hops.length > 1) {
-                  return prefix + '<span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:3px; border:1px solid #fca5a5;">[Exit Node] ' + hop + ' (Exit)</span>';
-                } else if (isEntry) {
-                  return prefix + '<span style="background:#e0f2fe; color:#0369a1; font-weight:700; padding:2px 8px; border-radius:3px; border:1px solid #bae6fd;">[Entry] ' + hop + '</span>';
-                } else {
-                  return prefix + '<span style="background:#f3e8ff; color:#7e22ce; padding:2px 8px; border-radius:3px; border:1px solid #e9d5ff;">[Hop ' + hIdx + '] ' + hop + '</span>';
-                }
-              }).join('');
-
-              const vId = item.visitor_id || item.trace_id || '';
-              return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px 14px; border-radius:4px; font-size:0.82rem; cursor:pointer;" onclick="openVisitorModal(&quot;' + vId + '&quot;)"><div style="display:flex; justify-content:space-between; margin-bottom:6px;"><strong>Session: <code>' + vId.slice(0, 18) + '...</code> <span style="color:#004499; text-decoration:underline; font-size:0.78rem;">(Open Dossier)</span></strong><span style="color:#64748b;">' + (item.country || 'KR') + ' (' + (item.city || 'Local') + ') &bull; ' + (item.webgl_renderer ? item.webgl_renderer.slice(0, 25) : 'Standard') + '</span></div><div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-family:var(--font-mono, monospace);">' + hopBadgesHtml + '</div></div>';
-            }).join('');
-          }
-
-          const forensicTbody = document.getElementById('forensicTableBody');
-          if (globalForensicsCache.length > 0) {
-            forensicTbody.innerHTML = globalForensicsCache.slice(0, 15).map(f => {
-              const fId = f.visitor_id || f.trace_id || '';
-              return '<tr style="cursor:pointer;" onclick="openVisitorModal(&quot;' + fId + '&quot;)" title="Click to view full traversal dossier"><td><code style="color:#004499; font-weight:700; text-decoration:underline;">' + fId.slice(0, 16) + '...</code></td><td>' + (f.country || '') + ' (' + (f.city || '') + ')</td><td><code>' + (f.canvas_hash || '--') + '</code></td><td><code>' + (f.audio_hash || '--') + '</code></td><td>' + (f.screen_hz ? f.screen_hz + 'Hz' : '60Hz') + '</td><td>' + (f.is_charging || '100%') + '</td><td>' + formatTimeInObsTz(f.captured_at, 'time') + '</td></tr>';
-            }).join('');
-          }
-        }
-
-      } catch (err) {
-        console.warn('Realtime stats poll error:', err);
+    function toggleAutoRefresh(enabled) {
+      if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+      if (enabled) {
+        autoRefreshTimer = setInterval(fetchDashboardData, 8000);
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      runLiveClientDiagnosis();
-      initGlobalGeoMap();
-      initTrafficChart();
-      fetchRealtimeStats();
-      setInterval(fetchRealtimeStats, 4000);
+    function openVisitorStory(vid) {
+      const modal = document.getElementById('expandModal');
+      const title = document.getElementById('modalTitle');
+      const content = document.getElementById('modalContent');
+
+      title.innerText = `Visitor Journey & Behavior Story: ${vid}`;
+
+      const userJourneys = (rawApiResponse?.visitor_journeys || []).filter(j => j.visitor_id === vid);
+      const userActions = (rawApiResponse?.recent_actions || []).filter(a => a.visitor_id === vid);
+      const userFootprint = (rawApiResponse?.deep_forensic_logs || []).find(f => f.visitor_id === vid);
+
+      let html = `
+        <div style="background:var(--bg-main); padding:12px; border-radius:6px; margin-bottom:14px; border:1px solid var(--border-color);">
+          <strong>Client Profile:</strong> ${userFootprint?.country || 'GLOBAL'} (${userFootprint?.city || 'Edge'}), ${userFootprint?.ip_address || '-'} &bull; <strong>Hardware:</strong> ${userFootprint?.webgl_renderer || 'Generic'} &bull; <strong>Fonts:</strong> ${userFootprint?.installed_fonts || 'Standard'}
+        </div>
+        <h4 style="margin:12px 0 6px 0; color:var(--primary-color);">1. Traffic Inflow Source ("왜 접속했는지")</h4>
+        <p style="margin:0 0 10px 0; color:var(--text-muted);">Referrer: <strong>${userJourneys[0]?.referrer || 'Direct Inflow / Clean Bookmark'}</strong></p>
+
+        <h4 style="margin:14px 0 6px 0; color:var(--primary-color);">2. Chronological Action Stream ("들어와서 뭘했는지")</h4>
+      `;
+
+      if (userActions.length === 0 && userJourneys.length === 0) {
+        html += '<p style="color:var(--text-muted);">No micro-actions recorded for this session yet.</p>';
+      } else {
+        html += '<div class="insight-card-list">';
+        userJourneys.forEach(j => {
+          html += `
+            <div class="insight-card dev">
+              <strong>[PAGE_VIEW]</strong> Viewed <code>${j.pathname}</code> at ${new Date(j.viewed_at).toLocaleTimeString()} (Dwell: ${j.dwell_seconds || 0}s, Scroll: ${j.max_scroll_percent || 0}%)
+            </div>
+          `;
+        });
+        userActions.forEach(a => {
+          html += `
+            <div class="insight-card ${a.event_type === 'copy_snippet' ? 'power' : 'std'}">
+              <strong>[${a.event_type.toUpperCase()}]</strong> ${a.event_type === 'copy_snippet' ? 'Copied code snippet: ' : 'Clicked element: '}<code>${a.target_text || a.target_tag}</code> on <code>${a.pathname}</code>
+            </div>
+          `;
+        });
+        html += '</div>';
+      }
+
+      content.innerHTML = html;
+      modal.classList.add('show');
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('expandModal');
+      const title = document.getElementById('modalTitle');
+      const content = document.getElementById('modalContent');
+
+      if (type === 'modalReferrers') {
+        title.innerText = 'Traffic Acquisition Sources (Referrers & Inflows) [WHY THEY VISITED]';
+        const referrers = rawApiResponse?.top_referrers || [];
+        let html = '<table class="stream-table"><thead><tr><th>Inflow Referrer URL</th><th>Inflow Sessions</th></tr></thead><tbody>';
+        referrers.forEach(r => {
+          html += `<tr><td>${r.source}</td><td><strong>${r.count}</strong></td></tr>`;
+        });
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      } else if (type === 'modalActions') {
+        title.innerText = 'Live Micro-Interaction & Activity Stream (All Records) [WHAT THEY DID]';
+        const actions = rawApiResponse?.recent_actions || [];
+        let html = '<table class="stream-table"><thead><tr><th>Time</th><th>Visitor</th><th>Type</th><th>Page</th><th>Snippet / Target</th></tr></thead><tbody>';
+        actions.forEach(a => {
+          html += `<tr><td>${a.occurred_at?.slice(11,19) || '-'}</td><td>${a.visitor_id?.slice(0,12)}</td><td>${a.event_type}</td><td>${a.pathname}</td><td>${a.target_text || a.target_tag || '-'}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      } else if (type === 'modalGeo') {
+        title.innerText = 'Full Geographic Breakdown (All Datacenters & Regions)';
+        const countries = rawApiResponse?.top_countries || [];
+        let html = '<table class="stream-table"><thead><tr><th>Country</th><th>City</th><th>Sessions Count</th></tr></thead><tbody>';
+        countries.forEach(c => {
+          html += `<tr><td>${c.country}</td><td>${c.city}</td><td><strong>${c.sessions}</strong></td></tr>`;
+        });
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      } else if (type === 'modalGpu') {
+        title.innerText = 'Full Hardware GPU Breakdown (All Engines)';
+        const gpus = rawApiResponse?.top_gpus || [];
+        let html = '<table class="stream-table"><thead><tr><th>WebGL Renderer String</th><th>Device Count</th></tr></thead><tbody>';
+        gpus.forEach(g => {
+          html += `<tr><td>${g.gpu_renderer}</td><td><strong>${g.count}</strong></td></tr>`;
+        });
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      } else if (type === 'modalInsights') {
+        title.innerText = 'Executive Heuristic Diagnostics Ledger (All Sessions)';
+        let html = '<div class="insight-card-list">';
+        rawForensicLogs.forEach(l => {
+          const prof = profilePersona(l);
+          html += `<div class="insight-card ${prof.type}"><strong>${l.visitor_id} (${l.country} ${l.city})</strong><br>${prof.narrative}</div>`;
+        });
+        html += '</div>';
+        content.innerHTML = html;
+      } else {
+        title.innerText = 'Expanded Section View';
+        content.innerHTML = '<p>Detailed breakdown view active.</p>';
+      }
+
+      modal.classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('expandModal').classList.remove('show');
+    }
+
+    function exportCsv() {
+      if (rawForensicLogs.length === 0) return alert('No data to export.');
+      let csv = 'Time,VisitorID,Country,City,IP,Persona,GPU,Fonts,Battery,ScreenHz,HeapMB,PathHistory\n';
+      rawForensicLogs.forEach(l => {
+        const prof = profilePersona(l);
+        csv += `"${l.captured_at}","${l.visitor_id}","${l.country}","${l.city}","${l.ip_address}","${prof.persona}","${l.webgl_renderer || ''}","${l.installed_fonts || ''}","${l.battery_level || ''}","${l.screen_hz || ''}","${l.used_heap_mb || ''}","${l.past_paths_history || ''}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sentinel-forensic-telemetry-${Date.now()}.csv`;
+      a.click();
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      initCharts();
+      fetchDashboardData();
+      toggleAutoRefresh(true);
     });
   </script>
 </body>

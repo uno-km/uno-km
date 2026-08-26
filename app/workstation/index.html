@@ -1,153 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA Workstation | Sovereign Web & Desktop Studio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/shared/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMEVA Workstation Web - 100% On-Device WebGPU Local AI & Productivity Studio</title>
-    <meta name="description" content="World-first 100% on-device WebGPU local AI workstation featuring Qwen2.5, 3-sec MapReduce PDF summarization, and in-browser media editing with 0 server costs.">
-    
-    
-    
-    <style>
-        .launch-hero {
-            background: linear-gradient(135deg, #003399 0%, #001f5c 100%);
-            color: #ffffff;
-            padding: 36px 28px;
-            border-radius: 8px;
-            margin: 20px 0 28px 0;
-            box-shadow: 0 4px 14px rgba(0,51,153,0.15);
-        }
-        .launch-hero h2 { color: #ffffff; margin-top: 0; font-size: 1.6em; border-bottom: none; }
-        .launch-hero p { color: #e2e8f0; font-size: 1.05em; max-width: 800px; margin: 10px 0 20px 0; }
-        .hero-btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
-        .btn-launch-primary {
-            background: #00f5d4;
-            color: #0b132b;
-            font-weight: 800;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 1.05em;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-        .btn-launch-primary:hover { background: #00d2b4; transform: translateY(-1px); }
-        .btn-launch-secondary {
-            background: rgba(255,255,255,0.15);
-            color: #ffffff;
-            font-weight: 600;
-            padding: 12px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-launch-secondary:hover { background: rgba(255,255,255,0.25); }
-    </style>
-    <link rel="icon" type="image/svg+xml" href="../../shared/brand/favicon.svg">
-    <link rel="stylesheet" href="../../shared/style.css">
-    <script src="../../shared/i18n.js"></script>
-    <script src="../../shared/i18n-translations.js"></script>
-    <script src="../../shared/common.js"></script>
-    <script src="../../shared/telemetry.js"></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <header class="top-header">
-        <a href="../../index.html" class="header-brand">
-            <img src="../../assets/brand/favicon.svg" alt="AMEVA Logo" style="width:28px; height:28px;">
-            <h1>AMEVA Workstation (Web / Desktop)</h1>
-        </a>
-        <div class="header-controls">
-            <span class="release-tag">v2.0 WebGPU</span>
-            <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="header-btn primary">🚀 Launch Web App</a>
-            <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
-      <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="header-btn">🐙 GitHub</a>
-        </div>
-    </header>
-
-    <div class="container">
-        <nav class="sidebar">
-            <h3>Overview</h3>
-            <ul>
-                <li><a href="index.html" class="active">1. Product Overview</a></li>
-                <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">2. Live Web Studio</a></li>
-            </ul>
-            <h3>Core Modules</h3>
-            <ul>
-                <li><a href="#webgpu-ai">WebGPU Local AI (Qwen2.5)</a></li>
-                <li><a href="#mapreduce-doc">3-Sec MapReduce Doc Reader</a></li>
-                <li><a href="#media-studio">In-App Media Suite</a></li>
-                <li><a href="#security-sovereignty">100% Zero-Cloud Privacy</a></li>
-            </ul>
-            <h3>Ecosystem Hub</h3>
-            <ul>
-                <li><a href="../../index.html">👤 Founder Digital CV</a></li>
-                <li><a href="../../foundation/">🏛️ AOSF Foundation Portal</a></li>
-                <li><a href="../forge/">⚡ AMEVA-Forge</a></li>
-                <li><a href="../stt/">🎙️ Termux-STT</a></li>
-                <li><a href="../train/">🚂 Termux-Train</a></li>
-                <li><a href="../playwright/">🎭 Termux-Playwright</a></li>
-                <li><a href="../diffusion/">🎨 Termux-Diffusion</a></li>
-            </ul>
-        </nav>
-
-        <main class="content">
-            <div class="launch-hero">
-                <h2>🏢 AMEVA Workstation Web</h2>
-                <p>The sovereign, zero-subscription personal AI workstation engineered to run entirely inside your browser using client-side WebGPU acceleration. No cloud API keys, no server costs, and 100% absolute privacy.</p>
-                <div class="hero-btn-group">
-                    <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-launch-primary">🚀 Launch Live Workstation Web</a>
-                    <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-launch-secondary">🐙 GitHub Repository</a>
-                </div>
-            </div>
-
-            <div class="badges-bar">
-                <img src="https://img.shields.io/badge/WebGPU-100%25%20On--Device-brightgreen.svg" alt="WebGPU">
-                <img src="https://img.shields.io/badge/Models-Qwen2.5%20(0.5B%2F1.5B%2F7B)-blue.svg" alt="Models">
-                <img src="https://img.shields.io/badge/Privacy-100%25%20Client%20Side-success.svg" alt="Privacy">
-                <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License">
-            </div>
-
-            <h3 id="webgpu-ai">1. 100% On-Device WebGPU Local AI</h3>
-            <p>Empowered by WebGPU compute shaders and WebLLM execution, AMEVA Workstation runs state-of-the-art quantized LLMs (Qwen2.5 0.5B, 1.5B, and 7B) directly against your device's native GPU hardware.</p>
-            <ul>
-                <li><strong>Zero API Costs:</strong> No monthly OpenAI/Claude subscriptions or token rate limits.</li>
-                <li><strong>Instant Offline Readiness:</strong> Model weights cache in browser IndexedDB for instant offline execution.</li>
-            </ul>
-
-            <h3 id="mapreduce-doc">2. 3-Second MapReduce PDF &amp; Document Intelligence</h3>
-            <p>Upload large PDF, DOCX, or text documents and receive hierarchical MapReduce summaries and semantic extraction in under 3 seconds using client-side vector search and chunked parallel workers.</p>
-
-            <h3 id="media-studio">3. Built-in High-Performance Media Suite</h3>
-            <ul>
-                <li><strong>1-Second AI Background Removal:</strong> Instant subject segmentation powered by in-browser WASM neural networks.</li>
-                <li><strong>In-App Video Trimmer &amp; Cutter:</strong> Zero-upload client-side video clipping with FFmpeg WASM.</li>
-                <li><strong>Automated Silence Removal:</strong> Intelligent audio waveform thresholding for fast content creation.</li>
-            </ul>
-
-            <h3 id="security-sovereignty">4. Absolute Enterprise Security &amp; Data Sovereignty</h3>
-            <p>No document, audio sample, or user prompt is ever transmitted to an external server. Everything executes inside the client-side sandboxed browser runtime, making it compliant with the strictest enterprise data protection regulations.</p>
-        </main>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
+      <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      
+      <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
-
-        <footer>
-        <span>&copy; 2026 AMEVA Open-Source Foundation (AOSF) &amp; Eunho Kim. Released under the Apache 2.0 License.</span>
-        <div style="margin-top: 6px; font-size: 0.8em; color: var(--text-muted);">
-            <a href="../../index.html">Founder Digital CV</a> &bull; 
-            <a href="../../foundation/">AOSF Portal</a> &bull; 
-            <a href="../../app/workstation/">Workstation Web</a> &bull; 
-            <a href="../../lib/forge/">Forge</a> &bull; 
-            <a href="../../lib/stt/">STT</a> &bull; 
-            <a href="../../lib/train/">Train</a> &bull; 
-            <a href="../../lib/playwright/">Playwright</a> &bull; 
-            <a href="../../lib/diffusion/">Diffusion</a>
-        </div>
-    </footer>
+  </header>
+  <div class="container">
+  <nav class="sidebar">
+    <!-- Tier 1: Foundation Info -->
+    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
+    <ul>
+      <li><a href="/foundation/index.html">Foundation Portal</a></li>
+      <li><a href="/foundation/charter.html">Foundation Charter</a></li>
+      <li><a href="/foundation/governance.html">Governance & Merit</a></li>
+      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+      <li><a href="/foundation/sponsorship.html">Sponsorship & Support</a></li>
+      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/" class="active">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: Document Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" class="active" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <!-- Tier 4: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="/" target="_blank">Founder Digital CV</a></li>
+    </ul>
+  </nav>
+    <main class="content">
+      <h2>AMEVA Workstation</h2>
+      <p class="subtitle">Sovereign On-Device WebGPU & Desktop Computing Workbench</p>
+      <div class="alert alert-tip">
+        <span class="alert-title">Live Application Deployment</span>
+        <p>The sovereign web application is running at <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">https://ameva-workstation-web-core.vercel.app/</a>.</p>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation.</span>
+  </footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="playgrounds.attentionTitle">AMEVA-Forge: FlashAttention-2 vs Standard Attention</title>
     <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-    <link rel="stylesheet" href="../../../style.css">
+    
     <script src="../../../dist/index.js"></script>
     <script src="../../../dist/forge-py-bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
@@ -24,43 +24,76 @@
         .bar-val { width: 80px; text-align: right; font-weight: bold; }
         
     </style>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
     
 
-    <header>
-        <h1 data-i18n="common.headerTitle">AMEVA-Forge Documentation</h1>
-        <div class="header-badge-group">
-            <span class="apache-tag" data-i18n="common.releaseTag">Release 2.0.0</span>
-            <span id="gpuStatus" style="font-weight: bold; color: #003399;">Initializing WebGPU...</span>
-            <a href="../../../demo.html"><strong data-i18n="common.liveStudioBtn">[ Live WebGPU Studio ]</strong></a>
-            <a href="https://github.com/uno-km/ameva-forge" target="_blank" data-i18n="common.githubBtn">[ GitHub Repository ]</a>
-        </div>
-    </header>
+      <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Forge Logo">
+      <h1 data-i18n="common.brand">AMEVA-Forge</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI</a>
+      
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
     
     <div class="container">
-        <nav class="sidebar">
-            <h3 data-i18n="common.nav.interactive">Interactive</h3>
-            <ul>
-                <li><a href="../../../demo.html"><strong data-i18n="common.nav.liveStudio">Live WebGPU Studio</strong></a></li>
-                <li><a href="../mnist/index.html"><strong data-i18n="common.nav.mnist">1. MNIST Inference</strong></a></li>
-                <li><a href="../benchmark/index.html"><strong data-i18n="common.nav.benchmark">2. Benchmark Test</strong></a></li>
-                <li><a href="../training/index.html"><strong data-i18n="common.nav.training">3. Training Demo</strong></a></li>
-                <li><a href="../vision/index.html"><strong data-i18n="common.nav.vision">4. Vision Center</strong></a></li>
-            </ul>
-            <h3 data-i18n="common.nav.documentation">Documentation</h3>
-            <ul>
-                <li><a href="../../../index.html"><strong data-i18n="common.nav.home">Home</strong></a></li>
-                <li><a href="../../../installation.html"><strong data-i18n="common.nav.installation">Installation</strong></a></li>
-                <li><a href="../../../quickstart.html"><strong data-i18n="common.nav.quickstart">Quickstart</strong></a></li>
-                <li><a href="../../../api-reference.html"><strong data-i18n="common.nav.apiReference">API Reference</strong></a></li>
-            </ul>
-            <h3 data-i18n="common.nav.concepts">Concepts</h3>
-            <ul>
-                <li><a href="../../../what-is-forge.html"><strong data-i18n="common.nav.whatIsForge">What is Forge?</strong></a></li>
-                <li><a href="../../../forge-vs-pytorch.html"><strong data-i18n="common.nav.forgeVsPytorch">Forge vs PyTorch</strong></a></li>
-            </ul>
-        </nav>
+          <nav class="sidebar">
+    <!-- Tier 1: Foundation Info -->
+    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
+    <ul>
+      <li><a href="/foundation/index.html">Foundation Portal</a></li>
+      <li><a href="/foundation/charter.html">Foundation Charter</a></li>
+      <li><a href="/foundation/governance.html">Governance & Merit</a></li>
+      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+      <li><a href="/foundation/sponsorship.html">Sponsorship & Support</a></li>
+      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/" class="active">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: Document Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
+      <li><a href="demo.html" class="active">Live WebGPU Demo</a></li>
+      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
+      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+    </ul>
+    <!-- Tier 4: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="/" target="_blank">Founder Digital CV</a></li>
+    </ul>
+  </nav>
         <main class="content">
             <h2 data-i18n="playgrounds.attentionH2">6. FlashAttention-2 vs Standard Attention Profiler</h2>
             <p data-i18n="playgrounds.attentionDesc">Profiles on-chip SRAM tiling and evaluates real-time VRAM scaling from O(N^2) to O(N) across varying sequence lengths.</p>
