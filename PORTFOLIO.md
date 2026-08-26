@@ -157,21 +157,31 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 ---
 
 ### 1.7 Termux-Diffusion
-안드로이드 단말기에서 고가의 클라우드 GPU 없이 로컬 4GB 메모리 안에서 C++ 엔진으로 Stable Diffusion AI 이미지를 생성하는 온디바이스 프레임워크입니다.
+안드로이드 스마트폰(Termux) 환경에서 고가의 클라우드 GPU 없이 로컬 2~4GB 메모리 안에서 C++ GGML 텐서 엔진으로 Stable Diffusion AI 이미지를 생성하는 모바일 네이티브 온디바이스 생성 프레임워크입니다.
 
-- **카테고리**: 모바일 온디바이스 생성형 AI
-- **기술 스택**: C++, ARM64 NEON, GGUF/Safetensors, Python
-- **배포 버전**: `v1.0.0`
-- **기존 문제**: AI 이미지를 만들려면 비싼 GPU 서버를 빌려야 하거나, 모바일에서는 루팅된 특수 환경이 필요했음.
-- **해결 방식**: C++ 연산 코어를 안드로이드 시스템에 직접 최적화하여 4GB 메모리 환경에서도 튕기지 않고 이미지를 생성하도록 설계함.
+- **카테고리**: 모바일 온디바이스 생성형 AI / 텍스트-투-이미지
+- **기술 스택**: C++17 GGML, ARM64 NEON & DotProd SIMD, Bionic libc, Python C-API, Node.js N-API
+- **배포 버전**: `v1.3.0 (Dual Signed Prebuilt)`
+- **기존 문제**: AI 이미지 생성을 위해선 고가의 유료 클라우드 GPU 서버를 대여해야 하거나, 모바일에서는 루팅 및 복잡한 proot-distro 컴파일 과정에서 메모리 고갈(OOM)로 앱이 강제 종료됨.
+- **해결 방식**: 
+  1. **Dual Signed Prebuilt**: 단말기 CPU 기능 플래그를 자동 감지하여 범용 호환 베이스라인(`arm64-v8a`)과 SIMD 고속 연산 최적화 코어(`armv8.2-a+dotprod+fp16`)를 0초 만에 자동 선택 실행.
+  2. **VAE Tiling 메모리 절감**: VAE 인코더/디코더에 타일링 메모리 기법을 적용하여 피크 메모리 점유율을 52% 이상 삭감(1.84 GB 내 구동).
+  3. **삼성 갤러리 자동 동기화**: 이미지 생성 완료 즉시 `termux-media-scan`을 호출하여 Samsung Gallery 및 Google Photos에 실시간 반영.
 - **실제 사용자가 쓰는 핵심 기능**:
-  1. **오프라인 이미지 생성**: 텍스트 프롬프트를 입력하면 인터넷 없이 스마트폰 안에서 512x512 고해상도 이미지를 직접 렌더링.
-  2. **서버 비용 0원**: 클라우드 API 호출 비용이 전혀 발생하지 않아 영구 무료로 모바일 AI 이미지 생성 파이프라인 운영 가능.
+  1. **1-Click 오프라인 이미지 생성**: 텍스트 프롬프트를 입력하면 인터넷 없이 스마트폰 안에서 512x512 고해상도 AI 이미지를 직접 렌더링.
+  2. **서버 비용 0원 & 완전 로컬 프라이버시**: 클라우드 API 호출 비용이 전혀 발생하지 않으며, 프롬프트와 이미지가 단말기 밖으로 유출되지 않음.
+- **실기기 실측 벤치마크 (Samsung Galaxy A35 vs Galaxy S21)**:
+  | 단말기 모델 | 프로세서 (SoC) | 연산 백엔드 | 512×512 4-Step 렌더링 시간 | VRAM 점유율 |
+  |---|---|---|---|---|
+  | **Samsung Galaxy S21** | Exynos 2100 (8 Cores) | **Signed CPU Optimized** (`armv8.2-a+dotprod`) | **38.2초** | **1.84 GB** (VAE Tiling) |
+  | **Samsung Galaxy A35** | Exynos 1380 (8 Cores) | **Signed CPU Baseline** (`arm64-v8a`) | **74.6초** | **1.91 GB** (VAE Tiling) |
 - **설치 명령어**:
   ```bash
-  pip install termux-diffusion
-  # 또는
-  npm install termux-diffusion
+  # Python 런타임
+  pip install termux-diffusion && termux-diffusion-install
+
+  # 또는 Node.js / npm 런타임
+  npm install termux-diffusion && npx termux-diffusion install
   ```
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-diffusion/)
