@@ -2,10 +2,10 @@
 
 ---
 
-## [v2.1.0] - 2026-08-26
+## [v2.1.1] - 2026-08-26
 
 ### 🚀 Overview
-**AMEVA-Sentinel v2.1** transitions from experimental deterministic identity heuristics to a **Shadow-first, multi-axis automation risk observation architecture**. This release resolves historical specification-implementation drifts, enforces strict application-level data minimization (Zero Raw IP Persistence in Application Tables), introduces pluggable Edge Provider Adapters (Cloudflare, Vercel, Fastly, Generic), formalizes Trust Boundary verification guardrails, and provides transparent Signal Coverage metrics.
+**AMEVA-Sentinel v2.1.1** transitions from experimental deterministic identity heuristics to a **Shadow-first, multi-axis automation risk observation architecture** and delivers the official **Python SDK (FastAPI, Starlette, Flask, Django)** alongside updated TypeScript/Node.js packages. This release resolves historical specification-implementation drifts, enforces strict application-level data minimization (Zero Raw IP Persistence in Application Tables), introduces pluggable Edge Provider Adapters (Cloudflare, Vercel, Fastly, Generic), formalizes Trust Boundary verification guardrails, and provides transparent Signal Coverage metrics.
 
 ---
 
