@@ -4,28 +4,19 @@
   "package_name_pypi": "",
   "package_name_npm": "ameva-mcp-hub",
   "version": "v3.0.0",
-  "release_name": "Universal Polyglot & AI Vector MCP Hub",
+  "release_name": "Universal Polyglot WASM Hub",
   "license": "Apache-2.0",
   "platform": "ARM64 / WebGPU / Web Standard",
   "github_repo_url": "https://github.com/uno-km/ameva-mcp-hub",
-  "tagline_en": "Zero-Install Universal Polyglot WASM & AI Vector Model Context Protocol Hub",
-  "tagline_ko": "무설치 다국어 WebAssembly 및 AI 벡터 지원 유니버설 MCP 허브 & SDK",
-  "quick_install_cmd": "npx ameva-mcp-hub\n# or as SDK:\nnpm install ameva-mcp-hub",
-  "why_challenge_en": "Traditional MCP setups require gigabytes of compiler toolchains (JDK, Rust, Python virtualenvs) for each repository on the host machine with heavy memory overhead.",
-  "why_challenge_ko": "기존의 MCP 서버 구성은 리포지토리마다 호스트 PC에 JDK, Rust, Clang, Python 가상환경 등 수 기가바이트의 컴파일러를 요구하며, 다중 데몬 프로세스로 인한 높은 메모리 점유율을 유발합니다.",
-  "description_en": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.",
-  "description_ko": "단일 Node.js 프로세스 내부에서 WASI WebAssembly 바이트코드를 인메모리로 실행하여 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 <1ms 속도로 구동하며, 동적 깃허브 다중 리포지토리 구독과 실시간 AI 도구 전파를 지원합니다.",
+  "tagline_en": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+  "tagline_ko": "무설치 다국어 WebAssembly 및 깃허브 다중 리포지토리 지원 유니버설 MCP 허브 & SDK",
+  "quick_install_cmd": "npx ameva-mcp-hub\n# or SDK:\nnpm install ameva-mcp-hub",
+  "why_challenge_en": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+  "why_challenge_ko": "기존 MCP 서버는 리포지토리마다 호스트 PC에 언어별 컴파일러와 가상환경을 개별 설치해야 하는 환경 오염을 유발합니다.",
+  "description_en": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+  "description_ko": "단일 Node.js 프로세스 메모리에서 WASI 바이트코드를 즉시 실행(<1ms)하여 호스트 컴파일러 없이 C++, Rust, Java, Python 도구를 구동하고 깃허브 도구를 실시간 동기화합니다.",
   "code_example_py": "",
-  "code_example_js": "import { MCPHub } from \"ameva-mcp-hub\";\n\nconst hub = new MCPHub({ port: 3000, vectorSearch: true });\nawait hub.start();\nconst result = await hub.executeTool(\"calc_hash\", { input: \"AMEVA Sovereign Data\" });\nconsole.log(\"Output:\", result);",
-  "custom_pages_overview": [],
-  "custom_pages_reference": [
-    {
-      "href": "tools.html",
-      "title": "WASM Tools Catalog",
-      "subtitle": "Polyglot WASI in-memory tool manifests",
-      "body": "<h3>Supported In-Memory WASM Binaries</h3><p>Pre-compiled WASI micro-tools executing with sub-millisecond cold starts and zero local compiler prerequisites.</p>"
-    }
-  ],
+  "code_example_js": "import { MCPHub } from 'ameva-mcp-hub';\nconst hub = new MCPHub({ port: 3000 });\nawait hub.start();",
   "features": [
     {
       "title_en": "Deterministic 0-Drift Output",

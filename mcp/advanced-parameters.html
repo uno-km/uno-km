@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.">
+  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  
+  
+  
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   
   
@@ -17,7 +22,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-    <header>
+      <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
@@ -25,7 +30,7 @@
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v3.0.0</span>
       <div class="lang-selector-wrapper"></div>
-      
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
       <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
@@ -34,22 +39,25 @@
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-    <!-- Tier 1: Foundation Info -->
-    <h3 data-i18n="common.nav.foundation">Foundation Info</h3>
+      <nav class="sidebar">
+    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
+    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
-      <li><a href="/foundation/index.html">Foundation Portal</a></li>
-      <li><a href="/foundation/charter.html">Foundation Charter</a></li>
-      <li><a href="/foundation/governance.html">Governance & Merit</a></li>
-      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
-      <li><a href="/foundation/sponsorship.html">Sponsorship & Support</a></li>
-      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="tools.html">WASM Tools Catalog</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/" class="active">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
       <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
       <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
@@ -58,26 +66,13 @@
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
-    <!-- Tier 3: Document Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-    <ul>
-      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
-      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
-      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
-      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
-      <li><a href="tools.html">WASM Tools Catalog</a></li>
-      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html" class="active" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
-      <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
-    </ul>
-    <!-- Tier 4: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-      <li><a href="/" target="_blank">Founder Digital CV</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
     </ul>
   </nav>
 

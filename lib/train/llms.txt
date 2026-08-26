@@ -9,13 +9,7 @@
 ## Canonical Code Pattern
 ```python
 import termux_train as tt
-
-x = tt.tensor([1.0, 2.0, 3.0], requires_grad=True)
-y = (x * 2.0 + 1.0).sum()
+x = tt.tensor([1.0, 2.0], requires_grad=True)
+y = (x * 2.0).sum()
 y.backward()
-print("Gradients:", x.grad)
 ```
-
-## Key Constraints
-- Pure non-blocking architecture, zero memory leaks.
-- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.

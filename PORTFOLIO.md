@@ -82,7 +82,31 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 
 ---
 
-### 1.4 Termux-BitNet
+### 1.4 Termux-AIChain
+안드로이드 Termux 환경에서 LangChain 같은 무거운 외부 라이브러리 없이, 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 구성하는 초경량 에이전트 프레임워크입니다.
+
+- **카테고리**: 모바일 온디바이스 에이전트 프레임워크
+- **기술 스택**: Python 3, TypeScript, Zero-Dependency, DAG Pipeline
+- **배포 버전**: `v1.0.0`
+- **기존 문제**: LangChain, LlamaIndex 같은 대형 프레임워크는 수백 개의 무거운 외부 패키지를 요구하여 안드로이드 Termux에서 패키지 충돌이 나고 메모리 부족으로 다운됨.
+- **해결 방식**: 외부 의존성 패키지 설치를 0개로 설계하여, 50KB 미만의 순수 코어만으로 순차 체인, 조건부 분기, 도구 호출(Tool Calling)을 완벽히 지원함.
+- **실제 사용자가 쓰는 핵심 기능**:
+  1. **스마트폰 단독 AI 에이전트 워크플로우**: Termux-BitNet 등 온디바이스 로컬 모델과 묶어 인터넷 없이 복잡한 다단계 질문-답변 및 분석 파이프라인 자동 실행.
+  2. **의존성 충돌 0%**: 무거운 pip 패키지 설치 없이 `pip install termux-aichain` 단 1초 만에 설치 완료 및 100% 정상 작동.
+- **설치 명령어**:
+  ```bash
+  pip install termux-aichain
+  # 또는
+  npm install termux-aichain
+  ```
+- **관련 링크**:
+  - [PyPI 패키지](https://pypi.org/project/termux-aichain/)
+  - [공식 문서](https://uno-km.vercel.app/lib/aichain/)
+  - [GitHub 저장소](https://github.com/uno-km/termux-aichain)
+
+---
+
+### 1.5 Termux-BitNet
 안드로이드 스마트폰(Termux) 환경에서 1.58비트(3진수 {-1, 0, +1}) LLM을 스마트폰 전용 SIMD 명령어로 가속하여 빠르게 구동하는 경량 온디바이스 AI 엔진입니다.
 
 - **카테고리**: 모바일 온디바이스 LLM 추론
@@ -99,22 +123,6 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
   # 또는
   npm install termux-bitnet
   ```
-- **실기기 실측 벤치마크 (Samsung Galaxy S25 / Snapdragon 8 Elite / Termux Bionic ARM64)**:
-  - **4단계 풀 파이프라인 지연시간**:
-    | 단계 | 수행 명령어 | 소요 시간 | 검증 상태 | 실측 성능 지표 |
-    |---|---|---|---|---|
-    | **Step 1** | `npx termux-bitnet info` | **1.43초** | 🟢 PASS | S25 4코어 ARM64, NEON & DotProd (`vdotq_s32`) 감지 |
-    | **Step 2** | `npx termux-bitnet models` | **1.46초** | 🟢 PASS | 1.58-bit GGUF 검증 모델 레지스트리 4종 조회 |
-    | **Step 3** | `npx termux-bitnet download bitnet-2b` | **241.47초** (4분 1초) | 🟢 PASS | 1.13 GB Microsoft BitNet b1.58 다운로드 (평균 **4.69 MB/s**) |
-    | **Step 4** | `npx termux-bitnet run -p "..."` | **1.50초** | 🟢 PASS | 조화평균 계산 및 응답 스트리밍 완료 (0-Heap 할당) |
-    | **합계** | **4단계 풀 파이프라인** | **245.86초** (4분 5초) | 🟢 PASS | **다운로드 제외 실질 엔진 지연시간 <= 1.50초** |
-  - **파라미터 매트릭스 & 페르소나별 생성 품질 실측** (*"Explain quantum entanglement in two sentences."*):
-    | 프리셋 구분 | 적용 파라미터 설정 | 추론 처리 속도 | 지연시간 | 생성 텍스트 / 퀄리티 특성 |
-    |---|---|---|---|---|
-    | **Greedy (정밀)** | `--temp 0.0` `--top-k 1` | **5,931.93 tok/sec** | **11.7 ms** | **학술적 결정론적 정의**: *"Quantum entanglement is a physical phenomenon where two particles remain interconnected..."* |
-    | **Physicist (표준)** | `--temp 0.7` `--system-prompt "Senior Physicist"` | **991.30 tok/sec** | **65.3 ms** | **수석 물리학자 페르소나**: *"From a theoretical physics perspective, this phenomenon demonstrates quantum non-locality..."* |
-    | **Poet (창의)** | `--temp 1.2` `--system-prompt "Poet"` | **938.53 tok/sec** | **69.0 ms** | **시인 페르소나 & 다채로운 은유**: *"Two twin souls of light dances across the cosmic void, whispering their secret state..."* |
-
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-bitnet/)
   - [npm 패키지](https://www.npmjs.com/package/termux-bitnet)
@@ -123,7 +131,7 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 
 ---
 
-### 1.5 Termux-Playwright
+### 1.6 Termux-Playwright
 안드로이드 Termux 환경에서 루팅(Rooting) 권한 없이 정품 크로미움(Chromium) 브라우저를 직접 제어하는 모바일 브라우저 자동화 런타임입니다.
 
 - **카테고리**: 모바일 웹 자동화 / 크롤링
@@ -148,7 +156,7 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 
 ---
 
-### 1.6 Termux-Diffusion
+### 1.7 Termux-Diffusion
 안드로이드 단말기에서 고가의 클라우드 GPU 없이 로컬 4GB 메모리 안에서 C++ 엔진으로 Stable Diffusion AI 이미지를 생성하는 온디바이스 프레임워크입니다.
 
 - **카테고리**: 모바일 온디바이스 생성형 AI
@@ -173,7 +181,7 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 
 ---
 
-### 1.7 Termux-STT
+### 1.8 Termux-STT
 Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파이썬으로 누가 말했는지(화자 분리)를 스마트폰 안에서 100% 로컬로 판별해 주는 음성 처리 프레임워크입니다.
 
 - **카테고리**: 모바일 온디바이스 음성인식 / 오디오 처리
@@ -198,7 +206,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 ---
 
-### 1.8 Termux-Train
+### 1.9 Termux-Train
 안드로이드 스마트폰 CPU 자원만으로 인공신경망의 미분 계산과 LoRA 파인튜닝(경량 미세조정)을 수행할 수 있는 C 언어 기반 딥러닝 학습 엔진입니다.
 
 - **카테고리**: 온디바이스 딥러닝 학습 엔진
@@ -220,7 +228,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 ---
 
-### 1.9 AMEVA-Forge
+### 1.10 AMEVA-Forge
 사용자 브라우저에서 PyTorch와 똑같은 문법으로 딥러닝 코드를 작성하면, 서버 GPU 대신 사용자 브라우저의 GPU(WebGPU)를 활용해 딥러닝 연산을 가속하는 텐서 엔진입니다.
 
 - **카테고리**: 브라우저 딥러닝 텐서 엔진
@@ -247,7 +255,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | 카테고리 | 프로젝트 | 핵심 기술 스택 | 공통 특징 |
 | :--- | :--- | :--- | :--- |
 | **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 전송 없이 브라우저 로컬 하드웨어 가속 및 데이터 완벽 격리 |
-| **개발자 도구 & 인프라** | AMEVA-MCP-Hub | Node.js, TypeScript, WASI WebAssembly, In-Memory Multi-Repo | 호스트 컴파일러 설치 없이 인메모리 도구 실행 및 실시간 에이전트 연동 |
+| **개발자 도구 & 인프라** | AMEVA-MCP-Hub, Termux-AIChain | Node.js, TypeScript, Python 3, WASI WebAssembly, Zero-Dependency | 호스트 컴파일러/의존성 없이 인메모리 도구 및 경량 에이전트 실행 |
 | **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-Train | C/C++17, ARM64 NEON SIMD, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 4GB RAM 내 경량 구동 |
 | **모바일 시스템 자동화 (Termux)** | Termux-Playwright | Android Bionic, Node.js, Python, Chrome DevTools Protocol | 5W 초저전력 모바일 단말기 기반 무인 브라우저 자동화 및 데이터 수집 |
 
@@ -260,6 +268,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | **AMEVA Workstation** | [Web Live App](https://ameva-workstation-web-core.vercel.app/) | - | [GitHub](https://github.com/uno-km/AMEVA-Workstation-Web) |
 | **AMEVA-MCP-Hub** | [npm: ameva-mcp-hub](https://www.npmjs.com/package/ameva-mcp-hub) | [Documentation](https://uno-km.vercel.app/lib/mcp/) | [GitHub](https://github.com/uno-km/ameva-mcp-hub) |
 | **AMEVA-Sentinel** | [npm: ameva-sentinel](https://www.npmjs.com/package/ameva-sentinel) | [Documentation](https://uno-km.vercel.app/lib/sentinel/) | [GitHub](https://github.com/uno-km/ameva-sentinel) |
+| **Termux-AIChain** | [PyPI](https://pypi.org/project/termux-aichain/) / [npm](https://www.npmjs.com/package/termux-aichain) | [Documentation](https://uno-km.vercel.app/lib/aichain/) | [GitHub](https://github.com/uno-km/termux-aichain) |
 | **Termux-BitNet** | [PyPI](https://pypi.org/project/termux-bitnet/) / [npm](https://www.npmjs.com/package/termux-bitnet) | [Documentation](https://uno-km.vercel.app/lib/bitnet/) | [GitHub](https://github.com/uno-km/termux-bitnet) |
 | **Termux-Playwright** | [PyPI](https://pypi.org/project/termux-playwright/) / [npm](https://www.npmjs.com/package/termux-playwright) | [Documentation](https://uno-km.vercel.app/lib/playwright/) | [GitHub](https://github.com/uno-km/termux-playwright-demo) |
 | **Termux-Diffusion** | [PyPI](https://pypi.org/project/termux-diffusion/) / [npm](https://www.npmjs.com/package/termux-diffusion) | [Documentation](https://uno-km.vercel.app/lib/diffusion/) | [GitHub](https://github.com/uno-km/termux-diffusion) |

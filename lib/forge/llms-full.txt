@@ -3,26 +3,11 @@ Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
 Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax
-Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.
+Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.
 
 ## 2. Package & Installation
 - PyPI: ameva
 - Command: pip install ameva
-# or in browser:
+# or CDN:
 <script src="https://uno-km.github.io/uno-km/lib/forge/ameva.js"></script>
 - Repository: https://github.com/uno-km/AMEVA-Forge
-
-## 3. Core Capabilities
-- **Deterministic 0-Drift Output**: Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.
-- **Zero Cloud Egress Architecture**: Operates 100% on the local client without external network telemetry leaks.
-- **Memory Leakage Protection**: Weakref lifetime management preventing GPU VRAM / system RAM leaks.
-
-## 4. Canonical Implementation
-```python
-import ameva as am
-
-x = am.tensor([[1.0, 2.0], [3.0, 4.0]], device="webgpu", requires_grad=True)
-y = (x ** 2).sum()
-y.backward()
-print("WebGPU Gradients:", x.grad)
-```

@@ -4,20 +4,14 @@
 ## Quick Specification for AI Coding Agents
 - Official Repo: https://github.com/uno-km/AMEVA-Forge
 - Installation: `pip install ameva
-# or in browser:
+# or CDN:
 <script src="https://uno-km.github.io/uno-km/lib/forge/ameva.js"></script>`
-- Architecture: Compiles autograd computation graphs directly to WGSL WebGPU compute shaders, executing training and inference entirely on the client GPU with zero server egress.
+- Architecture: Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.
 
 ## Canonical Code Pattern
 ```python
 import ameva as am
-
-x = am.tensor([[1.0, 2.0], [3.0, 4.0]], device="webgpu", requires_grad=True)
+x = am.tensor([1.0, 2.0], device='webgpu', requires_grad=True)
 y = (x ** 2).sum()
 y.backward()
-print("WebGPU Gradients:", x.grad)
 ```
-
-## Key Constraints
-- Pure non-blocking architecture, zero memory leaks.
-- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.

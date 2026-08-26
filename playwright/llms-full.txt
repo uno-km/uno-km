@@ -1,34 +1,13 @@
-# Termux-Playwright Full Technical Specification (v1.2.0)
+# Termux-Playwright Full Technical Specification (v1.0.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Non-Root Chromium Browser Automation & CDP Engine for Android Termux
-Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.
+Non-Root Real Chromium Automation & CDP Engine for Android Termux
+Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.
 
 ## 2. Package & Installation
 - PyPI: termux-playwright
 - Command: pip install termux-playwright
-# or: npm install termux-playwright
+# or:
+npm install termux-playwright
 - Repository: https://github.com/uno-km/termux-playwright-demo
-
-## 3. Core Capabilities
-- **Direct CDP Control Channel**: Connects directly via Chrome DevTools Protocol without heavy WebDriver server binaries.
-- **Non-Root Mobile Execution**: Fully operational inside standard Termux without root privileges or custom ROMs.
-- **Full Python & JavaScript APIs**: Offers familiar Playwright-compatible async page navigation, selectors, and evaluation.
-
-## 4. Canonical Implementation
-```python
-from termux_playwright import chromium
-
-async def main():
-    browser = await chromium.launch(headless=True)
-    page = await browser.new_page()
-    await page.goto("https://uno-km.github.io/uno-km/")
-    title = await page.title()
-    print(f"Page Title: {title}")
-    await browser.close()
-
-import asyncio
-asyncio.run(main())
-
-```

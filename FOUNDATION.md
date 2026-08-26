@@ -89,6 +89,7 @@ flowchart TD
         STT["termux-stt<br/>(통합 온디바이스 음성인식 & 128d 화자분리)"]
         Train["termux-train<br/>(초경량 온디바이스 텐서 & DAG 자동미분)"]
         BitNet["termux-bitnet<br/>(ARM64 NEON 1.58비트 온디바이스 LLM 추론)"]
+        AIChain["Termux-AIChain<br/>(Zero-Dependency Edge Agent & LLM Chaining Framework)"]
         MCPHub["ameva-mcp-hub<br/>(유니버설 다국어 WASM & AI 벡터 MCP 허브)"]
         Forge["AMEVA-Forge<br/>(브라우저 네이티브 WebGPU 텐서 가속 엔진)"]
         Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]

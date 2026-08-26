@@ -11,27 +11,12 @@
   "tagline_en": "Non-Root On-Device Stable Diffusion Image Generation Framework for Android Termux",
   "tagline_ko": "안드로이드 Termux 환경을 위한 비루팅 온디바이스 Stable Diffusion AI 이미지 생성 프레임워크",
   "quick_install_cmd": "pip install termux-diffusion\n# or:\nnpm install termux-diffusion",
-  "why_challenge_en": "Running heavy image generation models usually requires cloud GPUs or rooted mobile environments with custom Linux kernels.",
-  "why_challenge_ko": "기존 AI 이미지 생성 모델은 고비용 클라우드 GPU나 루팅된 리눅스 커널 환경을 필수로 요구했습니다.",
-  "description_en": "Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 / Turbo entirely locally within 4GB RAM.",
+  "why_challenge_en": "Running heavy image generation models usually requires cloud GPUs or rooted mobile environments.",
+  "why_challenge_ko": "기존 AI 이미지 생성 모델은 고비용 클라우드 GPU나 루팅된 리눅스 환경을 필수로 요구했습니다.",
+  "description_en": "Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 entirely locally within 4GB RAM.",
   "description_ko": "C++ NEON 커널을 안드로이드 Bionic libc에 직접 빌드하여 4GB 메모리 환경에서도 루팅 없이 로컬 이미지 생성을 완벽히 수행합니다.",
-  "code_example_py": "import termux_diffusion as td\n\npipe = td.DiffusionPipeline.from_pretrained(\"sd-turbo-arm64\")\nimage = pipe.generate(\"A cinematic futuristic laboratory in Seoul\", steps=4)\nimage.save(\"output.png\")",
-  "code_example_js": "import { DiffusionPipeline } from \"termux-diffusion\";\n\nconst pipe = await DiffusionPipeline.load(\"sd-turbo-arm64\");\nconst imgBuffer = await pipe.generate(\"A high-tech cyberpunk workstation\", { steps: 4 });",
-  "custom_pages_overview": [],
-  "custom_pages_reference": [
-    {
-      "href": "gallery.html",
-      "title": "Visual Showcase Gallery",
-      "subtitle": "Samples generated entirely locally on Samsung Galaxy S20/S24",
-      "body": "<h3>On-Device Image Samples</h3><p>Gallery of 512x512 images generated directly on mobile ARM64 hardware without server egress.</p>"
-    },
-    {
-      "href": "models.html",
-      "title": "SD Checkpoint Models",
-      "subtitle": "Optimized SD 1.5, SD-Turbo, and LCM models for mobile RAM",
-      "body": "<h3>Supported Checkpoints</h3><p>Quantized checkpoint weights formatted for Bionic C++ NEON inference.</p>"
-    }
-  ],
+  "code_example_py": "import termux_diffusion as td\npipe = td.DiffusionPipeline.from_pretrained('sd-turbo-arm64')\nimg = pipe.generate('cyberpunk city')",
+  "code_example_js": "import { DiffusionPipeline } from 'termux-diffusion';\nconst pipe = await DiffusionPipeline.load('sd-turbo-arm64');",
   "features": [
     {
       "title_en": "Deterministic 0-Drift Output",

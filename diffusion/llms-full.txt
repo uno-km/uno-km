@@ -3,7 +3,7 @@ Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
 Non-Root On-Device Stable Diffusion Image Generation Framework for Android Termux
-Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 / Turbo entirely locally within 4GB RAM.
+Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 entirely locally within 4GB RAM.
 
 ## 2. Package & Installation
 - PyPI: termux-diffusion
@@ -11,17 +11,3 @@ Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffus
 # or:
 npm install termux-diffusion
 - Repository: https://github.com/uno-km/termux-diffusion
-
-## 3. Core Capabilities
-- **Deterministic 0-Drift Output**: Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.
-- **Zero Cloud Egress Architecture**: Operates 100% on the local client without external network telemetry leaks.
-- **Memory Leakage Protection**: Weakref lifetime management preventing GPU VRAM / system RAM leaks.
-
-## 4. Canonical Implementation
-```python
-import termux_diffusion as td
-
-pipe = td.DiffusionPipeline.from_pretrained("sd-turbo-arm64")
-image = pipe.generate("A cinematic futuristic laboratory in Seoul", steps=4)
-image.save("output.png")
-```

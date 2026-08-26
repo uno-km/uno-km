@@ -3,23 +3,11 @@ Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
 Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK
-Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage.
+Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.
 
 ## 2. Package & Installation
 - PyPI: 
 - Command: npm install ameva-sentinel
-# or via CDN script:
+# or CDN:
 <script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"></script>
 - Repository: https://github.com/uno-km/ameva-sentinel
-
-## 3. Core Capabilities
-- **Deterministic 0-Drift Output**: Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.
-- **Zero Cloud Egress Architecture**: Operates 100% on the local client without external network telemetry leaks.
-- **Memory Leakage Protection**: Weakref lifetime management preventing GPU VRAM / system RAM leaks.
-
-## 4. Canonical Implementation
-```python
-import jwt
-claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
-print(f"Verified Client Risk Score: {claims['risk_score']}")
-```

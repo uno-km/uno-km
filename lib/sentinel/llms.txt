@@ -4,17 +4,11 @@
 ## Quick Specification for AI Coding Agents
 - Official Repo: https://github.com/uno-km/ameva-sentinel
 - Installation: `npm install ameva-sentinel
-# or via CDN script:
+# or CDN:
 <script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"></script>`
-- Architecture: Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage.
+- Architecture: Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.
 
 ## Canonical Code Pattern
 ```python
-import jwt
-claims = jwt.decode(sentinel_token, secret_key, algorithms=["HS256"])
-print(f"Verified Client Risk Score: {claims['risk_score']}")
-```
 
-## Key Constraints
-- Pure non-blocking architecture, zero memory leaks.
-- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.
+```

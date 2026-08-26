@@ -4,28 +4,19 @@
   "package_name_pypi": "",
   "package_name_npm": "ameva-sentinel",
   "version": "v1.0.0",
-  "release_name": "Target Discrimination & Trust Boundary Standard",
+  "release_name": "Target Discrimination Standard",
   "license": "Apache-2.0",
   "platform": "ARM64 / WebGPU / Web Standard",
   "github_repo_url": "https://github.com/uno-km/ameva-sentinel",
   "tagline_en": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
   "tagline_ko": "개인정보 침해 없는 0-Data 브라우저 관측 및 0~100점 확정적 위험도 채점 보안 SDK",
-  "quick_install_cmd": "npm install ameva-sentinel\n# or via CDN script:\n<script src=\"https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js\"></script>",
-  "why_challenge_en": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes, form inputs, and behavioral telemetry back to central cloud collectors.",
-  "why_challenge_ko": "기존의 클라이언트 보안 SDK는 민감한 키 입력, 폼 데이터, 행동 데이터를 중앙 클라우드로 전송하여 사용자 개인정보 침해 위험을 초래합니다.",
-  "description_en": "Delivers zero-data privacy protection with deterministic 0~100 threat scoring computed entirely on the client, verified across major browser engines with zero external telemetry leakage.",
-  "description_ko": "입력값 수집 없이 확정적 0~100점 위험도 채점 알고리즘을 클라이언트 내부에서 완전히 연산하며, 외부 유출 없이 브라우저 무결성을 검증합니다.",
-  "code_example_py": "import jwt\nclaims = jwt.decode(sentinel_token, secret_key, algorithms=[\"HS256\"])\nprint(f\"Verified Client Risk Score: {claims['risk_score']}\")",
-  "code_example_js": "import { Sentinel } from \"ameva-sentinel\";\n\nconst sentinel = new Sentinel({ sampleRate: 1.0 });\nawait sentinel.init();\nconst report = await sentinel.evaluate();\nconsole.log(\"Client Risk Score:\", report.score);",
-  "custom_pages_overview": [],
-  "custom_pages_reference": [
-    {
-      "href": "admin.html",
-      "title": "Observability Console",
-      "subtitle": "Deterministic rule engine live inspector and risk threshold tuning",
-      "body": "<h3>Threat Discrimination Engine</h3><p>Real-time client telemetry evaluation and token verification without PII collection.</p>"
-    }
-  ],
+  "quick_install_cmd": "npm install ameva-sentinel\n# or CDN:\n<script src=\"https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js\"></script>",
+  "why_challenge_en": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+  "why_challenge_ko": "기존 봇 탐지 솔루션은 사용자 키 입력 및 마우스 움직임을 서버로 전송하여 개인정보 침해 위험을 초래합니다.",
+  "description_en": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+  "description_ko": "사용자 입력 수집 없이 브라우저 구조 신호만으로 0~100점 위험도를 클라이언트 내부에서 즉시 연산하고 HMAC-SHA256 암호화 토큰을 발급합니다.",
+  "code_example_py": "",
+  "code_example_js": "import { Sentinel } from 'ameva-sentinel';\nconst sentinel = new Sentinel();\nawait sentinel.init();\nconst report = await sentinel.evaluate();\nconsole.log(report.score);",
   "features": [
     {
       "title_en": "Deterministic 0-Drift Output",

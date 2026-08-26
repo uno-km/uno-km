@@ -6,17 +6,11 @@
 - Installation: `pip install termux-diffusion
 # or:
 npm install termux-diffusion`
-- Architecture: Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 / Turbo entirely locally within 4GB RAM.
+- Architecture: Compiles C++ NEON kernels directly to Android Bionic libc, running Stable Diffusion v1.5 entirely locally within 4GB RAM.
 
 ## Canonical Code Pattern
 ```python
 import termux_diffusion as td
-
-pipe = td.DiffusionPipeline.from_pretrained("sd-turbo-arm64")
-image = pipe.generate("A cinematic futuristic laboratory in Seoul", steps=4)
-image.save("output.png")
+pipe = td.DiffusionPipeline.from_pretrained('sd-turbo-arm64')
+img = pipe.generate('cyberpunk city')
 ```
-
-## Key Constraints
-- Pure non-blocking architecture, zero memory leaks.
-- Strictly adhere to closed-form precision and WebGPU/Bionic ARM64 native targets.
