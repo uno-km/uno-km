@@ -38,7 +38,7 @@
   --code-border: #1e293b;
 
   /* Layout Metrics */
-  --sidebar-width: 270px;
+  --sidebar-width: 310px;
   --header-height: 58px;
   --content-max-width: 980px;
 
@@ -672,4 +672,20 @@ footer {
 .btn-sm.fnd-pkg:hover {
   filter: brightness(0.9);
   color: #ffffff !important;
+}
+
+
+/* ── Sidebar Single-Line Wrap Prevention ──────────────────────────────── */
+:root {
+  --sidebar-width: 310px !important;
+}
+
+.sidebar {
+  width: 310px !important;
+}
+
+.sidebar a {
+  white-space: nowrap !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

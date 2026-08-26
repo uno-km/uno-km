@@ -37,7 +37,7 @@
   --code-border: #1e293b;
 
   /* Layout Metrics */
-  --sidebar-width: 270px;
+  --sidebar-width: 310px;
   --header-height: 58px;
   --content-max-width: 1040px;
 
@@ -779,4 +779,20 @@ footer {
 
 .pkg-dropdown-item.npm:hover {
   color: #cb3837;
+}
+
+
+/* ── Sidebar Single-Line Wrap Prevention ──────────────────────────────── */
+:root {
+  --sidebar-width: 310px !important;
+}
+
+.sidebar {
+  width: 310px !important;
+}
+
+.sidebar a {
+  white-space: nowrap !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
