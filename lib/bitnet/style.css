@@ -617,3 +617,65 @@ footer {
     margin-top: 6px;
   }
 }
+
+
+/* ── Split Header Dual Button (pip / npm Hover FX) ────────────────────── */
+.header-btn-dual {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 1px 2px;
+  font-size: 0.82em;
+  font-weight: 600;
+  line-height: 1.4;
+  vertical-align: middle;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.header-btn-dual:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.header-btn-dual .dual-link {
+  display: inline-block;
+  padding: 3px 8px;
+  text-decoration: none;
+  color: var(--text-main, #334155);
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.header-btn-dual .dual-link.pip-link:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-link.npm-link:hover {
+  background-color: #cb3837 !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-divider {
+  color: var(--text-subtle, #94a3b8);
+  font-size: 0.85em;
+  padding: 0 1px;
+  user-select: none;
+}
+
+/* Single Registry Button Colors */
+.header-btn.npm-btn:hover {
+  background-color: #cb3837 !important;
+  border-color: #cb3837 !important;
+  color: #ffffff !important;
+}
+
+.header-btn.pypi-btn:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}

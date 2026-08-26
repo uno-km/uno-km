@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | Termux-AIChain</title>
   <meta name="description" content="Hardware acceleration, Termux Bionic ARM64 setup, and one-touch CLI diagnostics">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
   <header>
@@ -21,8 +21,11 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.9</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;">Foundation</a>
-      <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="header-btn" title="PyPI: termux-aichain">PyPI (pip)</a>
-      <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="header-btn npm-btn" title="npm: termux-aichain">npm</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="header-btn primary">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;">Founder CV</a>
