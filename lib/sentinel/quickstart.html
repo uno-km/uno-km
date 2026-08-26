@@ -205,6 +205,41 @@ if (!isValid) {
   return res.status(401).json({ error: 'Invalid or expired Sentinel token' });
 }</code></pre>
 
+      
+      <h3>Recipe 6: 1-Line Embedded Observability Dashboard (/sentinel/dashboard)</h3>
+      <p>Serve the full real-time forensic observability &amp; risk dashboard directly inside your application with zero external hosting dependencies:</p>
+      <pre><code class="language-typescript">// 1. Express (TypeScript / Node.js)
+import express from 'express';
+import { createExpressDashboardHandler } from '@ameva/sentinel/dashboard';
+
+const app = express();
+app.use('/sentinel/dashboard', createExpressDashboardHandler());
+
+// 2. Fastify (TypeScript / Node.js)
+import Fastify from 'fastify';
+import { createFastifyDashboardHandler } from '@ameva/sentinel/dashboard';
+
+const fastify = Fastify();
+fastify.get('/sentinel/dashboard', createFastifyDashboardHandler());
+
+// 3. Next.js App Router (app/sentinel/dashboard/route.ts)
+import { createNextDashboardHandler } from '@ameva/sentinel/dashboard';
+export const GET = createNextDashboardHandler();
+
+// 4. FastAPI (Python)
+from fastapi import FastAPI
+from ameva_sentinel import mount_fastapi_dashboard
+
+app = FastAPI()
+mount_fastapi_dashboard(app, path="/sentinel/dashboard")
+
+// 5. Flask (Python)
+from flask import Flask
+from ameva_sentinel import mount_flask_dashboard
+
+app = Flask(__name__)
+mount_flask_dashboard(app, path="/sentinel/dashboard")</code></pre>
+
       <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
         <p>AMEVA-Sentinel v1.0.0 &bull; Apache-2.0 &bull; <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" style="color:#004499;font-weight:600;">uno-km/ameva-sentinel</a></p>
       </footer>
