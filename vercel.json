@@ -158,50 +158,40 @@
       "permanent": false
     },
     {
-      "source": "/dashboard",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/foundation/dashboard",
+      "source": "/app/dashboard",
       "destination": "/foundation/dashboard/",
       "permanent": false
     },
     {
       "source": "/docs/foundation/dashboard",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/app/dashboard",
       "destination": "/foundation/dashboard/",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/foundation/dashboard/:match*",
-      "destination": "/dashboard/:match*"
-    },
-    {
       "source": "/foundation/dashboard",
-      "destination": "/dashboard/index.html"
+      "destination": "/foundation/dashboard/index.html"
     },
     {
-      "source": "/docs/foundation/dashboard/:match*",
-      "destination": "/dashboard/:match*"
+      "source": "/foundation/dashboard/",
+      "destination": "/foundation/dashboard/index.html"
     },
     {
       "source": "/docs/foundation/dashboard",
-      "destination": "/dashboard/index.html"
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/docs/foundation/dashboard/",
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/foundation/dashboard/:match*",
+      "destination": "/foundation/dashboard/:match*"
     },
     {
       "source": "/dashboard/:match*",
       "destination": "/dashboard/:match*"
-    },
-    {
-      "source": "/dashboard",
-      "destination": "/dashboard/index.html"
     },
     {
       "source": "/admin/(.*)",
