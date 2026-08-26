@@ -4,27 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Polyglot WASM Tool Catalog & Manifests | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms execution) and enables live multi-repo subscription for AI tools.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
+  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -32,7 +12,7 @@
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-          <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
@@ -49,11 +29,12 @@
   </header>
 
   <div class="container">
-          <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Navigation (Document / Foundation) -->
     <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="showcase.html">Feature Showcase & Live Hub</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
@@ -88,8 +69,167 @@
 
     <main class="content">
       <h2>Polyglot WASM Tool Catalog & Manifests</h2>
-      <p class="subtitle">C++, Rust, Java, Python, Go in-memory execution manifests</p>
-      <h3>Supported In-Memory WASM Binaries</h3><p>Pre-compiled WASI micro-tools executing with sub-millisecond cold starts and zero local compiler prerequisites.</p>
+      <p class="subtitle">Pre-compiled, in-memory micro-tools across C++, Rust, Java, Python, and Go</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Polyglot In-Memory WASM Catalog</span>
+        <p>Pre-compiled WASI micro-tools executing with sub-millisecond cold starts (&lt;1ms) and zero local compiler prerequisites on the host machine.</p>
+      </div>
+
+      <h3>1. C++ High-Performance Compute Manifests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Input Signature</th>
+            <th>Return Schema</th>
+            <th>Execution Invariant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>matrix_multiply_f32</code></td>
+            <td><code>{ matrixA: number[][], matrixB: number[][] }</code></td>
+            <td><code>{ result: number[][], durationMs: number }</code></td>
+            <td>WASI SIMD128 vector instruction pipeline, 0-heap leak</td>
+          </tr>
+          <tr>
+            <td><code>fast_fourier_transform</code></td>
+            <td><code>{ signal: number[], sampleRate: number }</code></td>
+            <td><code>{ frequencies: number[], magnitudes: number[] }</code></td>
+            <td>Cooley-Tukey Radix-2 in-place memory buffer</td>
+          </tr>
+          <tr>
+            <td><code>image_filter_wasm</code></td>
+            <td><code>{ rawPixels: string, width: number, height: number, kernel: string }</code></td>
+            <td><code>{ filteredBase64: string }</code></td>
+            <td>Zero-copy memory mapped pixel transformation</td>
+          </tr>
+          <tr>
+            <td><code>tensor_norm_l2</code></td>
+            <td><code>{ tensor: number[] }</code></td>
+            <td><code>{ norm: number }</code></td>
+            <td>Hardware-accelerated Euclidean vector norm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Rust Cryptographic &amp; Parsing Manifests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Input Signature</th>
+            <th>Return Schema</th>
+            <th>Execution Invariant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>blake3_hash</code></td>
+            <td><code>{ payload: string, key?: string }</code></td>
+            <td><code>{ hashHex: string, durationMs: number }</code></td>
+            <td>Tree-hashing SIMD implementation, &lt;0.28ms</td>
+          </tr>
+          <tr>
+            <td><code>argon2id_derive</code></td>
+            <td><code>{ password: string, salt: string, memoryKiB: number, iterations: number }</code></td>
+            <td><code>{ derivedKeyHex: string }</code></td>
+            <td>Memory-hard password hashing inside WASM memory page</td>
+          </tr>
+          <tr>
+            <td><code>regex_dfa_matcher</code></td>
+            <td><code>{ pattern: string, text: string }</code></td>
+            <td><code>{ matches: string[], isMatched: boolean }</code></td>
+            <td>Guaranteed linear time O(N) ReDoS-free DFA matching</td>
+          </tr>
+          <tr>
+            <td><code>json_fast_parser</code></td>
+            <td><code>{ jsonString: string, schema: object }</code></td>
+            <td><code>{ isValid: boolean, errors: string[] }</code></td>
+            <td>Zero-copy lexical tokenization stream</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Java (TeaVM WASI) Enterprise Manifests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Input Signature</th>
+            <th>Return Schema</th>
+            <th>Execution Invariant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>java_string_analyzer</code></td>
+            <td><code>{ text: string, rules: string[] }</code></td>
+            <td><code>{ compliant: boolean, flags: string[] }</code></td>
+            <td>JVM-free TeaVM Ahead-Of-Time WASI bytecode</td>
+          </tr>
+          <tr>
+            <td><code>jvm_bytecode_inspector</code></td>
+            <td><code>{ classBase64: string }</code></td>
+            <td><code>{ methods: string[], constants: string[] }</code></td>
+            <td>In-memory ClassFile parser with 0 JDK dependency</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4. Python (Micro-WASI) &amp; Go Manifests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Input Signature</th>
+            <th>Return Schema</th>
+            <th>Execution Invariant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>py_ast_inspector</code></td>
+            <td><code>{ code: string }</code></td>
+            <td><code>{ astNodes: number, isPure: boolean, imports: string[] }</code></td>
+            <td>AST parser with system-call isolation</td>
+          </tr>
+          <tr>
+            <td><code>network_packet_parser</code></td>
+            <td><code>{ pcapHex: string }</code></td>
+            <td><code>{ protocol: string, src: string, dst: string }</code></td>
+            <td>TinyGo micro-network frame decoder</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5. AI Vector &amp; Local RAG Manifests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Input Signature</th>
+            <th>Return Schema</th>
+            <th>Execution Invariant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>vector_cosine_similarity</code></td>
+            <td><code>{ vecA: number[], vecB: number[] }</code></td>
+            <td><code>{ similarity: number }</code></td>
+            <td>1536-dimensional float vector dot-product normalized</td>
+          </tr>
+          <tr>
+            <td><code>vector_top_k_search</code></td>
+            <td><code>{ queryVector: number[], dataset: object[], k: number }</code></td>
+            <td><code>{ topMatches: object[] }</code></td>
+            <td>Heap-based Top-K selector over 50,000 vectors</td>
+          </tr>
+        </tbody>
+      </table>
+
     </main>
   </div>
 

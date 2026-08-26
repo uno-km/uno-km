@@ -6,28 +6,13 @@
   <title>Installation & Setup Guide | AMEVA-MCP-Hub</title>
   <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
@@ -44,11 +29,12 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Navigation (Document / Foundation) -->
     <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="showcase.html">Feature Showcase & Live Hub</a></li>
       <li><a href="installation.html" class="active">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
@@ -83,15 +69,142 @@
 
     <main class="content">
       <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <p class="subtitle">Zero-toolchain deployment across Desktop, Server, and Mobile ARM64 Termux</p>
+
       <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>npx ameva-mcp-hub
-# or SDK:
-npm install ameva-mcp-hub</code></pre>
+        <span class="alert-title">Zero-Prerequisites Design</span>
+        <p>AMEVA-MCP-Hub requires only Node.js 18+. No local compilers (GCC, Clang, Rustc) or language runtimes (JDK, Python virtualenvs) are needed on the host.</p>
+      </div>
+
+      <h3>1. System Prerequisites &amp; Runtime Compatibility</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Environment / OS</th>
+            <th>Supported Architecture</th>
+            <th>Required Runtime</th>
+            <th>Hardware Acceleration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Linux (Server / Desktop)</strong></td>
+            <td>x86_64, aarch64</td>
+            <td>Node.js 18.0.0+</td>
+            <td>WASI SIMD128 Native</td>
+          </tr>
+          <tr>
+            <td><strong>Android (Termux)</strong></td>
+            <td>aarch64 (ARM64)</td>
+            <td>Node.js 18.0.0+ (via Termux pkg)</td>
+            <td>ARM NEON Vector</td>
+          </tr>
+          <tr>
+            <td><strong>macOS</strong></td>
+            <td>Apple Silicon (M1/M2/M3/M4), Intel x64</td>
+            <td>Node.js 18.0.0+</td>
+            <td>Accelerate / WASI SIMD</td>
+          </tr>
+          <tr>
+            <td><strong>Windows</strong></td>
+            <td>x86_64, ARM64</td>
+            <td>Node.js 18.0.0+</td>
+            <td>AVX2 / WASI SIMD</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Quick Execution via NPX (Zero-Install)</h3>
+      <p>Execute the hub directly without saving global dependencies to your system:</p>
+
+      <h4>2.1 Standard Stdio Mode (For Desktop AI Assistants)</h4>
+      <pre><code>npx ameva-mcp-hub</code></pre>
+
+      <h4>2.2 Remote HTTP / Server-Sent Events (SSE) Mode</h4>
+      <pre><code># Launch SSE server on port 3000
+npx ameva-mcp-hub --port 3000 --sse --host 0.0.0.0
+
+# With custom memory limit & authentication token:
+MCP_AUTH_TOKEN="your-secure-token" npx ameva-mcp-hub --port 3000 --sse</code></pre>
+
+      <h3>3. Global CLI Installation</h3>
+      <pre><code>npm install -g ameva-mcp-hub
+
+# Verify installation & diagnostic check
+ameva-mcp-hub doctor</code></pre>
+
+      <h3>4. Node.js &amp; TypeScript SDK Embedding</h3>
+      <pre><code># npm
+npm install ameva-mcp-hub
+
+# pnpm
+pnpm add ameva-mcp-hub
+
+# yarn
+yarn add ameva-mcp-hub
+
+# bun
+bun add ameva-mcp-hub</code></pre>
+
+      <h3>5. Android Termux (ARM64) Setup Guide</h3>
+      <p>Run full Model Context Protocol server capabilities directly inside an unrooted Android smartphone:</p>
+      <pre><code># 1. Update Termux environment
+pkg update -y && pkg install -y nodejs-lts git
+
+# 2. Verify Node.js version
+node -v # Should be v18+ or v20+
+
+# 3. Launch AMEVA-MCP-Hub
+npx ameva-mcp-hub</code></pre>
+
+      <h3>6. Environment Variables &amp; Configuration Reference</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Environment Variable</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>MCP_PORT</code></td>
+            <td><code>3000</code></td>
+            <td>HTTP/SSE server listening port</td>
+          </tr>
+          <tr>
+            <td><code>MCP_HOST</code></td>
+            <td><code>127.0.0.1</code></td>
+            <td>Network host bind address (use <code>0.0.0.0</code> for network exposure)</td>
+          </tr>
+          <tr>
+            <td><code>MCP_AUTH_TOKEN</code></td>
+            <td><code>""</code> (None)</td>
+            <td>Bearer authentication secret token for remote SSE clients</td>
+          </tr>
+          <tr>
+            <td><code>GITHUB_TOKEN</code></td>
+            <td><code>""</code></td>
+            <td>Personal Access Token to bypass GitHub API rate limits for multi-repo tool sync</td>
+          </tr>
+          <tr>
+            <td><code>WASI_MAX_MEMORY_PAGES</code></td>
+            <td><code>256</code></td>
+            <td>Maximum memory pages (64 KiB each = 16 MB sandbox ceiling)</td>
+          </tr>
+          <tr>
+            <td><code>WASI_FUEL_LIMIT</code></td>
+            <td><code>10000000</code></td>
+            <td>Instruction counter ceiling per invocation preventing infinite loops</td>
+          </tr>
+          <tr>
+            <td><code>LOG_LEVEL</code></td>
+            <td><code>info</code></td>
+            <td>Logging verbosity (<code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+
     </main>
   </div>
 

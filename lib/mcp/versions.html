@@ -6,28 +6,13 @@
   <title>Version Archive & Changelog | AMEVA-MCP-Hub</title>
   <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
@@ -44,11 +29,12 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Navigation (Document / Foundation) -->
     <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="showcase.html">Feature Showcase & Live Hub</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
@@ -83,12 +69,61 @@
 
     <main class="content">
       <h2>Version Archive & Changelog</h2>
-      <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v3.0.0 - Universal Polyglot WASM Hub (Current)</h3>
-         <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-         </ul>
+      <p class="subtitle">Release history, breaking changes, and migration guides</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Release History &amp; Migration Guides</span>
+        <p>Continuous evolution of the AMEVA-MCP-Hub architecture with 100% backward compatibility.</p>
+      </div>
+
+      <div class="version-item">
+        <h3>v3.0.0 (Master Release) &mdash; Universal Polyglot WASM Hub</h3>
+        <p><strong>Release Date:</strong> August 2026 | <strong>License:</strong> Apache-2.0</p>
+        <ul>
+          <li><strong>Polyglot WASI In-Memory Core:</strong> Full support for compiled C++, Rust, Java (TeaVM/GraalVM), and Go micro-tools with &lt;1ms execution.</li>
+          <li><strong>Dynamic Multi-Repository Subscription:</strong> Live GitHub branch tracking with automatic <code>notifications/tools/list_changed</code> broadcast to AI clients.</li>
+          <li><strong>AI Vector Subsystem:</strong> Native 1536-dimensional Cosine Similarity and Top-K search engine.</li>
+          <li><strong>Zero-Browser Architecture:</strong> Complete removal of Puppeteer and browser dependencies for pure Node.js performance.</li>
+        </ul>
+      </div>
+
+      <div class="version-item">
+        <h3>v2.5.0 &mdash; AI Vector &amp; Local RAG Extension</h3>
+        <p><strong>Release Date:</strong> July 2026</p>
+        <ul>
+          <li>Integrated native SIMD vector mathematics for semantic similarity.</li>
+          <li>Enhanced stdio transport reliability for Claude Desktop and Cursor IDE.</li>
+          <li>Added automatic weakref buffer recycling preventing long-running heap drift.</li>
+        </ul>
+      </div>
+
+      <div class="version-item">
+        <h3>v2.0.0 &mdash; Remote SSE &amp; Webhook Gateway</h3>
+        <p><strong>Release Date:</strong> May 2026</p>
+        <ul>
+          <li>Implemented Server-Sent Events (SSE) and HTTP REST message bridge.</li>
+          <li>Added GitHub webhook ingestion endpoint for real-time repository updates.</li>
+          <li>Introduced Bearer token authentication and CORS access control policies.</li>
+        </ul>
+      </div>
+
+      <div class="version-item">
+        <h3>v1.2.0 &mdash; Standalone WASI Micro-Runner</h3>
+        <p><strong>Release Date:</strong> March 2026</p>
+        <ul>
+          <li>Added initial WebAssembly System Interface (WASI) memory isolation.</li>
+          <li>Supported Rust (<code>wasm32-wasip1</code>) and Clang C++ bytecodes.</li>
+        </ul>
+      </div>
+
+      <div class="version-item">
+        <h3>v1.0.0 &mdash; Initial Model Context Protocol Bridge</h3>
+        <p><strong>Release Date:</strong> January 2026</p>
+        <ul>
+          <li>First release of Model Context Protocol (MCP) JSON-RPC bridge for Node.js.</li>
+        </ul>
+      </div>
+
     </main>
   </div>
 

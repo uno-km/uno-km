@@ -6,28 +6,13 @@
   <title>Complete API Reference | AMEVA-MCP-Hub</title>
   <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
   <script src="assets/i18n-translations.js" defer></script>
   <script src="assets/common.js" defer></script>
 </head>
 <body>
-        <header>
+  <header>
     <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
@@ -44,11 +29,12 @@
   </header>
 
   <div class="container">
-        <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Navigation (Document / Foundation) -->
     <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="showcase.html">Feature Showcase & Live Hub</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html" class="active">API Reference</a></li>
@@ -83,14 +69,113 @@
 
     <main class="content">
       <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <p class="subtitle">Full TypeScript SDK definitions, class structures, method signatures, and protocols</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">TypeScript / JavaScript API Specification</span>
+        <p>100% complete signature definitions for AMEVA-MCP-Hub core classes, data structures, and lifecycle hooks.</p>
+      </div>
+
+      <h3>1. Core Class: <code>MCPHub</code></h3>
+      <p>The central supervisor orchestrating WASM runtimes, repository synchronizers, transport gateways, and tool registries.</p>
+
+      <pre><code>export interface MCPHubOptions {
+  port?: number;                 // Default: 3000
+  host?: string;                 // Default: "127.0.0.1"
+  enableSSE?: boolean;           // Default: true
+  enableStdio?: boolean;         // Default: true
+  authToken?: string;            // Default: ""
+  maxMemoryPages?: number;       // Default: 256 (16 MB)
+  fuelLimit?: number;            // Default: 10,000,000
+  logLevel?: 'error' | 'warn' | 'info' | 'debug';
+}
+
+export class MCPHub {
+  constructor(options?: MCPHubOptions);
+
+  public start(): Promise&lt;void&gt;;
+  public stop(): Promise&lt;void&gt;;
+  public registerRepo(config: RepoSubscriptionConfig): Promise&lt;RegisteredRepoInfo&gt;;
+  public unregisterRepo(repoId: string): Promise&lt;boolean&gt;;
+  public broadcastToolChange(): void;
+  public getHealth(): SystemHealthReport;
+}</code></pre>
+
+      <h3>2. Core Class: <code>WasiRunner</code></h3>
+      <p>Low-level in-memory WASI WebAssembly execution engine with fuel counting and memory page limits.</p>
+
+      <pre><code>export interface WasiRunOptions {
+  args?: string[];
+  env?: Record&lt;string, string&gt;;
+  stdin?: string | Buffer;
+  memoryPages?: number;
+  fuelLimit?: number;
+}
+
+export interface WasiExecutionResult {
+  exitCode: number;
+  stdout: string;
+  stderr: string;
+  durationMs: number;
+  fuelConsumed: number;
+  memoryPagesUsed: number;
+}
+
+export class WasiRunner {
+  constructor(defaultOptions?: WasiRunOptions);
+
+  public run(wasmBinary: Buffer | Uint8Array, options?: WasiRunOptions): Promise&lt;WasiExecutionResult&gt;;
+  public setMemoryPages(pages: number): void;
+  public setFuelLimit(fuel: number): void;
+}</code></pre>
+
+      <h3>3. Core Class: <code>NodeExecutor</code></h3>
+      <p>Dispatches and executes registered tools according to Model Context Protocol standard schema.</p>
+
+      <pre><code>export interface MCPToolCallRequest {
+  name: string;
+  arguments?: Record&lt;string, any&gt;;
+}
+
+export interface MCPToolCallResponse {
+  content: Array&lt;{
+    type: 'text' | 'image' | 'resource';
+    text?: string;
+    data?: string;
+    mimeType?: string;
+  }&gt;;
+  isError?: boolean;
+}
+
+export class NodeExecutor {
+  public executeTool(name: string, args?: Record&lt;string, any&gt;): Promise&lt;MCPToolCallResponse&gt;;
+  public listTools(): Array&lt;MCPToolDefinition&gt;;
+  public getSchema(toolName: string): Record&lt;string, any&gt; | null;
+}</code></pre>
+
+      <h3>4. Core Class: <code>heuristicRouter</code></h3>
+      <pre><code>export interface HeuristicEvaluationResult {
+  target: 'WASM_SANDBOX' | 'HOST_NATIVE' | 'REJECTED';
+  riskScore: number; // 0.0 (Safe) ~ 1.0 (Critical)
+  reason: string;
+}
+
+export class heuristicRouter {
+  public static evaluate(payload: { command: string; args?: string[]; code?: string }): HeuristicEvaluationResult;
+}</code></pre>
+
+      <h3>5. Core Class: <code>VectorEngine</code></h3>
+      <pre><code>export class VectorEngine {
+  public static cosineSimilarity(a: number[] | Float32Array, b: number[] | Float32Array): number;
+  public static topKSearch(
+    query: number[] | Float32Array,
+    dataset: Array&lt;{ id: string; vector: number[] | Float32Array }&gt;,
+    k: number
+  ): Array&lt;{ id: string; score: number }&gt;;
+  public static euclideanDistance(a: number[] | Float32Array, b: number[] | Float32Array): number;
+  public static dotProduct(a: number[] | Float32Array, b: number[] | Float32Array): number;
+}</code></pre>
+
     </main>
   </div>
 
