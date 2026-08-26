@@ -382,81 +382,115 @@
         </div>
         <!-- CATALOG_INJECT_END:foundation -->
 
-        <!-- Ecosystem Matrix Table -->
-        <h3 data-i18n="home.matrixTitle">Official Released Packages &amp; Ecosystem Matrix</h3>
+                <!-- Ecosystem Matrix Table with Downloads -->
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:28px; margin-bottom:8px; flex-wrap:wrap; gap:10px;">
+          <h3 style="margin:0;" data-i18n="home.matrixTitle">Official Released Packages &amp; Download Metrics</h3>
+          <a href="/foundation/metrics.html" class="btn-sm fnd-primary" style="background:#004499;border-color:#004499;">📊 실시간 성과 대시보드 (Metrics) &rarr;</a>
+        </div>
+        <p class="subtitle" style="margin-bottom:12px;">공식 배포 패키지 생태계 아키텍처 및 레지스트리(NPM / PyPI) 실측 다운로드 현황</p>
+        
         <table class="data-table">
           <thead>
             <tr>
               <th>Project</th>
               <th>Package (PyPI / npm)</th>
-              <th>Runtime Environment</th>
+              <th>NPM</th>
+              <th>PyPI (pip)</th>
+              <th>Total Downloads</th>
               <th>Primary Capability</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>AMEVA Workstation</strong></td>
-              <td><code>Web / Desktop</code></td>
-              <td>WebGPU, Next.js, WASM</td>
-              <td>Client-Side WebGPU Local AI, Spatial Map Canvas, Nested Docs &amp; MapReduce</td>
-              <td><span class="release-tag">Official Live App</span></td>
+              <td><strong>Termux-Playwright</strong></td>
+              <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">710</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">841</span></td>
+              <td><strong style="color:#15803d;">1,551</strong></td>
+              <td>Non-root Chromium Browser Automation &amp; CDP</td>
+              <td><span class="release-tag">PyPI + npm</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-Diffusion</strong></td>
+              <td><code>pip: termux-diffusion</code><br/><code>npm: termux-diffusion</code></td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">611</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">362</span></td>
+              <td><strong style="color:#15803d;">973</strong></td>
+              <td>On-Device Stable Diffusion Image Generation</td>
+              <td><span class="release-tag">PyPI + npm</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-BitNet</strong></td>
+              <td><code>pip: termux-bitnet</code><br/><code>npm: termux-bitnet</code></td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">255</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">404</span></td>
+              <td><strong style="color:#15803d;">659</strong></td>
+              <td>1.58-bit (i2_s) On-Device LLM Inference SIMD Engine</td>
+              <td><span class="release-tag">PyPI + npm</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-STT</strong></td>
+              <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">275</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">127</span></td>
+              <td><strong style="color:#15803d;">402</strong></td>
+              <td>Unified Speech-to-Text &amp; 128d Speaker Diarization</td>
+              <td><span class="release-tag">PyPI + npm</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA-Sentinel</strong></td>
-              <td><code>npm: ameva-sentinel</code></td>
-              <td>TypeScript, WebCrypto, Node</td>
+              <td><code>npm: @ameva/sentinel</code></td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">219</span></td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><strong style="color:#15803d;">219</strong></td>
               <td>0-Data Privacy Threat Scoring &amp; Traffic Governance</td>
               <td><span class="release-tag">npm Released</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA-MCP-Hub</strong></td>
               <td><code>npm: ameva-mcp-hub</code></td>
-              <td>WASI WebAssembly, Node.js</td>
+              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">149</span></td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><strong style="color:#15803d;">149</strong></td>
               <td>Polyglot WASM Tools &amp; AI Vector MCP Live Hub</td>
               <td><span class="release-tag">npm Released</span></td>
             </tr>
             <tr>
-              <td><strong>Termux-BitNet</strong></td>
-              <td><code>pip: termux-bitnet</code><br/><code>npm: termux-bitnet</code></td>
-              <td>ARM64 NEON, C++17, Python</td>
-              <td>1.58-bit (i2_s) On-Device LLM Inference SIMD Engine</td>
-              <td><span class="release-tag">PyPI + npm Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-Playwright</strong></td>
-              <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
-              <td>Android ARM64 Termux</td>
-              <td>Non-root Chromium Browser Automation &amp; CDP</td>
-              <td><span class="release-tag">PyPI + npm Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-Diffusion</strong></td>
-              <td><code>pip: termux-diffusion</code><br/><code>npm: termux-diffusion</code></td>
-              <td>Android ARM64 Termux</td>
-              <td>On-Device Stable Diffusion Image Generation</td>
-              <td><span class="release-tag">PyPI + npm Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-STT</strong></td>
-              <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
-              <td>Android ARM64 Termux</td>
-              <td>Unified Speech-to-Text &amp; 128d Speaker Diarization</td>
-              <td><span class="release-tag">PyPI + npm Released</span></td>
-            </tr>
-            <tr>
               <td><strong>Termux-Train</strong></td>
               <td><code>pip: termux-train</code></td>
-              <td>Android ARM64 Termux</td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">117</span></td>
+              <td><strong style="color:#15803d;">117</strong></td>
               <td>On-Device DAG Tensor Autograd &amp; LoRA Training</td>
               <td><span class="release-tag">PyPI Released</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA-Forge</strong></td>
-              <td><code>pip: ameva</code></td>
-              <td>Browser WebGPU, WASM</td>
+              <td><code>pip: ameva-forge</code></td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">110</span></td>
+              <td><strong style="color:#15803d;">110</strong></td>
               <td>Browser-Native WebGPU Tensor Autograd Deep Learning Engine</td>
               <td><span class="release-tag">PyPI Released</span></td>
+            </tr>
+            <tr>
+              <td><strong>Termux-AIChain</strong></td>
+              <td><code>pip: termux-aichain</code><br/><code>npm: termux-aichain</code></td>
+              <td><span style="color:#16a34a;font-size:11px;font-weight:600;">Active</span></td>
+              <td><span style="color:#16a34a;font-size:11px;font-weight:600;">Active</span></td>
+              <td><strong style="color:#15803d;">Published</strong></td>
+              <td>Zero-Dependency AI Chaining &amp; DAG Execution Framework</td>
+              <td><span class="release-tag">PyPI + npm</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMEVA Workstation</strong></td>
+              <td><code>Web / Desktop</code></td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><span style="color:#94a3b8;">-</span></td>
+              <td><strong style="color:#2563eb;">Live App</strong></td>
+              <td>Client-Side WebGPU Local AI &amp; MapReduce Summarizer</td>
+              <td><span class="release-tag">Live Studio</span></td>
             </tr>
           </tbody>
         </table>
