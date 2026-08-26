@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete API Reference | AMEVA-Core</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <title>Complete API Reference | Termux-AIChain</title>
+  <meta name="description" content="Complete technical specification of classes, functions, and interfaces across all 7 subsystems">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/i18n.js" defer></script>
@@ -14,24 +14,25 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="AMEVA-Core Logo">
-      <h1 data-i18n="common.brand">AMEVA-Core</h1>
+      <img src="favicon.svg" alt="Termux-AIChain Logo">
+      <h1 data-i18n="common.brand">Termux-AIChain</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.2</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/ameva-core/" target="_blank" class="header-btn" title="PyPI: ameva-core | npm: @ameva/core" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;">Foundation</a>
+      <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="header-btn" title="PyPI: termux-aichain">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="header-btn npm-btn" title="npm: termux-aichain">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+      <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="header-btn primary">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
   <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <!-- Tier 1: Document Navigation -->
+    <h3 data-i18n="common.nav.docNav">문서 상세 목차</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
@@ -41,12 +42,13 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
+
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <h3 data-i18n="common.nav.libraries">플래그십 라이브러리</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/aichain/" class="active">Termux-AIChain (Zero-Dep Agent)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
       <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
       <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
@@ -55,31 +57,195 @@
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
+
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <h3 data-i18n="common.nav.aiSpecs">AI 에이전트 프로토콜</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
     </ul>
   </nav>
 
     <main class="content">
       <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <p class="subtitle">Complete technical specification of classes, functions, and interfaces across all 7 subsystems</p>
+
+      <h3>1. Core Chaining Engine (<code>termux_aichain.core</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Class / Function</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>PromptTemplate.from_template(template: str)</code></td>
+            <td>ClassMethod</td>
+            <td>Creates a template with named variable substitution and escape protection for double braces (<code>{{...}}</code>).</td>
+          </tr>
+          <tr>
+            <td><code>ChatPromptTemplate.from_messages(messages: List)</code></td>
+            <td>ClassMethod</td>
+            <td>Constructs structured multi-role chat message prompts (SystemMessage, HumanMessage, AIMessage).</td>
+          </tr>
+          <tr>
+            <td><code>RunnableSequence</code> / <code>|</code> Operator</td>
+            <td>Class</td>
+            <td>Chains multiple runnables sequentially with synchronous (<code>invoke</code>) and streaming (<code>stream</code>) execution.</td>
+          </tr>
+          <tr>
+            <td><code>JsonOutputParser()</code></td>
+            <td>Class</td>
+            <td>Extracts and parses JSON payloads from LLM outputs with markdown fence stripping and fallback recovery.</td>
+          </tr>
+          <tr>
+            <td><code>RecursiveCharacterTextSplitter(chunk_size, chunk_overlap)</code></td>
+            <td>Class</td>
+            <td>Splits documents recursively along paragraph and sentence boundaries.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Multi-Agent Graph Engine (<code>termux_aichain.graph</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>StateGraph(state_schema)</code></td>
+            <td>Class</td>
+            <td>Deterministic cyclic state machine supporting nodes, edges, conditional branches, and entry points.</td>
+          </tr>
+          <tr>
+            <td><code>create_react_agent(model, tools, system_prompt, max_iterations=10)</code></td>
+            <td>Function</td>
+            <td>Factory that compiles an autonomous Reasoning + Acting loop with declared Tool instances.</td>
+          </tr>
+          <tr>
+            <td><code>Tool(name, description, func)</code> / <code>@tool</code></td>
+            <td>Decorator / Class</td>
+            <td>Wraps arbitrary Python functions into tool definitions callable by ReAct agents.</td>
+          </tr>
+          <tr>
+            <td><code>START</code> / <code>END</code></td>
+            <td>Constants</td>
+            <td>Special terminal identifiers representing graph entry point and final exit point.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Memory & Vector Store (<code>termux_aichain.memory</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Backend</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ConversationBufferMemory(max_messages=20)</code></td>
+            <td>RAM</td>
+            <td>Sliding window rolling conversation history buffer.</td>
+          </tr>
+          <tr>
+            <td><code>SQLiteEntityMemory(db_path)</code></td>
+            <td>SQLite ACID</td>
+            <td>Persistent key-value entity memory table for long-term fact retention.</td>
+          </tr>
+          <tr>
+            <td><code>SQLiteVectorStore(db_path)</code></td>
+            <td>SQLite + DotProduct</td>
+            <td>Pure Python cosine similarity vector index operating without external ML libraries.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4. Local Serving & Telemetry (<code>termux_aichain.serve</code> & <code>trace</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Module</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>serve(agent, host="0.0.0.0", port=8000)</code></td>
+            <td><code>serve</code></td>
+            <td>Starts zero-dependency HTTP server exposing REST, SSE streaming, and Web Dashboard.</td>
+          </tr>
+          <tr>
+            <td><code>Tracer()</code> / <code>TraceSpan</code></td>
+            <td><code>trace</code></td>
+            <td>Hierarchical latency profiler, token throughput (TPS) counter, and JSONL log exporter.</td>
+          </tr>
+          <tr>
+            <td><code>@traceable</code></td>
+            <td><code>trace</code></td>
+            <td>Function decorator automatically wrapping execution inside a named trace span.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5. Hardware & Ecosystem Tooling (<code>termux_aichain.device</code>)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Execution Target</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>get_battery_status</code></td>
+            <td>Termux-API / Sysfs</td>
+            <td>Returns battery percentage, charging state, temperature, and health.</td>
+          </tr>
+          <tr>
+            <td><code>get_sensor_data</code></td>
+            <td>Termux-API</td>
+            <td>Reads real-time accelerometer, gyroscope, and ambient light sensors.</td>
+          </tr>
+          <tr>
+            <td><code>vibrate_device</code></td>
+            <td>Termux-API</td>
+            <td>Triggers haptic vibration pattern for specified duration in milliseconds.</td>
+          </tr>
+          <tr>
+            <td><code>transcribe_speech</code></td>
+            <td><code>termux-stt</code></td>
+            <td>Transcribes microphone audio or WAV files via Whisper.cpp / Vosk on-device.</td>
+          </tr>
+          <tr>
+            <td><code>generate_diffusion_image</code></td>
+            <td><code>termux-diffusion</code></td>
+            <td>Synthesizes images from text prompts using mobile device resources.</td>
+          </tr>
+          <tr>
+            <td><code>browse_web_headless</code></td>
+            <td><code>termux-playwright</code></td>
+            <td>Executes non-root headless Chromium automation and web scraping.</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation (AOSF). Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>
