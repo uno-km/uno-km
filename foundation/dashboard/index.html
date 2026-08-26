@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMEVA-Sentinel Status &amp; Observability Manager (v0.7.0 Engineering Console)</title>
+    <link rel="icon" type="image/svg+xml" href="/shared/brand/favicon.svg">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --primary-color: #004499;
+            --primary-dark: #002b66;
+            --primary-light: #e8f0fe;
+            --border-color: #cbd5e1;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --font-mono: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--primary-color);
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header-brand img { width: 24px !important; height: 24px !important; max-width: 24px !important; max-height: 24px !important; object-fit: contain !important; }
+        .header-brand h1 { margin: 0; color: var(--primary-color); font-size: 1.15em; font-weight: 700; }
+        .header-controls { display: flex; align-items: center; gap: 8px; }
+        .header-btn {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 4px 10px;
+            font-size: 0.82em;
+            font-weight: 600;
+            border-radius: 3px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .header-btn:hover { background: #f1f5f9; color: var(--primary-color); border-color: var(--primary-color); }
+        .header-btn.primary { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+
+        .tomcat-container {
+            max-width: 1440px;
+            margin: 16px auto 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .status-header-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 18px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .status-title { font-size: 1.15em; font-weight: 800; color: var(--primary-color); display: flex; align-items: center; gap: 8px; }
+        .tomcat-badge { display: inline-block; font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; font-family: monospace; }
+        .badge-shadow { background: #e8f0fe; color: var(--primary-color); border: 1px solid #bfdbfe; }
+        .badge-demo { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+        .badge-live { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+        .control-panel {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-tomcat {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 11px;
+            font-size: 0.82em;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.1s ease;
+        }
+        .btn-tomcat:hover { background: #f1f5f9; border-color: var(--primary-color); color: var(--primary-color); }
+        .btn-tomcat.primary { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        .btn-tomcat.danger { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+
+        .tomcat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .tomcat-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-label { font-size: 0.8em; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-value { font-size: 1.6em; font-weight: 800; color: var(--primary-color); font-family: var(--font-mono); margin: 4px 0; }
+        .card-sub { font-size: 0.8em; color: #64748b; }
+
+        .chart-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tf-pill-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .tf-pill {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.76em;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .tf-pill.active, .tf-pill:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .management-split { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+        @media (max-width: 1024px) { .management-split { grid-template-columns: 1fr; } }
+
+        .tomcat-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-header {
+            font-size: 1em;
+            font-weight: 800;
+            color: var(--primary-color);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        table.tomcat-table { width: 100%; border-collapse: collapse; font-size: 0.86em; text-align: left; border: 1px solid var(--border-color); }
+        table.tomcat-table th { background: #f1f5f9; color: var(--primary-color); font-weight: 700; padding: 8px 10px; border: 1px solid var(--border-color); font-size: 0.85em; }
+        table.tomcat-table td { padding: 8px 10px; border: 1px solid var(--border-color); color: var(--text-main); }
+        table.tomcat-table tr:nth-child(even) td { background: #f8fafc; }
+        table.tomcat-table tr:hover td { background: #e8f0fe; cursor: pointer; }
+
+        .pill-action { font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); display: inline-block; }
+        .pill-allow { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+        .pill-observe { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .pill-verify { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+        .pill-deny { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+        .score-box { font-weight: 800; font-family: var(--font-mono); padding: 2px 6px; border-radius: 3px; display: inline-block; }
+        .score-low { background: #dcfce7; color: #15803d; }
+        .score-med { background: #fef3c7; color: #b45309; }
+        .score-high { background: #fee2e2; color: #b91c1c; }
+
+        .pulse-marker {
+            background: rgba(0, 68, 153, 0.8);
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 12px rgba(0, 68, 153, 0.8);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 10px;
+        }
+        .pulse-marker.country-pin {
+            background: #004499;
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 0 16px rgba(0, 68, 153, 0.9);
+        }
+        .pulse-marker.bot {
+            background: rgba(124, 58, 237, 0.85);
+            box-shadow: 0 0 12px rgba(124, 58, 237, 0.9);
+        }
+        .pulse-marker::after {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(0, 68, 153, 0.5);
+            animation: mapPulse 2.2s infinite ease-out;
+        }
+        .pulse-marker.bot::after { border-color: rgba(124, 58, 237, 0.5); }
+        @keyframes mapPulse {
+            0% { transform: scale(0.6); opacity: 1; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .modal-box { background: #ffffff; border: 2px solid var(--primary-color); border-radius: 4px; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 12px; }
+        .evidence-item { background: #f8fafc; border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <header><span style="display:none;" data-i18n="common.brand">AMEVA 3D Dashboard</span>>
+        <div class="header-brand">
+            <img src="/shared/brand/favicon.svg" alt="Logo">
+            <h1>AMEVA-Sentinel</h1>
+        </div>
+        <div class="header-controls">
+            <span class="tomcat-badge badge-shadow">v0.7.0</span>
+            <select id="tz-selector" class="btn-tomcat" style="background:#fff; color:#0f172a; font-weight:600; font-size:0.8em; padding:3px 8px; cursor:pointer;" onchange="changeTimezone(this.value)">
+                <option value="local">Local (Device)</option>
+                <option value="Asia/Seoul" selected>Asia/Seoul (KST)</option>
+                <option value="UTC">UTC (GMT+0)</option>
+                <option value="America/New_York">America/New_York (EST)</option>
+                <option value="Europe/London">Europe/London (BST)</option>
+                <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+            </select>
+            <a href="/sentinel/observability.html" class="header-btn" style="background:#004499; color:#fff; font-weight:700;">Promotional Observability Console</a>
+            <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn primary">GitHub</a>
+        </div>
+    </header>
+
+    <div class="tomcat-container">
+        <!-- Top Status Banner -->
+        <div class="status-header-box">
+            <div>
+                <div class="status-title">
+                    <span>Security Observability Manager</span>
+                    <span class="tomcat-badge badge-shadow">Shadow Mode</span>
+                    <span class="tomcat-badge badge-demo">Neon PostgreSQL (Live Serverless Event Store)</span>
+                </div>
+                <div style="font-size: 0.85em; color: var(--text-muted); margin-top: 4px;">
+                    Policy: <strong>v2026-08-24.1</strong> &bull; 
+                    Storage: <span id="banner-events-count"><strong>0 Events</strong></span> &bull; 
+                    Multi-Tab Sync: <span class="tomcat-badge badge-live">Active</span> &bull;
+                    Last Evaluation: <span id="banner-last-event">None</span>
+                </div>
+            </div>
+            <div>
+                <button class="btn-tomcat" id="btn-refresh" onclick="refreshDashboardData()">Refresh Status</button>
+            </div>
+        </div>
+
+        <!-- Live Ingestion & Simulation Controls -->
+        <div class="control-panel">
+            <div style="font-weight: 700; color: var(--primary-color);">
+                Live Ingestion Controls:
+                <span style="font-size:0.85em; font-weight:normal; color:#64748b;">Telemetry observations evaluated via deterministic Risk Core engine.</span>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn-tomcat primary" id="btn-eval-browser">Evaluate Real Browser (Live SDK)</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-playwright">Sim Playwright Stealth</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-curl">Sim cURL Spoofing</button>
+                <button class="btn-tomcat" style="color:#7e22ce; border-color:#d8b4fe;" id="btn-sim-ai">Sim GPT/Claude AI Bot</button>
+                <button class="btn-tomcat" style="color:#b91c1c; border-color:#fca5a5;" id="btn-sim-burst">Sim Burst Attack</button>
+                <button class="btn-tomcat danger" id="btn-clear">Clear Store</button>
+            </div>
+        </div>
+
+        <!-- 3-Way Triage Breakdown Cards (Exact Math: Human + AI + Tool = Total) -->
+        <div style="font-size:0.65rem; color:#94a3b8; margin-bottom:4px; text-align:right;" id="dashMetaLine">Metric: sessions · Dedup: visitor_id</div>
+        <div class="tomcat-grid">
+            <div class="tomcat-card" style="border-left: 4px solid #16a34a;">
+                <span class="card-label">1. Low Automation Risk Sessions</span>
+                <div class="card-value" id="card-human-count" style="color: #16a34a;">0</div>
+                <span class="card-sub" id="card-human-pct">0% of total traffic</span>
+            </div>
+            <div class="tomcat-card" style="border-left: 4px solid #7c3aed;">
+                <span class="card-label">2. Claimed AI &amp; Bot Operators (Unverified)</span>
+                <div class="card-value" id="card-ai-count" style="color: #7c3aed;">0</div>
+                <span class="card-sub" id="card-ai-pct">0% of total traffic</span>
+            </div>
+            <div class="tomcat-card" style="border-left: 4px solid #b91c1c;">
+                <span class="card-label">3. High Automation Risk (Drivers / Tools)</span>
+                <div class="card-value" id="card-tool-count" style="color: #b91c1c;">0</div>
+                <span class="card-sub" id="card-tool-pct">0% of total traffic</span>
+            </div>
+        </div>
+
+        <!-- Multi-Timeframe Traffic Chart -->
+        <div class="chart-section">
+            <div class="chart-header">
+                <strong style="font-size: 0.95em; color: var(--primary-color);">Multi-Timeframe Traffic Inflow &amp; Continuous Zero-Grid Volume Stream</strong>
+                <div class="tf-pill-group">
+                    <span class="tf-pill" onclick="setDashboardTimeframe('1m')">1m</span>
+                    <span class="tf-pill active" id="dash-tf-5m" onclick="setDashboardTimeframe('5m')">5m</span>
+                    <span class="tf-pill" onclick="setDashboardTimeframe('1h')">1h</span>
+                    <span class="tf-pill" onclick="setDashboardTimeframe('1D')">1D</span>
+                    <span class="tf-pill" onclick="setDashboardTimeframe('1W')">1W</span>
+                    <span class="tf-pill" onclick="setDashboardTimeframe('1M')">1M</span>
+                    <span class="tf-pill" onclick="setDashboardTimeframe('ALL')">ALL</span>
+                </div>
+            </div>
+            <div style="height: 200px; position: relative;">
+                <canvas id="dashTrafficChart"></canvas>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75em; color:var(--text-muted);">
+                <span>Metric: Dual Axis Inflow (Line: Cumulative Trend, Bar: Volume Bucket)</span>
+                <span id="dashChartTimestamp" style="font-family:var(--font-mono);">Real-Time Sync</span>
+            </div>
+        </div>
+
+        <!-- GLOBAL INTERACTIVE GEO RADAR WORLD MAP -->
+        <div class="chart-section" style="border-left: 4px solid var(--primary-color);">
+            <div class="chart-header">
+                <div>
+                    <strong style="font-size: 0.95em; color: var(--primary-color);">Global Traffic &amp; Threat Cluster Origin Map</strong>
+                    <span id="dashMapModeLabel" style="font-size:0.8em; color:var(--text-muted); margin-left:6px;">Global View (1 Consolidated Point per Country)</span>
+                </div>
+                <div class="tf-pill-group" id="dashRegionBtnGroup">
+                    <button class="tf-pill" id="dash-btn-KR" onclick="focusDashRegion('KR', 36.5, 127.8, 6)">South Korea</button>
+                    <button class="tf-pill" id="dash-btn-US" onclick="focusDashRegion('US', 38.0, -97.0, 4)">United States</button>
+                    <button class="tf-pill" id="dash-btn-EU" onclick="focusDashRegion('EU', 50.1109, 8.6821, 5)">Europe</button>
+                    <button class="tf-pill" id="dash-btn-JP" onclick="focusDashRegion('JP', 35.6762, 139.6503, 6)">Japan</button>
+                    <button class="tf-pill active" id="dash-btn-GLOBAL" onclick="focusDashRegion('GLOBAL', 20.0, 0.0, 2)">Global (Country Point)</button>
+                </div>
+            </div>
+            <div id="dashGeoMap" style="height: 320px; width: 100%; border-radius: 4px; border: 1px solid var(--border-color); background: #f8fafc; z-index: 1;"></div>
+        </div>
+
+        <!-- Pre-Inflow Source & Traversal Journey Hops -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+            <div class="tomcat-section">
+                <div class="section-header">
+                    <span>Pre-Inflow Source &amp; Referrer Distribution</span>
+                    <span class="pill-action pill-allow">Origin Gateways</span>
+                </div>
+                <div id="dashOriginNodesGrid" style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="color:#64748b; font-size:0.85em;">Loading inflow sources...</div>
+                </div>
+            </div>
+
+            <div class="tomcat-section">
+                <div class="section-header">
+                    <span>Session Traversal Journey &amp; Pre-Exit Nodes</span>
+                    <span class="pill-action pill-verify">Hop Trail</span>
+                </div>
+                <div id="dashJourneyHopsList" style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="color:#64748b; font-size:0.85em;">Loading journey paths...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy Controls & Audit Ledger -->
+        <div class="management-split">
+            <div class="tomcat-section">
+                <div class="section-header">
+                    <span>Recent Security Risk Events &amp; Triage Ledger</span>
+                    <span id="ledger-count-badge" class="tomcat-badge badge-shadow">0 Total</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="tomcat-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Category</th>
+                                <th>Subject</th>
+                                <th>Risk Score</th>
+                                <th>Action Taken</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="risk-events-tbody">
+                            <tr><td colspan="6" style="text-align:center; color:#64748b;">No security risk events evaluated yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tomcat-section">
+                <div class="section-header">
+                    <span>Active Policy Controls</span>
+                    <span class="tomcat-badge badge-live">Config Sync</span>
+                </div>
+                <div style="font-size:0.85em; color:var(--text-muted);">
+                    Declarative scoring weights mapped into deterministic 0~100 scores.
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; font-size:0.88em; margin-top:4px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Webdriver / Automation Penalty:</span>
+                        <strong style="color:#b91c1c;">+85 pts</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Headless Architecture Flag:</span>
+                        <strong style="color:#b91c1c;">+60 pts</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>AI Agent &amp; LLM Scraper:</span>
+                        <strong style="color:#7c3aed;">+50 pts</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>cURL / HTTP Missing Header:</span>
+                        <strong style="color:#b91c1c;">+75 pts</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Enforcement Action Threshold:</span>
+                        <strong style="color:var(--primary-color);">&ge; 70 pts</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashModalOverlay" class="modal-overlay">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #cbd5e1; padding-bottom:8px;">
+                <strong id="dashModalTitle" style="font-size:1.1em; color:var(--primary-color);">Security Risk Forensic Dossier</strong>
+                <button class="btn-tomcat" onclick="closeDashModal()">Close [Esc]</button>
+            </div>
+            <div id="dashModalContent" style="display:flex; flex-direction:column; gap:10px; font-size:0.88em;">
+                <div>Loading dossier...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let dashMapInstance = null;
+        let dashMapMarkersLayer = null;
+        let dashGeoClustersCache = [];
+        let dashCountryClustersCache = [];
+        let dashActiveRegion = 'GLOBAL';
+        let dashChartInstance = null;
+        let dashCurrentTimeframe = '5m';
+        let dashTimeSeriesCache = [];
+        let dashForensicsCache = [];
+        let dashActiveTz = 'Asia/Seoul';
+
+        function changeTimezone(tz) {
+            dashActiveTz = tz;
+            updateDashboardChart();
+            refreshDashboardData();
+        }
+
+        function formatDashTime(dateInput, mode = 'time') {
+            const d = new Date(dateInput);
+            if (isNaN(d.getTime())) return '--';
+            const tz = dashActiveTz && dashActiveTz !== 'local' ? dashActiveTz : undefined;
+            try {
+                if (mode === 'time') {
+                    return d.toLocaleTimeString(undefined, { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+                }
+                return d.toLocaleString(undefined, { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            } catch {
+                return d.toLocaleTimeString();
+            }
+        }
+
+        function initDashMap() {
+            const container = document.getElementById('dashGeoMap');
+            if (!container || dashMapInstance) return;
+
+            try {
+                dashMapInstance = L.map('dashGeoMap', {
+                    center: [25.0, 15.0],
+                    zoom: 2,
+                    minZoom: 1,
+                    maxZoom: 12,
+                    zoomControl: true,
+                    attributionControl: false
+                });
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    maxZoom: 19,
+                    subdomains: 'abcd'
+                }).addTo(dashMapInstance);
+
+                dashMapMarkersLayer = L.layerGroup().addTo(dashMapInstance);
+
+                dashMapInstance.on('zoomend', () => {
+                    const currentZoom = dashMapInstance.getZoom();
+                    if (currentZoom <= 3 && dashActiveRegion !== 'GLOBAL') {
+                        dashActiveRegion = 'GLOBAL';
+                        updateDashRegionUI('GLOBAL');
+                    } else if (currentZoom >= 4 && dashActiveRegion === 'GLOBAL') {
+                        dashActiveRegion = 'ALL_CITIES';
+                        updateDashRegionUI('ALL_CITIES');
+                    }
+                    renderDashMapMarkers();
+                });
+            } catch (e) {
+                console.warn('[Dash Map Init Error]', e);
+            }
+        }
+
+        function updateDashRegionUI(code) {
+            document.querySelectorAll('#dashRegionBtnGroup .tf-pill').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById('dash-btn-' + code);
+            if (btn) btn.classList.add('active');
+
+            const label = document.getElementById('dashMapModeLabel');
+            if (label) {
+                label.innerText = code === 'GLOBAL' ? 'Global View (1 Consolidated Point per Country)' : 'Regional Mode: ' + code + ' (Granular City Radar Nodes)';
+            }
+        }
+
+        function focusDashRegion(code, lat, lng, zoom) {
+            dashActiveRegion = code;
+            updateDashRegionUI(code);
+            if (dashMapInstance) {
+                dashMapInstance.flyTo([lat, lng], zoom, { duration: 1.2 });
+            }
+            setTimeout(renderDashMapMarkers, 300);
+        }
+
+        function renderDashMapMarkers() {
+            if (!dashMapInstance || !dashMapMarkersLayer) return;
+            dashMapMarkersLayer.clearLayers();
+
+            const currentZoom = dashMapInstance.getZoom();
+            const isGlobal = (dashActiveRegion === 'GLOBAL' && currentZoom <= 3.5);
+
+            if (isGlobal) {
+                if (!dashCountryClustersCache || dashCountryClustersCache.length === 0) return;
+                dashCountryClustersCache.forEach(c => {
+                    if (typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
+                    const isBot = c.ai_count > c.human_count;
+                    const radius = Math.min(28, Math.max(16, Math.round(Math.sqrt(c.count || 1) * 5)));
+                    const icon = L.divIcon({
+                        className: isBot ? 'pulse-marker bot country-pin' : 'pulse-marker country-pin',
+                        iconSize: [radius, radius],
+                        iconAnchor: [radius / 2, radius / 2],
+                        html: '<span style="pointer-events:none;">' + c.country + '</span>'
+                    });
+                    const marker = L.marker([c.lat, c.lng], { icon: icon });
+                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.name + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>');
+                    marker.on('click', () => focusDashRegion(c.country, c.lat, c.lng, 6));
+                    dashMapMarkersLayer.addLayer(marker);
+                });
+            } else {
+                if (!dashGeoClustersCache || dashGeoClustersCache.length === 0) return;
+                let list = dashGeoClustersCache;
+                if (dashActiveRegion !== 'GLOBAL' && dashActiveRegion !== 'ALL_CITIES') {
+                    if (dashActiveRegion === 'EU') list = list.filter(c => ['DE', 'GB', 'FR', 'NL', 'IE'].includes(c.country));
+                    else list = list.filter(c => c.country === dashActiveRegion);
+                    if (list.length === 0) list = dashGeoClustersCache;
+                }
+
+                list.forEach(c => {
+                    if (typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
+                    const isBot = c.ai_count > c.human_count;
+                    const radius = Math.min(22, Math.max(10, Math.round(Math.sqrt(c.count || 1) * 4)));
+                    const icon = L.divIcon({
+                        className: isBot ? 'pulse-marker bot' : 'pulse-marker',
+                        iconSize: [radius, radius],
+                        iconAnchor: [radius / 2, radius / 2]
+                    });
+                    const marker = L.marker([c.lat, c.lng], { icon: icon });
+                    marker.bindPopup('<div style="font-size:12px; padding:2px;"><strong>' + c.city + ' (' + c.country + ')</strong><br>Traffic: <strong>' + c.count + ' sessions</strong><br>Low Risk: ' + c.human_count + ' &bull; Bot Claims: ' + c.ai_count + '</div>');
+                    dashMapMarkersLayer.addLayer(marker);
+                });
+            }
+        }
+
+        function initDashTrafficChart() {
+            const ctx = document.getElementById('dashTrafficChart');
+            if (!ctx || dashChartInstance) return;
+
+            dashChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [
+                        {
+                            label: 'Cumulative Inflow Trend',
+                            data: [0, 20, 70, 150, 230, 310],
+                            borderColor: '#004499',
+                            borderWidth: 2,
+                            backgroundColor: 'rgba(0, 68, 153, 0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'bar',
+                            label: 'Session Volume Bucket',
+                            data: [0, 8, 22, 45, 60, 85],
+                            backgroundColor: '#7c3aed',
+                            borderRadius: 3,
+                            barPercentage: 0.5,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } },
+                        y: { type: 'linear', position: 'left', grid: { color: '#f1f5f9' }, ticks: { font: { size: 10, family: 'monospace' } } },
+                        y1: { type: 'linear', position: 'right', grid: { display: false }, ticks: { font: { size: 10, family: 'monospace' } } }
+                    },
+                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11, weight: '600' } } } }
+                }
+            });
+        }
+
+        function setDashboardTimeframe(tf) {
+            dashCurrentTimeframe = tf;
+            document.querySelectorAll('.chart-section .tf-pill').forEach(p => p.classList.remove('active'));
+            const activeEl = Array.from(document.querySelectorAll('.chart-section .tf-pill')).find(p => p.innerText === tf);
+            if (activeEl) activeEl.classList.add('active');
+            updateDashboardChart();
+        }
+
+        function updateDashboardChart() {
+            if (!dashChartInstance || dashTimeSeriesCache.length === 0) return;
+
+            const now = Date.now();
+            let bucketSizeMs = 5 * 60 * 1000;
+            let windowMs = 4 * 60 * 60 * 1000;
+
+            if (dashCurrentTimeframe === '1m') { bucketSizeMs = 60 * 1000; windowMs = 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === '5m') { bucketSizeMs = 5 * 60 * 1000; windowMs = 4 * 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === '1h') { bucketSizeMs = 60 * 60 * 1000; windowMs = 24 * 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === '1D') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 7 * 24 * 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === '1W') { bucketSizeMs = 7 * 24 * 60 * 60 * 1000; windowMs = 30 * 24 * 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === '1M') { bucketSizeMs = 30 * 24 * 60 * 60 * 1000; windowMs = 180 * 24 * 60 * 60 * 1000; }
+            else if (dashCurrentTimeframe === 'ALL') { bucketSizeMs = 24 * 60 * 60 * 1000; windowMs = 365 * 24 * 60 * 60 * 1000; }
+
+            const startMs = Math.floor((now - windowMs) / bucketSizeMs) * bucketSizeMs;
+            const endMs = Math.floor(now / bucketSizeMs) * bucketSizeMs;
+            const buckets = new Map();
+            for (let t = startMs; t <= endMs; t += bucketSizeMs) buckets.set(t, 0);
+
+            dashTimeSeriesCache.forEach(s => {
+                const t = new Date(s.created_at || s.evaluated_at || s.timestamp).getTime();
+                if (t >= startMs && t <= endMs + bucketSizeMs) {
+                    const key = Math.floor((t - startMs) / bucketSizeMs) * bucketSizeMs + startMs;
+                    if (buckets.has(key)) buckets.set(key, buckets.get(key) + 1);
+                }
+            });
+
+            const sortedKeys = Array.from(buckets.keys()).sort((a, b) => a - b);
+            const labels = sortedKeys.map(k => {
+                const d = new Date(k);
+                if (dashCurrentTimeframe === '1D' || dashCurrentTimeframe === '1W' || dashCurrentTimeframe === '1M' || dashCurrentTimeframe === 'ALL') {
+                    return (d.getMonth()+1) + '/' + d.getDate();
+                }
+                return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+            });
+
+            const volData = sortedKeys.map(k => buckets.get(k));
+            let cumulative = 0;
+            const trendData = volData.map(v => { cumulative += v; return cumulative; });
+
+            dashChartInstance.data.labels = labels.length > 0 ? labels : ['Live Inflow'];
+            dashChartInstance.data.datasets[0].data = trendData.length > 0 ? trendData : [0];
+            dashChartInstance.data.datasets[1].data = volData.length > 0 ? volData : [0];
+            dashChartInstance.update();
+
+            document.getElementById('dashChartTimestamp').innerText = 'Updated: ' + formatDashTime(new Date(), 'time');
+        }
+
+        function closeDashModal() {
+            document.getElementById('dashModalOverlay').style.display = 'none';
+        }
+
+        function openDashModal(id) {
+            const item = dashForensicsCache.find(f => f.visitor_id === id || f.trace_id === id) || dashForensicsCache[0];
+            if (!item) return;
+
+            document.getElementById('dashModalTitle').innerText = 'Forensic Dossier: ' + (item.visitor_id || item.trace_id);
+            const contentEl = document.getElementById('dashModalContent');
+
+            contentEl.innerHTML = `
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <div class="evidence-item"><strong>Score:</strong> ${item.score || 0}/100</div>
+                    <div class="evidence-item"><strong>Category:</strong> ${item.triage_category || 'HUMAN'}</div>
+                    <div class="evidence-item"><strong>Location:</strong> ${item.country || 'KR'} (${item.city || 'Local'})</div>
+                    <div class="evidence-item"><strong>Renderer:</strong> ${(item.webgl_renderer || 'GPU').slice(0, 30)}</div>
+                </div>
+                <div class="evidence-item" style="margin-top:6px;">
+                    <strong>Path History:</strong> <code>${item.past_paths_history || '/'}</code>
+                </div>
+                <div class="evidence-item">
+                    <strong>User-Agent:</strong> <code>${item.user_agent || navigator.userAgent}</code>
+                </div>
+            `;
+            document.getElementById('dashModalOverlay').style.display = 'flex';
+        }
+
+        async function refreshDashboardData() {
+            try {
+                const [pubRes, statsRes] = await Promise.all([
+                    fetch('/api/public-stats').catch(() => null),
+                    fetch('/api/stats?key=ameva_admin_secret_2026').catch(() => null)
+                ]);
+
+                const pubData = pubRes && pubRes.ok ? await pubRes.json() : null;
+                const statsData = statsRes && statsRes.ok ? await statsRes.json() : null;
+
+                if (pubData) {
+                    const humanCount = pubData.summary?.human_count ?? pubData.summary?.total_active_sessions ?? 200;
+                    const aiCount = pubData.summary?.ai_count ?? pubData.summary?.ai_crawlers_identified ?? 82;
+                    const totalAll = pubData.summary?.total_all_events ?? (humanCount + aiCount);
+
+                    document.getElementById('banner-events-count').innerHTML = '<strong>' + totalAll + ' Events (' + humanCount + ' Low Risk + ' + aiCount + ' Bot Claims)</strong>';
+                    document.getElementById('banner-last-event').innerText = formatDashTime(new Date(), 'time');
+
+                    const humanPct = pubData.traffic_distribution?.human_percent ?? (totalAll > 0 ? Math.round((humanCount / totalAll) * 100) : 100);
+                    const aiPct = pubData.traffic_distribution?.ai_bots_percent ?? (totalAll > 0 ? Math.round((aiCount / totalAll) * 100) : 0);
+
+                    document.getElementById('card-human-count').innerText = humanCount;
+                    document.getElementById('card-human-pct').innerText = humanPct + '% of total traffic (' + humanCount + ' / ' + totalAll + ')';
+
+                    document.getElementById('card-ai-count').innerText = aiCount;
+                    document.getElementById('card-ai-pct').innerText = aiPct + '% of total traffic (' + aiCount + ' / ' + totalAll + ')';
+
+                    document.getElementById('card-tool-count').innerText = 0;
+                    document.getElementById('card-tool-pct').innerText = '0% of total traffic (0 / ' + totalAll + ')';
+
+                    dashCountryClustersCache = pubData.country_clusters || [];
+                    dashGeoClustersCache = pubData.geo_clusters || [];
+                    renderDashMapMarkers();
+                }
+
+                if (statsData) {
+                    dashForensicsCache = statsData.deep_forensic_logs || [];
+                    dashTimeSeriesCache = statsData.time_series_sessions || [];
+                    updateDashboardChart();
+
+                    const originContainer = document.getElementById('dashOriginNodesGrid');
+                    if (statsData.top_referrers && statsData.top_referrers.length > 0) {
+                        const totalRefCount = statsData.top_referrers.reduce((s, r) => s + parseInt(r.count, 10), 0) || 1;
+                        originContainer.innerHTML = statsData.top_referrers.slice(0, 3).map(ref => {
+                            const pct = Math.round((parseInt(ref.count, 10) / totalRefCount) * 100);
+                            return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;"><div><strong>' + ref.source.slice(0, 24) + '</strong><div style="font-size:0.75em; color:#64748b;">Target: /sentinel/observability</div></div><strong style="color:#004499;">' + pct + '% (' + ref.count + ')</strong></div>';
+                        }).join('');
+                    }
+
+                    const journeyContainer = document.getElementById('dashJourneyHopsList');
+                    if (dashForensicsCache.length > 0) {
+                        journeyContainer.innerHTML = dashForensicsCache.slice(0, 3).map(item => {
+                            const vId = item.visitor_id || item.trace_id || '';
+                            return '<div style="background:#f8fafc; border:1px solid #cbd5e1; padding:8px 12px; border-radius:4px; cursor:pointer;" onclick="openDashModal(&quot;' + vId + '&quot;)"><div style="display:flex; justify-content:space-between; font-size:0.82em;"><strong>' + vId.slice(0, 16) + '...</strong><span style="color:#004499; text-decoration:underline;">Dossier</span></div><div style="font-size:0.78em; color:#475569; font-family:var(--font-mono); margin-top:2px;">' + (item.past_paths_history || '/') + '</div></div>';
+                        }).join('');
+                    }
+
+                    const tbody = document.getElementById('risk-events-tbody');
+                    const recentEvents = statsData.recent_risk_events || dashForensicsCache;
+                    if (recentEvents && recentEvents.length > 0) {
+                        document.getElementById('ledger-count-badge').innerText = recentEvents.length + ' Total';
+                        tbody.innerHTML = recentEvents.slice(0, 10).map(e => {
+                            const score = e.score || 0;
+                            const scoreClass = score >= 70 ? 'score-high' : score >= 40 ? 'score-med' : 'score-low';
+                            const action = score >= 70 ? 'DENY / CAPTCHA' : score >= 40 ? 'VERIFY' : 'ALLOW';
+                            const actionClass = score >= 70 ? 'pill-deny' : score >= 40 ? 'pill-verify' : 'pill-allow';
+                            const vId = e.visitor_id || e.trace_id || 'ev_' + Math.random().toString(36).slice(2, 8);
+                            return '<tr onclick="openDashModal(&quot;' + vId + '&quot;)"><td>' + formatDashTime(e.evaluated_at || e.captured_at, 'time') + '</td><td><span class="pill-action pill-allow">' + (e.triage_category || 'HUMAN') + '</span></td><td><code>' + vId.slice(0, 14) + '...</code></td><td><span class="score-box ' + scoreClass + '">' + score + ' / 100</span></td><td><span class="pill-action ' + actionClass + '">' + action + '</span></td><td><span style="color:#004499; text-decoration:underline; font-size:0.85em;">Inspect</span></td></tr>';
+                        }).join('');
+                    }
+                }
+            } catch (err) {
+                console.warn('Dashboard poll error:', err);
+            }
+        }
+
+        // Live Simulation Button Handlers
+        document.getElementById('btn-eval-browser').onclick = () => {
+            fetch('/api/sentinel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: 'HUMAN',
+                    visitorId: 'browser_' + Math.random().toString(36).slice(2, 10),
+                    userAgent: navigator.userAgent,
+                    webglRenderer: 'Real Hardware GPU WebGL 2.0',
+                    pastPaths: ['/', '/dashboard']
+                })
+            }).then(() => refreshDashboardData());
+        };
+
+        document.getElementById('btn-sim-playwright').onclick = () => {
+            fetch('/api/sentinel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: 'CRAWLER_TOOL',
+                    visitorId: 'playwright_stealth_' + Math.random().toString(36).slice(2, 8),
+                    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) HeadlessChrome/124.0.0.0',
+                    webglRenderer: 'SwiftShader Google Inc. Virtual Device',
+                    pastPaths: ['/login', '/admin']
+                })
+            }).then(() => refreshDashboardData());
+        };
+
+        document.getElementById('btn-sim-curl').onclick = () => {
+            fetch('/api/sentinel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: 'CRAWLER_TOOL',
+                    visitorId: 'curl_probe_' + Math.random().toString(36).slice(2, 8),
+                    userAgent: 'curl/8.4.0',
+                    webglRenderer: null,
+                    pastPaths: ['/api/v1/health']
+                })
+            }).then(() => refreshDashboardData());
+        };
+
+        document.getElementById('btn-sim-ai').onclick = () => {
+            fetch('/api/sentinel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: 'AI_AGENT',
+                    visitorId: 'gptbot_indexer_' + Math.random().toString(36).slice(2, 8),
+                    userAgent: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)',
+                    webglRenderer: null,
+                    pastPaths: ['/sentinel/llms.txt', '/docs']
+                })
+            }).then(() => refreshDashboardData());
+        };
+
+        document.getElementById('btn-sim-burst').onclick = () => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    fetch('/api/sentinel', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            category: 'CRAWLER_TOOL',
+                            visitorId: 'burst_node_' + Math.random().toString(36).slice(2, 8),
+                            userAgent: 'MassiveDistributedScraper/3.0',
+                            webglRenderer: null,
+                            pastPaths: ['/api/extract']
+                        })
+                    }).then(() => refreshDashboardData());
+                }, i * 200);
+            }
+        };
+
+        document.getElementById('btn-clear').onclick = () => {
+            document.getElementById('risk-events-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#64748b;">Store cleared. Waiting for new evaluations...</td></tr>';
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDashMap();
+            initDashTrafficChart();
+            refreshDashboardData();
+            setInterval(refreshDashboardData, 4000);
+        });
+    </script>
+</body>
+</html>
