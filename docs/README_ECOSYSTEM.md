@@ -58,17 +58,17 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
 | **[BitNet](https://github.com/uno-km/BitNet)** | Optimization | BitNet inference framework with ARM/Exynos scalar fallback |
 
 ### 🧭 AMEVA Core Infrastructure & MCP Ecosystem
-* **[🚀 AMEVA OS Workspace & Playground (WASM OS)](https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경 (로컬 프록시 구동 시 연동 작동)
-* **[✨ AMEVA OS 프로모션 & 인터랙티브 체험 페이지 (Promo URL)](https://uno-km.github.io/MCP-Wasm-Toolkit/promo/)**: Node Flow 및 가상 쉘 데모 시뮬레이터를 직접 체험해볼 수 있는 공식 랜드마크 페이지
+* **[🚀 AMEVA OS Workspace & Playground (WASM OS)](https://uno-km.github.io/ameva-mcp-hub/frontend/ameva_os.html)**: 로컬 호스트 자원과 브라우저 격리 샌드박스를 결합한 가속 하이브리드 가상 운영체제 개발 환경 (로컬 프록시 구동 시 연동 작동)
+* **[✨ AMEVA OS 프로모션 & 인터랙티브 체험 페이지 (Promo URL)](https://uno-km.github.io/ameva-mcp-hub/promo/)**: Node Flow 및 가상 쉘 데모 시뮬레이터를 직접 체험해볼 수 있는 공식 랜드마크 페이지
 
 <details>
 <summary><b>🔍 AMEVA Core MCP Specifications (두 가지 핵심 MCP 연동 스펙 보기)</b></summary>
 
-#### 1. ⚙️ MCP Wasm Toolkit (AMEVA OS Core)
+#### 1. ⚙️ AMEVA-MCP-Hub (AMEVA OS Core)
 - **역할**: 로컬 기기 자원을 안전하게 보존하면서, 크롤러나 동적 파이썬 스크립트 등 위험도가 높은 연산을 100% 격리된 웹 브라우저 WASM(Pyodide) 샌드박스로 우회하여 안전하게 처리합니다.
-- **특징**: `https://uno-km.github.io/MCP-Wasm-Toolkit/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 설계되었습니다.
+- **특징**: `https://uno-km.github.io/ameva-mcp-hub/frontend/ameva_os.html` 페이지와 로컬 포트 `9000` 프록시 브릿지 간 웹소켓 통신을 설계되었습니다.
 
-#### 2. 🧰 MCP Utils Toolkit (Dynamic Tool Hub)
+#### 2. 🧰 AMEVA-MCP-Hub (Dynamic Tool Hub)
 - **역할**: GitHub 원격 리포지토리에 저장된 `mcp_manifest.json` 설정과 도구 코드를 SSE(ntfy.sh) 실시간 핫리로드 채널을 통해 active 브라우저 세션에 3초 이내에 자동 업데이트 및 동적 등록합니다.
 - **특징**: 패키지 재설치나 서버 재부팅 없이 AI 에이전트의 실행 가능한 도구 셋을 동적으로 확장합니다.
 </details>
@@ -86,7 +86,7 @@ AMEVA 에코시스템은 다음 세 가지 핵심 Paradigm 위에 구축되었�
   </a>
   <p style="margin-top: 10px; font-size: 0.95em;">
     <a href="https://uno-km.github.io/uno-km/dashboard/"><b>🔮 3D Neural Fabric 대시보드 바로가기</b></a> |
-    <a href="https://uno-km.github.io/MCP-Wasm-Toolkit/promo/"><b>✨ AMEVA OS 프로모션 체험관</b></a>
+    <a href="https://uno-km.github.io/ameva-mcp-hub/promo/"><b>✨ AMEVA OS 프로모션 체험관</b></a>
   </p>
 </div>
 

@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | AMEVA-Forge</title>
   <meta name="description" content="Hardware dependencies, WebGPU flags, and package installation">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
   <header>
-    <a href="index.html" class="header-brand">
+  <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
     </a>
@@ -67,48 +67,77 @@
   </nav>
 
     <main class="content">
-      <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware dependencies, WebGPU flags, and package installation</p>
+      <h2>Installation &amp; Setup Guide</h2>
+      <p class="subtitle">Browser WebGPU and Python backend setup for the autograd tensor framework</p>
 
       <div class="alert alert-tip">
-        <span class="alert-title">Hardware Acceleration Requirements</span>
-        <p>AMEVA-Forge requires a WebGPU-enabled runtime (Chromium 113+, Safari 18+, Edge 113+, or Node.js with <code>@webgpu/wgpu</code>). No native CUDA compilation or cloud GPUs required.</p>
+        <span class="alert-title">⚡ Dual Runtime: Browser WebGPU + Python</span>
+        <p>AMEVA-Forge runs natively in any WebGPU-capable browser (Chrome 113+) with zero installation, and as a Python library for server-side or Termux use. Choose the runtime that matches your deployment target.</p>
       </div>
 
-      <h3>1. Python Package Installation (PyPI)</h3>
-      <p>Install the official AMEVA-Forge Python package into your local or virtual environment:</p>
-      <pre><code class="language-bash">pip install ameva</code></pre>
-
-      <h3>2. Browser CDN &amp; Standalone ESM Import</h3>
-      <p>Embed the hardware WebGPU compute engine directly into your web applications with zero build steps:</p>
-      <pre><code class="language-html">&lt;!-- IIFE Standalone Bundle --&gt;
-&lt;script src="https://uno-km.github.io/uno-km/lib/forge/dist/index.iife.js"&gt;&lt;/script&gt;
-
-&lt;!-- Or Modern ES Module --&gt;
+      <h3>1. Browser — Zero Installation (CDN)</h3>
+      <pre><code class="language-html">&lt;!-- ESM module (recommended) --&gt;
 &lt;script type="module"&gt;
-  import { Tensor, nn, optim } from 'https://uno-km.github.io/uno-km/lib/forge/dist/index.esm.js';
-  
-  // Initialize GPU Device Context
-  const x = new Tensor([1.0, 2.0, 3.0, 4.0], { requiresGrad: true, device: 'gpu' });
-  console.log('WebGPU Tensor Allocated:', x);
-&lt;/script&gt;</code></pre>
+  import { Tensor, nn, optim } from 'https://cdn.jsdelivr.net/npm/ameva-forge/dist/forge.esm.js';
+  // WebGPU is automatically selected if available, falls back to CPU
+  const x = Tensor.randn([32, 64]);
+  const y = x.matmul(Tensor.randn([64, 10])).relu();
+  console.log('Output shape:', y.shape);
+&lt;/script&gt;
 
-      <h3>3. Browser WebGPU Feature Verification</h3>
-      <p>Verify that your browser environment supports native WebGPU compute shaders:</p>
-      <pre><code class="language-javascript">if (!navigator.gpu) {
-  console.error("WebGPU is not supported on this browser. Please enable 'chrome://flags/#enable-unsafe-webgpu' or use Chrome 113+.");
-} else {
-  const adapter = await navigator.gpu.requestAdapter();
-  const device = await adapter.requestDevice();
-  console.log("WebGPU Hardware Adapter Active:", adapter.info);
-}</code></pre>
+&lt;!-- UMD global (for non-module environments) --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/ameva-forge/dist/forge.umd.min.js"&gt;&lt;/script&gt;</code></pre>
 
-      <h3>4. Node.js Native Backend Execution</h3>
-      <p>For headless CI/CD and server environments without display servers:</p>
+      <h3>2. Python (PyPI)</h3>
+      <pre><code class="language-bash"># Install Python package
+pip install ameva
+
+# Verify GPU backend detection
+python -c "
+import ameva as forge
+print('AMEVA-Forge', forge.__version__)
+print('Backend:', forge.get_backend())   # 'webgpu', 'cuda', or 'cpu'
+"</code></pre>
+
+      <h3>3. npm (Node.js / TypeScript)</h3>
       <pre><code class="language-bash">npm install ameva-forge
-# or run in headless WebGPU runtime
-node --enable-source-maps index.js</code></pre>
 
+# TypeScript types included
+# import { Tensor, nn, optim, Device } from 'ameva-forge';</code></pre>
+
+      <h3>4. WebGPU Compatibility</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Browser / Runtime</th><th>WebGPU</th><th>Min Version</th><th>GPU Fallback</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(0,68,153,.05);font-weight:700;"><td>Chrome / Chromium</td><td>✅ Native</td><td>113+</td><td>SwiftShader CPU</td></tr>
+            <tr><td>Edge</td><td>✅ Native</td><td>113+</td><td>SwiftShader CPU</td></tr>
+            <tr><td>Firefox</td><td>✅ Flag</td><td>nightly</td><td>CPU only</td></tr>
+            <tr><td>Safari</td><td>✅ Native</td><td>17+</td><td>Metal GPU</td></tr>
+            <tr><td>Node.js (dawn)</td><td>⚠️ Experimental</td><td>Any</td><td>CPU only</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5. Verification — Live WebGPU Test</h3>
+      <pre><code class="language-javascript">import { Tensor, Device } from 'ameva-forge';
+
+// Query active compute device
+const device = await Device.init();
+console.log('Active device:', device.type);  // 'webgpu' | 'cpu'
+console.log('VRAM budget:', device.memoryBudget, 'bytes');
+
+// Smoke test: 1000×1000 matmul on GPU
+const A = Tensor.randn([1000, 1000]);
+const B = Tensor.randn([1000, 1000]);
+const t0 = performance.now();
+const C = A.matmul(B);
+await C.sync();  // Force GPU sync
+console.log(`1000×1000 matmul: ${(performance.now() - t0).toFixed(1)} ms`);</code></pre>
+
+      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
+        <p>AMEVA-Forge v1.0.0 &bull; Apache-2.0 &bull; <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" style="color:#004499;font-weight:600;">uno-km/AMEVA-Forge</a></p>
+      </footer>
     </main>
   </div>
 

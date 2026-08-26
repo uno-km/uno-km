@@ -1,39 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | Termux-Playwright</title>
   <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
           <header>
-    <a href="index.html" class="header-brand">
+  <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-Playwright Logo">
       <h1 data-i18n="common.brand">Termux-Playwright</h1>
     </a>
@@ -86,13 +66,132 @@
   </nav>
 
     <main class="content">
-      <h2>Quickstart & Execution Recipes</h2>
-      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
-      <h3>Basic Execution Recipe</h3>
-         <pre><code>from termux_playwright import TermuxBrowser
-browser = TermuxBrowser.launch(headless=True)
-page = browser.new_page()
-page.goto('https://uno-km.vercel.app')</code></pre>
+      <h2>Quickstart &amp; Recipes</h2>
+      <p class="subtitle">Non-root Chromium automation: screenshots, scraping, PDF, and form interaction on Android</p>
+
+      <h3>Recipe 1: Screenshot Capture (Python)</h3>
+      <pre><code class="language-python">import asyncio
+from termux_playwright import async_playwright
+
+async def capture_screenshot():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=['--no-sandbox', '--disable-gpu']
+        )
+        page = await browser.new_page()
+        await page.goto('https://example.com', wait_until='networkidle')
+
+        # Save to Samsung Gallery-indexed path
+        await page.screenshot(
+            path='/data/data/com.termux/files/home/storage/pictures/screenshot.png',
+            full_page=True
+        )
+        await browser.close()
+        print("Screenshot saved to Gallery")
+
+asyncio.run(capture_screenshot())</code></pre>
+
+      <h3>Recipe 2: Web Scraping with Anti-Bot Evasion</h3>
+      <pre><code class="language-python">from termux_playwright import sync_playwright
+from termux_playwright.stealth import stealth_sync
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
+    page = browser.new_page()
+
+    # Apply stealth patches (removes webdriver fingerprint)
+    stealth_sync(page)
+
+    page.goto('https://target-site.com')
+    page.wait_for_selector('.product-list')
+
+    items = page.query_selector_all('.product-item')
+    for item in items:
+        print({
+            'name': item.query_selector('.name').inner_text(),
+            'price': item.query_selector('.price').inner_text()
+        })
+
+    browser.close()</code></pre>
+
+      <h3>Recipe 3: PDF Generation</h3>
+      <pre><code class="language-python">from termux_playwright import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
+    page = browser.new_page()
+    page.goto('https://docs.example.com/report')
+    page.wait_for_load_state('networkidle')
+
+    page.pdf(
+        path='/data/data/com.termux/files/home/report.pdf',
+        format='A4',
+        print_background=True,
+        margin={'top': '1cm', 'bottom': '1cm', 'left': '1cm', 'right': '1cm'}
+    )
+    browser.close()
+    print("PDF saved")</code></pre>
+
+      <h3>Recipe 4: Node.js / TypeScript</h3>
+      <pre><code class="language-typescript">import { chromium, Page } from 'termux-playwright';
+
+async function automateForm(): Promise&lt;void&gt; {
+  const browser = await chromium.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-gpu']
+  });
+
+  const page: Page = await browser.newPage();
+  await page.goto('https://form.example.com');
+
+  await page.fill('#username', 'mobile_agent');
+  await page.fill('#password', 'secure_pass');
+  await page.click('[type="submit"]');
+
+  await page.waitForURL('**/dashboard');
+  const title = await page.title();
+  console.log('Logged in. Page title:', title);
+
+  await browser.close();
+}
+
+automateForm().catch(console.error);</code></pre>
+
+      <h3>Recipe 5: Batch Parallel Crawling (ARM64 Optimized)</h3>
+      <pre><code class="language-python">import asyncio
+from termux_playwright import async_playwright
+
+URLS = [
+    'https://site1.example.com',
+    'https://site2.example.com',
+    'https://site3.example.com',
+]
+
+async def crawl_url(page, url: str) -> dict:
+    await page.goto(url, timeout=15000)
+    return {'url': url, 'title': await page.title()}
+
+async def parallel_crawl():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=['--no-sandbox']
+        )
+        # Allocate parallel pages (keep ≤ 3 on 4GB RAM devices)
+        pages = [await browser.new_page() for _ in range(min(3, len(URLS)))]
+        tasks = [crawl_url(pages[i % len(pages)], url) for i, url in enumerate(URLS)]
+        results = await asyncio.gather(*tasks)
+        await browser.close()
+        return results
+
+results = asyncio.run(parallel_crawl())
+for r in results:
+    print(r)</code></pre>
+
+      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
+        <p>Termux-Playwright v1.0.0 &bull; Apache-2.0 &bull; Non-Root ARM64 Chromium</p>
+      </footer>
     </main>
   </div>
 

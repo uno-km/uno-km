@@ -1,39 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | Termux-Playwright</title>
   <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
           <header>
-    <a href="index.html" class="header-brand">
+  <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-Playwright Logo">
       <h1 data-i18n="common.brand">Termux-Playwright</h1>
     </a>
@@ -86,15 +66,91 @@
   </nav>
 
     <main class="content">
-      <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <h2>API Reference</h2>
+      <p class="subtitle">Complete Python and Node.js API for non-root ARM64 Chromium automation on Termux</p>
+
+      <h3>Module: <code>termux_playwright</code></h3>
+
+      <h4>Context Manager: <code>async_playwright()</code></h4>
+      <pre><code class="language-python">from termux_playwright import async_playwright
+
+async with async_playwright() as p:
+    browser = await p.chromium.launch(
+        headless=True,
+        args=['--no-sandbox', '--disable-gpu'],
+        timeout=30000
+    )
+    # browser: BrowserType</code></pre>
+
+      <h4>Browser: <code>p.chromium.launch()</code> Parameters</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>headless</code></td><td>bool</td><td>True</td><td>Run Chromium headless (required on Termux)</td></tr>
+            <tr><td><code>args</code></td><td>list[str]</td><td>[]</td><td>Chromium CLI flags (always include --no-sandbox)</td></tr>
+            <tr><td><code>executable_path</code></td><td>str</td><td>auto</td><td>Override Chromium binary path</td></tr>
+            <tr><td><code>timeout</code></td><td>int</td><td>30000</td><td>Browser launch timeout (ms)</td></tr>
+            <tr><td><code>proxy</code></td><td>dict</td><td>None</td><td><code>{'server': '...', 'username': '...', 'password': '...'}</code></td></tr>
+            <tr><td><code>ignore_default_args</code></td><td>list</td><td>[]</td><td>Remove specific default Playwright args</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Page: <code>browser.new_page()</code> / Core Methods</h4>
+      <pre><code class="language-python">page = await browser.new_page()
+
+# Navigation
+await page.goto(url, wait_until='networkidle', timeout=15000)
+# wait_until: 'load' | 'domcontentloaded' | 'networkidle' | 'commit'
+
+# Selectors
+element = await page.query_selector('.css-selector')
+elements = await page.query_selector_all('div.item')
+await page.wait_for_selector('#login-form', timeout=5000)
+
+# Interaction
+await page.fill('#input-field', 'text value')
+await page.click('[type="submit"]')
+await page.select_option('#dropdown', 'value')
+await page.keyboard.press('Enter')
+
+# Evaluation
+result = await page.evaluate('() => document.title')
+text = await page.inner_text('.content')
+
+# Screenshot / PDF
+await page.screenshot(path='shot.png', full_page=True, type='png')
+await page.pdf(path='doc.pdf', format='A4')
+
+# Network
+await page.route('**/*.{png,jpg}', lambda r: r.abort())
+await page.route('**/api/**', lambda r: r.fulfill(body='{"mock":true}'))</code></pre>
+
+      <h4>Browser Context: Isolation &amp; Fingerprinting</h4>
+      <pre><code class="language-python">context = await browser.new_context(
+    viewport={'width': 1080, 'height': 2340},
+    user_agent='Mozilla/5.0 (Linux; Android 13; SM-S901B)',
+    locale='ko-KR',
+    timezone_id='Asia/Seoul',
+    geolocation={'latitude': 37.5665, 'longitude': 126.9780},
+    permissions=['geolocation'],
+    extra_http_headers={'Accept-Language': 'ko-KR'}
+)
+page = await context.new_page()</code></pre>
+
+      <h4>Node.js / TypeScript API</h4>
+      <pre><code class="language-typescript">import { chromium, Browser, Page, BrowserContext } from 'termux-playwright';
+
+const browser: Browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+const page: Page = await browser.newPage();
+await page.goto('https://example.com');
+const title: string = await page.title();
+await browser.close();</code></pre>
+
+      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
+        <p>Termux-Playwright v1.0.0 &bull; Apache-2.0</p>
+      </footer>
     </main>
   </div>
 

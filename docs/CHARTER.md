@@ -39,7 +39,7 @@ AOSF는 다음과 같은 핵심 기술 도메인에 대한 연구, 개발, 표�
 ```
 
 1. Mobile Bionic & Native Automation: 안드로이드(Termux) 환경에서 루팅(Root) 없이 네이티브 하드웨어 가속을 활용하는 브라우저 자동화(termux-playwright), 온디바이스 생성 AI(termux-diffusion), 텐서 엔진(termux-torch).
-2. Browser-Native WebGPU & WASM Computing: 서버리스 브라우저 환경에서 동작하는 딥러닝 자동 미분 엔진(AMEVA-Forge) 및 100% 격리 런타임(MCP-Wasm-Toolkit).
+2. Browser-Native WebGPU & WASM Computing: 서버리스 브라우저 환경에서 동작하는 딥러닝 자동 미분 엔진(AMEVA-Forge) 및 100% 격리 런타임(AMEVA-MCP-Hub).
 3. Autonomous Agent Orchestration & Resilient SRE: 다중 에이전트 간 계층적 협업(Agent Orchestra), 자율 시뮬레이션(Dead Internet Theatre), 무손실 엣지 데이터 수집(Data Harvester).
 
 ---

@@ -1,0 +1,187 @@
+﻿# uno-km Ecosystem Version SSOT
+# AMV-VER-20260826
+# 
+# 이 파일이 모든 라이브러리 버전의 단일 진실 공급원(SSOT)입니다.
+# 수정 후 tools/build_pages.py 를 실행하면 versions.html, llms.txt,
+# sitemap.xml 이 자동으로 업데이트됩니다.
+#
+# 형식: ISO 8601 날짜, SemVer 버전
+
+ecosystem:
+  version: "2.1.0"
+  release_date: "2026-08-26"
+  codename: "Unified Portal"
+
+libraries:
+  sentinel:
+    name: "AMEVA-Sentinel"
+    version: "1.0.0"
+    release_date: "2026-08-01"
+    npm_package: "ameva-sentinel"
+    pypi_package: null
+    github_repo: "uno-km/ameva-sentinel"
+    lib_path: "lib/sentinel"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+      - admin.html
+    status: "stable"
+
+  mcp:
+    name: "AMEVA-MCP-Hub"
+    version: "3.0.0"
+    release_date: "2026-07-15"
+    npm_package: "ameva-mcp-hub"
+    pypi_package: null
+    github_repo: "uno-km/ameva-mcp-hub"
+    lib_path: "lib/mcp"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - tools.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  aichain:
+    name: "Termux-AIChain"
+    version: "1.0.0"
+    release_date: "2026-06-20"
+    npm_package: null
+    pypi_package: "termux-aichain"
+    github_repo: "uno-km/termux-aichain"
+    lib_path: "lib/aichain"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  bitnet:
+    name: "Termux-BitNet"
+    version: "1.0.0"
+    release_date: "2026-05-10"
+    npm_package: null
+    pypi_package: "termux-bitnet"
+    github_repo: "uno-km/termux-bitnet"
+    lib_path: "lib/bitnet"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - models.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  diffusion:
+    name: "Termux-Diffusion"
+    version: "1.0.0"
+    release_date: "2026-04-01"
+    npm_package: "termux-diffusion"
+    pypi_package: "termux-diffusion"
+    github_repo: "uno-km/termux-diffusion"
+    lib_path: "lib/diffusion"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - models.html
+      - gallery.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  playwright:
+    name: "Termux-Playwright"
+    version: "1.0.0"
+    release_date: "2026-03-15"
+    npm_package: null
+    pypi_package: "termux-playwright"
+    github_repo: "uno-km/termux-playwright"
+    lib_path: "lib/playwright"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  stt:
+    name: "Termux-STT"
+    version: "1.0.0"
+    release_date: "2026-02-20"
+    npm_package: null
+    pypi_package: "termux-stt"
+    github_repo: "uno-km/termux-stt"
+    lib_path: "lib/stt"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - models.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"
+
+  train:
+    name: "Termux-Train"
+    version: "1.0.0"
+    release_date: "2026-01-10"
+    npm_package: null
+    pypi_package: "termux-train"
+    github_repo: "uno-km/termux-train"
+    lib_path: "lib/train"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - models.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+      - training-guide.html
+    status: "stable"
+
+  forge:
+    name: "AMEVA-Forge"
+    version: "1.0.0"
+    release_date: "2026-08-10"
+    npm_package: null
+    pypi_package: "ameva"
+    github_repo: "uno-km/AMEVA-Forge"
+    lib_path: "lib/forge"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - demo.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+      - what-is-forge.html
+      - forge-vs-pytorch.html
+    status: "stable"

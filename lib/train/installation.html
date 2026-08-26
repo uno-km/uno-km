@@ -1,39 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | Termux-Train</title>
   <meta name="description" content="Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
           <header>
-    <a href="index.html" class="header-brand">
+  <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="Termux-Train Logo">
       <h1 data-i18n="common.brand">Termux-Train</h1>
     </a>
@@ -87,14 +67,68 @@
   </nav>
 
     <main class="content">
-      <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <h2>Installation &amp; Setup Guide</h2>
+      <p class="subtitle">Pure Python autograd DAG engine — zero native compilation, zero NumPy dependency</p>
+
       <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>pip install termux-train</code></pre>
+        <span class="alert-title">⚡ Pure Python — No Binary Compilation</span>
+        <p>Termux-Train implements the full autograd DAG and LoRA fine-tuning pipeline in pure Python (CPython 3.9+). No GCC, CMake, BLAS, or NumPy required. Runs on any ARM64 or x86_64 Python environment.</p>
+      </div>
+
+      <h3>1. PyPI Installation</h3>
+      <pre><code class="language-bash">pip install termux-train
+
+# Verify
+python -c "import termux_train; print('Termux-Train', termux_train.__version__, 'OK')"</code></pre>
+
+      <h3>2. Optional Accelerators</h3>
+      <pre><code class="language-bash"># Optional: NumPy for 3-10x matrix multiply speedup (if available)
+pip install termux-train[numpy]
+
+# Optional: Export trained models to GGUF format
+pip install termux-train[gguf]
+
+# Optional: Weights &amp; Biases experiment tracking
+pip install termux-train[wandb]</code></pre>
+
+      <h3>3. Termux ARM64 Prerequisites</h3>
+      <pre><code class="language-bash"># Termux environment setup
+pkg update && pkg install python
+
+# Install Termux-Train
+pip install termux-train
+
+# Verify ARM64 SIMD acceleration status
+python -c "from termux_train.backend import detect_backend; print(detect_backend())"
+# Output: 'arm64-neon' or 'pure-python'</code></pre>
+
+      <h3>4. Compatibility Matrix</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Environment</th><th>Python</th><th>Backend</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Galaxy S20 Termux</td><td>3.12</td><td>NEON SIMD (auto)</td><td><span style="color:#2e7d32;">✅ Primary</span></td></tr>
+            <tr><td>Galaxy A35 Termux</td><td>3.11</td><td>NEON SIMD (auto)</td><td><span style="color:#2e7d32;">✅ Validated</span></td></tr>
+            <tr><td>Linux x86_64</td><td>3.9+</td><td>Pure Python / NumPy</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
+            <tr><td>macOS ARM64 (M-series)</td><td>3.10+</td><td>NumPy BLAS</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
+            <tr><td>Windows x86_64</td><td>3.9+</td><td>Pure Python / NumPy</td><td><span style="color:#f57c00;">⚠️ No SIMD</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5. Post-Install Verification</h3>
+      <pre><code class="language-bash">python -c "
+from termux_train import Tensor, Module, SGD
+# Quick autograd smoke test
+x = Tensor([2.0], requires_grad=True)
+y = x ** 2 + 3 * x + 1  # y = x^2 + 3x + 1
+y.backward()
+print('dy/dx at x=2:', x.grad)  # Should print [7.0]
+print('Autograd DAG: OK')
+"</code></pre>
+      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
+        <p>Termux-Train v1.0.0 &bull; Apache-2.0 &bull; <a href="https://github.com/uno-km/termux-train" target="_blank" style="color:#004499;font-weight:600;">uno-km/termux-train</a></p>
+      </footer>
     </main>
   </div>
 

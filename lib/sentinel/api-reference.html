@@ -1,39 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | AMEVA-Sentinel</title>
   <meta name="description" content="Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
-  
-  
-  
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
           <header>
-    <a href="index.html" class="header-brand">
+  <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
@@ -86,15 +66,89 @@
   </nav>
 
     <main class="content">
-      <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <h2>API Reference</h2>
+      <p class="subtitle">Complete TypeScript/JavaScript API — Sentinel class, configuration, evaluation result, and utilities</p>
+
+      <h3>Class: <code>Sentinel</code></h3>
+      <pre><code class="language-typescript">import { Sentinel } from 'ameva-sentinel';
+
+const sentinel = new Sentinel(config: SentinelConfig);</code></pre>
+
+      <h4>Constructor Parameters</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>hmacSecret</code></td><td>string</td><td>✅</td><td>—</td><td>256-bit entropy HMAC signing secret</td></tr>
+            <tr><td><code>riskThreshold</code></td><td>number</td><td>❌</td><td>65</td><td>Block if score ≥ threshold (0–100)</td></tr>
+            <tr><td><code>shadowMode</code></td><td>boolean</td><td>❌</td><td>false</td><td>Log-only mode, never blocks</td></tr>
+            <tr><td><code>tokenTTL</code></td><td>number</td><td>❌</td><td>300</td><td>HMAC token validity (seconds)</td></tr>
+            <tr><td><code>weights</code></td><td>SignalWeights</td><td>❌</td><td>balanced</td><td>Per-axis risk signal weights (sum=1.0)</td></tr>
+            <tr><td><code>edgeProvider</code></td><td>string</td><td>❌</td><td>'auto'</td><td>CDN provider for IP extraction</td></tr>
+            <tr><td><code>trustedProxies</code></td><td>string[]</td><td>❌</td><td>[]</td><td>CIDR ranges for trusted reverse proxies</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Method: <code>sentinel.evaluate(request)</code></h3>
+      <pre><code class="language-typescript">const result: EvaluationResult = await sentinel.evaluate(req);
+// req: IncomingMessage (Node.js) | Request (Web API / Edge)</code></pre>
+
+      <h4>Returns: <code>EvaluationResult</code></h4>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>score</code></td><td>number (0–100)</td><td>Composite risk score. Higher = riskier.</td></tr>
+            <tr><td><code>token</code></td><td>string</td><td>HMAC-SHA256 signed evaluation token (include in response headers)</td></tr>
+            <tr><td><code>blocked</code></td><td>boolean</td><td>True if score ≥ threshold AND not in shadow mode</td></tr>
+            <tr><td><code>signals</code></td><td>SignalBreakdown</td><td>Per-axis score breakdown for observability</td></tr>
+            <tr><td><code>latencyMs</code></td><td>number</td><td>Internal evaluation latency in milliseconds</td></tr>
+            <tr><td><code>requestId</code></td><td>string</td><td>UUID for correlation with access logs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Method: <code>sentinel.middleware()</code></h3>
+      <pre><code class="language-typescript">// Express-compatible middleware factory
+app.use(sentinel.middleware());
+
+// Custom handler for blocked requests
+app.use(sentinel.middleware({
+  onBlocked: (req, res, result) => {
+    res.status(429).json({ error: 'Blocked', score: result.score });
+  },
+  onEvaluation: (req, result) => {
+    console.log('Eval:', result.score, result.requestId);
+  }
+}));</code></pre>
+
+      <h3>Utility: <code>verifyToken(token, secret, options?)</code></h3>
+      <pre><code class="language-typescript">import { verifyToken } from 'ameva-sentinel';
+
+const isValid: boolean = verifyToken(
+  token: string,
+  secret: string,
+  options?: {
+    maxAge?: number;    // Max token age in seconds (default: tokenTTL)
+    minScore?: number;  // Minimum acceptable score (default: 0)
+    maxScore?: number;  // Maximum acceptable score (default: 100)
+  }
+);</code></pre>
+
+      <h3>Interface: <code>SignalBreakdown</code></h3>
+      <pre><code class="language-typescript">interface SignalBreakdown {
+  headerEntropy: number;    // 0–100: HTTP header structure entropy analysis
+  tlsFingerprint: number;   // 0–100: JA3/JA3S fingerprint risk
+  ipReputation: number;     // 0–100: IP reputation and ASN classification
+  behaviorPattern: number;  // 0–100: Request timing and sequencing pattern
+  geoConsistency: number;   // 0–100: IP geolocation vs Accept-Language mismatch
+  composite: number;        // Final weighted composite score
+}</code></pre>
+
+      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
+        <p>AMEVA-Sentinel v1.0.0 &bull; Apache-2.0</p>
+      </footer>
     </main>
   </div>
 

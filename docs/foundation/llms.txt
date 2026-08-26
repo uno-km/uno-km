@@ -26,7 +26,7 @@
 ### Tier 3: Labs & Research
 - **Dead Internet Theatre**: Docker-based autonomous multi-agent social simulation.
 - **AMEVA Agent Orchestra**: Hierarchical multi-agent orchestration (Nobles & Workers).
-- **MCP-Wasm-Toolkit**: 100% browser Pyodide WASM isolated execution sandbox.
+- **AMEVA-MCP-Hub**: 100% browser Pyodide WASM isolated execution sandbox.
 - **AMEVA-Multi-CLI**: Recursive multi-split terminal workbench with 80 FPS smart PTY.
 - **BitNet**: 1-bit quantization (1.58-bit) LLM ARM NEON / I2_S kernel contributions.
 

@@ -1,7 +1,7 @@
 # Browser Test Verification Report
 
 * **실행 시각**: 2026-08-24 06:36:44 (Local System Time)
-* **대상 테스트 명세서**: [test_spec_ameva_os.md](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/test_spec_ameva_os.md)
+* **대상 테스트 명세서**: [test_spec_ameva_os.md](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/test_spec_ameva_os.md)
 * **검증 결과**: ✅ **통과 (PASSED)**
 * **실행 시간**: 14.9s
 
@@ -13,7 +13,7 @@
 ## 📝 세부 실행 로그
 
 ### 1. ✅ **open**
-* **인자**: `file:///c:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/frontend/ameva_runtime.html`
+* **인자**: `file:///c:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/frontend/ameva_runtime.html`
 * **상태**: **PASSED**
 ---
 
@@ -30,9 +30,9 @@
 ### 4. ✅ **screenshot**
 * **인자**: `step1_booted.png`
 * **상태**: **PASSED**
-* **스크린샷**: [step1_booted.png](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step1_booted.png)
+* **스크린샷**: [step1_booted.png](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step1_booted.png)
 
-![Screenshot 4](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step1_booted.png)
+![Screenshot 4](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step1_booted.png)
 
 ---
 
@@ -54,9 +54,9 @@
 ### 8. ✅ **screenshot**
 * **인자**: `step2_typed_help.png`
 * **상태**: **PASSED**
-* **스크린샷**: [step2_typed_help.png](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step2_typed_help.png)
+* **스크린샷**: [step2_typed_help.png](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step2_typed_help.png)
 
-![Screenshot 8](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step2_typed_help.png)
+![Screenshot 8](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step2_typed_help.png)
 
 ---
 
@@ -73,9 +73,9 @@
 ### 11. ✅ **screenshot**
 * **인자**: `step3_help_output.png`
 * **상태**: **PASSED**
-* **스크린샷**: [step3_help_output.png](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step3_help_output.png)
+* **스크린샷**: [step3_help_output.png](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step3_help_output.png)
 
-![Screenshot 11](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step3_help_output.png)
+![Screenshot 11](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step3_help_output.png)
 
 ---
 
@@ -97,9 +97,9 @@
 ### 15. ✅ **screenshot**
 * **인자**: `step4_scrolled.png`
 * **상태**: **PASSED**
-* **스크린샷**: [step4_scrolled.png](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step4_scrolled.png)
+* **스크린샷**: [step4_scrolled.png](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step4_scrolled.png)
 
-![Screenshot 15](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step4_scrolled.png)
+![Screenshot 15](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step4_scrolled.png)
 
 ---
 
@@ -116,9 +116,9 @@
 ### 18. ✅ **screenshot**
 * **인자**: `step5_backup_clicked.png`
 * **상태**: **PASSED**
-* **스크린샷**: [step5_backup_clicked.png](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step5_backup_clicked.png)
+* **스크린샷**: [step5_backup_clicked.png](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step5_backup_clicked.png)
 
-![Screenshot 18](file:///C:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/docs/step5_backup_clicked.png)
+![Screenshot 18](file:///C:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/docs/step5_backup_clicked.png)
 
 ---
 

@@ -5,7 +5,7 @@
 
 ## 시나리오 A: 부팅 및 기본 UI 상태 확인
 
-- [ ] **open**: file:///c:/Users/GAME/Desktop/uno-km/dev/MCP-Wasm-Toolkit/frontend/ameva_runtime.html
+- [ ] **open**: file:///c:/Users/GAME/Desktop/uno-km/dev/AMEVA-MCP-Hub/frontend/ameva_runtime.html
 - [ ] **wait-for-text**: #terminalConsole, Boot Sequence complete.
 - [ ] **screenshot**: A1_booted.png
 - [ ] **assert-exists**: #terminalInput

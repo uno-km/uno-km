@@ -28,7 +28,7 @@ This report documents the E2E verification of **AMEVA OS v2.0**, verifying stand
 
 ### Group C: Built-in Tools via MCP `/mcp`
 - **[PASS]** `run_shell_command 'echo MCP_ECHO_OK'` -> Returned stdout `MCP_ECHO_OK`.
-- **[PASS]** `gitpull uno-km/MCP-Utils-Toolkit` -> Cloned repo tree to VFS & auto-installed dependencies via micropip.
+- **[PASS]** `gitpull uno-km/AMEVA-MCP-Hub` -> Cloned repo tree to VFS & auto-installed dependencies via micropip.
 - **[PASS]** `python_exec quick_test.py (2+2=4)` -> Executed script in Pyodide and returned `4`.
 
 ### Group D: HUB Tools via MCP `/mcp` (Pyodide WASM)

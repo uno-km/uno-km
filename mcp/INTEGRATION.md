@@ -32,7 +32,7 @@ Cursor, Cline, Roo Code 등 MCP(Model Context Protocol)를 지원하는 플러�
 3. **+ Add New MCP Server** 버튼 클릭
    * **Name**: `ameva-os`
    * **Type**: `stdio`
-   * **Command**: `node "C:/Users/ATSAdmin/Documents/UNO/small_prj/MCP-Wasm-Toolkit/mcp_proxy.js"`
+   * **Command**: `node "C:/Users/ATSAdmin/Documents/UNO/small_prj/AMEVA-MCP-Hub/mcp_proxy.js"`
 4. Save 후 활성화 상태를 확인합니다.
 
 ### B. Cline / Roo Code 연동
@@ -44,7 +44,7 @@ Cursor, Cline, Roo Code 등 MCP(Model Context Protocol)를 지원하는 플러�
     "ameva-os": {
       "command": "node",
       "args": [
-        "C:/Users/ATSAdmin/Documents/UNO/small_prj/MCP-Wasm-Toolkit/mcp_proxy.js"
+        "C:/Users/ATSAdmin/Documents/UNO/small_prj/AMEVA-MCP-Hub/mcp_proxy.js"
       ],
       "disabled": false
     }

@@ -1,283 +1,87 @@
-{
+﻿{
   "version": 2,
   "cleanUrls": true,
   "redirects": [
-    {
-      "source": "/lib/mcp",
-      "destination": "/lib/mcp/",
-      "permanent": false
-    },
-    {
-      "source": "/mcp",
-      "destination": "/lib/mcp/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/playwright",
-      "destination": "/lib/playwright/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/stt",
-      "destination": "/lib/stt/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/train",
-      "destination": "/lib/train/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/diffusion",
-      "destination": "/lib/diffusion/",
-      "permanent": false
-    },
-    {
-      "source": "/lib/forge",
-      "destination": "/lib/forge/",
-      "permanent": false
-    },
-    {
-      "source": "/sdk/sentinel",
-      "destination": "/sdk/sentinel/",
-      "permanent": false
-    },
-    {
-      "source": "/foundation",
-      "destination": "/foundation/",
-      "permanent": false
-    },
-    {
-      "source": "/docs/foundation",
-      "destination": "/foundation/",
-      "permanent": false
-    },
-    {
-      "source": "/workstation",
-      "destination": "/app/workstation/",
-      "permanent": false
-    },
-    {
-      "source": "/sentinel",
-      "destination": "/sdk/sentinel/",
-      "permanent": false
-    },
-    {
-      "source": "/playwright",
-      "destination": "/lib/playwright/",
-      "permanent": false
-    },
-    {
-      "source": "/stt",
-      "destination": "/lib/stt/",
-      "permanent": false
-    },
-    {
-      "source": "/train",
-      "destination": "/lib/train/",
-      "permanent": false
-    },
-    {
-      "source": "/diffusion",
-      "destination": "/lib/diffusion/",
-      "permanent": false
-    },
-    {
-      "source": "/forge",
-      "destination": "/lib/forge/",
-      "permanent": false
-    },
-    {
-      "source": "/dashboard",
-      "destination": "/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/observability",
-      "destination": "/sentinel/observability",
-      "permanent": false
-    },
-    {
-      "source": "/status",
-      "destination": "/sentinel/observability",
-      "permanent": false
-    },
-    {
-      "source": "/ops",
-      "destination": "/sentinel/observability",
-      "permanent": false
-    },
-    {
-      "source": "/telemetry",
-      "destination": "/sentinel/observability",
-      "permanent": false
-    },
-    {
-      "source": "/sentinel/status",
-      "destination": "/sentinel/observability",
-      "permanent": false
-    },
-    {
-      "source": "/docs/foundation/dashboard",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/app/dashboard",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/app/dashboard/(.*)",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/app/daskborad",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/foundation/daskborad",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/foundation/dashboard",
-      "destination": "/foundation/dashboard/",
-      "permanent": false
-    }
+    { "source": "/lib/mcp",         "destination": "/lib/mcp/",         "permanent": false },
+    { "source": "/mcp",             "destination": "/lib/mcp/",         "permanent": false },
+    { "source": "/lib/aichain",     "destination": "/lib/aichain/",     "permanent": false },
+    { "source": "/aichain",         "destination": "/lib/aichain/",     "permanent": false },
+    { "source": "/lib/bitnet",      "destination": "/lib/bitnet/",      "permanent": false },
+    { "source": "/bitnet",          "destination": "/lib/bitnet/",      "permanent": false },
+    { "source": "/lib/sentinel",    "destination": "/lib/sentinel/",    "permanent": false },
+    { "source": "/sentinel",        "destination": "/lib/sentinel/",    "permanent": false },
+    { "source": "/lib/playwright",  "destination": "/lib/playwright/",  "permanent": false },
+    { "source": "/playwright",      "destination": "/lib/playwright/",  "permanent": false },
+    { "source": "/lib/stt",         "destination": "/lib/stt/",         "permanent": false },
+    { "source": "/stt",             "destination": "/lib/stt/",         "permanent": false },
+    { "source": "/lib/train",       "destination": "/lib/train/",       "permanent": false },
+    { "source": "/train",           "destination": "/lib/train/",       "permanent": false },
+    { "source": "/lib/diffusion",   "destination": "/lib/diffusion/",   "permanent": false },
+    { "source": "/diffusion",       "destination": "/lib/diffusion/",   "permanent": false },
+    { "source": "/lib/forge",       "destination": "/lib/forge/",       "permanent": false },
+    { "source": "/forge",           "destination": "/lib/forge/",       "permanent": false },
+    { "source": "/sdk/sentinel",    "destination": "/sdk/sentinel/",    "permanent": false },
+    { "source": "/foundation",      "destination": "/foundation/",      "permanent": false },
+    { "source": "/docs/foundation", "destination": "/foundation/",      "permanent": false },
+    { "source": "/workstation",     "destination": "/app/workstation/", "permanent": false },
+    { "source": "/dashboard",       "destination": "/dashboard/",       "permanent": false },
+    { "source": "/observability",   "destination": "/sentinel/observability", "permanent": false },
+    { "source": "/status",          "destination": "/sentinel/observability", "permanent": false },
+    { "source": "/ops",             "destination": "/sentinel/observability", "permanent": false },
+    { "source": "/telemetry",       "destination": "/sentinel/observability", "permanent": false },
+    { "source": "/sentinel/status", "destination": "/sentinel/observability", "permanent": false },
+    { "source": "/docs/foundation/dashboard", "destination": "/foundation/dashboard/", "permanent": false },
+    { "source": "/app/dashboard",   "destination": "/foundation/dashboard/", "permanent": false },
+    { "source": "/app/dashboard/(.*)", "destination": "/foundation/dashboard/", "permanent": false },
+    { "source": "/app/daskborad",   "destination": "/foundation/dashboard/", "permanent": false },
+    { "source": "/foundation/daskborad", "destination": "/foundation/dashboard/", "permanent": false },
+    { "source": "/foundation/dashboard", "destination": "/foundation/dashboard/", "permanent": false }
   ],
   "rewrites": [
-    {
-      "source": "/foundation/dashboard/:match*",
-      "destination": "/foundation/dashboard/:match*"
-    },
-    {
-      "source": "/admin/(.*)",
-      "destination": "/analytics/$1"
-    },
-    {
-      "source": "/admin",
-      "destination": "/analytics/index.html"
-    },
-    {
-      "source": "/analytics/(.*)",
-      "destination": "/analytics/$1"
-    },
-    {
-      "source": "/analytics",
-      "destination": "/analytics/index.html"
-    },
-    {
-      "source": "/docs/foundation/:match*",
-      "destination": "/foundation/:match*"
-    },
-    {
-      "source": "/foundation/:match*",
-      "destination": "/foundation/:match*"
-    },
-    {
-      "source": "/docs/charter",
-      "destination": "/foundation/charter.html"
-    },
-    {
-      "source": "/docs/governance",
-      "destination": "/foundation/governance.html"
-    },
-    {
-      "source": "/docs/incubation",
-      "destination": "/foundation/incubation.html"
-    },
-    {
-      "source": "/docs/sponsorship",
-      "destination": "/foundation/sponsorship.html"
-    },
-    {
-      "source": "/charter",
-      "destination": "/foundation/charter.html"
-    },
-    {
-      "source": "/governance",
-      "destination": "/foundation/governance.html"
-    },
-    {
-      "source": "/incubation",
-      "destination": "/foundation/incubation.html"
-    },
-    {
-      "source": "/sponsorship",
-      "destination": "/foundation/sponsorship.html"
-    },
-    {
-      "source": "/diffusion/:match*",
-      "destination": "/diffusion/:match*"
-    },
-    {
-      "source": "/playwright/:match*",
-      "destination": "/playwright/:match*"
-    },
-    {
-      "source": "/stt/:match*",
-      "destination": "/stt/:match*"
-    },
-    {
-      "source": "/train/:match*",
-      "destination": "/train/:match*"
-    },
-    {
-      "source": "/forge/:match*",
-      "destination": "/forge/:match*"
-    },
-    {
-      "source": "/sentinel/:match*",
-      "destination": "/sentinel/:match*"
-    },
-    {
-      "source": "/sdk/sentinel/:match*",
-      "destination": "/sdk/sentinel/:match*"
-    },
-    {
-      "source": "/workstation/:match*",
-      "destination": "/app/workstation/index.html"
-    },
-    {
-      "source": "/workstation/:match*",
-      "destination": "/app/workstation/:match*"
-    },
-    {
-      "source": "/app/workstation/:match*",
-      "destination": "/app/workstation/:match*"
-    },
-    {
-      "source": "/dashboard/:match*",
-      "destination": "/dashboard/:match*"
-    },
-    {
-      "source": "/lib/bitnet/:match*",
-      "destination": "/lib/bitnet/:match*"
-    },
-    {
-      "source": "/bitnet/:match*",
-      "destination": "/lib/bitnet/:match*"
-    }
+    { "source": "/foundation/dashboard/:match*", "destination": "/foundation/dashboard/:match*" },
+    { "source": "/admin/(.*)",    "destination": "/analytics/$1" },
+    { "source": "/admin",         "destination": "/analytics/index.html" },
+    { "source": "/analytics/(.*)", "destination": "/analytics/$1" },
+    { "source": "/analytics",     "destination": "/analytics/index.html" },
+    { "source": "/docs/foundation/:match*", "destination": "/foundation/:match*" },
+    { "source": "/foundation/:match*", "destination": "/foundation/:match*" },
+    { "source": "/docs/charter",    "destination": "/foundation/charter.html" },
+    { "source": "/docs/governance", "destination": "/foundation/governance.html" },
+    { "source": "/docs/incubation", "destination": "/foundation/incubation.html" },
+    { "source": "/docs/sponsorship","destination": "/foundation/sponsorship.html" },
+    { "source": "/charter",         "destination": "/foundation/charter.html" },
+    { "source": "/governance",      "destination": "/foundation/governance.html" },
+    { "source": "/incubation",      "destination": "/foundation/incubation.html" },
+    { "source": "/sponsorship",     "destination": "/foundation/sponsorship.html" },
+    { "source": "/shared/:match*",          "destination": "/shared/:match*" },
+    { "source": "/lib/sentinel/:match*",    "destination": "/lib/sentinel/:match*" },
+    { "source": "/lib/mcp/:match*",         "destination": "/lib/mcp/:match*" },
+    { "source": "/lib/aichain/:match*",     "destination": "/lib/aichain/:match*" },
+    { "source": "/lib/bitnet/:match*",      "destination": "/lib/bitnet/:match*" },
+    { "source": "/lib/forge/:match*",       "destination": "/lib/forge/:match*" },
+    { "source": "/lib/diffusion/:match*",   "destination": "/lib/diffusion/:match*" },
+    { "source": "/lib/playwright/:match*",  "destination": "/lib/playwright/:match*" },
+    { "source": "/lib/stt/:match*",         "destination": "/lib/stt/:match*" },
+    { "source": "/lib/train/:match*",       "destination": "/lib/train/:match*" },
+    { "source": "/sdk/sentinel/:match*",    "destination": "/sdk/sentinel/:match*" },
+    { "source": "/workstation/:match*",     "destination": "/app/workstation/index.html" },
+    { "source": "/app/workstation/:match*", "destination": "/app/workstation/:match*" },
+    { "source": "/dashboard/:match*",       "destination": "/dashboard/:match*" }
   ],
   "headers": [
     {
+      "source": "/shared/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
+        { "key": "Cache-Control",         "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Content-Type-Options","value": "nosniff" },
+        { "key": "X-Frame-Options",       "value": "SAMEORIGIN" }
       ]
     }
   ]
