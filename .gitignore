@@ -146,3 +146,10 @@ desktop.ini
 *.suo
 *.sln
 *.sw?
+
+*.env.*
+.env.local
+.env.prd
+.env.dev
+.env.docker
+secrets/
