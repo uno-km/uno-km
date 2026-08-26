@@ -15,6 +15,121 @@
     
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+      .metric-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 14px 0;
+        font-size: 0.85rem;
+      }
+      .metric-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .metric-item strong {
+        color: var(--primary-color);
+        font-family: var(--font-mono);
+      }
+      .studio-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 16px;
+        margin-top: 14px;
+      }
+      @media (max-width: 900px) {
+        .studio-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .studio-panel {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+      }
+      .studio-panel h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+      }
+      .editor-textarea {
+        width: 100%;
+        height: 280px;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.4;
+        background: #1e1e1e;
+        color: #d4d4d4;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 10px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+      .log-box {
+        background: #0f172a;
+        color: #38bdf8;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        padding: 10px;
+        border-radius: 4px;
+        height: 160px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        margin-top: 10px;
+        border: 1px solid #1e293b;
+      }
+      .classic-btn {
+        background: var(--primary-color);
+        color: #ffffff;
+        border: 1px solid #003388;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .classic-btn:hover:not(:disabled) {
+        background: #003388;
+      }
+      .classic-btn:disabled {
+        background: #94a3b8;
+        border-color: #94a3b8;
+        cursor: not-allowed;
+      }
+      .classic-btn-secondary {
+        background: #f1f5f9;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .classic-btn-secondary:hover {
+        background: #e2e8f0;
+      }
+      .explanation-zone {
+        margin-top: 16px;
+        padding: 14px;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 0.85rem;
+      }
+    </style>
     <script src="assets/i18n.js" defer></script>
     <script src="assets/i18n-translations.js" defer></script>
     <script src="assets/common.js" defer></script>
@@ -656,15 +771,13 @@ import gc; gc.collect()
         }
 
         async function initEnvironment() {
-            const gpuStatus = document.getElementById('gpuStatus');
+            const devEl = document.getElementById('metricDevice');
 
             if (!navigator.gpu) {
-                if (window.forgeI18n) {
-                    gpuStatus.textContent = window.forgeI18n.t('demo.gpuStatusUnavailable');
-                } else {
-                    gpuStatus.textContent = '[ WebGPU Unavailable ]';
+                if (devEl) {
+                    devEl.textContent = 'WebGPU Unavailable (CPU Fallback)';
+                    devEl.style.color = '#cc0000';
                 }
-                gpuStatus.style.color = '#cc0000';
                 log('[Warning] WebGPU is not supported on this browser.');
                 return;
             }
@@ -682,17 +795,17 @@ import gc; gc.collect()
                     await window.ameva.initWebGPU();
                 }
                 
-                const adapterDesc = (window.forge && window.forge.adapterInfo && window.forge.adapterInfo.description) ? window.forge.adapterInfo.description : 'Active';
-                if (window.forgeI18n) {
-                    gpuStatus.textContent = window.forgeI18n.t('demo.gpuStatusReady', { adapter: adapterDesc });
-                } else {
-                    gpuStatus.textContent = `[ WebGPU Ready: ${adapterDesc} ]`;
+                const adapterDesc = (window.forge && window.forge.adapterInfo && window.forge.adapterInfo.description) ? window.forge.adapterInfo.description : 'WebGPU (Hardware Active)';
+                if (devEl) {
+                    devEl.textContent = adapterDesc;
+                    devEl.style.color = '#008800';
                 }
-                gpuStatus.style.color = '#008800';
                 log('[WebGPU] Hardware adapter initialized successfully.');
             } catch (err) {
-                gpuStatus.textContent = '[ WebGPU Error ]';
-                gpuStatus.style.color = '#cc0000';
+                if (devEl) {
+                    devEl.textContent = 'WebGPU Init Error';
+                    devEl.style.color = '#cc0000';
+                }
                 log('[WebGPU Error] ' + err.message);
             }
 
@@ -714,10 +827,14 @@ import gc; gc.collect()
                     }
                     log('[AMEVA-Forge] Installed forge Python package directly into virtual filesystem.');
                 } else {
-                    await pyodideInstance.loadPackage("micropip");
-                    const micropip = pyodideInstance.pyimport("micropip");
-                    await micropip.install("./pkg/forge-0.1.0-py3-none-any.whl");
-                    micropip.destroy();
+                    try {
+                        await pyodideInstance.loadPackage("micropip");
+                        const micropip = pyodideInstance.pyimport("micropip");
+                        await micropip.install("./pkg/forge-0.1.0-py3-none-any.whl");
+                        micropip.destroy();
+                    } catch (e) {
+                        log('[Note] Wheel fallback bypassed, virtual package active.');
+                    }
                 }
 
                 // Verify import

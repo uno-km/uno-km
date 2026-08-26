@@ -61,6 +61,14 @@ pkg/
 */pkg/
 dist/
 build/
+!lib/forge/dist/
+!lib/forge/dist/**
+!forge/dist/
+!forge/dist/**
+!lib/forge/pkg/
+!lib/forge/pkg/**
+!forge/pkg/
+!forge/pkg/**
 !browser-sdk/dist/
 !risk-core/dist/
 !sentinel-sdk/dist/
