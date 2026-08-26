@@ -16,6 +16,10 @@
       "founderBtn": "Founder Profile",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
+        "docNav": "Document Navigation",
+        "libraries": "Flagship Libraries",
+        "foundation": "Foundation (AOSF)",
+        "aiSpecs": "AI Agent Protocols",
         "foundationDashboard": "3D-Stiftungs-Dashboard",
         "foundationDashboard": "Tableau de Bord 3D de la Fondation",
         "foundationDashboard": "Panel 3D de la Fundación",
@@ -219,6 +223,10 @@
       "founderBtn": "창립자 프로필",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
+        "docNav": "문서 내비게이션",
+        "libraries": "플래그십 라이브러리",
+        "foundation": "재단 소개 (AOSF)",
+        "aiSpecs": "AI 에이전트 프로토콜",
         "testReport": "실기기 정밀 감사 보고서"
       }
     },
@@ -415,6 +423,10 @@
       "founderBtn": "संस्थापक प्रोफ़ाइल",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). सर्वाधिकार सुरक्षित। मेरिटोक्रेसी द्वारा शासित।",
       "nav": {
+        "docNav": "दस्तावेज़ नेविगेशन",
+        "libraries": "प्रमुख लाइब्रेरी",
+        "foundation": "फाउंडेशन (AOSF)",
+        "aiSpecs": "AI एजेंट प्रोटोकॉल",
         "testReport": "वास्तविक डिवाइस ऑडिट रिपोर्ट"
       }
     },
@@ -611,6 +623,10 @@
       "founderBtn": "創設者プロフィール",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
+        "docNav": "ドキュメントナビゲーション",
+        "libraries": "主要ライブラリ",
+        "foundation": "財団情報 (AOSF)",
+        "aiSpecs": "AIエージェント仕様",
         "testReport": "実機監査レポート"
       }
     },
@@ -807,6 +823,10 @@
       "founderBtn": "创始人履历",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). 保留所有权利。遵循精英治理准则。",
       "nav": {
+        "docNav": "文档导航",
+        "libraries": "旗舰开源库",
+        "foundation": "基金会概况 (AOSF)",
+        "aiSpecs": "AI代理协议",
         "testReport": "真机审计报告"
       }
     },
@@ -1003,6 +1023,10 @@
       "founderBtn": "ملف المؤسس",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). جميع الحقوق محفوظة.",
       "nav": {
+        "docNav": "التنقل في المستندات",
+        "libraries": "المكتبات الرئيسية",
+        "foundation": "مؤسسة AOSF",
+        "aiSpecs": "بروتوكولات الذكاء الاصطناعي",
         "testReport": "تقرير تدقيق الجهاز الحقيقي"
       }
     },
@@ -1199,6 +1223,10 @@
       "founderBtn": "Profil du Fondateur",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Tous droits réservés. Gouverné par la méritocratie.",
       "nav": {
+        "docNav": "Navigation des Documents",
+        "libraries": "Bibliothèques Principales",
+        "foundation": "Fondation (AOSF)",
+        "aiSpecs": "Protocoles d'Agents IA",
         "testReport": "Rapport d'audit sur appareil réel"
       }
     },
@@ -1395,6 +1423,10 @@
       "founderBtn": "Gründerprofil",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Alle Rechte vorbehalten. Durch Leistungsprinzip verwaltet.",
       "nav": {
+        "docNav": "Dokumentennavigation",
+        "libraries": "Flaggschiff-Bibliotheken",
+        "foundation": "Stiftung (AOSF)",
+        "aiSpecs": "KI-Agenten-Protokolle",
         "testReport": "Echtgeräte-Auditbericht"
       }
     },
@@ -1591,6 +1623,10 @@
       "founderBtn": "Perfil del Fundador",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Todos los derechos reservados. Gobernado por meritocracia.",
       "nav": {
+        "docNav": "Navegación de Documentos",
+        "libraries": "Bibliotecas Principales",
+        "foundation": "Fundación (AOSF)",
+        "aiSpecs": "Protocolos de Agente IA",
         "testReport": "Informe de auditoría en dispositivo real"
       }
     },
@@ -1787,6 +1823,10 @@
       "founderBtn": "Профиль основателя",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Все права защищены. Управляется меритократией.",
       "nav": {
+        "docNav": "Навигация по документации",
+        "libraries": "Флагманские библиотеки",
+        "foundation": "О фонде (AOSF)",
+        "aiSpecs": "Протоколы ИИ-агентов",
         "testReport": "Отчет об аудите устройства"
       }
     },
@@ -1983,6 +2023,10 @@
       "founderBtn": "Hồ Sơ Sáng Lập",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Bản quyền thuộc về Quỹ. Quản trị theo chế độ nhân tài.",
       "nav": {
+        "docNav": "Điều hướng Tài liệu",
+        "libraries": "Thư viện Tiêu biểu",
+        "foundation": "Giới thiệu Quỹ (AOSF)",
+        "aiSpecs": "Giao thức Tác nhân AI",
         "testReport": "Báo cáo kiểm toán thiết bị thực"
       }
     },
@@ -2179,6 +2223,10 @@
       "founderBtn": "Profil Założyciela",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Wszelkie prawa zastrzeżone. Rządzona merytokracją.",
       "nav": {
+        "docNav": "Nawigacja po Dokumentach",
+        "libraries": "Główne Biblioteki",
+        "foundation": "Fundacja (AOSF)",
+        "aiSpecs": "Protokoły Agentów AI",
         "testReport": "Raport z audytu urządzenia"
       }
     },
@@ -2375,6 +2423,10 @@
       "founderBtn": "Curriculum Conditoris",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Omnia Iura Reservata. Regitur Meritis.",
       "nav": {
+        "docNav": "Navigatio Documentorum",
+        "libraries": "Bibliothecae Primariae",
+        "foundation": "Fundatio (AOSF)",
+        "aiSpecs": "Regulae Agentis AI",
         "testReport": "Relatio recognitionis apparatus"
       }
     },
