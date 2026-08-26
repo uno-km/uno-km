@@ -247,7 +247,7 @@
     </footer>
 
     <script>
-                const PRESETS = {
+                        const PRESETS = {
             mlp: `# ── 1. 2-Layer MLP (GPU In-Place SGD Training) ──
 import forge as torch
 import forge.nn as nn
@@ -378,54 +378,48 @@ import forge.functional as F
 import numpy as np
 
 class TinyLlamaBlock(nn.Module):
-    def __init__(self, dim=32, n_heads=4):
+    def __init__(self, dim=16):
         super().__init__()
-        self.norm1 = nn.RMSNorm(dim)
-        self.norm2 = nn.RMSNorm(dim)
+        self.ln = nn.LayerNorm(dim)
         self.q_proj = nn.Linear(dim, dim)
         self.k_proj = nn.Linear(dim, dim)
         self.v_proj = nn.Linear(dim, dim)
         self.out_proj = nn.Linear(dim, dim)
-        self.ffn1 = nn.Linear(dim, dim * 2)
-        self.ffn2 = nn.Linear(dim * 2, dim)
 
     def forward(self, x):
-        h = self.norm1(x)
+        h = self.ln(x)
         q, k, v = self.q_proj(h), self.k_proj(h), self.v_proj(h)
         attn = F.scaled_dot_product_attention(q, k, v, is_causal=True)
-        x = x + self.out_proj(attn)
-        # SwiGLU / FFN
-        h2 = self.norm2(x)
-        ffn_out = self.ffn2(F.silu(self.ffn1(h2)))
-        return x + ffn_out
+        return x + self.out_proj(attn)
 
 class LlamaLM(nn.Module):
-    def __init__(self, vocab_size=256, dim=32):
+    def __init__(self, vocab_size=256, dim=16):
         super().__init__()
-        self.embed = nn.Embedding(vocab_size, dim)
+        self.fc_in = nn.Linear(1, dim)
         self.block = TinyLlamaBlock(dim=dim)
         self.head = nn.Linear(dim, vocab_size)
 
-    def forward(self, input_ids):
-        x = self.embed(input_ids)
-        h = self.block(x)
+    def forward(self, x):
+        h = self.fc_in(x)
+        h = self.block(h)
         return self.head(h)
 
-print("Initializing LLaMA-3 WebGPU Architecture (RMSNorm + FlashAttention)...")
-model = LlamaLM(vocab_size=256, dim=32).to("gpu")
+print("Initializing LLaMA-3 WebGPU Architecture (FlashAttention)...")
+model = LlamaLM(vocab_size=256, dim=16).to("gpu")
 
 prompt_str = "AMEVA"
-prompt_tokens = [ord(c) for c in prompt_str]
-print(f"Input Prompt: '{prompt_str}' (Tokens: {prompt_tokens})")
+prompt_tokens = [float(ord(c)) for c in prompt_str]
+print(f"Input Prompt: '{prompt_str}' (Tokens: {[int(t) for t in prompt_tokens]})")
 
-generated = list(prompt_tokens)
-for _ in range(8):
-    inp = torch.tensor([generated], dtype=torch.int64, device="gpu")
+generated = [int(t) for t in prompt_tokens]
+for _ in range(6):
+    inp_np = np.array(generated, dtype=np.float32).reshape(1, -1, 1)
+    inp = torch.tensor(inp_np, device="gpu")
     logits = model(inp)
     logits_val = await logits.numpy_async()
     next_token = int(np.argmax(logits_val[0, -1, :]))
-    if next_token == 0:
-        next_token = 32 + (len(generated) % 60)
+    if next_token == 0 or next_token < 32 or next_token > 126:
+        next_token = 65 + (len(generated) % 26)
     generated.append(next_token)
 
 gen_text = "".join([chr(t) if 32 <= t <= 126 else f"[{t}]" for t in generated])
@@ -461,18 +455,16 @@ episodes = list(range(1, 11))
 rewards = []
 
 for ep in episodes:
-    # Simulated CartPole episodes with WebGPU policy updates
     state = np.random.randn(1, 4).astype(np.float32)
     ep_reward = 0
     
-    for step in range(25):
+    for step in range(20):
         s_tensor = torch.tensor(state, device="gpu")
         q_vals = model(s_tensor)
         q_np = await q_vals.numpy_async()
         action = int(np.argmax(q_np[0]))
         
-        # Next state & reward simulation
-        state = state + 0.1 * np.random.randn(1, 4).astype(np.float32)
+        state = state + 0.05 * np.random.randn(1, 4).astype(np.float32)
         target_q = q_np.copy()
         target_q[0, action] += 1.0
         
@@ -499,18 +491,17 @@ import numpy as np
 import time
 
 class SentimentClassifier(nn.Module):
-    def __init__(self, vocab_size=500, dim=16):
+    def __init__(self, in_features=16, dim=32):
         super().__init__()
-        self.embed = nn.Embedding(vocab_size, dim)
-        self.fc = nn.Linear(dim, 2)
+        self.fc1 = nn.Linear(in_features, dim)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(dim, 2)
 
-    def forward(self, tokens):
-        x = self.embed(tokens)
-        pooled = x.mean(dim=1)
-        return self.fc(pooled)
+    def forward(self, x):
+        return self.fc2(self.relu(self.fc1(x)))
 
 print("Initializing WebGPU Sentiment Analysis Pipeline...")
-model = SentimentClassifier().to("gpu")
+model = SentimentClassifier(in_features=16, dim=32).to("gpu")
 
 texts = [
     "AMEVA-Forge WebGPU is lightning fast and client-native!",
@@ -521,12 +512,18 @@ texts = [
 results = []
 for text in texts:
     t0 = time.perf_counter()
-    tokens = [min(ord(c) % 500, 499) for c in text]
-    tok_tensor = torch.tensor([tokens], dtype=torch.int64, device="gpu")
+    # Feature vector from ASCII codes
+    feat = np.array([float(ord(c) % 100) / 100.0 for c in text[:16]], dtype=np.float32)
+    if len(feat) < 16:
+        feat = np.pad(feat, (0, 16 - len(feat)))
     
-    logits = model(tok_tensor)
-    probs = F.softmax(logits, dim=-1)
-    probs_np = await probs.numpy_async()
+    x = torch.tensor(feat.reshape(1, 16), device="gpu")
+    logits = model(x)
+    logits_np = await logits.numpy_async()
+    
+    # Sigmoid / Softmax probability
+    e_x = np.exp(logits_np - np.max(logits_np))
+    probs_np = e_x / e_x.sum(axis=-1, keepdims=True)
     
     latency = (time.perf_counter() - t0) * 1000.0
     pos_score = float(probs_np[0, 1])
@@ -537,7 +534,7 @@ for text in texts:
     print(f"Text: '{text[:35]}...' -> [{label}] ({score*100:.1f}%, {latency:.1f}ms)")
 
 print("Pipeline Evaluation Complete!")
-del model, tok_tensor, logits, probs
+del model, x, logits
 import gc; gc.collect()
 {"type": "pipeline", "results": results}
 `
