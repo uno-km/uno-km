@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-Vision | API Reference | Official Documentation</title>
+  <meta name="description" content="Complete API specifications for VLMContext, cv filters, face detectors, and diagnostic doctor functions.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+        <li><a href="api-reference.html" class="active">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/vision/" class="active">Termux-Vision (CV &amp; VLM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
+        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>API Reference</h2>
+      <p class="subtitle">Complete technical specification of classes, modules, and functions</p>
+
+      <h3>1. Module: <code>termux_vision.vlm</code></h3>
+      <h4><code>load(model_id, device='auto', threads='auto', ...) -> VLMContext</code></h4>
+      <p>Loads a VLM inference engine context manager.</p>
+      <ul>
+        <li><code>model_id</code> (str): Catalog preset (e.g. <code>'smolvlm-500m-q4'</code>), custom name, or direct <code>.gguf</code> path.</li>
+        <li><code>device</code> (str): <code>'auto'</code> (Vulkan with CPU fallback), <code>'gpu'</code> / <code>'vulkan'</code> (strict Vulkan only), or <code>'cpu'</code>.</li>
+        <li><code>threads</code> (int | str): Thread count (default 4).</li>
+        <li><code>mmproj_path</code> (Optional[str]): Explicit path to vision projector mmproj file.</li>
+      </ul>
+
+      <h4><code>VLMContext.describe(image, prompt=None, max_tokens=150, temperature=0.2, ...) -> VLMResult</code></h4>
+      <p>Performs visual image description with strict parameter validation.</p>
+
+      <h3>2. Module: <code>termux_vision.cv</code></h3>
+      <h4><code>canny(image, low_threshold=40.0, high_threshold=120.0) -> np.ndarray</code></h4>
+      <p>Executes pure NumPy 5-stage Canny Edge Detection with double-threshold hysteresis.</p>
+
+      <h4><code>sobel(image) -> Tuple[np.ndarray, np.ndarray, np.ndarray]</code></h4>
+      <p>Computes Sobel 3x3 horizontal, vertical gradients, and magnitude map.</p>
+
+      <h3>3. Module: <code>termux_vision.detect</code></h3>
+      <h4><code>detect_faces(image) -> List[Detection]</code></h4>
+      <p>Scans candidate face regions using an integral-image Haar Cascade classifier with Non-Maximum Suppression (NMS).</p>
+
+      <h3>4. Module: <code>termux_vision.cli.doctor</code></h3>
+      <h4><code>run_doctor(probe_vulkan=False) -> dict</code></h4>
+      <p>Inspects platform architecture, RAM availability, CPU core count, and Vulkan GPU driver presence.</p>
+    </main>
+  </div>
+</body>
+</html>

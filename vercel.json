@@ -123,6 +123,26 @@
       "permanent": false
     },
     {
+      "source": "/lib/vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
       "source": "/sdk/sentinel",
       "destination": "/sdk/sentinel/",
       "permanent": false
@@ -316,6 +336,10 @@
     {
       "source": "/lib/llamacpp/:match*",
       "destination": "/lib/llamacpp/:match*"
+    },
+    {
+      "source": "/lib/vision/:match*",
+      "destination": "/lib/vision/:match*"
     },
     {
       "source": "/sdk/sentinel/:match*",

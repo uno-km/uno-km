@@ -221,3 +221,21 @@ libraries:
       - advanced-parameters.html
       - versions.html
     status: "stable"
+
+  vision:
+    name: "Termux-Vision"
+    version: "1.0.0"
+    release_date: "2026-08-27"
+    npm_package: "termux-vision"
+    pypi_package: "termux-vision"
+    github_repo: "uno-km/termux-vision"
+    lib_path: "lib/vision"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"

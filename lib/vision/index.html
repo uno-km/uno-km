@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-Vision | Architecture &amp; Overview | Official Documentation</title>
+  <meta name="description" content="Zero-Dependency On-Device Mobile Computer Vision & Multimodal VLM Inference Engine for Android Termux with Vulkan GPU Acceleration.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html" class="active">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/vision/" class="active">Termux-Vision (CV &amp; VLM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
+        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Termux-Vision (AMEVA-Vision)</h2>
+      <p class="subtitle">Zero-Dependency On-Device Computer Vision &amp; Multimodal VLM Inference Engine for Android Termux</p>
+
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-vision.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank"><img src="https://img.shields.io/npm/v/termux-vision.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache-2.0-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-65%2F65_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/audit_score-100.0_%2F_100.0_A%2B-blue.svg" alt="Score">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">1-Line One-Touch Installation</span>
+        <p>Install and configure the complete toolchain in Android Termux:</p>
+        <pre><code>curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh | bash</code></pre>
+      </div>
+
+      <h3>Why Termux-Vision?</h3>
+      <p>Standard computer vision and multimodal libraries (OpenCV, TorchVision, ONNX Runtime) suffer from severe compilation overhead, DPKG locks, Bionic libc symbol mismatches, and multi-gigabyte bloat on edge Android devices. <strong>Termux-Vision</strong> solves this with a native, zero-heavy-dependency architecture:</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Zero-Heavy C++ Dependency</h4>
+          <p>Pure Python and pure JavaScript fast paths running out-of-the-box on vanilla Termux without node-gyp or OpenCV build bottlenecks.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Multimodal VLM Inference Engine</h4>
+          <p>Execute SmolVLM-500M and Qwen2-VL-2B models on-device with Vulkan GPU acceleration and automatic graceful CPU retry.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Full Classical Vision Stack</h4>
+          <p>5-stage Canny edge detection, Sobel 3x3, Gaussian blur, 2D integral images, morphology, and Haar Cascade face detection.</p>
+        </div>
+        <div class="feature-card">
+          <h4>1:1 termux-train Autograd Bridge</h4>
+          <p>Extract ViT patches and vision feature maps directly into <code>termux-train</code> for on-device classifier and LoRA fine-tuning.</p>
+        </div>
+      </div>
+
+      <h3>Technical Architecture</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Subsystem</th>
+            <th>Technology &amp; Algorithmic Implementation</th>
+            <th>Execution Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Classical Filters</strong></td>
+            <td>5-Stage Canny Edge Detector, Sobel 3x3, Gaussian Blur, 2D Integral Images</td>
+            <td><span class="badge badge-success">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Object &amp; Face Detection</strong></td>
+            <td>Haar Cascade Classifier, IoU Intersection, Non-Maximum Suppression (NMS)</td>
+            <td><span class="badge badge-success">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>VLM Multimodal Inference</strong></td>
+            <td>SmolVLM-500M / Qwen2-VL-2B, Supervised Process Isolation, Vulkan GPU Offload</td>
+            <td><span class="badge badge-success">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Neural Bridge</strong></td>
+            <td>ViT (Vision Transformer) Patch Extraction (16x16), MobileNet Features, termux-train Bridge</td>
+            <td><span class="badge badge-success">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

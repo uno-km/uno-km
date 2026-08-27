@@ -1,0 +1,15 @@
+# Termux-Vision Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux.
+Provides pure Python/JS 5-stage Canny Edge Detector, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.
+
+## 2. Package & Installation
+- PyPI: termux-vision
+- npm: termux-vision
+- Command: pip install termux-vision
+- npm Command: npm install -g termux-vision
+- One-Touch Installer: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)
+- Repository: https://github.com/uno-km/termux-vision
+- Documentation: https://uno-km.vercel.app/lib/vision/

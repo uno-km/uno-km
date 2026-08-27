@@ -1,0 +1,58 @@
+# uno-km/lib/vision/doc.config.yaml
+name: "Termux-Vision"
+lib_slug: "vision"
+package_name_pypi: "termux-vision"
+package_name_npm: "termux-vision"
+version: "v1.0.0"
+release_name: "Dual-Engine Multimodal Release"
+license: "Apache-2.0"
+platform: "Android ARM64 / Linux / Termux"
+github_repo_url: "https://github.com/uno-km/termux-vision"
+
+# 1줄 핵심 사명
+tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux"
+tagline_ko: "외부 의존성 0개(Zero-Dependency) 안드로이드 Termux 환경 온디바이스 컴퓨터 비전 및 멀티모달 VLM 추론 엔진"
+
+# 빠른 설치 명령어
+quick_install_cmd: "pip install termux-vision\n# or: npm install -g termux-vision\n# or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)"
+
+# 기술 과제 및 혁신 설명
+why_challenge_en: "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines."
+why_challenge_ko: "기존 OpenCV, TorchVision 등은 150MB 이상의 무거운 바이너리 크기와 모바일 ARM64 컴파일 실패율, 그리고 모바일 최적화 VLM 멀티모달 파이프라인의 부재로 인해 Termux 환경에서 활용이 극도로 제한적이었습니다."
+
+description_en: "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM."
+description_ko: "순수 Python/JS 5단계 Canny 엣지 검출, Sobel 3x3, 가우시안 블러, 2D 적분 영상 고속 필터링, Haar Cascade 얼굴 검출 및 500MB RAM 환경에서의 SmolVLM/Qwen2-VL 온디바이스 VLM 멀티모달 추론(Vulkan GPU 가속 및 자동 CPU 폴백)을 지원합니다."
+
+# 핵심 역량
+features:
+  - title_en: "Zero-Heavy C++ Dependency"
+    title_ko: "외부 무거운 C++ 빌드 의존성 완전 배제"
+    desc_en: "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds."
+    desc_ko: "복잡한 OpenCV나 node-gyp 빌드 과정 없이 순정 Termux Python 및 Node.js 환경에서 즉시 설치 및 구동됩니다."
+  - title_en: "Multimodal VLM Inference Engine"
+    title_ko: "온디바이스 멀티모달 VLM 추론 엔진"
+    desc_en: "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description."
+    desc_ko: "SmolVLM-500M 및 Qwen2-VL-2B 모델을 네이티브 지원하여 시각 질의응답 및 고정밀 이미지 요약 설명을 제공합니다."
+  - title_en: "Vulkan GPU Acceleration & CPU Fallback"
+    title_ko: "Vulkan GPU 가속 및 안전한 CPU 폴백"
+    desc_en: "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement."
+    desc_ko: "Vulkan GPU를 자동 감지하여 가속하며, 드라이버 오류 시 안전하게 CPU로 폴백하거나 엄격한 GPU 모드를 격리 실행합니다."
+  - title_en: "1:1 Native Bridge with termux-train"
+    title_ko: "termux-train 자동 미분 및 LoRA 학습 연동"
+    desc_en: "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning."
+    desc_ko: "추출된 시각 특징 맵과 ViT 패치를 termux-train 텐서로 즉각 변환하여 온디바이스 비전 LoRA 미세조정을 지원합니다."
+
+# 연산 매트릭스 표
+matrix_table:
+  - category: "Classical CV Filters"
+    operations: "5-Stage Canny Edge Detector, Sobel 3x3, Gaussian Blur 5x5, 2D Integral Images, Morphology"
+    status: "Production"
+  - category: "Face & Object Detection"
+    operations: "Haar-like Feature Cascade Detector, IoU, Non-Maximum Suppression (NMS)"
+    status: "Production"
+  - category: "Multimodal VLM"
+    operations: "SmolVLM-500M, Qwen2-VL-2B, Supervised llama-cli Bridge, Vulkan GPU Engine"
+    status: "Production"
+  - category: "Neural Vision Bridge"
+    operations: "ViT Patch Embeddings (16x16), MobileNet Feature Extractor, termux-train Auto-Grad Bridge"
+    status: "Production"

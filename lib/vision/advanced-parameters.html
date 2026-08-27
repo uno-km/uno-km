@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-Vision | Advanced Parameters &amp; Security | Official Documentation</title>
+  <meta name="description" content="Detailed guide on hyperparameters, strict Null/Zero boundary validation, Vulkan GPU isolation, and OOM recovery.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home / Architecture</a></li>
+        <li><a href="installation.html">Installation Guide</a></li>
+        <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+        <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
+        <li><a href="versions.html">Version Archive</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+      <ul>
+        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+        <li><a href="/lib/vision/" class="active">Termux-Vision (CV &amp; VLM)</a></li>
+        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+        <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
+        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+      </ul>
+      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+      <ul>
+        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Advanced Parameters &amp; Boundary Security</h2>
+      <p class="subtitle">Hyperparameter reference, boundary guards, and device isolation protocols</p>
+
+      <h3>1. Advanced VLM Inference Hyperparameters</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Type / Range</th>
+            <th>Default</th>
+            <th>Description &amp; Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>prompt</code></td>
+            <td><code>str</code> (Non-empty)</td>
+            <td>Default Korean prompt</td>
+            <td>User prompt query. Empty/whitespace raises <code>ValueError</code>.</td>
+          </tr>
+          <tr>
+            <td><code>max_tokens</code></td>
+            <td><code>int &gt; 0</code></td>
+            <td><code>150</code></td>
+            <td>Maximum token generation budget. Values &le; 0 are rejected.</td>
+          </tr>
+          <tr>
+            <td><code>temperature</code></td>
+            <td><code>float &ge; 0.0</code></td>
+            <td><code>0.2</code></td>
+            <td>Sampling temperature. Lower values produce deterministic outputs.</td>
+          </tr>
+          <tr>
+            <td><code>top_p</code></td>
+            <td><code>0.0 &lt; p &le; 1.0</code></td>
+            <td><code>None</code></td>
+            <td>Nucleus sampling probability threshold.</td>
+          </tr>
+          <tr>
+            <td><code>top_k</code></td>
+            <td><code>int &ge; 1</code></td>
+            <td><code>None</code></td>
+            <td>Top-k sampling threshold.</td>
+          </tr>
+          <tr>
+            <td><code>repeat_penalty</code></td>
+            <td><code>float &ge; 0.0</code></td>
+            <td><code>1.2</code></td>
+            <td>Penalty applied to repeated token logits.</td>
+          </tr>
+          <tr>
+            <td><code>seed</code></td>
+            <td><code>int</code></td>
+            <td><code>None</code></td>
+            <td>Explicit RNG seed for reproducible generation.</td>
+          </tr>
+          <tr>
+            <td><code>system_prompt</code></td>
+            <td><code>str</code></td>
+            <td><code>None</code></td>
+            <td>System persona and behavioral steering prompt.</td>
+          </tr>
+          <tr>
+            <td><code>ngl</code></td>
+            <td><code>int &ge; 0</code></td>
+            <td><code>99</code> (Vulkan) / <code>0</code> (CPU)</td>
+            <td>Number of neural layers offloaded to Vulkan GPU.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Strict Null / Zero Boundary Validation (Zero Silent Fallbacks)</h3>
+      <p>Termux-Vision adheres to a strict <strong>Fail-Closed Validation Protocol</strong>. If invalid, null, or empty parameters are provided, the engine will never silently execute dangerous dummy fallbacks; it immediately raises explicit structured exceptions:</p>
+      <ul>
+        <li><code>ValueError: Parameter 'image' cannot be null/None.</code></li>
+        <li><code>ValueError: Parameter 'prompt' cannot be an empty string.</code></li>
+        <li><code>ValueError: Parameter 'max_tokens' must be a positive integer > 0.</code></li>
+        <li><code>VulkanNotAvailableError: Explicit GPU mode cannot proceed. Switch to --device cpu.</code></li>
+      </ul>
+
+      <h3>3. Device Backend Execution Policy</h3>
+      <pre><code># Auto Mode (Recommended for Android):
+# Attempts Vulkan GPU -> Gracefully retries CPU on driver errors with warning
+termux-vision vlm photo.jpg --device auto
+
+# Strict GPU Mode:
+# Enforces Vulkan GPU. Fails immediately without silent CPU fallback if GPU unavailable
+termux-vision vlm photo.jpg --device gpu
+
+# Dedicated CPU Mode:
+termux-vision vlm photo.jpg --device cpu --threads 4</code></pre>
+    </main>
+  </div>
+</body>
+</html>
