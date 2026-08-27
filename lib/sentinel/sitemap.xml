@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/index.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/installation.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/quickstart.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/api-reference.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/benchmarks.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/advanced-parameters.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/versions.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/sentinel/admin.html</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/index.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/installation.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/quickstart.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/api-reference.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/benchmarks.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/advanced-parameters.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/versions.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/sentinel/admin.html</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

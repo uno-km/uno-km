@@ -71,9 +71,9 @@ libraries:
 
   bitnet:
     name: "Termux-BitNet"
-    version: "1.0.0"
-    release_date: "2026-05-10"
-    npm_package: null
+    version: "1.0.7"
+    release_date: "2026-08-27"
+    npm_package: "termux-bitnet"
     pypi_package: "termux-bitnet"
     github_repo: "uno-km/termux-bitnet"
     lib_path: "lib/bitnet"
@@ -90,8 +90,8 @@ libraries:
 
   diffusion:
     name: "Termux-Diffusion"
-    version: "1.0.0"
-    release_date: "2026-04-01"
+    version: "1.3.1"
+    release_date: "2026-08-27"
     npm_package: "termux-diffusion"
     pypi_package: "termux-diffusion"
     github_repo: "uno-km/termux-diffusion"

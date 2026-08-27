@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
@@ -74,11 +74,27 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.7 - Strict Fail-Fast Protocol & Actionable Typo Remediation</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Latest Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-27</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>모델 다운로더 오타 감지 및 추천 알고리즘 (Did you mean)</strong>: Python (<code>difflib</code>) 및 Node.js (Levenshtein distance) 다운로더에 오타 감지 기능을 도입하여 <code>bitnet2b</code>, <code>bitnet-lg</code> 등 오타 입력 시 가장 유사한 모델명 및 전체 카탈로그 자동 안내</li>
+          <li><strong>침묵하는 실패(Silent Failure) 및 더미 폴백 원천 차단</strong>: 모델 파일 누락, 미초기화 컨텍스트, 빈 프롬프트 시 가짜 응답 생성을 전면 차단하고 명시적인 <code>FileNotFoundError</code>, <code>ValueError</code>, Exit Code 10/2 즉시 발생</li>
+          <li><strong>로컬 OpenAI 호환 HTTP 서버 예외 규격화</strong>: <code>termux_bitnet/server.py</code>에서 미초기화 시 <strong>HTTP 503</strong>, 빈 프롬프트 시 <strong>HTTP 400</strong>, 내부 오류 시 <strong>HTTP 500</strong> 표준 JSON 에러 및 조치 가이드 반환</li>
+          <li><strong>C++ Native Core 가드 하드닝</strong>: <code>src/llama_bitnet_core.cpp</code> 내 <code>ctx-&gt;is_initialized</code> 검증 가드를 강화하여 미초기화 상태의 어휘집 루프 진입 및 비정상 연산 차단</li>
+          <li><strong>16대 자동화 단위/통합 테스트 전원 통과</strong>: 오타 감지, 서버 에러 핸들링, SIMD 진단 등 16/16 검증 완료</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.6 - Zero-Isolation Fast Build & Dual CLI Namespace Architecture</h3>
           <div>
-            <span class="status-badge active" style="margin-right: 6px;">Latest Production Release</span>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
           </div>
         </div>
