@@ -74,64 +74,40 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/charter.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/charter.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/foundation/charter.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/governance.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/foundation/governance.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/incubation.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/foundation/incubation.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://uno-km.vercel.app/docs/foundation/index.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/index.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/foundation/sponsorship.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/sponsorship.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://uno-km.vercel.app/docs/governance.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://uno-km.vercel.app/docs/incubation.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://uno-km.vercel.app/docs/index.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://uno-km.vercel.app/foundation/metrics.html</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://uno-km.vercel.app/docs/sponsorship.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://uno-km.vercel.app/forge/api-reference.html</loc>

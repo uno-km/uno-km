@@ -8,7 +8,7 @@
 - **Governance**: Apache-Style Meritocracy (Board, PMC, Committers, Contributors)
 - **Founder & Chair**: Eunho Kim (@uno-km)
 - **Licensing**: Apache 2.0 / MIT standard
-- **Official Web Portal**: https://uno-km.github.io/uno-km/docs/foundation/
+- **Official Web Portal**: https://uno-km.vercel.app/foundation/
 - **Central Repository**: https://github.com/uno-km/uno-km
 
 ## 2. 3-Tier Project Portfolio Specification
@@ -31,7 +31,8 @@
 - **BitNet**: 1-bit quantization (1.58-bit) LLM ARM NEON / I2_S kernel contributions.
 
 ## 3. Governance & Policy Files
-- Charter: https://uno-km.github.io/uno-km/docs/foundation/CHARTER.md
-- Governance: https://uno-km.github.io/uno-km/docs/foundation/GOVERNANCE.md
-- Incubation: https://uno-km.github.io/uno-km/docs/foundation/INCUBATION_POLICY.md
-- Sponsorship: https://uno-km.github.io/uno-km/docs/foundation/SPONSORSHIP.md
+- Charter: https://uno-km.vercel.app/foundation/charter.html
+- Governance: https://uno-km.vercel.app/foundation/governance.html
+- Incubation: https://uno-km.vercel.app/foundation/incubation.html
+- Sponsorship: https://uno-km.vercel.app/foundation/sponsorship.html
+

@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://uno-km.github.io/{{package_name_pypi}}/sitemap.xml

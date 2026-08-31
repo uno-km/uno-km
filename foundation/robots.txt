@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://uno-km.github.io/uno-km/docs/foundation/sitemap.xml
+Sitemap: https://uno-km.vercel.app/foundation/sitemap.xml
