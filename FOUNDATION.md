@@ -81,6 +81,7 @@
 flowchart TD
     subgraph AppLayer ["1. 사용자 애플리케이션 계층 (End-User Applications)"]
         Workstation["AMEVA Workstation (Web/Desktop)<br/>- 100% 로컬 WebGPU LLM (Qwen2.5)<br/>- 대용량 PDF/DOCX 3초 맵리듀스 편집<br/>- 인앱 비디오 컷팅 & 1초 AI 배경제거"]
+        InfraIndex["Infra-Index Platform<br/>- 69개 클라우드 GPU/CPU 실시간 시세 집계<br/>- AI 반도체 시황 & 논문 인텔리전스"]
     end
 
     subgraph CoreLibs ["2. Tier 1 플래그십 라이브러리 & SDK (Core Ecosystem)"]
@@ -93,10 +94,12 @@ flowchart TD
         MCPHub["ameva-mcp-hub<br/>(유니버설 다국어 WASM & AI 벡터 MCP 허브)"]
         Forge["AMEVA-Forge<br/>(브라우저 네이티브 WebGPU 텐서 가속 엔진)"]
         Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]
+        LlamaCpp["termux-llamacpp<br/>(사전 빌드 GGUF 런타임 & OpenAI 호환 서버)"]
+        Vision["termux-vision<br/>(Zero-Dep 온디바이스 컴퓨터 비전 & VLM 추론)"]
     end
 
     subgraph RuntimeLayer ["3. 기저 런타임 및 하드웨어 가속 계층 (System Runtimes)"]
-        AndroidBionic["Android Bionic libc (ARM64 NEON SIMD)"]
+        AndroidBionic["Android Bionic libc (ARM64 NEON SIMD & Vulkan 1.3)"]
         WebGPU_WASM["Browser WebGPU / WASI WASM Runtime"]
         NodeLinux["Node.js / Express / Linux User-Space Engine"]
     end
@@ -114,18 +117,28 @@ flowchart TD
 | 프로젝트 명 | 기술 스택 & 런타임 | 핵심 기능 및 공학적 해결 과제 | 패키지 설치 및 레퍼런스 |
 | :--- | :--- | :--- | :--- |
 | **`AMEVA Workstation`** | WebGPU, WASM, React | 클라이언트 중심 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
-| **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install ameva-sentinel`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/sentinel/) |
-| **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/mcp/) |
-| **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/bitnet/) |
-| **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/playwright/) |
-| **`termux-diffusion`** | C++ NEON, GGUF, Python | 클라우드 서버 없이 안드로이드 ARM64 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>`pip install termux-diffusion`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/diffusion/) |
-| **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>`pip install termux-stt`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/stt/) |
-| **`termux-train`** | C++, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/train/) |
-| **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 가속 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.github.io/uno-km/lib/forge/) |
+| **`Infra-Index Platform`** | Next.js, Python, FastAPI | 글로벌 69개 클라우드 GPU/CPU/스토리지 실시간 시세 집계 및 AI 반도체 시황 인텔리전스 모니터링 플랫폼. | [Web App 실행](https://infraindex-platform-front.vercel.app/)<br/>[공식 문서](https://uno-km.vercel.app/lib/infra-index/) |
+| **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install ameva-sentinel`<br/>[공식 문서](https://uno-km.vercel.app/lib/sentinel/) |
+| **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.vercel.app/lib/mcp/) |
+| **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 가속 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.vercel.app/lib/forge/) |
+| **`termux-aichain`** | Python 3, TypeScript, DAG | 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 실행하는 50KB 초경량 모바일 에이전트 프레임워크. | `pip install termux-aichain`<br/>`npm install termux-aichain`<br/>[공식 문서](https://uno-km.vercel.app/lib/aichain/) |
+| **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.vercel.app/lib/bitnet/) |
+| **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.vercel.app/lib/playwright/) |
+| **`termux-diffusion`** | C++ NEON, Vulkan 1.3, Python | Multi-SoC Vulkan GPU 가속 및 VAE Tiling을 통해 클라우드 없이 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>`pip install termux-diffusion`<br/>[공식 문서](https://uno-km.vercel.app/lib/diffusion/) |
+| **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>`pip install termux-stt`<br/>[공식 문서](https://uno-km.vercel.app/lib/stt/) |
+| **`termux-train`** | C, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.vercel.app/lib/train/) |
+| **`termux-llamacpp`** | C++17, GGUF, POSIX | 안드로이드 Termux ARM64 전용 제로 컴파일 사전 빌드 GGUF LLM 런타임 및 OpenAI 호환 REST/SSE 수퍼바이저 서버. | `pip install termux-llamacpp`<br/>`npm install termux-llamacpp`<br/>[공식 문서](https://uno-km.vercel.app/lib/llamacpp/) |
+| **`termux-vision`** | Python, JS, Vulkan, NEON | 순수 ARM64 NEON 비전 커널과 Vulkan GPU 가속을 결합한 제로 디펜던시 모바일 컴퓨터 비전 & 온디바이스 VLM 멀티모달 추론 엔진. | `pip install termux-vision`<br/>`npm install termux-vision`<br/>[공식 문서](https://uno-km.vercel.app/lib/vision/) |
 
 ---
 
 ## 4. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
+
+- **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
+- **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))
+- **`Dead Internet Theatre`**: Docker 기반 자율 멀티에이전트 사회 시뮬레이터 ([GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre))
+- **`AMEVA Agent Orchestra`**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 ([GitHub](https://github.com/uno-km/AMEVA-Agent-Orchestra))
+- **`BitNet Kernel Contributions`**: 1-bit(1.58-bit) LLM을 위한 ARM NEON 커널 및 빌드 최적화 오픈소스 기여 ([GitHub](https://github.com/uno-km/BitNet))
 
 - **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
 - **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))

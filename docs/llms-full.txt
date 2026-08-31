@@ -1,0 +1,12 @@
+# Termux-Vision Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux
+Eliminates heavy C++ dependencies by compiling SIMD NEON vision kernels directly with zero-copy image transforms, delivering real-time object detection, segmentation, and VLM multimodal inference under 150MB RAM.
+
+## 2. Package & Installation
+- PyPI: termux-vision
+- Command: pip install ameva-core
+# or: npm install @ameva/core
+- Repository: https://github.com/uno-km/termux-vision

@@ -1,4 +1,4 @@
-﻿# UNO_KM_AGENT_MANUAL.md
+# UNO_KM_AGENT_MANUAL.md
 # AMEVA Ecosystem Unified Portal — 에이전트 운영 완전 매뉴얼
 
 > 문서 번호: AMV-MAN-20260826  
@@ -53,34 +53,23 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
 │   ├── telemetry.js                      ← 클라이언트 텔레메트리 엔진 (21,136B) [정본]
 │   ├── favicon.svg                       ← AMEVA 공식 파비콘 (2,601B) [정본]
 │   ├── ecosystem-versions.yaml           ← 전체 라이브러리 버전 SSOT [유일한 버전 수정 지점]
+│   ├── ecosystem-catalog.yaml            ← 전체 프로젝트 카탈로그 SSOT [프로젝트 카드 및 링크 정본]
 │   ├── sentinel-browser.global.js        ← Sentinel 브라우저 SDK
 │   └── brand/                            ← 브랜드 자산 (로고 이미지 등)
 │
-├── lib/                                  ★ 8대 플래그십 라이브러리 공식 문서 포털
-│   ├── sentinel/                         ← AMEVA-Sentinel 문서
-│   │   ├── index.html                    ← 라이브러리 홈 (아키텍처)
-│   │   ├── installation.html             ← 설치 가이드
-│   │   ├── quickstart.html               ← 퀵스타트
-│   │   ├── api-reference.html            ← API 레퍼런스
-│   │   ├── benchmarks.html               ← 벤치마크
-│   │   ├── advanced-parameters.html      ← 고급 설정
-│   │   ├── versions.html                 ← 버전 이력
-│   │   ├── admin.html                    ← Observability Console (sentinel 전용)
-│   │   ├── doc.config.yaml               ← 이 라이브러리의 빌더 설정
-│   │   ├── llms.txt                      ← AI Fast Context (빌더 자동 생성)
-│   │   ├── llms-full.txt                 ← AI Full Spec (빌더 자동 생성)
-│   │   ├── robots.txt                    ← 라이브러리별 크롤러 정책
-│   │   ├── sitemap.xml                   ← 라이브러리별 사이트맵 (빌더 자동 생성)
-│   │   └── assets/                       ← 라이브러리 전용 자산 (공통 파일 없음)
-│   │       └── [라이브러리 고유 이미지/파일만]
-│   ├── mcp/        (동일 구조)
-│   ├── aichain/    (동일 구조)
-│   ├── bitnet/     (동일 구조 + models.html)
-│   ├── forge/      (동일 구조 + demo.html, what-is-forge.html, forge-vs-pytorch.html)
-│   ├── diffusion/  (동일 구조 + models.html, gallery.html)
-│   ├── playwright/ (동일 구조 + nodejs.html, phantom-process.html 등)
-│   ├── stt/        (동일 구조 + models.html, showcase.html)
-│   └── train/      (동일 구조 + models.html, training-guide.html)
+├── lib/                                  ★ 12대 플래그십 라이브러리 공식 문서 포털
+│   ├── sentinel/                         ← AMEVA-Sentinel 문서 (Security SDK)
+│   ├── mcp/                              ← AMEVA-MCP-Hub 문서 (Polyglot WASM)
+│   ├── aichain/                          ← Termux-AIChain 문서 (Zero-Dep Agent)
+│   ├── bitnet/                           ← Termux-BitNet 문서 (1.58-bit LLM)
+│   ├── diffusion/                        ← Termux-Diffusion 문서 (Stable Diffusion)
+│   ├── playwright/                       ← Termux-Playwright 문서 (Automation)
+│   ├── stt/                              ← Termux-STT 문서 (Voice STT)
+│   ├── train/                            ← Termux-Train 문서 (LoRA Engine)
+│   ├── forge/                            ← AMEVA-Forge 문서 (WebGPU Autograd)
+│   ├── infra-index/                      ← Infra-Index Platform 문서 (Cloud Intelligence)
+│   ├── llamacpp/                         ← Termux-LlamaCpp 문서 (GGUF Runtime)
+│   └── vision/                           ← Termux-Vision 문서 (Computer Vision & VLM)
 │
 ├── api/                                  ← Vercel Serverless Functions
 │   ├── sentinel.js                       ← Sentinel 평가 API
@@ -90,10 +79,12 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
 │   ├── stats.js                          ← 실시간 상태 API
 │   └── guestbook.js                      ← 방명록 CRUD API
 │
-├── foundation/                           ← AMEVA Open-Source Foundation 문서
-├── tools/                                ← 자동화 도구
-│   ├── build_pages.py                    ← 단일 통합 빌더 [유일한 빌더]
-│   └── migrate_to_shared.py              ← 마이그레이션 유틸 (일회성)
+├── foundation/                           ← AMEVA Open-Source Foundation 문서 및 지표 (metrics.html)
+├── tools/                                ← 자동화 도구 체인
+│   ├── build_catalog.py                  ← 카탈로그 빌더 (index.html, foundation 카드 주입)
+│   ├── build_pages.py                    ← 단일 통합 페이지/사이드바/메타 빌더
+│   ├── ecosystem.py                      ← 통합 생태계 CLI 툴체인 (init, build, release, sync)
+│   └── doc_builder/                      ← 문서 컴파일러 모듈
 │
 ├── sdk/                                  ← 브라우저 SDK 번들 (특수 목적)
 │   └── sentinel/                         ← Sentinel 브라우저 SDK 전용
@@ -117,7 +108,8 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
 | `i18n-translations.js` | `/shared/i18n-translations.js` | 213,694 B+ | 모든 lib/* 번역 |
 | `telemetry.js` | `/shared/telemetry.js` | 21,136 B | 모든 lib/* 페이지 |
 | `favicon.svg` | `/shared/favicon.svg` | 2,601 B | 모든 페이지 |
-| `ecosystem-versions.yaml` | `/shared/ecosystem-versions.yaml` | - | 버전 전체 |
+| `ecosystem-versions.yaml` | `/shared/ecosystem-versions.yaml` | - | 버전 전체 (versions.html, llms.txt) |
+| `ecosystem-catalog.yaml` | `/shared/ecosystem-catalog.yaml` | - | 전체 프로젝트 카드 및 링크 (index, foundation) |
 
 ---
 
@@ -438,34 +430,31 @@ npm/pip 배포는 각 라이브러리 저장소의 CI/CD 파이프라인이 담�
 
 ---
 
-## 8. 빌더 실행 절차 (tools/build_pages.py)
+## 8. 빌더 실행 절차 (tools/)
 
 ```bash
-# 전체 빌드 (모든 라이브러리)
-python tools/build_pages.py
+# [A. 카탈로그 빌더] shared/ecosystem-catalog.yaml -> index.html & foundation/index.html 주입
+py -3 tools/build_catalog.py
+
+# [B. 단일 통합 빌더] lib/* 페이지, 사이드바 트리, llms.txt, sitemap.xml 일괄 빌드
+py -3 tools/build_pages.py
 
 # 특정 라이브러리만 빌드
-python tools/build_pages.py --lib sentinel
-python tools/build_pages.py --lib forge
+py -3 tools/build_pages.py --lib sentinel
+py -3 tools/build_pages.py --lib vision
+py -3 tools/build_pages.py --lib forge
 
-# <head> 섹션 멱등성 수정만 실행 (공통 참조 경로 수정)
-python tools/build_pages.py --fix-heads
+# [C. 생태계 통합 마스터 툴체인] 전체 일괄 동기화 (Zero-Drift)
+py -3 tools/ecosystem.py sync
 
-# 사이드바 전체 재생성 (라이브러리 추가/제거 후)
-python tools/build_pages.py --fix-sidebars
-
-# 메타 파일만 업데이트 (llms.txt, sitemap.xml)
-python tools/build_pages.py --update-meta
-
-# 변경 내용 미리보기 (파일 수정 없음)
-python tools/build_pages.py --dry-run
-
-# 검증만 실행 (수정 없음)
-python tools/build_pages.py --verify
+# 검증만 실행 (수정 없이 무결성 점검)
+py -3 tools/build_pages.py --verify
+py -3 tools/build_catalog.py --verify
 ```
 
 **빌더 실행 전 필수 확인:**
 - `shared/ecosystem-versions.yaml` 이 최신 버전인지 확인
+- `shared/ecosystem-catalog.yaml` 에 신규 라이브러리가 등록되어 있는지 확인
 - `lib/[name]/doc.config.yaml` 이 올바른지 확인
 
 ---
@@ -494,7 +483,7 @@ python tools/build_pages.py --verify
 3. 루트 미러 폴더(`/sentinel/`, `/mcp/` 등) 는 물리적으로 유지하되 vercel.json redirect 로만 접근
 4. `/shared/` 는 정적 자산 직접 서빙 경로 (rewrite 처리)
 
-### 9-C. 현재 라우팅 현황
+### 9-C. 현재 12대 라이브러리 라우팅 현황
 
 | URL 패턴 | 목적지 | 방식 |
 |:---|:---|:---|
@@ -508,6 +497,9 @@ python tools/build_pages.py --verify
 | `/stt` | `/lib/stt/` | redirect |
 | `/train` | `/lib/train/` | redirect |
 | `/forge` | `/lib/forge/` | redirect |
+| `/infra-index` | `/lib/infra-index/` | redirect |
+| `/llamacpp` | `/lib/llamacpp/` | redirect |
+| `/vision` | `/lib/vision/` | redirect |
 | `/shared/:match*` | `/shared/:match*` | rewrite (정적 자산) |
 
 ---
@@ -517,7 +509,8 @@ python tools/build_pages.py --verify
 ### 파일 추가/수정 후 매번 실행
 
 ```bash
-python tools/build_pages.py --verify
+py -3 tools/build_catalog.py --verify
+py -3 tools/build_pages.py --verify
 ```
 
 ### 체크리스트 (자동/수동)
@@ -529,22 +522,23 @@ python tools/build_pages.py --verify
 - [ ] 모든 lib/*.html 에 `src="/shared/common.js"` 존재
 - [ ] 모든 lib/*.html 의 `<link rel="icon">` 이 정확히 1개
 
-#### B. 공통 파일 복사본 부재 확인
+#### B. 뱃지 무결성 (Zero-404 Badges)
+- [ ] shields.io 뱃지 URL에 `Apache_2.0` 등 표준 언더스코어 적용 여부 (대시 연속 `--` 파싱 실패 방지)
+- [ ] 미배포 패키지는 `package_name_npm: null` 선언으로 404 뱃지 원천 차단
+
+#### C. 공통 파일 복사본 부재 확인
 - [ ] `lib/*/assets/style.css` 없음
 - [ ] `lib/*/assets/i18n.js` 없음
 - [ ] `lib/*/assets/i18n-translations.js` 없음
 - [ ] `lib/*/assets/common.js` 없음
 - [ ] `lib/*/assets/favicon.svg` 없음
 
-#### C. 번역 동작
-- [ ] 각 lib 페이지에서 언어 선택기로 일본어/중국어 변경 시 텍스트 반영
-
-#### D. 버전 일관성
-- [ ] `ecosystem-versions.yaml` 의 버전 = `lib/[name]/versions.html` 의 버전
-- [ ] `lib/[name]/llms.txt` 의 버전 일치
+#### D. 버전 및 카탈로그 일관성
+- [ ] `ecosystem-versions.yaml` 의 버전 = `lib/[name]/versions.html` = `llms.txt`
+- [ ] `ecosystem-catalog.yaml` 의 12대 라이브러리 목록 = `index.html` = `foundation/index.html`
 
 #### E. 라우팅
-- [ ] vercel.json 에 모든 lib 라이브러리의 redirect/rewrite 존재
+- [ ] vercel.json 에 12대 모든 lib 라이브러리의 redirect/rewrite 존재
 - [ ] `/[name]` 접근 시 `/lib/[name]/` 로 리다이렉트
 
 ---
@@ -556,6 +550,15 @@ python tools/build_pages.py --verify
 ### ❌ FORBIDDEN-001: 공통 파일 로컬 복사
 ```html
 <!-- 절대 금지 -->
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/i18n.js"></script>
+```
+
+### ❌ FORBIDDEN-002: index.html 및 foundation/index.html 수동 하드코딩
+- 프로젝트 카드 섹션은 반드시 `shared/ecosystem-catalog.yaml` 수정 후 `py -3 tools/build_catalog.py`로 주입할 것.
+
+### ❌ FORBIDDEN-003: 비표준 이모지 남발
+- 모든 공식 기술 문서 및 UI는 톰캣/아파치 엔지니어링 표준(Strict No-Emoji)을 준수할 것.
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/i18n.js" defer></script>
 <script src="assets/i18n-translations.js" defer></script>

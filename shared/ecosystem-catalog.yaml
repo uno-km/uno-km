@@ -141,3 +141,14 @@ libs:
       npm: "https://www.npmjs.com/package/termux-llamacpp"
       github: "https://github.com/uno-km/termux-llamacpp"
 
+  - id: vision
+    name: "Termux-Vision"
+    badge: "pip / npm"
+    tagline_ko: "안드로이드 Termux를 위한 제로 디펜던시 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
+    tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux."
+    links:
+      docs: "/lib/vision/"
+      pypi: "https://pypi.org/project/termux-vision/"
+      npm: "https://www.npmjs.com/package/termux-vision"
+      github: "https://github.com/uno-km/termux-vision"
+

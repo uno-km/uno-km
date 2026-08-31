@@ -1,205 +1,45 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
-  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="home.pageTitle">AMEVA Open-Source Foundation (AOSF) - Official Portal</title>
-  <meta name="description" content="Democratizing on-device AI and autonomous software systems without cloud egress dependency. Official Portal of AMEVA Open-Source Foundation.">
-  
-  <script src="/shared/telemetry.js"></script>
-
-  <style>
-    /* Sober, Zero-Effect Accordion Navigation (Apache / Tomcat Classic Style) */
-    .accordion-group {
-      margin-bottom: 12px;
-      border: 1px solid var(--border-subtle, #e2e8f0);
-      border-radius: 4px;
-      background: var(--bg-surface, #f8f9fa);
-    }
-    .accordion-header {
-      padding: 10px 14px;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted, #475569);
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid transparent;
-      outline: none;
-      list-style: none;
-    }
-    .accordion-header::-webkit-details-marker {
-      display: none;
-    }
-    .accordion-group[open] .accordion-header {
-      border-bottom-color: var(--border-subtle, #e2e8f0);
-      background: #f1f5f9;
-      color: var(--primary-color, #004499);
-    }
-    .accordion-icon {
-      font-size: 11px;
-      transition: none;
-    }
-    .accordion-group[open] .accordion-icon::after {
-      content: "▾";
-    }
-    .accordion-group:not([open]) .accordion-icon::after {
-      content: "▸";
-    }
-    .accordion-content {
-      padding: 6px 0;
-      background: var(--bg-main, #ffffff);
-    }
-    .accordion-content ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .accordion-content li a {
-      display: block;
-      padding: 7px 16px;
-      font-size: 13.5px;
-      color: var(--text-main, #0f172a);
-      text-decoration: none;
-      border-left: 3px solid transparent;
-    }
-    .accordion-content li a:hover {
-      background: var(--primary-light, #e8f0fe);
-      color: var(--primary-color, #004499);
-    }
-    .accordion-content li a.active {
-      background: var(--primary-light, #e8f0fe);
-      color: var(--primary-color, #004499);
-      font-weight: 700;
-      border-left-color: var(--primary-color, #004499);
-    }
-    
-    /* SPA View Containers */
-    .spa-view {
-      display: none;
-    }
-    .spa-view.active {
-      display: block;
-    }
-    .external-badge {
-      font-size: 10px;
-      background: #e2e8f0;
-      color: #475569;
-      padding: 1px 5px;
-      border-radius: 3px;
-      margin-left: 4px;
-    }
-        /* ── Foundation Catalog Category Cards & Buttons ── */
-    .fnd-category { margin-bottom: 28px; }
-    .fnd-cat-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
-    .fnd-card-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-    .fnd-card-header h4 { margin: 0; font-size: 14px; font-weight: 700; }
-    .fnd-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 3px;
-      white-space: nowrap;
-    }
-    .fnd-primary {
-      color: #fff !important;
-      font-weight: 600;
-    }
-    .fnd-pkg {
-      font-size: 11px;
-      background: #cb3837 !important;
-      color: #fff !important;
-      border-color: #cb3837 !important;
-    }
-    .fnd-card-app { border-left: 4px solid #2563eb !important; }
-    .fnd-card-sdk { border-left: 4px solid #16a34a !important; }
-    .fnd-card-lib { border-left: 4px solid #d97706 !important; }
-    .card-links {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-      margin-top: auto;
-      padding-top: 10px;
-    }
-    .btn-sm {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 10px;
-      font-size: 11.5px;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 4px;
-      border: 1px solid var(--border-color, #cbd5e1);
-      background: #ffffff;
-      color: var(--text-main, #334155);
-      line-height: 1.4;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-    .btn-sm:hover {
-      background: #f1f5f9;
-      border-color: var(--primary-color, #004499);
-      color: var(--primary-color, #004499);
-    }
-    .btn-sm.fnd-primary, .btn-sm.primary {
-      background: var(--primary-color, #004499);
-      color: #ffffff !important;
-      border-color: var(--primary-color, #004499);
-    }
-    .btn-sm.fnd-primary:hover, .btn-sm.primary:hover {
-      filter: brightness(0.9);
-      color: #ffffff !important;
-    }
-    .btn-sm.fnd-pkg:hover {
-      filter: brightness(0.9);
-      color: #ffffff !important;
-    }
-  </style>
-  <link rel="stylesheet" href="/shared/lib-style.css">
-  <script src="/shared/i18n.js" defer></script>
-  <script src="/shared/i18n-translations.js" defer></script>
-  <script src="/shared/common.js" defer></script>
+  <title>Termux-Vision | Official Documentation</title>
+  <meta name="description" content="Eliminates heavy C++ dependencies by compiling SIMD NEON vision kernels directly with zero-copy image transforms, delivering real-time object detection, segmentation, and VLM multimodal inference under 150MB RAM.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
 </head>
 <body>
-  <!-- Top Header -->
-          <header>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="AMEVA 오픈소스 재단 Logo">
-      <h1 data-i18n="common.brand">AMEVA 오픈소스 재단</h1>
+      <img src="favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">AOSF Tier 1 TLP</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
-      
-      
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-        <nav class="sidebar">
-    <!-- Tier 1: Primary Navigation (Document / Foundation) -->
-    <h3 data-i18n="common.nav.foundation">Foundation (AOSF)</h3>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
-      <li><a href="/foundation/index.html" class="active">Overview &amp; Mission</a></li>
-      <li><a href="/foundation/charter.html">Charter &amp; Values</a></li>
-      <li><a href="/foundation/governance.html">Governance &amp; Merit</a></li>
-      <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
-      <li><a href="/foundation/sponsorship.html">Sponsorship &amp; Grants</a></li>
-      <li><a href="/foundation/metrics.html">Ecosystem Metrics</a></li>
-      <li><a href="/foundation/dashboard/">3D Neural Fabric Map</a></li>
+      <li><a href="index.html" class="active">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
@@ -213,491 +53,127 @@
       <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
       <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
     <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
-      <li><a href="/docs/llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-      <li><a href="/FOUNDATION.md" target="_blank">FOUNDATION.md (Full Spec)</a></li>
-      <li><a href="/robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="/sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
 
-    <!-- Main Content Dynamic SPA Area -->
     <main class="content">
+      <h2 data-i18n="home.title">Termux-Vision</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux</p>
 
-      <!-- VIEW 1: Portal Overview -->
-      <section id="view-portal" class="spa-view active">
-        <h2 data-i18n="home.title">AMEVA Open-Source Foundation (AOSF)</h2>
-        <p class="subtitle" data-i18n="home.subtitle">
-          Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Egress Dependency
-        </p>
-
-        <div class="badges-bar">
-          <span class="release-tag">AOSF Tier 1 TLP Ecosystem</span>
-          <img src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" alt="Apache 2.0">
-          <img src="https://img.shields.io/badge/governance-Meritocracy-brightgreen.svg" alt="Meritocracy">
-          <img src="https://img.shields.io/badge/on--device-100%25%20Sovereign-success" alt="Sovereign AI">
-        </div>
-
-        <div class="alert alert-info">
-          <span class="alert-title" data-i18n="home.sepTitle">Separation of Foundation &amp; Personal Profile</span>
-          <p data-i18n="home.sepDesc">
-            AMEVA Open-Source Foundation (AOSF) operates as an independent technical public entity. Personal career records, contact info, and private portfolio of Founder <strong><a href="https://uno-km.vercel.app/" target="_blank">@uno-km</a></strong> are maintained strictly separately in the <a href="/">Personal Digital CV</a>.
-          </p>
-        </div>
-
-        <p data-i18n="home.desc">
-          AOSF is an independent non-profit open-source foundation governed by transparent meritocracy. We foster sovereign on-device AI, autonomous multi-agent orchestration, and WebGPU autograd engines that run 100% locally on user hardware with zero cloud server costs.
-        </p>
-
-        <!-- Tier 1 Flagship Cards -->
-                <!-- Tier 1 Flagship Cards -->
-        <h3 data-i18n="home.tier1Title">Flagship Projects</h3>
-        <p class="subtitle" data-i18n="home.tier1Desc">Production-Ready &middot; PyPI &amp; npm Published &middot; Self-Hosted &amp; Open-Source</p>
-        
-        <!-- CATALOG_INJECT_START:foundation -->
-  <div class="fnd-category">
-    <h4 class="fnd-cat-label" style="color:#1d4ed8;border-bottom:2px solid #2563eb;padding-bottom:4px;margin-bottom:12px;">Applications</h4>
-    <div class="features-grid">
-      <div class="feature-card fnd-card-app" style="border-left:4px solid #2563eb;">
-        <div class="fnd-card-header">
-          <h4>AMEVA Workstation</h4>
-          <span class="fnd-badge" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">App</span>
-        </div>
-        <p>Client-side local AI platform with WebGPU Qwen2.5, MapReduce document summarizer, in-app video cut & 1-click AI matting studio.</p>
-        <div class="card-links"><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="btn-sm fnd-primary" style="background:#2563eb;border-color:#2563eb;">Launch App</a><a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="btn-sm">GitHub</a></div>
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-vision.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank"><img src="https://img.shields.io/npm/v/termux-vision.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank"><img src="https://img.shields.io/npm/dm/termux-vision.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
       </div>
-      <div class="feature-card fnd-card-app" style="border-left:4px solid #2563eb;">
-        <div class="fnd-card-header">
-          <h4>Infra-Index Platform</h4>
-          <span class="fnd-badge" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">App</span>
-        </div>
-        <p>Real-time global 69-cloud GPU/CPU/Storage price aggregation, AI semiconductor market intelligence, and paper/news analytics platform.</p>
-        <div class="card-links"><a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="btn-sm fnd-primary" style="background:#2563eb;border-color:#2563eb;">Launch App</a><a href="/lib/infra-index/" class="btn-sm fnd-primary" style="background:#2563eb;border-color:#2563eb;">Docs</a><a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="btn-sm">GitHub</a></div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install ameva-core
+# or: npm install @ameva/core</code></pre>
       </div>
-    </div>
-  </div>
-  <div class="fnd-category">
-    <h4 class="fnd-cat-label" style="color:#15803d;border-bottom:2px solid #16a34a;padding-bottom:4px;margin-bottom:12px;">SDKs & Runtime Engines</h4>
-    <div class="features-grid">
-      <div class="feature-card fnd-card-sdk" style="border-left:4px solid #16a34a;">
-        <div class="fnd-card-header">
-          <h4>AMEVA-Sentinel</h4>
-          <span class="fnd-badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">Security SDK</span>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Standard vision frameworks like OpenCV, TorchVision, and heavy Python runtimes fail or crash on mobile Termux due to multi-gigabyte library sizes, missing GLIBC bindings, and severe thermal throttling.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Eliminates heavy C++ dependencies by compiling SIMD NEON vision kernels directly with zero-copy image transforms, delivering real-time object detection, segmentation, and VLM multimodal inference under 150MB RAM.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Zero-Dependency Native Runtime</h4>
+          <p data-i18n="home.features.0.desc">Operates with zero heavy OpenCV/PyTorch bloat, running directly on Android Bionic libc.</p>
         </div>
-        <p>Privacy-first, self-hosted behavioral risk scoring and HMAC-SHA256 security observation SDK. Zero PII capture.</p>
-        <div class="card-links"><a href="/lib/sentinel/" class="btn-sm fnd-primary" style="background:#16a34a;border-color:#16a34a;">Docs</a><a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="btn-sm">GitHub</a></div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">ARM64 NEON Vectorized Image Kernels</h4>
+          <p data-i18n="home.features.1.desc">Hand-vectorized RGB/BGR resizing, normalization, and NMS kernels.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">On-Device VLM Multimodal Support</h4>
+          <p data-i18n="home.features.2.desc">Integrated lightweight visual language model pipeline for edge visual question answering.</p>
+        </div>
       </div>
-      <div class="feature-card fnd-card-sdk" style="border-left:4px solid #16a34a;">
-        <div class="fnd-card-header">
-          <h4>AMEVA-MCP-Hub</h4>
-          <span class="fnd-badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">npm</span>
+
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pre-processing</strong></td>
+            <td>Bilinear Resize, RGB2BGR, Float Normalization (NEON)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Inference Engine</strong></td>
+            <td>NanoDet-Plus, MobileSAM, Fast-VLM GGUF</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Post-processing</strong></td>
+            <td>Fast-NMS Vectorized, Soft-NMS, Box Decoder</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
-        <p>Universal polyglot WASM in-memory tool execution and dynamic GitHub multi-repo real-time subscription MCP hub & SDK.</p>
-        <div class="card-links"><a href="/lib/mcp/" class="btn-sm fnd-primary" style="background:#16a34a;border-color:#16a34a;">Docs</a><a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="btn-sm">GitHub</a></div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import termux_vision as vision
+
+# 1. Load zero-dependency mobile vision engine
+engine = vision.VisionEngine(model="nanodet-plus-arm64")
+
+# 2. Run real-time detection on mobile image
+results = engine.detect("sample.jpg", conf_threshold=0.45)
+for obj in results:
+    print(f"Detected: {obj.label} ({obj.score:.2f}) at {obj.bbox}")
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { VisionEngine } from 'termux-vision';
+
+const engine = new VisionEngine({ model: 'nanodet-plus-arm64' });
+const detections = await engine.detect('sample.jpg', { confThreshold: 0.45 });
+console.log(detections);
+</code></pre>
+        </div>
       </div>
-      <div class="feature-card fnd-card-sdk" style="border-left:4px solid #16a34a;">
-        <div class="fnd-card-header">
-          <h4>AMEVA-Forge</h4>
-          <span class="fnd-badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">PyPI: ameva-forge</span>
-        </div>
-        <p>Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch-compatible API, WGSL compute shaders, and zero-waste buffer pool.</p>
-        <div class="card-links"><a href="/lib/forge/" class="btn-sm fnd-primary" style="background:#16a34a;border-color:#16a34a;">Docs</a><a href="https://pypi.org/project/ameva-forge/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="fnd-category">
-    <h4 class="fnd-cat-label" style="color:#b45309;border-bottom:2px solid #d97706;padding-bottom:4px;margin-bottom:12px;">Libraries</h4>
-    <div class="features-grid">
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-AIChain</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">pip / npm</span>
-        </div>
-        <p>Ultra-lightweight Zero-Dependency AI chaining & autonomous agent DAG execution framework for Android Termux (<50KB core).</p>
-        <div class="card-links"><a href="/lib/aichain/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://pypi.org/project/termux-aichain/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-aichain" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-BitNet</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">pip / npm</span>
-        </div>
-        <p>1.58-bit on-device LLM inference engine with ARM64 NEON DotProd SIMD assembly acceleration and smartphone runtime.</p>
-        <div class="card-links"><a href="/lib/bitnet/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-Playwright</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">pip / npm</span>
-        </div>
-        <p>Non-root Chromium browser automation on Android Termux ARM64. Direct CDP control for scraping and automated web pipelines.</p>
-        <div class="card-links"><a href="/lib/playwright/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://pypi.org/project/termux-playwright/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-playwright" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-Diffusion</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">pip / npm</span>
-        </div>
-        <p>Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions.</p>
-        <div class="card-links"><a href="/lib/diffusion/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-STT</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">pip / npm</span>
-        </div>
-        <p>Unified on-device Speech-to-Text combining Whisper.cpp, Vosk, Sherpa-ONNX with pure Python 128d X-Vector speaker diarization.</p>
-        <div class="card-links"><a href="/lib/stt/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="btn-sm fnd-pkg" style="background:#cb3837;color:#fff;border-color:#cb3837;">npm</a><a href="https://pypi.org/project/termux-stt/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-stt" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-      <div class="feature-card fnd-card-lib" style="border-left:4px solid #d97706;">
-        <div class="fnd-card-header">
-          <h4>Termux-Train</h4>
-          <span class="fnd-badge" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">PyPI</span>
-        </div>
-        <p>Ultra-lightweight on-device Tensor & DAG Autograd framework with SafeTensors zero-copy, RoPE transformer, and LoRA fine-tuning.</p>
-        <div class="card-links"><a href="/lib/train/" class="btn-sm fnd-primary" style="background:#d97706;border-color:#d97706;">Docs</a><a href="https://pypi.org/project/termux-train/" target="_blank" class="btn-sm fnd-pkg">PyPI</a><a href="https://github.com/uno-km/termux-train" target="_blank" class="btn-sm">GitHub</a></div>
-      </div>
-    </div>
-  </div>
-<!-- CATALOG_INJECT_END:foundation -->
 
-                <!-- Ecosystem Matrix Table with Downloads -->
-        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:28px; margin-bottom:8px; flex-wrap:wrap; gap:10px;">
-          <h3 style="margin:0;" data-i18n="home.matrixTitle">Official Released Packages &amp; Download Metrics</h3>
-          <a href="/foundation/metrics.html" class="btn-sm fnd-primary" style="background:#004499;border-color:#004499;">📊 실시간 성과 대시보드 (Metrics) &rarr;</a>
-        </div>
-        <p class="subtitle" style="margin-bottom:12px;">공식 배포 패키지 생태계 아키텍처 및 레지스트리(NPM / PyPI) 실측 다운로드 현황</p>
-        
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>Package (PyPI / npm)</th>
-              <th>NPM</th>
-              <th>PyPI (pip)</th>
-              <th>Total Downloads</th>
-              <th>Primary Capability</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Termux-Playwright</strong></td>
-              <td><code>pip: termux-playwright</code><br/><code>npm: termux-playwright</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">710</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">841</span></td>
-              <td><strong style="color:#15803d;">1,551</strong></td>
-              <td>Non-root Chromium Browser Automation &amp; CDP</td>
-              <td><span class="release-tag">PyPI + npm</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-Diffusion</strong></td>
-              <td><code>pip: termux-diffusion</code><br/><code>npm: termux-diffusion</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">611</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">362</span></td>
-              <td><strong style="color:#15803d;">973</strong></td>
-              <td>On-Device Stable Diffusion Image Generation</td>
-              <td><span class="release-tag">PyPI + npm</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-BitNet</strong></td>
-              <td><code>pip: termux-bitnet</code><br/><code>npm: termux-bitnet</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">255</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">404</span></td>
-              <td><strong style="color:#15803d;">659</strong></td>
-              <td>1.58-bit (i2_s) On-Device LLM Inference SIMD Engine</td>
-              <td><span class="release-tag">PyPI + npm</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-STT</strong></td>
-              <td><code>pip: termux-stt</code><br/><code>npm: termux-stt</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">275</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">127</span></td>
-              <td><strong style="color:#15803d;">402</strong></td>
-              <td>Unified Speech-to-Text &amp; 128d Speaker Diarization</td>
-              <td><span class="release-tag">PyPI + npm</span></td>
-            </tr>
-            <tr>
-              <td><strong>AMEVA-Sentinel</strong></td>
-              <td><code>npm: @ameva/sentinel</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">219</span></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><strong style="color:#15803d;">219</strong></td>
-              <td>0-Data Privacy Threat Scoring &amp; Traffic Governance</td>
-              <td><span class="release-tag">npm Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>AMEVA-MCP-Hub</strong></td>
-              <td><code>npm: ameva-mcp-hub</code></td>
-              <td><span class="stat-badge badge-npm" style="background:#fee2e2;color:#b91c1c;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">149</span></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><strong style="color:#15803d;">149</strong></td>
-              <td>Polyglot WASM Tools &amp; AI Vector MCP Live Hub</td>
-              <td><span class="release-tag">npm Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-Train</strong></td>
-              <td><code>pip: termux-train</code></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">117</span></td>
-              <td><strong style="color:#15803d;">117</strong></td>
-              <td>On-Device DAG Tensor Autograd &amp; LoRA Training</td>
-              <td><span class="release-tag">PyPI Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>AMEVA-Forge</strong></td>
-              <td><code>pip: ameva-forge</code></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><span class="stat-badge badge-pypi" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:11px;">110</span></td>
-              <td><strong style="color:#15803d;">110</strong></td>
-              <td>Browser-Native WebGPU Tensor Autograd Deep Learning Engine</td>
-              <td><span class="release-tag">PyPI Released</span></td>
-            </tr>
-            <tr>
-              <td><strong>Termux-AIChain</strong></td>
-              <td><code>pip: termux-aichain</code><br/><code>npm: termux-aichain</code></td>
-              <td><span style="color:#16a34a;font-size:11px;font-weight:600;">Active</span></td>
-              <td><span style="color:#16a34a;font-size:11px;font-weight:600;">Active</span></td>
-              <td><strong style="color:#15803d;">Published</strong></td>
-              <td>Zero-Dependency AI Chaining &amp; DAG Execution Framework</td>
-              <td><span class="release-tag">PyPI + npm</span></td>
-            </tr>
-            <tr>
-              <td><strong>AMEVA Workstation</strong></td>
-              <td><code>Web / Desktop</code></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><span style="color:#94a3b8;">-</span></td>
-              <td><strong style="color:#2563eb;">Live App</strong></td>
-              <td>Client-Side WebGPU Local AI &amp; MapReduce Summarizer</td>
-              <td><span class="release-tag">Live Studio</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- VIEW 2: Charter -->
-      <section id="view-charter" class="spa-view">
-        <h2 data-i18n="charter.pageTitle">Official Charter of the AMEVA Foundation</h2>
-        <p class="subtitle" data-i18n="charter.subtitle">Adopted August 2026</p>
-
-        <div class="alert alert-tip">
-          <span class="alert-title" data-i18n="charter.missionTitle">Mission Statement</span>
-          <p style="font-style: italic; margin-bottom: 0;" data-i18n="charter.missionText">
-            "To liberate artificial intelligence and compute autonomy from centralized cloud enclosures by engineering high-performance, edge-first open-source software that operates entirely on sovereign end-user hardware."
-          </p>
-        </div>
-
-        <h3 data-i18n="charter.art1Title">Article I. Name and Core Purpose</h3>
-        <p data-i18n="charter.art1Name">
-          <strong>1.1</strong> The organization is formally established as the <strong>AMEVA Open-Source Foundation (AOSF)</strong>.
-        </p>
-        <p data-i18n="charter.art1Principles">
-          <strong>1.2</strong> The Foundation is governed by the following immutable core principles:
-        </p>
-        <ul>
-          <li data-i18n="charter.p1"><strong>Edge-First &amp; Serverless Edge Architecture:</strong> All AI inference and automation pipelines are engineered to execute on end-user hardware (smartphones, browsers, edge boards) without mandatory cloud server dependencies.</li>
-          <li data-i18n="charter.p2"><strong>100% Data Sovereignty:</strong> User prompts, inputs, and inference results remain strictly inside client-side execution boundaries without telemetry leakage.</li>
-          <li data-i18n="charter.p3"><strong>Public Good &amp; Open Standards:</strong> Foundation deliverables are permanently licensed as open-source public goods free from commercial enclosure.</li>
-          <li data-i18n="charter.p4"><strong>Strict Separation of Concerns:</strong> Foundation institutional assets and governance are operated strictly independently from Founder <a href="https://uno-km.vercel.app/" target="_blank">@uno-km</a>'s private career track records.</li>
-        </ul>
-
-        <h3 data-i18n="charter.art2Title">Article II. Technical Scope</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th data-i18n="charter.thDomain">Domain</th>
-              <th data-i18n="charter.thTech">Core Technologies</th>
-              <th data-i18n="charter.thObj">Primary Objectives</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong data-i18n="charter.r1Domain">Mobile &amp; Edge Runtimes</strong></td>
-              <td data-i18n="charter.r1Tech">Android Bionic ARM64, Termux, NEON SIMD</td>
-              <td data-i18n="charter.r1Obj">Non-root browser automation (termux-playwright), on-device Stable Diffusion (termux-diffusion), and tensor autograd (termux-train).</td>
-            </tr>
-            <tr>
-              <td><strong data-i18n="charter.r2Domain">Browser &amp; WebGPU AI</strong></td>
-              <td data-i18n="charter.r2Tech">WebGPU, WGSL, Pyodide WASM</td>
-              <td data-i18n="charter.r2Obj">Browser-native autograd engine (AMEVA-Forge) and 100% isolated sandboxes (AMEVA-MCP-Hub).</td>
-            </tr>
-            <tr>
-              <td><strong data-i18n="charter.r3Domain">Autonomous Systems</strong></td>
-              <td data-i18n="charter.r3Tech">Docker, SRE Mesh, Multi-CLI</td>
-              <td data-i18n="charter.r3Obj">Multi-agent orchestration (Agent Orchestra), social simulation (Dead Internet Theatre), and resilient retry-backed telemetry (Data Harvester).</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 data-i18n="charter.art3Title">Article III. Licensing &amp; Intellectual Property</h3>
-        <p data-i18n="charter.art3Text">
-          All canonical deliverables, libraries, runtimes, and documentation produced under AOSF are licensed under the Apache License, Version 2.0 or the MIT License.
-        </p>
-
-        <h3 data-i18n="charter.art4Title">Article IV. Disclaimer of Liability</h3>
-        <p data-i18n="charter.art4Text">
-          Deliverables are provided "AS IS", without warranty of any kind, express or implied.
-        </p>
-      </section>
-
-      <!-- VIEW 3: Governance -->
-      <section id="view-governance" class="spa-view">
-        <h2 data-i18n="gov.pageTitle">Governance &amp; Meritocracy Guidelines</h2>
-        <p class="subtitle" data-i18n="gov.subtitle">AOSF Operating Regulations &amp; Meritocratic Bylaws</p>
-
-        <div class="alert alert-tip">
-          <span class="alert-title" data-i18n="gov.meritTitle">Meritocracy Principle</span>
-          <p style="margin-bottom: 0;" data-i18n="gov.meritText">
-            The AMEVA Open-Source Foundation operates strictly on meritocracy: influence, committer rights, and Project Management Committee (PMC) seats are earned exclusively through sustained, high-quality technical and architectural contributions.
-          </p>
-        </div>
-
-        <h3 data-i18n="gov.sec1Title">1. Roles and Responsibilities</h3>
-        <p data-i18n="gov.sec1Text">Community roles are categorized into Users, Contributors, Committers, and PMC Members with clear, transparent promotion criteria.</p>
-
-        <h3 data-i18n="gov.sec2Title">2. Decision-Making &amp; Voting Protocols</h3>
-        <p data-i18n="gov.sec2Text">Consensus building is prioritized, followed by formal 72-hour lazy consensus votes where required for major architectural changes.</p>
-
-        <h3 data-i18n="gov.sec3Title">3. Project Lifecycle</h3>
-        <p data-i18n="gov.sec3Text">Projects progress through Sandbox -> Incubation -> Top-Level Project (TLP) based on code maturity and multi-maintainer diversity.</p>
-
-        <h3 data-i18n="gov.sec4Title">4. Conflict Resolution &amp; Code of Conduct</h3>
-        <p data-i18n="gov.sec4Text">All participants adhere to the Contributor Covenant Code of Conduct, ensuring a professional, harassment-free environment.</p>
-      </section>
-
-      <!-- VIEW 4: Incubation -->
-      <section id="view-incubation" class="spa-view">
-        <h2 data-i18n="inc.pageTitle">Incubation Policy &amp; Lifecycle</h2>
-        <p class="subtitle" data-i18n="inc.subtitle">Standard Process for Onboarding New Sub-Projects</p>
-
-        <div class="alert alert-info">
-          <span class="alert-title" data-i18n="inc.policyTitle">AOSF Incubation Framework</span>
-          <p style="margin-bottom: 0;" data-i18n="inc.policyText">
-            The AOSF Incubation Policy governs the ingestion, mentorship, and graduation of emerging edge-first AI projects into official Tier 1 Top-Level Projects.
-          </p>
-        </div>
-
-        <h3 data-i18n="inc.stage1Title">Stage 1: Proposal &amp; Sponsor</h3>
-        <p data-i18n="inc.stage1Text">A proposal outlining the technical scope, zero-cloud architecture, and initial maintainers is submitted for PMC review.</p>
-
-        <h3 data-i18n="inc.stage2Title">Stage 2: Mentored Incubation</h3>
-        <p data-i18n="inc.stage2Text">The project establishes transparent issue tracking, CI/CD, documentation, and releases on PyPI/npm under AOSF guidelines.</p>
-
-        <h3 data-i18n="inc.stage3Title">Stage 3: Graduation to Tier 1 TLP</h3>
-        <p data-i18n="inc.stage3Text">Upon demonstrating production stability, complete unit test suites, and meritocratic governance, the project graduates to TLP.</p>
-
-        <h3 data-i18n="inc.gradTitle">Graduation Requirements</h3>
-        <p data-i18n="inc.gradText">Projects must exhibit 100% data sovereignty, edge-first execution, clean Apache 2.0/MIT licensing, and comprehensive API documentation.</p>
-      </section>
-
-      <!-- VIEW 5: Sponsorship -->
-      <section id="view-sponsorship" class="spa-view">
-        <h2 data-i18n="spon.pageTitle">Sponsorship &amp; Institutional Support</h2>
-        <p class="subtitle" data-i18n="spon.subtitle">Funding Public Goods &amp; Sovereign Edge AI Infrastructure</p>
-
-        <div class="alert alert-tip">
-          <span class="alert-title" data-i18n="spon.sponTitle">Supporting Open-Source Public Goods</span>
-          <p style="margin-bottom: 0;" data-i18n="spon.sponText">
-            AOSF is sustained by direct sponsorships, corporate grants, and compute hardware donations dedicated exclusively to open research and testbed infrastructure.
-          </p>
-        </div>
-
-        <h3 data-i18n="spon.tier1Title">Hardware &amp; Compute Grants</h3>
-        <p data-i18n="spon.tier1Text">Testing devices (ARM64 devboards, smartphones, GPUs) are used directly in CI/CD pipelines to benchmark real hardware performance.</p>
-
-        <h3 data-i18n="spon.tier2Title">Ecosystem Sustainer Tier</h3>
-        <p data-i18n="spon.tier2Text">Organizations providing annual financial grants receive prominent recognition across Foundation portals and documentation feeds.</p>
-
-        <h3 data-i18n="spon.tier3Title">Individual Backers</h3>
-        <p data-i18n="spon.tier3Text">Individual developers supporting via GitHub Sponsors or OpenCollective help maintain domain infrastructure and package registries.</p>
-
-        <h3 data-i18n="spon.usageTitle">Transparency of Funds</h3>
-        <p data-i18n="spon.usageText">All financial and hardware contributions are accounted for with public quarterly transparency reports.</p>
-      </section>
-
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
     </main>
   </div>
 
   <footer>
-    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
-
-  <!-- SPA Router & GET Parameter Synchronization Script -->
-  <script>
-    (function() {
-      'use strict';
-
-      const validViews = ['portal', 'charter', 'governance', 'incubation', 'sponsorship'];
-      
-      function navigateTo(viewId, pushHistory) {
-        if (!validViews.includes(viewId)) {
-          viewId = 'portal';
-        }
-
-        // 1. Switch View Containers
-        document.querySelectorAll('.spa-view').forEach(function(sec) {
-          sec.classList.remove('active');
-        });
-        const targetSection = document.getElementById('view-' + viewId);
-        if (targetSection) {
-          targetSection.classList.add('active');
-        }
-
-        // 2. Update Active Link in Sidebar
-        document.querySelectorAll('.spa-nav-link').forEach(function(link) {
-          if (link.getAttribute('data-spa-target') === viewId) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        });
-
-        // 3. Ensure Foundation Accordion is Open
-        const foundationAcc = document.getElementById('acc-foundation');
-        if (foundationAcc) {
-          foundationAcc.open = true;
-        }
-
-        // 4. Update URL Query Parameter cleanly via History API
-        if (pushHistory) {
-          const newUrl = viewId === 'portal' 
-            ? window.location.pathname 
-            : window.location.pathname + '?view=' + viewId;
-          window.history.pushState({ view: viewId }, '', newUrl);
-        }
-
-        // 5. Scroll to top smoothly
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      }
-
-      // Intercept SPA Nav Links
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('.spa-nav-link');
-        if (link) {
-          e.preventDefault();
-          const target = link.getAttribute('data-spa-target');
-          navigateTo(target, true);
-        }
-      });
-
-      // Handle Browser Back / Forward Button Navigation
-      window.addEventListener('popstate', function() {
-        const params = new URLSearchParams(window.location.search);
-        const viewParam = params.get('view') || 'portal';
-        navigateTo(viewParam, false);
-      });
-
-      // Initial Load Handler
-      document.addEventListener('DOMContentLoaded', function() {
-        const params = new URLSearchParams(window.location.search);
-        const initialView = params.get('view') || 'portal';
-        navigateTo(initialView, false);
-      });
-    })();
-  </script>
 </body>
 </html>

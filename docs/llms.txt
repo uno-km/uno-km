@@ -1,36 +1,22 @@
-# AMEVA Open-Source Foundation (AOSF) - Machine-Readable Specification
+# Termux-Vision (v1.0.0)
+> Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux
 
-> Official LLM & AI Agent Context for AMEVA Open-Source Foundation (AOSF)
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-vision
+- Installation: `pip install ameva-core
+# or: npm install @ameva/core`
+- Architecture: Eliminates heavy C++ dependencies by compiling SIMD NEON vision kernels directly with zero-copy image transforms, delivering real-time object detection, segmentation, and VLM multimodal inference under 150MB RAM.
 
-## 1. Organization Overview
-- **Name**: AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)
-- **Mission**: "Democratizing On-Device AI & Autonomous Systems Without Cloud Egress Dependency"
-- **Governance**: Apache-Style Meritocracy (Board, PMC, Committers, Contributors)
-- **Founder & Chair**: Eunho Kim (@uno-km)
-- **Licensing**: Apache 2.0 / MIT standard
-- **Official Web Portal**: https://uno-km.github.io/uno-km/docs/foundation/
-- **Central Repository**: https://github.com/uno-km/uno-km
+## Canonical Code Pattern
+```python
+import termux_vision as vision
 
-## 2. 3-Tier Project Portfolio Specification
+# 1. Load zero-dependency mobile vision engine
+engine = vision.VisionEngine(model="nanodet-plus-arm64")
 
-### Tier 1: Flagship Top-Level Projects (TLP)
-- **AMEVA-Workstation**: 100% On-device WebGPU local AI (Qwen2.5 0.5B/1.5B/7B), 3-sec MapReduce PDF/DOCX doc reader & editor, video cutter, 1-sec AI background removal, audio silence auto-cut. Web App: https://ameva-workstation-web-core.vercel.app/
-- **AMEVA-Sentinel**: Privacy-first 0-Data browser observability & deterministic 0~100 threat scoring SDK. npm: `ameva-sentinel`.
-- **AMEVA-MCP-Hub**: Universal polyglot WASM & AI vector Model Context Protocol hub & SDK with live multi-repo subscriptions. npm: `ameva-mcp-hub`.
-- **Termux-BitNet**: High-performance 1.58-bit on-device LLM inference engine with ARM64 NEON DotProd acceleration. PyPI: `termux-bitnet`, npm: `termux-bitnet`.
-- **Termux-Playwright**: Non-root Chromium browser automation on Android Termux (ARM64 Bionic). PyPI: `termux-playwright`, npm: `termux-playwright`.
-- **Termux-Diffusion**: On-device ARM64 native Stable Diffusion runtime for Android without root. PyPI: `termux-diffusion`, npm: `termux-diffusion`.
-- **Termux-STT**: Unified on-device Speech-to-Text framework with Whisper.cpp/Vosk/Sherpa-ONNX & pure-Python 128d speaker diarization. PyPI: `termux-stt`, npm: `termux-stt`.
-- **Termux-Train**: SafeTensors zero-copy & LoRA fine-tuning lightweight on-device DAG Autograd framework. PyPI: `termux-train`.
-- **AMEVA-Forge**: Browser-native WebGPU Autograd deep learning tensor engine & interactive studio. PyPI: `ameva`.
+# 2. Run real-time detection on mobile image
+results = engine.detect("sample.jpg", conf_threshold=0.45)
+for obj in results:
+    print(f"Detected: {obj.label} ({obj.score:.2f}) at {obj.bbox}")
 
-### Tier 2: Labs & Autonomous Systems
-- **Dead Internet Theatre**: Docker-based autonomous multi-agent social simulation.
-- **AMEVA Agent Orchestra**: Hierarchical multi-agent orchestration (Nobles & Workers).
-- **AMEVA-Multi-CLI**: Recursive multi-split terminal workbench with 80 FPS smart PTY.
-
-## 3. Governance & Policy Files
-- Charter: https://uno-km.github.io/uno-km/docs/foundation/CHARTER.md
-- Governance: https://uno-km.github.io/uno-km/docs/foundation/GOVERNANCE.md
-- Incubation: https://uno-km.github.io/uno-km/docs/foundation/INCUBATION_POLICY.md
-- Sponsorship: https://uno-km.github.io/uno-km/docs/foundation/SPONSORSHIP.md
+```

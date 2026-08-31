@@ -1,46 +1,50 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMEVA Workstation | Sovereign Web & Desktop Studio</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/shared/style.css">
-  <script src="/shared/common.js" defer></script>
+  <title>Advanced Parameters & Tuning | Termux-Vision</title>
+  <meta name="description" content="Eliminates heavy C++ dependencies by compiling SIMD NEON vision kernels directly with zero-copy image transforms, delivering real-time object detection, segmentation, and VLM multimodal inference under 150MB RAM.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
 </head>
 <body>
-    <header>
+  <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
-      <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
+      <img src="favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
     </a>
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
+      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
+
   <div class="container">
-    <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
-      <li><a href="index.html" class="active">Home / Architecture</a></li>
+      <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
       <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
     <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
-      <li><a href="/lib/sentinel/" class="active">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
       <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
@@ -60,17 +64,17 @@
       <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
+
     <main class="content">
-      <h2>AMEVA Workstation</h2>
-      <p class="subtitle">Sovereign On-Device WebGPU & Desktop Computing Workbench</p>
-      <div class="alert alert-tip">
-        <span class="alert-title">Live Application Deployment</span>
-        <p>The sovereign web application is running at <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">https://ameva-workstation-web-core.vercel.app/</a>.</p>
-      </div>
+      <h2>Advanced Parameters & Tuning</h2>
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>Memory Buffer Pool Configuration</h3>
+         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
     </main>
   </div>
+
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>
