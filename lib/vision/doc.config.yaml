@@ -4,7 +4,7 @@ lib_slug: "vision"
 package_name_pypi: "termux-vision"
 package_name_npm: "termux-vision"
 version: "v1.1.0"
-release_name: "4-Tier Quality Presets & Vulkan Hardware Acceleration"
+release_name: "AMEVA Vulkan Runtime Integration & C++ BFS Canny Engine"
 license: "Apache-2.0"
 platform: "Android ARM64 / Linux / Termux"
 github_repo_url: "https://github.com/uno-km/termux-vision"
@@ -56,3 +56,18 @@ matrix_table:
   - category: "Neural Vision Bridge"
     operations: "ViT Patch Embeddings (16x16), MobileNet Feature Extractor, termux-train Auto-Grad Bridge"
     status: "Production"
+
+changelog:
+  - version: "v1.2.0"
+    date: "2026-09-01"
+    changes:
+      - "Official ameva-vulkan-runtime dynamic bridge integration for truthful hardware doctor probing."
+      - "Native C/C++ dual acceleration engines with 8-directional BFS Hysteresis queue."
+      - "Full COCO-80 standard class alignment for TinyYOLONano detector."
+      - "Automated device=auto delegation to llama-cli for hardware acceleration."
+  - version: "v1.1.0"
+    date: "2026-08-15"
+    changes:
+      - "Dual Engine Python and Node.js SDK initial release."
+      - "Heuristic Haar Cascade face candidate detector."
+      - "Model Cache Manager and GGUF VLM loader."
