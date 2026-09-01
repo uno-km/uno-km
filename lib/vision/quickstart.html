@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Termux-Vision | Quickstart &amp; Recipes | Official Documentation</title>
-  <meta name="description" content="Production-ready recipes for VLM multimodal inference, Canny edge detection, face detection, and termux-train fine-tuning.">
+  <title>Quickstart & Execution Recipes | Termux-Vision</title>
+  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -14,18 +14,14 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-Vision Logo">
+      <img src="favicon.svg" alt="Termux-Vision Logo">
       <h1 data-i18n="common.brand">Termux-Vision</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
@@ -33,99 +29,57 @@
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html">Home / Architecture</a></li>
-        <li><a href="installation.html">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="active">Quickstart &amp; Recipes</a></li>
-        <li><a href="api-reference.html">API Reference</a></li>
-        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
-        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-        <li><a href="versions.html">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-        <li><a href="/lib/vision/" class="active">Termux-Vision (CV &amp; VLM)</a></li>
-        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
-        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
-        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-      <ul>
-        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-      </ul>
-    </nav>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html" class="active">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+            <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
-      <h2>Quickstart &amp; Recipes</h2>
-      <p class="subtitle">Practical minimal code recipes for Python, Node.js, and CLI workflows</p>
-
-      <h3>Recipe 1: Multimodal VLM Image Chat (Python)</h3>
-      <pre><code>import termux_vision as tv
-
-# Load VLM Engine (Auto Vulkan GPU with CPU fallback)
-with tv.vlm.load(model_id="smolvlm-500m-q4", device="auto") as engine:
-    result = engine.describe(
-        "photo.jpg",
-        prompt="이 사진 속 인물과 배경을 요약 설명해줘.",
-        max_tokens=150
-    )
-    print(f"[Result]: {result.text}")
-    print(f"[Speed]: {result.metrics.tokens_per_second:.1f} t/s")</code></pre>
-
-      <h3>Recipe 2: Multimodal VLM Image Chat (Node.js)</h3>
-      <pre><code>const tv = require('termux-vision');
-
-async function main() {
-  const engine = await tv.vlm.load({
-    modelId: 'smolvlm-500m-q4',
-    device: 'auto'
-  });
-
-  const res = await engine.describe('photo.jpg', {
-    prompt: 'Explain what is happening in this image.'
-  });
-
-  console.log(`[Result]: ${res.text}`);
-  console.log(`[Decode]: ${res.metrics.decodeMs} ms`);
-}
-main();</code></pre>
-
-      <h3>Recipe 3: Classical Canny Edge Detection (Python)</h3>
-      <pre><code>import termux_vision as tv
-
-# Load, resize, and convert to grayscale
-img = tv.io.load_image("input.jpg")
-gray = tv.transforms.to_grayscale(tv.transforms.resize(img, (512, 512)))
-
-# Execute 5-stage Canny Edge Detection
-edges = tv.cv.canny(gray, low_threshold=40.0, high_threshold=120.0)
-tv.io.save_image(edges, "edges.png")
-print("Edges saved to edges.png")</code></pre>
-
-      <h3>Recipe 4: Haar Cascade Face Detection</h3>
-      <pre><code>import termux_vision as tv
-
-img = tv.io.load_image("selfie.jpg")
-detections = tv.detect.detect_faces(img)
-
-print(f"Found {len(detections)} candidate face regions:")
-for d in detections:
-    print(f"  - BBox: {d.bbox.to_xywh()} (Score: {d.score})")</code></pre>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>import ameva_core as ac
+engine = ac.Engine()
+print(engine.compute([1.0, 2.0]))</code></pre>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

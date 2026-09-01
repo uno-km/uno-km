@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Benchmarks & Profiling | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,154 +14,121 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="">API Reference</a></li>
-        <li><a href="benchmarks.html" class="active">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html" class="active">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
+      <h2>Benchmarks & Profiling</h2>
+      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
+      <h3>1. Real-Device Samsung Galaxy A35 (Exynos 1380 / Mali-G68 GPU)</h3>
+<p>Measured on Samsung Galaxy A35 5G running Android 14 Termux:</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Interface Mode</th><th>Model</th><th>Prompt Speed</th><th>Generation Speed</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CLI Mode</strong> (<code>termux-llama run</code>)</td>
+      <td>Qwen 2.5 0.5B Instruct</td>
+      <td><strong>9.4 tokens/sec</strong></td>
+      <td><strong>5.0 tokens/sec</strong></td>
+      <td><span class="status-badge active">PASS</span></td>
+    </tr>
+    <tr>
+      <td><strong>Python SDK</strong> (<code>LlamaRuntime.generate</code>)</td>
+      <td>Qwen 2.5 0.5B Instruct</td>
+      <td><strong>13.9 tokens/sec</strong></td>
+      <td><strong>8.5 tokens/sec</strong></td>
+      <td><span class="status-badge active">PASS</span></td>
+    </tr>
+    <tr>
+      <td><strong>Node.js ESM</strong> (<code>termux-llama</code> Bridge)</td>
+      <td>Qwen 2.5 0.5B Instruct</td>
+      <td><strong>12.5 tokens/sec</strong></td>
+      <td><strong>6.4 tokens/sec</strong></td>
+      <td><span class="status-badge active">PASS</span></td>
+    </tr>
+  </tbody>
+</table>
 
-      <h2>Benchmarks & Real-Device Profiling</h2>
-      <p>
-        Strict ground truth performance measurements captured directly on physical Samsung Galaxy S20+ hardware.
-      </p>
-
-      <h3>1. Hardware & System Testbed Specifications</h3>
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Hardware Specification</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Target Device</strong></td><td>Samsung Galaxy S20+ 5G (SM-G986N)</td><td>Physical smartphone hardware</td></tr>
-            <tr><td><strong>SoC / Processor</strong></td><td>Qualcomm Snapdragon 865 (SM8250)</td><td>1x Kryo 585 Prime @ 2.84GHz, 3x Gold @ 2.42GHz, 4x Silver @ 1.80GHz</td></tr>
-            <tr><td><strong>OS & Runtime</strong></td><td>Android 13 / Termux Bionic ARM64</td><td>Linux Kernel 4.19.113-android11-9-27083162</td></tr>
-            <tr><td><strong>SIMD Extensions</strong></td><td>NEON, FP16, DotProd (ARMv8.2-A)</td><td>Hardware accelerated INT8 dot product and FP16 arithmetic</td></tr>
-            <tr><td><strong>RAM Footprint</strong></td><td>12GB LPDDR5 Physical Memory</td><td>3.88 GB free at cold start</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>2. Empirical Inference Throughput (Llama 3.2 3B Instruct Q4_K_M)</h3>
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Benchmark Phase</th>
-              <th>Latency / Duration</th>
-              <th>Throughput</th>
-              <th>System Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Cold Model Loading</strong></td>
-              <td>1,840 ms</td>
-              <td>1.04 GiB/s Direct Sequential Load</td>
-              <td>1.92 GiB weights loaded with --no-mmap</td>
-            </tr>
-            <tr>
-              <td><strong>Prompt Evaluation (Cold)</strong></td>
-              <td>2,347.19 ms (38 tokens)</td>
-              <td><strong>16.19 tokens / sec</strong> (61.77 ms/token)</td>
-              <td>4 threads pinned on big.LITTLE cores</td>
-            </tr>
-            <tr>
-              <td><strong>Token Generation (Eval)</strong></td>
-              <td>293.26 ms (3 tokens)</td>
-              <td><strong>10.23 tokens / sec</strong> (97.75 ms/token)</td>
-              <td>Real-time interactive generation</td>
-            </tr>
-            <tr>
-              <td><strong>Cached Prefix Request</strong></td>
-              <td>804.70 ms (10 tokens total)</td>
-              <td><strong>11.08 tokens / sec</strong> (90.24 ms/token)</td>
-              <td>Prompt Cache Reuse (Similarity: 0.816)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>3. Comparison: Native Prebuilt vs Scratch Compilation</h3>
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Evaluation Metric</th>
-              <th>Legacy Scratch Compilation</th>
-              <th>Prebuilt Zero-Compilation (v1.0.0)</th>
-              <th>Improvement Factor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Installation Time</strong></td>
-              <td>18 ~ 25 minutes</td>
-              <td><strong>&lt; 3.0 seconds</strong></td>
-              <td><strong>&gt; 400x Faster</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Compiler Disk Space</strong></td>
-              <td>~ 2.8 GB (Clang, CMake, Ninja, Git)</td>
-              <td><strong>0.0 MB</strong> (No build toolchains required)</td>
-              <td><strong>100% Space Saved</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Thermal Load</strong></td>
-              <td>Heavy CPU throttling (&gt;55°C)</td>
-              <td>Zero compile thermal overhead (&lt;32°C)</td>
-              <td>Battery & Thermal Safe</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    
+<h3>2. Samsung Galaxy S20+ (Snapdragon 865 / Adreno 650)</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Model</th><th>Quantization</th><th>Cold Warmup</th><th>Prompt Speed</th><th>Generation Speed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Llama 3.2 1B Instruct</strong></td>
+      <td><code>Q4_K_M</code> (800 MB)</td>
+      <td>1.8s</td>
+      <td><strong>18.2 tokens/sec</strong></td>
+      <td><strong>16.5 tokens/sec</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Llama 3.2 3B Instruct</strong></td>
+      <td><code>Q4_K_M</code> (1.92 GB)</td>
+      <td>2.3s</td>
+      <td><strong>16.2 tokens/sec</strong></td>
+      <td><strong>10.2 tokens/sec</strong></td>
+    </tr>
+  </tbody>
+</table>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

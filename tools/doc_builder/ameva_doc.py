@@ -336,11 +336,11 @@ def render_index_html(cfg: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{name} | Official Documentation</title>
   <meta name="description" content="{description_en}">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
 {render_header(cfg, "index.html")}
@@ -414,11 +414,11 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | {name}</title>
   <meta name="description" content="{desc}">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
 {render_header(cfg, active_page)}
@@ -666,10 +666,14 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
     print(f"[OK] Compiled: {output_dir.resolve()}")
 
 if __name__ == "__main__":
+    _default_assets = Path(__file__).resolve().parents[2] / "assets" / "design-system"
+    if not _default_assets.exists():
+        _default_assets = Path(__file__).resolve().parents[2] / "assets"
+
     parser = argparse.ArgumentParser(description="AMEVA Master Unified Documentation Builder")
     parser.add_argument("--config", "-c", default="docs/doc.config.yaml", help="Path to doc.config.yaml / json")
     parser.add_argument("--output", "-o", default="docs", help="Target output directory")
-    parser.add_argument("--assets", "-a", default="c:/Users/GAME/Desktop/uno-km/dev/ameva_assets", help="Path to centralized ameva_assets")
+    parser.add_argument("--assets", "-a", default=str(_default_assets), help="Path to centralized design-system assets")
     args = parser.parse_args()
 
     build_documentation(Path(args.config), Path(args.output), Path(args.assets))

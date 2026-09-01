@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Advanced Parameters & Tuning | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,110 +14,98 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="">API Reference</a></li>
-        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
+      <h2>Advanced Parameters & Tuning</h2>
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>1. Device Backend & Acceleration Modes</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>CLI Flag</th><th>SDK Parameter</th><th>Default</th><th>Behavior</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--device vulkan</code></td>
+      <td><code>device="vulkan"</code></td>
+      <td>-</td>
+      <td>Strict GPU shader acceleration mode with Fail-Fast protection (no CPU fallback).</td>
+    </tr>
+    <tr>
+      <td><code>--device auto</code></td>
+      <td><code>device="auto"</code></td>
+      <td><strong>Recommended</strong></td>
+      <td>Intelligent 12-stage hardware probe with automatic CPU NEON fallback.</td>
+    </tr>
+    <tr>
+      <td><code>--device cpu</code></td>
+      <td><code>device="cpu"</code></td>
+      <td>-</td>
+      <td>Bypasses Vulkan loader for 0ms direct pure-ARM64 NEON execution.</td>
+    </tr>
+  </tbody>
+</table>
 
-      <h2>Advanced Parameters & Security Tuning</h2>
-      <p>
-        Production guidelines for memory sizing, thread scheduling, loopback network security, and cryptographic supply-chain verification.
-      </p>
-
-      <h3>1. Mobile Context Allocation & Slots (-np 1)</h3>
-      <p>
-        By default on multi-slot servers, context window memory is divided equally across slots (e.g., 256 context / 4 slots = 64 tokens per slot). On single-user mobile devices, this leads to rapid context truncation. Termux-LlamaCpp enforces <code>-np 1</code> and allocates the entire 2048 token buffer directly to the active session.
-      </p>
-
-      <div class="code-box">
-        <div class="code-header"><span>Recommended Server Configuration</span></div>
-        <pre><code>llama-server \
-  -m model.gguf \
-  --host 127.0.0.1 \
-  --port 18080 \
-  -c 2048 \
-  -np 1 \
-  -t 4 \
-  --no-mmap</code></pre>
-      </div>
-
-      <h3>2. Android Bionic Direct Memory Loading (--no-mmap)</h3>
-      <p>
-        Standard Linux memory-mapping (<code>mmap</code>) on Android flash storage (<code>/data/data/com.termux/files/...</code>) frequently triggers kernel I/O locks, memory thrashing, and process timeouts. The <code>--no-mmap</code> flag instructs the llama.cpp engine to sequentially load model tensors directly into RAM, guaranteeing deterministic cold-start times (~1.8s for 1.92GB models).
-      </p>
-
-      <h3>3. Ed25519 Cryptographic Manifest Verification</h3>
-      <p>
-        Termux-LlamaCpp implements strict supply-chain security protocols:
-      </p>
-      <ul>
-        <li><strong>Fail-Closed Anti-Downgrade</strong>: If a signed release manifest is present, the runtime will strictly reject untrusted local build receipts.</li>
-        <li><strong>Symlink Traversal Prevention</strong>: Model weight paths, trust root public keys, and revocation files are verified with <code>is_symlink()</code> to block TOCTOU injection.</li>
-        <li><strong>Loopback Reverse Proxy Isolation</strong>: The native backend binds strictly to loopback <code>127.0.0.1:18080</code>, protected by CORS origin filtering.</li>
-      </ul>
-
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Environment Variable</th>
-              <th>Default Value</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><code>TERMUX_LLAMA_HOME</code></td><td><code>$HOME/.termux-llama</code></td><td>Root installation directory for binaries and libraries.</td></tr>
-            <tr><td><code>TERMUX_LLAMA_MODELS_DIR</code></td><td><code>$HOME/.termux-llama/models</code></td><td>Default model download cache directory.</td></tr>
-            <tr><td><code>TERMUX_LLAMA_PRESET</code></td><td><code>android-arm64-dotprod</code></td><td>Target hardware optimization compiler preset.</td></tr>
-            <tr><td><code>TERMUX_LLAMA_FORCE_MMAP</code></td><td><code>0</code></td><td>Set to 1 to force mmap (not recommended on Android).</td></tr>
-          </tbody>
-        </table>
-      </div>
-    
+<h3>2. Core Thread Pinning & Thermal Mitigation</h3>
+<pre><code># Target 4 high-performance big cores (Cortex-A78 / X-series)
+termux-llama run -m models/Llama-3.2-1B.gguf --threads 4</code></pre>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

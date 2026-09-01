@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Termux-LlamaCpp | Official Documentation</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,153 +14,207 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="active">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="">API Reference</a></li>
-        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" class="active">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
+      <h2 data-i18n="home.title">Termux-LlamaCpp</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64</p>
 
-      <div class="hero-section">
-        <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: #1e293b;">Termux-LlamaCpp Runtime & Supervisor</h2>
-        <p style="font-size: 1.1rem; color: #475569; margin-bottom: 1.5rem;">
-          Production-Grade, Prebuilt GGUF LLM Runtime, Model Manager & OpenAI-Compatible REST/SSE Supervisor for Android Termux & ARM64.
-        </p>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
-          <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank"><img src="https://img.shields.io/npm/v/termux-llamacpp.svg?color=cb3837" alt="npm Version"></a>
-          <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank"><img src="https://img.shields.io/npm/dm/termux-llamacpp.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
-          <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-          <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
-          <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux-blueviolet.svg" alt="Platform">
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-llamacpp.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank"><img src="https://img.shields.io/npm/v/termux-llamacpp.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank"><img src="https://img.shields.io/npm/dm/termux-llamacpp.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-llamacpp && termux-llama install
+# or Node.js:
+npm install -g termux-llamacpp && termux-llama install</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Zero-Compilation Instant Deployment</h4>
+          <p data-i18n="home.features.0.desc">Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">Unified Vulkan HAL & Big-Core Tuning</h4>
+          <p data-i18n="home.features.1.desc">Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Strict 3-Tier Execution Mode</h4>
+          <p data-i18n="home.features.2.desc">Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">OpenAI REST & SSE Streaming Supervisor</h4>
+          <p data-i18n="home.features.3.desc">Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">Automated Process Lifecycle & Cleanup</h4>
+          <p data-i18n="home.features.4.desc">Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">Supply-Chain Cryptographic Integrity</h4>
+          <p data-i18n="home.features.5.desc">Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.</p>
         </div>
       </div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>⚡ Instant Zero-Compilation Installation (Android Termux)</span>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inference Engine</strong></td>
+            <td>llama.cpp (Vulkan GPU Acceleration & ARM64 NEON DotProd)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Architecture Support</strong></td>
+            <td>Android aarch64 / arm64-v8a (Bionic libc, Qualcomm Adreno, ARM Mali, Samsung Xclipse)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Supported Quantizations</strong></td>
+            <td>Q4_K_M, Q5_K_M, Q8_0, IQ4_XS, Q2_K, F16 GGUF v3</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Protocols & APIs</strong></td>
+            <td>OpenAI Chat Completions (JSON & SSE Stream), Models List, Health Check</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>SDK Bindings</strong></td>
+            <td>Python 3.8+ (termux-llamacpp), Node.js / TypeScript 16+ (termux-llamacpp)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
-        <pre><code>curl -sSL https://raw.githubusercontent.com/uno-km/termux-llamacpp/master/scripts/install.sh | bash</code></pre>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from termux_llamacpp import LlamaRuntime, RuntimeConfig
+
+# 1. Initialize Runtime with Vulkan GPU Acceleration
+config = RuntimeConfig(
+    model_path="models/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+    device="auto",
+    threads=4,
+    context_size=2048
+)
+runtime = LlamaRuntime(config)
+
+# 2. Synchronous or Streaming Text Generation
+output = runtime.generate("한국의 사계절 중 가을의 매력에 대해 설명해줘.", max_tokens=256)
+print(output.text)
+print(f"Speed: {output.metrics.eval_tokens_per_sec:.2f} t/s (Prompt: {output.metrics.prompt_tokens_per_sec:.2f} t/s)")</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { LlamaRuntime } from "termux-llamacpp";
+
+// 1. Initialize ESM Runtime
+const runtime = new LlamaRuntime({
+  modelPath: "models/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+  device: "auto",
+  threads: 4
+});
+
+// 2. Generate Completion
+const result = await runtime.generate({
+  prompt: "Explain the architectural philosophy of edge computing.",
+  maxTokens: 256
+});
+console.log("Response:", result.text);
+console.log(`Generation Speed: ${result.metrics.evalTokensPerSec} t/s`);</code></pre>
+        </div>
       </div>
 
-      <h3>1. System Architecture Overview</h3>
-      <p>
-        Termux-LlamaCpp eliminates the traditional friction of running Large Language Models on mobile hardware. By packaging pre-compiled Android Bionic ARM64 binaries alongside verified shared libraries, it bypasses the multi-gigabyte Clang compiler toolchain and guarantees instantaneous execution in under 3 seconds.
-      </p>
-
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Component Layer</th>
-              <th>Technical Implementation</th>
-              <th>Engineering Responsibility</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Prebuilt Engine</strong></td>
-              <td>ARMv8.2-A + FP16 + DotProd Clang Binaries</td>
-              <td>Direct native CPU tensor execution with zero compilation delay.</td>
-            </tr>
-            <tr>
-              <td><strong>Reverse Proxy Supervisor</strong></td>
-              <td>Python/Node.js Async Multi-Threaded Gateway</td>
-              <td>Translates OpenAI v1 REST requests to native loopback endpoints with CORS protection.</td>
-            </tr>
-            <tr>
-              <td><strong>Model Manager</strong></td>
-              <td>Unified Hugging Face Caching & Checksum Verifier</td>
-              <td>Resilient GGUF streaming download with SHA-256 integrity checks.</td>
-            </tr>
-            <tr>
-              <td><strong>Security Verifier</strong></td>
-              <td>Ed25519 Public Key Cryptographic Manifest</td>
-              <td>Fail-closed anti-downgrade policy and TOCTOU symlink traversal prevention.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>2. Key Measured Performance (Samsung Galaxy S20+ Real-Device Ground Truth)</h3>
-      <p>
-        Empirically tested on Samsung Galaxy S20+ 5G (Qualcomm Snapdragon 865, 8-Core Kryo 585 ARM64 CPU) running Android 13 Termux:
-      </p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-        <div class="metric-card" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
-          <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">PROMPT PROCESSING SPEED</div>
-          <div style="font-size: 1.75rem; font-weight: 700; color: #2563eb; margin: 0.25rem 0;">16.19 t/s</div>
-          <div style="font-size: 0.8rem; color: #475569;">61.77 ms / token (38 tokens in 2.34s)</div>
-        </div>
-        <div class="metric-card" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
-          <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">TOKEN GENERATION SPEED</div>
-          <div style="font-size: 1.75rem; font-weight: 700; color: #16a34a; margin: 0.25rem 0;">10.23 t/s</div>
-          <div style="font-size: 0.8rem; color: #475569;">97.75 ms / token interactive generation</div>
-        </div>
-        <div class="metric-card" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
-          <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">COLD MODEL LOAD TIME</div>
-          <div style="font-size: 1.75rem; font-weight: 700; color: #d97706; margin: 0.25rem 0;">~1.8 sec</div>
-          <div style="font-size: 0.8rem; color: #475569;">Direct memory load (1.92 GiB 3B Q4_K_M)</div>
-        </div>
-        <div class="metric-card" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
-          <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">INSTALLATION DURATION</div>
-          <div style="font-size: 1.75rem; font-weight: 700; color: #7c3aed; margin: 0.25rem 0;">&lt; 3.0 sec</div>
-          <div style="font-size: 0.8rem; color: #475569;">Zero-compilation atomic binary extraction</div>
-        </div>
-      </div>
-
-      <h3>3. Supported Ecosystem Integrations</h3>
-      <p>
-        Termux-LlamaCpp serves as the primary high-throughput LLM backbone across the entire AMEVA on-device ecosystem:
-      </p>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><strong>Termux-AIChain</strong>: Direct local agent DAG task execution via loopback HTTP adapter.</li>
-        <li><strong>Termux-Playwright</strong>: Web crawling agent intelligence and automated browser DOM synthesis.</li>
-        <li><strong>Termux-STT</strong>: Multi-speaker audio transcription refinement and instant meeting note summarization.</li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
-    
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

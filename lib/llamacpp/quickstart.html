@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Quickstart & Execution Recipes | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,149 +14,87 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="active">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="">API Reference</a></li>
-        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html" class="active">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>1. Instant CLI Chat Execution</h3>
+<pre><code># Run interactive CLI inference with auto-detected Vulkan GPU / CPU NEON
+termux-llama run -m models/Llama-3.2-1B-Instruct-Q4_K_M.gguf -p "안녕하세요!" --device auto</code></pre>
 
-      <h2>Quickstart & Practical Recipes</h2>
-      <p>
-        Step-by-step practical guides for running local LLM inference, deploying the OpenAI-compatible server, and connecting client applications.
-      </p>
+<h3>2. Background OpenAI-Compatible Server Daemon</h3>
+<pre><code># Start background server daemon on port 8080 (zero-zombie supervisor)
+termux-llama serve -m models/Llama-3.2-1B-Instruct-Q4_K_M.gguf --port 8080 -d
 
-      <h3>Recipe 1: Interactive CLI Prompt Inference</h3>
-      <p>
-        Execute zero-latency single prompt generation with explicit token budgets directly from Termux:
-      </p>
-
-      <div class="code-box">
-        <div class="code-header"><span>CLI Execution</span></div>
-        <pre><code># Download curated lightweight model
-termux-llama download qwen2.5-1.5b-instruct
-
-# Run interactive CLI with 4 threads and direct memory mapping
-termux-llama run qwen2.5-1.5b-instruct -p "Explain quantum computing in 3 sentences." --temp 0.2 --max-tokens 128</code></pre>
-      </div>
-
-      <h3>Recipe 2: Starting the OpenAI-Compatible Supervisor Server</h3>
-      <p>
-        Launch the multi-threaded reverse proxy supervisor exposing standard OpenAI endpoints on loopback <code>http://127.0.0.1:8080</code>:
-      </p>
-
-      <div class="code-box">
-        <div class="code-header"><span>Server Launch</span></div>
-        <pre><code>termux-llama serve Llama-3.2-3B-Instruct-Q4_K_M.gguf --port 8080 --ctx 2048 --threads 4</code></pre>
-      </div>
-
-      <h3>Recipe 3: OpenAI REST & SSE Streaming Curl Requests</h3>
-      <p>
-        Interact with the server using standard HTTP requests:
-      </p>
-
-      <div class="code-box">
-        <div class="code-header"><span>REST API Requests</span></div>
-        <pre><code># 1. Health & Model Readiness Check
-curl -s http://127.0.0.1:8080/health
-
-# 2. List Available Models
-curl -s http://127.0.0.1:8080/v1/models
-
-# 3. Non-Streaming Chat Completion
-curl -X POST http://127.0.0.1:8080/v1/chat/completions \
+# Send standard OpenAI Chat Completion request
+curl http://127.0.0.1:8080/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Llama-3.2-3B-Instruct-Q4_K_M.gguf",
-    "messages": [{"role": "user", "content": "Hello!"}],
-    "temperature": 0.0,
-    "max_tokens": 16
+    "model": "Llama-3.2-1B",
+    "messages": [{"role": "user", "content": "로컬 엣지 AI의 장점은?"}],
+    "stream": true
   }'
 
-# 4. Real-Time Server-Sent Events (SSE) Streaming
-curl -N -X POST http://127.0.0.1:8080/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "Llama-3.2-3B-Instruct-Q4_K_M.gguf",
-    "messages": [{"role": "user", "content": "Stream a short greeting."}],
-    "stream": true
-  }'</code></pre>
-      </div>
-
-      <h3>Recipe 4: Python SDK Integration</h3>
-      <div class="code-box">
-        <div class="code-header"><span>Python (3.9+)</span></div>
-        <pre><code>from termux_llamacpp import LlamaRuntime
-
-runtime = LlamaRuntime()
-server = runtime.serve(
-    model="Llama-3.2-3B-Instruct-Q4_K_M.gguf",
-    port=8080,
-    ctx_size=2048,
-    threads=4
-)
-
-print(f"OpenAI server ready at: {server.endpoint}")</code></pre>
-      </div>
-
-      <h3>Recipe 5: Node.js / TypeScript SDK Integration</h3>
-      <div class="code-box">
-        <div class="code-header"><span>TypeScript / JavaScript (ESM)</span></div>
-        <pre><code>import { LlamaRuntime } from "termux-llamacpp";
-
-const runtime = new LlamaRuntime();
-const server = await runtime.serve({
-  model: "Llama-3.2-3B-Instruct-Q4_K_M.gguf",
-  port: 8080,
-  ctxSize: 2048,
-  threads: 4
-});
-
-console.log(`Server listening on ${server.endpoint}`);</code></pre>
-      </div>
-    
+# Gracefully terminate daemon
+termux-llama serve --stop</code></pre>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

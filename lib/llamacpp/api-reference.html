@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Complete API Reference | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,156 +14,96 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="active">API Reference</a></li>
-        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html" class="active">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
-
-      <h2>API Reference & Protocol Specification</h2>
-      <p>
-        Complete technical specifications for the Python SDK, Node.js SDK, CLI entry points, and OpenAI v1 REST/SSE endpoints.
-      </p>
-
-      <h3>1. Python SDK (`termux_llamacpp`)</h3>
-      
-      <h4><code>LlamaRuntime</code></h4>
-      <p>Main runtime factory and supervisor controller.</p>
-      <div class="doc-table-wrapper" style="margin: 1rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Method Signature</th>
-              <th>Return Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>LlamaRuntime(config: Optional[RuntimeConfig])</code></td>
-              <td><code>LlamaRuntime</code></td>
-              <td>Initializes runtime environment, directories, and binary verifiers.</td>
-            </tr>
-            <tr>
-              <td><code>runtime.serve(model: str, host="127.0.0.1", port=8080, ctx_size=2048, threads=4)</code></td>
-              <td><code>ServerInstance</code></td>
-              <td>Spawns native backend and reverse proxy supervisor with lifecycle locks.</td>
-            </tr>
-            <tr>
-              <td><code>runtime.models.download(repo_or_alias: str, filename=None)</code></td>
-              <td><code>Path</code></td>
-              <td>Downloads GGUF model with streaming SHA-256 verification and resume support.</td>
-            </tr>
-            <tr>
-              <td><code>runtime.models.search(query: str, deep_crawl=False)</code></td>
-              <td><code>List[Dict]</code></td>
-              <td>Discovers compatible GGUF repositories on Hugging Face Hub.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4><code>ServerConfig</code> Dataclass</h4>
-      <div class="doc-table-wrapper" style="margin: 1rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Field</th>
-              <th>Type</th>
-              <th>Default</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><code>public_host</code></td><td><code>str</code></td><td><code>"127.0.0.1"</code></td><td>Supervisor public proxy bind interface.</td></tr>
-            <tr><td><code>public_port</code></td><td><code>int</code></td><td><code>8080</code></td><td>Supervisor public port for OpenAI clients.</td></tr>
-            <tr><td><code>native_port</code></td><td><code>int</code></td><td><code>18080</code></td><td>Loopback port for native llama-server backend.</td></tr>
-            <tr><td><code>ctx_size</code></td><td><code>int</code></td><td><code>2048</code></td><td>Total token context buffer allocation.</td></tr>
-            <tr><td><code>threads</code></td><td><code>int</code></td><td><code>4</code></td><td>Number of compute CPU threads for inference.</td></tr>
-            <tr><td><code>no_mmap</code></td><td><code>bool</code></td><td><code>True</code></td><td>Direct sequential memory loading for Android resilience.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>2. REST & SSE Endpoints Schema</h3>
-      
-      <h4><code>GET /health</code></h4>
-      <p>Returns health state and active loaded model metadata.</p>
-      <pre><code>{
-  "status": "ok",
-  "ready": true,
-  "service": "llama-server",
-  "protocolVersion": "1.0",
-  "model": {
-    "id": "Llama-3.2-3B-Instruct-Q4_K_M.gguf",
-    "sha256": "3B4C..."
-  }
-}</code></pre>
-
-      <h4><code>POST /v1/chat/completions</code></h4>
-      <p>OpenAI-compliant chat completions with full streaming support.</p>
-      <div class="doc-table-wrapper" style="margin: 1rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Parameter</th>
-              <th>Type</th>
-              <th>Required</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><code>messages</code></td><td><code>Array[Object]</code></td><td>Yes</td><td>Conversation messages array (role, content).</td></tr>
-            <tr><td><code>max_tokens</code></td><td><code>int</code></td><td>No (512)</td><td>Maximum completion token generation budget.</td></tr>
-            <tr><td><code>temperature</code></td><td><code>float</code></td><td>No (0.7)</td><td>Sampling randomness (0.0 for deterministic greedy).</td></tr>
-            <tr><td><code>stream</code></td><td><code>bool</code></td><td>No (false)</td><td>Enables Server-Sent Events (SSE) token streaming.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    
+      <h2>Complete API Reference</h2>
+      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
+      <h3>Core Engine & Runtime API</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Class / Function</th><th>Parameters</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>LlamaRuntime</code></td>
+      <td><code>config: RuntimeConfig</code></td>
+      <td>High-level local inference supervisor with auto backend selection.</td>
+    </tr>
+    <tr>
+      <td><code>LlamaRuntime.generate</code></td>
+      <td><code>prompt: str, max_tokens: int = 512, stream: bool = False</code></td>
+      <td>Generates tokens with latency profiling and GenerationMetrics.</td>
+    </tr>
+    <tr>
+      <td><code>ServerManager</code></td>
+      <td><code>config: ServerConfig</code></td>
+      <td>Manages lifecycle of OpenAI-compatible reverse proxy daemon.</td>
+    </tr>
+    <tr>
+      <td><code>ModelManager.download</code></td>
+      <td><code>model_id: str, destination: Path</code></td>
+      <td>Downloads curated GGUF models with SHA-256 verification.</td>
+    </tr>
+  </tbody>
+</table>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

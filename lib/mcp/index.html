@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMEVA-MCP-Hub | Official Documentation | AMEVA-MCP-Hub</title>
+  <title>AMEVA-MCP-Hub | Official Documentation</title>
   <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
@@ -12,8 +12,8 @@
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="favicon.svg" alt="AMEVA-MCP-Hub Logo">
       <h1 data-i18n="common.brand">AMEVA-MCP-Hub</h1>
     </a>
@@ -29,7 +29,7 @@
   </header>
 
   <div class="container">
-    <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -42,7 +42,7 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-        <!-- Tier 2: Flagship Libraries -->
+            <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -70,161 +70,86 @@
   </nav>
 
     <main class="content">
-      <h2>AMEVA-MCP-Hub | Official Documentation</h2>
-      <p class="subtitle">Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub</p>
+      <h2 data-i18n="home.title">AMEVA-MCP-Hub</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub</p>
 
       <div class="badges-bar">
         <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="npm Version"></a>
         <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/dm/ameva-mcp-hub.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
-        <img src="https://img.shields.io/badge/license-Apache--2.0-success.svg" alt="License">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
         <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
         <img src="https://img.shields.io/badge/platform-ARM64_/_WebGPU_/_Web_Standard-blueviolet.svg" alt="Platform">
       </div>
 
       <div class="alert alert-tip">
-        <span class="alert-title">1-Line Quick Execution</span>
-        <p>Run the universal in-memory MCP server instantly on any machine with zero local compiler prerequisites:</p>
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
         <pre><code>npx ameva-mcp-hub
-# Or embed as SDK:
+# or SDK:
 npm install ameva-mcp-hub</code></pre>
       </div>
 
-      <h3>The Engineering Challenge</h3>
-      <p>Setting up conventional Model Context Protocol (MCP) servers across disparate tool ecosystems traditionally requires installing gigabytes of host-level compilers, JDKs, Python virtualenvs, and Rust toolchains for each repository. This creates severe environment pollution, fragile dependency trees, slow container startup times (300ms~12s), and major security attack surfaces on client workstations.</p>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.</p>
 
-      <h3>The Architectural Breakthrough</h3>
-      <p><strong>AMEVA-MCP-Hub</strong> compiles polyglot tools (<strong>C++, Rust, Java, Python, Go</strong>) into standalone WASI WebAssembly bytecodes that execute strictly in-memory within a single lightweight Node.js process (&lt;1ms cold start). Combined with a live GitHub multi-repository subscription engine, connected AI agents (Claude Desktop, Cursor, Antigravity, Windsurf) dynamically discover and run remote tools via standard stdio and SSE protocols without restarting servers or installing host toolchains.</p>
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.</p>
 
-      <h3>Key Capabilities &amp; Built-in Hardening</h3>
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4>Polyglot WASM In-Memory Core</h4>
-          <p>Executes compiled C++, Rust, Java (TeaVM/GraalVM), and Go bytecodes inside an isolated WASI sandbox with sub-millisecond invocation.</p>
+          <h4 data-i18n="home.features.0.title">Deterministic 0-Drift Output</h4>
+          <p data-i18n="home.features.0.desc">Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.</p>
         </div>
         <div class="feature-card">
-          <h4>Dynamic Multi-Repo Subscription</h4>
-          <p>Subscribes to multiple GitHub tool repositories in real-time and broadcasts <code>notifications/tools/list_changed</code> without server restarts.</p>
+          <h4 data-i18n="home.features.1.title">Zero Cloud Egress Architecture</h4>
+          <p data-i18n="home.features.1.desc">Operates 100% on the local client without external network telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4>AI Vector &amp; Semantic Ranking</h4>
-          <p>Native high-dimensional Cosine Similarity (1536-dim) and Top-K search engine for localized, zero-cloud RAG tool selection.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Zero-Browser Architecture</h4>
-          <p>Pure Node.js implementation with zero Chromium/Puppeteer overhead, booting in ~450ms with a compact 30MB memory footprint.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Weakref Memory Protection</h4>
-          <p>Deterministic buffer pooling and weakref lifecycle management preventing VRAM and heap memory leaks over continuous execution.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Heuristic Adaptive Execution Router</h4>
-          <p>Smart router (<code>smart_exec</code>) dynamically evaluates command risk and routes between safe WASM sandboxes and native host workspaces.</p>
+          <h4 data-i18n="home.features.2.title">Memory Leakage Protection</h4>
+          <p data-i18n="home.features.2.desc">Weakref lifetime management preventing GPU VRAM / system RAM leaks.</p>
         </div>
       </div>
 
-      <h3>Supported Compute Kernels &amp; Operations</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th>Subsystem Category</th>
-            <th>Operations &amp; Kernels</th>
-            <th>Status</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>WASI Polyglot Engine</strong></td>
-            <td>In-memory Rust, C++, Java, Go bytecode execution with fuel metering</td>
+            <td><strong>Compute Kernel</strong></td>
+            <td>Hardware Native Accelerated Kernels</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Multi-Repo Synchronization</strong></td>
-            <td>Live GitHub branch tracking, automated schema manifest synthesis</td>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers & Weakref GC</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>AI Vector Subsystem</strong></td>
-            <td>1536-dim Cosine Similarity, Top-K Vector Search, Euclidean distance</td>
-            <td><span class="status-badge active">Production</span></td>
-          </tr>
-          <tr>
-            <td><strong>Transport Gateway</strong></td>
-            <td>Stdio IPC, Server-Sent Events (SSE), HTTP REST, WebSocket Bridge</td>
-            <td><span class="status-badge active">Production</span></td>
-          </tr>
-          <tr>
-            <td><strong>Adaptive Security Sandbox</strong></td>
-            <td>Memory-hard page limits (64 KiB), syscall whitelisting, path jail</td>
+            <td><strong>Runtime Compatibility</strong></td>
+            <td>Android Termux Bionic / Browser WebGPU</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Canonical Usage Example</h3>
-      <div class="code-tab-group">
-        <div class="code-tabs-header">
-          <button class="code-tab-btn active" type="button">TypeScript / Node.js</button>
-          <button class="code-tab-btn" type="button">Claude Desktop Config</button>
-          <button class="code-tab-btn" type="button">Cursor IDE Config</button>
-        </div>
-        <div class="code-tab-content" style="display:block;">
-          <pre><code>import { MCPHub, WasiRunner, NodeExecutor } from 'ameva-mcp-hub';
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <pre><code>import { MCPHub } from 'ameva-mcp-hub';
+const hub = new MCPHub({ port: 3000 });
+await hub.start();</code></pre>
 
-// 1. Initialize MCP Hub instance
-const hub = new MCPHub({
-  port: 3000,
-  enableSSE: true,
-  maxMemoryPages: 256 // 16MB sandbox
-});
-
-// 2. Register dynamic GitHub tool repositories
-await hub.registerRepo({
-  repoUrl: 'https://github.com/uno-km/webgpu-math-tools',
-  branch: 'main',
-  autoSync: true
-});
-
-// 3. Start serving stdio & SSE transports
-await hub.start();
-console.log('AMEVA-MCP-Hub operational on stdio & http://localhost:3000/sse');</code></pre>
-        </div>
-        <div class="code-tab-content" style="display:none;">
-          <pre><code>// claude_desktop_config.json
-{
-  "mcpServers": {
-    "ameva-mcp-hub": {
-      "command": "npx",
-      "args": ["-y", "ameva-mcp-hub"]
-    }
-  }
-}</code></pre>
-        </div>
-        <div class="code-tab-content" style="display:none;">
-          <pre><code>// .cursor/mcp.json
-{
-  "mcpServers": {
-    "ameva-mcp-hub": {
-      "command": "npx",
-      "args": ["-y", "ameva-mcp-hub"]
-    }
-  }
-}</code></pre>
-        </div>
-      </div>
-
-      <h3>Documentation Sitemap &amp; Deep Guides</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="showcase.html"><strong>Interactive Feature Showcase &amp; Live Hub Exhibition</strong> (Live sandbox simulation, visual multi-repo sync, client studio)</a></li>
-        <li><a href="installation.html">Installation Guide (Prerequisites, NPX launch, Termux ARM64, environment variables)</a></li>
-        <li><a href="quickstart.html">Quickstart Recipes (Claude Desktop, Cursor, Custom Backend embedding, Local RAG)</a></li>
-        <li><a href="api-reference.html">Complete API Reference (MCPHub, WasiRunner, NodeExecutor, VectorEngine class signatures)</a></li>
-        <li><a href="tools.html">Polyglot WASM Tools Catalog (C++, Rust, Java, Python, Go in-memory manifests)</a></li>
-        <li><a href="benchmarks.html">Benchmarks &amp; Profiling (Sub-millisecond cold starts, 28MB RSS, Galaxy S25 metrics)</a></li>
-        <li><a href="advanced-parameters.html">Advanced Parameters &amp; Tuning (WASI memory limits, fuel quotas, CORS, security)</a></li>
-        <li><a href="versions.html">Version Archive &amp; Changelog (Release notes from v1.0.0 to v3.0.0)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
-
     </main>
   </div>
 

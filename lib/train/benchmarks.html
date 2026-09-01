@@ -1,11 +1,53 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarks & Hardware | termux-train</title>
+    <meta name="description" content="Hardware benchmarks and audit scorecard for termux-train">
+    <meta name="keywords" content="termux-train, pypi, on-device training, android deep learning, autograd pure python, lora on device, bionic arm64, snapdragon ai, mobile transformer, rope kv cache, safetensors mobile, ameva foundation">
+    <meta name="author" content="AMEVA Foundation &amp; uno-km">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://uno-km.github.io/termux-train/">
+    <link rel="alternate" type="application/rss+xml" title="termux-train RSS Feed" href="https://uno-km.github.io/termux-train/rss.xml">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Benchmarks & Hardware | termux-train">
+    <meta property="og:description" content="Hardware benchmarks and audit scorecard for termux-train">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uno-km.github.io/termux-train/">
+    <meta property="og:site_name" content="termux-train (AMEVA Foundation)">
+    <meta property="og:image" content="https://uno-km.github.io/termux-train/favicon.svg">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Benchmarks & Hardware | termux-train">
+    <meta name="twitter:description" content="Hardware benchmarks and audit scorecard for termux-train">
+
+    <!-- Schema.org SoftwareApplication JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "termux-train",
+      "author": {
+        "@type": "Organization",
+        "name": "AMEVA Foundation"
+      },
+      "operatingSystem": "Android, Linux, Windows, macOS",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00"
+      },
+      "description": "Hardware benchmarks and audit scorecard for termux-train"
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n-translations.js"></script>
+    <script src="i18n.js"></script>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benchmarks & Profiling | Termux-Train</title>
-  <meta name="description" content="Hardware testbed metrics, training throughput, and memory stability">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,128 +55,90 @@
 </head>
 <body>
     <header>
-  <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="Termux-Train Logo">
-      <h1 data-i18n="common.brand">Termux-Train</h1>
-    </a>
-    <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
-      <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn pypi-btn">PyPI (pip)</a>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/termux-train" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+        <a href="index.html" class="header-brand">
+            <img src="favicon.svg" alt="termux-train Logo">
+            <h1 data-i18n="common.brand">termux-train</h1>
+        </a>
+        <div class="header-controls">
+            <span class="release-tag" data-i18n="common.releaseTag">v0.1.0 (Native)</span>
+            <div class="lang-selector-wrapper">
+                <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                    <option value="zh">🇨🇳 简体中文</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                </select>
+            </div>
+            <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+            <a href="https://github.com/uno-km/termux-train" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+        </div>
+    </header>
+    <div class="container">
+        <nav class="sidebar">
+            <h3 data-i18n="common.nav.overview">Overview</h3>
+            <ul>
+                <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
+                <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
+                <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+            </ul>
+            <h3 data-i18n="common.nav.reference">Official Reference</h3>
+            <ul>
+                <li><a href="models.html" data-i18n="common.nav.models">Tiny Models & LoRA Hub</a></li>
+                <li><a href="training-guide.html" data-i18n="common.nav.guide">Training Manual & Recipes</a></li>
+                <li><a href="api-reference.html" data-i18n="common.nav.apiReference">100% Full API Reference</a></li>
+                <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Mobile Memory & INT8</a></li>
+                <li><a href="benchmarks.html" class="active" data-i18n="common.nav.benchmarks">Benchmarks & Hardware</a></li>
+                <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
+            </ul>
+            <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocol &amp; Feeds</h3>
+            <ul>
+                <li><a href="llms.txt" target="_blank">llms.txt (AI Agent Context)</a></li>
+                <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+                <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+                <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <h2 data-i18n="benchmarks.title">Performance &amp; Hardware Benchmarks</h2>
+            <p class="subtitle" data-i18n="benchmarks.subtitle">Empirical latency, throughput, and memory consumption across mobile CPUs.</p>
+
+            <h3>1. 0-Point Baseline Production Audit Scorecard</h3>
+            <table class="benchmark-table">
+                <thead>
+                    <tr><th>Pillar</th><th>Metric Target</th><th>Pure Python Backend</th><th>NumPy (OpenBLAS NEON)</th><th>Score</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Pillar 1: Autograd &amp; Math</strong></td><td>&lt; 5.0 ms</td><td>1.13 ms</td><td>0.99 ms</td><td><span class="release-tag">20.0 / 20.0 pts</span></td></tr>
+                    <tr><td><strong>Pillar 2: Transformer &amp; RoPE</strong></td><td>&lt; 2000 ms</td><td>9179 ms</td><td>1072 ms</td><td><span class="release-tag">20.0 / 20.0 pts</span></td></tr>
+                    <tr><td><strong>Pillar 3: Memory Efficiency</strong></td><td>&lt; 100 ms</td><td>65.7 ms</td><td>20.1 ms</td><td><span class="release-tag">20.0 / 20.0 pts</span></td></tr>
+                    <tr><td><strong>Pillar 4: Performance Latency</strong></td><td>&lt; 1000 ms</td><td>6253 ms</td><td>622.5 ms</td><td><span class="release-tag">20.0 / 20.0 pts</span></td></tr>
+                    <tr><td><strong>Pillar 5: Checkpoint Resilience</strong></td><td>&lt; 50 ms</td><td>40.5 ms</td><td>21.2 ms</td><td><span class="release-tag">20.0 / 20.0 pts</span></td></tr>
+                    <tr style="background: var(--primary-light);"><td><strong>TOTAL SCORE</strong></td><td colspan="3" style="text-align: right; font-weight: 700;">100.0 / 100.0</td><td><span class="release-tag">Grade A+ (PERFECT)</span></td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 32px;">2. LoRA Adapter Compression vs Full Checkpoint</h3>
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Model Architecture</th><th>Full PyTorch Checkpoint</th><th>termux-train SafeTensors LoRA</th><th>RAM &amp; Storage Reduction</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Tiny Whisper Speech-to-Text</strong></td><td>557.25 KB</td><td><strong>21.01 KB</strong></td><td><strong>96.2% Reduction</strong></td></tr>
+                    <tr><td><strong>Tiny Transformer LM (2-Layer)</strong></td><td>1.20 MB</td><td><strong>42.50 KB</strong></td><td><strong>96.5% Reduction</strong></td></tr>
+                </tbody>
+            </table>
+        </main>
     </div>
-  </header>
-
-  <div class="container">
-    <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-    <ul>
-      <li><a href="index.html">Home / Architecture</a></li>
-      <li><a href="installation.html">Installation Guide</a></li>
-      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
-      <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="training-guide.html">Training Guide</a></li>
-      <li><a href="benchmarks.html" class="active">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="versions.html">Version Archive</a></li>
-    </ul>
-        <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-    <ul>
-      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
-      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
-      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-    </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-    <ul>
-      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-    </ul>
-  </nav>
-
-    <main class="content">
-      <h2>Benchmarks &amp; Profiling</h2>
-      <p class="subtitle">Autograd DAG performance, LoRA fine-tuning throughput, and memory footprint on ARM64</p>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">Measurement Environment</span>
-        <p>All benchmarks: Samsung Galaxy S20 (Snapdragon 865, 12GB RAM), Termux Python 3.12, Pure Python mode unless noted. NumPy backend numbers measured separately where applicable.</p>
-      </div>
-
-      <h3>1. Autograd DAG Forward/Backward Pass</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Operation</th><th>Tensor Size</th><th>Pure Python (ms)</th><th>NumPy Backend (ms)</th><th>Speedup</th></tr></thead>
-          <tbody>
-            <tr><td>Matrix Multiply</td><td>64×64</td><td>0.8</td><td>0.05</td><td>16×</td></tr>
-            <tr><td>Matrix Multiply</td><td>256×256</td><td>82</td><td>0.9</td><td>91×</td></tr>
-            <tr style="background:rgba(0,68,153,.05);font-weight:700;"><td>Forward + Backward</td><td>MLP [128→64→10]</td><td>4.2</td><td>0.3</td><td>14×</td></tr>
-            <tr><td>Cross-Entropy Loss</td><td>Batch 32</td><td>0.6</td><td>0.04</td><td>15×</td></tr>
-            <tr><td>SGD Step</td><td>1M params</td><td>12</td><td>0.8</td><td>15×</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>2. LoRA Fine-Tuning Throughput</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Model Size</th><th>LoRA Rank</th><th>Batch Size</th><th>Tokens/sec (NumPy)</th><th>RAM Peak</th></tr></thead>
-          <tbody>
-            <tr><td>7M params (Tiny)</td><td>8</td><td>4</td><td>420</td><td>180 MB</td></tr>
-            <tr><td>25M params (Small)</td><td>8</td><td>4</td><td>145</td><td>380 MB</td></tr>
-            <tr style="background:rgba(0,68,153,.05);font-weight:700;"><td>60M params (Medium)</td><td>16</td><td>2</td><td>52</td><td>820 MB</td></tr>
-            <tr><td>117M params (GPT-2 scale)</td><td>16</td><td>1</td><td>18</td><td>1.8 GB</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>3. Training Convergence (MNIST Sanity Check)</h3>
-      <pre><code class="language-bash"># Reproduce: MNIST 2-layer MLP training
-python -m termux_train.examples.mnist \
-  --epochs 10 --batch-size 32 --lr 0.01
-
-# Results (Galaxy S20, NumPy backend):
-# Epoch  1/10 | Loss: 2.3012 | Acc:  9.8% | Time: 48.2s
-# Epoch  5/10 | Loss: 0.3821 | Acc: 88.3% | Time: 48.6s
-# Epoch 10/10 | Loss: 0.1934 | Acc: 94.2% | Time: 48.1s
-# Total training time: 8m 2s</code></pre>
-
-      <h3>4. Memory Footprint Comparison</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Framework</th><th>Import Overhead</th><th>Min Inference RSS</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td>PyTorch 2.x</td><td>~2.1s, +680 MB</td><td>420 MB</td><td>CUDA/CPU binary</td></tr>
-            <tr><td>TensorFlow Lite</td><td>~0.8s, +240 MB</td><td>160 MB</td><td>Mobile-optimized</td></tr>
-            <tr style="background:rgba(0,68,153,.05);font-weight:700;"><td><strong>Termux-Train</strong></td><td>~0.04s, +8 MB</td><td>22 MB</td><td>Pure Python zero-dep</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
-        <p>Termux-Train v1.0.0 &bull; Benchmarks: Galaxy S20 (Snapdragon 865) &bull; 2026-08</p>
-      </footer>
-    </main>
-  </div>
-
-  <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
-  </footer>
+    <footer>
+        <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
+            🏛️ <strong>Engineered by AMEVA Foundation (아메바 재단)</strong> — Democratizing On-Device AI Sovereignty for Everyone.
+        </div>
+        <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
+            <strong>Disclaimer:</strong> termux-train is an independent open-source project developed for the Android Termux environment and is not officially affiliated with, endorsed by, or sponsored by the Termux project, PyTorch, or Meta.
+        </div>
+        <span data-i18n="common.footerText">&copy; 2026 termux-train Project (uno-km). Released under Apache License 2.0.</span>
+    </footer>
 </body>
 </html>

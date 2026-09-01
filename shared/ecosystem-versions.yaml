@@ -206,8 +206,8 @@ libraries:
 
   llamacpp:
     name: "Termux-LlamaCpp"
-    version: "1.1.0"
-    release_date: "2026-08-31"
+    version: "1.2.0"
+    release_date: "2026-09-01"
     npm_package: "termux-llamacpp"
     pypi_package: "termux-llamacpp"
     github_repo: "uno-km/termux-llamacpp"
@@ -242,7 +242,7 @@ libraries:
 
   vulkan:
     name: "AMEVA-Vulkan-Runtime"
-    version: "1.0.0"
+    version: "1.1.0"
     release_date: "2026-09-01"
     npm_package: "ameva-vulkan-runtime"
     pypi_package: "ameva-vulkan-runtime"

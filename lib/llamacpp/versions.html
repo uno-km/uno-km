@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc.title">Termux-LlamaCpp - AMEVA Official Docs</title>
+  <title>Version Archive & Changelog | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,119 +14,125 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
+      <img src="favicon.svg" alt="Termux-LlamaCpp Logo">
       <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0b1</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.2.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link" title="PyPI Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="header-btn" title="PyPI: termux-llamacpp | npm: termux-llamacpp" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html" class="">Home / Architecture</a></li>
-        <li><a href="installation.html" class="">Installation Guide</a></li>
-        <li><a href="quickstart.html" class="">Quickstart & Recipes</a></li>
-        <li><a href="api-reference.html" class="">API Reference</a></li>
-        <li><a href="benchmarks.html" class="">Benchmarks & Profiling</a></li>
-        <li><a href="advanced-parameters.html" class="">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="active">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-              <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html" class="active">Version Archive</a></li>
+    </ul>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (Cloud Intel)</a></li>
-        <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      </ul>
-    </nav>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
-
-      <h2>Version Archive & Release History</h2>
-      <p>
-        Comprehensive release changelog and cryptographic artifact digest history for Termux-LlamaCpp.
-      </p>
-
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Version</th>
-              <th>Release Date</th>
-              <th>Upstream llama.cpp Commit</th>
-              <th>Key Enhancements</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>v1.0.0b1</strong></td>
-              <td>2026-08-27</td>
-              <td><code>5e6a37cb115dc1074e274ac004373f5661909695</code></td>
-              <td>
-                • Zero-compilation prebuilt Android ARM64 binary installer (<3s).<br>
-                • Real-device S20+ validation: 16.19 t/s prompt, 10.23 t/s generation.<br>
-                • OpenAI v1 REST & SSE streaming reverse proxy supervisor.<br>
-                • Dual PyPI (pip) and npm package releases.<br>
-                • Ed25519 cryptographic manifest and symlink traversal defense.
-              </td>
-              <td><span class="badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">Production Beta</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.0 - Unified AMEVA Vulkan HAL & Galaxy A35 Validation</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-01</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Unified AMEVA Vulkan HAL Integration: Deep binding with ameva-vulkan-runtime v1.1.0 utilizing Android Bionic Vulkan ICD (/system/lib64/libvulkan.so).</li>
+          <li>Strict 3-Tier Execution Mode: Added --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU recovery), and --device cpu (0ms direct NEON forward pass).</li>
+          <li>Dynamic Octa-Core Thread Tuning: Automatic detection of ARM big.LITTLE architectures (Exynos 1380, Snapdragon) injecting optimal big-core threads (-t 4).</li>
+          <li>Dual Package Distribution: Synchronously released to Python PyPI (termux-llamacpp v1.2.0) and Node.js npm (termux-llamacpp v1.2.0).</li>
+          <li>Real-Device Galaxy A35 Validation: End-to-end verification across CLI, Python SDK, Node.js npm, and background OpenAI REST server daemon.</li>
+          <li>Supply-Chain Receipt Gatekeeper: Added verified build receipt support (llama-server.build-receipt.json) for local native binaries.</li>
+        </ul>
       </div>
-
-      <h3>Cryptographic Integrity Hashes (v1.0.0b1)</h3>
-      <div class="doc-table-wrapper" style="margin: 1.5rem 0;">
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Artifact Package</th>
-              <th>Format</th>
-              <th>SHA-256 Digest</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>termux_llamacpp-1.0.0b1-py3-none-any.whl</code></td>
-              <td>Python Wheel</td>
-              <td><code>5DBFD785247886E9B6FC9F24105B243001CF2CE890D7B7687FBC3F0B8DFAA1E6</code></td>
-            </tr>
-            <tr>
-              <td><code>termux_llamacpp-1.0.0b1.tar.gz</code></td>
-              <td>Python Source Tarball</td>
-              <td><code>F8D59B2D61CD14D7D1660D2F49D72E1F69A206116213D3CC084F9D1C6ABD405C</code></td>
-            </tr>
-            <tr>
-              <td><code>termux-llamacpp@1.0.0</code></td>
-              <td>npm Package</td>
-              <td><code>2df46a16e99b367d335c1fac44f7cde277ad039a</code></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.0 - Supply-Chain Cryptographic Verification & Multi-Channel Crawler</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-30</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Ed25519 Public Key Verification: Cryptographic manifest verification with SHA-256 binary validation.</li>
+          <li>Multi-Channel HuggingFace GGUF Crawler: Deep model discovery and automated quant downloader.</li>
+          <li>Process Supervisor Resilience: Guaranteed zero-zombie process termination with tracked PID ledger.</li>
+        </ul>
       </div>
-    
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.2 - Bionic Dynamic Linker Stabilization & Dual-Ecosystem Publishing</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-28</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Bionic Shared Library Bundling: Packaged libgomp and libstdc++ to prevent missing symbol errors on raw Termux.</li>
+          <li>NPM Binary Wrapper: Added standalone ESM binary resolver for Node.js environments.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.0 - Initial Production GGUF LLM Runtime Release</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-27</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Prebuilt ARM64 llama.cpp Native Binaries: Direct extraction in under 3 seconds.</li>
+          <li>Loopback Isolated OpenAI Server: /v1/chat/completions REST and SSE streaming supervisor.</li>
+        </ul>
+      </div>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

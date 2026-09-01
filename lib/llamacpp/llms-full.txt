@@ -1,0 +1,13 @@
+# Termux-LlamaCpp Full Technical Specification (v1.2.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64
+Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.
+
+## 2. Package & Installation
+- PyPI: termux-llamacpp
+- Command: pip install termux-llamacpp && termux-llama install
+# or Node.js:
+npm install -g termux-llamacpp && termux-llama install
+- Repository: https://github.com/uno-km/termux-llamacpp

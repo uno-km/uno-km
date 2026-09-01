@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Termux-Vision | Version Archive | Official Documentation</title>
-  <meta name="description" content="Release notes, historical changelogs, and version archives for termux-vision.">
+  <title>Version Archive & Changelog | Termux-Vision</title>
+  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -14,18 +14,14 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-Vision Logo">
+      <img src="favicon.svg" alt="Termux-Vision Logo">
       <h1 data-i18n="common.brand">Termux-Vision</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
@@ -33,58 +29,58 @@
   </header>
 
   <div class="container">
-    <nav class="sidebar">
-      <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-      <ul>
-        <li><a href="index.html">Home / Architecture</a></li>
-        <li><a href="installation.html">Installation Guide</a></li>
-        <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
-        <li><a href="api-reference.html">API Reference</a></li>
-        <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
-        <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-        <li><a href="versions.html" class="active">Version Archive</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-      <ul>
-        <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-        <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-        <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-        <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-        <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-        <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-        <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-        <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-        <li><a href="/lib/vision/" class="active">Termux-Vision (CV &amp; VLM)</a></li>
-        <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-        <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
-        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
-        <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-      </ul>
-      <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-      <ul>
-        <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-        <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-        <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-        <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-      </ul>
-    </nav>
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html" class="active">Version Archive</a></li>
+    </ul>
+            <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
 
     <main class="content">
-      <h2>Version Archive &amp; Release History</h2>
-      <p class="subtitle">Official release records and technical milestones</p>
-
-      <div class="version-entry">
-        <h3>v1.0.0 (2026-08-27) — Dual-Engine Multimodal Release</h3>
-        <ul>
-          <li><strong>Dual-Engine Packaging</strong>: Full feature parity across Python (PyPI) and Node.js/TypeScript (npm).</li>
-          <li><strong>Multimodal VLM Engine</strong>: On-device SmolVLM-500M and Qwen2-VL-2B inference with truthful metrics and OOM protection.</li>
-          <li><strong>Vulkan Acceleration &amp; Fallback</strong>: Auto Vulkan detection with graceful CPU fallback, and strict GPU isolated execution mode.</li>
-          <li><strong>Classical Vision Filters</strong>: Pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian blur, and Haar Cascade face detection.</li>
-          <li><strong>1:1 termux-train Autograd Bridge</strong>: Direct extraction of ViT patch embeddings into termux-train tensors for edge LoRA fine-tuning.</li>
-          <li><strong>0-Point Baseline Granular Score</strong>: 100.0 / 100.0 (Grade A+ Perfect).</li>
-        </ul>
-      </div>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+      <h3>v1.1.0 - 4-Tier Quality Presets & Vulkan Hardware Acceleration (Current)</h3>
+         <ul>
+           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
+           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
+         </ul>
     </main>
   </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>
