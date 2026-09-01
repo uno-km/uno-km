@@ -4,6 +4,7 @@
   "description": "AMEVA Centralized Documentation Hub & Portfolio",
   "type": "module",
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4"
+    "@neondatabase/serverless": "^0.10.4",
+    "cminhouse-api-gateway-nodejs": "^999.0.0"
   }
 }
