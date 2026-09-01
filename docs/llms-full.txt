@@ -1,12 +1,12 @@
-# termux-tts Full Technical Specification (0.1.0)
+# AMEVA-Vulkan-Runtime Full Technical Specification (v1.0.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-High-Performance Edge & Browser Native Open-Source Systems Library
-Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.
+Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android
+Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.
 
 ## 2. Package & Installation
-- PyPI: ameva-core
-- Command: pip install ameva-core
-# or: npm install @ameva/core
-- Repository: https://github.com/uno-km/uno-km
+- PyPI: ameva-vulkan-runtime
+- Command: pip install ameva-vulkan-runtime
+# or: npm install ameva-vulkan-runtime
+- Repository: https://github.com/uno-km/ameva-vulkan-runtime

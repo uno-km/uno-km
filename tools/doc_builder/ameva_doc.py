@@ -188,17 +188,24 @@ def render_sidebar(cfg: dict, active_page: str) -> str:
             tier1_links.insert(4, ("tools.html", "WASM Tools Catalog"))
         elif current_lib == "aichain":
             tier1_links.insert(4, ("chains.html", "Chains & Agents"))
+        elif current_lib == "vulkan":
+            tier1_links.insert(4, ("vulkan-enablement-playbook.html", "Vulkan 12-Stage Playbook"))
+            tier1_links.insert(5, ("hardware-support-matrix.html", "Hardware Support Matrix"))
+            tier1_links.insert(6, ("cross-modal-integration.html", "Cross-Modal Integration"))
 
-    # Tier 2: Flagship Libraries (9 Libraries + Workstation App)
+    # Tier 2: Flagship Libraries (All AOSF Ecosystem Libraries + Workstation App)
     library_links = [
         ("/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"),
         ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
+        ("/lib/vulkan/", "vulkan", "AMEVA-Vulkan-Runtime (Vulkan HAL)"),
         ("/lib/aichain/", "aichain", "Termux-AIChain (Zero-Dep Agent)"),
         ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
         ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
         ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
         ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
         ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
+        ("/lib/llamacpp/", "llamacpp", "Termux-LlamaCpp (GGUF Runtime)"),
+        ("/lib/vision/", "vision", "Termux-Vision (CV & VLM)"),
         ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
         ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)")
     ]

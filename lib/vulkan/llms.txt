@@ -1,32 +1,23 @@
-# AMEVA-Vulkan-Runtime — AI Agent Fast Context
-# Generated: 2026-09-01  |  Version: 1.0.0
+# AMEVA-Vulkan-Runtime (v1.0.0)
+> Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android
 
-## Library
-Name: AMEVA-Vulkan-Runtime
-Version: 1.0.0
-GitHub: https://github.com/uno-km/ameva-vulkan-runtime
-Documentation: https://uno-km.vercel.app/lib/vulkan/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/ameva-vulkan-runtime
+- Installation: `pip install ameva-vulkan-runtime
+# or: npm install ameva-vulkan-runtime`
+- Architecture: Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.
 
-## Description
+## Canonical Code Pattern
+```python
+import ameva_vulkan_runtime as avr
 
+# 1. Probe & Validate Hardware (V0-V11)
+doctor = avr.Doctor()
+report = doctor.run_self_test()
+print(f"GPU Backend Status: {report.status}, Device: {report.device_name}")
 
-## Documentation Pages
-  - /lib/vulkan/index.html
-  - /lib/vulkan/installation.html
-  - /lib/vulkan/quickstart.html
-  - /lib/vulkan/api-reference.html
-  - /lib/vulkan/benchmarks.html
-  - /lib/vulkan/advanced-parameters.html
-  - /lib/vulkan/versions.html
-  - /lib/vulkan/vulkan-enablement-playbook.html
-  - /lib/vulkan/hardware-support-matrix.html
-  - /lib/vulkan/cross-modal-integration.html
+# 2. Acquire High-Performance Vulkan Context for STT / LLM / Diffusion
+ctx = avr.create_context(device="auto", memory_limit_mb=1024)
+print(f"Context initialized via: {ctx.loader_path} (API {ctx.vulkan_version})")
 
-## Quick Install
-pip install ameva-vulkan-runtime
-npm install ameva-vulkan-runtime
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/vulkan/llms-full.txt
+```

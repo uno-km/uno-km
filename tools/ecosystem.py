@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 tools/ecosystem.py — AMEVA Universal Ecosystem Toolchain (AET)
 Version: 1.0.0 (Master Unified SSOT & Release Compiler)
@@ -293,9 +293,12 @@ def build_library_docs(lib_name: str, config: dict):
 
     config_file = lib_path / "doc.config.yaml" if lib_path.exists() else None
     if config_file and config_file.exists():
-        cmd = [sys.executable, str(builder_script), "--config", str(config_file)]
+        slug = lib_name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').replace('-runtime', '').lower()
+        output_dir = ROOT_DIR / "lib" / slug
+        output_dir.mkdir(parents=True, exist_ok=True)
+        cmd = [sys.executable, str(builder_script), "--config", str(config_file), "--output", str(output_dir)]
         subprocess.run(cmd, check=False)
-        print(f"  [OK] Compiled Web Documentation via ameva_doc for '{lib_name}'")
+        print(f"  [OK] Compiled Web Documentation via ameva_doc for '{lib_name}' -> {output_dir}")
 
 
 # ── Catalog & Profile Sync ─────────────────────────────────────
@@ -374,6 +377,10 @@ def cmd_build(args):
             lib_dir = DEV_DIR / f"termux-{target}"
         if not lib_dir.exists():
             lib_dir = DEV_DIR / f"AMEVA-{target}"
+        if not lib_dir.exists():
+            lib_dir = DEV_DIR / f"ameva-{target}"
+        if not lib_dir.exists():
+            lib_dir = DEV_DIR / f"ameva-{target}-runtime"
         if not lib_dir.exists():
             print(f"[ERROR] Directory not found for '{target}' in {DEV_DIR}")
             return
