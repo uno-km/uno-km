@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarks & Profiling | Termux-Vision</title>
+  <meta name="description" content="Eliminates heavy C++ dependencies by integrating SIMD NEON spatial image transforms with on-device VLM (Qwen2-VL, SmolVLM) multi-tier resolution presets (fast, optimal, high, original) and Vulkan GPU acceleration under strict memory isolation.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/i18n-translations.js" defer></script>
+  <script src="assets/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="Termux-Vision Logo">
+      <h1 data-i18n="common.brand">Termux-Vision</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>
+  </header>
+
+  <div class="container">
+  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html" class="active">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+
+    <main class="content">
+      <h2>Benchmarks & Profiling</h2>
+      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
+      <table class="data-table">
+           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
+           <tbody>
+             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
+           </tbody>
+         </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

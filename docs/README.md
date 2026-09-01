@@ -8,6 +8,7 @@ Welcome to the official governance and documentation repository of the AMEVA Ope
 
 | Document | Web Portal (HTML) | Markdown Source | Description |
 |:---|:---|:---|:---|
+| Development Standards | - | [DEVELOPMENT_STANDARDS.md](DEVELOPMENT_STANDARDS.md) | Strict Engineering Principles, Error Handling, Phased Dev & Refactoring |
 | Foundation Charter | [charter.html](charter.html) | [CHARTER.md](CHARTER.md) | Official Foundation Charter, Mission, Core Principles & Licensing |
 | Governance & Meritocracy | [governance.html](governance.html) | [GOVERNANCE.md](GOVERNANCE.md) | Meritocracy, PMC, Committership & Voting Rules |
 | Incubation Policy | [incubation.html](incubation.html) | [INCUBATION_POLICY.md](INCUBATION_POLICY.md) | 3-Tier Lifecycle from Labs to Top-Level Project (TLP) |

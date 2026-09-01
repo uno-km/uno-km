@@ -29,6 +29,7 @@ import json
 import re
 import shutil
 import argparse
+import urllib.parse
 from pathlib import Path
 
 if hasattr(sys.stdout, 'reconfigure'):

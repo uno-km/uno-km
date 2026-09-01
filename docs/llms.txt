@@ -1,0 +1,23 @@
+# Termux-Vision (v1.1.0)
+> Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux
+
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-vision
+- Installation: `pip install ameva-core
+# or: npm install @ameva/core`
+- Architecture: Eliminates heavy C++ dependencies by integrating SIMD NEON spatial image transforms with on-device VLM (Qwen2-VL, SmolVLM) multi-tier resolution presets (fast, optimal, high, original) and Vulkan GPU acceleration under strict memory isolation.
+
+## Canonical Code Pattern
+```python
+import termux_vision as tv
+
+# 1. Zero-Dependency Spatial Filtering (0.01s ultra-fast)
+img = tv.io.load_image("photo.jpg")
+edges = tv.cv.canny(tv.transforms.to_grayscale(img), 40, 120)
+
+# 2. On-Device VLM Multimodal Inference with 4-Tier Quality Presets
+with tv.vlm.load("qwen2-vl-2b-q4", quality="optimal") as engine:
+    res = engine.describe("photo.jpg", prompt="Describe this scene in detail.", quality="optimal")
+    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s): {res.text}")
+
+```

@@ -224,8 +224,8 @@ libraries:
 
   vision:
     name: "Termux-Vision"
-    version: "1.0.0"
-    release_date: "2026-08-27"
+    version: "1.1.0"
+    release_date: "2026-09-01"
     npm_package: "termux-vision"
     pypi_package: "termux-vision"
     github_repo: "uno-km/termux-vision"

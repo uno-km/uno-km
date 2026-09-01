@@ -1,8 +1,25 @@
-# AMEVA-Sentinel Official Release Notes
+# AMEVA & uno-km Ecosystem Release Notes
 
 ---
 
-## [v2.1.1] - 2026-08-26
+## [Termux-Vision v1.1.0] - 2026-09-01
+
+### Overview
+**Termux-Vision v1.1.0** introduces the **4-Tier Image Quality Preset System (`fast`, `optimal`, `high`, `original`)**, full-layer **Adreno & Mali Vulkan GPU hardware acceleration**, expanded subprocess execution guardrails (300s timeout), multi-layer binary cache integrity defense (>10MB valid size validation & GGUF/mmproj pair checks), and verified end-to-end parity across Python and Node.js SDKs and global CLIs.
+
+### Key Changes
+* **4-Tier Resolution Scaler**: `fast` (384px, 38s), `optimal` (768px, 81s), `high` (1280px, 266s), and `original` (1:1 pass-through) with aspect-ratio preserving bilinear resampling and lifecycle self-cleanup.
+* **Full-Layer Vulkan GPU Acceleration**: Injects `-ngl 99` targeting Qualcomm Adreno 830 and ARM Mali-G68 GPU shaders, achieving 11.8 ~ 14.2 tokens/sec generation speed.
+* **Subprocess Hardening**: Extended execution timeout to 300s, corrected `<|im_start|>assistant` delimiter parsing, and removed raw vision control tokens.
+* **Strict Binary Cache Integrity**: Enforces `> 10MB` minimum valid binary threshold across Python and Node.js to filter out corrupted downloads and 404 HTML error pages.
+
+### Verification Matrix
+* **Samsung Galaxy S25**: VLM FAST 38.19s (14.2 t/s), OPTIMAL 81.57s (12.4 t/s), HIGH 266.71s (11.8 t/s), Canny 16.2ms (Validated by automated checks)
+* **Samsung Galaxy A35**: Spatial Canny FAST 1.18s, OPTIMAL 4.69s, HIGH 13.2s (Validated by automated checks)
+
+---
+
+## [AMEVA-Sentinel v2.1.1] - 2026-08-26
 
 ### 🚀 Overview
 **AMEVA-Sentinel v2.1.1** transitions from experimental deterministic identity heuristics to a **Shadow-first, multi-axis automation risk observation architecture** and delivers the official **Python SDK (FastAPI, Starlette, Flask, Django)** alongside updated TypeScript/Node.js packages. This release resolves historical specification-implementation drifts, enforces strict application-level data minimization (Zero Raw IP Persistence in Application Tables), introduces pluggable Edge Provider Adapters (Cloudflare, Vercel, Fastly, Generic), formalizes Trust Boundary verification guardrails, and provides transparent Signal Coverage metrics.

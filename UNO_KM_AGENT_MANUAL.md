@@ -642,4 +642,22 @@ echo 'const TRANSLATIONS = {ko:{},en:{}}' > lib/newlib/assets/i18n-translations.
 
 ---
 
+## 13. 엔지니어링 개발 표준 및 절대 규칙 (AOSF-ENG-STD-2026-V1)
+
+> **상세 정본**: [`docs/DEVELOPMENT_STANDARDS.md`](docs/DEVELOPMENT_STANDARDS.md)
+
+1. **에러 처리 절대 원칙 (No-Fallback & Strict Resource Deallocation)**:
+   - 폴백(Fallback), 하드코딩, 빈 `except/catch`, 거짓 `return True` 전면 금지.
+   - 에러는 가감 없이 호출자에게 명확히 표출하되, 메모리/캐시/파일핸들러 등 자원은 `try-finally`로 100% 안전하게 해제.
+2. **페이즈 분할 개발 및 사전 승인 원칙**:
+   - 임의 일괄 개발 금지. 반드시 Phase 분할 후 기술 트레이드오프, 빅테크 레퍼런스, 성능 비교표, 대안을 포함하여 사용자(주인장)에게 100% 한국어로 사전 보고 및 승인 득할 것.
+3. **독단적 문제 규정 금지 (Zero-Assumption)**:
+   - "저가형 모델이니까 이게 좋겠군" 등 지레짐작으로 모델/설계를 결정하지 말고 반드시 사전에 질문하고 확인할 것.
+4. **실시간 동적 로깅 및 정밀 테스트**:
+   - 단순 "PASS" 보고 금지. 실시간 ms 단위 소요시간, 모델명, 메모리 점유량 등이 동적으로 출력되는 계측 가능한 테스트 작성.
+5. **객체지향 설계, 촘촘한 주석 및 100% 원터치 설치**:
+   - 변수/임포트 단위 촘촘한 주석 작성 및 `pip install`, `npm install` 단일 명령 원터치 설치 보장.
+
+---
+
 *이 매뉴얼은 `shared/ecosystem-versions.yaml` 에 새 라이브러리가 추가될 때마다 Section 9-C를 업데이트해야 한다.*
