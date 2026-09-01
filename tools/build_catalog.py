@@ -102,12 +102,7 @@ def _link_buttons_profile(links: dict, cat: str) -> str:
     if "npm" in links:
         btns.append(f'<a href="{links["npm"]}" target="_blank" class="btn-action secondary">npm</a>')
     if "pypi" in links:
-        label = "PyPI"
-        if "npm" in links:
-            label = "PyPI · npm"
-            # npm already added above, don't add again
-        else:
-            btns.append(f'<a href="{links["pypi"]}" target="_blank" class="btn-action secondary">{label}</a>')
+        btns.append(f'<a href="{links["pypi"]}" target="_blank" class="btn-action secondary">PyPI</a>')
     if "github" in links:
         btns.append(f'<a href="{links["github"]}" target="_blank" class="btn-action secondary">GitHub</a>')
     if "demo" in links and links["demo"] != links.get("docs", ""):

@@ -1,0 +1,12 @@
+# AMEVA-Vulkan-Runtime Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android
+Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.
+
+## 2. Package & Installation
+- PyPI: ameva-vulkan-runtime
+- Command: pip install ameva-vulkan-runtime
+# or: npm install ameva-vulkan-runtime
+- Repository: https://github.com/uno-km/ameva-vulkan-runtime

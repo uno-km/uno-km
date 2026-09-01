@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete API Reference | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/i18n-translations.js" defer></script>
-  <script src="assets/common.js" defer></script>
+  <title>Installation & Setup Guide | AMEVA-Vulkan-Runtime</title>
+  <meta name="description" content="Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="termux-tts Logo">
-      <h1 data-i18n="common.brand">termux-tts</h1>
+      <img src="favicon.svg" alt="AMEVA-Vulkan-Runtime Logo">
+      <h1 data-i18n="common.brand">AMEVA-Vulkan-Runtime</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">0.1.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/ameva-core/" target="_blank" class="header-btn" title="PyPI: ameva-core | npm: @ameva/core" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://pypi.org/project/ameva-vulkan-runtime/" target="_blank" class="header-btn" title="PyPI: ameva-vulkan-runtime | npm: ameva-vulkan-runtime" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://github.com/uno-km/ameva-vulkan-runtime" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
@@ -34,9 +34,9 @@
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
-      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="installation.html" class="active">Installation Guide</a></li>
       <li><a href="quickstart.html">Quickstart & Recipes</a></li>
-      <li><a href="api-reference.html" class="active">API Reference</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
       <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
@@ -52,6 +52,7 @@
       <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
       <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
       <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+            <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
@@ -66,15 +67,15 @@
   </nav>
 
     <main class="content">
-      <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install ameva-vulkan-runtime
+# or: npm install ameva-vulkan-runtime</code></pre>
     </main>
   </div>
 

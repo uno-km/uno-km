@@ -239,3 +239,24 @@ libraries:
       - advanced-parameters.html
       - versions.html
     status: "stable"
+
+  vulkan:
+    name: "AMEVA-Vulkan-Runtime"
+    version: "1.0.0"
+    release_date: "2026-09-01"
+    npm_package: "ameva-vulkan-runtime"
+    pypi_package: "ameva-vulkan-runtime"
+    github_repo: "uno-km/ameva-vulkan-runtime"
+    lib_path: "lib/vulkan"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+      - vulkan-enablement-playbook.html
+      - hardware-support-matrix.html
+      - cross-modal-integration.html
+    status: "stable"

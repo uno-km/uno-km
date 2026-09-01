@@ -64,6 +64,17 @@ sdks:
       github: "https://github.com/uno-km/AMEVA-Forge"
       demo: "/lib/forge/"
 
+  - id: vulkan
+    name: "AMEVA-Vulkan-Runtime"
+    badge: "pip / npm"
+    tagline_ko: "Android Termux 전 모달리티(STT/Vision/LLM/Diffusion) 통합 Vulkan GPU 가속 런타임 및 하드웨어 추상화 계층(HAL)."
+    tagline_en: "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Android Termux (STT/Vision/LLM/Diffusion)."
+    links:
+      docs: "/lib/vulkan/"
+      pypi: "https://pypi.org/project/ameva-vulkan-runtime/"
+      npm: "https://www.npmjs.com/package/ameva-vulkan-runtime"
+      github: "https://github.com/uno-km/ameva-vulkan-runtime"
+
 libs:
   - id: aichain
     name: "Termux-AIChain"
