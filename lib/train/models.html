@@ -69,30 +69,46 @@
     </div>
   </header>
     <div class="container">
-        <nav class="sidebar">
-            <h3 data-i18n="common.nav.overview">Overview</h3>
-            <ul>
-                <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
-                <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
-                <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
-            </ul>
-            <h3 data-i18n="common.nav.reference">Official Reference</h3>
-            <ul>
-                <li><a href="models.html" class="active" data-i18n="common.nav.models">Tiny Models & LoRA Hub</a></li>
-                <li><a href="training-guide.html" data-i18n="common.nav.guide">Training Manual & Recipes</a></li>
-                <li><a href="api-reference.html" data-i18n="common.nav.apiReference">100% Full API Reference</a></li>
-                <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Mobile Memory & INT8</a></li>
-                <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Hardware</a></li>
-                <li><a href="versions.html" data-i18n="common.nav.versions">Version Archive</a></li>
-            </ul>
-            <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocol &amp; Feeds</h3>
-            <ul>
-                <li><a href="llms.txt" target="_blank">llms.txt (AI Agent Context)</a></li>
-                <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-                <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-                <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-            </ul>
-        </nav>
+            <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="models.html" class="active">Pretrained Checkpoints</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+      <li><a href="training-guide.html">Training Guide</a></li>
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/" class="active">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV & VLM)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
         <main class="content">
             <h2 data-i18n="models.title">Tiny Models &amp; LoRA Hub</h2>
             <p class="subtitle" data-i18n="models.subtitle">Pre-configured architectures for on-device Transformers, Whisper speech recognition, and low-rank adapters.</p>

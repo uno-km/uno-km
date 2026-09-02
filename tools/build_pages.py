@@ -170,6 +170,137 @@ def fix_header_controls(html: str, rel_path: str, libs: dict) -> tuple[str, bool
     return new_html, new_html != orig
 
 
+# ── Canonical 3-Tier Sidebar Commonization (SSOT) ──
+PAGE_TITLES = {
+    "index.html": "Home / Architecture",
+    "installation.html": "Installation Guide",
+    "quickstart.html": "Quickstart & Recipes",
+    "api-reference.html": "API Reference",
+    "models.html": "Pretrained Checkpoints",
+    "training-guide.html": "Training Guide",
+    "benchmarks.html": "Benchmarks & Profiling",
+    "advanced-parameters.html": "Advanced Parameters",
+    "versions.html": "Version Archive",
+    "demo.html": "Live WebGPU Demo",
+    "gallery.html": "Visual Gallery",
+    "showcase.html": "Audio Showcase",
+    "tools.html": "WASM Tools Catalog",
+    "forge-vs-pytorch.html": "Forge vs PyTorch",
+    "what-is-forge.html": "What is Forge",
+    "nodejs.html": "Node.js Guide",
+    "phantom-process.html": "Process Guard",
+    "test-report.html": "Audit Report",
+    "blog-post.html": "Technical Blog",
+    "blog_post.html": "Technical Blog",
+    "admin.html": "Admin Dashboard"
+}
+
+FLAGSHIP_LIBRARIES = [
+    ("/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"),
+    ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
+    ("/lib/vulkan/", "vulkan", "AMEVA-Vulkan-Runtime (Vulkan HAL)"),
+    ("/lib/aichain/", "aichain", "Termux-AIChain (Zero-Dep Agent)"),
+    ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
+    ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
+    ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
+    ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
+    ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
+    ("/lib/llamacpp/", "llamacpp", "Termux-LlamaCpp (GGUF Runtime)"),
+    ("/lib/vision/", "vision", "Termux-Vision (CV & VLM)"),
+    ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
+    ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)")
+]
+
+AI_AGENT_PROTOCOLS = [
+    ("llms.txt", "llms.txt (AI Fast Context)"),
+    ("llms-full.txt", "llms-full.txt (Full Spec)"),
+    ("robots.txt", "robots.txt (AI Crawlers)"),
+    ("sitemap.xml", "sitemap.xml (Sitemap)")
+]
+
+FOUNDATION_PAGES = [
+    ("/foundation/index.html", "Overview & Mission"),
+    ("/foundation/charter.html", "Foundation Charter"),
+    ("/foundation/governance.html", "Governance & Merit"),
+    ("/foundation/incubation.html", "Incubation Policy"),
+    ("/foundation/sponsorship.html", "Sponsorship & Support"),
+    ("/foundation/dashboard/", "3D Neural Fabric Map")
+]
+
+
+def build_sidebar(rel_path: str, libs: dict) -> str:
+    parts = rel_path.split("/")
+    is_foundation = parts[0] == "foundation"
+    current_lib = parts[1] if (parts[0] == "lib" and len(parts) >= 2) else ""
+    active_page = parts[-1]
+
+    if is_foundation:
+        tier1_h3 = '<h3 data-i18n="common.nav.foundation">Foundation (AOSF)</h3>'
+        tier1_items = []
+        for href, title in FOUNDATION_PAGES:
+            act = ' class="active"' if href.endswith(active_page) or href == rel_path else ''
+            tier1_items.append(f'      <li><a href="{href}"{act}>{title}</a></li>')
+    else:
+        tier1_h3 = '<h3 data-i18n="common.nav.docNav">Document Navigation</h3>'
+        lib_info = libs.get(current_lib, {})
+        doc_pages = lib_info.get("doc_pages", [])
+        if not doc_pages:
+            doc_pages = ["index.html", "installation.html", "quickstart.html", "api-reference.html", "benchmarks.html", "advanced-parameters.html", "versions.html"]
+        tier1_items = []
+        for p in doc_pages:
+            title = PAGE_TITLES.get(p, p.replace(".html", "").replace("-", " ").title())
+            act = ' class="active"' if p == active_page else ''
+            tier1_items.append(f'      <li><a href="{p}"{act}>{title}</a></li>')
+
+    tier2_items = []
+    for href, lkey, title in FLAGSHIP_LIBRARIES:
+        act = ' class="active"' if (not is_foundation and lkey == current_lib) else ''
+        target = ' target="_blank"' if href.startswith("http") else ''
+        tier2_items.append(f'      <li><a href="{href}"{act}{target}>{title}</a></li>')
+
+    tier3_items = []
+    for href, title in AI_AGENT_PROTOCOLS:
+        tier3_items.append(f'      <li><a href="{href}" target="_blank">{title}</a></li>')
+
+    tier1_str = "\n".join(tier1_items)
+    tier2_str = "\n".join(tier2_items)
+    tier3_str = "\n".join(tier3_items)
+
+    return f'''  <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    {tier1_h3}
+    <ul>
+{tier1_str}
+    </ul>
+    <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+{tier2_str}
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+{tier3_str}
+    </ul>
+  </nav>'''
+
+
+def fix_sidebar(html: str, rel_path: str, libs: dict) -> tuple[str, bool]:
+    parts = rel_path.split("/")
+    # Only synchronize canonical top-level library doc pages (lib/<name>/*.html) and foundation pages (foundation/*.html)
+    if parts[0] == "lib" and len(parts) > 3:
+        return html, False
+
+    orig = html
+    sidebar_match = re.search(r'<nav class="sidebar">.*?</nav>', html, re.DOTALL)
+    if not sidebar_match:
+        return html, False
+
+    new_sidebar = build_sidebar(rel_path, libs)
+    new_html = html[:sidebar_match.start()] + new_sidebar + html[sidebar_match.end():]
+    return new_html, new_html != orig
+
+
 # ── Process all HTML in a lib directory ──
 def process_lib(lib_name: str, libs: dict, dry_run: bool = False) -> dict:
     lib_dir = LIB / lib_name
@@ -188,8 +319,10 @@ def process_lib(lib_name: str, libs: dict, dry_run: bool = False) -> dict:
             new_content, changed_head = fix_html_head(content)
             # 2. Header controls SSOT sync
             new_content, changed_header = fix_header_controls(new_content, rel, libs)
+            # 3. Sidebar SSOT sync
+            new_content, changed_sidebar = fix_sidebar(new_content, rel, libs)
             
-            if changed_head or changed_header:
+            if changed_head or changed_header or changed_sidebar:
                 stats["updated"] += 1
                 if dry_run:
                     print(f"  [DRY-RUN] Would update: {rel}")
@@ -536,7 +669,8 @@ def main():
                         content = html_file.read_text(encoding="utf-8", errors="replace")
                         new_content, c_head = fix_html_head(content)
                         new_content, c_hdr = fix_header_controls(new_content, rel, libs)
-                        if c_head or c_hdr:
+                        new_content, c_side = fix_sidebar(new_content, rel, libs)
+                        if c_head or c_hdr or c_side:
                             total_stats["updated"] += 1
                             if not args.dry_run:
                                 html_file.write_text(new_content, encoding="utf-8")
