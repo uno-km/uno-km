@@ -169,7 +169,15 @@ def main():
 
     payload = hunter.generate_payload()
     
-    if args.score or not (args.generate or args.score):
+    # Default behavior: run both evaluation and payload preview if no explicit flags are passed
+    if not args.generate and not args.score:
+        run_score = True
+        run_generate = True
+    else:
+        run_score = bool(args.score)
+        run_generate = bool(args.generate)
+
+    if run_score:
         metrics = hunter.evaluate_score(payload)
         print("\n" + "="*60)
         print("AMEVA-GeoHunter Structural Evaluation Metrics:")
@@ -182,7 +190,7 @@ def main():
         print(f"  - Lexical Diversity : {metrics['lexical_diversity']}")
         print("="*60 + "\n")
 
-    if args.generate or not (args.generate or args.score):
+    if run_generate:
         print("[+] Generated Structured Context Payload Preview:\n")
         print(payload[:400] + "\n...[truncated]...")
 
