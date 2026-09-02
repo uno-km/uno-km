@@ -288,8 +288,7 @@ def render_index_html(cfg: dict) -> str:
     if npm_pkg:
         safe_npm = urllib.parse.quote(npm_pkg, safe='')
         badges_html.append(f'<a href="https://www.npmjs.com/package/{npm_pkg}" target="_blank"><img src="https://img.shields.io/npm/v/{safe_npm}.svg?color=cb3837" alt="npm Version"></a>')
-        badges_html.append(f'<a href="https://www.npmjs.com/package/{npm_pkg}" target="_blank"><img src="https://img.shields.io/npm/dm/{safe_npm}.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>')
-    
+            
     safe_license = license_type.replace("-", "--")
     badges_html.append(f'<img src="https://img.shields.io/badge/license-{safe_license}-004499.svg" alt="License">')
     badges_html.append(f'<img src="https://img.shields.io/badge/platform-{platform.replace(" ", "_")}-blueviolet.svg" alt="Platform">')
