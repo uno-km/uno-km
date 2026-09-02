@@ -115,9 +115,9 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
       <span class="release-tag" data-i18n="common.releaseTag">{ver_tag}</span>
       <div class="lang-selector-wrapper"></div>
       <div class="header-btn-dual foundation-dual">
-        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">Foundation</a>
         <span class="dual-divider">/</span>
-        <a href="{github_url}" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+        <a href="{github_url}" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">GitHub</a>
       </div>{pkg_btn}
       <div class="header-btn-dual sponsor-dual">
         <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
@@ -131,9 +131,9 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
       <span class="release-tag" data-i18n="common.releaseTag">AOSF Tier 1 TLP</span>
       <div class="lang-selector-wrapper"></div>
       <div class="header-btn-dual foundation-dual">
-        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">Foundation</a>
         <span class="dual-divider">/</span>
-        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">GitHub</a>
       </div>
       <div class="header-btn-dual sponsor-dual">
         <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
@@ -152,9 +152,9 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
       <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
       <div class="lang-selector-wrapper"></div>
       <div class="header-btn-dual foundation-dual">
-        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">Foundation</a>
         <span class="dual-divider">/</span>
-        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">GitHub</a>
       </div>
       <div class="header-btn-dual sponsor-dual">
         <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
