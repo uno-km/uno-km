@@ -113,7 +113,7 @@ def load_config(config_path: Path) -> dict:
     return DEFAULT_CONFIG.copy()
 
 def render_header(cfg: dict, active_page: str) -> str:
-    name = cfg.get("name", "AMEVA-Library")
+    name = cfg.get("display_name") or cfg.get("name", "AMEVA-Library")
     version = cfg.get("version", "v1.0.0")
     pypi_pkg = cfg.get("package_name_pypi", "")
     npm_pkg = cfg.get("package_name_npm", "")
@@ -268,7 +268,7 @@ def render_footer(cfg: dict) -> str:
   </footer>"""
 
 def render_index_html(cfg: dict) -> str:
-    name = cfg.get("name", "AMEVA-Library")
+    name = cfg.get("display_name") or cfg.get("name", "AMEVA-Library")
     version = cfg.get("version", "v1.0.0")
     pypi_pkg = cfg.get("package_name_pypi", "")
     npm_pkg = cfg.get("package_name_npm", "")
