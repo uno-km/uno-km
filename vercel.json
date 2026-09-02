@@ -144,7 +144,17 @@
     },
     {
       "source": "/sdk/sentinel",
-      "destination": "/sdk/sentinel/",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel-sdk",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/risk-core",
+      "destination": "/lib/sentinel/",
       "permanent": false
     },
     {
@@ -198,6 +208,11 @@
       "permanent": false
     },
     {
+      "source": "/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
       "source": "/app/dashboard",
       "destination": "/foundation/dashboard/",
       "permanent": false
@@ -231,7 +246,7 @@
     },
     {
       "source": "/dashboard/:match*",
-      "destination": "/dashboard/:match*"
+      "destination": "/foundation/dashboard/:match*"
     },
     {
       "source": "/admin/(.*)",
@@ -340,10 +355,6 @@
     {
       "source": "/lib/vision/:match*",
       "destination": "/lib/vision/:match*"
-    },
-    {
-      "source": "/sdk/sentinel/:match*",
-      "destination": "/sdk/sentinel/:match*"
     },
     {
       "source": "/workstation/:match*",

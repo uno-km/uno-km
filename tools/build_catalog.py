@@ -34,9 +34,29 @@ COLORS = {
 }
 
 
-# ── YAML 파서 (no PyYAML) ──────────────────────────────────────
+# ── YAML 파서 (PyYAML 우선 / 폴백 지원) ──────────────────────────
 def parse_catalog():
     text = YAML.read_text(encoding="utf-8")
+    try:
+        import yaml
+        data = yaml.safe_load(text)
+        if isinstance(data, dict):
+            # Normalize links dictionary and string attributes
+            for cat in ("apps", "sdks", "libs"):
+                items = data.get(cat, []) or []
+                for item in items:
+                    if not isinstance(item, dict):
+                        continue
+                    if "links" not in item or not isinstance(item["links"], dict):
+                        item["links"] = {}
+            return {
+                "apps": data.get("apps", []) or [],
+                "sdks": data.get("sdks", []) or [],
+                "libs": data.get("libs", []) or []
+            }
+    except Exception as exc:
+        sys.stderr.write(f"[WARN] PyYAML parsing fallback due to: {exc}\n")
+
     result = {"apps": [], "sdks": [], "libs": []}
     current_cat = None
     current_item = None

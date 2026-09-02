@@ -1,61 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | AMEVA Ecosystem</title>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="/index.html" class="header-brand">
+      <img src="/shared/favicon.svg" alt="AMEVA Logo">
+      <h1 data-i18n="common.brand">AMEVA Ecosystem</h1>
     </a>
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://github.com/uno-km" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
       <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
   <div class="container">
     <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-    <ul>
-      <li><a href="index.html">Home / Architecture</a></li>
-      <li><a href="installation.html">Installation Guide</a></li>
-      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
-      <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="versions.html">Version Archive</a></li>
-    </ul>
-    <!-- Tier 2: Flagship Libraries -->
+      <!-- Tier 1: Foundation Portals -->
+      <h3 data-i18n="common.nav.foundation">Foundation</h3>
+      <ul>
+        <li><a href="/foundation/index.html">Charter & Overview</a></li>
+        <li><a href="/foundation/governance.html">Governance Model</a></li>
+        <li><a href="/foundation/metrics.html">Ecosystem Metrics</a></li>
+        <li><a href="/foundation/incubation.html">Incubation Policy</a></li>
+        <li><a href="/foundation/sponsorship.html">Sponsorship Program</a></li>
+      </ul>
+              <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
-      <li><a href="/lib/sentinel/" class="active">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
       <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
       <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
       <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
       <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
       <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-    <ul>
-      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-    </ul>
-  </nav>
+    </nav>
     <main class="content">
-      <h2>404 - Page Not Found</h2>
-      <p class="subtitle">The requested resource could not be found within the AMEVA documentation matrix.</p>
-      <div class="alert alert-tip">
-        <span class="alert-title">Resource Routing</span>
-        <p>Please navigate using the master ecosystem sidebar on the left or return to the <a href="/">Founder CV / Home</a> or <a href="/foundation/">Foundation Portal</a>.</p>
+      <div style="text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 4rem; color: #d32f2f; margin-bottom: 10px;">404</h1>
+        <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Page Not Found / ???? ?? ? ????</h2>
+        <p style="color: #64748b; max-width: 600px; margin: 0 auto 30px auto;">
+          The requested page could not be located on the AMEVA Open-Source Ecosystem. Please check the URL or use the sidebar navigation to return to official documentation pages.
+        </p>
+        <a href="/" style="display: inline-block; padding: 10px 24px; background: #004499; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">Return to Portal Home</a>
       </div>
     </main>
   </div>
-  <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
-  </footer>
 </body>
 </html>
