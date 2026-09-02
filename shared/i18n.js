@@ -1,6 +1,6 @@
 /**
- * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v6.0)
- * Deterministic DOM Multi-Pass Engine across 13 Languages with Protected Header Controls & Global Subpage Translations.
+ * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v7.0)
+ * 100% Deterministic Immutable DOM Multi-Pass Engine across 13 Languages with Protected Header Controls & Global Subpage Translations.
  */
 
 (function(global) {
@@ -8,80 +8,93 @@
 
   const SUPPORTED_LANGUAGES = {
   "en": {
+    "code": "en",
     "name": "English",
-    "native": "English",
+    "nativeName": "English",
     "flag": "🇺🇸",
     "dir": "ltr"
   },
   "ko": {
+    "code": "ko",
     "name": "Korean",
-    "native": "한국어",
+    "nativeName": "한국어",
     "flag": "🇰🇷",
     "dir": "ltr"
   },
   "ja": {
+    "code": "ja",
     "name": "Japanese",
-    "native": "日本語",
+    "nativeName": "日本語",
     "flag": "🇯🇵",
     "dir": "ltr"
   },
   "zh": {
+    "code": "zh",
     "name": "Chinese",
-    "native": "简体中文",
+    "nativeName": "简体中文",
     "flag": "🇨🇳",
     "dir": "ltr"
   },
   "ar": {
+    "code": "ar",
     "name": "Arabic",
-    "native": "العربية",
+    "nativeName": "العربية",
     "flag": "🇸🇦",
     "dir": "rtl"
   },
   "fr": {
+    "code": "fr",
     "name": "French",
-    "native": "Français",
+    "nativeName": "Français",
     "flag": "🇫🇷",
     "dir": "ltr"
   },
   "de": {
+    "code": "de",
     "name": "German",
-    "native": "Deutsch",
+    "nativeName": "Deutsch",
     "flag": "🇩🇪",
     "dir": "ltr"
   },
   "es": {
+    "code": "es",
     "name": "Spanish",
-    "native": "Español",
+    "nativeName": "Español",
     "flag": "🇪🇸",
     "dir": "ltr"
   },
   "hi": {
+    "code": "hi",
     "name": "Hindi",
-    "native": "हिन्दी",
+    "nativeName": "हिन्दी",
     "flag": "🇮🇳",
     "dir": "ltr"
   },
   "ru": {
+    "code": "ru",
     "name": "Russian",
-    "native": "Русский",
+    "nativeName": "Русский",
     "flag": "🇷🇺",
     "dir": "ltr"
   },
   "vi": {
+    "code": "vi",
     "name": "Vietnamese",
-    "native": "Tiếng Việt",
+    "nativeName": "Tiếng Việt",
     "flag": "🇻🇳",
     "dir": "ltr"
   },
   "pl": {
+    "code": "pl",
     "name": "Polish",
-    "native": "Polski",
+    "nativeName": "Polski",
     "flag": "🇵🇱",
     "dir": "ltr"
   },
   "la": {
+    "code": "la",
     "name": "Latin",
-    "native": "Latina",
+    "nativeName": "Latina",
     "flag": "🏛️",
     "dir": "ltr"
   }
@@ -89,7 +102,331 @@
   const DEFAULT_LANG = 'en';
   const STORAGE_KEYS = ['ameva_global_lang', 'uno_km_lang', 'ameva_lib_doc_lang', 'forge_lang'];
 
-  const PROTECTED_PHRASES = new Set(["sitemap.xml (Sitemap)", "AMEVA-Forge (WebGPU Autograd)", "Termux-BitNet", "llms.txt", "Termux-Playwright (Automation)", "Termux-LlamaCpp", "Termux-STT (Voice STT)", "Termux-Playwright", "Termux-BitNet (1.58-bit LLM)", "Termux-AIChain", "Termux-Diffusion", "llms-full.txt", "Infra-Index", "GitHub", "Termux-TTS (Voice Synthesis)", "AMEVA-Forge", "Foundation", "llms-full.txt (Full Spec)", "AMEVA-MCP-Hub", "Termux-Diffusion (Image AI)", "sitemap.xml", "Termux-LlamaCpp (GGUF Runtime)", "pip", "robots.txt (AI Crawlers)", "Node.js (npm)", "Termux-Vision (CV & VLM)", "Python (pip)", "AMEVA-Sentinel", "Termux-AIChain (Zero-Dep Agent)", "Termux-Train (LoRA Engine)", "AMEVA Workstation (Web App)", "robots.txt", "AMEVA-Vulkan-Runtime", "AMEVA-Vulkan-Runtime (Vulkan HAL)", "AMEVA-MCP-Hub (Polyglot WASM)", "Sponsor", "Founder CV", "AMEVA-Sentinel (Security SDK)", "Blog", "Termux-Vision", "Termux-TTS", "llms.txt (AI Fast Context)", "Termux-STT", "Termux-Train", "Open Collective", "npm", "pip / npm"]);
+  const PROTECTED_PHRASES = new Set(["Termux-Playwright (Automation)", "llms.txt", "Termux-BitNet", "Founder CV", "Foundation", "llms-full.txt", "sitemap.xml (Sitemap)", "Termux-Train (LoRA Engine)", "Termux-AIChain (Zero-Dep Agent)", "Open Collective", "npm", "Termux-Vision (CV & VLM)", "Termux-STT (Voice STT)", "Termux-BitNet (1.58-bit LLM)", "Node.js (npm)", "AMEVA-Sentinel", "AMEVA Workstation (Web App)", "AMEVA-Forge", "Sponsor", "Termux-Vision", "Termux-Playwright", "Termux-LlamaCpp", "AMEVA-Vulkan-Runtime", "AMEVA-MCP-Hub (Polyglot WASM)", "llms-full.txt (Full Spec)", "GitHub", "Termux-Diffusion", "Termux-Train", "AMEVA-Vulkan-Runtime (Vulkan HAL)", "robots.txt (AI Crawlers)", "Termux-TTS (Voice Synthesis)", "Blog", "AMEVA-MCP-Hub", "Infra-Index", "pip / npm", "Termux-TTS", "AMEVA-Forge (WebGPU Autograd)", "Termux-STT", "Termux-Diffusion (Image AI)", "Termux-LlamaCpp (GGUF Runtime)", "Termux-AIChain", "llms.txt (AI Fast Context)", "AMEVA-Sentinel (Security SDK)", "robots.txt", "pip", "Python (pip)", "sitemap.xml"]);
+  const LIB_TRANSLATIONS = {
+  "vulkan": {
+    "subtitles": {
+      "en": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "ko": "모바일 안드로이드를 위한 통합 크로스 모달 Vulkan GPU 가속 런타임 및 하드웨어 추상화 계층(HAL)",
+      "ja": "モバイルAndroid向け統合クロスモーダルVulkan GPUアクセラレーションランタイム＆HAL",
+      "zh": "适用于移动端 Android 的统一跨模态 Vulkan GPU 硬件加速运行时与硬件抽象层 (HAL)",
+      "vi": "Thời gian chạy và HAL tăng tốc GPU Vulkan đa phương thức cho Android di động",
+      "fr": "Runtime et HAL d'accélération GPU Vulkan cross-modal pour Android mobile",
+      "de": "Cross-modale Vulkan GPU-Beschleunigungslaufzeit und HAL für mobiles Android",
+      "es": "Entorno de ejecución y HAL de aceleración de GPU Vulkan para Android móvil",
+      "ru": "Кросс-модальная среда ускорения на Vulkan GPU и HAL для мобильного Android",
+      "ar": "بيئة تشغيل وتسريع Vulkan GPU متعددة الوسائط ونظام HAL لنظام Android",
+      "hi": "मोबाइल एंड्रॉइड के लिए एकीकृत क्रॉस-मॉडल वल्कन जीपीयू त्वरण रनटाइम और एचएएल",
+      "pl": "Wielomodułowe środowisko uruchomieniowe akceleracji GPU Vulkan i HAL dla Androida",
+      "la": "Syntaxis accelerationis GPU Vulkan trans-suggestum pro Android mobili"
+    },
+    "challenge": {
+      "en": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "ko": "모바일 안드로이드 환경에서 멀티모달 AI를 실행할 때 파편화된 GPU 드라이버, Bionic과 Mesa 간 로더 충돌, 텐서 정렬 버퍼 오버플로우, 개별 패키지별 중복 바이너리 비대화 문제가 발생합니다.",
+      "ja": "モバイルAndroid環境でマルチモーダルAIを実行する際、断片化されたGPUドライバ、BionicとMesa間のローダークラッシュ、テンソルアライメントバッファのオーバーフロー、重複バイナリの肥大化が課題となります。",
+      "zh": "在移动端 Android 上运行多模态 AI 面临碎片化的 GPU 驱动、Bionic 与 Mesa 之间的加载器崩溃、张量对齐缓冲区溢出以及独立包之间的冗余二进制膨胀问题。",
+      "vi": "Chạy AI đa phương thức trên Android di động gặp phải tình trạng phân mảnh trình điều khiển GPU, xung đột tải giữa Bionic và Mesa, tràn bộ đệm căn chỉnh tensor và phình to tệp nhị phân trùng lặp.",
+      "fr": "L'exécution de l'IA multimodale sur Android mobile est entravée par des pilotes GPU fragmentés, des plantages de chargeur entre Bionic et Mesa et des dépassements de tampon.",
+      "de": "Die Ausführung multimodaler KI auf mobilem Android leidet unter fragmentierten GPU-Treibern, Ladekonflikten zwischen Bionic und Mesa und Pufferüberläufen.",
+      "es": "Ejecutar IA multimodal en Android móvil se ve afectado por controladores de GPU fragmentados, fallos del cargador entre Bionic y Mesa y desbordamientos de búfer.",
+      "ru": "Запуск мультимодального ИИ на мобильном Android страдает от фрагментированных драйверов GPU, сбоев загрузчика между Bionic и Mesa и переполнения буфера.",
+      "ar": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "hi": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "pl": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "la": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages."
+    },
+    "breakthrough": {
+      "en": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "ko": "STT, Vision, LLM, Diffusion, Training을 아우르는 단일 C++20 Vulkan 하드웨어 추상화 계층(HAL)과 범용 런타임을 제공하며, 12단계 정밀 검증 계층(V0-V11) 및 무손실 자동 복구 기능을 갖추고 있습니다.",
+      "ja": "STT、Vision、LLM、Diffusion、Trainingを包括する単一のC++20 Vulkanハードウェア抽象化層（HAL）と汎用ランタイムを提供し、12段階の検証階層（V0-V11）とデータ損失ゼロの自動復旧を実現します。",
+      "zh": "提供单一、零硬编码的 C++20 Vulkan 硬件抽象层 (HAL) 与通用运行时，统一支持 STT、视觉、大模型、扩散生成与训练，具备 12 级精细验证体系 (V0-V11) 与零数据丢失自动恢复机制。",
+      "vi": "Cung cấp một Lớp trừu tượng phần cứng (HAL) Vulkan C++20 duy nhất và thời gian chạy phổ quát cho STT, Vision, LLM, Diffusion và Training với phân cấp xác thực 12 giai đoạn (V0-V11).",
+      "ar": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "fr": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "de": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "es": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "hi": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "ru": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "pl": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "la": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Single Loader Chain Pinning",
+          "ko": "단일 로더 체인 핀닝",
+          "ja": "単一ローダーチェーン固定",
+          "zh": "单一加载器链路固定",
+          "vi": "Ghim chuỗi tải đơn",
+          "ar": "Single Loader Chain Pinning",
+          "fr": "Single Loader Chain Pinning",
+          "de": "Single Loader Chain Pinning",
+          "es": "Single Loader Chain Pinning",
+          "hi": "Single Loader Chain Pinning",
+          "ru": "Single Loader Chain Pinning",
+          "pl": "Single Loader Chain Pinning",
+          "la": "Single Loader Chain Pinning"
+        },
+        "desc": {
+          "en": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "ko": "동적 dladdr 출처 검증과 sys_gpdf2 격리를 통해 Termux Mesa와 Android Bionic 간 심볼 충돌을 원천 차단합니다.",
+          "ja": "動的dladdr検証とsys_gpdf2分離により、Termux MesaとAndroid Bionic間のシンボル衝突を排除します。",
+          "zh": "通过动态 dladdr 溯源与 sys_gpdf2 隔离技术，彻底消除 Termux Mesa 与 Android Bionic 之间的符号冲突。",
+          "ar": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "fr": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "de": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "es": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "hi": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "ru": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "vi": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "pl": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.",
+          "la": "Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation."
+        }
+      },
+      {
+        "title": {
+          "en": "12-Stage Probing & Fallback",
+          "ko": "12단계 하드웨어 진단 및 폴백",
+          "ja": "12段階のハードウェア診断とフォールバック",
+          "zh": "12 级硬件探测与优雅降级",
+          "vi": "Thử nghiệm & Dự phòng 12 giai đoạn",
+          "ar": "12-Stage Probing & Fallback",
+          "fr": "12-Stage Probing & Fallback",
+          "de": "12-Stage Probing & Fallback",
+          "es": "12-Stage Probing & Fallback",
+          "hi": "12-Stage Probing & Fallback",
+          "ru": "12-Stage Probing & Fallback",
+          "pl": "12-Stage Probing & Fallback",
+          "la": "12-Stage Probing & Fallback"
+        },
+        "desc": {
+          "en": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "ko": "dlopen(V0)부터 종단간 모델 추론(V11)까지 GPU 역량을 단계별로 검증하며 CPU NEON 백엔드로 안전하게 자동 전환합니다.",
+          "ja": "dlopen（V0）からE2E推論（V11）までGPU能力を検証し、CPU NEONフォールバックで安全に自動復旧します。",
+          "zh": "从 dlopen (V0) 到端到端模型推理 (V11) 逐级验证 GPU 能力，并在异常时透明无缝降级至 CPU NEON 恢复。",
+          "ar": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "fr": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "de": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "es": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "hi": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "ru": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "vi": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "pl": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
+          "la": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery."
+        }
+      },
+      {
+        "title": {
+          "en": "Multi-Modal Cross-Acceleration",
+          "ko": "멀티모달 통합 가속",
+          "ja": "マルチモーダル統合アクセラレーション",
+          "zh": "多模态跨架构联合加速",
+          "vi": "Tăng tốc chéo đa phương thức",
+          "ar": "Multi-Modal Cross-Acceleration",
+          "fr": "Multi-Modal Cross-Acceleration",
+          "de": "Multi-Modal Cross-Acceleration",
+          "es": "Multi-Modal Cross-Acceleration",
+          "hi": "Multi-Modal Cross-Acceleration",
+          "ru": "Multi-Modal Cross-Acceleration",
+          "pl": "Multi-Modal Cross-Acceleration",
+          "la": "Multi-Modal Cross-Acceleration"
+        },
+        "desc": {
+          "en": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "ko": "단 58MB의 단일 공유 코어로 Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, Stable Diffusion을 통합 가속합니다.",
+          "ja": "単一の58MB共有コアからWhisper STT、LLaVA Vision、LLaMA/BitNet LLM、Stable Diffusionを高速化します。",
+          "zh": "仅凭单个 58MB 共享内核，全面驱动 Whisper STT、LLaVA 视觉、LLaMA/BitNet 大模型及 Stable Diffusion。",
+          "ar": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "fr": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "de": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "es": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "hi": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "ru": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "vi": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "pl": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.",
+          "la": "Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core."
+        }
+      }
+    ]
+  },
+  "bitnet": {
+    "subtitles": {
+      "en": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
+      "ko": "모바일 ARM64 하드웨어를 위한 초고속 1.58비트 양자화 대규모 언어 모델(LLM) 추론 엔진",
+      "ja": "モバイルARM64向け超高速1.58ビット量子化大規模言語モデル（LLM）推論エンジン",
+      "zh": "适用于移动端 ARM64 架构的超高速 1.58 位量化大语言模型 (LLM) 推理引擎",
+      "vi": "Công cụ suy luận mô hình ngôn ngữ lớn (LLM) lượng tử hóa 1.58-bit siêu nhanh cho ARM64 di động",
+      "fr": "Moteur d'inférence LLM quantifié 1,58 bit ultra-rapide pour ARM64 mobile",
+      "de": "Ultraschnelle 1,58-Bit-quantisierte LLM-Inferenz-Engine für mobiles ARM64",
+      "es": "Motor de inferencia LLM cuantizado de 1,58 bits ultrarrápido para ARM64 móvil",
+      "ru": "Сверхбыстрый 1.58-битный квантованный движок вывода LLM для мобильного ARM64",
+      "ar": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
+      "hi": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
+      "pl": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
+      "la": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64"
+    },
+    "challenge": {
+      "en": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "ko": "모바일 CPU 환경에서 표준 FP16/INT4 대규모 언어 모델(LLM)을 실행하면 극심한 메모리 대역폭 병목, 발열 스로틀링, 15W를 초과하는 심각한 배터리 소모가 발생합니다.",
+      "ja": "モバイルCPU環境で標準のFP16/INT4大規模言語モデル（LLM）を実行すると、極端なメモリ帯域幅のボトルネック、サーマルスロットリング、15Wを超える激しいバッテリー消費が発生します。",
+      "zh": "在移动 CPU 架构上运行标准 FP16/INT4 大语言模型推理时，面临极端的内存带宽瓶颈、发热降频以及超过 15W 的严重功耗消耗。",
+      "vi": "Suy luận LLM FP16/INT4 tiêu chuẩn trên CPU di động gặp phải tắc nghẽn băng thông bộ nhớ nghiêm trọng, quá nhiệt và tiêu hao pin vượt quá 15W.",
+      "ar": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "fr": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "de": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "es": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "hi": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "ru": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "pl": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "la": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W."
+    },
+    "breakthrough": {
+      "en": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "ko": "수작업 최적화된 ARM64 NEON 어셈블리 커널을 통해 1.58비트 3진 양자화 가중치{-1, 0, +1}를 직접 연산하여 행렬 곱셈을 정수 덧셈/뺄셈으로 치환하고 350MB 미만의 메모리 점유율을 달성합니다.",
+      "ja": "手動最適化されたARM64 NEONアセンブリカーネルを介して1.58ビット3値量子化重み{-1, 0, +1}を直接計算し、行列乗算を整数の加減算に削減して350MB未満のRAM消費を実現します。",
+      "zh": "通过手工优化的 ARM64 NEON 汇编内核直接执行 1.58 位三值量化权重 {-1, 0, +1}，将矩阵乘法完全简化为纯整数加减法，内存占用控制在 350MB 以内。",
+      "vi": "Thực thi trực tiếp các trọng số lượng tử hóa bậc ba 1.58-bit {-1, 0, +1} thông qua các hạt nhân lắp ráp ARM64 NEON được vector hóa thủ công, giảm mức chiếm dụng RAM xuống dưới 350MB.",
+      "ar": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "fr": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "de": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "es": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "hi": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "ru": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "pl": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "la": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "1.58-Bit Ternary DotProd Acceleration",
+          "ko": "1.58비트 3진 DotProd 가속",
+          "ja": "1.58ビット3値DotProd高速化",
+          "zh": "1.58 位三值点积硬件加速",
+          "vi": "Tăng tốc DotProd bậc ba 1.58-bit",
+          "ar": "1.58-Bit Ternary DotProd Acceleration",
+          "fr": "1.58-Bit Ternary DotProd Acceleration",
+          "de": "1.58-Bit Ternary DotProd Acceleration",
+          "es": "1.58-Bit Ternary DotProd Acceleration",
+          "hi": "1.58-Bit Ternary DotProd Acceleration",
+          "ru": "1.58-Bit Ternary DotProd Acceleration",
+          "pl": "1.58-Bit Ternary DotProd Acceleration",
+          "la": "1.58-Bit Ternary DotProd Acceleration"
+        },
+        "desc": {
+          "en": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "ko": "ARM64 dot-product 벡터 SIMD 명령어를 활용하여 부동소수점 곱셈을 고속 정수 덧셈으로 대체합니다.",
+          "ja": "ARM64 dot-productベクトルSIMD命令を使用して、乗算を高速な整数加算に置き換えます。",
+          "zh": "利用 ARM64 点积向量 SIMD 指令集，将繁重的浮点乘法彻底替换为极致高效的整数累加。",
+          "ar": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "fr": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "de": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "es": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "hi": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "ru": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "vi": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "pl": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "la": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero-PRoot Native Bionic Execution",
+          "ko": "PRoot 없는 네이티브 Bionic 실행",
+          "ja": "PRoot不要のネイティブBionic実行",
+          "zh": "零 PRoot 原生 Bionic 执行",
+          "vi": "Thực thi Bionic gốc không cần PRoot",
+          "ar": "Zero-PRoot Native Bionic Execution",
+          "fr": "Zero-PRoot Native Bionic Execution",
+          "de": "Zero-PRoot Native Bionic Execution",
+          "es": "Zero-PRoot Native Bionic Execution",
+          "hi": "Zero-PRoot Native Bionic Execution",
+          "ru": "Zero-PRoot Native Bionic Execution",
+          "pl": "Zero-PRoot Native Bionic Execution",
+          "la": "Zero-PRoot Native Bionic Execution"
+        },
+        "desc": {
+          "en": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "ko": "리눅스 PRoot 컨테이너나 루팅 권한 없이 Android Bionic libc 위에서 직접 네이티브로 실행됩니다.",
+          "ja": "Linux PRootコンテナやroot権限なしで、Android Bionic libc上で直接実行されます。",
+          "zh": "无需任何 Linux PRoot 容器或 Root 权限，直接在 Android Bionic libc 底层以原生速度执行。",
+          "ar": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "fr": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "de": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "es": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "hi": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "ru": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "vi": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "pl": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "la": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges."
+        }
+      },
+      {
+        "title": {
+          "en": "Dual-Engine Python & Node.js Gateways",
+          "ko": "Python & Node.js 듀얼 엔진 게이트웨이",
+          "ja": "Python＆Node.jsデュアルエンジンゲートウェイ",
+          "zh": "Python 与 Node.js 双引擎网关",
+          "vi": "Cổng kết nối kép Python & Node.js",
+          "ar": "Dual-Engine Python & Node.js Gateways",
+          "fr": "Dual-Engine Python & Node.js Gateways",
+          "de": "Dual-Engine Python & Node.js Gateways",
+          "es": "Dual-Engine Python & Node.js Gateways",
+          "hi": "Dual-Engine Python & Node.js Gateways",
+          "ru": "Dual-Engine Python & Node.js Gateways",
+          "pl": "Dual-Engine Python & Node.js Gateways",
+          "la": "Dual-Engine Python & Node.js Gateways"
+        },
+        "desc": {
+          "en": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "ko": "독립된 CLI 네임스페이스와 함께 Python 3.8+ 및 Node.js 18+ 런타임 모두를 위한 초경량 FFI 바인딩을 제공합니다.",
+          "ja": "独立したCLI名前空間を備え、Python 3.8+およびNode.js 18+ランタイム向けの超低オーバーヘッドFFIバインディングを提供します。",
+          "zh": "为 Python 3.8+ 和 Node.js 18+ 运行时提供极低开销的轻量级 FFI 绑定与独立的 CLI 命名空间。",
+          "ar": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "fr": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "de": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "es": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "hi": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "ru": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "vi": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "pl": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "la": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces."
+        }
+      },
+      {
+        "title": {
+          "en": "Energy-Efficient Edge Deployment",
+          "ko": "초저전력 에지 배포",
+          "ja": "超低消費電力エッジ展開",
+          "zh": "极低能耗端侧部署",
+          "vi": "Triển khai biên tiết kiệm năng lượng",
+          "ar": "Energy-Efficient Edge Deployment",
+          "fr": "Energy-Efficient Edge Deployment",
+          "de": "Energy-Efficient Edge Deployment",
+          "es": "Energy-Efficient Edge Deployment",
+          "hi": "Energy-Efficient Edge Deployment",
+          "ru": "Energy-Efficient Edge Deployment",
+          "pl": "Energy-Efficient Edge Deployment",
+          "la": "Energy-Efficient Edge Deployment"
+        },
+        "desc": {
+          "en": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "ko": "연속 토큰 생성 시 2.5W 미만의 전력을 소비하여 24시간 무중단 자율 모바일 운영을 실현합니다.",
+          "ja": "継続的なトークン生成時の消費電力を2.5W未満に抑え、24時間365日の連続自律稼働を可能にします。",
+          "zh": "连续 Token 生成功耗控制在 2.5W 以下，确保移动端设备实现 7x24 小时全天候长效自主运行。",
+          "ar": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "fr": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "de": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "es": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "hi": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "ru": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "vi": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "pl": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "la": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation."
+        }
+      }
+    ]
+  }
+};
   const PHRASES_DB = {
   "Document Navigation": {
     "ko": "문서 상세 목차",
@@ -105,21 +442,6 @@
     "pl": "Nawigacja po dokumentach",
     "la": "Navigatio Documentorum",
     "en": "Document Navigation"
-  },
-  "Foundation Info": {
-    "ko": "재단 소개 (AOSF)",
-    "ja": "財団情報",
-    "zh": "基金会概览",
-    "vi": "Thông tin quỹ",
-    "fr": "Infos Fondation",
-    "de": "Stiftungsinformationen",
-    "es": "Información de la Fundación",
-    "ru": "Информация о Фонде",
-    "ar": "معلومات المؤسسة",
-    "hi": "फाउंडेशन जानकारी",
-    "pl": "Informacje o Fundacji",
-    "la": "Notitia Fundationis",
-    "en": "Foundation Info"
   },
   "Home / Architecture": {
     "ko": "홈 / 아키텍처",
@@ -196,51 +518,6 @@
     "la": "Puncta Prae-instituta",
     "en": "Pretrained Checkpoints"
   },
-  "Model Checkpoints": {
-    "ko": "모델 체크포인트",
-    "ja": "モデルチェックポイント",
-    "zh": "模型检查点",
-    "vi": "Điểm kiểm tra mô hình",
-    "fr": "Points de Contrôle de Modèles",
-    "de": "Modell-Checkpoints",
-    "es": "Puntos de Control de Modelos",
-    "ru": "Чекпоинты моделей",
-    "ar": "نقاط تفتيش النماذج",
-    "hi": "मॉडल चेकपॉइंट्स",
-    "pl": "Punkty kontrolne modeli",
-    "la": "Puncta Modelli",
-    "en": "Model Checkpoints"
-  },
-  "GGUF Quant Models": {
-    "ko": "GGUF 양자화 모델 허브",
-    "ja": "GGUF量子化モデルハブ",
-    "zh": "GGUF 量化模型中心",
-    "vi": "Mô hình lượng tử GGUF",
-    "fr": "Modèles Quantifiés GGUF",
-    "de": "GGUF-Quantisierungsmodelle",
-    "es": "Modelos Cuantizados GGUF",
-    "ru": "GGUF квантованные модели",
-    "ar": "نماذج GGUF الكمية",
-    "hi": "GGUF क्वांट मॉडल",
-    "pl": "Modele kwantyzacji GGUF",
-    "la": "Modelli GGUF",
-    "en": "GGUF Quant Models"
-  },
-  "Models Directory": {
-    "ko": "모델 디렉터리",
-    "ja": "モデルディレクトリ",
-    "zh": "模型索引目录",
-    "vi": "Thư mục mô hình",
-    "fr": "Répertoire des Modèles",
-    "de": "Modellverzeichnis",
-    "es": "Directorio de Modelos",
-    "ru": "Каталог моделей",
-    "ar": "دليل النماذج",
-    "hi": "मॉडल निर्देशिका",
-    "pl": "Katalog modeli",
-    "la": "Directorium Modelli",
-    "en": "Models Directory"
-  },
   "Benchmarks & Profiling": {
     "ko": "벤치마크 & 하드웨어 프로파일링",
     "ja": "ベンチマーク＆プロファイリング",
@@ -285,81 +562,6 @@
     "pl": "Archiwum wersji",
     "la": "Archivum Versionum",
     "en": "Version Archive"
-  },
-  "Visual Gallery": {
-    "ko": "시각 갤러리",
-    "ja": "ビジュアルギャラリー",
-    "zh": "视觉画廊",
-    "vi": "Thư viện trực quan",
-    "fr": "Galerie Visuelle",
-    "de": "Visuelle Galerie",
-    "es": "Galería Visual",
-    "ru": "Визуальная галерея",
-    "ar": "معرض الصور",
-    "hi": "दृश्य गैलरी",
-    "pl": "Galeria wizualna",
-    "la": "Pinacotheca Visualis",
-    "en": "Visual Gallery"
-  },
-  "Audio Showcase": {
-    "ko": "오디오 쇼케이스",
-    "ja": "オーディオショーケース",
-    "zh": "音频演示",
-    "vi": "Trưng bày âm thanh",
-    "fr": "Vitrine Audio",
-    "de": "Audio-Showcase",
-    "es": "Muestra de Audio",
-    "ru": "Аудио витрина",
-    "ar": "عرض الصوت",
-    "hi": "ऑडियो शोकेस",
-    "pl": "Pokaz audio",
-    "la": "Expositio Auditus",
-    "en": "Audio Showcase"
-  },
-  "Live WebGPU Demo": {
-    "ko": "실시간 WebGPU 데모",
-    "ja": "ライブWebGPUデモ",
-    "zh": "实时 WebGPU 演示",
-    "vi": "Bản demo WebGPU trực tiếp",
-    "fr": "Démo WebGPU en Direct",
-    "de": "Live-WebGPU-Demo",
-    "es": "Demostración WebGPU en Vivo",
-    "ru": "Живое WebGPU демо",
-    "ar": "عرض WebGPU المباشر",
-    "hi": "लाइव WebGPU डेमो",
-    "pl": "Prezentacja WebGPU na żywo",
-    "la": "Exemplum WebGPU Vivum",
-    "en": "Live WebGPU Demo"
-  },
-  "WASM Tools Catalog": {
-    "ko": "WASM 도구 카탈로그",
-    "ja": "WASMツールカタログ",
-    "zh": "WASM 工具目录",
-    "vi": "Danh mục công cụ WASM",
-    "fr": "Catalogue d'Outils WASM",
-    "de": "WASM-Werkzeugkatalog",
-    "es": "Catálogo de Herramientas WASM",
-    "ru": "Каталог инструментов WASM",
-    "ar": "كتالوج أدوات WASM",
-    "hi": "WASM उपकरण सूची",
-    "pl": "Katalog narzędzi WASM",
-    "la": "Catalogus Instrumentorum WASM",
-    "en": "WASM Tools Catalog"
-  },
-  "Training Guide": {
-    "ko": "온디바이스 학습 가이드",
-    "ja": "学習ガイド",
-    "zh": "模型训练指南",
-    "vi": "Hướng dẫn đào tạo",
-    "fr": "Guide d'Entraînement",
-    "de": "Trainingsanleitung",
-    "es": "Guía de Entrenamiento",
-    "ru": "Руководство по обучению",
-    "ar": "دليل التدريب",
-    "hi": "प्रशिक्षण गाइड",
-    "pl": "Przewodnik szkoleniowy",
-    "la": "Dux Eruditionis",
-    "en": "Training Guide"
   },
   "Flagship Libraries": {
     "ko": "플래그십 라이브러리",
@@ -421,216 +623,6 @@
     "la": "Formae usus canonicae et codex prototyping celeris",
     "en": "Standard usage patterns and rapid prototyping code"
   },
-  "Prerequisites & Environment Setup": {
-    "ko": "사전 요구사항 및 환경 설정",
-    "ja": "前提条件と環境設定",
-    "zh": "前置要求与环境配置",
-    "vi": "Điều kiện tiên quyết & Thiết lập môi trường",
-    "fr": "Prérequis & Configuration de l'Environnement",
-    "de": "Voraussetzungen & Umgebungseinrichtung",
-    "es": "Requisitos Previos y Configuración del Entorno",
-    "ru": "Предварительные требования и настройка среды",
-    "ar": "المتطلبات الأساسية وإعداد البيئة",
-    "hi": "पूर्वापेक्षाएँ और पर्यावरण सेटअप",
-    "pl": "Wymagania wstępne i konfiguracja środowiska",
-    "la": "Praerequisita et Configuratio Ambitus",
-    "en": "Prerequisites & Environment Setup"
-  },
-  "Hardware Requirements & Toolchain Setup": {
-    "ko": "하드웨어 요구 사양 및 툴체인 설정",
-    "ja": "ハードウェア要件とツールチェーン設定",
-    "zh": "硬件要求与工具链配置",
-    "vi": "Yêu cầu phần cứng & Thiết lập chuỗi công cụ",
-    "fr": "Exigences Matérielles & Configuration de la Chaîne d'Outils",
-    "de": "Hardwareanforderungen & Toolchain-Setup",
-    "es": "Requisitos de Hardware y Configuración de la Cadena de Herramientas",
-    "ru": "Требования к оборудованию и настройка цепочки инструментов",
-    "ar": "متطلبات الأجهزة وإعداد سلسلة الأدوات",
-    "hi": "हार्डवेयर आवश्यकताएं और टूलचेन सेटअप",
-    "pl": "Wymagania sprzętowe i konfiguracja łańcucha narzędzi",
-    "la": "Postulata Hardware et Configuratio Toolchain",
-    "en": "Hardware Requirements & Toolchain Setup"
-  },
-  "Step 1: Termux Environment Setup": {
-    "ko": "1단계: Termux 환경 설정",
-    "ja": "ステップ1：Termux環境設定",
-    "zh": "步骤 1：Termux 环境配置",
-    "vi": "Bước 1: Thiết lập môi trường Termux",
-    "fr": "Étape 1 : Configuration de l'Environnement Termux",
-    "de": "Schritt 1: Termux-Umgebungseinrichtung",
-    "es": "Paso 1: Configuración del Entorno Termux",
-    "ru": "Шаг 1: Настройка среды Termux",
-    "ar": "الخطوة 1: إعداد بيئة Termux",
-    "hi": "चरण 1: टर्मक्स पर्यावरण सेटअप",
-    "pl": "Krok 1: Konfiguracja środowiska Termux",
-    "la": "Gradus 1: Configuratio Ambitus Termux",
-    "en": "Step 1: Termux Environment Setup"
-  },
-  "Step 2: Install Package": {
-    "ko": "2단계: 패키지 설치",
-    "ja": "ステップ2：パッケージのインストール",
-    "zh": "步骤 2：安装软件包",
-    "vi": "Bước 2: Cài đặt gói",
-    "fr": "Étape 2 : Installer le Paquet",
-    "de": "Schritt 2: Paket installieren",
-    "es": "Paso 2: Instalar Paquete",
-    "ru": "Шаг 2: Установка пакета",
-    "ar": "الخطوة 2: تثبيت الحزمة",
-    "hi": "चरण 2: पैकेज स्थापित करें",
-    "pl": "Krok 2: Zainstaluj pakiet",
-    "la": "Gradus 2: Sarcinam Installa",
-    "en": "Step 2: Install Package"
-  },
-  "Step 3: Verify Hardware Capabilities": {
-    "ko": "3단계: 하드웨어 가속 역량 검증",
-    "ja": "ステップ3：ハードウェア機能の検証",
-    "zh": "步骤 3：验证硬件加速能力",
-    "vi": "Bước 3: Xác minh khả năng phần cứng",
-    "fr": "Étape 3 : Vérifier les Capacités Matérielles",
-    "de": "Schritt 3: Hardwarefunktionen überprüfen",
-    "es": "Paso 3: Verificar Capacidades de Hardware",
-    "ru": "Шаг 3: Проверка возможностей оборудования",
-    "ar": "الخطوة 3: التحقق من قدرات الأجهزة",
-    "hi": "चरण 3: हार्डवेयर क्षमताओं को सत्यापित करें",
-    "pl": "Krok 3: Zweryfikuj możliwości sprzętowe",
-    "la": "Gradus 3: Capacitates Hardware Comproba",
-    "en": "Step 3: Verify Hardware Capabilities"
-  },
-  "Step 4: Execute Sanity Check": {
-    "ko": "4단계: 정상 동작 검증 (Sanity Check)",
-    "ja": "ステップ4：動作確認（サニティチェック）",
-    "zh": "步骤 4：执行冒烟测试验证",
-    "vi": "Bước 4: Thực thi kiểm tra tính toàn vẹn",
-    "fr": "Étape 4 : Exécuter le Test de Validité",
-    "de": "Schritt 4: Plausibilitätsprüfung durchführen",
-    "es": "Paso 4: Ejecutar Prueba de Cordura",
-    "ru": "Шаг 4: Выполнение базовой проверки работоспособности",
-    "ar": "الخطوة 4: تنفيذ اختبار السلامة",
-    "hi": "चरण 4: सैनिटी चेक निष्पादित करें",
-    "pl": "Krok 4: Wykonaj test poprawności",
-    "la": "Gradus 4: Examinationem Sanitas Exsequere",
-    "en": "Step 4: Execute Sanity Check"
-  },
-  "Benchmarks & Hardware Profiling": {
-    "ko": "벤치마크 & 하드웨어 프로파일링",
-    "ja": "ベンチマーク＆ハードウェアプロファイリング",
-    "zh": "基准测试与硬件性能分析",
-    "vi": "Đo điểm chuẩn & Phân tích phần cứng",
-    "fr": "Benchmarks & Profilage Matériel",
-    "de": "Benchmarks & Hardware-Profiling",
-    "es": "Evaluaciones Comparativas y Perfilado de Hardware",
-    "ru": "Бенчмарки и профилирование оборудования",
-    "ar": "المعايير والتوصيف المادي",
-    "hi": "बेंचमार्क और हार्डवेयर प्रोफाइलिंग",
-    "pl": "Testy wydajności i profilowanie sprzętowe",
-    "la": "Mensurae et Hardware Profiling",
-    "en": "Benchmarks & Hardware Profiling"
-  },
-  "Deterministic throughput, memory consumption, and thermal telemetry": {
-    "ko": "결정론적 처리량, 메모리 점유율 및 발열 텔레메트리 지표",
-    "ja": "決定論的スループット、メモリ消費量、熱テレメトリ指標",
-    "zh": "确定性吞吐量、内存消耗及功耗发热遥测数据",
-    "vi": "Thông lượng xác định, mức tiêu thụ bộ nhớ và phép đo từ xa nhiệt",
-    "fr": "Débit déterministe, consommation de mémoire et télémétrie thermique",
-    "de": "Deterministischer Durchsatz, Speicherverbrauch und thermische Telemetrie",
-    "es": "Rendimiento determinista, consumo de memoria y telemetría térmica",
-    "ru": "Детерминированная пропускная способность, потребление памяти и тепловая телеметрия",
-    "ar": "الإنتاجية المحددة واستهلاك الذاكرة والقياس عن بعد الحراري",
-    "hi": "नियतात्मक थ्रूपुट, मेमोरी खपत और थर्मल टेलीमेट्री",
-    "pl": "Deterministyczna przepustowość, zużycie pamięci i telemetria termiczna",
-    "la": "Capacitas deterministica, usus memoriae et telemetria thermalis",
-    "en": "Deterministic throughput, memory consumption, and thermal telemetry"
-  },
-  "Advanced Parameter Control": {
-    "ko": "고급 파라미터 제어",
-    "ja": "高度なパラメータ制御",
-    "zh": "高级参数与底层调优",
-    "vi": "Kiểm soát tham số nâng cao",
-    "fr": "Contrôle Avancé des Paramètres",
-    "de": "Erweiterte Parametersteuerung",
-    "es": "Control Avanzado de Parámetros",
-    "ru": "Расширенное управление параметрами",
-    "ar": "التحكم في المعلمات المتقدمة",
-    "hi": "उन्नत पैरामीटर नियंत्रण",
-    "pl": "Zaawansowana kontrola parametrów",
-    "la": "Gubernatio Parametrorum Provectorum",
-    "en": "Advanced Parameter Control"
-  },
-  "Low-level kernel configurations, buffer alignment, and scheduling flags": {
-    "ko": "저수준 커널 설정, 버퍼 정렬 및 스레드 스케줄링 플래그",
-    "ja": "低レベルカーネル設定、バッファアライメント、スケジューリングフラグ",
-    "zh": "底层内核配置、缓冲区对齐及调度标志",
-    "vi": "Cấu hình nhân cấp thấp, căn chỉnh bộ đệm và cờ lập lịch",
-    "fr": "Configurations de noyau bas niveau, alignement de mémoire tampon et drapeaux d'ordonnancement",
-    "de": "Low-Level-Kernelkonfigurationen, Pufferausrichtung und Planungs-Flags",
-    "es": "Configuraciones de kernel de bajo nivel, alineación de búfer y banderas de programación",
-    "ru": "Низкоуровневые конфигурации ядра, выравнивание буфера и флаги планирования",
-    "ar": "تكوينات النواة منخفضة المستوى ومحاذاة المخزن المؤقت وأعلام الجدولة",
-    "hi": "निम्न-स्तरीय कर्नेल कॉन्फ़िगरेशन, बफर संरेखण और शेड्यूलिंग फ़्लैग",
-    "pl": "Niskopoziomowe konfiguracje jądra, wyrównanie bufora i flagi harmonogramowania",
-    "la": "Configurationes nuclei infimi, conformatio bufferorum et signa scheduling",
-    "en": "Low-level kernel configurations, buffer alignment, and scheduling flags"
-  },
-  "API Reference & Struct Definitions": {
-    "ko": "전체 API 명세 & 구조체 정의",
-    "ja": "APIリファレンスと構造体定義",
-    "zh": "完整 API 规范与结构体定义",
-    "vi": "Tham chiếu API & Định nghĩa cấu trúc",
-    "fr": "Référence API & Définitions de Structures",
-    "de": "API-Referenz & Strukturdefinitionen",
-    "es": "Referencia de API y Definiciones de Estructuras",
-    "ru": "Справочник API и определения структур",
-    "ar": "مرجع API وتعاريف الهياكل",
-    "hi": "API संदर्भ और संरचना परिभाषाएं",
-    "pl": "Dokumentacja API i definicje struktur",
-    "la": "Index API et Definitiones Structurarum",
-    "en": "API Reference & Struct Definitions"
-  },
-  "Complete specification of exported classes, methods, signatures, and types": {
-    "ko": "내보내기된 클래스, 메서드, 시그니처 및 타입의 완전한 명세",
-    "ja": "エクスポートされたクラス、メソッド、シグネチャ、型の完全な仕様",
-    "zh": "导出类、方法、函数签名与类型系统的完整规范",
-    "vi": "Đặc tả đầy đủ về các lớp, phương thức, chữ ký và kiểu được xuất",
-    "fr": "Spécification complète des classes, méthodes, signatures et types exportés",
-    "de": "Vollständige Spezifikation der exportierten Klassen, Methoden, Signaturen und Typen",
-    "es": "Especificación completa de clases, métodos, firmas y tipos exportados",
-    "ru": "Полная спецификация экспортируемых классов, методов, сигнатур и типов",
-    "ar": "مواصفات كاملة للفئات والأساليب والتوقيعات والأنواع المصدرة",
-    "hi": "निर्यात की गई कक्षाओं, विधियों, हस्ताक्षरों और प्रकारों का पूरा विवरण",
-    "pl": "Pełna specyfikacja wyeksportowanych klas, metod, sygnatur i typów",
-    "la": "Specificatio completa classium, methodorum, signaturarum et typorum",
-    "en": "Complete specification of exported classes, methods, signatures, and types"
-  },
-  "Version Release Archive": {
-    "ko": "버전 릴리즈 아카이브",
-    "ja": "バージョンリリースアーカイブ",
-    "zh": "版本发布归档",
-    "vi": "Kho lưu trữ phát hành phiên bản",
-    "fr": "Archives des Versions Publiées",
-    "de": "Versionsveröffentlichungsarchiv",
-    "es": "Archivo de Publicación de Versiones",
-    "ru": "Архив релизов версий",
-    "ar": "أرشيف إصدارات النسخ",
-    "hi": "संस्करण रिलीज़ पुरालेख",
-    "pl": "Archiwum wydań wersji",
-    "la": "Archivum Emissionum Versionum",
-    "en": "Version Release Archive"
-  },
-  "Cryptographically validated release history, changelogs, and integrity hashes": {
-    "ko": "암호학적으로 검증된 릴리즈 이력, 변경 로그 및 무결성 해시",
-    "ja": "暗号学的に検証されたリリース履歴、変更ログ、整合性ハッシュ",
-    "zh": "经过密码学验证的发布历史、更新日志与完整性哈希",
-    "vi": "Lịch sử phát hành được xác thực bằng mật mã, nhật ký thay đổi và hàm băm tính toàn vẹn",
-    "fr": "Historique des versions validé cryptographiquement, journaux des modifications et hachages d'intégrité",
-    "de": "Kryptografisch validierte Versionshistorie, Änderungsprotokolle und Integritätshashes",
-    "es": "Historial de versiones validado criptográficamente, registros de cambios y hashes de integridad",
-    "ru": "Криптографически проверенная история выпусков, списки изменений и хеши целостности",
-    "ar": "سجل الإصدارات الموثق مشفرًا وسجلات التغيير وتجزئة التكامل",
-    "hi": "क्रिप्टोग्राफ़िक रूप से मान्य रिलीज़ इतिहास, परिवर्तन लॉग और अखंडता हैश",
-    "pl": "Kryptograficznie zweryfikowana historia wydań, dzienniki zmian i skróty integralności",
-    "la": "Historia emissionum cryptographice comprobata, indices mutationum et hashes integritatis",
-    "en": "Cryptographically validated release history, changelogs, and integrity hashes"
-  },
   "Recipe 1: Model Hub Download & CLI Inference": {
     "ko": "레시피 1: 모델 허브 다운로드 및 CLI 추론",
     "ja": "レシピ1：モデルハブのダウンロードとCLI推論",
@@ -691,51 +683,6 @@
     "la": "Effunde token generata asynchronice cum purgatione memoriae procuratoris contextus:",
     "en": "Stream generated tokens asynchronously with context manager memory cleanup:"
   },
-  "Recipe 3: Advanced Pipeline Configuration": {
-    "ko": "레시피 3: 고급 파이프라인 구성",
-    "ja": "レシピ3：高度なパイプライン構成",
-    "zh": "范式 3：高级流水线配置",
-    "vi": "Công thức 3: Cấu hình đường ống nâng cao",
-    "fr": "Recette 3 : Configuration Avancée du Pipeline",
-    "de": "Rezept 3: Erweiterte Pipeline-Konfiguration",
-    "es": "Receta 3: Configuración Avanzada de Tubería",
-    "ru": "Рецепт 3: Расширенная настройка конвейера",
-    "ar": "الوصفة 3: تكوين خط الأنابيب المتقدم",
-    "hi": "रेसिपी 3: उन्नत पाइपलाइन कॉन्फ़िगरेशन",
-    "pl": "Przepis 3: Zaawansowana konfiguracja potoku",
-    "la": "Formula 3: Configuratio Canalis Provecta",
-    "en": "Recipe 3: Advanced Pipeline Configuration"
-  },
-  "Recipe 4: Zero-Copy Memory Management": {
-    "ko": "레시피 4: 제로 카피 메모리 관리",
-    "ja": "レシピ4：ゼロコピーメモリ管理",
-    "zh": "范式 4：零拷贝内存管理",
-    "vi": "Công thức 4: Quản lý bộ nhớ không sao chép",
-    "fr": "Recette 4 : Gestion de la Mémoire Zéro-Copie",
-    "de": "Rezept 4: Zero-Copy-Speicherverwaltung",
-    "es": "Receta 4: Gestión de Memoria de Copia Cero",
-    "ru": "Рецепт 4: Управление памятью без копирования",
-    "ar": "الوصفة 4: إدارة الذاكرة بدون نسخ",
-    "hi": "रेसिपी 4: ज़ीरो-कॉपी मेमोरी प्रबंधन",
-    "pl": "Przepis 4: Zarządzanie pamięcią bez kopiowania",
-    "la": "Formula 4: Administratio Memoriae Sine Exemplari",
-    "en": "Recipe 4: Zero-Copy Memory Management"
-  },
-  "Recipe 5: Production Batch Processing": {
-    "ko": "레시피 5: 프로덕션 배치 처리",
-    "ja": "レシピ5：本番バッチ処理",
-    "zh": "范式 5：生产级批量处理",
-    "vi": "Công thức 5: Xử lý hàng loạt sản xuất",
-    "fr": "Recette 5 : Traitement par Lots de Production",
-    "de": "Rezept 5: Produktions-Stapelverarbeitung",
-    "es": "Receta 5: Procesamiento por Lotes de Producción",
-    "ru": "Рецепт 5: Промышленная пакетная обработка",
-    "ar": "الوصفة 5: معالجة الدفعات في الإنتاج",
-    "hi": "रेसिपी 5: उत्पादन बैच प्रसंस्करण",
-    "pl": "Przepis 5: Produkcyjne przetwarzanie wsadowe",
-    "la": "Formula 5: Tractatio Fascium Productionis",
-    "en": "Recipe 5: Production Batch Processing"
-  },
   "1-Line Quick Installation": {
     "ko": "1줄 빠른 설치",
     "ja": "1行クイックインストール",
@@ -746,7 +693,7 @@
     "es": "Instalación Rápida en 1 Línea",
     "ru": "Быстрая установка в 1 строку",
     "ar": "تثبيت سريع بسطر واحد",
-    "hi": "1-लाइन त्वरित स्थापना",
+    "hi": "1-라인 त्वरित स्थापना",
     "pl": "Szybka instalacja w 1 linijce",
     "la": "Institutio Celeris 1-Lineae",
     "en": "1-Line Quick Installation"
@@ -761,7 +708,7 @@
     "es": "Instalación Rápida en 1 Línea",
     "ru": "Быстрая установка в 1 строку",
     "ar": "تثبيت سريع بسطر واحد",
-    "hi": "1-लाइन त्वरित स्थापना",
+    "hi": "1-라인 त्वरित स्थापना",
     "pl": "Szybka instalacja w 1 linijce",
     "la": "Institutio Celeris 1-Lineae",
     "en": "1-LINE QUICK INSTALLATION"
@@ -1076,6 +1023,17 @@
       document.documentElement.dir = SUPPORTED_LANGUAGES[lang].dir || 'ltr';
     }
 
+    _getCurrentContext() {
+      const path = (window.location.pathname || '').toLowerCase();
+      const match = path.match(/\/lib\/([a-z0-9_-]+)/);
+      if (match && match[1]) {
+        return match[1];
+      }
+      if (path.includes('/foundation/')) return 'foundation';
+      if (path.includes('/docs/')) return 'docs';
+      return 'root';
+    }
+
     _lookup(dict, keyPath) {
       if (!keyPath || !dict) return undefined;
       const parts = keyPath.split('.');
@@ -1089,6 +1047,8 @@
 
     applyLanguage(lang) {
       const dict = this.translations[lang] || this.translations[DEFAULT_LANG] || {};
+      const ctx = this._getCurrentContext();
+      const libData = LIB_TRANSLATIONS[ctx];
 
       const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, th, td, span, li, a, button, [data-i18n]');
       elements.forEach(el => {
@@ -1124,7 +1084,33 @@
           return;
         }
 
-        // 4. Exact PHRASES_DB Translation Lookup
+        // 4. Library-specific deep body translations (Challenge, Breakthrough, Features)
+        const i18nKey = el.getAttribute('data-i18n');
+        if (libData && i18nKey) {
+          if (i18nKey === 'home.challengeText' && libData.challenge) {
+            el.textContent = (lang === 'en') ? origText : (libData.challenge[lang] || libData.challenge['en'] || origText);
+            return;
+          }
+          if (i18nKey === 'home.breakthroughText' && libData.breakthrough) {
+            el.textContent = (lang === 'en') ? origText : (libData.breakthrough[lang] || libData.breakthrough['en'] || origText);
+            return;
+          }
+          if ((i18nKey === 'home.subtitle' || i18nKey === 'home.heroSubtitle') && libData.subtitles) {
+            el.textContent = (lang === 'en') ? origText : (libData.subtitles[lang] || libData.subtitles['en'] || origText);
+            return;
+          }
+          const featMatch = i18nKey.match(/^home\.features\.([0-9]+)\.(title|desc)$/);
+          if (featMatch && libData.features) {
+            const fIdx = parseInt(featMatch[1], 10);
+            const fField = featMatch[2];
+            if (libData.features[fIdx] && libData.features[fIdx][fField]) {
+              el.textContent = (lang === 'en') ? origText : (libData.features[fIdx][fField][lang] || libData.features[fIdx][fField]['en'] || origText);
+              return;
+            }
+          }
+        }
+
+        // 5. Exact PHRASES_DB Translation Lookup
         if (PHRASES_DB[origText]) {
           const entry = PHRASES_DB[origText];
           const trans = (lang === 'en') ? origText : (entry[lang] || entry['en'] || origText);
@@ -1134,8 +1120,7 @@
           return;
         }
 
-        // 5. [data-i18n] Attribute Lookup
-        const i18nKey = el.getAttribute('data-i18n');
+        // 6. [data-i18n] Attribute Lookup
         if (i18nKey) {
           const val = this._lookup(dict, i18nKey);
           if (val !== undefined && val !== null && typeof val === 'string') {
@@ -1144,7 +1129,7 @@
           }
         }
 
-        // 6. English Default Fallback
+        // 7. English Default Fallback
         if (lang === 'en' && origText && el.textContent.trim() !== origText) {
           el.textContent = origText;
         }
@@ -1157,18 +1142,21 @@
 
     _setupLanguageSelectors() {
       const optionsHtml = Object.values(SUPPORTED_LANGUAGES).map(l => 
-        `<option value="${l.code}">${l.flag} ${l.native}</option>`
+        `<option value="${l.code}">${l.flag} ${l.nativeName}</option>`
       ).join('');
 
       if (typeof document !== 'undefined') {
         document.querySelectorAll('.lang-selector-wrapper').forEach(wrap => {
-          if (!wrap.querySelector('.lang-select')) {
-            const sel = document.createElement('select');
+          let sel = wrap.querySelector('.lang-select');
+          if (!sel) {
+            sel = document.createElement('select');
             sel.className = 'lang-select';
             sel.setAttribute('aria-label', 'Language Selector');
-            sel.innerHTML = optionsHtml;
             wrap.appendChild(sel);
           }
+          sel.innerHTML = optionsHtml;
+          sel.value = this.currentLang;
+          sel.onchange = (e) => this.setLanguage(e.target.value);
         });
 
         const existingSelects = document.querySelectorAll('.lang-select');
@@ -1181,18 +1169,12 @@
             sel.className = 'lang-select';
             sel.setAttribute('aria-label', 'Language Selector');
             sel.innerHTML = optionsHtml;
+            sel.value = this.currentLang;
+            sel.onchange = (e) => this.setLanguage(e.target.value);
             wrap.appendChild(sel);
             controls.insertBefore(wrap, controls.firstChild);
           }
         }
-
-        document.querySelectorAll('.lang-select').forEach(sel => {
-          if (!sel.children.length || sel.children.length < 10) {
-            sel.innerHTML = optionsHtml;
-          }
-          sel.value = this.currentLang;
-          sel.onchange = (e) => this.setLanguage(e.target.value);
-        });
       }
     }
   }
@@ -1209,7 +1191,7 @@
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { UniversalI18nEngine, i18n, SUPPORTED_LANGUAGES, PHRASES_DB };
+    module.exports = { UniversalI18nEngine, i18n, SUPPORTED_LANGUAGES, LIB_TRANSLATIONS, PHRASES_DB };
   }
 
 })(typeof window !== 'undefined' ? window : global);
