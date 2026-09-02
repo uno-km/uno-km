@@ -66,7 +66,10 @@ export default async function handler(req, res) {
         try {
             const data = await inFlightPromise;
             return res.status(200).json(data);
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats InFlight Coalesce Error]: Previous in-flight fetch failed:', e.message);
+            inFlightPromise = null;
+        }
     }
 
     inFlightPromise = (async () => {
