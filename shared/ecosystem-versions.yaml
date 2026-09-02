@@ -53,8 +53,8 @@ libraries:
 
   aichain:
     name: "Termux-AIChain"
-    version: "1.1.0"
-    release_date: "2026-08-27"
+    version: "1.1.1"
+    release_date: "2026-09-02"
     npm_package: "termux-aichain"
     pypi_package: "termux-aichain"
     github_repo: "uno-km/termux-aichain"
@@ -71,8 +71,8 @@ libraries:
 
   bitnet:
     name: "Termux-BitNet"
-    version: "1.0.7"
-    release_date: "2026-08-27"
+    version: "1.1.1"
+    release_date: "2026-09-02"
     npm_package: "termux-bitnet"
     pypi_package: "termux-bitnet"
     github_repo: "uno-km/termux-bitnet"
@@ -90,8 +90,8 @@ libraries:
 
   diffusion:
     name: "Termux-Diffusion"
-    version: "1.3.1"
-    release_date: "2026-08-27"
+    version: "1.3.2"
+    release_date: "2026-09-02"
     npm_package: "termux-diffusion"
     pypi_package: "termux-diffusion"
     github_repo: "uno-km/termux-diffusion"
@@ -110,9 +110,9 @@ libraries:
 
   playwright:
     name: "Termux-Playwright"
-    version: "1.0.0"
-    release_date: "2026-03-15"
-    npm_package: null
+    version: "1.80.1"
+    release_date: "2026-09-02"
+    npm_package: "termux-playwright"
     pypi_package: "termux-playwright"
     github_repo: "uno-km/termux-playwright"
     lib_path: "lib/playwright"
@@ -128,9 +128,9 @@ libraries:
 
   stt:
     name: "Termux-STT"
-    version: "1.0.0"
-    release_date: "2026-02-20"
-    npm_package: null
+    version: "1.1.4"
+    release_date: "2026-09-02"
+    npm_package: "termux-stt"
     pypi_package: "termux-stt"
     github_repo: "uno-km/termux-stt"
     lib_path: "lib/stt"
@@ -148,7 +148,7 @@ libraries:
   train:
     name: "Termux-Train"
     version: "1.0.0"
-    release_date: "2026-01-10"
+    release_date: "2026-09-02"
     npm_package: null
     pypi_package: "termux-train"
     github_repo: "uno-km/termux-train"
@@ -206,8 +206,8 @@ libraries:
 
   llamacpp:
     name: "Termux-LlamaCpp"
-    version: "1.2.0"
-    release_date: "2026-09-01"
+    version: "1.2.1"
+    release_date: "2026-09-02"
     npm_package: "termux-llamacpp"
     pypi_package: "termux-llamacpp"
     github_repo: "uno-km/termux-llamacpp"
@@ -224,8 +224,8 @@ libraries:
 
   vision:
     name: "Termux-Vision"
-    version: "1.1.0"
-    release_date: "2026-09-01"
+    version: "1.1.1"
+    release_date: "2026-09-02"
     npm_package: "termux-vision"
     pypi_package: "termux-vision"
     github_repo: "uno-km/termux-vision"
