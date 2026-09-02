@@ -328,13 +328,7 @@ export default async function handler(req, res) {
           const dbRows = await sql`
             SELECT 
               trace_id as "traceId",
-              visitor_id as "sessionId",
-              ip_address as "ipAddress",
-              country,
-              city,
-              asn_provider as "asnProvider",
-              origin_referrer as "originReferrer",
-              path_hop_chain as "pathHopChain",
+              session_id as "sessionId",
               score,
               action,
               recommended_action as "recommendedAction",
@@ -342,11 +336,12 @@ export default async function handler(req, res) {
               vendor_group as "vendorGroup",
               user_agent as "userAgent",
               webgl_renderer as "webglRenderer",
-              canvas_subpixel_hash as "canvasHash",
-              audio_oscillator_hash as "audioHash",
-              math_jit_precision as "mathPrecision",
-              battery_charge_status as "batteryStatus",
-              screen_refresh_hz as "screenHz",
+              country,
+              city,
+              asn_provider as "asnProvider",
+              origin_referrer as "originReferrer",
+              screen_hz as "screenHz",
+              path_hop_chain as "pathHopChain",
               evidence,
               evaluated_at as "evaluatedAt",
               risk_level as "riskLevel",
@@ -358,7 +353,10 @@ export default async function handler(req, res) {
             FROM sentinel_risk_events
             ORDER BY evaluated_at DESC
             LIMIT 500;
-          `.catch(() => []);
+          `.catch((err) => {
+            console.error('[sentinel] DB query error (sentinel_risk_events):', err.message);
+            return [];
+          });
 
           // Also query visitor_sessions for true total counts
           const totalSessionsCount = await sql`
@@ -366,7 +364,10 @@ export default async function handler(req, res) {
               (COALESCE((SELECT COUNT(*) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_human,
               COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_geo_deliveries), 0) as total_ai,
               COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) + COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0) as total_crawler;
-          `.catch(() => [{ total_human: 0, total_ai: 0, total_crawler: 0 }]);
+          `.catch((err) => {
+            console.error('[sentinel] DB query error (totalSessionsCount):', err.message);
+            return [{ total_human: 0, total_ai: 0, total_crawler: 0 }];
+          });
           events = dbRows.map(row => ({
             traceId: row.traceId,
             sessionId: row.sessionId,
@@ -490,7 +491,10 @@ export default async function handler(req, res) {
               (COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'AI_AGENT'), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_geo_deliveries), 0)) as ai_total,
               (COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) + COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0)) as crawler_total,
               COALESCE((SELECT COUNT(*) FROM sentinel_risk_events), 0) as total_risk_events;
-          `.catch(() => null);
+          `.catch((err) => {
+            console.error('[sentinel] DB query error (totals):', err.message);
+            return null;
+          });
 
           if (totals && totals.length > 0) {
             const row = totals[0];
