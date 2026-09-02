@@ -218,11 +218,11 @@
   },
   "ko": {
     "common": {
-      "brand": "AMEVA 오픈소스 재단",
+      "brand": "AMEVA ???? ??",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "독립 비영리 오픈소스 기구",
-      "githubBtn": "깃허브",
-      "founderBtn": "창립자 소개",
+      "githubBtn": "???",
+      "founderBtn": "??? ??",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
         "docNav": "문서 내비게이션",
@@ -231,11 +231,11 @@
         "aiSpecs": "AI 에이전트 프로토콜",
         "testReport": "실기기 정밀 감사 보고서"
       },
-      "sponsorBtn": "스폰서",
-      "openCollectiveBtn": "오픈 컬렉티브",
-      "blogBtn": "블로그",
-      "foundationBtn": "AMEVA 재단",
-      "foundationIntroBtn": "재단 소개",
+      "sponsorBtn": "???",
+      "openCollectiveBtn": "?? ????",
+      "blogBtn": "???",
+      "foundationBtn": "AMEVA ??",
+      "foundationIntroBtn": "?? ??",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -426,11 +426,11 @@
   },
   "hi": {
     "common": {
-      "brand": "AMEVA ओपन सोर्स फाउंडेशन",
+      "brand": "AMEVA ??? ????? ????????",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "स्वतंत्र ओपन-सोर्स निकाय",
       "githubBtn": "GitHub",
-      "founderBtn": "संस्थापक सीवी",
+      "founderBtn": "???????? ????",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). सर्वाधिकार सुरक्षित। मेरिटोक्रेसी द्वारा शासित।",
       "nav": {
         "docNav": "दस्तावेज़ नेविगेशन",
@@ -439,11 +439,11 @@
         "aiSpecs": "AI एजेंट प्रोटोकॉल",
         "testReport": "वास्तविक डिवाइस ऑडिट रिपोर्ट"
       },
-      "sponsorBtn": "प्रायोजक",
+      "sponsorBtn": "????????",
       "openCollectiveBtn": "Open Collective",
-      "blogBtn": "ब्लॉग",
-      "foundationBtn": "AMEVA फाउंडेशन",
-      "foundationIntroBtn": "फाउंडेशन परिचय",
+      "blogBtn": "?????",
+      "foundationBtn": "AMEVA ????????",
+      "foundationIntroBtn": "???????? ?????",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -634,11 +634,11 @@
   },
   "ja": {
     "common": {
-      "brand": "AMEVAオープンソース財団",
+      "brand": "AMEVA?????????",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "独立非営利オープンソース機関",
       "githubBtn": "GitHub",
-      "founderBtn": "創設者紹介",
+      "founderBtn": "?????",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.",
       "nav": {
         "docNav": "ドキュメントナビゲーション",
@@ -647,11 +647,11 @@
         "aiSpecs": "AIエージェント仕様",
         "testReport": "実機監査レポート"
       },
-      "sponsorBtn": "スポンサー",
-      "openCollectiveBtn": "オープンコレクティブ",
-      "blogBtn": "ブログ",
-      "foundationBtn": "AMEVA財団",
-      "foundationIntroBtn": "財団紹介",
+      "sponsorBtn": "?????",
+      "openCollectiveBtn": "??????????",
+      "blogBtn": "???",
+      "foundationBtn": "AMEVA??",
+      "foundationIntroBtn": "????",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -842,11 +842,11 @@
   },
   "zh": {
     "common": {
-      "brand": "AMEVA开源基金会",
+      "brand": "AMEVA?????",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "独立非营利开源机构",
       "githubBtn": "GitHub",
-      "founderBtn": "创始人简历",
+      "founderBtn": "?????",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). 保留所有权利。遵循精英治理准则。",
       "nav": {
         "docNav": "文档导航",
@@ -855,11 +855,11 @@
         "aiSpecs": "AI代理协议",
         "testReport": "真机审计报告"
       },
-      "sponsorBtn": "赞助",
+      "sponsorBtn": "??",
       "openCollectiveBtn": "Open Collective",
-      "blogBtn": "博客",
-      "foundationBtn": "AMEVA基金会",
-      "foundationIntroBtn": "基金会介绍",
+      "blogBtn": "??",
+      "foundationBtn": "AMEVA???",
+      "foundationIntroBtn": "?????",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -1050,11 +1050,11 @@
   },
   "ar": {
     "common": {
-      "brand": "مؤسسة AMEVA مفتوحة المصدر",
+      "brand": "????? AMEVA ?????? ??????",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "هيئة مستقلة مفتوحة المصدر",
       "githubBtn": "GitHub",
-      "founderBtn": "سيرة المؤسس",
+      "founderBtn": "???? ??????",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). جميع الحقوق محفوظة.",
       "nav": {
         "docNav": "التنقل في المستندات",
@@ -1063,11 +1063,11 @@
         "aiSpecs": "بروتوكولات الذكاء الاصطناعي",
         "testReport": "تقرير تدقيق الجهاز الحقيقي"
       },
-      "sponsorBtn": "رعاية",
+      "sponsorBtn": "?????",
       "openCollectiveBtn": "Open Collective",
-      "blogBtn": "المدونة",
-      "foundationBtn": "مؤسسة AMEVA",
-      "foundationIntroBtn": "عن المؤسسة",
+      "blogBtn": "???????",
+      "foundationBtn": "????? AMEVA",
+      "foundationIntroBtn": "?? ???????",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -1275,7 +1275,7 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "Fondation AMEVA",
-      "foundationIntroBtn": "Présentation Fondation",
+      "foundationIntroBtn": "Pr?sentation Fondation",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -1470,7 +1470,7 @@
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "Unabhängige Open-Source-Organisation",
       "githubBtn": "GitHub",
-      "founderBtn": "Gründer-Profil",
+      "founderBtn": "Gr?nder-Profil",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Alle Rechte vorbehalten. Durch Leistungsprinzip verwaltet.",
       "nav": {
         "docNav": "Dokumentennavigation",
@@ -1483,7 +1483,7 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "AMEVA-Stiftung",
-      "foundationIntroBtn": "Über die Stiftung",
+      "foundationIntroBtn": "?ber die Stiftung",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -1674,7 +1674,7 @@
   },
   "es": {
     "common": {
-      "brand": "Fundación de Código Abierto AMEVA",
+      "brand": "Fundaci?n de C?digo Abierto AMEVA",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "Entidad Open-Source Independiente",
       "githubBtn": "GitHub",
@@ -1690,8 +1690,8 @@
       "sponsorBtn": "Patrocinar",
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
-      "foundationBtn": "Fundación AMEVA",
-      "foundationIntroBtn": "Sobre la Fundación",
+      "foundationBtn": "Fundaci?n AMEVA",
+      "foundationIntroBtn": "Sobre la Fundaci?n",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -1882,11 +1882,11 @@
   },
   "ru": {
     "common": {
-      "brand": "Фонд открытого исходного кода AMEVA",
+      "brand": "???? ????????? ????????? ???? AMEVA",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "Независимая опенсорс-организация",
       "githubBtn": "GitHub",
-      "founderBtn": "Основатель",
+      "founderBtn": "??????????",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Все права защищены. Управляется меритократией.",
       "nav": {
         "docNav": "Навигация по документации",
@@ -1895,11 +1895,11 @@
         "aiSpecs": "Протоколы ИИ-агентов",
         "testReport": "Отчет об аудите устройства"
       },
-      "sponsorBtn": "Спонсор",
+      "sponsorBtn": "???????",
       "openCollectiveBtn": "Open Collective",
-      "blogBtn": "Блог",
-      "foundationBtn": "Фонд AMEVA",
-      "foundationIntroBtn": "О Фонде",
+      "blogBtn": "????",
+      "foundationBtn": "???? AMEVA",
+      "foundationIntroBtn": "? ?????",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -2090,11 +2090,11 @@
   },
   "vi": {
     "common": {
-      "brand": "Quỹ nguồn mở AMEVA",
+      "brand": "Qu? ngu?n m? AMEVA",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "Tổ chức Mã Nguồn Mở Độc lập",
       "githubBtn": "GitHub",
-      "founderBtn": "Hồ sơ sáng lập",
+      "founderBtn": "H? s? s?ng l?p",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Bản quyền thuộc về Quỹ. Quản trị theo chế độ nhân tài.",
       "nav": {
         "docNav": "Điều hướng Tài liệu",
@@ -2103,11 +2103,11 @@
         "aiSpecs": "Giao thức Tác nhân AI",
         "testReport": "Báo cáo kiểm toán thiết bị thực"
       },
-      "sponsorBtn": "Tài trợ",
+      "sponsorBtn": "T?i tr?",
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
-      "foundationBtn": "Quỹ AMEVA",
-      "foundationIntroBtn": "Giới thiệu quỹ",
+      "foundationBtn": "Qu? AMEVA",
+      "foundationIntroBtn": "Gi?i thi?u qu?",
       "pkgBtn": "pip / npm",
       "pypiBtn": "PyPI",
       "npmBtn": "npm"
@@ -2302,7 +2302,7 @@
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "Niezależna Organizacja Open-Source",
       "githubBtn": "GitHub",
-      "founderBtn": "CV Założyciela",
+      "founderBtn": "CV Za?o?yciela",
       "footer": "© 2026 AMEVA Open-Source Foundation (AOSF). Wszelkie prawa zastrzeżone. Rządzona merytokracją.",
       "nav": {
         "docNav": "Nawigacja po Dokumentach",
