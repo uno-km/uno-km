@@ -475,10 +475,13 @@ export default async function handler(req, res) {
             };
         });
 
+        const hasQueryError = queryErrors.length > 0;
         return res.status(200).json({
-            status: queryErrors.length > 0 ? 'degraded' : 'online',
-            database_connected: true,
-            ...(queryErrors.length > 0 ? { partial_query_errors: queryErrors } : {}),
+            status: hasQueryError ? 'degraded' : 'online',
+            database_connected: queryErrors.length < 7,
+            has_query_errors: hasQueryError,
+            error_count: queryErrors.length,
+            ...(hasQueryError ? { query_errors: queryErrors, partial_query_errors: queryErrors } : {}),
             updated_at: new Date().toISOString(),
             ecosystem_health_score: null, // Explicit null: synthetic SLA uptime scoring requires dedicated synthetic probe telemetry
             summary: {
