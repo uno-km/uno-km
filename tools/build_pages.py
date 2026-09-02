@@ -65,16 +65,13 @@ def parse_versions_yaml():
             eco['release_date'] = m.group(1).strip(); continue
 
         # libraries block
-        m = re.match(r'^  ([\w-]+):$', line)
-        if m and not stripped.endswith(":") == False:
-            pass
-        m2 = re.match(r'^  ([\w-]+):\s*$', line)
-        if m2:
+        m = re.match(r'^  ([\w-]+):\s*$', line)
+        if m:
             if in_doc_pages and current_lib:
                 libs[current_lib]['doc_pages'] = doc_pages
                 doc_pages = []
                 in_doc_pages = False
-            current_lib = m2.group(1)
+            current_lib = m.group(1)
             libs[current_lib] = {}
             continue
 
