@@ -39,7 +39,7 @@
   </header>
 
   <div class="container">
-                  <nav class="sidebar">
+                    <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -84,7 +84,22 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v1.3.1 - Dual-Engine Production Release (Current)</h3>
+      
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - Vulkan HAL Acceleration & FP16 UNet Optimization</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-02</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Vulkan HAL Integration: Direct dispatch to Qualcomm Adreno and ARM Mali GPUs via AMEVA-Vulkan-Runtime.</li>
+          <li>Half-Precision (FP16) UNet Pipeline: Reduced VRAM allocation to under 1.2GB for 512x512 image generation.</li>
+          <li>Android Gallery Sync: Automatic asset export to native DCIM/AMEVA folder with EXIF metadata preservation.</li>
+        </ul>
+      </div>
+<h3>v1.3.1 - Dual-Engine Production Release (Current)</h3>
          <ul>
            <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
            <li>Integrated 6-language client-side i18n DOM translation engine.</li>

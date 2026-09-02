@@ -746,7 +746,7 @@
       });
 
       // 2. Intelligent Body, Table Header, Alert & Subtitle Universal Translator
-      const targetTags = ['h1', 'h2', 'h3', 'h4', 'th', 'span.alert-title', 'p.subtitle', 'td', 'div.alert > p'];
+      const targetTags = ['h1', 'h2', 'h3', 'h4', 'th', 'span.alert-title', 'p.subtitle', 'td', 'div.alert > p', 'nav.sidebar a', 'nav.sidebar h3', 'span.status-badge', 'div.feature-card > h4', 'div.feature-card > p'];
       document.querySelectorAll(targetTags.join(',')).forEach(el => {
         if (el.querySelector('pre, code, input, select, textarea')) return;
         

@@ -39,7 +39,7 @@
   </header>
 
   <div class="container">
-                  <nav class="sidebar">
+                    <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -83,7 +83,22 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+            
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.4 - Whisper.cpp Vulkan Core & 128d X-Vector Speaker Diarization</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-02</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Whisper.cpp Vulkan Backend: Hardware-accelerated mel-spectrogram extraction and transformer decoding.</li>
+          <li>128d X-Vector Diarization: Pure Python cosine-distance clustering for high-accuracy multi-speaker separation.</li>
+          <li>Sherpa-ONNX Fallback Engine: Seamless failover for real-time streaming audio buffers on low-end hardware.</li>
+        </ul>
+      </div>
+<div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.0 - Fuzzy Typo Protection & Output Directory Auto-Creation</h3>
           <div>

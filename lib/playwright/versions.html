@@ -39,7 +39,7 @@
   </header>
 
   <div class="container">
-                  <nav class="sidebar">
+                    <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -82,7 +82,22 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v1.0.0 - Bionic Chromium CDP Driver (Current)</h3>
+      
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.80.1 - Headless Chromium Bionic & Phantom Process Guard</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-02</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Phantom Process Reaper: Zero-zombie guarantee with automatic PID cleanup on SIGINT and unhandled rejection.</li>
+          <li>Bionic Chromium Native Driver: Direct DevTools Protocol (CDP) communication over Unix domain sockets.</li>
+          <li>Production Scraper Recipes: Headless stealth mode bypass and dynamic cookie session persistence.</li>
+        </ul>
+      </div>
+<h3>v1.0.0 - Bionic Chromium CDP Driver (Current)</h3>
          <ul>
            <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
            <li>Integrated 6-language client-side i18n DOM translation engine.</li>
