@@ -149,9 +149,6 @@ export async function middleware(request) {
     if (matchedBot) {
         const deepPayload = generateDeepAiPayload(path);
         const servedBytes = new TextEncoder().encode(deepPayload).length;
-        const originalBytes = 180000;
-        const savedBytes = Math.max(0, originalBytes - servedBytes);
-        const savingsRatio = Number(((savedBytes / originalBytes) * 100).toFixed(1));
 
         const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
         if (dbUrl) {
@@ -226,8 +223,8 @@ export async function middleware(request) {
                 'Content-Type': 'text/markdown; charset=utf-8',
                 'X-Robots-Tag': 'all',
                 'X-Powered-By': 'AMEVA-Sentinel-GEO-v0.7.0',
-                'X-Sentinel-Score': '0',
-                'X-Sentinel-Bandwidth-Saved': `${(savedBytes / 1024).toFixed(1)}KB (${savingsRatio}%)`,
+                'X-Sentinel-Score': String(threatScore || 0),
+                'X-Sentinel-Payload-Size': `${(servedBytes / 1024).toFixed(1)}KB`,
                 'Cache-Control': 'public, max-age=86400, s-maxage=86400'
             }
         });

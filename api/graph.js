@@ -1613,7 +1613,7 @@ export const SEED_EDGES = [
 async function ensureGraphSchemaAndSeed(sql) {
     if (isGraphSchemaReady) return;
     try {
-        await sql
+        await sql`
             CREATE TABLE IF NOT EXISTS graph_nodes (
                 node_id VARCHAR(100) PRIMARY KEY,
                 name VARCHAR(150) NOT NULL,
@@ -1643,9 +1643,9 @@ async function ensureGraphSchemaAndSeed(sql) {
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
-        ;
+        `;
 
-        await sql
+        await sql`
             CREATE TABLE IF NOT EXISTS graph_edges (
                 edge_id BIGSERIAL PRIMARY KEY,
                 source_node_id VARCHAR(100) NOT NULL,
@@ -1657,18 +1657,18 @@ async function ensureGraphSchemaAndSeed(sql) {
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 CONSTRAINT uq_graph_edge_link UNIQUE (source_node_id, target_node_id, relation_type)
             );
-        ;
+        `;
 
         for (const n of SEED_NODES) {
-            await sql
+            await sql`
                 INSERT INTO graph_nodes (
-                    node_id, name, category, depth_level, parent_id, description,
+                    node_id, name, category, depth_level, description,
                     tech_stack, tags, node_radius, node_weight, group_color,
                     repo_url, docs_url, readme_url
                 ) VALUES (
-                    , , , , , ,
-                    , , , 1.0, '#3ECF8E',
-                    , , 
+                    ${n.id}, ${n.name}, ${n.category || 'GENERAL'}, ${n.group || 1}, ${n.description || ''},
+                    ${n.tech_stack || []}, ${n.tags || []}, ${n.radius || 16.0}, 1.0, '#3ECF8E',
+                    ${n.repo_url || ''}, ${n.docs_url || ''}, ${n.readme_url || ''}
                 ) ON CONFLICT (node_id) DO UPDATE SET
                     name = EXCLUDED.name,
                     category = EXCLUDED.category,
@@ -1680,17 +1680,17 @@ async function ensureGraphSchemaAndSeed(sql) {
                     docs_url = EXCLUDED.docs_url,
                     readme_url = EXCLUDED.readme_url,
                     updated_at = CURRENT_TIMESTAMP;
-            ;
+            `;
         }
 
         for (const e of SEED_EDGES) {
-            await sql
+            await sql`
                 INSERT INTO graph_edges (
                     source_node_id, target_node_id, relation_type, edge_weight, label
                 ) VALUES (
-                    , , , , 
+                    ${e.source}, ${e.target}, ${e.type || 'HIERARCHY'}, ${e.value || 1.0}, ${e.label || ''}
                 ) ON CONFLICT DO NOTHING;
-            ;
+            `;
         }
 
         isGraphSchemaReady = true;
@@ -1727,18 +1727,18 @@ export default async function handler(req, res) {
         const sql = neon(dbUrl);
         await ensureGraphSchemaAndSeed(sql);
 
-        const rawNodes = await sql
-            SELECT node_id as id, name, category, depth_level as group, description,
+        const rawNodes = await sql`
+            SELECT node_id as id, name, category, depth_level as "group", description,
                    tech_stack, tags, node_radius as radius, repo_url, docs_url, readme_url
             FROM graph_nodes
             WHERE is_active = true
             ORDER BY depth_level ASC;
-        ;
+        `;
 
-        const rawEdges = await sql
+        const rawEdges = await sql`
             SELECT source_node_id as source, target_node_id as target, edge_weight as value, relation_type as type, label
             FROM graph_edges;
-        ;
+        `;
 
         const formattedNodes = rawNodes.map(n => ({
             ...n,

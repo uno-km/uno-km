@@ -213,43 +213,29 @@ export default async function handler(req, res) {
         return res.status(200).json({
             status: 'db_unconfigured',
             database_connected: false,
+            message: '데이터베이스 미연결 (DB 미연결)',
             updated_at: new Date().toISOString(),
-            ecosystem_health_score: 100,
+            ecosystem_health_score: '-',
             summary: {
-                total_active_sessions: 200,
-                total_unique_visitors: 94,
-                ai_crawlers_identified: 82,
-                human_count: 200,
-                ai_count: 82,
-                total_all_events: 282,
-                webgpu_enabled_sessions: 156
+                total_active_sessions: '-',
+                total_unique_visitors: '-',
+                ai_crawlers_identified: '-',
+                human_count: '-',
+                ai_count: '-',
+                total_all_events: '-',
+                webgpu_enabled_sessions: '-'
             },
             traffic_distribution: {
-                human_percent: 71,
-                ai_bots_percent: 29
+                human_percent: '-',
+                ai_bots_percent: '-'
             },
-            ai_crawlers_breakdown: [
-                { name: 'OpenAI / GPTBot', count: 42, share: '51.2%' },
-                { name: 'Anthropic / ClaudeBot', count: 24, share: '29.3%' },
-                { name: 'PerplexityBot', count: 16, share: '19.5%' }
-            ],
-            top_regions: [
-                { country: 'KR', city: 'Goyang-si', count: 135, percentage: '67.5%' },
-                { country: 'US', city: 'Ashburn', count: 45, percentage: '22.5%' },
-                { country: 'KR', city: 'Seocho-gu', count: 20, percentage: '10.0%' }
-            ],
-            country_clusters: [
-                { country: 'KR', name: 'South Korea', lat: 36.5, lng: 127.8, count: 155, human_count: 140, ai_count: 15, percentage: 77.5 },
-                { country: 'US', name: 'United States', lat: 38.0, lng: -97.0, count: 45, human_count: 35, ai_count: 10, percentage: 22.5 }
-            ],
-            geo_clusters: [
-                { country: 'KR', city: 'Goyang-si', label: 'Goyang-si, South Korea', lat: 37.6584, lng: 126.8320, count: 135, human_count: 120, ai_count: 15, tool_count: 0, percentage: 67.5 },
-                { country: 'US', city: 'Ashburn', label: 'Ashburn (VA), United States', lat: 39.0438, lng: -77.4874, count: 45, human_count: 35, ai_count: 10, tool_count: 0, percentage: 22.5 },
-                { country: 'KR', city: 'Seocho-gu', label: 'Seocho-gu (Seoul), South Korea', lat: 37.4837, lng: 127.0324, count: 20, human_count: 20, ai_count: 0, tool_count: 0, percentage: 10.0 }
-            ],
+            ai_crawlers_breakdown: [],
+            top_regions: [],
+            country_clusters: [],
+            geo_clusters: [],
             hardware_adoption: {
-                webgpu_supported_percent: 78,
-                top_renderers: [{ gpu_renderer: 'Apple M-Series GPU', count: 120 }]
+                webgpu_supported_percent: '-',
+                top_renderers: []
             },
             recent_activity_stream: []
         });
