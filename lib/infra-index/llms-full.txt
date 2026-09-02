@@ -1,0 +1,9 @@
+# Infra-Index Platform Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Global Cloud GPU/CPU/Storage Pricing & AI Semiconductor Market Intelligence Platform.
+
+## 2. Package & Installation
+- Repository: https://github.com/uno-km/infraindex-platform
+- Live Platform: https://infraindex-platform-front.vercel.app/

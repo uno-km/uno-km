@@ -13,6 +13,7 @@ Usage:
 """
 import os, re, sys, argparse, datetime
 from pathlib import Path
+from html.parser import HTMLParser
 
 ROOT = Path(__file__).parent.parent
 SHARED = ROOT / "shared"
@@ -232,51 +233,213 @@ def generate_sitemap(lib_name: str, lib_info: dict, dry_run: bool = False):
     print(f"  [INFO] sitemap.xml → lib/{lib_name}/sitemap.xml ({out.stat().st_size}B)")
 
 
-# ── Verify ──
-def verify_all(libs: dict) -> int:
-    print("\n" + "="*60)
-    print("VERIFICATION")
-    print("="*60)
-    issues = 0
-    old_checks = [
-        'href="assets/style.css"',
-        "src=\"assets/i18n.js\"",
-        "src=\"assets/i18n-translations.js\"",
-        "src=\"assets/common.js\""
-    ]
+# ── HTML Validator & Multi-Stage Integrity Suite ──
+class HTMLDocumentValidator(HTMLParser):
+    def __init__(self, file_path: Path, root_path: Path):
+        super().__init__()
+        self.file_path = file_path
+        self.root_path = root_path
+        self.links = []  # (tag, attr, val, line_no)
+        self.has_title = False
+        self.has_viewport = False
+        self.has_charset = False
+        self.has_canonical_css = False
+        self.has_i18n_js = False
+        self.has_i18n_trans = False
+        self.favicon_count = 0
+        self.legacy_refs = []
+        self.parse_errors = []
 
-    for lib_name in libs:
+    def handle_starttag(self, tag, attrs):
+        attr_dict = dict(attrs)
+        line, _ = self.getpos()
+        if tag == "title":
+            self.has_title = True
+        elif tag == "meta":
+            if "charset" in attr_dict:
+                self.has_charset = True
+            if attr_dict.get("name", "").lower() == "viewport":
+                self.has_viewport = True
+        elif tag == "link":
+            rel = attr_dict.get("rel", "").lower()
+            href = attr_dict.get("href", "")
+            if "icon" in rel:
+                self.favicon_count += 1
+            if "/shared/lib-style.css" in href or "/shared/style.css" in href:
+                self.has_canonical_css = True
+            if "assets/style.css" in href:
+                self.legacy_refs.append((tag, "href", href, line))
+        elif tag == "script":
+            src = attr_dict.get("src", "")
+            if "/shared/i18n.js" in src:
+                self.has_i18n_js = True
+            if "/shared/i18n-translations.js" in src:
+                self.has_i18n_trans = True
+            if any(old in src for old in ["assets/i18n.js", "assets/i18n-translations.js", "assets/common.js"]):
+                self.legacy_refs.append((tag, "src", src, line))
+
+        for attr in ("href", "src"):
+            if attr in attr_dict:
+                self.links.append((tag, attr, attr_dict[attr], line))
+
+    def error(self, message):
+        self.parse_errors.append(message)
+
+
+def check_internal_link(file_path: Path, root_path: Path, link_val: str) -> tuple[bool, str]:
+    """Validates whether an internal link or asset exists on disk."""
+    clean = link_val.strip()
+    if not clean:
+        return True, ""
+    if clean.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "#", "data:")):
+        return True, ""
+
+    target = clean.split("#")[0].split("?")[0].strip()
+    if not target:
+        return True, ""
+
+    if target.startswith("/"):
+        resolved = (root_path / target.lstrip("/")).resolve()
+    else:
+        resolved = (file_path.parent / target).resolve()
+
+    if resolved.is_dir():
+        resolved = resolved / "index.html"
+
+    if not resolved.exists():
+        return False, f"Broken link reference -> {target}"
+    return True, ""
+
+
+def check_null_bytes(target_dirs: list[Path]) -> list[tuple[Path, int]]:
+    """Scans all web and configuration files for 0x00 null byte corruption."""
+    corrupted = []
+    for t_dir in target_dirs:
+        if not t_dir.exists():
+            continue
+        for root, dirs, files in os.walk(t_dir):
+            if any(p in root for p in [".git", "node_modules", "__pycache__"]):
+                continue
+            for f in files:
+                if f.endswith((".html", ".xml", ".txt", ".yaml", ".json", ".css", ".js", ".md")):
+                    p = Path(root) / f
+                    try:
+                        with open(p, "rb") as fp:
+                            raw = fp.read()
+                            if b"\x00" in raw:
+                                corrupted.append((p, raw.count(b"\x00")))
+                    except Exception:
+                        pass
+    return corrupted
+
+
+def verify_all(libs: dict) -> int:
+    print("\n" + "="*70)
+    print("AMEVA ECOSYSTEM RIGOROUS VERIFICATION SUITE")
+    print("="*70)
+    issues = 0
+    total_files_checked = 0
+    total_links_checked = 0
+    total_yaml_pages_checked = 0
+
+    # 1. Null-Byte Binary Guard
+    print("[1/4] Scanning for raw Null-Byte (0x00) binary corruption...")
+    scan_dirs = [LIB, ROOT / "foundation", SHARED]
+    corrupted_files = check_null_bytes(scan_dirs)
+    if corrupted_files:
+        for p, count in corrupted_files:
+            rel = p.relative_to(ROOT)
+            print(f"  [FAIL] Null-byte corruption detected ({count} null bytes): {rel}")
+            issues += 1
+    else:
+        print("  [PASS] 0 Null-byte corruptions found across all web and config files.")
+
+    # 2. YAML SSOT Alignment Verification
+    print("\n[2/4] Verifying ecosystem-versions.yaml doc_pages alignment...")
+    for lib_name, lib_info in libs.items():
         lib_dir = LIB / lib_name
-        if not lib_dir.exists(): continue
-        for html_file in sorted(lib_dir.rglob("*.html")):
-            try:
-                content = html_file.read_text(encoding="utf-8", errors="replace")
-                rel = html_file.relative_to(ROOT)
-                # Check old asset refs
-                for chk in old_checks:
-                    if chk in content:
-                        print(f"  [FAIL] Old ref found: {rel} → {chk}")
-                        issues += 1
-                # Check favicon duplicate
-                favicons = len(FAVICON_RE.findall(content))
-                if favicons > 1:
-                    print(f"  [FAIL] Duplicate favicon ({favicons}×): {rel}")
-                    issues += 1
-                # Check /shared/ refs present
-                if '/shared/lib-style.css' not in content:
-                    print(f"  [FAIL] Missing /shared/lib-style.css: {rel}")
-                    issues += 1
-                if '/shared/i18n-translations.js' not in content:
-                    print(f"  [FAIL] Missing /shared/i18n-translations.js: {rel}")
-                    issues += 1
-            except Exception as e:
-                print(f"  [ERR] Cannot read {html_file.relative_to(ROOT)}: {e}")
+        if not lib_dir.exists():
+            print(f"  [FAIL] Missing library directory: lib/{lib_name}")
+            issues += 1
+            continue
+
+        doc_pages = lib_info.get("doc_pages", [])
+        for page in doc_pages:
+            total_yaml_pages_checked += 1
+            page_path = lib_dir / page
+            if not page_path.exists():
+                print(f"  [FAIL] YAML doc_page missing on disk: lib/{lib_name}/{page}")
                 issues += 1
 
     if issues == 0:
-        print("  [PASS] All checks passed. No issues found.")
+        print(f"  [PASS] All {total_yaml_pages_checked} YAML doc_pages verified on disk.")
+
+    # 3. HTML Parser, Syntax, Head Compliance & Link Resolution
+    print("\n[3/4] Parsing HTML well-formedness, required meta tags, and resolving links...")
+    for lib_name in libs:
+        lib_dir = LIB / lib_name
+        if not lib_dir.exists():
+            continue
+        for html_file in sorted(lib_dir.rglob("*.html")):
+            total_files_checked += 1
+            rel = html_file.relative_to(ROOT)
+            try:
+                content = html_file.read_text(encoding="utf-8", errors="replace")
+                validator = HTMLDocumentValidator(html_file, ROOT)
+                validator.feed(content)
+
+                # Syntax errors
+                if validator.parse_errors:
+                    for err in validator.parse_errors:
+                        print(f"  [FAIL] HTML Syntax Error in {rel}: {err}")
+                        issues += 1
+
+                # Legacy asset references
+                if validator.legacy_refs:
+                    for tag, attr, val, line in validator.legacy_refs:
+                        print(f"  [FAIL] Legacy relative asset found: {rel}:L{line} -> <{tag} {attr}=\"{val}\">")
+                        issues += 1
+
+                # Duplicate favicon
+                if validator.favicon_count > 1:
+                    print(f"  [FAIL] Duplicate favicon ({validator.favicon_count}x): {rel}")
+                    issues += 1
+
+                # Missing canonical stylesheet
+                if not validator.has_canonical_css:
+                    print(f"  [FAIL] Missing canonical stylesheet (/shared/lib-style.css): {rel}")
+                    issues += 1
+
+                # Missing i18n scripts
+                if not validator.has_i18n_trans:
+                    print(f"  [FAIL] Missing i18n translations (/shared/i18n-translations.js): {rel}")
+                    issues += 1
+
+                # Internal link validation
+                for tag, attr, val, line in validator.links:
+                    total_links_checked += 1
+                    valid, err_msg = check_internal_link(html_file, ROOT, val)
+                    if not valid:
+                        print(f"  [FAIL] {rel}:L{line} -> {err_msg}")
+                        issues += 1
+
+            except Exception as e:
+                print(f"  [ERR] Failed to read/parse {rel}: {e}")
+                issues += 1
+
+    # 4. Summary Scorecard
+    print("\n" + "="*70)
+    print("VERIFICATION SCORECARD:")
+    print(f"  - Total HTML Documents Checked : {total_files_checked}")
+    print(f"  - Total Links/Assets Resolved  : {total_links_checked}")
+    print(f"  - YAML Document Pages Verified : {total_yaml_pages_checked}")
+    print(f"  - Total Detected Issues        : {issues}")
+    print("="*70)
+
+    if issues == 0:
+        print("  [PASS] All verification stages passed with zero issues.")
     else:
-        print(f"\n  Total issues: {issues}")
+        print(f"  [FAIL] Verification encountered {issues} issue(s). Please review logs.")
     return issues
 
 

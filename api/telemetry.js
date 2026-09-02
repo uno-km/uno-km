@@ -168,7 +168,7 @@ export default async function handler(req, res) {
 
         const headers = req.headers || {};
         const raw_ip = headers['x-forwarded-for'] ? headers['x-forwarded-for'].split(',')[0].trim() : (req.socket?.remoteAddress || '127.0.0.1');
-        const ip = maskIpAddress(raw_ip);
+        const ip = maskIpAddress(raw_ip) || '0.0.***.***';
         const country = headers['x-vercel-ip-country'] || 'LOCAL';
         const city = headers['x-vercel-ip-city'] ? decodeURIComponent(headers['x-vercel-ip-city']) : 'Localhost';
         const region = headers['x-vercel-ip-country-region'] || '';
@@ -179,7 +179,7 @@ export default async function handler(req, res) {
         const { type, session_id, visitor_id, pathname, url, referrer, hardware, forensics } = body;
 
         if (!session_id || !visitor_id) {
-            return res.status(200).json({ ok: true, note: 'missing session_id/visitor_id' });
+            return res.status(400).json({ ok: false, error: 'Missing required session_id or visitor_id' });
         }
 
         const sql = await getGlobalTelemetrySql();
@@ -303,6 +303,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ ok: true });
     } catch (err) {
         console.error('Telemetry Ingestion Error:', err.message);
-        return res.status(200).json({ ok: true, error: err.message });
+        return res.status(500).json({ ok: false, error: err.message });
     }
 }

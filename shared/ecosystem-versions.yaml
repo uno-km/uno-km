@@ -256,7 +256,4 @@ libraries:
       - benchmarks.html
       - advanced-parameters.html
       - versions.html
-      - vulkan-enablement-playbook.html
-      - hardware-support-matrix.html
-      - cross-modal-integration.html
     status: "stable"

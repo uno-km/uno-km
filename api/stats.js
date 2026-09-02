@@ -133,7 +133,9 @@ export default async function handler(req, res) {
                 ORDER BY count DESC 
                 LIMIT 30;
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats topEvents Warning]', e.message);
+        }
 
         // 5. Recent Unified AI Bots Detected (sentinel_risk_events + sentinel_geo_deliveries + bot_crawler_logs)
         let recentBotsRes = [];
@@ -179,7 +181,9 @@ export default async function handler(req, res) {
                 ...b,
                 ip_address: maskIp(b.ip_address)
             }));
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats recentBots Warning]', e.message);
+        }
 
         // 6. Deep Forensic Footprints (Unified & Enriched)
         let recentForensicsRes = [];
@@ -283,7 +287,9 @@ export default async function handler(req, res) {
                 ORDER BY views DESC 
                 LIMIT 30;
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats pageFlow Warning]', e.message);
+        }
 
         // 9. Traffic Acquisition & Inflow Sources ("왜 접속했는지" / Referrers)
         let referrersRes = [];
@@ -300,7 +306,9 @@ export default async function handler(req, res) {
                 ORDER BY count DESC 
                 LIMIT 30;
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats referrers Warning]', e.message);
+        }
 
         // 10. Granular User Micro-Interactions & Actions
         let actionsRes = [];
@@ -312,7 +320,9 @@ export default async function handler(req, res) {
                 LEFT JOIN visitor_sessions s ON c.session_id = s.session_id
                 ORDER BY c.occurred_at DESC LIMIT 60;
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats actions Warning]', e.message);
+        }
 
         // 11. Visitor Page Journey & Exit Hop Traversal
         let journeysRes = [];
@@ -332,16 +342,18 @@ export default async function handler(req, res) {
                 ORDER BY evaluated_at DESC 
                 LIMIT 100;
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.warn('[Stats journeys Warning]', e.message);
+        }
 
         const totalBotsCount = recentBotsRes.length;
 
         const payload = {
             status: 'success',
             metrics: {
-                total_visitors: totalVisitorsRes?.[0]?.total_visitors || 94,
-                total_sessions: totalVisitorsRes?.[0]?.total_sessions || 182,
-                identified_ai_bots: totalBotsCount || 82
+                total_visitors: parseInt(totalVisitorsRes?.[0]?.total_visitors || 0, 10),
+                total_sessions: parseInt(totalVisitorsRes?.[0]?.total_sessions || 0, 10),
+                identified_ai_bots: totalBotsCount
             },
             top_countries: topCountriesRes || [],
             top_gpus: topGpuRes || [],
@@ -367,10 +379,10 @@ export default async function handler(req, res) {
     } catch (err) {
         inFlightPromise = null;
         console.error('Fatal stats API handler error:', err);
-        return res.status(200).json({
-            status: 'degraded',
+        return res.status(500).json({
+            status: 'error',
             error: err.message,
-            metrics: { total_visitors: 94, total_sessions: 182, identified_ai_bots: 82 },
+            metrics: { total_visitors: 0, total_sessions: 0, identified_ai_bots: 0 },
             top_countries: [],
             top_gpus: [],
             top_interactions: [],
