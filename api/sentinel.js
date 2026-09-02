@@ -307,7 +307,9 @@ export default async function handler(req, res) {
 
       // Buffer into batch queue
       pendingGeoDeliveries.push(geoRecord);
-      flushBatchQueue(false).catch(() => {});
+      flushBatchQueue(false).catch(err => {
+        console.error('[Sentinel Geo Batch Flush Error]:', err.message);
+      });
 
       return res.status(200).end(payload);
     }
@@ -620,7 +622,9 @@ export default async function handler(req, res) {
     }
 
     // Trigger non-blocking batch flush
-    flushBatchQueue(false).catch(() => {});
+    flushBatchQueue(false).catch(err => {
+      console.error('[Sentinel Risk Event Batch Flush Error]:', err.message);
+    });
 
     return res.status(200).json({
       status: 'success',
