@@ -1,78 +1,849 @@
-/* ?? Split Header Dual Button (pip / npm & Foundation / GitHub Hover FX) ?? */
+/* ==========================================================================
+   AMEVA Ecosystem - Canonical Unified Design System (SSOT v3.0)
+   Standard: 58px Fixed Header (2px #004499 line), 270px Unified Left Sidebar,
+             High-Clarity Enterprise Open-Source (Apache/Tomcat Tech Hybrid)
+   Standardized Rounded Pill Active Links, Zero-Jitter Clean Layout
+   ========================================================================== */
+
+:root {
+  /* Brand Tokens */
+  --primary-color: #004499;
+  --primary-dark: #002b66;
+  --primary-light: #e8f0fe;
+  --accent-cyan: #00f5d4;
+  --accent-blue: #2563eb;
+  --accent-amber: #b45309;
+  --accent-green: #16a34a;
+
+  /* Surfaces & Backgrounds */
+  --bg-main: #ffffff;
+  --bg-surface: #f8f9fa;
+  --bg-alt: #f1f5f9;
+  --bg-card: #ffffff;
+
+  /* Borders & Dividers */
+  --border-color: #cbd5e1;
+  --border-subtle: #e2e8f0;
+  --border-strong: #94a3b8;
+
+  /* Typography Colors */
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+
+  /* Code & Terminals */
+  --code-bg: #0b132b;
+  --code-text: #f8fafc;
+  --code-border: #1e293b;
+
+  /* Layout Metrics */
+  --sidebar-width: 310px;
+  --header-height: 58px;
+  --content-max-width: 1040px;
+
+  /* Fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+}
+
+/* ── Top Header ──────────────────────────────────────────────────────────── */
+header {
+  background-color: var(--bg-surface);
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0 20px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: visible;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.header-brand img {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.header-brand h1 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.release-tag {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border: 1px solid #bfdbfe;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.header-btn:hover {
+  background-color: var(--bg-alt);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.header-btn.primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.header-btn.primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.lang-select {
+  padding: 4px 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.lang-select:focus {
+  border-color: var(--primary-color);
+}
+
+/* ── Layout Container ─────────────────────────────────────────────────────── */
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: calc(100vh - var(--header-height) - 60px);
+}
+
+/* ── Unified Master Left Sidebar ─────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  padding: 20px 14px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.sidebar h3 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 18px 0 6px 0;
+  padding-left: 8px;
+  border-left: 3px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar h3:first-of-type {
+  margin-top: 0;
+}
+
+.sidebar h3 .accordion-icon {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  transition: transform 0.15s ease;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.sidebar ul.collapsed {
+  display: none;
+}
+
+.sidebar li {
+  margin-bottom: 2px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 6px 10px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.12s ease;
+  line-height: 1.35;
+}
+
+.sidebar a:hover {
+  background-color: var(--bg-alt);
+  color: var(--primary-color);
+}
+
+/* 🌟 Standardized 100% Rounded Pill Active Link (Sentinel Standard) */
+.sidebar a.active,
+.sidebar li a.active,
+.sidebar a.active strong,
+.sidebar li a.active strong {
+  background-color: var(--primary-light) !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  border-left: none !important;
+}
+
+/* ── Content Area ────────────────────────────────────────────────────────── */
+.content {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: var(--content-max-width);
+  min-width: 0;
+}
+
+.content h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.content .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 32px 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.content p {
+  margin-bottom: 16px;
+  color: var(--text-main);
+  line-height: 1.65;
+}
+
+.content ul, .content ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.content li {
+  margin-bottom: 6px;
+}
+
+/* ── Tables & Cards ──────────────────────────────────────────────────────── */
+.data-table, table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px 0;
+  font-size: 0.9rem;
+}
+
+.data-table th, table th,
+.data-table td, table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.data-table th, table th {
+  background-color: var(--bg-surface);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.data-table tr:hover, table tr:hover {
+  background-color: var(--bg-surface);
+}
+
+.badges-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.alert {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary-color);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 18px 0;
+}
+
+.alert.alert-tip {
+  border-left-color: var(--accent-green);
+  background-color: #f0fdf4;
+}
+
+.alert.alert-warning {
+  border-left-color: var(--accent-amber);
+  background-color: #fffbeb;
+}
+
+.alert-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+/* ── Code Blocks ─────────────────────────────────────────────────────────── */
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 14px 18px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 14px 0 20px 0;
+  position: relative;
+  border: 1px solid var(--code-border);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background-color: var(--bg-alt);
+  color: var(--primary-dark);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.copy-code-btn:hover {
+  background: #334155;
+  color: #f8fafc;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive Hamburger & Mobile Drawer ────────────────────────────────── */
+.menu-toggle-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .menu-toggle-btn {
+    display: inline-flex;
+  }
+  .sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: -100%;
+    bottom: 0;
+    z-index: 99;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.2s ease;
+    overflow-y: auto;
+  }
+  .sidebar.mobile-open {
+    left: 0;
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+
+/* ── Desktop Sidebar Collapse Toggle Handle (문서철 접기/펼치기 탭) ────────── */
+.sidebar {
+  position: relative;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s ease, min-width 0.2s ease;
+}
+
+.sidebar.desktop-collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border-right: none !important;
+  overflow: hidden !important;
+  visibility: hidden;
+}
+
+.container.sidebar-collapsed .content {
+  max-width: 1200px;
+}
+
+.sidebar-toggle-tab {
+  position: absolute;
+  top: 140px;
+  right: -12px;
+  width: 20px;
+  height: 42px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 60;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.sidebar-toggle-tab:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 68, 153, 0.18);
+}
+
+.sidebar-toggle-tab.collapsed-tab {
+  position: fixed;
+  left: 0;
+  top: 198px;
+  right: auto;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background: #ffffff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Menu Button Responsive Rules ────────────────────────────────────────── */
+.menu-toggle-btn {
+  display: none;
+}
+
+@media (min-width: 961px) {
+  .menu-toggle-btn {
+    display: none !important; /* Wide screen: Hide top header menu button */
+  }
+}
+
+@media (max-width: 960px) {
+  .menu-toggle-btn {
+    display: inline-flex !important; /* Mobile/Tablet: Show in top header */
+  }
+  .sidebar-toggle-tab {
+    display: none !important; /* Mobile: Hide desktop sidebar tab */
+  }
+}
+
+/* ==========================================================================
+   AMEVA Ecosystem - Premium Mobile & Tablet UX Architecture (v4.0)
+   Features:
+   - 2-Tier Clean Sticky Header on Mobile (Logo + Lang on Top, 3 Pill Buttons Below)
+   - 100% Full Width Responsive Stack Layout (Accordion Nav on Top, Full Content Below)
+   - Zero Overlapping, Zero Text Squishing, Ultra-Crisp Touch Targets
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: auto;
+  }
+
+  header {
+    height: auto !important;
+    min-height: 48px;
+    padding: 8px 12px !important;
+    flex-wrap: wrap !important;
+    gap: 8px 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: var(--bg-surface, #f8f9fa) !important;
+    border-bottom: 2px solid var(--primary-color, #004499) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .header-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 125px) !important;
+    text-decoration: none !important;
+  }
+
+  .header-brand img {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .header-brand h1 {
+    font-size: 0.92rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin: 0 !important;
+    color: var(--primary-color, #004499) !important;
+  }
+
+  .header-controls {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    flex: 1 0 auto !important;
+  }
+
+  .release-tag {
+    display: none !important;
+  }
+
+  .lang-selector-wrapper {
+    margin: 0 !important;
+  }
+
+  .lang-select {
+    padding: 4px 6px !important;
+    font-size: 0.76rem !important;
+    border-radius: 4px !important;
+    height: 28px !important;
+    max-width: 110px !important;
+  }
+
+  /* 🌟 Beautiful Mobile Pill Action Ribbon (Sponsor, Repo, Founder) */
+  .header-controls .header-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 9px !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    height: 26px !important;
+    border-radius: 13px !important; /* Premium Pill Shape */
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Full Width Stack Container & Sidebar */
+  .container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  @keyframes mobileSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sidebar {
+    display: none !important; /* Collapsed by default on mobile, toggles with Menu button */
+    position: static !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    bottom: auto !important;
+    border-right: none !important;
+    border-bottom: 2px solid var(--primary-color, #004499) !important;
+    padding: 12px 14px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    overflow: visible !important;
+    background-color: var(--bg-surface, #f8f9fa) !important;
+  }
+
+  .sidebar.mobile-open {
+    display: block !important;
+    animation: mobileSlideDown 0.18s ease-out !important;
+  }
+
+  .menu-toggle-btn.active {
+    background-color: var(--primary-light, #e8f0fe) !important;
+    color: var(--primary-color, #004499) !important;
+    border-color: var(--primary-color, #004499) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 68, 153, 0.15) !important;
+  }
+
+  .content {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 14px !important;
+    box-sizing: border-box !important;
+    flex: none !important;
+  }
+
+  .content h2 {
+    font-size: 1.35rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .content .subtitle {
+    font-size: 0.92rem !important;
+    margin-bottom: 16px !important;
+  }
+
+  .sidebar-toggle-tab {
+    display: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-brand h1 {
+    font-size: 0.82rem !important;
+    max-width: 130px !important;
+  }
+  .header-controls .header-btn {
+    padding: 3px 7px !important;
+    font-size: 0.70rem !important;
+  }
+}
+
+
+/* ── Unified Package Dropdown ────────────────────────────────────────────── */
+.pkg-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.pkg-dropdown .header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pkg-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  min-width: 155px;
+  z-index: 1000;
+  padding: 4px;
+}
+
+.pkg-dropdown:hover .pkg-dropdown-menu,
+.pkg-dropdown:focus-within .pkg-dropdown-menu {
+  display: block;
+}
+
+.pkg-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.12s ease;
+  white-space: nowrap;
+}
+
+.pkg-dropdown-item:hover {
+  background-color: var(--bg-alt);
+  color: var(--primary-color);
+}
+
+.pkg-dropdown-item.npm:hover {
+  color: #cb3837;
+}
+
+
+/* ── Split Header Dual Button (pip / npm Hover FX) ────────────────────── */
 .header-btn-dual {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--border-color, #cbd5e1);
-  border-radius: 5px;
+  border-radius: 4px;
   background: #ffffff;
-  padding: 2px 3px;
+  padding: 1px 2px;
   font-size: 0.82em;
   font-weight: 600;
   line-height: 1.4;
   vertical-align: middle;
-  transition: all 0.15s ease-in-out;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .header-btn-dual:hover {
   border-color: #94a3b8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .header-btn-dual .dual-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
+  display: inline-block;
+  padding: 3px 8px;
   text-decoration: none;
   color: var(--text-main, #334155);
-  border-radius: 4px;
-  font-size: 0.95em;
+  border-radius: 3px;
+  font-size: 1em;
   font-weight: 600;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
-  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
 }
 
-/* Default / Fallback hover effect */
 .header-btn-dual .dual-link:hover {
   background-color: #f1f5f9;
   color: #0f172a;
 }
 
-/* Specific Foundation brand blue hover */
 .header-btn-dual .dual-link.foundation-link:hover {
   background-color: #2563eb !important;
   color: #ffffff !important;
 }
 
-/* Specific GitHub / Repo dark charcoal hover */
 .header-btn-dual .dual-link.github-link:hover {
   background-color: #1e293b !important;
   color: #ffffff !important;
 }
 
-/* Specific pip python-blue hover */
 .header-btn-dual .dual-link.pip-link:hover {
   background-color: #0284c7 !important;
   color: #ffffff !important;
 }
 
-/* Specific npm brand-red hover */
 .header-btn-dual .dual-link.npm-link:hover {
   background-color: #cb3837 !important;
   color: #ffffff !important;
 }
 
-.header-btn-dual .dual-link:active {
-  transform: scale(0.97);
-}
-
 .header-btn-dual .dual-divider {
-  color: var(--text-subtle, #cbd5e1);
+  color: var(--text-subtle, #94a3b8);
   font-size: 0.85em;
-  padding: 0 3px;
+  padding: 0 1px;
   user-select: none;
 }
-
 
 /* Single Registry Button Colors */
 .header-btn.npm-btn:hover {
