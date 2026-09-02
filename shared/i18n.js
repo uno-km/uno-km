@@ -1,6 +1,7 @@
 /**
- * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v7.1)
- * Complete 14-Library Full Translation Maps + Global Subpage Phrases + Rock-Solid Header & Sidebar Exception Engine.
+ * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v8.0)
+ * High-Precision Leaf-Node DOM Multi-Pass Engine across 13 Languages.
+ * Preserves all <a> links, accordion toggles, and click handlers while strictly protecting English brand names & menus.
  */
 
 (function(global) {
@@ -102,7 +103,6 @@
   const DEFAULT_LANG = 'en';
   const STORAGE_KEYS = ['ameva_global_lang', 'uno_km_lang', 'ameva_lib_doc_lang', 'forge_lang'];
 
-  const PROTECTED_PHRASES = new Set(["AMEVA-Sentinel (Security SDK)", "AMEVA-MCP-Hub (Polyglot WASM)", "AMEVA-Vulkan-Runtime (Vulkan HAL)", "Termux-AIChain (Zero-Dep Agent)", "Termux-BitNet (1.58-bit LLM)", "Termux-Diffusion (Image AI)", "Termux-Playwright (Automation)", "Termux-STT (Voice STT)", "Termux-TTS (Voice Synthesis)", "Termux-Train (LoRA Engine)", "Termux-LlamaCpp (GGUF Runtime)", "Termux-Vision (CV & VLM)", "AMEVA-Forge (WebGPU Autograd)", "AMEVA Workstation (Web App)", "llms.txt (AI Fast Context)", "llms-full.txt (Full Spec)", "robots.txt (AI Crawlers)", "sitemap.xml (Sitemap)", "llms.txt", "llms-full.txt", "robots.txt", "sitemap.xml", "pip", "npm", "pip / npm", "Python (pip)", "Node.js (npm)", "Foundation", "GitHub", "Sponsor", "Open Collective", "Founder CV", "Blog", "Termux-BitNet", "AMEVA-Forge", "Termux-STT", "Termux-TTS", "Termux-Diffusion", "Termux-AIChain", "Termux-Playwright", "Termux-Train", "Termux-LlamaCpp", "Termux-Vision", "AMEVA-Vulkan-Runtime", "AMEVA-Sentinel", "AMEVA-MCP-Hub", "Infra-Index"]);
   const LIB_TRANSLATIONS = {
   "vulkan": {
     "subtitles": {
@@ -2503,6 +2503,21 @@
     "la": "Navigatio Documentorum",
     "en": "Document Navigation"
   },
+  "Foundation Info": {
+    "ko": "재단 소개 (AOSF)",
+    "ja": "財団情報",
+    "zh": "基金会概览",
+    "vi": "Thông tin quỹ",
+    "fr": "Infos Fondation",
+    "de": "Stiftungsinformationen",
+    "es": "Información de la Fundación",
+    "ru": "Информация о Фонде",
+    "ar": "معلومات المؤسسة",
+    "hi": "फाउंडेशन जानकारी",
+    "pl": "Informacje o Fundacji",
+    "la": "Notitia Fundationis",
+    "en": "Foundation Info"
+  },
   "Home / Architecture": {
     "ko": "홈 / 아키텍처",
     "ja": "ホーム / アーキテクチャ",
@@ -2578,6 +2593,51 @@
     "la": "Puncta Prae-instituta",
     "en": "Pretrained Checkpoints"
   },
+  "Model Checkpoints": {
+    "ko": "모델 체크포인트",
+    "ja": "モデルチェックポイント",
+    "zh": "模型检查点",
+    "vi": "Điểm kiểm tra mô hình",
+    "fr": "Points de Contrôle de Modèles",
+    "de": "Modell-Checkpoints",
+    "es": "Puntos de Control de Modelos",
+    "ru": "Чекпоинты моделей",
+    "ar": "نقاط تفتيش النماذج",
+    "hi": "मॉडल चेकपॉइंट्स",
+    "pl": "Punkty kontrolne modeli",
+    "la": "Puncta Modelli",
+    "en": "Model Checkpoints"
+  },
+  "GGUF Quant Models": {
+    "ko": "GGUF 양자화 모델 허브",
+    "ja": "GGUF量子化モデルハブ",
+    "zh": "GGUF 量化模型中心",
+    "vi": "Mô hình lượng tử GGUF",
+    "fr": "Modèles Quantifiés GGUF",
+    "de": "GGUF-Quantisierungsmodelle",
+    "es": "Modelos Cuantizados GGUF",
+    "ru": "GGUF квантованные модели",
+    "ar": "نماذج GGUF الكمية",
+    "hi": "GGUF क्वांट मॉडल",
+    "pl": "Modele kwantyzacji GGUF",
+    "la": "Modelli GGUF",
+    "en": "GGUF Quant Models"
+  },
+  "Models Directory": {
+    "ko": "모델 디렉터리",
+    "ja": "モデルディレクトリ",
+    "zh": "模型索引目录",
+    "vi": "Thư mục mô hình",
+    "fr": "Répertoire des Modèles",
+    "de": "Modellverzeichnis",
+    "es": "Directorio de Modelos",
+    "ru": "Каталог моделей",
+    "ar": "دليل النماذج",
+    "hi": "मॉडल निर्देशिका",
+    "pl": "Katalog modeli",
+    "la": "Directorium Modelli",
+    "en": "Models Directory"
+  },
   "Benchmarks & Profiling": {
     "ko": "벤치마크 & 하드웨어 프로파일링",
     "ja": "ベンチマーク＆プロファイリング",
@@ -2623,35 +2683,80 @@
     "la": "Archivum Versionum",
     "en": "Version Archive"
   },
-  "Flagship Libraries": {
-    "ko": "플래그십 라이브러리",
-    "ja": "フラグシップライブラリ",
-    "zh": "旗舰开源库",
-    "vi": "Thư viện hàng đầu",
-    "fr": "Bibliothèques Phares",
-    "de": "Flaggschiff-Bibliotheken",
-    "es": "Bibliotecas Insignia",
-    "ru": "Флагманские библиотеки",
-    "ar": "المكتبات الرائدة",
-    "hi": "फ्लैगशिप लाइब्रेरीज़",
-    "pl": "Główne biblioteki",
-    "la": "Bibliothecae Praecipuae",
-    "en": "Flagship Libraries"
+  "Visual Gallery": {
+    "ko": "시각 갤러리",
+    "ja": "ビジュアルギャラリー",
+    "zh": "视觉画廊",
+    "vi": "Thư viện trực quan",
+    "fr": "Galerie Visuelle",
+    "de": "Visuelle Galerie",
+    "es": "Galería Visual",
+    "ru": "Визуальная галерея",
+    "ar": "معرض الصور",
+    "hi": "दृश्य गैलरी",
+    "pl": "Galeria wizualna",
+    "la": "Pinacotheca Visualis",
+    "en": "Visual Gallery"
   },
-  "AI Agent Protocols": {
-    "ko": "AI 에이전트 프로토콜",
-    "ja": "AIエージェントプロトコル",
-    "zh": "AI 智能体交互协议",
-    "vi": "Giao thức tác tử AI",
-    "fr": "Protocoles d'Agents IA",
-    "de": "KI-Agenten-Protokolle",
-    "es": "Protocolos de Agentes de IA",
-    "ru": "Протоколы ИИ-агентов",
-    "ar": "بروتوكولات وكلاء الذكاء الاصطناعي",
-    "hi": "AI एजेंट प्रोटोकॉल",
-    "pl": "Protokoły agentów AI",
-    "la": "Protocolla Agentium AI",
-    "en": "AI Agent Protocols"
+  "Audio Showcase": {
+    "ko": "오디오 쇼케이스",
+    "ja": "オーディオショーケース",
+    "zh": "音频演示",
+    "vi": "Trưng bày âm thanh",
+    "fr": "Vitrine Audio",
+    "de": "Audio-Showcase",
+    "es": "Muestra de Audio",
+    "ru": "Аудио витрина",
+    "ar": "عرض الصوت",
+    "hi": "ऑडियो शोकेस",
+    "pl": "Pokaz audio",
+    "la": "Expositio Auditus",
+    "en": "Audio Showcase"
+  },
+  "Live WebGPU Demo": {
+    "ko": "실시간 WebGPU 데모",
+    "ja": "ライブWebGPUデモ",
+    "zh": "实时 WebGPU 演示",
+    "vi": "Bản demo WebGPU trực tiếp",
+    "fr": "Démo WebGPU en Direct",
+    "de": "Live-WebGPU-Demo",
+    "es": "Demostración WebGPU en Vivo",
+    "ru": "Живое WebGPU демо",
+    "ar": "عرض WebGPU المباشر",
+    "hi": "लाइव WebGPU डेमो",
+    "pl": "Prezentacja WebGPU na żywo",
+    "la": "Exemplum WebGPU Vivum",
+    "en": "Live WebGPU Demo"
+  },
+  "WASM Tools Catalog": {
+    "ko": "WASM 도구 카탈로그",
+    "ja": "WASMツールカタログ",
+    "zh": "WASM 工具目录",
+    "vi": "Danh mục công cụ WASM",
+    "fr": "Catalogue d'Outils WASM",
+    "de": "WASM-Werkzeugkatalog",
+    "es": "Catálogo de Herramientas WASM",
+    "ru": "Каталог инструментов WASM",
+    "ar": "كتالوج أدوات WASM",
+    "hi": "WASM उपकरण सूची",
+    "pl": "Katalog narzędzi WASM",
+    "la": "Catalogus Instrumentorum WASM",
+    "en": "WASM Tools Catalog"
+  },
+  "Training Guide": {
+    "ko": "온디바이스 학습 가이드",
+    "ja": "学習ガイド",
+    "zh": "模型训练指南",
+    "vi": "Hướng dẫn đào tạo",
+    "fr": "Guide d'Entraînement",
+    "de": "Trainingsanleitung",
+    "es": "Guía de Entrenamiento",
+    "ru": "Руководство по обучению",
+    "ar": "دليل التدريب",
+    "hi": "प्रशिक्षण गाइड",
+    "pl": "Przewodnik szkoleniowy",
+    "la": "Dux Eruditionis",
+    "en": "Training Guide"
   },
   "Quickstart & Execution Recipes": {
     "ko": "퀵스타트 & 실행 레시피",
@@ -2682,6 +2787,96 @@
     "pl": "Standardowe wzorce użycia i kod szybkiego prototypowania",
     "la": "Formae usus canonicae et codex prototyping celeris",
     "en": "Standard usage patterns and rapid prototyping code"
+  },
+  "Prerequisites & Environment Setup": {
+    "ko": "사전 요구사항 및 환경 설정",
+    "ja": "前提条件と環境設定",
+    "zh": "前置要求与环境配置",
+    "vi": "Điều kiện tiên quyết & Thiết lập môi trường",
+    "fr": "Prérequis & Configuration de l'Environnement",
+    "de": "Voraussetzungen & Umgebungseinrichtung",
+    "es": "Requisitos Previos y Configuración del Entorno",
+    "ru": "Предварительные требования и настройка среды",
+    "ar": "المتطلبات الأساسية وإعداد البيئة",
+    "hi": "पूर्वापेक्षाएँ और पर्यावरण सेटअप",
+    "pl": "Wymagania wstępne i konfiguracja środowiska",
+    "la": "Praerequisita et Configuratio Ambitus",
+    "en": "Prerequisites & Environment Setup"
+  },
+  "Hardware Requirements & Toolchain Setup": {
+    "ko": "하드웨어 요구 사양 및 툴체인 설정",
+    "ja": "ハードウェア要件とツールチェーン設定",
+    "zh": "硬件要求与工具链配置",
+    "vi": "Yêu cầu phần cứng & Thiết lập chuỗi công cụ",
+    "fr": "Exigences Matérielles & Configuration de la Chaîne d'Outils",
+    "de": "Hardwareanforderungen & Toolchain-Setup",
+    "es": "Requisitos de Hardware y Configuración de la Cadena de Herramientas",
+    "ru": "Требования к оборудованию и настройка цепочки инструментов",
+    "ar": "متطلبات الأجهزة وإعداد سلسلة الأدوات",
+    "hi": "हार्डवेयर आवश्यकताएं और टूलचेन सेटअप",
+    "pl": "Wymagania sprzętowe i konfiguracja łańcucha narzędzi",
+    "la": "Postulata Hardware et Configuratio Toolchain",
+    "en": "Hardware Requirements & Toolchain Setup"
+  },
+  "Step 1: Termux Environment Setup": {
+    "ko": "1단계: Termux 환경 설정",
+    "ja": "ステップ1：Termux環境設定",
+    "zh": "步骤 1：Termux 环境配置",
+    "vi": "Bước 1: Thiết lập môi trường Termux",
+    "fr": "Étape 1 : Configuration de l'Environnement Termux",
+    "de": "Schritt 1: Termux-Umgebungseinrichtung",
+    "es": "Paso 1: Configuración del Entorno Termux",
+    "ru": "Шаг 1: Настройка среды Termux",
+    "ar": "الخطوة 1: إعداد بيئة Termux",
+    "hi": "चरण 1: टर्मक्स पर्यावरण सेटअप",
+    "pl": "Krok 1: Konfiguracja środowiska Termux",
+    "la": "Gradus 1: Configuratio Ambitus Termux",
+    "en": "Step 1: Termux Environment Setup"
+  },
+  "Step 2: Install Package": {
+    "ko": "2단계: 패키지 설치",
+    "ja": "ステップ2：パッケージのインストール",
+    "zh": "步骤 2：安装软件包",
+    "vi": "Bước 2: Cài đặt gói",
+    "fr": "Étape 2 : Installer le Paquet",
+    "de": "Schritt 2: Paket installieren",
+    "es": "Paso 2: Instalar Paquete",
+    "ru": "Шаг 2: Установка пакета",
+    "ar": "الخطوة 2: تثبيت الحزمة",
+    "hi": "चरण 2: पैकेज स्थापित करें",
+    "pl": "Krok 2: Zainstaluj pakiet",
+    "la": "Gradus 2: Sarcinam Installa",
+    "en": "Step 2: Install Package"
+  },
+  "Step 3: Verify Hardware Capabilities": {
+    "ko": "3단계: 하드웨어 가속 역량 검증",
+    "ja": "ステップ3：ハードウェア機能の検証",
+    "zh": "步骤 3：验证硬件加速能力",
+    "vi": "Bước 3: Xác minh khả năng phần cứng",
+    "fr": "Étape 3 : Vérifier les Capacités Matérielles",
+    "de": "Schritt 3: Hardwarefunktionen überprüfen",
+    "es": "Paso 3: Verificar Capacidades de Hardware",
+    "ru": "Шаг 3: Проверка возможностей оборудования",
+    "ar": "الخطوة 3: التحقق من قدرات الأجهزة",
+    "hi": "चरण 3: हार्डवेयर क्षमताओं को सत्यापित करें",
+    "pl": "Krok 3: Zweryfikuj możliwości sprzętowe",
+    "la": "Gradus 3: Capacitates Hardware Comproba",
+    "en": "Step 3: Verify Hardware Capabilities"
+  },
+  "Step 4: Execute Sanity Check": {
+    "ko": "4단계: 정상 동작 검증 (Sanity Check)",
+    "ja": "ステップ4：動作確認（サニティチェック）",
+    "zh": "步骤 4：执行冒烟测试验证",
+    "vi": "Bước 4: Thực thi kiểm tra tính toàn vẹn",
+    "fr": "Étape 4 : Exécuter le Test de Validité",
+    "de": "Schritt 4: Plausibilitätsprüfung durchführen",
+    "es": "Paso 4: Ejecutar Prueba de Cordura",
+    "ru": "Шаг 4: Выполнение базовой проверки работоспособности",
+    "ar": "الخطوة 4: تنفيذ اختبار السلامة",
+    "hi": "चरण 4: सैनिटी चेक निष्पादित करें",
+    "pl": "Krok 4: Wykonaj test poprawności",
+    "la": "Gradus 4: Examinationem Sanitas Exsequere",
+    "en": "Step 4: Execute Sanity Check"
   },
   "Recipe 1: Model Hub Download & CLI Inference": {
     "ko": "레시피 1: 모델 허브 다운로드 및 CLI 추론",
@@ -2805,7 +3000,7 @@
   },
   "Key Capabilities & Built-in Hardening": {
     "ko": "핵심 역량 및 빌트인 안정화 계층",
-    "ja": "主要機能と組み込みの強化",
+    "ja": "主要機能と組み込み의 強化",
     "zh": "核心能力与内建安全加固",
     "vi": "Khả năng chính & Tăng cường tích hợp",
     "fr": "Capacités Clés & Renforcement Intégré",
@@ -2858,10 +3053,6 @@
       if (this.initialized) return;
       this.initialized = true;
 
-      if (typeof document !== 'undefined') {
-        this._freezeOriginalTemplates();
-      }
-
       this._setupLanguageSelectors();
       this.applyLanguage(this.currentLang);
 
@@ -2874,19 +3065,6 @@
           }
         });
       } catch (e) {}
-    }
-
-    _freezeOriginalTemplates() {
-      const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, th, td, span, li, a, button, div.alert, [data-i18n]');
-      elements.forEach(el => {
-        if (el.querySelector('pre, code, input, select, textarea') || el.closest('pre, code, script, style')) {
-          return;
-        }
-        const txt = el.textContent.trim();
-        if (!el.dataset.i18nOrig && txt) {
-          el.dataset.i18nOrig = txt;
-        }
-      });
     }
 
     setLanguage(lang) {
@@ -2925,100 +3103,152 @@
       return cur;
     }
 
+    _setTextPreservingChildren(el, newText) {
+      if (!el) return;
+      // If element has no child nodes, simple textContent
+      if (el.childNodes.length === 0) {
+        el.textContent = newText;
+        return;
+      }
+      // If element has a first text node (e.g. <h3>Document Navigation <span class="accordion-icon">▾</span></h3>)
+      let foundTextNode = false;
+      for (let i = 0; i < el.childNodes.length; i++) {
+        const node = el.childNodes[i];
+        if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim().length > 0) {
+          node.nodeValue = newText + ' ';
+          foundTextNode = true;
+          break;
+        }
+      }
+      if (!foundTextNode) {
+        el.textContent = newText;
+      }
+    }
+
+    _getTextOnly(el) {
+      if (!el) return '';
+      for (let i = 0; i < el.childNodes.length; i++) {
+        const node = el.childNodes[i];
+        if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim().length > 0) {
+          return node.nodeValue.trim();
+        }
+      }
+      return el.textContent.trim();
+    }
+
     applyLanguage(lang) {
       const dict = this.translations[lang] || this.translations[DEFAULT_LANG] || {};
       const ctx = this._getCurrentContext();
       const libData = LIB_TRANSLATIONS[ctx];
 
-      const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, th, td, span, li, a, button, [data-i18n]');
-      elements.forEach(el => {
-        if (el.querySelector('pre, code, input, select, textarea') || el.closest('pre, code, script, style')) {
-          return;
-        }
-
-        const origText = el.dataset.i18nOrig || el.textContent.trim();
-        if (!el.dataset.i18nOrig && origText) {
-          el.dataset.i18nOrig = origText;
-        }
-
-        // 1. Top Header Controls & Buttons Protection (MUST REMAIN CLEAN ENGLISH)
-        if (el.closest('header .header-controls a') || (el.closest('header .header-brand') && el.tagName === 'H1')) {
-          if (el.textContent.trim() !== origText) el.textContent = origText;
-          return;
-        }
-
-        // 2. Sidebar Flagship Libraries & AI Protocols Protection (MUST REMAIN IN ENGLISH)
-        const parentLi = el.closest('nav.sidebar ul li');
-        if (parentLi) {
-          const isFlagship = el.closest('nav.sidebar')?.querySelector('h3[data-i18n="common.nav.libraries"]')?.nextElementSibling?.contains(el);
-          const isAi = el.closest('nav.sidebar')?.querySelector('h3[data-i18n="common.nav.aiSpecs"]')?.nextElementSibling?.contains(el);
-          if (isFlagship || isAi) {
-            if (el.textContent.trim() !== origText) el.textContent = origText;
-            return;
+      // ── 1. Translate Sidebar Tier 1 (ONLY Tier 1: Navigation & Links) ─────────
+      const sidebar = document.querySelector('nav.sidebar');
+      if (sidebar) {
+        // Tier 1 Header
+        const tier1H3 = sidebar.querySelector('h3:nth-of-type(1)');
+        if (tier1H3) {
+          const origH3 = tier1H3.dataset.i18nOrig || this._getTextOnly(tier1H3);
+          if (!tier1H3.dataset.i18nOrig) tier1H3.dataset.i18nOrig = origH3;
+          if (PHRASES_DB[origH3]) {
+            const trans = (lang === 'en') ? origH3 : (PHRASES_DB[origH3][lang] || origH3);
+            this._setTextPreservingChildren(tier1H3, trans);
           }
         }
 
-        // 3. Protected Exact Phrases
-        if (PROTECTED_PHRASES.has(origText)) {
-          if (el.textContent.trim() !== origText) el.textContent = origText;
-          return;
+        // Tier 1 Links (ONLY <a> inside first <ul>)
+        const tier1Ul = sidebar.querySelector('ul:nth-of-type(1)');
+        if (tier1Ul) {
+          tier1Ul.querySelectorAll('a').forEach(a => {
+            const origLink = a.dataset.i18nOrig || a.textContent.trim();
+            if (!a.dataset.i18nOrig) a.dataset.i18nOrig = origLink;
+            if (PHRASES_DB[origLink]) {
+              const trans = (lang === 'en') ? origLink : (PHRASES_DB[origLink][lang] || origLink);
+              a.textContent = trans;
+            }
+          });
         }
 
-        // 4. Library-specific deep body translations (Challenge, Breakthrough, Subtitles, Features)
-        const i18nKey = el.getAttribute('data-i18n');
-        if (libData && i18nKey) {
-          if (i18nKey === 'home.challengeText' && libData.challenge) {
-            const val = (lang === 'en') ? origText : (libData.challenge[lang] || libData.challenge['en'] || origText);
-            if (val && el.textContent.trim() !== val) el.textContent = val;
-            return;
+        // Tier 2 & Tier 3 Headers and Links MUST ALWAYS BE ENGLISH
+        const tier2H3 = sidebar.querySelector('h3:nth-of-type(2)');
+        if (tier2H3) this._setTextPreservingChildren(tier2H3, 'Flagship Libraries');
+
+        const tier3H3 = sidebar.querySelector('h3:nth-of-type(3)');
+        if (tier3H3) this._setTextPreservingChildren(tier3H3, 'AI Agent Protocols');
+      }
+
+      // ── 2. Translate Main Content Leaf Elements ──────────────────────────────
+      const main = document.querySelector('main.content') || document.querySelector('.content');
+      if (main) {
+        const contentElements = main.querySelectorAll('h1, h2, h3, h4, h5, h6, p, th, td, span, a, button, div.alert-title, span.alert-title, [data-i18n]');
+        contentElements.forEach(el => {
+          // Skip code blocks, pre blocks, scripts, styles
+          if (el.closest('pre, code, script, style, textarea, input, select')) return;
+          // Skip container elements that have block children
+          if (el.querySelector('p, h1, h2, h3, h4, h5, h6, pre, div, table, ul, ol')) return;
+
+          const origText = el.dataset.i18nOrig || el.textContent.trim();
+          if (!el.dataset.i18nOrig && origText) {
+            el.dataset.i18nOrig = origText;
           }
-          if (i18nKey === 'home.breakthroughText' && libData.breakthrough) {
-            const val = (lang === 'en') ? origText : (libData.breakthrough[lang] || libData.breakthrough['en'] || origText);
-            if (val && el.textContent.trim() !== val) el.textContent = val;
-            return;
-          }
-          if ((i18nKey === 'home.subtitle' || i18nKey === 'home.heroSubtitle') && libData.subtitles) {
-            const val = (lang === 'en') ? origText : (libData.subtitles[lang] || libData.subtitles['en'] || origText);
-            if (val && el.textContent.trim() !== val) el.textContent = val;
-            return;
-          }
-          const featMatch = i18nKey.match(/^home\.features\.([0-9]+)\.(title|desc)$/);
-          if (featMatch && libData.features) {
-            const fIdx = parseInt(featMatch[1], 10);
-            const fField = featMatch[2];
-            if (libData.features[fIdx] && libData.features[fIdx][fField]) {
-              const val = (lang === 'en') ? origText : (libData.features[fIdx][fField][lang] || libData.features[fIdx][fField]['en'] || origText);
+
+          const i18nKey = el.getAttribute('data-i18n');
+
+          // Deep library metadata translations (Challenge, Breakthrough, Subtitle, Features)
+          if (libData && i18nKey) {
+            if (i18nKey === 'home.challengeText' && libData.challenge) {
+              const val = (lang === 'en') ? origText : (libData.challenge[lang] || libData.challenge['en'] || origText);
               if (val && el.textContent.trim() !== val) el.textContent = val;
               return;
             }
+            if (i18nKey === 'home.breakthroughText' && libData.breakthrough) {
+              const val = (lang === 'en') ? origText : (libData.breakthrough[lang] || libData.breakthrough['en'] || origText);
+              if (val && el.textContent.trim() !== val) el.textContent = val;
+              return;
+            }
+            if ((i18nKey === 'home.subtitle' || i18nKey === 'home.heroSubtitle') && libData.subtitles) {
+              const val = (lang === 'en') ? origText : (libData.subtitles[lang] || libData.subtitles['en'] || origText);
+              if (val && el.textContent.trim() !== val) el.textContent = val;
+              return;
+            }
+            const featMatch = i18nKey.match(/^home\.features\.([0-9]+)\.(title|desc)$/);
+            if (featMatch && libData.features) {
+              const fIdx = parseInt(featMatch[1], 10);
+              const fField = featMatch[2];
+              if (libData.features[fIdx] && libData.features[fIdx][fField]) {
+                const val = (lang === 'en') ? origText : (libData.features[fIdx][fField][lang] || libData.features[fIdx][fField]['en'] || origText);
+                if (val && el.textContent.trim() !== val) el.textContent = val;
+                return;
+              }
+            }
           }
-        }
 
-        // 5. Exact PHRASES_DB Translation Lookup
-        if (PHRASES_DB[origText]) {
-          const entry = PHRASES_DB[origText];
-          const trans = (lang === 'en') ? origText : (entry[lang] || entry['en'] || origText);
-          if (trans && el.textContent.trim() !== trans) {
-            el.textContent = trans;
-          }
-          return;
-        }
-
-        // 6. [data-i18n] Attribute Lookup
-        if (i18nKey) {
-          const val = this._lookup(dict, i18nKey);
-          if (val !== undefined && val !== null && typeof val === 'string') {
-            el.textContent = val;
+          // Exact PHRASES_DB Translation Lookup
+          if (PHRASES_DB[origText]) {
+            const entry = PHRASES_DB[origText];
+            const trans = (lang === 'en') ? origText : (entry[lang] || entry['en'] || origText);
+            if (trans && el.textContent.trim() !== trans) {
+              el.textContent = trans;
+            }
             return;
           }
-        }
 
-        // 7. English Default Fallback
-        if (lang === 'en' && origText && el.textContent.trim() !== origText) {
-          el.textContent = origText;
-        }
-      });
+          // [data-i18n] Attribute Lookup
+          if (i18nKey) {
+            const val = this._lookup(dict, i18nKey);
+            if (val !== undefined && val !== null && typeof val === 'string') {
+              el.textContent = val;
+              return;
+            }
+          }
 
+          // English Fallback
+          if (lang === 'en' && origText && el.textContent.trim() !== origText) {
+            el.textContent = origText;
+          }
+        });
+      }
+
+      // ── 3. Synchronize Language Dropdown Selectors ───────────────────────────
       document.querySelectorAll('.lang-select').forEach(sel => {
         sel.value = lang;
       });
