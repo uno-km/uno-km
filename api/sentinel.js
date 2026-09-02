@@ -658,24 +658,32 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('[Sentinel API Ingest Error]', err);
-    // ── Fail-open: Sentinel errors must never block the origin service ──
+    // ── Fail-open: Sentinel errors must never block origin, but must honestly report degraded observability ──
+    res.setHeader('X-Sentinel-Status', 'degraded');
+    res.setHeader('X-Sentinel-Degraded', '1');
     return res.status(200).json({
       status: 'degraded',
       failOpen: true,
       message: 'Sentinel evaluation failed; request allowed by fail-open policy.',
       report: {
-        score: 0,
-        action: 'ALLOW',
-        recommendedAction: 'ALLOW',
-        classification: { category: 'UNKNOWN', isBotLikely: false },
-        evidence: []
+        score: null,
+        action: 'DEGRADED_ALLOW',
+        recommendedAction: 'DEGRADED_ALLOW',
+        classification: { category: 'EVALUATION_ERROR', isBotLikely: null },
+        enforcementMode: 'FAIL_OPEN',
+        evidence: [{
+          rule: 'system.eval_failure',
+          score: 0,
+          message: err.message || 'Internal evaluation error'
+        }],
+        evaluatedAt: new Date().toISOString()
       },
       assessment: {
         schemaVersion: '2.0',
         riskLevel: 'EVALUATION_FAILED',
         actorClaim: { type: 'UNKNOWN', name: null, state: 'NONE', verification: 'NOT_APPLICABLE', basis: [] },
-        evidence: [],
-        decision: { mode: 'FAIL_OPEN', proposedAction: 'ALLOW', enforcedAction: 'ALLOW', policyVersion: 'sentinel-2.0-shadow.1' },
+        evidence: ['system.eval_failure'],
+        decision: { mode: 'FAIL_OPEN', proposedAction: 'DEGRADED_ALLOW', enforcedAction: 'DEGRADED_ALLOW', policyVersion: 'sentinel-2.0-shadow.1' },
         legacy: { triageCategory: 'UNKNOWN', deprecated: true }
       }
     });
@@ -685,23 +693,41 @@ export default async function handler(req, res) {
     // ── Top-level fail-open: absolutely nothing blocks the origin ──
     console.error('[Sentinel Top-Level Fail-Open]', topLevelErr);
     try {
+      res.setHeader('X-Sentinel-Status', 'degraded');
+      res.setHeader('X-Sentinel-Degraded', '1');
       return res.status(200).json({
         status: 'degraded',
         failOpen: true,
         message: 'Sentinel top-level failure; request allowed by fail-open policy.',
-        report: { score: 0, action: 'ALLOW', recommendedAction: 'ALLOW', classification: { category: 'UNKNOWN', isBotLikely: false }, evidence: [] },
+        report: {
+          score: null,
+          action: 'DEGRADED_ALLOW',
+          recommendedAction: 'DEGRADED_ALLOW',
+          classification: { category: 'TOP_LEVEL_FAILURE', isBotLikely: null },
+          enforcementMode: 'FAIL_OPEN',
+          evidence: [{
+            rule: 'system.top_level_failure',
+            score: 0,
+            message: topLevelErr.message || 'Fatal handler error'
+          }],
+          evaluatedAt: new Date().toISOString()
+        },
         assessment: {
           schemaVersion: '2.0',
           riskLevel: 'EVALUATION_FAILED',
           actorClaim: { type: 'UNKNOWN', name: null, state: 'NONE', verification: 'NOT_APPLICABLE', basis: [] },
-          evidence: [],
-          decision: { mode: 'FAIL_OPEN', proposedAction: 'ALLOW', enforcedAction: 'ALLOW', policyVersion: 'sentinel-2.0-shadow.1' },
+          evidence: ['system.top_level_failure'],
+          decision: { mode: 'FAIL_OPEN', proposedAction: 'DEGRADED_ALLOW', enforcedAction: 'DEGRADED_ALLOW', policyVersion: 'sentinel-2.0-shadow.1' },
           legacy: { triageCategory: 'UNKNOWN', deprecated: true }
         }
       });
     } catch (fatalErr) {
-      // Last resort: plain text response
-      return res.status(200).end('{"status":"degraded","failOpen":true,"report":{"score":0,"action":"ALLOW"}}');
+      // Last resort: plain text response with explicit degraded headers
+      try {
+        res.setHeader('X-Sentinel-Status', 'degraded');
+        res.setHeader('X-Sentinel-Degraded', '1');
+      } catch (_) {}
+      return res.status(200).end('{"status":"degraded","failOpen":true,"report":{"score":null,"action":"DEGRADED_ALLOW"}}');
     }
   }
 }
