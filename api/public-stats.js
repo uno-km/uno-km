@@ -1,10 +1,9 @@
 /**
- * Vercel Serverless Function: AMEVA-Sentinel 100% Real-Time SQL Observability API
+ * Vercel Serverless Function: AMEVA-Sentinel Telemetry Observability API
  * Route: /api/public-stats
  * 
- * Strict Ground Truth Architecture:
- * - 0% Mock / 0% Hardcoded Data (100% dynamic aggregation from Neon PostgreSQL)
- * - Real queries: visitor_sessions, bot_crawler_logs, deep_forensic_footprints
+ * Dynamic SQL Aggregation from Neon PostgreSQL:
+ * - Real queries: visitor_sessions, bot_crawler_logs, sentinel_risk_events, sentinel_geo_deliveries
  * - Strict PII Anonymization: Zero raw IP exposure (Aggregated by Country/City)
  */
 const GEO_COORDS = {
@@ -215,7 +214,7 @@ export default async function handler(req, res) {
             database_connected: false,
             message: '데이터베이스 미연결 (DB 미연결)',
             updated_at: new Date().toISOString(),
-            ecosystem_health_score: '-',
+            ecosystem_health_score: null,
             summary: {
                 total_active_sessions: '-',
                 total_unique_visitors: '-',
@@ -449,7 +448,7 @@ export default async function handler(req, res) {
             status: 'online',
             database_connected: true,
             updated_at: new Date().toISOString(),
-            ecosystem_health_score: 100,
+            ecosystem_health_score: null, // Explicit null: synthetic SLA uptime scoring requires dedicated synthetic probe telemetry
             summary: {
                 total_active_sessions: totalSessions,
                 total_unique_visitors: totalVisitors,

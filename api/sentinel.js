@@ -262,12 +262,12 @@ export default async function handler(req, res) {
 
       const payload = geoResult.payload || `${sentinel.geoEngine['config']?.authorityHeader || ''}\n---\n# AMEVA Sovereign Ecosystem\n`;
       const servedBytes = new TextEncoder().encode(payload).length;
-      const originalBytes = 180000;
-      const savedBytes = Math.max(0, originalBytes - servedBytes);
-      const savingsRatio = Number(((savedBytes / originalBytes) * 100).toFixed(1));
+      // Zero-Hype: Do not synthesize arbitrary bandwidth savings without explicit client baseline comparison
+      const savedBytes = 0;
+      const savingsRatio = 0.0;
 
       res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
-      res.setHeader('X-Sentinel-Bandwidth-Saved', `${(savedBytes / 1024).toFixed(1)}KB (${savingsRatio}%)`);
+      res.setHeader('X-Sentinel-Payload-Size', `${(servedBytes / 1024).toFixed(1)}KB`);
       res.setHeader('X-Powered-By', 'AMEVA-Sentinel-GEO-v0.7.0');
 
       const headers = req.headers || {};

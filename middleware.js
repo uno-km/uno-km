@@ -146,12 +146,11 @@ export async function middleware(request) {
         }
     }
 
-    if (matchedBot) {
         const deepPayload = generateDeepAiPayload(path);
         const servedBytes = new TextEncoder().encode(deepPayload).length;
-        const estimatedHtmlBytes = 45000;
-        const savedBytes = Math.max(0, estimatedHtmlBytes - servedBytes);
-        const savingsRatio = Number(((savedBytes / Math.max(1, estimatedHtmlBytes)) * 100).toFixed(2));
+        // Zero-Hype: Do not synthesize arbitrary bandwidth savings without explicit client baseline comparison
+        const savedBytes = 0;
+        const savingsRatio = 0.0;
 
         const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
         if (dbUrl) {
