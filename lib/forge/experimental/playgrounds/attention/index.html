@@ -38,45 +38,7 @@
         <ameva-header></ameva-header>
     
     <div class="container">
-            <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-    <ul>
-      <li><a href="/lib/forge/index.html">Home / Architecture</a></li>
-      <li><a href="/lib/forge/installation.html">Installation Guide</a></li>
-      <li><a href="/lib/forge/quickstart.html">Quickstart & Recipes</a></li>
-      <li><a href="/lib/forge/api-reference.html">API Reference</a></li>
-      <li><a href="/lib/forge/demo.html" class="active">Live WebGPU Demo</a></li>
-      <li><a href="/lib/forge/benchmarks.html">Benchmarks & Profiling</a></li>
-      <li><a href="/lib/forge/advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="/lib/forge/versions.html">Version Archive</a></li>
-    </ul>
-                                                                                                                                                <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-    <ul>
-      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
-      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
-      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-    </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-    <ul>
-      <li><a href="/lib/forge/llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-      <li><a href="/lib/forge/llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-      <li><a href="/lib/forge/robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="/lib/forge/sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-    </ul>
-  </nav>
+            <ameva-sidebar lib="forge" current="demo.html"></ameva-sidebar>
         <main class="content">
             <h2 data-i18n="playgrounds.attentionH2">6. FlashAttention-2 vs Standard Attention Profiler</h2>
             <p data-i18n="playgrounds.attentionDesc">Profiles on-chip SRAM tiling and evaluates real-time VRAM scaling from O(N^2) to O(N) across varying sequence lengths.</p>

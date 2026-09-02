@@ -113,9 +113,9 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
 
 ---
 
-## 3. HTML 표준 템플릿 (붕어빵 원형)
+## 3. HTML 표준 템플릿 (Web Components 표준 규격)
 
-> **모든 lib/[name]/*.html 파일의 <head>와 <header>는 이 형식만 허용.**
+> **모든 `lib/[name]/*.html` 파일은 Web Components 표준(`<ameva-header>` / `<ameva-sidebar>`)을 사용하여 작성합니다.**
 
 ### 3-A. 표준 <head> 섹션
 
@@ -129,81 +129,42 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
   <meta name="description" content="[페이지 설명]">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 ```
 
-**절대 금지:**
-- `href="assets/style.css"` (로컬 복사본 참조)
-- `<link rel="icon">` 태그 2개 이상 선언
-- `<script src="assets/i18n.js">` (구버전 로컬 참조)
-- `<script src="assets/i18n-translations.js">` (2KB stub 참조)
+**필수 규칙:**
+- `/shared/components.js`는 `<head>` 내에 반드시 `defer`로 로드해야 합니다.
+- `lib-style.css`, `i18n.js`, `i18n-translations.js`, `common.js`는 `/shared/` 절대 경로로만 참조합니다.
 
-### 3-B. 표준 <header> 섹션
+### 3-B. 표준 <body> 및 컴포넌트 호출부
 
 ```html
-<header>
-  <a href="index.html" class="header-brand">
-    <img src="/shared/favicon.svg" alt="[라이브러리명] Logo">
-    <h1 data-i18n="common.brand">[라이브러리명]</h1>
-  </a>
-  <div class="header-controls">
-    <span class="release-tag" data-i18n="common.releaseTag">v[버전]</span>
-    <div class="lang-selector-wrapper"></div>
-    <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-    <!-- npm 패키지가 있는 경우만 -->
-    <a href="https://www.npmjs.com/package/[npm-package]" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
-    <!-- PyPI 패키지가 있는 경우만 -->
-    <a href="https://pypi.org/project/[pypi-package]/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
-    <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color:#ea4aaa;color:#ea4aaa;font-weight:700;">Sponsor</a>
-    <a href="https://github.com/uno-km/[github-repo]" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-    <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+<body>
+  <!-- 1. 공통 헤더 컴포넌트: 라이브러리명, 버전 태그, npm/pip/GitHub/Foundation 링크 자동 렌더링 -->
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <!-- 2. 공통 사이드바 컴포넌트: 3-Tier 네비게이션 및 active 상태 자동 바인딩 -->
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <!-- 3. 페이지 고유 본문 콘텐츠 -->
+      <h2>[페이지 제목]</h2>
+      <p class="subtitle">[페이지 부제목]</p>
+      ...
+    </main>
   </div>
-</header>
+</body>
+</html>
 ```
 
-### 3-C. 표준 사이드바 <nav> 섹션
-
-```html
-<nav class="sidebar">
-  <!-- Tier 1: 이 라이브러리의 문서 페이지 -->
-  <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-  <ul>
-    <li><a href="index.html" class="[active 여부]">Home / Architecture</a></li>
-    <li><a href="installation.html">Installation Guide</a></li>
-    <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
-    <li><a href="api-reference.html">API Reference</a></li>
-    <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
-    <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-    <li><a href="versions.html">Version Archive</a></li>
-    <!-- 라이브러리 전용 추가 페이지 (있는 경우) -->
-  </ul>
-  <!-- Tier 2: 전체 플래그십 라이브러리 목록 -->
-  <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-  <ul>
-    <li><a href="/lib/sentinel/" [현재 라이브러리면 class="active"]>AMEVA-Sentinel (Security SDK)</a></li>
-    <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-    <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-    <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-    <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-    <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-    <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-    <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-    <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-    <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-  </ul>
-  <!-- Tier 3: AI 프로토콜 -->
-  <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-  <ul>
-    <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-    <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-    <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-    <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-  </ul>
-</nav>
-```
+### 3-C. 단일 진실 공급원(SSOT) 관리 원칙
+- 헤더의 라이브러리명, 버전 태그, 리포지토리 링크, npm/pip 주소 및 사이드바의 페이지 목록은 [`shared/components.js`](file:///C:/Users/GAME/Desktop/uno-km/dev/uno-km/shared/components.js)의 `ECOSYSTEM_REGISTRY`에서 단 1곳만 관리합니다.
+- HTML 문서 파일 내에 `<header>` 또는 `<nav class="sidebar">`를 직접 하드코딩하는 것은 엄격히 금지됩니다.
 
 ---
 
@@ -292,15 +253,33 @@ pages:
     file: versions.html
 ```
 
-### Step 3: 전체 사이드바에 새 라이브러리 추가
+### Step 3: shared/components.js 레지스트리 및 사이드바 목록 등록
 
-**모든 기존 lib/*/[*.html]** 의 Tier 2 사이드바에 신규 항목 추가:
+`shared/components.js`의 `ECOSYSTEM_REGISTRY` 및 `FLAGSHIP_LIST`에 신규 라이브러리 메타데이터를 추가합니다:
 
-```html
-<li><a href="/lib/newlib/">Termux-NewLib ([설명])</a></li>
+```javascript
+// 1. ECOSYSTEM_REGISTRY에 페이지 목록 및 패키지 정보 추가
+"newlib": {
+  "name": "Termux-NewLib",
+  "version": "v1.0.0",
+  "github": "https://github.com/uno-km/termux-newlib",
+  "pypi": "termux-newlib",
+  "npm": "termux-newlib",
+  "doc_pages": [
+    ["index.html", "Home / Architecture"],
+    ["installation.html", "Installation Guide"],
+    ["quickstart.html", "Quickstart & Recipes"],
+    ["api-reference.html", "API Reference"],
+    ["benchmarks.html", "Benchmarks & Profiling"],
+    ["advanced-parameters.html", "Advanced Parameters"],
+    ["versions.html", "Version Archive"]
+  ]
+}
+
+// 2. FLAGSHIP_LIST에 Tier 2 글로벌 사이드바 링크 추가
+["/lib/newlib/", "newlib", "Termux-NewLib (Description)"]
 ```
-
-**방법:** `tools/build_pages.py --fix-sidebars` 실행 (빌더가 ecosystem-versions.yaml 기준으로 자동 처리)
+*Web Components 기반이므로, 위 1곳만 수정하면 126개 전체 HTML 문서의 사이드바에 즉각 자동 반영됩니다.*
 
 ### Step 4: vercel.json 라우팅 추가
 
