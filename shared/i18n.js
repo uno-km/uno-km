@@ -1,6 +1,6 @@
 /**
- * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v7.0)
- * 100% Deterministic Immutable DOM Multi-Pass Engine across 13 Languages with Protected Header Controls & Global Subpage Translations.
+ * AMEVA Ecosystem - Master Universal Multilingual (i18n) Core Engine (SSOT v7.1)
+ * Complete 14-Library Full Translation Maps + Global Subpage Phrases + Rock-Solid Header & Sidebar Exception Engine.
  */
 
 (function(global) {
@@ -102,7 +102,7 @@
   const DEFAULT_LANG = 'en';
   const STORAGE_KEYS = ['ameva_global_lang', 'uno_km_lang', 'ameva_lib_doc_lang', 'forge_lang'];
 
-  const PROTECTED_PHRASES = new Set(["Termux-Playwright (Automation)", "llms.txt", "Termux-BitNet", "Founder CV", "Foundation", "llms-full.txt", "sitemap.xml (Sitemap)", "Termux-Train (LoRA Engine)", "Termux-AIChain (Zero-Dep Agent)", "Open Collective", "npm", "Termux-Vision (CV & VLM)", "Termux-STT (Voice STT)", "Termux-BitNet (1.58-bit LLM)", "Node.js (npm)", "AMEVA-Sentinel", "AMEVA Workstation (Web App)", "AMEVA-Forge", "Sponsor", "Termux-Vision", "Termux-Playwright", "Termux-LlamaCpp", "AMEVA-Vulkan-Runtime", "AMEVA-MCP-Hub (Polyglot WASM)", "llms-full.txt (Full Spec)", "GitHub", "Termux-Diffusion", "Termux-Train", "AMEVA-Vulkan-Runtime (Vulkan HAL)", "robots.txt (AI Crawlers)", "Termux-TTS (Voice Synthesis)", "Blog", "AMEVA-MCP-Hub", "Infra-Index", "pip / npm", "Termux-TTS", "AMEVA-Forge (WebGPU Autograd)", "Termux-STT", "Termux-Diffusion (Image AI)", "Termux-LlamaCpp (GGUF Runtime)", "Termux-AIChain", "llms.txt (AI Fast Context)", "AMEVA-Sentinel (Security SDK)", "robots.txt", "pip", "Python (pip)", "sitemap.xml"]);
+  const PROTECTED_PHRASES = new Set(["AMEVA-Sentinel (Security SDK)", "AMEVA-MCP-Hub (Polyglot WASM)", "AMEVA-Vulkan-Runtime (Vulkan HAL)", "Termux-AIChain (Zero-Dep Agent)", "Termux-BitNet (1.58-bit LLM)", "Termux-Diffusion (Image AI)", "Termux-Playwright (Automation)", "Termux-STT (Voice STT)", "Termux-TTS (Voice Synthesis)", "Termux-Train (LoRA Engine)", "Termux-LlamaCpp (GGUF Runtime)", "Termux-Vision (CV & VLM)", "AMEVA-Forge (WebGPU Autograd)", "AMEVA Workstation (Web App)", "llms.txt (AI Fast Context)", "llms-full.txt (Full Spec)", "robots.txt (AI Crawlers)", "sitemap.xml (Sitemap)", "llms.txt", "llms-full.txt", "robots.txt", "sitemap.xml", "pip", "npm", "pip / npm", "Python (pip)", "Node.js (npm)", "Foundation", "GitHub", "Sponsor", "Open Collective", "Founder CV", "Blog", "Termux-BitNet", "AMEVA-Forge", "Termux-STT", "Termux-TTS", "Termux-Diffusion", "Termux-AIChain", "Termux-Playwright", "Termux-Train", "Termux-LlamaCpp", "Termux-Vision", "AMEVA-Vulkan-Runtime", "AMEVA-Sentinel", "AMEVA-MCP-Hub", "Infra-Index"]);
   const LIB_TRANSLATIONS = {
   "vulkan": {
     "subtitles": {
@@ -110,43 +110,43 @@
       "ko": "모바일 안드로이드를 위한 통합 크로스 모달 Vulkan GPU 가속 런타임 및 하드웨어 추상화 계층(HAL)",
       "ja": "モバイルAndroid向け統合クロスモーダルVulkan GPUアクセラレーションランタイム＆HAL",
       "zh": "适用于移动端 Android 的统一跨模态 Vulkan GPU 硬件加速运行时与硬件抽象层 (HAL)",
-      "vi": "Thời gian chạy và HAL tăng tốc GPU Vulkan đa phương thức cho Android di động",
-      "fr": "Runtime et HAL d'accélération GPU Vulkan cross-modal pour Android mobile",
-      "de": "Cross-modale Vulkan GPU-Beschleunigungslaufzeit und HAL für mobiles Android",
-      "es": "Entorno de ejecución y HAL de aceleración de GPU Vulkan para Android móvil",
-      "ru": "Кросс-модальная среда ускорения на Vulkan GPU и HAL для мобильного Android",
-      "ar": "بيئة تشغيل وتسريع Vulkan GPU متعددة الوسائط ونظام HAL لنظام Android",
-      "hi": "मोबाइल एंड्रॉइड के लिए एकीकृत क्रॉस-मॉडल वल्कन जीपीयू त्वरण रनटाइम और एचएएल",
-      "pl": "Wielomodułowe środowisko uruchomieniowe akceleracji GPU Vulkan i HAL dla Androida",
-      "la": "Syntaxis accelerationis GPU Vulkan trans-suggestum pro Android mobili"
+      "ar": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "fr": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "de": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "es": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "hi": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "ru": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "vi": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "pl": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android",
+      "la": "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android"
     },
     "challenge": {
       "en": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
       "ko": "모바일 안드로이드 환경에서 멀티모달 AI를 실행할 때 파편화된 GPU 드라이버, Bionic과 Mesa 간 로더 충돌, 텐서 정렬 버퍼 오버플로우, 개별 패키지별 중복 바이너리 비대화 문제가 발생합니다.",
-      "ja": "モバイルAndroid環境でマルチモーダルAIを実行する際、断片化されたGPUドライバ、BionicとMesa間のローダークラッシュ、テンソルアライメントバッファのオーバーフロー、重複バイナリの肥大化が課題となります。",
-      "zh": "在移动端 Android 上运行多模态 AI 面临碎片化的 GPU 驱动、Bionic 与 Mesa 之间的加载器崩溃、张量对齐缓冲区溢出以及独立包之间的冗余二进制膨胀问题。",
-      "vi": "Chạy AI đa phương thức trên Android di động gặp phải tình trạng phân mảnh trình điều khiển GPU, xung đột tải giữa Bionic và Mesa, tràn bộ đệm căn chỉnh tensor và phình to tệp nhị phân trùng lặp.",
-      "fr": "L'exécution de l'IA multimodale sur Android mobile est entravée par des pilotes GPU fragmentés, des plantages de chargeur entre Bionic et Mesa et des dépassements de tampon.",
-      "de": "Die Ausführung multimodaler KI auf mobilem Android leidet unter fragmentierten GPU-Treibern, Ladekonflikten zwischen Bionic und Mesa und Pufferüberläufen.",
-      "es": "Ejecutar IA multimodal en Android móvil se ve afectado por controladores de GPU fragmentados, fallos del cargador entre Bionic y Mesa y desbordamientos de búfer.",
-      "ru": "Запуск мультимодального ИИ на мобильном Android страдает от фрагментированных драйверов GPU, сбоев загрузчика между Bionic и Mesa и переполнения буфера.",
+      "ja": "モバイルAndroid環境でマルチモーダルAIを実行する際、断片化されたGPUドライバ、BionicとMesa間のローダークラッシュ、テンソルアライメントバッファのオーバーフローが課題となります。",
+      "zh": "在移动端 Android 上运行多模态 AI 面临碎片化的 GPU 驱动、Bionic 与 Mesa 之间的加载器崩溃以及张量对齐缓冲区溢出问题。",
       "ar": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "fr": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "de": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "es": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
       "hi": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "ru": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
+      "vi": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
       "pl": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.",
       "la": "Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages."
     },
     "breakthrough": {
       "en": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "ko": "STT, Vision, LLM, Diffusion, Training을 아우르는 단일 C++20 Vulkan 하드웨어 추상화 계층(HAL)과 범용 런타임을 제공하며, 12단계 정밀 검증 계층(V0-V11) 및 무손실 자동 복구 기능을 갖추고 있습니다.",
-      "ja": "STT、Vision、LLM、Diffusion、Trainingを包括する単一のC++20 Vulkanハードウェア抽象化層（HAL）と汎用ランタイムを提供し、12段階の検証階層（V0-V11）とデータ損失ゼロの自動復旧を実現します。",
-      "zh": "提供单一、零硬编码的 C++20 Vulkan 硬件抽象层 (HAL) 与通用运行时，统一支持 STT、视觉、大模型、扩散生成与训练，具备 12 级精细验证体系 (V0-V11) 与零数据丢失自动恢复机制。",
-      "vi": "Cung cấp một Lớp trừu tượng phần cứng (HAL) Vulkan C++20 duy nhất và thời gian chạy phổ quát cho STT, Vision, LLM, Diffusion và Training với phân cấp xác thực 12 giai đoạn (V0-V11).",
+      "ja": "STT、Vision、LLM、Diffusion、Trainingを包括する単一のC++20 Vulkanハードウェア抽象化層（HAL）と汎用ランタイムを提供し、12段階の検証階層（V0-V11）と自動復旧を実現します。",
+      "zh": "提供单一、零硬编码的 C++20 Vulkan 硬件抽象层 (HAL) 与通用运行时，统一支持 STT、视觉、大模型、扩散生成与训练，具备 12 级精细验证体系 (V0-V11)。",
       "ar": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "fr": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "de": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "es": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "hi": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "ru": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
+      "vi": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "pl": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.",
       "la": "Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery."
     },
@@ -157,13 +157,13 @@
           "ko": "단일 로더 체인 핀닝",
           "ja": "単一ローダーチェーン固定",
           "zh": "单一加载器链路固定",
-          "vi": "Ghim chuỗi tải đơn",
           "ar": "Single Loader Chain Pinning",
           "fr": "Single Loader Chain Pinning",
           "de": "Single Loader Chain Pinning",
           "es": "Single Loader Chain Pinning",
           "hi": "Single Loader Chain Pinning",
           "ru": "Single Loader Chain Pinning",
+          "vi": "Single Loader Chain Pinning",
           "pl": "Single Loader Chain Pinning",
           "la": "Single Loader Chain Pinning"
         },
@@ -187,15 +187,15 @@
         "title": {
           "en": "12-Stage Probing & Fallback",
           "ko": "12단계 하드웨어 진단 및 폴백",
-          "ja": "12段階のハードウェア診断とフォールバック",
+          "ja": "12段階の診断とフォールバック",
           "zh": "12 级硬件探测与优雅降级",
-          "vi": "Thử nghiệm & Dự phòng 12 giai đoạn",
           "ar": "12-Stage Probing & Fallback",
           "fr": "12-Stage Probing & Fallback",
           "de": "12-Stage Probing & Fallback",
           "es": "12-Stage Probing & Fallback",
           "hi": "12-Stage Probing & Fallback",
           "ru": "12-Stage Probing & Fallback",
+          "vi": "12-Stage Probing & Fallback",
           "pl": "12-Stage Probing & Fallback",
           "la": "12-Stage Probing & Fallback"
         },
@@ -203,7 +203,7 @@
           "en": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
           "ko": "dlopen(V0)부터 종단간 모델 추론(V11)까지 GPU 역량을 단계별로 검증하며 CPU NEON 백엔드로 안전하게 자동 전환합니다.",
           "ja": "dlopen（V0）からE2E推論（V11）までGPU能力を検証し、CPU NEONフォールバックで安全に自動復旧します。",
-          "zh": "从 dlopen (V0) 到端到端模型推理 (V11) 逐级验证 GPU 能力，并在异常时透明无缝降级至 CPU NEON 恢复。",
+          "zh": "从 dlopen (V0) 到端到端模型推理 (V11) 逐级验证 GPU 能力，并在异常时透明降级至 CPU NEON 恢复。",
           "ar": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
           "fr": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
           "de": "Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.",
@@ -219,15 +219,15 @@
         "title": {
           "en": "Multi-Modal Cross-Acceleration",
           "ko": "멀티모달 통합 가속",
-          "ja": "マルチモーダル統合アクセラレーション",
+          "ja": "マルチモーダル統合高速化",
           "zh": "多模态跨架构联合加速",
-          "vi": "Tăng tốc chéo đa phương thức",
           "ar": "Multi-Modal Cross-Acceleration",
           "fr": "Multi-Modal Cross-Acceleration",
           "de": "Multi-Modal Cross-Acceleration",
           "es": "Multi-Modal Cross-Acceleration",
           "hi": "Multi-Modal Cross-Acceleration",
           "ru": "Multi-Modal Cross-Acceleration",
+          "vi": "Multi-Modal Cross-Acceleration",
           "pl": "Multi-Modal Cross-Acceleration",
           "la": "Multi-Modal Cross-Acceleration"
         },
@@ -251,47 +251,47 @@
   },
   "bitnet": {
     "subtitles": {
-      "en": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
+      "en": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
       "ko": "모바일 ARM64 하드웨어를 위한 초고속 1.58비트 양자화 대규모 언어 모델(LLM) 추론 엔진",
-      "ja": "モバイルARM64向け超高速1.58ビット量子化大規模言語モデル（LLM）推論エンジン",
-      "zh": "适用于移动端 ARM64 架构的超高速 1.58 位量化大语言模型 (LLM) 推理引擎",
-      "vi": "Công cụ suy luận mô hình ngôn ngữ lớn (LLM) lượng tử hóa 1.58-bit siêu nhanh cho ARM64 di động",
-      "fr": "Moteur d'inférence LLM quantifié 1,58 bit ultra-rapide pour ARM64 mobile",
-      "de": "Ultraschnelle 1,58-Bit-quantisierte LLM-Inferenz-Engine für mobiles ARM64",
-      "es": "Motor de inferencia LLM cuantizado de 1,58 bits ultrarrápido para ARM64 móvil",
-      "ru": "Сверхбыстрый 1.58-битный квантованный движок вывода LLM для мобильного ARM64",
-      "ar": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
-      "hi": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
-      "pl": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64",
-      "la": "Ultra-Fast 1.58-Bit Quantized Large Language Model Inference Engine for Mobile ARM64"
+      "ja": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "zh": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "ar": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "fr": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "de": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "es": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "hi": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "ru": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "vi": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "pl": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine",
+      "la": "ARM64 NEON DotProd SIMD Accelerated 1.58-bit On-Device LLM Inference Engine"
     },
     "challenge": {
       "en": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "ko": "모바일 CPU 환경에서 표준 FP16/INT4 대규모 언어 모델(LLM)을 실행하면 극심한 메모리 대역폭 병목, 발열 스로틀링, 15W를 초과하는 심각한 배터리 소모가 발생합니다.",
-      "ja": "モバイルCPU環境で標準のFP16/INT4大規模言語モデル（LLM）を実行すると、極端なメモリ帯域幅のボトルネック、サーマルスロットリング、15Wを超える激しいバッテリー消費が発生します。",
-      "zh": "在移动 CPU 架构上运行标准 FP16/INT4 大语言模型推理时，面临极端的内存带宽瓶颈、发热降频以及超过 15W 的严重功耗消耗。",
-      "vi": "Suy luận LLM FP16/INT4 tiêu chuẩn trên CPU di động gặp phải tắc nghẽn băng thông bộ nhớ nghiêm trọng, quá nhiệt và tiêu hao pin vượt quá 15W.",
+      "ja": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "zh": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "ar": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "fr": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "de": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "es": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "hi": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "ru": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
+      "vi": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "pl": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W.",
       "la": "Standard FP16/INT4 LLM inference on mobile CPU architectures encounters extreme memory bandwidth bottlenecks, thermal throttling, and severe battery drain exceeding 15W."
     },
     "breakthrough": {
       "en": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "ko": "수작업 최적화된 ARM64 NEON 어셈블리 커널을 통해 1.58비트 3진 양자화 가중치{-1, 0, +1}를 직접 연산하여 행렬 곱셈을 정수 덧셈/뺄셈으로 치환하고 350MB 미만의 메모리 점유율을 달성합니다.",
-      "ja": "手動最適化されたARM64 NEONアセンブリカーネルを介して1.58ビット3値量子化重み{-1, 0, +1}を直接計算し、行列乗算を整数の加減算に削減して350MB未満のRAM消費を実現します。",
-      "zh": "通过手工优化的 ARM64 NEON 汇编内核直接执行 1.58 位三值量化权重 {-1, 0, +1}，将矩阵乘法完全简化为纯整数加减法，内存占用控制在 350MB 以内。",
-      "vi": "Thực thi trực tiếp các trọng số lượng tử hóa bậc ba 1.58-bit {-1, 0, +1} thông qua các hạt nhân lắp ráp ARM64 NEON được vector hóa thủ công, giảm mức chiếm dụng RAM xuống dưới 350MB.",
+      "ja": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "zh": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "ar": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "fr": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "de": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "es": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "hi": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "ru": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
+      "vi": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "pl": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint.",
       "la": "Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels, reducing matrix multiplications to integer additions and subtractions with under 350MB RAM footprint."
     },
@@ -300,23 +300,23 @@
         "title": {
           "en": "1.58-Bit Ternary DotProd Acceleration",
           "ko": "1.58비트 3진 DotProd 가속",
-          "ja": "1.58ビット3値DotProd高速化",
-          "zh": "1.58 位三值点积硬件加速",
-          "vi": "Tăng tốc DotProd bậc ba 1.58-bit",
+          "ja": "1.58-Bit Ternary DotProd Acceleration",
+          "zh": "1.58-Bit Ternary DotProd Acceleration",
           "ar": "1.58-Bit Ternary DotProd Acceleration",
           "fr": "1.58-Bit Ternary DotProd Acceleration",
           "de": "1.58-Bit Ternary DotProd Acceleration",
           "es": "1.58-Bit Ternary DotProd Acceleration",
           "hi": "1.58-Bit Ternary DotProd Acceleration",
           "ru": "1.58-Bit Ternary DotProd Acceleration",
+          "vi": "1.58-Bit Ternary DotProd Acceleration",
           "pl": "1.58-Bit Ternary DotProd Acceleration",
           "la": "1.58-Bit Ternary DotProd Acceleration"
         },
         "desc": {
           "en": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
           "ko": "ARM64 dot-product 벡터 SIMD 명령어를 활용하여 부동소수점 곱셈을 고속 정수 덧셈으로 대체합니다.",
-          "ja": "ARM64 dot-productベクトルSIMD命令を使用して、乗算を高速な整数加算に置き換えます。",
-          "zh": "利用 ARM64 点积向量 SIMD 指令集，将繁重的浮点乘法彻底替换为极致高效的整数累加。",
+          "ja": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
+          "zh": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
           "ar": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
           "fr": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
           "de": "Replaces multiplication with integer additions using ARM64 dot-product vector SIMD instructions.",
@@ -332,23 +332,23 @@
         "title": {
           "en": "Zero-PRoot Native Bionic Execution",
           "ko": "PRoot 없는 네이티브 Bionic 실행",
-          "ja": "PRoot不要のネイティブBionic実行",
-          "zh": "零 PRoot 原生 Bionic 执行",
-          "vi": "Thực thi Bionic gốc không cần PRoot",
+          "ja": "Zero-PRoot Native Bionic Execution",
+          "zh": "Zero-PRoot Native Bionic Execution",
           "ar": "Zero-PRoot Native Bionic Execution",
           "fr": "Zero-PRoot Native Bionic Execution",
           "de": "Zero-PRoot Native Bionic Execution",
           "es": "Zero-PRoot Native Bionic Execution",
           "hi": "Zero-PRoot Native Bionic Execution",
           "ru": "Zero-PRoot Native Bionic Execution",
+          "vi": "Zero-PRoot Native Bionic Execution",
           "pl": "Zero-PRoot Native Bionic Execution",
           "la": "Zero-PRoot Native Bionic Execution"
         },
         "desc": {
           "en": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
           "ko": "리눅스 PRoot 컨테이너나 루팅 권한 없이 Android Bionic libc 위에서 직접 네이티브로 실행됩니다.",
-          "ja": "Linux PRootコンテナやroot権限なしで、Android Bionic libc上で直接実行されます。",
-          "zh": "无需任何 Linux PRoot 容器或 Root 权限，直接在 Android Bionic libc 底层以原生速度执行。",
+          "ja": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
+          "zh": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
           "ar": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
           "fr": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
           "de": "Direct execution on Android Bionic libc without Linux PRoot containers or root privileges.",
@@ -364,23 +364,23 @@
         "title": {
           "en": "Dual-Engine Python & Node.js Gateways",
           "ko": "Python & Node.js 듀얼 엔진 게이트웨이",
-          "ja": "Python＆Node.jsデュアルエンジンゲートウェイ",
-          "zh": "Python 与 Node.js 双引擎网关",
-          "vi": "Cổng kết nối kép Python & Node.js",
+          "ja": "Dual-Engine Python & Node.js Gateways",
+          "zh": "Dual-Engine Python & Node.js Gateways",
           "ar": "Dual-Engine Python & Node.js Gateways",
           "fr": "Dual-Engine Python & Node.js Gateways",
           "de": "Dual-Engine Python & Node.js Gateways",
           "es": "Dual-Engine Python & Node.js Gateways",
           "hi": "Dual-Engine Python & Node.js Gateways",
           "ru": "Dual-Engine Python & Node.js Gateways",
+          "vi": "Dual-Engine Python & Node.js Gateways",
           "pl": "Dual-Engine Python & Node.js Gateways",
           "la": "Dual-Engine Python & Node.js Gateways"
         },
         "desc": {
           "en": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
           "ko": "독립된 CLI 네임스페이스와 함께 Python 3.8+ 및 Node.js 18+ 런타임 모두를 위한 초경량 FFI 바인딩을 제공합니다.",
-          "ja": "独立したCLI名前空間を備え、Python 3.8+およびNode.js 18+ランタイム向けの超低オーバーヘッドFFIバインディングを提供します。",
-          "zh": "为 Python 3.8+ 和 Node.js 18+ 运行时提供极低开销的轻量级 FFI 绑定与独立的 CLI 命名空间。",
+          "ja": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
+          "zh": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
           "ar": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
           "fr": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
           "de": "Ultra-low overhead thin FFI bindings for both Python 3.8+ and Node.js 18+ runtimes with independent CLI namespaces.",
@@ -396,32 +396,2092 @@
         "title": {
           "en": "Energy-Efficient Edge Deployment",
           "ko": "초저전력 에지 배포",
-          "ja": "超低消費電力エッジ展開",
-          "zh": "极低能耗端侧部署",
-          "vi": "Triển khai biên tiết kiệm năng lượng",
+          "ja": "Energy-Efficient Edge Deployment",
+          "zh": "Energy-Efficient Edge Deployment",
           "ar": "Energy-Efficient Edge Deployment",
           "fr": "Energy-Efficient Edge Deployment",
           "de": "Energy-Efficient Edge Deployment",
           "es": "Energy-Efficient Edge Deployment",
           "hi": "Energy-Efficient Edge Deployment",
           "ru": "Energy-Efficient Edge Deployment",
+          "vi": "Energy-Efficient Edge Deployment",
           "pl": "Energy-Efficient Edge Deployment",
           "la": "Energy-Efficient Edge Deployment"
         },
         "desc": {
-          "en": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
+          "en": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
           "ko": "연속 토큰 생성 시 2.5W 미만의 전력을 소비하여 24시간 무중단 자율 모바일 운영을 실현합니다.",
-          "ja": "継続的なトークン生成時の消費電力を2.5W未満に抑え、24時間365日の連続自律稼働を可能にします。",
-          "zh": "连续 Token 生成功耗控制在 2.5W 以下，确保移动端设备实现 7x24 小时全天候长效自主运行。",
-          "ar": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "fr": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "de": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "es": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "hi": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "ru": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "vi": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "pl": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation.",
-          "la": "Continuous token generation consumes under 2.5W, enabling continuous 24/7 autonomous mobile operation."
+          "ja": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "zh": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "ar": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "fr": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "de": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "es": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "hi": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "ru": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "vi": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "pl": "Consumes under 2.5W during continuous token generation, preventing thermal throttling.",
+          "la": "Consumes under 2.5W during continuous token generation, preventing thermal throttling."
+        }
+      }
+    ]
+  },
+  "diffusion": {
+    "subtitles": {
+      "en": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "ko": "모바일 안드로이드 온디바이스 Stable Diffusion 이미지 생성 가속 엔진",
+      "ja": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "zh": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "ar": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "fr": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "de": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "es": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "hi": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "ru": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "vi": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "pl": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64",
+      "la": "Native On-Device Stable Diffusion Runtime for Android Termux & ARM64"
+    },
+    "challenge": {
+      "en": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "ko": "모바일 장치에서 확산 모델을 실행할 때 수 기가바이트의 VRAM 요구량과 극심한 연산 지연으로 인해 앱 충돌(OOM)이 빈번하게 발생합니다.",
+      "ja": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "zh": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "ar": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "fr": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "de": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "es": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "hi": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "ru": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "vi": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "pl": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.",
+      "la": "Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits."
+    },
+    "breakthrough": {
+      "en": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "ko": "메모리 타일링 최적화 및 Vulkan/NEON 하이브리드 파이프라인을 통해 모바일 RAM 2GB 미만에서 512x512 고품질 이미지를 고속 생성합니다.",
+      "ja": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "zh": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "ar": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "fr": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "de": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "es": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "hi": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "ru": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "vi": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "pl": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.",
+      "la": "Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Zero-PRoot Native ARM64 Bionic",
+          "ko": "메모리 타일링 가속",
+          "ja": "Zero-PRoot Native ARM64 Bionic",
+          "zh": "Zero-PRoot Native ARM64 Bionic",
+          "ar": "Zero-PRoot Native ARM64 Bionic",
+          "fr": "Zero-PRoot Native ARM64 Bionic",
+          "de": "Zero-PRoot Native ARM64 Bionic",
+          "es": "Zero-PRoot Native ARM64 Bionic",
+          "hi": "Zero-PRoot Native ARM64 Bionic",
+          "ru": "Zero-PRoot Native ARM64 Bionic",
+          "vi": "Zero-PRoot Native ARM64 Bionic",
+          "pl": "Zero-PRoot Native ARM64 Bionic",
+          "la": "Zero-PRoot Native ARM64 Bionic"
+        },
+        "desc": {
+          "en": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "ko": "타일 기반 분할 렌더링으로 피크 메모리 사용량을 대폭 절감합니다.",
+          "ja": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "zh": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "ar": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "fr": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "de": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "es": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "hi": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "ru": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "vi": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "pl": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead.",
+          "la": "Executes directly without root permissions, virtual machines, or PRoot Linux overhead."
+        }
+      },
+      {
+        "title": {
+          "en": "Dual Python & Node.js Engine",
+          "ko": "초경량 LoRA 실시간 주입",
+          "ja": "Dual Python & Node.js Engine",
+          "zh": "Dual Python & Node.js Engine",
+          "ar": "Dual Python & Node.js Engine",
+          "fr": "Dual Python & Node.js Engine",
+          "de": "Dual Python & Node.js Engine",
+          "es": "Dual Python & Node.js Engine",
+          "hi": "Dual Python & Node.js Engine",
+          "ru": "Dual Python & Node.js Engine",
+          "vi": "Dual Python & Node.js Engine",
+          "pl": "Dual Python & Node.js Engine",
+          "la": "Dual Python & Node.js Engine"
+        },
+        "desc": {
+          "en": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "ko": "추가적인 런타임 오버헤드 없이 온더플라이로 LoRA 가중치를 합성합니다.",
+          "ja": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "zh": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "ar": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "fr": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "de": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "es": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "hi": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "ru": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "vi": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "pl": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.",
+          "la": "Provides comprehensive CLI and programmatic APIs across both Python and JavaScript."
+        }
+      },
+      {
+        "title": {
+          "en": "Samsung Gallery Auto-Indexing",
+          "ko": "멀티스레드 스케줄링",
+          "ja": "Samsung Gallery Auto-Indexing",
+          "zh": "Samsung Gallery Auto-Indexing",
+          "ar": "Samsung Gallery Auto-Indexing",
+          "fr": "Samsung Gallery Auto-Indexing",
+          "de": "Samsung Gallery Auto-Indexing",
+          "es": "Samsung Gallery Auto-Indexing",
+          "hi": "Samsung Gallery Auto-Indexing",
+          "ru": "Samsung Gallery Auto-Indexing",
+          "vi": "Samsung Gallery Auto-Indexing",
+          "pl": "Samsung Gallery Auto-Indexing",
+          "la": "Samsung Gallery Auto-Indexing"
+        },
+        "desc": {
+          "en": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "ko": "비동기 파이프라인 큐를 통해 UI 프리징 없는 매끄러운 생성을 보장합니다.",
+          "ja": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "zh": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "ar": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "fr": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "de": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "es": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "hi": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "ru": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "vi": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "pl": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery.",
+          "la": "Automatically broadcasts Android MEDIA_SCANNER intents to register generated art in Gallery."
+        }
+      }
+    ]
+  },
+  "playwright": {
+    "subtitles": {
+      "en": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "ko": "안드로이드 Termux 환경을 위한 경량 헤드리스 브라우저 자동화 프레임워크",
+      "ja": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "zh": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "ar": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "fr": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "de": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "es": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "hi": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "ru": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "vi": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "pl": "Non-Root Real Chromium Automation & CDP Engine for Android Termux",
+      "la": "Non-Root Real Chromium Automation & CDP Engine for Android Termux"
+    },
+    "challenge": {
+      "en": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "ko": "모바일 환경에서 무거운 Chromium 브라우저를 실행할 때 발생하는 프로세스 좀비화 및 높은 리소스 낭비.",
+      "ja": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "zh": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "ar": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "fr": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "de": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "es": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "hi": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "ru": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "vi": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "pl": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+      "la": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints."
+    },
+    "breakthrough": {
+      "en": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "ko": "Phantom Process 자동 감시 데몬과 경량 CDP 프로토콜 바인딩을 통해 충돌 없는 완벽한 브라우저 자동화를 제공합니다.",
+      "ja": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "zh": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "ar": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "fr": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "de": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "es": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "hi": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "ru": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "vi": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "pl": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+      "la": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic 0-Drift Output",
+          "ko": "Phantom Process 감시 데몬",
+          "ja": "Deterministic 0-Drift Output",
+          "zh": "Deterministic 0-Drift Output",
+          "ar": "Deterministic 0-Drift Output",
+          "fr": "Deterministic 0-Drift Output",
+          "de": "Deterministic 0-Drift Output",
+          "es": "Deterministic 0-Drift Output",
+          "hi": "Deterministic 0-Drift Output",
+          "ru": "Deterministic 0-Drift Output",
+          "vi": "Deterministic 0-Drift Output",
+          "pl": "Deterministic 0-Drift Output",
+          "la": "Deterministic 0-Drift Output"
+        },
+        "desc": {
+          "en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ko": "고아 프로세스를 0.5초 이내에 자동 감지하고 메모리를 회수합니다.",
+          "ja": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "zh": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ar": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "fr": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "de": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "es": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "hi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ru": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "vi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "pl": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "la": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "네이티브 CDP 통신",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "웹소켓 기반의 경량화된 프로토콜로 빠른 명령 전달.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Memory Leakage Protection",
+          "ko": "스크린샷 & PDF 캡처",
+          "ja": "Memory Leakage Protection",
+          "zh": "Memory Leakage Protection",
+          "ar": "Memory Leakage Protection",
+          "fr": "Memory Leakage Protection",
+          "de": "Memory Leakage Protection",
+          "es": "Memory Leakage Protection",
+          "hi": "Memory Leakage Protection",
+          "ru": "Memory Leakage Protection",
+          "vi": "Memory Leakage Protection",
+          "pl": "Memory Leakage Protection",
+          "la": "Memory Leakage Protection"
+        },
+        "desc": {
+          "en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ko": "헤드리스 모드에서 완벽한 레이아웃 렌더링 및 캡처 지원.",
+          "ja": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "zh": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ar": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "fr": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "de": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "es": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "hi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ru": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "vi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "pl": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "la": "Weakref lifetime management preventing GPU VRAM / system RAM leaks."
+        }
+      }
+    ]
+  },
+  "stt": {
+    "subtitles": {
+      "en": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "ko": "모바일 온디바이스 실시간 음성 인식 및 트랜스크립션 엔진",
+      "ja": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "zh": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "ar": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "fr": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "de": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "es": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "hi": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "ru": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "vi": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "pl": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization",
+      "la": "Unified On-Device Speech-to-Text & Pure Python 128d X-Vector Speaker Diarization"
+    },
+    "challenge": {
+      "en": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "ko": "실시간 음성 처리 시 높은 지연 시간과 잡음 환경에서의 인식률 저하, 높은 CPU 점유율이 문제가 됩니다.",
+      "ja": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "zh": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "ar": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "fr": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "de": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "es": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "hi": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "ru": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "vi": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "pl": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.",
+      "la": "Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks."
+    },
+    "breakthrough": {
+      "en": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "ko": "양자화된 음향 인코더와 하드웨어 가속 빔 서치를 결합하여 실시간 지연 시간 150ms 미만의 고정밀 음성 인식을 지원합니다.",
+      "ja": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "zh": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "ar": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "fr": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "de": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "es": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "hi": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "ru": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "vi": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "pl": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.",
+      "la": "Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Triple STT Engine Integration",
+          "ko": "초저지연 스트리밍",
+          "ja": "Triple STT Engine Integration",
+          "zh": "Triple STT Engine Integration",
+          "ar": "Triple STT Engine Integration",
+          "fr": "Triple STT Engine Integration",
+          "de": "Triple STT Engine Integration",
+          "es": "Triple STT Engine Integration",
+          "hi": "Triple STT Engine Integration",
+          "ru": "Triple STT Engine Integration",
+          "vi": "Triple STT Engine Integration",
+          "pl": "Triple STT Engine Integration",
+          "la": "Triple STT Engine Integration"
+        },
+        "desc": {
+          "en": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "ko": "청크 단위 실시간 음성 스트리밍 파이프라인 제공.",
+          "ja": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "zh": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "ar": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "fr": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "de": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "es": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "hi": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "ru": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "vi": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "pl": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.",
+          "la": "Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory."
+        }
+      },
+      {
+        "title": {
+          "en": "Pure Python Speaker Diarization",
+          "ko": "다국어 자동 감지",
+          "ja": "Pure Python Speaker Diarization",
+          "zh": "Pure Python Speaker Diarization",
+          "ar": "Pure Python Speaker Diarization",
+          "fr": "Pure Python Speaker Diarization",
+          "de": "Pure Python Speaker Diarization",
+          "es": "Pure Python Speaker Diarization",
+          "hi": "Pure Python Speaker Diarization",
+          "ru": "Pure Python Speaker Diarization",
+          "vi": "Pure Python Speaker Diarization",
+          "pl": "Pure Python Speaker Diarization",
+          "la": "Pure Python Speaker Diarization"
+        },
+        "desc": {
+          "en": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "ko": "90개 이상의 글로벌 언어 자동 식별 및 교차 변환 지원.",
+          "ja": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "zh": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "ar": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "fr": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "de": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "es": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "hi": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "ru": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "vi": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "pl": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.",
+          "la": "128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero-Subprocess Audio Fastpath",
+          "ko": "잡음 억제 필터링",
+          "ja": "Zero-Subprocess Audio Fastpath",
+          "zh": "Zero-Subprocess Audio Fastpath",
+          "ar": "Zero-Subprocess Audio Fastpath",
+          "fr": "Zero-Subprocess Audio Fastpath",
+          "de": "Zero-Subprocess Audio Fastpath",
+          "es": "Zero-Subprocess Audio Fastpath",
+          "hi": "Zero-Subprocess Audio Fastpath",
+          "ru": "Zero-Subprocess Audio Fastpath",
+          "vi": "Zero-Subprocess Audio Fastpath",
+          "pl": "Zero-Subprocess Audio Fastpath",
+          "la": "Zero-Subprocess Audio Fastpath"
+        },
+        "desc": {
+          "en": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "ko": "온디바이스 스펙트럼 차감 필터를 통한 깨끗한 음성 분리.",
+          "ja": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "zh": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "ar": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "fr": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "de": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "es": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "hi": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "ru": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "vi": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "pl": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.",
+          "la": "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Audio Privacy",
+          "ko": "Zero Cloud Egress Audio Privacy",
+          "ja": "Zero Cloud Egress Audio Privacy",
+          "zh": "Zero Cloud Egress Audio Privacy",
+          "ar": "Zero Cloud Egress Audio Privacy",
+          "fr": "Zero Cloud Egress Audio Privacy",
+          "de": "Zero Cloud Egress Audio Privacy",
+          "es": "Zero Cloud Egress Audio Privacy",
+          "hi": "Zero Cloud Egress Audio Privacy",
+          "ru": "Zero Cloud Egress Audio Privacy",
+          "vi": "Zero Cloud Egress Audio Privacy",
+          "pl": "Zero Cloud Egress Audio Privacy",
+          "la": "Zero Cloud Egress Audio Privacy"
+        },
+        "desc": {
+          "en": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "ko": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "ja": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "zh": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "ar": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "fr": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "de": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "es": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "hi": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "ru": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "vi": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "pl": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.",
+          "la": "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Subprocess Crash Isolation",
+          "ko": "Subprocess Crash Isolation",
+          "ja": "Subprocess Crash Isolation",
+          "zh": "Subprocess Crash Isolation",
+          "ar": "Subprocess Crash Isolation",
+          "fr": "Subprocess Crash Isolation",
+          "de": "Subprocess Crash Isolation",
+          "es": "Subprocess Crash Isolation",
+          "hi": "Subprocess Crash Isolation",
+          "ru": "Subprocess Crash Isolation",
+          "vi": "Subprocess Crash Isolation",
+          "pl": "Subprocess Crash Isolation",
+          "la": "Subprocess Crash Isolation"
+        },
+        "desc": {
+          "en": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "ko": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "ja": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "zh": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "ar": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "fr": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "de": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "es": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "hi": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "ru": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "vi": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "pl": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.",
+          "la": "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime."
+        }
+      },
+      {
+        "title": {
+          "en": "Mobile Hardware Optimization",
+          "ko": "Mobile Hardware Optimization",
+          "ja": "Mobile Hardware Optimization",
+          "zh": "Mobile Hardware Optimization",
+          "ar": "Mobile Hardware Optimization",
+          "fr": "Mobile Hardware Optimization",
+          "de": "Mobile Hardware Optimization",
+          "es": "Mobile Hardware Optimization",
+          "hi": "Mobile Hardware Optimization",
+          "ru": "Mobile Hardware Optimization",
+          "vi": "Mobile Hardware Optimization",
+          "pl": "Mobile Hardware Optimization",
+          "la": "Mobile Hardware Optimization"
+        },
+        "desc": {
+          "en": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "ko": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "ja": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "zh": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "ar": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "fr": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "de": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "es": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "hi": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "ru": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "vi": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "pl": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.",
+          "la": "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling."
+        }
+      }
+    ]
+  },
+  "tts": {
+    "subtitles": {
+      "en": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "ko": "모바일 초고음질 신경망 음성 합성 및 오디오 생성 엔진",
+      "ja": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "zh": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "ar": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "fr": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "de": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "es": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "hi": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "ru": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "vi": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "pl": "High-Performance Edge & Browser Native Open-Source Systems Library",
+      "la": "High-Performance Edge & Browser Native Open-Source Systems Library"
+    },
+    "challenge": {
+      "en": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "ko": "모바일 장치에서 자연스러운 음성을 합성할 때 모델 크기가 크고 오디오 버퍼 언더런이 발생하는 한계가 있습니다.",
+      "ja": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "zh": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "ar": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "fr": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "de": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "es": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "hi": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "ru": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "vi": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "pl": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.",
+      "la": "Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency."
+    },
+    "breakthrough": {
+      "en": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "ko": "초경량 보코더 아키텍처와 SIMD 벡터 가속을 적용하여 10MB 미만의 메모리로 실시간 24kHz 고음질 음성을 합성합니다.",
+      "ja": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "zh": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "ar": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "fr": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "de": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "es": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "hi": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "ru": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "vi": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "pl": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.",
+      "la": "Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "",
+          "ko": "실시간 음성 합성",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "실시간 재생 속도 대비 3배 빠른 초고속 오디오 생성.",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      },
+      {
+        "title": {
+          "en": "",
+          "ko": "다양한 화자 프로필",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "다양한 보컬 톤 및 다국어 억양 프리셋 지원.",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      },
+      {
+        "title": {
+          "en": "",
+          "ko": "저전력 오디오 파이프라인",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "배터리 소모를 최소화하는 네이티브 오디오 큐 관리.",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      },
+      {
+        "title": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      },
+      {
+        "title": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      },
+      {
+        "title": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        },
+        "desc": {
+          "en": "",
+          "ko": "",
+          "ja": "",
+          "zh": "",
+          "ar": "",
+          "fr": "",
+          "de": "",
+          "es": "",
+          "hi": "",
+          "ru": "",
+          "vi": "",
+          "pl": "",
+          "la": ""
+        }
+      }
+    ]
+  },
+  "train": {
+    "subtitles": {
+      "en": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "ko": "모바일 온디바이스 경량 LoRA 및 가중치 파인튜닝 엔진",
+      "ja": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "zh": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "ar": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "fr": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "de": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "es": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "hi": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "ru": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "vi": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "pl": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android",
+      "la": "Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android"
+    },
+    "challenge": {
+      "en": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "ko": "에지 디바이스의 제한된 메모리에서 역전파(Backpropagation) 계산 시 발생하는 OOM 오류.",
+      "ja": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "zh": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "ar": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "fr": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "de": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "es": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "hi": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "ru": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "vi": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "pl": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation.",
+      "la": "Standard deep learning frameworks cannot compile cleanly on Android Bionic and exceed smartphone RAM during backpropagation."
+    },
+    "breakthrough": {
+      "en": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "ko": "그래디언트 체크포인팅과 4비트 양자화 옵티마이저를 결합하여 스마트폰에서 직접 LoRA 파인튜닝을 수행합니다.",
+      "ja": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "zh": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "ar": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "fr": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "de": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "es": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "hi": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "ru": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "vi": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "pl": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.",
+      "la": "Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic 0-Drift Output",
+          "ko": "온디바이스 LoRA 학습",
+          "ja": "Deterministic 0-Drift Output",
+          "zh": "Deterministic 0-Drift Output",
+          "ar": "Deterministic 0-Drift Output",
+          "fr": "Deterministic 0-Drift Output",
+          "de": "Deterministic 0-Drift Output",
+          "es": "Deterministic 0-Drift Output",
+          "hi": "Deterministic 0-Drift Output",
+          "ru": "Deterministic 0-Drift Output",
+          "vi": "Deterministic 0-Drift Output",
+          "pl": "Deterministic 0-Drift Output",
+          "la": "Deterministic 0-Drift Output"
+        },
+        "desc": {
+          "en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ko": "PC나 클라우드 없이 모바일 기기 단독으로 모델 파인튜닝.",
+          "ja": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "zh": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ar": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "fr": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "de": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "es": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "hi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ru": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "vi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "pl": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "la": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "메모리 절약형 옵티마이저",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "AdamW 대비 메모리 사용량을 75% 절감하는 정수 옵티마이저 탑재.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Memory Leakage Protection",
+          "ko": "체크포인트 자동 복구",
+          "ja": "Memory Leakage Protection",
+          "zh": "Memory Leakage Protection",
+          "ar": "Memory Leakage Protection",
+          "fr": "Memory Leakage Protection",
+          "de": "Memory Leakage Protection",
+          "es": "Memory Leakage Protection",
+          "hi": "Memory Leakage Protection",
+          "ru": "Memory Leakage Protection",
+          "vi": "Memory Leakage Protection",
+          "pl": "Memory Leakage Protection",
+          "la": "Memory Leakage Protection"
+        },
+        "desc": {
+          "en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ko": "학습 중 배터리 방전 시 마지막 상태에서 안전하게 재개.",
+          "ja": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "zh": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ar": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "fr": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "de": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "es": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "hi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ru": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "vi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "pl": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "la": "Weakref lifetime management preventing GPU VRAM / system RAM leaks."
+        }
+      }
+    ]
+  },
+  "forge": {
+    "subtitles": {
+      "en": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "ko": "WebGPU 기반 온디바이스 자동 미분 및 딥러닝 텐서 프레임워크",
+      "ja": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "zh": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "ar": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "fr": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "de": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "es": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "hi": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "ru": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "vi": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "pl": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax",
+      "la": "Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax"
+    },
+    "challenge": {
+      "en": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "ko": "웹 브라우저 환경에서 고성능 GPU 텐서 연산 및 자동 미분을 효율적으로 구현하는 난제.",
+      "ja": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "zh": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "ar": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "fr": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "de": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "es": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "hi": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "ru": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "vi": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "pl": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle.",
+      "la": "Server-side GPU inferencing costs explode with user scale, while user browser GPUs sit completely idle."
+    },
+    "breakthrough": {
+      "en": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "ko": "순수 WebGPU 셰이더 기반 동적 연산 그래프와 자동 미분 엔진으로 네이티브 수준의 학습 및 추론 속도를 달성합니다.",
+      "ja": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "zh": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "ar": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "fr": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "de": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "es": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "hi": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "ru": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "vi": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "pl": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.",
+      "la": "Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic 0-Drift Output",
+          "ko": "동적 오토그라드 엔진",
+          "ja": "Deterministic 0-Drift Output",
+          "zh": "Deterministic 0-Drift Output",
+          "ar": "Deterministic 0-Drift Output",
+          "fr": "Deterministic 0-Drift Output",
+          "de": "Deterministic 0-Drift Output",
+          "es": "Deterministic 0-Drift Output",
+          "hi": "Deterministic 0-Drift Output",
+          "ru": "Deterministic 0-Drift Output",
+          "vi": "Deterministic 0-Drift Output",
+          "pl": "Deterministic 0-Drift Output",
+          "la": "Deterministic 0-Drift Output"
+        },
+        "desc": {
+          "en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ko": "PyTorch 스타일의 직관적인 테이프 기반 역전파 계산.",
+          "ja": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "zh": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ar": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "fr": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "de": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "es": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "hi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ru": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "vi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "pl": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "la": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "WebGPU 셰이더 커널",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "고도로 최적화된 WGSL 행렬 곱셈 및 컨볼루션 연산.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Memory Leakage Protection",
+          "ko": "플랫폼 독립성",
+          "ja": "Memory Leakage Protection",
+          "zh": "Memory Leakage Protection",
+          "ar": "Memory Leakage Protection",
+          "fr": "Memory Leakage Protection",
+          "de": "Memory Leakage Protection",
+          "es": "Memory Leakage Protection",
+          "hi": "Memory Leakage Protection",
+          "ru": "Memory Leakage Protection",
+          "vi": "Memory Leakage Protection",
+          "pl": "Memory Leakage Protection",
+          "la": "Memory Leakage Protection"
+        },
+        "desc": {
+          "en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ko": "추가 설치 없이 최신 웹 브라우저에서 즉각 실행.",
+          "ja": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "zh": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ar": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "fr": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "de": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "es": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "hi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ru": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "vi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "pl": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "la": "Weakref lifetime management preventing GPU VRAM / system RAM leaks."
+        }
+      }
+    ]
+  },
+  "infra-index": {
+    "subtitles": {
+      "en": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "ko": "분산 고성능 인덱싱 및 메트릭 집계 플랫폼",
+      "ja": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "zh": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "ar": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "fr": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "de": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "es": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "hi": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "ru": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "vi": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "pl": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform",
+      "la": "Global 69-Cloud GPU/CPU/Storage Real-Time Price Index & AI Semiconductor Market Intelligence Platform"
+    },
+    "challenge": {
+      "en": "",
+      "ko": "대규모 분산 노드에서 발생하는 메트릭 및 로그 데이터의 실시간 수집 및 검색 지연.",
+      "ja": "",
+      "zh": "",
+      "ar": "",
+      "fr": "",
+      "de": "",
+      "es": "",
+      "hi": "",
+      "ru": "",
+      "vi": "",
+      "pl": "",
+      "la": ""
+    },
+    "breakthrough": {
+      "en": "",
+      "ko": "LSM 트리 기반의 초고속 스토리지 엔진과 분산 쿼리 라우팅으로 나노초 단위 인덱싱을 지원합니다.",
+      "ja": "",
+      "zh": "",
+      "ar": "",
+      "fr": "",
+      "de": "",
+      "es": "",
+      "hi": "",
+      "ru": "",
+      "vi": "",
+      "pl": "",
+      "la": ""
+    },
+    "features": [
+      {
+        "title": {
+          "en": "4-Tier Upstash Redis Fallback",
+          "ko": "나노초 단위 인덱싱",
+          "ja": "4-Tier Upstash Redis Fallback",
+          "zh": "4-Tier Upstash Redis Fallback",
+          "ar": "4-Tier Upstash Redis Fallback",
+          "fr": "4-Tier Upstash Redis Fallback",
+          "de": "4-Tier Upstash Redis Fallback",
+          "es": "4-Tier Upstash Redis Fallback",
+          "hi": "4-Tier Upstash Redis Fallback",
+          "ru": "4-Tier Upstash Redis Fallback",
+          "vi": "4-Tier Upstash Redis Fallback",
+          "pl": "4-Tier Upstash Redis Fallback",
+          "la": "4-Tier Upstash Redis Fallback"
+        },
+        "desc": {
+          "en": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "ko": "LSM 기반 인메모리 버퍼와 비동기 컴팩션 엔진.",
+          "ja": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "zh": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "ar": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "fr": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "de": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "es": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "hi": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "ru": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "vi": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "pl": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk.",
+          "la": "Ensures 100% cache hit reliability by gracefully cascading through environment-prefixed keys (infraindex:prod:→infraindex:dev:→ root envelope keys) before touching disk."
+        }
+      },
+      {
+        "title": {
+          "en": "Neon Composite B-Tree Indexing",
+          "ko": "분산 쿼리 라우팅",
+          "ja": "Neon Composite B-Tree Indexing",
+          "zh": "Neon Composite B-Tree Indexing",
+          "ar": "Neon Composite B-Tree Indexing",
+          "fr": "Neon Composite B-Tree Indexing",
+          "de": "Neon Composite B-Tree Indexing",
+          "es": "Neon Composite B-Tree Indexing",
+          "hi": "Neon Composite B-Tree Indexing",
+          "ru": "Neon Composite B-Tree Indexing",
+          "vi": "Neon Composite B-Tree Indexing",
+          "pl": "Neon Composite B-Tree Indexing",
+          "la": "Neon Composite B-Tree Indexing"
+        },
+        "desc": {
+          "en": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "ko": "클러스터 전반에 걸친 지능형 파티셔닝 및 쿼리 분산.",
+          "ja": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "zh": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "ar": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "fr": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "de": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "es": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "hi": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "ru": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "vi": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "pl": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation.",
+          "la": "Accelerates complex time-series queries over 32,000+ historical price records from 15.4 seconds down to 800 milliseconds during cold cache invalidation."
+        }
+      },
+      {
+        "title": {
+          "en": "Dual-Tier Crawler Isolation",
+          "ko": "실시간 텔레메트리 대시보드",
+          "ja": "Dual-Tier Crawler Isolation",
+          "zh": "Dual-Tier Crawler Isolation",
+          "ar": "Dual-Tier Crawler Isolation",
+          "fr": "Dual-Tier Crawler Isolation",
+          "de": "Dual-Tier Crawler Isolation",
+          "es": "Dual-Tier Crawler Isolation",
+          "hi": "Dual-Tier Crawler Isolation",
+          "ru": "Dual-Tier Crawler Isolation",
+          "vi": "Dual-Tier Crawler Isolation",
+          "pl": "Dual-Tier Crawler Isolation",
+          "la": "Dual-Tier Crawler Isolation"
+        },
+        "desc": {
+          "en": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "ko": "생태계 전반의 상태를 한눈에 파악하는 고성능 모니터링.",
+          "ja": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "zh": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "ar": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "fr": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "de": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "es": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "hi": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "ru": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "vi": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "pl": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1).",
+          "la": "Isolates development testing from production data integrity through dedicated CLI run configurations (run_dev_crawl.ps1vsrun_prd_crawl.ps1)."
+        }
+      }
+    ]
+  },
+  "llamacpp": {
+    "subtitles": {
+      "en": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "ko": "ARM64 NEON 하드웨어에 최적화된 GGUF LLM 런타임",
+      "ja": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "zh": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "ar": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "fr": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "de": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "es": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "hi": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "ru": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "vi": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "pl": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64",
+      "la": "Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64"
+    },
+    "challenge": {
+      "en": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "ko": "다양한 오픈소스 LLM 아키텍처 지원 시 발생하는 바이너리 크기 증가 및 아키텍처별 최적화 난제.",
+      "ja": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "zh": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "ar": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "fr": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "de": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "es": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "hi": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "ru": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "vi": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "pl": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.",
+      "la": "Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations."
+    },
+    "breakthrough": {
+      "en": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "ko": "최적화된 GGUF 파서와 ARM64 NEON FP16/INT8 백엔드를 통해 광범위한 오픈소스 LLM을 최고 효율로 구동합니다.",
+      "ja": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "zh": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "ar": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "fr": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "de": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "es": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "hi": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "ru": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "vi": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "pl": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.",
+      "la": "Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Zero-Compilation Instant Deployment",
+          "ko": "광범위한 모델 호환성",
+          "ja": "Zero-Compilation Instant Deployment",
+          "zh": "Zero-Compilation Instant Deployment",
+          "ar": "Zero-Compilation Instant Deployment",
+          "fr": "Zero-Compilation Instant Deployment",
+          "de": "Zero-Compilation Instant Deployment",
+          "es": "Zero-Compilation Instant Deployment",
+          "hi": "Zero-Compilation Instant Deployment",
+          "ru": "Zero-Compilation Instant Deployment",
+          "vi": "Zero-Compilation Instant Deployment",
+          "pl": "Zero-Compilation Instant Deployment",
+          "la": "Zero-Compilation Instant Deployment"
+        },
+        "desc": {
+          "en": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "ko": "LLaMA, Mistral, Qwen, Gemma 등 주요 모델 100% 호환.",
+          "ja": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "zh": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "ar": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "fr": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "de": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "es": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "hi": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "ru": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "vi": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "pl": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.",
+          "la": "Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake."
+        }
+      },
+      {
+        "title": {
+          "en": "Unified Vulkan HAL & Big-Core Tuning",
+          "ko": "동적 컨텍스트 시프트",
+          "ja": "Unified Vulkan HAL & Big-Core Tuning",
+          "zh": "Unified Vulkan HAL & Big-Core Tuning",
+          "ar": "Unified Vulkan HAL & Big-Core Tuning",
+          "fr": "Unified Vulkan HAL & Big-Core Tuning",
+          "de": "Unified Vulkan HAL & Big-Core Tuning",
+          "es": "Unified Vulkan HAL & Big-Core Tuning",
+          "hi": "Unified Vulkan HAL & Big-Core Tuning",
+          "ru": "Unified Vulkan HAL & Big-Core Tuning",
+          "vi": "Unified Vulkan HAL & Big-Core Tuning",
+          "pl": "Unified Vulkan HAL & Big-Core Tuning",
+          "la": "Unified Vulkan HAL & Big-Core Tuning"
+        },
+        "desc": {
+          "en": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "ko": "컨텍스트 윈도우 초과 시 스마트 롤링 캐시 관리.",
+          "ja": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "zh": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "ar": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "fr": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "de": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "es": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "hi": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "ru": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "vi": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "pl": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).",
+          "la": "Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4)."
+        }
+      },
+      {
+        "title": {
+          "en": "Strict 3-Tier Execution Mode",
+          "ko": "멀티스레드 최적화",
+          "ja": "Strict 3-Tier Execution Mode",
+          "zh": "Strict 3-Tier Execution Mode",
+          "ar": "Strict 3-Tier Execution Mode",
+          "fr": "Strict 3-Tier Execution Mode",
+          "de": "Strict 3-Tier Execution Mode",
+          "es": "Strict 3-Tier Execution Mode",
+          "hi": "Strict 3-Tier Execution Mode",
+          "ru": "Strict 3-Tier Execution Mode",
+          "vi": "Strict 3-Tier Execution Mode",
+          "pl": "Strict 3-Tier Execution Mode",
+          "la": "Strict 3-Tier Execution Mode"
+        },
+        "desc": {
+          "en": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "ko": "빅리틀(Big-LITTLE) 코어 아키텍처에 맞춘 동적 스레드 밸런싱.",
+          "ja": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "zh": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "ar": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "fr": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "de": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "es": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "hi": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "ru": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "vi": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "pl": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).",
+          "la": "Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass)."
+        }
+      },
+      {
+        "title": {
+          "en": "OpenAI REST & SSE Streaming Supervisor",
+          "ko": "OpenAI REST & SSE Streaming Supervisor",
+          "ja": "OpenAI REST & SSE Streaming Supervisor",
+          "zh": "OpenAI REST & SSE Streaming Supervisor",
+          "ar": "OpenAI REST & SSE Streaming Supervisor",
+          "fr": "OpenAI REST & SSE Streaming Supervisor",
+          "de": "OpenAI REST & SSE Streaming Supervisor",
+          "es": "OpenAI REST & SSE Streaming Supervisor",
+          "hi": "OpenAI REST & SSE Streaming Supervisor",
+          "ru": "OpenAI REST & SSE Streaming Supervisor",
+          "vi": "OpenAI REST & SSE Streaming Supervisor",
+          "pl": "OpenAI REST & SSE Streaming Supervisor",
+          "la": "OpenAI REST & SSE Streaming Supervisor"
+        },
+        "desc": {
+          "en": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "ko": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "ja": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "zh": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "ar": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "fr": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "de": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "es": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "hi": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "ru": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "vi": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "pl": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.",
+          "la": "Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation."
+        }
+      },
+      {
+        "title": {
+          "en": "Automated Process Lifecycle & Cleanup",
+          "ko": "Automated Process Lifecycle & Cleanup",
+          "ja": "Automated Process Lifecycle & Cleanup",
+          "zh": "Automated Process Lifecycle & Cleanup",
+          "ar": "Automated Process Lifecycle & Cleanup",
+          "fr": "Automated Process Lifecycle & Cleanup",
+          "de": "Automated Process Lifecycle & Cleanup",
+          "es": "Automated Process Lifecycle & Cleanup",
+          "hi": "Automated Process Lifecycle & Cleanup",
+          "ru": "Automated Process Lifecycle & Cleanup",
+          "vi": "Automated Process Lifecycle & Cleanup",
+          "pl": "Automated Process Lifecycle & Cleanup",
+          "la": "Automated Process Lifecycle & Cleanup"
+        },
+        "desc": {
+          "en": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "ko": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "ja": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "zh": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "ar": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "fr": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "de": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "es": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "hi": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "ru": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "vi": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "pl": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.",
+          "la": "Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes."
+        }
+      },
+      {
+        "title": {
+          "en": "Supply-Chain Cryptographic Integrity",
+          "ko": "Supply-Chain Cryptographic Integrity",
+          "ja": "Supply-Chain Cryptographic Integrity",
+          "zh": "Supply-Chain Cryptographic Integrity",
+          "ar": "Supply-Chain Cryptographic Integrity",
+          "fr": "Supply-Chain Cryptographic Integrity",
+          "de": "Supply-Chain Cryptographic Integrity",
+          "es": "Supply-Chain Cryptographic Integrity",
+          "hi": "Supply-Chain Cryptographic Integrity",
+          "ru": "Supply-Chain Cryptographic Integrity",
+          "vi": "Supply-Chain Cryptographic Integrity",
+          "pl": "Supply-Chain Cryptographic Integrity",
+          "la": "Supply-Chain Cryptographic Integrity"
+        },
+        "desc": {
+          "en": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "ko": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "ja": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "zh": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "ar": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "fr": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "de": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "es": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "hi": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "ru": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "vi": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "pl": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.",
+          "la": "Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts."
+        }
+      }
+    ]
+  },
+  "vision": {
+    "subtitles": {
+      "en": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "ko": "온디바이스 고성능 컴퓨터 비전 및 비전-언어(VLM) 추론 엔진",
+      "ja": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "zh": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "ar": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "fr": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "de": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "es": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "hi": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "ru": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "vi": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "pl": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux",
+      "la": "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux"
+    },
+    "challenge": {
+      "en": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "ko": "고해상도 이미지 처리 시 텐서 크기 폭증과 비전 인코더 연산 지연.",
+      "ja": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "zh": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "ar": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "fr": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "de": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "es": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "hi": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "ru": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "vi": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "pl": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.",
+      "la": "Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines."
+    },
+    "breakthrough": {
+      "en": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "ko": "Vulkan 및 NEON 하이브리드 비전 파이프라인을 구축하여 실시간 객체 검출 및 이미지 캡셔닝을 지원합니다.",
+      "ja": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "zh": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "ar": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "fr": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "de": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "es": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "hi": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "ru": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "vi": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "pl": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.",
+      "la": "Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Zero-Heavy C++ Dependency",
+          "ko": "실시간 객체 검출",
+          "ja": "Zero-Heavy C++ Dependency",
+          "zh": "Zero-Heavy C++ Dependency",
+          "ar": "Zero-Heavy C++ Dependency",
+          "fr": "Zero-Heavy C++ Dependency",
+          "de": "Zero-Heavy C++ Dependency",
+          "es": "Zero-Heavy C++ Dependency",
+          "hi": "Zero-Heavy C++ Dependency",
+          "ru": "Zero-Heavy C++ Dependency",
+          "vi": "Zero-Heavy C++ Dependency",
+          "pl": "Zero-Heavy C++ Dependency",
+          "la": "Zero-Heavy C++ Dependency"
+        },
+        "desc": {
+          "en": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "ko": "YOLO 및 모바일 비전 모델 고속 추론 지원.",
+          "ja": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "zh": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "ar": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "fr": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "de": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "es": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "hi": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "ru": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "vi": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "pl": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.",
+          "la": "Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds."
+        }
+      },
+      {
+        "title": {
+          "en": "Multimodal VLM Inference Engine",
+          "ko": "멀티모달 VLM 추론",
+          "ja": "Multimodal VLM Inference Engine",
+          "zh": "Multimodal VLM Inference Engine",
+          "ar": "Multimodal VLM Inference Engine",
+          "fr": "Multimodal VLM Inference Engine",
+          "de": "Multimodal VLM Inference Engine",
+          "es": "Multimodal VLM Inference Engine",
+          "hi": "Multimodal VLM Inference Engine",
+          "ru": "Multimodal VLM Inference Engine",
+          "vi": "Multimodal VLM Inference Engine",
+          "pl": "Multimodal VLM Inference Engine",
+          "la": "Multimodal VLM Inference Engine"
+        },
+        "desc": {
+          "en": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "ko": "LLaVA 및 SmolVLM 기반의 온디바이스 시각 질의응답.",
+          "ja": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "zh": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "ar": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "fr": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "de": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "es": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "hi": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "ru": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "vi": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "pl": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.",
+          "la": "Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description."
+        }
+      },
+      {
+        "title": {
+          "en": "Vulkan GPU Acceleration & CPU Fallback",
+          "ko": "제로 카피 이미지 로더",
+          "ja": "Vulkan GPU Acceleration & CPU Fallback",
+          "zh": "Vulkan GPU Acceleration & CPU Fallback",
+          "ar": "Vulkan GPU Acceleration & CPU Fallback",
+          "fr": "Vulkan GPU Acceleration & CPU Fallback",
+          "de": "Vulkan GPU Acceleration & CPU Fallback",
+          "es": "Vulkan GPU Acceleration & CPU Fallback",
+          "hi": "Vulkan GPU Acceleration & CPU Fallback",
+          "ru": "Vulkan GPU Acceleration & CPU Fallback",
+          "vi": "Vulkan GPU Acceleration & CPU Fallback",
+          "pl": "Vulkan GPU Acceleration & CPU Fallback",
+          "la": "Vulkan GPU Acceleration & CPU Fallback"
+        },
+        "desc": {
+          "en": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "ko": "하드웨어 프레임버퍼에서 직접 텐서로 매핑.",
+          "ja": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "zh": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "ar": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "fr": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "de": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "es": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "hi": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "ru": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "vi": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "pl": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.",
+          "la": "Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement."
+        }
+      },
+      {
+        "title": {
+          "en": "1:1 Native Bridge with termux-train",
+          "ko": "1:1 Native Bridge with termux-train",
+          "ja": "1:1 Native Bridge with termux-train",
+          "zh": "1:1 Native Bridge with termux-train",
+          "ar": "1:1 Native Bridge with termux-train",
+          "fr": "1:1 Native Bridge with termux-train",
+          "de": "1:1 Native Bridge with termux-train",
+          "es": "1:1 Native Bridge with termux-train",
+          "hi": "1:1 Native Bridge with termux-train",
+          "ru": "1:1 Native Bridge with termux-train",
+          "vi": "1:1 Native Bridge with termux-train",
+          "pl": "1:1 Native Bridge with termux-train",
+          "la": "1:1 Native Bridge with termux-train"
+        },
+        "desc": {
+          "en": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "ko": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "ja": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "zh": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "ar": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "fr": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "de": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "es": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "hi": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "ru": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "vi": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "pl": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.",
+          "la": "Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning."
+        }
+      }
+    ]
+  },
+  "sentinel": {
+    "subtitles": {
+      "en": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "ko": "AMEVA 생태계를 위한 암호학적 보안 감사 및 무결성 검증 SDK",
+      "ja": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "zh": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "ar": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "fr": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "de": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "es": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "hi": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "ru": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "vi": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "pl": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK",
+      "la": "Privacy-First 0-Data Browser Observability & Deterministic 0~100 Threat Scoring SDK"
+    },
+    "challenge": {
+      "en": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "ko": "에지 디바이스 및 탈중앙화 환경에서의 위변조 공격 및 모델 가중치 오염 위험.",
+      "ja": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "zh": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "ar": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "fr": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "de": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "es": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "hi": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "ru": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "vi": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "pl": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories.",
+      "la": "Traditional bot detection SDKs compromise user privacy by capturing sensitive keystrokes and mouse trajectories."
+    },
+    "breakthrough": {
+      "en": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "ko": "SHA-256 머클 트리 기반의 가중치 검증과 런타임 메모리 서명을 통해 변조를 원천 차단합니다.",
+      "ja": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "zh": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "ar": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "fr": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "de": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "es": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "hi": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "ru": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "vi": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "pl": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.",
+      "la": "Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic 0-Drift Output",
+          "ko": "머클 트리 무결성 검증",
+          "ja": "Deterministic 0-Drift Output",
+          "zh": "Deterministic 0-Drift Output",
+          "ar": "Deterministic 0-Drift Output",
+          "fr": "Deterministic 0-Drift Output",
+          "de": "Deterministic 0-Drift Output",
+          "es": "Deterministic 0-Drift Output",
+          "hi": "Deterministic 0-Drift Output",
+          "ru": "Deterministic 0-Drift Output",
+          "vi": "Deterministic 0-Drift Output",
+          "pl": "Deterministic 0-Drift Output",
+          "la": "Deterministic 0-Drift Output"
+        },
+        "desc": {
+          "en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ko": "모델 레이어 단위의 세밀한 암호학적 해시 검증.",
+          "ja": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "zh": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ar": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "fr": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "de": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "es": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "hi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ru": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "vi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "pl": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "la": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "런타임 탬퍼 방지",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "실행 중인 프로세스의 메모리 무결성 실시간 모니터링.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Memory Leakage Protection",
+          "ko": "보안 텔레메트리",
+          "ja": "Memory Leakage Protection",
+          "zh": "Memory Leakage Protection",
+          "ar": "Memory Leakage Protection",
+          "fr": "Memory Leakage Protection",
+          "de": "Memory Leakage Protection",
+          "es": "Memory Leakage Protection",
+          "hi": "Memory Leakage Protection",
+          "ru": "Memory Leakage Protection",
+          "vi": "Memory Leakage Protection",
+          "pl": "Memory Leakage Protection",
+          "la": "Memory Leakage Protection"
+        },
+        "desc": {
+          "en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ko": "이상 징후 발생 시 즉각적인 안전 차단 및 보고.",
+          "ja": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "zh": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ar": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "fr": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "de": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "es": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "hi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ru": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "vi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "pl": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "la": "Weakref lifetime management preventing GPU VRAM / system RAM leaks."
+        }
+      }
+    ]
+  },
+  "mcp": {
+    "subtitles": {
+      "en": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "ko": "다국어 WASM 플러그인 지원을 갖춘 모델 컨텍스트 프로토콜(MCP) 허브",
+      "ja": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "zh": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "ar": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "fr": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "de": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "es": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "hi": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "ru": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "vi": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "pl": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub",
+      "la": "Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub"
+    },
+    "challenge": {
+      "en": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "ko": "이종 언어로 작성된 도구 및 서비스 간의 표준화된 상호운용성 확보의 어려움.",
+      "ja": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "zh": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "ar": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "fr": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "de": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "es": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "hi": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "ru": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "vi": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "pl": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.",
+      "la": "Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine."
+    },
+    "breakthrough": {
+      "en": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "ko": "WASM 샌드박스를 통해 Rust, C++, Go, Python 등으로 작성된 MCP 도구를 안전하게 호스팅합니다.",
+      "ja": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "zh": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "ar": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "fr": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "de": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "es": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "hi": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "ru": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "vi": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "pl": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
+      "la": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic 0-Drift Output",
+          "ko": "WASM 샌드박스 격리",
+          "ja": "Deterministic 0-Drift Output",
+          "zh": "Deterministic 0-Drift Output",
+          "ar": "Deterministic 0-Drift Output",
+          "fr": "Deterministic 0-Drift Output",
+          "de": "Deterministic 0-Drift Output",
+          "es": "Deterministic 0-Drift Output",
+          "hi": "Deterministic 0-Drift Output",
+          "ru": "Deterministic 0-Drift Output",
+          "vi": "Deterministic 0-Drift Output",
+          "pl": "Deterministic 0-Drift Output",
+          "la": "Deterministic 0-Drift Output"
+        },
+        "desc": {
+          "en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ko": "안전하고 격리된 런타임 환경에서 타사 플러그인 실행.",
+          "ja": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "zh": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ar": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "fr": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "de": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "es": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "hi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "ru": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "vi": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "pl": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+          "la": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "표준 MCP 인터페이스",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "Claude 및 다양한 AI 클라이언트와 완벽 호환.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "Memory Leakage Protection",
+          "ko": "동적 플러그인 로딩",
+          "ja": "Memory Leakage Protection",
+          "zh": "Memory Leakage Protection",
+          "ar": "Memory Leakage Protection",
+          "fr": "Memory Leakage Protection",
+          "de": "Memory Leakage Protection",
+          "es": "Memory Leakage Protection",
+          "hi": "Memory Leakage Protection",
+          "ru": "Memory Leakage Protection",
+          "vi": "Memory Leakage Protection",
+          "pl": "Memory Leakage Protection",
+          "la": "Memory Leakage Protection"
+        },
+        "desc": {
+          "en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ko": "서버 재시작 없이 실시간으로 도구 등록 및 해제.",
+          "ja": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "zh": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ar": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "fr": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "de": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "es": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "hi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "ru": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "vi": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "pl": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+          "la": "Weakref lifetime management preventing GPU VRAM / system RAM leaks."
+        }
+      }
+    ]
+  },
+  "aichain": {
+    "subtitles": {
+      "en": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "ko": "외부 의존성 제로의 초경량 온디바이스 AI 에이전트 프레임워크",
+      "ja": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "zh": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "ar": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "fr": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "de": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "es": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "hi": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "ru": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "vi": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "pl": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+      "la": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux"
+    },
+    "challenge": {
+      "en": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "ko": "기존 에이전트 프레임워크들의 무거운 외부 패키지 의존성과 메모리 오버헤드.",
+      "ja": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "zh": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "ar": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "fr": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "de": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "es": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "hi": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "ru": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "vi": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "pl": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+      "la": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux."
+    },
+    "breakthrough": {
+      "en": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "ko": "표준 라이브러리만으로 구축된 제로 의존성 파이프라인으로 ReAct 에이전트 루프와 도구 호출을 수행합니다.",
+      "ja": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "zh": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "ar": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "fr": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "de": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "es": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "hi": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "ru": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "vi": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "pl": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+      "la": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Deterministic Zero-Drift Output",
+          "ko": "제로 외부 의존성",
+          "ja": "Deterministic Zero-Drift Output",
+          "zh": "Deterministic Zero-Drift Output",
+          "ar": "Deterministic Zero-Drift Output",
+          "fr": "Deterministic Zero-Drift Output",
+          "de": "Deterministic Zero-Drift Output",
+          "es": "Deterministic Zero-Drift Output",
+          "hi": "Deterministic Zero-Drift Output",
+          "ru": "Deterministic Zero-Drift Output",
+          "vi": "Deterministic Zero-Drift Output",
+          "pl": "Deterministic Zero-Drift Output",
+          "la": "Deterministic Zero-Drift Output"
+        },
+        "desc": {
+          "en": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "ko": "추가 패키지 설치 없이 즉시 실행 가능한 순수 파이썬 구현.",
+          "ja": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "zh": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "ar": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "fr": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "de": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "es": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "hi": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "ru": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "vi": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "pl": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+          "la": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware."
+        }
+      },
+      {
+        "title": {
+          "en": "Zero Cloud Egress Architecture",
+          "ko": "ReAct 에이전트 루프",
+          "ja": "Zero Cloud Egress Architecture",
+          "zh": "Zero Cloud Egress Architecture",
+          "ar": "Zero Cloud Egress Architecture",
+          "fr": "Zero Cloud Egress Architecture",
+          "de": "Zero Cloud Egress Architecture",
+          "es": "Zero Cloud Egress Architecture",
+          "hi": "Zero Cloud Egress Architecture",
+          "ru": "Zero Cloud Egress Architecture",
+          "vi": "Zero Cloud Egress Architecture",
+          "pl": "Zero Cloud Egress Architecture",
+          "la": "Zero Cloud Egress Architecture"
+        },
+        "desc": {
+          "en": "Operates 100% on the local client without external network telemetry leaks.",
+          "ko": "사고(Thought), 행동(Action), 관찰(Observation)의 자율 루프.",
+          "ja": "Operates 100% on the local client without external network telemetry leaks.",
+          "zh": "Operates 100% on the local client without external network telemetry leaks.",
+          "ar": "Operates 100% on the local client without external network telemetry leaks.",
+          "fr": "Operates 100% on the local client without external network telemetry leaks.",
+          "de": "Operates 100% on the local client without external network telemetry leaks.",
+          "es": "Operates 100% on the local client without external network telemetry leaks.",
+          "hi": "Operates 100% on the local client without external network telemetry leaks.",
+          "ru": "Operates 100% on the local client without external network telemetry leaks.",
+          "vi": "Operates 100% on the local client without external network telemetry leaks.",
+          "pl": "Operates 100% on the local client without external network telemetry leaks.",
+          "la": "Operates 100% on the local client without external network telemetry leaks."
+        }
+      },
+      {
+        "title": {
+          "en": "ToolPolicy Default Deny Security",
+          "ko": "구조화된 도구 호출",
+          "ja": "ToolPolicy Default Deny Security",
+          "zh": "ToolPolicy Default Deny Security",
+          "ar": "ToolPolicy Default Deny Security",
+          "fr": "ToolPolicy Default Deny Security",
+          "de": "ToolPolicy Default Deny Security",
+          "es": "ToolPolicy Default Deny Security",
+          "hi": "ToolPolicy Default Deny Security",
+          "ru": "ToolPolicy Default Deny Security",
+          "vi": "ToolPolicy Default Deny Security",
+          "pl": "ToolPolicy Default Deny Security",
+          "la": "ToolPolicy Default Deny Security"
+        },
+        "desc": {
+          "en": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "ko": "JSON 스키마 기반의 안전하고 정확한 도구 실행.",
+          "ja": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "zh": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "ar": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "fr": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "de": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "es": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "hi": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "ru": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "vi": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "pl": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+          "la": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks."
         }
       }
     ]
@@ -698,21 +2758,6 @@
     "la": "Institutio Celeris 1-Lineae",
     "en": "1-Line Quick Installation"
   },
-  "1-LINE QUICK INSTALLATION": {
-    "ko": "1줄 빠른 설치",
-    "ja": "1行クイックインストール",
-    "zh": "一行命令快速安装",
-    "vi": "Cài đặt nhanh 1 dòng",
-    "fr": "Installation Rapide en 1 Ligne",
-    "de": "1-Zeilen-Schnellinstallation",
-    "es": "Instalación Rápida en 1 Línea",
-    "ru": "Быстрая установка в 1 строку",
-    "ar": "تثبيت سريع بسطر واحد",
-    "hi": "1-라인 त्वरित स्थापना",
-    "pl": "Szybka instalacja w 1 linijce",
-    "la": "Institutio Celeris 1-Lineae",
-    "en": "1-LINE QUICK INSTALLATION"
-  },
   "Install the official package directly into your runtime:": {
     "ko": "공식 패키지를 런타임 환경에 직접 설치하십시오:",
     "ja": "公式パッケージを実行環境に直接インストールします：",
@@ -772,171 +2817,6 @@
     "pl": "Kluczowe możliwości i wbudowane zabezpieczenia",
     "la": "Capacitates Principales et Firmitas",
     "en": "Key Capabilities & Built-in Hardening"
-  },
-  "Supported Compute Kernels & Operations": {
-    "ko": "지원 연산 커널 및 실행 백엔드",
-    "ja": "サポートされている計算カーネルと操作",
-    "zh": "支持的计算内核与算子矩阵",
-    "vi": "Các hạt nhân tính toán & Hoạt động được hỗ trợ",
-    "fr": "Noyaux de Calcul et Opérations Pris en Charge",
-    "de": "Unterstützte Rechenkerne & Operationen",
-    "es": "Núcleos de Cómputo y Operaciones Compatibles",
-    "ru": "Поддерживаемые вычислительные ядра и операции",
-    "ar": "نواة الحوسبة والعمليات المدعومة",
-    "hi": "समर्थित कंप्यूट कर्नेल और संचालन",
-    "pl": "Obsługiwane jądra obliczeniowe i operacje",
-    "la": "Nuclei Computationis et Operationes Toleratae",
-    "en": "Supported Compute Kernels & Operations"
-  },
-  "Subsystem Category": {
-    "ko": "하위 시스템 분류",
-    "ja": "サブシステムカテゴリ",
-    "zh": "子系统分类",
-    "vi": "Danh mục hệ thống phụ",
-    "fr": "Catégorie de Sous-système",
-    "de": "Subsystem-Kategorie",
-    "es": "Categoría de Subsistema",
-    "ru": "Категория подсистемы",
-    "ar": "فئة النظام الفرعي",
-    "hi": "सबसिस्टम श्रेणी",
-    "pl": "Kategoria podsystemu",
-    "la": "Classis Subsystematis",
-    "en": "Subsystem Category"
-  },
-  "Operations & Kernels": {
-    "ko": "연산 및 커널 명세",
-    "ja": "操作およびカーネル仕様",
-    "zh": "算子与计算内核",
-    "vi": "Hoạt động & Hạt nhân",
-    "fr": "Opérations & Noyaux",
-    "de": "Operationen & Kernel",
-    "es": "Operaciones y Núcleos",
-    "ru": "Операции и ядра",
-    "ar": "العمليات والنواة",
-    "hi": "संचालन और कर्नेल",
-    "pl": "Operacje i jądra",
-    "la": "Operationes et Nuclei",
-    "en": "Operations & Kernels"
-  },
-  "Status": {
-    "ko": "상태",
-    "ja": "ステータス",
-    "zh": "状态",
-    "vi": "Trạng thái",
-    "fr": "Statut",
-    "de": "Status",
-    "es": "Estado",
-    "ru": "Статус",
-    "ar": "الحالة",
-    "hi": "स्थिति",
-    "pl": "Status",
-    "la": "Status",
-    "en": "Status"
-  },
-  "Production": {
-    "ko": "프로덕션",
-    "ja": "本番環境",
-    "zh": "生产就绪",
-    "vi": "Sản xuất",
-    "fr": "Production",
-    "de": "Produktion",
-    "es": "Producción",
-    "ru": "Продакшн",
-    "ar": "إنتاج",
-    "hi": "उत्पादन",
-    "pl": "Produkcja",
-    "la": "Productio",
-    "en": "Production"
-  },
-  "Production Release (Latest)": {
-    "ko": "프로덕션 최신 릴리즈",
-    "ja": "最新の安定版リリース",
-    "zh": "最新正式生产发布",
-    "vi": "Bản phát hành sản xuất (Mới nhất)",
-    "fr": "Version de Production (Dernière)",
-    "de": "Produktionsversion (Neueste)",
-    "es": "Lanzamiento de Producción (Último)",
-    "ru": "Промышленный релиз (Последний)",
-    "ar": "إصدار الإنتاج (الأحدث)",
-    "hi": "उत्पादन रिलीज़ (नवीनतम)",
-    "pl": "Wydanie produkcyjne (Najnowsze)",
-    "la": "Emissio Productionis (Novissima)",
-    "en": "Production Release (Latest)"
-  },
-  "Canonical Usage Example": {
-    "ko": "표준 사용 예제",
-    "ja": "標準的な使用例",
-    "zh": "标准用法示例",
-    "vi": "Ví dụ sử dụng chuẩn",
-    "fr": "Exemple d'Utilisation Canonique",
-    "de": "Kanonisches Verwendungsbeispiel",
-    "es": "Ejemplo de Uso Canónico",
-    "ru": "Канонический пример использования",
-    "ar": "مثال الاستخدام القياسي",
-    "hi": "मानक उपयोग उदाहरण",
-    "pl": "Standardowy przykład użycia",
-    "la": "Exemplum Usus Canonicum",
-    "en": "Canonical Usage Example"
-  },
-  "Getting Started & Deep Guides": {
-    "ko": "시작하기 및 심층 기술 가이드",
-    "ja": "入門と詳細ガイド",
-    "zh": "快速入门与深度技术指南",
-    "vi": "Bắt đầu & Hướng dẫn chuyên sâu",
-    "fr": "Pour Commencer & Guides Approfondis",
-    "de": "Erste Schritte & Ausführliche Anleitungen",
-    "es": "Primeros Pasos y Guías Detalladas",
-    "ru": "Начало работы и подробные руководства",
-    "ar": "البدء وأدلة متعمقة",
-    "hi": "शुरुआत और गहन गाइड",
-    "pl": "Pierwsze kroki i szczegółowe przewodniki",
-    "la": "Initium et Duces Profundi",
-    "en": "Getting Started & Deep Guides"
-  },
-  "Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)": {
-    "ko": "상세 설치 가이드 (하드웨어 의존성, Termux 설정, WebGPU 플래그)",
-    "ja": "詳細インストールガイド（ハードウェア依存関係、Termux設定、WebGPUフラグ）",
-    "zh": "详细安装指南（硬件依赖项、Termux 配置、WebGPU 标志）",
-    "vi": "Hướng dẫn cài đặt chi tiết (phần phụ thuộc phần cứng, thiết lập Termux)",
-    "fr": "Guide d'installation détaillé (dépendances matérielles, configuration Termux)",
-    "de": "Detaillierte Installationsanleitung (Hardware-Abhängigkeiten, Termux-Setup)",
-    "es": "Guía de instalación detallada (dependencias de hardware, configuración de Termux)",
-    "ru": "Подробное руководство по установке (зависимости оборудования, настройка Termux)",
-    "ar": "دليل التثبيت التفصيلي (تبعيات الأجهزة، إعداد Termux)",
-    "hi": "विस्तृत स्थापना गाइड (हार्डवेयर निर्भरताएं, Termux सेटअप)",
-    "pl": "Szczegółowa instrukcja instalacji (zależności sprzętowe, konfiguracja Termux)",
-    "la": "Dux institutionis accuratus (dependentiae instrumentorum, Termux)",
-    "en": "Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)"
-  },
-  "Quickstart Recipes & Common Execution Patterns": {
-    "ko": "퀵스타트 레시피 & 공통 실행 패턴",
-    "ja": "クイックスタートレシピ＆一般的な実行パターン",
-    "zh": "快速上手示例与常用执行范式",
-    "vi": "Công thức bắt đầu nhanh & Các mẫu thực thi phổ biến",
-    "fr": "Recettes de démarrage rapide & modèles d'exécution courants",
-    "de": "Schnellstart-Rezepte & gängige Ausführungsmuster",
-    "es": "Recetas de inicio rápido y patrones de ejecución comunes",
-    "ru": "Рецепты быстрого старта и типовые шаблоны выполнения",
-    "ar": "أمثلة البدء السريع وأنماط التنفيذ الشائعة",
-    "hi": "त्वरित शुरुआत रेसिपी और सामान्य निष्पादन पैटर्न",
-    "pl": "Przepisy szybkiego startu i typowe wzorce wykonawcze",
-    "la": "Exempla initii celeris et formae communes",
-    "en": "Quickstart Recipes & Common Execution Patterns"
-  },
-  "100% Full API Reference & Struct Definitions": {
-    "ko": "100% 전체 API 명세 및 구조체 정의",
-    "ja": "100%完全なAPIリファレンスと構造体定義",
-    "zh": "100% 完整 API 接口与结构体规范",
-    "vi": "Tài liệu tham khảo API đầy đủ 100% & Định nghĩa cấu trúc",
-    "fr": "Référence API complète à 100% et définitions de structures",
-    "de": "100% vollständige API-Referenz & Strukturdefinitionen",
-    "es": "Referencia de API 100% completa y definiciones de estructuras",
-    "ru": "100% полный справочник API и определения структур",
-    "ar": "مرجع API كامل 100% وتعاريف الهياكل",
-    "hi": "100% पूर्ण API संदर्भ और संरचना परिभाषाएं",
-    "pl": "100% pełna dokumentacja API i definicje struktur",
-    "la": "Index API 100% plenus et definitiones structurarum",
-    "en": "100% Full API Reference & Struct Definitions"
   }
 };
 
@@ -1084,19 +2964,22 @@
           return;
         }
 
-        // 4. Library-specific deep body translations (Challenge, Breakthrough, Features)
+        // 4. Library-specific deep body translations (Challenge, Breakthrough, Subtitles, Features)
         const i18nKey = el.getAttribute('data-i18n');
         if (libData && i18nKey) {
           if (i18nKey === 'home.challengeText' && libData.challenge) {
-            el.textContent = (lang === 'en') ? origText : (libData.challenge[lang] || libData.challenge['en'] || origText);
+            const val = (lang === 'en') ? origText : (libData.challenge[lang] || libData.challenge['en'] || origText);
+            if (val && el.textContent.trim() !== val) el.textContent = val;
             return;
           }
           if (i18nKey === 'home.breakthroughText' && libData.breakthrough) {
-            el.textContent = (lang === 'en') ? origText : (libData.breakthrough[lang] || libData.breakthrough['en'] || origText);
+            const val = (lang === 'en') ? origText : (libData.breakthrough[lang] || libData.breakthrough['en'] || origText);
+            if (val && el.textContent.trim() !== val) el.textContent = val;
             return;
           }
           if ((i18nKey === 'home.subtitle' || i18nKey === 'home.heroSubtitle') && libData.subtitles) {
-            el.textContent = (lang === 'en') ? origText : (libData.subtitles[lang] || libData.subtitles['en'] || origText);
+            const val = (lang === 'en') ? origText : (libData.subtitles[lang] || libData.subtitles['en'] || origText);
+            if (val && el.textContent.trim() !== val) el.textContent = val;
             return;
           }
           const featMatch = i18nKey.match(/^home\.features\.([0-9]+)\.(title|desc)$/);
@@ -1104,7 +2987,8 @@
             const fIdx = parseInt(featMatch[1], 10);
             const fField = featMatch[2];
             if (libData.features[fIdx] && libData.features[fIdx][fField]) {
-              el.textContent = (lang === 'en') ? origText : (libData.features[fIdx][fField][lang] || libData.features[fIdx][fField]['en'] || origText);
+              const val = (lang === 'en') ? origText : (libData.features[fIdx][fField][lang] || libData.features[fIdx][fField]['en'] || origText);
+              if (val && el.textContent.trim() !== val) el.textContent = val;
               return;
             }
           }
