@@ -27,7 +27,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "AMEVA Foundation",
-      "foundationIntroBtn": "Foundation"
+      "foundationIntroBtn": "Foundation",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Foundation Info",
@@ -232,7 +235,10 @@
       "openCollectiveBtn": "오픈 컬렉티브",
       "blogBtn": "블로그",
       "foundationBtn": "AMEVA 재단",
-      "foundationIntroBtn": "재단 소개"
+      "foundationIntroBtn": "재단 소개",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "재단 소개 (Info)",
@@ -420,8 +426,8 @@
   },
   "hi": {
     "common": {
-      "brand": "AMEVA ओपन-सोर्स फाउंडेशन",
-      "releaseTag": "AOSF v2.0 (सक्रिय)",
+      "brand": "AMEVA ओपन सोर्स फाउंडेशन",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "स्वतंत्र ओपन-सोर्स निकाय",
       "githubBtn": "GitHub",
       "founderBtn": "संस्थापक सीवी",
@@ -437,7 +443,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "ब्लॉग",
       "foundationBtn": "AMEVA फाउंडेशन",
-      "foundationIntroBtn": "फाउंडेशन परिचय"
+      "foundationIntroBtn": "फाउंडेशन परिचय",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "फाउंडेशन जानकारी",
@@ -625,7 +634,7 @@
   },
   "ja": {
     "common": {
-      "brand": "AMEVA オープンソース財団",
+      "brand": "AMEVAオープンソース財団",
       "releaseTag": "AOSF v2.0 (Active)",
       "status": "独立非営利オープンソース機関",
       "githubBtn": "GitHub",
@@ -642,7 +651,10 @@
       "openCollectiveBtn": "オープンコレクティブ",
       "blogBtn": "ブログ",
       "foundationBtn": "AMEVA財団",
-      "foundationIntroBtn": "財団紹介"
+      "foundationIntroBtn": "財団紹介",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "財団情報 (Info)",
@@ -830,8 +842,8 @@
   },
   "zh": {
     "common": {
-      "brand": "AMEVA 开源基金会",
-      "releaseTag": "AOSF v2.0 (活跃)",
+      "brand": "AMEVA开源基金会",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "独立非营利开源机构",
       "githubBtn": "GitHub",
       "founderBtn": "创始人简历",
@@ -847,7 +859,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "博客",
       "foundationBtn": "AMEVA基金会",
-      "foundationIntroBtn": "基金会介绍"
+      "foundationIntroBtn": "基金会介绍",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "基金会概况",
@@ -1036,7 +1051,7 @@
   "ar": {
     "common": {
       "brand": "مؤسسة AMEVA مفتوحة المصدر",
-      "releaseTag": "AOSF v2.0 (نشط)",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "هيئة مستقلة مفتوحة المصدر",
       "githubBtn": "GitHub",
       "founderBtn": "سيرة المؤسس",
@@ -1052,7 +1067,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "المدونة",
       "foundationBtn": "مؤسسة AMEVA",
-      "foundationIntroBtn": "عن المؤسسة"
+      "foundationIntroBtn": "عن المؤسسة",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "معلومات المؤسسة",
@@ -1240,8 +1258,8 @@
   },
   "fr": {
     "common": {
-      "brand": "Fondation Open-Source AMEVA",
-      "releaseTag": "AOSF v2.0 (Actif)",
+      "brand": "Fondation Open Source AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Organisme Open-Source Indépendant",
       "githubBtn": "GitHub",
       "founderBtn": "CV Fondateur",
@@ -1257,7 +1275,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "Fondation AMEVA",
-      "foundationIntroBtn": "Présentation Fondation"
+      "foundationIntroBtn": "Présentation Fondation",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Infos Fondation",
@@ -1446,7 +1467,7 @@
   "de": {
     "common": {
       "brand": "AMEVA Open-Source-Stiftung",
-      "releaseTag": "AOSF v2.0 (Aktiv)",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Unabhängige Open-Source-Organisation",
       "githubBtn": "GitHub",
       "founderBtn": "Gründer-Profil",
@@ -1462,7 +1483,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "AMEVA-Stiftung",
-      "foundationIntroBtn": "Über die Stiftung"
+      "foundationIntroBtn": "Über die Stiftung",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Stiftungsinformationen",
@@ -1650,8 +1674,8 @@
   },
   "es": {
     "common": {
-      "brand": "Fundación Open-Source AMEVA",
-      "releaseTag": "AOSF v2.0 (Activo)",
+      "brand": "Fundación de Código Abierto AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Entidad Open-Source Independiente",
       "githubBtn": "GitHub",
       "founderBtn": "CV del Fundador",
@@ -1667,7 +1691,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "Fundación AMEVA",
-      "foundationIntroBtn": "Sobre la Fundación"
+      "foundationIntroBtn": "Sobre la Fundación",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Información",
@@ -1855,8 +1882,8 @@
   },
   "ru": {
     "common": {
-      "brand": "Опенсорс-фонд AMEVA",
-      "releaseTag": "AOSF v2.0 (Активен)",
+      "brand": "Фонд открытого исходного кода AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Независимая опенсорс-организация",
       "githubBtn": "GitHub",
       "founderBtn": "Основатель",
@@ -1872,7 +1899,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Блог",
       "foundationBtn": "Фонд AMEVA",
-      "foundationIntroBtn": "О Фонде"
+      "foundationIntroBtn": "О Фонде",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "О фонде",
@@ -2060,8 +2090,8 @@
   },
   "vi": {
     "common": {
-      "brand": "Quỹ Mã Nguồn Mở AMEVA",
-      "releaseTag": "AOSF v2.0 (Hoạt động)",
+      "brand": "Quỹ nguồn mở AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Tổ chức Mã Nguồn Mở Độc lập",
       "githubBtn": "GitHub",
       "founderBtn": "Hồ sơ sáng lập",
@@ -2077,7 +2107,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "Quỹ AMEVA",
-      "foundationIntroBtn": "Giới thiệu quỹ"
+      "foundationIntroBtn": "Giới thiệu quỹ",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Thông tin Quỹ",
@@ -2265,8 +2298,8 @@
   },
   "pl": {
     "common": {
-      "brand": "Fundacja Open-Source AMEVA",
-      "releaseTag": "AOSF v2.0 (Aktywny)",
+      "brand": "Fundacja Open Source AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Niezależna Organizacja Open-Source",
       "githubBtn": "GitHub",
       "founderBtn": "CV Założyciela",
@@ -2282,7 +2315,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Blog",
       "foundationBtn": "Fundacja AMEVA",
-      "foundationIntroBtn": "O Fundacji"
+      "foundationIntroBtn": "O Fundacji",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "O Fundacji",
@@ -2470,8 +2506,8 @@
   },
   "la": {
     "common": {
-      "brand": "Fundatio AMEVA Fontis Aperti",
-      "releaseTag": "AOSF v2.0 (Activa)",
+      "brand": "Fundatio Fontis Aperti AMEVA",
+      "releaseTag": "AOSF v2.0 (Active)",
       "status": "Corpus Fontis Aperti Sui Iuris",
       "githubBtn": "GitHub",
       "founderBtn": "Curriculum Vitae",
@@ -2487,7 +2523,10 @@
       "openCollectiveBtn": "Open Collective",
       "blogBtn": "Ephemeris",
       "foundationBtn": "Fundatio AMEVA",
-      "foundationIntroBtn": "De Fundatione"
+      "foundationIntroBtn": "De Fundatione",
+      "pkgBtn": "pip / npm",
+      "pypiBtn": "PyPI",
+      "npmBtn": "npm"
     },
     "nav": {
       "foundation": "Notitia Fundationis",
