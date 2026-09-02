@@ -34,81 +34,38 @@ COLORS = {
 }
 
 
-# ── YAML 파서 (PyYAML 우선 / 폴백 지원) ──────────────────────────
-def parse_catalog():
-    text = YAML.read_text(encoding="utf-8")
+# ── Standard YAML Parser (PyYAML Safe Load) ──────────────────────────
+def parse_catalog() -> dict:
+    """Parse ecosystem-catalog.yaml using standard PyYAML safe_load."""
     try:
         import yaml
+    except ImportError:
+        raise ImportError(
+            "PyYAML is required to parse ecosystem-catalog.yaml with schema validation. "
+            "Please install it using: pip install pyyaml"
+        )
+
+    text = YAML.read_text(encoding="utf-8")
+    try:
         data = yaml.safe_load(text)
-        if isinstance(data, dict):
-            # Normalize links dictionary and string attributes
-            for cat in ("apps", "sdks", "libs"):
-                items = data.get(cat, []) or []
-                for item in items:
-                    if not isinstance(item, dict):
-                        continue
-                    if "links" not in item or not isinstance(item["links"], dict):
-                        item["links"] = {}
-            return {
-                "apps": data.get("apps", []) or [],
-                "sdks": data.get("sdks", []) or [],
-                "libs": data.get("libs", []) or []
-            }
     except Exception as exc:
-        sys.stderr.write(f"[WARN] PyYAML parsing fallback due to: {exc}\n")
+        raise ValueError(f"Failed to parse ecosystem-catalog.yaml: {exc}")
 
-    result = {"apps": [], "sdks": [], "libs": []}
-    current_cat = None
-    current_item = None
+    if not isinstance(data, dict):
+        raise ValueError("Invalid format in ecosystem-catalog.yaml: Root element must be a dictionary.")
 
-    for raw_line in text.splitlines():
-        line = raw_line.rstrip()
-        stripped = line.strip()
+    # Normalize links dictionary and structure
+    for cat in ("apps", "sdks", "libs"):
+        items = data.get(cat, []) or []
+        for item in items:
+            if isinstance(item, dict) and ("links" not in item or not isinstance(item["links"], dict)):
+                item["links"] = {}
 
-        if stripped.startswith("#") or not stripped:
-            continue
-
-        # Top-level category
-        m = re.match(r'^(apps|sdks|libs):', line)
-        if m:
-            if current_item and current_cat:
-                result[current_cat].append(current_item)
-                current_item = None
-            current_cat = m.group(1)
-            continue
-
-        if current_cat is None:
-            continue
-
-        # New item
-        if re.match(r'^  - id:', line):
-            if current_item:
-                result[current_cat].append(current_item)
-            current_item = {"links": {}}
-            current_item["id"] = stripped.split(":", 1)[1].strip()
-            continue
-
-        if current_item is None:
-            continue
-
-        # Item fields
-        m = re.match(r'^    (\w+):\s*(.*)', line)
-        if m:
-            key, val = m.group(1), m.group(2).strip().strip('"')
-            if key != "links":
-                current_item[key] = val
-            continue
-
-        # Link sub-fields
-        m = re.match(r'^      (\w+):\s*"?(.*?)"?\s*$', line)
-        if m:
-            current_item["links"][m.group(1)] = m.group(2).strip()
-            continue
-
-    if current_item and current_cat:
-        result[current_cat].append(current_item)
-
-    return result
+    return {
+        "apps": data.get("apps", []) or [],
+        "sdks": data.get("sdks", []) or [],
+        "libs": data.get("libs", []) or []
+    }
 
 
 # ── 링크 버튼 HTML ──────────────────────────────────────────────

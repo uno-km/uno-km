@@ -34,50 +34,24 @@ FOUNDATION_INDEX_PATH = ROOT_DIR / "foundation" / "index.html"
 METRICS_PATH = ROOT_DIR / "foundation" / "metrics.html"
 DOCS_METRICS_PATH = ROOT_DIR / "docs" / "foundation" / "metrics.html"
 
-# ── YAML Parser (Lightweight Zero-Dep) ─────────────────────────
+# ── Standard YAML Parser (PyYAML Safe Load) ─────────────────────────
 def parse_simple_yaml(file_path: Path) -> dict:
+    """Parse YAML configuration using standard PyYAML safe_load."""
     if not file_path.exists():
         return {}
+    try:
+        import yaml
+    except ImportError:
+        raise ImportError(
+            f"PyYAML is required to parse {file_path.name} with schema validation. "
+            "Please install it using: pip install pyyaml"
+        )
     text = file_path.read_text(encoding="utf-8")
-    data = {}
-    current_key = None
-    multiline_buf = []
-    is_multiline = False
-
-    for line in text.splitlines():
-        trimmed = line.strip()
-        if trimmed.startswith("#") or not trimmed:
-            continue
-
-        if is_multiline:
-            if line.startswith("  ") or line.startswith("\t"):
-                multiline_buf.append(line[2:])
-                continue
-            else:
-                data[current_key] = "\n".join(multiline_buf).rstrip()
-                is_multiline = False
-                multiline_buf = []
-
-        m_key = re.match(r'^([\w_]+):\s*(.*)', line)
-        if m_key:
-            k, v = m_key.group(1), m_key.group(2).strip()
-            if v == "|":
-                current_key = k
-                is_multiline = True
-                multiline_buf = []
-            elif v.lower() == "true":
-                data[k] = True
-            elif v.lower() == "false":
-                data[k] = False
-            elif v.lower() in ("null", "none", "~", ""):
-                data[k] = None
-            else:
-                data[k] = v.strip('"').strip("'")
-
-    if is_multiline and current_key:
-        data[current_key] = "\n".join(multiline_buf).rstrip()
-
-    return data
+    try:
+        data = yaml.safe_load(text)
+        return data if isinstance(data, dict) else {}
+    except Exception as exc:
+        raise ValueError(f"Failed to parse {file_path}: {exc}")
 
 
 # ── Badge Generator & Validator (Zero-404 Guard) ───────────────

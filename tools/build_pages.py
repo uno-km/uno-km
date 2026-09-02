@@ -36,70 +36,28 @@ OLD_REFS = [
 ]
 
 
-# ── Simple YAML parser (no PyYAML dependency) ──
-def parse_versions_yaml():
-    """Parse ecosystem-versions.yaml without external dependencies."""
-    libs = {}
-    eco = {}
+# ── Standard YAML Parser (PyYAML Safe Load) ──
+def parse_versions_yaml() -> tuple[dict, dict]:
+    """Parse ecosystem-versions.yaml using standard PyYAML safe_load."""
+    try:
+        import yaml
+    except ImportError:
+        raise ImportError(
+            "PyYAML is required to parse ecosystem-versions.yaml with schema validation. "
+            "Please install it using: pip install pyyaml"
+        )
+
     text = VERSIONS_YAML.read_text(encoding="utf-8")
-    current_lib = None
-    in_doc_pages = False
-    doc_pages = []
+    try:
+        data = yaml.safe_load(text)
+    except Exception as exc:
+        raise ValueError(f"Failed to parse ecosystem-versions.yaml: {exc}")
 
-    for line in text.splitlines():
-        stripped = line.strip()
-        if stripped.startswith("#") or not stripped:
-            continue
+    if not isinstance(data, dict):
+        raise ValueError("Invalid format in ecosystem-versions.yaml: Root element must be a dictionary.")
 
-        # ecosystem block
-        m = re.match(r'^ecosystem:', line)
-        if m:
-            current_lib = None; continue
-
-        m = re.match(r'^  version:\s*"?([^"#\n]+)"?', line)
-        if m and current_lib is None:
-            eco['version'] = m.group(1).strip(); continue
-
-        m = re.match(r'^  release_date:\s*"?([^"#\n]+)"?', line)
-        if m and current_lib is None:
-            eco['release_date'] = m.group(1).strip(); continue
-
-        # libraries block
-        m = re.match(r'^  ([\w-]+):\s*$', line)
-        if m:
-            if in_doc_pages and current_lib:
-                libs[current_lib]['doc_pages'] = doc_pages
-                doc_pages = []
-                in_doc_pages = False
-            current_lib = m.group(1)
-            libs[current_lib] = {}
-            continue
-
-        if current_lib and stripped.startswith("doc_pages:"):
-            if in_doc_pages:
-                libs[current_lib]['doc_pages'] = doc_pages
-                doc_pages = []
-            in_doc_pages = True
-            continue
-
-        if in_doc_pages and stripped.startswith("- "):
-            doc_pages.append(stripped[2:].strip())
-            continue
-        else:
-            if in_doc_pages:
-                libs[current_lib]['doc_pages'] = doc_pages
-                doc_pages = []
-                in_doc_pages = False
-
-        if current_lib:
-            m = re.match(r'    (\w+):\s*(.*)', line)
-            if m:
-                key, val = m.group(1), m.group(2).strip().strip('"')
-                if val == 'null': val = None
-                libs[current_lib][key] = val
-
-    if in_doc_pages and current_lib:
-        libs[current_lib]['doc_pages'] = doc_pages
+    eco = data.get("ecosystem", {}) or {}
+    libs = data.get("libraries", {}) or {}
 
     return eco, libs
 
