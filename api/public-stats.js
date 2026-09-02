@@ -242,13 +242,20 @@ export default async function handler(req, res) {
 
     try {
 
+        // Track individual query failures for transparent observability
+        const queryErrors = [];
+
         // 1. Unified Session and Unique Visitor Aggregation (visitor_sessions + sentinel_risk_events)
         const sessionStats = await sql`
             SELECT 
                 (COALESCE((SELECT COUNT(*) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_sessions,
                 (COALESCE((SELECT COUNT(DISTINCT visitor_id) FROM visitor_sessions), 0) + COALESCE((SELECT COUNT(DISTINCT visitor_id) FROM sentinel_risk_events WHERE triage_category = 'HUMAN'), 0)) as total_visitors,
                 COALESCE((SELECT COUNT(*) FROM visitor_sessions WHERE has_webgpu = true), 0) as webgpu_count;
-        `.catch(() => [{ total_sessions: 0, total_visitors: 0, webgpu_count: 0 }]);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (sessionStats):', err.message);
+            queryErrors.push({ query: 'sessionStats', error: err.message });
+            return [{ total_sessions: 0, total_visitors: 0, webgpu_count: 0 }];
+        });
 
         // 2. Real Unified AI Bot & Crawler Aggregation (sentinel_risk_events + sentinel_geo_deliveries + bot_crawler_logs)
         const botStats = await sql`
@@ -259,7 +266,11 @@ export default async function handler(req, res) {
                     COALESCE((SELECT COUNT(*) FROM bot_crawler_logs), 0)
                 ) as total_bots,
                 COALESCE((SELECT COUNT(*) FROM sentinel_risk_events WHERE triage_category = 'CRAWLER_TOOL'), 0) as total_crawlers;
-        `.catch(() => [{ total_bots: 0, total_crawlers: 0 }]);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (botStats):', err.message);
+            queryErrors.push({ query: 'botStats', error: err.message });
+            return [{ total_bots: 0, total_crawlers: 0 }];
+        });
 
         const botBreakdown = await sql`
             WITH all_ai_bots AS (
@@ -278,7 +289,11 @@ export default async function handler(req, res) {
             GROUP BY bot_name
             ORDER BY count DESC
             LIMIT 10;
-        `.catch(() => []);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (botBreakdown):', err.message);
+            queryErrors.push({ query: 'botBreakdown', error: err.message });
+            return [];
+        });
 
         // 3. Real Origin Regions & Global Geo Clustering (Zero IP Exposure)
         // Source: visitor_sessions + sentinel_risk_events (same as summary)
@@ -301,7 +316,11 @@ export default async function handler(req, res) {
             GROUP BY country, city
             ORDER BY session_count DESC
             LIMIT 25;
-        `.catch(() => []);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (regionStats):', err.message);
+            queryErrors.push({ query: 'regionStats', error: err.message });
+            return [];
+        });
 
         // 3.1 Aggregated by Country (same source as above)
         const countryStats = await sql`
@@ -322,7 +341,11 @@ export default async function handler(req, res) {
             GROUP BY country
             ORDER BY session_count DESC
             LIMIT 15;
-        `.catch(() => []);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (countryStats):', err.message);
+            queryErrors.push({ query: 'countryStats', error: err.message });
+            return [];
+        });
 
         // 4. Real Top GPU / Hardware Renderers
         const gpuStats = await sql`
@@ -334,7 +357,11 @@ export default async function handler(req, res) {
             GROUP BY gpu_renderer
             ORDER BY count DESC
             LIMIT 5;
-        `.catch(() => []);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (gpuStats):', err.message);
+            queryErrors.push({ query: 'gpuStats', error: err.message });
+            return [];
+        });
 
         // 5. Recent Activity Stream (Unified)
         const recentBots = await sql`
@@ -369,7 +396,11 @@ export default async function handler(req, res) {
             SELECT * FROM all_streams
             ORDER BY detected_at DESC
             LIMIT 12;
-        `.catch(() => []);
+        `.catch((err) => {
+            console.error('[public-stats] DB query error (recentBots):', err.message);
+            queryErrors.push({ query: 'recentBots', error: err.message });
+            return [];
+        });
 
         const totalSessions = parseInt(sessionStats[0]?.total_sessions || 0, 10);
         const totalVisitors = parseInt(sessionStats[0]?.total_visitors || 0, 10);
@@ -445,8 +476,9 @@ export default async function handler(req, res) {
         });
 
         return res.status(200).json({
-            status: 'online',
+            status: queryErrors.length > 0 ? 'degraded' : 'online',
             database_connected: true,
+            ...(queryErrors.length > 0 ? { partial_query_errors: queryErrors } : {}),
             updated_at: new Date().toISOString(),
             ecosystem_health_score: null, // Explicit null: synthetic SLA uptime scoring requires dedicated synthetic probe telemetry
             summary: {
