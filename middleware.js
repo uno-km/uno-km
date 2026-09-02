@@ -1,11 +1,11 @@
 /**
- * Vercel Edge Middleware: AMEVA-Sentinel Core Security Engine & Dynamic GEO Injector
+ * Vercel Edge Middleware: AMEVA-Sentinel Core Observability & Dynamic GEO Injector
  * 
  * Active Capabilities:
- * 1. 0~100 Deterministic Threat Scoring & Active Edge Defense (Block >= 80)
- * 2. SQLi / XSS / Path Traversal / Probe Heuristic Filtering
- * 3. 18-Model AI Crawler Identification & GEO Markdown Generation
- * 4. Zero PII Exposure Logging to PostgreSQL
+ * 1. 0~100 Deterministic Threat Scoring & Edge Observability (Zero-Blocking Permissive Mode)
+ * 2. SQLi / XSS / Path Traversal / Probe Heuristic Telemetry Scoring
+ * 3. 18-Model AI Crawler Identification & Optimized GEO Markdown Streaming
+ * 4. Zero PII Exposure Logging to Neon PostgreSQL
  */
 
 const AI_BOT_PATTERNS = [
