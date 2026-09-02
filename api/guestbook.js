@@ -1,4 +1,4 @@
-﻿import { neon } from '@neondatabase/serverless';
+import { neon } from '@neondatabase/serverless';
 
 let isGuestbookSchemaReady = false;
 
@@ -51,13 +51,11 @@ export default async function handler(req, res) {
     if (!dbUrl) {
         return res.status(200).json({
             ok: true,
-            source: 'fallback_memory',
-            visitor_count: 1,
-            entries: [
-                { id: 1, author: '김은호 (@uno-km)', message: 'AMEVA Sovereign Edge-Native AI Universe에 오신 것을 환영합니다.', created_at: new Date().toISOString(), avatar_color: '#7C3AED' },
-                { id: 2, author: 'Systems Architect', message: 'WebGPU Autograd 및 ARM64 NEON DotProd 엔진이 성공적으로 구동 중입니다.', created_at: new Date().toISOString(), avatar_color: '#00EFFF' },
-                { id: 3, author: 'SRE Lead', message: 'Neon PostgreSQL 기반 다계층 지식 그래프와 방명록이 온라인입니다.', created_at: new Date().toISOString(), avatar_color: '#3ECF8E' }
-            ]
+            source: 'db_unconfigured',
+            database_connected: false,
+            message: '데이터베이스 미연결 (DB 미연결)',
+            visitor_count: 0,
+            entries: []
         });
     }
 
