@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | AMEVA-Sentinel</title>
   <meta name="description" content="Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-          <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
@@ -21,28 +21,26 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
+      <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-                <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
-      <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
-      <li><a href="admin.html">Admin Intelligence Console</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -70,112 +68,10 @@
   </nav>
 
     <main class="content">
-      <h2>Advanced Parameters &amp; Trust Boundary Configuration</h2>
-      <p class="subtitle">Shadow mode, multi-CDN edge routing, risk axis tuning, and HMAC secret management</p>
-
-      <h3>1. Full Configuration Schema</h3>
-      <pre><code class="language-typescript">interface SentinelConfig {
-  // Required
-  hmacSecret: string;         // 256-bit entropy minimum (use crypto.randomBytes(32))
-
-  // Risk Control
-  riskThreshold: number;      // 0-100. Block if score >= threshold. Default: 65
-  shadowMode: boolean;        // true = log only, false = enforce. Default: false
-  tokenTTL: number;           // HMAC token validity seconds. Default: 300
-
-  // Signal Axis Weights (sum must equal 1.0)
-  weights?: {
-    headerEntropy: number;    // HTTP header structure entropy. Default: 0.25
-    tlsFingerprint: number;   // JA3/JA3S fingerprint score. Default: 0.20
-    ipReputation: number;     // IP reputation & ASN analysis. Default: 0.25
-    behaviorPattern: number;  // Request timing/sequencing. Default: 0.20
-    geoConsistency: number;   // IP geo vs Accept-Language. Default: 0.10
-  };
-
-  // Edge Provider Settings
-  edgeProvider?: 'vercel' | 'cloudflare' | 'fastly' | 'akamai' | 'auto';
-  trustedProxies?: string[];  // CIDR ranges for trusted reverse proxies
-
-  // Observability
-  onEvaluation?: (result: EvaluationResult) => void;  // Callback for every evaluation
-  logLevel?: 'none' | 'error' | 'warn' | 'debug';
-}</code></pre>
-
-      <h3>2. Shadow Mode — Safe Production Rollout</h3>
-      <pre><code class="language-javascript">// Phase 1: Shadow mode — observe without blocking
-const sentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET,
-  shadowMode: true,         // Never blocks requests
-  riskThreshold: 65,
-  onEvaluation: (result) => {
-    // Log to observability platform
-    analytics.track('sentinel.evaluation', {
-      score: result.score,
-      signals: result.signals,
-      blocked: result.score >= 65  // Would have been blocked
-    });
-  }
-});
-
-// Phase 2: After 2-week baseline collection, switch to enforcement
-// sentinel.shadowMode = false;</code></pre>
-
-      <h3>3. Custom Signal Axis Weights</h3>
-      <pre><code class="language-javascript">// High-security API: Weight IP reputation heavily
-const highSecuritySentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET,
-  riskThreshold: 55,
-  weights: {
-    headerEntropy: 0.20,
-    tlsFingerprint: 0.25,
-    ipReputation: 0.35,    // Elevated for high-value endpoints
-    behaviorPattern: 0.15,
-    geoConsistency: 0.05
-  }
-});
-
-// Low-friction consumer API: Weight behavioral pattern lightly
-const consumerSentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET,
-  riskThreshold: 75,        // More permissive threshold
-  weights: {
-    headerEntropy: 0.30,
-    tlsFingerprint: 0.15,
-    ipReputation: 0.25,
-    behaviorPattern: 0.20,
-    geoConsistency: 0.10
-  }
-});</code></pre>
-
-      <h3>4. Trusted Proxy Configuration (Multi-CDN)</h3>
-      <pre><code class="language-javascript">const sentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET,
-  edgeProvider: 'auto',        // Auto-detect CDN from headers
-  trustedProxies: [
-    '173.245.48.0/20',         // Cloudflare
-    '103.21.244.0/22',
-    '76.76.21.0/24',           // Vercel
-    '64.18.0.0/20',            // Fastly
-  ]
-});</code></pre>
-
-      <h3>5. HMAC Secret Rotation</h3>
-      <pre><code class="language-javascript">import { Sentinel, rotateSecret } from 'ameva-sentinel';
-
-// Graceful secret rotation: accepts both old and new secret during TTL window
-const sentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET_NEW,
-  legacySecrets: [process.env.SENTINEL_SECRET_OLD],  // Accepted until TTL expires
-  tokenTTL: 300
-});
-
-// Generate new secret
-const newSecret = await rotateSecret(32);  // 32 bytes = 256 bits
-console.log('New HMAC secret:', newSecret.toString('hex'));</code></pre>
-
-      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
-        <p>AMEVA-Sentinel v1.0.0 &bull; Apache-2.0</p>
-      </footer>
+      <h2>Advanced Parameters & Tuning</h2>
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>Memory Buffer Pool Configuration</h3>
+         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
     </main>
   </div>
 

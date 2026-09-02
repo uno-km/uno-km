@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://uno-km.vercel.app/lib/forge/index.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/installation.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/quickstart.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/api-reference.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/demo.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/benchmarks.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/advanced-parameters.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/versions.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/what-is-forge.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/forge/forge-vs-pytorch.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>index.html</loc><priority>1.0</priority></url>
+  <url><loc>installation.html</loc><priority>0.8</priority></url>
+  <url><loc>quickstart.html</loc><priority>0.8</priority></url>
+  <url><loc>api-reference.html</loc><priority>0.9</priority></url>
+  <url><loc>benchmarks.html</loc><priority>0.7</priority></url>
+  <url><loc>advanced-parameters.html</loc><priority>0.7</priority></url>
+  <url><loc>versions.html</loc><priority>0.5</priority></url>
+  <url><loc>llms.txt</loc><priority>0.9</priority></url>
+  <url><loc>llms-full.txt</loc><priority>0.9</priority></url>
 </urlset>

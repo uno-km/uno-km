@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Diffusion</title>
-  <meta name="description" content="Official release chronology, commit hashes, release assets, and feature changelog for Termux-Diffusion.">
+  <meta name="description" content="Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -18,51 +18,48 @@
       <h1 data-i18n="common.brand">Termux-Diffusion</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.3.1 (Multi-SoC Vulkan)</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.3.1</span>
       <div class="lang-selector-wrapper"></div>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="header-btn" title="PyPI: termux-diffusion | npm: termux-diffusion" data-i18n="common.pkgBtn">pip / npm</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 
   <div class="container">
   <nav class="sidebar">
-    <h3 data-i18n="common.nav.overview">Overview</h3>
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
-      <li><a href="index.html" data-i18n="common.nav.home">Home / Architecture</a></li>
-      <li><a href="installation.html" data-i18n="common.nav.installation">Installation Guide</a></li>
-      <li><a href="quickstart.html" data-i18n="common.nav.quickstart">Quickstart & Recipes</a></li>
+      <li><a href="index.html">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="models.html">Model Checkpoints</a></li>
+      <li><a href="gallery.html">Visual Gallery</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html" class="active">Version Archive</a></li>
     </ul>
-    <h3 data-i18n="common.nav.reference">Official Reference</h3>
+        <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
-      <li><a href="api-reference.html" data-i18n="common.nav.apiReference">API Reference</a></li>
-      <li><a href="models.html" data-i18n="common.nav.models">Model Hub & GGUF</a></li>
-      <li><a href="benchmarks.html" data-i18n="common.nav.benchmarks">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html" data-i18n="common.nav.advancedParams">Advanced Parameters</a></li>
-      <li><a href="gallery.html" data-i18n="common.nav.gallery">Render Gallery</a></li>
-      <li><a href="versions.html" class="active" data-i18n="common.nav.versions">Version Archive</a></li>
-    </ul>
-    <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
-    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-      <li><a href="/lib/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
-            <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
-      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
       <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
       <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/diffusion/" class="active">Termux-Diffusion (Image AI)</a></li>
       <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
       <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-            <li><a href="/lib/infra-index/">Infra-Index Platform (App)</a></li>
-        <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-      <li><a href="/foundation/">AMEVA Foundation</a></li>
-      <li><a href="/">Founder Digital CV</a></li>
     </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
     <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
@@ -73,39 +70,13 @@
   </nav>
 
     <main class="content">
-      <h2>Version Archive & Chronological Changelog</h2>
-      <p class="subtitle">Complete history of official releases, prebuilt binary assets, and kernel patches</p>
-
-      <section class="doc-section">
-        <h3>v1.3.1 - Structured Error Diagnostics & Dual Registry Production Release <span class="badge badge-success">Latest</span></h3>
-        <p><strong>Release Date:</strong> 2026-08-27 | <strong>Tag:</strong> <code>v1.3.1</code></p>
-        <ul>
-          <li><strong>Structured Error Diagnostics:</strong> Formatted fail-fast diagnostic error messages with parameter name, resolved absolute path, and targeted recovery remedies.</li>
-          <li><strong>CLI Exception Handling:</strong> Integrated comprehensive try-catch wrappers returning deterministic process exit codes (<code>ExitCode.CLI_ERROR</code>, <code>ExitCode.BUILD_ERROR</code>).</li>
-          <li><strong>Dual Registry Synchronization:</strong> Fully aligned npm and PyPI distribution metadata, including automated PyPI release pipelines.</li>
-          <li><strong>Multi-SoC Vulkan Acceleration:</strong> Native Vulkan acceleration on Snapdragon Adreno 830 (Galaxy S25) and Exynos Mali-G68/G78 with safe memory fences.</li>
-          <li><strong>Production Presets:</strong> Pre-calibrated <code>--preset fast</code>, <code>--preset balanced</code>, and <code>--preset anime_experimental</code>.</li>
-        </ul>
-      </section>
-
-      <section class="doc-section">
-        <h3>v1.3.0 - Dual-Prebuilt Fast-Track Architecture</h3>
-        <p><strong>Release Date:</strong> 2026-08-25 | <strong>Tag:</strong> <code>v1.3.0</code></p>
-        <ul>
-          <li>Integrated Dual-Prebuilt architecture (ARMv8.2-A CPU Optimized + ARMv8-A Baseline).</li>
-          <li>Achieved 4.08s (1.98x speedup) on Galaxy A35 using ARM DotProd/FP16 SIMD vectorization.</li>
-          <li>Introduced <code>--vae-tiling</code> memory defense reducing peak decode allocation by ~70%.</li>
-        </ul>
-      </section>
-
-      <section class="doc-section">
-        <h3>v1.2.0 - TOP 7 Advanced Inference Parameters</h3>
-        <p><strong>Release Date:</strong> 2026-08-24 | <strong>Tag:</strong> <code>v1.2.0</code></p>
-        <ul>
-          <li>Added support for Img2Img, ControlNet, LoRA adapter directories, CLIP skip, TAESD, and custom samplers.</li>
-          <li>Engineered 8-tier interactive Doctor diagnostics and CPU cluster affinity management.</li>
-        </ul>
-      </section>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+      <h3>v1.3.1 - Dual-Engine Production Release (Current)</h3>
+         <ul>
+           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
+           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
+         </ul>
     </main>
   </div>
 

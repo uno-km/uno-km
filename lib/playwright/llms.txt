@@ -1,28 +1,17 @@
-# Termux-Playwright — AI Agent Fast Context
-# Generated: 2026-09-02  |  Version: 1.0.0
+# Termux-Playwright (v1.0.0)
+> Non-Root Real Chromium Automation & CDP Engine for Android Termux
 
-## Library
-Name: Termux-Playwright
-Version: 1.0.0
-GitHub: https://github.com/uno-km/termux-playwright
-Documentation: https://uno-km.vercel.app/lib/playwright/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-playwright-demo
+- Installation: `pip install termux-playwright
+# or:
+npm install termux-playwright`
+- Architecture: Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.
 
-## Description
-
-
-## Documentation Pages
-  - /lib/playwright/index.html
-  - /lib/playwright/installation.html
-  - /lib/playwright/quickstart.html
-  - /lib/playwright/api-reference.html
-  - /lib/playwright/benchmarks.html
-  - /lib/playwright/advanced-parameters.html
-  - /lib/playwright/versions.html
-
-## Quick Install
-pip install termux-playwright
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/playwright/llms-full.txt
+## Canonical Code Pattern
+```python
+from termux_playwright import TermuxBrowser
+browser = TermuxBrowser.launch(headless=True)
+page = browser.new_page()
+page.goto('https://uno-km.vercel.app')
+```

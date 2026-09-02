@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | AMEVA-Forge</title>
-  <meta name="description" content="Standard usage patterns, neural network training loops, and attention shaders">
+  <meta name="description" content="Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-  <a href="index.html" class="header-brand">
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
     </a>
@@ -21,10 +21,9 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/ameva-forge/" target="_blank" class="header-btn pypi-btn">PyPI (pip)</a>
+      <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
@@ -42,7 +41,7 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -71,104 +70,12 @@
 
     <main class="content">
       <h2>Quickstart & Execution Recipes</h2>
-      <p class="subtitle">Standard usage patterns, neural network training loops, and attention shaders</p>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">PyTorch-Compatible Syntax on WebGPU</span>
-        <p>Write standard PyTorch-style deep learning code that compiles directly to WGSL compute shaders running 100% locally on client GPUs.</p>
-      </div>
-
-      <h3>Recipe 1: 3-Line Tensor Creation &amp; Asynchronous GPU Readback</h3>
-      <p>Allocating multidimensional tensors directly in GPU VRAM and retrieving values via staging buffers:</p>
-      <pre><code class="language-python">import forge as torch
-
-# 1. Allocate Tensor in WebGPU VRAM with gradient tracking
-x = torch.tensor([[1.0, 2.0], [3.0, 4.0]], device="gpu", requires_grad=True)
-
-# 2. GPU Matrix Multiplication via WGSL Compute Shader
-y = x @ x + 2.0
-
-# 3. Asynchronous Readback to CPU
-result_np = await y.numpy_async()
-print("GPU Compute Result:\n", result_np)</code></pre>
-
-      <h3>Recipe 2: End-to-End Neural Network Training with In-Place SGD</h3>
-      <p>Training an MLP on the client GPU with automatic differentiation and optimizer step:</p>
-      <pre><code class="language-python">import forge as torch
-import forge.nn as nn
-import forge.optim as optim
-
-class MLP(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.fc1 = nn.Linear(2, 8)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(8, 1)
-
-    def forward(self, x):
-        return self.fc2(self.relu(self.fc1(x)))
-
-model = MLP().to("gpu")
-criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.1)
-
-# Synthetic XOR Dataset
-inputs = torch.tensor([[0.0, 0.0], [0.0, 1.0], [1.0, 0.0], [1.0, 1.0]], device="gpu")
-targets = torch.tensor([[0.0], [1.0], [1.0], [0.0]], device="gpu")
-
-for epoch in range(1, 21):
-    optimizer.zero_grad()
-    preds = model(inputs)
-    loss = criterion(preds, targets)
-    
-    loss.backward()
-    await optimizer.step_async()
-    
-    loss_val = float((await loss.numpy_async()).item())
-    print(f"Epoch {epoch:02d} | WebGPU Loss: {loss_val:.5f}")</code></pre>
-
-      <h3>Recipe 3: Causal Masked Multi-Head Attention in WGSL</h3>
-      <p>Executing FlashAttention-style causal scaled dot-product attention in client browser shaders:</p>
-      <pre><code class="language-python">import forge as torch
-import forge.functional as F
-
-# Query, Key, Value tensors on GPU: Shape (Batch=1, Heads=4, SeqLen=16, Dim=32)
-q = torch.randn((1, 4, 16, 32), device="gpu")
-k = torch.randn((1, 4, 16, 32), device="gpu")
-v = torch.randn((1, 4, 16, 32), device="gpu")
-
-# WebGPU Causal Masked Attention Kernel
-attn_out = F.scaled_dot_product_attention(q, k, v, is_causal=True)
-out_np = await attn_out.numpy_async()
-print("Causal Attention Output Shape:", out_np.shape)</code></pre>
-
-      <h3>Recipe 4: LLaMA-3 Style RoPE &amp; RMSNorm Text Generation</h3>
-      <p>Running Rotary Position Embeddings and RMSNorm layers on WebGPU without cloud servers:</p>
-      <pre><code class="language-python">import forge as torch
-import forge.nn as nn
-
-class TinyLlamaBlock(nn.Module):
-    def __init__(self, dim=64, n_heads=4):
-        super().__init__()
-        self.norm1 = nn.RMSNorm(dim)
-        self.norm2 = nn.RMSNorm(dim)
-        self.linear_q = nn.Linear(dim, dim)
-        self.linear_k = nn.Linear(dim, dim)
-        self.linear_v = nn.Linear(dim, dim)
-        self.linear_out = nn.Linear(dim, dim)
-
-    def forward(self, x):
-        h = self.norm1(x)
-        q, k, v = self.linear_q(h), self.linear_k(h), self.linear_v(h)
-        attn = F.scaled_dot_product_attention(q, k, v, is_causal=True)
-        x = x + self.linear_out(attn)
-        return x + self.norm2(x)
-
-block = TinyLlamaBlock().to("gpu")
-tokens = torch.randn((1, 32, 64), device="gpu")
-output = block(tokens)
-print("Forward Pass Succeeded on WebGPU!")</code></pre>
-
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>import ameva as am
+x = am.tensor([1.0, 2.0], device='webgpu', requires_grad=True)
+y = (x ** 2).sum()
+y.backward()</code></pre>
     </main>
   </div>
 

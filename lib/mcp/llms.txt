@@ -1,29 +1,14 @@
-# AMEVA-MCP-Hub — AI Agent Fast Context
-# Generated: 2026-09-02  |  Version: 3.0.0
+# AMEVA-MCP-Hub (v3.0.0)
+> Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub
 
-## Library
-Name: AMEVA-MCP-Hub
-Version: 3.0.0
-GitHub: https://github.com/uno-km/ameva-mcp-hub
-Documentation: https://uno-km.vercel.app/lib/mcp/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/ameva-mcp-hub
+- Installation: `npx ameva-mcp-hub
+# or SDK:
+npm install ameva-mcp-hub`
+- Architecture: Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.
 
-## Description
+## Canonical Code Pattern
+```python
 
-
-## Documentation Pages
-  - /lib/mcp/index.html
-  - /lib/mcp/installation.html
-  - /lib/mcp/quickstart.html
-  - /lib/mcp/api-reference.html
-  - /lib/mcp/tools.html
-  - /lib/mcp/benchmarks.html
-  - /lib/mcp/advanced-parameters.html
-  - /lib/mcp/versions.html
-
-## Quick Install
-npm install ameva-mcp-hub
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/mcp/llms-full.txt
+```

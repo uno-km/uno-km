@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | Termux-Playwright</title>
   <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-          <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="Termux-Playwright Logo">
       <h1 data-i18n="common.brand">Termux-Playwright</h1>
     </a>
@@ -21,19 +21,14 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" title="PyPI: termux-playwright | npm: termux-playwright" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-playwright-demo" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-          <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -45,7 +40,7 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -73,75 +68,16 @@
   </nav>
 
     <main class="content">
-      <h2>Installation &amp; Setup Guide</h2>
-      <p class="subtitle">Non-root Chromium browser automation on Android Termux — zero sudo required</p>
-
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
       <div class="alert alert-tip">
-        <span class="alert-title">⚡ Non-Root Architecture</span>
-        <p>Termux-Playwright runs Chromium in a fully non-root, Bionic-native environment. No proot, no fakeroot, no virtualization. The browser sandbox is disabled only at the OS userspace boundary already enforced by Android SELinux.</p>
-      </div>
-
-      <h3>1. Quick Install</h3>
-      <h4>1.1 Python (PyPI)</h4>
-      <pre><code class="language-bash"># Install SDK
-pip install termux-playwright
-
-# Download non-root Chromium binary for ARM64
-termux-playwright install --arch arm64
-
-# Verify installation
-termux-playwright doctor</code></pre>
-
-      <h4>1.2 Node.js (npm)</h4>
-      <pre><code class="language-bash">npm install termux-playwright
-
-# Auto-provision Chromium binary
-npx termux-playwright install
-
-# Verify
-npx termux-playwright doctor</code></pre>
-
-      <h3>2. Termux Prerequisites</h3>
-      <pre><code class="language-bash"># Required Termux packages
-pkg update && pkg install -y \
-  python nodejs \
-  libexpat libjpeg-turbo libpng \
-  nss libx11 libxcomposite libxdamage \
-  libxrandr libatk at-spi2-atk libgtk3
-
-# Storage permission (required for screenshot save)
-termux-setup-storage</code></pre>
-
-      <h3>3. ARM64 Prebuilt Binary Matrix</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Binary</th><th>ISA Target</th><th>Verified Hardware</th><th>Size</th></tr></thead>
-          <tbody>
-            <tr style="background:rgba(0,68,153,.05);font-weight:700;"><td><code>chromium-arm64-v8.2a</code></td><td>ARMv8.2-A + DotProd</td><td>Galaxy S20, S21, A35</td><td>~85 MB</td></tr>
-            <tr><td><code>chromium-arm64-baseline</code></td><td>ARMv8-A NEON</td><td>Generic Android ARM64</td><td>~82 MB</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>4. Environment Variables</h3>
-      <pre><code class="language-bash"># ~/.bashrc or ~/.zshrc
-export TERMUX_PLAYWRIGHT_BINARY="$HOME/.termux-playwright/chromium"
-export TERMUX_PLAYWRIGHT_NO_SANDBOX=1       # Required for non-root
-export TERMUX_PLAYWRIGHT_HEADLESS=1         # Default: headless mode
-export TERMUX_PLAYWRIGHT_TIMEOUT=30000      # Navigation timeout ms</code></pre>
-
-      <h3>5. Verification</h3>
-      <pre><code class="language-bash">termux-playwright doctor
-# Expected output:
-# [PASS] ARM64 binary: /data/data/com.termux/files/home/.termux-playwright/chromium
-# [PASS] No-sandbox mode enabled
-# [PASS] Headless GPU available (SwiftShader)
-# [PASS] Page navigation test: https://example.com → 200 OK (1234ms)
-# → All checks passed. Termux-Playwright is ready.</code></pre>
-
-      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
-        <p>Termux-Playwright v1.0.0 &bull; Apache-2.0 &bull; <a href="https://github.com/uno-km/termux-playwright" target="_blank" style="color:#004499;font-weight:600;">uno-km/termux-playwright</a></p>
-      </footer>
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install termux-playwright
+# or:
+npm install termux-playwright</code></pre>
     </main>
   </div>
 

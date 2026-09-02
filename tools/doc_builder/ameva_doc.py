@@ -118,7 +118,6 @@ def render_header(cfg: dict, active_page: str) -> str:
     pypi_pkg = cfg.get("package_name_pypi", "")
     npm_pkg = cfg.get("package_name_npm", "")
     github_url = cfg.get("github_repo_url", "https://github.com/uno-km/uno-km")
-    is_foundation = cfg.get("is_foundation", False) or cfg.get("lib_slug") == "foundation"
 
     # Unified Package Button
     pkg_btn = ""
@@ -133,7 +132,7 @@ def render_header(cfg: dict, active_page: str) -> str:
 
     return f"""  <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="{name} Logo">
+      <img src="/shared/favicon.svg" alt="{name} Logo">
       <h1 data-i18n="common.brand">{name}</h1>
     </a>
     <div class="header-controls">
@@ -143,7 +142,6 @@ def render_header(cfg: dict, active_page: str) -> str:
       {pkg_btn}
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="{github_url}" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>"""
 
@@ -179,19 +177,17 @@ def render_sidebar(cfg: dict, active_page: str) -> str:
             tier1_links.insert(4, ("models.html", "Model Checkpoints"))
             tier1_links.insert(5, ("gallery.html", "Visual Gallery"))
         elif current_lib == "stt":
-            tier1_links.insert(4, ("showcase.html", "Audio Showcase"))
+            tier1_links.insert(4, ("models.html", "Models Directory"))
+            tier1_links.insert(5, ("showcase.html", "Audio Showcase"))
         elif current_lib == "train":
-            tier1_links.insert(4, ("training-guide.html", "Training Guide"))
+            tier1_links.insert(4, ("models.html", "Pretrained Checkpoints"))
+            tier1_links.insert(5, ("training-guide.html", "Training Guide"))
         elif current_lib == "forge":
             tier1_links.insert(4, ("demo.html", "Live WebGPU Demo"))
         elif current_lib == "mcp":
             tier1_links.insert(4, ("tools.html", "WASM Tools Catalog"))
-        elif current_lib == "aichain":
-            tier1_links.insert(4, ("chains.html", "Chains & Agents"))
-        elif current_lib == "vulkan":
-            tier1_links.insert(4, ("vulkan-enablement-playbook.html", "Vulkan 12-Stage Playbook"))
-            tier1_links.insert(5, ("hardware-support-matrix.html", "Hardware Support Matrix"))
-            tier1_links.insert(6, ("cross-modal-integration.html", "Cross-Modal Integration"))
+        elif current_lib == "bitnet":
+            tier1_links.insert(4, ("models.html", "GGUF Quant Models"))
 
     # Tier 2: Flagship Libraries (All AOSF Ecosystem Libraries + Workstation App)
     library_links = [

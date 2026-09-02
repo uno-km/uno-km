@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | AMEVA-Sentinel</title>
   <meta name="description" content="Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-          <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
@@ -21,28 +21,26 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
+      <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-                <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html" class="active">Installation Guide</a></li>
-      <li><a href="quickstart.html">Quickstart &amp; Recipes</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="admin.html">Admin Intelligence Console</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -70,102 +68,16 @@
   </nav>
 
     <main class="content">
-      <h2 data-i18n="installation.title">Installation &amp; Setup Guide</h2>
-      <p class="subtitle" data-i18n="installation.subtitle">npm, CDN, and browser integration for the privacy-first risk scoring SDK</p>
-
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
       <div class="alert alert-tip">
-        <span class="alert-title">⚡ Zero-Compilation — Works Everywhere</span>
-        <p>AMEVA-Sentinel is a pure JavaScript/TypeScript library. No native compilation, no binary dependencies. Install once and run identically on Node.js, Browser, Deno, and Bun.</p>
-      </div>
-
-      <h3>1. Package Manager Installation</h3>
-
-      <h4>1.1 npm / Yarn / pnpm</h4>
-      <pre><code class="language-bash"># npm
-npm install ameva-sentinel
-
-# Yarn
-yarn add ameva-sentinel
-
-# pnpm
-pnpm add ameva-sentinel</code></pre>
-
-      <h4>1.2 CDN — No Build Step Required</h4>
-      <pre><code class="language-html">&lt;!-- jsDelivr (recommended) --&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"&gt;&lt;/script&gt;
-
-&lt;!-- unpkg --&gt;
-&lt;script src="https://unpkg.com/ameva-sentinel/dist/sentinel.min.js"&gt;&lt;/script&gt;
-
-&lt;!-- ESM via skypack --&gt;
-&lt;script type="module"&gt;
-  import { Sentinel } from 'https://cdn.skypack.dev/ameva-sentinel';
-&lt;/script&gt;</code></pre>
-
-      <h3>2. Environment Compatibility Matrix</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr><th>Runtime</th><th>Import Method</th><th>Min Version</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Node.js</td><td>ESM / CommonJS</td><td>18.0+</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
-            <tr><td>Browser</td><td>ESM / CDN Global</td><td>Chrome 80+, Firefox 75+</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
-            <tr><td>Deno</td><td>ESM URL Import</td><td>1.30+</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
-            <tr><td>Bun</td><td>npm Install</td><td>1.0+</td><td><span style="color:#2e7d32;">✅ Supported</span></td></tr>
-            <tr><td>Cloudflare Workers</td><td>ESM Bundle</td><td>Any</td><td><span style="color:#f57c00;">⚠️ Bundle Required</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>3. TypeScript Support</h3>
-      <pre><code class="language-bash"># TypeScript types are bundled — no @types/* package needed
-npm install ameva-sentinel
-# tsconfig.json: "moduleResolution": "bundler" or "node16"</code></pre>
-
-      <h4>3.1 TypeScript Import</h4>
-      <pre><code class="language-typescript">import { Sentinel, SentinelConfig, EvaluationResult } from 'ameva-sentinel';
-
-const config: SentinelConfig = {
-  hmacSecret: process.env.SENTINEL_SECRET!,
-  shadowMode: false,
-  riskThreshold: 60
-};
-
-const sentinel = new Sentinel(config);
-const result: EvaluationResult = await sentinel.evaluate(req);</code></pre>
-
-      <h3>4. Framework-Specific Installation</h3>
-
-      <h4>4.1 Express.js Middleware</h4>
-      <pre><code class="language-bash">npm install ameva-sentinel express
-# Then see Quickstart → Recipe 1 for middleware registration</code></pre>
-
-      <h4>4.2 Next.js / Vercel Edge</h4>
-      <pre><code class="language-bash">npm install ameva-sentinel
-# Add to next.config.js: experimental.serverComponentsExternalPackages: []
-# Deploy to Vercel Edge Runtime natively</code></pre>
-
-      <h4>4.3 FastAPI / Python (via ameva-sentinel-py)</h4>
-      <pre><code class="language-bash">pip install ameva-sentinel
-# Python SDK wraps the Node.js core via subprocess bridge
-# See API Reference for Python-specific async patterns</code></pre>
-
-      <h3>5. Verification</h3>
-      <pre><code class="language-bash"># Verify installation
-node -e "const s = require('ameva-sentinel'); console.log('Sentinel v' + s.VERSION + ' OK')"
-
-# Run built-in self-test suite
-npx ameva-sentinel --self-test</code></pre>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">Next Step</span>
-        <p>Installation complete. Proceed to <a href="quickstart.html">Quickstart &amp; Recipes</a> to integrate Sentinel into your Express, Next.js, or FastAPI application in 5 minutes.</p>
-      </div>
-
-      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
-        <p>AMEVA-Sentinel v1.0.0 &bull; Licensed under Apache-2.0 &bull; Developed by <a href="https://github.com/uno-km" target="_blank" style="color:#004499;font-weight:600;">uno-km</a> (AMEVA Foundation)</p>
-      </footer>
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>npm install ameva-sentinel
+# or CDN:
+<script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"></script></code></pre>
     </main>
   </div>
 

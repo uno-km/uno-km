@@ -1,30 +1,15 @@
-# Termux-Train — AI Agent Fast Context
-# Generated: 2026-09-02  |  Version: 1.0.0
+# Termux-Train (v1.0.0)
+> Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework for Android
 
-## Library
-Name: Termux-Train
-Version: 1.0.0
-GitHub: https://github.com/uno-km/termux-train
-Documentation: https://uno-km.vercel.app/lib/train/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-train
+- Installation: `pip install termux-train`
+- Architecture: Provides a clean C-based DAG computation graph with SafeTensors zero-copy serialization and LoRA adapter fine-tuning on smartphone CPUs.
 
-## Description
-
-
-## Documentation Pages
-  - /lib/train/index.html
-  - /lib/train/installation.html
-  - /lib/train/quickstart.html
-  - /lib/train/api-reference.html
-  - /lib/train/models.html
-  - /lib/train/benchmarks.html
-  - /lib/train/advanced-parameters.html
-  - /lib/train/versions.html
-  - /lib/train/training-guide.html
-
-## Quick Install
-pip install termux-train
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/train/llms-full.txt
+## Canonical Code Pattern
+```python
+import termux_train as tt
+x = tt.tensor([1.0, 2.0], requires_grad=True)
+y = (x * 2.0).sum()
+y.backward()
+```

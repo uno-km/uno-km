@@ -62,8 +62,8 @@ class AmevaGeoHunter:
             words = re.findall(r"\b[A-Z][a-zA-Z0-9_-]{2,}\b", content)
             for w in words[:50]:
                 self.ontology["keywords"].add(w)
-        except Exception:
-            pass
+        except (OSError, UnicodeDecodeError, ValueError) as err:
+            sys.stderr.write(f"[WARN] Failed to parse manifest at {file_path}: {err}\n")
 
     def synthesize_qa_vectors(self):
         """Generates structured Q&A vectors for AI search engines and RAG pipelines."""

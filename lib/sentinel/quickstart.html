@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | AMEVA-Sentinel</title>
   <meta name="description" content="Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-          <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="AMEVA-Sentinel Logo">
       <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
     </a>
@@ -21,28 +21,26 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
+      <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-                <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
       <li><a href="installation.html">Installation Guide</a></li>
-      <li><a href="quickstart.html" class="active">Quickstart &amp; Recipes</a></li>
+      <li><a href="quickstart.html" class="active">Quickstart & Recipes</a></li>
       <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="benchmarks.html">Benchmarks &amp; Profiling</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="admin.html">Admin Intelligence Console</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -70,181 +68,10 @@
   </nav>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">Quickstart &amp; Integration Recipes</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">5-minute integration patterns for Express, Next.js, FastAPI, and CDN deployments</p>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">Shadow Mode Recommended for Initial Deployment</span>
-        <p>Set <code>shadowMode: true</code> on first deploy to observe risk scores without blocking requests. Switch to enforcement mode after validating your threshold calibration.</p>
-      </div>
-
-      <h3>Recipe 1: Express.js Middleware (Node.js)</h3>
-      <p>Drop-in middleware that evaluates every incoming request and attaches the risk score to <code>req.sentinel</code>:</p>
-      <pre><code class="language-javascript">import express from 'express';
-import { Sentinel, createExpressMiddleware } from 'ameva-sentinel';
-
-const app = express();
-
-// 1. Initialize Sentinel with HMAC secret
-const sentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET,
-  riskThreshold: 65,     // Block requests with score >= 65
-  shadowMode: false,     // true = observe only, false = enforce
-  tokenTTL: 300          // HMAC token validity in seconds
-});
-
-// 2. Register as Express middleware
-app.use(createExpressMiddleware(sentinel));
-
-// 3. Access evaluation result in route handlers
-app.post('/api/submit', (req, res) => {
-  const { score, token, signals } = req.sentinel;
-
-  if (score >= 65) {
-    return res.status(429).json({ error: 'High-risk request blocked', score });
-  }
-
-  res.json({ status: 'accepted', score, token });
-});
-
-app.listen(3000);</code></pre>
-
-      <h3>Recipe 2: Next.js Edge Middleware (Vercel)</h3>
-      <p>Deploy at the Vercel Edge with zero cold-start latency:</p>
-      <pre><code class="language-typescript">// middleware.ts (Next.js project root)
-import { NextRequest, NextResponse } from 'next/server';
-import { Sentinel } from 'ameva-sentinel';
-
-const sentinel = new Sentinel({
-  hmacSecret: process.env.SENTINEL_SECRET!,
-  riskThreshold: 70,
-  shadowMode: false
-});
-
-export async function middleware(request: NextRequest) {
-  const result = await sentinel.evaluate(request);
-
-  if (result.score >= 70) {
-    return NextResponse.json(
-      { error: 'Request blocked by Sentinel', score: result.score },
-      { status: 429 }
-    );
-  }
-
-  const response = NextResponse.next();
-  response.headers.set('X-Sentinel-Score', result.score.toString());
-  response.headers.set('X-Sentinel-Token', result.token);
-  return response;
-}
-
-export const config = {
-  matcher: ['/api/:path*', '/submit/:path*']
-};</code></pre>
-
-      <h3>Recipe 3: Browser CDN — Client-Side Evaluation</h3>
-      <pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/ameva-sentinel/dist/sentinel.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  const sentinel = new Sentinel.BrowserClient({
-    endpoint: 'https://your-api.example.com/api/sentinel',
-    autoCollect: true   // Automatically evaluates on DOM ready
-  });
-
-  document.querySelector('#submit-btn').addEventListener('click', async () => {
-    const { token, score } = await sentinel.getToken();
-
-    // Include token in your form submission
-    const response = await fetch('/api/submit', {
-      method: 'POST',
-      headers: {
-        'X-Sentinel-Token': token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ data: 'payload' })
-    });
-  });
-&lt;/script&gt;</code></pre>
-
-      <h3>Recipe 4: FastAPI Python Integration</h3>
-      <pre><code class="language-python">from fastapi import FastAPI, Request, HTTPException
-from ameva_sentinel import Sentinel, SentinelConfig
-
-app = FastAPI()
-
-sentinel = Sentinel(SentinelConfig(
-    hmac_secret="your-secret-256bit",
-    risk_threshold=65,
-    shadow_mode=False
-))
-
-@app.middleware("http")
-async def sentinel_middleware(request: Request, call_next):
-    result = await sentinel.evaluate(request)
-
-    if result.score >= 65 and not sentinel.config.shadow_mode:
-        raise HTTPException(status_code=429, detail={
-            "error": "High-risk request blocked",
-            "score": result.score
-        })
-
-    request.state.sentinel = result
-    response = await call_next(request)
-    response.headers["X-Sentinel-Score"] = str(result.score)
-    return response</code></pre>
-
-      <h3>Recipe 5: Standalone Token Verification</h3>
-      <p>Verify HMAC tokens generated by the client-side SDK on your server:</p>
-      <pre><code class="language-javascript">import { verifyToken } from 'ameva-sentinel';
-
-// Verify token from incoming request header
-const token = req.headers['x-sentinel-token'];
-const isValid = verifyToken(token, process.env.SENTINEL_SECRET, {
-  maxAge: 300,          // Reject tokens older than 5 minutes
-  minScore: 0,          // Accept all risk levels (enforce separately)
-  maxScore: 100
-});
-
-if (!isValid) {
-  return res.status(401).json({ error: 'Invalid or expired Sentinel token' });
-}</code></pre>
-
-      
-      <h3>Recipe 6: 1-Line Embedded Observability Dashboard (/sentinel/dashboard)</h3>
-      <p>Serve the full real-time forensic observability &amp; risk dashboard directly inside your application with zero external hosting dependencies:</p>
-      <pre><code class="language-typescript">// 1. Express (TypeScript / Node.js)
-import express from 'express';
-import { createExpressDashboardHandler } from '@ameva/sentinel/dashboard';
-
-const app = express();
-app.use('/sentinel/dashboard', createExpressDashboardHandler());
-
-// 2. Fastify (TypeScript / Node.js)
-import Fastify from 'fastify';
-import { createFastifyDashboardHandler } from '@ameva/sentinel/dashboard';
-
-const fastify = Fastify();
-fastify.get('/sentinel/dashboard', createFastifyDashboardHandler());
-
-// 3. Next.js App Router (app/sentinel/dashboard/route.ts)
-import { createNextDashboardHandler } from '@ameva/sentinel/dashboard';
-export const GET = createNextDashboardHandler();
-
-// 4. FastAPI (Python)
-from fastapi import FastAPI
-from ameva_sentinel import mount_fastapi_dashboard
-
-app = FastAPI()
-mount_fastapi_dashboard(app, path="/sentinel/dashboard")
-
-// 5. Flask (Python)
-from flask import Flask
-from ameva_sentinel import mount_flask_dashboard
-
-app = Flask(__name__)
-mount_flask_dashboard(app, path="/sentinel/dashboard")</code></pre>
-
-      <footer style="margin-top:50px;padding:25px 0;border-top:1px solid var(--border-color,#e0e0e0);font-size:.85rem;color:#666;text-align:center;">
-        <p>AMEVA-Sentinel v1.0.0 &bull; Apache-2.0 &bull; <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" style="color:#004499;font-weight:600;">uno-km/ameva-sentinel</a></p>
-      </footer>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code></code></pre>
     </main>
   </div>
 

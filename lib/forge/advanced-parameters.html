@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | AMEVA-Forge</title>
-  <meta name="description" content="WGSL workgroup sizing, buffer quota management, and FP16 half precision">
+  <meta name="description" content="Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-  <a href="index.html" class="header-brand">
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="AMEVA-Forge Logo">
       <h1 data-i18n="common.brand">AMEVA-Forge</h1>
     </a>
@@ -21,10 +21,9 @@
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/ameva-forge/" target="_blank" class="header-btn pypi-btn">PyPI (pip)</a>
+      <a href="https://pypi.org/project/ameva/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
@@ -42,7 +41,7 @@
       <li><a href="advanced-parameters.html" class="active">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -71,61 +70,9 @@
 
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
-      <p class="subtitle">WGSL workgroup sizing, buffer quota management, and FP16 half precision</p>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">WGSL Shader &amp; Pipeline Optimization</span>
-        <p>Fine-tune workgroup tiling dimensions, staging buffer pools, and precision modes to extract maximum FLOPS from heterogeneous client GPUs.</p>
-      </div>
-
-      <h3>1. WGSL Workgroup Tiling Dimensions</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Workgroup Configuration</th>
-            <th>Optimal Device Class</th>
-            <th>Trade-offs &amp; Tuning Guide</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>@workgroup_size(16, 16)</code> (Default)</td>
-            <td>Desktop GPUs (NVIDIA / AMD)</td>
-            <td>256 threads per workgroup. Optimal register occupancy and cache reuse for tiled matrix multiplication.</td>
-          </tr>
-          <tr>
-            <td><code>@workgroup_size(8, 8)</code></td>
-            <td>Mobile GPUs (Adreno / Mali)</td>
-            <td>64 threads per workgroup. Reduces shared memory pressure on mobile tile-based deferred renderers (TBDR).</td>
-          </tr>
-          <tr>
-            <td><code>@workgroup_size(32, 1)</code></td>
-            <td>Apple Silicon M-Series</td>
-            <td>Aligns with SIMD32 execution width for coalesced memory access on Metal unified memory architectures.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2. Buffer Pool Quota &amp; WeakRef Lifetime Management</h3>
-      <p>Configure internal buffer pool limits to avoid GPU memory exhaustion on low-spec client machines:</p>
-      <pre><code class="language-javascript">import { BufferPool } from 'https://uno-km.github.io/uno-km/lib/forge/dist/index.esm.js';
-
-// Configure Maximum VRAM Pool Threshold (e.g., 256 MB)
-BufferPool.setMaxPoolSize(256 * 1024 * 1024);
-
-// Enable Immediate Garbage Collection of Unreferenced Intermediate Tensors
-BufferPool.enableWeakRefGC(true);</code></pre>
-
-      <h3>3. Float16 (FP16) Half-Precision Acceleration</h3>
-      <p>Enable native 16-bit floating point compute shaders on GPUs supporting the <code>shader-f16</code> WebGPU extension:</p>
-      <pre><code class="language-javascript">const adapter = await navigator.gpu.requestAdapter();
-const features = [];
-if (adapter.features.has('shader-f16')) {
-  features.push('shader-f16');
-  console.log("Hardware FP16 Half-Precision Enabled: 2x Theoretical FLOPS");
-}
-const device = await adapter.requestDevice({ requiredFeatures: features });</code></pre>
-
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>Memory Buffer Pool Configuration</h3>
+         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
     </main>
   </div>
 

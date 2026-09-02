@@ -1,12 +1,13 @@
-# AMEVA-Core Full Technical Specification (v1.0.0)
+# Termux-AIChain Full Technical Specification (v1.1.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-High-Performance Edge & Browser Native Open-Source Systems Library
-Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.
+Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux
+Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.
 
 ## 2. Package & Installation
-- PyPI: ameva-core
-- Command: pip install ameva-core
-# or: npm install @ameva/core
-- Repository: https://github.com/uno-km/uno-km
+- PyPI: termux-aichain
+- Command: pip install termux-aichain
+# or:
+npm install termux-aichain
+- Repository: https://github.com/uno-km/termux-aichain

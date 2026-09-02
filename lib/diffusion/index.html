@@ -1,39 +1,34 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Diffusion | Official Documentation</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models directly on Android Bionic libc with NEON SIMD vector acceleration and direct Samsung Gallery indexing.">
+  <meta name="description" content="Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-        <header>
-  <a href="index.html" class="header-brand">
+  <header>
+    <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="Termux-Diffusion Logo">
       <h1 data-i18n="common.brand">Termux-Diffusion</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.3.1</span>
       <div class="lang-selector-wrapper"></div>
       <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="header-btn" title="PyPI: termux-diffusion | npm: termux-diffusion" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
       <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
     </div>
   </header>
 
   <div class="container">
-            <nav class="sidebar">
+  <nav class="sidebar">
     <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
@@ -47,7 +42,7 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -75,21 +70,17 @@
   </nav>
 
     <main class="content">
-      <!-- Section 1: Main Title & Subtitle -->
       <h2 data-i18n="home.title">Termux-Diffusion</h2>
       <p class="subtitle" data-i18n="home.subtitle">Native On-Device Stable Diffusion Runtime for Android Termux & ARM64</p>
 
-      <!-- Section 2: Badges Bar -->
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-diffusion/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-diffusion.svg?color=004499" alt="PyPI Version"></a>
         <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank"><img src="https://img.shields.io/npm/v/termux-diffusion.svg?color=cb3837" alt="npm Version"></a>
         <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank"><img src="https://img.shields.io/npm/dm/termux-diffusion.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
         <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-        <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
-        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Samsung_Galaxy-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Samsung_Galaxy_A35_&_S21-blueviolet.svg" alt="Platform">
       </div>
 
-      <!-- Section 3: 1-Line Quick Installation Alert -->
       <div class="alert alert-tip">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
@@ -97,14 +88,12 @@
 # or: npm install termux-diffusion</code></pre>
       </div>
 
-      <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
       <p data-i18n="home.challengeText">Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes quantized Stable Diffusion models directly on Android Bionic libc with NEON SIMD vector acceleration and direct Samsung Gallery indexing.</p>
+      <p data-i18n="home.breakthroughText">Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.</p>
 
-      <!-- Section 5: Key Capabilities Grid -->
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
@@ -121,7 +110,6 @@
         </div>
       </div>
 
-      <!-- Section 6: Compute & Module Matrix -->
       <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
@@ -139,7 +127,7 @@
           </tr>
           <tr>
             <td><strong>Vector Acceleration</strong></td>
-            <td>ARM64 NEON SIMD, FP16 Compute, Multi-Threaded Tiling</td>
+            <td>ARM64 ARMv8.2-A DotProd/FP16 SIMD, FP16 Compute, Multi-Threaded Tiling</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
@@ -150,7 +138,6 @@
         </tbody>
       </table>
 
-      <!-- Section 7: Canonical Usage Example -->
       <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
       <div class="code-tab-group">
         <div class="code-tabs-header">
@@ -182,7 +169,6 @@ console.log("Image created:", result.outputPath);
         </div>
       </div>
 
-      <!-- Section 8: Getting Started Navigation -->
       <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
         <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>

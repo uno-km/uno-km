@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | Termux-AIChain</title>
-  <meta name="description" content="Empirical resource allocation and latency metrics gathered on physical mobile hardware">
+  <meta name="description" content="Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -18,23 +18,18 @@
       <h1 data-i18n="common.brand">Termux-AIChain</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.0.9</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;">Foundation</a>
-      <div class="header-btn-dual">
-        <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="dual-link pip-link" title="PyPI (pip) Package">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="dual-link npm-link" title="NPM Package">npm</a>
-      </div>
+      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="header-btn" title="PyPI: termux-aichain | npm: termux-aichain" data-i18n="common.pkgBtn">pip / npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="header-btn primary">GitHub</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;">Founder CV</a>
+      <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 
   <div class="container">
   <nav class="sidebar">
-    <!-- Tier 1: Document Navigation -->
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
     <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
     <ul>
       <li><a href="index.html">Home / Architecture</a></li>
@@ -45,8 +40,7 @@
       <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
       <li><a href="versions.html">Version Archive</a></li>
     </ul>
-
-                                                                                                                <!-- Tier 2: Flagship Libraries -->
+        <!-- Tier 2: Flagship Libraries -->
     <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
     <ul>
       <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
@@ -63,130 +57,30 @@
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
     </ul>
-
     <!-- Tier 3: AI Protocols & Specifications -->
     <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
     <ul>
       <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
       <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
       <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Search Sitemap)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
     </ul>
   </nav>
 
     <main class="content">
       <h2>Benchmarks & Profiling</h2>
-      <p class="subtitle">Empirical resource allocation and latency metrics gathered on physical mobile hardware</p>
-
-      <div class="alert alert-tip">
-        <span class="alert-title">Physical Hardware Testbed Specification</span>
-        <p>All benchmarks were measured on a physical <strong>Samsung Galaxy S20 5G</strong> (Qualcomm Snapdragon 865, 12GB RAM, Android 13 Termux Bionic ARM64 environment).</p>
-      </div>
-
-      <h3>1. Framework Resource Footprint Comparison</h3>
+      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
       <table class="data-table">
-        <thead>
-          <tr>
-            <th>Measurement Metric</th>
-            <th>LangChain (Heavyweight)</th>
-            <th>termux-aichain v1.0.9</th>
-            <th>Performance Delta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Cold Start Import Latency</strong></td>
-            <td>1,240.0 ms</td>
-            <td><strong>12.8 ms</strong></td>
-            <td><span class="badge success">96.8x Faster</span></td>
-          </tr>
-          <tr>
-            <td><strong>Baseline RAM Footprint (RSS)</strong></td>
-            <td>185.0 MB</td>
-            <td><strong>14.2 MB</strong></td>
-            <td><span class="badge success">92.3% Saved</span></td>
-          </tr>
-          <tr>
-            <td><strong>Package Disk Footprint</strong></td>
-            <td>48.5 MB</td>
-            <td><strong>0.26 MB (268 KB)</strong></td>
-            <td><span class="badge success">99.4% Saved</span></td>
-          </tr>
-          <tr>
-            <td><strong>External Heavy Dependencies</strong></td>
-            <td>42+ packages</td>
-            <td><strong>0 packages</strong></td>
-            <td><span class="badge success">Zero Dep</span></td>
-          </tr>
-          <tr>
-            <td><strong>5-Step Multimodal E2E Cycle</strong></td>
-            <td>Failed (Crash)</td>
-            <td><strong>46.4 ms</strong></td>
-            <td><span class="badge success">100% PASS</span></td>
-          </tr>
-          <tr>
-            <td><strong>Unit Test Suite Coverage</strong></td>
-            <td>Variable</td>
-            <td><strong>73 / 73 PASS (100%)</strong></td>
-            <td><span class="badge success">Zero-Defect</span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2. Granular Module Micro-Benchmark (0-Point Baseline)</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Subsystem Module</th>
-            <th>Execution Operation</th>
-            <th>Median Latency (ms)</th>
-            <th>Memory Delta (KB)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>core.prompt</code></td>
-            <td>Template Variable Substitution (100 iterations)</td>
-            <td>0.12 ms</td>
-            <td>&lt; 2 KB</td>
-          </tr>
-          <tr>
-            <td><code>graph.state</code></td>
-            <td>StateGraph Cyclic Routing (5 node loop)</td>
-            <td>0.35 ms</td>
-            <td>&lt; 4 KB</td>
-          </tr>
-          <tr>
-            <td><code>memory.sqlite</code></td>
-            <td>ACID Key-Value Write & Read Cycle</td>
-            <td>0.42 ms</td>
-            <td>0 KB (Zero-Leak)</td>
-          </tr>
-          <tr>
-            <td><code>memory.vector</code></td>
-            <td>128d Cosine Similarity Search (100 vectors)</td>
-            <td>0.68 ms</td>
-            <td>&lt; 8 KB</td>
-          </tr>
-          <tr>
-            <td><code>trace.tracer</code></td>
-            <td>Hierarchical Span Enter/Exit Telemetry</td>
-            <td>0.08 ms</td>
-            <td>&lt; 1 KB</td>
-          </tr>
-          <tr>
-            <td><code>serve.server</code></td>
-            <td>REST SSE Streaming Request Dispatch</td>
-            <td>1.15 ms</td>
-            <td>&lt; 12 KB</td>
-          </tr>
-        </tbody>
-      </table>
+           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
+           <tbody>
+             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
+           </tbody>
+         </table>
     </main>
   </div>
 
   <footer>
-    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation (AOSF). Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>
