@@ -146,6 +146,7 @@ export async function middleware(request) {
         }
     }
 
+    if (matchedBot) {
         const deepPayload = generateDeepAiPayload(path);
         const servedBytes = new TextEncoder().encode(deepPayload).length;
         // Zero-Hype: Do not synthesize arbitrary bandwidth savings without explicit client baseline comparison

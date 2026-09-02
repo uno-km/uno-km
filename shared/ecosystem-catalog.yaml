@@ -133,12 +133,13 @@ libs:
 
   - id: train
     name: "Termux-Train"
-    badge: "PyPI"
+    badge: "pip / npm"
     tagline_ko: "Bionic 네이티브 경량 텐서 DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크."
     tagline_en: "Ultra-lightweight on-device Tensor & DAG Autograd framework with SafeTensors zero-copy, RoPE transformer, and LoRA fine-tuning."
     links:
       docs: "/lib/train/"
       pypi: "https://pypi.org/project/termux-train/"
+      npm: "https://www.npmjs.com/package/termux-train"
       github: "https://github.com/uno-km/termux-train"
 
   - id: llamacpp
