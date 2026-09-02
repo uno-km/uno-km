@@ -737,6 +737,26 @@ footer {
   color: #ffffff !important;
 }
 
+.header-btn-dual .dual-link.blog-link:hover {
+  background-color: #eb5324 !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-link.sponsor-link:hover {
+  background-color: #ea4aaa !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-link.opencollective-link:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-link.founder-link:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
 .header-btn-dual .dual-link.pip-link:hover {
   background-color: #0284c7 !important;
   color: #ffffff !important;

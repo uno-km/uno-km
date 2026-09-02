@@ -119,7 +119,11 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
         <span class="dual-divider">/</span>
         <a href="{github_url}" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
       </div>{pkg_btn}
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <div class="header-btn-dual sponsor-dual">
+        <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
+        <span class="dual-divider">/</span>
+        <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
+      </div>
     </div>'''
 
     elif parts[0] == "foundation":
@@ -131,8 +135,16 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
         <span class="dual-divider">/</span>
         <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
       </div>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+      <div class="header-btn-dual sponsor-dual">
+        <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
+        <span class="dual-divider">/</span>
+        <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
+      </div>
+      <div class="header-btn-dual founder-dual">
+        <a href="/" class="dual-link founder-link" data-i18n="common.founderBtn">Founder CV</a>
+        <span class="dual-divider">/</span>
+        <a href="https://uno-kim.tistory.com/" target="_blank" class="dual-link blog-link" data-i18n="common.blogBtn">Blog</a>
+      </div>
     </div>'''
 
     else:
@@ -144,7 +156,11 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
         <span class="dual-divider">/</span>
         <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
       </div>
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <div class="header-btn-dual sponsor-dual">
+        <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
+        <span class="dual-divider">/</span>
+        <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
+      </div>
     </div>'''
 
 

@@ -128,7 +128,17 @@ def render_header(cfg: dict, active_page: str) -> str:
     elif npm_pkg:
         pkg_btn = f'<a href="https://www.npmjs.com/package/{npm_pkg}" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>'
 
-    foundation_btn = '<a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>'
+    foundation_dual = f'''<div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">Foundation</a>
+        <span class="dual-divider">/</span>
+        <a href="{github_url}" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">GitHub</a>
+      </div>'''
+
+    sponsor_dual = '''<div class="header-btn-dual sponsor-dual">
+        <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
+        <span class="dual-divider">/</span>
+        <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
+      </div>'''
 
     return f"""  <header>
     <a href="index.html" class="header-brand">
@@ -138,10 +148,9 @@ def render_header(cfg: dict, active_page: str) -> str:
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">{version}</span>
       <div class="lang-selector-wrapper"></div>
-      {foundation_btn}
+      {foundation_dual}
       {pkg_btn}
-      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="{github_url}" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      {sponsor_dual}
     </div>
   </header>"""
 
