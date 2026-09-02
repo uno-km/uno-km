@@ -7,77 +7,16 @@
   <title>Installation & Setup Guide | Termux-LlamaCpp</title>
   <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
   <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="Termux-LlamaCpp Logo">
-      <h1 data-i18n="common.brand">Termux-LlamaCpp</h1>
-    </a>
-    <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.2.1</span>
-      <div class="lang-selector-wrapper"></div>
-      <div class="header-btn-dual foundation-dual">
-        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">Foundation</a>
-        <span class="dual-divider">/</span>
-        <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">GitHub</a>
-      </div>
-      <div class="header-btn-dual registry-dual">
-        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="dual-link pip-link">pip</a>
-        <span class="dual-divider">/</span>
-        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="dual-link npm-link">npm</a>
-      </div>
-      <div class="header-btn-dual sponsor-dual">
-        <a href="https://github.com/sponsors/uno-km" target="_blank" class="dual-link sponsor-link" data-i18n="common.sponsorBtn">Sponsor</a>
-        <span class="dual-divider">/</span>
-        <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
-      </div>
-    </div>
-  </header>
+  <ameva-header></ameva-header>
 
   <div class="container">
-                                    <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
-    <ul>
-      <li><a href="index.html">Home / Architecture</a></li>
-      <li><a href="installation.html" class="active">Installation Guide</a></li>
-      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
-      <li><a href="api-reference.html">API Reference</a></li>
-      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
-      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
-      <li><a href="versions.html">Version Archive</a></li>
-    </ul>
-    <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-    <ul>
-      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
-      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
-      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
-      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
-      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-      <li><a href="/lib/tts/">Termux-TTS (Voice Synthesis)</a></li>
-      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
-      <li><a href="/lib/llamacpp/" class="active">Termux-LlamaCpp (GGUF Runtime)</a></li>
-      <li><a href="/lib/vision/">Termux-Vision (CV & VLM)</a></li>
-      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
-    </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-    <ul>
-      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
-      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
-      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
-      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
-    </ul>
-  </nav>
+                                    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2>Installation & Setup Guide</h2>

@@ -22,6 +22,7 @@ VERSIONS_YAML = SHARED / "ecosystem-versions.yaml"
 
 CANONICAL_HEAD = '''  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>'''
@@ -74,9 +75,13 @@ def fix_html_head(html: str) -> tuple[str, bool]:
     for pat, rep in OLD_REFS:
         html = pat.sub(rep, html)
     # Check if /shared/ refs already present
-    has_canonical = '/shared/lib-style.css' in html and '/shared/i18n.js' in html
+    has_canonical = '/shared/lib-style.css' in html and '/shared/components.js' in html and '/shared/i18n.js' in html
     if not has_canonical:
-        html = re.sub(r'(</head>)', CANONICAL_HEAD + '\n\\1', html, count=1, flags=re.I)
+        # If legacy /shared/ scripts exist but missing components.js, insert components.js before i18n.js
+        if '/shared/i18n.js' in html and '/shared/components.js' not in html:
+            html = html.replace('<script src="/shared/i18n.js"', '<script src="/shared/components.js" defer></script>\n  <script src="/shared/i18n.js"')
+        else:
+            html = re.sub(r'(</head>)', CANONICAL_HEAD + '\n\\1', html, count=1, flags=re.I)
     elif n > 0:
         # Re-insert single favicon after <head>
         html = re.sub(r'(<head[^>]*>)', '\\1\n  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">', html, count=1, flags=re.I)
@@ -166,24 +171,22 @@ def build_header_controls(rel_path: str, libs: dict) -> str:
 
 def fix_header_controls(html: str, rel_path: str, libs: dict) -> tuple[str, bool]:
     orig = html
+    # Check if already modernized with <ameva-header></ameva-header>
+    if '<ameva-header></ameva-header>' in html:
+        return html, False
+
     header_match = re.search(r'<header>(.*?)</header>', html, re.DOTALL)
-    if not header_match:
-        return html, False
+    if header_match:
+        new_html = html[:header_match.start()] + '<ameva-header></ameva-header>' + html[header_match.end():]
+        return new_html, new_html != orig
 
-    old_header = header_match.group(0)
-    brand_match = re.search(r'(<a\s+href="[^"]*"\s+class="header-brand">.*?</a>)', old_header, re.DOTALL)
-    if not brand_match:
-        return html, False
+    # If <ameva-header> has legacy inner content
+    custom_match = re.search(r'<ameva-header>.*?</ameva-header>', html, re.DOTALL)
+    if custom_match and custom_match.group(0) != '<ameva-header></ameva-header>':
+        new_html = html[:custom_match.start()] + '<ameva-header></ameva-header>' + html[custom_match.end():]
+        return new_html, new_html != orig
 
-    brand_html = brand_match.group(1).strip()
-    new_controls = build_header_controls(rel_path, libs)
-    new_header = f'''<header>
-    {brand_html}
-    {new_controls}
-  </header>'''
-
-    new_html = html[:header_match.start()] + new_header + html[header_match.end():]
-    return new_html, new_html != orig
+    return html, False
 
 
 # ── Canonical 3-Tier Sidebar Commonization (SSOT) ──
@@ -304,18 +307,25 @@ def build_sidebar(rel_path: str, libs: dict) -> str:
 
 def fix_sidebar(html: str, rel_path: str, libs: dict) -> tuple[str, bool]:
     parts = rel_path.split("/")
-    # Only synchronize canonical top-level library doc pages (lib/<name>/*.html) and foundation pages (foundation/*.html)
     if parts[0] == "lib" and len(parts) > 3:
         return html, False
 
     orig = html
-    sidebar_match = re.search(r'<nav class="sidebar">.*?</nav>', html, re.DOTALL)
-    if not sidebar_match:
+    # Check if already modernized with <ameva-sidebar></ameva-sidebar>
+    if '<ameva-sidebar></ameva-sidebar>' in html:
         return html, False
 
-    new_sidebar = build_sidebar(rel_path, libs)
-    new_html = html[:sidebar_match.start()] + new_sidebar + html[sidebar_match.end():]
-    return new_html, new_html != orig
+    sidebar_match = re.search(r'<nav class="sidebar">.*?</nav>', html, re.DOTALL)
+    if sidebar_match:
+        new_html = html[:sidebar_match.start()] + '<ameva-sidebar></ameva-sidebar>' + html[sidebar_match.end():]
+        return new_html, new_html != orig
+
+    custom_match = re.search(r'<ameva-sidebar>.*?</ameva-sidebar>', html, re.DOTALL)
+    if custom_match and custom_match.group(0) != '<ameva-sidebar></ameva-sidebar>':
+        new_html = html[:custom_match.start()] + '<ameva-sidebar></ameva-sidebar>' + html[custom_match.end():]
+        return new_html, new_html != orig
+
+    return html, False
 
 
 # ── Process all HTML in a lib directory ──
@@ -439,6 +449,7 @@ class HTMLDocumentValidator(HTMLParser):
         self.has_viewport = False
         self.has_charset = False
         self.has_canonical_css = False
+        self.has_components_js = False
         self.has_i18n_js = False
         self.has_i18n_trans = False
         self.favicon_count = 0
@@ -466,6 +477,8 @@ class HTMLDocumentValidator(HTMLParser):
                 self.legacy_refs.append((tag, "href", href, line))
         elif tag == "script":
             src = attr_dict.get("src", "")
+            if "/shared/components.js" in src:
+                self.has_components_js = True
             if "/shared/i18n.js" in src:
                 self.has_i18n_js = True
             if "/shared/i18n-translations.js" in src:
