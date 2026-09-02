@@ -1,0 +1,29 @@
+# Termux-TTS — AI Agent Fast Context
+# Generated: 2026-09-02  |  Version: 0.1.0
+
+## Library
+Name: Termux-TTS
+Version: 0.1.0
+GitHub: https://github.com/uno-km/termux-tts
+Documentation: https://uno-km.vercel.app/lib/tts/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/tts/index.html
+  - /lib/tts/installation.html
+  - /lib/tts/quickstart.html
+  - /lib/tts/api-reference.html
+  - /lib/tts/benchmarks.html
+  - /lib/tts/advanced-parameters.html
+  - /lib/tts/versions.html
+
+## Quick Install
+pip install termux-tts
+npm install termux-tts
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/tts/llms-full.txt

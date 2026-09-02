@@ -257,3 +257,21 @@ libraries:
       - advanced-parameters.html
       - versions.html
     status: "stable"
+
+  tts:
+    name: "Termux-TTS"
+    version: "0.1.0"
+    release_date: "2026-09-02"
+    npm_package: "termux-tts"
+    pypi_package: "termux-tts"
+    github_repo: "uno-km/termux-tts"
+    lib_path: "lib/tts"
+    doc_pages:
+      - index.html
+      - installation.html
+      - quickstart.html
+      - api-reference.html
+      - benchmarks.html
+      - advanced-parameters.html
+      - versions.html
+    status: "stable"

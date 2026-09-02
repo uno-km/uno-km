@@ -164,3 +164,14 @@ libs:
       npm: "https://www.npmjs.com/package/termux-vision"
       github: "https://github.com/uno-km/termux-vision"
 
+  - id: tts
+    name: "Termux-TTS"
+    badge: "pip / npm"
+    tagline_ko: "초경량 0MB 무의존성 DSP 포먼트 보코더 및 신경망 ONNX 음성 합성 & 네이티브 오디오 브릿지 프레임워크."
+    tagline_en: "Ultra-lightweight zero-dependency DSP Formant Vocoder, Neural ONNX speech synthesis & Android native audio bridge framework."
+    links:
+      docs: "/lib/tts/"
+      pypi: "https://pypi.org/project/termux-tts/"
+      npm: "https://www.npmjs.com/package/termux-tts"
+      github: "https://github.com/uno-km/termux-tts"
+

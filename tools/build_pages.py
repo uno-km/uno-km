@@ -220,6 +220,7 @@ FLAGSHIP_LIBRARIES = [
     ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
     ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
     ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
+    ("/lib/tts/", "tts", "Termux-TTS (Voice Synthesis)"),
     ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
     ("/lib/llamacpp/", "llamacpp", "Termux-LlamaCpp (GGUF Runtime)"),
     ("/lib/vision/", "vision", "Termux-Vision (CV & VLM)"),
