@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | AMEVA-Vulkan-Runtime</title>
   <meta name="description" content="Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.">
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -20,10 +20,17 @@
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/ameva-vulkan-runtime/" target="_blank" class="header-btn" title="PyPI: ameva-vulkan-runtime | npm: ameva-vulkan-runtime" data-i18n="common.pkgBtn">pip / npm</a>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/ameva-vulkan-runtime" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <div class="header-btn-dual registry-dual">
+        <a href="https://pypi.org/project/ameva-vulkan-runtime/" target="_blank" class="dual-link pip-link">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/ameva-vulkan-runtime" target="_blank" class="dual-link npm-link">npm</a>
+      </div>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/ameva-vulkan-runtime" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 

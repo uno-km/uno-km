@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Vision</title>
   <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.">
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -18,12 +18,19 @@
       <h1 data-i18n="common.brand">Termux-Vision</h1>
     </a>
     <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">v1.1.0</span>
+      <span class="release-tag" data-i18n="common.releaseTag">v1.1.1</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
-      <a href="https://pypi.org/project/termux-vision/" target="_blank" class="header-btn" title="PyPI: termux-vision | npm: termux-vision" data-i18n="common.pkgBtn">pip / npm</a>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/termux-vision" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <div class="header-btn-dual registry-dual">
+        <a href="https://pypi.org/project/termux-vision/" target="_blank" class="dual-link pip-link">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="dual-link npm-link">npm</a>
+      </div>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/termux-vision" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 

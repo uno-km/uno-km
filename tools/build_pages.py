@@ -85,8 +85,93 @@ def fix_html_head(html: str) -> tuple[str, bool]:
     return html, html != orig
 
 
+# ── Universal Header Controls Commonization (SSOT) ──
+def build_header_controls(rel_path: str, libs: dict) -> str:
+    parts = rel_path.split("/")
+    if parts[0] == "lib" and len(parts) >= 2:
+        lkey = parts[1]
+        lib_info = libs.get(lkey, {})
+        ver = lib_info.get("version", "1.0.0")
+        ver_tag = "v" + ver if not ver.startswith("v") else ver
+        repo = lib_info.get("github_repo", f"uno-km/{lkey}")
+        github_url = f"https://github.com/{repo}" if not repo.startswith("http") else repo
+        pypi = lib_info.get("pypi_package")
+        npm = lib_info.get("npm_package")
+
+        pkg_btn = ""
+        if pypi and npm:
+            pkg_btn = f'''
+      <div class="header-btn-dual registry-dual">
+        <a href="https://pypi.org/project/{pypi}/" target="_blank" class="dual-link pip-link">pip</a>
+        <span class="dual-divider">/</span>
+        <a href="https://www.npmjs.com/package/{npm}" target="_blank" class="dual-link npm-link">npm</a>
+      </div>'''
+        elif pypi:
+            pkg_btn = f'\n      <a href="https://pypi.org/project/{pypi}/" target="_blank" class="header-btn pypi-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>'
+        elif npm:
+            pkg_btn = f'\n      <a href="https://www.npmjs.com/package/{npm}" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>'
+
+        return f'''<div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">{ver_tag}</span>
+      <div class="lang-selector-wrapper"></div>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="{github_url}" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>{pkg_btn}
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+    </div>'''
+
+    elif parts[0] == "foundation":
+        return '''<div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF Tier 1 TLP</span>
+      <div class="lang-selector-wrapper"></div>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+      <a href="/" class="header-btn" style="border-color:#004499;color:#004499;font-weight:600;" data-i18n="common.founderBtn">Founder CV</a>
+    </div>'''
+
+    else:
+        return '''<div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper"></div>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+    </div>'''
+
+
+def fix_header_controls(html: str, rel_path: str, libs: dict) -> tuple[str, bool]:
+    orig = html
+    header_match = re.search(r'<header>(.*?)</header>', html, re.DOTALL)
+    if not header_match:
+        return html, False
+
+    old_header = header_match.group(0)
+    brand_match = re.search(r'(<a\s+href="[^"]*"\s+class="header-brand">.*?</a>)', old_header, re.DOTALL)
+    if not brand_match:
+        return html, False
+
+    brand_html = brand_match.group(1).strip()
+    new_controls = build_header_controls(rel_path, libs)
+    new_header = f'''<header>
+    {brand_html}
+    {new_controls}
+  </header>'''
+
+    new_html = html[:header_match.start()] + new_header + html[header_match.end():]
+    return new_html, new_html != orig
+
+
 # ── Process all HTML in a lib directory ──
-def process_lib(lib_name: str, dry_run: bool = False) -> dict:
+def process_lib(lib_name: str, libs: dict, dry_run: bool = False) -> dict:
     lib_dir = LIB / lib_name
     if not lib_dir.exists():
         print(f"[WARN] lib/{lib_name} not found, skipping")
@@ -96,16 +181,21 @@ def process_lib(lib_name: str, dry_run: bool = False) -> dict:
     for html_file in sorted(lib_dir.rglob("*.html")):
         stats["processed"] += 1
         try:
+            rel = html_file.relative_to(ROOT).as_posix()
             content = html_file.read_text(encoding="utf-8", errors="replace")
-            new_content, changed = fix_html_head(content)
-            if changed:
+            
+            # 1. Head canonicalization
+            new_content, changed_head = fix_html_head(content)
+            # 2. Header controls SSOT sync
+            new_content, changed_header = fix_header_controls(new_content, rel, libs)
+            
+            if changed_head or changed_header:
                 stats["updated"] += 1
-                rel = html_file.relative_to(ROOT)
                 if dry_run:
                     print(f"  [DRY-RUN] Would update: {rel}")
                 else:
                     html_file.write_text(new_content, encoding="utf-8")
-                    print(f"  [INFO] Updated head: {rel}")
+                    print(f"  [INFO] Synchronized: {rel}")
         except Exception as e:
             stats["errors"] += 1
             print(f"  [ERR] {html_file.relative_to(ROOT)}: {e}")
@@ -428,12 +518,32 @@ def main():
         print(f"\n── {lib_info.get('name', lib_name)} ({lib_name}) ──")
 
         if not args.update_meta:
-            s = process_lib(lib_name, dry_run=args.dry_run)
+            s = process_lib(lib_name, libs, dry_run=args.dry_run)
             for k in total_stats: total_stats[k] += s[k]
 
         if not args.fix_heads:
             generate_llms_txt(lib_name, lib_info, dry_run=args.dry_run)
             generate_sitemap(lib_name, lib_info, dry_run=args.dry_run)
+
+    # Also process foundation/ and docs/ directories
+    if not args.lib and not args.update_meta:
+        for extra_dir in [ROOT / "foundation", ROOT / "docs"]:
+            if extra_dir.exists():
+                for html_file in sorted(extra_dir.rglob("*.html")):
+                    total_stats["processed"] += 1
+                    try:
+                        rel = html_file.relative_to(ROOT).as_posix()
+                        content = html_file.read_text(encoding="utf-8", errors="replace")
+                        new_content, c_head = fix_html_head(content)
+                        new_content, c_hdr = fix_header_controls(new_content, rel, libs)
+                        if c_head or c_hdr:
+                            total_stats["updated"] += 1
+                            if not args.dry_run:
+                                html_file.write_text(new_content, encoding="utf-8")
+                                print(f"  [INFO] Synchronized: {rel}")
+                    except Exception as e:
+                        total_stats["errors"] += 1
+                        print(f"  [ERR] {html_file.relative_to(ROOT)}: {e}")
 
     print(f"\n{'='*60}")
     print(f"Build complete | Processed: {total_stats['processed']} | Updated: {total_stats['updated']} | Errors: {total_stats['errors']}")

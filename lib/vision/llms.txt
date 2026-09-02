@@ -1,16 +1,29 @@
-# Termux-Vision (v1.1.0)
-> Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux
+# Termux-Vision — AI Agent Fast Context
+# Generated: 2026-09-02  |  Version: 1.1.1
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-vision
-- Installation: `pip install termux-vision
-# or: npm install -g termux-vision
-# or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)`
-- Architecture: Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.
+## Library
+Name: Termux-Vision
+Version: 1.1.1
+GitHub: https://github.com/uno-km/termux-vision
+Documentation: https://uno-km.vercel.app/lib/vision/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-import ameva_core as ac
-engine = ac.Engine()
-print(engine.compute([1.0, 2.0]))
-```
+## Description
+
+
+## Documentation Pages
+  - /lib/vision/index.html
+  - /lib/vision/installation.html
+  - /lib/vision/quickstart.html
+  - /lib/vision/api-reference.html
+  - /lib/vision/benchmarks.html
+  - /lib/vision/advanced-parameters.html
+  - /lib/vision/versions.html
+
+## Quick Install
+pip install termux-vision
+npm install termux-vision
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/vision/llms-full.txt

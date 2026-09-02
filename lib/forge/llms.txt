@@ -1,17 +1,31 @@
-# AMEVA-Forge (v1.0.0)
-> Browser-Native WebGPU Deep Learning Tensor & Autograd Engine with PyTorch Syntax
+# AMEVA-Forge — AI Agent Fast Context
+# Generated: 2026-09-02  |  Version: 1.0.0
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/AMEVA-Forge
-- Installation: `pip install ameva
-# or CDN:
-<script src="https://uno-km.github.io/uno-km/lib/forge/ameva.js"></script>`
-- Architecture: Compiles autograd graphs directly to WGSL WebGPU shaders, executing entirely on client GPU with zero server egress.
+## Library
+Name: AMEVA-Forge
+Version: 1.0.0
+GitHub: https://github.com/uno-km/AMEVA-Forge
+Documentation: https://uno-km.vercel.app/lib/forge/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-import ameva as am
-x = am.tensor([1.0, 2.0], device='webgpu', requires_grad=True)
-y = (x ** 2).sum()
-y.backward()
-```
+## Description
+
+
+## Documentation Pages
+  - /lib/forge/index.html
+  - /lib/forge/installation.html
+  - /lib/forge/quickstart.html
+  - /lib/forge/api-reference.html
+  - /lib/forge/demo.html
+  - /lib/forge/benchmarks.html
+  - /lib/forge/advanced-parameters.html
+  - /lib/forge/versions.html
+  - /lib/forge/what-is-forge.html
+  - /lib/forge/forge-vs-pytorch.html
+
+## Quick Install
+pip install ameva
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/forge/llms-full.txt

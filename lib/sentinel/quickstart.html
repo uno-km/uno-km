@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | AMEVA-Sentinel</title>
   <meta name="description" content="Evaluates client structural signals entirely locally without capturing user inputs, computing deterministic 0~100 risk score and HMAC-SHA256 tokens.">
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
@@ -20,10 +20,13 @@
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="/foundation/index.html" class="header-btn" style="border-color:#2563eb;color:#2563eb;font-weight:600;" data-i18n="common.foundationBtn">Foundation</a>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
       <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm</a>
       <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
-      <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 

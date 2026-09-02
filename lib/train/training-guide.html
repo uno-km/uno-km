@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Manual & Recipes | termux-train</title>
     <meta name="description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
@@ -52,26 +52,22 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="header-brand">
+    <a href="index.html" class="header-brand">
             <img src="/shared/favicon.svg" alt="termux-train Logo">
             <h1 data-i18n="common.brand">termux-train</h1>
         </a>
-        <div class="header-controls">
-            <span class="release-tag" data-i18n="common.releaseTag">v0.1.0 (Native)</span>
-            <div class="lang-selector-wrapper">
-                <select class="lang-select" onchange="if(window.i18nManager) window.i18nManager.setLanguage(this.value); else if(window.I18n) window.I18n.setLanguage(this.value)">
-                    <option value="en">🇺🇸 English</option>
-                    <option value="ko">🇰🇷 한국어</option>
-                    <option value="ja">🇯🇵 日本語</option>
-                    <option value="zh">🇨🇳 简体中文</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="de">🇩🇪 Deutsch</option>
-                </select>
-            </div>
-            <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
-            <a href="https://github.com/uno-km/termux-train" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
-        </div>
-    </header>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">v1.0.0</span>
+      <div class="lang-selector-wrapper"></div>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/termux-train" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn pypi-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+    </div>
+  </header>
     <div class="container">
         <nav class="sidebar">
             <h3 data-i18n="common.nav.overview">Overview</h3>

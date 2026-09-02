@@ -1,17 +1,29 @@
-# Termux-AIChain (v1.1.0)
-> Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux
+# Termux-AIChain — AI Agent Fast Context
+# Generated: 2026-09-02  |  Version: 1.1.1
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-aichain
-- Installation: `pip install termux-aichain
-# or:
-npm install termux-aichain`
-- Architecture: Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.
+## Library
+Name: Termux-AIChain
+Version: 1.1.1
+GitHub: https://github.com/uno-km/termux-aichain
+Documentation: https://uno-km.vercel.app/lib/aichain/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-from termux_aichain import LocalAgent
-agent = LocalAgent.local(model='qwen2.5-1.5b')
-res = agent.run('Check battery percentage and vibrate device if > 50%.')
-print(res)
-```
+## Description
+
+
+## Documentation Pages
+  - /lib/aichain/index.html
+  - /lib/aichain/installation.html
+  - /lib/aichain/quickstart.html
+  - /lib/aichain/api-reference.html
+  - /lib/aichain/benchmarks.html
+  - /lib/aichain/advanced-parameters.html
+  - /lib/aichain/versions.html
+
+## Quick Install
+pip install termux-aichain
+npm install termux-aichain
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/aichain/llms-full.txt
