@@ -286,7 +286,6 @@ def render_index_html(cfg: dict) -> str:
     
     safe_license = license_type.replace("-", "--")
     badges_html.append(f'<img src="https://img.shields.io/badge/license-{safe_license}-004499.svg" alt="License">')
-    badges_html.append('<img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">')
     badges_html.append(f'<img src="https://img.shields.io/badge/platform-{platform.replace(" ", "_")}-blueviolet.svg" alt="Platform">')
 
     badges_bar_str = "\n        ".join(badges_html)
