@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://uno-km.vercel.app/lib/stt/index.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/installation.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/quickstart.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/api-reference.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/models.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/benchmarks.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/advanced-parameters.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/stt/versions.html</loc><lastmod>2026-09-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/index.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/installation.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/quickstart.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/api-reference.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/models.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/benchmarks.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/advanced-parameters.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/stt/versions.html</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

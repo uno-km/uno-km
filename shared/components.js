@@ -281,14 +281,25 @@
     ["/foundation/dashboard/", "3D Neural Fabric Map"]
   ];
 
+  function normalizePageName(raw, libKey) {
+    if (!raw) return 'index';
+    let clean = String(raw).split('?')[0].split('#')[0].replace(/\/+$/, '');
+    if (!clean) return 'index';
+    const parts = clean.split('/');
+    let last = parts[parts.length - 1];
+    if (!last || last === '' || (libKey && last.toLowerCase() === libKey.toLowerCase()) || last.toLowerCase() === 'foundation') {
+      return 'index';
+    }
+    return last.replace(/\.html$/i, '').toLowerCase();
+  }
+
   function detectContext() {
     const path = (window.location.pathname || '').toLowerCase();
     const match = path.match(/\/lib\/([a-z0-9_-]+)/);
     const libKey = match ? match[1] : '';
     const isFoundation = path.includes('/foundation/');
     const isDocs = path.includes('/docs/');
-    const parts = path.split('/');
-    const activePage = parts[parts.length - 1] || 'index.html';
+    const activePage = normalizePageName(path, libKey);
     return { path, libKey, isFoundation, isDocs, activePage };
   }
 
@@ -370,7 +381,8 @@
       const ctx = detectContext();
       const libKey = this.getAttribute('lib') || ctx.libKey;
       const libData = ECOSYSTEM_REGISTRY[libKey];
-      const activePage = this.getAttribute('current') || ctx.activePage;
+      const explicitCurrent = this.getAttribute('current');
+      const currentNorm = explicitCurrent ? normalizePageName(explicitCurrent) : ctx.activePage;
 
       let tier1H3 = '<h3 data-i18n="common.nav.docNav">Document Navigation</h3>';
       let tier1Items = [];
@@ -378,12 +390,16 @@
       if (ctx.isFoundation) {
         tier1H3 = '<h3 data-i18n="common.nav.foundation">Foundation (AOSF)</h3>';
         FOUNDATION_PAGES.forEach(([href, title]) => {
-          const act = (href.endsWith(activePage) || href === ctx.path) ? ' class="active"' : '';
+          const pageNorm = normalizePageName(href);
+          const isAct = (pageNorm === currentNorm);
+          const act = isAct ? ' class="active"' : '';
           tier1Items.push(`      <li><a href="${href}"${act}>${title}</a></li>`);
         });
       } else if (libData && libData.doc_pages) {
         libData.doc_pages.forEach(([p, title]) => {
-          const act = (p === activePage || (p === 'index.html' && (activePage === '' || activePage === 'index.html'))) ? ' class="active"' : '';
+          const pageNorm = normalizePageName(p);
+          const isAct = (pageNorm === currentNorm);
+          const act = isAct ? ' class="active"' : '';
           tier1Items.push(`      <li><a href="${p}"${act}>${title}</a></li>`);
         });
       } else {
@@ -397,7 +413,9 @@
           ["versions.html", "Version Archive"]
         ];
         defaultPages.forEach(([p, title]) => {
-          const act = (p === activePage || (p === 'index.html' && (activePage === '' || activePage === 'index.html'))) ? ' class="active"' : '';
+          const pageNorm = normalizePageName(p);
+          const isAct = (pageNorm === currentNorm);
+          const act = isAct ? ' class="active"' : '';
           tier1Items.push(`      <li><a href="${p}"${act}>${title}</a></li>`);
         });
       }

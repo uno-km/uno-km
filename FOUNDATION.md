@@ -96,6 +96,7 @@ flowchart TD
         Sentinel["AMEVA-Sentinel<br/>(0-Data 프라이버시 봇 탐지 & 트래픽 거버넌스)"]
         LlamaCpp["termux-llamacpp<br/>(사전 빌드 GGUF 런타임 & OpenAI 호환 서버)"]
         Vision["termux-vision<br/>(Zero-Dep 온디바이스 컴퓨터 비전 & VLM 추론)"]
+        TTS["termux-tts<br/>(경량 온디바이스 음성합성 & C++/Python/Node 런타임)"]
         VulkanRuntime["AMEVA-Vulkan-Runtime<br/>(통합 온디바이스 Vulkan GPU 가속 런타임 & HAL)"]
     end
 
@@ -128,6 +129,7 @@ flowchart TD
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.vercel.app/lib/playwright/) |
 | **`termux-diffusion`** | C++ NEON, Vulkan 1.3, Python | Multi-SoC Vulkan GPU 가속 및 VAE Tiling을 통해 클라우드 없이 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>`pip install termux-diffusion`<br/>[공식 문서](https://uno-km.vercel.app/lib/diffusion/) |
 | **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>`pip install termux-stt`<br/>[공식 문서](https://uno-km.vercel.app/lib/stt/) |
+| **`termux-tts`** | C++17, Piper, ARM64 NEON | 안드로이드 단말기에서 클라우드 없이 초저지연 고품질 한국어/영어 음성을 합성하는 경량 온디바이스 TTS 런타임. | `npm install termux-tts`<br/>`pip install termux-tts`<br/>[공식 문서](https://uno-km.vercel.app/lib/tts/) |
 | **`termux-train`** | C, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.vercel.app/lib/train/) |
 | **`termux-llamacpp`** | C++17, GGUF, POSIX | 안드로이드 Termux ARM64 전용 제로 컴파일 사전 빌드 GGUF LLM 런타임 및 OpenAI 호환 REST/SSE 수퍼바이저 서버. | `pip install termux-llamacpp`<br/>`npm install termux-llamacpp`<br/>[공식 문서](https://uno-km.vercel.app/lib/llamacpp/) |
 | **`termux-vision`** | Python, JS, Vulkan, NEON | 순수 ARM64 NEON 비전 커널과 Vulkan GPU 가속을 결합한 제로 디펜던시 모바일 컴퓨터 비전 & 온디바이스 VLM 멀티모달 추론 엔진. | `pip install termux-vision`<br/>`npm install termux-vision`<br/>[공식 문서](https://uno-km.vercel.app/lib/vision/) |

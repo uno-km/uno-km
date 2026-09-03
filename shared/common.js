@@ -7,7 +7,7 @@
  * 2. Mobile Responsive Top Header Hamburger Drawer (<= 960px)
  * 3. Collapsible Category Section Accordions
  * 4. Automatic Code Block Copy Tooltips
- * 5. Active Link Highlighting
+ * 5. Active Link Highlighting (Clean URLs & Normalization)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (container) container.classList.add('sidebar-collapsed');
             tabBtn.classList.add('collapsed-tab');
             tabBtn.innerHTML = '›';
-            document.body.appendChild(tabBtn); // Move to body for fixed left positioning
+            document.body.appendChild(tabBtn);
         } else {
             sidebar.classList.remove('desktop-collapsed');
             if (container) container.classList.remove('sidebar-collapsed');
             tabBtn.classList.remove('collapsed-tab');
             tabBtn.innerHTML = '‹';
-            sidebar.appendChild(tabBtn); // Restore inside sidebar
+            sidebar.appendChild(tabBtn);
         }
     }
 
@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
 
-        // Close mobile drawer on link click
         sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 960) {
@@ -157,21 +156,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ── 5. Auto-highlight Active Link in Sidebar ───────────────────────────────
-    const currentPath = window.location.pathname;
+    function normalizePage(name) {
+        if (!name) return 'index';
+        let clean = String(name).split('?')[0].split('#')[0].replace(/\/+$/, '');
+        if (!clean) return 'index';
+        const parts = clean.split('/');
+        let last = parts[parts.length - 1];
+        if (!last || last === '') return 'index';
+        return last.replace(/\.html$/i, '').toLowerCase();
+    }
+
+    const currentNorm = normalizePage(window.location.pathname);
     document.querySelectorAll('.sidebar a').forEach(link => {
         const href = link.getAttribute('href');
         if (!href) return;
         
-        if (href === currentPath || currentPath.endsWith(href) || (href === './' && currentPath.endsWith('/'))) {
-            link.classList.add('active');
-            const parentUl = link.closest('ul');
-            if (parentUl) {
-                parentUl.classList.remove('collapsed');
-                const prevH3 = parentUl.previousElementSibling;
-                if (prevH3 && prevH3.tagName === 'H3') {
-                    prevH3.classList.remove('collapsed');
-                    const icon = prevH3.querySelector('.accordion-icon');
-                    if (icon) icon.textContent = '▾';
+        const isExternal = href.startsWith('http') || href.startsWith('//');
+        const isTier2 = href.startsWith('/lib/') || href.startsWith('/foundation/');
+        
+        if (!isExternal && !isTier2) {
+            const hrefNorm = normalizePage(href);
+            if (hrefNorm === currentNorm) {
+                link.classList.add('active');
+                const parentUl = link.closest('ul');
+                if (parentUl) {
+                    parentUl.classList.remove('collapsed');
+                    const prevH3 = parentUl.previousElementSibling;
+                    if (prevH3 && prevH3.tagName === 'H3') {
+                        prevH3.classList.remove('collapsed');
+                        const icon = prevH3.querySelector('.accordion-icon');
+                        if (icon) icon.textContent = '▾';
+                    }
                 }
             }
         }
@@ -181,11 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── 6. AmevaUI Global Enterprise SDK Suite (SSOT v3.2) ─────────────────────
 window.AmevaUI = window.AmevaUI || {};
 
-/**
- * Shows scoped loading overlay on target element with rugged spinner.
- * @param {HTMLElement|string} target - Container element or CSS selector
- * @param {string} message - Status text shown under spinner
- */
 window.AmevaUI.showLoading = function(target, message = 'Loading Data...') {
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (!el) return null;
@@ -202,19 +212,16 @@ window.AmevaUI.showLoading = function(target, message = 'Loading Data...') {
 
   overlay = document.createElement('div');
   overlay.className = 'ameva-loading-overlay';
+  overlay.setAttribute('role', 'status');
+  overlay.setAttribute('aria-live', 'polite');
   overlay.innerHTML = `
-    <div class="ameva-spinner"></div>
+    <div class="ameva-spinner" aria-hidden="true"></div>
     <div class="ameva-loading-text">${message}</div>
   `;
-
   el.appendChild(overlay);
   return overlay;
 };
 
-/**
- * Hides scoped loading overlay with smooth fade-out.
- * @param {HTMLElement|string} target
- */
 window.AmevaUI.hideLoading = function(target) {
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (!el) return;
@@ -223,110 +230,109 @@ window.AmevaUI.hideLoading = function(target) {
   if (overlay) {
     overlay.style.opacity = '0';
     setTimeout(() => {
-      overlay.remove();
+      if (overlay.parentNode === el) {
+        el.removeChild(overlay);
+      }
       el.classList.remove('ameva-loading-container');
     }, 200);
+  } else {
+    el.classList.remove('ameva-loading-container');
   }
 };
 
-/**
- * Executes async task while showing scoped loader on target element.
- * @param {HTMLElement|string} target
- * @param {Function} asyncFn
- * @param {string} message
- */
-window.AmevaUI.withLoading = async function(target, asyncFn, message = 'Loading Data...') {
-  window.AmevaUI.showLoading(target, message);
-  try {
-    return await asyncFn();
-  } finally {
-    window.AmevaUI.hideLoading(target);
-  }
-};
+window.AmevaUI.createTabs = function(container, options = {}) {
+  const root = typeof container === 'string' ? document.querySelector(container) : container;
+  if (!root) return null;
 
-/**
- * 1-Line Fetch helper with automatic scoped loading overlay and JSON parsing.
- */
-window.AmevaUI.fetchWithLoading = async function(target, url, options = {}, message = 'Fetching Telemetry...') {
-  return await window.AmevaUI.withLoading(target, async () => {
-    const res = await fetch(url, options);
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    return await res.json();
-  }, message);
-};
+  const tabList = root.querySelector('[role="tablist"]');
+  const tabs = root.querySelectorAll('[role="tab"]');
+  const panels = root.querySelectorAll('[role="tabpanel"]');
 
-/**
- * Smooth Count-Up Easing Animation (Cubic Ease-Out).
- * @param {HTMLElement|string} element
- * @param {number} targetValue
- * @param {number} duration - milliseconds (default: 750)
- * @param {string} suffix - e.g. "+", " TPS", " ms"
- * @param {string} prefix - e.g. "$", "#"
- */
-window.AmevaUI.animateCount = function(element, targetValue, duration = 750, suffix = '', prefix = '') {
-  const el = typeof element === 'string' ? document.querySelector(element) : element;
-  if (!el) return;
+  if (!tabs.length || !panels.length) return null;
 
-  const startValue = parseInt(el.getAttribute('data-current-val') || '0', 10);
-  const diff = targetValue - startValue;
-  if (diff === 0 && el.textContent.trim()) return;
+  function activateTab(targetTab) {
+    tabs.forEach(tab => {
+      const isTarget = tab === targetTab;
+      tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+      tab.tabIndex = isTarget ? 0 : -1;
+      tab.classList.toggle('active', isTarget);
+    });
 
-  const startTime = performance.now();
+    const targetPanelId = targetTab.getAttribute('aria-controls');
+    panels.forEach(panel => {
+      const isTarget = panel.id === targetPanelId;
+      panel.hidden = !isTarget;
+      panel.classList.toggle('active', isTarget);
+    });
 
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const easeOut = 1 - Math.pow(1 - progress, 3);
-    const currentVal = Math.round(startValue + diff * easeOut);
-
-    el.textContent = prefix + currentVal.toLocaleString() + suffix;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.setAttribute('data-current-val', targetValue);
-      el.textContent = prefix + targetValue.toLocaleString() + suffix;
+    if (typeof options.onTabChange === 'function') {
+      options.onTabChange(targetTab, targetPanelId);
     }
   }
 
-  requestAnimationFrame(update);
-};
-
-/**
- * Declarative IntersectionObserver counter for any [data-count-to] elements on scroll.
- */
-window.AmevaUI.initDeclarativeCounters = function() {
-  const counters = document.querySelectorAll('[data-count-to]:not([data-counted])');
-  if (!counters.length) return;
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          obs.unobserve(el);
-          el.setAttribute('data-counted', 'true');
-          const targetVal = parseFloat(el.getAttribute('data-count-to') || '0');
-          const duration = parseInt(el.getAttribute('data-duration') || '750', 10);
-          const suffix = el.getAttribute('data-suffix') || '';
-          const prefix = el.getAttribute('data-prefix') || '';
-          window.AmevaUI.animateCount(el, targetVal, duration, suffix, prefix);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    counters.forEach(c => observer.observe(c));
-  } else {
-    counters.forEach(el => {
-      const targetVal = parseFloat(el.getAttribute('data-count-to') || '0');
-      const suffix = el.getAttribute('data-suffix') || '';
-      const prefix = el.getAttribute('data-prefix') || '';
-      el.textContent = prefix + targetVal.toLocaleString() + suffix;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(tab);
     });
-  }
+
+    tab.addEventListener('keydown', (e) => {
+      let index = Array.from(tabs).indexOf(tab);
+      if (e.key === 'ArrowRight') {
+        index = (index + 1) % tabs.length;
+        tabs[index].focus();
+        activateTab(tabs[index]);
+      } else if (e.key === 'ArrowLeft') {
+        index = (index - 1 + tabs.length) % tabs.length;
+        tabs[index].focus();
+        activateTab(tabs[index]);
+      }
+    });
+  });
+
+  const defaultTab = root.querySelector('[role="tab"][aria-selected="true"]') || tabs[0];
+  if (defaultTab) activateTab(defaultTab);
+
+  return { activateTab };
 };
 
-// Auto-run declarative counters on DOM Ready
-document.addEventListener('DOMContentLoaded', () => {
-  window.AmevaUI.initDeclarativeCounters();
-});
+window.AmevaUI.showNotification = function(message, type = 'info', durationMs = 4000) {
+  let toastContainer = document.getElementById('ameva-toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'ameva-toast-container';
+    toastContainer.style.position = 'fixed';
+    toastContainer.style.bottom = '24px';
+    toastContainer.style.right = '24px';
+    toastContainer.style.zIndex = '9999';
+    toastContainer.style.display = 'flex';
+    toastContainer.style.flexDirection = 'column';
+    toastContainer.style.gap = '8px';
+    document.body.appendChild(toastContainer);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = `ameva-toast ameva-toast-${type}`;
+  toast.style.padding = '12px 18px';
+  toast.style.borderRadius = '6px';
+  toast.style.fontSize = '14px';
+  toast.style.fontWeight = '500';
+  toast.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+  toast.style.transition = 'all 0.2s ease-in-out';
+  toast.style.backgroundColor = type === 'error' ? '#fef2f2' : (type === 'success' ? '#f0fdf4' : '#f8fafc');
+  toast.style.color = type === 'error' ? '#991b1b' : (type === 'success' ? '#166534' : '#0f172a');
+  toast.style.border = `1px solid ${type === 'error' ? '#f87171' : (type === 'success' ? '#86efac' : '#cbd5e1')}`;
+  toast.textContent = message;
+
+  toastContainer.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => {
+      if (toast.parentNode === toastContainer) {
+        toastContainer.removeChild(toast);
+      }
+    }, 200);
+  }, durationMs);
+};

@@ -352,13 +352,38 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 ---
 
+### 1.15 Termux-TTS
+안드로이드 스마트폰 온디바이스에서 클라우드 API 없이 고품질 한국어/영어 음성을 저지연으로 합성하는 온디바이스 음성 합성(TTS) 네이티브 런타임 및 라이브러리입니다.
+
+- **카테고리**: 모바일 온디바이스 음성 합성 SDK
+- **기술 스택**: C++17, Piper / VITS 온디바이스 엔진, ARM64 NEON, Python C-API, Node.js N-API
+- **배포 버전**: `v1.0.0`
+- **기존 문제**: 클라우드 TTS API 호출 시 네트워크 지연 및 비용이 발생하며, 오프라인 환경에서 음성 안내 및 대화형 에이전트 구동이 불가능함.
+- **해결 방식**: 30MB 미만의 경량 음향 모델과 온디바이스 NEON SIMD 최적화를 적용하여 스마트폰 CPU만으로 실시간 음성 합성 제공.
+- **실제 사용자가 쓰는 핵심 기능**:
+  1. **초저지연 실시간 합성**: 안드로이드 Termux 로컬에서 RTF < 0.3의 고속 오프라인 음성 합성.
+  2. **Python 및 Node.js 듀얼 인터페이스**: 단 3줄의 코드로 텍스트를 WAV/PCM 음성으로 즉시 변환.
+- **설치 명령어**:
+  ```bash
+  pip install termux-tts
+  # 또는
+  npm install termux-tts
+  ```
+- **관련 링크**:
+  - [PyPI 패키지](https://pypi.org/project/termux-tts/)
+  - [npm 패키지](https://www.npmjs.com/package/termux-tts)
+  - [공식 문서](https://uno-km.vercel.app/lib/tts/)
+  - [GitHub 저장소](https://github.com/uno-km/termux-tts)
+
+---
+
 ## 2. 공통 기술 스택 및 카테고리 요약
 
 | 카테고리 | 프로젝트 | 핵심 기술 스택 | 공통 특징 |
 | :--- | :--- | :--- | :--- |
 | **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 전송 없이 브라우저 로컬 하드웨어 가속 및 데이터 완벽 격리 |
 | **클라우드 인텔리전스 & 도구** | Infra-Index Platform, AMEVA-MCP-Hub, Termux-AIChain | Next.js, Python FastAPI, Node.js, WASI WebAssembly | 실시간 시세 집계, 의존성 없는 인메모리 도구 실행 및 경량 에이전트 파이프라인 |
-| **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-Train, Termux-LlamaCpp, Termux-Vision, AMEVA-Vulkan-Runtime | C/C++20, ARM64 NEON & DotProd SIMD, Vulkan 1.3 HAL, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 저전력·저메모리 온디바이스 구동 |
+| **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-TTS, Termux-Train, Termux-LlamaCpp, Termux-Vision, AMEVA-Vulkan-Runtime | C/C++20, ARM64 NEON & DotProd SIMD, Vulkan 1.3 HAL, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 저전력·저메모리 온디바이스 구동 |
 | **모바일 시스템 자동화 (Termux)** | Termux-Playwright | Android Bionic, Node.js, Python, Chrome DevTools Protocol | 5W 초저전력 모바일 단말기 기반 무인 브라우저 자동화 및 데이터 수집 |
 
 ---
@@ -378,6 +403,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | **Termux-Playwright** | [PyPI](https://pypi.org/project/termux-playwright/) / [npm](https://www.npmjs.com/package/termux-playwright) | [Documentation](https://uno-km.vercel.app/lib/playwright/) | [GitHub](https://github.com/uno-km/termux-playwright) |
 | **Termux-Diffusion** | [PyPI](https://pypi.org/project/termux-diffusion/) / [npm](https://www.npmjs.com/package/termux-diffusion) | [Documentation](https://uno-km.vercel.app/lib/diffusion/) | [GitHub](https://github.com/uno-km/termux-diffusion) |
 | **Termux-STT** | [PyPI](https://pypi.org/project/termux-stt/) / [npm](https://www.npmjs.com/package/termux-stt) | [Documentation](https://uno-km.vercel.app/lib/stt/) | [GitHub](https://github.com/uno-km/termux-stt) |
+| **Termux-TTS** | [PyPI](https://pypi.org/project/termux-tts/) / [npm](https://www.npmjs.com/package/termux-tts) | [Documentation](https://uno-km.vercel.app/lib/tts/) | [GitHub](https://github.com/uno-km/termux-tts) |
 | **Termux-Train** | [PyPI](https://pypi.org/project/termux-train/) | [Documentation](https://uno-km.vercel.app/lib/train/) | [GitHub](https://github.com/uno-km/termux-train) |
 | **Termux-LlamaCpp** | [PyPI](https://pypi.org/project/termux-llamacpp/) / [npm](https://www.npmjs.com/package/termux-llamacpp) | [Documentation](https://uno-km.vercel.app/lib/llamacpp/) | [GitHub](https://github.com/uno-km/termux-llamacpp) |
 | **Termux-Vision** | [PyPI](https://pypi.org/project/termux-vision/) / [npm](https://www.npmjs.com/package/termux-vision) | [Documentation](https://uno-km.vercel.app/lib/vision/) | [GitHub](https://github.com/uno-km/termux-vision) |
