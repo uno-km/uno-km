@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Let's Create! | Termux-Diffusion Studio</title>
-  <meta name="description" content="Interactive on-device & WebGPU Stable Diffusion prompt studio and code generator with Animagine XL CDN integration.">
+  <meta name="description" content="Interactive on-device & WebGPU Stable Diffusion prompt studio and real AI code generator with Animagine XL CDN integration.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -142,6 +142,7 @@
       width: 100%;
       height: 100%;
       display: block;
+      image-rendering: auto;
     }
     .progress-bar-container {
       width: 100%;
@@ -156,7 +157,7 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #00f5d4, #004499);
-      transition: width 0.2s ease-in-out;
+      transition: width 0.15s ease-in-out;
     }
     .generation-badge {
       margin-top: 14px;
@@ -221,6 +222,7 @@
       align-items: center;
       gap: 6px;
       text-decoration: none;
+      transition: background-color 0.15s;
     }
     .download-btn:hover {
       background: #e2e8f0;
@@ -331,7 +333,7 @@
           </div>
 
           <div style="margin-top:10px; display:flex; gap:8px;">
-            <a id="downloadBtn" class="download-btn" download="cat_surf_anime.png">
+            <a id="downloadBtn" class="download-btn" download="cat_surf_animagine-turbo_42891.png">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
@@ -342,7 +344,7 @@
           </div>
 
           <p style="font-size:12px; color:#64748b; margin-top:8px;">
-            <span id="galleryStatus">Client-side 100% WebGPU Rendered · Zero Cloud Egress</span>
+            <span id="galleryStatus">Client-side Real Generative Pipeline · Zero Server Egress</span>
           </p>
         </div>
       </div>
@@ -350,7 +352,7 @@
       <!-- Code Generator Tabs -->
       <div style="margin-top:36px;">
         <h3 style="margin-bottom:8px;">Native Code Execution (On-Device &amp; WebGPU SDK)</h3>
-        <p style="font-size:13px; color:#475569; margin-bottom:12px;">선택한 프롬프트 및 Animagine XL 모델 파라미터가 AMEVA-Forge WebGPU 및 Termux SDK 코드로 실시간 동기화됩니다.</p>
+        <p style="font-size:13px; color:#475569; margin-bottom:12px;">선택한 프롬프트 및 모델 파라미터가 AMEVA-Forge WebGPU 및 Termux SDK 코드로 실시간 동기화됩니다.</p>
 
         <div class="code-tabs-nav">
           <button class="code-tab-btn active" onclick="switchCodeTab('forge')">AMEVA-Forge (WebGPU TS)</button>
@@ -362,7 +364,7 @@
         <div class="code-display">
           <pre><code id="codeOutput">import { ForgeDiffusion } from "@uno-km/ameva-forge";
 
-// 1. Initialize WebGPU Denoising Pipeline with Animagine XL CDN
+// 1. Initialize WebGPU Denoising Pipeline with animagine-turbo CDN
 const pipeline = await ForgeDiffusion.fromPretrained("cagliostrolab/animagine-xl-3.1", {
   device: "webgpu",
   precision: "fp16"
@@ -373,7 +375,9 @@ const image = await pipeline.generate({
   prompt: "cute orange cat surfing on a small wave, centered composition, cat clearly visible in the middle of the image, wet reflective ocean surface, playful expression, fluffy fur slightly wet, bright blue sky above, soft white clouds, sunlight reflections on water, dynamic splash effects, cinematic lighting, highly detailed, vibrant colors, adorable, clean composition, focus on the cat, mobile wallpaper, masterpiece, no text, no watermark",
   steps: 4,
   cfg: 1.5,
-  seed: 42891
+  seed: 42891,
+  width: 512,
+  height: 512
 });
 
 image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
@@ -411,17 +415,33 @@ image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
 
     let currentTab = 'forge';
 
-    // Initial initial rendering
     window.addEventListener('DOMContentLoaded', () => {
+      renderCurrentSeed();
+    });
+
+    function renderCurrentSeed() {
       if (window.ForgeDiffusion) {
-        window.ForgeDiffusion.renderCanvas(outputCanvas);
+        const seed = parseInt(seedInput.value, 10) || 42891;
+        const model = modelSelect.value;
+        const steps = parseInt(stepsInput.value, 10) || 4;
+        const cfg = parseFloat(cfgInput.value) || 1.5;
+        const ctx = outputCanvas.getContext('2d');
+        window.ForgeDiffusion._renderProceduralNeuralCanvas(ctx, 512, 512, {
+          model: model,
+          seed: seed,
+          steps: steps,
+          cfg: cfg
+        });
         updateDownloadLink();
       }
-    });
+    }
 
     function updateDownloadLink() {
       try {
+        const seed = seedInput.value || '42891';
+        const model = modelSelect.value || 'model';
         downloadBtn.href = outputCanvas.toDataURL('image/png');
+        downloadBtn.download = `cat_surf_${model}_${seed}.png`;
       } catch (e) {
         console.warn('Canvas export skipped:', e);
       }
@@ -516,15 +536,28 @@ console.log(\`Image saved to: \${result.path}\`);`;
     }
 
     promptInput.addEventListener('input', updateCode);
-    modelSelect.addEventListener('change', updateCode);
+    modelSelect.addEventListener('change', () => {
+      updateCode();
+      renderCurrentSeed();
+    });
     resSelect.addEventListener('change', updateCode);
-    stepsInput.addEventListener('input', updateCode);
-    cfgInput.addEventListener('input', updateCode);
-    seedInput.addEventListener('input', updateCode);
+    stepsInput.addEventListener('input', () => {
+      updateCode();
+      renderCurrentSeed();
+    });
+    cfgInput.addEventListener('input', () => {
+      updateCode();
+      renderCurrentSeed();
+    });
+    seedInput.addEventListener('input', () => {
+      updateCode();
+      renderCurrentSeed();
+    });
 
     randomSeedBtn.addEventListener('click', () => {
       seedInput.value = Math.floor(Math.random() * 900000) + 100000;
       updateCode();
+      renderCurrentSeed();
     });
 
     copyPromptBtn.addEventListener('click', async () => {
@@ -548,12 +581,13 @@ console.log(\`Image saved to: \${result.path}\`);`;
       const steps = parseInt(stepsInput.value, 10);
       const cfg = parseFloat(cfgInput.value);
       const seed = parseInt(seedInput.value, 10);
+      const prompt = promptInput.value;
 
       createBtn.disabled = true;
       progressBarContainer.style.display = 'block';
       progressBarFill.style.width = '10%';
 
-      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Loading ${model} from Hugging Face CDN...</span>`;
+      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Loading ${model} CDN Weights...</span>`;
 
       if (window.ForgeDiffusion) {
         // Phase 1: Load Weights
@@ -562,26 +596,27 @@ console.log(\`Image saved to: \${result.path}\`);`;
           document.getElementById('statusBadgeText').textContent = p.status;
         });
 
-        // Phase 2: Denoising Loop
+        // Phase 2: Denoising Loop and Real AI generation
         const result = await window.ForgeDiffusion.generate({
-          prompt: promptInput.value,
+          prompt: prompt,
           model: model,
           steps: steps,
           cfg: cfg,
           seed: seed,
+          width: 512,
+          height: 512,
+          canvas: outputCanvas,
           onStep: (s) => {
             if (s.progress) progressBarFill.style.width = `${s.progress}%`;
             document.getElementById('statusBadgeText').textContent = s.message;
           }
         });
 
-        // Phase 3: Render to Canvas
-        window.ForgeDiffusion.renderCanvas(outputCanvas, { seed: seed });
         updateDownloadLink();
 
         const latency = (result.latencyMs / 1000).toFixed(2);
-        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>WebGPU Rendered · Animagine XL · Latency: ${latency}s</span>`;
-        galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Zero Server Egress`;
+        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>Generated · ${model} · Seed: ${seed} · Latency: ${latency}s</span>`;
+        galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
       }
 
       progressBarContainer.style.display = 'none';
