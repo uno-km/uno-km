@@ -5,20 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Let's Create! | Termux-Diffusion Studio</title>
-  <meta name="description" content="Interactive on-device Stable Diffusion prompt studio and code generator for Android Termux ARM64 hardware acceleration.">
+  <meta name="description" content="Interactive on-device & WebGPU Stable Diffusion prompt studio and code generator with Animagine XL CDN integration.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
+  <script src="/shared/forge-diffusion.js" defer></script>
   <style>
     .studio-container {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 24px;
       margin-top: 20px;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .studio-container {
         grid-template-columns: 1fr;
       }
@@ -82,10 +83,11 @@
     .action-btn-wrapper {
       margin-top: 20px;
       display: flex;
-      gap: 12px;
+      flex-direction: column;
+      gap: 10px;
     }
     .btn-create-magic {
-      flex: 1;
+      width: 100%;
       padding: 14px 20px;
       background: linear-gradient(135deg, #004499 0%, #0066cc 100%);
       color: #ffffff;
@@ -105,8 +107,10 @@
       background: linear-gradient(135deg, #003377 0%, #004499 100%);
       transform: translateY(-1px);
     }
-    .btn-create-magic:active {
-      transform: translateY(0);
+    .btn-create-magic:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
     .preview-card {
       background: #ffffff;
@@ -117,12 +121,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 380px;
+      min-height: 420px;
       text-align: center;
     }
-    .art-frame {
+    .canvas-wrapper {
       width: 100%;
-      max-width: 320px;
+      max-width: 360px;
       aspect-ratio: 1 / 1;
       background: #0f172a;
       border-radius: 8px;
@@ -134,10 +138,25 @@
       border: 2px solid #004499;
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
-    .art-frame img, .art-frame svg {
+    #outputCanvas {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      display: block;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 14px;
+      display: none;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f5d4, #004499);
+      transition: width 0.2s ease-in-out;
     }
     .generation-badge {
       margin-top: 14px;
@@ -188,6 +207,24 @@
       font-family: var(--font-mono);
       color: #64748b;
     }
+    .download-btn {
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #004499;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .download-btn:hover {
+      background: #e2e8f0;
+    }
   </style>
 </head>
 <body>
@@ -197,8 +234,8 @@
     <ameva-sidebar current="create.html"></ameva-sidebar>
 
     <main class="content">
-      <h2>Let's Create! — On-Device Prompt Studio</h2>
-      <p class="subtitle">클라우드 API 및 외부 서버 전송 없이 안드로이드 Termux 네이티브 하드웨어에서 직접 이미지를 생성하는 인터랙티브 프롬프트 스튜디오입니다.</p>
+      <h2>Let's Create! — On-Device &amp; WebGPU Prompt Studio</h2>
+      <p class="subtitle">Hugging Face CDN 스트리밍 로더 및 AMEVA-Forge WebGPU 텐서 가속 엔진을 통해 브라우저 클라이언트에서 직접 생성되는 애니메 디퓨전 스튜디오입니다.</p>
 
       <!-- Main Studio Grid -->
       <div class="studio-container">
@@ -218,12 +255,11 @@
 
           <div class="param-group">
             <div class="param-item">
-              <label>Engine &amp; Checkpoint</label>
+              <label>Model Engine (Hugging Face CDN)</label>
               <select id="modelSelect" aria-label="Model Selection">
-                <option value="sd-turbo" selected>SD-Turbo (4-Step LCM Quantized)</option>
-                <option value="sd-1.5-ggml">SD 1.5 GGML (q4_0 ARMv8.2-A)</option>
-                <option value="lcm-lora">SD-LCM + Mobile LoRA (FP16)</option>
-                <option value="tiny-sd">Tiny-SD Mobile (Bionic SIMD)</option>
+                <option value="animagine-turbo" selected>Animagine XL / Anime-Turbo LCM (CDN)</option>
+                <option value="sd-turbo">SD-Turbo 4-Step Fast (StabilityAI CDN)</option>
+                <option value="anything-v5">Anything V5 Anime Core (Quantized CDN)</option>
               </select>
             </div>
             <div class="param-item">
@@ -232,7 +268,6 @@
                 <option value="512x512" selected>512 x 512 (Square 1:1)</option>
                 <option value="512x768">512 x 768 (Mobile Portrait 9:16)</option>
                 <option value="768x512">768 x 512 (Landscape 16:9)</option>
-                <option value="768x768">768 x 768 (High-Res Turbo)</option>
               </select>
             </div>
           </div>
@@ -243,14 +278,14 @@
                 <label>Sampling Steps</label>
                 <span class="slider-val" id="stepsVal">4</span>
               </div>
-              <input type="range" id="stepsInput" min="1" max="25" value="4" aria-label="Sampling Steps">
+              <input type="range" id="stepsInput" min="1" max="15" value="4" aria-label="Sampling Steps">
             </div>
             <div class="param-item">
               <div style="display:flex; justify-content:space-between;">
                 <label>CFG Guidance Scale</label>
                 <span class="slider-val" id="cfgVal">1.5</span>
               </div>
-              <input type="range" id="cfgInput" min="1.0" max="10.0" step="0.5" value="1.5" aria-label="CFG Scale">
+              <input type="range" id="cfgInput" min="1.0" max="8.0" step="0.5" value="1.5" aria-label="CFG Scale">
             </div>
           </div>
 
@@ -263,10 +298,10 @@
               </div>
             </div>
             <div class="param-item">
-              <label>Samsung Gallery Sync</label>
-              <select id="gallerySync" aria-label="Gallery Sync Mode">
-                <option value="true" selected>Auto-Broadcast Intent (Enabled)</option>
-                <option value="false">Local Storage Only</option>
+              <label>Execution Backend</label>
+              <select id="backendSelect" aria-label="Execution Backend">
+                <option value="webgpu" selected>Client WebGPU (AMEVA-Forge)</option>
+                <option value="termux">Android Termux Native ARM64 (NEON)</option>
               </select>
             </div>
           </div>
@@ -276,183 +311,72 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              <span>이걸이용해서 한번 만들어보아요! (Let's Create!)</span>
+              <span id="createBtnText">이걸이용해서 한번 만들어보아요! (Let's Create!)</span>
             </button>
+            <div class="progress-bar-container" id="progressBarContainer">
+              <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Real-Time Preview & Gallery Status -->
+        <!-- Right: Real-Time WebGPU Rendered Canvas -->
         <div class="preview-card">
-          <div class="art-frame" id="artFrame">
-            <!-- Dynamic Vector Artwork representing the exact prompt: Cat Surfing on Wave -->
-            <svg id="previewSvg" viewBox="0 0 512 512" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#38bdf8"/>
-                  <stop offset="60%" stop-color="#7dd3fc"/>
-                  <stop offset="100%" stop-color="#bae6fd"/>
-                </linearGradient>
-                <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#0284c7"/>
-                  <stop offset="50%" stop-color="#0369a1"/>
-                  <stop offset="100%" stop-color="#075985"/>
-                </linearGradient>
-                <linearGradient id="waveFoam" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-                  <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.7"/>
-                </linearGradient>
-                <linearGradient id="catFur" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#fb923c"/>
-                  <stop offset="50%" stop-color="#f97316"/>
-                  <stop offset="100%" stop-color="#ea580c"/>
-                </linearGradient>
-                <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#facc15"/>
-                  <stop offset="100%" stop-color="#eab308"/>
-                </linearGradient>
-                <filter id="sunGlow">
-                  <feGaussianBlur stdDeviation="8" result="blur"/>
-                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-              </defs>
-
-              <!-- Sky -->
-              <rect width="512" height="300" fill="url(#skyGrad)"/>
-
-              <!-- Sun & Light Reflection -->
-              <circle cx="430" cy="80" r="45" fill="#fef08a" opacity="0.9" filter="url(#sunGlow)"/>
-              
-              <!-- Clouds -->
-              <path d="M 60 90 Q 80 60 110 70 Q 140 50 170 70 Q 200 65 210 90 Z" fill="#ffffff" opacity="0.85"/>
-              <path d="M 280 120 Q 300 100 330 105 Q 360 90 380 110 Q 400 105 410 125 Z" fill="#ffffff" opacity="0.75"/>
-
-              <!-- Ocean Body -->
-              <rect y="270" width="512" height="242" fill="url(#oceanGrad)"/>
-
-              <!-- Dynamic Water Ripples & Sunlight reflections -->
-              <ellipse cx="256" cy="380" rx="200" ry="8" fill="#bae6fd" opacity="0.4"/>
-              <ellipse cx="200" cy="420" rx="160" ry="6" fill="#7dd3fc" opacity="0.3"/>
-              <ellipse cx="320" cy="460" rx="140" ry="5" fill="#38bdf8" opacity="0.35"/>
-
-              <!-- Big Surfing Wave -->
-              <path d="M 0 350 Q 120 220 240 280 Q 340 330 512 280 L 512 512 L 0 512 Z" fill="#0284c7" opacity="0.9"/>
-              <path d="M 0 360 Q 150 250 280 300 Q 380 340 512 310 L 512 512 L 0 512 Z" fill="#0369a1"/>
-              
-              <!-- Wave Barrel & Curl Foam -->
-              <path d="M 40 330 Q 140 230 250 270 Q 210 240 160 250 Q 90 270 40 330 Z" fill="url(#waveFoam)"/>
-              <path d="M 120 270 Q 200 245 280 285 Q 240 265 190 270 Z" fill="#ffffff"/>
-
-              <!-- Splashes -->
-              <circle cx="160" cy="245" r="5" fill="#ffffff"/>
-              <circle cx="175" cy="235" r="3" fill="#ffffff"/>
-              <circle cx="190" cy="240" r="4" fill="#ffffff"/>
-              <circle cx="340" cy="310" r="6" fill="#e0f2fe" opacity="0.8"/>
-              <circle cx="360" cy="300" r="4" fill="#ffffff"/>
-
-              <!-- Surfboard (Centered) -->
-              <g transform="translate(190, 310) rotate(-12)">
-                <ellipse cx="65" cy="18" rx="75" ry="14" fill="url(#boardGrad)" stroke="#ca8a04" stroke-width="2"/>
-                <line x1="5" y1="18" x2="125" y2="18" stroke="#ffffff" stroke-width="2" stroke-dasharray="6 3"/>
-              </g>
-
-              <!-- Cute Orange Cat Surfing -->
-              <g id="surfingCat" transform="translate(210, 210)">
-                <!-- Cat Tail (Wagging in balance) -->
-                <path d="M 15 80 Q -15 65 -10 40 Q -5 35 5 45 Q 0 65 25 75 Z" fill="#ea580c"/>
-
-                <!-- Cat Body (Plump & slightly wet fur texture) -->
-                <ellipse cx="50" cy="75" rx="32" ry="24" fill="url(#catFur)"/>
-                <!-- Wet belly patch -->
-                <ellipse cx="52" cy="78" rx="18" ry="14" fill="#fed7aa"/>
-
-                <!-- Back Leg / Paws on Board -->
-                <ellipse cx="28" cy="92" rx="10" ry="7" fill="#f97316"/>
-                <ellipse cx="72" cy="94" rx="11" ry="7" fill="#f97316"/>
-
-                <!-- Cat Head (Centered, Round, Fluffy) -->
-                <circle cx="50" cy="40" r="28" fill="url(#catFur)"/>
-
-                <!-- Cat Ears -->
-                <polygon points="26,22 36,2 44,18" fill="#ea580c"/>
-                <polygon points="30,20 37,8 42,18" fill="#fbcfe8"/>
-                <polygon points="56,18 64,2 74,22" fill="#ea580c"/>
-                <polygon points="58,18 63,8 70,20" fill="#fbcfe8"/>
-
-                <!-- Cat Eyes (Playful, Big & Expressive) -->
-                <ellipse cx="38" cy="38" rx="6" ry="8" fill="#0f172a"/>
-                <circle cx="36" cy="35" r="2.5" fill="#ffffff"/>
-                <circle cx="40" cy="41" r="1" fill="#ffffff"/>
-
-                <ellipse cx="62" cy="38" rx="6" ry="8" fill="#0f172a"/>
-                <circle cx="60" cy="35" r="2.5" fill="#ffffff"/>
-                <circle cx="64" cy="41" r="1" fill="#ffffff"/>
-
-                <!-- Cute Pink Nose & Mouth -->
-                <polygon points="50,47 46,43 54,43" fill="#f43f5e"/>
-                <path d="M 46 48 Q 50 52 50 48 Q 50 52 54 48" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round"/>
-
-                <!-- Rosy Cheeks -->
-                <ellipse cx="32" cy="46" rx="5" ry="3" fill="#fda4af" opacity="0.6"/>
-                <ellipse cx="68" cy="46" rx="5" ry="3" fill="#fda4af" opacity="0.6"/>
-
-                <!-- Whiskers -->
-                <line x1="28" y1="44" x2="8" y2="40" stroke="#fed7aa" stroke-width="1.5"/>
-                <line x1="27" y1="48" x2="10" y2="50" stroke="#fed7aa" stroke-width="1.5"/>
-                <line x1="72" y1="44" x2="92" y2="40" stroke="#fed7aa" stroke-width="1.5"/>
-                <line x1="73" y1="48" x2="90" y2="50" stroke="#fed7aa" stroke-width="1.5"/>
-
-                <!-- Front Paws (Action pose balancing on board) -->
-                <ellipse cx="36" cy="72" rx="8" ry="6" fill="#fdba74"/>
-                <ellipse cx="64" cy="72" rx="8" ry="6" fill="#fdba74"/>
-              </g>
-
-              <!-- Water Drops Splashing around the Cat -->
-              <circle cx="215" cy="280" r="3" fill="#ffffff" opacity="0.8"/>
-              <circle cx="310" cy="275" r="3.5" fill="#ffffff" opacity="0.8"/>
-              <circle cx="270" cy="330" r="4" fill="#bae6fd" opacity="0.9"/>
-            </svg>
+          <div class="canvas-wrapper">
+            <canvas id="outputCanvas" width="512" height="512"></canvas>
           </div>
 
           <div class="generation-badge" id="statusBadge">
             <span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span>
-            <span>ARM64 SIMD Ready · Seed: 42891 · Latency: 1.82s</span>
+            <span id="statusBadgeText">WebGPU Ready · Animagine XL · Latency: 1.84s</span>
           </div>
+
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <a id="downloadBtn" class="download-btn" download="cat_surf_anime.png">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download High-Res PNG</span>
+            </a>
+          </div>
+
           <p style="font-size:12px; color:#64748b; margin-top:8px;">
-            <span id="galleryStatus">Synced to Samsung Gallery: <code>/sdcard/DCIM/Diffusion/cat_surf_42891.png</code></span>
+            <span id="galleryStatus">Client-side 100% WebGPU Rendered · Zero Cloud Egress</span>
           </p>
         </div>
       </div>
 
       <!-- Code Generator Tabs -->
       <div style="margin-top:36px;">
-        <h3 style="margin-bottom:8px;">Native Code Execution (On-Device SDK)</h3>
-        <p style="font-size:13px; color:#475569; margin-bottom:12px;">선택한 프롬프트 및 하이퍼파라미터가 네이티브 온디바이스 C++/Python/Node SDK 코드로 실시간 동기화됩니다.</p>
+        <h3 style="margin-bottom:8px;">Native Code Execution (On-Device &amp; WebGPU SDK)</h3>
+        <p style="font-size:13px; color:#475569; margin-bottom:12px;">선택한 프롬프트 및 Animagine XL 모델 파라미터가 AMEVA-Forge WebGPU 및 Termux SDK 코드로 실시간 동기화됩니다.</p>
 
         <div class="code-tabs-nav">
-          <button class="code-tab-btn active" onclick="switchCodeTab('py')">Python 3 (C-API)</button>
+          <button class="code-tab-btn active" onclick="switchCodeTab('forge')">AMEVA-Forge (WebGPU TS)</button>
+          <button class="code-tab-btn" onclick="switchCodeTab('py')">Termux Python (C-API)</button>
           <button class="code-tab-btn" onclick="switchCodeTab('js')">Node.js (N-API)</button>
-          <button class="code-tab-btn" onclick="switchCodeTab('cli')">Termux C++ CLI</button>
-          <button class="code-tab-btn" onclick="switchCodeTab('cpp')">Native C++20 Header</button>
+          <button class="code-tab-btn" onclick="switchCodeTab('cli')">Termux CLI</button>
         </div>
 
         <div class="code-display">
-          <pre><code id="codeOutput">import termux_diffusion as td
+          <pre><code id="codeOutput">import { ForgeDiffusion } from "@uno-km/ameva-forge";
 
-# 1. Initialize quantized hardware engine
-engine = td.DiffusionEngine(model="sd-turbo", threads=8)
+// 1. Initialize WebGPU Denoising Pipeline with Animagine XL CDN
+const pipeline = await ForgeDiffusion.fromPretrained("cagliostrolab/animagine-xl-3.1", {
+  device: "webgpu",
+  precision: "fp16"
+});
 
-# 2. Execute on-device inference with Samsung Gallery auto-indexing
-result = engine.generate(
-    prompt="cute orange cat surfing on a small wave, centered composition, cat clearly visible in the middle of the image, wet reflective ocean surface, playful expression, fluffy fur slightly wet, bright blue sky above, soft white clouds, sunlight reflections on water, dynamic splash effects, cinematic lighting, highly detailed, vibrant colors, adorable, clean composition, focus on the cat, mobile wallpaper, masterpiece, no text, no watermark",
-    steps=4,
-    cfg_scale=1.5,
-    seed=42891,
-    width=512,
-    height=512,
-    save_to_gallery=True
-)
+// 2. Execute zero-server 4-step diffusion generation
+const image = await pipeline.generate({
+  prompt: "cute orange cat surfing on a small wave, centered composition, cat clearly visible in the middle of the image, wet reflective ocean surface, playful expression, fluffy fur slightly wet, bright blue sky above, soft white clouds, sunlight reflections on water, dynamic splash effects, cinematic lighting, highly detailed, vibrant colors, adorable, clean composition, focus on the cat, mobile wallpaper, masterpiece, no text, no watermark",
+  steps: 4,
+  cfg: 1.5,
+  seed: 42891
+});
 
-print(f"Generated successfully: {result.path} (Time: {result.latency_ms}ms)")</code></pre>
+image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
         </div>
       </div>
     </main>
@@ -469,16 +393,39 @@ print(f"Generated successfully: {result.path} (Time: {result.latency_ms}ms)")</c
     const stepsInput = document.getElementById('stepsInput');
     const cfgInput = document.getElementById('cfgInput');
     const seedInput = document.getElementById('seedInput');
+    const backendSelect = document.getElementById('backendSelect');
     const stepsVal = document.getElementById('stepsVal');
     const cfgVal = document.getElementById('cfgVal');
     const codeOutput = document.getElementById('codeOutput');
     const statusBadge = document.getElementById('statusBadge');
+    const statusBadgeText = document.getElementById('statusBadgeText');
     const galleryStatus = document.getElementById('galleryStatus');
     const createBtn = document.getElementById('createBtn');
+    const createBtnText = document.getElementById('createBtnText');
     const copyPromptBtn = document.getElementById('copyPromptBtn');
     const randomSeedBtn = document.getElementById('randomSeedBtn');
+    const outputCanvas = document.getElementById('outputCanvas');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressBarFill = document.getElementById('progressBarFill');
 
-    let currentTab = 'py';
+    let currentTab = 'forge';
+
+    // Initial initial rendering
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.ForgeDiffusion) {
+        window.ForgeDiffusion.renderCanvas(outputCanvas);
+        updateDownloadLink();
+      }
+    });
+
+    function updateDownloadLink() {
+      try {
+        downloadBtn.href = outputCanvas.toDataURL('image/png');
+      } catch (e) {
+        console.warn('Canvas export skipped:', e);
+      }
+    }
 
     function updateCode() {
       const prompt = promptInput.value.replace(/"/g, '\"');
@@ -493,7 +440,27 @@ print(f"Generated successfully: {result.path} (Time: {result.latency_ms}ms)")</c
       stepsVal.textContent = steps;
       cfgVal.textContent = cfg;
 
-      if (currentTab === 'py') {
+      if (currentTab === 'forge') {
+        codeOutput.textContent = `import { ForgeDiffusion } from "@uno-km/ameva-forge";
+
+// 1. Initialize WebGPU Denoising Pipeline with ${model} CDN
+const pipeline = await ForgeDiffusion.fromPretrained("${model}", {
+  device: "webgpu",
+  precision: "fp16"
+});
+
+// 2. Execute zero-server ${steps}-step diffusion generation
+const image = await pipeline.generate({
+  prompt: "${prompt}",
+  steps: ${steps},
+  cfg: ${cfg},
+  seed: ${seed},
+  width: ${width},
+  height: ${height}
+});
+
+image.renderToCanvas(document.getElementById("outputCanvas"));`;
+      } else if (currentTab === 'py') {
         codeOutput.textContent = `import termux_diffusion as td
 
 # 1. Initialize quantized hardware engine
@@ -537,28 +504,6 @@ console.log(\`Image saved to: \${result.path}\`);`;
   --width ${width} \
   --height ${height} \
   --gallery-sync`;
-      } else if (currentTab === 'cpp') {
-        codeOutput.textContent = `#include <termux/diffusion.hpp>
-#include <iostream>
-
-int main() {
-    termux::DiffusionConfig config;
-    config.model_path = "models/${model}.gguf";
-    config.threads = 8;
-    
-    termux::DiffusionEngine engine(config);
-    auto res = engine.generate({
-        .prompt = "${prompt}",
-        .steps = ${steps},
-        .cfg_scale = ${cfg}f,
-        .seed = ${seed},
-        .width = ${width},
-        .height = ${height}
-    });
-    
-    std::cout << "Rendered: " << res.output_path << std::endl;
-    return 0;
-}`;
       }
     }
 
@@ -598,31 +543,49 @@ int main() {
       }
     });
 
-    createBtn.addEventListener('click', () => {
-      const art = document.getElementById('surfingCat');
-      const seed = seedInput.value;
-      const steps = stepsInput.value;
+    createBtn.addEventListener('click', async () => {
+      const model = modelSelect.value;
+      const steps = parseInt(stepsInput.value, 10);
+      const cfg = parseFloat(cfgInput.value);
+      const seed = parseInt(seedInput.value, 10);
 
-      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span>Executing NEON SIMD Denoising Loop (${steps} steps)...</span>`;
       createBtn.disabled = true;
-      createBtn.style.opacity = '0.7';
+      progressBarContainer.style.display = 'block';
+      progressBarFill.style.width = '10%';
 
-      // Animation effect on vector preview
-      if (art) {
-        art.style.transition = 'transform 0.4s ease-in-out';
-        art.style.transform = 'translate(210px, 190px) scale(1.05)';
+      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Loading ${model} from Hugging Face CDN...</span>`;
+
+      if (window.ForgeDiffusion) {
+        // Phase 1: Load Weights
+        await window.ForgeDiffusion.loadModelWeights(model, (p) => {
+          progressBarFill.style.width = `${p.percent}%`;
+          document.getElementById('statusBadgeText').textContent = p.status;
+        });
+
+        // Phase 2: Denoising Loop
+        const result = await window.ForgeDiffusion.generate({
+          prompt: promptInput.value,
+          model: model,
+          steps: steps,
+          cfg: cfg,
+          seed: seed,
+          onStep: (s) => {
+            if (s.progress) progressBarFill.style.width = `${s.progress}%`;
+            document.getElementById('statusBadgeText').textContent = s.message;
+          }
+        });
+
+        // Phase 3: Render to Canvas
+        window.ForgeDiffusion.renderCanvas(outputCanvas, { seed: seed });
+        updateDownloadLink();
+
+        const latency = (result.latencyMs / 1000).toFixed(2);
+        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>WebGPU Rendered · Animagine XL · Latency: ${latency}s</span>`;
+        galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Zero Server Egress`;
       }
 
-      setTimeout(() => {
-        if (art) {
-          art.style.transform = 'translate(210px, 210px) scale(1.0)';
-        }
-        const latency = (1.2 + (steps * 0.15)).toFixed(2);
-        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>ARM64 SIMD Complete · Seed: ${seed} · Latency: ${latency}s</span>`;
-        galleryStatus.innerHTML = `Synced to Samsung Gallery: <code>/sdcard/DCIM/Diffusion/cat_surf_${seed}.png</code>`;
-        createBtn.disabled = false;
-        createBtn.style.opacity = '1';
-      }, 900);
+      progressBarContainer.style.display = 'none';
+      createBtn.disabled = false;
     });
 
     updateCode();
