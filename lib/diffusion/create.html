@@ -668,8 +668,9 @@ console.log(\`Image saved to: \${result.path}\`);`;
           updateDownloadLink();
 
           const latency = (result.latencyMs / 1000).toFixed(2);
-          statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>Generated · ${model} · Seed: ${seed} · Latency: ${latency}s</span>`;
-          galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
+          const srcName = result.source || `${model} (WebGPU)`;
+          statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>${srcName} · Seed: ${seed} · Latency: ${latency}s</span>`;
+          galleryStatus.innerHTML = `Client-side WebGPU Pipeline · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
         }
       } catch (err) {
         console.error('Generation failed:', err);
