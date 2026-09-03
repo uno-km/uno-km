@@ -464,17 +464,10 @@ image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
     function renderCurrentSeed() {
       if (window.ForgeDiffusion) {
         const seed = parseInt(seedInput.value, 10) || 42891;
-        const model = modelSelect.value;
-        const steps = parseInt(stepsInput.value, 10) || 4;
-        const cfg = parseFloat(cfgInput.value) || 1.5;
-        const prompt = promptInput.value || '';
-        window.ForgeDiffusion.renderNeuralArt(outputCanvas, {
-          prompt: prompt,
-          model: model,
-          seed: seed,
-          steps: steps,
-          cfg: cfg
-        });
+        const prompt = promptInput.value || 'cute orange cat surfing';
+        if (typeof window.ForgeDiffusion.renderInitialPlaceholder === 'function') {
+          window.ForgeDiffusion.renderInitialPlaceholder(outputCanvas, prompt, seed);
+        }
         updateDownloadLink();
       }
     }
