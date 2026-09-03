@@ -336,3 +336,46 @@ window.AmevaUI.showNotification = function(message, type = 'info', durationMs = 
     }, 200);
   }, durationMs);
 };
+
+window.AmevaUI.animateCount = function(target, targetValue, durationMs = 800, suffix = '') {
+  const el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return;
+
+  const startVal = parseInt(el.getAttribute('data-current-val') || '0', 10) || 0;
+  const endVal = parseInt(targetValue, 10) || 0;
+  el.setAttribute('data-current-val', String(endVal));
+
+  if (startVal === endVal) {
+    el.textContent = endVal.toLocaleString() + suffix;
+    return;
+  }
+
+  const startTime = performance.now();
+
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / durationMs, 1);
+    // Ease out cubic
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(startVal + (endVal - startVal) * easeOut);
+    el.textContent = current.toLocaleString() + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = endVal.toLocaleString() + suffix;
+    }
+  }
+
+  requestAnimationFrame(update);
+};
+
+window.AmevaUI.withLoading = async function(target, asyncFn, message = 'Loading Data...') {
+  window.AmevaUI.showLoading(target, message);
+  try {
+    return await asyncFn();
+  } finally {
+    window.AmevaUI.hideLoading(target);
+  }
+};
+
