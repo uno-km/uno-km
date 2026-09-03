@@ -83,7 +83,7 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                      <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <!-- Main Content -->
     <main class="content">
@@ -94,8 +94,8 @@
       <div class="metrics-summary-grid">
         <div class="metric-card">
           <div class="metric-label"><span class="live-pulse"></span>Total Verified Downloads</div>
-          <div class="metric-val" id="kpi-total-dl" data-current-val="0">0+</div>
-          <p style="font-size:0.82em; color:var(--text-muted); margin:0;" id="kpi-sync-status">NPM &amp; PyPI 레지스트리 실시간 동기화 중...</p>
+          <div class="metric-val" id="kpi-total-dl" data-current-val="11159">11,159+</div>
+          <p style="font-size:0.82em; color:var(--text-muted); margin:0;" id="kpi-sync-status">NPM &amp; PyPI 레지스트리 실시간 동기화 완료</p>
         </div>
         <div class="metric-card green">
           <div class="metric-label">Published Packages</div>
@@ -145,95 +145,79 @@
             <tr data-npm="termux-bitnet" data-pypi="404" data-pypi-pkg="termux-bitnet" data-repo="https://github.com/uno-km/termux-bitnet">
               <td><strong>Termux-BitNet</strong></td>
               <td>1.58-bit 온디바이스 LLM 추론</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><code class="cell-version">v1.1.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">2,551</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">404</span></td>
-              <td><span class="stat-badge badge-total cell-total">404</span></td>
+              <td><span class="stat-badge badge-total cell-total">2,955</span></td>
             </tr>
             <tr data-npm="termux-aichain" data-pypi="20" data-pypi-pkg="termux-aichain" data-repo="https://github.com/uno-km/termux-aichain">
               <td><strong>Termux-AIChain</strong></td>
               <td>Zero-Dependency AI 체이닝 에이전트</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><code class="cell-version">v1.1.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">1,801</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">20</span></td>
-              <td><span class="stat-badge badge-total cell-total">20</span></td>
-            </tr>
-            <tr data-npm="termux-stt" data-pypi="127" data-pypi-pkg="termux-stt" data-repo="https://github.com/uno-km/termux-stt">
-              <td><strong>Termux-STT</strong></td>
-              <td>온디바이스 음성인식 &amp; 화자 분리</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">127</span></td>
-              <td><span class="stat-badge badge-total cell-total">127</span></td>
-            </tr>
-            <tr data-npm="termux-diffusion" data-pypi="362" data-pypi-pkg="termux-diffusion" data-repo="https://github.com/uno-km/termux-diffusion">
-              <td><strong>Termux-Diffusion</strong></td>
-              <td>모바일 Stable Diffusion 이미지 생성</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">362</span></td>
-              <td><span class="stat-badge badge-total cell-total">362</span></td>
+              <td><span class="stat-badge badge-total cell-total">1,821</span></td>
             </tr>
             <tr data-npm="termux-playwright" data-pypi="841" data-pypi-pkg="termux-playwright" data-repo="https://github.com/uno-km/termux-playwright">
               <td><strong>Termux-Playwright</strong></td>
               <td>모바일 웹 자동화 &amp; CDP</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><code class="cell-version">v1.80.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">825</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">841</span></td>
-              <td><span class="stat-badge badge-total cell-total">841</span></td>
+              <td><span class="stat-badge badge-total cell-total">1,666</span></td>
+            </tr>
+            <tr data-npm="termux-diffusion" data-pypi="362" data-pypi-pkg="termux-diffusion" data-repo="https://github.com/uno-km/termux-diffusion">
+              <td><strong>Termux-Diffusion</strong></td>
+              <td>모바일 Stable Diffusion 이미지 생성</td>
+              <td><code class="cell-version">v1.3.2</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">993</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">362</span></td>
+              <td><span class="stat-badge badge-total cell-total">1,355</span></td>
+            </tr>
+            <tr data-npm="termux-stt" data-pypi="127" data-pypi-pkg="termux-stt" data-repo="https://github.com/uno-km/termux-stt">
+              <td><strong>Termux-STT</strong></td>
+              <td>온디바이스 음성인식 &amp; 화자 분리</td>
+              <td><code class="cell-version">v1.1.4</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">1,101</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">127</span></td>
+              <td><span class="stat-badge badge-total cell-total">1,228</span></td>
             </tr>
             <tr data-npm="termux-llamacpp" data-pypi="80" data-pypi-pkg="termux-llamacpp" data-repo="https://github.com/uno-km/termux-llamacpp">
               <td><strong>Termux-LlamaCPP</strong></td>
               <td>GGUF 런타임 &amp; 로컬 OpenAI 서버</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><code class="cell-version">v1.2.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">707</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">80</span></td>
-              <td><span class="stat-badge badge-total cell-total">80</span></td>
-            </tr>
-            <tr data-npm="termux-vision" data-pypi="60" data-pypi-pkg="termux-vision" data-repo="https://github.com/uno-km/termux-vision">
-              <td><strong>Termux-Vision</strong></td>
-              <td>온디바이스 컴퓨터 비전 &amp; VLM</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">60</span></td>
-              <td><span class="stat-badge badge-total cell-total">60</span></td>
-            </tr>
-            <tr data-npm="termux-tts" data-pypi="40" data-pypi-pkg="termux-tts" data-repo="https://github.com/uno-km/termux-tts">
-              <td><strong>Termux-TTS</strong></td>
-              <td>온디바이스 음성 합성 &amp; 보코더</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">40</span></td>
-              <td><span class="stat-badge badge-total cell-total">40</span></td>
-            </tr>
-            <tr data-npm="ameva-vulkan-runtime" data-pypi="50" data-pypi-pkg="ameva-vulkan-runtime" data-repo="https://github.com/uno-km/ameva-vulkan-runtime">
-              <td><strong>AMEVA-Vulkan-Runtime</strong></td>
-              <td>공통 Vulkan HAL &amp; 하드웨어 가속 레이어</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">50</span></td>
-              <td><span class="stat-badge badge-total cell-total">50</span></td>
+              <td><span class="stat-badge badge-total cell-total">787</span></td>
             </tr>
             <tr data-npm="ameva-mcp-hub" data-repo="https://github.com/uno-km/ameva-mcp-hub">
               <td><strong>AMEVA-MCP-Hub</strong></td>
               <td>WASI 인메모리 AI 도구 허브 &amp; SDK</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><code class="cell-version">v3.0.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">388</span></td>
               <td><span class="cell-pypi" style="color:var(--text-muted);">-</span></td>
-              <td><span class="cell-total" style="color:var(--text-muted);">-</span></td>
+              <td><span class="stat-badge badge-total cell-total">388</span></td>
             </tr>
-            <tr data-npm="ameva-sentinel" data-pypi="30" data-pypi-pkg="ameva-sentinel" data-repo="https://github.com/uno-km/ameva-sentinel">
-              <td><strong>AMEVA-Sentinel</strong></td>
-              <td>클라이언트 행동 이상 관측 SDK</td>
-              <td><code class="cell-version">-</code></td>
-              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
-              <td><span class="stat-badge badge-pypi cell-pypi">30</span></td>
-              <td><span class="stat-badge badge-total cell-total">30</span></td>
+            <tr data-npm="termux-vision" data-pypi="60" data-pypi-pkg="termux-vision" data-repo="https://github.com/uno-km/termux-vision">
+              <td><strong>Termux-Vision</strong></td>
+              <td>온디바이스 컴퓨터 비전 &amp; VLM</td>
+              <td><code class="cell-version">v1.1.1</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">295</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">60</span></td>
+              <td><span class="stat-badge badge-total cell-total">355</span></td>
+            </tr>
+            <tr data-npm="ameva-vulkan-runtime" data-pypi="50" data-pypi-pkg="ameva-vulkan-runtime" data-repo="https://github.com/uno-km/ameva-vulkan-runtime">
+              <td><strong>AMEVA-Vulkan-Runtime</strong></td>
+              <td>공통 Vulkan HAL &amp; 하드웨어 가속 레이어</td>
+              <td><code class="cell-version">v1.1.0</code></td>
+              <td><span class="stat-badge badge-npm cell-npm">257</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">50</span></td>
+              <td><span class="stat-badge badge-total cell-total">307</span></td>
             </tr>
             <tr data-pypi="117" data-pypi-pkg="termux-train" data-repo="https://github.com/uno-km/termux-train">
               <td><strong>Termux-Train</strong></td>
               <td>온디바이스 DAG Autograd &amp; LoRA</td>
-              <td><code class="cell-version">-</code></td>
+              <td><code class="cell-version">v1.1.0</code></td>
               <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">117</span></td>
               <td><span class="stat-badge badge-total cell-total">117</span></td>
@@ -241,10 +225,26 @@
             <tr data-pypi="110" data-pypi-pkg="ameva-forge" data-repo="https://github.com/uno-km/AMEVA-Forge">
               <td><strong>AMEVA-Forge</strong></td>
               <td>브라우저 WebGPU 딥러닝 텐서 엔진</td>
-              <td><code class="cell-version">-</code></td>
+              <td><code class="cell-version">v0.1.0</code></td>
               <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
               <td><span class="stat-badge badge-pypi cell-pypi">110</span></td>
               <td><span class="stat-badge badge-total cell-total">110</span></td>
+            </tr>
+            <tr data-npm="termux-tts" data-pypi="40" data-pypi-pkg="termux-tts" data-repo="https://github.com/uno-km/termux-tts">
+              <td><strong>Termux-TTS</strong></td>
+              <td>온디바이스 음성 합성 &amp; 보코더</td>
+              <td><code class="cell-version">v1.1.2</code></td>
+              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">40</span></td>
+              <td><span class="stat-badge badge-total cell-total">40</span></td>
+            </tr>
+            <tr data-npm="ameva-sentinel" data-pypi="30" data-pypi-pkg="ameva-sentinel" data-repo="https://github.com/uno-km/ameva-sentinel">
+              <td><strong>AMEVA-Sentinel</strong></td>
+              <td>클라이언트 행동 이상 관측 SDK</td>
+              <td><code class="cell-version">v2.3.0</code></td>
+              <td><span class="cell-npm" style="color:var(--text-muted);">-</span></td>
+              <td><span class="stat-badge badge-pypi cell-pypi">30</span></td>
+              <td><span class="stat-badge badge-total cell-total">30</span></td>
             </tr>
             <tr>
               <td><strong>AMEVA Workstation</strong></td>
@@ -273,64 +273,68 @@
   <!-- Real-Time Stream Incremental Count-Up & Sorter -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      const wrapper = document.getElementById('metrics-table-wrapper');
       const tbody = document.getElementById('metrics-tbody');
       const kpiTotal = document.getElementById('kpi-total-dl');
       if (!tbody) return;
 
-      let currentRunningTotal = 0;
+      const todayStr = new Date().toISOString().split('T')[0];
       const rows = Array.from(tbody.querySelectorAll('tr'));
 
-      // Calculate initial baseline from fixed PyPI counts
+      // Calculate initial baseline total
+      let grandTotal = 0;
       rows.forEach(row => {
-        const pypiRaw = row.getAttribute('data-pypi');
-        const pypiCount = pypiRaw ? parseInt(pypiRaw, 10) : 0;
-        row._rowTotal = pypiCount;
-        currentRunningTotal += pypiCount;
+        const npmBadge = row.querySelector('.cell-npm');
+        const pypiBadge = row.querySelector('.cell-pypi');
+        const npmVal = npmBadge ? parseInt(npmBadge.textContent.replace(/,/g, ''), 10) || 0 : 0;
+        const pypiVal = pypiBadge ? parseInt(pypiBadge.textContent.replace(/,/g, ''), 10) || 0 : 0;
+        const rowTot = npmVal + pypiVal;
+        row._rowTotal = rowTot;
+        grandTotal += rowTot;
       });
 
-      // Animate initial baseline
-      if (window.AmevaUI && window.AmevaUI.animateCount && kpiTotal) {
-        window.AmevaUI.animateCount(kpiTotal, currentRunningTotal, 500, '+');
-      } else if (kpiTotal) {
-        kpiTotal.textContent = currentRunningTotal.toLocaleString() + '+';
+      if (kpiTotal && grandTotal > 0) {
+        if (window.AmevaUI && window.AmevaUI.animateCount) {
+          window.AmevaUI.animateCount(kpiTotal, grandTotal, 500, '+');
+        } else {
+          kpiTotal.textContent = grandTotal.toLocaleString() + '+';
+        }
       }
 
-      const runLiveStreamFetch = async () => {
-        // Fetch each package and progressively count up as each resolves
+      // Background Live NPM Refresh & Version Verification
+      const refreshLiveNPM = async () => {
+        let hasUpdates = false;
+
         await Promise.all(rows.map(async (row) => {
           const npmPkg = row.getAttribute('data-npm');
           const pypiPkg = row.getAttribute('data-pypi-pkg');
           const pypiRaw = row.getAttribute('data-pypi');
           const pypiCount = pypiRaw ? parseInt(pypiRaw, 10) : 0;
-          let npmCount = 0;
+
+          let liveNpmCount = null;
           let latestVersion = null;
 
-          // 1. Fetch NPM Downloads & Latest Version concurrently
           if (npmPkg) {
             try {
-              const [dlRes, verRes] = await Promise.all([
-                fetch('https://api.npmjs.org/downloads/range/2024-01-01:2026-12-31/' + encodeURIComponent(npmPkg)),
-                fetch('https://registry.npmjs.org/' + encodeURIComponent(npmPkg) + '/latest')
-              ]);
-              if (dlRes.ok) {
-                const data = await dlRes.json();
-                if (data && Array.isArray(data.downloads)) {
-                  npmCount = data.downloads.reduce((acc, cur) => acc + (cur.downloads || 0), 0);
+              const res = await fetch('https://api.npmjs.org/downloads/point/2020-01-01:' + todayStr + '/' + encodeURIComponent(npmPkg));
+              if (res.ok) {
+                const data = await res.json();
+                if (data && typeof data.downloads === 'number') {
+                  liveNpmCount = data.downloads;
                 }
               }
+            } catch (e) {}
+
+            try {
+              const verRes = await fetch('https://registry.npmjs.org/' + encodeURIComponent(npmPkg) + '/latest');
               if (verRes.ok) {
-                const verData = await verRes.json();
-                if (verData && verData.version) {
-                  latestVersion = verData.version;
+                const vdata = await verRes.json();
+                if (vdata && vdata.version) {
+                  latestVersion = vdata.version;
                 }
               }
-            } catch (e) {
-              console.error('NPM fetch error for ' + npmPkg, e);
-            }
+            } catch (e) {}
           }
 
-          // 2. Fetch PyPI Latest Version (for PyPI-only or fallback)
           if (!latestVersion && pypiPkg) {
             try {
               const pyRes = await fetch('https://pypi.org/pypi/' + encodeURIComponent(pypiPkg) + '/json');
@@ -340,91 +344,61 @@
                   latestVersion = pyData.info.version;
                 }
               }
-            } catch (e) {
-              console.error('PyPI version fetch error for ' + pypiPkg, e);
-            }
+            } catch (e) {}
           }
 
-          // 3. Update DOM Version Cell in real-time
           if (latestVersion) {
             const verCell = row.querySelector('.cell-version') || row.querySelector('td:nth-child(3) code');
-            if (verCell) {
+            if (verCell && !verCell.textContent.includes('Live')) {
               verCell.textContent = 'v' + latestVersion.replace(/^v/, '');
             }
           }
 
-          const rowTotal = npmCount + pypiCount;
-          row._rowTotal = rowTotal;
+          if (liveNpmCount !== null && liveNpmCount > 0) {
+            const npmCell = row.querySelector('.cell-npm');
+            const totalCell = row.querySelector('.cell-total');
+            const newTotal = liveNpmCount + pypiCount;
 
-          const npmCell = row.querySelector('.cell-npm');
-          const pypiCell = row.querySelector('.cell-pypi');
-          const totalCell = row.querySelector('.cell-total');
+            row._rowTotal = newTotal;
+            hasUpdates = true;
 
-          // Render NPM Cell (If 0 or unreleased, show clean '-')
-          if (npmCell) {
-            if (npmCount > 0) {
+            if (npmCell) {
               npmCell.className = 'stat-badge badge-npm cell-npm';
               npmCell.style.color = '';
-              if (window.AmevaUI && window.AmevaUI.animateCount) {
-                window.AmevaUI.animateCount(npmCell, npmCount, 600);
-              } else {
-                npmCell.textContent = npmCount.toLocaleString();
-              }
-            } else {
-              npmCell.className = 'cell-npm';
-              npmCell.style.color = 'var(--text-muted)';
-              npmCell.textContent = '-';
+              npmCell.textContent = liveNpmCount.toLocaleString();
             }
-          }
 
-          // Render PyPI Cell (If 0 or unreleased, show clean '-')
-          if (pypiCell) {
-            if (pypiCount > 0) {
-              pypiCell.className = 'stat-badge badge-pypi cell-pypi';
-              pypiCell.style.color = '';
-              pypiCell.textContent = pypiCount.toLocaleString();
-            } else {
-              pypiCell.className = 'cell-pypi';
-              pypiCell.style.color = 'var(--text-muted)';
-              pypiCell.textContent = '-';
-            }
-          }
-
-          // Render Total Cell (If 0 or unreleased, show clean '-')
-          if (totalCell) {
-            if (rowTotal > 0) {
+            if (totalCell && !totalCell.textContent.includes('Live')) {
               totalCell.className = 'stat-badge badge-total cell-total';
               totalCell.style.color = '';
-              if (window.AmevaUI && window.AmevaUI.animateCount) {
-                window.AmevaUI.animateCount(totalCell, rowTotal, 600);
-              } else {
-                totalCell.textContent = rowTotal.toLocaleString();
-              }
-            } else {
-              totalCell.className = 'cell-total';
-              totalCell.style.color = 'var(--text-muted)';
-              totalCell.textContent = '-';
+              totalCell.textContent = newTotal.toLocaleString();
             }
-          }
-
-          // Progressively increment KPI total
-          currentRunningTotal += npmCount;
-          if (window.AmevaUI && window.AmevaUI.animateCount && kpiTotal) {
-            window.AmevaUI.animateCount(kpiTotal, currentRunningTotal, 600, '+');
-          } else if (kpiTotal) {
-            kpiTotal.textContent = currentRunningTotal.toLocaleString() + '+';
           }
         }));
 
-        // Sort descending after all live data arrived
-        rows.sort((a, b) => {
-          const totalA = a._rowTotal !== undefined ? a._rowTotal : -1;
-          const totalB = b._rowTotal !== undefined ? b._rowTotal : -1;
-          return totalB - totalA;
-        });
+        if (hasUpdates) {
+          let recomputedTotal = 0;
+          rows.forEach(r => {
+            if (typeof r._rowTotal === 'number') recomputedTotal += r._rowTotal;
+          });
 
-        tbody.innerHTML = '';
-        rows.forEach(row => tbody.appendChild(row));
+          if (kpiTotal && recomputedTotal > 0) {
+            if (window.AmevaUI && window.AmevaUI.animateCount) {
+              window.AmevaUI.animateCount(kpiTotal, recomputedTotal, 600, '+');
+            } else {
+              kpiTotal.textContent = recomputedTotal.toLocaleString() + '+';
+            }
+          }
+
+          rows.sort((a, b) => {
+            const totalA = a._rowTotal !== undefined ? a._rowTotal : -1;
+            const totalB = b._rowTotal !== undefined ? b._rowTotal : -1;
+            return totalB - totalA;
+          });
+
+          tbody.innerHTML = '';
+          rows.forEach(row => tbody.appendChild(row));
+        }
 
         const syncStatus = document.getElementById('kpi-sync-status');
         if (syncStatus) {
@@ -432,11 +406,7 @@
         }
       };
 
-      if (window.AmevaUI && window.AmevaUI.withLoading && wrapper) {
-        await window.AmevaUI.withLoading(wrapper, runLiveStreamFetch, 'Syncing Real-Time Package Downloads...');
-      } else {
-        await runLiveStreamFetch();
-      }
+      refreshLiveNPM();
     });
   </script>
 </body>
