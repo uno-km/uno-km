@@ -2488,6 +2488,21 @@
   }
 };
   const PHRASES_DB = {
+  "Let's Create!": {
+    "ko": "이미지 생성 스튜디오 (Let's Create!)",
+    "ja": "画像生成スタジオ (Let's Create!)",
+    "zh": "图像生成工坊 (Let's Create!)",
+    "vi": "Xưởng tạo ảnh (Let's Create!)",
+    "fr": "Studio de Création (Let's Create!)",
+    "de": "Kreations-Studio (Let's Create!)",
+    "es": "Estudio de Creación (Let's Create!)",
+    "ru": "Студия создания (Let's Create!)",
+    "ar": "استوديو الإنشاء (Let's Create!)",
+    "hi": "क्रिएशन स्टूडियो (Let's Create!)",
+    "pl": "Studio Tworzenia (Let's Create!)",
+    "la": "Officina Creationis (Let's Create!)",
+    "en": "Let's Create!"
+  },
   "Document Navigation": {
     "ko": "문서 상세 목차",
     "ja": "ドキュメント目次",

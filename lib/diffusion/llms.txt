@@ -18,6 +18,7 @@ License: Apache-2.0
   - /lib/diffusion/api-reference.html
   - /lib/diffusion/models.html
   - /lib/diffusion/gallery.html
+  - /lib/diffusion/create.html
   - /lib/diffusion/benchmarks.html
   - /lib/diffusion/advanced-parameters.html
   - /lib/diffusion/versions.html

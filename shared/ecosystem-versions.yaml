@@ -103,6 +103,7 @@ libraries:
       - api-reference.html
       - models.html
       - gallery.html
+      - create.html
       - benchmarks.html
       - advanced-parameters.html
       - versions.html

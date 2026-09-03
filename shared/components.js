@@ -102,6 +102,7 @@
         ["api-reference.html", "API Reference"],
         ["models.html", "Model Checkpoints"],
         ["gallery.html", "Visual Gallery"],
+        ["create.html", "Let's Create!"],
         ["benchmarks.html", "Benchmarks & Profiling"],
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]
