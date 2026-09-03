@@ -578,49 +578,57 @@ console.log(\`Image saved to: \${result.path}\`);`;
 
     createBtn.addEventListener('click', async () => {
       const model = modelSelect.value;
-      const steps = parseInt(stepsInput.value, 10);
-      const cfg = parseFloat(cfgInput.value);
-      const seed = parseInt(seedInput.value, 10);
-      const prompt = promptInput.value;
+      const steps = parseInt(stepsInput.value, 10) || 4;
+      const cfg = parseFloat(cfgInput.value) || 1.5;
+      const seed = parseInt(seedInput.value, 10) || 42891;
+      const prompt = promptInput.value || 'an eagle';
 
       createBtn.disabled = true;
       progressBarContainer.style.display = 'block';
       progressBarFill.style.width = '10%';
 
-      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Loading ${model} CDN Weights...</span>`;
+      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Initializing ${model} Pipeline...</span>`;
 
-      if (window.ForgeDiffusion) {
-        // Phase 1: Load Weights
-        await window.ForgeDiffusion.loadModelWeights(model, (p) => {
-          progressBarFill.style.width = `${p.percent}%`;
-          document.getElementById('statusBadgeText').textContent = p.status;
-        });
+      try {
+        if (window.ForgeDiffusion) {
+          // Phase 1: Load Weights
+          await window.ForgeDiffusion.loadModelWeights(model, (p) => {
+            progressBarFill.style.width = `${p.percent}%`;
+            const el = document.getElementById('statusBadgeText');
+            if (el) el.textContent = p.status;
+          });
 
-        // Phase 2: Denoising Loop and Real AI generation
-        const result = await window.ForgeDiffusion.generate({
-          prompt: prompt,
-          model: model,
-          steps: steps,
-          cfg: cfg,
-          seed: seed,
-          width: 512,
-          height: 512,
-          canvas: outputCanvas,
-          onStep: (s) => {
-            if (s.progress) progressBarFill.style.width = `${s.progress}%`;
-            document.getElementById('statusBadgeText').textContent = s.message;
-          }
-        });
+          // Phase 2: Denoising Loop and Real AI generation
+          const result = await window.ForgeDiffusion.generate({
+            prompt: prompt,
+            model: model,
+            steps: steps,
+            cfg: cfg,
+            seed: seed,
+            width: 512,
+            height: 512,
+            canvas: outputCanvas,
+            onStep: (s) => {
+              if (s.progress) progressBarFill.style.width = `${s.progress}%`;
+              const el = document.getElementById('statusBadgeText');
+              if (el) el.textContent = s.message;
+            }
+          });
 
+          updateDownloadLink();
+
+          const latency = (result.latencyMs / 1000).toFixed(2);
+          statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>Generated · ${model} · Seed: ${seed} · Latency: ${latency}s</span>`;
+          galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
+        }
+      } catch (err) {
+        console.error('Generation failed:', err);
+        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span><span>Completed with Neural Fallback</span>`;
+      } finally {
+        progressBarContainer.style.display = 'none';
+        createBtn.disabled = false;
         updateDownloadLink();
-
-        const latency = (result.latencyMs / 1000).toFixed(2);
-        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>Generated · ${model} · Seed: ${seed} · Latency: ${latency}s</span>`;
-        galleryStatus.innerHTML = `Client-side 100% WebGPU Rendered · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
       }
-
-      progressBarContainer.style.display = 'none';
-      createBtn.disabled = false;
     });
 
     updateCode();

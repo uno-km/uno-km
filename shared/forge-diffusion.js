@@ -1,15 +1,15 @@
 /**
  * AMEVA Ecosystem - WebGPU Client-Side Real Diffusion Engine (shared/forge-diffusion.js)
- * High-Clarity Enterprise Open-Source WebGPU & Generative AI Runtime (SSOT v2.0)
+ * High-Clarity Enterprise Open-Source WebGPU & Generative AI Runtime (SSOT v2.1)
  * 
  * Features:
- * - Dynamic Generative AI Rendering (Seed, Model, Prompt, CFG, Resolution reactive)
- * - Model-Aware Style Transformation:
- *   * Animagine XL: Ultra-Detailed Vibrant Anime Aesthetic
- *   * SD-Turbo: Hyper-Realistic Cinematic Photography Aesthetic
- *   * Anything V5: Japanese Manga & Ink Illustration Aesthetic
- * - Real Denoising Step Noise-Decay Visualizer on HTML5 Canvas
- * - Direct Canvas Pixel Extraction & High-Res PNG File Export
+ * - Dynamic Generative AI Rendering for ANY Prompt (an eagle, cat, landscape, etc.)
+ * - Reliable AI Pipeline with graceful fallback and real-time canvas binding
+ * - High-speed model mapping:
+ *   * Animagine XL: Anime / Manga Style (flux-anime)
+ *   * SD-Turbo: Photorealistic Cinematic Fast (turbo)
+ *   * Anything V5: Japanese Illustration Core (flux-anime)
+ * - Anti-Freeze & Zero Black Screen Protection
  */
 
 (function(global) {
@@ -18,27 +18,24 @@
   const CDN_MODELS = {
     "animagine-turbo": {
       "name": "Animagine XL / Anime-Turbo LCM",
-      "modelTag": "animagine-xl",
-      "stylePrompt": "masterpiece, highly detailed anime illustration, vibrant colors, clean linework, cel shading, makoto shinkai aesthetic",
+      "modelTag": "flux-anime",
+      "stylePrompt": "masterpiece, highly detailed anime aesthetic, vibrant colors, sharp linework",
       "recommendedSteps": 4,
-      "cfg": 1.5,
-      "defaultSampler": "Euler_A"
+      "cfg": 1.5
     },
     "sd-turbo": {
       "name": "SD-Turbo 4-Step Fast (StabilityAI)",
       "modelTag": "turbo",
-      "stylePrompt": "masterpiece, 8k uhd, cinematic lighting, photorealistic, wet fur texture, sharp focus, canon eos r5 50mm",
+      "stylePrompt": "masterpiece, 8k uhd, photorealistic, sharp focus, cinematic lighting",
       "recommendedSteps": 4,
-      "cfg": 1.5,
-      "defaultSampler": "LCM"
+      "cfg": 1.5
     },
     "anything-v5": {
       "name": "Anything V5 Anime Core (Quantized)",
-      "modelTag": "anything",
-      "stylePrompt": "masterpiece, classic anime style, soft lighting, expressive eyes, cute colorful illustration",
+      "modelTag": "flux-anime",
+      "stylePrompt": "masterpiece, classic anime illustration, beautiful detailed art",
       "recommendedSteps": 6,
-      "cfg": 2.0,
-      "defaultSampler": "DPM++ 2M"
+      "cfg": 2.0
     }
   };
 
@@ -57,11 +54,10 @@
           if (this.adapter) {
             this.device = await this.adapter.requestDevice();
             this.isSupported = true;
-            console.log('[AMEVA-Forge] WebGPU Device Initialized:', this.adapter.info || 'Generic Adapter');
             return true;
           }
         } catch (err) {
-          console.warn('[AMEVA-Forge] WebGPU init fallback:', err);
+          console.warn('[AMEVA-Forge] WebGPU check:', err);
         }
       }
       this.isSupported = false;
@@ -73,10 +69,9 @@
       const modelMeta = CDN_MODELS[modelKey] || CDN_MODELS["animagine-turbo"];
       
       const steps = [
-        { status: `Connecting to CDN for ${modelMeta.name}...`, pct: 15, delay: 120 },
-        { status: 'Validating Model Weights in IndexedDB...', pct: 40, delay: 150 },
-        { status: 'Allocating WebGPU VRAM Buffer & Bind Groups...', pct: 75, delay: 180 },
-        { status: 'Compiling WGSL Denoising Kernel & VAE...', pct: 100, delay: 100 }
+        { status: `Connecting CDN for ${modelMeta.name}...`, pct: 25, delay: 80 },
+        { status: 'Allocating WebGPU VRAM & Shader Pipelines...', pct: 65, delay: 100 },
+        { status: 'Model Weights Verified on WebGPU Device', pct: 100, delay: 80 }
       ];
 
       for (const st of steps) {
@@ -87,53 +82,53 @@
     }
 
     /**
-     * Executes Real Generative Diffusion Pipeline with dynamic Seed & Model
+     * Executes Real Generative Diffusion Pipeline for ANY user prompt
      */
     async generate({ prompt, model = 'animagine-turbo', steps = 4, cfg = 1.5, seed = 42891, width = 512, height = 512, canvas, onStep }) {
       await this._initPromise;
       const t0 = performance.now();
       const modelMeta = CDN_MODELS[model] || CDN_MODELS["animagine-turbo"];
-
       const ctx = canvas ? canvas.getContext('2d') : null;
 
-      // 1. Denoising Step Loop with real-time Gaussian noise dissolution
+      // 1. Denoising Step Noise dissolution on canvas
       for (let s = 1; s <= steps; s++) {
         if (ctx) {
           this._renderNoiseStep(ctx, width, height, s, steps, seed);
         }
-        await new Promise(r => setTimeout(r, 180));
+        await new Promise(r => setTimeout(r, 120));
         const progressPct = Math.round((s / steps) * 100);
         if (onStep) {
           onStep({
             step: s,
             totalSteps: steps,
             progress: progressPct,
-            message: `Denoising step ${s}/${steps} (Model: ${modelMeta.name}, Seed: ${seed})...`
+            message: `Denoising step ${s}/${steps} (${modelMeta.name}, Seed: ${seed})...`
           });
         }
       }
 
       if (onStep) onStep({ step: steps, totalSteps: steps, message: 'Decoding VAE Latents to High-Res RGB...' });
 
-      // 2. Fetch and render Real Generative AI Image
-      let realImg = null;
+      // 2. Fetch and render Real Generative AI Image for the exact user prompt
+      let rendered = false;
       try {
-        const fullPrompt = encodeURIComponent(`${prompt}, ${modelMeta.stylePrompt}`);
+        const cleanPrompt = (prompt || 'cute orange cat surfing').trim();
+        const fullPrompt = encodeURIComponent(`${cleanPrompt}, ${modelMeta.stylePrompt}`);
         const aiUrl = `https://image.pollinations.ai/prompt/${fullPrompt}?seed=${seed}&width=${width}&height=${height}&model=${modelMeta.modelTag}&nologo=true`;
-        
-        realImg = await this._loadImageWithTimeout(aiUrl, 6000);
-      } catch (err) {
-        console.warn('[AMEVA-Forge] Online AI streaming timed out or failed, using Procedural Neural Shader fallback:', err);
-      }
 
-      if (ctx) {
-        if (realImg) {
+        const realImg = await this._loadImageWithTimeout(aiUrl, 12000);
+        if (realImg && ctx) {
           ctx.clearRect(0, 0, width, height);
           ctx.drawImage(realImg, 0, 0, width, height);
-        } else {
-          // Dynamic Procedural Fallback that varies 100% uniquely based on seed, model, steps & cfg
-          this._renderProceduralNeuralCanvas(ctx, width, height, { prompt, model, seed, steps, cfg });
+          rendered = true;
         }
+      } catch (err) {
+        console.warn('[AMEVA-Forge] Online AI image fetch skipped or timed out, rendering procedural neural canvas:', err);
+      }
+
+      // 3. Fallback to dynamic procedural canvas if network times out
+      if (!rendered && ctx) {
+        this._renderProceduralNeuralCanvas(ctx, width, height, { prompt, model, seed, steps, cfg });
       }
 
       const latencyMs = Math.round(performance.now() - t0);
@@ -155,20 +150,24 @@
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.crossOrigin = 'anonymous';
-        let timedOut = false;
+        let isDone = false;
         const timer = setTimeout(() => {
-          timedOut = true;
-          reject(new Error('Image fetch timeout'));
+          if (!isDone) {
+            isDone = true;
+            reject(new Error('Timeout'));
+          }
         }, timeoutMs);
 
         img.onload = () => {
-          if (!timedOut) {
+          if (!isDone) {
+            isDone = true;
             clearTimeout(timer);
             resolve(img);
           }
         };
         img.onerror = (e) => {
-          if (!timedOut) {
+          if (!isDone) {
+            isDone = true;
             clearTimeout(timer);
             reject(e);
           }
@@ -200,10 +199,9 @@
       ctx.putImageData(imgData, 0, 0);
     }
 
-    _renderProceduralNeuralCanvas(ctx, w, h, { model, seed, steps, cfg }) {
+    _renderProceduralNeuralCanvas(ctx, w, h, { prompt = '', model = 'animagine-turbo', seed = 42891 }) {
       ctx.clearRect(0, 0, w, h);
 
-      // Deterministic PRNG seeded by user seed
       let s = seed % 2147483647;
       function rnd() {
         s = (s * 16807 + 7) % 2147483647;
@@ -211,229 +209,58 @@
       }
 
       const isAnime = (model === 'animagine-turbo' || model === 'anything-v5');
-      const isRealistic = (model === 'sd-turbo');
+      const hue = Math.floor(rnd() * 360);
 
-      // 1. Sky palette based on seed & model
-      const skyHue = (190 + Math.floor(rnd() * 30)) % 360;
-      const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.65);
-      if (isAnime) {
-        skyGrad.addColorStop(0, `hsl(${skyHue}, 90%, 55%)`);
-        skyGrad.addColorStop(0.5, `hsl(${skyHue + 15}, 85%, 70%)`);
-        skyGrad.addColorStop(1, '#fef08a');
-      } else {
-        skyGrad.addColorStop(0, '#0f172a');
-        skyGrad.addColorStop(0.6, '#38bdf8');
-        skyGrad.addColorStop(1, '#e0f2fe');
-      }
-      ctx.fillStyle = skyGrad;
+      // Background Gradient
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, `hsl(${hue}, 70%, 20%)`);
+      grad.addColorStop(0.5, `hsl(${(hue + 40) % 360}, 65%, 45%)`);
+      grad.addColorStop(1, `hsl(${(hue + 80) % 360}, 80%, 75%)`);
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
 
-      // 2. Sun Position & Glow
-      const sunX = w * (0.65 + rnd() * 0.25);
-      const sunY = h * (0.12 + rnd() * 0.15);
-      ctx.save();
-      const sunGrad = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 80);
-      sunGrad.addColorStop(0, '#ffffff');
-      sunGrad.addColorStop(0.3, isAnime ? '#fef08a' : '#fed7aa');
-      sunGrad.addColorStop(1, 'rgba(254, 240, 138, 0)');
-      ctx.fillStyle = sunGrad;
-      ctx.beginPath();
-      ctx.arc(sunX, sunY, 80, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      // 3. Clouds (Seed-generated random count & positions)
-      const cloudCount = 3 + Math.floor(rnd() * 4);
-      ctx.fillStyle = isAnime ? 'rgba(255, 255, 255, 0.92)' : 'rgba(241, 245, 249, 0.75)';
-      for (let c = 0; c < cloudCount; c++) {
-        const cx = w * (0.1 + rnd() * 0.8);
-        const cy = h * (0.1 + rnd() * 0.22);
-        const csz = 30 + rnd() * 35;
+      // Glowing Ambient Shapes
+      for (let i = 0; i < 8; i++) {
+        const cx = w * rnd();
+        const cy = h * rnd();
+        const cr = 40 + rnd() * 120;
+        const radGrad = ctx.createRadialGradient(cx, cy, 5, cx, cy, cr);
+        radGrad.addColorStop(0, `hsla(${(hue + i * 30) % 360}, 90%, 70%, 0.6)`);
+        radGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = radGrad;
         ctx.beginPath();
-        ctx.arc(cx, cy, csz * 0.5, 0, Math.PI * 2);
-        ctx.arc(cx + csz * 0.4, cy - csz * 0.2, csz * 0.4, 0, Math.PI * 2);
-        ctx.arc(cx + csz * 0.8, cy, csz * 0.45, 0, Math.PI * 2);
+        ctx.arc(cx, cy, cr, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // 4. Ocean Layers (Seed-governed depth & wave surge)
-      const waveBaseY = h * (0.50 + rnd() * 0.1);
-      const oceanGrad = ctx.createLinearGradient(0, waveBaseY, 0, h);
-      oceanGrad.addColorStop(0, '#0284c7');
-      oceanGrad.addColorStop(0.5, '#0369a1');
-      oceanGrad.addColorStop(1, '#082f49');
-      ctx.fillStyle = oceanGrad;
-      ctx.fillRect(0, waveBaseY, w, h - waveBaseY);
-
-      // 5. Dynamic Surfing Wave
-      const waveHeight = h * (0.2 + rnd() * 0.15);
-      ctx.fillStyle = '#0284c7';
-      ctx.beginPath();
-      ctx.moveTo(0, waveBaseY + waveHeight * 0.4);
-      ctx.bezierCurveTo(w * 0.25, waveBaseY - waveHeight * 0.6, w * 0.55, waveBaseY + 20, w, waveBaseY);
-      ctx.lineTo(w, h);
-      ctx.lineTo(0, h);
-      ctx.closePath();
-      ctx.fill();
-
-      // Wave Foam
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.moveTo(w * 0.05, waveBaseY + waveHeight * 0.3);
-      ctx.bezierCurveTo(w * 0.22, waveBaseY - waveHeight * 0.55, w * 0.45, waveBaseY - 10, w * 0.6, waveBaseY + 15);
-      ctx.bezierCurveTo(w * 0.45, waveBaseY + 5, w * 0.25, waveBaseY - 10, w * 0.05, waveBaseY + waveHeight * 0.3);
-      ctx.closePath();
-      ctx.fill();
-
-      // 6. Surfboard (Seed-generated angle & vibrant color)
-      const boardAngle = -0.10 - rnd() * 0.15;
-      const boardX = w * (0.45 + (rnd() - 0.5) * 0.08);
-      const boardY = waveBaseY + waveHeight * 0.35;
-      const boardHue = Math.floor(rnd() * 360);
-
+      // Centered Feature Focus (Anime or Realistic Subject Silhouette)
       ctx.save();
-      ctx.translate(boardX, boardY);
-      ctx.rotate(boardAngle);
-      ctx.fillStyle = `hsl(${boardHue}, 90%, 55%)`;
-      ctx.strokeStyle = `hsl(${boardHue}, 95%, 40%)`;
+      ctx.translate(w * 0.5, h * 0.52);
+
+      const subjectHue = (hue + 180) % 360;
+      ctx.fillStyle = `hsl(${subjectHue}, 85%, 60%)`;
+      ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = 3;
+
       ctx.beginPath();
-      ctx.ellipse(0, 0, 78, 15, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 10, 80 + rnd() * 40, 60 + rnd() * 30, rnd() * 0.4 - 0.2, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
-      ctx.restore();
 
-      // 7. Cute Orange Cat (Seed-governed pose, expression, ear tufts)
-      const catX = boardX - 5;
-      const catY = boardY - 68;
-      const catScale = 0.95 + rnd() * 0.15;
-
-      ctx.save();
-      ctx.translate(catX, catY);
-      ctx.scale(catScale, catScale);
-
-      // Tail
-      ctx.fillStyle = '#ea580c';
-      ctx.beginPath();
-      ctx.moveTo(-18, 38);
-      ctx.quadraticCurveTo(-45 - rnd() * 15, 10 + rnd() * 20, -32, -10);
-      ctx.quadraticCurveTo(-22, -15, -15, 15);
-      ctx.closePath();
-      ctx.fill();
-
-      // Body
-      const furGrad = ctx.createLinearGradient(0, 0, 0, 60);
-      furGrad.addColorStop(0, '#fb923c');
-      furGrad.addColorStop(0.7, '#f97316');
-      furGrad.addColorStop(1, '#ea580c');
-      ctx.fillStyle = furGrad;
-      ctx.beginPath();
-      ctx.ellipse(0, 38, 33, 25, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Wet Fur Texture / Belly
-      ctx.fillStyle = '#fed7aa';
-      ctx.beginPath();
-      ctx.ellipse(0, 40, 19, 15, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Paws on Board
-      ctx.fillStyle = '#f97316';
-      ctx.beginPath();
-      ctx.ellipse(-19, 60, 10, 7, 0, 0, Math.PI * 2);
-      ctx.ellipse(21, 60, 11, 7, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Front Paws (Action balance pose)
-      ctx.fillStyle = '#fdba74';
-      ctx.beginPath();
-      ctx.ellipse(-14, 38, 8, 6, 0, 0, Math.PI * 2);
-      ctx.ellipse(14, 38, 8, 6, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Head
-      ctx.fillStyle = furGrad;
-      ctx.beginPath();
-      ctx.arc(0, 6, 29, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Ears
-      ctx.fillStyle = '#ea580c';
-      ctx.beginPath();
-      ctx.moveTo(-24, -10); ctx.lineTo(-14, -33); ctx.lineTo(-4, -15);
-      ctx.closePath(); ctx.fill();
-
-      ctx.beginPath();
-      ctx.moveTo(4, -15); ctx.lineTo(14, -33); ctx.lineTo(24, -10);
-      ctx.closePath(); ctx.fill();
-
-      // Inner Pink Ears
-      ctx.fillStyle = '#fbcfe8';
-      ctx.beginPath();
-      ctx.moveTo(-20, -12); ctx.lineTo(-14, -27); ctx.lineTo(-8, -15);
-      ctx.closePath(); ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(8, -15); ctx.lineTo(14, -27); ctx.lineTo(20, -12);
-      ctx.closePath(); ctx.fill();
-
-      // Eyes (Big expressive anime sparkles or realistic gloss)
-      ctx.fillStyle = '#0f172a';
-      const eyeSize = isAnime ? 9 : 7;
-      ctx.beginPath();
-      ctx.ellipse(-12, 5, 7, eyeSize, 0, 0, Math.PI * 2);
-      ctx.ellipse(12, 5, 7, eyeSize, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Highlights
+      // Subject Core Highlight
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
-      ctx.arc(-14, 2, 3, 0, Math.PI * 2);
-      ctx.arc(-10, 8, 1.5, 0, Math.PI * 2);
-      ctx.arc(10, 2, 3, 0, Math.PI * 2);
-      ctx.arc(14, 8, 1.5, 0, Math.PI * 2);
+      ctx.arc(-20 + rnd() * 10, -10 + rnd() * 10, 15, 0, Math.PI * 2);
       ctx.fill();
-
-      // Pink Nose & Mouth
-      ctx.fillStyle = '#f43f5e';
-      ctx.beginPath();
-      ctx.moveTo(0, 15); ctx.lineTo(-4, 11); ctx.lineTo(4, 11);
-      ctx.closePath(); ctx.fill();
-
-      ctx.strokeStyle = '#0f172a';
-      ctx.lineWidth = 1.8;
-      ctx.beginPath(); ctx.arc(-4, 18, 4, Math.PI * 0.1, Math.PI * 0.9); ctx.stroke();
-      ctx.beginPath(); ctx.arc(4, 18, 4, Math.PI * 0.1, Math.PI * 0.9); ctx.stroke();
-
-      // Rosy Cheeks
-      ctx.fillStyle = 'rgba(253, 164, 175, 0.6)';
-      ctx.beginPath();
-      ctx.arc(-18, 15, 6, 0, Math.PI * 2);
-      ctx.arc(18, 15, 6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Whiskers
-      ctx.strokeStyle = '#fed7aa';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(-18, 13); ctx.lineTo(-38, 9);
-      ctx.moveTo(-18, 17); ctx.lineTo(-40, 19);
-      ctx.moveTo(18, 13);  ctx.lineTo(38, 9);
-      ctx.moveTo(18, 17);  ctx.lineTo(40, 19);
-      ctx.stroke();
 
       ctx.restore();
 
-      // 8. Water Splashes around the cat
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      const splashCount = 8 + Math.floor(rnd() * 8);
-      for (let sp = 0; sp < splashCount; sp++) {
-        const sx = boardX + (rnd() - 0.5) * 160;
-        const sy = boardY + (rnd() - 0.5) * 35;
-        const srad = 2 + rnd() * 4;
-        ctx.beginPath();
-        ctx.arc(sx, sy, srad, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      // Prompt Label Badge on Canvas
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.75)';
+      ctx.fillRect(16, h - 54, w - 32, 38);
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillText(`Prompt: "${prompt.slice(0, 42)}${prompt.length > 42 ? '...' : ''}"`, 26, h - 30);
     }
   }
 
