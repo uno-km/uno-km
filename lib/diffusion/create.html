@@ -351,6 +351,13 @@
             </div>
           </div>
 
+                    <div style="margin-top: 1rem; margin-bottom: 0.75rem;">
+            <label style="display: block; font-size: 0.76rem; font-weight: 600; color: var(--text-muted, #64748b); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em;">
+              Hugging Face Access Token (Gated 모델 전용 / Non-Gated는 불필요)
+            </label>
+            <input type="password" id="hfTokenInput" placeholder="hf_... (FLUX 등 Gated 모델 접근 시에만 입력)" style="width: 100%; box-sizing: border-box; padding: 0.6rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color, #cbd5e1); font-size: 0.85rem; background: var(--bg-card, #ffffff); color: var(--text-main, #0f172a);">
+          </div>
+
           <div class="action-btn-wrapper">
             <button id="createBtn" class="btn-create-magic">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -627,6 +634,9 @@ console.log(\`Image saved to: \${result.path}\`);`;
 
       try {
         if (window.ForgeDiffusion) {
+          const hfToken = (document.getElementById('hfTokenInput')?.value || '').trim();
+          window.ForgeDiffusion.setHfToken(hfToken);
+
           // Phase 1: Load Weights
           await window.ForgeDiffusion.loadModelWeights(model, (p) => {
             progressBarFill.style.width = `${p.percent}%`;
@@ -664,7 +674,9 @@ console.log(\`Image saved to: \${result.path}\`);`;
         }
       } catch (err) {
         console.error('Generation failed:', err);
-        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span><span>Completed with Neural Fallback</span>`;
+        const errMsg = err.message || 'Generation Failed';
+        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span><span style="color:#ef4444; font-weight:600;">${errMsg}</span>`;
+        galleryStatus.innerHTML = `<span style="color:#ef4444;">오류 발생: ${errMsg}</span>`;
       } finally {
         progressBarContainer.style.display = 'none';
         canvasSpinnerOverlay.style.display = 'none';
