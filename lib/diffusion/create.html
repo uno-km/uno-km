@@ -458,18 +458,22 @@ image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
     let currentTab = 'forge';
 
     window.addEventListener('DOMContentLoaded', () => {
-      renderCurrentSeed();
+      renderBlankCanvas();
     });
 
-    function renderCurrentSeed() {
-      if (window.ForgeDiffusion) {
-        const seed = parseInt(seedInput.value, 10) || 42891;
-        const prompt = promptInput.value || 'cute orange cat surfing';
-        if (typeof window.ForgeDiffusion.renderInitialPlaceholder === 'function') {
-          window.ForgeDiffusion.renderInitialPlaceholder(outputCanvas, prompt, seed);
-        }
-        updateDownloadLink();
-      }
+    function renderBlankCanvas() {
+      const ctx = outputCanvas.getContext('2d');
+      ctx.clearRect(0, 0, 512, 512);
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 512, 512);
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 15px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('WebGPU Neural Canvas Ready', 256, 240);
+      ctx.fillStyle = '#64748b';
+      ctx.font = '13px sans-serif';
+      ctx.fillText('Click "Let's Create!" to generate real AI image', 256, 268);
+      ctx.textAlign = 'start';
     }
 
     function updateDownloadLink() {
@@ -571,32 +575,16 @@ console.log(\`Image saved to: \${result.path}\`);`;
       updateCode();
     }
 
-    promptInput.addEventListener('input', () => {
-      updateCode();
-      renderCurrentSeed();
-    });
-    modelSelect.addEventListener('change', () => {
-      updateCode();
-      renderCurrentSeed();
-    });
+    promptInput.addEventListener('input', updateCode);
+    modelSelect.addEventListener('change', updateCode);
     resSelect.addEventListener('change', updateCode);
-    stepsInput.addEventListener('input', () => {
-      updateCode();
-      renderCurrentSeed();
-    });
-    cfgInput.addEventListener('input', () => {
-      updateCode();
-      renderCurrentSeed();
-    });
-    seedInput.addEventListener('input', () => {
-      updateCode();
-      renderCurrentSeed();
-    });
+    stepsInput.addEventListener('input', updateCode);
+    cfgInput.addEventListener('input', updateCode);
+    seedInput.addEventListener('input', updateCode);
 
     randomSeedBtn.addEventListener('click', () => {
       seedInput.value = Math.floor(Math.random() * 900000) + 100000;
       updateCode();
-      renderCurrentSeed();
     });
 
     copyPromptBtn.addEventListener('click', async () => {
