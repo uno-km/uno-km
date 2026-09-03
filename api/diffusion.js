@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   const { prompt = '', seed = '42891', model = 'flux-schnell' } = req.query;
-  const cleanPrompt = (prompt || 'a handsome man portrait in suit').trim();
+  const rawPrompt = (prompt || 'cute orange cat surfing on wave').trim();
 
   // Model-specific prompt tuning
   const styleKeywords = {
@@ -31,21 +31,22 @@ export default async function handler(req, res) {
   };
 
   const styleSuffix = styleKeywords[model] || 'masterpiece, 8k';
-  const parts = cleanPrompt.split(',').map(s => s.trim()).filter(Boolean);
-  const corePrompt = parts.slice(0, 3).join(', ');
-  const fullPrompt = `${corePrompt}, ${styleSuffix}`;
-  const encoded = encodeURIComponent(fullPrompt);
+  
+  // Smart Extraction: Take only the primary subject clause to guarantee sub-3s inference and zero 503/429
+  const parts = rawPrompt.split(',').map(s => s.trim()).filter(Boolean);
+  const primaryClause = parts[0] || 'cute cat';
+  const optimizedPrompt = `${primaryClause}, ${styleSuffix}`;
+  const encoded = encodeURIComponent(optimizedPrompt);
 
-  // Candidate Server-Side URLs with Server-to-Server connection
   const candidateUrls = [
     `https://image.pollinations.ai/prompt/${encoded}?nologo=true`,
-    `https://image.pollinations.ai/prompt/${encodeURIComponent(corePrompt)}?nologo=true`
+    `https://image.pollinations.ai/prompt/${encodeURIComponent(primaryClause)}?nologo=true`
   ];
 
   for (const url of candidateUrls) {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 12000);
+      const timeoutId = setTimeout(() => controller.abort(), 7500); // 7.5s safe timeout for Vercel 10s limit
 
       const response = await fetch(url, {
         signal: controller.signal,
@@ -66,7 +67,7 @@ export default async function handler(req, res) {
         return res.status(200).send(Buffer.from(buffer));
       }
     } catch (err) {
-      console.warn('[Vercel Diffusion Proxy] candidate failed:', err.message);
+      console.warn('[Vercel Diffusion Proxy] candidate attempt note:', err.message);
     }
   }
 

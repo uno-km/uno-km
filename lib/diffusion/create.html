@@ -344,10 +344,10 @@
             </div>
             <div class="param-item">
               <label>Execution Backend</label>
-              <select id="backendSelect" aria-label="Execution Backend">
-                <option value="webgpu" selected>Client WebGPU (AMEVA-Forge)</option>
-                <option value="termux">Android Termux Native ARM64 (NEON)</option>
-              </select>
+                          <select id="backendSelect" style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color, #cbd5e1); background: var(--bg-card, #ffffff); color: var(--text-main, #0f172a); font-size: 0.9rem; font-weight: 500;">
+              <option value="cloud" selected>Cloud AI Cluster (Zero-Download Fast)</option>
+              <option value="webgpu">Client WebGPU (AMEVA-Forge WGSL On-Device)</option>
+            </select>
             </div>
           </div>
 
@@ -636,9 +636,11 @@ console.log(\`Image saved to: \${result.path}\`);`;
           });
 
           // Phase 2: Denoising Loop and Real AI generation
+          const backend = backendSelect.value;
           const result = await window.ForgeDiffusion.generate({
             prompt: prompt,
             model: model,
+            backend: backend,
             steps: steps,
             cfg: cfg,
             seed: seed,
