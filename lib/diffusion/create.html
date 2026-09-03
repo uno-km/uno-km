@@ -144,6 +144,42 @@
       display: block;
       image-rendering: auto;
     }
+    .canvas-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 10;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .spinner-ring {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      border-top-color: #00f5d4;
+      border-right-color: #38bdf8;
+      border-radius: 50%;
+      animation: spinnerRotate 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes spinnerRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spinner-text {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
     .progress-bar-container {
       width: 100%;
       height: 8px;
@@ -321,10 +357,14 @@
           </div>
         </div>
 
-        <!-- Right: Real-Time WebGPU Rendered Canvas -->
+        <!-- Right: Real-Time WebGPU Rendered Canvas with Loading Spinner -->
         <div class="preview-card">
           <div class="canvas-wrapper">
             <canvas id="outputCanvas" width="512" height="512"></canvas>
+            <div class="canvas-loading-overlay" id="canvasSpinnerOverlay">
+              <div class="spinner-ring"></div>
+              <span class="spinner-text" id="spinnerText">Rendering Neural Pixels...</span>
+            </div>
           </div>
 
           <div class="generation-badge" id="statusBadge">
@@ -412,6 +452,8 @@ image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
     const downloadBtn = document.getElementById('downloadBtn');
     const progressBarContainer = document.getElementById('progressBarContainer');
     const progressBarFill = document.getElementById('progressBarFill');
+    const canvasSpinnerOverlay = document.getElementById('canvasSpinnerOverlay');
+    const spinnerText = document.getElementById('spinnerText');
 
     let currentTab = 'forge';
 
@@ -536,7 +578,10 @@ console.log(\`Image saved to: \${result.path}\`);`;
       updateCode();
     }
 
-    promptInput.addEventListener('input', updateCode);
+    promptInput.addEventListener('input', () => {
+      updateCode();
+      renderCurrentSeed();
+    });
     modelSelect.addEventListener('change', () => {
       updateCode();
       renderCurrentSeed();
@@ -582,11 +627,13 @@ console.log(\`Image saved to: \${result.path}\`);`;
       const steps = parseInt(stepsInput.value, 10) || 4;
       const cfg = parseFloat(cfgInput.value) || 1.5;
       const seed = parseInt(seedInput.value, 10) || 42891;
-      const prompt = promptInput.value || 'an eagle';
+      const prompt = promptInput.value || 'cute orange cat surfing';
 
       createBtn.disabled = true;
       progressBarContainer.style.display = 'block';
       progressBarFill.style.width = '10%';
+      canvasSpinnerOverlay.style.display = 'flex';
+      spinnerText.textContent = 'Initializing Neural VRAM...';
 
       statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Initializing ${model} Pipeline...</span>`;
 
@@ -595,6 +642,7 @@ console.log(\`Image saved to: \${result.path}\`);`;
           // Phase 1: Load Weights
           await window.ForgeDiffusion.loadModelWeights(model, (p) => {
             progressBarFill.style.width = `${p.percent}%`;
+            spinnerText.textContent = p.status;
             const el = document.getElementById('statusBadgeText');
             if (el) el.textContent = p.status;
           });
@@ -611,6 +659,7 @@ console.log(\`Image saved to: \${result.path}\`);`;
             canvas: outputCanvas,
             onStep: (s) => {
               if (s.progress) progressBarFill.style.width = `${s.progress}%`;
+              spinnerText.textContent = s.message;
               const el = document.getElementById('statusBadgeText');
               if (el) el.textContent = s.message;
             }
@@ -627,6 +676,7 @@ console.log(\`Image saved to: \${result.path}\`);`;
         statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span><span>Completed with Neural Fallback</span>`;
       } finally {
         progressBarContainer.style.display = 'none';
+        canvasSpinnerOverlay.style.display = 'none';
         createBtn.disabled = false;
         updateDownloadLink();
       }
