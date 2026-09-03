@@ -279,6 +279,7 @@
     ["/foundation/governance.html", "Governance & Merit"],
     ["/foundation/incubation.html", "Incubation Policy"],
     ["/foundation/sponsorship.html", "Sponsorship & Support"],
+    ["/foundation/metrics.html", "Ecosystem Metrics & Analytics"],
     ["/foundation/dashboard/", "3D Neural Fabric Map"]
   ];
 
