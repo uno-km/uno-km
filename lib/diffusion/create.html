@@ -425,8 +425,9 @@ image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
         const model = modelSelect.value;
         const steps = parseInt(stepsInput.value, 10) || 4;
         const cfg = parseFloat(cfgInput.value) || 1.5;
-        const ctx = outputCanvas.getContext('2d');
-        window.ForgeDiffusion._renderProceduralNeuralCanvas(ctx, 512, 512, {
+        const prompt = promptInput.value || '';
+        window.ForgeDiffusion.renderNeuralArt(outputCanvas, {
+          prompt: prompt,
           model: model,
           seed: seed,
           steps: steps,
