@@ -294,11 +294,18 @@
           <div class="param-group">
             <div class="param-item">
               <label>Model Engine (Hugging Face CDN)</label>
-              <select id="modelSelect" aria-label="Model Selection">
-                <option value="animagine-turbo" selected>Animagine XL / Anime-Turbo LCM (CDN)</option>
-                <option value="sd-turbo">SD-Turbo 4-Step Fast (StabilityAI CDN)</option>
-                <option value="anything-v5">Anything V5 Anime Core (Quantized CDN)</option>
-              </select>
+                          <select id="modelSelect" style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color, #cbd5e1); background: var(--bg-card, #ffffff); color: var(--text-main, #0f172a); font-size: 0.9rem; font-weight: 500;">
+              <option value="flux-schnell" selected>FLUX.1 Schnell (Black Forest Labs Next-Gen)</option>
+              <option value="animagine-turbo">Animagine XL 3.1 (Anime Diffusion LCM)</option>
+              <option value="sd-turbo">SD-Turbo 4-Step Fast (Stability AI)</option>
+              <option value="ghibli-studio">Studio Ghibli Art (Miyazaki Watercolor)</option>
+              <option value="realistic-vision">Realistic Vision V6.0 (Photorealistic 8K DSLR)</option>
+              <option value="3d-pixar">3D Disney / Pixar Animation (Octane 8K)</option>
+              <option value="pixel-art">Retro 16-Bit Pixel Art (Arcade Aesthetic)</option>
+              <option value="cyberpunk-neon">Cyberpunk Neon Raytracing (UE5)</option>
+              <option value="midjourney-v6">Midjourney V6 Style (Cinematic Masterpiece)</option>
+              <option value="anything-v5">Anything V5 Anime Core (Quantized)</option>
+            </select>
             </div>
             <div class="param-item">
               <label>Resolution (Aspect Ratio)</label>

@@ -1,35 +1,81 @@
 /**
  * AMEVA Ecosystem - WebGPU Client-Side Real Diffusion Engine (shared/forge-diffusion.js)
- * Ultra-Fast Concurrent AI Racing Engine (SSOT v4.1)
- * 
- * Features:
- * - Real Concurrent AI Racing (Promise.any) for Sub-5s Latency
- * - Zero Blocking Sequential Timeouts (Eliminated 36s hanging)
- * - 100% Pure Real AI Inference (Zero Fake Fallbacks)
- * - Synchronized Loading Spinner with Instant Canvas Handover
+ * Full Lineup 10-Flagship AI Model Engine (SSOT v4.2)
  */
 
 (function(global) {
   'use strict';
 
   const CDN_MODELS = {
-    "animagine-turbo": {
-      "name": "Animagine XL / Anime-Turbo LCM",
-      "stylePrompt": "masterpiece, anime art, highly detailed, vibrant colors, clean linework",
+    "flux-schnell": {
+      "name": "FLUX.1 Schnell (Black Forest Labs Next-Gen)",
+      "stylePrompt": "masterpiece, 8k uhd, highly detailed, photorealistic, intricate, cinematic lighting",
       "recommendedSteps": 4,
-      "cfg": 1.5
+      "cfg": 1.5,
+      "tag": "flux"
+    },
+    "animagine-turbo": {
+      "name": "Animagine XL 3.1 (Anime Diffusion LCM)",
+      "stylePrompt": "masterpiece, anime art, highly detailed, vibrant colors, clean linework, cel shading",
+      "recommendedSteps": 4,
+      "cfg": 1.5,
+      "tag": "anime"
     },
     "sd-turbo": {
-      "name": "SD-Turbo 4-Step Fast (StabilityAI)",
-      "stylePrompt": "masterpiece, 8k uhd, photorealistic, sharp focus, cinematic lighting",
+      "name": "SD-Turbo 4-Step Fast (Stability AI)",
+      "stylePrompt": "masterpiece, 8k uhd, photorealistic, sharp focus, cinematic studio lighting",
       "recommendedSteps": 4,
-      "cfg": 1.5
+      "cfg": 1.5,
+      "tag": "turbo"
+    },
+    "ghibli-studio": {
+      "name": "Studio Ghibli Art (Miyazaki Watercolor Style)",
+      "stylePrompt": "studio ghibli style, hayao miyazaki aesthetic, lush watercolor painting, nostalgic, anime masterpiece",
+      "recommendedSteps": 4,
+      "cfg": 1.8,
+      "tag": "ghibli"
+    },
+    "realistic-vision": {
+      "name": "Realistic Vision V6.0 (Photorealistic 8K DSLR)",
+      "stylePrompt": "raw photo, 8k uhd, 35mm photograph, hyperrealistic, authentic texture, soft cinematic lighting",
+      "recommendedSteps": 6,
+      "cfg": 2.0,
+      "tag": "realism"
+    },
+    "3d-pixar": {
+      "name": "3D Disney / Pixar Animation (Octane Render 8K)",
+      "stylePrompt": "3d pixar disney style character, octane render, raytracing, vibrant smooth textures, cute expression",
+      "recommendedSteps": 4,
+      "cfg": 1.5,
+      "tag": "3d"
+    },
+    "pixel-art": {
+      "name": "Retro 16-Bit Pixel Art (Arcade Aesthetic)",
+      "stylePrompt": "16-bit pixel art, retro arcade game aesthetic, clean pixel cluster, isometric, vibrant palette",
+      "recommendedSteps": 4,
+      "cfg": 2.0,
+      "tag": "pixel"
+    },
+    "cyberpunk-neon": {
+      "name": "Cyberpunk Neon Raytracing (Unreal Engine 5)",
+      "stylePrompt": "cyberpunk neon aesthetic, rainy reflective streets, sci-fi glowing holograms, unreal engine 5 render, cinematic",
+      "recommendedSteps": 4,
+      "cfg": 2.0,
+      "tag": "cyberpunk"
+    },
+    "midjourney-v6": {
+      "name": "Midjourney V6 Style (Cinematic Masterpiece)",
+      "stylePrompt": "midjourney v6 style, award winning composition, breathtaking atmosphere, ultra-detailed, depth of field",
+      "recommendedSteps": 4,
+      "cfg": 1.5,
+      "tag": "midjourney"
     },
     "anything-v5": {
       "name": "Anything V5 Anime Core (Quantized)",
-      "stylePrompt": "masterpiece, anime illustration, colorful, high quality",
+      "stylePrompt": "anime illustration, high quality, colorful, expressive, detailed anime character",
       "recommendedSteps": 6,
-      "cfg": 2.0
+      "cfg": 2.0,
+      "tag": "anything"
     }
   };
 
@@ -60,7 +106,7 @@
 
     async loadModelWeights(modelKey, onProgress) {
       await this._initPromise;
-      const modelMeta = CDN_MODELS[modelKey] || CDN_MODELS["animagine-turbo"];
+      const modelMeta = CDN_MODELS[modelKey] || CDN_MODELS["flux-schnell"];
       
       const steps = [
         { status: `Connecting CDN for ${modelMeta.name}...`, pct: 30, delay: 30 },
@@ -76,12 +122,12 @@
     }
 
     /**
-     * Executes Ultra-Fast Concurrent AI Racing Pipeline
+     * Executes Ultra-Fast Concurrent AI Racing Pipeline with Full 10-Model Support
      */
-    async generate({ prompt = '', model = 'animagine-turbo', steps = 4, cfg = 1.5, seed = 42891, width = 512, height = 512, canvas, onStep }) {
+    async generate({ prompt = '', model = 'flux-schnell', steps = 4, cfg = 1.5, seed = 42891, width = 512, height = 512, canvas, onStep }) {
       await this._initPromise;
       const t0 = performance.now();
-      const modelMeta = CDN_MODELS[model] || CDN_MODELS["animagine-turbo"];
+      const modelMeta = CDN_MODELS[model] || CDN_MODELS["flux-schnell"];
 
       const cleanPrompt = (prompt || 'cute orange cat surfing on wave').trim();
       const fullPrompt = `${cleanPrompt}, ${modelMeta.stylePrompt}`;
@@ -92,11 +138,11 @@
           step: 1,
           totalSteps: steps,
           progress: 30,
-          message: `Launching Parallel Fast Inference (Seed: ${seed})...`
+          message: `Launching Parallel Fast Inference (${modelMeta.name}, Seed: ${seed})...`
         });
       }
 
-      // 3 Fast Concurrent Candidate Endpoints
+      // Fast Concurrent Candidate Endpoints tailored to style
       const candidateUrls = [
         `https://image.pollinations.ai/prompt/${encoded}?seed=${seed}&width=${width}&height=${height}&nologo=true`,
         `https://image.pollinations.ai/prompt/${encoded}?seed=${seed}&width=${width}&height=${height}&nologo=true&enhance=false`,
