@@ -101,11 +101,36 @@
       font-size: 0.78rem;
       padding: 10px;
       border-radius: 4px;
-      height: 160px;
+      height: 180px;
+      min-height: 120px;
+      max-height: 600px;
       overflow-y: auto;
       white-space: pre-wrap;
-      margin-top: 10px;
+      word-break: break-all;
+      margin-top: 6px;
       border: 1px solid #1e293b;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      cursor: text !important;
+      resize: vertical;
+    }
+    .log-box::selection, .log-box *::selection {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    #sttResultBox, #sttTranscriptList {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      cursor: text !important;
+    }
+    #sttResultBox::selection, #sttResultBox *::selection,
+    #sttTranscriptList::selection, #sttTranscriptList *::selection {
+      background: #0284c7 !important;
+      color: #ffffff !important;
     }
     .classic-btn {
       background: var(--primary-color);
@@ -252,7 +277,14 @@
             <div id="sttTranscriptList" style="background:#020617; border:1px solid #1e293b; border-radius:4px; padding:8px; max-height:160px; overflow-y:auto; display:none;"></div>
           </div>
 
-          <div id="consoleOutput" class="log-box">Initializing WebGPU hardware adapter...</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            <span style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.04em;">Hardware Console Output:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" id="btnCopyLog" class="classic-btn-secondary" style="padding:2px 8px; font-size:0.72rem; cursor:pointer;" title="Copy all console output to clipboard">Copy Log</button>
+              <button type="button" id="btnClearLog" class="classic-btn-secondary" style="padding:2px 8px; font-size:0.72rem; cursor:pointer;" title="Clear console log">Clear</button>
+            </div>
+          </div>
+          <div id="consoleOutput" class="log-box" title="Drag to select or click 'Copy Log' to copy">Initializing WebGPU hardware adapter...</div>
         </div>
       </div>
 
@@ -611,6 +643,43 @@ scheduler = "EulerDiscreteScheduler"
         } catch (err) {
           log(`Audio playback error: ${err.message}`, true);
         }
+      });
+    }
+
+    
+    // Copy Log & Clear Log Controls
+    const btnCopyLog = document.getElementById('btnCopyLog');
+    if (btnCopyLog) {
+      btnCopyLog.addEventListener('click', async () => {
+        const text = document.getElementById('consoleOutput').innerText;
+        try {
+          await navigator.clipboard.writeText(text);
+          const orig = btnCopyLog.innerText;
+          btnCopyLog.innerText = "Copied!";
+          btnCopyLog.style.color = "#10b981";
+          btnCopyLog.style.borderColor = "#10b981";
+          setTimeout(() => {
+            btnCopyLog.innerText = orig;
+            btnCopyLog.style.color = "";
+            btnCopyLog.style.borderColor = "";
+          }, 1500);
+        } catch (err) {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          btnCopyLog.innerText = "Copied!";
+          setTimeout(() => { btnCopyLog.innerText = "Copy Log"; }, 1500);
+        }
+      });
+    }
+
+    const btnClearLog = document.getElementById('btnClearLog');
+    if (btnClearLog) {
+      btnClearLog.addEventListener('click', () => {
+        document.getElementById('consoleOutput').innerText = "";
       });
     }
 
