@@ -211,6 +211,23 @@
             <input type="text" id="hfCustomUrl" placeholder="https://huggingface.co/.../resolve/main/model.safetensors" />
           </div>
 
+          <!-- Audio Input Selection Bar (STT Specific) -->
+          <div id="audioInputBar" style="margin-bottom:12px; padding:10px; background:#f8fafc; border:1px solid var(--border-color); border-radius:4px; display:none;">
+            <div style="font-size:0.75rem; font-weight:700; color:#64748b; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.04em;">
+              Audio Input Selection (16kHz PCM):
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+              <button type="button" id="btnRecordMic" class="classic-btn" style="padding:6px 12px; font-size:0.8rem;">Record Mic (3s)</button>
+              <label for="audioFileInput" class="classic-btn-secondary" style="padding:6px 12px; font-size:0.8rem; cursor:pointer;">
+                Upload Audio (WAV/MP3)
+              </label>
+              <input type="file" id="audioFileInput" accept="audio/*" style="display:none;" />
+              <button type="button" id="btnPlayAudio" class="classic-btn-secondary" style="padding:6px 12px; font-size:0.8rem;" disabled>Play Audio</button>
+            </div>
+            <div id="audioRecordTimer" style="font-family:var(--font-mono); font-size:0.75rem; color:#ef4444; margin-top:6px; font-weight:600; display:none;">Recording active... Speak into your microphone now (3s)</div>
+            <div id="audioSourceLabel" style="font-family:var(--font-mono); font-size:0.75rem; color:#475569; margin-top:4px;">Active Input: Synthetic 440Hz Sine Wave (Default)</div>
+          </div>
+
           <textarea id="pythonEditor" class="editor-textarea" spellcheck="false"></textarea>
           
           <div style="margin-top: 10px; display: flex; gap: 8px;">
@@ -223,6 +240,12 @@
         <div class="studio-panel">
           <h4 id="chartTitle">Execution Dynamics & Hardware Log</h4>
           <canvas id="lossChart" width="380" height="170"></canvas>
+          
+          <div id="sttResultBox" style="margin-top:10px; padding:8px 10px; background:#0f172a; border:1px solid #1e293b; border-radius:4px; font-family:var(--font-mono); font-size:0.78rem; color:#38bdf8; display:none;">
+            <div style="color:#94a3b8; font-size:0.7rem; text-transform:uppercase; margin-bottom:2px;">Whisper STT Acoustic Feature & Tokens:</div>
+            <div id="sttResultText" style="color:#f8fafc;">[Awaiting audio dispatch...]</div>
+          </div>
+
           <div id="consoleOutput" class="log-box">Initializing WebGPU hardware adapter...</div>
         </div>
       </div>
@@ -259,6 +282,11 @@
 
     let orch = new AllModalOrchestrator();
     let currentDevice = null;
+    let customAudioPcm = null;
+    let currentAudioSource = 'Synthetic 440Hz Sine Wave (0.5s)';
+    let currentPcmForPlayback = null;
+    let mediaRecorder = null;
+    let recordTimerInterval = null;
 
     const PRESET_CONFIGS = {
       grand: {
@@ -393,6 +421,144 @@ scheduler = "EulerDiscreteScheduler"
       document.getElementById('pythonEditor').value = cfg.script;
       document.getElementById('presetExplanationZone').innerHTML = cfg.explanation;
       document.getElementById('metricLoss').innerText = "--";
+
+      // Auto-sync Hugging Face selector to match modality
+      const hfMap = {
+        stt: 'whisper',
+        llm: 'smollm',
+        vision: 'clip',
+        diffusion: 'sd15',
+        tts: 'none',
+        grand: 'whisper',
+        failfast: 'sd15'
+      };
+      const sel = document.getElementById('hfPresetSelect');
+      if (hfMap[presetKey] && sel) {
+        sel.value = hfMap[presetKey];
+        sel.dispatchEvent(new Event('change'));
+      }
+
+      // Audio Input Bar visibility
+      const audioBar = document.getElementById('audioInputBar');
+      if (audioBar) {
+        audioBar.style.display = (presetKey === 'stt') ? 'block' : 'none';
+      }
+      const sttBox = document.getElementById('sttResultBox');
+      if (sttBox) {
+        sttBox.style.display = (presetKey === 'stt') ? 'block' : 'none';
+      }
+    }
+
+
+    // Audio Controls (STT)
+    const btnRecordMic = document.getElementById('btnRecordMic');
+    const timerEl = document.getElementById('audioRecordTimer');
+    const labelEl = document.getElementById('audioSourceLabel');
+    const btnPlay = document.getElementById('btnPlayAudio');
+
+    if (btnRecordMic) {
+      btnRecordMic.addEventListener('click', async () => {
+        try {
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            throw new Error("Microphone API is not supported in this browser environment.");
+          }
+          btnRecordMic.disabled = true;
+          timerEl.style.display = 'block';
+          log("Requesting browser microphone stream for STT audio capture...");
+
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const audioChunks = [];
+          mediaRecorder = new MediaRecorder(stream);
+
+          mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) audioChunks.push(e.data);
+          };
+
+          let countdown = 3;
+          timerEl.innerText = `Recording active... Speak into your microphone now (${countdown}s remaining)`;
+          recordTimerInterval = setInterval(() => {
+            countdown--;
+            if (countdown > 0) {
+              timerEl.innerText = `Recording active... Speak into your microphone now (${countdown}s remaining)`;
+            }
+          }, 1000);
+
+          mediaRecorder.onstop = async () => {
+            clearInterval(recordTimerInterval);
+            timerEl.style.display = 'none';
+            btnRecordMic.disabled = false;
+            stream.getTracks().forEach(t => t.stop());
+
+            try {
+              const audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType });
+              const arrayBuffer = await audioBlob.arrayBuffer();
+              const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+              const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+              customAudioPcm = new Float32Array(decoded.getChannelData(0));
+              currentAudioSource = `Microphone (${(customAudioPcm.length / 16000).toFixed(2)}s, ${customAudioPcm.length} samples)`;
+              labelEl.innerText = `Active Input: ${currentAudioSource}`;
+              btnPlay.disabled = false;
+              log(`Microphone captured: ${customAudioPcm.length} samples (16,000Hz PCM). Dispatching directly to WebGPU WGSL...`);
+              document.getElementById('btnRun').click();
+            } catch (err) {
+              log(`Audio decoding failed: ${err.message}`, true);
+            }
+          };
+
+          mediaRecorder.start();
+          setTimeout(() => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+              mediaRecorder.stop();
+            }
+          }, 3000);
+
+        } catch (err) {
+          btnRecordMic.disabled = false;
+          timerEl.style.display = 'none';
+          log(`Microphone Access Error: ${err.message}`, true);
+        }
+      });
+    }
+
+    const audioFileInput = document.getElementById('audioFileInput');
+    if (audioFileInput) {
+      audioFileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        try {
+          log(`Loading audio file: ${file.name} (${(file.size / 1024).toFixed(1)} KB)...`);
+          const arrayBuffer = await file.arrayBuffer();
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+          const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+          customAudioPcm = new Float32Array(decoded.getChannelData(0));
+          currentAudioSource = `File: ${file.name} (${(customAudioPcm.length / 16000).toFixed(2)}s, ${customAudioPcm.length} samples)`;
+          labelEl.innerText = `Active Input: ${currentAudioSource}`;
+          btnPlay.disabled = false;
+          log(`Audio file decoded: ${customAudioPcm.length} samples (16,000Hz PCM). Dispatching to WebGPU WGSL...`);
+          document.getElementById('btnRun').click();
+        } catch (err) {
+          log(`Audio File Decode Error: ${err.message}`, true);
+        }
+      });
+    }
+
+    if (btnPlay) {
+      btnPlay.addEventListener('click', () => {
+        if (!currentPcmForPlayback) return;
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+          const buffer = audioCtx.createBuffer(1, currentPcmForPlayback.length, 16000);
+          buffer.copyToChannel(currentPcmForPlayback, 0);
+          const source = audioCtx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(audioCtx.destination);
+          source.start();
+          log(`Audio playback started: ${(currentPcmForPlayback.length / 16000).toFixed(2)}s at 16kHz.`);
+        } catch (err) {
+          log(`Audio playback error: ${err.message}`, true);
+        }
+      });
     }
 
     // Set initial preset
@@ -459,31 +625,105 @@ scheduler = "EulerDiscreteScheduler"
         }
 
         if (presetKey === 'stt') {
+          let pcm;
+          if (customAudioPcm && customAudioPcm.length >= 400) {
+            pcm = customAudioPcm;
+          } else {
+            const sampleRate = 16000;
+            const duration = 0.5;
+            pcm = new Float32Array(sampleRate * duration);
+            for (let i = 0; i < pcm.length; i++) {
+              pcm[i] = 0.6 * Math.sin(2 * Math.PI * 440 * i / sampleRate) + 0.3 * Math.sin(2 * Math.PI * 880 * i / sampleRate);
+            }
+            currentAudioSource = 'Synthetic 440Hz + 880Hz Dual Tone (0.5s)';
+            if (labelEl) labelEl.innerText = `Active Input: ${currentAudioSource}`;
+          }
+
+          currentPcmForPlayback = pcm;
+          if (btnPlay) btnPlay.disabled = false;
+
+          // Signal Energy & Peak
+          let sumSq = 0, peakAmp = 0;
+          for (let i = 0; i < pcm.length; i++) {
+            const absV = Math.abs(pcm[i]);
+            if (absV > peakAmp) peakAmp = absV;
+            sumSq += pcm[i] * pcm[i];
+          }
+          const rms = Math.sqrt(sumSq / pcm.length);
+          const rmsDb = (20 * Math.log10(Math.max(rms, 1e-5))).toFixed(1);
+          const isSpeechActive = rmsDb > -45;
+
           const t0 = performance.now();
-          const pcm = new Float32Array(16000 * 0.3);
-          for (let i = 0; i < pcm.length; i++) pcm[i] = 0.5 * Math.sin(2 * Math.PI * 440 * i / 16000);
           const { mels, numFrames } = await orch.listenGPU(pcm, 16000);
           const t1 = performance.now();
           const elapsed = (t1 - t0).toFixed(2);
 
-          metricLoss.innerText = `${elapsed} ms`;
-          metricVram.innerText = `${((mels.length * 4) / 1024).toFixed(1)} KB`;
-          log(`STT Mel Spectrogram computed on WebGPU: ${numFrames} frames x 80 bins in ${elapsed} ms.`);
+          // Whisper Conv1D 4x Temporal Downsampling
+          const dModel = 384;
+          const mockWeights = {
+            conv1Weight: new Float32Array(dModel * 80 * 3).fill(0.01),
+            conv1Bias: new Float32Array(dModel).fill(0.0),
+            conv2Weight: new Float32Array(dModel * dModel * 3).fill(0.01),
+            conv2Bias: new Float32Array(dModel).fill(0.0),
+            positionEmbedding: new Float32Array(1500 * dModel).fill(0.005),
+            normGamma: new Float32Array(dModel).fill(1.0),
+            normBeta: new Float32Array(dModel).fill(0.0),
+          };
+          const audioTokens = STTEngine.forwardAudioEncoder(mels, numFrames, mockWeights, dModel);
+          const outTokens = Math.floor((Math.floor((numFrames + 1) / 2) + 1) / 2);
 
-          // Render Spectrogram on Canvas
+          metricLoss.innerText = `${elapsed} ms`;
+          metricVram.innerText = `${(((mels.length + audioTokens.length) * 4) / 1024).toFixed(1)} KB`;
+          log(`STT Mel Spectrogram computed on WebGPU: ${numFrames} frames x 80 bins in ${elapsed} ms.`);
+          log(`Whisper Conv1D Downsampling: [${numFrames} frames, 80] -> [${outTokens} tokens, ${dModel} dim].`);
+          log(`Signal Metrics: Peak=${peakAmp.toFixed(3)}, RMS=${rmsDb} dB, VAD=${isSpeechActive ? 'Speech Detected' : 'Silence'}.`);
+
+          const sttRes = document.getElementById('sttResultText');
+          if (sttRes) {
+            sttRes.innerText = `${currentAudioSource} | VAD: ${isSpeechActive ? 'Speech Active' : 'Silence'} (RMS: ${rmsDb} dB) | Latents: ${outTokens} tokens x ${dModel} dim`;
+          }
+
+          // Render High-Contrast Mel-Spectrogram Heatmap on Canvas
+          let minM = Infinity, maxM = -Infinity;
+          for (let i = 0; i < mels.length; i++) {
+            if (mels[i] < minM) minM = mels[i];
+            if (mels[i] > maxM) maxM = mels[i];
+          }
+          const rangeM = (maxM - minM) || 1.0;
+
           ctx.fillStyle = "#020617";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           const imgData = ctx.createImageData(canvas.width, canvas.height);
+
           for (let y = 0; y < canvas.height; y++) {
-            const bin = Math.floor((1 - y / canvas.height) * 80);
+            const bin = Math.min(79, Math.max(0, Math.floor((1.0 - y / canvas.height) * 80)));
             for (let x = 0; x < canvas.width; x++) {
-              const fIdx = Math.floor(x / canvas.width * numFrames);
-              const val = mels[fIdx * 80 + bin] || -10;
-              const norm = Math.max(0, Math.min(255, Math.floor((val + 10) / 10 * 255)));
+              const fIdx = Math.min(numFrames - 1, Math.max(0, Math.floor(x / canvas.width * numFrames)));
+              const val = mels[fIdx * 80 + bin];
+              const norm = Math.max(0.0, Math.min(1.0, (val - minM) / rangeM));
+
+              let r = 0, g = 0, b = 0;
+              if (norm < 0.35) {
+                const p = norm / 0.35;
+                r = Math.floor(2 + p * 4);
+                g = Math.floor(6 + p * 176);
+                b = Math.floor(23 + p * 190);
+              } else if (norm < 0.7) {
+                const p = (norm - 0.35) / 0.35;
+                r = Math.floor(6 + p * 228);
+                g = Math.floor(182 + p * 0);
+                b = Math.floor(213 - p * 200);
+              } else {
+                const p = (norm - 0.7) / 0.3;
+                r = Math.floor(234 + p * 21);
+                g = Math.floor(180 - p * 100);
+                b = Math.floor(13 + p * 60);
+              }
+
               const idx = (y * canvas.width + x) * 4;
-              imgData.data[idx] = norm;
-              imgData.data[idx + 1] = Math.floor(norm * 0.7);
-              imgData.data[idx + 2] = 255 - norm;
+              imgData.data[idx] = r;
+              imgData.data[idx + 1] = g;
+              imgData.data[idx + 2] = b;
               imgData.data[idx + 3] = 255;
             }
           }
