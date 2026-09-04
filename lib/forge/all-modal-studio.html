@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ All-Modal WebGPU Studio | AMEVA-Forge</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <style>
+    .studio-panel {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: #f8fafc;
+    }
+    .studio-panel h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .hf-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .hf-box label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .hf-box select, .hf-box input[type="text"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .hf-box select:focus, .hf-box input:focus, textarea:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    button.btn-gpu {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button.btn-gpu:hover {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+    }
+    button.btn-sec {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    button.btn-sec:hover {
+      background: #334155;
+    }
+    .dev-console {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .gpu-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #064e3b;
+      color: #6ee7b7;
+      letter-spacing: 0.04em;
+    }
+    .canvas-preview {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      width: 100%;
+      image-rendering: pixelated;
+      margin-top: 12px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .nav-tabs a {
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-tabs a.active, .nav-tabs a:hover {
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+  </style>
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+    <main class="content">
+      <div class="nav-tabs">
+        <a href="all-modal-studio.html">⚡ All-Modal Studio</a>
+        <a href="stt.html">🎙️ STT (Whisper)</a>
+        <a href="tts.html">🔊 TTS (Speech)</a>
+        <a href="vision.html">👁️ Vision (ViT/Canny)</a>
+        <a href="llm.html">🧠 LLM (FlashAttn)</a>
+        <a href="diffusion.html">🎨 Diffusion (UNet)</a>
+      </div>
+      <h2>⚡ All-Modal WebGPU Studio</h2>
+      <p class="subtitle">순수 WebGPU 기반 STT(귀) · LLM(뇌) · Vision(눈) · Diffusion(손) · TTS(입) 5대 모달리티 종합 하드웨어 런타임 스튜디오</p>
+
+      <div class="studio-panel" style="border-color: #3b82f6;">
+        <h3>
+          <span>🏛️ AllModalOrchestrator: Grand Unified WebGPU Pipeline</span>
+          <span class="gpu-badge">ACTIVE ENGINE</span>
+        </h3>
+        <p style="color: #94a3b8; font-size: 0.9rem;">단일 WebGPU 세션에서 브라우저 VRAM 메모리를 점유하며 5대 모달리티를 연속 순전파 구동합니다. CPU 몰래 폴백 없이 오류 발생 시 즉각 명확한 개발자 로그를 출력합니다.</p>
+        <div class="btn-row">
+          <button class="btn-gpu" style="font-size: 1rem; padding: 12px 24px;" onclick="window.runGrandPipeline()">🚀 E2E 올모달 대통합 순전파 실행 (Grand Run)</button>
+          <button class="btn-sec" onclick="window.checkFailFast()">🧪 페일패스트 결함 경계 검증</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <div class="studio-panel" style="margin-bottom: 0;">
+          <h4>🎙️ 1. STT</h4>
+          <p style="font-size: 0.82rem; color: #94a3b8;">16kHz PCM ➔ STT_MEL_WGSL</p>
+          <button class="btn-gpu" style="width: 100%;" onclick="location.href='stt.html'">STT 스튜디오 이동 ➔</button>
+        </div>
+        <div class="studio-panel" style="margin-bottom: 0;">
+          <h4>🔊 2. TTS</h4>
+          <p style="font-size: 0.82rem; color: #94a3b8;">Rosenberg 성문 펄스 & 포먼트</p>
+          <button class="btn-gpu" style="width: 100%;" onclick="location.href='tts.html'">TTS 스튜디오 이동 ➔</button>
+        </div>
+        <div class="studio-panel" style="margin-bottom: 0;">
+          <h4>👁️ 3. Vision</h4>
+          <p style="font-size: 0.82rem; color: #94a3b8;">ViT-B/16 & Canny BFS 엣지</p>
+          <button class="btn-gpu" style="width: 100%;" onclick="location.href='vision.html'">Vision 스튜디오 이동 ➔</button>
+        </div>
+        <div class="studio-panel" style="margin-bottom: 0;">
+          <h4>🧠 4. LLM</h4>
+          <p style="font-size: 0.82rem; color: #94a3b8;">FlashAttn-2 & SwiGLU</p>
+          <button class="btn-gpu" style="width: 100%;" onclick="location.href='llm.html'">LLM 스튜디오 이동 ➔</button>
+        </div>
+        <div class="studio-panel" style="margin-bottom: 0;">
+          <h4>🎨 5. Diffusion</h4>
+          <p style="font-size: 0.82rem; color: #94a3b8;">UNet Cross-Attention & VAE</p>
+          <button class="btn-gpu" style="width: 100%;" onclick="location.href='diffusion.html'">Diffusion 스튜디오 이동 ➔</button>
+        </div>
+      </div>
+
+      <div class="studio-panel">
+        <h3>📋 실시간 WebGPU 런타임 진단 & 개발자 콘솔 (Developer Console)</h3>
+        <div class="dev-console" id="dev-console">[System Ready] All-Modal WebGPU Studio 초기화 완료.</div>
+      </div>
+
+      <script type="module">
+        import { initWebGPU, AllModalOrchestrator } from './dist/index.esm.js';
+
+        function devLog(msg, isErr = false) {
+          const el = document.getElementById('dev-console');
+          el.innerText += (isErr ? '\n[FAIL-FAST ERROR]\n' : '\n') + msg;
+          el.scrollTop = el.scrollHeight;
+        }
+
+        window.runGrandPipeline = async function() {
+          devLog('==================================================');
+          devLog('🏛️ [AllModalOrchestrator] Grand Unified WebGPU 순전파 개시');
+          devLog('==================================================');
+
+          try {
+            await initWebGPU();
+            const orch = new AllModalOrchestrator();
+            const tStart = performance.now();
+
+            // 1. STT
+            devLog('[1/5 STT GPU] 16kHz PCM ➔ STT_MEL_WGSL 80-Mel 스펙트로그램 가속 변환...');
+            const pcm = new Float32Array(16000 * 0.2).fill(0.1);
+            const { mels } = await orch.listenGPU(pcm, 16000);
+            devLog(`       -> STT GPU 성공: ${mels.length} 원소 생성`);
+
+            // 2. LLM
+            devLog('[2/5 LLM GPU] FlashAttention-2 & SwiGLU 트랜스포머 토큰 순전파...');
+            const dim = 64;
+            const vocabSize = 100;
+            const llmWeights = {
+              tokenEmbedding: new Float32Array(vocabSize * dim).fill(0.01),
+              layers: [{
+                inputNormGamma: new Float32Array(dim).fill(1.0),
+                qWeight: new Float32Array(dim * dim).fill(0.01),
+                kWeight: new Float32Array(dim * dim).fill(0.01),
+                vWeight: new Float32Array(dim * dim).fill(0.01),
+                outWeight: new Float32Array(dim * dim).fill(0.01),
+                postNormGamma: new Float32Array(dim).fill(1.0),
+                gateWeight: new Float32Array(128 * dim).fill(0.01),
+                upWeight: new Float32Array(128 * dim).fill(0.01),
+                downWeight: new Float32Array(dim * 128).fill(0.01),
+              }],
+              finalNormGamma: new Float32Array(dim).fill(1.0),
+              lmHeadWeight: new Float32Array(vocabSize * dim).fill(0.01),
+            };
+            const logits = await orch.thinkGPU(1, 0, llmWeights, [], dim, vocabSize);
+            devLog(`       -> LLM GPU 성공: Vocab=${logits.length}`);
+
+            // 3. Vision
+            devLog('[3/5 Vision GPU] ViT-B/16 WGSL Tiled GEMM 패치 프로젝션...');
+            const rgb = new Float32Array(3 * 16 * 16).fill(0.2);
+            const visWeights = {
+              patchConvWeight: new Float32Array(768 * 3 * 16 * 16).fill(0.01),
+              classEmbedding: new Float32Array(768).fill(0.01),
+              positionEmbedding: new Float32Array(2 * 768).fill(0.01),
+              preNormGamma: new Float32Array(768).fill(1.0),
+              preNormBeta: new Float32Array(768).fill(0.0),
+              postNormGamma: new Float32Array(768).fill(1.0),
+              postNormBeta: new Float32Array(768).fill(0.0),
+              layers: [],
+            };
+            const emb = await orch.seeEmbeddingsGPU(rgb, 16, 16, visWeights);
+            devLog(`       -> Vision GPU 성공: Dim=${emb.length}`);
+
+            // 4. Diffusion
+            devLog('[4/5 Diffusion GPU] WebGPU UNet Cross-Attention 2-step 디노이징...');
+            const cBase = 32;
+            const vaeWeights = {
+              postQuantConvWeight: new Float32Array(4 * 4 * 1 * 1).fill(0.25),
+              convInWeight: new Float32Array(cBase * 4 * 3 * 3).fill(0.05),
+              upBlocks: [{
+                upsampleConvWeight: new Float32Array(cBase * cBase * 3 * 3).fill(0.02),
+                normGamma: new Float32Array(cBase).fill(1.0),
+                normBeta: new Float32Array(cBase).fill(0.0),
+              }],
+              normOutGamma: new Float32Array(cBase).fill(1.0),
+              normOutBeta: new Float32Array(cBase).fill(0.0),
+              convOutWeight: new Float32Array(4 * cBase * 3 * 3).fill(0.02),
+            };
+            const clipWeights = {
+              tokenEmbedding: new Float32Array(50000 * 768).fill(0.01),
+              positionEmbedding: new Float32Array(77 * 768).fill(0.01),
+              layers: [],
+              finalNormGamma: new Float32Array(768).fill(1.0),
+              finalNormBeta: new Float32Array(768).fill(0.0),
+            };
+            const unetWeights = {
+              timeEmbedFc1Weight: new Float32Array(1280 * 320).fill(0.01),
+              timeEmbedFc1Bias: new Float32Array(1280).fill(0.0),
+              timeEmbedFc2Weight: new Float32Array(1280 * 1280).fill(0.01),
+              timeEmbedFc2Bias: new Float32Array(1280).fill(0.0),
+              convInWeight: new Float32Array(320 * 4 * 3 * 3).fill(0.01),
+              downBlocks: [{
+                resnetNorm1Gamma: new Float32Array(320).fill(1.0),
+                resnetNorm1Beta: new Float32Array(320).fill(0.0),
+                resnetConv1Weight: new Float32Array(320 * 320 * 3 * 3).fill(0.01),
+                resnetTimeProjWeight: new Float32Array(320 * 1280).fill(0.01),
+                resnetTimeProjBias: new Float32Array(320).fill(0.0),
+                resnetNorm2Gamma: new Float32Array(320).fill(1.0),
+                resnetNorm2Beta: new Float32Array(320).fill(0.0),
+                resnetConv2Weight: new Float32Array(320 * 320 * 3 * 3).fill(0.01),
+                attnNormGamma: new Float32Array(320).fill(1.0),
+                attnNormBeta: new Float32Array(320).fill(0.0),
+                qProjWeight: new Float32Array(320 * 320).fill(0.001),
+                kProjWeight: new Float32Array(320 * 768).fill(0.001),
+                vProjWeight: new Float32Array(320 * 768).fill(0.001),
+                outProjWeight: new Float32Array(320 * 320).fill(0.001),
+              }],
+              convOutWeight: new Float32Array(4 * 320 * 3 * 3).fill(0.01),
+            };
+            const diffImg = await orch.drawGPU({
+              prompt: 'all-modal test',
+              numSteps: 2,
+              width: 64,
+              height: 64,
+              seed: 42,
+              backend: 'webgpu',
+              vaeWeights,
+              unetWeights,
+              clipWeights,
+            });
+            devLog(`       -> Diffusion GPU 성공: 캔버스 생성 완료 (${diffImg.width}x${diffImg.height})`);
+
+            // 5. TTS
+            devLog('[5/5 TTS GPU] TTS_SYNTH_WGSL 로젠버그 성문 펄스 음성 파형 합성...');
+            const { pcm: ttsPcm, durationSeconds } = await orch.speakGPU('grand unified webgpu runtime all green');
+            devLog(`       -> TTS GPU 성공: ${ttsPcm.length} samples (${durationSeconds.toFixed(2)}s)`);
+
+            const tEnd = performance.now();
+            devLog('==================================================');
+            devLog(`🎉 [GRAND SUCCESS] 5대 모달리티 순수 WebGPU 순전파 100% 완료! (총 소요 시간: ${(tEnd - tStart).toFixed(2)}ms)`);
+            devLog('==================================================');
+          } catch (err) {
+            devLog(`${err.name || 'Error'}: ${err.message}\n${err.stack || ''}`, true);
+          }
+        };
+
+        window.checkFailFast = async function() {
+          devLog('🧪 [Fail-Fast Test] 결함 경계 검증 (Zero Silent Fallback)...');
+          try {
+            const orch = new AllModalOrchestrator();
+            // Call draw without required weights
+            await orch.draw({ prompt: 'test' });
+            devLog('[FAIL] 에러가 발생해야 하는데 발생하지 않았습니다 (침묵 폴백 의심)', true);
+          } catch (err) {
+            devLog(`[PASS] 결함 감지 즉각 예외 분출 성공!\nCode: ${err.code || 'AMEVA_FAIL_FAST'}\nMessage: ${err.message}`);
+          }
+        };
+      </script>
+    </main>
+  </div>
+  <footer>
+    <span>&copy; 2026 uno-km Ecosystem · AMEVA-Forge WebGPU Native Engine</span>
+  </footer>
+</body>
+</html>

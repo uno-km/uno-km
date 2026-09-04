@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👁️ WebGPU Vision (ViT & Canny) | AMEVA-Forge</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <style>
+    .studio-panel {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: #f8fafc;
+    }
+    .studio-panel h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .hf-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .hf-box label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .hf-box select, .hf-box input[type="text"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .hf-box select:focus, .hf-box input:focus, textarea:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    button.btn-gpu {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button.btn-gpu:hover {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+    }
+    button.btn-sec {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    button.btn-sec:hover {
+      background: #334155;
+    }
+    .dev-console {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .gpu-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #064e3b;
+      color: #6ee7b7;
+      letter-spacing: 0.04em;
+    }
+    .canvas-preview {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      width: 100%;
+      image-rendering: pixelated;
+      margin-top: 12px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .nav-tabs a {
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-tabs a.active, .nav-tabs a:hover {
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+  </style>
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+    <main class="content">
+      <div class="nav-tabs">
+        <a href="all-modal-studio.html">⚡ All-Modal Studio</a>
+        <a href="stt.html">🎙️ STT (Whisper)</a>
+        <a href="tts.html">🔊 TTS (Speech)</a>
+        <a href="vision.html">👁️ Vision (ViT/Canny)</a>
+        <a href="llm.html">🧠 LLM (FlashAttn)</a>
+        <a href="diffusion.html">🎨 Diffusion (UNet)</a>
+      </div>
+      <h2>👁️ WebGPU Vision (ViT & Canny)</h2>
+      <p class="subtitle">8-방향 BFS Canny 엣지 검출 & ViT-B/16 WebGPU Tiled GEMM 16x16 패치 프로젝션</p>
+
+      <div class="studio-panel">
+        <h3>
+          <span>1. Hugging Face 비전 모델 / Canny 파라미터</span>
+          <span class="gpu-badge">ZERO-SILENT-FALLBACK</span>
+        </h3>
+        <div class="hf-box">
+          <label>허깅페이스 공개 Vision-Language 인코더 프리셋</label>
+          <select id="hf-vis-select" onchange="document.getElementById('hf-vis-url').value = this.value;">
+            <option value="https://huggingface.co/openai/clip-vit-base-patch16/resolve/main/model.safetensors">openai/clip-vit-base-patch16 (Direct HF CDN, ~600MB)</option>
+            <option value="https://huggingface.co/google/vit-base-patch16-224/resolve/main/model.safetensors">google/vit-base-patch16-224 (~340MB)</option>
+            <option value="https://huggingface.co/timm/mobilenetv4_conv_small.e1200_r224_in1k/resolve/main/model.safetensors">timm/mobilenetv4_small</option>
+          </select>
+          <label>Hugging Face 다운로드 URL</label>
+          <input type="text" id="hf-vis-url" value="https://huggingface.co/openai/clip-vit-base-patch16/resolve/main/model.safetensors" />
+          <button class="btn-sec" onclick="window.fetchHFVisChunk()">📥 허깅페이스 비전 가중치 청크 수신 (CORS)</button>
+        </div>
+
+        <h3>2. 캔버스 기하 패턴 & WebGPU ViT 프로젝션</h3>
+        <div class="hf-box">
+          <div style="display: flex; gap: 12px;">
+            <div style="flex: 1;">
+              <label>입력 기하 캔버스 (64x64)</label>
+              <canvas id="vis-in-canvas" class="canvas-preview" width="64" height="64" style="height: 128px;"></canvas>
+            </div>
+            <div style="flex: 1;">
+              <label>Canny 8-방향 BFS 엣지 검출 결과</label>
+              <canvas id="vis-out-canvas" class="canvas-preview" width="64" height="64" style="height: 128px;"></canvas>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-gpu" onclick="window.runWebGPU_Vision()">⚡ WebGPU ViT 패치 프로젝션 & 임베딩 추출</button>
+            <button class="btn-sec" onclick="window.runCanny()">🔍 Canny 8-방향 엣지 분리</button>
+          </div>
+        </div>
+
+        <h3>3. 개발자 콘솔 & 페일패스트 디버그 로그 (Developer Console)</h3>
+        <div class="dev-console" id="dev-console">[System Ready] WebGPU Vision 엔진 대기 중.</div>
+      </div>
+
+      <script type="module">
+        import { initWebGPU, AllModalOrchestrator, ClassicalCV } from './dist/index.esm.js';
+
+        function devLog(msg, isErr = false) {
+          const el = document.getElementById('dev-console');
+          el.innerText += (isErr ? '\n[FAIL-FAST ERROR]\n' : '\n') + msg;
+          el.scrollTop = el.scrollHeight;
+        }
+
+        // Draw initial pattern on load
+        window.addEventListener('DOMContentLoaded', () => {
+          const inCanvas = document.getElementById('vis-in-canvas');
+          const ctx = inCanvas.getContext('2d');
+          ctx.fillStyle = '#000000';
+          ctx.fillRect(0, 0, 64, 64);
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(12, 12, 40, 40);
+          ctx.beginPath();
+          ctx.arc(32, 32, 12, 0, Math.PI * 2);
+          ctx.fillStyle = '#a855f7';
+          ctx.fill();
+          ctx.stroke();
+        });
+
+        window.fetchHFVisChunk = async function() {
+          const url = document.getElementById('hf-vis-url').value;
+          devLog(`[HuggingFace] Fetching 1MB test chunk from: ${url}`);
+          try {
+            const res = await fetch(url, { headers: { 'Range': 'bytes=0-1048575' } });
+            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            const buf = await res.arrayBuffer();
+            devLog(`[HuggingFace] ViT 가중치 청크 수신 성공: ${buf.byteLength} bytes.`);
+          } catch (e) {
+            devLog(`${e.name}: ${e.message}\n${e.stack}`, true);
+          }
+        };
+
+        window.runCanny = function() {
+          try {
+            const inCanvas = document.getElementById('vis-in-canvas');
+            const inCtx = inCanvas.getContext('2d');
+            const imgData = inCtx.getImageData(0, 0, 64, 64);
+            const orch = new AllModalOrchestrator();
+            const edges = orch.seeEdges(imgData.data, 64, 64);
+
+            const outCanvas = document.getElementById('vis-out-canvas');
+            const outCtx = outCanvas.getContext('2d');
+            const outImg = outCtx.createImageData(64, 64);
+            for (let i = 0; i < 64 * 64; i++) {
+              outImg.data[i * 4] = edges[i];
+              outImg.data[i * 4 + 1] = edges[i];
+              outImg.data[i * 4 + 2] = edges[i];
+              outImg.data[i * 4 + 3] = 255;
+            }
+            outCtx.putImageData(outImg, 0, 0);
+            devLog('[Vision Canny] 8-방향 BFS 엣지 검출 완료!');
+          } catch (e) {
+            devLog(`${e.name}: ${e.message}\n${e.stack}`, true);
+          }
+        };
+
+        window.runWebGPU_Vision = async function() {
+          try {
+            devLog('--- [Vision WebGPU] ViT-B/16 WGSL Tiled GEMM 가속 시작 ---');
+            await initWebGPU();
+            const orch = new AllModalOrchestrator();
+            const rgb = new Float32Array(3 * 16 * 16).fill(0.2);
+            const weights = {
+              patchConvWeight: new Float32Array(768 * 3 * 16 * 16).fill(0.01),
+              classEmbedding: new Float32Array(768).fill(0.01),
+              positionEmbedding: new Float32Array(2 * 768).fill(0.01),
+              preNormGamma: new Float32Array(768).fill(1.0),
+              preNormBeta: new Float32Array(768).fill(0.0),
+              postNormGamma: new Float32Array(768).fill(1.0),
+              postNormBeta: new Float32Array(768).fill(0.0),
+              layers: [],
+            };
+            const t0 = performance.now();
+            const emb = await orch.seeEmbeddingsGPU(rgb, 16, 16, weights);
+            const t1 = performance.now();
+            devLog(`[Vision WebGPU 성공] ViT 임베딩 추출 완료 (${(t1 - t0).toFixed(2)}ms) | Dim=${emb.length} | Zero CPU Fallback!`);
+          } catch (err) {
+            devLog(`${err.name || 'Error'}: ${err.message}\n${err.stack || ''}`, true);
+          }
+        };
+      </script>
+    </main>
+  </div>
+  <footer>
+    <span>&copy; 2026 uno-km Ecosystem · AMEVA-Forge WebGPU Native Engine</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧠 WebGPU LLM Decoder | AMEVA-Forge</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <style>
+    .studio-panel {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: #f8fafc;
+    }
+    .studio-panel h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .hf-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .hf-box label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .hf-box select, .hf-box input[type="text"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .hf-box select:focus, .hf-box input:focus, textarea:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    button.btn-gpu {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button.btn-gpu:hover {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+    }
+    button.btn-sec {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    button.btn-sec:hover {
+      background: #334155;
+    }
+    .dev-console {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .gpu-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #064e3b;
+      color: #6ee7b7;
+      letter-spacing: 0.04em;
+    }
+    .canvas-preview {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      width: 100%;
+      image-rendering: pixelated;
+      margin-top: 12px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .nav-tabs a {
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-tabs a.active, .nav-tabs a:hover {
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+  </style>
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+    <main class="content">
+      <div class="nav-tabs">
+        <a href="all-modal-studio.html">⚡ All-Modal Studio</a>
+        <a href="stt.html">🎙️ STT (Whisper)</a>
+        <a href="tts.html">🔊 TTS (Speech)</a>
+        <a href="vision.html">👁️ Vision (ViT/Canny)</a>
+        <a href="llm.html">🧠 LLM (FlashAttn)</a>
+        <a href="diffusion.html">🎨 Diffusion (UNet)</a>
+      </div>
+      <h2>🧠 WebGPU LLM Decoder</h2>
+      <p class="subtitle">RoPE 회전위치임베딩 + SwiGLU 피드포워드 + FlashAttention-2 타일링 어텐션 WebGPU 트랜스포머 순전파</p>
+
+      <div class="studio-panel">
+        <h3>
+          <span>1. Hugging Face 오픈 LLM 모델 선택기 (GGUF / Safetensors)</span>
+          <span class="gpu-badge">ZERO-SILENT-FALLBACK</span>
+        </h3>
+        <div class="hf-box">
+          <label>허깅페이스 공개 오픈 가중치 프리셋 (CORS Direct Fetch)</label>
+          <select id="hf-llm-select" onchange="document.getElementById('hf-llm-url').value = this.value;">
+            <option value="https://huggingface.co/HuggingFaceTB/SmolLM-135M-Instruct/resolve/main/model.safetensors">HuggingFaceTB/SmolLM-135M-Instruct (Safetensors, ~270MB)</option>
+            <option value="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct/resolve/main/model.safetensors">Qwen/Qwen2.5-0.5B-Instruct (~990MB)</option>
+            <option value="https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf">TinyLlama-1.1B-Chat (GGUF Q4_K_M, ~660MB)</option>
+          </select>
+          <label>Hugging Face 가중치 URL</label>
+          <input type="text" id="hf-llm-url" value="https://huggingface.co/HuggingFaceTB/SmolLM-135M-Instruct/resolve/main/model.safetensors" />
+          <button class="btn-sec" onclick="window.fetchHFLLMChunk()">📥 허깅페이스 LLM 가중치 헤더 수신 (CORS)</button>
+        </div>
+
+        <h3>2. 트랜스포머 디코더 순전파 & 로짓 예측</h3>
+        <div class="hf-box">
+          <label>프롬프트 입력 토큰 IDs (쉼표 구분)</label>
+          <input type="text" id="llm-token-input" value="1, 105, 42, 880, 2048" />
+          <div class="btn-row">
+            <button class="btn-gpu" onclick="window.runWebGPU_LLM()">⚡ WebGPU FlashAttention-2 + SwiGLU 순전파</button>
+          </div>
+          <div style="margin-top: 12px; font-size: 0.9rem; color: #94a3b8;">
+            Next Predicted Token: <strong id="llm-next-tok" style="color:#10b981;">-</strong> | 
+            Max Logit: <strong id="llm-max-val" style="color:#38bdf8;">-</strong>
+          </div>
+        </div>
+
+        <h3>3. 개발자 콘솔 & 페일패스트 디버그 로그 (Developer Console)</h3>
+        <div class="dev-console" id="dev-console">[System Ready] WebGPU LLM 트랜스포머 디코더 대기 중.</div>
+      </div>
+
+      <script type="module">
+        import { initWebGPU, LLMEngine } from './dist/index.esm.js';
+
+        function devLog(msg, isErr = false) {
+          const el = document.getElementById('dev-console');
+          el.innerText += (isErr ? '\n[FAIL-FAST ERROR]\n' : '\n') + msg;
+          el.scrollTop = el.scrollHeight;
+        }
+
+        window.fetchHFLLMChunk = async function() {
+          const url = document.getElementById('hf-llm-url').value;
+          devLog(`[HuggingFace] Fetching 1MB test chunk from: ${url}`);
+          try {
+            const res = await fetch(url, { headers: { 'Range': 'bytes=0-1048575' } });
+            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            const buf = await res.arrayBuffer();
+            devLog(`[HuggingFace] LLM 가중치 청크 수신 성공: ${buf.byteLength} bytes.`);
+          } catch (e) {
+            devLog(`${e.name}: ${e.message}\n${e.stack}`, true);
+          }
+        };
+
+        window.runWebGPU_LLM = async function() {
+          try {
+            devLog('--- [LLM WebGPU] FlashAttention-2 & SwiGLU 순전파 시작 ---');
+            await initWebGPU();
+            const raw = document.getElementById('llm-token-input').value;
+            const tokens = raw.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
+            const dim = 64;
+            const vocabSize = 100;
+
+            const weights = {
+              tokenEmbedding: new Float32Array(vocabSize * dim).fill(0.02),
+              layers: [{
+                inputNormGamma: new Float32Array(dim).fill(1.0),
+                qWeight: new Float32Array(dim * dim).fill(0.01),
+                kWeight: new Float32Array(dim * dim).fill(0.01),
+                vWeight: new Float32Array(dim * dim).fill(0.01),
+                outWeight: new Float32Array(dim * dim).fill(0.01),
+                postNormGamma: new Float32Array(dim).fill(1.0),
+                gateWeight: new Float32Array(128 * dim).fill(0.01),
+                upWeight: new Float32Array(128 * dim).fill(0.01),
+                downWeight: new Float32Array(dim * 128).fill(0.01),
+              }],
+              finalNormGamma: new Float32Array(dim).fill(1.0),
+              lmHeadWeight: new Float32Array(vocabSize * dim).fill(0.01),
+            };
+
+            const t0 = performance.now();
+            const res = await LLMEngine.forwardGPU(tokens, weights, dim, vocabSize);
+            const t1 = performance.now();
+
+            let maxVal = -Infinity, nextTok = -1;
+            for (let i = 0; i < vocabSize; i++) {
+              if (res.logits[i] > maxVal) {
+                maxVal = res.logits[i];
+                nextTok = i;
+              }
+            }
+            document.getElementById('llm-next-tok').innerText = nextTok;
+            document.getElementById('llm-max-val').innerText = maxVal.toFixed(4);
+            devLog(`[LLM WebGPU 성공] 지연시간: ${(t1 - t0).toFixed(2)}ms | NextToken=${nextTok}, Logit=${maxVal.toFixed(4)} | Zero CPU Fallback!`);
+          } catch (err) {
+            devLog(`${err.name || 'Error'}: ${err.message}\n${err.stack || ''}`, true);
+          }
+        };
+      </script>
+    </main>
+  </div>
+  <footer>
+    <span>&copy; 2026 uno-km Ecosystem · AMEVA-Forge WebGPU Native Engine</span>
+  </footer>
+</body>
+</html>

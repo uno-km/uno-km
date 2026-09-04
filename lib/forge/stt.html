@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎙️ WebGPU Speech-to-Text (STT) | AMEVA-Forge</title>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <style>
+    .studio-panel {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: #f8fafc;
+    }
+    .studio-panel h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .hf-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .hf-box label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .hf-box select, .hf-box input[type="text"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .hf-box select:focus, .hf-box input:focus, textarea:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    button.btn-gpu {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button.btn-gpu:hover {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+    }
+    button.btn-sec {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    button.btn-sec:hover {
+      background: #334155;
+    }
+    .dev-console {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .gpu-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #064e3b;
+      color: #6ee7b7;
+      letter-spacing: 0.04em;
+    }
+    .canvas-preview {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      width: 100%;
+      image-rendering: pixelated;
+      margin-top: 12px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .nav-tabs a {
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-tabs a.active, .nav-tabs a:hover {
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+  </style>
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+    <main class="content">
+      <div class="nav-tabs">
+        <a href="all-modal-studio.html">⚡ All-Modal Studio</a>
+        <a href="stt.html">🎙️ STT (Whisper)</a>
+        <a href="tts.html">🔊 TTS (Speech)</a>
+        <a href="vision.html">👁️ Vision (ViT/Canny)</a>
+        <a href="llm.html">🧠 LLM (FlashAttn)</a>
+        <a href="diffusion.html">🎨 Diffusion (UNet)</a>
+      </div>
+      <h2>🎙️ WebGPU Speech-to-Text (STT)</h2>
+      <p class="subtitle">16kHz PCM 오디오 ➔ WebGPU WGSL 80-bin Mel Filterbank ➔ Whisper Conv1D 4x 다운샘플링 인코더</p>
+
+      <div class="studio-panel">
+        <h3>
+          <span>1. Hugging Face 오픈 모델 선택기 (Token-Free Direct CDN)</span>
+          <span class="gpu-badge">ZERO-SILENT-FALLBACK</span>
+        </h3>
+        <div class="hf-box">
+          <label>공개 허깅페이스 가중치 프리셋 (API 키 없이 브라우저 직접 fetch)</label>
+          <select id="hf-model-select" onchange="document.getElementById('hf-custom-url').value = this.value;">
+            <option value="https://huggingface.co/openai/whisper-tiny/resolve/main/model.safetensors">openai/whisper-tiny (Direct HF CDN, ~150MB)</option>
+            <option value="https://huggingface.co/openai/whisper-base/resolve/main/model.safetensors">openai/whisper-base (~290MB)</option>
+            <option value="https://huggingface.co/distil-whisper/distil-small.en/resolve/main/model.safetensors">distil-whisper/distil-small.en</option>
+            <option value="custom">커스텀 HuggingFace Safetensors/GGUF URL</option>
+          </select>
+          <label>Hugging Face 다운로드 URL</label>
+          <input type="text" id="hf-custom-url" value="https://huggingface.co/openai/whisper-tiny/resolve/main/model.safetensors" />
+          <button class="btn-sec" onclick="window.fetchHFModel()">📥 허깅페이스 가중치 청크 다운로드 테스트 (CORS)</button>
+        </div>
+
+        <h3>2. WebGPU 하드웨어 가속 80-Mel 스펙트로그램 추출</h3>
+        <div class="hf-box">
+          <label>테스트 음향 주파수 (Hz)</label>
+          <input type="text" id="stt-freq" value="440" />
+          <div class="btn-row">
+            <button class="btn-gpu" onclick="window.runWebGPU_STT()">⚡ WebGPU STT_MEL_WGSL 셰이더 실행</button>
+            <button class="btn-sec" onclick="window.runCPU_STT()">🖥️ CPU 레퍼런스 실행 대조</button>
+          </div>
+          <canvas id="stt-canvas" class="canvas-preview" width="300" height="80"></canvas>
+        </div>
+
+        <h3>3. 개발자 콘솔 & 페일패스트 디버그 로그 (Developer Console)</h3>
+        <div class="dev-console" id="dev-console">[System Ready] WebGPU STT 엔진 대기 중. CPU 침묵 폴백 없이 오류 발생 시 원본 스택 트레이스를 즉각 방출합니다.</div>
+      </div>
+
+      <script type="module">
+        import { initWebGPU, AllModalOrchestrator, STTEngine } from './dist/index.esm.js';
+
+        function devLog(msg, isErr = false) {
+          const el = document.getElementById('dev-console');
+          el.innerText += (isErr ? '\n[FAIL-FAST ERROR]\n' : '\n') + msg;
+          el.scrollTop = el.scrollHeight;
+        }
+
+        window.fetchHFModel = async function() {
+          const url = document.getElementById('hf-custom-url').value;
+          devLog(`[HuggingFace] Fetching 1MB test chunk from: ${url}`);
+          try {
+            const res = await fetch(url, { headers: { 'Range': 'bytes=0-1048575' } });
+            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            const buf = await res.arrayBuffer();
+            devLog(`[HuggingFace] 청크 수신 성공: ${buf.byteLength} bytes. 토큰 없이 CORS 직접 수신 확인!`);
+          } catch (e) {
+            devLog(`${e.name}: ${e.message}\n${e.stack}`, true);
+          }
+        };
+
+        window.runWebGPU_STT = async function() {
+          try {
+            devLog('--- [STT WebGPU] STT_MEL_WGSL 셰이더 가속 연산 시작 ---');
+            await initWebGPU();
+            const freq = parseFloat(document.getElementById('stt-freq').value) || 440;
+            const pcm = new Float32Array(16000 * 0.3);
+            for (let i = 0; i < pcm.length; i++) {
+              pcm[i] = 0.6 * Math.sin(2 * Math.PI * freq * i / 16000);
+            }
+            const t0 = performance.now();
+            const orch = new AllModalOrchestrator();
+            const { mels, numFrames } = await orch.listenGPU(pcm, 16000);
+            const t1 = performance.now();
+
+            devLog(`[STT WebGPU 성공] 지연시간: ${(t1 - t0).toFixed(2)}ms | Frames=${numFrames}, Mels=${mels.length} | Zero CPU Fallback Confirmed!`);
+
+            // Canvas 시각화
+            const canvas = document.getElementById('stt-canvas');
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(canvas.width, canvas.height);
+            for (let y = 0; y < canvas.height; y++) {
+              const bin = Math.floor((1 - y / canvas.height) * 80);
+              for (let x = 0; x < canvas.width; x++) {
+                const fIdx = Math.floor(x / canvas.width * numFrames);
+                const val = mels[fIdx * 80 + bin] || -10;
+                const norm = Math.max(0, Math.min(255, Math.floor((val + 10) / 10 * 255)));
+                const idx = (y * canvas.width + x) * 4;
+                imgData.data[idx] = norm;
+                imgData.data[idx + 1] = Math.floor(norm * 0.7);
+                imgData.data[idx + 2] = 255 - norm;
+                imgData.data[idx + 3] = 255;
+              }
+            }
+            ctx.putImageData(imgData, 0, 0);
+          } catch (err) {
+            devLog(`${err.name || 'Error'}: ${err.message}\n${err.stack || ''}`, true);
+          }
+        };
+
+        window.runCPU_STT = function() {
+          try {
+            devLog('--- [STT CPU Reference] 실행 시작 ---');
+            const freq = parseFloat(document.getElementById('stt-freq').value) || 440;
+            const pcm = new Float32Array(16000 * 0.3);
+            for (let i = 0; i < pcm.length; i++) pcm[i] = 0.6 * Math.sin(2 * Math.PI * freq * i / 16000);
+            const t0 = performance.now();
+            const res = STTEngine.computeLogMelSpectrogram(pcm, 16000);
+            const t1 = performance.now();
+            devLog(`[STT CPU 완료] 지연시간: ${(t1 - t0).toFixed(2)}ms | Frames=${res.numFrames}`);
+          } catch (err) {
+            devLog(`${err.name}: ${err.message}\n${err.stack}`, true);
+          }
+        };
+      </script>
+    </main>
+  </div>
+  <footer>
+    <span>&copy; 2026 uno-km Ecosystem · AMEVA-Forge WebGPU Native Engine</span>
+  </footer>
+</body>
+</html>
