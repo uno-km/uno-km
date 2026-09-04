@@ -220,12 +220,7 @@
       "npm": "ameva-forge",
       "doc_pages": [
         ["index.html", "Home / Architecture"],
-        ["all-modal-studio.html", "⚡ All-Modal WebGPU Studio"],
-        ["stt.html", "🎙️ STT (Whisper WebGPU)"],
-        ["tts.html", "🔊 TTS (Formant WebGPU)"],
-        ["vision.html", "👁️ Vision (ViT / Canny)"],
-        ["llm.html", "🧠 LLM (RoPE / FlashAttn)"],
-        ["diffusion.html", "🎨 Diffusion (UNet / VAE)"],
+        ["all-modal-studio.html", "All-Modal WebGPU Studio"],
         ["what-is-forge.html", "What is Forge"],
         ["installation.html", "Installation Guide"],
         ["quickstart.html", "Quickstart & Recipes"],

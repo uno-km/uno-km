@@ -104,32 +104,12 @@ const x = new Tensor([1.0, 2.0], { requiresGrad: true });</code></pre>
         </div>
       </div>
 
-      <h3 style="color:#38bdf8; margin-top:32px;">⚡ WebGPU All-Modal AI Suite (Zero-CPU-Fallback)</h3>
-      <p>단일 WebGPU VRAM 런타임 위에서 외부 서버 통신 없이 100% 온디바이스로 구동되는 5대 멀티모달 스튜디오:</p>
-      <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-        <div class="feature-card" style="border:1px solid #3b82f6;">
-          <h4><a href="all-modal-studio.html" style="color:#38bdf8; text-decoration:none;">⚡ All-Modal Studio</a></h4>
-          <p>STT ➔ LLM ➔ Vision ➔ Diffusion ➔ TTS 5대 모달리티 원클릭 E2E 순전파 스튜디오</p>
-        </div>
-        <div class="feature-card">
-          <h4><a href="stt.html" style="color:#38bdf8; text-decoration:none;">🎙️ STT (Whisper Mel-80)</a></h4>
-          <p>STT_MEL_WGSL 80채널 멜-스펙트로그램 및 Whisper Conv1D 4x 다운샘플링</p>
-        </div>
-        <div class="feature-card">
-          <h4><a href="tts.html" style="color:#38bdf8; text-decoration:none;">🔊 TTS (Formant DSP)</a></h4>
-          <p>TTS_SYNTH_WGSL 로젠버그 성문 펄스 발진 & 5-대역 Biquad 실시간 음성 합성</p>
-        </div>
-        <div class="feature-card">
-          <h4><a href="vision.html" style="color:#38bdf8; text-decoration:none;">👁️ Vision (ViT & Canny)</a></h4>
-          <p>8-방향 BFS Canny 엣지 검출 & ViT-B/16 16x16 패치 프로젝션 Tiled GEMM</p>
-        </div>
-        <div class="feature-card">
-          <h4><a href="llm.html" style="color:#38bdf8; text-decoration:none;">🧠 LLM (FlashAttention-2)</a></h4>
-          <p>RoPE + SwiGLU + FlashAttention-2 + KV-Cache 온디바이스 트랜스포머 순전파</p>
-        </div>
-        <div class="feature-card">
-          <h4><a href="diffusion.html" style="color:#38bdf8; text-decoration:none;">🎨 Diffusion (UNet & VAE)</a></h4>
-          <p>UNet Spatial Cross-Attention 디노이징 루프 & 4단계 AutoencoderKL VAE</p>
+      <h3 style="color:var(--primary-color); margin-top:32px;">All-Modal WebGPU Studio (Zero-Silent-Fallback)</h3>
+      <p>Executes STT, LLM, Vision, Diffusion, and TTS directly on client WebGPU hardware with zero cloud egress and strict fail-fast error reporting:</p>
+      <div class="features-grid">
+        <div class="feature-card" style="border:1px solid var(--border-color);">
+          <h4><a href="all-modal-studio.html" style="color:var(--primary-color); text-decoration:none;">Interactive All-Modal Studio</a></h4>
+          <p>Unified on-device execution environment for Speech-to-Text, Large Language Models, Vision Transformers, Latent Diffusion, and Formant Speech Synthesis.</p>
         </div>
       </div>
 
