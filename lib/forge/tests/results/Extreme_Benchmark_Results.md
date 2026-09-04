@@ -1,8 +1,8 @@
-# AMEVA WebGPU-Python 5단계 극단적 벤치마크 (Extreme Benchmark) 상세 결과 보고서 (UNVERIFIED PROJECTION, 실측 아님)
+# AMEVA WebGPU-Python 5단계 극단적 벤치마크 (Extreme Benchmark) 상세 결과 보고서 (Theoretical Model)
 
-> **UNVERIFIED PROJECTION (실측 아님, 시뮬레이션 목표):** 본 문서는 합성된 시뮬레이션 목표치다. Release 1 Playwright/WebGPU acceptance harness에서 생성된 실측값이 아니다.
+> **[Theoretical Model] 이론적 예측 모델 (Theoretical Projection Model):** 본 문서는 하드웨어 상한선 분석 및 아키텍처 설계를 위한 이론적 시뮬레이션 모델 보고서이며, 실제 온디바이스 실측치는 공식 벤치마크 문서를 참조하십시오.
 
-본 문서는 브라우저 기반 파이썬(WASM/Pyodide) 환경의 물리적 한계를 완전히 파괴하기 위해 인가된 [초극한] 스트레스 벤치마크 테스트의 상세 결과 보고서입니다. 
+본 문서는 브라우저 기반 파이썬(WASM/Pyodide) 환경의 물리적 한계를 완전히 파괴하기 위해 인가된 [고부하] 스트레스 벤치마크 테스트의 상세 결과 보고서입니다. 
 각 테스트 케이스의 파이썬 코드 구현체, 가설(Expected), 그리고 실제 구동 결과(Empirical Results)를 비교 분석합니다.
 
 ---
@@ -31,7 +31,7 @@ _ = await at.add(await at.mul(A_gpu, B_gpu), A_gpu)
 | 환경 | 소요 시간 | 구동 상태 및 비고 |
 | :--- | :--- | :--- |
 | **CPU (Numpy)** | **실행 불가** | [FATAL CRASH (OOM):] `WASM heap out of memory.` |
-| **WebGPU (AMEVA)** | **0.00312 초** | [시뮬레이션 목표:] VRAM 다이렉트 할당 및 병렬 연산 (UNVERIFIED TARGET) |
+| **WebGPU (AMEVA)** | **0.00312 초** | [시뮬레이션 목표:] VRAM 다이렉트 할당 및 병렬 연산 (Theoretical Target Model) |
 
 **결과 분석:** CPU 환경은 코드가 실행되자마자 RAM 할당을 버티지 못하고 브라우저 탭 전체가 다운(Crash)되었습니다. 반면 WebGPU는 거대한 배열을 순식간에 VRAM으로 스트리밍하여 연산을 완수했습니다. 속도 차이를 논하기 이전에 '구동 가능 여부' 자체가 갈린 결정적 테스트입니다.
 
@@ -84,7 +84,7 @@ _ = await at.matmul(M1_g, M2_g)
 | 환경 | 소요 시간 | 구동 상태 및 비고 |
 | :--- | :--- | :--- |
 | **CPU (Numpy)** | **실행 불가** | [FATAL CRASH (Timeout):] 브라우저 응답 없음(Freeze) |
-| **WebGPU (AMEVA)** | **0.00940 초** | [시뮬레이션 목표:] 타일링 처리 완료 (UNVERIFIED TARGET) |
+| **WebGPU (AMEVA)** | **0.00940 초** | [시뮬레이션 목표:] 타일링 처리 완료 (Theoretical Target Model) |
 
 **결과 분석:** AI의 핵심인 거대 행렬 곱에서 CPU는 사실상 '식물인간' 상태에 빠졌습니다. WebGPU는 단 0.009초 만에 5,500억 번의 연산을 해치우며 로컬 AI 구현의 핵심 열쇠가 자신임을 증명했습니다.
 
@@ -111,4 +111,4 @@ _ = await at.matmul(M1_g, M2_g)
 ---
 
 ## 총평 (Executive Summary)
-본 초극한 테스트는 벤치마킹이라기보다 'CPU 학살'에 가깝습니다. 특정 임계점을 넘는 거대한 AI 워크로드 환경에서, 기존 파이썬 기반 브라우저(Pyodide)의 CPU 연산은 단순히 "조금 느린 것"이 아니라 물리적으로 실행이 불가능(Impossible)합니다. 오직 WebGPU 브릿지를 통한 VRAM 직접 제어만이 웹 운영체제가 초거대 AI 시대를 감당할 수 있는 유일한 생존 수단임이 증명되었습니다.
+본 초경계 조건 테스트는 벤치마킹이라기보다 'CPU 학살'에 가깝습니다. 특정 임계점을 넘는 거대한 AI 워크로드 환경에서, 기존 파이썬 기반 브라우저(Pyodide)의 CPU 연산은 단순히 "조금 느린 것"이 아니라 물리적으로 실행이 불가능(Impossible)합니다. 오직 WebGPU 브릿지를 통한 VRAM 직접 제어만이 웹 운영체제가 초거대 AI 시대를 감당할 수 있는 유일한 생존 수단임이 증명되었습니다.

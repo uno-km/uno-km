@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-LlamaCpp | Official Documentation</title>
-  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
+  <meta name="description" content="Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,11 +16,11 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-LlamaCpp</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Production-Grade Prebuilt GGUF LLM Runtime, Model Manager & OpenAI Server for Android ARM64</p>
+      <p class="subtitle" data-i18n="home.subtitle">Production-Grade GGUF LLM Runtime Utilizing Device Resources, Model Manager & OpenAI Server for Android ARM64</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-llamacpp/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-llamacpp.svg?color=004499" alt="PyPI Version"></a>
@@ -41,7 +41,7 @@ npm install -g termux-llamacpp && termux-llama install</code></pre>
       <p data-i18n="home.challengeText">Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.</p>
+      <p data-i18n="home.breakthroughText">Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
@@ -50,12 +50,12 @@ npm install -g termux-llamacpp && termux-llama install</code></pre>
           <p data-i18n="home.features.0.desc">Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Unified Vulkan HAL & Big-Core Tuning</h4>
-          <p data-i18n="home.features.1.desc">Deep integration with ameva-vulkan-runtime v1.1.0 supporting GPU shader acceleration and automated octa-core big.LITTLE cluster thread pinning (-t 4).</p>
+          <h4 data-i18n="home.features.1.title">Device Resource Optimization & Big-Core Tuning</h4>
+          <p data-i18n="home.features.1.desc">Optimizes device resources with automated octa-core big.LITTLE cluster thread pinning (-t 4) and adaptive runtime routing.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Strict 3-Tier Execution Mode</h4>
-          <p data-i18n="home.features.2.desc">Supports --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU NEON recovery), and --device cpu (zero-overhead direct forward pass).</p>
+          <h4 data-i18n="home.features.2.title">Strict 2-Tier Execution Mode</h4>
+          <p data-i18n="home.features.2.desc">Supports --device auto (SoC detection and deterministic routing) and --device cpu (zero-overhead direct forward pass).</p>
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.3.title">OpenAI REST & SSE Streaming Supervisor</h4>
@@ -83,7 +83,7 @@ npm install -g termux-llamacpp && termux-llama install</code></pre>
         <tbody>
           <tr>
             <td><strong>Inference Engine</strong></td>
-            <td>llama.cpp (Vulkan GPU Acceleration & ARM64 NEON DotProd)</td>
+            <td>llama.cpp (ARM64 NEON DotProd & Device Resource Optimization)</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>

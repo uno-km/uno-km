@@ -68,7 +68,7 @@
 
 **AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)**은 투명한 개방형 거버넌스와 실력주의(Meritocracy) 모델을 기반으로 운영되는 독립 비영리 오픈소스 기술 연구 협의체입니다.
 
-빅테크 클라우드 벤더의 가파른 API 과금과 프라이버시 침해로부터 개발자와 사용자를 보호하기 위해, 사용자가 이미 소유하고 있는 **스마트폰(Android Termux), 개인 PC 브라우저(WebGPU/WASM), 엣지 임베디드 디바이스(ARM64)**의 로컬 하드웨어 자원을 극한까지 활용하는 **소버린 온디바이스(Sovereign On-Device) AI 및 자율 자동화 인프라**를 연구, 개발, 보급합니다.
+빅테크 클라우드 벤더의 가파른 API 과금과 프라이버시 침해로부터 개발자와 사용자를 보호하기 위해, 사용자가 이미 소유하고 있는 **스마트폰(Android Termux), 개인 PC 브라우저(WebGPU/WASM), 엣지 임베디드 디바이스(ARM64)**의 로컬 하드웨어 자원을 최대한 활용하는 **소버린 온디바이스(Sovereign On-Device) AI 및 자율 자동화 인프라**를 연구, 개발, 보급합니다.
 
 > **[원칙] 재단 공공 기구와 설립자 개인 프로필의 엄격한 분리 (Separation of Concerns)**  
 > AMEVA 오픈소스 재단(AOSF)은 특정 개인이나 사기업에 종속되지 않는 영구적인 공공재(Public Good)로 관리됩니다. 설립자 [@uno-km](https://uno-km.vercel.app/)의 개인 커리어 및 개발자 포트폴리오는 [개인 디지털 CV](https://uno-km.vercel.app/)를 통해 명확히 분리 운영됩니다.
@@ -97,11 +97,11 @@ flowchart TD
         LlamaCpp["termux-llamacpp<br/>(사전 빌드 GGUF 런타임 & OpenAI 호환 서버)"]
         Vision["termux-vision<br/>(Zero-Dep 온디바이스 컴퓨터 비전 & VLM 추론)"]
         TTS["termux-tts<br/>(경량 온디바이스 음성합성 & C++/Python/Node 런타임)"]
-        VulkanRuntime["AMEVA-Vulkan-Runtime<br/>(통합 온디바이스 Vulkan GPU 가속 런타임 & HAL)"]
+        VulkanRuntime["AMEVA-Vulkan-Runtime<br/>(SoC 감지 및 디바이스 리소스 적응형 런타임 & HAL)"]
     end
 
-    subgraph RuntimeLayer ["3. 기저 런타임 및 하드웨어 가속 계층 (System Runtimes)"]
-        AndroidBionic["Android Bionic libc (ARM64 NEON SIMD & Vulkan 1.3)"]
+    subgraph RuntimeLayer ["3. 기저 런타임 및 디바이스 리소스 계층 (System Runtimes)"]
+        AndroidBionic["Android Bionic libc (ARM64 NEON SIMD & Device Runtimes)"]
         WebGPU_WASM["Browser WebGPU / WASI WASM Runtime"]
         NodeLinux["Node.js / Express / Linux User-Space Engine"]
     end
@@ -122,17 +122,17 @@ flowchart TD
 | **`Infra-Index Platform`** | Next.js, Python, FastAPI | 글로벌 69개 클라우드 GPU/CPU/스토리지 실시간 시세 집계 및 AI 반도체 시황 인텔리전스 모니터링 플랫폼. | [Web App 실행](https://infraindex-platform-front.vercel.app/)<br/>[공식 문서](https://uno-km.vercel.app/lib/infra-index/) |
 | **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install ameva-sentinel`<br/>[공식 문서](https://uno-km.vercel.app/lib/sentinel/) |
 | **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.vercel.app/lib/mcp/) |
-| **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 가속 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.vercel.app/lib/forge/) |
-| **`AMEVA-Vulkan-Runtime`** | C++20, Vulkan 1.3, Python, Node | 안드로이드 Termux 환경에서 Qualcomm Adreno, ARM Mali, Xclipse GPU를 대상으로 STT/Vision/LLM/Diffusion 전 모달리티를 통합 가속하는 하드웨어 추상화 계층(HAL) 및 런타임. | `pip install ameva-vulkan-runtime`<br/>`npm install ameva-vulkan-runtime`<br/>[공식 문서](https://uno-km.vercel.app/lib/vulkan/) |
+| **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.vercel.app/lib/forge/) |
+| **`AMEVA-Vulkan-Runtime`** | C++20, SoC Auto-Detection, Python, Node | 안드로이드 Termux 환경에서 시스템 SoC를 자동 감지하여 STT/Vision/LLM/Diffusion에 필요한 디바이스 리소스를 적응형으로 최적화하는 추상화 계층(HAL) 및 런타임. | `pip install ameva-vulkan-runtime`<br/>`npm install ameva-vulkan-runtime`<br/>[공식 문서](https://uno-km.vercel.app/lib/vulkan/) |
 | **`termux-aichain`** | Python 3, TypeScript, DAG | 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 실행하는 50KB 초경량 모바일 에이전트 프레임워크. | `pip install termux-aichain`<br/>`npm install termux-aichain`<br/>[공식 문서](https://uno-km.vercel.app/lib/aichain/) |
 | **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.vercel.app/lib/bitnet/) |
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.vercel.app/lib/playwright/) |
-| **`termux-diffusion`** | C++ NEON, Vulkan 1.3, Python | Multi-SoC Vulkan GPU 가속 및 VAE Tiling을 통해 클라우드 없이 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>`pip install termux-diffusion`<br/>[공식 문서](https://uno-km.vercel.app/lib/diffusion/) |
+| **`termux-diffusion`** | C++ NEON, ARM64 SIMD, Python | 디바이스 리소스를 활용한 Multi-SoC 연산 및 VAE Tiling을 통해 클라우드 없이 모바일 단말기에서 직접 구동되는 온디바이스 Stable Diffusion 이미지 생성 런타임. | `npm install termux-diffusion`<br/>`pip install termux-diffusion`<br/>[공식 문서](https://uno-km.vercel.app/lib/diffusion/) |
 | **`termux-stt`** | Whisper.cpp, Vosk, Python | Whisper.cpp, Vosk, Sherpa-ONNX를 결합하고 순수 파이썬 기반 128차원 화자 분리(Diarization)를 수행하는 온디바이스 음성인식 통합 엔진. | `npm install termux-stt`<br/>`pip install termux-stt`<br/>[공식 문서](https://uno-km.vercel.app/lib/stt/) |
 | **`termux-tts`** | C++17, Piper, ARM64 NEON | 안드로이드 단말기에서 클라우드 없이 초저지연 고품질 한국어/영어 음성을 합성하는 경량 온디바이스 TTS 런타임. | `npm install termux-tts`<br/>`pip install termux-tts`<br/>[공식 문서](https://uno-km.vercel.app/lib/tts/) |
 | **`termux-train`** | C, SafeTensors, Python | SafeTensors 직렬화 및 LoRA 파인튜닝을 지원하는 Bionic C 기반 초경량 온디바이스 텐서 연산 & DAG 자동미분(Autograd) 딥러닝 프레임워크. | `pip install termux-train`<br/>[공식 문서](https://uno-km.vercel.app/lib/train/) |
 | **`termux-llamacpp`** | C++17, GGUF, POSIX | 안드로이드 Termux ARM64 전용 제로 컴파일 사전 빌드 GGUF LLM 런타임 및 OpenAI 호환 REST/SSE 수퍼바이저 서버. | `pip install termux-llamacpp`<br/>`npm install termux-llamacpp`<br/>[공식 문서](https://uno-km.vercel.app/lib/llamacpp/) |
-| **`termux-vision`** | Python, JS, Vulkan, NEON | 순수 ARM64 NEON 비전 커널과 Vulkan GPU 가속을 결합한 제로 디펜던시 모바일 컴퓨터 비전 & 온디바이스 VLM 멀티모달 추론 엔진. | `pip install termux-vision`<br/>`npm install termux-vision`<br/>[공식 문서](https://uno-km.vercel.app/lib/vision/) |
+| **`termux-vision`** | Python, JS, NEON, VLM | 순수 ARM64 NEON 비전 커널과 디바이스 리소스 최적화를 결합한 제로 디펜던시 모바일 컴퓨터 비전 & 온디바이스 VLM 멀티모달 추론 엔진. | `pip install termux-vision`<br/>`npm install termux-vision`<br/>[공식 문서](https://uno-km.vercel.app/lib/vision/) |
 
 ---
 

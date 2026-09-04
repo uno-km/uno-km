@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-LlamaCpp</title>
-  <meta name="description" content="Ships verified, cryptographically signed Android ARM64 native binaries with bundled shared libraries and unified Vulkan HAL acceleration, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE supervisor in under 3 seconds.">
+  <meta name="description" content="Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,27 +16,12 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-            
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.1 - GGUF v3 Quantization & OpenAI SSE Streaming Server</h3>
-          <div>
-            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-02</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>OpenAI-Compatible REST/SSE Server: Production-ready /v1/chat/completions endpoint with token streaming.</li>
-          <li>Precompiled ARM64 Binary Wheel: Zero-compilation setup for Android Termux with OpenMP multithreading.</li>
-          <li>Dynamic Cluster Thread Pinning: Optimal thread scheduling across ARM big.LITTLE core topologies.</li>
-        </ul>
-      </div>
-<div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.0 - Unified AMEVA Vulkan HAL & Galaxy A35 Validation</h3>
           <div>
@@ -55,7 +40,7 @@
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.0 - Supply-Chain Cryptographic Verification & Multi-Channel Crawler</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.1 - Supply-Chain Cryptographic Verification & Multi-Channel Crawler</h3>
           <div>
             <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-30</span>
@@ -82,7 +67,7 @@
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.0 - Initial Production GGUF LLM Runtime Release</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.1 - Initial Production GGUF LLM Runtime Release</h3>
           <div>
             <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-27</span>

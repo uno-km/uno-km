@@ -67,8 +67,8 @@ sdks:
   - id: vulkan
     name: "AMEVA-Vulkan-Runtime"
     badge: "pip / npm"
-    tagline_ko: "Android Termux 전 모달리티(STT/Vision/LLM/Diffusion) 통합 Vulkan GPU 가속 런타임 및 하드웨어 추상화 계층(HAL)."
-    tagline_en: "Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Android Termux (STT/Vision/LLM/Diffusion)."
+    tagline_ko: "Android Termux 환경에서 디바이스 리소스를 활용하는 SoC 감지 및 적응형 추상화 런타임."
+    tagline_en: "SoC-aware adaptive abstraction runtime utilizing device resources for Android Termux."
     links:
       docs: "/lib/vulkan/"
       pypi: "https://pypi.org/project/ameva-vulkan-runtime/"
@@ -79,8 +79,8 @@ libs:
   - id: aichain
     name: "Termux-AIChain"
     badge: "pip / npm"
-    tagline_ko: "Zero-Dep AI 체인 및 자율 에이전트 DAG 실행 프레임워크 for Android Termux (코어 50KB 미만)."
-    tagline_en: "Ultra-lightweight Zero-Dependency AI chaining & autonomous agent DAG execution framework for Android Termux (<50KB core)."
+    tagline_ko: "디바이스 리소스를 활용한 Zero-Dep AI 체인 및 자율 에이전트 DAG 실행 프레임워크 for Android Termux."
+    tagline_en: "Zero-Dependency AI chaining & autonomous agent DAG execution framework utilizing device resources for Android Termux."
     links:
       docs: "/lib/aichain/"
       pypi: "https://pypi.org/project/termux-aichain/"
@@ -90,8 +90,8 @@ libs:
   - id: bitnet
     name: "Termux-BitNet"
     badge: "pip / npm"
-    tagline_ko: "1.58-bit 온디바이스 LLM 추론 엔진. ARM64 NEON DotProd SIMD 어셈블리 가속 스마트폰 네이티브 런타임."
-    tagline_en: "1.58-bit on-device LLM inference engine with ARM64 NEON DotProd SIMD assembly acceleration and smartphone runtime."
+    tagline_ko: "디바이스 리소스를 활용한 1.58-bit 온디바이스 LLM 추론 엔진. ARM64 NEON DotProd SIMD 스마트폰 네이티브 런타임."
+    tagline_en: "1.58-bit on-device LLM inference engine utilizing device resources with ARM64 NEON DotProd SIMD smartphone runtime."
     links:
       docs: "/lib/bitnet/"
       pypi: "https://pypi.org/project/termux-bitnet/"
@@ -112,8 +112,8 @@ libs:
   - id: diffusion
     name: "Termux-Diffusion"
     badge: "pip / npm"
-    tagline_ko: "Android Bionic ARM64 네이티브 Stable Diffusion AI 이미지 생성 듀얼 엔진 프레임워크. 비루트 구동."
-    tagline_en: "Native on-device Stable Diffusion runtime for Android ARM64. Generates images locally without cloud servers or root permissions."
+    tagline_ko: "디바이스 리소스를 활용한 Android Bionic ARM64 네이티브 Stable Diffusion 연산 엔진. 비루트 구동."
+    tagline_en: "Native on-device Stable Diffusion runtime utilizing device resources for Android ARM64."
     links:
       docs: "/lib/diffusion/"
       pypi: "https://pypi.org/project/termux-diffusion/"
@@ -123,8 +123,8 @@ libs:
   - id: stt
     name: "Termux-STT"
     badge: "pip / npm"
-    tagline_ko: "온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크 (Whisper.cpp + Vosk + Sherpa-ONNX)."
-    tagline_en: "Unified on-device Speech-to-Text combining Whisper.cpp, Vosk, Sherpa-ONNX with pure Python 128d X-Vector speaker diarization."
+    tagline_ko: "디바이스 리소스를 활용한 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크."
+    tagline_en: "Unified on-device Speech-to-Text utilizing device resources with pure Python 128d X-Vector speaker diarization."
     links:
       docs: "/lib/stt/"
       pypi: "https://pypi.org/project/termux-stt/"
@@ -134,8 +134,8 @@ libs:
   - id: train
     name: "Termux-Train"
     badge: "pip / npm"
-    tagline_ko: "Bionic 네이티브 경량 텐서 DAG Autograd 역전파, RoPE 트랜스포머 및 온디바이스 LoRA 파인튜닝 프레임워크."
-    tagline_en: "Ultra-lightweight on-device Tensor & DAG Autograd framework with SafeTensors zero-copy, RoPE transformer, and LoRA fine-tuning."
+    tagline_ko: "디바이스 리소스를 활용한 Bionic 네이티브 경량 텐서 DAG Autograd 역전파 및 온디바이스 LoRA 파인튜닝 프레임워크."
+    tagline_en: "On-device Tensor & DAG Autograd framework utilizing device resources with SafeTensors zero-copy and LoRA fine-tuning."
     links:
       docs: "/lib/train/"
       pypi: "https://pypi.org/project/termux-train/"
@@ -145,8 +145,8 @@ libs:
   - id: llamacpp
     name: "Termux-LlamaCpp"
     badge: "pip / npm"
-    tagline_ko: "Android Termux ARM64 전용 제로 컴파일 사전 빌드 GGUF LLM 런타임, 모델 매니저 및 OpenAI 호환 REST/SSE 수퍼바이저 서버."
-    tagline_en: "Production-grade prebuilt GGUF LLM runtime, model manager & OpenAI-compatible REST/SSE server for Android Termux & ARM64."
+    tagline_ko: "디바이스 리소스를 활용한 Android Termux ARM64 전용 GGUF LLM 런타임, 모델 매니저 및 OpenAI 호환 REST/SSE 서버."
+    tagline_en: "Production-grade GGUF LLM runtime utilizing device resources for Android Termux & ARM64."
     links:
       docs: "/lib/llamacpp/"
       pypi: "https://pypi.org/project/termux-llamacpp/"
@@ -156,8 +156,8 @@ libs:
   - id: vision
     name: "Termux-Vision"
     badge: "pip / npm"
-    tagline_ko: "안드로이드 Termux를 위한 제로 디펜던시 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
-    tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux."
+    tagline_ko: "디바이스 리소스를 활용한 안드로이드 Termux 제로 디펜던시 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
+    tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine utilizing device resources for Android Termux."
     links:
       docs: "/lib/vision/"
       pypi: "https://pypi.org/project/termux-vision/"
@@ -167,8 +167,8 @@ libs:
   - id: tts
     name: "Termux-TTS"
     badge: "pip / npm"
-    tagline_ko: "초경량 0MB 무의존성 DSP 포먼트 보코더 및 신경망 ONNX 음성 합성 & 네이티브 오디오 브릿지 프레임워크."
-    tagline_en: "Ultra-lightweight zero-dependency DSP Formant Vocoder, Neural ONNX speech synthesis & Android native audio bridge framework."
+    tagline_ko: "디바이스 리소스를 활용한 초경량 무의존성 DSP 포먼트 보코더 및 신경망 ONNX 음성 합성 & 네이티브 오디오 브릿지."
+    tagline_en: "Zero-dependency DSP Formant Vocoder & Neural ONNX speech synthesis utilizing device resources."
     links:
       docs: "/lib/tts/"
       pypi: "https://pypi.org/project/termux-tts/"

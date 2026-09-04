@@ -1,9 +1,9 @@
-# Termux-Diffusion Full Technical Specification (v1.3.1)
+# Termux-Diffusion Full Technical Specification (v1.4.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Native On-Device Stable Diffusion Runtime for Android Termux & ARM64
-Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.
+Native On-Device Stable Diffusion Runtime Utilizing Device Resources for Android Termux
+Executes quantized Stable Diffusion models utilizing device resources with ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4 61s) and direct Samsung Gallery indexing.
 
 ## 2. Package & Installation
 - PyPI: termux-diffusion

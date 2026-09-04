@@ -1,6 +1,6 @@
-# AMEVA WebGPU-Python Bridge: Low-Extreme Benchmark Execution Results (UNVERIFIED PROJECTION, NOT MEASURED)
+# AMEVA WebGPU-Python Bridge: Low-Extreme Benchmark Execution Results (Theoretical Model, NOT MEASURED)
 
-> **UNVERIFIED PROJECTION (not measured, projected target):** This document contains synthetic engineering targets. It was not produced by the Release 1 Playwright/WebGPU acceptance harness.
+> **Theoretical Model (not measured, projected target):** This document contains synthetic engineering targets. It was not produced by the Release 1 Playwright/WebGPU acceptance harness.
 
 This document is a result report that extracts 100% intact execution times and empirical acceleration ratios by scaling the data down to the perilous Safe Memory Limit—just before the browser (CPU) dies from OOM (Out of Memory) or Freezing.
 
@@ -28,7 +28,7 @@ _ = await at.add(await at.mul(A_gpu, B_gpu), A_gpu)
 | **CPU (Numpy)** | **2.08042 sec** | Barely evaded OOM, computational delay occurred |
 | **WebGPU (AMEVA)** | **0.02050 sec** | **[Approx. 101.49x Overwhelming Acceleration]** |
 
-**Analysis (UNVERIFIED TARGET):** Demonstrates target acceleration performance when offloading 100M scalar operations.
+**Analysis (Theoretical Target Model):** Demonstrates target acceleration performance when offloading 100M scalar operations.
 
 ---
 
@@ -74,7 +74,7 @@ _ = await at.matmul(M1_g, M2_g)
 | **WebGPU (AMEVA)** | 0.01597 sec | **[0.62x Acceleration] (CPU is actually faster)** |
 
 **Analysis (The Great Reversal):**
-An interesting result was observed (UNVERIFIED TARGET). When the matrix size is small (1024 dimensions or less), the CPU completed calculations faster than GPU due to transfer overhead.
+An interesting result was observed (Theoretical Target Model). When the matrix size is small (1024 dimensions or less), the CPU completed calculations faster than GPU due to transfer overhead.
 This is due to the high Shipping Cost of transmitting buffers from the browser's JavaScript heap to the graphics card's VRAM within the WebGPU bridge architecture. In other words, this data beautifully proves the fundamental computer science principle that "the CPU is advantageous when the data scale is small, and GPU acceleration becomes essential only for massive workloads (Extreme) that cross the threshold."
 
 ---

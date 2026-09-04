@@ -85,14 +85,16 @@ AI 에이전트에게 복잡한 코딩을 시키지 않고, 아래 **한 줄 명
 | `mcp` | AMEVA-MCP-Hub | WASM MCP Hub | Node.js / WASI | `lib/mcp/doc.config.yaml` |
 | `aichain` | Termux-AIChain | Agent Framework | Android Termux / Python / Node | `lib/aichain/doc.config.yaml` |
 | `bitnet` | Termux-BitNet | 1.58-bit LLM | ARM64 NEON / Python / Node | `lib/bitnet/doc.config.yaml` |
-| `diffusion` | Termux-Diffusion | Stable Diffusion | ARM64 Vulkan / Python / Node | `lib/diffusion/doc.config.yaml` |
+| `diffusion` | Termux-Diffusion | Stable Diffusion | Android ARM64 NEON / Python / Node | `lib/diffusion/doc.config.yaml` |
 | `playwright` | Termux-Playwright | Automation CDP | Android Bionic / Python / Node | `lib/playwright/doc.config.yaml` |
 | `stt` | Termux-STT | Voice STT & Diarization | ARM64 / Python / Node | `lib/stt/doc.config.yaml` |
 | `train` | Termux-Train | LoRA Autograd Engine | Android Bionic C / Python | `lib/train/doc.config.yaml` |
 | `forge` | AMEVA-Forge | WebGPU Autograd | Browser WebGPU / WASM | `lib/forge/doc.config.yaml` |
 | `infra-index`| Infra-Index Platform | Cloud Intelligence | Next.js / FastAPI | `lib/infra-index/doc.config.yaml` |
 | `llamacpp` | Termux-LlamaCpp | GGUF LLM Server | Android ARM64 / Python / Node | `lib/llamacpp/doc.config.yaml` |
-| `vision` | Termux-Vision | Computer Vision & VLM | ARM64 NEON & Vulkan / Py & JS | `lib/vision/doc.config.yaml` |
+| `vision` | Termux-Vision | Computer Vision & VLM | ARM64 NEON SIMD / Py & JS | `lib/vision/doc.config.yaml` |
+| `tts` | Termux-TTS | DSP & Neural TTS | Android ARM64 NEON / Py & JS | `lib/tts/doc.config.yaml` |
+| `vulkan` | AMEVA-Vulkan-Runtime | SoC Abstraction HAL | Android SoC / C++ & Py & Node | `lib/vulkan/doc.config.yaml` |
 
 ---
 

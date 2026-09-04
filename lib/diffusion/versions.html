@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Diffusion</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.">
+  <meta name="description" content="Executes quantized Stable Diffusion models utilizing device resources with ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4 61s) and direct Samsung Gallery indexing.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,30 +16,17 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - Vulkan HAL Acceleration & FP16 UNet Optimization</h3>
-          <div>
-            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-02</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Vulkan HAL Integration: Direct dispatch to Qualcomm Adreno and ARM Mali GPUs via AMEVA-Vulkan-Runtime.</li>
-          <li>Half-Precision (FP16) UNet Pipeline: Reduced VRAM allocation to under 1.2GB for 512x512 image generation.</li>
-          <li>Android Gallery Sync: Automatic asset export to native DCIM/AMEVA folder with EXIF metadata preservation.</li>
-        </ul>
-      </div>
-<h3>v1.3.1 - Dual-Engine Production Release (Current)</h3>
+      <h3>v1.4.3 - Truthfulness Architecture & Native Resource Routing (Current)</h3>
          <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
+           <li>Truthfulness Documentation Overhaul: Ground-truth ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4: 61s benchmark).</li>
+           <li>AMEVA Component Protocol v1 Integration: Added DiffusionControl, HeartbeatWriter, and DiffusionOrchestratorAdapter.</li>
+           <li>sd-cli Execution Crash Prevention: Eliminated unsupported --backend vulkan0 CLI flag.</li>
+           <li>Bionic Linker Isolation: Excluded /system/lib64 and /vendor/lib64 from LD_LIBRARY_PATH.</li>
          </ul>
     </main>
   </div>

@@ -1,9 +1,9 @@
 # AMEVA-Sentinel — AI Agent Fast Context
-# Generated: 2026-09-04  |  Version: 1.0.0
+# Generated: 2026-09-04  |  Version: 1.0.1
 
 ## Library
 Name: AMEVA-Sentinel
-Version: 1.0.0
+Version: 1.0.1
 GitHub: https://github.com/uno-km/ameva-sentinel
 Documentation: https://uno-km.vercel.app/lib/sentinel/
 License: Apache-2.0

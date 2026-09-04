@@ -225,7 +225,7 @@ pip install -e ".[dev]"     # 개발 + 테스트 도구
 ### v2.0.0 달성 사항
 - ✅ 딥러닝 학습 파이프라인 완전 구현 (forward → loss → backward → optimizer)
 - ✅ XOR 문제 학습 수렴 검증 (loss < 0.05, 2000 epochs 이내)
-- ✅ 71개 단위 테스트 전수 통과 (극한 케이스 포함)
+- ✅ 71개 단위 테스트 전수 통과 (경계 케이스 포함)
 - ✅ v1.0 Critical 취약점 100% 해소
 - ✅ Python 3.9+ 전 환경 호환 패키징
 

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMEVA-Vulkan-Runtime | Official Documentation</title>
-  <meta name="description" content="Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.">
+  <meta name="description" content="Provides a C++20 Hardware Abstraction Layer (HAL) with Zero-Guesswork SoC auto-detection, utilizing hardware paths on Qualcomm Adreno and stable ARM NEON 4-Thread FP16 CPU execution on Exynos Mali.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,11 +16,11 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2 data-i18n="home.title">AMEVA-Vulkan-Runtime</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android</p>
+      <p class="subtitle" data-i18n="home.subtitle">SoC-Aware Adaptive Abstraction Runtime Utilizing Device Resources for Android Termux</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/ameva-vulkan-runtime/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-vulkan-runtime.svg?color=004499" alt="PyPI Version"></a>
@@ -37,24 +37,24 @@
       </div>
 
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.</p>
+      <p data-i18n="home.challengeText">Running multi-modal AI on mobile Android requires adaptive utilization of device resources across diverse SoC architectures (Qualcomm Adreno and Samsung Exynos ARM Mali).</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.</p>
+      <p data-i18n="home.breakthroughText">Provides a C++20 Hardware Abstraction Layer (HAL) with Zero-Guesswork SoC auto-detection, utilizing hardware paths on Qualcomm Adreno and stable ARM NEON 4-Thread FP16 CPU execution on Exynos Mali.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Single Loader Chain Pinning</h4>
-          <p data-i18n="home.features.0.desc">Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.</p>
+          <h4 data-i18n="home.features.0.title">Runtime SoC Auto-Detection</h4>
+          <p data-i18n="home.features.0.desc">Scans /proc/cpuinfo and device nodes on startup to route execution without guesswork.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">12-Stage Probing & Fallback</h4>
-          <p data-i18n="home.features.1.desc">Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.</p>
+          <h4 data-i18n="home.features.1.title">Adaptive Resource Routing</h4>
+          <p data-i18n="home.features.1.desc">Routes to hardware paths on Adreno and deterministic ARM NEON 4-Thread FP16 CPU execution on Exynos Mali.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Multi-Modal Cross-Acceleration</h4>
-          <p data-i18n="home.features.2.desc">Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.</p>
+          <h4 data-i18n="home.features.2.title">Unified Resource Core</h4>
+          <p data-i18n="home.features.2.desc">Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single shared core.</p>
         </div>
       </div>
 
@@ -69,18 +69,18 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Supported GPUs</strong></td>
-            <td>Qualcomm Adreno 830/700/600, ARM Mali-G78/G68/G77, Samsung Xclipse 950/920</td>
+            <td><strong>Target SoCs</strong></td>
+            <td>Qualcomm Snapdragon (Adreno), Samsung Exynos (Cortex CPU NEON & Mali)</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Validation Hierarchy</strong></td>
-            <td>V0 (Loader) ~ V11 (E2E Diffusion / Whisper / LLaMA Inference)</td>
+            <td><strong>Operation Modes</strong></td>
+            <td>Hardware Execution (Adreno), ARM NEON 4-Thread FP16 CPU Mode (Exynos)</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Zero-Drift Quirks Fixes</strong></td>
-            <td>Adreno Subgroup Control Bypass, Mali 128-byte Strict Memory Alignment</td>
+            <td><strong>Roadmap</strong></td>
+            <td>Phase 1 CLI Deterministic Routing, Phase 2 Android Foreground Service JNI Wrapper</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>

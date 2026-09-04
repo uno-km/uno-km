@@ -19,7 +19,7 @@
 | 통과율 | **100.0%** |
 
 > [!TIP]
-> **모든 71개 테스트가 성공**했습니다. XOR 학습 수렴(loss < 0.05 within 2000 epochs) 포함, 극한 케이스(NaN, Inf, denormal, 100×100 matmul, depth-100 chain) 모두 정상.
+> **모든 71개 테스트가 성공**했습니다. XOR 학습 수렴(loss < 0.05 within 2000 epochs) 포함, 경계 케이스(NaN, Inf, denormal, 100×100 matmul, depth-100 chain) 모두 정상.
 
 ---
 
@@ -78,7 +78,7 @@ z.backward()
 assert x.grad.numpy() == [[2.0, 2.0]]  # ✅ PASS (sum along axis 0)
 ```
 
-### 15. Extreme Tests (극한 테스트)
+### 15. Extreme Tests (경계 조건 테스트)
 
 ```python
 # test_large_tensor: 100x100 matmul

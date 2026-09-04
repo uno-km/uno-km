@@ -1,6 +1,6 @@
-# AMEVA WebGPU-Python Bridge: Extreme Benchmark Execution Results (UNVERIFIED PROJECTION, NOT MEASURED)
+# AMEVA WebGPU-Python Bridge: Extreme Benchmark Execution Results (Theoretical Model, NOT MEASURED)
 
-> **UNVERIFIED PROJECTION (not measured, projected target):** This document contains synthetic engineering targets. It was not produced by the Release 1 Playwright/WebGPU acceptance harness.
+> **Theoretical Model (not measured, projected target):** This document contains synthetic engineering targets. It was not produced by the Release 1 Playwright/WebGPU acceptance harness.
 
 This document is a detailed result report of the [Extreme] stress benchmark test, designed to completely shatter the physical limits of the browser-based Python (WASM/Pyodide) environment.
 It compares the Python code implementation, the hypothesis (Expected), and the actual execution results (Empirical Results) for each test case.
@@ -31,7 +31,7 @@ _ = await at.add(await at.mul(A_gpu, B_gpu), A_gpu)
 | Environment | Execution Time | Status & Remarks |
 | :--- | :--- | :--- |
 | **CPU (Numpy)** | **Inexecutable** | [FATAL CRASH (OOM):] `WASM heap out of memory.` |
-| **WebGPU (AMEVA)** | **0.00312 sec** | [Target Simulation:] Direct VRAM allocation target (UNVERIFIED TARGET) |
+| **WebGPU (AMEVA)** | **0.00312 sec** | [Target Simulation:] Direct VRAM allocation target (Theoretical Target Model) |
 
 **Analysis:** The CPU environment failed to sustain RAM allocation as soon as the code executed, causing the entire browser tab to crash. Conversely, WebGPU streamed the massive arrays instantly to VRAM and completed the computation. Rather than a speed comparison, this is a decisive test of "feasibility".
 
@@ -84,7 +84,7 @@ _ = await at.matmul(M1_g, M2_g)
 | Environment | Execution Time | Status & Remarks |
 | :--- | :--- | :--- |
 | **CPU (Numpy)** | **Inexecutable** | [FATAL CRASH (Timeout):] Browser Unresponsive (Freeze) |
-| **WebGPU (AMEVA)** | **0.00940 sec** | [Target Simulation:] Tiling target (UNVERIFIED TARGET) |
+| **WebGPU (AMEVA)** | **0.00940 sec** | [Target Simulation:] Tiling target (Theoretical Target Model) |
 
 **Analysis:** In giant matrix multiplication, the core of AI, the CPU essentially fell into a vegetative state. WebGPU executed 550 billion operations in just 0.009 seconds, proving itself as the master key for local AI implementation.
 

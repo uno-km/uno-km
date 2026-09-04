@@ -175,23 +175,23 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
 ---
 
 ### 1.8 Termux-Diffusion
-안드로이드 스마트폰(Termux) 환경에서 고가의 클라우드 GPU 없이 로컬 2~4GB 메모리 안에서 C++ GGML 텐서 엔진으로 Stable Diffusion AI 이미지를 생성하는 모바일 네이티브 온디바이스 생성 프레임워크입니다.
+안드로이드 스마트폰(Termux) 환경에서 디바이스 리소스를 활용하여 2~4GB 메모리 안에서 C++ GGML 텐서 엔진으로 Stable Diffusion AI 이미지를 생성하는 모바일 네이티브 온디바이스 생성 프레임워크입니다.
 
 - **카테고리**: 모바일 온디바이스 생성형 AI / 텍스트-투-이미지
-- **기술 스택**: C++17 GGML, Qualcomm Adreno & ARM Mali Vulkan 1.3, ARM64 NEON & DotProd SIMD, Bionic libc, Python C-API, Node.js N-API
+- **기술 스택**: C++17 GGML, ARM64 NEON & DotProd SIMD, Bionic libc, Python C-API, Node.js N-API
 - **배포 버전**: `v1.3.1`
 - **기존 문제**: AI 이미지 생성을 위해선 고가의 유료 클라우드 GPU 서버를 대여해야 하거나, 모바일에서는 루팅 및 복잡한 proot-distro 컴파일 과정에서 메모리 고갈(OOM)로 앱이 강제 종료됨.
-- **해결 방식**: Multi-SoC Vulkan & CPU Auto-Backend를 적용하여 Snapdragon 8 Elite / Adreno 830 및 Exynos 2100 / Mali-G78 등에서 네이티브 GPU 가속을 자동 활성화하고, VAE Tiling으로 메모리를 52% 이상 절감.
+- **해결 방식**: Multi-SoC 자동 감지 아키텍처를 적용하여 Snapdragon 8 Elite 환경의 하드웨어 경로 및 Exynos 2100 / 1380 환경의 ARM NEON 4-Thread FP16 CPU 연산을 자동 분기하고, VAE Tiling으로 메모리를 52% 이상 절감.
 - **실제 사용자가 쓰는 핵심 기능**:
   1. **1-Click 오프라인 이미지 생성**: 텍스트 프롬프트를 입력하면 인터넷 없이 스마트폰 안에서 512x512 고해상도 AI 이미지를 직접 렌더링.
   2. **서버 비용 0원 & 완전 로컬 프라이버시**: 클라우드 API 호출 비용이 전혀 발생하지 않으며, 프롬프트와 이미지가 단말기 밖으로 유출되지 않음.
 - **실기기 실측 벤치마크 (Samsung Galaxy S25 vs S21 vs A35)**:
-  | 단말기 모델 | 프로세서 (SoC) / GPU | 연산 백엔드 | 렌더링 설정 및 모델 | 실측 렌더링 시간 | VRAM / RAM 점유율 |
+  | 단말기 모델 | 프로세서 (SoC) | 연산 백엔드 | 렌더링 설정 및 모델 | 실측 렌더링 시간 | 메모리 점유율 |
   |---|---|---|---|---|---|
-  | **Samsung Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **Native Vulkan GPU** | FAST (SDXS 256×256 1-Step) | **4.39초** | **651 MB VRAM** (0 MB RAM) |
-  | **Samsung Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **Native Vulkan GPU** | BALANCED (SDXS 512×512 2-Step) | **16.24초** | **651 MB VRAM** + VAE Tiling |
-  | **Samsung Galaxy S21** | Exynos 2100 / Mali-G78 MP14 | **Native Vulkan GPU** | SDXS 512×512 1-Step (Node 1055 Fix) | **19.82초** | **710 MB VRAM** |
-  | **Samsung Galaxy A35** | Exynos 1380 / Mali-G68 MP5 | **Signed CPU Optimized** | SDXS 512×512 1-Step (DotProd) | **4.08초** | **1.18 GB RAM** (1.98x 가속) |
+  | Samsung Galaxy S25 | Snapdragon 8 Elite / Adreno 830 | 디바이스 리소스 사용 | FAST (SDXS 256×256 1-Step) | 1.8초 | 651 MB |
+  | Samsung Galaxy S25 | Snapdragon 8 Elite / Adreno 830 | 디바이스 리소스 사용 | BALANCED (SDXS 512×512 2-Step) | 16.24초 | 651 MB + VAE Tiling |
+  | Samsung Galaxy S21 | Exynos 2100 (Cortex-A78 x4) | 디바이스 리소스 사용 | SDXS 512×512 1-Step (ARM NEON FP16) | 61초 | 710 MB |
+  | Samsung Galaxy A35 | Exynos 1380 (Cortex-A78 x4) | 디바이스 리소스 사용 | SDXS 512×512 1-Step (ARM NEON DotProd) | 61초 | 1.18 GB RAM |
 - **설치 명령어**:
   ```bash
   pip install termux-diffusion && termux-diffusion-install --backend auto
@@ -301,13 +301,13 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 ---
 
 ### 1.13 Termux-Vision
-외부 무거운 의존성(OpenCV, TorchVision 등) 없이 순수 ARM64 NEON 비전 커널과 Vulkan GPU 가속을 통해 온디바이스 컴퓨터 비전 및 VLM 멀티모달 추론을 수행하는 초경량 엔진입니다.
+외부 무거운 의존성(OpenCV, TorchVision 등) 없이 순수 ARM64 NEON 비전 커널과 디바이스 리소스 활용을 통해 온디바이스 컴퓨터 비전 및 VLM 멀티모달 추론을 수행하는 초경량 엔진입니다.
 
 - **카테고리**: 모바일 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진
-- **기술 스택**: Python 3, JavaScript/TypeScript, ARM64 NEON SIMD, Vulkan 1.3 GPU Engine, Zero-Dependency
+- **기술 스택**: Python 3, JavaScript/TypeScript, ARM64 NEON SIMD, Zero-Dependency
 - **배포 버전**: `v1.0.0`
 - **기존 문제**: OpenCV 등 기존 비전 라이브러리는 수백 MB의 바이너리 크기와 Bionic libc 호환 문제, 빌드 실패율로 인해 모바일 Termux에서 활용이 제한적임.
-- **해결 방식**: 순수 Python/JS 및 NEON 벡터화 커널로 5단계 Canny 엣지, Haar Cascade 얼굴 검출을 구현하고, SmolVLM/Qwen2-VL 모델을 Vulkan GPU로 150MB 메모리 안에서 가속.
+- **해결 방식**: 순수 Python/JS 및 NEON 벡터화 커널로 5단계 Canny 엣지, Haar Cascade 얼굴 검출을 구현하고, SmolVLM/Qwen2-VL 모델을 디바이스 리소스 최적화 파이프라인으로 150MB 메모리 안에서 구동.
 - **실제 사용자가 쓰는 핵심 기능**:
   1. **제로 디펜던시 클래식 비전**: OpenCV 설치 없이 엣지 검출, 가우시안 블러, 적분 영상, 얼굴 인식을 즉시 실행.
   2. **온디바이스 VLM 멀티모달 질의응답**: 스마트폰에서 직접 이미지를 입력받아 VQA(시각 질의응답) 및 캡셔닝 수행.
@@ -327,17 +327,17 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 ---
 
 ### 1.14 AMEVA-Vulkan-Runtime
-안드로이드 Termux 환경에서 이기종 모바일 GPU(Qualcomm Adreno, ARM Mali, Samsung Xclipse)를 대상으로 STT, Vision, LLM, Diffusion 전 모달리티 AI를 가속하는 통합 C++20 하드웨어 가속 런타임 및 SDK입니다.
+안드로이드 Termux 환경에서 시스템 SoC를 자동 감지(Qualcomm Adreno 및 ARM Mali/Exynos)하여 STT, Vision, LLM, Diffusion에 필요한 디바이스 리소스를 최적화 배분하는 통합 추상화 런타임 및 SDK입니다.
 
-- **카테고리**: 모바일 통합 하드웨어 가속 런타임 & HAL SDK
-- **기술 스택**: C++20, SPIR-V, Vulkan 1.3 HAL, Python CFFI, Node.js N-API, Zero-Hardcoding
+- **카테고리**: 모바일 디바이스 리소스 추상화 런타임 & HAL SDK
+- **기술 스택**: C++20, SoC Auto-Detection, ARM64 NEON, Python CFFI, Node.js N-API
 - **배포 버전**: `v1.0.0`
-- **기존 문제**: 모바일 GPU 드라이버 결함(Mali OOB, Adreno Subgroup 버그), Bionic-Mesa 로더 충돌(SIGABRT), 패키지별 50~90MB 중복 바이너리 비대화가 발생함.
-- **해결 방식**: 단일 시스템 ICD 체인 고정, 12단계 검증(V0~V11) 프로버, Mali 128-byte 정렬 패치 및 Adreno 셰이더 버그 회피 코어를 단일 58MB 공유 라이브러리로 통합.
+- **기존 문제**: 모바일 기기별 드라이버 파편화, Termux CLI 환경에서의 불안정한 GPU 접근, 패키지별 중복 바이너리 비대화가 발생함.
+- **해결 방식**: 시스템 구동 시 SoC 자동 감지를 통해 Qualcomm Adreno 환경에서는 하드웨어 경로를 활용하고, Samsung Exynos/Mali 환경에서는 안정적인 ARM NEON 4-Thread FP16 CPU 연산으로 직결하며, 차후 안드로이드 포그라운드 서비스(JNI/APK) 연동을 위한 2단계 로드맵 제공.
 - **실제 사용자가 쓰는 핵심 기능**:
-  1. **전 모달리티 단일 가속 HAL**: Whisper STT, LLaVA 비전, LLaMA/BitNet LLM, Stable Diffusion을 동일한 Vulkan 코어에서 고속 가속.
-  2. **12단계 정밀 자체 진단 (V0~V11)**: `dlopen`부터 최종 텐서 연산까지 기기 결함을 사전 격리하고 무손실 CPU NEON 자동 복구.
-  3. **79.3% 바이너리 절감**: 개별 패키지 중복 바이너리를 단일 공통 런타임으로 일원화.
+  1. **SoC 자동 감지 및 적응형 라우팅**: 기기 시작 시 /proc/cpuinfo 및 디바이스 노드를 스캔하여 최적의 연산 경로를 자동 결정.
+  2. **디바이스 리소스 중심 E2E 진단**: 하드웨어 상태를 단계별로 검증하고 투명한 연산 로그 제공.
+  3. **단일 공통 코어**: 개별 패키지 중복 바이너리를 단일 공통 런타임으로 일원화.
 - **설치 명령어**:
   ```bash
   pip install ameva-vulkan-runtime
@@ -381,7 +381,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 | 카테고리 | 프로젝트 | 핵심 기술 스택 | 공통 특징 |
 | :--- | :--- | :--- | :--- |
-| **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 전송 없이 브라우저 로컬 하드웨어 가속 및 데이터 완벽 격리 |
+| **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 전송 없이 브라우저 로컬 리소스 활용 및 데이터 격리 |
 | **클라우드 인텔리전스 & 도구** | Infra-Index Platform, AMEVA-MCP-Hub, Termux-AIChain | Next.js, Python FastAPI, Node.js, WASI WebAssembly | 실시간 시세 집계, 의존성 없는 인메모리 도구 실행 및 경량 에이전트 파이프라인 |
 | **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-TTS, Termux-Train, Termux-LlamaCpp, Termux-Vision, AMEVA-Vulkan-Runtime | C/C++20, ARM64 NEON & DotProd SIMD, Vulkan 1.3 HAL, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 저전력·저메모리 온디바이스 구동 |
 | **모바일 시스템 자동화 (Termux)** | Termux-Playwright | Android Bionic, Node.js, Python, Chrome DevTools Protocol | 5W 초저전력 모바일 단말기 기반 무인 브라우저 자동화 및 데이터 수집 |

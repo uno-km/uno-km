@@ -1,9 +1,9 @@
-# AMEVA-Vulkan-Runtime Full Technical Specification (v1.1.0)
+# AMEVA-Vulkan-Runtime Full Technical Specification (v1.2.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android
-Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.
+SoC-Aware Adaptive Abstraction Runtime Utilizing Device Resources for Android Termux
+Provides a C++20 Hardware Abstraction Layer (HAL) with Zero-Guesswork SoC auto-detection, utilizing hardware paths on Qualcomm Adreno and stable ARM NEON 4-Thread FP16 CPU execution on Exynos Mali.
 
 ## 2. Package & Installation
 - PyPI: ameva-vulkan-runtime

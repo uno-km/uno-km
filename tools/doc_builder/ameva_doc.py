@@ -140,126 +140,10 @@ def render_header(cfg: dict, active_page: str) -> str:
         <a href="https://opencollective.com/ameva-fund" target="_blank" class="dual-link opencollective-link" data-i18n="common.openCollectiveBtn">Open Collective</a>
       </div>'''
 
-    return f"""  <header>
-    <a href="index.html" class="header-brand">
-      <img src="/shared/favicon.svg" alt="{name} Logo">
-      <h1 data-i18n="common.brand">{name}</h1>
-    </a>
-    <div class="header-controls">
-      <span class="release-tag" data-i18n="common.releaseTag">{version}</span>
-      <div class="lang-selector-wrapper"></div>
-      {foundation_dual}
-      {pkg_btn}
-      {sponsor_dual}
-    </div>
-  </header>"""
+    return "  <ameva-header></ameva-header>"
 
 def render_sidebar(cfg: dict, active_page: str) -> str:
-    current_lib = cfg.get("lib_slug", cfg.get("name", "").lower().replace("termux-", "").replace("ameva-", "").replace("-", ""))
-    is_foundation = cfg.get("is_foundation", False) or current_lib == "foundation"
-
-    # Tier 1 (If Library: Document Navigation / If Foundation: Foundation Navigation)
-    if is_foundation:
-        tier1_title_i18n = "common.nav.foundation"
-        tier1_title_fallback = "Foundation Info"
-        tier1_links = [
-            ("/foundation/index.html", "Overview & Mission"),
-            ("/foundation/charter.html", "Foundation Charter"),
-            ("/foundation/governance.html", "Governance & Merit"),
-            ("/foundation/incubation.html", "Incubation Policy"),
-            ("/foundation/sponsorship.html", "Sponsorship & Support"),
-            ("/foundation/dashboard/", "3D Neural Fabric Map")
-        ]
-    else:
-        tier1_title_i18n = "common.nav.docNav"
-        tier1_title_fallback = "Document Navigation"
-        tier1_links = [
-            ("index.html", "Home / Architecture"),
-            ("installation.html", "Installation Guide"),
-            ("quickstart.html", "Quickstart & Recipes"),
-            ("api-reference.html", "API Reference"),
-            ("benchmarks.html", "Benchmarks & Profiling"),
-            ("advanced-parameters.html", "Advanced Parameters"),
-            ("versions.html", "Version Archive")
-        ]
-        if current_lib == "diffusion":
-            tier1_links.insert(4, ("models.html", "Model Checkpoints"))
-            tier1_links.insert(5, ("gallery.html", "Visual Gallery"))
-        elif current_lib == "stt":
-            tier1_links.insert(4, ("models.html", "Models Directory"))
-            tier1_links.insert(5, ("showcase.html", "Audio Showcase"))
-        elif current_lib == "train":
-            tier1_links.insert(4, ("models.html", "Pretrained Checkpoints"))
-            tier1_links.insert(5, ("training-guide.html", "Training Guide"))
-        elif current_lib == "forge":
-            tier1_links.insert(4, ("demo.html", "Live WebGPU Demo"))
-        elif current_lib == "mcp":
-            tier1_links.insert(4, ("tools.html", "WASM Tools Catalog"))
-        elif current_lib == "bitnet":
-            tier1_links.insert(4, ("models.html", "GGUF Quant Models"))
-
-    # Tier 2: Flagship Libraries (All AOSF Ecosystem Libraries + Workstation App)
-    library_links = [
-        ("/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"),
-        ("/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"),
-        ("/lib/vulkan/", "vulkan", "AMEVA-Vulkan-Runtime (Vulkan HAL)"),
-        ("/lib/aichain/", "aichain", "Termux-AIChain (Zero-Dep Agent)"),
-        ("/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"),
-        ("/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"),
-        ("/lib/playwright/", "playwright", "Termux-Playwright (Automation)"),
-        ("/lib/stt/", "stt", "Termux-STT (Voice STT)"),
-        ("/lib/tts/", "tts", "Termux-TTS (Voice Synthesis)"),
-        ("/lib/train/", "train", "Termux-Train (LoRA Engine)"),
-        ("/lib/llamacpp/", "llamacpp", "Termux-LlamaCpp (GGUF Runtime)"),
-        ("/lib/vision/", "vision", "Termux-Vision (CV & VLM)"),
-        ("/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"),
-        ("https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)")
-    ]
-
-    # Tier 3: AI Agent Protocols
-    ai_links = [
-        ("llms.txt", "llms.txt (AI Fast Context)"),
-        ("llms-full.txt", "llms-full.txt (Full Spec)"),
-        ("robots.txt", "robots.txt (AI Crawlers)"),
-        ("sitemap.xml", "sitemap.xml (Sitemap)")
-    ]
-
-    html = f"""  <nav class="sidebar">
-    <!-- Tier 1: Primary Document / Foundation Navigation -->
-    <h3 data-i18n="{tier1_title_i18n}">{tier1_title_fallback}</h3>
-    <ul>"""
-    for item in tier1_links:
-        href = item[0]
-        title = item[1]
-        act = ' class="active"' if href == active_page or (is_foundation and href.endswith(active_page)) else ''
-        html += f"""
-      <li><a href="{href}"{act}>{title}</a></li>"""
-
-    html += """
-    </ul>
-    <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
-    <ul>"""
-    for href, lkey, title in library_links:
-        act = ' class="active"' if (not is_foundation and lkey == current_lib) else ''
-        target = ' target="_blank"' if href.startswith("http") else ''
-        html += f"""
-      <li><a href="{href}"{act}{target}>{title}</a></li>"""
-
-    html += """
-    </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
-    <ul>"""
-    for href, title in ai_links:
-        target = ' target="_blank"' if (href.endswith(".txt") or href.endswith(".xml")) else ''
-        html += f"""
-      <li><a href="{href}"{target}>{title}</a></li>"""
-
-    html += """
-    </ul>
-  </nav>"""
-    return html
+    return "    <ameva-sidebar></ameva-sidebar>"
 
 def render_footer(cfg: dict) -> str:
     license_type = cfg.get("license", "Apache-2.0")
@@ -342,6 +226,7 @@ def render_index_html(cfg: dict) -> str:
   <meta name="description" content="{description_en}">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>
@@ -420,6 +305,7 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
   <meta name="description" content="{desc}">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
   <script src="/shared/i18n-translations.js" defer></script>
   <script src="/shared/common.js" defer></script>

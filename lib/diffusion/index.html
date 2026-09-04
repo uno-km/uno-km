@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Diffusion | Official Documentation</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.">
+  <meta name="description" content="Executes quantized Stable Diffusion models utilizing device resources with ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4 61s) and direct Samsung Gallery indexing.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,11 +16,11 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-Diffusion</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Native On-Device Stable Diffusion Runtime for Android Termux & ARM64</p>
+      <p class="subtitle" data-i18n="home.subtitle">Native On-Device Stable Diffusion Runtime Utilizing Device Resources for Android Termux</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-diffusion/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-diffusion.svg?color=004499" alt="PyPI Version"></a>
@@ -40,7 +40,7 @@
       <p data-i18n="home.challengeText">Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes quantized Stable Diffusion models directly on Android Bionic libc with ARMv8.2-A DotProd/FP16 SIMD vector acceleration and direct Samsung Gallery indexing.</p>
+      <p data-i18n="home.breakthroughText">Executes quantized Stable Diffusion models utilizing device resources with ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4 61s) and direct Samsung Gallery indexing.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
@@ -49,8 +49,8 @@
           <p data-i18n="home.features.0.desc">Executes directly without root permissions, virtual machines, or PRoot Linux overhead.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Dual Python & Node.js Engine</h4>
-          <p data-i18n="home.features.1.desc">Provides comprehensive CLI and programmatic APIs across both Python and JavaScript.</p>
+          <h4 data-i18n="home.features.1.title">Adaptive Device Resource Routing</h4>
+          <p data-i18n="home.features.1.desc">Adapts to SoC capabilities with ARM NEON 4-Thread FP16 CPU execution and Adreno paths.</p>
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.2.title">Samsung Gallery Auto-Indexing</h4>
@@ -74,8 +74,8 @@
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Vector Acceleration</strong></td>
-            <td>ARM64 ARMv8.2-A DotProd/FP16 SIMD, FP16 Compute, Multi-Threaded Tiling</td>
+            <td><strong>Device Resource Compute</strong></td>
+            <td>ARM64 ARMv8.2-A DotProd/FP16 SIMD, Cortex-A78 x4 61s Benchmark</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>

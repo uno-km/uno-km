@@ -1,9 +1,9 @@
 # Termux-Playwright — AI Agent Fast Context
-# Generated: 2026-09-04  |  Version: 1.80.1
+# Generated: 2026-09-04  |  Version: 1.80.2
 
 ## Library
 Name: Termux-Playwright
-Version: 1.80.1
+Version: 1.80.2
 GitHub: https://github.com/uno-km/termux-playwright
 Documentation: https://uno-km.vercel.app/lib/playwright/
 License: Apache-2.0

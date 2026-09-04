@@ -1,9 +1,9 @@
 # AMEVA-MCP-Hub — AI Agent Fast Context
-# Generated: 2026-09-04  |  Version: 3.0.0
+# Generated: 2026-09-04  |  Version: 3.0.1
 
 ## Library
 Name: AMEVA-MCP-Hub
-Version: 3.0.0
+Version: 3.0.1
 GitHub: https://github.com/uno-km/ameva-mcp-hub
 Documentation: https://uno-km.vercel.app/lib/mcp/
 License: Apache-2.0

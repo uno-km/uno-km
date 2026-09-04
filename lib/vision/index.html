@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Vision | Official Documentation</title>
-  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.">
+  <meta name="description" content="Eliminates heavy C++ dependencies by integrating SIMD NEON spatial image transforms with on-device VLM (Qwen2-VL, SmolVLM) multi-tier resolution presets (fast, optimal, high, original) utilizing device resources under strict memory isolation.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -16,50 +16,45 @@
   <ameva-header></ameva-header>
 
   <div class="container">
-                                    <ameva-sidebar></ameva-sidebar>
+    <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-Vision</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux</p>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine Utilizing Device Resources for Android Termux</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-vision/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-vision.svg?color=004499" alt="PyPI Version"></a>
         <a href="https://www.npmjs.com/package/termux-vision" target="_blank"><img src="https://img.shields.io/npm/v/termux-vision.svg?color=cb3837" alt="npm Version"></a>
         <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Linux_/_Termux-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
       </div>
 
       <div class="alert alert-tip">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
-        <pre><code>pip install termux-vision
-# or: npm install -g termux-vision
-# or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)</code></pre>
+        <pre><code>pip install ameva-core
+# or: npm install @ameva/core</code></pre>
       </div>
 
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.</p>
+      <p data-i18n="home.challengeText">Standard vision frameworks like OpenCV and heavy Python runtimes fail on mobile Termux due to multi-gigabyte library sizes, missing GLIBC bindings, high latency, and severe thermal throttling during high-resolution vision encoding.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Vulkan GPU acceleration and automatic CPU fallback under 500MB RAM.</p>
+      <p data-i18n="home.breakthroughText">Eliminates heavy C++ dependencies by integrating SIMD NEON spatial image transforms with on-device VLM (Qwen2-VL, SmolVLM) multi-tier resolution presets (fast, optimal, high, original) utilizing device resources under strict memory isolation.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Zero-Heavy C++ Dependency</h4>
-          <p data-i18n="home.features.0.desc">Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.</p>
+          <h4 data-i18n="home.features.0.title">4-Tier Quality Preset Scaler</h4>
+          <p data-i18n="home.features.0.desc">Dynamically balances speed and detail via fast (384px), optimal (768px), high (1280px), and original (1:1) resolution presets.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Multimodal VLM Inference Engine</h4>
-          <p data-i18n="home.features.1.desc">Natively supports SmolVLM-500M and Qwen2-VL-2B models with truthful visual question answering and image description.</p>
+          <h4 data-i18n="home.features.1.title">Vulkan GPU Full-Layer Offload</h4>
+          <p data-i18n="home.features.1.desc">Direct Adreno and Mali GPU shader acceleration achieving 12~14 tokens/sec on Snapdragon 8 Elite and Exynos platforms.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Vulkan GPU Acceleration & CPU Fallback</h4>
-          <p data-i18n="home.features.2.desc">Auto-detects Vulkan GPU acceleration with graceful CPU retry on driver faults, or strict isolated GPU enforcement.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">1:1 Native Bridge with termux-train</h4>
-          <p data-i18n="home.features.3.desc">Seamlessly converts extracted vision feature maps and ViT patches directly into termux-train tensors for edge LoRA fine-tuning.</p>
+          <h4 data-i18n="home.features.2.title">Strict Model Integrity & Anti-Corruption Guard</h4>
+          <p data-i18n="home.features.2.desc">Guarantees zero-drift execution by enforcing a 10MB minimum valid binary threshold and pair verification for language and vision GGUF artifacts.</p>
         </div>
       </div>
 
@@ -74,23 +69,23 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Classical CV Filters</strong></td>
-            <td>5-Stage Canny Edge Detector, Sobel 3x3, Gaussian Blur 5x5, 2D Integral Images, Morphology</td>
+            <td><strong>Spatial Transforms</strong></td>
+            <td>Bilinear Scale, Grayscale, Canny Edge, Sobel Convolution</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Face & Object Detection</strong></td>
-            <td>Haar-like Feature Cascade Detector, IoU, Non-Maximum Suppression (NMS)</td>
+            <td><strong>VLM Presets</strong></td>
+            <td>FAST (384px), OPTIMAL (768px), HIGH (1280px), ORIGINAL (1:1)</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Multimodal VLM</strong></td>
-            <td>SmolVLM-500M, Qwen2-VL-2B, Supervised llama-cli Bridge, Vulkan GPU Engine</td>
+            <td><strong>VLM Acceleration</strong></td>
+            <td>Adreno/Mali Vulkan GPU (-ngl 99), CPU Resilient Fallback</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Neural Vision Bridge</strong></td>
-            <td>ViT Patch Embeddings (16x16), MobileNet Feature Extractor, termux-train Auto-Grad Bridge</td>
+            <td><strong>Integrity Defense</strong></td>
+            <td>Atomic .tmp write, >10MB Size Gate, GGUF/mmproj Pair Validation</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
@@ -103,13 +98,31 @@
           <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
         <div class="code-tab-content" style="display:block;">
-          <pre><code>import ameva_core as ac
-engine = ac.Engine()
-print(engine.compute([1.0, 2.0]))</code></pre>
+          <pre><code>import termux_vision as tv
+
+# 1. Zero-Dependency Spatial Filtering (0.01s ultra-fast)
+img = tv.io.load_image("photo.jpg")
+edges = tv.cv.canny(tv.transforms.to_grayscale(img), 40, 120)
+
+# 2. On-Device VLM Multimodal Inference with 4-Tier Quality Presets
+with tv.vlm.load("qwen2-vl-2b-q4", quality="optimal") as engine:
+    res = engine.describe("photo.jpg", prompt="Describe this scene in detail.", quality="optimal")
+    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s): {res.text}")
+</code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code>import { Engine } from '@ameva/core';
-const engine = new Engine();</code></pre>
+          <pre><code>import tv from 'termux-vision';
+
+// 1. Diagnostics & Hardware Probe
+const doc = tv.doctor(true);
+console.log(`Vulkan GPU: ${doc.vulkan.status} | RAM: ${doc.hardware.availableRamMb} MB`);
+
+// 2. Multimodal VLM Inference with Quality Preset
+const engine = await tv.load({ modelId: 'qwen2-vl-2b-q4', contextLimit: 4096 });
+const result = await engine.describe('photo.jpg', { quality: 'optimal', maxTokens: 300 });
+console.log(`[${result.metrics.backend.toUpperCase()}] ${result.text}`);
+engine.close();
+</code></pre>
         </div>
       </div>
 

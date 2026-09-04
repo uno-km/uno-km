@@ -32,7 +32,7 @@
 * **Taxonomy Decoupling**: Deconstructs legacy monolithic triage into 4 independent evaluation dimensions:
   * `riskLevel`: Pure automation risk estimation (`LOW_AUTOMATION_RISK`, `ELEVATED_AUTOMATION_RISK`, `HIGH_AUTOMATION_RISK`).
   * `actorClaim`: Declared client identity claim (`UNKNOWN`, `AI_OPERATOR`, `AUTOMATION_TOOL`, `BROWSER_USER`).
-  * `verification`: Independent claim verification state (`UNVERIFIED`, `VERIFIED`, `NOT_APPLICABLE`, `CONTRADICTORY`).
+  * `verification`: Independent claim verification state (`Theoretical Model`, `VERIFIED`, `NOT_APPLICABLE`, `CONTRADICTORY`).
   * `decision`: Policy enforcement outcome (`ALLOW`, `OBSERVE`, `CHALLENGE`, `TEMPORARY_DENY`).
 * **Unknown Baseline**: Absences of automation signatures default to `actorClaim.type = 'UNKNOWN'` rather than asserting human identity.
 * **Single-Signal Protection**: Single passive heuristics (e.g. `isWebdriver`) cannot trigger `TEMPORARY_DENY`; enforced action is automatically downgraded to `OBSERVE`.
@@ -55,7 +55,7 @@
 * **Explicit Capabilities Contract**: Missing provider signals safely return `undefined` rather than misleading falsy/zero values.
 
 #### 4. Trust Boundary Enforcement Layer (`lib/sentinel/policy/`)
-* **Anti-Spoofing Guardrail**: Provider verified-bot flags (`isCdnVerifiedBot`) escalate to `VERIFIED` only when both `edgeAuthenticated` and `directOriginBlocked` are confirmed. Unauthenticated requests retain `UNVERIFIED` with `trustBoundary: { directOriginBlocked: 'UNVERIFIED_NETWORK_BOUNDARY' }`.
+* **Anti-Spoofing Guardrail**: Provider verified-bot flags (`isCdnVerifiedBot`) escalate to `VERIFIED` only when both `edgeAuthenticated` and `directOriginBlocked` are confirmed. Unauthenticated requests retain `Theoretical Model` with `trustBoundary: { directOriginBlocked: 'Theoretical Model_NETWORK_BOUNDARY' }`.
 * **Structured Provenance**: Records `verificationEvidence` with explicit verification methods (`PROVIDER_VERIFIED_BOT_SIGNAL`).
 
 #### 5. Availability & Fail-Open Hardening

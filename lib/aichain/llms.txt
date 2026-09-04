@@ -1,9 +1,9 @@
 # Termux-AIChain — AI Agent Fast Context
-# Generated: 2026-09-04  |  Version: 1.1.1
+# Generated: 2026-09-04  |  Version: 1.1.2
 
 ## Library
 Name: Termux-AIChain
-Version: 1.1.1
+Version: 1.1.2
 GitHub: https://github.com/uno-km/termux-aichain
 Documentation: https://uno-km.vercel.app/lib/aichain/
 License: Apache-2.0

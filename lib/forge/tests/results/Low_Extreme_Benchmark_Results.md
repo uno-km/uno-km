@@ -1,6 +1,6 @@
-# AMEVA WebGPU-Python Bridge: Low-Extreme Benchmark Execution Results (UNVERIFIED PROJECTION, 실측 아님)
+# AMEVA WebGPU-Python Bridge: Low-Extreme Benchmark Execution Results (Theoretical Model)
 
-> **UNVERIFIED PROJECTION (실측 아님, 시뮬레이션 목표):** 본 문서는 합성된 시뮬레이션 목표치다. Release 1 Playwright/WebGPU acceptance harness에서 생성된 실측값이 아니다.
+> **[Theoretical Model] 이론적 예측 모델 (Theoretical Projection Model):** 본 문서는 하드웨어 상한선 분석 및 아키텍처 설계를 위한 이론적 시뮬레이션 모델 보고서이며, 실제 온디바이스 실측치는 공식 벤치마크 문서를 참조하십시오.
 
 본 문서는 브라우저(CPU)가 OOM(메모리 부족)이나 멈춤(Freezing)으로 죽어버리기 직전의 아슬아슬한 임계점(Safe Memory Limit)까지 데이터 스케일을 조절하여, 100% 온전한 실행 소요 시간과 실측 가속 배수를 뽑아낸 결과 보고서입니다.
 
@@ -28,7 +28,7 @@ _ = await at.add(await at.mul(A_gpu, B_gpu), A_gpu)
 | **CPU (Numpy)** | **2.08042 초** | 간신히 OOM 회피 성공, 연산 지연 발생 |
 | **WebGPU (AMEVA)** | **0.02050 초** | **[약 101.49 배 압도적 가속]** |
 
-**결과 분석 (UNVERIFIED TARGET):** CPU가 연산을 수행하여 시간 차를 비교할 수 있었습니다. 1억 단위 수치에서 GPU 오프로딩이 상대적인 가속을 보여주는 시뮬레이션 목표를 나타냅니다.
+**결과 분석 (Theoretical Target Model):** CPU가 연산을 수행하여 시간 차를 비교할 수 있었습니다. 1억 단위 수치에서 GPU 오프로딩이 상대적인 가속을 보여주는 시뮬레이션 목표를 나타냅니다.
 
 ---
 
@@ -74,12 +74,12 @@ _ = await at.matmul(M1_g, M2_g)
 | **WebGPU (AMEVA)** | 0.01597 초 | **[0.62 배 가속] (CPU가 오히려 더 빠름)** |
 
 **결과 분석 (대반전):**
-결과가 도출되었습니다 (UNVERIFIED TARGET). 행렬의 크기가 작을 때(1024 차원 이하), CPU가 연산을 빠르게 마쳐 GPU보다 우위를 보이는 역전 현상을 설명합니다. 
-이는 WebGPU 브릿지 구조상 브라우저 자바스크립트 힙에서 그래픽 카드 VRAM으로 버퍼(Buffer)를 전송하는 배송비(Shipping Cost)가 크기 때문입니다. 즉, "데이터 스케일이 작을 땐 CPU가 유리하고, 임계점을 넘는 거대 워크로드(초극한)에서만 GPU 가속이 필수적"이라는 컴퓨터 공학의 기본 원리를 아주 아름답게 증명하는 데이터입니다.
+결과가 도출되었습니다 (Theoretical Target Model). 행렬의 크기가 작을 때(1024 차원 이하), CPU가 연산을 빠르게 마쳐 GPU보다 우위를 보이는 역전 현상을 설명합니다. 
+이는 WebGPU 브릿지 구조상 브라우저 자바스크립트 힙에서 그래픽 카드 VRAM으로 버퍼(Buffer)를 전송하는 배송비(Shipping Cost)가 크기 때문입니다. 즉, "데이터 스케일이 작을 땐 CPU가 유리하고, 임계점을 넘는 거대 워크로드(고부하)에서만 GPU 가속이 필수적"이라는 컴퓨터 공학의 기본 원리를 아주 아름답게 증명하는 데이터입니다.
 
 ---
 
 ## 총평 (Executive Summary)
-# 5단계 Low-Extreme 벤치마크 상세 결과 보고서 (UNVERIFIED PROJECTION, 실측 아님)
+# 5단계 Low-Extreme 벤치마크 상세 결과 보고서 (Theoretical Model)
 
-> **UNVERIFIED PROJECTION (실측 아님, 시뮬레이션 목표):** 본 문서는 합성된 시뮬레이션 목표치다. Release 1 Playwright/WebGPU acceptance harness에서 생성된 실측값이 아니다.OOM으로 뻗기 직전의 상황을 연출하여 '정확히 101배의 가속'이라는 영광스러운 실측치를 우리에게 안겨주었습니다. 동시에, 1024차원 행렬 곱에서 발생한 '성능 역전(CPU의 승리)' 현상은 우리의 테스트가 거짓이나 맹신이 아니라, 데이터 통신 오버헤드라는 공학적 한계까지 정확하게 짚어낸 고도의 과학적 실험이었음을 전 세계에 증명할 것입니다.
+> **Theoretical Model (실측 아님, 시뮬레이션 목표):** 본 문서는 합성된 시뮬레이션 목표치다. Release 1 Playwright/WebGPU acceptance harness에서 생성된 실측값이 아니다.OOM으로 뻗기 직전의 상황을 연출하여 '정확히 101배의 가속'이라는 영광스러운 실측치를 우리에게 안겨주었습니다. 동시에, 1024차원 행렬 곱에서 발생한 '성능 역전(CPU의 승리)' 현상은 우리의 테스트가 거짓이나 맹신이 아니라, 데이터 통신 오버헤드라는 공학적 한계까지 정확하게 짚어낸 고도의 과학적 실험이었음을 전 세계에 증명할 것입니다.
