@@ -312,6 +312,7 @@
 
           let liveNpmCount = null;
           let latestVersion = null;
+          let latestDate = null;
 
           if (npmPkg) {
             try {
@@ -325,27 +326,43 @@
             } catch (e) {}
 
             try {
-              const verRes = await fetch('https://registry.npmjs.org/' + encodeURIComponent(npmPkg) + '/latest');
+              const verRes = await fetch('https://registry.npmjs.org/' + encodeURIComponent(npmPkg));
               if (verRes.ok) {
                 const vdata = await verRes.json();
-                if (vdata && vdata.version) {
-                  latestVersion = vdata.version;
+                const latestTag = (vdata && vdata['dist-tags'] && vdata['dist-tags'].latest) || (vdata && vdata.version);
+                if (latestTag) {
+                  latestVersion = latestTag;
+                  if (vdata.time && vdata.time[latestTag]) {
+                    latestDate = vdata.time[latestTag].split('T')[0];
+                  }
                 }
               }
             } catch (e) {}
           }
 
-          if (!latestVersion && pypiPkg) {
+          if (pypiPkg) {
             try {
               const pyRes = await fetch('https://pypi.org/pypi/' + encodeURIComponent(pypiPkg) + '/json');
               if (pyRes.ok) {
                 const pyData = await pyRes.json();
                 if (pyData && pyData.info && pyData.info.version) {
-                  latestVersion = pyData.info.version;
+                  const pVer = pyData.info.version;
+                  if (!latestVersion) latestVersion = pVer;
+                  if (pyData.releases && pyData.releases[pVer] && pyData.releases[pVer][0]) {
+                    const upTime = pyData.releases[pVer][0].upload_time || pyData.releases[pVer][0].upload_time_iso_8601;
+                    if (upTime) {
+                      const pDate = upTime.split('T')[0];
+                      if (!latestDate || pDate > latestDate) {
+                        latestDate = pDate;
+                      }
+                    }
+                  }
                 }
               }
             } catch (e) {}
           }
+
+          row.setAttribute('data-release-date', latestDate || '-');
 
           if (latestVersion) {
             const verCell = row.querySelector('.cell-version') || row.querySelector('td:nth-child(3) code');
@@ -406,7 +423,7 @@
         }
       };
 
-      refreshLiveNPM();
+      window._metricsRefreshPromise = refreshLiveNPM();
     });
   </script>
 </body>
