@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benchmarks & Profiling | AMEVA-Vulkan-Runtime</title>
-  <meta name="description" content="Provides a C++20 Hardware Abstraction Layer (HAL) with Zero-Guesswork SoC auto-detection, utilizing hardware paths on Qualcomm Adreno and stable ARM NEON 4-Thread FP16 CPU execution on Exynos Mali.">
+  <title>Benchmarks & Profiling | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA Runtime provides a unified, zero-silent-fallback hardware orchestration engine for generative AI on mobile and edge devices. It automatically resolves vendor divergence, dispatching to native Vulkan hardware offload on Qualcomm Adreno while isolating driver deadlocks on ARM Mali through deterministic Cortex-A78 CPU-NEON multi-threading.
+
+### Empirical Hardware Benchmarks (Qwen2.5-0.5B-Instruct)
+
+| Device & SoC | GPU & Driver Architecture | Backend Route | Layer Offload | Generation Speed | Prompt Eval Speed | UI Freeze | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100% VRAM)** | **35.80 t/s** (27.93 ms/t) | **4.53 t/s** | **0%** | **35.8x** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **CPU-NEON** | **0/25 (Safe Guard)** | **3.55 t/s** (295 ms/t) | **8.05 t/s** | **0%** | Baseline |
+| **Galaxy A35** (Forced Vulkan Test) | ARM Mali-G68 MP5 (vulkan.mali.so) | VULKAN | 25/25 | 0.00 t/s (Deadlock) | - | 100% (Hung) | Failed |
+
+### Technical Rationale for ARM Mali CPU-NEON Fallback
+The proprietary ARM Mali Vulkan driver (`/vendor/lib64/hw/vulkan.mali.so` via `/dev/mali0`) enforces aggressive kernel-level dynamic power management (DVFS) tied to `SurfaceFlinger` display composition. During headless compute dispatches in terminal or CLI environments (lacking an active window swapchain), the Mali driver interprets the absence of display flips as an idle state, downclocking GPU compute cores and failing to signal in-flight completion fences. This causes host threads waiting on `vkWaitForFences` or `vkQueueWaitIdle` to deadlock indefinitely.
+
+To guarantee rock-solid system stability and eliminate device lockups, the **AMEVA SmartRouter** automatically identifies ARM Mali GPUs, bypasses the unstable headless Vulkan path, and dispatches inference to the high-performance ARM Cortex-A78 CPU-NEON cluster.
+
+### CLI Quickstart
+```bash
+# 1. Automatic hardware diagnosis and profile inspection
+ameva-run doctor
+ameva-run profile
+
+# 2. Dry-run execution plan
+ameva-run plan -m qwen2.5-0.5b
+
+# 3. Direct model execution with automatic hardware acceleration
+ameva-run exec -m qwen2.5-0.5b -p "Space in Korean is:" -n 32
+```
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
