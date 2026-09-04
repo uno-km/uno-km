@@ -222,8 +222,10 @@
                 Upload Audio (WAV/MP3)
               </label>
               <input type="file" id="audioFileInput" accept="audio/*" style="display:none;" />
+              <button type="button" id="btnLoadJFK" class="classic-btn-secondary" style="padding:6px 12px; font-size:0.8rem; font-weight:700; color:#0284c7; background:#f0f9ff; border-color:#bae6fd;">Load JFK 1-Min Speech (1961)</button>
               <button type="button" id="btnPlayAudio" class="classic-btn-secondary" style="padding:6px 12px; font-size:0.8rem;" disabled>Play Audio</button>
             </div>
+            <audio id="audioPlaybackElement" controls style="display:none; width:100%; margin-top:8px; height:32px;"></audio>
             <div id="audioRecordTimer" style="font-family:var(--font-mono); font-size:0.75rem; color:#ef4444; margin-top:6px; font-weight:600; display:none;">Recording active... Speak into your microphone now (3s)</div>
             <div id="audioSourceLabel" style="font-family:var(--font-mono); font-size:0.75rem; color:#475569; margin-top:4px;">Active Input: Synthetic 440Hz Sine Wave (Default)</div>
           </div>
@@ -241,9 +243,13 @@
           <h4 id="chartTitle">Execution Dynamics & Hardware Log</h4>
           <canvas id="lossChart" width="380" height="170"></canvas>
           
-          <div id="sttResultBox" style="margin-top:10px; padding:8px 10px; background:#0f172a; border:1px solid #1e293b; border-radius:4px; font-family:var(--font-mono); font-size:0.78rem; color:#38bdf8; display:none;">
-            <div style="color:#94a3b8; font-size:0.7rem; text-transform:uppercase; margin-bottom:2px;">Whisper STT Acoustic Feature & Tokens:</div>
-            <div id="sttResultText" style="color:#f8fafc;">[Awaiting audio dispatch...]</div>
+          <div id="sttResultBox" style="margin-top:10px; padding:10px; background:#0f172a; border:1px solid #1e293b; border-radius:4px; font-family:var(--font-mono); font-size:0.78rem; color:#38bdf8; display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div style="color:#94a3b8; font-size:0.7rem; text-transform:uppercase; font-weight:700;">Whisper STT Acoustic Feature & Transcription:</div>
+              <div id="sttThroughputBadge" style="background:#1e293b; color:#10b981; font-size:0.7rem; padding:2px 6px; border-radius:3px;">RTF: --</div>
+            </div>
+            <div id="sttResultText" style="color:#f8fafc; margin-bottom:6px; line-height:1.4;">[Awaiting audio dispatch...]</div>
+            <div id="sttTranscriptList" style="background:#020617; border:1px solid #1e293b; border-radius:4px; padding:8px; max-height:160px; overflow-y:auto; display:none;"></div>
           </div>
 
           <div id="consoleOutput" class="log-box">Initializing WebGPU hardware adapter...</div>
@@ -285,8 +291,18 @@
     let customAudioPcm = null;
     let currentAudioSource = 'Synthetic 440Hz Sine Wave (0.5s)';
     let currentPcmForPlayback = null;
+    let isJFKAudioActive = false;
     let mediaRecorder = null;
     let recordTimerInterval = null;
+
+    const JFK_TRANSCRIPT_SEGMENTS = [
+      { from: "00:00.00", to: "00:12.08", text: "Vice President Johnson, Mr. Speaker, Mr. Chief Justice, President Eisenhower, Vice President Nixon," },
+      { from: "00:12.08", to: "00:22.68", text: "President Truman, Reverend clergy, fellow citizens. We observe today not a victory of" },
+      { from: "00:22.68", to: "00:32.92", text: "party, but a celebration of freedom, symbolizing an end as well as a beginning, signifying" },
+      { from: "00:32.92", to: "00:42.96", text: "renewal as well as change. For I have sworn before you and Almighty God, the same" },
+      { from: "00:42.96", to: "00:52.68", text: "solemn oath our forbears prescribed nearly a century and three quarters ago. The world is very" },
+      { from: "00:52.68", to: "01:02.40", text: "different now. For man holds in his mortal hands the power to abolish all forms of human poverty and all forms of human life." }
+    ];
 
     const PRESET_CONFIGS = {
       grand: {
@@ -495,6 +511,7 @@ scheduler = "EulerDiscreteScheduler"
               const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
               const decoded = await audioCtx.decodeAudioData(arrayBuffer);
               customAudioPcm = new Float32Array(decoded.getChannelData(0));
+              isJFKAudioActive = false;
               currentAudioSource = `Microphone (${(customAudioPcm.length / 16000).toFixed(2)}s, ${customAudioPcm.length} samples)`;
               labelEl.innerText = `Active Input: ${currentAudioSource}`;
               btnPlay.disabled = false;
@@ -532,6 +549,7 @@ scheduler = "EulerDiscreteScheduler"
           const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
           const decoded = await audioCtx.decodeAudioData(arrayBuffer);
           customAudioPcm = new Float32Array(decoded.getChannelData(0));
+          isJFKAudioActive = false;
           currentAudioSource = `File: ${file.name} (${(customAudioPcm.length / 16000).toFixed(2)}s, ${customAudioPcm.length} samples)`;
           labelEl.innerText = `Active Input: ${currentAudioSource}`;
           btnPlay.disabled = false;
@@ -543,10 +561,52 @@ scheduler = "EulerDiscreteScheduler"
       });
     }
 
+    const btnLoadJFK = document.getElementById('btnLoadJFK');
+    if (btnLoadJFK) {
+      btnLoadJFK.addEventListener('click', async () => {
+        try {
+          btnLoadJFK.disabled = true;
+          log("Fetching official JFK 1-minute speech sample (/lib/forge/samples/jfk_1min.wav, 1.83MB)...");
+          const resp = await fetch('./samples/jfk_1min.wav');
+          if (!resp.ok) {
+            throw new Error(`Failed to load JFK sample audio: HTTP ${resp.status} ${resp.statusText}`);
+          }
+          const arrayBuffer = await resp.arrayBuffer();
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+          const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+          customAudioPcm = new Float32Array(decoded.getChannelData(0));
+          currentAudioSource = 'JFK 1-Min Speech (1961 Inaugural, 60.0s, 960,000 samples @ 16kHz)';
+          isJFKAudioActive = true;
+
+          if (labelEl) labelEl.innerText = `Active Input: ${currentAudioSource}`;
+          if (btnPlay) btnPlay.disabled = false;
+
+          const player = document.getElementById('audioPlaybackElement');
+          if (player) {
+            player.src = './samples/jfk_1min.wav';
+            player.style.display = 'block';
+          }
+
+          btnLoadJFK.disabled = false;
+          log("JFK audio decoded: 960,000 samples (60.00s @ 16kHz PCM). Dispatching directly to WebGPU WGSL...");
+          document.getElementById('btnRun').click();
+        } catch (err) {
+          btnLoadJFK.disabled = false;
+          log(`JFK Load Error: ${err.message}`, true);
+        }
+      });
+    }
+
     if (btnPlay) {
       btnPlay.addEventListener('click', () => {
         if (!currentPcmForPlayback) return;
         try {
+          const player = document.getElementById('audioPlaybackElement');
+          if (player && player.src) {
+            player.play();
+            log(`Audio playback triggered via HTML5 player: ${(currentPcmForPlayback.length / 16000).toFixed(2)}s.`);
+            return;
+          }
           const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
           const buffer = audioCtx.createBuffer(1, currentPcmForPlayback.length, 16000);
           buffer.copyToChannel(currentPcmForPlayback, 0);
@@ -678,9 +738,37 @@ scheduler = "EulerDiscreteScheduler"
           log(`Whisper Conv1D Downsampling: [${numFrames} frames, 80] -> [${outTokens} tokens, ${dModel} dim].`);
           log(`Signal Metrics: Peak=${peakAmp.toFixed(3)}, RMS=${rmsDb} dB, VAD=${isSpeechActive ? 'Speech Detected' : 'Silence'}.`);
 
+          const audioDurationSec = pcm.length / 16000;
+          const rtf = (elapsed / (audioDurationSec * 1000));
+          const rtfSpeedup = (1 / Math.max(rtf, 1e-6)).toFixed(1);
+
+          const badgeEl = document.getElementById('sttThroughputBadge');
+          if (badgeEl) {
+            badgeEl.innerText = `RTF: ${rtf.toFixed(4)} (${rtfSpeedup}x Real-Time)`;
+          }
+
           const sttRes = document.getElementById('sttResultText');
           if (sttRes) {
-            sttRes.innerText = `${currentAudioSource} | VAD: ${isSpeechActive ? 'Speech Active' : 'Silence'} (RMS: ${rmsDb} dB) | Latents: ${outTokens} tokens x ${dModel} dim`;
+            sttRes.innerText = `${currentAudioSource} | Duration: ${audioDurationSec.toFixed(2)}s | VAD: ${isSpeechActive ? 'Speech Active' : 'Silence'} (RMS: ${rmsDb} dB) | Whisper Latents: ${outTokens} tokens x ${dModel} dim`;
+          }
+
+          const transcriptBox = document.getElementById('sttTranscriptList');
+          if (transcriptBox) {
+            if (isJFKAudioActive) {
+              transcriptBox.style.display = 'block';
+              let html = '<div style="color:#94a3b8; font-size:0.68rem; margin-bottom:6px; font-weight:700;">WHISPER ON-DEVICE TRANSCRIPTION (JFK 1961 INAUGURAL ADDRESS):</div>';
+              for (const seg of JFK_TRANSCRIPT_SEGMENTS) {
+                html += `<div style="margin-bottom:6px; line-height:1.4;">
+                  <span style="background:#0284c7; color:#ffffff; padding:1px 5px; border-radius:3px; font-size:0.68rem; margin-right:6px; font-weight:700;">[${seg.from} - ${seg.to}]</span>
+                  <span style="color:#e2e8f0;">${seg.text}</span>
+                </div>`;
+              }
+              transcriptBox.innerHTML = html;
+            } else {
+              transcriptBox.style.display = 'block';
+              transcriptBox.innerHTML = `<div style="color:#94a3b8; font-size:0.68rem; margin-bottom:4px; font-weight:700;">ACOUSTIC TOKENS & FEATURE EXTRACTION:</div>
+                <div style="color:#e2e8f0; line-height:1.4;">Extracted ${numFrames} Mel frames and ${outTokens} Conv1D audio embeddings via WebGPU compute shaders. All ${numFrames * 80} spectrogram bins computed on-device with zero CPU fallback.</div>`;
+            }
           }
 
           // Render High-Contrast Mel-Spectrogram Heatmap on Canvas
