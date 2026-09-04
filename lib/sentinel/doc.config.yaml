@@ -37,6 +37,14 @@
       "desc_ko": "Weakref 수명 주기 관리로 메모리 누수를 원천 차단합니다."
     }
   ],
+  "custom_pages": [
+    {
+      "slug": "admin",
+      "title_en": "Admin Dashboard",
+      "title_ko": "보안 대시보드",
+      "file": "admin.html"
+    }
+  ],
   "matrix_table": [
     {
       "category": "Compute Kernel",

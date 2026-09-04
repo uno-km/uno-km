@@ -11,13 +11,14 @@
       "name": "AMEVA-Sentinel",
       "version": "v1.1.0",
       "github": "https://github.com/uno-km/ameva-sentinel",
-      "pypi": "ameva-sentinel",
+      "pypi": "",
       "npm": "ameva-sentinel",
       "doc_pages": [
         ["index.html", "Home / Architecture"],
         ["installation.html", "Installation Guide"],
         ["quickstart.html", "Quickstart & Recipes"],
         ["api-reference.html", "API Reference"],
+        ["admin.html", "Admin Dashboard"],
         ["benchmarks.html", "Benchmarks & Profiling"],
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]

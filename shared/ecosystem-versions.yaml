@@ -16,10 +16,10 @@ libraries:
     - installation.html
     - quickstart.html
     - api-reference.html
+    - admin.html
     - benchmarks.html
     - advanced-parameters.html
     - versions.html
-    - admin.html
     status: stable
   mcp:
     name: AMEVA-MCP-Hub
