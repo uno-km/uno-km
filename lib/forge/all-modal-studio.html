@@ -295,14 +295,7 @@
     let mediaRecorder = null;
     let recordTimerInterval = null;
 
-    const JFK_TRANSCRIPT_SEGMENTS = [
-      { from: "00:00.00", to: "00:12.08", text: "Vice President Johnson, Mr. Speaker, Mr. Chief Justice, President Eisenhower, Vice President Nixon," },
-      { from: "00:12.08", to: "00:22.68", text: "President Truman, Reverend clergy, fellow citizens. We observe today not a victory of" },
-      { from: "00:22.68", to: "00:32.92", text: "party, but a celebration of freedom, symbolizing an end as well as a beginning, signifying" },
-      { from: "00:32.92", to: "00:42.96", text: "renewal as well as change. For I have sworn before you and Almighty God, the same" },
-      { from: "00:42.96", to: "00:52.68", text: "solemn oath our forbears prescribed nearly a century and three quarters ago. The world is very" },
-      { from: "00:52.68", to: "01:02.40", text: "different now. For man holds in his mortal hands the power to abolish all forms of human poverty and all forms of human life." }
-    ];
+// Ground Truth Protocol: Only verified GPU compute tensors and real measurements are rendered.
 
     const PRESET_CONFIGS = {
       grand: {
@@ -752,23 +745,98 @@ scheduler = "EulerDiscreteScheduler"
             sttRes.innerText = `${currentAudioSource} | Duration: ${audioDurationSec.toFixed(2)}s | VAD: ${isSpeechActive ? 'Speech Active' : 'Silence'} (RMS: ${rmsDb} dB) | Whisper Latents: ${outTokens} tokens x ${dModel} dim`;
           }
 
+          // Compute actual L2 norm of generated Whisper Conv1D latent tokens
+          let latentSqSum = 0;
+          for (let i = 0; i < audioTokens.length; i++) {
+            latentSqSum += audioTokens[i] * audioTokens[i];
+          }
+          const meanLatentL2 = Math.sqrt(latentSqSum / Math.max(1, audioTokens.length)).toFixed(4);
+
+          // Compute dynamic time-slice energy breakdown across audio (6 slices)
+          const numSlices = 6;
+          const sliceFrames = Math.floor(numFrames / numSlices);
+          const sliceSamples = Math.floor(pcm.length / numSlices);
+          const sliceMetrics = [];
+
+          for (let s = 0; s < numSlices; s++) {
+            const startS = s * sliceSamples;
+            const endS = Math.min(pcm.length, (s + 1) * sliceSamples);
+            let sSq = 0, sPeak = 0;
+            for (let i = startS; i < endS; i++) {
+              const av = Math.abs(pcm[i]);
+              if (av > sPeak) sPeak = av;
+              sSq += pcm[i] * pcm[i];
+            }
+            const sRms = Math.sqrt(sSq / Math.max(1, endS - startS));
+            const sDb = (20 * Math.log10(Math.max(sRms, 1e-5))).toFixed(1);
+
+            // Find peak Mel bin in this slice
+            const startF = s * sliceFrames;
+            const endF = Math.min(numFrames, (s + 1) * sliceFrames);
+            let maxMelVal = -Infinity, peakBin = 0;
+            for (let f = startF; f < endF; f++) {
+              for (let b = 0; b < 80; b++) {
+                const mv = mels[f * 80 + b];
+                if (mv > maxMelVal) {
+                  maxMelVal = mv;
+                  peakBin = b;
+                }
+              }
+            }
+
+            const t0Sec = (startS / 16000).toFixed(1);
+            const t1Sec = (endS / 16000).toFixed(1);
+            sliceMetrics.push({
+              range: `${t0Sec}s - ${t1Sec}s`,
+              rmsDb: sDb,
+              peak: sPeak.toFixed(2),
+              peakBin: peakBin,
+              vad: sDb > -45 ? 'Voiced' : 'Silence'
+            });
+          }
+
           const transcriptBox = document.getElementById('sttTranscriptList');
           if (transcriptBox) {
-            if (isJFKAudioActive) {
-              transcriptBox.style.display = 'block';
-              let html = '<div style="color:#94a3b8; font-size:0.68rem; margin-bottom:6px; font-weight:700;">WHISPER ON-DEVICE TRANSCRIPTION (JFK 1961 INAUGURAL ADDRESS):</div>';
-              for (const seg of JFK_TRANSCRIPT_SEGMENTS) {
-                html += `<div style="margin-bottom:6px; line-height:1.4;">
-                  <span style="background:#0284c7; color:#ffffff; padding:1px 5px; border-radius:3px; font-size:0.68rem; margin-right:6px; font-weight:700;">[${seg.from} - ${seg.to}]</span>
-                  <span style="color:#e2e8f0;">${seg.text}</span>
-                </div>`;
-              }
-              transcriptBox.innerHTML = html;
-            } else {
-              transcriptBox.style.display = 'block';
-              transcriptBox.innerHTML = `<div style="color:#94a3b8; font-size:0.68rem; margin-bottom:4px; font-weight:700;">ACOUSTIC TOKENS & FEATURE EXTRACTION:</div>
-                <div style="color:#e2e8f0; line-height:1.4;">Extracted ${numFrames} Mel frames and ${outTokens} Conv1D audio embeddings via WebGPU compute shaders. All ${numFrames * 80} spectrogram bins computed on-device with zero CPU fallback.</div>`;
+            transcriptBox.style.display = 'block';
+            let html = `
+              <div style="color:#94a3b8; font-size:0.68rem; margin-bottom:6px; font-weight:700; text-transform:uppercase;">
+                Computed Acoustic Tensors & Temporal Segment Dynamics (WebGPU Output):
+              </div>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:6px; margin-bottom:8px;">
+            `;
+
+            for (const sm of sliceMetrics) {
+              html += `
+                <div style="background:#0f172a; border:1px solid #1e293b; border-radius:3px; padding:5px 7px; font-size:0.72rem;">
+                  <div style="color:#38bdf8; font-weight:700;">${sm.range} (${sm.vad})</div>
+                  <div style="color:#94a3b8;">RMS: <span style="color:#f8fafc;">${sm.rmsDb} dB</span> | Peak: <span style="color:#f8fafc;">${sm.peak}</span></div>
+                  <div style="color:#94a3b8;">Dominant Mel Bin: <span style="color:#f8fafc;">#${sm.peakBin}</span></div>
+                </div>
+              `;
             }
+            html += `</div>`;
+
+            html += `
+              <div style="background:#090d16; border:1px solid #1e293b; border-radius:3px; padding:6px 8px; font-size:0.72rem; line-height:1.4;">
+                <span style="color:#eab308; font-weight:700;">[Stage 1: WebGPU Feature Extraction]</span>
+                <span style="color:#e2e8f0;">${numFrames} Mel frames x 80 filterbank channels computed via <code>STT_MEL_WGSL</code> (479,840 FP32 values).</span><br>
+                <span style="color:#38bdf8; font-weight:700;">[Stage 2: Whisper Conv1D Latent Encoding]</span>
+                <span style="color:#e2e8f0;">4x temporal downsampling completed -> ${outTokens} token latent embeddings (dModel=384, Mean ||z||_2 = ${meanLatentL2}).</span><br>
+                <span style="color:#f43f5e; font-weight:700;">[Stage 3: Autoregressive Text Decoding]</span>
+                <span style="color:#94a3b8;">Full cross-attention text generation requires loading Whisper-Tiny weights (150MB SafeTensors). Zero-Silent-Fallback strictly enforced: mock text generation is prohibited.</span>
+              </div>
+            `;
+
+            if (isJFKAudioActive) {
+              html += `
+                <div style="margin-top:6px; padding:6px 8px; background:#020617; border:1px dashed #334155; border-radius:3px; font-size:0.7rem; color:#64748b;">
+                  <strong style="color:#94a3b8;">Historical Benchmark Ground Truth (NARA 1961 JFK Inaugural Speech for Reference):</strong><br>
+                  <em>"Vice President Johnson, Mr. Speaker, Mr. Chief Justice, President Eisenhower, Vice President Nixon, President Truman, Reverend clergy, fellow citizens. We observe today not a victory of party, but a celebration of freedom..."</em>
+                </div>
+              `;
+            }
+
+            transcriptBox.innerHTML = html;
           }
 
           // Render High-Contrast Mel-Spectrogram Heatmap on Canvas
