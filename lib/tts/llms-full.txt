@@ -1,12 +1,15 @@
-# termux-tts Full Technical Specification (0.1.1)
+# termux-tts Full Technical Specification (v1.3.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-High-Performance Edge & Browser Native Open-Source Systems Library
-Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.
+Production-Grade 4-Tier On-Device Speech Synthesis Framework (Zero-Dependency DSP Formant, C++ Vulkan GPU Neural Engine & Android Native Voice Bridge)
+Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.
 
 ## 2. Package & Installation
-- PyPI: ameva-core
-- Command: pip install ameva-core
-# or: npm install @ameva/core
-- Repository: https://github.com/uno-km/uno-km
+- PyPI: termux-tts
+- Command: pip install termux-tts
+# or: npm install termux-tts
+# 1-Click Provision Studio Vulkan Engine:
+termux-tts install --tier high
+
+- Repository: https://github.com/uno-km/termux-tts

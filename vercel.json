@@ -143,6 +143,56 @@
       "permanent": false
     },
     {
+      "source": "/lib/tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/vulkan",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/vulkan",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/ameva-runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/ameva-runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
       "source": "/sdk/sentinel",
       "destination": "/lib/sentinel/",
       "permanent": false
@@ -355,6 +405,14 @@
     {
       "source": "/lib/vision/:match*",
       "destination": "/lib/vision/:match*"
+    },
+    {
+      "source": "/lib/tts/:match*",
+      "destination": "/lib/tts/:match*"
+    },
+    {
+      "source": "/lib/vulkan/:match*",
+      "destination": "/lib/vulkan/:match*"
     },
     {
       "source": "/workstation/:match*",

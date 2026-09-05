@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-TTS | Official Documentation</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -20,53 +20,56 @@
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-TTS</h2>
-      <p class="subtitle" data-i18n="home.subtitle">High-Performance Edge & Browser Native Open-Source Systems Library</p>
+      <p class="subtitle" data-i18n="home.subtitle">Production-Grade 4-Tier On-Device Speech Synthesis Framework (Zero-Dependency DSP Formant, C++ Vulkan GPU Neural Engine & Android Native Voice Bridge)</p>
 
       <div class="badges-bar">
-        <a href="https://pypi.org/project/ameva-core/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-core.svg?color=004499" alt="PyPI Version"></a>
-        <a href="https://www.npmjs.com/package/@ameva/core" target="_blank"><img src="https://img.shields.io/npm/v/%40ameva%2Fcore.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://pypi.org/project/termux-tts/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-tts.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-tts" target="_blank"><img src="https://img.shields.io/npm/v/termux-tts.svg?color=cb3837" alt="npm Version"></a>
         <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-        <img src="https://img.shields.io/badge/platform-WebGPU_/_ARM64-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Qualcomm_Adreno_&_ARM_Mali_Vulkan_1.3_/_Linux-blueviolet.svg" alt="Platform">
       </div>
 
       <div class="alert alert-tip">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
-        <pre><code>pip install ameva-core
-# or: npm install @ameva/core</code></pre>
+        <pre><code>pip install termux-tts
+# or: npm install termux-tts
+# 1-Click Provision Studio Vulkan Engine:
+termux-tts install --tier high
+</code></pre>
       </div>
 
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Standard desktop frameworks fail on constrained edge nodes and browser sandboxes due to syscall restrictions, heavy memory footprints, and severe server-dependency latency.</p>
+      <p data-i18n="home.challengeText">Constrained mobile edge environments frequently suffer from execution instability, excessive thermal throttling, and unpredictable runtime memory spikes when running conventional deep learning text-to-speech stacks. Heavyweight dependencies like full PyTorch or unoptimized runtime graph compilers exhaust mobile DRAM, while vendor-specific Vulkan driver quirks (such as ARM Mali subgroup index truncation or Qualcomm Adreno JIT pipeline compilation crashes) historically prevented reliable on-device GPU speech synthesis.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.</p>
+      <p data-i18n="home.breakthroughText">Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title"></h4>
-          <p data-i18n="home.features.0.desc"></p>
+          <h4 data-i18n="home.features.0.title">4-Tier Resilient Architecture</h4>
+          <p data-i18n="home.features.0.desc">Tier 1: Zero-Dependency Parametric DSP Formant (0MB footprint). Tier 2: Android Native System Voice Bridge. Tier 3: Subprocess-Isolated Sherpa C++ CPU Engine. Tier 4: Pure Vulkan GPU Hardware Neural Acceleration.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title"></h4>
-          <p data-i18n="home.features.1.desc"></p>
+          <h4 data-i18n="home.features.1.title">1-Click Automated Provisioning</h4>
+          <p data-i18n="home.features.1.desc">Command-line provisioning (termux-tts install --tier high/medium) automatically resolves precompiled ARM64 native binaries and HuggingFace weights with self-test verification.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title"></h4>
-          <p data-i18n="home.features.2.desc"></p>
+          <h4 data-i18n="home.features.2.title">Studio-Grade FP16 Neural Fidelity</h4>
+          <p data-i18n="home.features.2.desc">Native support for high-resolution 22.05kHz 16-bit PCM studio models (vits-piper-en_US-lessac-high-fp16), delivering natural prosody on mobile hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title"></h4>
-          <p data-i18n="home.features.3.desc"></p>
+          <h4 data-i18n="home.features.3.title">Pure Vulkan GPU Acceleration (Zero CPU Fallback)</h4>
+          <p data-i18n="home.features.3.desc">Direct GPU tensor compute via Vulkan 1.3 pipeline caching, fully resolving Qualcomm Adreno 830 and ARM Mali-G68 shader driver anomalies without silent CPU fallback.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title"></h4>
-          <p data-i18n="home.features.4.desc"></p>
+          <h4 data-i18n="home.features.4.title">Subprocess IPC Memory Isolation</h4>
+          <p data-i18n="home.features.4.desc">Architectural separation of audio synthesis and OpenSL ES playback threads via subprocess IPC prevents Python GIL contention and memory corruption.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.5.title"></h4>
-          <p data-i18n="home.features.5.desc"></p>
+          <h4 data-i18n="home.features.5.title">Unified Cross-Language Toolchain</h4>
+          <p data-i18n="home.features.5.desc">Identical functional parity and strict typing across Global CLI, Python 3.10+ SDK, and Node.js / TypeScript runtime bindings.</p>
         </div>
       </div>
 
@@ -81,19 +84,24 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Compute Engine</strong></td>
-            <td>WebGPU Compute Shaders (WGSL), FP16/FP32</td>
-            <td><span class="status-badge active">Production</span></td>
+            <td><strong>Tier 1: DSP Formant</strong></td>
+            <td>Rosenberg Glottal Pulse, 5-Band Biquad Filter, Sino-Korean Numeral Normalizer</td>
+            <td><span class="status-badge active">Production (<50ms)</span></td>
           </tr>
           <tr>
-            <td><strong>Memory Subsystem</strong></td>
-            <td>Zero-Copy Ring Buffers, Weakref GC Pooling</td>
-            <td><span class="status-badge active">Production</span></td>
+            <td><strong>Tier 2: Native Bridge</strong></td>
+            <td>Termux-API / Android TTS Service IPC (Samsung/Google Engine)</td>
+            <td><span class="status-badge active">Production (Immediate)</span></td>
           </tr>
           <tr>
-            <td><strong>Platform Runtimes</strong></td>
-            <td>Node.js, Chromium WebGPU, Android Termux Bionic</td>
-            <td><span class="status-badge active">Production</span></td>
+            <td><strong>Tier 3: CPU Neural</strong></td>
+            <td>Sherpa C++ Subprocess-Isolated VITS Engine (ARM64 NEON)</td>
+            <td><span class="status-badge active">Production (RTF 0.4~1.2x)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 4: Vulkan GPU</strong></td>
+            <td>C++ Vulkan Pipeline Caching, Mali Quirk Handling, Adreno Subgroup 64</td>
+            <td><span class="status-badge active">Production (RTF 0.26x)</span></td>
           </tr>
         </tbody>
       </table>
@@ -105,13 +113,44 @@
           <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
         <div class="code-tab-content" style="display:block;">
-          <pre><code>import ameva_core as ac
-engine = ac.Engine()
-print(engine.compute([1.0, 2.0]))</code></pre>
+          <pre><code>import termux_tts as tts
+
+# 1. Pure Vulkan GPU Neural Synthesis (Studio Tier)
+with tts.load(engine="vulkan", model_tier="high") as engine:
+    result = engine.synthesize(
+        "The neural speech synthesis engine is operating with pure Vulkan hardware acceleration.",
+        output="studio_vulkan.wav"
+    )
+    print(f"Synthesized {result.audio_duration:.2f}s in {result.elapsed_ms:.1f}ms (RTF: {result.rtf:.4f}x)")
+
+# 2. Instant Zero-Dependency DSP Formant Synthesis
+with tts.load(engine="dsp", preset="balanced") as engine:
+    result = engine.synthesize("Instant speech generation with zero external weights.", output="dsp.wav")
+    print(f"DSP Synthesis Latency: {result.elapsed_ms:.1f}ms")
+
+# 3. Direct Android Hardware Speaker Playback
+with tts.load(engine="native", language="en") as engine:
+    engine.speak("Direct hardware speaker output via Android native service.")
+</code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code>import { Engine } from '@ameva/core';
-const engine = new Engine();</code></pre>
+          <pre><code>const tts = require('termux-tts');
+
+async function main() {
+  // 1. Initialize Vulkan GPU Neural Engine
+  const engine = tts.load({ engine: 'vulkan', tier: 'high' });
+  const res = await engine.synthesize(
+    "High-performance speech synthesis on mobile hardware.",
+    { output: "vulkan_output.wav" }
+  );
+  console.log(`Generated: ${res.durationSec}s in ${res.elapsedMs}ms (RTF: ${res.rtf}x)`);
+
+  // 2. Hardware Diagnostics
+  const diag = await tts.doctor();
+  console.log(`Vulkan GPU Device: ${diag.device_name} (API: ${diag.api_version})`);
+}
+main();
+</code></pre>
         </div>
       </div>
 

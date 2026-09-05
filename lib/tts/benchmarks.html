@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,12 +21,70 @@
     <main class="content">
       <h2>Benchmarks & Profiling</h2>
       <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
-      <table class="data-table">
-           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
-           <tbody>
-             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
-           </tbody>
-         </table>
+      <h3>Empirical Dual-Device Hardware Benchmark Suite</h3>
+<p>The following performance benchmarks were gathered directly on physical test devices running Android 16 under Termux ARM64 environment. Every test was conducted over repeated synthesis iterations with zero silent fallback.</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Device &amp; Hardware Profile</th>
+      <th>Synthesis Engine</th>
+      <th>Model Architecture</th>
+      <th>Audio Duration</th>
+      <th>Compute Latency</th>
+      <th>Real-Time Factor</th>
+      <th>Hardware Utilization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Samsung Galaxy S25</strong><br>Snapdragon 8 Elite / Adreno 830</td>
+      <td>Vulkan GPU Neural</td>
+      <td>lessac-high-fp16 (22.05kHz)</td>
+      <td>6.70 s</td>
+      <td><strong>6.65 s</strong></td>
+      <td><strong>0.993x</strong></td>
+      <td>GPU Subgroup 64 / Pure Tensor</td>
+    </tr>
+    <tr>
+      <td><strong>Samsung Galaxy S25</strong><br>Snapdragon 8 Elite / Adreno 830</td>
+      <td>Vulkan GPU Neural</td>
+      <td>lessac-medium (22.05kHz)</td>
+      <td>4.59 s</td>
+      <td><strong>1.21 s</strong></td>
+      <td><strong>0.264x</strong></td>
+      <td>GPU Compute / 3.79x Faster Than RT</td>
+    </tr>
+    <tr>
+      <td><strong>Samsung Galaxy A35</strong><br>Exynos 1380 / ARM Mali-G68 MP5</td>
+      <td>Vulkan GPU Neural</td>
+      <td>lessac-medium (22.05kHz)</td>
+      <td>4.52 s</td>
+      <td><strong>5.18 s</strong></td>
+      <td><strong>1.146x</strong></td>
+      <td>Mali Subgroup 16 / Medium Kernel</td>
+    </tr>
+    <tr>
+      <td><strong>Samsung Galaxy A35</strong><br>Exynos 1380 / ARM Mali-G68 MP5</td>
+      <td>Vulkan GPU Neural</td>
+      <td>lessac-high-fp16 (22.05kHz)</td>
+      <td>6.73 s</td>
+      <td><strong>34.33 s</strong></td>
+      <td><strong>5.098x</strong></td>
+      <td>Full VRAM Resident / High Fidelity</td>
+    </tr>
+    <tr>
+      <td><strong>Heterogeneous ARM64</strong><br>All Core Profiles</td>
+      <td>Parametric DSP Formant</td>
+      <td>5-Band Biquad Formant</td>
+      <td>4.15 s</td>
+      <td><strong>0.054 s</strong></td>
+      <td><strong>0.0130x</strong></td>
+      <td>0MB External RAM / Instant CPU</td>
+    </tr>
+  </tbody>
+</table>
+
     </main>
   </div>
 

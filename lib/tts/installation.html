@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,13 +21,27 @@
     <main class="content">
       <h2>Installation & Setup Guide</h2>
       <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
-      <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>pip install ameva-core
-# or: npm install @ameva/core</code></pre>
+      <h3>Standard Package Installation</h3>
+<p>Install the core Python or Node.js package directly from standard package repositories:</p>
+<pre><code># Python (PyPI)
+pip install termux-tts
+
+# Node.js / TypeScript (NPM)
+npm install termux-tts</code></pre>
+
+<h3>Prerequisites on Android Termux</h3>
+<p>Ensure that the required system packages are installed in your Termux environment:</p>
+<pre><code>pkg update && pkg install -y termux-api pulseaudio sox clang</code></pre>
+
+<h3>1-Click Automated Engine Provisioning</h3>
+<p>To enable Tier 4 Vulkan GPU neural speech synthesis without manual compilation or model downloading, run the built-in installer:</p>
+<pre><code># Install High-Resolution Studio Tier (vits-piper-en_US-lessac-high-fp16, 22.05kHz)
+termux-tts install --tier high
+
+# Or install Medium Compact Tier (vits-piper-en_US-lessac-medium)
+termux-tts install --tier medium</code></pre>
+<p>The provisioning script downloads the precompiled native ARM64 C++ binary (<code>sherpa-ncnn-offline-tts-vulkan</code>) from the official GitHub Release and verifies execution via an immediate self-test.</p>
+
     </main>
   </div>
 

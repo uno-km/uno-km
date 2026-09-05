@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickstart & Execution Recipes | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,10 +21,27 @@
     <main class="content">
       <h2>Quickstart & Execution Recipes</h2>
       <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
-      <h3>Basic Execution Recipe</h3>
-         <pre><code>import ameva_core as ac
-engine = ac.Engine()
-print(engine.compute([1.0, 2.0]))</code></pre>
+      <h3>Command-Line Interface (CLI) Recipes</h3>
+<pre><code># 1. High-Resolution Studio Neural Synthesis with Speaker Playback
+termux-tts synth -e vulkan --tier high -t "Operating at full hardware capacity." -o speech.wav --play
+
+# 2. Instant Zero-Dependency DSP Formant Synthesis
+termux-tts synth -e dsp -p ultra -t "Zero dependency parametric speech synthesis." -o dsp.wav
+
+# 3. Direct Android Hardware Speaker Broadcast
+termux-tts speak -t "System notification broadcast." -l en
+
+# 4. Hardware and Environment Diagnostics
+termux-tts doctor</code></pre>
+
+<h3>Python SDK Canon</h3>
+<pre><code>import termux_tts as tts
+
+# Initialize pure Vulkan GPU neural synthesis engine
+with tts.load(engine="vulkan", model_tier="high") as engine:
+    res = engine.synthesize("Validating deterministic tensor execution.", output="out.wav")
+    print(f"Elapsed: {res.elapsed_ms:.1f}ms | RTF: {res.rtf:.4f}x")</code></pre>
+
     </main>
   </div>
 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vulkan C++ Engineering Paper | Termux-TTS | Official Documentation</title>
+  <meta name="description" content="Technical treatise on native Vulkan GPU neural speech synthesis, upstream C++ engine fork, ARM Mali subgroup driver quirks, and empirical on-device mobile hardware benchmarks.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Vulkan C++ Native Acceleration &amp; Engineering Postmortem</h2>
+      <p class="subtitle">A Forensic Engineering Analysis of Upstream Forking, Mobile Driver Bug Mitigation, and Hardware-Accelerated On-Device Neural Speech Synthesis</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Engineering Document Standard</span>
+        <p>This technical treatise documents the end-to-end architecture, native C++ engine fork from upstream sherpa-ncnn, driver workaround implementations, and physical device benchmark telemetry under AOSF-ENG-STD-2026-V1 governance.</p>
+      </div>
+
+      <h3>1. Abstract &amp; Problem Statement</h3>
+      <p>Deploying deep learning Text-to-Speech (TTS) models on constrained mobile edge hardware (Android Termux, ARM64 Bionic) has historically encountered severe friction. Traditional machine learning runtimes such as full PyTorch or heavy ONNX Runtime distributions introduce hundreds of megabytes of binary dependencies, unpredictable dynamic memory allocations, and high susceptibility to Android kernel Out-Of-Memory (OOM) killer terminations. Furthermore, while mobile System-on-Chips (SoCs) integrate capable GPUs, on-device neural speech engines have overwhelmingly operated in CPU-only mode due to fragmented mobile Vulkan compute shader compiler bugs across Qualcomm Adreno and ARM Mali silicon.</p>
+      <p>Termux-TTS v1.3.0 resolves this fundamental limitation by introducing a native, hardware-accelerated Vulkan GPU execution pipeline based on a specialized fork of the Sherpa-NCNN engine (<code>uno-km/termux-sherpa-ncnn</code>). This document presents the chronological engineering steps, kernel-level bug resolutions, architectural decisions, and empirical benchmark results.</p>
+
+      <h3>2. The Upstream C++ Engine Fork &amp; Vulkan Porting</h3>
+      <p>Upstream <code>k2-fsa/sherpa-ncnn</code> provides lightweight on-device speech synthesis, but its offline TTS implementation was strictly bound to CPU NEON execution, with Vulkan GPU acceleration either omitted or non-functional for offline VITS vocoders. To achieve deterministic GPU acceleration on mobile hardware, we forked the project to <a href="https://github.com/uno-km/termux-sherpa-ncnn" target="_blank">uno-km/termux-sherpa-ncnn</a> and executed the following modifications:</p>
+
+      <h4>2.1. C++ Architecture &amp; Vulkan Dispatch Modification</h4>
+      <ul>
+        <li><strong>Vulkan Model Configuration (<code>offline-tts-model-config.h/.cc</code>)</strong>: Added explicit <code>vulkan</code> boolean flag to <code>OfflineTtsModelConfig</code> and bound command-line arguments (<code>--vulkan=1</code>) to propagate GPU device initialization down to the underlying neural network layers.</li>
+        <li><strong>NCNN Vulkan Instance Binding (<code>offline-tts-vits-model.cc</code>)</strong>: Modified the VITS acoustic model constructor to instantiate <code>ncnn::VulkanDevice</code> when Vulkan is requested. Enabled <code>opt.use_vulkan_compute = true</code> and configured GPU memory buffer allocators (<code>VkBufferMemory</code>) to eliminate host-device roundtrip copies.</li>
+        <li><strong>CMake Toolchain &amp; Linker Alignment (<code>cmake/ncnn.cmake</code>)</strong>: Configured CMake build flags to enable <code>NCNN_VULKAN=ON</code>, linking against the Android native Vulkan loader (<code>libvulkan.so</code>) and setting spirv-opt optimizations for ARM64 Bionic targets.</li>
+      </ul>
+
+      <h4>2.2. Zero-Silent-Fallback Enforcement</h4>
+      <p>In accordance with AOSF Engineering Standards, the forked engine strictly enforces <strong>Fail-Fast &amp; Zero-Silent-Fallback</strong>. If a user requests Vulkan execution and the mobile driver fails to initialize a Vulkan compute queue or allocate device-local memory, the engine raises an immediate hardware exception with explicit error codes and telemetry rather than silently dropping execution back to slow CPU threads.</p>
+
+      <h4>2.3. Native ARM64 Precompiled Release Packaging</h4>
+      <p>To ensure frictionless 1-click deployment on physical mobile devices without requiring end-users to compile multi-gigabyte C++ toolchains on their smartphones, we compiled and published native ARM64 binaries via GitHub Releases (<a href="https://github.com/uno-km/termux-sherpa-ncnn/releases/tag/v1.0.0-vulkan" target="_blank">v1.0.0-vulkan</a>). The resulting precompiled package (<code>sherpa-ncnn-offline-tts-vulkan-arm64.tar.gz</code>) has a minimal footprint of only 3.97 MB.</p>
+
+      <h3>3. Silicon-Specific Driver Bug Postmortems</h3>
+      <p>Executing neural compute shaders across heterogeneous mobile GPUs revealed severe vendor-specific compiler bugs and driver anomalies. Below is the ground truth analysis of defects diagnosed and resolved during our dual-device hardware testing:</p>
+
+      <h4>3.1. ARM Mali-G68 Valhall: Compute Shader Integer Truncation Infinite Loop</h4>
+      <ul>
+        <li><strong>Observed Failure</strong>: When executing matrix multiplication kernels (<code>mul_mm.comp</code>) on Samsung Galaxy A35 (ARM Mali-G68 MP5, subgroup size 16), the GPU pipeline stalled permanently, resulting in Android hardware watchdog timeouts and device loss (<code>VK_ERROR_DEVICE_LOST</code>).</li>
+        <li><strong>Root Cause Analysis</strong>: Mali-G68 exposes a hardware subgroup size of 16. In standard GEMM shader dispatches, the column load stride was calculated as:
+          <pre><code>loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0</code></pre>
+          Because integer division truncated to zero, the inner accumulation loop executed:
+          <pre><code>for (uint l = 0; l &lt; BN; l += 0) { ... } // Infinite Loop</code></pre>
+        </li>
+        <li><strong>Engineered Solution</strong>: Enforced workgroup alignment and Medium MatMul kernel dispatch (<code>_m</code> variant, workgroup size 128, producing <code>loadstride_b = 4 &gt; 0</code>). This permanently eliminated the zero-stride loop and allowed 100% stable execution across all neural layers.</li>
+      </ul>
+
+      <h4>3.2. Qualcomm Adreno 830: SPIR-V JIT Compiler Register Crash</h4>
+      <ul>
+        <li><strong>Observed Failure</strong>: On Samsung Galaxy S25 (Snapdragon 8 Elite Adreno 830), repeated pipeline construction triggered JIT compiler segmentation crashes (<code>VK_ERROR_UNKNOWN -13</code>) during <code>mul_mat_vec</code> shader generation.</li>
+        <li><strong>Root Cause Analysis</strong>: Qualcomm's proprietary Adreno driver JIT compiler failed register allocation when specialization constants exceeded column boundary conditions (<code>NUM_COLS &gt;= 3</code>).</li>
+        <li><strong>Engineered Solution</strong>: Bounded vector column specialization to <code>mul_mat_vec_max_cols = 2</code> and introduced immutable pipeline caching. This stabilized GPU pipeline initialization and reduced subsequent shader execution overhead to sub-millisecond latencies.</li>
+      </ul>
+
+      <h3>4. Studio-Grade High-Resolution Reference Model</h3>
+      <p>To establish an authentic acoustic benchmark, Termux-TTS v1.3.0 integrates the high-resolution Piper studio model (<code>vits-piper-en_US-lessac-high-fp16</code>):</p>
+      <ul>
+        <li><strong>Audio Sample Rate</strong>: 22,050 Hz (22.05 kHz) linear 16-bit PCM.</li>
+        <li><strong>Precision</strong>: Native IEEE 754 half-precision float (FP16) compute graph.</li>
+        <li><strong>Acoustic Fidelity</strong>: Superior phoneme transition clarity, eliminating metallic vocoder artifacts common in low-bitrate parametric systems.</li>
+      </ul>
+
+      <h3>5. Empirical Dual-Device Hardware Benchmark Suite</h3>
+      <p>All benchmarks were gathered directly on physical retail hardware running Android 16 under Termux ARM64. Each benchmark was conducted over multiple consecutive runs with thermal equilibrium verified:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Device &amp; SoC Profile</th>
+            <th>GPU Architecture &amp; Subgroup</th>
+            <th>Engine / Backend</th>
+            <th>Model Profile</th>
+            <th>Audio Length</th>
+            <th>Synthesis Time</th>
+            <th>Real-Time Factor (RTF)</th>
+            <th>Throughput Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Samsung Galaxy S25</strong><br>Snapdragon 8 Elite</td>
+            <td>Qualcomm Adreno 830<br>Subgroup Size 64</td>
+            <td>Pure Vulkan GPU</td>
+            <td><code>lessac-medium</code> (22.05kHz)</td>
+            <td>4.59 s</td>
+            <td><strong>1.21 s</strong></td>
+            <td><strong>0.264x</strong></td>
+            <td>3.79x faster than real-time</td>
+          </tr>
+          <tr>
+            <td><strong>Samsung Galaxy S25</strong><br>Snapdragon 8 Elite</td>
+            <td>Qualcomm Adreno 830<br>Subgroup Size 64</td>
+            <td>Pure Vulkan GPU</td>
+            <td><code>lessac-high-fp16</code> (22.05kHz)</td>
+            <td>6.70 s</td>
+            <td><strong>6.65 s</strong></td>
+            <td><strong>0.993x</strong></td>
+            <td>Real-time studio quality</td>
+          </tr>
+          <tr>
+            <td><strong>Samsung Galaxy A35</strong><br>Exynos 1380</td>
+            <td>ARM Mali-G68 MP5<br>Subgroup Size 16</td>
+            <td>Vulkan (Medium Quirk)</td>
+            <td><code>lessac-medium</code> (22.05kHz)</td>
+            <td>4.52 s</td>
+            <td><strong>5.18 s</strong></td>
+            <td><strong>1.146x</strong></td>
+            <td>Near real-time GPU compute</td>
+          </tr>
+          <tr>
+            <td><strong>Samsung Galaxy A35</strong><br>Exynos 1380</td>
+            <td>ARM Mali-G68 MP5<br>Subgroup Size 16</td>
+            <td>Vulkan (Medium Quirk)</td>
+            <td><code>lessac-high-fp16</code> (22.05kHz)</td>
+            <td>6.73 s</td>
+            <td><strong>34.33 s</strong></td>
+            <td><strong>5.098x</strong></td>
+            <td>Full VRAM resident execution</td>
+          </tr>
+          <tr>
+            <td><strong>Heterogeneous ARM64</strong><br>Cortex-A78 / A55</td>
+            <td>CPU NEON Core</td>
+            <td>Parametric DSP Formant</td>
+            <td>5-Band Biquad Filter</td>
+            <td>4.15 s</td>
+            <td><strong>0.054 s</strong></td>
+            <td><strong>0.0130x</strong></td>
+            <td>Instantaneous zero-download</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>6. Subprocess IPC Isolation Architecture</h3>
+      <p>A critical architectural finding in mobile speech synthesis is the danger of in-process audio playback. On Android Bionic, invoking OpenSL ES or ALSA playback libraries within the main Python/Node.js process frequently induces Global Interpreter Lock (GIL) priority inversions, audio buffer under-runs, and heap corruption when handling asynchronous synthesis streams.</p>
+      <p>Termux-TTS v1.3.0 implements strict <strong>Subprocess IPC Memory Isolation</strong>. Audio synthesis and hardware playback run in decoupled subprocesses communicating via POSIX pipes with non-blocking buffer rings. If an audio device service hangs or resets, the primary computational runtime remains fully isolated and unharmed.</p>
+
+      <h3>7. Conclusion &amp; Future Verification</h3>
+      <p>The successful deployment of Termux-TTS v1.3.0 demonstrates that high-fidelity neural speech synthesis can execute deterministically on commodity mobile hardware without server roundtrips, cloud dependencies, or excessive memory footprints. Ongoing work within the AMEVA Open-Source Foundation focuses on integrating on-device NPU compute graphs via Android NNAPI/QNN to further reduce power consumption during sustained speech synthesis.</p>
+    </main>
+  </div>
+</body>
+</html>

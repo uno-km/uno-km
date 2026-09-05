@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,13 +21,51 @@
     <main class="content">
       <h2>Complete API Reference</h2>
       <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <h3>Factory Gateway</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Symbol</th><th>Signature</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>termux_tts.load</code></td>
+      <td><code>(engine: str = 'auto', model_tier: str = 'high', preset: str = 'balanced', language: str = 'en')</code></td>
+      <td>Initializes and returns the unified TTS engine instance. Supports context manager pattern.</td>
+    </tr>
+    <tr>
+      <td><code>termux_tts.run_installation</code></td>
+      <td><code>(tier: str = 'high', force: bool = False) -> bool</code></td>
+      <td>1-click provisioning tool downloading native ARM64 C++ binaries and model weights.</td>
+    </tr>
+    <tr>
+      <td><code>termux_tts.doctor</code></td>
+      <td><code>() -> DiagnosticReport</code></td>
+      <td>Executes comprehensive 12-stage Vulkan and system diagnostics.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Engine Methods</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Method</th><th>Parameters</th><th>Return Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>synthesize</code></td>
+      <td><code>(text: str, output: str = None, speed: float = 1.0, preset: str = None)</code></td>
+      <td><code>SynthesisResult</code></td>
+      <td>Synthesizes text into 16-bit linear PCM WAV audio.</td>
+    </tr>
+    <tr>
+      <td><code>speak</code></td>
+      <td><code>(text: str, stream: str = 'MUSIC')</code></td>
+      <td><code>NativeResult</code></td>
+      <td>Transmits speech to the device speaker via Android native TTS bridge.</td>
+    </tr>
+  </tbody>
+</table>
+
     </main>
   </div>
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-Modality Roadmap &amp; Paper | AMEVA-Runtime | Official Documentation</title>
+  <meta name="description" content="Architectural paper and technical roadmap for AMEVA-Runtime 6-modality on-device hardware orchestration across Qualcomm Adreno and ARM Mali mobile silicon.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Unified 6-Modality AI Acceleration Architecture</h2>
+      <p class="subtitle">Hardware Abstraction, Silicon Topology Auto-Discovery, and Multi-Modal Neural Orchestration for Mobile ARM64</p>
+
+      <div class="alert alert-tip">
+        <span class="alert-title">Architecture Specification</span>
+        <p>This technical paper outlines the unified hardware abstraction layer (HAL) governing LLM, STT, and the newly integrated TTS modality in AMEVA-Runtime v2.1.0.</p>
+      </div>
+
+      <h3>1. Architectural Overview</h3>
+      <p>Mobile smartphones feature heterogeneous computing fabrics comprising multi-core CPUs, high-throughput GPUs, and specialized NPUs. However, software frameworks routinely fail to harness this compute capacity due to driver fragility, disparate APIs (Vulkan, OpenCL, NNAPI), and kernel sandbox limitations in user-space environments like Android Termux.</p>
+      <p>AMEVA-Runtime provides a single, unified hardware orchestration layer. Through dynamic silicon inspection, it identifies underlying SoC topologies, kernel device nodes (<code>/dev/kgsl-3d0</code> for Qualcomm, <code>/dev/mali0</code> for ARM Mali), and cgroup thread affinities, routing multi-modal neural workloads to their mathematically optimal hardware backend.</p>
+
+      <h3>2. 6-Modality Acceleration Matrix</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Modality</th>
+            <th>Engine Integration</th>
+            <th>Status (v2.1.0)</th>
+            <th>Acceleration Mechanism &amp; Empirical Throughput</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. LLM (Text)</strong></td>
+            <td>Llama.cpp (Qwen2.5, Llama 3.2)</td>
+            <td><span class="status-badge active">Production</span></td>
+            <td>25/25 layers full VRAM offload. Adreno 830: <strong>35.80 t/s</strong> (35.8x vs CPU). Mali-G68: <strong>4.44 t/s</strong> (+26.9% vs NEON).</td>
+          </tr>
+          <tr>
+            <td><strong>2. STT (Speech)</strong></td>
+            <td>Whisper.cpp (Large-v3-Turbo)</td>
+            <td><span class="status-badge active">Production</span></td>
+            <td>Vulkan compute shader pipeline. Adreno 830: <strong>4.40s</strong>. Mali-G68: <strong>360.60s</strong> (2.26x speedup, 56% time saved vs CPU 816s).</td>
+          </tr>
+          <tr>
+            <td><strong>3. TTS (Audio)</strong></td>
+            <td>Sherpa-NCNN (Piper Lessac High)</td>
+            <td><span class="status-badge active">Production (v2.1.0)</span></td>
+            <td>Pure Vulkan GPU neural vocoder via Termux-TTS v1.3.0. Adreno 830: <strong>RTF 0.264x</strong> (medium) / <strong>0.993x</strong> (high-fp16). Mali-G68: <strong>RTF 1.146x</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Vision (VLM)</strong></td>
+            <td>CLIP / MobileVLM / LLaVA</td>
+            <td><span class="status-badge">In Development</span></td>
+            <td>GGML Vulkan image encoder tensor bindings and token projection.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Diffusion (Image)</strong></td>
+            <td>Stable Diffusion v1.5 / FLUX.1</td>
+            <td><span class="status-badge">In Development</span></td>
+            <td>On-device Vulkan UNet &amp; DiT cross-attention compute shaders.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Train (Training)</strong></td>
+            <td>On-Device LoRA / QLoRA</td>
+            <td><span class="status-badge">In Development</span></td>
+            <td>Bionic native reverse DAG gradient backpropagation via SafeTensors ring buffer.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Silicon Dispatch &amp; Quirk Engine</h3>
+      <p>AMEVA-Runtime incorporates a deterministic quirk database preventing hardware lockups:</p>
+      <ul>
+        <li><strong>Qualcomm Adreno 830 Optimization</strong>: Exploits subgroup size 64 wave intrinsics. Caps vector columns to prevent SPIR-V JIT register allocation failure (<code>VK_ERROR_UNKNOWN -13</code>).</li>
+        <li><strong>ARM Mali-G68 Valhall Mitigation</strong>: Forces Medium MatMul kernels (<code>loadstride_b = 4 &gt; 0</code>) to prevent zero-stride integer truncation infinite loops.</li>
+        <li><strong>CPU-NEON Resilient Baseline</strong>: Dynamically maps threads to Big/LITTLE core clusters using Linux CPU affinity masks, preventing thermal throttling.</li>
+      </ul>
+
+      <h3>4. Governance &amp; Compliance</h3>
+      <p>AMEVA-Runtime strictly adheres to OpenSSF and CNCF compliance standards. All telemetry and performance claims are backed by physical reproducible test suites executed on real device hardware.</p>
+    </main>
+  </div>
+</body>
+</html>

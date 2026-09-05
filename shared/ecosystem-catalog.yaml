@@ -167,8 +167,8 @@ libs:
   - id: tts
     name: "Termux-TTS"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 초경량 무의존성 DSP 포먼트 보코더 및 신경망 ONNX 음성 합성 & 네이티브 오디오 브릿지."
-    tagline_en: "Zero-dependency DSP Formant Vocoder & Neural ONNX speech synthesis utilizing device resources."
+    tagline_ko: "4-Tier 온디바이스 음성 합성 프레임워크 (무의존성 DSP 포먼트, C++ Vulkan GPU 신경망 가속, 스튜디오 FP16 & 네이티브 브릿지)."
+    tagline_en: "Production 4-Tier on-device speech synthesis (Zero-dependency DSP, C++ Vulkan GPU neural acceleration, studio FP16 & native bridge)."
     links:
       docs: "/lib/tts/"
       pypi: "https://pypi.org/project/termux-tts/"

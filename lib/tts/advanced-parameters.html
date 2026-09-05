@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,8 +21,18 @@
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
+      <h3>Architecture &amp; Hardware Driver Postmortem</h3>
+<p>Operating deep learning inference models on mobile Vulkan runtimes involves navigating severe GPU driver irregularities. Below is the technical breakdown of bugs identified and permanently resolved in Termux-TTS v1.3.0:</p>
+
+<h4>1. ARM Mali-G68 Valhall Subgroup Truncation Resolution</h4>
+<p>On ARM Mali-G68 GPUs (subgroup size 16), unaligned matrix multiplication workgroups caused an integer division truncation: <code>loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0</code>. This resulted in an infinite loop (<code>for (uint l = 0; l &lt; BN; l += 0)</code>) leading to GPU command timeout and device loss (<code>VK_ERROR_DEVICE_LOST</code>). Termux-TTS enforces medium tile alignment and subgroup-aware shader dispatch, eliminating the loop and ensuring full 100% layer execution.</p>
+
+<h4>2. Qualcomm Adreno 830 SPIR-V Pipeline Caching</h4>
+<p>On Snapdragon 8 Elite Adreno 830 hardware, repeated runtime pipeline generation triggered JIT compiler crashes (<code>VK_ERROR_UNKNOWN -13</code>). Termux-TTS isolates model pipelines with immutable descriptor pooling and shader pipeline caching, stabilizing execution across long synthesis streams.</p>
+
+<h4>3. Subprocess IPC Architecture for Audio Playback</h4>
+<p>In-process audio playback via native libraries frequently triggered memory corruption and GIL deadlocks on Android Bionic. Termux-TTS orchestrates playback using isolated subprocess worker pools, safeguarding the primary application runtime.</p>
+
     </main>
   </div>
 

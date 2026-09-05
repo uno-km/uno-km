@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | termux-tts</title>
-  <meta name="description" content="Eliminates server roundtrips by compiling low-level kernels directly to WebGPU/Bionic ARM64 with zero-leak buffer pooling and closed-form mathematical precision.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,11 +21,37 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>0.1.1 - Standard Tech (Current)</h3>
-         <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-         </ul>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Production 4-Tier Synthesizer & Studio Vulkan GPU Acceleration</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-05</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Implemented Tier 4 Pure Vulkan GPU Neural Engine (sherpa-ncnn-offline-tts-vulkan) with zero CPU fallback.</li>
+          <li>Integrated studio-grade reference model (vits-piper-en_US-lessac-high-fp16, 22.05kHz 16-bit PCM).</li>
+          <li>Implemented 1-click automated provisioning toolchain (termux-tts install --tier high/medium) downloading ARM64 native binaries from GitHub Release.</li>
+          <li>Resolved ARM Mali-G68 subgroup size 16 shader integer truncation and Adreno 830 pipeline cache crashes.</li>
+          <li>Achieved empirical RTF 0.264x on Galaxy S25 Adreno 830 and RTF 1.146x on Galaxy A35 Mali-G68.</li>
+          <li>Unified cross-platform CLI, Python SDK, and Node.js / TypeScript runtime bindings.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.5 - Subprocess Isolation & Conversational Tag Expansion</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-04</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Implemented subprocess IPC audio playback isolation.</li>
+          <li>Added expressive conversational token handling.</li>
+          <li>Stabilized Termux-API native bridge integration.</li>
+        </ul>
+      </div>
     </main>
   </div>
 

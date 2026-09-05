@@ -100,33 +100,46 @@ def compile_target_readmes(lib_dir: Path, config: dict):
     desc_ko = config.get("description_ko", tagline_ko)
     desc_en = config.get("description_en", tagline_en)
     repo_url = config.get("github_repo_url") or config.get("github_repo", f"https://github.com/uno-km/{lib_dir.name}")
-    slug = lib_dir.name.replace('termux-', '').replace('AMEVA-', '').lower()
+    if lib_dir.name.lower() in ("vulkan", "ameva-vulkan", "ameva-runtime", "ameva-vulkan-runtime"):
+        slug = "vulkan"
+    else:
+        slug = lib_dir.name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').lower()
     doc_url = f"https://uno-km.vercel.app/lib/{slug}/"
 
-    # 1. GitHub Master README (Dual View)
+    # 1. GitHub Master README
     gh_badges = "\n".join(generate_safe_badges(config, "github"))
-    gh_readme = f"""# {name}
+    if config.get("readme_content"):
+        gh_readme = config.get("readme_content").strip() + "\n"
+    else:
+        gh_tagline = ""
+        if tagline_ko and tagline_ko != tagline_en:
+            gh_tagline = f"> **{tagline_ko}**  \n> *{tagline_en}*\n\n"
+        elif tagline_en:
+            gh_tagline = f"> {tagline_en}\n\n"
+
+        gh_desc = ""
+        if desc_ko and desc_ko != desc_en:
+            gh_desc = f"{desc_ko}\n\n{desc_en}"
+        elif desc_en:
+            gh_desc = desc_en
+
+        gh_readme = f"""# {name}
 
 {gh_badges}
 
-> **{tagline_ko}**  
-> *{tagline_en}*
+{gh_tagline}---
+
+## Architecture & Overview
+
+{gh_desc}
 
 ---
 
-## 📌 Architecture & Overview
-
-{desc_ko}
-
-{desc_en}
-
----
-
-## 🚀 Installation & Quickstart
+## Installation & Quickstart
 
 """
-    if pypi_pkg and npm_pkg:
-        gh_readme += f"""### Python (PyPI)
+        if pypi_pkg and npm_pkg:
+            gh_readme += f"""### Python (PyPI)
 ```bash
 pip install {pypi_pkg}
 ```
@@ -142,16 +155,16 @@ npm install {npm_pkg}
 {node_example}
 ```
 """
-    elif pypi_pkg:
-        gh_readme += f"""```bash
+        elif pypi_pkg:
+            gh_readme += f"""```bash
 pip install {pypi_pkg}
 ```
 ```python
 {python_example}
 ```
 """
-    elif npm_pkg:
-        gh_readme += f"""```bash
+        elif npm_pkg:
+            gh_readme += f"""```bash
 npm install {npm_pkg}
 ```
 ```typescript
@@ -159,17 +172,17 @@ npm install {npm_pkg}
 ```
 """
 
-    gh_readme += f"""
+        gh_readme += f"""
 ---
 
-## 📖 Official Documentation & Benchmarks
+## Official Documentation & Benchmarks
 - [Official Architecture & API Reference]({doc_url})
 - [Ecosystem Metrics & Registry Stats](https://uno-km.vercel.app/foundation/metrics)
 - [AMEVA Open-Source Foundation Portal](https://uno-km.vercel.app/foundation/index.html)
 
 ---
 
-## 📄 License
+## License
 Licensed under the Apache-2.0 License. Copyright (c) 2026 Eunho Kim ([@uno-km](https://github.com/uno-km)).
 """
     (lib_dir / "README.md").write_text(gh_readme, encoding="utf-8")
@@ -178,14 +191,15 @@ Licensed under the Apache-2.0 License. Copyright (c) 2026 Eunho Kim ([@uno-km](h
     # 2. PyPI Python-only README
     if pypi_pkg:
         pypi_badges = "\n".join(generate_safe_badges(config, "pypi"))
-        pypi_readme = f"""# {name} (Python)
+        if config.get("readme_pypi_content"):
+            pypi_readme = config.get("readme_pypi_content").strip() + "\n"
+        else:
+            pypi_tagline = f"> {tagline_en}\n\n" if tagline_en else ""
+            pypi_readme = f"""# {name} (Python)
 
 {pypi_badges}
 
-> **{tagline_ko}**  
-> *{tagline_en}*
-
-## Installation
+{pypi_tagline}## Installation
 
 ```bash
 pip install {pypi_pkg}
@@ -214,14 +228,15 @@ Apache-2.0 License. Copyright (c) 2026 Eunho Kim (@uno-km).
     if npm_pkg:
         npm_badges = "\n".join(generate_safe_badges(config, "npm"))
         npm_dir = lib_dir / "npm" if (lib_dir / "npm").exists() else lib_dir
-        npm_readme = f"""# {name} (Node.js & TypeScript)
+        if config.get("readme_npm_content"):
+            npm_readme = config.get("readme_npm_content").strip() + "\n"
+        else:
+            npm_tagline = f"> {tagline_en}\n\n" if tagline_en else ""
+            npm_readme = f"""# {name} (Node.js & TypeScript)
 
 {npm_badges}
 
-> **{tagline_ko}**  
-> *{tagline_en}*
-
-## Installation
+{npm_tagline}## Installation
 
 ```bash
 npm install {npm_pkg}
@@ -248,6 +263,7 @@ Apache-2.0 License. Copyright (c) 2026 Eunho Kim (@uno-km).
             print(f"  [OK] Generated NPM Node-only README: {lib_dir / 'npm' / 'README.md'}")
 
 
+
 # ── Web Documentation & Custom Page Slot Builder ───────────────
 def build_library_docs(lib_name: str, config: dict):
     """
@@ -267,7 +283,10 @@ def build_library_docs(lib_name: str, config: dict):
 
     config_file = lib_path / "doc.config.yaml" if lib_path.exists() else None
     if config_file and config_file.exists():
-        slug = lib_name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').replace('-runtime', '').lower()
+        if lib_name.lower() in ("vulkan", "ameva-vulkan", "ameva-runtime", "ameva-vulkan-runtime"):
+            slug = "vulkan"
+        else:
+            slug = lib_name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').replace('-runtime', '').lower()
         output_dir = ROOT_DIR / "lib" / slug
         output_dir.mkdir(parents=True, exist_ok=True)
         cmd = [sys.executable, str(builder_script), "--config", str(config_file), "--output", str(output_dir)]
