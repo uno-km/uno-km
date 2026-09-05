@@ -97,7 +97,7 @@ flowchart TD
         LlamaCpp["termux-llamacpp<br/>(사전 빌드 GGUF 런타임 & OpenAI 호환 서버)"]
         Vision["termux-vision<br/>(Zero-Dep 온디바이스 컴퓨터 비전 & VLM 추론)"]
         TTS["termux-tts<br/>(경량 온디바이스 음성합성 & C++/Python/Node 런타임)"]
-        VulkanRuntime["AMEVA-Vulkan-Runtime<br/>(SoC 감지 및 디바이스 리소스 적응형 런타임 & HAL)"]
+        VulkanRuntime["AMEVA-Runtime<br/>(SoC 감지 및 디바이스 리소스 적응형 런타임 & HAL)"]
     end
 
     subgraph RuntimeLayer ["3. 기저 런타임 및 디바이스 리소스 계층 (System Runtimes)"]
@@ -123,7 +123,7 @@ flowchart TD
 | **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install ameva-sentinel`<br/>[공식 문서](https://uno-km.vercel.app/lib/sentinel/) |
 | **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.vercel.app/lib/mcp/) |
 | **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.vercel.app/lib/forge/) |
-| **`AMEVA-Vulkan-Runtime`** | C++20, SoC Auto-Detection, Python, Node | 안드로이드 Termux 환경에서 시스템 SoC를 자동 감지하여 STT/Vision/LLM/Diffusion에 필요한 디바이스 리소스를 적응형으로 최적화하는 추상화 계층(HAL) 및 런타임. | `pip install ameva-vulkan-runtime`<br/>`npm install ameva-vulkan-runtime`<br/>[공식 문서](https://uno-km.vercel.app/lib/vulkan/) |
+| **`AMEVA-Runtime`** | C++20, SoC Auto-Detection, Python, Node | 안드로이드 Termux 환경에서 시스템 SoC를 자동 감지하여 STT/Vision/LLM/Diffusion에 필요한 디바이스 리소스를 적응형으로 최적화하는 추상화 계층(HAL) 및 런타임. | `pip install ameva-runtime`<br/>`npm install @ameva/runtime`<br/>[공식 문서](https://uno-km.vercel.app/lib/vulkan/) |
 | **`termux-aichain`** | Python 3, TypeScript, DAG | 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 실행하는 50KB 초경량 모바일 에이전트 프레임워크. | `pip install termux-aichain`<br/>`npm install termux-aichain`<br/>[공식 문서](https://uno-km.vercel.app/lib/aichain/) |
 | **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.vercel.app/lib/bitnet/) |
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.vercel.app/lib/playwright/) |

@@ -326,29 +326,29 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 ---
 
-### 1.14 AMEVA-Vulkan-Runtime
+### 1.14 AMEVA-Runtime
 안드로이드 Termux 환경에서 시스템 SoC를 자동 감지(Qualcomm Adreno 및 ARM Mali/Exynos)하여 STT, Vision, LLM, Diffusion에 필요한 디바이스 리소스를 최적화 배분하는 통합 추상화 런타임 및 SDK입니다.
 
 - **카테고리**: 모바일 디바이스 리소스 추상화 런타임 & HAL SDK
 - **기술 스택**: C++20, SoC Auto-Detection, ARM64 NEON, Python CFFI, Node.js N-API
-- **배포 버전**: `v1.0.0`
+- **배포 버전**: `v2.0.1`
 - **기존 문제**: 모바일 기기별 드라이버 파편화, Termux CLI 환경에서의 불안정한 GPU 접근, 패키지별 중복 바이너리 비대화가 발생함.
-- **해결 방식**: 시스템 구동 시 SoC 자동 감지를 통해 Qualcomm Adreno 환경에서는 하드웨어 경로를 활용하고, Samsung Exynos/Mali 환경에서는 안정적인 ARM NEON 4-Thread FP16 CPU 연산으로 직결하며, 차후 안드로이드 포그라운드 서비스(JNI/APK) 연동을 위한 2단계 로드맵 제공.
+- **해결 방식**: 시스템 구동 시 SoC 자동 감지를 통해 Qualcomm Adreno 환경에서는 하드웨어 경로를 활용하고, Samsung Exynos/Mali 환경에서는 안정적인 ARM NEON 4-Thread FP16 CPU 연산 및 Mali 전용 쿼크(Quirks) 바이패스를 적용하며, 차후 안드로이드 포그라운드 서비스(JNI/APK) 연동을 위한 2단계 로드맵 제공.
 - **실제 사용자가 쓰는 핵심 기능**:
   1. **SoC 자동 감지 및 적응형 라우팅**: 기기 시작 시 /proc/cpuinfo 및 디바이스 노드를 스캔하여 최적의 연산 경로를 자동 결정.
   2. **디바이스 리소스 중심 E2E 진단**: 하드웨어 상태를 단계별로 검증하고 투명한 연산 로그 제공.
   3. **단일 공통 코어**: 개별 패키지 중복 바이너리를 단일 공통 런타임으로 일원화.
 - **설치 명령어**:
   ```bash
-  pip install ameva-vulkan-runtime
+  pip install ameva-runtime
   # 또는
-  npm install ameva-vulkan-runtime
+  npm install @ameva/runtime
   ```
 - **관련 링크**:
-  - [PyPI 패키지](https://pypi.org/project/ameva-vulkan-runtime/)
-  - [npm 패키지](https://www.npmjs.com/package/ameva-vulkan-runtime)
+  - [PyPI 패키지](https://pypi.org/project/ameva-runtime/)
+  - [npm 패키지](https://www.npmjs.com/package/@ameva/runtime)
   - [공식 문서](https://uno-km.vercel.app/lib/vulkan/)
-  - [GitHub 저장소](https://github.com/uno-km/ameva-vulkan-runtime)
+  - [GitHub 저장소](https://github.com/uno-km/ameva-runtime)
 
 ---
 
@@ -383,7 +383,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | :--- | :--- | :--- | :--- |
 | **브라우저 & WebGPU** | AMEVA Workstation, AMEVA-Forge, AMEVA-Sentinel | TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS | 서버 전송 없이 브라우저 로컬 리소스 활용 및 데이터 격리 |
 | **클라우드 인텔리전스 & 도구** | Infra-Index Platform, AMEVA-MCP-Hub, Termux-AIChain | Next.js, Python FastAPI, Node.js, WASI WebAssembly | 실시간 시세 집계, 의존성 없는 인메모리 도구 실행 및 경량 에이전트 파이프라인 |
-| **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-TTS, Termux-Train, Termux-LlamaCpp, Termux-Vision, AMEVA-Vulkan-Runtime | C/C++20, ARM64 NEON & DotProd SIMD, Vulkan 1.3 HAL, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 저전력·저메모리 온디바이스 구동 |
+| **모바일 온디바이스 AI (Termux)** | Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-TTS, Termux-Train, Termux-LlamaCpp, Termux-Vision, AMEVA-Runtime | C/C++20, ARM64 NEON & DotProd SIMD, Vulkan 1.3 HAL, Bionic libc, Python C-API | 안드로이드 비루팅 환경에서 네이티브 C/C++ 커널로 저전력·저메모리 온디바이스 구동 |
 | **모바일 시스템 자동화 (Termux)** | Termux-Playwright | Android Bionic, Node.js, Python, Chrome DevTools Protocol | 5W 초저전력 모바일 단말기 기반 무인 브라우저 자동화 및 데이터 수집 |
 
 ---
@@ -397,7 +397,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | **AMEVA-MCP-Hub** | [npm: ameva-mcp-hub](https://www.npmjs.com/package/ameva-mcp-hub) | [Documentation](https://uno-km.vercel.app/lib/mcp/) | [GitHub](https://github.com/uno-km/ameva-mcp-hub) |
 | **AMEVA-Sentinel** | [npm: ameva-sentinel](https://www.npmjs.com/package/ameva-sentinel) | [Documentation](https://uno-km.vercel.app/lib/sentinel/) | [GitHub](https://github.com/uno-km/ameva-sentinel) |
 | **AMEVA-Forge** | [PyPI: ameva](https://pypi.org/project/ameva/) | [Documentation](https://uno-km.vercel.app/lib/forge/) | [GitHub](https://github.com/uno-km/AMEVA-Forge) |
-| **AMEVA-Vulkan-Runtime** | [PyPI](https://pypi.org/project/ameva-vulkan-runtime/) / [npm](https://www.npmjs.com/package/ameva-vulkan-runtime) | [Documentation](https://uno-km.vercel.app/lib/vulkan/) | [GitHub](https://github.com/uno-km/ameva-vulkan-runtime) |
+| **AMEVA-Runtime** | [PyPI](https://pypi.org/project/ameva-runtime/) / [npm](https://www.npmjs.com/package/@ameva/runtime) | [Documentation](https://uno-km.vercel.app/lib/vulkan/) | [GitHub](https://github.com/uno-km/ameva-runtime) |
 | **Termux-AIChain** | [PyPI](https://pypi.org/project/termux-aichain/) / [npm](https://www.npmjs.com/package/termux-aichain) | [Documentation](https://uno-km.vercel.app/lib/aichain/) | [GitHub](https://github.com/uno-km/termux-aichain) |
 | **Termux-BitNet** | [PyPI](https://pypi.org/project/termux-bitnet/) / [npm](https://www.npmjs.com/package/termux-bitnet) | [Documentation](https://uno-km.vercel.app/lib/bitnet/) | [GitHub](https://github.com/uno-km/termux-bitnet) |
 | **Termux-Playwright** | [PyPI](https://pypi.org/project/termux-playwright/) / [npm](https://www.npmjs.com/package/termux-playwright) | [Documentation](https://uno-km.vercel.app/lib/playwright/) | [GitHub](https://github.com/uno-km/termux-playwright) |
