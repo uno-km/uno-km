@@ -132,7 +132,7 @@
     },
     "stt": {
       "name": "Termux-STT",
-      "version": "v1.1.0",
+      "version": "v1.1.8",
       "github": "https://github.com/uno-km/termux-stt",
       "pypi": "termux-stt",
       "npm": "termux-stt",
