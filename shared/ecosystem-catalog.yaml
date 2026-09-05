@@ -65,15 +65,15 @@ sdks:
       demo: "/lib/forge/"
 
   - id: vulkan
-    name: "AMEVA-Vulkan-Runtime"
+    name: "AMEVA-Runtime"
     badge: "pip / npm"
-    tagline_ko: "Android Termux 환경에서 디바이스 리소스를 활용하는 SoC 감지 및 적응형 추상화 런타임."
-    tagline_en: "SoC-aware adaptive abstraction runtime utilizing device resources for Android Termux."
+    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 멀티모달 가속 런타임."
+    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & Multi-Modal Acceleration Runtime for Mobile & Edge."
     links:
       docs: "/lib/vulkan/"
-      pypi: "https://pypi.org/project/ameva-vulkan-runtime/"
-      npm: "https://www.npmjs.com/package/ameva-vulkan-runtime"
-      github: "https://github.com/uno-km/ameva-vulkan-runtime"
+      pypi: "https://pypi.org/project/ameva-runtime/"
+      npm: "https://www.npmjs.com/package/@ameva/runtime"
+      github: "https://github.com/uno-km/ameva-runtime"
 
 libs:
   - id: aichain

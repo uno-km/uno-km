@@ -31,15 +31,15 @@ features:
   - title_en: "Zero-Subprocess Audio Fastpath"
     title_ko: "Zero-Subprocess 음원 파싱"
     desc_en: "Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors."
-    desc_ko: "표준 16kHz WAV 음원을 순수 Python wave 모듈로 직결 파싱하여 FFmpeg 서브프로세스 호출 오버헤드를 0ms로 단축하고 Bionic 링커 결함을 원천 예방합니다."
+    desc_ko: "표준 16kHz WAV 음원을 순수 Python wave 모듈로 직결 파싱하여 FFmpeg 서브프로세스 호출 오버헤드를 최소화하고 Bionic 링커 결함을 방지합니다."
   - title_en: "Zero Cloud Egress Audio Privacy"
-    title_ko: "100% 온디바이스 오디오 보안"
+    title_ko: "온디바이스 오디오 보안 격리"
     desc_en: "Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks."
     desc_ko: "음성 수집, 음향 특징 추출, 텍스트 전사 및 자막 생성이 외부 네트워크 전송 없이 단말기 로컬 CPU에서만 독립 구동됩니다."
   - title_en: "Subprocess Crash Isolation"
     title_ko: "서브프로세스 장애 격리 보호"
     desc_en: "Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime."
-    desc_ko: "C++ 네이티브 엔진을 전용 서브프로세스 풀로 완벽 격리하여 C++ 세그멘테이션 폴트가 발생해도 호스트 런타임의 안전성을 100% 보장합니다."
+    desc_ko: "C++ 네이티브 엔진을 전용 서브프로세스 풀로 완벽 격리하여 C++ 세그멘테이션 폴트가 발생해도 호스트 런타임의 안전성을 안정적으로 보호합니다."
   - title_en: "Mobile Hardware Optimization"
     title_ko: "모바일 하드웨어 최적화"
     desc_en: "Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling."
@@ -137,9 +137,9 @@ installation_body: |
   <pre><code>System Environment Check:
   -----------------------------------
   OS: Android (aarch64)
-  ✅ [OK] ffmpeg is installed
-  ✅ [OK] whisper.cpp engine found
-  ✅ [OK] Python 3.13.x
+  [OK] ffmpeg is installed
+  [OK] whisper.cpp engine found
+  [OK] Python 3.13.x
   -----------------------------------
   Doctor check complete.</code></pre>
 

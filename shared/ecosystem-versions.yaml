@@ -220,12 +220,12 @@ libraries:
     - versions.html
     status: stable
   vulkan:
-    name: AMEVA-Vulkan-Runtime
-    version: 1.2.1
-    release_date: '2026-09-04'
-    npm_package: ameva-vulkan-runtime
-    pypi_package: ameva-vulkan-runtime
-    github_repo: uno-km/ameva-vulkan-runtime
+    name: AMEVA-Runtime
+    version: 2.0.0
+    release_date: '2026-09-05'
+    npm_package: "@ameva/runtime"
+    pypi_package: ameva-runtime
+    github_repo: uno-km/ameva-runtime
     lib_path: lib/vulkan
     doc_pages:
     - index.html
