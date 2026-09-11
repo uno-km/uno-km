@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="whatIsForge.pageTitle">AMEVA-Forge: What is Forge?</title>
+    
+    <script src="./dist/index.js"></script>
+    
+    
+    
+    
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+              <ameva-header></ameva-header>
+
+    <div class="container">
+                                                    <ameva-sidebar></ameva-sidebar>
+
+        <main class="content">
+            <h2 data-i18n="whatIsForge.h2">What is AMEVA-Forge?</h2>
+            <p data-i18n-html="whatIsForge.desc"><strong>AMEVA-Forge</strong> is a browser-first deep learning acceleration framework designed to democratize machine learning education, research, and client-side privacy-preserving computation.</p>
+
+            <h3 data-i18n="whatIsForge.corePhilTitle">Core Philosophy</h3>
+            <ul>
+                <li data-i18n-html="whatIsForge.phil1"><strong>Zero Installation Barrier:</strong> Traditional deep learning setups require gigabytes of CUDA drivers and PyTorch binaries. Forge runs instantly inside any modern browser with a single URL visit.</li>
+                <li data-i18n-html="whatIsForge.phil2"><strong>Absolute Privacy:</strong> By executing forward and backward training passes on the client device's GPU, user data never traverses external network boundaries.</li>
+                <li data-i18n-html="whatIsForge.phil3"><strong>Mathematical Parity:</strong> Every kernel and backward step is verified against CPU analytical ground truth to ensure absolute numerical correctness.</li>
+            </ul>
+
+            <h3 data-i18n="whatIsForge.archTitle">System Architecture</h3>
+            <ol>
+                <li data-i18n-html="whatIsForge.arch1"><strong>Frontend (Python / Pyodide):</strong> Intercepts user model code (e.g. <code>nn.Linear</code>, <code>F.scaled_dot_product_attention</code>) and constructs computation graphs.</li>
+                <li data-i18n-html="whatIsForge.arch2"><strong>Bridge Layer (JS / WASM):</strong> Serializes graph instructions with shape validation and memory quota pre-checking.</li>
+                <li data-i18n-html="whatIsForge.arch3"><strong>Backend Engine (TypeScript / WebGPU):</strong> Compiles instructions into optimized WGSL shader dispatches using 8D uniform strides and pooled buffers.</li>
+            </ol>
+        </main>
+    </div>
+
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 AMEVA-Forge Team. Released under the Apache-2.0 License.</span>
+    </footer>
+</body>
+</html>

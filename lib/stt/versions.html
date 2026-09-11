@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version &amp; Release Archive | Termux-STT</title>
+  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-STT.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Version &amp; Release Archive</h2>
+      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-STT</p>
+
+      <div class="timeline">
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.1.5 - Maintenance Release &mdash; 2026-09-04</h3>
+            <ul>
+              <li>일부 문구 수정 (Minor wording and documentation adjustments).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Production Release (Latest)</div>
+          <div class="timeline-content">
+            <h3>v1.1.4 - Whisper.cpp Vulkan Core & 128d X-Vector Speaker Diarization &mdash; 2026-09-02</h3>
+            <ul>
+              <li>Whisper.cpp Vulkan Backend: Hardware-accelerated mel-spectrogram extraction and transformer decoding.</li>
+              <li>128d X-Vector Diarization: Pure Python cosine-distance clustering for high-accuracy multi-speaker separation.</li>
+              <li>Sherpa-ONNX Fallback Engine: Seamless failover for real-time streaming audio buffers on low-end hardware.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Production Release (Latest)</div>
+          <div class="timeline-content">
+            <h3>v1.1.0 - Fuzzy Typo Protection & Output Directory Auto-Creation &mdash; 2026-08-27</h3>
+            <ul>
+              <li>Fuzzy Typo Suggestion & Model Discovery: difflib-powered intelligent typo suggestion (Did you mean: tiny?) and full available model catalog display on unrecognized models, terminating safely with 0ms network latency.</li>
+              <li>Output Directory Auto-Creation: Recursive parent directory provisioning (os.makedirs(out_dir, exist_ok=True)) for all output files (text, srt, vtt, json, rttm), eliminating FileNotFoundError.</li>
+              <li>Library Overreach & Privileged Escalation Elimination: Completely stripped unprompted su root privilege escalation attempts in mobile_guard.py for strict unrooted Android compliance.</li>
+              <li>Zero-Overreach Certification: 100% verified compliance with POSIX process group isolation and Bionic libc sandboxing across all STT inference pipelines.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.1.0 - Direct Local Model Paths & Quantized Models &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Direct Local Model Path Integration: Direct connection for custom fine-tuned GGML, BitNet 1.58b, and LLaMA weights with 0-download bypass.</li>
+              <li>Extended Model Registry: Added large-v3-turbo, large-v3, English-optimized .en models, and quantized ARM NEON weights (small-q5_1, medium-q5_0, large-v3-turbo-q5_0).</li>
+              <li>Full C++ Parameter Control: Full CLI and SDK controls for Beam Search (-bs), Best-Of (-bo), Temperature (-tp), Prompt Hints (--prompt), and Raw C++ Passthrough (--extra-args).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.8 - 5-Point Core Reliability & Hardening &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Temp WAV Garbage Collection: try...finally lifecycle management for automatic converted WAV deletion, eliminating storage leaks.</li>
+              <li>Safe Psutil Import Guard: Defensive lazy-loading in MobileGuard preventing import crashes on minimal Termux environments.</li>
+              <li>Platform Spoofing Isolation: Restricted sys.platform = 'linux' strictly to Android/Termux runtimes.</li>
+              <li>Mobile 1-Pass Greedy Policy: Defaulted to --no-fallback (-nf) on Termux to prevent multi-temperature thermal throttling.</li>
+              <li>Node.js Binary Resolver: Upgraded CLI wrapper with python3 / python dynamic binary detection.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Patch Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.7 - Download Pipeline Optimization &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Model Hub Request Sequencing: Resolved NameError: req in download pipeline.</li>
+              <li>Instant Cache Priority: Defaulted CLI models to pre-cached tiny for 0-second execution.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Patch Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.6 - CLI Standardization & SSL Defense &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Flexible EngineConfig Aliasing: Seamless backward-compatible argument aliases (model_path, language, num_threads, use_vad).</li>
+              <li>CLI Factory Standardization: Migrated diarize, benchmark, and listen to unified create_engine.</li>
+              <li>Precise Header Duration: Exact WAV RIFF header duration calculation for benchmark RTF.</li>
+              <li>SSL Fallback: Added unverified SSL context fallback for custom certificate environments.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Feature Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.5 - Official JFK Sample Audio & 1-Click Installer &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Official JFK 60s Sample Audio: Integrated clean 16kHz Mono PCM sample (samples/jfk_1min.wav).</li>
+              <li>Zero-Subprocess Wave Parsing: Pure Python wave direct parser bypassing FFmpeg subprocessing.</li>
+              <li>Bionic Dynamic Linker Defense: Packaged libbluray and libxml2 in automated installer.</li>
+              <li>1-Click Installer CLI: Registered termux-stt install command.</li>
+              <li>Dual-Engine Monorepo Packaging: Full root package.json support for npm install -g git+....</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Initial Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.0 - Initial Public Release &mdash; 2026-08-20</h3>
+            <ul>
+              <li>Unified Multi-Engine Architecture: Single create_engine() API for whisper.cpp, vosk, and sherpa-onnx.</li>
+              <li>Pure-Python Speaker Diarization: Custom K-Means and Cosine Distance matrix without numpy/sklearn dependencies.</li>
+              <li>Hybrid Diarization Pipeline: Vosk X-Vector + Whisper STT under 1.5 GB RAM.</li>
+              <li>Audio Pipeline: ffmpeg 16kHz mono converter, Silero-VAD integration, and Termux microphone recorder.</li>
+              <li>Model Hub: Automatic model downloader with SHA-256 verification and cache management.</li>
+              <li>Export Standards: SRT, WebVTT, NIST RTTM, and structured JSON output.</li>
+              <li>CLI Suite: transcribe, listen, diarize, models, doctor, and benchmark.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

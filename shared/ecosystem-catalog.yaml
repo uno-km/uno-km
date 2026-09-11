@@ -1,0 +1,177 @@
+# shared/ecosystem-catalog.yaml
+# AMEVA Ecosystem Project Catalog — Single Source of Truth
+# AMV-CAT-20260826
+#
+# Usage:
+#   python tools/build_catalog.py          # 전체 재빌드 (index.html + foundation)
+#   python tools/build_catalog.py --verify # 검증
+#   python tools/build_catalog.py --dry-run
+#
+# Category Colors:
+#   app : #2563eb (blue)
+#   sdk : #16a34a (green)
+#   lib : #d97706 (amber)
+
+apps:
+  - id: workstation
+    name: "AMEVA Workstation"
+    badge: "App"
+    tagline_ko: "WebGPU 기반 클라이언트 로컬 AI(Qwen2.5), 대용량 문서 맵리듀스 요약, 인앱 비디오 스튜디오 및 자율 AI 멀티 에이전트 오케스트레이션."
+    tagline_en: "Client-side local AI platform with WebGPU Qwen2.5, MapReduce document summarizer, in-app video cut & 1-click AI matting studio."
+    links:
+      launch: "https://ameva-workstation-web-core.vercel.app/"
+      github: "https://github.com/uno-km/AMEVA-Workstation-Web"
+
+  - id: infra-index
+    name: "Infra-Index Platform"
+    badge: "App"
+    tagline_ko: "글로벌 69개 클라우드 GPU/CPU/스토리지 실시간 시세 집계, AI 반도체 시황 및 논문/뉴스 인텔리전스 플랫폼."
+    tagline_en: "Real-time global 69-cloud GPU/CPU/Storage price aggregation, AI semiconductor market intelligence, and paper/news analytics platform."
+    links:
+      docs: "/lib/infra-index/"
+      launch: "https://infraindex-platform-front.vercel.app/"
+      github: "https://github.com/uno-km/infraindex-platform"
+
+sdks:
+  - id: sentinel
+    name: "AMEVA-Sentinel"
+    badge: "Security SDK"
+    tagline_ko: "웹 트래픽을 관측하고 측정하고 점수화하는 개인정보 최우선 자가 호스팅 보안 관측 계층 SDK."
+    tagline_en: "Privacy-first, self-hosted behavioral risk scoring and HMAC-SHA256 security observation SDK. Zero PII capture."
+    links:
+      docs: "/lib/sentinel/"
+      npm: "https://www.npmjs.com/package/@ameva/sentinel"
+      github: "https://github.com/uno-km/ameva-sentinel"
+
+  - id: mcp
+    name: "AMEVA-MCP-Hub"
+    badge: "npm"
+    tagline_ko: "다국어 WASM 바이트코드 인메모리 실행 및 동적 깃허브 다중 리포지토리 실시간 구독 MCP 허브 & SDK."
+    tagline_en: "Universal polyglot WASM in-memory tool execution and dynamic GitHub multi-repo real-time subscription MCP hub & SDK."
+    links:
+      docs: "/lib/mcp/"
+      npm: "https://www.npmjs.com/package/ameva-mcp-hub"
+      github: "https://github.com/uno-km/ameva-mcp-hub"
+
+  - id: forge
+    name: "AMEVA-Forge"
+    badge: "PyPI: ameva-forge"
+    tagline_ko: "클라이언트 중심 연산 오프로딩의 Browser-Native WebGPU 딥러닝 Autograd 엔진. PyTorch 구문 호환 및 WGSL 역전파."
+    tagline_en: "Browser-Native WebGPU Deep Learning Autograd Engine with PyTorch-compatible API, WGSL compute shaders, and zero-waste buffer pool."
+    links:
+      docs: "/lib/forge/"
+      pypi: "https://pypi.org/project/ameva-forge/"
+      github: "https://github.com/uno-km/AMEVA-Forge"
+      demo: "/lib/forge/"
+
+  - id: vulkan
+    name: "AMEVA-Runtime"
+    badge: "pip / npm"
+    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 멀티모달 가속 런타임."
+    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & Multi-Modal Acceleration Runtime for Mobile & Edge."
+    links:
+      docs: "/lib/vulkan/"
+      pypi: "https://pypi.org/project/ameva-runtime/"
+      npm: "https://www.npmjs.com/package/@ameva/runtime"
+      github: "https://github.com/uno-km/ameva-runtime"
+
+libs:
+  - id: aichain
+    name: "Termux-AIChain"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 Zero-Dep AI 체인 및 자율 에이전트 DAG 실행 프레임워크 for Android Termux."
+    tagline_en: "Zero-Dependency AI chaining & autonomous agent DAG execution framework utilizing device resources for Android Termux."
+    links:
+      docs: "/lib/aichain/"
+      pypi: "https://pypi.org/project/termux-aichain/"
+      npm: "https://www.npmjs.com/package/termux-aichain"
+      github: "https://github.com/uno-km/termux-aichain"
+
+  - id: bitnet
+    name: "Termux-BitNet"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 1.58-bit 온디바이스 LLM 추론 엔진. ARM64 NEON DotProd SIMD 스마트폰 네이티브 런타임."
+    tagline_en: "1.58-bit on-device LLM inference engine utilizing device resources with ARM64 NEON DotProd SIMD smartphone runtime."
+    links:
+      docs: "/lib/bitnet/"
+      pypi: "https://pypi.org/project/termux-bitnet/"
+      npm: "https://www.npmjs.com/package/termux-bitnet"
+      github: "https://github.com/uno-km/termux-bitnet"
+
+  - id: playwright
+    name: "Termux-Playwright"
+    badge: "pip / npm"
+    tagline_ko: "Android Termux 비루트 Chromium 브라우저 자동화 런타임. ARM64 최적화 패키지."
+    tagline_en: "Non-root Chromium browser automation on Android Termux ARM64. Direct CDP control for scraping and automated web pipelines."
+    links:
+      docs: "/lib/playwright/"
+      pypi: "https://pypi.org/project/termux-playwright/"
+      npm: "https://www.npmjs.com/package/termux-playwright"
+      github: "https://github.com/uno-km/termux-playwright"
+
+  - id: diffusion
+    name: "Termux-Diffusion"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 Android Bionic ARM64 네이티브 Stable Diffusion 연산 엔진. 비루트 구동."
+    tagline_en: "Native on-device Stable Diffusion runtime utilizing device resources for Android ARM64."
+    links:
+      docs: "/lib/diffusion/"
+      pypi: "https://pypi.org/project/termux-diffusion/"
+      npm: "https://www.npmjs.com/package/termux-diffusion"
+      github: "https://github.com/uno-km/termux-diffusion"
+
+  - id: stt
+    name: "Termux-STT"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 온디바이스 통합 음성인식(STT) 및 순수 Python 128d X-Vector 화자 분리 프레임워크."
+    tagline_en: "Unified on-device Speech-to-Text utilizing device resources with pure Python 128d X-Vector speaker diarization."
+    links:
+      docs: "/lib/stt/"
+      pypi: "https://pypi.org/project/termux-stt/"
+      npm: "https://www.npmjs.com/package/termux-stt"
+      github: "https://github.com/uno-km/termux-stt"
+
+  - id: train
+    name: "Termux-Train"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 Bionic 네이티브 경량 텐서 DAG Autograd 역전파 및 온디바이스 LoRA 파인튜닝 프레임워크."
+    tagline_en: "On-device Tensor & DAG Autograd framework utilizing device resources with SafeTensors zero-copy and LoRA fine-tuning."
+    links:
+      docs: "/lib/train/"
+      pypi: "https://pypi.org/project/termux-train/"
+      npm: "https://www.npmjs.com/package/termux-train"
+      github: "https://github.com/uno-km/termux-train"
+
+  - id: llamacpp
+    name: "Termux-LlamaCpp"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 Android Termux ARM64 전용 GGUF LLM 런타임, 모델 매니저 및 OpenAI 호환 REST/SSE 서버."
+    tagline_en: "Production-grade GGUF LLM runtime utilizing device resources for Android Termux & ARM64."
+    links:
+      docs: "/lib/llamacpp/"
+      pypi: "https://pypi.org/project/termux-llamacpp/"
+      npm: "https://www.npmjs.com/package/termux-llamacpp"
+      github: "https://github.com/uno-km/termux-llamacpp"
+
+  - id: vision
+    name: "Termux-Vision"
+    badge: "pip / npm"
+    tagline_ko: "디바이스 리소스를 활용한 안드로이드 Termux 제로 디펜던시 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
+    tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine utilizing device resources for Android Termux."
+    links:
+      docs: "/lib/vision/"
+      pypi: "https://pypi.org/project/termux-vision/"
+      npm: "https://www.npmjs.com/package/termux-vision"
+      github: "https://github.com/uno-km/termux-vision"
+
+  - id: tts
+    name: "Termux-TTS"
+    badge: "pip / npm"
+    tagline_ko: "4-Tier 온디바이스 음성 합성 프레임워크 (무의존성 DSP 포먼트, C++ Vulkan GPU 신경망 가속, 스튜디오 FP16 & 네이티브 브릿지)."
+    tagline_en: "Production 4-Tier on-device speech synthesis (Zero-dependency DSP, C++ Vulkan GPU neural acceleration, studio FP16 & native bridge)."
+    links:
+      docs: "/lib/tts/"
+      pypi: "https://pypi.org/project/termux-tts/"
+      npm: "https://www.npmjs.com/package/termux-tts"
+      github: "https://github.com/uno-km/termux-tts"
+

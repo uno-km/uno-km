@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설치 및 환경 구성 가이드 | Termux-TTS</title>
+  <meta name="description" content="Termux-TTS 프로덕션 배포 가이드, 네이티브 의존성 및 환경 프로비저닝">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
+      <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (Termux-TTS)</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="install.valueProp">서버 연결 없이 내 스마트폰 자체 연산으로 성우 목소리를 합성하는 인공지능 보컬 엔진을 명령어 한 줄로 설치합니다.</p>
+      </div>
+
+      <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
+      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
+      <pre><code># 파이썬 공식 패키지 매니저
+pip install termux-tts
+
+# Node.js 공식 패키지 매니저
+npm install termux-tts</code></pre>
+
+      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
+      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thPkg">패키지명</th>
+            <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>alsa-utils</code></td><td>네이티브 ALSA 오디오 드라이버 출력 버퍼 및 하드웨어 사운드 디바이스</td></tr>
+          <tr><td><code>libasound2</code></td><td>안드로이드 Bionic C 호환 오디오 드라이버 공유 라이브러리</td></tr>
+          <tr><td><code>vulkan-tools</code></td><td>Vulkan GPU 셰이더 가속을 위한 드라이버 검증 유틸리티</td></tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
+      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/termux-tts/main/install.sh | bash</code></pre>
+
+      <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thPath">설치 경로</th>
+            <th data-i18n="table.thChar">런타임 실행 특성</th>
+            <th data-i18n="table.thLimits">제약사항 및 폴백 메커니즘</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong data-i18n="install.rowStandalone">패키지 매니저 단독 설치</strong></td>
+            <td data-i18n="install.rowStandaloneDesc">고수준 언어 바인딩 및 기본 CPU 추론 코어 위주 로딩.</td>
+            <td data-i18n="install.rowStandaloneLimits">시스템 C++ 런타임 및 GPU 가속 드라이버가 수동 구성되어야 합니다.</td>
+          </tr>
+          <tr>
+            <td><strong data-i18n="install.rowFull">자동화 풀 패키지 설치</strong></td>
+            <td data-i18n="install.rowFullDesc">Vulkan SPIR-V 셰이더 컴파일, 제로카피 IPC 셋업 및 실리콘 벤치마크 검증 완료.</td>
+            <td data-i18n="install.rowFullLimits">지연시간 최소화가 필요한 실제 프로덕션 워크로드에 적극 권장됩니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="install.sec5Title">5. 선택적 빌드 및 런타임 플래그 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thFlag">옵션 파라미터</th>
+            <th data-i18n="table.thFlagDesc">아키텍처 동작 및 하드웨어 효과</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--tier=<1|2|3|4></code></td><td>합성 엔진 계층 지정 (1: 경량 DSP ~ 4: Vulkan GPU 신경망)</td></tr>
+          <tr><td><code>--speed=<0.5-2.0></code></td><td>음성 발화 속도 제어 배율 (기본값: 1.0)</td></tr>
+          <tr><td><code>--speaker-id=<N></code></td><td>다중 화자 모델의 목표 화자 인덱스 번호</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

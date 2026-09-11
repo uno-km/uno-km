@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퀵스타트 및 실행 레시피 | AMEVA-Forge</title>
+  <meta name="description" content="AMEVA-Forge 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (AMEVA-Forge)</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="quickstart.valueProp">파이토치와 똑같은 친숙한 코드로 스마트폰의 연산 한계를 뛰어넘는 고속 딥러닝 연산을 펼칩니다.</p>
+      </div>
+
+      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
+      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
+      <pre><code>ameva-forge run --graph ./network.onnx --device vulkan</code></pre>
+
+      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
+      <pre><code class="language-python">import ameva
+
+# 1. 네이티브 Vulkan 디바이스 상에 텐서 생성
+x = ameva.randn([512, 512], device="vulkan", dtype=ameva.float16)
+w = ameva.randn([512, 512], device="vulkan", dtype=ameva.float16)
+
+# 2. 하드웨어 가속 행렬 곱셈 수행
+y = ameva.matmul(x, w)
+print(f"[AMEVA-Forge] 계산 완료 디바이스: {y.device} 형태: {y.shape}")
+
+# 3. 역모드 자동 미분 역전파 실행
+y.backward()
+print(f"[AMEVA-Forge] x의 그래디언트 노름: {x.grad.norm().item():.4f}")</code></pre>
+
+      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
+      <pre><code class="language-javascript">// AMEVA-Forge C++ 코어 CLI 브리지 예제:
+const { execSync } = require('child_process');
+
+console.log('[AMEVA-Forge] C++ 텐서 벤치마크 실행 중...');
+const res = execSync('ameva-forge eval --dim 1024 --device neon');
+console.log(res.toString());</code></pre>
+
+      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thModel">모델 / 프로파일</th>
+            <th data-i18n="table.thScore">검증 상태</th>
+            <th data-i18n="table.thVram">VRAM 점유</th>
+            <th data-i18n="table.thSpeed">추론 속도</th>
+            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Forge-Tensor-NEON</strong></td><td>★ 5.0</td><td>16 MB RAM</td><td>0.4 ms GEMM</td><td>PyTorch 없는 순수 C++ 벡터화 텐서 코어</td></tr>
+          <tr><td><strong>Forge-Vulkan-Compute</strong></td><td>★ 4.9</td><td>32 MB VRAM</td><td>0.12 ms MatMul</td><td>비동기 명령 큐 기반 직접 GPU 컴퓨트 셰이더</td></tr>
+          <tr><td><strong>Forge-Autograd-Light</strong></td><td>★ 4.6</td><td>24 MB RAM</td><td>1.1 ms 역전파</td><td>메모리 재할당 없는 제로-알로케이션 역모드 자동 미분</td></tr>
+          <tr><td><strong>Forge-ZeroCopy-Shm</strong></td><td>★ 4.8</td><td>8 MB RAM</td><td>0.05 ms IPC</td><td>마이크로서비스용 락리스 공유 메모리 텐서 IPC</td></tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
+            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
+            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>VK_ERROR_DEVICE_LOST</code></td>
+            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
+            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
+          </tr>
+          <tr>
+            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
+            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
+            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
+          </tr>
+          <tr>
+            <td>배터리 구동 시 지연시간 급증</td>
+            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
+            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
+          </tr>
+          <tr>
+            <td>프로세스 종료 후 VRAM 미반납</td>
+            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
+            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+# AMEVA-Runtime Full Technical Specification (v2.5.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Next-Gen Unified On-Device Hardware Orchestration & 6-Modality AI Acceleration Runtime for Mobile & Edge
+AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Empirical Real-Device TTS Benchmarks (Termux-TTS v1.3.0 Vulkan)
+| Target Device | Hardware Architecture | Model Profile | Audio Duration | Compute Latency | Real-Time Factor (RTF) | Acceleration Status |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | `lessac-high-fp16` | 6.70 s | **6.65 s** | **0.993x** | Real-time Studio Quality |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | `lessac-medium` | 4.59 s | **1.21 s** | **0.264x** | 3.79x Faster than Real-time |
+| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | `lessac-medium` | 4.52 s | **5.18 s** | **1.146x** | Validated On-Device GPU |
+
+### 4. Empirical Real-Device BitNet 1.58-bit LLM Benchmarks (BitNet-b1.58-2B-4T i2_s)
+| Target Device | Hardware Architecture | Active Backend | Generation Speed | Prompt Latency | Speedup | Audit Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **AMEVA Vulkan GPU** | **17.558 t/s** | **205.9 ms** | **12.58x** | **Verified (Ground Truth)** |
+| Galaxy S25 | Snapdragon 8 Elite / Oryon CPU | Native CPU (4 Threads) | 1.396 t/s | 2,041.0 ms | 1.00x | Baseline |
+| **Galaxy A35** | Exynos 1380 / Mali-G68 MP5 | **AMEVA Vulkan GPU** | **3.471 t/s** | **1,552.8 ms** | **5.94x** | **Verified (Ground Truth)** |
+| Galaxy A35 | Exynos 1380 / Cortex-A78 CPU | Native CPU (4 Threads) | 0.584 t/s | 8,775.0 ms | 1.00x | Baseline |
+
+### 5. Root-Cause Defect Resolution (Ground Truth)
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 5. 6-Modality Acceleration Roadmap
+| Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
+| :--- | :--- | :---: | :--- |
+| **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
+| **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
+| **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
+
+### 6. Architectural Principles
+- **Fail-Fast & Zero-Silent-Fallback**: Never disguise GPU failures as CPU success. If a hardware backend fails, immediate explicit exceptions and telemetry are raised.
+- **Consolidated Single Package**: Distributed cleanly via `pip install ameva-runtime` and `npm install @ameva/runtime`.
+
+
+## 2. Package & Installation
+- PyPI: ameva-runtime
+- Command: pip install ameva-runtime
+# or: npm install @ameva/runtime
+
+- Repository: https://github.com/uno-km/ameva-runtime

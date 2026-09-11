@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uno-km.vercel.app/foundation/sitemap.xml

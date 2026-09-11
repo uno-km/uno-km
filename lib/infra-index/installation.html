@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설치 및 환경 구성 가이드 | Infra-Index Platform</title>
+  <meta name="description" content="Infra-Index Platform 프로덕션 배포 가이드, 네이티브 의존성 및 환경 프로비저닝">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
+      <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (Infra-Index Platform)</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="install.valueProp">여러 대의 스마트폰과 소형 컴퓨터들의 건강 상태를 한눈에 살피는 가벼운 모니터링 본부를 설치합니다.</p>
+      </div>
+
+      <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
+      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
+      <pre><code># 독립 네이티브 바이너리 설치 스크립트
+curl -fsSL https://raw.githubusercontent.com/uno-km/infraindex-platform/main/install.sh | bash</code></pre>
+
+      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
+      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thPkg">패키지명</th>
+            <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>curl</code></td><td>클러스터 노드 간 JSON 텔레메트리 및 헬스 엔드포인트 쿼리</td></tr>
+          <tr><td><code>jq</code></td><td>셸 자동화 스크립트 내 구조화된 JSON 데이터 고속 파싱</td></tr>
+          <tr><td><code>openssl</code></td><td>노드 암호화 신원 생성 및 상호 TLS(mTLS) 보안 핸드셰이크</td></tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
+      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/infraindex-platform/main/install.sh | bash</code></pre>
+
+      <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thPath">설치 경로</th>
+            <th data-i18n="table.thChar">런타임 실행 특성</th>
+            <th data-i18n="table.thLimits">제약사항 및 폴백 메커니즘</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong data-i18n="install.rowStandalone">패키지 매니저 단독 설치</strong></td>
+            <td data-i18n="install.rowStandaloneDesc">고수준 언어 바인딩 및 기본 CPU 추론 코어 위주 로딩.</td>
+            <td data-i18n="install.rowStandaloneLimits">시스템 C++ 런타임 및 GPU 가속 드라이버가 수동 구성되어야 합니다.</td>
+          </tr>
+          <tr>
+            <td><strong data-i18n="install.rowFull">자동화 풀 패키지 설치</strong></td>
+            <td data-i18n="install.rowFullDesc">Vulkan SPIR-V 셰이더 컴파일, 제로카피 IPC 셋업 및 실리콘 벤치마크 검증 완료.</td>
+            <td data-i18n="install.rowFullLimits">지연시간 최소화가 필요한 실제 프로덕션 워크로드에 적극 권장됩니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="install.sec5Title">5. 선택적 빌드 및 런타임 플래그 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thFlag">옵션 파라미터</th>
+            <th data-i18n="table.thFlagDesc">아키텍처 동작 및 하드웨어 효과</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--heartbeat-interval=<ms></code></td><td>로컬 메시 노드 건강 상태 핑 주기 (기본값: 1000ms)</td></tr>
+          <tr><td><code>--cluster-token=<TOKEN></code></td><td>피어 노드 자동 발견용 공유 인증 토큰</td></tr>
+          <tr><td><code>--log-level=<debug|info|warn></code></td><td>진단 이벤트 스트리밍 상세 수준</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

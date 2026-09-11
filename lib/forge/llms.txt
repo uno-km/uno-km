@@ -1,0 +1,31 @@
+# AMEVA-Forge — AI Agent Fast Context
+# Generated: 2026-09-08  |  Version: 1.0.1
+
+## Library
+Name: AMEVA-Forge
+Version: 1.0.1
+GitHub: https://github.com/uno-km/AMEVA-Forge
+Documentation: https://uno-km.vercel.app/lib/forge/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/forge/index.html
+  - /lib/forge/installation.html
+  - /lib/forge/quickstart.html
+  - /lib/forge/api-reference.html
+  - /lib/forge/demo.html
+  - /lib/forge/benchmarks.html
+  - /lib/forge/advanced-parameters.html
+  - /lib/forge/versions.html
+  - /lib/forge/what-is-forge.html
+  - /lib/forge/forge-vs-pytorch.html
+
+## Quick Install
+pip install ameva
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/forge/llms-full.txt

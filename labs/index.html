@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta name="google-site-verification" content="8apYsaI16kntMWmzYsTLft3HQ4vuIga0D33a7dYQsv0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA Labs | Sovereign On-Device AI Research, Newsletter &amp; Discussion</title>
+  <meta name="description" content="Official research laboratory, engineering newsletter, and technical community forum of the AMEVA On-Device AI ecosystem by @uno-km.">
+  <meta name="keywords" content="On-Device AI, Vulkan SPIR-V, Android Termux, Bionic libc, ARM64 NEON, 1.58-bit LLM, BitNet, Whisper STT, TTS, Zero-Cloud">
+  <meta name="author" content="Eunho Kim (@uno-km)">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- OpenGraph & Twitter -->
+  <meta property="og:title" content="AMEVA Labs | Sovereign On-Device AI Research, Newsletter &amp; Discussion">
+  <meta property="og:description" content="Technical whitepapers, Vulkan compute shader reverse-engineering, and grassroots mobile AI dispatches.">
+  <meta property="og:url" content="https://uno-km.vercel.app/labs/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AMEVA Open-Source Foundation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AMEVA Labs | Sovereign On-Device AI Research &amp; Dispatches">
+  <meta name="twitter:description" content="100% on-device AI engineering dispatches and grassroots silicon benchmarks.">
+
+  <!-- Academic Citation Meta Tags -->
+  <meta name="citation_title" content="AMEVA Labs: Sovereign On-Device AI, Bionic Libc Porting &amp; Vulkan Compute Shaders">
+  <meta name="citation_author" content="Kim, Eunho">
+  <meta name="citation_publication_date" content="2026/09/08">
+  <meta name="citation_publisher" content="AMEVA Open-Source Foundation">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <link rel="stylesheet" href="/shared/ameva-viewer/ameva-viewer.css">
+
+  <!-- Defer Scripts -->
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/telemetry.js" defer></script>
+  <script src="/shared/ameva-viewer/ameva-viewer.umd.js" defer></script>
+
+  <style>
+    /* ==========================================================================
+       AMEVA Labs Unified Clean Styles (Zero-Emoji, High-Density Tech Theme)
+       ========================================================================== */
+    .labs-content-wrap {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .labs-heading-wrap {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+    }
+    .labs-heading-wrap h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--text-bright);
+      letter-spacing: -0.02em;
+    }
+    .labs-heading-wrap .subtitle {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Board Badges */
+    .board-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+    .badge-news { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-anal { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .badge-blog { background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-board { background: rgba(234, 179, 8, 0.12); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+
+    /* General Buttons */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: #0284c7;
+      color: #ffffff;
+      border: 1px solid #0284c7;
+    }
+    .btn-primary:hover {
+      background: #0369a1;
+      border-color: #0369a1;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-bright);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .btn-danger {
+      background: rgba(244, 63, 94, 0.1);
+      color: #f43f5e;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .btn-danger:hover {
+      background: #f43f5e;
+      color: #ffffff;
+    }
+
+    /* AmevaViewer Toolbar */
+    .viewer-theme-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0 14px 0;
+      padding: 8px 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+    }
+    .btn-theme-chip {
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-theme-chip:hover {
+      border-color: #38bdf8;
+      color: #f1f5f9;
+    }
+    .btn-theme-chip.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
+    }
+
+    /* ── View 1: NEWS (Newsletter Card Reader) ──────────────────────────────── */
+    .news-reader-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      touch-action: pan-y;
+      user-select: none;
+    }
+    .news-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .news-edition-select {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-bright);
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      border-radius: 4px;
+    }
+    .news-meta-row {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin: 8px 0 14px 0;
+    }
+    .news-body-container {
+      user-select: text;
+    }
+    .news-swipe-indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .news-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-subtle);
+      transition: all 0.2s;
+    }
+    .news-dot.active {
+      background: #0284c7;
+      transform: scale(1.25);
+    }
+
+    /* ── View 2: ANAL (Research Feed with 200-char excerpt) ──────────────────── */
+    .anal-feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .anal-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 18px 22px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: block;
+    }
+    .anal-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+    .anal-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin: 0 0 8px 0;
+      line-height: 1.4;
+    }
+    .anal-card:hover .anal-title {
+      color: #38bdf8;
+    }
+    .anal-excerpt {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 8px 0 14px 0;
+    }
+    .anal-meta {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .anal-read-link {
+      margin-left: auto;
+      color: #38bdf8;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    /* ── View 3: BOARD (DCInside Style Board + In-place Top Post View) ──────── */
+    .board-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .board-filter-pills {
+      display: flex;
+      gap: 6px;
+    }
+    .board-pill {
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .board-pill:hover {
+      border-color: #38bdf8;
+      color: var(--text-bright);
+    }
+    .board-pill.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* In-place Top Post Detail Container */
+    .board-top-post-view {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .post-view-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+    .post-view-header h3 {
+      margin: 6px 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      line-height: 1.4;
+    }
+    .post-view-meta {
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    /* Post Table */
+    .post-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .post-table th {
+      padding: 9px 12px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .post-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+    .post-table tr:hover {
+      background: rgba(56, 189, 248, 0.03);
+    }
+    .post-table tr.active-row {
+      background: rgba(2, 132, 199, 0.12);
+      border-left: 3px solid #0284c7;
+    }
+    .post-title-link {
+      color: var(--text-bright);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .post-title-link:hover {
+      color: #38bdf8;
+    }
+    .comment-count-badge {
+      color: #0284c7;
+      font-weight: 700;
+      font-size: 0.76rem;
+      margin-left: 5px;
+    }
+
+    /* Comments Section */
+    .comments-wrapper {
+      margin-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 18px;
+    }
+    .comment-card {
+      padding: 10px 14px;
+      border-left: 3px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 8px;
+    }
+    .comment-card.depth-1 { margin-left: 24px; border-left-color: #38bdf8; }
+    .comment-card.depth-2 { margin-left: 48px; border-left-color: #60a5fa; }
+    .comment-card.depth-3 { margin-left: 72px; border-left-color: #93c5fd; }
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    /* Modal Form */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+    .modal-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 620px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 5px;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: var(--text-bright);
+      box-sizing: border-box;
+    }
+    .form-input:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    /* Local-only Environment Action Visibility */
+    .local-only-action {
+      display: none !important;
+    }
+    body.is-local-env .local-only-action {
+      display: inline-flex !important;
+    }
+    .local-only-block {
+      display: none !important;
+    }
+    body.is-local-env .local-only-block {
+      display: block !important;
+    }
+    .local-only-notice {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 10px 0;
+      text-align: center;
+    }
+    body.is-local-env .local-only-notice {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Global Ecosystem Header -->
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <!-- Global Ecosystem Sidebar (SSOT Navigation) -->
+    <ameva-sidebar></ameva-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="content labs-content-wrap">
+      <!-- Clean Page Title & Subtitle -->
+      <div class="labs-heading-wrap">
+        <h2 id="mainHeading">뉴스레터</h2>
+        <p class="subtitle" id="mainSubtitle">온디바이스 시스템 및 생태계 공식 엔지니어링 소식</p>
+      </div>
+
+      <!-- VIEW 1: NEWS (Newsletter Card Reader with Drag/Swipe) -->
+      <div id="viewNews" style="display: none;">
+        <div class="news-reader-card" id="newsletterCard">
+          <div class="news-nav-bar">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="board-badge badge-news" id="newsVolBadge">VOL. 2 (최신호)</span>
+              <strong id="newsNavTitle" style="font-size: 1.05rem; color: var(--text-bright);"></strong>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn-action btn-secondary" onclick="LabsApp.prevNewsletter()">이전 호</button>
+              <select class="news-edition-select" id="newsEditionSelect" onchange="LabsApp.selectNewsletter(this.value)"></select>
+              <button class="btn-action btn-secondary" onclick="LabsApp.nextNewsletter()">다음 호</button>
+              <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal('newsletter')">글쓰기</button>
+            </div>
+          </div>
+
+          <div class="news-meta-row">
+            <span>작성자: <strong id="newsAuthor">uno-km</strong></span>
+            <span>발행일: <span id="newsDate"></span></span>
+            <span>조회: <span id="newsViews">0</span></span>
+            <span>추천: <span id="newsLikes">0</span></span>
+          </div>
+
+          <!-- AmevaViewer Embedded Content -->
+          <div id="newsViewerBody" class="news-body-container"></div>
+
+          <div style="display: flex; gap: 8px; margin-top: 14px;">
+            <button class="btn-action btn-primary" onclick="LabsApp.likeActiveNewsletter()">추천</button>
+            <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActiveNewsletter()">삭제</button>
+          </div>
+
+          <div class="news-swipe-indicator">
+            <span style="cursor: pointer;" onclick="LabsApp.prevNewsletter()">← 이전 호</span>
+            <div id="newsDotsContainer" style="display: flex; gap: 6px;"></div>
+            <span style="cursor: pointer;" onclick="LabsApp.nextNewsletter()">다음 호 →</span>
+            <span style="margin-left: 12px; color: var(--text-muted); font-size: 0.72rem;">(좌우 드래그 가능)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: ANAL (Research Feed with 200-char Excerpt) -->
+      <div id="viewAnal" style="display: none;">
+        <!-- Detail View (When a research post is opened) -->
+        <div id="analDetailView" style="display: none; margin-bottom: 20px;">
+          <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="margin-bottom: 14px;">
+            ← 연구 목록으로 돌아가기
+          </button>
+          <div class="board-top-post-view">
+            <div class="post-view-header">
+              <span class="board-badge badge-anal">RESEARCH</span>
+              <h3 id="analDetailTitle"></h3>
+              <div class="post-view-meta">
+                <span>작성자: <strong id="analDetailAuthor"></strong> (<span id="analDetailIp"></span>)</span>
+                <span>작성일: <span id="analDetailDate"></span></span>
+                <span>조회: <span id="analDetailViews">0</span></span>
+                <span>추천: <span id="analDetailLikes">0</span></span>
+              </div>
+            </div>
+
+            <div class="viewer-theme-toolbar">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-bright);">AmevaViewer SDK Engine</span>
+              <div style="display: flex; gap: 6px;">
+                <button type="button" class="btn-theme-chip active" id="analThemeDark" onclick="LabsApp.setDetailTheme('dark', 'anal')">Cyber Dark</button>
+                <button type="button" class="btn-theme-chip" id="analThemeWhite" onclick="LabsApp.setDetailTheme('white', 'anal')">Light</button>
+                <button type="button" class="btn-theme-chip" id="analThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'anal')">Retro Win98</button>
+              </div>
+            </div>
+
+            <div id="analViewerBody" style="margin-bottom: 16px;"></div>
+
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('anal')">추천</button>
+              <button class="btn-action btn-secondary" onclick="LabsApp.copyBibtexCitation()">BibTeX 인용 복사</button>
+              <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActivePost('anal')">삭제</button>
+            </div>
+
+            <!-- Comments for Anal -->
+            <div class="comments-wrapper">
+              <h4 style="margin: 0 0 12px 0;">댓글 토론 (<span id="analCommentCount">0</span>)</h4>
+              <div id="analCommentList"></div>
+              <p class="local-only-notice">(글쓰기 및 댓글 작성은 보안 정책에 따라 로컬 환경에서만 가능합니다)</p>
+              <div class="local-only-block" style="margin-top: 14px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+                <input type="hidden" id="analReplyParentId" value="">
+                <div id="analReplyingNotice" style="display: none; font-size: 0.78rem; color: #38bdf8; margin-bottom: 6px;"></div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                  <input type="text" id="analCommentAuthor" class="form-input" placeholder="닉네임" style="max-width: 140px;">
+                  <input type="password" id="analCommentPassword" class="form-input" placeholder="비밀번호" style="max-width: 120px;">
+                </div>
+                <textarea id="analCommentContent" class="form-input" rows="2" placeholder="연구에 대한 기술적 피드백 또는 질문을 남겨주세요."></textarea>
+                <div style="text-align: right; margin-top: 8px;">
+                  <button class="btn-action btn-primary" onclick="LabsApp.submitComment('anal')">댓글 등록</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Top Toolbar -->
+        <div class="board-top-bar" id="analTopBar">
+          <div><span class="board-badge badge-anal">RESEARCH DISPATCHES</span></div>
+          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal('research')">글쓰기</button>
+        </div>
+
+        <!-- Feed List View (Default) -->
+        <div id="analFeedList" class="anal-feed-list"></div>
+      </div>
+
+      <!-- VIEW 3: BOARD (DCInside Style Board + Top Post View + Bottom List) -->
+      <div id="viewBoard" style="display: none;">
+        <!-- Top Toolbar -->
+        <div class="board-top-bar">
+          <div class="board-filter-pills">
+            <button class="board-pill active" id="pillAll" onclick="LabsApp.filterBoardSubmenu('free-board')">전체</button>
+            <button class="board-pill" id="pillAi" onclick="LabsApp.filterBoardSubmenu('board-ai')">AI</button>
+            <button class="board-pill" id="pillCs" onclick="LabsApp.filterBoardSubmenu('board-cs')">CS</button>
+          </div>
+          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal()">글쓰기</button>
+        </div>
+
+        <!-- In-Place Top Post Detail View (Opened when row clicked) -->
+        <div id="boardTopPostView" class="board-top-post-view" style="display: none;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+            <button class="btn-action btn-secondary" onclick="LabsApp.closeBoardTopPost()" style="font-size: 0.75rem; padding: 3px 8px;">✕ 본문 닫기</button>
+          </div>
+          <div class="post-view-header">
+            <span class="board-badge" id="boardPostBadge">BOARD</span>
+            <h3 id="boardPostTitle" style="margin: 6px 0;"></h3>
+            <div class="post-view-meta">
+              <span>작성자: <strong id="boardPostAuthor"></strong> (<span id="boardPostIp"></span>)</span>
+              <span>작성일: <span id="boardPostDate"></span></span>
+              <span>조회: <span id="boardPostViews">0</span></span>
+              <span>추천: <span id="boardPostLikes">0</span></span>
+            </div>
+          </div>
+
+          <div class="viewer-theme-toolbar">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-bright);">AmevaViewer SDK Engine</span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn-theme-chip active" id="boardThemeDark" onclick="LabsApp.setDetailTheme('dark', 'board')">Cyber Dark</button>
+              <button type="button" class="btn-theme-chip" id="boardThemeWhite" onclick="LabsApp.setDetailTheme('white', 'board')">Light</button>
+              <button type="button" class="btn-theme-chip" id="boardThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'board')">Retro Win98</button>
+            </div>
+          </div>
+
+          <div id="boardViewerBody" style="margin-bottom: 16px;"></div>
+
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('board')">추천</button>
+            <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActivePost('board')" id="boardDeleteBtn">삭제</button>
+          </div>
+
+          <!-- Comments for Board -->
+          <div class="comments-wrapper">
+            <h4 style="margin: 0 0 12px 0;">댓글 (<span id="boardCommentCount">0</span>)</h4>
+            <div id="boardCommentList"></div>
+            <p class="local-only-notice">(글쓰기 및 댓글 작성은 보안 정책에 따라 로컬 환경에서만 가능합니다)</p>
+            <div class="local-only-block" style="margin-top: 14px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+              <input type="hidden" id="boardReplyParentId" value="">
+              <div id="boardReplyingNotice" style="display: none; font-size: 0.78rem; color: #38bdf8; margin-bottom: 6px;"></div>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <input type="text" id="boardCommentAuthor" class="form-input" placeholder="닉네임" style="max-width: 140px;">
+                <input type="password" id="boardCommentPassword" class="form-input" placeholder="비밀번호" style="max-width: 120px;">
+              </div>
+              <textarea id="boardCommentContent" class="form-input" rows="2" placeholder="자유롭게 기술 토론을 남겨주세요."></textarea>
+              <div style="text-align: right; margin-top: 8px;">
+                <button class="btn-action btn-primary" onclick="LabsApp.submitComment('board')">댓글 등록</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DCInside Bottom Posts Table (Always Visible) -->
+        <table class="post-table">
+          <thead>
+            <tr>
+              <th style="width: 55px; text-align: center;">번호</th>
+              <th style="width: 80px;">분류</th>
+              <th>제목</th>
+              <th style="width: 130px;">글쓴이</th>
+              <th style="width: 85px; text-align: center;">날짜</th>
+              <th style="width: 55px; text-align: center;">조회</th>
+              <th style="width: 55px; text-align: center;">추천</th>
+            </tr>
+          </thead>
+          <tbody id="boardTableBody"></tbody>
+        </table>
+
+        <!-- Table Bottom Action -->
+        <div style="display: flex; justify-content: flex-end; margin-top: 12px;">
+          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal()">글쓰기</button>
+        </div>
+      </div>
+
+      <!-- WRITE MODAL (Board Only) -->
+      <div id="writeModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card">
+          <h3 style="margin: 0 0 16px 0; font-size: 1.15rem; color: var(--text-bright);">게시글 작성</h3>
+          <div class="form-group">
+            <label>게시판 분류</label>
+            <select id="writeCategory" class="form-input">
+              <option value="free-board">자유게시판</option>
+              <option value="board-ai">AI</option>
+              <option value="board-cs">CS</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>제목</label>
+            <input type="text" id="writeTitle" class="form-input" placeholder="제목을 입력하세요">
+          </div>
+          <div style="display: flex; gap: 10px;" class="form-group">
+            <div style="flex: 1;">
+              <label>닉네임</label>
+              <input type="text" id="writeAuthor" class="form-input" placeholder="익명 해커">
+            </div>
+            <div style="flex: 1;">
+              <label>비밀번호</label>
+              <input type="password" id="writePassword" class="form-input" placeholder="삭제 비밀번호">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>내용 (Markdown 지원)</label>
+            <textarea id="writeContent" class="form-input" rows="8" placeholder="본문 내용을 입력하세요."></textarea>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px;">
+            <button class="btn-action btn-secondary" onclick="LabsApp.closeWriteModal()">취소</button>
+            <button class="btn-action btn-primary" onclick="LabsApp.submitPost()">등록</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Global Footer -->
+  <footer>
+    <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
+  </footer>
+
+  <!-- Unified Labs Application Controller -->
+  <script>
+  (function() {
+    'use strict';
+
+    const STATE_VERSION = 'v5_zero_seed_wiped';
+
+    // 5 Clean Menus (Zero-Emoji)
+    const SEED_MENUS = [
+      { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
+      { id: 'research', name: '연구중이거나 연구내용', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '실리콘 커널, Vulkan 셰이더, ARM64 NEON 어셈블리 및 온디바이스 AI 연구' },
+      { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
+      { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 4, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
+      { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
+    ];
+
+    // ZERO seed data - all tables start completely empty
+    const SEED_POSTS = [];
+    const SEED_COMMENTS = [];
+
+    function isLocalEnv() {
+      const h = window.location.hostname;
+      return h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || window.location.protocol === 'file:';
+    }
+
+    // Real Remote DB Wire-up State Store
+    class LabsStore {
+      constructor() {
+        this.apiAvailable = true;
+        this.databaseConnected = false;
+        this.loadLocal();
+      }
+
+      loadLocal() {
+        try {
+          const cachedMenus = localStorage.getItem('__labs_cached_menus');
+          if (cachedMenus) {
+            try {
+              const parsed = JSON.parse(cachedMenus);
+              if (Array.isArray(parsed) && parsed.length > 0) {
+                this.menus = parsed;
+              }
+            } catch (e) {}
+          }
+
+          const ver = localStorage.getItem('__labs_ver');
+          const raw = localStorage.getItem('__ameva_labs_state');
+          if (ver === STATE_VERSION && raw) {
+            const data = JSON.parse(raw);
+            if (!this.menus) this.menus = data.menus || SEED_MENUS;
+            this.posts = data.posts || [];
+            this.comments = data.comments || [];
+          } else {
+            // Hard wipe legacy local storage on new version
+            localStorage.removeItem('__ameva_labs_state');
+            localStorage.setItem('__labs_ver', STATE_VERSION);
+            if (!this.menus) this.menus = SEED_MENUS;
+            this.posts = [];
+            this.comments = [];
+            this.saveLocal();
+          }
+        } catch (e) {
+          this.menus = SEED_MENUS;
+          this.posts = [];
+          this.comments = [];
+        }
+      }
+
+      saveLocal() {
+        try {
+          localStorage.setItem('__ameva_labs_state', JSON.stringify({
+            menus: this.menus,
+            posts: this.posts,
+            comments: this.comments
+          }));
+        } catch (e) {}
+      }
+
+      async init() {
+        try {
+          const res = await fetch('/api/labs?action=get_menus');
+          if (res.ok) {
+            const data = await res.json();
+            if (data.ok && Array.isArray(data.menus) && data.menus.length > 0) {
+              this.menus = data.menus;
+              localStorage.setItem('__labs_cached_menus', JSON.stringify(data.menus));
+              this.apiAvailable = true;
+              this.databaseConnected = (data.database_connected !== false);
+              return;
+            }
+          }
+        } catch (e) {}
+        this.apiAvailable = false;
+      }
+
+      getDescendantMenuIds(menuId) {
+        const ids = [menuId];
+        const findChildren = (pid) => {
+          this.menus.filter(m => m.parent_id === pid).forEach(c => {
+            ids.push(c.id);
+            findChildren(c.id);
+          });
+        };
+        findChildren(menuId);
+        return ids;
+      }
+
+      async getPosts(menuId) {
+        const targetIds = this.getDescendantMenuIds(menuId);
+        if (this.apiAvailable) {
+          try {
+            const res = await fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.ok && Array.isArray(data.posts)) {
+                this.posts = data.posts;
+                this.saveLocal();
+                return data.posts;
+              }
+            }
+          } catch (e) {}
+        }
+        return this.posts
+          .filter(p => targetIds.includes(p.menu_id) && p.status === 'published')
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      }
+
+      async getPost(postId) {
+        if (this.apiAvailable) {
+          try {
+            const res = await fetch(`/api/labs?action=get_post&post_id=${postId}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.ok && data.post) {
+                const existingIdx = this.posts.findIndex(p => p.id === postId);
+                if (existingIdx !== -1) this.posts[existingIdx] = data.post;
+                return data.post;
+              }
+            }
+          } catch (e) {}
+        }
+        const p = this.posts.find(x => x.id === postId);
+        if (p) {
+          p.view_count = (p.view_count || 0) + 1;
+          this.saveLocal();
+        }
+        return p;
+      }
+
+      async getComments(postId) {
+        if (this.apiAvailable) {
+          try {
+            const res = await fetch(`/api/labs?action=get_comments&post_id=${postId}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.ok && Array.isArray(data.comments)) {
+                return data.comments;
+              }
+            }
+          } catch (e) {}
+        }
+        return this.comments
+          .filter(c => c.post_id === postId)
+          .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      }
+
+      async createPost(postData) {
+        if (!isLocalEnv()) {
+          throw new Error('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 허용됩니다.');
+        }
+
+        if (this.apiAvailable) {
+          const res = await fetch('/api/labs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'create_post',
+              menu_id: postData.menu_id,
+              title: postData.title,
+              content: postData.content,
+              author: postData.author,
+              password: postData.password
+            })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || '게시글 등록에 실패했습니다.');
+          }
+          const created = data.post;
+          this.posts.unshift(created);
+          this.saveLocal();
+          return created;
+        }
+
+        // Fallback local creation
+        const newPost = {
+          id: Date.now(),
+          menu_id: postData.menu_id,
+          title: postData.title,
+          content: postData.content,
+          author: postData.author || '익명 해커',
+          author_ip: '127.0.0.1',
+          status: 'published',
+          view_count: 1,
+          like_count: 0,
+          comment_count: 0,
+          created_at: new Date().toISOString()
+        };
+        this.posts.unshift(newPost);
+        this.saveLocal();
+        return newPost;
+      }
+
+      async deletePost(postId, password) {
+        if (this.apiAvailable) {
+          const res = await fetch('/api/labs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'delete_post',
+              post_id: postId,
+              password: password
+            })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || '게시글 삭제에 실패했습니다.');
+          }
+        }
+        const idx = this.posts.findIndex(x => x.id === postId);
+        if (idx !== -1) {
+          this.posts.splice(idx, 1);
+          this.saveLocal();
+        }
+        return true;
+      }
+
+      async likePost(postId) {
+        if (this.apiAvailable) {
+          try {
+            const res = await fetch('/api/labs', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'like_post',
+                post_id: postId
+              })
+            });
+            const data = await res.json();
+            const post = this.posts.find(p => p.id === postId);
+            if (post) {
+              post.like_count = (data && data.like_count !== undefined) ? data.like_count : (post.like_count || 0) + 1;
+              this.saveLocal();
+              return post.like_count;
+            }
+          } catch (e) {}
+        }
+        const post = this.posts.find(p => p.id === postId);
+        if (post) {
+          post.like_count = (post.like_count || 0) + 1;
+          this.saveLocal();
+          return post.like_count;
+        }
+        return 0;
+      }
+
+      async createComment(commentData) {
+        if (!isLocalEnv()) {
+          throw new Error('보안 정책: 댓글 작성은 로컬 개발 환경(localhost)에서만 허용됩니다.');
+        }
+
+        if (this.apiAvailable) {
+          const res = await fetch('/api/labs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'create_comment',
+              post_id: commentData.post_id,
+              parent_id: commentData.parent_id,
+              author: commentData.author,
+              password: commentData.password,
+              content: commentData.content
+            })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || '댓글 등록에 실패했습니다.');
+          }
+          const created = data.comment;
+          this.comments.push(created);
+          const post = this.posts.find(p => p.id === commentData.post_id);
+          if (post) post.comment_count = (post.comment_count || 0) + 1;
+          this.saveLocal();
+          return created;
+        }
+
+        const parent = commentData.parent_id ? this.comments.find(c => c.id === commentData.parent_id) : null;
+        const depth = parent ? Math.min((parent.depth || 0) + 1, 3) : 0;
+        const newComment = {
+          id: Date.now(),
+          post_id: commentData.post_id,
+          parent_id: commentData.parent_id || null,
+          root_id: parent ? (parent.root_id || parent.id) : null,
+          depth: depth,
+          author: commentData.author || '익명 해커',
+          author_ip: '127.0.0.1',
+          content: commentData.content,
+          like_count: 0,
+          is_deleted: false,
+          created_at: new Date().toISOString()
+        };
+        this.comments.push(newComment);
+        const post = this.posts.find(p => p.id === commentData.post_id);
+        if (post) post.comment_count = (post.comment_count || 0) + 1;
+        this.saveLocal();
+        return newComment;
+      }
+
+      async deleteComment(commentId, password) {
+        if (this.apiAvailable) {
+          const res = await fetch('/api/labs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'delete_comment',
+              comment_id: commentId,
+              password: password
+            })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || '댓글 삭제에 실패했습니다.');
+          }
+        }
+        const c = this.comments.find(x => x.id === commentId);
+        if (c) {
+          c.is_deleted = true;
+          c.content = '[삭제된 댓글입니다]';
+          this.saveLocal();
+        }
+        return true;
+      }
+    }
+
+    // Helper: Safe HTML escaping
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Helper: strip markdown and extract 200 characters excerpt
+    function extractExcerpt(text, length = 200) {
+      if (!text) return '';
+      let clean = text
+        .replace(/```[\s\S]*?```/g, ' [코드] ')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/^#+\s*(.*)$/gm, '$1')
+        .replace(/\*\*([^\*]+)\*\*/g, '$1')
+        .replace(/>\s*\[!.*?\]/g, '')
+        .replace(/>\s*/g, '')
+        .replace(/\n+/g, ' ')
+        .trim();
+      if (clean.length <= length) return clean;
+      return clean.substring(0, length) + '...';
+    }
+
+    // Labs Application Controller
+    window.LabsApp = {
+      store: new LabsStore(),
+      activeMenuId: 'newsletter',
+      activeBoardFilter: 'free-board',
+      activePostId: null,
+      newsletterIndex: 0,
+      newsletters: [],
+      viewerInstances: {
+        news: null,
+        anal: null,
+        board: null
+      },
+      currentTheme: {
+        news: 'dark',
+        anal: 'dark',
+        board: 'dark'
+      },
+
+      async init() {
+        // Enforce Local-only body class for write button visibility
+        if (isLocalEnv()) {
+          document.body.classList.add('is-local-env');
+        } else {
+          document.body.classList.remove('is-local-env');
+        }
+
+        await this.store.init();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const menuParam = urlParams.get('menu');
+        const initialMenu = menuParam || 'newsletter';
+
+        document.addEventListener('click', (e) => {
+          const a = e.target.closest('a[data-menu-id]');
+          if (a) {
+            e.preventDefault();
+            const mId = a.getAttribute('data-menu-id');
+            this.handleSidebarNav(mId);
+          }
+        });
+
+        this.initNewsletterSwipe();
+        await this.selectMenu(initialMenu);
+      },
+
+      handleSidebarNav(menuId) {
+        history.pushState(null, '', `/labs/index.html?menu=${menuId}`);
+        this.selectMenu(menuId);
+      },
+
+      updateSidebarHighlight(menuId) {
+        if (typeof window.__updateLabsSidebarActive === 'function') {
+          window.__updateLabsSidebarActive(menuId);
+        } else {
+          document.querySelectorAll('a[data-menu-id]').forEach(a => {
+            if (a.getAttribute('data-menu-id') === menuId) {
+              a.classList.add('active');
+            } else {
+              a.classList.remove('active');
+            }
+          });
+        }
+      },
+
+      async selectMenu(menuId) {
+        this.activeMenuId = menuId;
+        window.__curLabsMenu = menuId;
+        this.updateSidebarHighlight(menuId);
+
+        const curMenu = this.store.menus.find(m => m.id === menuId) || { board_type: 'board', name: '게시판' };
+        document.getElementById('mainHeading').textContent = curMenu.name;
+        document.getElementById('mainSubtitle').textContent = curMenu.description || '';
+
+        // Hide all views
+        document.getElementById('viewNews').style.display = 'none';
+        document.getElementById('viewAnal').style.display = 'none';
+        document.getElementById('viewBoard').style.display = 'none';
+
+        if (curMenu.board_type === 'news') {
+          await this.renderNewsView();
+        } else if (curMenu.board_type === 'anal') {
+          await this.renderAnalView();
+        } else {
+          this.activeBoardFilter = menuId;
+          await this.renderBoardView(menuId);
+        }
+      },
+
+      // ── VIEW 1: NEWS (Newsletter Card Reader) ───────────────────────────────
+      async renderNewsView() {
+        document.getElementById('viewNews').style.display = 'block';
+        this.newsletters = await this.store.getPosts('newsletter');
+
+        const card = document.getElementById('newsletterCard');
+        if (!this.newsletters || this.newsletters.length === 0) {
+          document.getElementById('newsVolBadge').textContent = 'VOL. 0';
+          document.getElementById('newsNavTitle').textContent = '발행된 공식 뉴스레터가 없습니다.';
+          document.getElementById('newsAuthor').textContent = '-';
+          document.getElementById('newsDate').textContent = '-';
+          document.getElementById('newsViews').textContent = '0';
+          document.getElementById('newsLikes').textContent = '0';
+          document.getElementById('newsEditionSelect').innerHTML = '<option>발행 이력 없음</option>';
+          document.getElementById('newsDotsContainer').innerHTML = '';
+          document.getElementById('newsViewerBody').innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 뉴스레터가 없습니다. 로컬 환경에서 첫 소식을 발행할 수 있습니다.</p>';
+          return;
+        }
+
+        const selectEl = document.getElementById('newsEditionSelect');
+        selectEl.innerHTML = '';
+        this.newsletters.forEach((item, idx) => {
+          const opt = document.createElement('option');
+          opt.value = idx;
+          opt.textContent = `Vol. ${this.newsletters.length - idx} - ${item.title.substring(0, 24)}...`;
+          selectEl.appendChild(opt);
+        });
+
+        this.newsletterIndex = 0;
+        this.displayActiveNewsletter();
+      },
+
+      displayActiveNewsletter() {
+        const item = this.newsletters[this.newsletterIndex];
+        if (!item) return;
+
+        this.activePostId = item.id;
+        const volNum = this.newsletters.length - this.newsletterIndex;
+        const isLatest = (this.newsletterIndex === 0) ? ' (최신호)' : '';
+        document.getElementById('newsVolBadge').textContent = `VOL. ${volNum}${isLatest}`;
+        document.getElementById('newsNavTitle').textContent = item.title;
+        document.getElementById('newsAuthor').textContent = item.author;
+        document.getElementById('newsDate').textContent = (item.created_at || '').substring(0, 10);
+        document.getElementById('newsViews').textContent = item.view_count || 1;
+        document.getElementById('newsLikes').textContent = item.like_count || 0;
+        document.getElementById('newsEditionSelect').value = this.newsletterIndex;
+
+        const dotsContainer = document.getElementById('newsDotsContainer');
+        dotsContainer.innerHTML = '';
+        this.newsletters.forEach((_, idx) => {
+          const dot = document.createElement('span');
+          dot.className = `news-dot ${idx === this.newsletterIndex ? 'active' : ''}`;
+          dot.onclick = () => { this.newsletterIndex = idx; this.displayActiveNewsletter(); };
+          dotsContainer.appendChild(dot);
+        });
+
+        this.mountAmevaViewer('news', '#newsViewerBody', item.content || '');
+      },
+
+      prevNewsletter() {
+        if (this.newsletterIndex < this.newsletters.length - 1) {
+          this.newsletterIndex++;
+          this.displayActiveNewsletter();
+        }
+      },
+
+      nextNewsletter() {
+        if (this.newsletterIndex > 0) {
+          this.newsletterIndex--;
+          this.displayActiveNewsletter();
+        }
+      },
+
+      selectNewsletter(idx) {
+        this.newsletterIndex = parseInt(idx, 10);
+        this.displayActiveNewsletter();
+      },
+
+      async likeActiveNewsletter() {
+        const item = this.newsletters[this.newsletterIndex];
+        if (!item) return;
+        const newLikes = await this.store.likePost(item.id);
+        item.like_count = newLikes;
+        document.getElementById('newsLikes').textContent = newLikes;
+      },
+
+      async deleteActiveNewsletter() {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
+          return;
+        }
+        const item = this.newsletters[this.newsletterIndex];
+        if (!item) return;
+        const pwd = prompt('뉴스레터 삭제 비밀번호를 입력하세요:');
+        if (pwd === null) return;
+        try {
+          await this.store.deletePost(item.id, pwd);
+          alert('뉴스레터가 삭제되었습니다.');
+          await this.renderNewsView();
+        } catch (err) {
+          alert(err.message || '삭제에 실패했습니다.');
+        }
+      },
+
+      initNewsletterSwipe() {
+        const card = document.getElementById('newsletterCard');
+        if (!card) return;
+        let startX = 0;
+        let currentX = 0;
+        let isDown = false;
+
+        card.addEventListener('mousedown', e => {
+          startX = e.clientX;
+          isDown = true;
+        });
+        window.addEventListener('mousemove', e => {
+          if (!isDown) return;
+          currentX = e.clientX;
+        });
+        window.addEventListener('mouseup', () => {
+          if (!isDown) return;
+          isDown = false;
+          const diff = currentX - startX;
+          if (diff > 60) this.prevNewsletter();
+          else if (diff < -60) this.nextNewsletter();
+          startX = 0; currentX = 0;
+        });
+
+        card.addEventListener('touchstart', e => {
+          startX = e.touches[0].clientX;
+        }, { passive: true });
+        card.addEventListener('touchend', e => {
+          const endX = e.changedTouches[0].clientX;
+          const diff = endX - startX;
+          if (diff > 50) this.prevNewsletter();
+          else if (diff < -50) this.nextNewsletter();
+        }, { passive: true });
+      },
+
+      // ── VIEW 2: ANAL (Research Feed with 200-char Excerpt) ───────────────────
+      async renderAnalView() {
+        document.getElementById('viewAnal').style.display = 'block';
+        document.getElementById('analDetailView').style.display = 'none';
+        document.getElementById('analTopBar').style.display = 'flex';
+        document.getElementById('analFeedList').style.display = 'flex';
+
+        const posts = await this.store.getPosts('research');
+        const container = document.getElementById('analFeedList');
+        container.innerHTML = '';
+
+        if (!posts || posts.length === 0) {
+          container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 연구 리포트가 없습니다.</div>`;
+          return;
+        }
+
+        posts.forEach(p => {
+          const dateStr = (p.created_at || '').substring(0, 10);
+          const excerpt = extractExcerpt(p.content, 200);
+
+          const card = document.createElement('div');
+          card.className = 'anal-card';
+          card.onclick = () => this.openAnalDetail(p.id);
+          card.innerHTML = `
+            <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
+            <h3 class="anal-title">${escapeHtml(p.title)}</h3>
+            <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
+            <div class="anal-meta">
+              <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
+              <span>작성일: ${escapeHtml(dateStr)}</span>
+              <span>조회: ${p.view_count || 0}</span>
+              <span>추천: ${p.like_count || 0}</span>
+              <span>댓글: ${p.comment_count || 0}</span>
+              <span class="anal-read-link">연구 리포트 전문 읽기 →</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      },
+
+      async openAnalDetail(postId) {
+        this.activePostId = postId;
+        const post = await this.store.getPost(postId);
+        if (!post) return;
+
+        document.getElementById('analDetailTitle').textContent = post.title;
+        document.getElementById('analDetailAuthor').textContent = post.author;
+        document.getElementById('analDetailIp').textContent = post.author_ip || '127.0.0.1';
+        document.getElementById('analDetailDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
+        document.getElementById('analDetailViews').textContent = post.view_count || 1;
+        document.getElementById('analDetailLikes').textContent = post.like_count || 0;
+
+        document.getElementById('analFeedList').style.display = 'none';
+        document.getElementById('analTopBar').style.display = 'none';
+        document.getElementById('analDetailView').style.display = 'block';
+
+        this.mountAmevaViewer('anal', '#analViewerBody', post.content || '');
+        await this.renderCommentsForView('anal', postId);
+        window.scrollTo({ top: document.getElementById('analDetailView').offsetTop - 60, behavior: 'smooth' });
+      },
+
+      closeAnalDetail() {
+        this.activePostId = null;
+        if (this.viewerInstances.anal) {
+          try { this.viewerInstances.anal.destroy(); } catch(e) {}
+          this.viewerInstances.anal = null;
+        }
+        document.getElementById('analDetailView').style.display = 'none';
+        document.getElementById('analTopBar').style.display = 'flex';
+        document.getElementById('analFeedList').style.display = 'flex';
+      },
+
+      // ── VIEW 3: BOARD (DCInside Style Board) ─────────────────────────────────
+      async renderBoardView(targetMenuId) {
+        document.getElementById('viewBoard').style.display = 'block';
+        this.activeBoardFilter = targetMenuId || 'free-board';
+
+        const pillsContainer = document.querySelector('.board-filter-pills');
+        if (pillsContainer) {
+          const subMenus = this.store.menus.filter(m => m.parent_id === 'free-board');
+          let pillsHtml = `<button class="board-pill ${this.activeBoardFilter === 'free-board' ? 'active' : ''}" id="pillAll" onclick="LabsApp.filterBoardSubmenu('free-board')">전체</button>`;
+          subMenus.forEach(s => {
+            const isAct = (this.activeBoardFilter === s.id) ? 'active' : '';
+            pillsHtml += `<button class="board-pill ${isAct}" id="pill_${s.id}" onclick="LabsApp.filterBoardSubmenu('${s.id}')">${s.name}</button>`;
+          });
+          pillsContainer.innerHTML = pillsHtml;
+        }
+
+        const posts = await this.store.getPosts(this.activeBoardFilter);
+        const tbody = document.getElementById('boardTableBody');
+        tbody.innerHTML = '';
+
+        if (!posts || posts.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 40px 20px;">등록된 게시글이 없습니다.</td></tr>`;
+          return;
+        }
+
+        posts.forEach((p, idx) => {
+          const dateStr = (p.created_at || '').substring(0, 10);
+          const menu = this.store.menus.find(m => m.id === p.menu_id) || { board_type: 'board', name: '자유' };
+          const badgeClass = `badge-${menu.board_type || 'board'}`;
+          const isSelected = (p.id === this.activePostId);
+
+          const tr = document.createElement('tr');
+          if (isSelected) tr.className = 'active-row';
+          tr.innerHTML = `
+            <td style="text-align: center; color: var(--text-muted);">${posts.length - idx}</td>
+            <td><span class="board-badge ${badgeClass}">${escapeHtml(menu.name)}</span></td>
+            <td>
+              <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id})">${isSelected ? '▶ ' : ''}${escapeHtml(p.title)}</a>
+              ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
+            </td>
+            <td><strong>${escapeHtml(p.author)}</strong> <span style="font-size: 0.72rem; color: #94a3b8;">(${escapeHtml(p.author_ip || '127.0.0.1')})</span></td>
+            <td style="text-align: center; color: var(--text-muted); font-size: 0.78rem;">${escapeHtml(dateStr)}</td>
+            <td style="text-align: center; color: var(--text-muted); font-size: 0.78rem;">${p.view_count || 0}</td>
+            <td style="text-align: center; color: #0284c7; font-weight: 700; font-size: 0.78rem;">${p.like_count || 0}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      },
+
+      filterBoardSubmenu(menuId) {
+        this.selectMenu(menuId);
+      },
+
+      async openBoardPost(postId) {
+        this.activePostId = postId;
+        const post = await this.store.getPost(postId);
+        if (!post) return;
+
+        const menu = this.store.menus.find(m => m.id === post.menu_id) || { board_type: 'board', name: '자유' };
+        document.getElementById('boardPostBadge').className = `board-badge badge-${menu.board_type || 'board'}`;
+        document.getElementById('boardPostBadge').textContent = menu.name;
+        document.getElementById('boardPostTitle').textContent = post.title;
+        document.getElementById('boardPostAuthor').textContent = post.author;
+        document.getElementById('boardPostIp').textContent = post.author_ip || '127.0.0.1';
+        document.getElementById('boardPostDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
+        document.getElementById('boardPostViews').textContent = post.view_count || 1;
+        document.getElementById('boardPostLikes').textContent = post.like_count || 0;
+
+        document.getElementById('boardTopPostView').style.display = 'block';
+
+        this.mountAmevaViewer('board', '#boardViewerBody', post.content || '');
+        await this.renderCommentsForView('board', postId);
+
+        await this.renderBoardView(this.activeBoardFilter);
+        window.scrollTo({ top: document.getElementById('boardTopPostView').offsetTop - 60, behavior: 'smooth' });
+      },
+
+      closeBoardTopPost() {
+        this.activePostId = null;
+        if (this.viewerInstances.board) {
+          try { this.viewerInstances.board.destroy(); } catch(e) {}
+          this.viewerInstances.board = null;
+        }
+        document.getElementById('boardTopPostView').style.display = 'none';
+        this.renderBoardView(this.activeBoardFilter);
+      },
+
+      // ── Shared AmevaViewer Mounting ──────────────────────────────────────────
+      mountAmevaViewer(slot, targetSelector, markdown) {
+        const el = document.querySelector(targetSelector);
+        if (!el) return;
+
+        if (this.viewerInstances[slot]) {
+          try { this.viewerInstances[slot].destroy(); } catch(e) {}
+          this.viewerInstances[slot] = null;
+        }
+        el.innerHTML = '';
+
+        if (window.AmevaViewer && typeof window.AmevaViewer.mount === 'function') {
+          this.viewerInstances[slot] = window.AmevaViewer.mount(el, {
+            markdown: markdown,
+            theme: this.currentTheme[slot] || 'dark'
+          });
+        } else {
+          el.innerHTML = this.fallbackMarkdown(markdown);
+        }
+      },
+
+      setDetailTheme(theme, slot) {
+        this.currentTheme[slot] = theme;
+        if (this.viewerInstances[slot]) {
+          this.viewerInstances[slot].setTheme(theme);
+        }
+        ['dark', 'white', 'retro'].forEach(t => {
+          const btn = document.getElementById(`${slot}Theme${t.charAt(0).toUpperCase() + t.slice(1)}`);
+          if (btn) btn.classList.toggle('active', t === theme);
+        });
+      },
+
+      // ── Shared Comments Rendering ───────────────────────────────────────────
+      async renderCommentsForView(slot, postId) {
+        const comments = await this.store.getComments(postId);
+        const listEl = document.getElementById(`${slot}CommentList`);
+        const countEl = document.getElementById(`${slot}CommentCount`);
+        if (!listEl) return;
+        listEl.innerHTML = '';
+        if (countEl) countEl.textContent = comments.length;
+
+        if (comments.length === 0) {
+          listEl.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin: 12px 0;">작성된 댓글이 없습니다.</p>`;
+          return;
+        }
+
+        comments.forEach(c => {
+          const depthClass = `depth-${Math.min(c.depth || 0, 3)}`;
+          const replyIcon = (c.depth > 0) ? '↳ ' : '';
+          const card = document.createElement('div');
+          card.className = `comment-card ${depthClass}`;
+          const isLocal = isLocalEnv();
+          card.innerHTML = `
+            <div class="comment-meta">
+              <div>
+                <strong>${replyIcon}${escapeHtml(c.author)}</strong>
+                <span style="color: #94a3b8;">(${escapeHtml(c.author_ip || '127.0.0.1')})</span>
+                <span style="margin-left: 6px;">${escapeHtml((c.created_at || '').substring(0, 19).replace('T', ' '))}</span>
+              </div>
+              <div>
+                ${isLocal ? `<a href="javascript:void(0)" onclick="LabsApp.prepareReply('${slot}', ${c.id})" style="color: #0284c7; font-weight: 600; margin-right: 8px;">답글</a>` : ''}
+                ${isLocal ? `<a href="javascript:void(0)" onclick="LabsApp.deleteComment('${slot}', ${c.id})" style="color: #f43f5e;">삭제</a>` : ''}
+              </div>
+            </div>
+            <div style="font-size: 0.86rem; color: ${c.is_deleted ? '#f43f5e' : 'var(--text-bright)'};">
+              ${c.is_deleted ? '<em>[작성자에 의해 삭제된 댓글입니다]</em>' : this.fallbackMarkdown(c.content)}
+            </div>
+          `;
+          listEl.appendChild(card);
+        });
+      },
+
+      prepareReply(slot, parentId) {
+        const inputParent = document.getElementById(`${slot}ReplyParentId`);
+        const notice = document.getElementById(`${slot}ReplyingNotice`);
+        if (inputParent) inputParent.value = parentId;
+        const comment = this.store.comments.find(c => c.id === parentId);
+        const author = comment ? comment.author : '익명 해커';
+        if (notice) {
+          notice.style.display = 'block';
+          notice.innerHTML = `↳ @${escapeHtml(author)} 님에게 답글 작성 중... <a href="javascript:void(0)" onclick="LabsApp.cancelReply('${slot}')" style="color: #f43f5e; margin-left: 6px;">[취소]</a>`;
+        }
+        const textEl = document.getElementById(`${slot}CommentContent`);
+        if (textEl) textEl.focus();
+      },
+
+      cancelReply(slot) {
+        const inputParent = document.getElementById(`${slot}ReplyParentId`);
+        const notice = document.getElementById(`${slot}ReplyingNotice`);
+        if (inputParent) inputParent.value = '';
+        if (notice) notice.style.display = 'none';
+      },
+
+      async submitComment(slot) {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 댓글 작성은 로컬 개발 환경(localhost)에서만 가능합니다.');
+          return;
+        }
+
+        if (!this.activePostId) return;
+        const author = document.getElementById(`${slot}CommentAuthor`).value.trim() || '익명 해커';
+        const password = document.getElementById(`${slot}CommentPassword`).value;
+        const content = document.getElementById(`${slot}CommentContent`).value.trim();
+        const parentId = document.getElementById(`${slot}ReplyParentId`).value || null;
+
+        if (!content) {
+          alert('댓글 내용을 입력하세요.');
+          return;
+        }
+
+        try {
+          await this.store.createComment({
+            post_id: this.activePostId,
+            parent_id: parentId ? parseInt(parentId, 10) : null,
+            author: author,
+            password: password,
+            content: content
+          });
+
+          document.getElementById(`${slot}CommentContent`).value = '';
+          this.cancelReply(slot);
+          await this.renderCommentsForView(slot, this.activePostId);
+        } catch (err) {
+          alert('댓글 등록 실패: ' + (err.message || err));
+        }
+      },
+
+      async deleteComment(slot, commentId) {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
+          return;
+        }
+        const pwd = prompt('삭제 비밀번호를 입력하세요 (미설정 시 엔터):');
+        if (pwd === null) return;
+        try {
+          await this.store.deleteComment(commentId, pwd);
+          alert('댓글이 삭제되었습니다.');
+          await this.renderCommentsForView(slot, this.activePostId);
+        } catch (err) {
+          alert('댓글 삭제 실패: ' + (err.message || err));
+        }
+      },
+
+      async likeActivePost(slot) {
+        if (!this.activePostId) return;
+        const newLikes = await this.store.likePost(this.activePostId);
+        const el = document.getElementById(`${slot === 'anal' ? 'analDetailLikes' : 'boardPostLikes'}`);
+        if (el) el.textContent = newLikes;
+      },
+
+      copyBibtexCitation() {
+        const p = this.store.posts.find(x => x.id === this.activePostId);
+        if (!p) return;
+        const bib = `@article{ameva_${p.id},
+  title={${p.title}},
+  author={${p.author}},
+  journal={AMEVA Labs Dispatches},
+  year={2026},
+  url={https://uno-km.vercel.app/labs/}
+}`;
+        navigator.clipboard.writeText(bib).then(() => {
+          alert('BibTeX 학술 인용 형식이 클립보드에 복사되었습니다.');
+        });
+      },
+
+      async deleteActivePost(slot) {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
+          return;
+        }
+        if (!this.activePostId) return;
+        const pwd = prompt('게시글 삭제 비밀번호를 입력하세요:');
+        if (pwd === null) return;
+        try {
+          await this.store.deletePost(this.activePostId, pwd);
+          alert('게시글이 삭제되었습니다.');
+          if (slot === 'anal') {
+            this.closeAnalDetail();
+            await this.renderAnalView();
+          } else {
+            this.closeBoardTopPost();
+          }
+        } catch (err) {
+          alert('게시글 삭제 실패: ' + (err.message || err));
+        }
+      },
+
+      // ── Write Modal (Universal Categories, Local-only) ────────────────────
+      openWriteModal(defaultCategory) {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 가능합니다.');
+          return;
+        }
+
+        const modal = document.getElementById('writeModal');
+        const catSelect = document.getElementById('writeCategory');
+        if (catSelect) {
+          catSelect.innerHTML = '';
+          this.store.menus.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.id;
+            opt.textContent = m.parent_id ? `  └ ${m.name}` : m.name;
+            catSelect.appendChild(opt);
+          });
+          const target = defaultCategory || this.activeMenuId;
+          if (this.store.menus.some(m => m.id === target)) {
+            catSelect.value = target;
+          } else {
+            catSelect.value = 'free-board';
+          }
+        }
+        modal.style.display = 'flex';
+      },
+
+      closeWriteModal() {
+        document.getElementById('writeModal').style.display = 'none';
+      },
+
+      async submitPost() {
+        if (!isLocalEnv()) {
+          alert('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 가능합니다.');
+          return;
+        }
+
+        const menuId = document.getElementById('writeCategory').value;
+        const title = document.getElementById('writeTitle').value.trim();
+        const author = document.getElementById('writeAuthor').value.trim() || '익명 해커';
+        const password = document.getElementById('writePassword').value;
+        const content = document.getElementById('writeContent').value.trim();
+
+        if (!title || !content) {
+          alert('제목과 내용을 입력하세요.');
+          return;
+        }
+
+        try {
+          const created = await this.store.createPost({
+            menu_id: menuId,
+            title: title,
+            author: author,
+            password: password,
+            content: content
+          });
+
+          alert('게시글이 성공적으로 등록되었습니다.');
+          document.getElementById('writeTitle').value = '';
+          document.getElementById('writePassword').value = '';
+          document.getElementById('writeContent').value = '';
+          this.closeWriteModal();
+
+          if (menuId === 'newsletter') {
+            await this.selectMenu('newsletter');
+          } else if (menuId === 'research') {
+            await this.selectMenu('research');
+          } else {
+            await this.selectMenu(menuId);
+          }
+        } catch (err) {
+          alert('게시글 등록 실패: ' + (err.message || err));
+        }
+      },
+
+      // Fallback simple markdown
+      fallbackMarkdown(md) {
+        if (!md) return '';
+        let s = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        s = s.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+        s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+        s = s.replace(/^### (.*$)/gim, '<h4>$1</h4>');
+        s = s.replace(/^## (.*$)/gim, '<h3>$1</h3>');
+        s = s.replace(/^# (.*$)/gim, '<h2>$1</h2>');
+        s = s.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+        s = s.replace(/\n/g, '<br/>');
+        return s;
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => LabsApp.init());
+    } else {
+      LabsApp.init();
+    }
+  })();
+  </script>
+</body>
+</html>

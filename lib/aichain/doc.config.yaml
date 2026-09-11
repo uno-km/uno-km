@@ -1,0 +1,57 @@
+{
+  "name": "Termux-AIChain",
+  "lib_slug": "aichain",
+  "package_name_pypi": "termux-aichain",
+  "package_name_npm": "termux-aichain",
+  "version": "v1.1.0",
+  "release_name": "Sovereign Zero-Dependency Edge Agent Engine",
+  "license": "Apache-2.0",
+  "platform": "Android Termux (ARM64) / Node.js ESM / Python 3.10+",
+  "github_repo_url": "https://github.com/uno-km/termux-aichain",
+  "tagline_en": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
+  "tagline_ko": "안드로이드 Termux 환경을 위한 초경량 제로 의존성(Zero-Dependency) AI 체이닝 및 자율 에이전트 프레임워크",
+  "quick_install_cmd": "pip install termux-aichain\n# or:\nnpm install termux-aichain",
+  "why_challenge_en": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
+  "why_challenge_ko": "기존 LangChain 등은 수백 개의 무거운 외부 의존성으로 인해 안드로이드 Termux에서 패키지 충돌과 심각한 메모리 낭비를 유발합니다.",
+  "description_en": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
+  "description_ko": "외부 라이브러리 의존성 0개(Zero-Dependency)로 DAG 연산 그래프, 구조화된 프롬프트 체이닝, 온디바이스 로컬 모델 연동을 50KB 미만 초경량 코어로 지원합니다.",
+  "code_example_py": "from termux_aichain import LocalAgent\nagent = LocalAgent.local(model='qwen2.5-1.5b')\nres = agent.run('Check battery percentage and vibrate device if > 50%.')\nprint(res)",
+  "code_example_js": "import { LocalAgent } from 'termux-aichain';\nconst agent = await LocalAgent.local('qwen2.5-1.5b');\nconst res = await agent.run('Check battery percentage and vibrate device if > 50%.');\nconsole.log(res);",
+  "features": [
+    {
+      "title_en": "Deterministic Zero-Drift Output",
+      "title_ko": "결정론적 0% 오차 연산",
+      "desc_en": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
+      "desc_ko": "엄격한 fail-closed 신원 검증과 파라미터 경계값 검사로 안전한 온디바이스 실행을 보장합니다."
+    },
+    {
+      "title_en": "Zero Cloud Egress Architecture",
+      "title_ko": "서버 비용 0원 완전 온디바이스",
+      "desc_en": "Operates 100% on the local client without external network telemetry leaks.",
+      "desc_ko": "외부 네트워크 통신 없이 100% 로컬 클라이언트에서 독립 구동됩니다."
+    },
+    {
+      "title_en": "ToolPolicy Default Deny Security",
+      "title_ko": "도구 권한 기본 거부 보안",
+      "desc_en": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
+      "desc_ko": "도구 실행 시 기본 거부(default-deny) 정책과 사용자 승인 콜백으로 안전성을 극대화합니다."
+    }
+  ],
+  "matrix_table": [
+    {
+      "category": "Compute Kernel",
+      "operations": "Hardware Native Accelerated Kernels",
+      "status": "Production"
+    },
+    {
+      "category": "Memory Subsystem",
+      "operations": "Zero-Copy Ring Buffers & Weakref GC",
+      "status": "Production"
+    },
+    {
+      "category": "Identity Verification",
+      "operations": "Fail-Closed Capability Profiling",
+      "status": "Production"
+    }
+  ]
+}

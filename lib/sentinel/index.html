@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-Sentinel | Official Documentation</title>
+  <meta name="description" content="사용자 키 입력이나 개인정보 수집 없이 순수 구조 신호만으로 악성 봇과 공격자를 실시간 판별합니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">프라이버시 중심 제로 데이터 수집 웹 브라우저 관측성 및 결정론적 0~100 위협 채점 SDK</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># Node.js 공식 패키지 매니저
+npm install ameva-sentinel</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">기존의 상용 봇 탐지 도구들은 사용자의 마우스 움직임, 키보드 입력 속도, 개인식별정보(PII)를 과도하게 수집하여 프라이버시를 침해하고 웹사이트 로딩 속도를 저하시킵니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">사용자 입력을 단 1바이트도 캡처하지 않고 브라우저 DOM 구조의 무결성과 Shannon 엔트로피 신호만을 로컬에서 평가하여, 0~100 결정론적 위협 점수와 암호화 HMAC 토큰을 즉시 생성합니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">복잡한 보안 설정 없이 패키지 하나로 설치 완료. 사용자 개인정보를 1바이트도 훔쳐보지 않으면서도 악성 봇과 공격자만을 칼같이 걸러냅니다.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">100% 무데이터(0-Data) 개인정보 보호</h4>
+          <p data-i18n="home.features.0.desc">사용자의 어떠한 텍스트 입력이나 개인정보도 수집하지 않아 완벽한 개인정보 보호 컴플라이언스를 달성합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">결정론적 0~100 위협 채점</h4>
+          <p data-i18n="home.features.1.desc">휴리스틱과 엔트로피 연산을 조합하여 모호함 없는 명확한 위험 수치를 산출합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">HMAC-SHA256 암호화 토큰 검증</h4>
+          <p data-i18n="home.features.2.desc">서버와 클라이언트 간 위조 불가능한 인증 토큰을 발행하여 중간자 공격을 차단합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">브라우저 표준 완벽 호환</h4>
+          <p data-i18n="home.features.3.desc">Chrome, Safari, Firefox 등 모든 최신 웹 브라우저 환경에서 동일하게 동작합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">초경량 1ms 미만 실행 레이턴시</h4>
+          <p data-i18n="home.features.4.desc">방문자가 로딩 지연을 전혀 인지할 수 없는 초고속 검증 속도를 자랑합니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Structural DOM Parser</strong></td>
+            <td>변조된 스크립트 주입 및 악성 아이프레임 탐지</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>HMAC-SHA256 Signer</strong></td>
+            <td>암호화 무결성 서명 및 타임스탬프 토큰 생성기</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shannon Entropy Calculator</strong></td>
+            <td>인간다운 상호작용 지터 엔트로피 정밀 계산</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>TLS Fingerprint Validator</strong></td>
+            <td>클라이언트 네트워크 핸드셰이크 위변조 식별</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python"># AMEVA-Sentinel 파이썬 서버 검증 예제
+import hmac, hashlib
+
+def verify_sentinel_token(payload: bytes, token: str, secret: bytes) -> bool:
+    expected = hmac.new(secret, payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, token)
+
+is_valid = verify_sentinel_token(b"sample_payload", "8f3d6c...9a", b"prod_secret_key")
+print(f"[Sentinel] 클라이언트 토큰 인증 결과: {is_valid}")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">const { SentinelEngine } = require('ameva-sentinel');
+
+async function main() {
+  const sentinel = new SentinelEngine({ secret: 'prod_secret_key', strictEntropy: true });
+  const evalResult = await sentinel.evaluateSignals();
+  console.log(`[Sentinel] 위협 점수: ${evalResult.score} / 100`);
+  console.log(`[Sentinel] 인증 HMAC 토큰: ${evalResult.token}`);
+}
+
+main();</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+# Termux-Diffusion — AI Agent Fast Context
+# Generated: 2026-09-08  |  Version: 1.6.3
+
+## Library
+Name: Termux-Diffusion
+Version: 1.6.3
+GitHub: https://github.com/uno-km/termux-diffusion
+Documentation: https://uno-km.vercel.app/lib/diffusion/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/diffusion/index.html
+  - /lib/diffusion/installation.html
+  - /lib/diffusion/quickstart.html
+  - /lib/diffusion/api-reference.html
+  - /lib/diffusion/models.html
+  - /lib/diffusion/gallery.html
+  - /lib/diffusion/create.html
+  - /lib/diffusion/benchmarks.html
+  - /lib/diffusion/advanced-parameters.html
+  - /lib/diffusion/versions.html
+
+## Quick Install
+pip install termux-diffusion
+npm install termux-diffusion
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/diffusion/llms-full.txt

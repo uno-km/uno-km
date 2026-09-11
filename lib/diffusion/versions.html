@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version &amp; Release Archive | Termux-Diffusion</title>
+  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Diffusion.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Version &amp; Release Archive</h2>
+      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Diffusion</p>
+
+      <div class="timeline">
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge">Production Release</div>
+          <div class="timeline-content">
+            <h3>v1.4.3 - Truthfulness Architecture & Native Resource Routing (Current)</h3>
+            <ul>
+              <li>Truthfulness Documentation Overhaul: Ground-truth ARMv8.2-A DotProd/FP16 SIMD vector execution (Cortex-A78 x4: 61s benchmark).</li>
+              <li>AMEVA Component Protocol v1 Integration: Added DiffusionControl, HeartbeatWriter, and DiffusionOrchestratorAdapter.</li>
+              <li>sd-cli Execution Crash Prevention: Eliminated unsupported --backend vulkan0 CLI flag.</li>
+              <li>Bionic Linker Isolation: Excluded /system/lib64 and /vendor/lib64 from LD_LIBRARY_PATH.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

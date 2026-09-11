@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android 14+ Phantom Process Killer Guide | Termux-Playwright</title>
+    <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+              <ameva-header></ameva-header>
+
+    <div class="container">
+                                                    <ameva-sidebar></ameva-sidebar>
+
+        <main class="content">
+            <h2>Android 12~14+ Phantom Process Killer: Technical Guide</h2>
+            <p>Android 12+ limits background apps to 32 child processes. Exceeding this limit causes Android to kill Termux with <code>SIGKILL (signal 9)</code>.</p>
+
+            <div class="card highlight">
+                <h3>Solution 1: In-App Single-Process Mode (No Root / No ADB Required)</h3>
+                <p>Simply enable <code>single_process=True</code> (Python) or <code>singleProcess: true</code> (Node.js) when launching the browser:</p>
+                <div class="code-block">
+                    <p><strong>Python:</strong></p>
+                    <pre><code>browser = await launch(p, headless=True, single_process=True)</code></pre>
+                    <p><strong>Node.js:</strong></p>
+                    <pre><code>const browser = await launch({ headless: true, singleProcess: true });</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Solution 2: Permanent ADB Disable (One-Time Setup)</h3>
+                <p>Connect your phone to a PC via USB Debugging or Wireless ADB, and run this command once:</p>
+                <div class="code-block">
+                    <pre><code>adb shell "/system/bin/device_config put activity_manager max_phantom_processes 2147483647"
+adb shell "/system/bin/device_config set_sync_disabled_for_tests persistent"</code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <span data-i18n="common.footerText">&copy; 2026 Termux-Playwright Project. Released under the MIT License.</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-TTS | Official Documentation</title>
+  <meta name="description" content="클라우드 비용 없이 모바일 하드웨어 GPU 연산으로 스튜디오 성우 수준의 자연스러운 음성을 온디바이스에서 즉시 합성합니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">4-Tier 복원형 아키텍처 및 Vulkan GPU 22.05kHz 스튜디오 음질 온디바이스 음성 합성 엔진</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># 파이썬 공식 패키지 매니저
+pip install termux-tts
+
+# Node.js 공식 패키지 매니저
+npm install termux-tts</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">스마트폰에서 신경망 TTS 구동 시 메모리 부족(OOM), GPU 셰이더 드라이버 결함(Adreno/Mali 충돌), 백그라운드 프로세스 강제 종료로 인해 안정적인 실시간 음성 서비스 제공이 어려웠습니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">무의존성 DSP(Tier 1)부터 22.05kHz C++ Vulkan GPU(Tier 4)까지 이어지는 4단계 자동 복원형 아키텍처를 구축하여, 어떠한 저사양 모바일 환경에서도 끊김 없는 실시간 고품질 음성 합성을 보장합니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">기계음 같은 어색한 목소리와 비싼 클라우드 사용료 대신, 내 스마트폰 자체 연산으로 스튜디오 성우처럼 자연스럽고 생생한 목소리를 들려드립니다. 복잡한 설정 없이 1초 만에 바로 말하게 하세요.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">4-Tier 내결함성 복원형 아키텍처</h4>
+          <p data-i18n="home.features.0.desc">최고음질 Vulkan GPU(Tier 4)부터 무의존성 DSP(Tier 1)까지 하드웨어 상태에 따라 자율 감등하여 무중단 서비스를 보장합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">22.05kHz 스튜디오 품질 신경망 합성</h4>
+          <p data-i18n="home.features.1.desc">VITS 및 Piper 신경망 아키텍처를 온디바이스에서 구동하여 실제 성우 수준의 고해상도 자연 음성을 생성합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Vulkan GPU 셰이더 고속 연산</h4>
+          <p data-i18n="home.features.2.desc">AMEVA-Runtime Vulkan 백엔드를 통해 Adreno 830 기준 실시간보다 3.79배 빠른 초고속(RTF 0.26x) 음성 합성을 실현합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">제로 서브프로세스 인메모리 스트리밍</h4>
+          <p data-i18n="home.features.3.desc">임시 파일 생성 없이 메모리 상에서 직접 PCM 스트림을 생성하여 플래시 메모리 수명을 보호하고 I/O 병목을 제거합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">감정 및 음성 태그 동적 변조</h4>
+          <p data-i18n="home.features.4.desc">발화 속도, 음높이(Pitch), 성별 음색을 오버헤드 없이 실시간 파라미터 조작으로 자유롭게 변경합니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>VITS Neural Vocoder</strong></td>
+            <td>Vulkan 셰이더 기반 신경망 보코더 및 오디오 역변환</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Piper Onnx/NCNN Pipeline</strong></td>
+            <td>ARM NEON SIMD 128비트 부동소수점 텐서 음향 모델</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>DSP Acoustic Generator</strong></td>
+            <td>순수 정수 연산 기반 무의존성 음소-음향 합성기</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>ALSA / AudioTrack HAL</strong></td>
+            <td>안드로이드 네이티브 오디오 믹서 제로카피 링 버퍼 출력</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python">from termux_tts import TTSEngine
+
+# 1. 4-Tier 복원형 TTS 엔진 초기화 (Vulkan GPU 가속)
+engine = TTSEngine(tier=4, sample_rate=22050)
+
+# 2. 텍스트 음성 합성 및 오디오 스트림 재생
+print("[TTS] 고음질 음성 합성 시작...")
+engine.speak("안녕하세요, 온디바이스 AMEVA 음성 합성 엔진입니다.")
+engine.save_to_wav("output.wav", "성공적으로 온디바이스 음성 합성이 완료되었습니다.")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">const { TTSEngine } = require('termux-tts');
+
+async function main() {
+  const tts = new TTSEngine({ tier: 4 });
+  await tts.speak('안녕하세요, 온디바이스 음성 합성 엔진입니다.');
+}
+
+main();</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

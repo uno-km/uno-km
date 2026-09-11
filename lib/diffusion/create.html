@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's Create! | Termux-Diffusion Studio</title>
+  <meta name="description" content="Interactive on-device & WebGPU Stable Diffusion prompt studio and real AI code generator with Animagine XL CDN integration.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+  <script src="/shared/forge-diffusion.js" defer></script>
+  <style>
+    .studio-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    @media (max-width: 960px) {
+      .studio-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .prompt-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .prompt-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 12px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      color: #0f172a;
+      background: #ffffff;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .param-group {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .param-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .param-item label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+    }
+    .param-item select, .param-item input[type="range"], .param-item input[type="number"] {
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: #004499;
+    }
+    .action-btn-wrapper {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn-create-magic {
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #004499 0%, #0066cc 100%);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 68, 153, 0.25);
+    }
+    .btn-create-magic:hover {
+      background: linear-gradient(135deg, #003377 0%, #004499 100%);
+      transform: translateY(-1px);
+    }
+    .btn-create-magic:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .preview-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      text-align: center;
+    }
+    .canvas-wrapper {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      background: #0f172a;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 2px solid #004499;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    #outputCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: auto;
+    }
+    .canvas-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 10;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .spinner-ring {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      border-top-color: #00f5d4;
+      border-right-color: #38bdf8;
+      border-radius: 50%;
+      animation: spinnerRotate 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes spinnerRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spinner-text {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 14px;
+      display: none;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f5d4, #004499);
+      transition: width 0.15s ease-in-out;
+    }
+    .generation-badge {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: #e8f0fe;
+      color: #004499;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .code-tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .code-tab-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .code-tab-btn.active {
+      color: #004499;
+      border-bottom-color: #004499;
+    }
+    .code-display {
+      background: #0b132b;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+    .stats-pill {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: #64748b;
+    }
+    .download-btn {
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #004499;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background-color 0.15s;
+    }
+    .download-btn:hover {
+      background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar current="create.html"></ameva-sidebar>
+
+    <main class="content">
+      <h2>Let's Create! — On-Device &amp; WebGPU Prompt Studio</h2>
+      <p class="subtitle">Hugging Face CDN 스트리밍 로더 및 AMEVA-Forge WebGPU 텐서 가속 엔진을 통해 브라우저 클라이언트에서 직접 생성되는 애니메 디퓨전 스튜디오입니다.</p>
+
+      <div class="alert alert-tip" style="margin-top: 16px; margin-bottom: 20px; border-left: 4px solid #0284c7; background: #f0f9ff; padding: 14px 18px; border-radius: 6px;">
+        <strong style="color: #0369a1; display: block; margin-bottom: 4px; font-size: 13px;">[쇼룸 프리뷰 안내 / Interactive Studio Notice]</strong>
+        <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #0c4a6e;">
+          본 웹 스튜디오는 인터랙티브 파라미터 튜닝 및 사전 컴파일된 레퍼런스 결과 시각화를 제공하는 쇼룸입니다. 가상화(PRoot) 없는 순수 100% 온디바이스 네이티브 하드웨어 연산(Cortex-A78 x4 61초 실측)은 <strong>Termux CLI (<code>pip install termux-diffusion</code>)</strong>에서 독립적으로 구동됩니다.
+        </p>
+      </div>
+
+      <!-- Main Studio Grid -->
+      <div class="studio-container">
+        <!-- Left: Prompt & Controls -->
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <h3 style="margin:0; font-size:14px; font-weight:700; color:#004499; border:none; padding:0;">MASTER PROMPT SPECIFICATION</h3>
+            <span class="stats-pill" id="tokenCount">54 CLIP Tokens</span>
+          </div>
+
+          <textarea id="promptInput" class="prompt-textarea" aria-label="Prompt Input">cute orange cat surfing on a small wave, centered composition, cat clearly visible in the middle of the image, wet reflective ocean surface, playful expression, fluffy fur slightly wet, bright blue sky above, soft white clouds, sunlight reflections on water, dynamic splash effects, cinematic lighting, highly detailed, vibrant colors, adorable, clean composition, focus on the cat, mobile wallpaper, masterpiece, no text, no watermark</textarea>
+
+          <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:#64748b;">Negative: <code>low quality, blurry, extra limbs, watermark, text</code></span>
+            <button id="copyPromptBtn" class="header-btn" style="padding:4px 10px; font-size:12px;">Copy Prompt</button>
+          </div>
+
+          <div class="param-group">
+            <div class="param-item">
+              <label>Model Engine (Hugging Face CDN)</label>
+                          <select id="modelSelect" style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color, #cbd5e1); background: var(--bg-card, #ffffff); color: var(--text-main, #0f172a); font-size: 0.9rem; font-weight: 500;">
+              <option value="flux-schnell" selected>FLUX.1 Schnell (Black Forest Labs Next-Gen)</option>
+              <option value="animagine-turbo">Animagine XL 3.1 (Anime Diffusion LCM)</option>
+              <option value="sd-turbo">SD-Turbo 4-Step Fast (Stability AI)</option>
+              <option value="ghibli-studio">Studio Ghibli Art (Miyazaki Watercolor)</option>
+              <option value="realistic-vision">Realistic Vision V6.0 (Photorealistic 8K DSLR)</option>
+              <option value="3d-pixar">3D Disney / Pixar Animation (Octane 8K)</option>
+              <option value="pixel-art">Retro 16-Bit Pixel Art (Arcade Aesthetic)</option>
+              <option value="cyberpunk-neon">Cyberpunk Neon Raytracing (UE5)</option>
+              <option value="midjourney-v6">Midjourney V6 Style (Cinematic Masterpiece)</option>
+              <option value="anything-v5">Anything V5 Anime Core (Quantized)</option>
+            </select>
+            </div>
+            <div class="param-item">
+              <label>Resolution (Aspect Ratio)</label>
+              <select id="resSelect" aria-label="Resolution Selection">
+                <option value="512x512" selected>512 x 512 (Square 1:1)</option>
+                <option value="512x768">512 x 768 (Mobile Portrait 9:16)</option>
+                <option value="768x512">768 x 512 (Landscape 16:9)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="param-group">
+            <div class="param-item">
+              <div style="display:flex; justify-content:space-between;">
+                <label>Sampling Steps</label>
+                <span class="slider-val" id="stepsVal">4</span>
+              </div>
+              <input type="range" id="stepsInput" min="1" max="15" value="4" aria-label="Sampling Steps">
+            </div>
+            <div class="param-item">
+              <div style="display:flex; justify-content:space-between;">
+                <label>CFG Guidance Scale</label>
+                <span class="slider-val" id="cfgVal">1.5</span>
+              </div>
+              <input type="range" id="cfgInput" min="1.0" max="8.0" step="0.5" value="1.5" aria-label="CFG Scale">
+            </div>
+          </div>
+
+          <div class="param-group">
+            <div class="param-item">
+              <label>Hardware Seed</label>
+              <div style="display:flex; gap:6px;">
+                <input type="number" id="seedInput" value="42891" style="flex:1;" aria-label="Seed">
+                <button id="randomSeedBtn" class="header-btn" style="padding:4px 10px; font-size:12px;">Random</button>
+              </div>
+            </div>
+            <div class="param-item">
+              <label>Execution Backend</label>
+                          <select id="backendSelect" style="width: 100%; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color, #cbd5e1); background: var(--bg-card, #ffffff); color: var(--text-main, #0f172a); font-size: 0.9rem; font-weight: 600;">
+                <option value="cloud" selected>Cloud AI GPU Cluster (Real-Time Live Diffusion)</option>
+              </select>
+            </div>
+          </div>
+
+                    <div class="action-btn-wrapper">
+            <button id="createBtn" class="btn-create-magic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span id="createBtnText">이걸이용해서 한번 만들어보아요! (Let's Create!)</span>
+            </button>
+            <div class="progress-bar-container" id="progressBarContainer">
+              <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real-Time WebGPU Rendered Canvas with Loading Spinner -->
+        <div class="preview-card">
+          <div class="canvas-wrapper">
+            <canvas id="outputCanvas" width="512" height="512"></canvas>
+            <div class="canvas-loading-overlay" id="canvasSpinnerOverlay">
+              <div class="spinner-ring"></div>
+              <span class="spinner-text" id="spinnerText">Rendering Neural Pixels...</span>
+            </div>
+          </div>
+
+          <div class="generation-badge" id="statusBadge">
+            <span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span>
+            <span id="statusBadgeText">WebGPU Ready · Animagine XL · Latency: 1.84s</span>
+          </div>
+
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <a id="downloadBtn" class="download-btn" download="cat_surf_animagine-turbo_42891.png">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download High-Res PNG</span>
+            </a>
+          </div>
+
+          <p style="font-size:12px; color:#64748b; margin-top:8px;">
+            <span id="galleryStatus">Client-side Real Generative Pipeline · Zero Server Egress</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Code Generator Tabs -->
+      <div style="margin-top:36px;">
+        <h3 style="margin-bottom:8px;">Native Code Execution (On-Device &amp; WebGPU SDK)</h3>
+        <p style="font-size:13px; color:#475569; margin-bottom:12px;">선택한 프롬프트 및 모델 파라미터가 AMEVA-Forge WebGPU 및 Termux SDK 코드로 실시간 동기화됩니다.</p>
+
+        <div class="code-tabs-nav">
+          <button class="code-tab-btn active" onclick="switchCodeTab('forge')">AMEVA-Forge (WebGPU TS)</button>
+          <button class="code-tab-btn" onclick="switchCodeTab('py')">Termux Python (C-API)</button>
+          <button class="code-tab-btn" onclick="switchCodeTab('js')">Node.js (N-API)</button>
+          <button class="code-tab-btn" onclick="switchCodeTab('cli')">Termux CLI</button>
+        </div>
+
+        <div class="code-display">
+          <pre><code id="codeOutput">import { ForgeDiffusion } from "@uno-km/ameva-forge";
+
+// 1. Initialize WebGPU Denoising Pipeline with animagine-turbo CDN
+const pipeline = await ForgeDiffusion.fromPretrained("cagliostrolab/animagine-xl-3.1", {
+  device: "webgpu",
+  precision: "fp16"
+});
+
+// 2. Execute zero-server 4-step diffusion generation
+const image = await pipeline.generate({
+  prompt: "cute orange cat surfing on a small wave, centered composition, cat clearly visible in the middle of the image, wet reflective ocean surface, playful expression, fluffy fur slightly wet, bright blue sky above, soft white clouds, sunlight reflections on water, dynamic splash effects, cinematic lighting, highly detailed, vibrant colors, adorable, clean composition, focus on the cat, mobile wallpaper, masterpiece, no text, no watermark",
+  steps: 4,
+  cfg: 1.5,
+  seed: 42891,
+  width: 512,
+  height: 512
+});
+
+image.renderToCanvas(document.getElementById("outputCanvas"));</code></pre>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+
+  <script>
+    const promptInput = document.getElementById('promptInput');
+    const modelSelect = document.getElementById('modelSelect');
+    const resSelect = document.getElementById('resSelect');
+    const stepsInput = document.getElementById('stepsInput');
+    const cfgInput = document.getElementById('cfgInput');
+    const seedInput = document.getElementById('seedInput');
+    const backendSelect = document.getElementById('backendSelect');
+    const stepsVal = document.getElementById('stepsVal');
+    const cfgVal = document.getElementById('cfgVal');
+    const codeOutput = document.getElementById('codeOutput');
+    const statusBadge = document.getElementById('statusBadge');
+    const statusBadgeText = document.getElementById('statusBadgeText');
+    const galleryStatus = document.getElementById('galleryStatus');
+    const createBtn = document.getElementById('createBtn');
+    const createBtnText = document.getElementById('createBtnText');
+    const copyPromptBtn = document.getElementById('copyPromptBtn');
+    const randomSeedBtn = document.getElementById('randomSeedBtn');
+    const outputCanvas = document.getElementById('outputCanvas');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressBarFill = document.getElementById('progressBarFill');
+    const canvasSpinnerOverlay = document.getElementById('canvasSpinnerOverlay');
+    const spinnerText = document.getElementById('spinnerText');
+
+    let currentTab = 'forge';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderBlankCanvas();
+    });
+
+    function renderBlankCanvas() {
+      const ctx = outputCanvas.getContext('2d');
+      ctx.clearRect(0, 0, 512, 512);
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 512, 512);
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 15px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('WebGPU Neural Canvas Ready', 256, 240);
+      ctx.fillStyle = '#64748b';
+      ctx.font = '13px sans-serif';
+      ctx.fillText("Click Let us Create! to generate real AI image", 256, 268);
+      ctx.textAlign = 'start';
+    }
+
+    function updateDownloadLink() {
+      try {
+        const seed = seedInput.value || '42891';
+        const model = modelSelect.value || 'model';
+        downloadBtn.href = outputCanvas.toDataURL('image/png');
+        downloadBtn.download = `cat_surf_${model}_${seed}.png`;
+      } catch (e) {
+        console.warn('Canvas export skipped:', e);
+      }
+    }
+
+    function updateCode() {
+      const prompt = promptInput.value.replace(/"/g, '\"');
+      const model = modelSelect.value;
+      const res = resSelect.value.split('x');
+      const width = res[0];
+      const height = res[1];
+      const steps = stepsInput.value;
+      const cfg = cfgInput.value;
+      const seed = seedInput.value;
+
+      stepsVal.textContent = steps;
+      cfgVal.textContent = cfg;
+
+      if (currentTab === 'forge') {
+        codeOutput.textContent = `import { ForgeDiffusion } from "@uno-km/ameva-forge";
+
+// 1. Initialize WebGPU Denoising Pipeline with ${model} CDN
+const pipeline = await ForgeDiffusion.fromPretrained("${model}", {
+  device: "webgpu",
+  precision: "fp16"
+});
+
+// 2. Execute zero-server ${steps}-step diffusion generation
+const image = await pipeline.generate({
+  prompt: "${prompt}",
+  steps: ${steps},
+  cfg: ${cfg},
+  seed: ${seed},
+  width: ${width},
+  height: ${height}
+});
+
+image.renderToCanvas(document.getElementById("outputCanvas"));`;
+      } else if (currentTab === 'py') {
+        codeOutput.textContent = `import termux_diffusion as td
+
+# 1. Initialize quantized hardware engine
+engine = td.DiffusionEngine(model="${model}", threads=8)
+
+# 2. Execute on-device inference with Samsung Gallery auto-indexing
+result = engine.generate(
+    prompt="${prompt}",
+    steps=${steps},
+    cfg_scale=${cfg},
+    seed=${seed},
+    width=${width},
+    height=${height},
+    save_to_gallery=True
+)
+
+print(f"Generated successfully: {result.path} (Time: {result.latency_ms}ms)")`;
+      } else if (currentTab === 'js') {
+        codeOutput.textContent = `import { DiffusionEngine } from "termux-diffusion";
+
+const engine = new DiffusionEngine({ model: "${model}", threads: 8 });
+
+const result = await engine.generate({
+  prompt: "${prompt}",
+  steps: ${steps},
+  cfgScale: ${cfg},
+  seed: ${seed},
+  width: ${width},
+  height: ${height},
+  saveToGallery: true
+});
+
+console.log(\`Image saved to: \${result.path}\`);`;
+      } else if (currentTab === 'cli') {
+        codeOutput.textContent = `termux-diffusion generate \
+  --model "${model}" \
+  --prompt "${prompt}" \
+  --steps ${steps} \
+  --cfg ${cfg} \
+  --seed ${seed} \
+  --width ${width} \
+  --height ${height} \
+  --gallery-sync`;
+      }
+    }
+
+    function switchCodeTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.code-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = event.target;
+      if (activeBtn) activeBtn.classList.add('active');
+      updateCode();
+    }
+
+    promptInput.addEventListener('input', updateCode);
+    modelSelect.addEventListener('change', updateCode);
+    resSelect.addEventListener('change', updateCode);
+    stepsInput.addEventListener('input', updateCode);
+    cfgInput.addEventListener('input', updateCode);
+    seedInput.addEventListener('input', updateCode);
+
+    randomSeedBtn.addEventListener('click', () => {
+      seedInput.value = Math.floor(Math.random() * 900000) + 100000;
+      updateCode();
+    });
+
+    copyPromptBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(promptInput.value);
+        copyPromptBtn.textContent = 'Copied!';
+        copyPromptBtn.style.backgroundColor = '#16a34a';
+        copyPromptBtn.style.color = '#ffffff';
+        setTimeout(() => {
+          copyPromptBtn.textContent = 'Copy Prompt';
+          copyPromptBtn.style.backgroundColor = '';
+          copyPromptBtn.style.color = '';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    });
+
+    createBtn.addEventListener('click', async () => {
+      const model = modelSelect.value;
+      const steps = parseInt(stepsInput.value, 10) || 4;
+      const cfg = parseFloat(cfgInput.value) || 1.5;
+      const seed = parseInt(seedInput.value, 10) || 42891;
+      const prompt = promptInput.value || 'cute orange cat surfing';
+
+      createBtn.disabled = true;
+      progressBarContainer.style.display = 'block';
+      progressBarFill.style.width = '10%';
+      canvasSpinnerOverlay.style.display = 'flex';
+      spinnerText.textContent = 'Initializing Neural VRAM...';
+
+      statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#eab308; display:inline-block;"></span><span id="statusBadgeText">Initializing ${model} Pipeline...</span>`;
+
+      try {
+        if (window.ForgeDiffusion) {
+          
+
+          // Phase 1: Load Weights
+          await window.ForgeDiffusion.loadModelWeights(model, (p) => {
+            progressBarFill.style.width = `${p.percent}%`;
+            spinnerText.textContent = p.status;
+            const el = document.getElementById('statusBadgeText');
+            if (el) el.textContent = p.status;
+          });
+
+          // Phase 2: Denoising Loop and Real AI generation
+          const backend = backendSelect.value;
+          const result = await window.ForgeDiffusion.generate({
+            prompt: prompt,
+            model: model,
+            backend: backend,
+            steps: steps,
+            cfg: cfg,
+            seed: seed,
+            width: 512,
+            height: 512,
+            canvas: outputCanvas,
+            onStep: (s) => {
+              if (s.progress) progressBarFill.style.width = `${s.progress}%`;
+              spinnerText.textContent = s.message;
+              const el = document.getElementById('statusBadgeText');
+              if (el) el.textContent = s.message;
+            }
+          });
+
+          updateDownloadLink();
+
+          const latency = (result.latencyMs / 1000).toFixed(2);
+          const srcName = result.source || `${model} (WebGPU)`;
+          statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#16a34a; display:inline-block;"></span><span>${srcName} · Seed: ${seed} · Latency: ${latency}s</span>`;
+          galleryStatus.innerHTML = `Client-side WebGPU Pipeline · Seed: <code>${seed}</code> · Saved to <code>cat_surf_${model}_${seed}.png</code>`;
+        }
+      } catch (err) {
+        console.error('Generation failed:', err);
+        const errMsg = err.message || 'Generation Failed';
+        statusBadge.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block;"></span><span style="color:#ef4444; font-weight:600;">${errMsg}</span>`;
+        galleryStatus.innerHTML = `<span style="color:#ef4444;">오류 발생: ${errMsg}</span>`;
+      } finally {
+        progressBarContainer.style.display = 'none';
+        canvasSpinnerOverlay.style.display = 'none';
+        createBtn.disabled = false;
+        updateDownloadLink();
+      }
+    });
+
+    updateCode();
+  </script>
+</body>
+</html>

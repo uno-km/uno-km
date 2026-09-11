@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version &amp; Release Archive | Termux-BitNet</title>
+  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-BitNet.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Version &amp; Release Archive</h2>
+      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-BitNet</p>
+
+      <div class="timeline">
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge">Latest Production Release</div>
+          <div class="timeline-content">
+            <h3>v1.4.0 - Native Vulkan Compute GPU Acceleration, Permanent VRAM Residency & Dynamic C ABI &mdash; 2026-09-07</h3>
+            <ul>
+              <li>Native Vulkan Compute GPU Engine (via AMEVA-Runtime): Dedicated SPIR-V compute kernels for BitNet 1.58-bit ternary GEMV (bitnet_gemv_i2_s.comp), FP16 LM Head offload (bitnet_gemv_f16.comp), RoPE, Attention Decode, SwiGLU, RMSNorm, and Residual summation.</li>
+              <li>Llama.cpp-Style Permanent Model VRAM Residency: Pre-allocates unified GPU storage buffers for all 30 transformer layers (498 MB) and LM Head (626 MB) at initialization, completely eliminating host-to-device bus traffic during autoregressive token evaluation.</li>
+              <li>Full-Pipeline On-Chain Token Execution (DispatchFullTokenChain): Fuses the entire 30-layer pipeline into a single VkCommandBuffer submission and single fence wait per token, eliminating 99.4% of driver submission overhead.</li>
+              <li>C ABI Dynamic Parameter Synchronization (bitnet_set_params): Thread-safe runtime update for temperature, top_p, top_k, repeat_penalty, and stop tokens without context re-initialization.</li>
+              <li>Telemetry Ground Truth Hardening: Fixed prompt_tokens calculation in GenerationMetrics to accurately report actual token counts across streaming and batch runs.</li>
+              <li>Empirical Real-Device Benchmarks: Documented verified physical device metrics on Galaxy S25 Adreno 830 (17.56 tok/s, 12.58x speedup) and Galaxy A35 Mali-G68 (3.47 tok/s, 5.94x speedup).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.1.3 - Zero-Isolation Fast Build & Dual CLI Namespace Architecture &mdash; 2026-08-26</h3>
+            <ul>
+              <li>Bypassed pip build isolation to utilize native Termux cmake directly.</li>
+              <li>Resolved npm global symlink collision with dedicated termux-bitnet-js namespace.</li>
+              <li>Optimized install.sh with setuptools/wheel provisioning.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Initial Release</div>
+          <div class="timeline-content">
+            <h3>v1.1.0 - Official Initial Engine Launch &mdash; 2026-08-20</h3>
+            <ul>
+              <li>Android Termux native Bionic libc 1.58-bit BitNet C++ inference engine initial release.</li>
+              <li>Dual Python and Node.js SDK interface.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

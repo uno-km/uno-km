@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-Vision | Official Documentation</title>
+  <meta name="description" content="150MB가 넘는 OpenCV나 PyTorch 없이, 초경량 C 알고리즘과 온디바이스 VLM으로 카메라 프레임을 실시간 분석합니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">순수 Canny/Sobel/Haar 알고리즘 및 SmolVLM Vulkan GPU 제로카피 온디바이스 컴퓨터 비전 SDK</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># 파이썬 공식 패키지 매니저
+pip install termux-vision
+
+# Node.js 공식 패키지 매니저
+npm install termux-vision</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">모바일 단말기에서 컴퓨터 비전 개발 시 150MB+ OpenCV와 거대 파이토치 빌드 병목이 발생하고, 카메라 프레임 전달 과정에서 메모리 다중 복사로 인해 발열과 심각한 프레임 드랍이 발생합니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">외부 무거운 라이브러리를 완전히 배제한 순수 C/C++ 기반 Canny/Sobel/Haar 알고리즘과 SmolVLM Vulkan GPU 파이프라인을 구축하여, 제로카피 고속 이미지 인식과 시각 질의응답(VLM)을 실현했습니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">스마트폰 용량만 잡아먹는 무거운 프로그램 대신, 깃털처럼 가볍고 빠른 스마트폰 전용 인공지능 눈을 달아드립니다. 사진을 보고 상황을 이해하고 얼굴을 찾아내는 미래형 시각 능력을 내 폰에 선물하세요.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">순수 Canny/Sobel/Haar 0-의존성 코어</h4>
+          <p data-i18n="home.features.0.desc">OpenCV 없이 순수 C/C++ 포인터 연산과 ARM NEON 정수 연산으로 초고속 픽셀 분석을 수행합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">SmolVLM Vulkan GPU 제로카피 파이프라인</h4>
+          <p data-i18n="home.features.1.desc">카메라 버퍼를 CPU-GPU 간 중복 복사 없이 Vulkan 셰이더로 직접 공급하여 온디바이스 VLM 추론을 가속합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">카메라 프레임 직접 바인딩</h4>
+          <p data-i18n="home.features.2.desc">Termux-Camera 연동 및 V4L2 네이티브 파이프라인을 지원하여 안드로이드 카메라 영상을 즉시 수신합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">결정론적 0-Drift 픽셀 정밀도</h4>
+          <p data-i18n="home.features.3.desc">이기종 모바일 칩셋 간 부동소수점 오차 없이 비트 단위로 동일한 시각 분석 결과를 보장합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">메모리 누수 방지 RAII 생명주기</h4>
+          <p data-i18n="home.features.4.desc">프레임 버퍼를 순환 풀로 재활용하여 장시간 비디오 스트림 분석 시에도 메모리 누수가 일절 발생하지 않습니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pixel Gradient Convolution</strong></td>
+            <td>ARM NEON 128비트 벡터 가속 3x3 소벨 및 가우시안 블러</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>SmolVLM Multimodal Encoder</strong></td>
+            <td>Vulkan SPIR-V 이미지 패치 임베딩 및 어텐션 디코더</td>
+            <td><span class="badge badge-success">하드웨어 가속</span></td>
+          </tr>
+          <tr>
+            <td><strong>Integral Image Cascade</strong></td>
+            <td>정수 적분 영상 캐시 기반 실시간 얼굴 및 특징점 추적</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zero-Copy Frame Ring Buffer</strong></td>
+            <td>POSIX shm 기반 프레임 인터리빙 및 렌더링 파이프</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python">from termux_vision import VisionEngine
+
+# 1. 제로카피 비전 엔진 초기화
+engine = VisionEngine(mode="vlm", model_name="smolvlm-500m")
+
+# 2. 이미지 분석 및 시각 언어 질의
+print("[Vision] 이미지 분석 중...")
+description = engine.ask_image("./samples/sample.jpg", "이 사진에 무엇이 있나요?")
+print(f"[분석 답변]: {description}")
+
+# 3. 고속 얼굴 탐지 수행
+faces = engine.detect_faces("./samples/sample.jpg")
+print(f"[검출된 얼굴 수]: {len(faces)}개 좌표: {faces}")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">const { VisionEngine } = require('termux-vision');
+
+async function main() {
+  const vision = new VisionEngine({ mode: 'detect' });
+  const result = await vision.analyze('./samples/sample.jpg');
+  console.log(`[탐지 결과]:`, result);
+}
+
+main();</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

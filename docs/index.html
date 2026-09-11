@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-Vulkan-Runtime | Official Documentation</title>
+  <meta name="description" content="Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+                                    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">AMEVA-Vulkan-Runtime</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Unified Cross-Modal Vulkan GPU Acceleration Runtime & HAL for Mobile Android</p>
+
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/ameva-vulkan-runtime/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-vulkan-runtime.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-vulkan-runtime" target="_blank"><img src="https://img.shields.io/npm/v/ameva-vulkan-runtime.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Snapdragon_&_Mali_&_Xclipse-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install ameva-vulkan-runtime
+# or: npm install ameva-vulkan-runtime</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Running multi-modal AI on mobile Android is plagued by fragmented GPU drivers, loader crashes between Bionic and Mesa, tensor alignment buffer overflows, and redundant binary bloat across individual packages.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Provides a single, zero-hardcoded C++20 Vulkan Hardware Abstraction Layer (HAL) and universal runtime for STT, Vision, LLM, Diffusion, and Training with a granular 12-stage validation hierarchy (V0-V11) and zero-data-loss auto-recovery.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Single Loader Chain Pinning</h4>
+          <p data-i18n="home.features.0.desc">Eliminates Termux Mesa vs Android Bionic symbol collisions via dynamic dladdr provenance and sys_gpdf2 isolation.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">12-Stage Probing & Fallback</h4>
+          <p data-i18n="home.features.1.desc">Validates GPU capability from dlopen (V0) to E2E model inference (V11) with transparent CPU NEON recovery.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Multi-Modal Cross-Acceleration</h4>
+          <p data-i18n="home.features.2.desc">Powers Whisper STT, LLaVA Vision, LLaMA/BitNet LLM, and Stable Diffusion from a single 58MB shared core.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Supported GPUs</strong></td>
+            <td>Qualcomm Adreno 830/700/600, ARM Mali-G78/G68/G77, Samsung Xclipse 950/920</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Validation Hierarchy</strong></td>
+            <td>V0 (Loader) ~ V11 (E2E Diffusion / Whisper / LLaMA Inference)</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zero-Drift Quirks Fixes</strong></td>
+            <td>Adreno Subgroup Control Bypass, Mali 128-byte Strict Memory Alignment</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import ameva_vulkan_runtime as avr
+
+# 1. Probe & Validate Hardware (V0-V11)
+doctor = avr.Doctor()
+report = doctor.run_self_test()
+print(f"GPU Backend Status: {report.status}, Device: {report.device_name}")
+
+# 2. Acquire High-Performance Vulkan Context for STT / LLM / Diffusion
+ctx = avr.create_context(device="auto", memory_limit_mb=1024)
+print(f"Context initialized via: {ctx.loader_path} (API {ctx.vulkan_version})")
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { Doctor, createContext } from "ameva-vulkan-runtime";
+
+const doctor = new Doctor();
+const report = await doctor.runSelfTest();
+console.log(`GPU Status: ${report.status}, GPU: ${report.deviceName}`);
+
+const ctx = await createContext({ device: "auto" });
+console.log(`Vulkan Context Ready on ${ctx.deviceName}`);
+</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

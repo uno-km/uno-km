@@ -1,0 +1,34 @@
+import { n as e } from "./rolldown-runtime-DY7j01NX.js";
+import { n as t, r as n } from "./chunk-Y2CYZVJY-BFGoWi8k.js";
+import { f as r, j as i, x as a } from "./chunk-WYO6CB5R-WuT6p4uA.js";
+import { d as o, m as s } from "./chunk-ICXQ74PX-CtRwfsVX.js";
+//#region ../../node_modules/mermaid/dist/chunks/mermaid.core/chunk-OGEWGWER.mjs
+async function c(e, n) {
+	let i = e.getElementsByTagName("img");
+	if (!i || i.length === 0) return;
+	let o = n.replace(/<img[^>]*>/g, "").trim() === "";
+	await Promise.all([...i].map((e) => new Promise((n) => {
+		function i() {
+			if (e.style.display = "flex", e.style.flexDirection = "column", o) {
+				let [t = r.fontSize] = s(a().fontSize ? a().fontSize : window.getComputedStyle(document.body).fontSize), n = t * 5 + "px";
+				e.style.minWidth = n, e.style.maxWidth = n;
+			} else e.style.width = "100%";
+			n(e);
+		}
+		t(i, "setupImage"), setTimeout(() => {
+			e.complete && i();
+		}), e.addEventListener("error", i), e.addEventListener("load", i);
+	})));
+}
+var l, u = e((() => {
+	o(), i(), n(), l = /* @__PURE__ */ t(({ flowchart: e }) => {
+		let t = e?.subGraphTitleMargin?.top ?? 0, n = e?.subGraphTitleMargin?.bottom ?? 0;
+		return {
+			subGraphTitleTopMargin: t,
+			subGraphTitleBottomMargin: n,
+			subGraphTitleTotalMargin: t + n
+		};
+	}, "getSubGraphTitleMargins"), t(c, "configureLabelImages");
+}));
+//#endregion
+export { l as n, u as r, c as t };

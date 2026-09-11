@@ -1,0 +1,29 @@
+# AMEVA-Sentinel — AI Agent Fast Context
+# Generated: 2026-09-08  |  Version: 1.0.1
+
+## Library
+Name: AMEVA-Sentinel
+Version: 1.0.1
+GitHub: https://github.com/uno-km/ameva-sentinel
+Documentation: https://uno-km.vercel.app/lib/sentinel/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/sentinel/index.html
+  - /lib/sentinel/installation.html
+  - /lib/sentinel/quickstart.html
+  - /lib/sentinel/api-reference.html
+  - /lib/sentinel/admin.html
+  - /lib/sentinel/benchmarks.html
+  - /lib/sentinel/advanced-parameters.html
+  - /lib/sentinel/versions.html
+
+## Quick Install
+npm install ameva-sentinel
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/sentinel/llms-full.txt

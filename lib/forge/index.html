@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-Forge | Official Documentation</title>
+  <meta name="description" content="기가바이트 단위의 파이토치 대신 불과 수십 메가바이트의 날렵한 C++ 코어로 모바일 딥러닝을 구현합니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">PyTorch 런타임 종속성 없는 순수 C++ 텐서 연산 코어 및 초경량 오토그라드(Autograd) 엔진</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># 파이썬 공식 패키지 매니저
+pip install ameva</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">모바일 인공지능 애플리케이션 개발 시 2GB가 넘는 무거운 PyTorch 런타임으로 인해 앱 다운로드 용량이 폭증하고 메모리 로딩 속도가 극도로 저하되는 문제가 있었습니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">수십 메가바이트의 순수 C++20 템플릿 메타프로그래밍과 ARM NEON 및 Vulkan 셰이더 직결 텐서 코어를 구축하여, 무의존성 초고속 자동 미분 및 추론 엔진을 완성했습니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">기가바이트 단위의 무거운 파이토치를 걷어내고, 불과 수십 메가바이트의 날렵한 C++ 엔진으로 모바일 인공지능을 가동합니다.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">2GB+ 파이토치 완벽 배제</h4>
+          <p data-i18n="home.features.0.desc">수십 메가바이트의 순수 C++ 엔진으로 모바일 임베디드 환경에 완벽 최적화되었습니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">PyTorch 호환 텐서 API</h4>
+          <p data-i18n="home.features.1.desc">tensor.matmul(), tensor.backward() 등 친숙한 문법을 그대로 지원합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">메모리 풀링 재할당 오버헤드 0화</h4>
+          <p data-i18n="home.features.2.desc">사전 할당된 텐서 버퍼 풀을 재사용하여 가비지 컬렉션 멈춤 현상을 완전히 제거했습니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">락리스 공유 메모리 텐서 IPC</h4>
+          <p data-i18n="home.features.3.desc">프로세스 간 텐서 데이터를 복사 없이 0.05ms 만에 초고속 공유합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">결정론적 비트 단위 재현성</h4>
+          <p data-i18n="home.features.4.desc">이기종 모바일 기기 간에도 완벽히 동일한 연산 결과를 보장합니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ARM NEON GEMM Core</strong></td>
+            <td>128비트 SIMD 레지스터 타일링 기반 부동소수점 행렬 곱셈</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vulkan Compute MatMul</strong></td>
+            <td>SPIR-V GPU 셰이더 기반 병렬 텐서 곱셈 파이프라인</td>
+            <td><span class="badge badge-success">하드웨어 가속</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tape-based Autograd Graph</strong></td>
+            <td>동적 역전파 미분 그래프 추적 및 메모리 재사용</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lockless Shm Ring Buffer</strong></td>
+            <td>프로세스 간 텐서 통신용 공유 메모리 링 버퍼</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python">import ameva
+
+# 1. 네이티브 Vulkan 디바이스 상에 텐서 생성
+x = ameva.randn([512, 512], device="vulkan", dtype=ameva.float16)
+w = ameva.randn([512, 512], device="vulkan", dtype=ameva.float16)
+
+# 2. 하드웨어 가속 행렬 곱셈 수행
+y = ameva.matmul(x, w)
+print(f"[AMEVA-Forge] 계산 완료 디바이스: {y.device} 형태: {y.shape}")
+
+# 3. 역모드 자동 미분 역전파 실행
+y.backward()
+print(f"[AMEVA-Forge] x의 그래디언트 노름: {x.grad.norm().item():.4f}")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">// AMEVA-Forge C++ 코어 CLI 브리지 예제:
+const { execSync } = require('child_process');
+
+console.log('[AMEVA-Forge] C++ 텐서 벤치마크 실행 중...');
+const res = execSync('ameva-forge eval --dim 1024 --device neon');
+console.log(res.toString());</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

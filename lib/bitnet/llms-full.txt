@@ -1,0 +1,16 @@
+# Termux-BitNet Full Technical Specification (v1.4.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+1.58-Bit On-Device LLM Inference Engine with ARM64 NEON SIMD & Native Vulkan GPU Acceleration via AMEVA-Runtime
+Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime, achieving up to 17.56 tok/s (12.58x speedup) on Qualcomm Adreno 830 and 3.47 tok/s (5.94x speedup) on ARM Mali-G68 under a sub-250MB RAM footprint.
+
+## 2. Package & Installation
+- PyPI: termux-bitnet
+- Command: pip install termux-bitnet ameva-runtime
+
+# or: npm install -g termux-bitnet @ameva/runtime
+
+# or: curl -sL https://raw.githubusercontent.com/uno-km/termux-bitnet/main/install.sh | bash
+
+- Repository: https://github.com/uno-km/termux-bitnet

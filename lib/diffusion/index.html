@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux-Diffusion | Official Documentation</title>
+  <meta name="description" content="클라우드 검열 없이 내 스마트폰에서 직접 그림을 그리고 삼성 갤러리에 자동으로 저장하는 온디바이스 이미지 생성 AI입니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">루팅/PRoot 없는 안드로이드 네이티브 Stable Diffusion 이미지 생성 및 삼성 갤러리 자동 인덱싱 엔진</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># 파이썬 공식 패키지 매니저
+pip install termux-diffusion
+
+# Node.js 공식 패키지 매니저
+npm install termux-diffusion</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">모바일에서 이미지 생성을 시도할 때 외부 클라우드의 데이터 검열과 비싼 월 구독료가 발생하며, 스마트폰에서 직접 구동할 경우 무거운 PRoot 리눅스 컨테이너와 심각한 메모리 초과(OOM) 크래시가 단말기를 다운시킵니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">루팅이나 PRoot 가상화 환경 없이 안드로이드 Bionic C++에 직접 컴파일된 최적화 연산 엔진을 구축하여, 메모리 누수 없이 단말기 자체에서 프라이빗 이미지를 생성하고 삼성 갤러리에 즉시 자동 색인합니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">내가 상상한 그림을 남의 서버 눈치 보지 않고, 비싼 구독료 없이 내 폰에서 마음껏 그려보세요. 복잡한 컴퓨터 지식 없이도 터미널 한 번 톡 치면, 스마트폰 기본 갤러리에 내가 만든 작품이 바로 쏙 들어옵니다.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">루팅/PRoot 없는 100% 네이티브 구동</h4>
+          <p data-i18n="home.features.0.desc">안드로이드 Bionic libc 직접 바인딩으로 PRoot 가상화 오버헤드와 파일 권한 충돌을 원천 박멸했습니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">삼성 갤러리 즉시 자동 인덱싱</h4>
+          <p data-i18n="home.features.1.desc">생성된 이미지를 MediaStore 인덱서와 연동하여 파일 탐색기를 열 필요 없이 스마트폰 갤러리에 즉시 표시합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">ARMv8.2-A DotProd/FP16 벡터 연산</h4>
+          <p data-i18n="home.features.2.desc">Cortex-A78 빅코어 전용 SIMD 벡터 명령어를 활용하여 과도한 전력 소모 없이 노이즈 제거 연산을 가속합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">엄격한 OOM 방지 메모리 스왑 가드</h4>
+          <p data-i18n="home.features.3.desc">단말기 DRAM 가용량을 실시간 감시하여 OOM 킬러 발동 전 안전하게 텐서를 관리합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">원클릭 pip 및 npm 통합 배포</h4>
+          <p data-i18n="home.features.4.desc">복잡한 깃 클론이나 파이토치 설치 없이 패키지 매니저로 즉시 설치하고 CLI와 SDK로 즉시 생성합니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UNet Cross-Attention Engine</strong></td>
+            <td>ARM NEON FP16 벡터화 텐서 곱셈 및 공간 어텐션</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>CLIP Text Encoder</strong></td>
+            <td>프롬프트 텍스트 토크나이징 및 잠재 벡터 임베딩 맵핑</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>VAE Latent Decoder</strong></td>
+            <td>잠재 공간(Latent Space) 텐서를 512x512 RGB 비트맵으로 디코딩</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>MediaStore Broadcast Hook</strong></td>
+            <td>안드로이드 미디어 스캐너 브로드캐스트 자동 전송</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python">from termux_diffusion import DiffusionPipeline
+
+# 1. 온디바이스 디퓨전 파이프라인 초기화
+pipe = DiffusionPipeline.from_pretrained("sd-1.5-quant")
+
+# 2. 텍스트 프롬프트 기반 이미지 생성
+print("[Diffusion] 이미지 생성 연산 중 (약 60초 소요)...")
+image = pipe.generate(
+    prompt="a serene cybernetic garden on mars, 8k resolution",
+    steps=20,
+    guidance_scale=7.5,
+    sync_gallery=True
+)
+image.save("cyber_garden.png")
+print("[완료] 생성이 완료되어 삼성 갤러리에 자동 등록되었습니다.")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">const { DiffusionPipeline } = require('termux-diffusion');
+
+async function main() {
+  const pipe = new DiffusionPipeline({ model: 'sd-1.5-quant' });
+  const imgPath = await pipe.generate({
+    prompt: 'a serene cybernetic garden on mars, 8k resolution',
+    steps: 20
+  });
+  console.log(`[생성 완료]: ${imgPath}`);
+}
+
+main();</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

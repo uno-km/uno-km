@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퀵스타트 및 실행 레시피 | Termux-STT</title>
+  <meta name="description" content="Termux-STT 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (Termux-STT)</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="quickstart.valueProp">스마트폰 마이크에 대고 말하기만 하면 끝. 귀찮은 변환 작업 없이 내 목소리가 즉시 정확한 텍스트로 화면에 나타납니다.</p>
+      </div>
+
+      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
+      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
+      <pre><code>termux-stt transcribe samples/jfk_1min.wav --model tiny --language en</code></pre>
+
+      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
+      <pre><code class="language-python">from termux_stt import create_engine
+
+# 1. 100% 로컬 STT 엔진 초기화
+engine = create_engine(engine_type="whisper", model_name="tiny")
+
+# 2. 오디오 파일 텍스트 전사 및 화자 분리
+result = engine.transcribe("samples/jfk_1min.wav", diarize=True)
+print(f"[전사 결과]: {result.text}")
+for segment in result.segments:
+    print(f"[{segment.speaker}] {segment.start:.2f}s ~ {segment.end:.2f}s: {segment.text}")</code></pre>
+
+      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
+      <pre><code class="language-javascript">const { STTEngine } = require('termux-stt');
+
+async function main() {
+  const engine = new STTEngine({ model: 'tiny', language: 'en' });
+  const result = await engine.transcribeFile('samples/jfk_1min.wav');
+  console.log(`[전사 결과]: ${result.text}`);
+}
+
+main();</code></pre>
+
+      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thModel">모델 / 프로파일</th>
+            <th data-i18n="table.thScore">검증 상태</th>
+            <th data-i18n="table.thVram">VRAM 점유</th>
+            <th data-i18n="table.thSpeed">추론 속도</th>
+            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Whisper-Large-v3-Turbo (Q5_0)</strong></td><td>★ 5.0</td><td>548 MB</td><td>2.26x 가속 (Mali-G68)</td><td>고정밀 다국어 전사 및 Vulkan GPU 가속 모델</td></tr>
+          <tr><td><strong>Whisper-Base.en (FP16)</strong></td><td>★ 4.8</td><td>142 MB</td><td>실시간 대비 6.8x</td><td>영어 음성 대화 처리에 최적화된 초경량 고속 모델</td></tr>
+          <tr><td><strong>Vosk-Model-Small-KO</strong></td><td>★ 4.6</td><td>48 MB</td><td>실시간 스트리밍</td><td>80MB 미만 극소형 메모리 환경용 실시간 스트리밍 모델</td></tr>
+          <tr><td><strong>Sherpa-ONNX-Offline-KR</strong></td><td>★ 4.5</td><td>112 MB</td><td>실시간 대비 4.2x</td><td>잡음 환경 강인성 및 온디바이스 에지 음성 인식 모델</td></tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
+            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
+            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>VK_ERROR_DEVICE_LOST</code></td>
+            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
+            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
+          </tr>
+          <tr>
+            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
+            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
+            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
+          </tr>
+          <tr>
+            <td>배터리 구동 시 지연시간 급증</td>
+            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
+            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
+          </tr>
+          <tr>
+            <td>프로세스 종료 후 VRAM 미반납</td>
+            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
+            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

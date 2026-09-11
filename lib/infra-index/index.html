@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infra-Index Platform | Official Documentation</title>
+  <meta name="description" content="외부 클라우드 전송 없이 분산된 스마트폰과 소형 에지 기기들의 상태를 실시간으로 모니터링합니다.">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
+      <p class="subtitle" data-i18n="home.subtitle">에지 인프라 실시간 관측성, 분산 하드웨어 텔레메트리 애그리게이터 및 노드 메시 인덱싱</p>
+
+      <div class="alert alert-info">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
+        <pre><code># 독립 네이티브 바이너리 설치 스크립트
+curl -fsSL https://raw.githubusercontent.com/uno-km/infraindex-platform/main/install.sh | bash</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
+      <p data-i18n="home.challengeText">분산된 모바일 및 에지 노드 클러스터를 감시할 때 기존 클라우드 모니터링 툴은 과도한 네트워크 대역폭과 시스템 자원을 낭비하여 스마트폰을 과열시키고 배터리를 방전시킵니다.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
+      <p data-i18n="home.breakthroughText">18MB 미만의 초경량 로컬 데몬과 암호화 상호 TLS(mTLS) 메시 합의 프로토콜을 통해 외부 데이터 유출 없이 초당 10만 건의 하드웨어 메트릭을 실시간 인덱싱합니다.</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="home.valuePropText">복잡한 인프라 관리 도구들을 스마트폰과 소형 기기들을 위한 가벼운 데몬 하나로 압축하여 손쉽게 구동합니다.</p>
+      </div>
+
+      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">외부 유출 없는 100% 로컬 인프라 관측성</h4>
+          <p data-i18n="home.features.0.desc">모든 하드웨어 메트릭이 로컬 네트워크 안에서만 처리되어 클라우드 유출을 방지합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">초경량 18MB 상주 메모리 풋프린트</h4>
+          <p data-i18n="home.features.1.desc">스마트폰 시스템 자원을 거의 점유하지 않는 극소형 데몬으로 설계되었습니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">상호 TLS(mTLS) 기반 노드 메시 보안</h4>
+          <p data-i18n="home.features.2.desc">모든 피어 노드가 암호화 인증을 거쳐 안전하게 연결됩니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">실시간 SoC 온도 및 배터리 감시</h4>
+          <p data-i18n="home.features.3.desc">기기 과열 발생 시 자동으로 워크로드를 분산하거나 절전 모드로 전환합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">원클릭 분산 클러스터 자동 편성</h4>
+          <p data-i18n="home.features.4.desc">새로운 단말기가 켜지면 토큰 인증을 통해 즉시 클러스터에 자동 편입됩니다.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thCategory">서브시스템 분류</th>
+            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
+            <th data-i18n="table.thStability">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lightweight Mesh Consensus</strong></td>
+            <td>RAFT 기반 초경량 에지 노드 상태 합의 엔진</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Telemetry Metric Ring Buffer</strong></td>
+            <td>메모리 상에서 실시간 롤링 메트릭을 유지하는 링 버퍼</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>mTLS Dynamic Handshake</strong></td>
+            <td>노드 간 종단간 암호화 보안 통신 터널</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fault-Tolerant Failover Watchdog</strong></td>
+            <td>노드 다운 시 1초 만에 감지하고 워크로드 재배치</td>
+            <td><span class="badge badge-success">프로덕션 안정</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
+      <div>
+        <h4>Python (pip) 사용 예제</h4>
+        <pre><code class="language-python">import urllib.request, json
+
+# 1. 로컬 에지 인프라 데몬 상태 쿼리
+req = urllib.request.Request("http://127.0.0.1:9090/v1/telemetry")
+with urllib.request.urlopen(req) as resp:
+    data = json.loads(resp.read().decode())
+    print(f"[Infra-Index] 노드 ID: {data['node_id']} | CPU: {data['cpu_usage']}% | VRAM: {data['vram_usage']}MB")</code></pre>
+      </div>
+      <div>
+        <h4>Node.js (npm) 사용 예제</h4>
+        <pre><code class="language-javascript">const http = require('http');
+
+http.get('http://127.0.0.1:9090/v1/mesh/peers', (res) => {
+  let raw = '';
+  res.on('data', chunk => raw += chunk);
+  res.on('end', () => {
+    const peers = JSON.parse(raw);
+    console.log(`[Infra-Index] 활성 메시 노드 수: ${peers.length}`);
+  });
+});</code></pre>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <ul>
+        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
+        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
+        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
+        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
+        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
+        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

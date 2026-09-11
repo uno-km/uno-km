@@ -1,0 +1,12 @@
+# Termux-Playwright Full Technical Specification (v1.81.1)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Non-Root Chromium Browser Automation & Stealth Runtime for Android Termux
+Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.
+
+## 2. Package & Installation
+- PyPI: termux-playwright
+- Command: pip install termux-playwright && termux-playwright-install
+# or: npm install -g termux-playwright
+- Repository: https://github.com/uno-km/termux-playwright

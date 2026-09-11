@@ -1,0 +1,141 @@
+/* ?? Split Header Dual Button (pip / npm & Foundation / GitHub Hover FX) ?? */
+.header-btn-dual {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 2px 3px;
+  font-size: 0.82em;
+  font-weight: 600;
+  line-height: 1.4;
+  vertical-align: middle;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.header-btn-dual:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.header-btn-dual .dual-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: var(--text-main, #334155);
+  border-radius: 4px;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+
+/* Default / Fallback hover effect */
+.header-btn-dual .dual-link:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Specific Foundation brand blue hover */
+.header-btn-dual .dual-link.foundation-link:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+/* Specific GitHub / Repo dark charcoal hover */
+.header-btn-dual .dual-link.github-link:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* Specific pip python-blue hover */
+.header-btn-dual .dual-link.pip-link:hover {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+/* Specific npm brand-red hover */
+.header-btn-dual .dual-link.npm-link:hover {
+  background-color: #cb3837 !important;
+  color: #ffffff !important;
+}
+
+.header-btn-dual .dual-link:active {
+  transform: scale(0.97);
+}
+
+.header-btn-dual .dual-divider {
+  color: var(--text-subtle, #cbd5e1);
+  font-size: 0.85em;
+  padding: 0 3px;
+  user-select: none;
+}
+
+
+/* Single Registry Button Colors */
+.header-btn.npm-btn:hover {
+  background-color: #cb3837 !important;
+  border-color: #cb3837 !important;
+  color: #ffffff !important;
+}
+
+.header-btn.pypi-btn:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+
+/* ── Scoped Element Loading Overlay (AMEVA Engineering Standard) ────────── */
+.ameva-loading-container {
+  position: relative !important;
+  min-height: 80px;
+}
+
+.ameva-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 50;
+  border-radius: inherit;
+  transition: opacity 0.2s ease;
+  pointer-events: all;
+}
+
+.dark-mode .ameva-loading-overlay {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.ameva-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(0, 68, 153, 0.15);
+  border-top-color: #004499;
+  border-right-color: #004499;
+  border-radius: 50%;
+  animation: ameva-spin 0.75s linear infinite;
+}
+
+.ameva-loading-text {
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--text-main, #334155);
+  letter-spacing: 0.3px;
+  font-family: var(--font-mono, monospace);
+}
+
+@keyframes ameva-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

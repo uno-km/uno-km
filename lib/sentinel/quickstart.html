@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퀵스타트 및 실행 레시피 | AMEVA-Sentinel</title>
+  <meta name="description" content="AMEVA-Sentinel 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (AMEVA-Sentinel)</p>
+
+      <div class="alert alert-success">
+        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
+        <p data-i18n="quickstart.valueProp">코드 몇 줄만 넣으면 방문자가 진짜 사람인지 매크로 프로그램인지 즉시 판별해 줍니다.</p>
+      </div>
+
+      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
+      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
+      <pre><code>npx ameva-sentinel audit --target https://localhost:8080</code></pre>
+
+      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
+      <pre><code class="language-python"># AMEVA-Sentinel 파이썬 서버 검증 예제
+import hmac, hashlib
+
+def verify_sentinel_token(payload: bytes, token: str, secret: bytes) -> bool:
+    expected = hmac.new(secret, payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, token)
+
+is_valid = verify_sentinel_token(b"sample_payload", "8f3d6c...9a", b"prod_secret_key")
+print(f"[Sentinel] 클라이언트 토큰 인증 결과: {is_valid}")</code></pre>
+
+      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
+      <pre><code class="language-javascript">const { SentinelEngine } = require('ameva-sentinel');
+
+async function main() {
+  const sentinel = new SentinelEngine({ secret: 'prod_secret_key', strictEntropy: true });
+  const evalResult = await sentinel.evaluateSignals();
+  console.log(`[Sentinel] 위협 점수: ${evalResult.score} / 100`);
+  console.log(`[Sentinel] 인증 HMAC 토큰: ${evalResult.token}`);
+}
+
+main();</code></pre>
+
+      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thModel">모델 / 프로파일</th>
+            <th data-i18n="table.thScore">검증 상태</th>
+            <th data-i18n="table.thVram">VRAM 점유</th>
+            <th data-i18n="table.thSpeed">추론 속도</th>
+            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Heuristic-Structural-L1</strong></td><td>★ 4.8</td><td>8 MB RAM</td><td>1.2 ms 평가</td><td>DOM 트리 구조 무결성 검사, 오버헤드 0%</td></tr>
+          <tr><td><strong>HMAC-Deterministic-Token</strong></td><td>★ 5.0</td><td>4 MB RAM</td><td>0.4 ms 평가</td><td>비트 단위 암호화 페이로드 검증</td></tr>
+          <tr><td><strong>Behavioral-Entropy-L2</strong></td><td>★ 4.5</td><td>16 MB RAM</td><td>3.5 ms 평가</td><td>마이크로 인터랙션 지터 Shannon 엔트로피 분석</td></tr>
+          <tr><td><strong>TLS-Client-Fingerprint</strong></td><td>★ 4.2</td><td>12 MB RAM</td><td>2.1 ms 평가</td><td>헤더 및 암호화 스위트 순서 일치성 검증</td></tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
+            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
+            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>VK_ERROR_DEVICE_LOST</code></td>
+            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
+            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
+          </tr>
+          <tr>
+            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
+            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
+            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
+          </tr>
+          <tr>
+            <td>배터리 구동 시 지연시간 급증</td>
+            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
+            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
+          </tr>
+          <tr>
+            <td>프로세스 종료 후 VRAM 미반납</td>
+            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
+            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

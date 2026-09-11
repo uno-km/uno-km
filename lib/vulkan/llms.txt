@@ -1,0 +1,30 @@
+# AMEVA-Runtime — AI Agent Fast Context
+# Generated: 2026-09-08  |  Version: 2.5.0
+
+## Library
+Name: AMEVA-Runtime
+Version: 2.5.0
+GitHub: https://github.com/uno-km/ameva-runtime
+Documentation: https://uno-km.vercel.app/lib/vulkan/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/vulkan/index.html
+  - /lib/vulkan/six-modality-roadmap.html
+  - /lib/vulkan/installation.html
+  - /lib/vulkan/quickstart.html
+  - /lib/vulkan/api-reference.html
+  - /lib/vulkan/benchmarks.html
+  - /lib/vulkan/advanced-parameters.html
+  - /lib/vulkan/versions.html
+
+## Quick Install
+pip install ameva-runtime
+npm install @ameva/runtime
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/vulkan/llms-full.txt

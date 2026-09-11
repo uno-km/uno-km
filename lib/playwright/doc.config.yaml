@@ -1,0 +1,57 @@
+{
+  "name": "Termux-Playwright",
+  "lib_slug": "playwright",
+  "package_name_pypi": "termux-playwright",
+  "package_name_npm": "termux-playwright",
+  "version": "v1.81.1",
+  "release_name": "Direct Socket VPN Bypass & Stealth Engine",
+  "license": "MIT",
+  "platform": "Android ARM64 / Termux Bionic",
+  "github_repo_url": "https://github.com/uno-km/termux-playwright",
+  "tagline_en": "Non-Root Chromium Browser Automation & Stealth Runtime for Android Termux",
+  "tagline_ko": "안드로이드 Termux 환경을 위한 비루팅 크로미움 브라우저 자동화 및 스텔스 런타임 최적화",
+  "quick_install_cmd": "pip install termux-playwright && termux-playwright-install\n# or: npm install -g termux-playwright",
+  "why_challenge_en": "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers and sandboxing constraints.",
+  "why_challenge_ko": "공식 Playwright는 glibc 의존성과 디스플레이 서버 부재로 인해 안드로이드 Termux에서 구동되지 않습니다.",
+  "description_en": "Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root.",
+  "description_ko": "격리된 유닉스 소켓 기반 Chrome DevTools Protocol(CDP) 직접 제어를 통해 루팅 없이 정품 크로미움 브라우저 제어 및 무인 웹 자동화를 지원합니다.",
+  "code_example_py": "import asyncio\nfrom termux_playwright import BrowserBuilder\n\nasync def main():\n    browser = await (BrowserBuilder()\n        .headless(True)\n        .bypass_tunnel(True, dns='8.8.8.8')\n        .launch())\n    page = await browser.new_page()\n    await page.goto('https://www.naver.com')\n    print('Title:', await page.title())\n    await browser.close()\n\nasyncio.run(main())",
+  "code_example_js": "import { BrowserBuilder } from 'termux-playwright';\n\nconst browser = await new BrowserBuilder()\n    .headless(true)\n    .bypassTunnel(true, '8.8.8.8')\n    .launch();\nconst page = await browser.newPage();\nawait page.goto('https://www.naver.com');\nconsole.log('Title:', await page.title());\nawait browser.close();",
+  "features": [
+    {
+      "title_en": "Deterministic 0-Drift Output",
+      "title_ko": "결정론적 0% 오차 연산",
+      "desc_en": "Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.",
+      "desc_ko": "이기종 하드웨어 간 비트 단위로 동일한 결정론적 수치 정밀도를 보장합니다."
+    },
+    {
+      "title_en": "Zero Cloud Egress Architecture",
+      "title_ko": "서버 비용 0원 완전 온디바이스",
+      "desc_en": "Operates 100% on the local client without external network telemetry leaks.",
+      "desc_ko": "외부 네트워크 통신 없이 100% 로컬 클라이언트에서 독립 구동됩니다."
+    },
+    {
+      "title_en": "Memory Leakage Protection",
+      "title_ko": "자동 메모리 버퍼 풀링 보호",
+      "desc_en": "Weakref lifetime management preventing GPU VRAM / system RAM leaks.",
+      "desc_ko": "Weakref 수명 주기 관리로 메모리 누수를 원천 차단합니다."
+    }
+  ],
+  "matrix_table": [
+    {
+      "category": "Compute Kernel",
+      "operations": "Hardware Native Accelerated Kernels",
+      "status": "Production"
+    },
+    {
+      "category": "Memory Subsystem",
+      "operations": "Zero-Copy Ring Buffers & Weakref GC",
+      "status": "Production"
+    },
+    {
+      "category": "Runtime Compatibility",
+      "operations": "Android Termux Bionic / Browser WebGPU",
+      "status": "Production"
+    }
+  ]
+}

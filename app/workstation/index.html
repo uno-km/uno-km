@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA Workstation | Sovereign Web & Desktop Studio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <link rel="stylesheet" href="/shared/ameva-viewer/ameva-viewer.css">
+  <script src="/shared/common.js" defer></script>
+  <script src="/shared/ameva-viewer/ameva-viewer.umd.js" defer></script>
+</head>
+<body>
+    <header>
+    <a href="index.html" class="header-brand">
+      <img src="favicon.svg" alt="AMEVA-Sentinel Logo">
+      <h1 data-i18n="common.brand">AMEVA-Sentinel</h1>
+    </a>
+    <div class="header-controls">
+      <span class="release-tag" data-i18n="common.releaseTag">AOSF v2.0 (Active)</span>
+      <div class="lang-selector-wrapper"></div>
+      <div class="header-btn-dual foundation-dual">
+        <a href="/foundation/index.html" class="dual-link foundation-link" data-i18n="common.foundationIntroBtn">재단 소개</a>
+        <span class="dual-divider">/</span>
+        <a href="https://github.com/uno-km/uno-km" target="_blank" class="dual-link github-link" data-i18n="common.githubBtn">깃허브</a>
+      </div>
+      <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">Sponsor</a>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="sidebar">
+    <!-- Tier 1: Primary Document / Foundation Navigation -->
+    <h3 data-i18n="common.nav.docNav">Document Navigation</h3>
+    <ul>
+      <li><a href="index.html" class="active">Home / Architecture</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="quickstart.html">Quickstart & Recipes</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="benchmarks.html">Benchmarks & Profiling</a></li>
+      <li><a href="advanced-parameters.html">Advanced Parameters</a></li>
+      <li><a href="versions.html">Version Archive</a></li>
+    </ul>
+                                                                                                                                                                                                                                                                                                                                                                                <!-- Tier 2: Flagship Libraries -->
+    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <ul>
+      <li><a href="/lib/sentinel/">AMEVA-Sentinel (Security SDK)</a></li>
+      <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
+      <li><a href="/lib/vulkan/">AMEVA-Vulkan-Runtime (Vulkan HAL)</a></li>
+      <li><a href="/lib/aichain/">Termux-AIChain (Zero-Dep Agent)</a></li>
+      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
+      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
+      <li><a href="/lib/tts/">Termux-TTS (Voice Synthesis)</a></li>
+      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/llamacpp/">Termux-LlamaCpp (GGUF Runtime)</a></li>
+      <li><a href="/lib/vision/">Termux-Vision (CV &amp; VLM)</a></li>
+      <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
+      <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
+    </ul>
+    <!-- Tier 3: AI Protocols & Specifications -->
+    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <ul>
+      <li><a href="llms.txt" target="_blank">llms.txt (AI Fast Context)</a></li>
+      <li><a href="llms-full.txt" target="_blank">llms-full.txt (Full Spec)</a></li>
+      <li><a href="robots.txt" target="_blank">robots.txt (AI Crawlers)</a></li>
+      <li><a href="sitemap.xml" target="_blank">sitemap.xml (Sitemap)</a></li>
+    </ul>
+  </nav>
+    <main class="content">
+      <h2>AMEVA Workstation</h2>
+      <p class="subtitle">Sovereign On-Device WebGPU & Desktop Computing Workbench</p>
+      <div class="alert alert-tip">
+        <span class="alert-title">Live Application Deployment</span>
+        <p>The sovereign web application is running at <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">https://ameva-workstation-web-core.vercel.app/</a>.</p>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <h3>Embedded Sovereign Viewer SDK (Live)</h3>
+        <p>AMEVA-Workstation-Web의 시그니처 렌더링 엔진이 독립형 SDK(<code>@ameva/viewer</code>)로 패키징되어 본 페이지에 실시간 임베드되어 구동 중입니다.</p>
+        
+        <div style="display: flex; gap: 8px; margin: 16px 0; align-items: center;">
+          <span style="font-size: 13px; font-weight: 600;">테마 모드:</span>
+          <button onclick="setViewerTheme('dark')" style="padding: 4px 12px; border-radius: 4px; border: 1px solid #004499; background: #004499; color: #fff; cursor: pointer; font-size: 12px;">Cyber Dark</button>
+          <button onclick="setViewerTheme('white')" style="padding: 4px 12px; border-radius: 4px; border: 1px solid #cbd5e1; background: #fff; color: #0f172a; cursor: pointer; font-size: 12px;">Light</button>
+          <button onclick="setViewerTheme('retro')" style="padding: 4px 12px; border-radius: 4px; border: 1px solid #808080; background: #c0c0c0; color: #000; cursor: pointer; font-size: 12px;">Retro Win98</button>
+        </div>
+
+        <div id="workstation-sdk-viewer" style="margin-top: 12px; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;"></div>
+      </div>
+
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const sampleDoc = `# AMEVA Embedded Viewer SDK
+uno-km 사설 허브에 오신 것을 환영합니다. 본 영역은 **AMEVA Workstation**의 경량 뷰어 SDK(\`AmevaViewer\`)를 통해 렌더링되고 있습니다.
+
+> [!NOTE]
+> 호스트 페이지의 전역 CSS 간섭을 배제하도록 \`.ameva-viewer-root\` 스코프로 완전 격리되어 있습니다.
+
+> [!TIP]
+> 1줄의 스크립트(\`AmevaViewer.mount\`) 또는 커스텀 엘리먼트(\`<ameva-viewer>\`)로 어떤 웹사이트에도 즉시 이식 가능합니다.
+
+\`\`\`typescript
+// uno-km 글 보기 화면 연동 예시
+import { AmevaViewer } from '/shared/ameva-viewer/ameva-viewer.es.js'
+
+AmevaViewer.mount('#article-container', {
+  markdown: post.content,
+  theme: 'dark'
+})
+\`\`\`
+
+| 지원 기능 | 상태 | 비고 |
+| :--- | :--- | :--- |
+| GitHub Flavored Markdown | ✅ Active | 테이블, 리스트, 체크박스 지원 |
+| Code Syntax Highlighting | ✅ Active | Highlight.js 테크 테마 및 복사 버튼 |
+| Mermaid 다이어그램 | ✅ Active | 반응형 다이어그램 동적 렌더링 |
+| 테마 동적 스위칭 | ✅ Active | Cyber Dark / Light / Retro Win98 |
+`;
+
+          if (window.AmevaViewer && window.AmevaViewer.mount) {
+            window.activeViewerInstance = window.AmevaViewer.mount('#workstation-sdk-viewer', {
+              markdown: sampleDoc,
+              theme: 'dark'
+            });
+          }
+        });
+
+        function setViewerTheme(theme) {
+          if (window.activeViewerInstance) {
+            window.activeViewerInstance.setTheme(theme);
+          }
+        }
+      </script>
+    </main>
+  </div>
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation.</span>
+  </footer>
+</body>
+</html>

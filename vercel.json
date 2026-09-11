@@ -1,0 +1,478 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/lib/mcp",
+      "destination": "/lib/mcp/",
+      "permanent": false
+    },
+    {
+      "source": "/mcp",
+      "destination": "/lib/mcp/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/aichain",
+      "destination": "/lib/aichain/",
+      "permanent": false
+    },
+    {
+      "source": "/aichain",
+      "destination": "/lib/aichain/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/bitnet",
+      "destination": "/lib/bitnet/",
+      "permanent": false
+    },
+    {
+      "source": "/bitnet",
+      "destination": "/lib/bitnet/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/sentinel",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/playwright",
+      "destination": "/lib/playwright/",
+      "permanent": false
+    },
+    {
+      "source": "/playwright",
+      "destination": "/lib/playwright/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/stt",
+      "destination": "/lib/stt/",
+      "permanent": false
+    },
+    {
+      "source": "/stt",
+      "destination": "/lib/stt/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/train",
+      "destination": "/lib/train/",
+      "permanent": false
+    },
+    {
+      "source": "/train",
+      "destination": "/lib/train/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/diffusion",
+      "destination": "/lib/diffusion/",
+      "permanent": false
+    },
+    {
+      "source": "/diffusion",
+      "destination": "/lib/diffusion/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/forge",
+      "destination": "/lib/forge/",
+      "permanent": false
+    },
+    {
+      "source": "/forge",
+      "destination": "/lib/forge/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/infra-index",
+      "destination": "/lib/infra-index/",
+      "permanent": false
+    },
+    {
+      "source": "/infra-index",
+      "destination": "/lib/infra-index/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-llamacpp",
+      "destination": "/lib/llamacpp/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-vision",
+      "destination": "/lib/vision/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/termux-tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/termux-tts",
+      "destination": "/lib/tts/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/vulkan",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/vulkan",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/lib/ameva-runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/ameva-runtime",
+      "destination": "/lib/vulkan/",
+      "permanent": false
+    },
+    {
+      "source": "/sdk/sentinel",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel-sdk",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/risk-core",
+      "destination": "/lib/sentinel/",
+      "permanent": false
+    },
+    {
+      "source": "/foundation",
+      "destination": "/foundation/",
+      "permanent": false
+    },
+    {
+      "source": "/docs/foundation",
+      "destination": "/foundation/",
+      "permanent": false
+    },
+    {
+      "source": "/workstation",
+      "destination": "/app/workstation/",
+      "permanent": false
+    },
+    {
+      "source": "/observability",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/status",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/ops",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/telemetry",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel/status",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel/admin",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/sentinel/observability",
+      "destination": "/lib/sentinel/admin.html",
+      "permanent": false
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/app/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/docs/foundation/dashboard",
+      "destination": "/foundation/dashboard/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/labs",
+      "destination": "/labs/index.html"
+    },
+    {
+      "source": "/labs/",
+      "destination": "/labs/index.html"
+    },
+    {
+      "source": "/labs/:match*",
+      "destination": "/labs/:match*"
+    },
+    {
+      "source": "/api/labs",
+      "destination": "/api/labs.js"
+    },
+    {
+      "source": "/api/labs/:match*",
+      "destination": "/api/labs.js"
+    },
+    {
+      "source": "/foundation/dashboard",
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/foundation/dashboard/",
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/docs/foundation/dashboard",
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/docs/foundation/dashboard/",
+      "destination": "/foundation/dashboard/index.html"
+    },
+    {
+      "source": "/foundation/dashboard/:match*",
+      "destination": "/foundation/dashboard/:match*"
+    },
+    {
+      "source": "/dashboard/:match*",
+      "destination": "/foundation/dashboard/:match*"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/analytics/$1"
+    },
+    {
+      "source": "/admin",
+      "destination": "/analytics/index.html"
+    },
+    {
+      "source": "/analytics/(.*)",
+      "destination": "/analytics/$1"
+    },
+    {
+      "source": "/analytics",
+      "destination": "/analytics/index.html"
+    },
+    {
+      "source": "/docs/foundation/:match*",
+      "destination": "/foundation/:match*"
+    },
+    {
+      "source": "/foundation/:match*",
+      "destination": "/foundation/:match*"
+    },
+    {
+      "source": "/docs/charter",
+      "destination": "/foundation/charter.html"
+    },
+    {
+      "source": "/docs/governance",
+      "destination": "/foundation/governance.html"
+    },
+    {
+      "source": "/docs/incubation",
+      "destination": "/foundation/incubation.html"
+    },
+    {
+      "source": "/docs/sponsorship",
+      "destination": "/foundation/sponsorship.html"
+    },
+    {
+      "source": "/charter",
+      "destination": "/foundation/charter.html"
+    },
+    {
+      "source": "/governance",
+      "destination": "/foundation/governance.html"
+    },
+    {
+      "source": "/incubation",
+      "destination": "/foundation/incubation.html"
+    },
+    {
+      "source": "/sponsorship",
+      "destination": "/foundation/sponsorship.html"
+    },
+    {
+      "source": "/shared/:match*",
+      "destination": "/shared/:match*"
+    },
+    {
+      "source": "/lib/sentinel/:match*",
+      "destination": "/lib/sentinel/:match*"
+    },
+    {
+      "source": "/lib/mcp/:match*",
+      "destination": "/lib/mcp/:match*"
+    },
+    {
+      "source": "/lib/aichain/:match*",
+      "destination": "/lib/aichain/:match*"
+    },
+    {
+      "source": "/lib/bitnet/:match*",
+      "destination": "/lib/bitnet/:match*"
+    },
+    {
+      "source": "/lib/forge/:match*",
+      "destination": "/lib/forge/:match*"
+    },
+    {
+      "source": "/lib/diffusion/:match*",
+      "destination": "/lib/diffusion/:match*"
+    },
+    {
+      "source": "/lib/playwright/:match*",
+      "destination": "/lib/playwright/:match*"
+    },
+    {
+      "source": "/lib/stt/:match*",
+      "destination": "/lib/stt/:match*"
+    },
+    {
+      "source": "/lib/train/:match*",
+      "destination": "/lib/train/:match*"
+    },
+    {
+      "source": "/lib/infra-index/:match*",
+      "destination": "/lib/infra-index/:match*"
+    },
+    {
+      "source": "/lib/llamacpp/:match*",
+      "destination": "/lib/llamacpp/:match*"
+    },
+    {
+      "source": "/lib/vision/:match*",
+      "destination": "/lib/vision/:match*"
+    },
+    {
+      "source": "/lib/tts/:match*",
+      "destination": "/lib/tts/:match*"
+    },
+    {
+      "source": "/lib/vulkan/:match*",
+      "destination": "/lib/vulkan/:match*"
+    },
+    {
+      "source": "/workstation/:match*",
+      "destination": "/app/workstation/index.html"
+    },
+    {
+      "source": "/app/workstation/:match*",
+      "destination": "/app/workstation/:match*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/shared/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    }
+  ]
+}

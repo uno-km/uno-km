@@ -1,0 +1,31 @@
+# Termux-STT — AI Agent Fast Context
+# Generated: 2026-09-08  |  Version: 1.2.4
+
+## Library
+Name: Termux-STT
+Version: 1.2.4
+GitHub: https://github.com/uno-km/termux-stt
+Documentation: https://uno-km.vercel.app/lib/stt/
+License: Apache-2.0
+
+## Description
+
+
+## Documentation Pages
+  - /lib/stt/index.html
+  - /lib/stt/installation.html
+  - /lib/stt/quickstart.html
+  - /lib/stt/api-reference.html
+  - /lib/stt/models.html
+  - /lib/stt/showcase.html
+  - /lib/stt/benchmarks.html
+  - /lib/stt/advanced-parameters.html
+  - /lib/stt/versions.html
+
+## Quick Install
+pip install termux-stt
+npm install termux-stt
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/stt/llms-full.txt
