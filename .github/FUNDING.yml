@@ -1,0 +1,8 @@
+# ==============================================================================
+# 💖 AMEVA Open-Source Foundation (AOSF) - Funding Configuration
+# ==============================================================================
+# These are supported funding model platforms
+
+github: [uno-km]
+open_collective: ameva-foundation
+custom: ['https://uno-km.vercel.app/foundation/sponsorship.html']
