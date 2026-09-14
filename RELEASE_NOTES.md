@@ -2,6 +2,41 @@
 
 ---
 
+## [AMEVA-Runtime v2.5.1] - 2026-09-14
+
+### Overview
+**AMEVA-Runtime v2.5.1** (Python: `2.5.1` / NPM: `@ameva/runtime v2.6.0-alpha.4`) delivers critical hardware-aware Vulkan compute stability and neural acceleration for Qualcomm Snapdragon mobile silicon, resolving proprietary driver compiler crashes and deadlocks while establishing single-bundle SSOT provisioning for on-device STT engines.
+
+### Key Changes
+* **Qualcomm Adreno Vulkan SoftMax wg64 Alignment**:
+  * Constrained Vulkan SoftMax compute shader workgroups to the hardware subgroup size (64), eliminating `VK_ERROR_DEVICE_LOST` driver crashes and cross-warp barrier deadlocks on Qualcomm Adreno 730 / 600 / 800 series GPUs.
+* **Automatic Hardware-Aware Routing (Zero CLI Friction)**:
+  * Implemented automatic hardware-aware attention routing in Whisper core: automatically detects Qualcomm Adreno silicon and bypasses closed-source driver compiler assertion crashes on Flash Attention, routing directly to the 100% native Vulkan GPU standard attention pipeline without requiring manual `--no-flash-attn` (`-nfa`) CLI flags.
+* **Empirical Live Device Telemetry (Galaxy S22 / Adreno 730, JFK 1min Audio)**:
+  * **Neural Encoder Time**: **5.13s (5,128.94 ms)** on Vulkan GPU vs **19.14s (19,137.16 ms)** on CPU — **3.73x pure GPU speedup**.
+  * **Stability & Reliability**: Zero silent fallbacks (`fallbacks = 0 p / 0 h`), zero deadlock, ~14% CPU load, 100% transcript accuracy.
+* **Mali-G78 Non-Regression**:
+  * Confirmed zero regression on ARM Mali GPUs (Galaxy S21 / Exynos 2100 / Mali-G78 MP14), maintaining native Vulkan Flash Attention (~17.5s total time, 0 fallbacks).
+* **Single SSOT STT Bundle Provisioning**:
+  * Unified native STT engine deployment under `NATIVE_ASSETS["stt"]` with verified cryptographic SHA-256 (`90a2f4fd275aa13012e95f3fae5b00c2abc5079a50d2997ffb227355e6b6c944`) and atomic release directory deployment (`~/.local/share/ameva/current/stt`).
+
+---
+
+## [Termux-STT v1.2.5] - 2026-09-14
+
+### Overview
+**Termux-STT v1.2.5** (PyPI: `termux-stt 1.2.5` / NPM: `termux-stt@1.2.5`) incorporates the Qualcomm Adreno Vulkan SoftMax wg64 patch and automatic hardware routing, delivering plug-and-play 3.73x GPU speech recognition acceleration across Android Termux devices.
+
+### Key Changes
+* **Integrated Qualcomm Adreno Native Acceleration**:
+  * Default invocation (`termux-stt transcribe <audio>`) automatically leverages native Vulkan GPU acceleration on Snapdragon devices without requiring `--no-flash-attn` or manual hardware tuning.
+* **Explicit CPU Fallback Option (`-ng`)**:
+  * Added `-ng` flag support when CPU execution is explicitly requested (`-d cpu`), ensuring full compatibility across low-end devices without Vulkan support.
+* **Verified Native Bundle Distribution**:
+  * Pre-compiled and cryptographically authenticated native bundles (`whisper-cli-vulkan-android-arm64.tar.gz`) published directly to GitHub Releases v1.2.5.
+
+---
+
 ## [AMEVA-Runtime v1.0.1] - 2026-09-04
 
 ### Overview

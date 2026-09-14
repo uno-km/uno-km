@@ -113,8 +113,8 @@ libraries:
     status: stable
   stt:
     name: Termux-STT
-    version: 1.2.4
-    release_date: '2026-09-07'
+    version: 1.2.5
+    release_date: '2026-09-14'
     npm_package: termux-stt
     pypi_package: termux-stt
     github_repo: uno-km/termux-stt
@@ -222,8 +222,8 @@ libraries:
     status: stable
   vulkan:
     name: AMEVA-Runtime
-    version: 2.5.0
-    release_date: '2026-09-07'
+    version: 2.5.1
+    release_date: '2026-09-14'
     npm_package: "@ameva/runtime"
     pypi_package: ameva-runtime
     github_repo: uno-km/ameva-runtime
