@@ -264,6 +264,25 @@ Apache-2.0 License. Copyright (c) 2026 Eunho Kim (@uno-km).
 
 
 
+def resolve_lib_dir(target: str) -> Path:
+    """Robustly resolve library directory across dev root, dev/termux, dev/WORKSTAION."""
+    candidates = [
+        DEV_DIR / target,
+        DEV_DIR / f"termux-{target}",
+        DEV_DIR / f"AMEVA-{target}",
+        DEV_DIR / f"ameva-{target}",
+        DEV_DIR / f"ameva-{target}-runtime",
+        DEV_DIR / "termux" / target,
+        DEV_DIR / "termux" / f"termux-{target}",
+        DEV_DIR / "WORKSTAION" / target,
+        DEV_DIR / "WORKSTAION" / f"AMEVA-{target}",
+    ]
+    for c in candidates:
+        if c.exists() and c.is_dir():
+            return c
+    return DEV_DIR / target
+
+
 # ── Web Documentation & Custom Page Slot Builder ───────────────
 def build_library_docs(lib_name: str, config: dict):
     """
@@ -275,11 +294,7 @@ def build_library_docs(lib_name: str, config: dict):
         print(f"  [WARN] ameva_doc.py not found at {builder_script}")
         return
 
-    lib_path = DEV_DIR / lib_name
-    if not lib_path.exists():
-        lib_path = DEV_DIR / f"termux-{lib_name}"
-    if not lib_path.exists():
-        lib_path = DEV_DIR / f"AMEVA-{lib_name}"
+    lib_path = resolve_lib_dir(lib_name)
 
     config_file = lib_path / "doc.config.yaml" if lib_path.exists() else None
     if config_file and config_file.exists():
@@ -365,15 +380,7 @@ def cmd_build(args):
     """Compiles READMEs, validates badges, and builds web docs."""
     target = args.lib
     if target and target != "all":
-        lib_dir = DEV_DIR / target
-        if not lib_dir.exists():
-            lib_dir = DEV_DIR / f"termux-{target}"
-        if not lib_dir.exists():
-            lib_dir = DEV_DIR / f"AMEVA-{target}"
-        if not lib_dir.exists():
-            lib_dir = DEV_DIR / f"ameva-{target}"
-        if not lib_dir.exists():
-            lib_dir = DEV_DIR / f"ameva-{target}-runtime"
+        lib_dir = resolve_lib_dir(target)
         if not lib_dir.exists():
             print(f"[ERROR] Directory not found for '{target}' in {DEV_DIR}")
             return
@@ -387,12 +394,16 @@ def cmd_build(args):
         build_library_docs(lib_dir.name, config)
     else:
         print("\n[BUILDING ALL] Compiling all ecosystem packages...")
-        for p in DEV_DIR.iterdir():
-            if p.is_dir() and (p / "doc.config.yaml").exists():
-                cfg = parse_simple_yaml(p / "doc.config.yaml")
-                print(f"\n- Package: {p.name}")
-                compile_target_readmes(p, cfg)
-                build_library_docs(p.name, cfg)
+        search_dirs = [DEV_DIR, DEV_DIR / "termux", DEV_DIR / "WORKSTAION"]
+        for sdir in search_dirs:
+            if not sdir.exists():
+                continue
+            for p in sdir.iterdir():
+                if p.is_dir() and (p / "doc.config.yaml").exists():
+                    cfg = parse_simple_yaml(p / "doc.config.yaml")
+                    print(f"\n- Package: {p.name}")
+                    compile_target_readmes(p, cfg)
+                    build_library_docs(p.name, cfg)
 
     sync_all_catalogs()
     print("\n[SUCCESS] Ecosystem compilation completed with 100% Zero-Drift.")
@@ -404,11 +415,7 @@ def cmd_release(args):
     new_version = args.version if args.version.startswith("v") else f"v{args.version}"
     publish = args.publish
 
-    lib_dir = DEV_DIR / lib_name
-    if not lib_dir.exists():
-        lib_dir = DEV_DIR / f"termux-{lib_name}"
-    if not lib_dir.exists():
-        lib_dir = DEV_DIR / f"AMEVA-{lib_name}"
+    lib_dir = resolve_lib_dir(lib_name)
 
     if not lib_dir.exists():
         print(f"[ERROR] Target directory not found for '{lib_name}'")

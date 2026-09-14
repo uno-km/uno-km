@@ -1,15 +1,19 @@
-# termux-tts Full Technical Specification (v1.3.0)
+# termux-tts Full Technical Specification (v1.4.4)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Production-Grade 4-Tier On-Device Speech Synthesis Framework (Zero-Dependency DSP Formant, C++ Vulkan GPU Neural Engine & Android Native Voice Bridge)
-Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency and hardware acceleration. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity C++ Vulkan neural acceleration (lessac-high-fp16 at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning and subprocess IPC isolation, Termux-TTS achieves high acoustic fidelity while mitigating audio thread jitter and driver locks.
+Production-Grade 4-Tier On-Device Speech Synthesis Framework (Multilingual Neural Orchestrator, Zero-Dependency DSP Formant & C++ Acceleration)
+Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency, zero-config ergonomics, and multi-language acoustic fidelity. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity resident C-API multilingual neural models (9 languages including Korean, English, Japanese, Hindi, and Russian at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning, Unicode script classification, and resident in-memory model caching, Termux-TTS achieves high acoustic fidelity with sub-0.18x real-time factor.
 
 ## 2. Package & Installation
 - PyPI: termux-tts
 - Command: pip install termux-tts
 # or: npm install termux-tts
-# 1-Click Provision Studio Vulkan Engine:
-termux-tts install --tier high
+# 1-Click Provision Default Models (Korean KSS + English Lessac):
+termux-tts install
+# On-demand provision specific languages (e.g. Hindi, Japanese, Russian, or all):
+termux-tts install --models hi
+# Instant speech synthesis:
+termux-tts "Hello 방가방가 나는 parrot 이라고 해." -o out.wav --play
 
 - Repository: https://github.com/uno-km/termux-tts

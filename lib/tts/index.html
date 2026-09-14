@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-TTS | Official Documentation</title>
-  <meta name="description" content="클라우드 비용 없이 모바일 하드웨어 GPU 연산으로 스튜디오 성우 수준의 자연스러운 음성을 온디바이스에서 즉시 합성합니다.">
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency, zero-config ergonomics, and multi-language acoustic fidelity. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity resident C-API multilingual neural models (9 languages including Korean, English, Japanese, Hindi, and Russian at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning, Unicode script classification, and resident in-memory model caching, Termux-TTS achieves high acoustic fidelity with sub-0.18x real-time factor.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,120 +19,174 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">4-Tier 복원형 아키텍처 및 Vulkan GPU 22.05kHz 스튜디오 음질 온디바이스 음성 합성 엔진</p>
+      <h2 data-i18n="home.title">Termux-TTS</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Production-Grade 4-Tier On-Device Speech Synthesis Framework (Multilingual Neural Orchestrator, Zero-Dependency DSP Formant & C++ Acceleration)</p>
 
-      <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-tts
-
-# Node.js 공식 패키지 매니저
-npm install termux-tts</code></pre>
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-tts/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-tts.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-tts" target="_blank"><img src="https://img.shields.io/npm/v/termux-tts.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Qualcomm_Adreno_&_ARM_Mali_Vulkan_1.3_/_Linux-blueviolet.svg" alt="Platform">
       </div>
 
-      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">스마트폰에서 신경망 TTS 구동 시 메모리 부족(OOM), GPU 셰이더 드라이버 결함(Adreno/Mali 충돌), 백그라운드 프로세스 강제 종료로 인해 안정적인 실시간 음성 서비스 제공이 어려웠습니다.</p>
-
-      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">무의존성 DSP(Tier 1)부터 22.05kHz C++ Vulkan GPU(Tier 4)까지 이어지는 4단계 자동 복원형 아키텍처를 구축하여, 어떠한 저사양 모바일 환경에서도 끊김 없는 실시간 고품질 음성 합성을 보장합니다.</p>
-
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">기계음 같은 어색한 목소리와 비싼 클라우드 사용료 대신, 내 스마트폰 자체 연산으로 스튜디오 성우처럼 자연스럽고 생생한 목소리를 들려드립니다. 복잡한 설정 없이 1초 만에 바로 말하게 하세요.</p>
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-tts
+# or: npm install termux-tts
+# 1-Click Provision Default Models (Korean KSS + English Lessac):
+termux-tts install
+# On-demand provision specific languages (e.g. Hindi, Japanese, Russian, or all):
+termux-tts install --models hi
+# Instant speech synthesis:
+termux-tts "Hello 방가방가 나는 parrot 이라고 해." -o out.wav --play
+</code></pre>
       </div>
 
-      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Constrained mobile edge environments frequently suffer from execution instability, excessive thermal throttling, and unpredictable runtime memory spikes when running conventional deep learning text-to-speech stacks. Heavyweight dependencies like full PyTorch or unoptimized runtime graph compilers exhaust mobile DRAM, while cross-language code-switching historically required multiple disconnected runtimes or heavy cloud APIs.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency, zero-config ergonomics, and multi-language acoustic fidelity. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity resident C-API multilingual neural models (9 languages including Korean, English, Japanese, Hindi, and Russian at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning, Unicode script classification, and resident in-memory model caching, Termux-TTS achieves high acoustic fidelity with sub-0.18x real-time factor.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">4-Tier 내결함성 복원형 아키텍처</h4>
-          <p data-i18n="home.features.0.desc">최고음질 Vulkan GPU(Tier 4)부터 무의존성 DSP(Tier 1)까지 하드웨어 상태에 따라 자율 감등하여 무중단 서비스를 보장합니다.</p>
+          <h4 data-i18n="home.features.0.title">Multilingual Neural Orchestrator</h4>
+          <p data-i18n="home.features.0.desc">Dynamic cross-language code-switching and single-language synthesis supporting 9 official languages (Korean, English, Japanese, Chinese, Hindi, Russian, Spanish, French, German) with 50ms context-aware pause padding.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">22.05kHz 스튜디오 품질 신경망 합성</h4>
-          <p data-i18n="home.features.1.desc">VITS 및 Piper 신경망 아키텍처를 온디바이스에서 구동하여 실제 성우 수준의 고해상도 자연 음성을 생성합니다.</p>
+          <h4 data-i18n="home.features.1.title">Resident C-API In-Memory Acceleration</h4>
+          <p data-i18n="home.features.1.desc">Native C-API residency with SherpaResidentManager eliminates subprocess startup latency and achieves sub-0.18x real-time factor with ARM NEON SIMD acceleration.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Vulkan GPU 셰이더 고속 연산</h4>
-          <p data-i18n="home.features.2.desc">AMEVA-Runtime Vulkan 백엔드를 통해 Adreno 830 기준 실시간보다 3.79배 빠른 초고속(RTF 0.26x) 음성 합성을 실현합니다.</p>
+          <h4 data-i18n="home.features.2.title">Zero-Config CLI Ergonomics</h4>
+          <p data-i18n="home.features.2.desc">Top-level speech synthesis by default (termux-tts 'Hello' --play) without requiring subcommands or explicit engine flags. Explicit 'speak' command routes to Android native system voice.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">제로 서브프로세스 인메모리 스트리밍</h4>
-          <p data-i18n="home.features.3.desc">임시 파일 생성 없이 메모리 상에서 직접 PCM 스트림을 생성하여 플래시 메모리 수명을 보호하고 I/O 병목을 제거합니다.</p>
+          <h4 data-i18n="home.features.3.title">On-Demand Self-Healing Provisioner</h4>
+          <p data-i18n="home.features.3.desc">1-Click automated provisioning (termux-tts install --models default/hi/ja/ru/zh/all) with actionable English guidance and absolute paths for uninstalled models.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">감정 및 음성 태그 동적 변조</h4>
-          <p data-i18n="home.features.4.desc">발화 속도, 음높이(Pitch), 성별 음색을 오버헤드 없이 실시간 파라미터 조작으로 자유롭게 변경합니다.</p>
+          <h4 data-i18n="home.features.4.title">4-Tier Resilient Architecture</h4>
+          <p data-i18n="home.features.4.desc">Tier 1: Zero-Dependency Parametric DSP Formant (0MB footprint). Tier 2: Android Native System Voice Bridge. Tier 3: Subprocess-Isolated Sherpa C++ CPU Engine. Tier 4: Pure Vulkan GPU Hardware Neural Acceleration.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">1-Click Automated Provisioning</h4>
+          <p data-i18n="home.features.5.desc">Command-line provisioning (termux-tts install --tier high/medium) automatically resolves precompiled ARM64 native binaries and HuggingFace weights with self-test verification.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.6.title">Studio-Grade FP16 Neural Fidelity</h4>
+          <p data-i18n="home.features.6.desc">Native support for high-resolution 22.05kHz 16-bit PCM studio models (vits-piper-en_US-lessac-high-fp16), delivering natural prosody on mobile hardware.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.7.title">Pure Vulkan GPU Acceleration (Zero CPU Fallback)</h4>
+          <p data-i18n="home.features.7.desc">Direct GPU tensor compute via Vulkan 1.3 pipeline caching, fully resolving Qualcomm Adreno 830 and ARM Mali-G68 shader driver anomalies without silent CPU fallback.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.8.title">Subprocess IPC Memory Isolation</h4>
+          <p data-i18n="home.features.8.desc">Architectural separation of audio synthesis and OpenSL ES playback threads via subprocess IPC prevents Python GIL contention and memory corruption.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.9.title">Unified Cross-Language Toolchain</h4>
+          <p data-i18n="home.features.9.desc">Identical functional parity and strict typing across Global CLI, Python 3.10+ SDK, and Node.js / TypeScript runtime bindings.</p>
         </div>
       </div>
 
-      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thCategory">서브시스템 분류</th>
-            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
-            <th data-i18n="table.thStability">상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>VITS Neural Vocoder</strong></td>
-            <td>Vulkan 셰이더 기반 신경망 보코더 및 오디오 역변환</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Tier 1: DSP Formant</strong></td>
+            <td>Rosenberg Glottal Pulse, 5-Band Biquad Filter, Sino-Korean Numeral Normalizer</td>
+            <td><span class="status-badge active">Production (<50ms)</span></td>
           </tr>
           <tr>
-            <td><strong>Piper Onnx/NCNN Pipeline</strong></td>
-            <td>ARM NEON SIMD 128비트 부동소수점 텐서 음향 모델</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Tier 2: Native Bridge</strong></td>
+            <td>Termux-API / Android TTS Service IPC (Samsung/Google Engine)</td>
+            <td><span class="status-badge active">Production (Immediate)</span></td>
           </tr>
           <tr>
-            <td><strong>DSP Acoustic Generator</strong></td>
-            <td>순수 정수 연산 기반 무의존성 음소-음향 합성기</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Tier 3: CPU Neural</strong></td>
+            <td>Sherpa C++ Subprocess-Isolated VITS Engine (ARM64 NEON)</td>
+            <td><span class="status-badge active">Production (RTF 0.4~1.2x)</span></td>
           </tr>
           <tr>
-            <td><strong>ALSA / AudioTrack HAL</strong></td>
-            <td>안드로이드 네이티브 오디오 믹서 제로카피 링 버퍼 출력</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Tier 4: Vulkan GPU</strong></td>
+            <td>C++ Vulkan Pipeline Caching, Mali Quirk Handling, Adreno Subgroup 64</td>
+            <td><span class="status-badge active">Production (RTF 0.26x)</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
-      <div>
-        <h4>Python (pip) 사용 예제</h4>
-        <pre><code class="language-python">from termux_tts import TTSEngine
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import termux_tts as tts
 
-# 1. 4-Tier 복원형 TTS 엔진 초기화 (Vulkan GPU 가속)
-engine = TTSEngine(tier=4, sample_rate=22050)
+# 1. Zero-Config Multilingual Neural Synthesis (Korean + English Code-Switching)
+with tts.load() as engine:
+    result = engine.synthesize(
+        "Hello 방가방가 키키키키 나는 parrot 이라고 해. Natural cross-language neural voice.",
+        output="multilingual.wav"
+    )
+    print(f"Synthesized {result.duration_sec:.2f}s in {result.elapsed_ms:.1f}ms (RTF: {result.rtf:.4f}x)")
 
-# 2. 텍스트 음성 합성 및 오디오 스트림 재생
-print("[TTS] 고음질 음성 합성 시작...")
-engine.speak("안녕하세요, 온디바이스 AMEVA 음성 합성 엔진입니다.")
-engine.save_to_wav("output.wav", "성공적으로 온디바이스 음성 합성이 완료되었습니다.")</code></pre>
-      </div>
-      <div>
-        <h4>Node.js (npm) 사용 예제</h4>
-        <pre><code class="language-javascript">const { TTSEngine } = require('termux-tts');
+# 2. Pure Vulkan GPU Neural Synthesis (Studio Tier)
+with tts.load(engine="vulkan", model_tier="high") as engine:
+    result = engine.synthesize(
+        "The neural speech synthesis engine is operating with pure Vulkan hardware acceleration.",
+        output="studio_vulkan.wav"
+    )
+    print(f"Synthesized {result.duration_sec:.2f}s in {result.elapsed_ms:.1f}ms (RTF: {result.rtf:.4f}x)")
+
+# 3. Instant Zero-Dependency DSP Formant Synthesis
+with tts.load(engine="dsp", preset="balanced") as engine:
+    result = engine.synthesize("Instant speech generation with zero external weights.", output="dsp.wav")
+    print(f"DSP Synthesis Latency: {result.elapsed_ms:.1f}ms")
+
+# 4. Direct Android Hardware Speaker Playback
+with tts.load(engine="native", language="en") as engine:
+    engine.speak("Direct hardware speaker output via Android native service.")
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>const tts = require('termux-tts');
 
 async function main() {
-  const tts = new TTSEngine({ tier: 4 });
-  await tts.speak('안녕하세요, 온디바이스 음성 합성 엔진입니다.');
-}
+  // 1. Initialize Vulkan GPU Neural Engine
+  const engine = tts.load({ engine: 'vulkan', tier: 'high' });
+  const res = await engine.synthesize(
+    "High-performance speech synthesis on mobile hardware.",
+    { output: "vulkan_output.wav" }
+  );
+  console.log(`Generated: ${res.durationSec}s in ${res.elapsedMs}ms (RTF: ${res.rtf}x)`);
 
-main();</code></pre>
+  // 2. Hardware Diagnostics
+  const diag = await tts.doctor();
+  console.log(`Vulkan GPU Device: ${diag.device_name} (API: ${diag.api_version})`);
+}
+main();
+</code></pre>
+        </div>
       </div>
 
-      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
-        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
-        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
-        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
-        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
-        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>

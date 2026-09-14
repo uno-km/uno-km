@@ -1,30 +1,46 @@
-# Termux-TTS — AI Agent Fast Context
-# Generated: 2026-09-14  |  Version: 1.4.3
+# termux-tts (v1.4.4)
+> Production-Grade 4-Tier On-Device Speech Synthesis Framework (Multilingual Neural Orchestrator, Zero-Dependency DSP Formant & C++ Acceleration)
 
-## Library
-Name: Termux-TTS
-Version: 1.4.3
-GitHub: https://github.com/uno-km/termux-tts
-Documentation: https://uno-km.vercel.app/lib/tts/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-tts
+- Installation: `pip install termux-tts
+# or: npm install termux-tts
+# 1-Click Provision Default Models (Korean KSS + English Lessac):
+termux-tts install
+# On-demand provision specific languages (e.g. Hindi, Japanese, Russian, or all):
+termux-tts install --models hi
+# Instant speech synthesis:
+termux-tts "Hello 방가방가 나는 parrot 이라고 해." -o out.wav --play
+`
+- Architecture: Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency, zero-config ergonomics, and multi-language acoustic fidelity. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity resident C-API multilingual neural models (9 languages including Korean, English, Japanese, Hindi, and Russian at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning, Unicode script classification, and resident in-memory model caching, Termux-TTS achieves high acoustic fidelity with sub-0.18x real-time factor.
 
-## Description
+## Canonical Code Pattern
+```python
+import termux_tts as tts
 
+# 1. Zero-Config Multilingual Neural Synthesis (Korean + English Code-Switching)
+with tts.load() as engine:
+    result = engine.synthesize(
+        "Hello 방가방가 키키키키 나는 parrot 이라고 해. Natural cross-language neural voice.",
+        output="multilingual.wav"
+    )
+    print(f"Synthesized {result.duration_sec:.2f}s in {result.elapsed_ms:.1f}ms (RTF: {result.rtf:.4f}x)")
 
-## Documentation Pages
-  - /lib/tts/index.html
-  - /lib/tts/vulkan-engineering-paper.html
-  - /lib/tts/installation.html
-  - /lib/tts/quickstart.html
-  - /lib/tts/api-reference.html
-  - /lib/tts/benchmarks.html
-  - /lib/tts/advanced-parameters.html
-  - /lib/tts/versions.html
+# 2. Pure Vulkan GPU Neural Synthesis (Studio Tier)
+with tts.load(engine="vulkan", model_tier="high") as engine:
+    result = engine.synthesize(
+        "The neural speech synthesis engine is operating with pure Vulkan hardware acceleration.",
+        output="studio_vulkan.wav"
+    )
+    print(f"Synthesized {result.duration_sec:.2f}s in {result.elapsed_ms:.1f}ms (RTF: {result.rtf:.4f}x)")
 
-## Quick Install
-pip install termux-tts
-npm install termux-tts
+# 3. Instant Zero-Dependency DSP Formant Synthesis
+with tts.load(engine="dsp", preset="balanced") as engine:
+    result = engine.synthesize("Instant speech generation with zero external weights.", output="dsp.wav")
+    print(f"DSP Synthesis Latency: {result.elapsed_ms:.1f}ms")
 
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/tts/llms-full.txt
+# 4. Direct Android Hardware Speaker Playback
+with tts.load(engine="native", language="en") as engine:
+    engine.speak("Direct hardware speaker output via Android native service.")
+
+```

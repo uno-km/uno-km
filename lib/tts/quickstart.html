@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>퀵스타트 및 실행 레시피 | Termux-TTS</title>
-  <meta name="description" content="Termux-TTS 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <title>Quickstart & Execution Recipes | termux-tts</title>
+  <meta name="description" content="Termux-TTS delivers a resilient 4-Tier on-device text-to-speech architecture designed for deterministic latency, zero-config ergonomics, and multi-language acoustic fidelity. It bridges lightweight parametric DSP synthesis (<50ms compute, 0MB model download) with high-fidelity resident C-API multilingual neural models (9 languages including Korean, English, Japanese, Hindi, and Russian at 22.05kHz), alongside Android system native speech service routing. With automated 1-click provisioning, Unicode script classification, and resident in-memory model caching, Termux-TTS achieves high acoustic fidelity with sub-0.18x real-time factor.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,90 +19,29 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (Termux-TTS)</p>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Command-Line Interface (CLI) Recipes</h3>
+<pre><code># 1. High-Resolution Studio Neural Synthesis with Speaker Playback
+termux-tts synth -e vulkan --tier high -t "Operating at full hardware capacity." -o speech.wav --play
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="quickstart.valueProp">글자만 적어 넣으면 1초 만에 귀에 쏙쏙 박히는 자연스러운 사람 목소리로 즉시 읽어줍니다.</p>
-      </div>
+# 2. Instant Zero-Dependency DSP Formant Synthesis
+termux-tts synth -e dsp -p ultra -t "Zero dependency parametric speech synthesis." -o dsp.wav
 
-      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
-      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
-      <pre><code>termux-tts speak '안녕하세요, 온디바이스 AMEVA 음성 합성 엔진입니다.' --tier 4</code></pre>
+# 3. Direct Android Hardware Speaker Broadcast
+termux-tts speak -t "System notification broadcast." -l en
 
-      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
-      <pre><code class="language-python">from termux_tts import TTSEngine
+# 4. Hardware and Environment Diagnostics
+termux-tts doctor</code></pre>
 
-# 1. 4-Tier 복원형 TTS 엔진 초기화 (Vulkan GPU 가속)
-engine = TTSEngine(tier=4, sample_rate=22050)
+<h3>Python SDK Canon</h3>
+<pre><code>import termux_tts as tts
 
-# 2. 텍스트 음성 합성 및 오디오 스트림 재생
-print("[TTS] 고음질 음성 합성 시작...")
-engine.speak("안녕하세요, 온디바이스 AMEVA 음성 합성 엔진입니다.")
-engine.save_to_wav("output.wav", "성공적으로 온디바이스 음성 합성이 완료되었습니다.")</code></pre>
+# Initialize pure Vulkan GPU neural synthesis engine
+with tts.load(engine="vulkan", model_tier="high") as engine:
+    res = engine.synthesize("Validating deterministic tensor execution.", output="out.wav")
+    print(f"Elapsed: {res.elapsed_ms:.1f}ms | RTF: {res.rtf:.4f}x")</code></pre>
 
-      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
-      <pre><code class="language-javascript">const { TTSEngine } = require('termux-tts');
-
-async function main() {
-  const tts = new TTSEngine({ tier: 4 });
-  await tts.speak('안녕하세요, 온디바이스 음성 합성 엔진입니다.');
-}
-
-main();</code></pre>
-
-      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thModel">모델 / 프로파일</th>
-            <th data-i18n="table.thScore">검증 상태</th>
-            <th data-i18n="table.thVram">VRAM 점유</th>
-            <th data-i18n="table.thSpeed">추론 속도</th>
-            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>VITS-Lessac-High-FP16</strong></td><td>★ 5.0</td><td>128 MB</td><td>RTF 0.26x (Adreno 830)</td><td>22.05kHz 스튜디오 품질 신경망 모델, Vulkan GPU 가속</td></tr>
-          <tr><td><strong>Piper-Medium-KO</strong></td><td>★ 4.8</td><td>64 MB</td><td>RTF 0.38x (Adreno 830)</td><td>한국어 자연 발화에 최적화된 경량 모바일 TTS 모델</td></tr>
-          <tr><td><strong>Sherpa-NCNN-Vulkan-Fast</strong></td><td>★ 4.7</td><td>42 MB</td><td>RTF 0.18x (Mali-G68)</td><td>저사양 보급형 단말기를 위한 초고속 실시간 음성 합성</td></tr>
-          <tr><td><strong>Fallback-DSP-Acoustic</strong></td><td>★ 4.0</td><td>4 MB</td><td>RTF 0.05x (Cortex-A78)</td><td>GPU 및 메모리 부족 시 동작하는 초경량 0-의존성 DSP</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
-            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
-            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>VK_ERROR_DEVICE_LOST</code></td>
-            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
-            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
-          </tr>
-          <tr>
-            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
-            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
-            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
-          </tr>
-          <tr>
-            <td>배터리 구동 시 지연시간 급증</td>
-            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
-            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
-          </tr>
-          <tr>
-            <td>프로세스 종료 후 VRAM 미반납</td>
-            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
-            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
-          </tr>
-        </tbody>
-      </table>
     </main>
   </div>
 
