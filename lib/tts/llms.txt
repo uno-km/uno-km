@@ -1,4 +1,4 @@
-# termux-tts (v1.4.4)
+# termux-tts (v1.5.0)
 > Production-Grade 4-Tier On-Device Speech Synthesis Framework (Multilingual Neural Orchestrator, Zero-Dependency DSP Formant & C++ Acceleration)
 
 ## Quick Specification for AI Coding Agents
