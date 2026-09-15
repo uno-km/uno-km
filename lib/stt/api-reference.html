@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API 명세서 및 프로토콜 규격 | Termux-STT</title>
-  <meta name="description" content="Termux-STT 클래스 시그니처, 파라미터 타입, 반환값 규격 및 메모리 수명주기">
+  <title>Complete API Reference | Termux-STT</title>
+  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,112 +19,108 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="api.title">API 인터페이스 명세서</h2>
-      <p class="subtitle" data-i18n="api.subtitle">클래스 시그니처, 파라미터 타입, 반환값 규격 및 메모리 수명주기 (Termux-STT)</p>
+      <h2>Complete API Reference</h2>
+      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
+      <h3>1. Top-Level Engine Factory</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Function</th><th>Parameters</th><th>Return Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>create_engine</code></td>
+      <td><code>engine="whisper", model=None, lang="ko", threads=None, vad=True, quantization="q5_1", num_speakers=0, **kwargs</code></td>
+      <td><code>Engine</code></td>
+      <td>Instantiates and returns the configured concrete STT or Hybrid engine instance.</td>
+    </tr>
+  </tbody>
+</table>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="api.valueProp">소리를 글자로 바꾸고 누가 말했는지 척척 구분하는 오디오 컨트롤 타워: 내 앱에 음성 인식 능력을 자유자재로 부여하세요.</p>
-      </div>
+<h3>2. Core Engine Methods (<code>Engine</code> Abstract Base)</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Method</th><th>Signature</th><th>Return Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>transcribe</code></td>
+      <td><code>(audio_path: str, **kwargs)</code></td>
+      <td><code>TranscriptResult</code></td>
+      <td>Transcribes audio file with subprocess crash isolation and returns full text with timestamped segments.</td>
+    </tr>
+    <tr>
+      <td><code>diarize</code></td>
+      <td><code>(audio_path: str, num_speakers: int = 2)</code></td>
+      <td><code>DiarizedResult</code></td>
+      <td>Runs the full hybrid diarization pipeline (128d X-Vector + K-Means + STT).</td>
+    </tr>
+    <tr>
+      <td><code>stream_mic</code></td>
+      <td><code>(duration: Optional[float] = None)</code></td>
+      <td><code>Iterator[Segment]</code></td>
+      <td>Streams live audio from the device microphone and yields transcribed segments in real time.</td>
+    </tr>
+    <tr>
+      <td><code>stream_file</code></td>
+      <td><code>(audio_path: str, chunk_sec: float = 5.0)</code></td>
+      <td><code>Iterator[Segment]</code></td>
+      <td>Streams audio from a file in chunks and yields transcription segments sequentially.</td>
+    </tr>
+    <tr>
+      <td><code>get_info</code></td>
+      <td><code>()</code></td>
+      <td><code>Dict[str, Any]</code></td>
+      <td>Returns engine status metadata, active model name, language, and hardware thread configuration.</td>
+    </tr>
+  </tbody>
+</table>
 
-      <h3 data-i18n="api.sec1Title">1. 코어 엔진 인터페이스 및 메서드</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thParamName">파라미터명</th>
-            <th data-i18n="table.thType">데이터 타입</th>
-            <th data-i18n="table.thDefault">기본값</th>
-            <th data-i18n="table.thRequired">필수 여부</th>
-            <th data-i18n="table.thDesc">기능 및 엔지니어링 설명</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>device</code></td>
-            <td><code>str</code></td>
-            <td><code>"auto"</code></td>
-            <td>선택</td>
-            <td>하드웨어 가속 백엔드 선택: <code>"auto"</code> (자동 감지), <code>"vulkan"</code> (GPU), <code>"cpu"</code> (NEON).</td>
-          </tr>
-          <tr>
-            <td><code>threads</code></td>
-            <td><code>int</code></td>
-            <td><code>4</code></td>
-            <td>선택</td>
-            <td>물리 CPU 고성능 빅코어에 바인딩할 워커 스레드 개수.</td>
-          </tr>
-          <tr>
-            <td><code>shm_buffer</code></td>
-            <td><code>bool</code></td>
-            <td><code>True</code></td>
-            <td>선택</td>
-            <td>프로세스 간 제로카피 텐서 스트리밍을 위한 POSIX 공유 메모리 링 버퍼 사용 여부.</td>
-          </tr>
-          <tr>
-            <td><code>temperature</code></td>
-            <td><code>float</code></td>
-            <td><code>0.7</code></td>
-            <td>선택</td>
-            <td>출력 다양성 및 무작위성 제어 (0.0: 결정론적 고정 ~ 1.2: 고창의성).</td>
-          </tr>
-        </tbody>
-      </table>
+<h3>3. Data Structures & Subtitle Formatters</h3>
 
-      <h3 data-i18n="api.sec2Title">2. 이벤트 라이프사이클 및 스트리밍 콜백</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thException">예외 클래스</th>
-            <th data-i18n="table.thExitCode">시스템 종료 / HTTP 코드</th>
-            <th data-i18n="table.thCondition">발생 조건 및 세부 원인</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>HardwareAccelerationError</code></td>
-            <td>종료 코드 71 (EX_OSERR)</td>
-            <td>Vulkan 디바이스 초기화 실패, 호환되지 않는 GPU 드라이버 버전 또는 셰이더 컴파일 오류.</td>
-          </tr>
-          <tr>
-            <td><code>MemoryAllocationError</code></td>
-            <td>종료 코드 75 (EX_TEMPFAIL)</td>
-            <td>안드로이드 OS DRAM/VRAM 가용 한도 초과 (OOM 킬러 선제 방어).</td>
-          </tr>
-          <tr>
-            <td><code>ProtocolValidationError</code></td>
-            <td>종료 코드 65 (EX_DATAERR)</td>
-            <td>입력 데이터 페이로드 암호화 무결성 또는 스키마 검증 실패.</td>
-          </tr>
-        </tbody>
-      </table>
+<h4><code>TranscriptResult</code> Struct:</h4>
+<ul>
+  <li><code>text: str</code> - Full reconstructed transcription text.</li>
+  <li><code>language: str</code> - Detected or configured ISO 639-1 language code.</li>
+  <li><code>segments: List[Segment]</code> - Timestamped utterance segments.</li>
+  <li><code>duration: float</code> - Total audio duration in seconds.</li>
+  <li><code>to_srt() -> str</code> - Serializes segments into valid SubRip (SRT) format.</li>
+  <li><code>to_vtt() -> str</code> - Serializes segments into WebVTT format.</li>
+  <li><code>to_json() -> str</code> - Serializes transcript and segment offsets into valid JSON.</li>
+  <li><code>to_rttm() -> str</code> - Serializes segments into NIST Rich Transcription (RTTM) format.</li>
+</ul>
 
-      <h3 data-i18n="api.sec3Title">3. 저수준 네이티브 커널 연동 명세</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thLifecycle">수명주기 단계</th>
-            <th data-i18n="table.thAllocation">메모리 할당 메커니즘</th>
-            <th data-i18n="table.thOwnership">소유권 및 안전한 자원 해제</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>초기화 단계</strong></td>
-            <td><code>shm_open()</code> 및 <code>mmap()</code> 기반 POSIX 공유 메모리 링 버퍼 생성.</td>
-            <td>엔진 인스턴스 메모리 풀에 독점 등록되어 상주합니다.</td>
-          </tr>
-          <tr>
-            <td><strong>추론 및 연산 단계</strong></td>
-            <td>힙 메모리 재할당 없는 직접 포인터 오프셋 참조 (Zero memcpy).</td>
-            <td>프로세스 경계 간 복사 오버헤드 0으로 초고속 전송됩니다.</td>
-          </tr>
-          <tr>
-            <td><strong>소멸 및 반납 단계</strong></td>
-            <td>RAII 소멸자를 통한 <code>munmap()</code> 및 <code>shm_unlink()</code> 즉시 호출.</td>
-            <td>프로세스 재시작 시 메모리 누수가 100% 방지됩니다.</td>
-          </tr>
-        </tbody>
-      </table>
+<h4><code>Segment</code> Struct:</h4>
+<ul>
+  <li><code>start: float</code> - Start timestamp in seconds (precision: 0.001s).</li>
+  <li><code>end: float</code> - End timestamp in seconds.</li>
+  <li><code>text: str</code> - Transcribed text within the interval.</li>
+  <li><code>speaker: Optional[str]</code> - Assigned speaker cluster identifier (e.g. <code>"Speaker 0"</code>).</li>
+</ul>
+
+<h3>4. Model Management & Preprocessing Subsystems</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Module / Class</th><th>Method</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ModelHub</code></td>
+      <td><code>ensure_model(engine, model_name) -> str</code></td>
+      <td>Verifies local cache or downloads model binary with SHA-256 integrity verification.</td>
+    </tr>
+    <tr>
+      <td><code>preprocessor</code></td>
+      <td><code>preprocess(audio_path, target_sr=16000, force_mono=True) -> str</code></td>
+      <td>Direct pure-Python WAV parser or auto-converting FFmpeg fallback.</td>
+    </tr>
+    <tr>
+      <td><code>MobileGuard</code></td>
+      <td><code>acquire_wakelock() / monitor_memory()</code></td>
+      <td>Acquires Android CPU WakeLock and monitors process RSS against OOM limits.</td>
+    </tr>
+  </tbody>
+</table>
+
     </main>
   </div>
 

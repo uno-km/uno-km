@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>고급 파라미터 제어 및 성능 최적화 | Termux-STT</title>
-  <meta name="description" content="Termux-STT 하드웨어 튜닝, 캐시 할당, 스레드 고정 및 물리적 트레이드오프 분석">
+  <title>Advanced Parameters & Tuning | Termux-STT</title>
+  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,68 +19,82 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="advanced.title">고급 엔지니어링 파라미터 제어</h2>
-      <p class="subtitle" data-i18n="advanced.subtitle">하드웨어 미세 조정, 캐시 할당, 스레드 고정 및 물리적 트레이드오프 분석 (Termux-STT)</p>
+      <h2>Advanced Parameters & Tuning</h2>
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>1. Whisper.cpp GGML Quantization Profiles</h3>
+<p>Select the optimal quantization level to balance memory footprint and acoustic precision:</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Quantization Level</th><th>Memory Overhead</th><th>Relative Speed</th><th>Recommended Use Case</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>f16</code></td><td>100% (Baseline)</td><td>1.0x</td><td>Reference accuracy on desktop and high-end ARM nodes.</td></tr>
+    <tr><td><code>q8_0</code></td><td>55%</td><td>1.3x</td><td>Near-lossless precision with reduced RAM consumption.</td></tr>
+    <tr><td><code>q5_1</code> / <code>q5_0</code></td><td>35%</td><td>1.8x</td><td><strong>Optimal mobile default:</strong> High accuracy within minimal RAM.</td></tr>
+    <tr><td><code>q4_0</code></td><td>28%</td><td>2.2x</td><td>Extreme memory constraints (devices with &lt;2GB total RAM).</td></tr>
+  </tbody>
+</table>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="advanced.valueProp">시끄러운 카페에서도 또렷하게 알아듣게 할지, 회의실에서 여러 사람의 목소리를 똑똑하게 나눌지 손끝으로 미세하게 조율합니다.</p>
-      </div>
+<h3>2. Advanced Decoding & Search Parameters</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>CLI Flag</th><th>SDK Key</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--beam-size &lt;N&gt;</code></td>
+      <td><code>beam_size</code></td>
+      <td><code>1</code></td>
+      <td>Expands beam search width (e.g. <code>5</code>) for complex audio with overlapping speakers.</td>
+    </tr>
+    <tr>
+      <td><code>--best-of &lt;N&gt;</code></td>
+      <td><code>best_of</code></td>
+      <td><code>1</code></td>
+      <td>Number of candidate candidate sequences sampled during decoding.</td>
+    </tr>
+    <tr>
+      <td><code>--temperature &lt;T&gt;</code></td>
+      <td><code>temperature</code></td>
+      <td><code>0.0</code></td>
+      <td>Sampling temperature. <code>0.0</code> enables deterministic greedy search.</td>
+    </tr>
+    <tr>
+      <td><code>--no-fallback</code> / <code>-nf</code></td>
+      <td><code>no_fallback</code></td>
+      <td><code>True (Termux)</code></td>
+      <td>Prevents multi-temperature retry loops to avoid mobile CPU overheating.</td>
+    </tr>
+    <tr>
+      <td><code>--prompt &lt;TEXT&gt;</code></td>
+      <td><code>prompt</code></td>
+      <td><code>None</code></td>
+      <td>Provides vocabulary context hints (acronyms, domain terms, speaker names).</td>
+    </tr>
+    <tr>
+      <td><code>--translate</code> / <code>-tr</code></td>
+      <td><code>translate</code></td>
+      <td><code>False</code></td>
+      <td>Translates multilingual foreign speech directly into English text.</td>
+    </tr>
+    <tr>
+      <td><code>--extra-args "&lt;FLAGS&gt;"</code></td>
+      <td><code>extra_args</code></td>
+      <td><code>None</code></td>
+      <td>Raw C++ flag passthrough directly to the underlying whisper.cpp binary.</td>
+    </tr>
+  </tbody>
+</table>
 
-      <h3 data-i18n="advanced.sec1Title">1. 런타임 컴퓨트 및 메모리 제어 파라미터</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thParamName">파라미터명</th>
-            <th data-i18n="table.thRange">권장 설정 범위</th>
-            <th data-i18n="table.thImpact">물리적 시스템 거동 및 하드웨어 트레이드오프 상세 분석</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>temperature</code></td>
-            <td><code>0.0 ~ 1.2</code></td>
-            <td><strong>0.0</strong>: 완벽한 결정론적 수치 고정. <strong>0.7</strong>: 최적의 표준 균형. <strong>1.2</strong>: 창의적 다양성 증가하나 환각 위험 동반.</td>
-          </tr>
-          <tr>
-            <td><code>top_p</code></td>
-            <td><code>0.1 ~ 1.0</code></td>
-            <td><strong>0.1</strong>: 상위 10% 확률 어휘만 엄격 선택. <strong>0.9</strong>: 표준 자연어 대화군. <strong>1.0</strong>: 전체 어휘군 샘플링.</td>
-          </tr>
-          <tr>
-            <td><code>thread_affinity</code></td>
-            <td><code>[4, 5, 6, 7]</code></td>
-            <td>Cortex-X / Cortex-A 고성능 빅코어에 프로세스를 물리적으로 고정하여 OS 스케줄러 컨텍스트 스위칭 지연을 차단합니다.</td>
-          </tr>
-          <tr>
-            <td><code>shm_pool_mb</code></td>
-            <td><code>16 ~ 128 MB</code></td>
-            <td>버스트 스트리밍 환경에서 링 버퍼 오버플로우를 방지하며, 정적 DRAM 소비량과의 트레이드오프가 존재합니다.</td>
-          </tr>
-          <tr>
-            <td><code>vulkan_workgroup</code></td>
-            <td><code>64 / 128 / 256</code></td>
-            <td>워크그룹 크기 128은 ARM Mali Valhall 아키텍처에서 레지스터 유출(Spill) 없이 가장 안정적인 연산 효율을 보장합니다.</td>
-          </tr>
-          <tr>
-            <td><code>quant_granularity</code></td>
-            <td><code>per-channel / per-tensor</code></td>
-            <td>채널별(per-channel) 양자화는 약 4%의 메모리 오버헤드로 부동소수점 오차 누적을 크게 방지합니다.</td>
-          </tr>
-        </tbody>
-      </table>
+<h3>3. Direct Local Custom Model Paths (BitNet / LLaMA / Fine-tuned Weights)</h3>
+<p>Pass local file paths directly to bypass ModelHub downloading and execute custom fine-tuned models:</p>
+<pre><code># Direct path to local fine-tuned or BitNet 1.58b GGML weights
+termux-stt transcribe audio.wav --model /sdcard/models/custom-whisper-q5_1.bin</code></pre>
 
-      <h3 data-i18n="advanced.sec2Title">2. 추론 정밀도 및 하이퍼파라미터 튜닝</h3>
-      <p>실제 배포 환경에서 최적의 성능을 발휘하는 <code>/etc/ameva/stt.conf</code> 설정 파일입니다:</p>
-      <pre><code># /etc/ameva/stt.conf
-device: "vulkan"
-workgroup_size: 128
-thread_affinity: [4, 5, 6, 7]
-shm_buffer_mb: 32
-temperature: 0.7
-top_p: 0.95
-fail_fast_on_oom: true
-audit_trail_enabled: true</code></pre>
+<h3>4. CPU Big-Core Pinning & Mobile Thermal Management</h3>
+<pre><code># Pin execution to 4 high-performance big cores (Cortex-A78 / X1)
+termux-stt transcribe audio.wav --threads 4</code></pre>
+
     </main>
   </div>
 

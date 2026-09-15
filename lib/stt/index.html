@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-STT | Official Documentation</title>
-  <meta name="description" content="외부 네트워크 전송 없이 100% 단말기 내부에서 음성을 텍스트로 변환하고 화자를 정밀 분리하는 초경량 음성 인식 엔진입니다.">
+  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,122 +19,142 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Whisper.cpp, Vosk, Sherpa 3중 엔진 및 128차원 X-Vector 화자 분리 탑재 100% 로컬 음성 인식 SDK</p>
+      <h2 data-i18n="home.title">Termux-STT</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Unified On-Device Speech-to-Text Utilizing Device Resources & Pure Python 128d X-Vector Speaker Diarization</p>
 
-      <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-stt
-
-# Node.js 공식 패키지 매니저
-npm install termux-stt</code></pre>
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-stt/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-stt.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-stt" target="_blank"><img src="https://img.shields.io/npm/v/termux-stt.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
       </div>
 
-      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">상용 클라우드 음성 인식 서비스는 사적인 대화와 음성 데이터가 빅테크 서버로 유출될 심각한 보안 위험이 있습니다. 반면 모바일 기기에서 Whisper.cpp나 Vosk를 직접 빌드하려면 FFmpeg Bionic 링커 충돌, 2GB 이상의 파이토치 의존성으로 인해 앱 구동이 불가능합니다.</p>
-
-      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">외부 네트워크 전송 0%의 완전 로컬 프라이버시 환경에서 Whisper.cpp, Vosk, Sherpa-ONNX 3중 엔진과 순수 파이썬 128차원 X-Vector 화자 분리를 단일 패키지로 통합하여, 80MB 초경량 메모리로 고정밀 전사(Transcription)를 지원합니다.</p>
-
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">빅테크 기업 서버에 내 목소리가 넘어갈까 불안하셨나요? 외부 유출 걱정 0%, 복잡한 프로그램 설치 걱정 0%. 단말기 안에서 비밀스럽고 안전하게, 누가 말했는지까지 똑똑하게 적어드립니다.</p>
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install --upgrade termux-stt && termux-stt install
+# or Node.js:
+npm install -g termux-stt && termux-stt install</code></pre>
       </div>
 
-      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Transcribing and diarizing multi-speaker conversations on edge devices typically demands heavy PyTorch runtimes (>2GB), external GPU servers, and severe cloud network latency with audio privacy risks.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">외부 유출 0% 오디오 프라이버시</h4>
-          <p data-i18n="home.features.0.desc">음성 캡처, 음향 특징 추출, 텍스트 전사가 100% 로컬 기기 내에서만 실행되어 외부 네트워크로의 데이터 누출이 원천 차단됩니다.</p>
+          <h4 data-i18n="home.features.0.title">Triple STT Engine Integration</h4>
+          <p data-i18n="home.features.0.desc">Seamlessly switches between Whisper.cpp (accuracy), Vosk (latency), and Sherpa-ONNX with a single create_engine() factory.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">3중 STT 엔진 통합 팩토리</h4>
-          <p data-i18n="home.features.1.desc">단일 create_engine() 팩토리 인터페이스를 통해 Whisper.cpp(정밀도), Vosk(지연시간), Sherpa-ONNX를 자유롭게 전환합니다.</p>
+          <h4 data-i18n="home.features.1.title">Pure Python Speaker Diarization</h4>
+          <p data-i18n="home.features.1.desc">128-dimensional Vosk X-Vector embeddings combined with closed-form pure Python K-Means clustering without PyTorch or Scikit-Learn.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">순수 파이썬 128차원 화자 분리</h4>
-          <p data-i18n="home.features.2.desc">PyTorch나 Scikit-Learn 없이 Vosk X-Vector 임베딩 기반의 순수 파이썬 K-Means 클러스터링으로 다중 화자를 정밀 분리합니다.</p>
+          <h4 data-i18n="home.features.2.title">Zero-Subprocess Audio Fastpath</h4>
+          <p data-i18n="home.features.2.desc">Direct pure-Python wave parser integration for standard 16kHz WAVs, bypassing FFmpeg subprocessing with zero Bionic linker errors.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">제로 서브프로세스 고속 오디오 파서</h4>
-          <p data-i18n="home.features.3.desc">외부 FFmpeg 프로세스 호출을 우회하는 내장 순수 파이썬 WAV 파서를 탑재하여 Bionic 링커 오류를 제거했습니다.</p>
+          <h4 data-i18n="home.features.3.title">Zero Cloud Egress Audio Privacy</h4>
+          <p data-i18n="home.features.3.desc">Audio capture, acoustic feature extraction, and text transcription execute strictly on the local CPU without cloud telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">워커 프로세스 풀 크래시 격리</h4>
-          <p data-i18n="home.features.4.desc">네이티브 C++ 엔진을 격리된 워커 프로세스 풀에서 관리하여 네이티브 세그멘테이션 오류로부터 메인 앱을 안전하게 보호합니다.</p>
+          <h4 data-i18n="home.features.4.title">Subprocess Crash Isolation</h4>
+          <p data-i18n="home.features.4.desc">Isolates native C++ binaries within dedicated process pools, ensuring C++ segfaults never compromise the host Python or Node.js runtime.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">Mobile Hardware Optimization</h4>
+          <p data-i18n="home.features.5.desc">Automatic big.LITTLE core thread pinning, Android WakeLock management, and 1-pass greedy decoding preventing thermal throttling.</p>
         </div>
       </div>
 
-      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thCategory">서브시스템 분류</th>
-            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
-            <th data-i18n="table.thStability">상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Whisper.cpp Transformer Core</strong></td>
-            <td>ARM NEON 및 Vulkan GPU 멜-스펙트로그램 추출 및 인코더 디코딩</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Speech Recognition (STT)</strong></td>
+            <td>Whisper.cpp (tiny/base/small/medium/large-v3-turbo), Vosk Kaldi, Sherpa-ONNX</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Vosk Kaldi TDNN ASR</strong></td>
-            <td>시간 지연 신경망 음향 모델 및 HCLG FST 디코더</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Speaker Diarization</strong></td>
+            <td>128d X-Vector Extraction, Pure-Python Cosine K-Means Spectral Clustering</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>128d X-Vector Diarization</strong></td>
-            <td>순수 파이썬 코사인 거리 행렬 연산 및 화자 군집화</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Audio Preprocessing</strong></td>
+            <td>Zero-Subprocess Wave Parser, FFmpeg Auto-Fallback, Silero-VAD Silence Filter</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Silero VAD Voice Detection</strong></td>
-            <td>음성 구간 감지 필터링으로 침묵 구간 불필요한 연산 0화</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Subtitle & Data Formats</strong></td>
+            <td>SubRip (SRT), WebVTT (VTT), NIST Rich Transcription (RTTM), Structured JSON</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Platform Runtimes</strong></td>
+            <td>Android Termux (Bionic ARM64/aarch64), Python 3.8~3.13, Node.js 16~22</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
-      <div>
-        <h4>Python (pip) 사용 예제</h4>
-        <pre><code class="language-python">from termux_stt import create_engine
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from termux_stt import create_engine
 
-# 1. 100% 로컬 STT 엔진 초기화
-engine = create_engine(engine_type="whisper", model_name="tiny")
+# 1. Initialize Engine (auto-loads native ARM NEON binary & cached model)
+engine = create_engine("whisper", model="tiny", lang="en", threads=4)
 
-# 2. 오디오 파일 텍스트 전사 및 화자 분리
-result = engine.transcribe("samples/jfk_1min.wav", diarize=True)
-print(f"[전사 결과]: {result.text}")
-for segment in result.segments:
-    print(f"[{segment.speaker}] {segment.start:.2f}s ~ {segment.end:.2f}s: {segment.text}")</code></pre>
-      </div>
-      <div>
-        <h4>Node.js (npm) 사용 예제</h4>
-        <pre><code class="language-javascript">const { STTEngine } = require('termux-stt');
+# 2. Transcribe Audio directly into Subtitles
+result = engine.transcribe("samples/jfk_1min.wav")
+print("Transcript:\n", result.text)
+print("SRT Subtitles:\n", result.to_srt())
+
+# 3. 2-Speaker Diarization without PyTorch
+hybrid = create_engine("hybrid", lang="en", num_speakers=2)
+diar_result = hybrid.diarize("samples/jfk_1min.wav")
+for seg in diar_result.segments:
+    print(f"[{seg.speaker}] ({seg.start:.1f}s -> {seg.end:.1f}s): {seg.text}")
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>const { createEngine } = require("termux-stt");
 
 async function main() {
-  const engine = new STTEngine({ model: 'tiny', language: 'en' });
-  const result = await engine.transcribeFile('samples/jfk_1min.wav');
-  console.log(`[전사 결과]: ${result.text}`);
-}
+  // 1. Initialize Whisper Engine
+  const engine = createEngine("whisper", { model: "tiny", lang: "en", threads: 4 });
 
-main();</code></pre>
+  // 2. Transcribe Audio
+  const result = await engine.transcribe("samples/jfk_1min.wav");
+  console.log("Transcript:", result.text);
+  console.log("SRT Subtitles:\n", result.toSrt());
+}
+main();
+</code></pre>
+        </div>
       </div>
 
-      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
-        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
-        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
-        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
-        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
-        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>

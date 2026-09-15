@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>설치 및 환경 구성 가이드 | Termux-STT</title>
-  <meta name="description" content="Termux-STT 프로덕션 배포 가이드, 네이티브 의존성 및 환경 프로비저닝">
+  <title>Installation & Setup Guide | Termux-STT</title>
+  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,80 +19,64 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
-      <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (Termux-STT)</p>
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+  <span class="alert-title">1-Click Self-Contained Automated Installation</span>
+  <p><code>termux-stt</code> includes an automated self-contained installer that provisions all native dependencies, compiles ARM NEON C++ binaries, and verifies hardware vector extensions in a single command.</p>
+</div>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="install.valueProp">복잡한 오디오 코덱 설치 없이 단 한 줄로 완료. 보안 유출 걱정 없는 비밀 음성 타이피스트를 내 스마트폰에 즉시 고용하세요.</p>
-      </div>
+<h3>1. Automated Package Installation</h3>
 
-      <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
-      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
-      <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-stt
+<h4>Python Edition (PyPI):</h4>
+<pre><code># 1. Install official PyPI package
+pip install --upgrade termux-stt
 
-# Node.js 공식 패키지 매니저
-npm install termux-stt</code></pre>
+# 2. 1-Click native compiler and dependency provisioning
+termux-stt install</code></pre>
 
-      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
-      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPkg">패키지명</th>
-            <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ffmpeg</code></td><td>모바일 오디오 입력 스트림을 16kHz 16-bit 모노 PCM으로 고속 리샘플링</td></tr>
-          <tr><td><code>clang</code></td><td>Whisper.cpp 네이티브 C++ 코어 및 Bionic 바인딩 컴파일</td></tr>
-          <tr><td><code>libogg</code></td><td>압축 오디오 컨테이너 스트리밍 디코딩 라이브러리</td></tr>
-          <tr><td><code>libvorbis</code></td><td>오디오 디코더 호환성 지원용 경량 코덱 라이브러리</td></tr>
-        </tbody>
-      </table>
+<h4>Node.js / TypeScript Edition (npm):</h4>
+<pre><code># 1. Install official global npm package
+npm install -g termux-stt
 
-      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
-      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
-      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/termux-stt/main/install.sh | bash</code></pre>
+# 2. 1-Click native setup
+termux-stt install</code></pre>
 
-      <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPath">설치 경로</th>
-            <th data-i18n="table.thChar">런타임 실행 특성</th>
-            <th data-i18n="table.thLimits">제약사항 및 폴백 메커니즘</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong data-i18n="install.rowStandalone">패키지 매니저 단독 설치</strong></td>
-            <td data-i18n="install.rowStandaloneDesc">고수준 언어 바인딩 및 기본 CPU 추론 코어 위주 로딩.</td>
-            <td data-i18n="install.rowStandaloneLimits">시스템 C++ 런타임 및 GPU 가속 드라이버가 수동 구성되어야 합니다.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="install.rowFull">자동화 풀 패키지 설치</strong></td>
-            <td data-i18n="install.rowFullDesc">Vulkan SPIR-V 셰이더 컴파일, 제로카피 IPC 셋업 및 실리콘 벤치마크 검증 완료.</td>
-            <td data-i18n="install.rowFullLimits">지연시간 최소화가 필요한 실제 프로덕션 워크로드에 적극 권장됩니다.</td>
-          </tr>
-        </tbody>
-      </table>
+<h3>2. Android Termux Prerequisites & System Dependencies</h3>
+<p>If you are provisioning a clean Android Termux environment from scratch, execute the following system package installations:</p>
+<pre><code># Update Termux repository index and install native toolchain
+pkg update -y && pkg install -y \
+  python \
+  nodejs-lts \
+  ffmpeg \
+  libbluray \
+  libxml2 \
+  cmake \
+  make \
+  clang \
+  git \
+  termux-api</code></pre>
 
-      <h3 data-i18n="install.sec5Title">5. 선택적 빌드 및 런타임 플래그 파라미터</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thFlag">옵션 파라미터</th>
-            <th data-i18n="table.thFlagDesc">아키텍처 동작 및 하드웨어 효과</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>--engine=<whisper|vosk|sherpa></code></td><td>활성 STT 인식 엔진 선택 (기본값: whisper)</td></tr>
-          <tr><td><code>--diarize</code></td><td>128차원 X-Vector 기반 순수 파이썬 화자 분리 알고리즘 활성화</td></tr>
-          <tr><td><code>--language=<ko|en|auto></code></td><td>음성 인식 대상 언어 코드 지정 (기본값: auto 자동 감지)</td></tr>
-        </tbody>
-      </table>
+<h3>3. Self-Healing Diagnostic Health Check</h3>
+<p>Verify that your system environment, audio linkers, and ARM NEON binaries are fully functional:</p>
+<pre><code>termux-stt doctor</code></pre>
+<p><strong>Expected Terminal Output:</strong></p>
+<pre><code>System Environment Check:
+-----------------------------------
+OS: Android (aarch64)
+✅ [OK] ffmpeg is installed
+✅ [OK] whisper.cpp engine found
+✅ [OK] Python 3.13.x
+-----------------------------------
+Doctor check complete.</code></pre>
+
+<h3>4. Air-Gapped / Offline Deployment</h3>
+<p>For strictly air-gapped devices without internet access, pre-seed GGML models into the local cache directory:</p>
+<pre><code># Cache directory structure
+mkdir -p ~/.cache/termux-stt/models/whisper
+cp ggml-tiny.bin ~/.cache/termux-stt/models/whisper/
+cp ggml-small.bin ~/.cache/termux-stt/models/whisper/</code></pre>
+
     </main>
   </div>
 
