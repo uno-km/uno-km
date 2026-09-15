@@ -53,8 +53,8 @@
 | Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
 | :--- | :--- | :---: | :--- |
 | **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
-| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
-| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.7.0 / STT v1.2.7 Stable]** | Vulkan on-device STT acceleration, greedy decoding default (-bs 1), 6-SoC fleet verified (Adreno 3.73x, Mali 2.26x) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper / MeloTTS | **[v2.7.0 / TTS v1.5.0 Stable]** | Pure Vulkan GPU neural TTS (Termux-TTS 1.5.0, Adreno RTF 0.26x/0.88x, Mali RTF 0.18x, high-fp16) |
 | **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
 | **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
 | **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
@@ -81,9 +81,24 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.1 - Fail-Fast Model Resolution, Vulkan NGL Expansion & Multimodal Fleet Synchronization</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Minor Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-15</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Zero-Silent-Fallback Model Resolution: Implemented strict AmbiguousModelMatchError in LlamaCpp adapter, rejecting ambiguous multi-match scenarios with full candidate enumeration and zero silent guessing.</li>
+          <li>Vulkan Layer Offloading Expansion: Added requested_ngl=999 support across CLI, router, and core execution layers, enabling deterministic full-layer VRAM offloading on mobile GPUs.</li>
+          <li>Termux-TTS v1.5.0 Ecosystem Alignment: Synchronized TtsAdapter with Termux-TTS v1.5.0, eliminating legacy DSP dependencies and supporting native Vulkan MeloTTS temporal tiling.</li>
+          <li>Termux-STT v1.2.7 Integration & 6-SoC Fleet Support: Full compatibility with Termux-STT v1.2.7 greedy decoding default (--beam-size 1) and fleet-validated on Qualcomm Adreno and ARM Mali.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.6.3 - Native Vulkan Hardware Pipeline, Bionic Direct Binding & Anti-Pattern Elimination (TTS Modality)</h3>
           <div>
-            <span class="status-badge active" style="margin-right: 6px;">Major Production Release (Latest)</span>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-15</span>
           </div>
         </div>

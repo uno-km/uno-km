@@ -1,4 +1,4 @@
-# AMEVA-Runtime Full Technical Specification (v2.6.3)
+# AMEVA-Runtime Full Technical Specification (v2.7.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
@@ -52,8 +52,8 @@ AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration 
 | Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
 | :--- | :--- | :---: | :--- |
 | **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
-| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
-| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.7.0 / STT v1.2.7 Stable]** | Vulkan on-device STT acceleration, greedy decoding default (-bs 1), 6-SoC fleet verified (Adreno 3.73x, Mali 2.26x) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper / MeloTTS | **[v2.7.0 / TTS v1.5.0 Stable]** | Pure Vulkan GPU neural TTS (Termux-TTS 1.5.0, Adreno RTF 0.26x/0.88x, Mali RTF 0.18x, high-fp16) |
 | **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
 | **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
 | **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
