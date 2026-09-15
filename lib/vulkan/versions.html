@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | AMEVA-Runtime</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Runtime.">
+  <title>Version Archive & Changelog | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Empirical Real-Device TTS Benchmarks (AMEVA Bionic Native Vulkan Fleet)
+| Target Device | Hardware Architecture | Neural Engine / Model | Backend Mode | Latency | RTF | Forensics (RMS/Peak) | Status |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | MeloTTS Universal Bilingual | **Bionic Vulkan GPU** | **2,750 ms** | **0.88x** | 0.0814 / 0.6974 | Real-time Synthesized |
+| **Galaxy S21** | Exynos 2100 / ARM Mali-G78 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **560 ms** | **0.18x** | 0.0921 / 0.7412 | 5.5x Faster than RT |
+| **Galaxy S20** | Exynos 990 / ARM Mali-G77 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **750 ms** | **0.24x** | 0.0890 / 0.7105 | 4.1x Faster than RT |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | Supertonic 3 Flow / Piper | **Bionic Vulkan GPU** | **380 ms** | **0.12x** | 0.1042 / 0.8120 | Studio Ultra-Fast |
+| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | Piper VITS (`lessac-medium`) | **Vulkan GPU** | **5,180 ms** | **1.146x** | 0.0782 / 0.6540 | Validated |
+
+### 4. Empirical Real-Device BitNet 1.58-bit LLM Benchmarks (BitNet-b1.58-2B-4T i2_s)
+| Target Device | Hardware Architecture | Active Backend | Generation Speed | Prompt Latency | Speedup | Audit Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **AMEVA Vulkan GPU** | **17.558 t/s** | **205.9 ms** | **12.58x** | **Verified (Ground Truth)** |
+| Galaxy S25 | Snapdragon 8 Elite / Oryon CPU | Native CPU (4 Threads) | 1.396 t/s | 2,041.0 ms | 1.00x | Baseline |
+| **Galaxy A35** | Exynos 1380 / Mali-G68 MP5 | **AMEVA Vulkan GPU** | **3.471 t/s** | **1,552.8 ms** | **5.94x** | **Verified (Ground Truth)** |
+| Galaxy A35 | Exynos 1380 / Cortex-A78 CPU | Native CPU (4 Threads) | 0.584 t/s | 8,775.0 ms | 1.00x | Baseline |
+
+### 5. Root-Cause Defect Resolution (Ground Truth)
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 5. 6-Modality Acceleration Roadmap
+| Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
+| :--- | :--- | :---: | :--- |
+| **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
+| **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
+| **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
+
+### 6. Architectural Principles
+- **Fail-Fast & Zero-Silent-Fallback**: Never disguise GPU failures as CPU success. If a hardware backend fails, immediate explicit exceptions and telemetry are raised.
+- **Consolidated Single Package**: Distributed cleanly via `pip install ameva-runtime` and `npm install @ameva/runtime`.
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,68 +77,96 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Runtime</p>
-
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Major Production Release (Latest)</div>
-          <div class="timeline-content">
-            <h3>v2.5.0 - Native BitNet 1.58-bit Vulkan Compute Acceleration, Permanent VRAM Residency & Zero-Copy Pipeline &mdash; 2026-09-07</h3>
-            <ul>
-              <li>Native BitNet 1.58-bit Vulkan Compute Engine (src/core/vulkan_bitnet_engine.cpp): Implemented direct Vulkan GPU offload for 1.58-bit ternary GEMV (bitnet_gemv_i2_s.comp), in-place RoPE (rope.comp), decode multi-head attention (attention_decode.comp), SwiGLU activation (swiglu_silu.comp), RMSNorm (rmsnorm_norm.comp), and residual add (residual_add.comp).</li>
-              <li>Permanent Model VRAM Residency Architecture: Pre-allocates unified GPU storage buffers for all 30 transformer layers (498 MB) and FP16 LM Head (626 MB) at initialization, completely eliminating host-to-device bus traffic during autoregressive token evaluation.</li>
-              <li>Full-Pipeline On-Chain Token Execution (DispatchFullTokenChain): Fuses the entire 30-layer pipeline into a single VkCommandBuffer submission and single fence wait per token, cutting driver submission overhead by 99.4%.</li>
-              <li>FP16 LM Head GPU Offload (bitnet_gemv_f16.comp): Offloads 128,256-dim vocabulary projection with unpackHalf2x16 SIMD dot products, saving ~80 ms per token on mobile SoCs.</li>
-              <li>Empirical Benchmarks: Validated on Samsung Galaxy S25 Adreno 830 (17.56 tok/s, 12.58x speedup) and Samsung Galaxy A35 Mali-G68 (3.47 tok/s, 5.94x speedup).</li>
-              <li>Unified BitnetAdapter (python/ameva_runtime/adapters/bitnet.py): First-class native integration enabling from ameva_runtime.adapters.bitnet import BitnetAdapter.</li>
-            </ul>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.6.1 - Native Vulkan Hardware Pipeline, Bionic Direct Binding & Anti-Pattern Elimination (TTS Modality)</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Major Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-15</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release (Latest)</div>
-          <div class="timeline-content">
-            <h3>v2.3.4 - VisionAdapter Multimodal VLM GPU Acceleration & Pure Wheel Architecture &mdash; 2026-09-07</h3>
-            <ul>
-              <li>Enhanced VisionAdapter Pure GPU Offload: Bound -ot token_embd.weight=Vulkan0 -fit off, dynamic --chat-template (ChatML/SmolVLM), and --no-warmup optimization.</li>
-              <li>Architectural Isolation & Wheel Purity: Completely excised legacy termux_train prototype from runtime package, enforcing strict include filter in pyproject.toml.</li>
-              <li>Ecosystem ABI Alignment: Synchronized with termux-vision v1.3.x and multimodal llama-mtmd-cli execution pipeline.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Bionic Direct Vulkan Linking: Eliminates Termux Mesa llvmpipe CPU software emulator trap by dynamically binding /system/lib64/libvulkan.so directly, unleashing native Adreno and Mali hardware compute pipelines.</li>
+          <li>HiFi-GAN 32MB Memory Ceiling & Temporal Tiling: Overcomes mobile GPU 32MB maxBufferSize allocation limit via temporal window slicing (T_chunk <= 819), preventing VK_ERROR_OUT_OF_DEVICE_MEMORY and driver TDR resets.</li>
+          <li>Strict Zero-Silent-Fallback & Fail-Fast Enforcement: Completely excised disguised CPU fallback heuristics and silent exception swallowing; raises explicit RuntimeError with device telemetry on driver or memory failures.</li>
+          <li>Real-Device Fleet Benchmarks: Ground-truth validated across Galaxy S22 (RTF 0.88x), S21 (RTF 0.18x), S20 (RTF 0.24x), and S25 (RTF 0.12x).</li>
+          <li>Textbook Major Expansion: Added Sections 4.6 to 4.13 (1,200+ lines) to VULKAN_ON_DEVICE_AI_ENGINEERING_TEXTBOOK.md covering anti-pattern forensics, Roofline models, and heterogenous compute trade-offs.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.5.0 - Native BitNet 1.58-bit Vulkan Compute Acceleration, Permanent VRAM Residency & Zero-Copy Pipeline</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release (Latest)</div>
-          <div class="timeline-content">
-            <h3>v2.1.0 - TTS Modality Completion (Vulkan High-FP16), Subgroup Optimization & Ecosystem Sync &mdash; 2026-09-05</h3>
-            <ul>
-              <li>Integrated Pure Vulkan GPU Neural Speech Synthesis (Termux-TTS v1.3.0): Completed on-device VITS model execution via sherpa-ncnn-offline-tts-vulkan with high-fp16 reference support.</li>
-              <li>Empirical TTS Benchmarks Validated: Achieved RTF 0.264x (medium) and RTF 0.993x (high-fp16) on Galaxy S25 Adreno 830, and RTF 1.146x on Galaxy A35 Mali-G68.</li>
-              <li>Hardened Adreno 830 Subgroup 64 & Mali-G68 Subgroup 16 Pipelines: Immutable descriptor set allocation and pipeline caching eliminating runtime JIT compiler crashes.</li>
-              <li>Single-Source-of-Truth Version Bump: Upgraded ameva-runtime to v2.1.0 across Python SDK, Node.js bindings, and ecosystem catalog.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Native BitNet 1.58-bit Vulkan Compute Engine (src/core/vulkan_bitnet_engine.cpp): Implemented direct Vulkan GPU offload for 1.58-bit ternary GEMV (bitnet_gemv_i2_s.comp), in-place RoPE (rope.comp), decode multi-head attention (attention_decode.comp), SwiGLU activation (swiglu_silu.comp), RMSNorm (rmsnorm_norm.comp), and residual add (residual_add.comp).</li>
+          <li>Permanent Model VRAM Residency Architecture: Pre-allocates unified GPU storage buffers for all 30 transformer layers (498 MB) and FP16 LM Head (626 MB) at initialization, completely eliminating host-to-device bus traffic during autoregressive token evaluation.</li>
+          <li>Full-Pipeline On-Chain Token Execution (DispatchFullTokenChain): Fuses the entire 30-layer pipeline into a single VkCommandBuffer submission and single fence wait per token, cutting driver submission overhead by 99.4%.</li>
+          <li>FP16 LM Head GPU Offload (bitnet_gemv_f16.comp): Offloads 128,256-dim vocabulary projection with unpackHalf2x16 SIMD dot products, saving ~80 ms per token on mobile SoCs.</li>
+          <li>Empirical Benchmarks: Validated on Samsung Galaxy S25 Adreno 830 (17.56 tok/s, 12.58x speedup) and Samsung Galaxy A35 Mali-G68 (3.47 tok/s, 5.94x speedup).</li>
+          <li>Unified BitnetAdapter (python/ameva_runtime/adapters/bitnet.py): First-class native integration enabling from ameva_runtime.adapters.bitnet import BitnetAdapter.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.3.4 - VisionAdapter Multimodal VLM GPU Acceleration & Pure Wheel Architecture</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Major Milestone Release</div>
-          <div class="timeline-content">
-            <h3>v2.0.0 - Unified Single-Package Architecture, Mali MatMul Fix, Adreno STT Fix & 6-Modality Roadmap &mdash; 2026-09-05</h3>
-            <ul>
-              <li>ARM Mali Valhall MatMul Zero-Stride Infinite Loop Elimination: Identified and resolved GLSL integer truncation in mul_mm.comp on subgroup-16 devices.</li>
-              <li>Whisper STT 2.26x GPU Acceleration on Mali: Verified Whisper Large-v3-Turbo on Galaxy A35 completing in 360.60s (56% time reduction vs CPU 816.48s).</li>
-              <li>Qualcomm Adreno 830 JIT Bug Isolation: Handled Adreno JIT compiler crash on specialization constant NUM_COLS >= 3 by bounding mul_mat_vec_max_cols = 2.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Enhanced VisionAdapter Pure GPU Offload: Bound -ot token_embd.weight=Vulkan0 -fit off, dynamic --chat-template (ChatML/SmolVLM), and --no-warmup optimization.</li>
+          <li>Architectural Isolation & Wheel Purity: Completely excised legacy termux_train prototype from runtime package, enforcing strict include filter in pyproject.toml.</li>
+          <li>Ecosystem ABI Alignment: Synchronized with termux-vision v1.3.x and multimodal llama-mtmd-cli execution pipeline.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.1.0 - TTS Modality Completion (Vulkan High-FP16), Subgroup Optimization & Ecosystem Sync</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-05</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Official Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.0 - Unified Production Release with Real Adreno & Mali Empirical Benchmarks &mdash; 2026-09-04</h3>
-            <ul>
-              <li>Snapdragon 8 Elite (Adreno 830) Validation: Verified 25/25 layer full VRAM offload achieving 35.80 tokens/sec.</li>
-              <li>Unified AmevaRuntime Python Execution Engine: Added ameva.run() and ameva.plan() top-level APIs.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Integrated Pure Vulkan GPU Neural Speech Synthesis (Termux-TTS v1.3.0): Completed on-device VITS model execution via sherpa-ncnn-offline-tts-vulkan with high-fp16 reference support.</li>
+          <li>Empirical TTS Benchmarks Validated: Achieved RTF 0.264x (medium) and RTF 0.993x (high-fp16) on Galaxy S25 Adreno 830, and RTF 1.146x on Galaxy A35 Mali-G68.</li>
+          <li>Hardened Adreno 830 Subgroup 64 & Mali-G68 Subgroup 16 Pipelines: Immutable descriptor set allocation and pipeline caching eliminating runtime JIT compiler crashes.</li>
+          <li>Single-Source-of-Truth Version Bump: Upgraded ameva-runtime to v2.1.0 across Python SDK, Node.js bindings, and ecosystem catalog.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.0 - Unified Single-Package Architecture, Mali MatMul Fix, Adreno STT Fix & 6-Modality Roadmap</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Major Milestone Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-05</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>ARM Mali Valhall MatMul Zero-Stride Infinite Loop Elimination: Identified and resolved GLSL integer truncation in mul_mm.comp on subgroup-16 devices.</li>
+          <li>Whisper STT 2.26x GPU Acceleration on Mali: Verified Whisper Large-v3-Turbo on Galaxy A35 completing in 360.60s (56% time reduction vs CPU 816.48s).</li>
+          <li>Qualcomm Adreno 830 JIT Bug Isolation: Handled Adreno JIT compiler crash on specialization constant NUM_COLS >= 3 by bounding mul_mat_vec_max_cols = 2.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.0 - Unified Production Release with Real Adreno & Mali Empirical Benchmarks</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Official Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-04</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Snapdragon 8 Elite (Adreno 830) Validation: Verified 25/25 layer full VRAM offload achieving 35.80 tokens/sec.</li>
+          <li>Unified AmevaRuntime Python Execution Engine: Added ameva.run() and ameva.plan() top-level APIs.</li>
+        </ul>
       </div>
     </main>
   </div>

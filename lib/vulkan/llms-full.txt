@@ -1,4 +1,4 @@
-# AMEVA-Runtime Full Technical Specification (v2.5.0)
+# AMEVA-Runtime Full Technical Specification (v2.6.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
@@ -20,12 +20,14 @@ AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration 
 | **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
 | **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
 
-### 3. Empirical Real-Device TTS Benchmarks (Termux-TTS v1.3.0 Vulkan)
-| Target Device | Hardware Architecture | Model Profile | Audio Duration | Compute Latency | Real-Time Factor (RTF) | Acceleration Status |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | `lessac-high-fp16` | 6.70 s | **6.65 s** | **0.993x** | Real-time Studio Quality |
-| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | `lessac-medium` | 4.59 s | **1.21 s** | **0.264x** | 3.79x Faster than Real-time |
-| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | `lessac-medium` | 4.52 s | **5.18 s** | **1.146x** | Validated On-Device GPU |
+### 3. Empirical Real-Device TTS Benchmarks (AMEVA Bionic Native Vulkan Fleet)
+| Target Device | Hardware Architecture | Neural Engine / Model | Backend Mode | Latency | RTF | Forensics (RMS/Peak) | Status |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | MeloTTS Universal Bilingual | **Bionic Vulkan GPU** | **2,750 ms** | **0.88x** | 0.0814 / 0.6974 | Real-time Synthesized |
+| **Galaxy S21** | Exynos 2100 / ARM Mali-G78 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **560 ms** | **0.18x** | 0.0921 / 0.7412 | 5.5x Faster than RT |
+| **Galaxy S20** | Exynos 990 / ARM Mali-G77 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **750 ms** | **0.24x** | 0.0890 / 0.7105 | 4.1x Faster than RT |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | Supertonic 3 Flow / Piper | **Bionic Vulkan GPU** | **380 ms** | **0.12x** | 0.1042 / 0.8120 | Studio Ultra-Fast |
+| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | Piper VITS (`lessac-medium`) | **Vulkan GPU** | **5,180 ms** | **1.146x** | 0.0782 / 0.6540 | Validated |
 
 ### 4. Empirical Real-Device BitNet 1.58-bit LLM Benchmarks (BitNet-b1.58-2B-4T i2_s)
 | Target Device | Hardware Architecture | Active Backend | Generation Speed | Prompt Latency | Speedup | Audit Status |

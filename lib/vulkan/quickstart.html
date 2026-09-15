@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>퀵스타트 및 실행 레시피 | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA-Runtime 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <title>Quickstart & Execution Recipes | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Empirical Real-Device TTS Benchmarks (AMEVA Bionic Native Vulkan Fleet)
+| Target Device | Hardware Architecture | Neural Engine / Model | Backend Mode | Latency | RTF | Forensics (RMS/Peak) | Status |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | MeloTTS Universal Bilingual | **Bionic Vulkan GPU** | **2,750 ms** | **0.88x** | 0.0814 / 0.6974 | Real-time Synthesized |
+| **Galaxy S21** | Exynos 2100 / ARM Mali-G78 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **560 ms** | **0.18x** | 0.0921 / 0.7412 | 5.5x Faster than RT |
+| **Galaxy S20** | Exynos 990 / ARM Mali-G77 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **750 ms** | **0.24x** | 0.0890 / 0.7105 | 4.1x Faster than RT |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | Supertonic 3 Flow / Piper | **Bionic Vulkan GPU** | **380 ms** | **0.12x** | 0.1042 / 0.8120 | Studio Ultra-Fast |
+| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | Piper VITS (`lessac-medium`) | **Vulkan GPU** | **5,180 ms** | **1.146x** | 0.0782 / 0.6540 | Validated |
+
+### 4. Empirical Real-Device BitNet 1.58-bit LLM Benchmarks (BitNet-b1.58-2B-4T i2_s)
+| Target Device | Hardware Architecture | Active Backend | Generation Speed | Prompt Latency | Speedup | Audit Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **AMEVA Vulkan GPU** | **17.558 t/s** | **205.9 ms** | **12.58x** | **Verified (Ground Truth)** |
+| Galaxy S25 | Snapdragon 8 Elite / Oryon CPU | Native CPU (4 Threads) | 1.396 t/s | 2,041.0 ms | 1.00x | Baseline |
+| **Galaxy A35** | Exynos 1380 / Mali-G68 MP5 | **AMEVA Vulkan GPU** | **3.471 t/s** | **1,552.8 ms** | **5.94x** | **Verified (Ground Truth)** |
+| Galaxy A35 | Exynos 1380 / Cortex-A78 CPU | Native CPU (4 Threads) | 0.584 t/s | 8,775.0 ms | 1.00x | Baseline |
+
+### 5. Root-Cause Defect Resolution (Ground Truth)
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 5. 6-Modality Acceleration Roadmap
+| Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
+| :--- | :--- | :---: | :--- |
+| **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
+| **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
+| **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
+
+### 6. Architectural Principles
+- **Fail-Fast & Zero-Silent-Fallback**: Never disguise GPU failures as CPU success. If a hardware backend fails, immediate explicit exceptions and telemetry are raised.
+- **Consolidated Single Package**: Distributed cleanly via `pip install ameva-runtime` and `npm install @ameva/runtime`.
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,98 +77,25 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (AMEVA-Runtime)</p>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>import ameva_runtime as ameva
+from ameva_runtime import vulkan
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="quickstart.valueProp">몇 줄의 코드로 하드웨어를 자동 인식하여 가장 빠른 그래픽 가속 모드로 즉시 연산을 시작합니다.</p>
-      </div>
+# 1. Inspect on-device silicon topology
+profile = ameva.detect_hardware()
+print(f"Detected SoC: {profile.soc_name} | GPU: {profile.gpu_vendor} ({profile.gpu_model})")
 
-      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
-      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
-      <pre><code>ameva-runtime --device auto --bench-all</code></pre>
+# 2. Hardware diagnostic inspection via Vulkan engine
+doc = vulkan.Doctor()
+report = doc.run_self_test(verbose=False)
+print(f"GPU Target: {report.device_name} (Passed: {report.passed_stages}/{report.total_stages})")
 
-      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
-      <pre><code class="language-python">from ameva_runtime import RuntimeManager, DeviceType
-
-# 1. 단말기 하드웨어 토폴로지 자동 감지 및 런타임 초기화
-rt = RuntimeManager()
-device = rt.select_best_device(preferred=DeviceType.VULKAN)
-print(f"[AMEVA-Runtime] 활성화된 디바이스: {device.name} (Vulkan {device.vulkan_version})")
-
-# 2. 제로카피 텐서 버퍼 할당 및 연산 디스패치
-buf_a = device.allocate_buffer(shape=(1024, 1024), dtype="float16")
-buf_b = device.allocate_buffer(shape=(1024, 1024), dtype="float16")
-pipeline = device.create_pipeline("matmul_fp16_medium")
-result = pipeline.dispatch(buf_a, buf_b)
-print(f"[AMEVA-Runtime] GPU 연산 완료 지연시간: {result.latency_ms:.2f} ms")</code></pre>
-
-      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
-      <pre><code class="language-javascript">const { RuntimeManager, DeviceType } = require('@ameva/runtime');
-
-async function main() {
-  const rt = new RuntimeManager();
-  const device = await rt.selectBestDevice({ preferred: DeviceType.VULKAN });
-  console.log(`[AMEVA-Runtime] 선택된 하드웨어: ${device.name}`);
-  const pipeline = await device.createPipeline('matmul_fp16_medium');
-  const res = await pipeline.dispatch();
-  console.log(`[AMEVA-Runtime] 연산 소요시간: ${res.latencyMs.toFixed(2)} ms`);
-}
-
-main();</code></pre>
-
-      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thModel">모델 / 프로파일</th>
-            <th data-i18n="table.thScore">검증 상태</th>
-            <th data-i18n="table.thVram">VRAM 점유</th>
-            <th data-i18n="table.thSpeed">추론 속도</th>
-            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Adreno-FP16-GEMV</strong></td><td>★ 5.0</td><td>12 MB VRAM</td><td>35.80 t/s (Adreno 830)</td><td>퀄컴 스냅드래곤 8 Gen 1~3 / 8 Elite 전용 하드웨어 가속</td></tr>
-          <tr><td><strong>Mali-Medium-MatMul</strong></td><td>★ 4.5</td><td>16 MB VRAM</td><td>4.44 t/s (Mali-G68)</td><td>삼성 엑시노스 Mali Valhall 아키텍처 안전 보폭 커널</td></tr>
-          <tr><td><strong>NEON-FP32-Vectorized</strong></td><td>★ 4.0</td><td>4 MB RAM</td><td>3.55 t/s (Cortex-A78)</td><td>128비트 SIMD 벡터화 기반 고신뢰성 CPU 폴백 백엔드</td></tr>
-          <tr><td><strong>Vulkan-ZeroCopy-Shm</strong></td><td>★ 5.0</td><td>64 MB RAM</td><td>< 2.5 ms 지연</td><td>락리스 POSIX 공유 메모리 링 버퍼 IPC 가속</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
-            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
-            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>VK_ERROR_DEVICE_LOST</code></td>
-            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
-            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
-          </tr>
-          <tr>
-            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
-            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
-            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
-          </tr>
-          <tr>
-            <td>배터리 구동 시 지연시간 급증</td>
-            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
-            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
-          </tr>
-          <tr>
-            <td>프로세스 종료 후 VRAM 미반납</td>
-            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
-            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
-          </tr>
-        </tbody>
-      </table>
+# 3. Plan deterministic execution graph
+plan = ameva.plan(modality="tts", tier="high")
+print(f"Optimal Backend: {plan.recommended_backend} | Subgroup Size: {plan.subgroup_size}")
+</code></pre>
     </main>
   </div>
 

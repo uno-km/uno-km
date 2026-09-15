@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>설치 및 환경 구성 가이드 | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA-Runtime 프로덕션 배포 가이드, 네이티브 의존성 및 환경 프로비저닝">
+  <title>Installation & Setup Guide | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Empirical Real-Device TTS Benchmarks (AMEVA Bionic Native Vulkan Fleet)
+| Target Device | Hardware Architecture | Neural Engine / Model | Backend Mode | Latency | RTF | Forensics (RMS/Peak) | Status |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | MeloTTS Universal Bilingual | **Bionic Vulkan GPU** | **2,750 ms** | **0.88x** | 0.0814 / 0.6974 | Real-time Synthesized |
+| **Galaxy S21** | Exynos 2100 / ARM Mali-G78 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **560 ms** | **0.18x** | 0.0921 / 0.7412 | 5.5x Faster than RT |
+| **Galaxy S20** | Exynos 990 / ARM Mali-G77 | Piper VITS (On-chip Tiled) | **Bionic Vulkan GPU** | **750 ms** | **0.24x** | 0.0890 / 0.7105 | 4.1x Faster than RT |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | Supertonic 3 Flow / Piper | **Bionic Vulkan GPU** | **380 ms** | **0.12x** | 0.1042 / 0.8120 | Studio Ultra-Fast |
+| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | Piper VITS (`lessac-medium`) | **Vulkan GPU** | **5,180 ms** | **1.146x** | 0.0782 / 0.6540 | Validated |
+
+### 4. Empirical Real-Device BitNet 1.58-bit LLM Benchmarks (BitNet-b1.58-2B-4T i2_s)
+| Target Device | Hardware Architecture | Active Backend | Generation Speed | Prompt Latency | Speedup | Audit Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **AMEVA Vulkan GPU** | **17.558 t/s** | **205.9 ms** | **12.58x** | **Verified (Ground Truth)** |
+| Galaxy S25 | Snapdragon 8 Elite / Oryon CPU | Native CPU (4 Threads) | 1.396 t/s | 2,041.0 ms | 1.00x | Baseline |
+| **Galaxy A35** | Exynos 1380 / Mali-G68 MP5 | **AMEVA Vulkan GPU** | **3.471 t/s** | **1,552.8 ms** | **5.94x** | **Verified (Ground Truth)** |
+| Galaxy A35 | Exynos 1380 / Cortex-A78 CPU | Native CPU (4 Threads) | 0.584 t/s | 8,775.0 ms | 1.00x | Baseline |
+
+### 5. Root-Cause Defect Resolution (Ground Truth)
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 5. 6-Modality Acceleration Roadmap
+| Modality | Engine & Architecture | Status | Hardware Acceleration Mechanism |
+| :--- | :--- | :---: | :--- |
+| **1. LLM (Text)** | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **[v2.5.0 Stable]** | Vulkan 1.58-bit ternary GEMV, RoPE, Attention & FP16 LM Head offload (Adreno 17.56 t/s, Mali 3.47 t/s) |
+| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **[v2.0.0 Stable]** | Vulkan on-device STT acceleration (Adreno 4.4s, Mali 2.26x speedup) |
+| **3. TTS (Audio)** | Sherpa-NCNN / Piper | **[v2.1.0 Stable]** | Pure Vulkan GPU neural TTS (Adreno RTF 0.26x, Mali RTF 1.14x, high-fp16) |
+| **4. Vision (VLM)** | CLIP, MobileVLM, LLaVA, SmolVLM | **[v2.3.4 Stable]** | GGML Vulkan image encoder & llama-mtmd-cli pure GPU offload |
+| **5. Diffusion (Image)** | Stable Diffusion v1.5 / FLUX.1 | **[v2.3.4 Stable]** | On-device Vulkan UNet & DiT tensor offload engine |
+| **6. Train (Training)** | On-Device LoRA / QLoRA | **[v2.4.0 Planned]** | Smartphone local Vulkan gradient descent backpropagation engine |
+
+### 6. Architectural Principles
+- **Fail-Fast & Zero-Silent-Fallback**: Never disguise GPU failures as CPU success. If a hardware backend fails, immediate explicit exceptions and telemetry are raised.
+- **Consolidated Single Package**: Distributed cleanly via `pip install ameva-runtime` and `npm install @ameva/runtime`.
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,80 +77,16 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
-      <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (AMEVA-Runtime)</p>
-
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="install.valueProp">복잡한 그래픽스 지식 없이 단 한 줄로 스마트폰 내장 GPU의 잠재력을 깨우는 가속 엔진을 설치합니다.</p>
-      </div>
-
-      <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
-      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
-      <pre><code># 파이썬 공식 패키지 매니저
-pip install ameva-runtime
-
-# Node.js 공식 패키지 매니저
-npm install @ameva/runtime</code></pre>
-
-      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
-      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPkg">패키지명</th>
-            <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>vulkan-tools</code></td><td>Vulkan 디바이스 기능 검증 및 물리 장치 드라이버 점검 (vulkaninfo)</td></tr>
-          <tr><td><code>mesa-vulkan-drivers</code></td><td>오픈소스 모바일 GPU 유저스페이스 Vulkan 드라이버</td></tr>
-          <tr><td><code>libvulkan-dev</code></td><td>Vulkan 1.3 ABI 동적 로더 연결을 위한 헤더 및 기호 파일</td></tr>
-          <tr><td><code>clang</code></td><td>C++20 셰이더 파이프라인 컴파일러</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
-      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
-      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/ameva-runtime/main/install.sh | bash</code></pre>
-
-      <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPath">설치 경로</th>
-            <th data-i18n="table.thChar">런타임 실행 특성</th>
-            <th data-i18n="table.thLimits">제약사항 및 폴백 메커니즘</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong data-i18n="install.rowStandalone">패키지 매니저 단독 설치</strong></td>
-            <td data-i18n="install.rowStandaloneDesc">고수준 언어 바인딩 및 기본 CPU 추론 코어 위주 로딩.</td>
-            <td data-i18n="install.rowStandaloneLimits">시스템 C++ 런타임 및 GPU 가속 드라이버가 수동 구성되어야 합니다.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="install.rowFull">자동화 풀 패키지 설치</strong></td>
-            <td data-i18n="install.rowFullDesc">Vulkan SPIR-V 셰이더 컴파일, 제로카피 IPC 셋업 및 실리콘 벤치마크 검증 완료.</td>
-            <td data-i18n="install.rowFullLimits">지연시간 최소화가 필요한 실제 프로덕션 워크로드에 적극 권장됩니다.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="install.sec5Title">5. 선택적 빌드 및 런타임 플래그 파라미터</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thFlag">옵션 파라미터</th>
-            <th data-i18n="table.thFlagDesc">아키텍처 동작 및 하드웨어 효과</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>--enable-vulkan</code></td><td>Vulkan 1.3 하드웨어 직접 디스패치 파이프라인 강제 활성화</td></tr>
-          <tr><td><code>--enforce-medium-matmul</code></td><td>Mali-G68 정수 나눗셈 절삭 방지를 위한 워크그룹 크기 128 적용</td></tr>
-          <tr><td><code>--threads=<N></code></td><td>물리 고성능 CPU 코어 전용 워커 스레드 수 지정</td></tr>
-        </tbody>
-      </table>
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install ameva-runtime
+# or: npm install @ameva/runtime
+</code></pre>
     </main>
   </div>
 
