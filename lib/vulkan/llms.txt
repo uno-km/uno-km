@@ -1,4 +1,4 @@
-# AMEVA-Runtime (v2.6.2)
+# AMEVA-Runtime (v2.6.3)
 > Next-Gen Unified On-Device Hardware Orchestration & 6-Modality AI Acceleration Runtime for Mobile & Edge
 
 ## Quick Specification for AI Coding Agents
