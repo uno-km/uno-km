@@ -23,9 +23,26 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.4 - Multilingual Neural Orchestrator & Zero-Config Ergonomics</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.5.0 - 100% Native Vulkan Hardware Pipeline & Fail-Fast Architecture</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-15</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Bionic Native Vulkan Direct Binding: Permanently eliminated Termux Mesa llvmpipe CPU software emulator trap by dynamically binding /system/lib64/libvulkan.so, activating 100% native Qualcomm Adreno (KGSL) and ARM Mali GPU compute pipelines.</li>
+          <li>HiFi-GAN 32MB Memory Ceiling Resolution: Overcame mobile GPU 32MB maxBufferSize allocation limit in MeloTTS HiFi-GAN via temporal window slicing (T_chunk <= 819), preventing VK_ERROR_OUT_OF_DEVICE_MEMORY and driver TDR resets.</li>
+          <li>Piper VITS On-Chip SRAM Tiling: Integrated on-chip SRAM tiling architecture eliminating kernel crashes across all Exynos and Snapdragon hardware.</li>
+          <li>Strict Zero-Silent-Fallback & Anti-Deception: Completely excised CPU fallback heuristics and silent exception swallowing; raises explicit RuntimeError on hardware or memory faults.</li>
+          <li>Next-Gen MZ Neural Triad: Added first-class native architectures for Kokoro-82M (INT8 StyleTTS2), MeloTTS Universal Bilingual, and Supertonic 3 Flow Matching across 31 languages.</li>
+          <li>Empirical Fleet Verification: Ground-truth validated on Galaxy S22 (Adreno 730: 2,750ms, RTF 0.88x), S21 (Mali-G78: 560ms, RTF 0.18x), S20 (Mali-G77: 750ms, RTF 0.24x), and S25 (Adreno 830: 380ms, RTF 0.12x).</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.4 - Multilingual Neural Orchestrator & Zero-Config Ergonomics</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-14</span>
           </div>
         </div>

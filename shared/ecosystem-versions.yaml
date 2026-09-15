@@ -222,8 +222,8 @@ libraries:
     status: stable
   vulkan:
     name: AMEVA-Runtime
-    version: 2.5.1
-    release_date: '2026-09-14'
+    version: 2.6.3
+    release_date: '2026-09-15'
     npm_package: "@ameva/runtime"
     pypi_package: ameva-runtime
     github_repo: uno-km/ameva-runtime
@@ -240,8 +240,8 @@ libraries:
     status: stable
   tts:
     name: Termux-TTS
-    version: 1.4.4
-    release_date: '2026-09-14'
+    version: 1.5.0
+    release_date: '2026-09-15'
     npm_package: termux-tts
     pypi_package: termux-tts
     github_repo: uno-km/termux-tts

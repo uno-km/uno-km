@@ -265,19 +265,23 @@ Apache-2.0 License. Copyright (c) 2026 Eunho Kim (@uno-km).
 
 
 def resolve_lib_dir(target: str) -> Path:
-    """Robustly resolve library directory across dev root, dev/termux, dev/WORKSTAION."""
+    """Robustly resolve library directory across dev root, dev/termux, dev/WORKSTAION, dev/ameva."""
+    t_lower = target.lower()
+    if t_lower in ("vulkan", "ameva-runtime", "runtime", "ameva-vulkan", "ameva-vulkan-runtime"):
+        for p in [DEV_DIR / "ameva" / "ameva-runtime", DEV_DIR / "ameva-runtime"]:
+            if p.exists() and p.is_dir():
+                return p
+
     candidates = [
         DEV_DIR / target,
         DEV_DIR / f"termux-{target}",
         DEV_DIR / f"AMEVA-{target}",
         DEV_DIR / f"ameva-{target}",
         DEV_DIR / f"ameva-{target}-runtime",
-        DEV_DIR / "ameva" / target,
-        DEV_DIR / "ameva" / f"ameva-{target}",
-        DEV_DIR / "ameva" / f"ameva-{target}-runtime",
-        DEV_DIR / "ameva" / "ameva-runtime",
         DEV_DIR / "termux" / target,
         DEV_DIR / "termux" / f"termux-{target}",
+        DEV_DIR / "ameva" / target,
+        DEV_DIR / "ameva" / f"ameva-{target}",
         DEV_DIR / "WORKSTAION" / target,
         DEV_DIR / "WORKSTAION" / f"AMEVA-{target}",
     ]
