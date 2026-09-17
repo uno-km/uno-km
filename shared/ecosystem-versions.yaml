@@ -5,8 +5,8 @@ ecosystem:
 libraries:
   sentinel:
     name: AMEVA-Sentinel
-    version: 1.0.1
-    release_date: '2026-09-04'
+    version: 2.3.0
+    release_date: '2026-09-17'
     npm_package: ameva-sentinel
     pypi_package: null
     github_repo: uno-km/ameva-sentinel
@@ -23,8 +23,8 @@ libraries:
     status: stable
   mcp:
     name: AMEVA-MCP-Hub
-    version: 3.0.1
-    release_date: '2026-09-04'
+    version: 3.0.2
+    release_date: '2026-09-17'
     npm_package: ameva-mcp-hub
     pypi_package: null
     github_repo: uno-km/ameva-mcp-hub
@@ -41,8 +41,8 @@ libraries:
     status: stable
   aichain:
     name: Termux-AIChain
-    version: 1.1.2
-    release_date: '2026-09-04'
+    version: 1.1.4
+    release_date: '2026-09-17'
     npm_package: termux-aichain
     pypi_package: termux-aichain
     github_repo: uno-km/termux-aichain
@@ -76,8 +76,8 @@ libraries:
     status: stable
   diffusion:
     name: Termux-Diffusion
-    version: 1.6.3
-    release_date: '2026-09-07'
+    version: 1.6.5
+    release_date: '2026-09-17'
     npm_package: termux-diffusion
     pypi_package: termux-diffusion
     github_repo: uno-km/termux-diffusion
@@ -96,8 +96,8 @@ libraries:
     status: stable
   playwright:
     name: Termux-Playwright
-    version: 1.81.1
-    release_date: '2026-09-06'
+    version: 1.81.2
+    release_date: '2026-09-17'
     npm_package: termux-playwright
     pypi_package: termux-playwright
     github_repo: uno-km/termux-playwright
@@ -113,8 +113,8 @@ libraries:
     status: stable
   stt:
     name: Termux-STT
-    version: 1.2.7
-    release_date: '2026-09-15'
+    version: 1.2.8
+    release_date: '2026-09-17'
     npm_package: termux-stt
     pypi_package: termux-stt
     github_repo: uno-km/termux-stt
@@ -132,8 +132,8 @@ libraries:
     status: stable
   train:
     name: Termux-Train
-    version: 1.0.1
-    release_date: '2026-09-04'
+    version: 1.1.5
+    release_date: '2026-09-17'
     npm_package: null
     pypi_package: termux-train
     github_repo: uno-km/termux-train
@@ -240,8 +240,8 @@ libraries:
     status: stable
   tts:
     name: Termux-TTS
-    version: 1.5.0
-    release_date: '2026-09-15'
+    version: 1.5.1
+    release_date: '2026-09-17'
     npm_package: termux-tts
     pypi_package: termux-tts
     github_repo: uno-km/termux-tts

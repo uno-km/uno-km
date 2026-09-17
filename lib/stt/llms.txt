@@ -1,9 +1,9 @@
 # Termux-STT — AI Agent Fast Context
-# Generated: 2026-09-15  |  Version: 1.2.7
+# Generated: 2026-09-17  |  Version: 1.2.8
 
 ## Library
 Name: Termux-STT
-Version: 1.2.7
+Version: 1.2.8
 GitHub: https://github.com/uno-km/termux-stt
 Documentation: https://uno-km.vercel.app/lib/stt/
 License: Apache-2.0
