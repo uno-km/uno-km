@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | Termux-BitNet</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-BitNet.">
+  <title>Version Archive & Changelog | Termux-BitNet</title>
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime, achieving up to 17.56 tok/s (12.58x speedup) on Qualcomm Adreno 830 and 3.47 tok/s (5.94x speedup) on ARM Mali-G68 under a sub-250MB RAM footprint.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,45 +19,51 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-BitNet</p>
-
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Latest Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.4.0 - Native Vulkan Compute GPU Acceleration, Permanent VRAM Residency & Dynamic C ABI &mdash; 2026-09-07</h3>
-            <ul>
-              <li>Native Vulkan Compute GPU Engine (via AMEVA-Runtime): Dedicated SPIR-V compute kernels for BitNet 1.58-bit ternary GEMV (bitnet_gemv_i2_s.comp), FP16 LM Head offload (bitnet_gemv_f16.comp), RoPE, Attention Decode, SwiGLU, RMSNorm, and Residual summation.</li>
-              <li>Llama.cpp-Style Permanent Model VRAM Residency: Pre-allocates unified GPU storage buffers for all 30 transformer layers (498 MB) and LM Head (626 MB) at initialization, completely eliminating host-to-device bus traffic during autoregressive token evaluation.</li>
-              <li>Full-Pipeline On-Chain Token Execution (DispatchFullTokenChain): Fuses the entire 30-layer pipeline into a single VkCommandBuffer submission and single fence wait per token, eliminating 99.4% of driver submission overhead.</li>
-              <li>C ABI Dynamic Parameter Synchronization (bitnet_set_params): Thread-safe runtime update for temperature, top_p, top_k, repeat_penalty, and stop tokens without context re-initialization.</li>
-              <li>Telemetry Ground Truth Hardening: Fixed prompt_tokens calculation in GenerationMetrics to accurately report actual token counts across streaming and batch runs.</li>
-              <li>Empirical Real-Device Benchmarks: Documented verified physical device metrics on Galaxy S25 Adreno 830 (17.56 tok/s, 12.58x speedup) and Galaxy A35 Mali-G68 (3.47 tok/s, 5.94x speedup).</li>
-            </ul>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.0 - Native Vulkan Compute GPU Acceleration, Permanent VRAM Residency & Dynamic C ABI</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Latest Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.3 - Zero-Isolation Fast Build & Dual CLI Namespace Architecture &mdash; 2026-08-26</h3>
-            <ul>
-              <li>Bypassed pip build isolation to utilize native Termux cmake directly.</li>
-              <li>Resolved npm global symlink collision with dedicated termux-bitnet-js namespace.</li>
-              <li>Optimized install.sh with setuptools/wheel provisioning.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Native Vulkan Compute GPU Engine (via AMEVA-Runtime)</strong>: Dedicated SPIR-V compute kernels for BitNet 1.58-bit ternary GEMV (bitnet_gemv_i2_s.comp), FP16 LM Head offload (bitnet_gemv_f16.comp), RoPE, Attention Decode, SwiGLU, RMSNorm, and Residual summation.</li>
+          <li><strong>Llama.cpp-Style Permanent Model VRAM Residency</strong>: Pre-allocates unified GPU storage buffers for all 30 transformer layers (498 MB) and LM Head (626 MB) at initialization, completely eliminating host-to-device bus traffic during autoregressive token evaluation.</li>
+          <li><strong>Full-Pipeline On-Chain Token Execution (DispatchFullTokenChain)</strong>: Fuses the entire 30-layer pipeline into a single VkCommandBuffer submission and single fence wait per token, eliminating 99.4% of driver submission overhead.</li>
+          <li><strong>C ABI Dynamic Parameter Synchronization (bitnet_set_params)</strong>: Thread-safe runtime update for temperature, top_p, top_k, repeat_penalty, and stop tokens without context re-initialization.</li>
+          <li><strong>Telemetry Ground Truth Hardening</strong>: Fixed prompt_tokens calculation in GenerationMetrics to accurately report actual token counts across streaming and batch runs.</li>
+          <li><strong>Empirical Real-Device Benchmarks</strong>: Documented verified physical device metrics on Galaxy S25 Adreno 830 (17.56 tok/s, 12.58x speedup) and Galaxy A35 Mali-G68 (3.47 tok/s, 5.94x speedup).</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.3 - Zero-Isolation Fast Build & Dual CLI Namespace Architecture</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Initial Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.0 - Official Initial Engine Launch &mdash; 2026-08-20</h3>
-            <ul>
-              <li>Android Termux native Bionic libc 1.58-bit BitNet C++ inference engine initial release.</li>
-              <li>Dual Python and Node.js SDK interface.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Bypassed pip build isolation to utilize native Termux cmake directly.</li>
+          <li>Resolved npm global symlink collision with dedicated termux-bitnet-js namespace.</li>
+          <li>Optimized install.sh with setuptools/wheel provisioning.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.0 - Official Initial Engine Launch</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-20</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Android Termux native Bionic libc 1.58-bit BitNet C++ inference engine initial release.</li>
+          <li>Dual Python and Node.js SDK interface.</li>
+        </ul>
       </div>
     </main>
   </div>

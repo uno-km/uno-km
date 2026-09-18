@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>퀵스타트 및 실행 레시피 | Termux-BitNet</title>
-  <meta name="description" content="Termux-BitNet 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <title>Quickstart & Execution Recipes | Termux-BitNet</title>
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime, achieving up to 17.56 tok/s (12.58x speedup) on Qualcomm Adreno 830 and 3.47 tok/s (5.94x speedup) on ARM Mali-G68 under a sub-250MB RAM footprint.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,105 +19,30 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (Termux-BitNet)</p>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>from termux_bitnet import BitNetEngine, BitNetConfig
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="quickstart.valueProp">복사해서 붙여넣기만 하면 끝. 귀찮은 모델 탐색이나 설정 없이 가장 검증된 1.58비트 LLM이 스마트폰에서 바로 깨어나 답변을 쏟아냅니다.</p>
-      </div>
-
-      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
-      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
-      <pre><code>termux-bitnet chat --model bitnet-2b-i2_s --prompt '인공지능의 미래를 한 줄로 설명해줘'</code></pre>
-
-      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
-      <pre><code class="language-python">from termux_bitnet import BitNetEngine, BitNetConfig
-
-# 1. 자동 디바이스 감지 설정 (Vulkan GPU -> CPU NEON)
+# 1. Initialize engine with Native Vulkan GPU acceleration via AMEVA-Runtime
 config = BitNetConfig(
-    model_path="~/.cache/termux-bitnet/models/bitnet-2b-i2_s.gguf",
-    device="auto",
-    temperature=0.7
+    model_path="~/.cache/termux-bitnet/models/bitnet-2b-ggml-model-i2_s.gguf",
+    device="gpu",        # "gpu" (Vulkan via AMEVA-Runtime), "cpu", or "auto"
+    n_threads=4,
+    temperature=0.7,
+    top_p=0.95
 )
 
-# 2. 스트리밍 토큰 생성 실행
+# 2. Stream tokens in real time with dynamic parameter updates
 with BitNetEngine(config) as engine:
-    print("[질문]: 인공지능의 미래를 한 줄로 설명해줘")
-    for token in engine.generate_stream("인공지능의 미래를 한 줄로 설명해줘:"):
+    print("[Prompt]: Explain quantum computing in one sentence.")
+    print("[Response]: ", end="", flush=True)
+    for token in engine.generate_stream("Explain quantum computing in one sentence:"):
         print(token, end="", flush=True)
-    print()</code></pre>
-
-      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
-      <pre><code class="language-javascript">const { createEngine } = require('termux-bitnet');
-
-async function main() {
-  const engine = createEngine({
-    modelPath: '~/.cache/termux-bitnet/models/bitnet-2b-i2_s.gguf',
-    device: 'auto',
-    temperature: 0.7
-  });
-
-  console.log('[질문]: 인공지능의 미래를 한 줄로 설명해줘');
-  await engine.generateStream('인공지능의 미래를 한 줄로 설명해줘:', 64, (tok) => {
-    process.stdout.write(tok);
-  });
-  console.log('\n');
-}
-
-main();</code></pre>
-
-      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thModel">모델 / 프로파일</th>
-            <th data-i18n="table.thScore">검증 상태</th>
-            <th data-i18n="table.thVram">VRAM 점유</th>
-            <th data-i18n="table.thSpeed">추론 속도</th>
-            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>BitNet-b1.58-2B-4T (i2_s)</strong></td><td>★ 5.0</td><td>240 MB</td><td>17.56 t/s (Adreno 830)</td><td>공식 마이크로소프트 1.58비트 가중치, 모바일 GPU 하드웨어 가속 지원</td></tr>
-          <tr><td><strong>BitNet-b1.58-0.7B (i2_s)</strong></td><td>★ 4.8</td><td>110 MB</td><td>28.40 t/s (Adreno 830)</td><td>초경량 보급형 단말기 전용 초고속 대화 모델</td></tr>
-          <tr><td><strong>BitNet-Large-3B-Preview</strong></td><td>★ 4.4</td><td>380 MB</td><td>11.20 t/s (Adreno 830)</td><td>복합 추론 및 코드 생성 지원 3B 파라미터 경량 모델</td></tr>
-          <tr><td><strong>BitNet-CPU-Vectorized</strong></td><td>★ 4.2</td><td>210 MB</td><td>3.47 t/s (Cortex-A78)</td><td>Vulkan 미지원 구형 기기를 위한 ARM NEON 전용 모델</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
-            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
-            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>VK_ERROR_DEVICE_LOST</code></td>
-            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
-            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
-          </tr>
-          <tr>
-            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
-            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
-            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
-          </tr>
-          <tr>
-            <td>배터리 구동 시 지연시간 급증</td>
-            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
-            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
-          </tr>
-          <tr>
-            <td>프로세스 종료 후 VRAM 미반납</td>
-            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
-            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
-          </tr>
-        </tbody>
-      </table>
+    print()
+    metrics = engine.get_last_metrics()
+    print(f"Speed: {metrics.tokens_per_second:.2f} tok/s, Prompt tokens: {metrics.prompt_tokens}")
+</code></pre>
     </main>
   </div>
 

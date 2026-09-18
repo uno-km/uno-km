@@ -268,6 +268,7 @@ def audit_repository(lib_id: str, lib_meta: dict, fix: bool = False) -> dict:
                 print(f"  [ERROR DELETING REMOTE] {stale}: {e}")
 
         # C. Sync local dist/ artifacts to releases/ if missing
+        rel_dir.mkdir(parents=True, exist_ok=True)
         dist_dir = repo_path / "dist"
         if dist_dir.exists():
             for df in dist_dir.iterdir():

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>설치 및 환경 구성 가이드 | Termux-BitNet</title>
-  <meta name="description" content="Termux-BitNet 프로덕션 배포 가이드, 네이티브 의존성 및 환경 프로비저닝">
+  <title>Installation & Setup Guide | Termux-BitNet</title>
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime, achieving up to 17.56 tok/s (12.58x speedup) on Qualcomm Adreno 830 and 3.47 tok/s (5.94x speedup) on ARM Mali-G68 under a sub-250MB RAM footprint.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,80 +19,19 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
-      <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (Termux-BitNet)</p>
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install termux-bitnet ameva-runtime
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="install.valueProp">복잡한 C++ 컴파일러나 라이브러리 빌드 설정 없이, 터미널 명령어 한 줄로 스마트폰에 1.58비트 초경량 인공지능 두뇌를 완벽하게 설치합니다.</p>
-      </div>
+# or: npm install -g termux-bitnet @ameva/runtime
 
-      <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
-      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
-      <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-bitnet
-
-# Node.js 공식 패키지 매니저
-npm install termux-bitnet</code></pre>
-
-      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
-      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPkg">패키지명</th>
-            <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>clang</code></td><td>Bionic C/C++ 네이티브 ABI 연동 및 로컬 커널 확장 컴파일러</td></tr>
-          <tr><td><code>cmake</code></td><td>크로스 플랫폼 네이티브 빌드 자동화 및 링크 툴체인</td></tr>
-          <tr><td><code>vulkan-tools</code></td><td>모바일 GPU Vulkan 1.3 드라이버 기능 검증 도구</td></tr>
-          <tr><td><code>libvulkan-dev</code></td><td>Vulkan 하드웨어 가속 셰이더 바인딩용 헤더 및 심볼 라이브러리</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
-      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
-      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/termux-bitnet/main/install.sh | bash</code></pre>
-
-      <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thPath">설치 경로</th>
-            <th data-i18n="table.thChar">런타임 실행 특성</th>
-            <th data-i18n="table.thLimits">제약사항 및 폴백 메커니즘</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong data-i18n="install.rowStandalone">패키지 매니저 단독 설치</strong></td>
-            <td data-i18n="install.rowStandaloneDesc">고수준 언어 바인딩 및 기본 CPU 추론 코어 위주 로딩.</td>
-            <td data-i18n="install.rowStandaloneLimits">시스템 C++ 런타임 및 GPU 가속 드라이버가 수동 구성되어야 합니다.</td>
-          </tr>
-          <tr>
-            <td><strong data-i18n="install.rowFull">자동화 풀 패키지 설치</strong></td>
-            <td data-i18n="install.rowFullDesc">Vulkan SPIR-V 셰이더 컴파일, 제로카피 IPC 셋업 및 실리콘 벤치마크 검증 완료.</td>
-            <td data-i18n="install.rowFullLimits">지연시간 최소화가 필요한 실제 프로덕션 워크로드에 적극 권장됩니다.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="install.sec5Title">5. 선택적 빌드 및 런타임 플래그 파라미터</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thFlag">옵션 파라미터</th>
-            <th data-i18n="table.thFlagDesc">아키텍처 동작 및 하드웨어 효과</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>--enable-vulkan</code></td><td>Qualcomm Adreno 및 ARM Mali GPU 전용 SPIR-V 컴퓨트 셰이더 가속 활성화</td></tr>
-          <tr><td><code>--threads=<N></code></td><td>CPU 추론 워커 스레드 수 지정 (기본값: 물리 고성능 코어 수)</td></tr>
-          <tr><td><code>--shm-buffer-mb=<N></code></td><td>프로세스 간 제로카피 텐서 스트리밍을 위한 POSIX 공유 메모리 풀 크기 지정</td></tr>
-        </tbody>
-      </table>
+# or: curl -sL https://raw.githubusercontent.com/uno-km/termux-bitnet/main/install.sh | bash
+</code></pre>
     </main>
   </div>
 

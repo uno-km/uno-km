@@ -58,8 +58,8 @@ libraries:
     status: stable
   bitnet:
     name: Termux-BitNet
-    version: 1.4.0
-    release_date: '2026-09-07'
+    version: 1.4.4
+    release_date: '2026-09-18'
     npm_package: termux-bitnet
     pypi_package: termux-bitnet
     github_repo: uno-km/termux-bitnet
