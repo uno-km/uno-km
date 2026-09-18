@@ -1,4 +1,4 @@
-# Termux-Vision (v1.4.4)
+# Termux-Vision (v1.4.5)
 > Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine Utilizing Device Resources for Android Termux
 
 ## Quick Specification for AI Coding Agents
