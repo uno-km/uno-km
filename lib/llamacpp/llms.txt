@@ -1,4 +1,4 @@
-# Termux-LlamaCpp (v1.3.6)
+# Termux-LlamaCpp (v1.3.7)
 > Production-Grade GGUF LLM Runtime Utilizing Device Resources, Model Manager & OpenAI Server for Android ARM64
 
 ## Quick Specification for AI Coding Agents
