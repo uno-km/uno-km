@@ -1,4 +1,4 @@
-# Termux-LlamaCpp Full Technical Specification (v1.2.0)
+# Termux-LlamaCpp Full Technical Specification (v1.3.6)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview

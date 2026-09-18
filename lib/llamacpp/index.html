@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-LlamaCpp | Official Documentation</title>
-  <meta name="description" content="안드로이드 단말기에서 20분의 긴 빌드 없이 10초 만에 설치하여 최신 대형 언어 모델을 고속 실행합니다.">
+  <meta name="description" content="Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,126 +19,144 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">사전 빌드된 Vulkan GGUF 런타임 및 정밀 양자화 온디바이스 LLM 고속 구동 엔진</p>
+      <h2 data-i18n="home.title">Termux-LlamaCpp</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Production-Grade GGUF LLM Runtime Utilizing Device Resources, Model Manager & OpenAI Server for Android ARM64</p>
 
-      <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-llamacpp
-
-# Node.js 공식 패키지 매니저
-npm install termux-llamacpp</code></pre>
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-llamacpp/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-llamacpp.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank"><img src="https://img.shields.io/npm/v/termux-llamacpp.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
       </div>
 
-      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">안드로이드 기기에서 Llama.cpp를 직접 컴파일하려면 20분 이상의 Clang/Ninja 빌드 시간, 극심한 발열과 배터리 소모, 링커 충돌 및 지속적인 GGUF 포맷 버전 불일치가 발생합니다.</p>
-
-      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">Qualcomm Adreno 및 ARM Mali GPU에 최적화된 Vulkan 컴퓨트 백엔드와 양자화 연산 엔진을 사전 빌드하여, 10초 만에 완벽히 설치되고 서브 50ms 지연시간으로 구동되는 LLM 환경을 제공합니다.</p>
-
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">설치하다 지쳐 포기했던 스마트폰 대화형 AI, 이제 10초 만에 끝납니다. 폰이 뜨거워지거나 꺼질까 봐 조마조마할 필요 없이, 가장 최신의 강력한 언어 모델과 언제 어디서나 자유롭게 대화하세요.</p>
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-llamacpp && termux-llama install
+# or Node.js:
+npm install -g termux-llamacpp && termux-llama install</code></pre>
       </div>
 
-      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Running local LLMs on mobile Android typically requires multi-gigabyte compiler toolchains (Clang, CMake, Ninja), 20+ minute compilation times, fragile Bionic linker dependencies, and severe memory thrashing under default mmap allocations.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">사전 빌드된 무컴파일 바이너리 배포</h4>
-          <p data-i18n="home.features.0.desc">Clang이나 Ninja 빌드 없이 pip 및 npm으로 사전 검증된 Android ARM64 네이티브 런타임을 즉시 설치합니다.</p>
+          <h4 data-i18n="home.features.0.title">Zero-Compilation Instant Deployment</h4>
+          <p data-i18n="home.features.0.desc">Installs verified Android Bionic ARM64 binaries and bundled shared libraries via cryptographic SHA-256 checks in under 3 seconds without local Clang/CMake.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Vulkan GPU 레이어 100% 오프로드</h4>
-          <p data-i18n="home.features.1.desc">트랜스포머 전 레이어를 모바일 GPU VRAM에 상주시켜 CPU 연산 병목을 제거하고 35.8 t/s의 초고속 추론을 지원합니다.</p>
+          <h4 data-i18n="home.features.1.title">Device Resource Optimization & Big-Core Tuning</h4>
+          <p data-i18n="home.features.1.desc">Optimizes device resources with automated octa-core big.LITTLE cluster thread pinning (-t 4) and adaptive runtime routing.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">GGUF 최신 양자화 포맷 완벽 지원</h4>
-          <p data-i18n="home.features.2.desc">Q4_K_M, Q5_K_M, Q8_0 등 최신 양자화 모델을 정밀도 손실 없이 지원합니다.</p>
+          <h4 data-i18n="home.features.2.title">Strict 2-Tier Execution Mode</h4>
+          <p data-i18n="home.features.2.desc">Supports --device auto (SoC detection and deterministic routing) and --device cpu (zero-overhead direct forward pass).</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">동적 컨텍스트 윈도우 관리</h4>
-          <p data-i18n="home.features.3.desc">KV 캐시 순환 링 버퍼를 활용하여 긴 대화 도중에도 메모리 낭비 없이 안정적인 대화를 이어갑니다.</p>
+          <h4 data-i18n="home.features.3.title">OpenAI REST & SSE Streaming Supervisor</h4>
+          <p data-i18n="home.features.3.desc">Built-in reverse proxy supervisor exposing /health, /v1/models, and /v1/chat/completions with real-time SSE streaming and loopback CORS isolation.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">제로 셧다운 안전 메모리 보호</h4>
-          <p data-i18n="home.features.4.desc">단말기 백그라운드 전환 시 안전하게 리소스를 보존하고 복원하는 모바일 보호 로직을 탑재했습니다.</p>
+          <h4 data-i18n="home.features.4.title">Automated Process Lifecycle & Cleanup</h4>
+          <p data-i18n="home.features.4.desc">Guarantees 100% process termination on shutdown or error, with bounded health check polling and zero leftover orphaned daemon processes.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">Supply-Chain Cryptographic Integrity</h4>
+          <p data-i18n="home.features.5.desc">Enforces Ed25519 signed manifests, anti-downgrade policies, symlink traversal blocking, and local build receipts.</p>
         </div>
       </div>
 
-      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thCategory">서브시스템 분류</th>
-            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
-            <th data-i18n="table.thStability">상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Vulkan GEMM/GEMV Shader</strong></td>
-            <td>SPIR-V 기반 고속 행렬 곱셈 셰이더, Adreno/Mali GPU 가속</td>
-            <td><span class="badge badge-success">하드웨어 가속</span></td>
+            <td><strong>Inference Engine</strong></td>
+            <td>llama.cpp (ARM64 NEON DotProd & Device Resource Optimization)</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>ARM NEON Q4_K Vector Core</strong></td>
-            <td>128비트 SIMD 정수 행렬 연산, 배터리 절전 CPU 모드</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Architecture Support</strong></td>
+            <td>Android aarch64 / arm64-v8a (Bionic libc, Qualcomm Adreno, ARM Mali, Samsung Xclipse)</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>RoPE Frequency Calculation</strong></td>
-            <td>온디바이스 회전 위치 임베딩 고속 삼각함수 연산</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Supported Quantizations</strong></td>
+            <td>Q4_K_M, Q5_K_M, Q8_0, IQ4_XS, Q2_K, F16 GGUF v3</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>FlashAttention Mobile Pipeline</strong></td>
-            <td>메모리 대역폭 절감형 타일링 어텐션 커널</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Protocols & APIs</strong></td>
+            <td>OpenAI Chat Completions (JSON & SSE Stream), Models List, Health Check</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>SDK Bindings</strong></td>
+            <td>Python 3.8+ (termux-llamacpp), Node.js / TypeScript 16+ (termux-llamacpp)</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
-      <div>
-        <h4>Python (pip) 사용 예제</h4>
-        <pre><code class="language-python">from termux_llamacpp import LlamaEngine
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from termux_llamacpp import LlamaRuntime, RuntimeConfig
 
-# 1. 100% GPU 오프로딩 엔진 초기화
-engine = LlamaEngine(
-    model_path="~/.cache/termux-llamacpp/models/qwen2.5-0.5b-q4_k_m.gguf",
-    n_gpu_layers=99,
-    ctx_size=2048
+# 1. Initialize Runtime with Vulkan GPU Acceleration
+config = RuntimeConfig(
+    model_path="models/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+    device="auto",
+    threads=4,
+    context_size=2048
 )
+runtime = LlamaRuntime(config)
 
-# 2. 대화 스트리밍 생성
-print("[질문]: 양자 컴퓨팅을 쉽게 설명해줘")
-for token in engine.stream_chat("양자 컴퓨팅을 쉽게 설명해줘:"):
-    print(token, end="", flush=True)
-print()</code></pre>
+# 2. Synchronous or Streaming Text Generation
+output = runtime.generate("한국의 사계절 중 가을의 매력에 대해 설명해줘.", max_tokens=256)
+print(output.text)
+print(f"Speed: {output.metrics.eval_tokens_per_sec:.2f} t/s (Prompt: {output.metrics.prompt_tokens_per_sec:.2f} t/s)")</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { LlamaRuntime } from "termux-llamacpp";
+
+// 1. Initialize ESM Runtime
+const runtime = new LlamaRuntime({
+  modelPath: "models/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+  device: "auto",
+  threads: 4
+});
+
+// 2. Generate Completion
+const result = await runtime.generate({
+  prompt: "Explain the architectural philosophy of edge computing.",
+  maxTokens: 256
+});
+console.log("Response:", result.text);
+console.log(`Generation Speed: ${result.metrics.evalTokensPerSec} t/s`);</code></pre>
+        </div>
       </div>
-      <div>
-        <h4>Node.js (npm) 사용 예제</h4>
-        <pre><code class="language-javascript">const { LlamaEngine } = require('termux-llamacpp');
 
-async function main() {
-  const llm = new LlamaEngine({ modelPath: 'qwen2.5-0.5b.gguf', nGpuLayers: 99 });
-  await llm.generateStream('양자 컴퓨팅을 쉽게 설명해줘:', (tok) => process.stdout.write(tok));
-  console.log('\n');
-}
-
-main();</code></pre>
-      </div>
-
-      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
-        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
-        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
-        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
-        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
-        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>

@@ -1,4 +1,4 @@
-# Termux-Vision Full Technical Specification (v1.4.1)
+# Termux-Vision Full Technical Specification (v1.4.3)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
@@ -8,7 +8,7 @@ Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integra
 ## 2. Package & Installation
 - PyPI: termux-vision
 - Command: pip install termux-vision
-# or: pip install https://github.com/uno-km/termux-vision/releases/download/v1.4.1/termux_vision-1.4.1-py3-none-any.whl
+# or: pip install https://github.com/uno-km/termux-vision/releases/download/v1.4.3/termux_vision-1.4.3-py3-none-any.whl
 # or: npm install -g termux-vision
 # or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)
 - Repository: https://github.com/uno-km/termux-vision

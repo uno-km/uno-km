@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | Termux-LlamaCpp</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-LlamaCpp.">
+  <title>Version Archive & Changelog | Termux-LlamaCpp</title>
+  <meta name="description" content="Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,55 +19,64 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-LlamaCpp</p>
-
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Production Release (Latest)</div>
-          <div class="timeline-content">
-            <h3>v1.2.0 - Unified AMEVA Vulkan HAL & Galaxy A35 Validation &mdash; 2026-09-01</h3>
-            <ul>
-              <li>Unified AMEVA Vulkan HAL Integration: Deep binding with ameva-vulkan-runtime v1.1.0 utilizing Android Bionic Vulkan ICD (/system/lib64/libvulkan.so).</li>
-              <li>Strict 3-Tier Execution Mode: Added --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU recovery), and --device cpu (0ms direct NEON forward pass).</li>
-              <li>Dynamic Octa-Core Thread Tuning: Automatic detection of ARM big.LITTLE architectures (Exynos 1380, Snapdragon) injecting optimal big-core threads (-t 4).</li>
-              <li>Dual Package Distribution: Synchronously released to Python PyPI (termux-llamacpp v1.2.0) and Node.js npm (termux-llamacpp v1.2.0).</li>
-              <li>Real-Device Galaxy A35 Validation: End-to-end verification across CLI, Python SDK, Node.js npm, and background OpenAI REST server daemon.</li>
-              <li>Supply-Chain Receipt Gatekeeper: Added verified build receipt support (llama-server.build-receipt.json) for local native binaries.</li>
-            </ul>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.0 - Unified AMEVA Vulkan HAL & Galaxy A35 Validation</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-01</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.1 - Supply-Chain Cryptographic Verification & Multi-Channel Crawler &mdash; 2026-08-30</h3>
-            <ul>
-              <li>Ed25519 Public Key Verification: Cryptographic manifest verification with SHA-256 binary validation.</li>
-              <li>Multi-Channel HuggingFace GGUF Crawler: Deep model discovery and automated quant downloader.</li>
-              <li>Process Supervisor Resilience: Guaranteed zero-zombie process termination with tracked PID ledger.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Unified AMEVA Vulkan HAL Integration: Deep binding with ameva-vulkan-runtime v1.1.0 utilizing Android Bionic Vulkan ICD (/system/lib64/libvulkan.so).</li>
+          <li>Strict 3-Tier Execution Mode: Added --device vulkan (Fail-Fast GPU compute), --device auto (transparent CPU recovery), and --device cpu (0ms direct NEON forward pass).</li>
+          <li>Dynamic Octa-Core Thread Tuning: Automatic detection of ARM big.LITTLE architectures (Exynos 1380, Snapdragon) injecting optimal big-core threads (-t 4).</li>
+          <li>Dual Package Distribution: Synchronously released to Python PyPI (termux-llamacpp v1.2.0) and Node.js npm (termux-llamacpp v1.2.0).</li>
+          <li>Real-Device Galaxy A35 Validation: End-to-end verification across CLI, Python SDK, Node.js npm, and background OpenAI REST server daemon.</li>
+          <li>Supply-Chain Receipt Gatekeeper: Added verified build receipt support (llama-server.build-receipt.json) for local native binaries.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.1 - Supply-Chain Cryptographic Verification & Multi-Channel Crawler</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-30</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.2 - Bionic Dynamic Linker Stabilization & Dual-Ecosystem Publishing &mdash; 2026-08-28</h3>
-            <ul>
-              <li>Bionic Shared Library Bundling: Packaged libgomp and libstdc++ to prevent missing symbol errors on raw Termux.</li>
-              <li>NPM Binary Wrapper: Added standalone ESM binary resolver for Node.js environments.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Ed25519 Public Key Verification: Cryptographic manifest verification with SHA-256 binary validation.</li>
+          <li>Multi-Channel HuggingFace GGUF Crawler: Deep model discovery and automated quant downloader.</li>
+          <li>Process Supervisor Resilience: Guaranteed zero-zombie process termination with tracked PID ledger.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.2 - Bionic Dynamic Linker Stabilization & Dual-Ecosystem Publishing</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-28</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Initial Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.1 - Initial Production GGUF LLM Runtime Release &mdash; 2026-08-27</h3>
-            <ul>
-              <li>Prebuilt ARM64 llama.cpp Native Binaries: Direct extraction in under 3 seconds.</li>
-              <li>Loopback Isolated OpenAI Server: /v1/chat/completions REST and SSE streaming supervisor.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Bionic Shared Library Bundling: Packaged libgomp and libstdc++ to prevent missing symbol errors on raw Termux.</li>
+          <li>NPM Binary Wrapper: Added standalone ESM binary resolver for Node.js environments.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.1 - Initial Production GGUF LLM Runtime Release</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-27</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Prebuilt ARM64 llama.cpp Native Binaries: Direct extraction in under 3 seconds.</li>
+          <li>Loopback Isolated OpenAI Server: /v1/chat/completions REST and SSE streaming supervisor.</li>
+        </ul>
       </div>
     </main>
   </div>
