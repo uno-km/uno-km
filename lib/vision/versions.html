@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | Termux-Vision</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Vision.">
+  <title>Version Archive & Changelog | Termux-Vision</title>
+  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,58 +19,67 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Vision</p>
-
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.4.0 - Release &mdash; 2026-09-07</h3>
-            <ul>
-              <li>Qualcomm Snapdragon 8 Elite (Adreno 830) Full-GPU VLM acceleration verified on Galaxy S25 (15.00 tok/s generation on Moondream2 1.8B f16, 2,706 MiB VRAM).</li>
-              <li>SPIR-V compiler register allocation patch: mul_mat_vec_max_cols reduced from 8 to 2, resolving Qualcomm VK_ERROR_UNKNOWN JIT compiler aborts.</li>
-              <li>Android kernel GPU watchdog (kgsl) timeout (ErrorDeviceLost) defense: GGML_VULKAN_SKIP_CHECKS='999999999' injection and micro-batch prefill chunking (-b 64 -ub 64).</li>
-              <li>ZeroFlickerEngine parameter un-clamping: full thread and inference argument passthrough to VisionAdapter.</li>
-              <li>Universal installer (install.sh) audit: single-command wheel resolution preventing legacy PyPI package overwrites.</li>
-            </ul>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.0 - Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.3.1 - Release &mdash; 2026-09-07</h3>
-            <ul>
-              <li>Full standardization of CLI parameters (-d/--device, -b/--backend, -i, -p, -m, --mmproj, -n, -c, -t, -W, -H, --tune-mali, --json).</li>
-              <li>Verified ARM Mali GPU (G78 MP14, G68 MP5) acceleration pipeline with 0.00 MiB CPU Mapped VRAM.</li>
-              <li>Real-device benchmarks: Galaxy S21 12.65 tok/s (+58.9%), Galaxy A35 5.47 tok/s (+55.8%).</li>
-              <li>Dynamic GitHub Releases asset resolver and automated wheel installer with SHA-256 integrity verification.</li>
-              <li>Architecture roadmap defined: Adreno and Xclipse backends marked as In Development.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Qualcomm Snapdragon 8 Elite (Adreno 830) Full-GPU VLM acceleration verified on Galaxy S25 (15.00 tok/s generation on Moondream2 1.8B f16, 2,706 MiB VRAM).</li>
+          <li>SPIR-V compiler register allocation patch: mul_mat_vec_max_cols reduced from 8 to 2, resolving Qualcomm VK_ERROR_UNKNOWN JIT compiler aborts.</li>
+          <li>Android kernel GPU watchdog (kgsl) timeout (ErrorDeviceLost) defense: GGML_VULKAN_SKIP_CHECKS='999999999' injection and micro-batch prefill chunking (-b 64 -ub 64).</li>
+          <li>ZeroFlickerEngine parameter un-clamping: full thread and inference argument passthrough to VisionAdapter.</li>
+          <li>Universal installer (install.sh) audit: single-command wheel resolution preventing legacy PyPI package overwrites.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.1 - Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.2.0 - Release &mdash; 2026-09-01</h3>
-            <ul>
-              <li>Official ameva-vulkan-runtime dynamic bridge integration for truthful hardware doctor probing.</li>
-              <li>Native C/C++ dual acceleration engines with 8-directional BFS Hysteresis queue.</li>
-              <li>Full COCO-80 standard class alignment for TinyYOLONano detector.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Full standardization of CLI parameters (-d/--device, -b/--backend, -i, -p, -m, --mmproj, -n, -c, -t, -W, -H, --tune-mali, --json).</li>
+          <li>Verified ARM Mali GPU (G78 MP14, G68 MP5) acceleration pipeline with 0.00 MiB CPU Mapped VRAM.</li>
+          <li>Real-device benchmarks: Galaxy S21 12.65 tok/s (+58.9%), Galaxy A35 5.47 tok/s (+55.8%).</li>
+          <li>Dynamic GitHub Releases asset resolver and automated wheel installer with SHA-256 integrity verification.</li>
+          <li>Architecture roadmap defined: Adreno and Xclipse backends marked as In Development.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.0 - Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-01</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.1 - Release &mdash; 2026-08-15</h3>
-            <ul>
-              <li>Dual Engine Python and Node.js SDK initial release.</li>
-              <li>Heuristic Haar Cascade face candidate detector.</li>
-              <li>Model Cache Manager and GGUF VLM loader.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Official ameva-vulkan-runtime dynamic bridge integration for truthful hardware doctor probing.</li>
+          <li>Native C/C++ dual acceleration engines with 8-directional BFS Hysteresis queue.</li>
+          <li>Full COCO-80 standard class alignment for TinyYOLONano detector.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.1 - Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-15</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Dual Engine Python and Node.js SDK initial release.</li>
+          <li>Heuristic Haar Cascade face candidate detector.</li>
+          <li>Model Cache Manager and GGUF VLM loader.</li>
+        </ul>
       </div>
     </main>
   </div>

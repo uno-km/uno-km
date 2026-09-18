@@ -194,7 +194,7 @@ Claude Desktop, Cursor 등 AI 에이전트에 필요한 다양한 언어(C++, Ru
   | Samsung Galaxy A35 | Exynos 1380 (Cortex-A78 x4) | 디바이스 리소스 사용 | SDXS 512×512 1-Step (ARM NEON DotProd) | 61초 | 1.18 GB RAM |
 - **설치 명령어**:
   ```bash
-  pip install termux-diffusion && termux-diffusion-install --backend auto
+  pip install termux-diffusion && termux-diffusion install
   # 또는
   npm install termux-diffusion && npx termux-diffusion install
   ```

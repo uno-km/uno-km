@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>퀵스타트 및 실행 레시피 | Termux-Vision</title>
-  <meta name="description" content="Termux-Vision 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <title>Quickstart & Execution Recipes | Termux-Vision</title>
+  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,95 +19,21 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (Termux-Vision)</p>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>import termux_vision as tv
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="quickstart.valueProp">사진 한 장만 건네주면 사물 감지부터 얼굴 인식, 이미지 설명까지 인공지능이 즉시 화면에 분석 결과를 띄워줍니다.</p>
-      </div>
+# 1. Zero-Dependency Spatial Filtering (0.01s ultra-fast)
+img = tv.io.load_image("photo.jpg")
+edges = tv.cv.canny(tv.transforms.to_grayscale(img), 40, 120)
+tv.io.save_image(edges, "edges.png")
 
-      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
-      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
-      <pre><code>termux-vision detect --image ./samples/sample.jpg --model smolvlm</code></pre>
-
-      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
-      <pre><code class="language-python">from termux_vision import VisionEngine
-
-# 1. 제로카피 비전 엔진 초기화
-engine = VisionEngine(mode="vlm", model_name="smolvlm-500m")
-
-# 2. 이미지 분석 및 시각 언어 질의
-print("[Vision] 이미지 분석 중...")
-description = engine.ask_image("./samples/sample.jpg", "이 사진에 무엇이 있나요?")
-print(f"[분석 답변]: {description}")
-
-# 3. 고속 얼굴 탐지 수행
-faces = engine.detect_faces("./samples/sample.jpg")
-print(f"[검출된 얼굴 수]: {len(faces)}개 좌표: {faces}")</code></pre>
-
-      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
-      <pre><code class="language-javascript">const { VisionEngine } = require('termux-vision');
-
-async function main() {
-  const vision = new VisionEngine({ mode: 'detect' });
-  const result = await vision.analyze('./samples/sample.jpg');
-  console.log(`[탐지 결과]:`, result);
-}
-
-main();</code></pre>
-
-      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thModel">모델 / 프로파일</th>
-            <th data-i18n="table.thScore">검증 상태</th>
-            <th data-i18n="table.thVram">VRAM 점유</th>
-            <th data-i18n="table.thSpeed">추론 속도</th>
-            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>SmolVLM-500M-Instruct</strong></td><td>★ 5.0</td><td>480 MB</td><td>42 ms/frame (Adreno 830)</td><td>온디바이스 시각 언어 모델, 이미지 이해 및 VLM Q&A 지원</td></tr>
-          <tr><td><strong>Haar-Cascade-Face-Detector</strong></td><td>★ 4.8</td><td>2.4 MB</td><td>6.2 ms/frame (CPU NEON)</td><td>순수 C++ 구현 0-의존성 초고속 모바일 얼굴 검출기</td></tr>
-          <tr><td><strong>Canny-Sobel-Edge-Extractor</strong></td><td>★ 4.9</td><td>0.8 MB</td><td>1.8 ms/frame (ARM NEON)</td><td>외부 의존성 없는 순수 픽셀 그래디언트 윤곽선 추출기</td></tr>
-          <tr><td><strong>MobileNetV4-Compact</strong></td><td>★ 4.6</td><td>24 MB</td><td>12 ms/frame (Mali-G68)</td><td>1,000종 이미지 객체 분류 및 모바일 온디바이스 인식 모델</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
-            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
-            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>VK_ERROR_DEVICE_LOST</code></td>
-            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
-            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
-          </tr>
-          <tr>
-            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
-            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
-            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
-          </tr>
-          <tr>
-            <td>배터리 구동 시 지연시간 급증</td>
-            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
-            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
-          </tr>
-          <tr>
-            <td>프로세스 종료 후 VRAM 미반납</td>
-            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
-            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
-          </tr>
-        </tbody>
-      </table>
+# 2. On-Device VLM Multimodal Inference with Vulkan GPU Acceleration
+with tv.vlm.load("smolvlm-500m", device="gpu") as engine:
+    res = engine.describe("photo.jpg", prompt="Describe this scene in detail.", quality="optimal")
+    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s): {res.text}")
+</code></pre>
     </main>
   </div>
 
