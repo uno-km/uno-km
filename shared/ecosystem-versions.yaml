@@ -76,7 +76,7 @@ libraries:
     status: stable
   diffusion:
     name: Termux-Diffusion
-    version: 1.6.7
+    version: 1.6.8
     release_date: '2026-09-18'
     npm_package: termux-diffusion
     pypi_package: termux-diffusion
