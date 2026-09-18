@@ -240,7 +240,7 @@ libraries:
     status: stable
   tts:
     name: Termux-TTS
-    version: 1.5.1
+    version: 1.5.3
     release_date: '2026-09-17'
     npm_package: termux-tts
     pypi_package: termux-tts
