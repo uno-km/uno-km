@@ -159,7 +159,7 @@ AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 독
 빅테크가 폰에서는 불가능하다고 했던 것들을, 우리는 안드로이드 Bionic libc와 ARM64 NEON 어셈블리, 그리고 Vulkan 컴퓨트 셰이더를 밑바닥부터 다 뜯어고쳐 완성했습니다:
 - **`Termux-BitNet`**: 1.58비트 LLM 3진 양자화 커널 Bionic 이식! NEON DotProd + Vulkan GPU 1줄 패키징.
 - **`Termux-TTS`**: 가벼운 DSP부터 22.05kHz Vulkan GPU 스튜디오 신경망까지 4-Tier 복원형 음성 합성.
-- **`Termux-Vision`**: 150MB OpenCV 전면 배제! 순수 Canny/Sobel 알고리즘 + SmolVLM Vulkan GPU 제로카피 시각 지능.
+- **`Termux-Vision`**: 150MB OpenCV 전면 배제! 100KB 초경량 순수 CPU 비전 커널 + SmolVLM 온디바이스 VLM 멀티모달 시각 지능 (선택적 모듈형 Vulkan GPU 가속).
 - **`Termux-AIChain`**: LangChain 배제! 외부 의존성 제로 순수 위상 정렬 DAG 기반 50KB 초경량 모바일 오케스트레이터.
 - **`Termux-LlamaCpp`**: 20분 컴파일 고통 끝! Bionic 최적화 사전 빌드로 10초 만에 대형 모델 추론.
 - **`STT` · `Diffusion` · `Train` · `Playwright` · `Forge` · `Sentinel` · `Infra-Index` · `MCP-Hub` · `Runtime`** 완전 가동.

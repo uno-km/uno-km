@@ -377,6 +377,32 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 ---
 
+### 1.16 Termux-Vision
+안드로이드 Termux 환경에서 외부 무거운 C++ 빌드 의존성(OpenCV 등) 없이 순수 Python/JS 및 ARM64 NEON SIMD 커널로 구동되는 제로 디펜던시 컴퓨터 비전 & SmolVLM 온디바이스 VLM 멀티모달 추론 프레임워크입니다.
+
+- **카테고리**: 모바일 온디바이스 컴퓨터 비전 & VLM 멀티모달 SDK
+- **기술 스택**: Python, Node.js/TypeScript, ARMv8.2-A NEON SIMD, Canny/Sobel, SmolVLM (GGUF), Llama-CLI Bridge
+- **배포 버전**: `v1.4.1`
+- **기존 문제**: 모바일 Termux 환경에서 OpenCV나 TorchVision 등 기존 비전 프레임워크는 바이너리 크기가 150MB를 초과하고 컴파일 실패율이 높으며, 온디바이스 VLM 멀티모달 파이프라인의 부재로 인해 이미지 시각 이해 모델 구동이 어려움.
+- **해결 방식**: 100KB 초경량 순수 CPU 비전 커널(Canny 엣지 검출, Sobel, 적분 영상, Haar 캐스케이드)을 자체 구현하고, 2,048 토큰 컨텍스트 지원을 통해 SmolVLM-500M ViT 이미지 토큰(1,139개)을 스마트폰 순수 CPU에서 메모리 안전하게 고속 추론(S25: ~37.7 t/s, S21: ~46.1 t/s)함.
+- **실제 사용자가 쓰는 핵심 기능**:
+  1. **초경량 온디바이스 VLM 멀티모달 추론**: 스마트폰에서 `termux-vision vlm photo.jpg -p "설명해줘"` 한 줄로 사진을 시각적으로 이해하고 상세 자연어 설명 생성.
+  2. **무의존성 전통 컴퓨터 비전 필터**: OpenCV 없이 16~600ms 속도로 Canny 엣지 검출, 얼굴 후보 영역 검출, 이미지 변환 수행.
+  3. **Python 및 Node.js 완전 지원**: `pip install termux-vision` 및 `npm install -g termux-vision`으로 즉시 사용.
+- **설치 명령어**:
+  ```bash
+  pip install termux-vision
+  # 또는
+  npm install termux-vision
+  ```
+- **관련 링크**:
+  - [PyPI 패키지](https://pypi.org/project/termux-vision/)
+  - [npm 패키지](https://www.npmjs.com/package/termux-vision)
+  - [공식 문서](https://uno-km.vercel.app/lib/vision/)
+  - [GitHub 저장소](https://github.com/uno-km/termux-vision)
+
+---
+
 ## 2. 공통 기술 스택 및 카테고리 요약
 
 | 카테고리 | 프로젝트 | 핵심 기술 스택 | 공통 특징 |
