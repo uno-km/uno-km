@@ -481,6 +481,11 @@ def main():
     # sync
     p_sync = subparsers.add_parser("sync", help="Synchronize catalogs, sidebars, and metrics")
 
+    # freeze
+    p_freeze = subparsers.add_parser("freeze", help="Audit or enforce ecosystem asset freeze and zero-drift")
+    p_freeze.add_argument("lib", nargs="?", default="all", help="Target library id or 'all'")
+    p_freeze.add_argument("--fix", action="store_true", help="Automatically purge stale assets and heal drift")
+
     args = parser.parse_args()
 
     if args.command == "init":
@@ -491,6 +496,11 @@ def main():
         cmd_release(args)
     elif args.command == "sync":
         sync_all_catalogs()
+    elif args.command == "freeze":
+        cmd = [sys.executable, str(ROOT_DIR / "tools" / "freeze_guard.py"), args.lib]
+        if args.fix:
+            cmd.append("--fix")
+        subprocess.run(cmd)
 
 
 if __name__ == "__main__":
