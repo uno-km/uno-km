@@ -2,6 +2,25 @@
 
 ---
 
+## [Termux-LlamaCpp v1.3.11] - 2026-09-28
+
+### Overview
+**Termux-LlamaCpp v1.3.11** (PyPI: `termux-llamacpp 1.3.11` / NPM: `termux-llamacpp@1.3.11`) introduces dynamic 5-stage exponential backoff model download resumption with HTTP Range 206/416 self-healing, automatically guards Qualcomm Adreno mobile GPUs against closed-source compiler assertion crashes via default `-fa 0` (Flash Attention bypass), isolates pure CPU execution against buggy vendor Vulkan drivers, and integrates official Bionic HAL binding via `LlamaCppAdapter`.
+
+### Key Changes
+* **Dynamic 5-Stage Network Resume & Exponential Backoff**:
+  * Added resilient multi-stage retry mechanism with automatic HTTP Range 206 partial downloads and 416 range reset logic in `downloader.py`.
+  * Added compression encoding validation (`identity` vs `gzip/deflate`) to eliminate corrupted partial model file state.
+* **Qualcomm Adreno Vulkan Flash Attention Defense & CPU Device Isolation**:
+  * Defaulted `-fa 0` during mobile GPU execution, bypassing closed-source vendor driver compiler assertion crashes on Adreno 700 / 800 series.
+  * Injected `GGML_VK_VISIBLE_DEVICES = ""` under pure CPU NEON mode (`device="cpu"`), preventing buggy vendor Vulkan driver crashes during CPU execution.
+* **Model-Aware Chat Template Auto-Resolution**:
+  * Integrated zero-friction automatic chat template expansion for Qwen (`<|im_start|>`) and Llama-3 (`<|start_header_id|>`) models with deterministic stop token cleanup.
+* **Official ameva-runtime Adapter Integration**:
+  * Deep binding with `LlamaCppAdapter.get_execution_environment()` for automated Bionic HAL shim injection and dynamic library search path isolation.
+
+---
+
 ## [Termux-STT v1.2.13] - 2026-09-28
 
 ### Overview
