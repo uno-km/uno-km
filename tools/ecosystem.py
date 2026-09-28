@@ -395,6 +395,10 @@ def cmd_build(args):
 
         config = parse_simple_yaml(lib_dir / "doc.config.yaml")
         if not config:
+            slug = "vulkan" if target.lower() in ("vulkan", "runtime", "ameva-runtime", "ameva-vulkan") else target.lower()
+            if (ROOT_DIR / "lib" / slug / "doc.config.yaml").exists():
+                config = parse_simple_yaml(ROOT_DIR / "lib" / slug / "doc.config.yaml")
+        if not config:
             config = {"name": lib_dir.name, "github_repo_url": f"https://github.com/uno-km/{lib_dir.name}"}
 
         print(f"\n[BUILDING] Target-Aware Compilation for '{lib_dir.name}'...")

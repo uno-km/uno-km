@@ -1,20 +1,21 @@
 name: AMEVA-Runtime
 package_name_pypi: ameva-runtime
 package_name_npm: '@ameva/runtime'
-version: v2.0.0
-release_name: Unified On-Device Hardware Orchestration & Multi-Modal AI Acceleration
-  Runtime
+version: v2.7.3
+release_name: Unified On-Device Hardware Orchestration & 6-Modality AI Acceleration
+  Runtime (with Z-Image Turbo DiT & BitNet 1.58b)
 license: Apache-2.0
 platform: Android ARM64 / Qualcomm Adreno, ARM Mali, Linux & Edge
 github_repo_url: https://github.com/uno-km/ameva-runtime
-tagline_ko: 모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 멀티모달 가속 런타임
-tagline_en: Next-Gen Unified On-Device Hardware Orchestration & Multi-Modal Acceleration
-  Runtime for Mobile & Edge
-tagline_ja: モバイルおよびエッジ環境向けの次世代統合オンデバイスハードウェアオーケストレーションおよびマルチモーダルアクセラレーションランタイム
-tagline_zh: 面向移动和边缘环境的下一代统合端侧硬件编排与多模态加速运行时
-tagline_es: Runtime de aceleración multimodal y orquestación de hardware unificado
+tagline_ko: 모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 6대 모달리티 AI 가속 런타임 (Z-Image
+  Turbo DiT 지원)
+tagline_en: Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration
+  Runtime for Mobile & Edge (with Z-Image Turbo DiT)
+tagline_ja: モバイルおよびエッジ環境向けの次世代統合オンデバイスハードウェアオーケストレーションおよび6モダリティAIアクセラレーションランタイム
+tagline_zh: 面向移动和边缘环境的下一代统合端侧硬件编排与六模态AI加速运行时
+tagline_es: Runtime de aceleración de 6 modalidades y orquestación de hardware unificado
   para móviles y edge
-tagline_de: Einheitliche On-Device-Hardware-Orchestrierung und Multimodal-Beschleunigungs-Runtime
+tagline_de: Einheitliche On-Device-Hardware-Orchestrierung und 6-Modalitäts-Beschleunigungs-Runtime
   für Mobile und Edge
 quick_install_cmd: 'pip install ameva-runtime
 
@@ -212,24 +213,40 @@ features:
     time reduction) while unburdening CPU.
   desc_ko: Whisper Large-v3-Turbo 모델을 GPU로 가속하여 360초에 완료(CPU 816초 대비 2.26배 가속)하고 CPU
     부하를 경감합니다.
+- title_en: Z-Image Turbo 6.0B DiT Vulkan Compute
+  title_ko: Z-Image Turbo 6.0B DiT 모바일 Vulkan 가속
+  desc_en: Dispatches SOTA Diffusion Transformer compute with Flash Attention and
+    VAE tiling directly on mobile Qualcomm Adreno and ARM Mali GPUs.
+  desc_ko: 모바일 Qualcomm Adreno 및 ARM Mali GPU에서 Flash Attention 및 VAE 타일링을 적용하여 SOTA
+    6.0B DiT 이미지 생성을 직접 가속합니다.
+- title_en: Two-Track Enterprise Supply Chain Architecture
+  title_ko: Two-Track 엔터프라이즈 공급망 체계
+  desc_en: Decouples proprietary source code into private repositories while providing
+    verified release binaries via public registry for tokenless 1-Click provisioning.
+  desc_ko: 핵심 소스코드는 비공개로 영구 은닉하고, 검증된 실행 바이너리는 공개 레지스트리를 통해 토큰 없이 1-Click 자동 배포하는
+    투트랙 체계를 확립했습니다.
 - title_en: Unified Multi-Modality Architecture
   title_ko: 멀티모달 런타임 코어 일원화
-  desc_en: Drives GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion, Piper TTS,
-    and BitNet from a single runtime.
-  desc_ko: GGUF LLM, Whisper 음성인식, LLaVA 비전, Stable Diffusion, Piper TTS, BitNet을
+  desc_en: Drives GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion / DiT, Piper
+    TTS, and BitNet from a single runtime.
+  desc_ko: GGUF LLM, Whisper 음성인식, LLaVA 비전, Stable Diffusion 및 DiT, Piper TTS, BitNet을
     단일 런타임으로 일원화 지원합니다.
 matrix_table:
 - category: Galaxy S25 (Qualcomm Adreno 830)
   operations: Vulkan 25/25 Layers Offloaded, 35.80 t/s, mul_mat_vec_max_cols=2
   status: Production
 - category: Galaxy A35 (ARM Mali-G68)
-  operations: Vulkan Medium MatMul, 4.44 t/s LLM, Whisper Large-v3-Turbo 360s (2.26x)
+  operations: Vulkan Medium MatMul, 4.44 t/s LLM, Whisper Large-v3-Turbo (2.26x)
   status: Production
-- category: CPU-NEON Baseline
-  operations: Adaptive Cortex-A78 (4 Threads), 3.55 t/s LLM, 816s STT
-  status: Production
+- category: Mobile DiT Diffusion (Z-Image Turbo 6.0B)
+  operations: Vulkan DiT Pipeline, Flash Attention (--diffusion-fa), VAE Tiling
+  status: Production (v2.7.3)
+- category: Two-Track Public Registry
+  operations: Anonymous 1-Click Auto-Provisioning via uno-km/ameva-runtime-releases
+  status: Active
 - category: Multi-Modality Engines
-  operations: GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion, Piper TTS, BitNet
+  operations: GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion / DiT, Piper TTS,
+    BitNet
   status: Production
 code_example_py: "import ameva_runtime as ameva\nfrom ameva_runtime import vulkan\n\
   \n# 1. Execute LLM inference directly with optimal on-device hardware dispatch\n\
@@ -255,6 +272,44 @@ code_example_js: 'import { createContext, Doctor } from "@ameva/runtime";
 
   '
 changelog:
+- version: v2.7.3
+  date: '2026-09-28'
+  title: Termux-Diffusion Integration (Z-Image Turbo 6.0B DiT), Two-Track Supply Chain
+    & Android 15 Zero-Collision
+  type: Production Release
+  changes:
+  - 'Termux-Diffusion SOTA Z-Image Turbo 6.0B DiT Integration: Verified on-device
+    DiT compute pipeline with Flash Attention (--diffusion-fa) and VAE tiled decoding
+    across mobile Qualcomm Adreno and ARM Mali GPUs.'
+  - 'Two-Track Enterprise Supply Chain Architecture: Separated proprietary core source
+    code (100% Private) from public release binary hub (uno-km/ameva-runtime-releases),
+    enabling anonymous, tokenless 1-Click native engine auto-provisioning.'
+  - 'Automated Production Release Fallback: Engineered resilient asset resolution
+    defaulting to releases/latest/download when target version tag is unavailable.'
+  - 'Android 15 Bionic libc & Dynamic Linker Isolation: Reinforced symbol resolution
+    in BionicDirectVulkanLoader against allocator and namespace collisions, eliminating
+    Mesa llvmpipe CPU rasterizer traps.'
+- version: v2.7.2
+  date: '2026-09-18'
+  title: Dual-Generation Qualcomm Adreno Vulkan Zero-NaN & Bionic Isolation
+  type: Maintenance Release
+  changes:
+  - 'Qualcomm Adreno Vulkan Zero-NaN Architecture: Resolved IEEE 754 denormal/subnormal
+    flush-to-zero divergence and NaN token degeneration across Adreno 830 and Adreno
+    650.'
+  - 'Dynamic Asset Resolution SSOT: Refactored NativeAssetManager to resolve release
+    assets dynamically with fail-fast checksum validation.'
+  - 'Unified Modality Adapters: Synchronized execution pipelines across LLM, STT,
+    TTS, Diffusion, Vision, and BitNet.'
+- version: v2.7.1
+  date: '2026-09-15'
+  title: Strict Model Resolution & Vulkan GPU Layer Offloading Expansion
+  type: Hardening Release
+  changes:
+  - 'Strict Model Resolution Guard (AmbiguousModelMatchError): Eliminated arbitrary
+    model path guessing and enforced deterministic candidate resolution.'
+  - 'Vulkan Layer Offloading Expansion (requested_ngl=999): Enforced 100% VRAM offloading
+    default across runtime execution routing.'
 - version: v2.0.0
   date: '2026-09-05'
   title: Unified Single-Package Architecture, Mali Valhall MatMul Loop Elimination
@@ -289,3 +344,293 @@ changelog:
     stalls.'
   - 'Unified AmevaRuntime Python Execution Engine: Added ameva.run() and ameva.plan()
     top-level APIs.'
+readme_content: "# AMEVA-Runtime\n\n[![PyPI](https://img.shields.io/pypi/v/ameva-runtime.svg?style=flat-square&color=0369a1)](https://pypi.org/project/ameva-runtime/)\n\
+  [![Python](https://img.shields.io/pypi/pyversions/ameva-runtime.svg?style=flat-square)](https://pypi.org/project/ameva-runtime/)\n\
+  [![npm](https://img.shields.io/npm/v/@ameva/runtime.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/@ameva/runtime)\n\
+  [![GitHub Release](https://img.shields.io/github/v/release/uno-km/ameva-runtime-releases?style=flat-square&color=0969da)](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.3)\n\
+  [![License](https://img.shields.io/badge/License-Apache_2.0-004499.svg?style=flat-square)](https://github.com/uno-km/ameva-runtime)\n\
+  <img src=\"https://img.shields.io/badge/BitNet%201.58b-Vulkan%20Compute%20Accelerated-purple.svg?logo=vulkan&logoColor=white\"\
+  \ alt=\"BitNet Vulkan\">\n\n> Next-Gen Unified On-Device Hardware Orchestration\
+  \ & 6-Modality AI Acceleration Runtime (with BitNet 1.58-bit Vulkan Compute) for\
+  \ Mobile & Edge\n\n---\n\n## Architecture & Overview\n\nAMEVA-Runtime is a hardware\
+  \ abstraction layer (HAL) and compute orchestration engine engineered specifically\
+  \ for mobile ARM64 devices (Android Termux, Linux Edge). It continuously inspects\
+  \ underlying silicon topology (/dev/kgsl-3d0, /dev/mali0) to route tensor execution\
+  \ across Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON backends.\n\n### 6-Modality\
+  \ Acceleration Matrix\n\n| Modality | Engine Integration | Status (v2.7.3) | Hardware\
+  \ Acceleration Mechanism |\n| :--- | :--- | :---: | :--- |\n| **1. LLM (Text)**\
+  \ | Llama.cpp & Termux-BitNet (1.58-bit i2_s) | **Production (v2.7.3)** | Vulkan\
+  \ 25/25 layer VRAM offload (`ngl=999`), BitNet full pipeline & strict `AmbiguousModelMatchError`\
+  \ |\n| **2. STT (Speech)** | Whisper.cpp (Large-v3-Turbo) | **Production (v2.7.3\
+  \ / STT v1.2.7)** | Vulkan GPU acceleration with greedy decoding default (`-bs 1`),\
+  \ 6-SoC fleet validated |\n| **3. TTS (Audio)** | MeloTTS / Piper / Kokoro / Supertonic\
+  \ | **Production (v2.7.3 / TTS v1.5.0)** | Bionic Direct Vulkan (`/system/lib64/libvulkan.so`)\
+  \ & HiFi-GAN 32MB buffer temporal tiling |\n| **4. Diffusion (Image)** | SDXS /\
+  \ SD1.5 / Z-Image Turbo (6.0B DiT) | **Production (v2.7.3 / Diffusion v1.8.0)**\
+  \ | Z-Image Turbo 6.0B DiT, Flash Attention (`--diffusion-fa`), VAE Tiling, Zero-Collision\
+  \ Bionic Vulkan backend |\n| **5. Vision (VLM)** | CLIP / MobileVLM / LLaVA | **In\
+  \ Development** | GGML Vulkan vision encoder tensor bindings |\n| **6. Train (Training)**\
+  \ | On-Device LoRA / QLoRA | **In Development** | Mobile Vulkan gradient descent\
+  \ backpropagation |\n\n---\n\n## Empirical Physical Device Benchmarks\n\nTested\
+  \ on physical devices running Android 16 under Termux ARM64:\n\n### 1. LLM Generation\
+  \ (Qwen2.5-0.5B-Instruct Q4_K_M)\n| Target Device | Hardware Architecture | Active\
+  \ Backend | Layers in VRAM | Generation Speed | Prompt Processing | Speedup |\n\
+  | :--- | :--- | :---: | :---: | :---: | :---: | :---: |\n| **Galaxy S25** | Snapdragon\
+  \ 8 Elite / Adreno 830 | Vulkan 1.3 | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t)\
+  \ | 4.53 t/s | **35.8x (vs CPU)** |\n| **Galaxy A35** | Exynos 1380 / ARM Mali-G68\
+  \ MP5 | Vulkan 1.3 | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | 6.12 t/s | **+26.9%\
+  \ (vs NEON)** |\n| **Galaxy A35** | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON |\
+  \ 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | Baseline |\n\n### 2. Speech-to-Text (Whisper\
+  \ Large-v3-Turbo Q5_0, 548MB)\n| Target Device | Hardware Architecture | Backend\
+  \ Mode | Latency (1-min audio) | GPU Load | CPU Load | Speedup |\n| :--- | :---\
+  \ | :---: | :---: | :---: | :---: | :---: |\n| **Galaxy S25** | Snapdragon 8 Elite\
+  \ / Adreno 830 | Vulkan GPU | **4.40 s (0.07x RTF)** | Adreno Turbo | ~12% | **18.5x\
+  \ (vs CPU)** |\n| **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | Vulkan GPU\
+  \ | **5.13 s (Encoder)** | Adreno Native | ~14% | **3.73x (vs CPU)** |\n| **Galaxy\
+  \ A35** | Exynos 1380 / Mali-G68 MP5 | Vulkan GPU | **360.60 s (6m 00s)** | **949\
+  \ MHz (100%)** | 20~30% | **2.26x (56% time saved)** |\n| **Galaxy A35** | Cortex-A78\
+  \ x4 Cores | CPU-NEON | 816.48 s (13m 36s) | 0% | 291% | Baseline |\n\n### 3. Text-to-Speech\
+  \ (AMEVA Bionic Native Vulkan Fleet Benchmarks)\n| Target Device | Hardware Architecture\
+  \ | Neural Engine / Model | Backend Mode | Latency | RTF | Forensics (RMS/Peak)\
+  \ | Status |\n| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |\n|\
+  \ **Galaxy S22** | Snapdragon 8 Gen 1 / Adreno 730 | MeloTTS Universal Bilingual\
+  \ | **Bionic Vulkan GPU** | **2,750 ms** | **0.88x** | 0.0814 / 0.6974 | Real-time\
+  \ Synthesized |\n| **Galaxy S21** | Exynos 2100 / ARM Mali-G78 | Piper VITS (On-chip\
+  \ Tiled) | **Bionic Vulkan GPU** | **560 ms** | **0.18x** | 0.0921 / 0.7412 | 5.5x\
+  \ Faster than RT |\n| **Galaxy S20** | Exynos 990 / ARM Mali-G77 | Piper VITS (On-chip\
+  \ Tiled) | **Bionic Vulkan GPU** | **750 ms** | **0.24x** | 0.0890 / 0.7105 | 4.1x\
+  \ Faster than RT |\n| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | Supertonic\
+  \ 3 Flow / Piper | **Bionic Vulkan GPU** | **380 ms** | **0.12x** | 0.1042 / 0.8120\
+  \ | Studio Ultra-Fast |\n| **Galaxy A35** | Exynos 1380 / ARM Mali-G68 MP5 | Piper\
+  \ VITS (`lessac-medium`) | **Vulkan GPU** | **5,180 ms** | **1.146x** | 0.0782 /\
+  \ 0.6540 | Validated |\n\n---\n\n### 4. BitNet 1.58-bit LLM (Microsoft BitNet b1.58\
+  \ 2B-4T i2_s)\n| Target Device | Hardware Architecture | Active Backend | Generation\
+  \ Speed | Prompt Latency | Speedup | Status |\n| :--- | :--- | :---: | :---: | :---:\
+  \ | :---: | :---: |\n| **Galaxy S25** | Snapdragon 8 Elite / Adreno 830 | **AMEVA\
+  \ Vulkan GPU** | **17.558 t/s** | **205.9 ms** | **12.58x** | **Verified (Ground\
+  \ Truth)** |\n| Galaxy S25 | Snapdragon 8 Elite / Oryon CPU | Native CPU (4 Threads)\
+  \ | 1.396 t/s | 2,041.0 ms | 1.00x | Baseline |\n| **Galaxy A35** | Exynos 1380\
+  \ / Mali-G68 MP5 | **AMEVA Vulkan GPU** | **3.471 t/s** | **1,552.8 ms** | **5.94x**\
+  \ | **Verified (Ground Truth)** |\n| Galaxy A35 | Exynos 1380 / Cortex-A78 CPU |\
+  \ Native CPU (4 Threads) | 0.584 t/s | 8,775.0 ms | 1.00x | Baseline |\n\n## Root-Cause\
+  \ Driver Solutions\n\n1. **ARM Mali-G68 Valhall Integer Truncation**: Enforced medium\
+  \ tile matmul kernel dispatch (`loadstride_b = 4 > 0`), permanently eliminating\
+  \ shader zero-stride infinite loops on subgroup-16 hardware.\n2. **Qualcomm Adreno\
+  \ 830 JIT Register Bug**: Bounded vector column specialization (`mul_mat_vec_max_cols\
+  \ = 2`), preventing compiler crash `VK_ERROR_UNKNOWN (-13)`.\n3. **Bionic Direct\
+  \ Vulkan Linking**: Permanently bypasses Termux `$PREFIX/lib/libvulkan.so` Mesa\
+  \ `llvmpipe` CPU software emulator trap by dynamically binding `/system/lib64/libvulkan.so`\
+  \ directly, routing compute shader execution to physical Adreno/Mali silicon.\n\
+  4. **Mobile GPU 32MB Memory Ceiling & Temporal Tiling**: Resolved MeloTTS HiFi-GAN\
+  \ 52.4MB buffer overflow (`VK_ERROR_OUT_OF_DEVICE_MEMORY` / kernel TDR kill) via\
+  \ temporal chunk slicing ($T_{\\text{chunk}} \\le 819$) and Piper VITS on-chip SRAM\
+  \ tiling.\n5. **Zero-Silent-Fallback & Strict Model Resolution**: Guaranteed fail-fast\
+  \ architecture without silent CPU degradation. Explicitly raises `AmbiguousModelMatchError`\
+  \ on multi-model ambiguity and rejects silent guessing.\n\n---\n\n## Two-Track Supply\
+  \ Chain Architecture\n\nTo simultaneously guarantee **100% intellectual property\
+  \ & source code protection** and **frictionless, tokenless binary deployment**,\
+  \ AMEVA enforces a strict Two-Track Supply Chain Architecture:\n\n```\n[Track 1:\
+  \ Local Ground Truth & Offline Staging]\n├── dev/ameva/ameva-runtime/releases/ (Consolidated\
+  \ 6-Modality SOTA Binaries)\n└── dev/termux/termux-*/releases/     (Domain-Specific\
+  \ Compiled Binaries)\n                     │\n                     ▼ Synchronized\
+  \ via Git & Automated Release Workflows\n[Track 2: Remote Public GitHub Releases\
+  \ Cloud & CDN]\n├── uno-km/ameva-runtime-releases    (Public Unified Binary Hub:\
+  \ Releases v2.7.3)\n└── uno-km/termux-* (diffusion, stt) (Domain-Specific Public\
+  \ GitHub Releases)\n```\n\n1. **Core Source Code (`uno-km/ameva-runtime`)**: Kept\
+  \ **100% Private**. Architectural proprietary logic, HAL implementations, and optimization\
+  \ kernels are permanently protected.\n2. **Public Binary Distribution Hub (`uno-km/ameva-runtime-releases`)**:\
+  \ **Public Registry**. Hosts verified precompiled binaries, hardware acceleration\
+  \ compute shaders, and wheels for anonymous 1-Click installation without requiring\
+  \ personal GitHub tokens.\n\n---\n\n## Installation & Engine Auto-Provisioning\n\
+  \n### 1. Python SDK Installation\n```bash\n# Direct install from public release\
+  \ wheel\npip install --upgrade \"https://github.com/uno-km/ameva-runtime-releases/releases/latest/download/ameva_runtime-2.7.3-py3-none-any.whl\"\
+  \n\n# Or standard PyPI install\npip install ameva-runtime\n```\n\n### 2. 1-Click\
+  \ Native Engine Provisioning\nThe `NativeAssetManager` automatically retrieves cryptographically\
+  \ verified native engine binaries from the public registry and establishes system\
+  \ links in `$PREFIX/bin`:\n\n```bash\n# Provision all hardware engines at once\n\
+  ameva install --all\n\n# Or provision specific engine modalities individually\n\
+  ameva install --modality diffusion   # Stable Diffusion Vulkan Engine (sd-cli)\n\
+  ameva install --modality stt         # Whisper STT Vulkan Engine (whisper-cli)\n\
+  ameva install --modality llm         # LLaMA C++ Vulkan Engine (llama-cli)\nameva\
+  \ install --modality tts         # Sherpa-NCNN Neural Voice Engine\nameva install\
+  \ --modality bitnet      # BitNet 1.58-bit Acceleration Engine\n\n# Validate system\
+  \ readiness with 12-stage hardware diagnostic\nameva doctor\n```\n\n---\n\n## Quickstart\n\
+  \n### Python SDK\n```python\nimport ameva_runtime as ameva\nfrom ameva_runtime import\
+  \ vulkan\n\n# 1. Inspect on-device silicon topology\nprofile = ameva.detect_hardware()\n\
+  print(f\"SoC: {profile.soc_name} | GPU: {profile.gpu_vendor}\")\n\n# 2. Run hardware\
+  \ self-test\ndoc = vulkan.Doctor()\nreport = doc.run_self_test()\nprint(f\"GPU:\
+  \ {report.device_name} (Passed: {report.passed_stages}/{report.total_stages})\"\
+  )\n```\n\n### Node.js / TypeScript\n```typescript\nimport { Doctor, createContext\
+  \ } from '@ameva/runtime';\n\nconst doc = new Doctor();\nconst report = await doc.runSelfTest();\n\
+  console.log(`Vulkan GPU: ${report.deviceName}`);\n```\n\n---\n\n## Official Documentation\
+  \ & Benchmarks\n- [Official Architecture & API Reference](https://uno-km.vercel.app/lib/vulkan/)\n\
+  - [Ecosystem Metrics & Registry Stats](https://uno-km.vercel.app/foundation/metrics)\n\
+  - [AMEVA Open-Source Foundation Portal](https://uno-km.vercel.app/foundation/index.html)\n\
+  \n---\n\n## License\nLicensed under the Apache-2.0 License. Copyright (c) 2026 Eunho\
+  \ Kim ([@uno-km](https://github.com/uno-km)).\n"
+readme_npm_content: '# AMEVA-Runtime (Node.js & TypeScript)
+
+
+  [![npm](https://img.shields.io/npm/v/@ameva/runtime.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/@ameva/runtime)
+
+  [![License](https://img.shields.io/badge/License-Apache_2.0-004499.svg?style=flat-square)](LICENSE)
+
+  <img src="https://img.shields.io/badge/Vulkan-1.3%20Compute%20Accelerated-purple.svg?logo=vulkan&logoColor=white"
+  alt="Vulkan 1.3">
+
+  <img src="https://img.shields.io/badge/Android%20Termux-ARM64%20Bionic-green.svg"
+  alt="ARM64 Bionic">
+
+
+  > Next-Gen Unified On-Device Hardware Orchestration & 6-Modality AI Acceleration
+  Runtime for Mobile Node.js & Android Termux
+
+
+  ---
+
+
+  ## 1. Overview & 6-Modality Architecture
+
+
+  `@ameva/runtime` provides high-performance TypeScript and Node.js bindings for on-device
+  mobile AI compute. It interfaces directly with Android Bionic `/system/lib64/libvulkan.so`,
+  managing asynchronous compute queues, cgroup affinities, and specialized shader
+  kernels across Qualcomm Adreno and ARM Mali GPUs.
+
+
+  | Modality | Native Engine | Hardware Acceleration Mechanism |
+
+  | :--- | :--- | :--- |
+
+  | **Diffusion** | `sd-cli-vulkan` | Z-Image Turbo 6.0B DiT, Flash Attention (`--diffusion-fa`),
+  VAE Tiling |
+
+  | **STT** | `whisper-cli-vulkan` | Whisper Large-v3-Turbo Vulkan Compute, Bionic
+  Zero-Collision Driver |
+
+  | **LLM** | `llama-cli-vulkan` | GGUF 100% VRAM Layer Offload (`ngl=999`), ARM Cortex
+  CPU-NEON Fallback |
+
+  | **TTS** | `sherpa-ncnn-offline-tts` | Sherpa-NCNN Neural Voice Synthesis, Vulkan
+  HiFi-GAN On-chip Tiled Vocoder |
+
+  | **BitNet** | `termux-bitnet-cli` | Microsoft BitNet b1.58 (2B-4T i2_s), 1.58-bit
+  Ternary Vulkan Acceleration |
+
+  | **Vision** | `termux-vision-cli` | Multimodal VLM (CLIP / MobileVLM / LLaVA) On-Device
+  Vision Engine |
+
+
+  ---
+
+
+  ## 2. Installation
+
+
+  ```bash
+
+  # Local project dependency
+
+  npm install @ameva/runtime
+
+
+  # Or global CLI access
+
+  npm install -g @ameva/runtime
+
+  ```
+
+
+  ---
+
+
+  ## 3. CLI Usage
+
+
+  The package exposes the `ameva` CLI command:
+
+
+  ```bash
+
+  # 12-Stage Hardware & Silicon Topology Diagnostic
+
+  npx ameva doctor
+
+
+  # 1-Click Native Engine Provisioning (Downloads from official public registry)
+
+  npx ameva install --all
+
+  npx ameva install --modality diffusion
+
+  npx ameva install --modality stt
+
+  ```
+
+
+  ---
+
+
+  ## 4. TypeScript & Node.js Quickstart
+
+
+  ### Diagnostic Doctor
+
+  ```typescript
+
+  import { Doctor, createContext } from ''@ameva/runtime'';
+
+
+  // 1. Run 12-Stage Silicon Self-Test
+
+  const doctor = new Doctor();
+
+  const report = await doctor.runSelfTest();
+
+  console.log(`Vulkan GPU Target: ${report.deviceName}`);
+
+  console.log(`Topology Status: ${report.overallSuccess ? ''OPTIMAL'' : ''DEGRADED''}`);
+
+
+  // 2. Initialize Hardware Context
+
+  const ctx = await createContext({ device: ''auto'' });
+
+  console.log(`Context initialized on ${ctx.deviceName}`);
+
+  ```
+
+
+  ---
+
+
+  ## 5. Two-Track Public Binary Registry Alignment
+
+
+  All native compiled binaries required by `@ameva/runtime` are cryptographically
+  verified and distributed through the official public binary registry:
+
+  - **Registry**: [uno-km/ameva-runtime-releases](https://github.com/uno-km/ameva-runtime-releases)
+
+  - **Zero-Silent-Fallback**: Every downloaded binary is matched against pinned SHA-256
+  checksums before execution.
+
+
+  ---
+
+
+  ## Documentation & Community
+
+  - [Official Architecture & API Reference](https://uno-km.vercel.app/lib/vulkan/)
+
+  - [AMEVA Foundation Portal](https://uno-km.vercel.app/foundation/index.html)
+
+
+  ---
+
+
+  ## License
+
+  Licensed under the Apache-2.0 License. Copyright (c) 2026 Eunho Kim ([@uno-km](https://github.com/uno-km)).
+
+  '
