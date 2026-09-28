@@ -401,75 +401,6 @@
       color: var(--text-muted);
       margin-bottom: 4px;
     }
-
-    /* Modal Form */
-    .modal-backdrop {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      padding: 16px;
-    }
-    .modal-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      width: 100%;
-      max-width: 620px;
-      padding: 24px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    }
-    .form-group {
-      margin-bottom: 14px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-bright);
-      margin-bottom: 5px;
-    }
-    .form-input {
-      width: 100%;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border-subtle);
-      border-radius: 4px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      color: var(--text-bright);
-      box-sizing: border-box;
-    }
-    .form-input:focus {
-      border-color: #38bdf8;
-      outline: none;
-    }
-    /* Local-only Environment Action Visibility */
-    .local-only-action {
-      display: none !important;
-    }
-    body.is-local-env .local-only-action {
-      display: inline-flex !important;
-    }
-    .local-only-block {
-      display: none !important;
-    }
-    body.is-local-env .local-only-block {
-      display: block !important;
-    }
-    .local-only-notice {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      padding: 10px 0;
-      text-align: center;
-    }
-    body.is-local-env .local-only-notice {
-      display: none !important;
-    }
   </style>
 </head>
 <body>
@@ -500,7 +431,6 @@
               <button class="btn-action btn-secondary" onclick="LabsApp.prevNewsletter()">이전 호</button>
               <select class="news-edition-select" id="newsEditionSelect" onchange="LabsApp.selectNewsletter(this.value)"></select>
               <button class="btn-action btn-secondary" onclick="LabsApp.nextNewsletter()">다음 호</button>
-              <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal('newsletter')">글쓰기</button>
             </div>
           </div>
 
@@ -516,7 +446,6 @@
 
           <div style="display: flex; gap: 8px; margin-top: 14px;">
             <button class="btn-action btn-primary" onclick="LabsApp.likeActiveNewsletter()">추천</button>
-            <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActiveNewsletter()">삭제</button>
           </div>
 
           <div class="news-swipe-indicator">
@@ -561,26 +490,12 @@
             <div style="display: flex; gap: 8px;">
               <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('anal')">추천</button>
               <button class="btn-action btn-secondary" onclick="LabsApp.copyBibtexCitation()">BibTeX 인용 복사</button>
-              <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActivePost('anal')">삭제</button>
             </div>
 
             <!-- Comments for Anal -->
             <div class="comments-wrapper">
               <h4 style="margin: 0 0 12px 0;">댓글 토론 (<span id="analCommentCount">0</span>)</h4>
               <div id="analCommentList"></div>
-              <p class="local-only-notice">(글쓰기 및 댓글 작성은 보안 정책에 따라 로컬 환경에서만 가능합니다)</p>
-              <div class="local-only-block" style="margin-top: 14px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
-                <input type="hidden" id="analReplyParentId" value="">
-                <div id="analReplyingNotice" style="display: none; font-size: 0.78rem; color: #38bdf8; margin-bottom: 6px;"></div>
-                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                  <input type="text" id="analCommentAuthor" class="form-input" placeholder="닉네임" style="max-width: 140px;">
-                  <input type="password" id="analCommentPassword" class="form-input" placeholder="비밀번호" style="max-width: 120px;">
-                </div>
-                <textarea id="analCommentContent" class="form-input" rows="2" placeholder="연구에 대한 기술적 피드백 또는 질문을 남겨주세요."></textarea>
-                <div style="text-align: right; margin-top: 8px;">
-                  <button class="btn-action btn-primary" onclick="LabsApp.submitComment('anal')">댓글 등록</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -588,7 +503,6 @@
         <!-- Research Top Toolbar -->
         <div class="board-top-bar" id="analTopBar">
           <div><span class="board-badge badge-anal">RESEARCH DISPATCHES</span></div>
-          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal('research')">글쓰기</button>
         </div>
 
         <!-- Feed List View (Default) -->
@@ -604,7 +518,6 @@
             <button class="board-pill" id="pillAi" onclick="LabsApp.filterBoardSubmenu('board-ai')">AI</button>
             <button class="board-pill" id="pillCs" onclick="LabsApp.filterBoardSubmenu('board-cs')">CS</button>
           </div>
-          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal()">글쓰기</button>
         </div>
 
         <!-- In-Place Top Post Detail View (Opened when row clicked) -->
@@ -636,26 +549,12 @@
 
           <div style="display: flex; gap: 8px;">
             <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('board')">추천</button>
-            <button class="btn-action btn-danger local-only-action" onclick="LabsApp.deleteActivePost('board')" id="boardDeleteBtn">삭제</button>
           </div>
 
           <!-- Comments for Board -->
           <div class="comments-wrapper">
             <h4 style="margin: 0 0 12px 0;">댓글 (<span id="boardCommentCount">0</span>)</h4>
             <div id="boardCommentList"></div>
-            <p class="local-only-notice">(글쓰기 및 댓글 작성은 보안 정책에 따라 로컬 환경에서만 가능합니다)</p>
-            <div class="local-only-block" style="margin-top: 14px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
-              <input type="hidden" id="boardReplyParentId" value="">
-              <div id="boardReplyingNotice" style="display: none; font-size: 0.78rem; color: #38bdf8; margin-bottom: 6px;"></div>
-              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                <input type="text" id="boardCommentAuthor" class="form-input" placeholder="닉네임" style="max-width: 140px;">
-                <input type="password" id="boardCommentPassword" class="form-input" placeholder="비밀번호" style="max-width: 120px;">
-              </div>
-              <textarea id="boardCommentContent" class="form-input" rows="2" placeholder="자유롭게 기술 토론을 남겨주세요."></textarea>
-              <div style="text-align: right; margin-top: 8px;">
-                <button class="btn-action btn-primary" onclick="LabsApp.submitComment('board')">댓글 등록</button>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -674,48 +573,6 @@
           </thead>
           <tbody id="boardTableBody"></tbody>
         </table>
-
-        <!-- Table Bottom Action -->
-        <div style="display: flex; justify-content: flex-end; margin-top: 12px;">
-          <button class="btn-action btn-primary local-only-action" onclick="LabsApp.openWriteModal()">글쓰기</button>
-        </div>
-      </div>
-
-      <!-- WRITE MODAL (Board Only) -->
-      <div id="writeModal" class="modal-backdrop" style="display: none;">
-        <div class="modal-card">
-          <h3 style="margin: 0 0 16px 0; font-size: 1.15rem; color: var(--text-bright);">게시글 작성</h3>
-          <div class="form-group">
-            <label>게시판 분류</label>
-            <select id="writeCategory" class="form-input">
-              <option value="free-board">자유게시판</option>
-              <option value="board-ai">AI</option>
-              <option value="board-cs">CS</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>제목</label>
-            <input type="text" id="writeTitle" class="form-input" placeholder="제목을 입력하세요">
-          </div>
-          <div style="display: flex; gap: 10px;" class="form-group">
-            <div style="flex: 1;">
-              <label>닉네임</label>
-              <input type="text" id="writeAuthor" class="form-input" placeholder="익명 해커">
-            </div>
-            <div style="flex: 1;">
-              <label>비밀번호</label>
-              <input type="password" id="writePassword" class="form-input" placeholder="삭제 비밀번호">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>내용 (Markdown 지원)</label>
-            <textarea id="writeContent" class="form-input" rows="8" placeholder="본문 내용을 입력하세요."></textarea>
-          </div>
-          <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px;">
-            <button class="btn-action btn-secondary" onclick="LabsApp.closeWriteModal()">취소</button>
-            <button class="btn-action btn-primary" onclick="LabsApp.submitPost()">등록</button>
-          </div>
-        </div>
       </div>
     </main>
   </div>
@@ -730,25 +587,24 @@
   (function() {
     'use strict';
 
-    const STATE_VERSION = 'v5_zero_seed_wiped';
+    const STATE_VERSION = 'v6_sovereign_readonly';
 
-    // 5 Clean Menus (Zero-Emoji)
+    // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
       { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
       { id: 'research', name: '연구중이거나 연구내용', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '실리콘 커널, Vulkan 셰이더, ARM64 NEON 어셈블리 및 온디바이스 AI 연구' },
+      { id: 'research-handbook', name: '전공 교재 / 시스템 엔지니어링', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '8대 핵심 모듈 26개 강좌 및 320대 전공 용어 해설집' },
+      { id: 'research-papers', name: '학술 연구 모노그래프 & 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'Bionic Libc 16KB, Vulkan Compute Shaders, L4 소켓 마스킹' },
+      { id: 'research-benchmarks', name: '플릿 하드웨어 실측 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 단말기 8대 모달리티 1,593건 실측 DB' },
+      { id: 'research-cluster', name: '2중 관제탑 & 무인 자가치유 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: 'Host PC + S20 DeX 2중 관제탑 및 무인 1초 자가치유 실증' },
       { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
-      { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 4, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
-      { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
+      { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
+      { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
     ];
 
     // ZERO seed data - all tables start completely empty
     const SEED_POSTS = [];
     const SEED_COMMENTS = [];
-
-    function isLocalEnv() {
-      const h = window.location.hostname;
-      return h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || window.location.protocol === 'file:';
-    }
 
     // Real Remote DB Wire-up State Store
     class LabsStore {
@@ -890,78 +746,6 @@
           .filter(c => c.post_id === postId)
           .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
       }
-
-      async createPost(postData) {
-        if (!isLocalEnv()) {
-          throw new Error('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 허용됩니다.');
-        }
-
-        if (this.apiAvailable) {
-          const res = await fetch('/api/labs', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'create_post',
-              menu_id: postData.menu_id,
-              title: postData.title,
-              content: postData.content,
-              author: postData.author,
-              password: postData.password
-            })
-          });
-          const data = await res.json();
-          if (!res.ok || !data.ok) {
-            throw new Error(data.error || '게시글 등록에 실패했습니다.');
-          }
-          const created = data.post;
-          this.posts.unshift(created);
-          this.saveLocal();
-          return created;
-        }
-
-        // Fallback local creation
-        const newPost = {
-          id: Date.now(),
-          menu_id: postData.menu_id,
-          title: postData.title,
-          content: postData.content,
-          author: postData.author || '익명 해커',
-          author_ip: '127.0.0.1',
-          status: 'published',
-          view_count: 1,
-          like_count: 0,
-          comment_count: 0,
-          created_at: new Date().toISOString()
-        };
-        this.posts.unshift(newPost);
-        this.saveLocal();
-        return newPost;
-      }
-
-      async deletePost(postId, password) {
-        if (this.apiAvailable) {
-          const res = await fetch('/api/labs', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'delete_post',
-              post_id: postId,
-              password: password
-            })
-          });
-          const data = await res.json();
-          if (!res.ok || !data.ok) {
-            throw new Error(data.error || '게시글 삭제에 실패했습니다.');
-          }
-        }
-        const idx = this.posts.findIndex(x => x.id === postId);
-        if (idx !== -1) {
-          this.posts.splice(idx, 1);
-          this.saveLocal();
-        }
-        return true;
-      }
-
       async likePost(postId) {
         if (this.apiAvailable) {
           try {
@@ -989,83 +773,6 @@
           return post.like_count;
         }
         return 0;
-      }
-
-      async createComment(commentData) {
-        if (!isLocalEnv()) {
-          throw new Error('보안 정책: 댓글 작성은 로컬 개발 환경(localhost)에서만 허용됩니다.');
-        }
-
-        if (this.apiAvailable) {
-          const res = await fetch('/api/labs', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'create_comment',
-              post_id: commentData.post_id,
-              parent_id: commentData.parent_id,
-              author: commentData.author,
-              password: commentData.password,
-              content: commentData.content
-            })
-          });
-          const data = await res.json();
-          if (!res.ok || !data.ok) {
-            throw new Error(data.error || '댓글 등록에 실패했습니다.');
-          }
-          const created = data.comment;
-          this.comments.push(created);
-          const post = this.posts.find(p => p.id === commentData.post_id);
-          if (post) post.comment_count = (post.comment_count || 0) + 1;
-          this.saveLocal();
-          return created;
-        }
-
-        const parent = commentData.parent_id ? this.comments.find(c => c.id === commentData.parent_id) : null;
-        const depth = parent ? Math.min((parent.depth || 0) + 1, 3) : 0;
-        const newComment = {
-          id: Date.now(),
-          post_id: commentData.post_id,
-          parent_id: commentData.parent_id || null,
-          root_id: parent ? (parent.root_id || parent.id) : null,
-          depth: depth,
-          author: commentData.author || '익명 해커',
-          author_ip: '127.0.0.1',
-          content: commentData.content,
-          like_count: 0,
-          is_deleted: false,
-          created_at: new Date().toISOString()
-        };
-        this.comments.push(newComment);
-        const post = this.posts.find(p => p.id === commentData.post_id);
-        if (post) post.comment_count = (post.comment_count || 0) + 1;
-        this.saveLocal();
-        return newComment;
-      }
-
-      async deleteComment(commentId, password) {
-        if (this.apiAvailable) {
-          const res = await fetch('/api/labs', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'delete_comment',
-              comment_id: commentId,
-              password: password
-            })
-          });
-          const data = await res.json();
-          if (!res.ok || !data.ok) {
-            throw new Error(data.error || '댓글 삭제에 실패했습니다.');
-          }
-        }
-        const c = this.comments.find(x => x.id === commentId);
-        if (c) {
-          c.is_deleted = true;
-          c.content = '[삭제된 댓글입니다]';
-          this.saveLocal();
-        }
-        return true;
       }
     }
 
@@ -1116,13 +823,6 @@
       },
 
       async init() {
-        // Enforce Local-only body class for write button visibility
-        if (isLocalEnv()) {
-          document.body.classList.add('is-local-env');
-        } else {
-          document.body.classList.remove('is-local-env');
-        }
-
         await this.store.init();
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -1200,7 +900,7 @@
           document.getElementById('newsLikes').textContent = '0';
           document.getElementById('newsEditionSelect').innerHTML = '<option>발행 이력 없음</option>';
           document.getElementById('newsDotsContainer').innerHTML = '';
-          document.getElementById('newsViewerBody').innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 뉴스레터가 없습니다. 로컬 환경에서 첫 소식을 발행할 수 있습니다.</p>';
+          document.getElementById('newsViewerBody').innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 뉴스레터가 없습니다.</p>';
           return;
         }
 
@@ -1271,24 +971,6 @@
         document.getElementById('newsLikes').textContent = newLikes;
       },
 
-      async deleteActiveNewsletter() {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
-          return;
-        }
-        const item = this.newsletters[this.newsletterIndex];
-        if (!item) return;
-        const pwd = prompt('뉴스레터 삭제 비밀번호를 입력하세요:');
-        if (pwd === null) return;
-        try {
-          await this.store.deletePost(item.id, pwd);
-          alert('뉴스레터가 삭제되었습니다.');
-          await this.renderNewsView();
-        } catch (err) {
-          alert(err.message || '삭제에 실패했습니다.');
-        }
-      },
-
       initNewsletterSwipe() {
         const card = document.getElementById('newsletterCard');
         if (!card) return;
@@ -1331,7 +1013,7 @@
         document.getElementById('analTopBar').style.display = 'flex';
         document.getElementById('analFeedList').style.display = 'flex';
 
-        const posts = await this.store.getPosts('research');
+        const posts = await this.store.getPosts(this.activeMenuId);
         const container = document.getElementById('analFeedList');
         container.innerHTML = '';
 
@@ -1534,7 +1216,6 @@
           const replyIcon = (c.depth > 0) ? '↳ ' : '';
           const card = document.createElement('div');
           card.className = `comment-card ${depthClass}`;
-          const isLocal = isLocalEnv();
           card.innerHTML = `
             <div class="comment-meta">
               <div>
@@ -1542,88 +1223,13 @@
                 <span style="color: #94a3b8;">(${escapeHtml(c.author_ip || '127.0.0.1')})</span>
                 <span style="margin-left: 6px;">${escapeHtml((c.created_at || '').substring(0, 19).replace('T', ' '))}</span>
               </div>
-              <div>
-                ${isLocal ? `<a href="javascript:void(0)" onclick="LabsApp.prepareReply('${slot}', ${c.id})" style="color: #0284c7; font-weight: 600; margin-right: 8px;">답글</a>` : ''}
-                ${isLocal ? `<a href="javascript:void(0)" onclick="LabsApp.deleteComment('${slot}', ${c.id})" style="color: #f43f5e;">삭제</a>` : ''}
-              </div>
             </div>
             <div style="font-size: 0.86rem; color: ${c.is_deleted ? '#f43f5e' : 'var(--text-bright)'};">
-              ${c.is_deleted ? '<em>[작성자에 의해 삭제된 댓글입니다]</em>' : this.fallbackMarkdown(c.content)}
+              ${c.is_deleted ? '<em>[삭제된 댓글입니다]</em>' : this.fallbackMarkdown(c.content)}
             </div>
           `;
           listEl.appendChild(card);
         });
-      },
-
-      prepareReply(slot, parentId) {
-        const inputParent = document.getElementById(`${slot}ReplyParentId`);
-        const notice = document.getElementById(`${slot}ReplyingNotice`);
-        if (inputParent) inputParent.value = parentId;
-        const comment = this.store.comments.find(c => c.id === parentId);
-        const author = comment ? comment.author : '익명 해커';
-        if (notice) {
-          notice.style.display = 'block';
-          notice.innerHTML = `↳ @${escapeHtml(author)} 님에게 답글 작성 중... <a href="javascript:void(0)" onclick="LabsApp.cancelReply('${slot}')" style="color: #f43f5e; margin-left: 6px;">[취소]</a>`;
-        }
-        const textEl = document.getElementById(`${slot}CommentContent`);
-        if (textEl) textEl.focus();
-      },
-
-      cancelReply(slot) {
-        const inputParent = document.getElementById(`${slot}ReplyParentId`);
-        const notice = document.getElementById(`${slot}ReplyingNotice`);
-        if (inputParent) inputParent.value = '';
-        if (notice) notice.style.display = 'none';
-      },
-
-      async submitComment(slot) {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 댓글 작성은 로컬 개발 환경(localhost)에서만 가능합니다.');
-          return;
-        }
-
-        if (!this.activePostId) return;
-        const author = document.getElementById(`${slot}CommentAuthor`).value.trim() || '익명 해커';
-        const password = document.getElementById(`${slot}CommentPassword`).value;
-        const content = document.getElementById(`${slot}CommentContent`).value.trim();
-        const parentId = document.getElementById(`${slot}ReplyParentId`).value || null;
-
-        if (!content) {
-          alert('댓글 내용을 입력하세요.');
-          return;
-        }
-
-        try {
-          await this.store.createComment({
-            post_id: this.activePostId,
-            parent_id: parentId ? parseInt(parentId, 10) : null,
-            author: author,
-            password: password,
-            content: content
-          });
-
-          document.getElementById(`${slot}CommentContent`).value = '';
-          this.cancelReply(slot);
-          await this.renderCommentsForView(slot, this.activePostId);
-        } catch (err) {
-          alert('댓글 등록 실패: ' + (err.message || err));
-        }
-      },
-
-      async deleteComment(slot, commentId) {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
-          return;
-        }
-        const pwd = prompt('삭제 비밀번호를 입력하세요 (미설정 시 엔터):');
-        if (pwd === null) return;
-        try {
-          await this.store.deleteComment(commentId, pwd);
-          alert('댓글이 삭제되었습니다.');
-          await this.renderCommentsForView(slot, this.activePostId);
-        } catch (err) {
-          alert('댓글 삭제 실패: ' + (err.message || err));
-        }
       },
 
       async likeActivePost(slot) {
@@ -1646,103 +1252,6 @@
         navigator.clipboard.writeText(bib).then(() => {
           alert('BibTeX 학술 인용 형식이 클립보드에 복사되었습니다.');
         });
-      },
-
-      async deleteActivePost(slot) {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 삭제 권한은 로컬 개발 환경에서만 허용됩니다.');
-          return;
-        }
-        if (!this.activePostId) return;
-        const pwd = prompt('게시글 삭제 비밀번호를 입력하세요:');
-        if (pwd === null) return;
-        try {
-          await this.store.deletePost(this.activePostId, pwd);
-          alert('게시글이 삭제되었습니다.');
-          if (slot === 'anal') {
-            this.closeAnalDetail();
-            await this.renderAnalView();
-          } else {
-            this.closeBoardTopPost();
-          }
-        } catch (err) {
-          alert('게시글 삭제 실패: ' + (err.message || err));
-        }
-      },
-
-      // ── Write Modal (Universal Categories, Local-only) ────────────────────
-      openWriteModal(defaultCategory) {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 가능합니다.');
-          return;
-        }
-
-        const modal = document.getElementById('writeModal');
-        const catSelect = document.getElementById('writeCategory');
-        if (catSelect) {
-          catSelect.innerHTML = '';
-          this.store.menus.forEach(m => {
-            const opt = document.createElement('option');
-            opt.value = m.id;
-            opt.textContent = m.parent_id ? `  └ ${m.name}` : m.name;
-            catSelect.appendChild(opt);
-          });
-          const target = defaultCategory || this.activeMenuId;
-          if (this.store.menus.some(m => m.id === target)) {
-            catSelect.value = target;
-          } else {
-            catSelect.value = 'free-board';
-          }
-        }
-        modal.style.display = 'flex';
-      },
-
-      closeWriteModal() {
-        document.getElementById('writeModal').style.display = 'none';
-      },
-
-      async submitPost() {
-        if (!isLocalEnv()) {
-          alert('보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 가능합니다.');
-          return;
-        }
-
-        const menuId = document.getElementById('writeCategory').value;
-        const title = document.getElementById('writeTitle').value.trim();
-        const author = document.getElementById('writeAuthor').value.trim() || '익명 해커';
-        const password = document.getElementById('writePassword').value;
-        const content = document.getElementById('writeContent').value.trim();
-
-        if (!title || !content) {
-          alert('제목과 내용을 입력하세요.');
-          return;
-        }
-
-        try {
-          const created = await this.store.createPost({
-            menu_id: menuId,
-            title: title,
-            author: author,
-            password: password,
-            content: content
-          });
-
-          alert('게시글이 성공적으로 등록되었습니다.');
-          document.getElementById('writeTitle').value = '';
-          document.getElementById('writePassword').value = '';
-          document.getElementById('writeContent').value = '';
-          this.closeWriteModal();
-
-          if (menuId === 'newsletter') {
-            await this.selectMenu('newsletter');
-          } else if (menuId === 'research') {
-            await this.selectMenu('research');
-          } else {
-            await this.selectMenu(menuId);
-          }
-        } catch (err) {
-          alert('게시글 등록 실패: ' + (err.message || err));
-        }
       },
 
       // Fallback simple markdown

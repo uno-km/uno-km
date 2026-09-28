@@ -1,15 +1,20 @@
 // api/labs.js - AMEVA Labs Serverless API (Neon PostgreSQL / Serverless)
 import { neon } from '@neondatabase/serverless';
+import { SEED_POSTS } from './seed_posts.js';
 
 let isSchemaReady = false;
 
-// 5 Clean Menus (Zero-Emoji)
+// 9 Standard Menus (4 Research Subdomains + Board Subdomains)
 const INITIAL_MENUS = [
   { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
   { id: 'research', name: '연구중이거나 연구내용', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '실리콘 커널, Vulkan 셰이더, ARM64 NEON 어셈블리 및 온디바이스 AI 연구' },
+  { id: 'research-handbook', name: '전공 교재 / 시스템 엔지니어링', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '8대 핵심 모듈 26개 강좌 및 320대 전공 용어 해설집' },
+  { id: 'research-papers', name: '학술 연구 모노그래프 & 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'Bionic Libc 16KB, Vulkan Compute Shaders, L4 소켓 마스킹' },
+  { id: 'research-benchmarks', name: '플릿 하드웨어 실측 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 단말기 8대 모달리티 1,593건 실측 DB' },
+  { id: 'research-cluster', name: '2중 관제탑 & 무인 자가치유 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: 'Host PC + S20 DeX 2중 관제탑 및 무인 1초 자가치유 실증' },
   { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
-  { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 4, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
-  { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
+  { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
+  { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
 ];
 
 async function ensureSchema(sql) {
@@ -66,7 +71,7 @@ async function ensureSchema(sql) {
       );
     `;
 
-    // Metadata table for migrations and one-time wipe tracking
+    // Metadata table for migrations and tracking
     await sql`
       CREATE TABLE IF NOT EXISTS labs_meta (
         key VARCHAR(50) PRIMARY KEY,
@@ -74,27 +79,48 @@ async function ensureSchema(sql) {
       );
     `;
 
-    // One-time hard wipe of any legacy mock/seed data
-    const wipeCheck = await sql`SELECT value FROM labs_meta WHERE key = 'initial_wipe_done';`;
-    if (!wipeCheck || wipeCheck.length === 0) {
-      await sql`TRUNCATE TABLE labs_comments, labs_posts RESTART IDENTITY CASCADE;`;
-      await sql`INSERT INTO labs_meta (key, value) VALUES ('initial_wipe_done', 'true') ON CONFLICT (key) DO NOTHING;`;
+    // Seed/Synchronize all menus with ON CONFLICT DO UPDATE
+    for (const m of INITIAL_MENUS) {
+      await sql`
+        INSERT INTO labs_menus (id, name, parent_id, depth, sort_order, board_type, description)
+        VALUES (${m.id}, ${m.name}, ${m.parent_id}, ${m.depth}, ${m.sort_order}, ${m.board_type}, ${m.description})
+        ON CONFLICT (id) DO UPDATE SET
+          name = EXCLUDED.name,
+          parent_id = EXCLUDED.parent_id,
+          depth = EXCLUDED.depth,
+          sort_order = EXCLUDED.sort_order,
+          board_type = EXCLUDED.board_type,
+          description = EXCLUDED.description;
+      `;
     }
 
-    // Seed default menus if empty
-    const countRes = await sql`SELECT count(*)::int as cnt FROM labs_menus`;
-    if (countRes && countRes[0] && countRes[0].cnt === 0) {
-      for (const m of INITIAL_MENUS) {
-        await sql`
-          INSERT INTO labs_menus (id, name, parent_id, depth, sort_order, board_type, description)
-          VALUES (${m.id}, ${m.name}, ${m.parent_id}, ${m.depth}, ${m.sort_order}, ${m.board_type}, ${m.description})
-          ON CONFLICT (id) DO NOTHING;
-        `;
+    // Dynamic Seed & Sync of Research Posts & Handbook Chapters
+    const SEED_VERSION = 'v1_handbook_and_monographs';
+    const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
+    if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
+      const existingRows = await sql`SELECT id, menu_id, title FROM labs_posts;`;
+      const postMap = new Map();
+      existingRows.forEach(r => postMap.set(`${r.menu_id}:::${r.title}`, r.id));
+
+      for (const p of SEED_POSTS) {
+        const key = `${p.menu_id}:::${p.title}`;
+        if (postMap.has(key)) {
+          const postId = postMap.get(key);
+          await sql`
+            UPDATE labs_posts SET content = ${p.content} WHERE id = ${postId};
+          `;
+        } else {
+          await sql`
+            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
+            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
+          `;
+        }
       }
-    } else {
-      // Sanitize any existing records that might have literal ㄴ
-      await sql`UPDATE labs_menus SET name = 'AI' WHERE id = 'board-ai' AND name LIKE '%ㄴ%';`;
-      await sql`UPDATE labs_menus SET name = 'CS' WHERE id = 'board-cs' AND name LIKE '%ㄴ%';`;
+
+      await sql`
+        INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', ${SEED_VERSION})
+        ON CONFLICT (key) DO UPDATE SET value = ${SEED_VERSION};
+      `;
     }
 
     isSchemaReady = true;
@@ -186,7 +212,9 @@ export default async function handler(req, res) {
           JOIN labs_menus m ON p.menu_id = m.id
           WHERE (p.menu_id = ${menu_id} OR m.parent_id = ${menu_id})
             AND p.status = 'published'
-          ORDER BY p.created_at DESC
+          ORDER BY 
+            CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
+            p.created_at DESC
           LIMIT 100;
         `;
       } else {
@@ -197,7 +225,9 @@ export default async function handler(req, res) {
           FROM labs_posts p
           JOIN labs_menus m ON p.menu_id = m.id
           WHERE p.status = 'published'
-          ORDER BY p.created_at DESC
+          ORDER BY 
+            CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
+            p.created_at DESC
           LIMIT 100;
         `;
       }
@@ -224,57 +254,17 @@ export default async function handler(req, res) {
     }
 
     if (action === 'create_post' && req.method === 'POST') {
-      // Security Policy: Writing allowed strictly in local environment
-      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
-        return res.status(403).json({
-          ok: false,
-          error: '보안 정책: 글쓰기는 로컬 개발 환경(localhost)에서만 허용됩니다.'
-        });
-      }
-
-      const { menu_id, title, content, author = '익명 해커', password = '' } = req.body;
-      if (!menu_id || !title || !content) {
-        return res.status(400).json({ ok: false, error: 'menu_id, title, content are required' });
-      }
-
-      // Check board type
-      const menuRes = await sql`SELECT board_type FROM labs_menus WHERE id = ${menu_id}`;
-      if (!menuRes || menuRes.length === 0) {
-        return res.status(404).json({ ok: false, error: '존재하지 않는 게시판입니다.' });
-      }
-
-      const status = 'published';
-
-      const insertRes = await sql`
-        INSERT INTO labs_posts (menu_id, title, content, author, author_ip, password_hash, status)
-        VALUES (${menu_id}, ${title}, ${content}, ${author}, ${maskedIp}, ${password}, ${status})
-        RETURNING id, menu_id, title, content, author, author_ip, status, view_count, like_count, comment_count, created_at, updated_at;
-      `;
-
-      return res.status(201).json({
-        ok: true,
-        database_connected: true,
-        post: insertRes[0],
-        post_id: insertRes[0].id,
-        status: insertRes[0].status,
-        message: '게시글이 성공적으로 등록되었습니다.'
+      return res.status(403).json({
+        ok: false,
+        error: '보안 정책: AMEVA Labs는 읽기 전용 영구 주권 보관소(Read-Only Sovereign Archive)로 외부 임의 게시글 작성을 영구 차단합니다.'
       });
     }
 
     if (action === 'delete_post' && req.method === 'POST') {
-      const { post_id, password = '' } = req.body;
-      if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
-      const rows = await sql`SELECT password_hash FROM labs_posts WHERE id = ${post_id}`;
-      if (!rows || rows.length === 0) return res.status(404).json({ ok: false, error: '게시글을 찾을 수 없습니다.' });
-
-      const storedHash = rows[0].password_hash;
-      if (storedHash && storedHash.trim() !== '') {
-        if (storedHash !== password) {
-          return res.status(403).json({ ok: false, error: '비밀번호가 일치하지 않습니다.' });
-        }
-      }
-      await sql`DELETE FROM labs_posts WHERE id = ${post_id}`;
-      return res.status(200).json({ ok: true, database_connected: true, message: '게시글이 삭제되었습니다.' });
+      return res.status(403).json({
+        ok: false,
+        error: '보안 정책: AMEVA Labs는 영구 아카이브로 게시글 삭제가 허용되지 않습니다.'
+      });
     }
 
     if (action === 'like_post' && req.method === 'POST') {
@@ -308,60 +298,17 @@ export default async function handler(req, res) {
     }
 
     if (action === 'create_comment' && req.method === 'POST') {
-      // Security Policy: Comment writing allowed strictly in local environment
-      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
-        return res.status(403).json({
-          ok: false,
-          error: '보안 정책: 댓글 작성은 로컬 개발 환경(localhost)에서만 허용됩니다.'
-        });
-      }
-
-      const { post_id, parent_id = null, author = '익명 해커', password = '', content } = req.body;
-      if (!post_id || !content) return res.status(400).json({ ok: false, error: 'post_id and content required' });
-
-      let depth = 0;
-      let root_id = null;
-      if (parent_id) {
-        const parentRow = await sql`SELECT depth, root_id, id FROM labs_comments WHERE id = ${parent_id}`;
-        if (parentRow && parentRow.length > 0) {
-          depth = Math.min((parentRow[0].depth || 0) + 1, 3); // cap depth at 3
-          root_id = parentRow[0].root_id || parentRow[0].id;
-        }
-      }
-
-      const resInsert = await sql`
-        INSERT INTO labs_comments (post_id, parent_id, root_id, depth, author, author_ip, password_hash, content)
-        VALUES (${post_id}, ${parent_id || null}, ${root_id || null}, ${depth}, ${author}, ${maskedIp}, ${password}, ${content})
-        RETURNING id, post_id, parent_id, root_id, depth, author, author_ip, content, like_count, is_deleted, created_at;
-      `;
-
-      // Update post comment count
-      await sql`UPDATE labs_posts SET comment_count = comment_count + 1 WHERE id = ${post_id}`;
-
-      return res.status(201).json({ 
-        ok: true, 
-        database_connected: true,
-        comment: resInsert[0],
-        comment_id: resInsert[0].id, 
-        message: '댓글이 등록되었습니다.' 
+      return res.status(403).json({
+        ok: false,
+        error: '보안 정책: AMEVA Labs는 읽기 전용 영구 주권 보관소로 외부 댓글 작성을 차단합니다.'
       });
     }
 
     if (action === 'delete_comment' && req.method === 'POST') {
-      const { comment_id, password = '' } = req.body;
-      if (!comment_id) return res.status(400).json({ ok: false, error: 'comment_id required' });
-      const rows = await sql`SELECT password_hash, post_id FROM labs_comments WHERE id = ${comment_id}`;
-      if (!rows || rows.length === 0) return res.status(404).json({ ok: false, error: '댓글을 찾을 수 없습니다.' });
-
-      const storedHash = rows[0].password_hash;
-      if (storedHash && storedHash.trim() !== '') {
-        if (storedHash !== password) {
-          return res.status(403).json({ ok: false, error: '비밀번호가 일치하지 않습니다.' });
-        }
-      }
-      // Soft-delete to preserve replies tree
-      await sql`UPDATE labs_comments SET is_deleted = TRUE, content = '[삭제된 댓글입니다]' WHERE id = ${comment_id}`;
-      return res.status(200).json({ ok: true, database_connected: true, message: '댓글이 삭제되었습니다.' });
+      return res.status(403).json({
+        ok: false,
+        error: '보안 정책: 댓글 삭제가 허용되지 않습니다.'
+      });
     }
 
     // Database Reset Action (for maintenance)
