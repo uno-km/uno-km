@@ -95,17 +95,24 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v6_whisper_hybrid_architecture_paper';
+    const SEED_VERSION = 'v7_standardized_5chapters_chronological';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Clean refresh of master archive
       await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
 
       for (const p of SEED_POSTS) {
-        await sql`
-          INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
-          VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
-        `;
+        if (p.created_at) {
+          await sql`
+            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status, created_at, updated_at)
+            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${p.created_at}, ${p.created_at});
+          `;
+        } else {
+          await sql`
+            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
+            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
+          `;
+        }
       }
 
       await sql`
