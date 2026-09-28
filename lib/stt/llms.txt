@@ -1,4 +1,4 @@
-# Termux-STT (v1.2.15)
+# Termux-STT (v1.3.1)
 > Unified On-Device Speech-to-Text Utilizing Device Resources & Pure Python 128d X-Vector Speaker Diarization
 
 ## Quick Specification for AI Coding Agents
@@ -12,8 +12,8 @@ npm install -g termux-stt && termux-stt install`
 ```python
 from termux_stt import create_engine
 
-# 1. Initialize Engine (auto-loads native ARM NEON binary & cached model)
-engine = create_engine("whisper", model="tiny", lang="en", threads=4)
+# 1. Initialize Engine with Hybrid GPU-Encoder / CPU-Decoder Acceleration
+engine = create_engine("whisper", model="small", lang="en", threads=4, split_mode=True)
 
 # 2. Transcribe Audio directly into Subtitles
 result = engine.transcribe("samples/jfk_1min.wav")

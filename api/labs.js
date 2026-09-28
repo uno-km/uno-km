@@ -95,7 +95,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v5_dead_internet_theatre_monographs';
+    const SEED_VERSION = 'v6_whisper_hybrid_architecture_paper';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Clean refresh of master archive
