@@ -441,6 +441,10 @@
     {
       "source": "/app/workstation/:match*",
       "destination": "/app/workstation/:match*"
+    },
+    {
+      "source": "/api/sentinel/trap(.*)",
+      "destination": "/api/sentinel_trap.js"
     }
   ],
   "headers": [
