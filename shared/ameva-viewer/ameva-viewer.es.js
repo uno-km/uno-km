@@ -31413,62 +31413,119 @@ function InlineExcelRenderer({ code: n }) {
 		children: "빈 엑셀 시트입니다."
 	}) : /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 		style: {
-			marginBottom: "2rem",
-			overflowX: "auto",
+			marginBottom: "1.5rem",
 			width: "100%"
 		},
 		children: r.map((n, r) => {
 			let a = n.celldata || [];
-			if (a.length === 0) return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
-				style: { marginBottom: "1rem" },
-				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("h4", {
+			if (a.length === 0) return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+				className: "av-table-wrapper",
+				style: {
+					padding: "16px",
+					color: "var(--av-text-muted)"
+				},
+				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 					style: {
-						marginBottom: "0.5rem",
-						color: "var(--text-color)"
+						display: "flex",
+						alignItems: "center",
+						gap: "8px",
+						fontWeight: "bold"
 					},
-					children: ["[Excel] ", n.name || "Sheet"]
-				}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("p", {
-					style: { color: "var(--text-muted)" },
-					children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("em", { children: "(Empty Sheet)" })
-				})]
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "📊" }),
+						/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("span", { children: ["[Excel] ", n.name || "Sheet"] }),
+						/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+							style: {
+								fontSize: "11px",
+								color: "var(--av-text-muted)"
+							},
+							children: "(빈 시트)"
+						})
+					]
+				})
 			}, r);
 			let o = 0, l = 0;
 			for (let n of a) n.r > o && (o = n.r), n.c > l && (l = n.c);
 			let d = Array(o + 1).fill(null).map(() => Array(l + 1).fill(null));
 			for (let n of a) d[n.r][n.c] = n.v;
 			return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
-				style: { marginBottom: "2rem" },
-				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("h4", {
+				className: "av-table-wrapper",
+				style: { margin: "16px 0" },
+				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 					style: {
-						marginBottom: "0.5rem",
-						color: "var(--text-color)"
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "space-between",
+						padding: "8px 14px",
+						background: "var(--av-table-header)",
+						borderBottom: "1.5px solid var(--av-table-border)",
+						fontSize: "12px",
+						fontWeight: 700,
+						color: "var(--av-table-header-text)"
 					},
-					children: ["[Excel] ", n.name || "Sheet"]
+					children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
+						style: {
+							display: "flex",
+							alignItems: "center",
+							gap: "6px"
+						},
+						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "📊" }), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: n.name || `Sheet ${r + 1}` })]
+					}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("span", {
+						style: {
+							fontSize: "11px",
+							opacity: .8,
+							fontWeight: 500
+						},
+						children: [
+							o + 1,
+							" 행 × ",
+							l + 1,
+							" 열"
+						]
+					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 					style: {
-						border: "1px solid var(--border-color)",
-						borderRadius: "4px",
-						overflow: "hidden"
+						overflowX: "auto",
+						WebkitOverflowScrolling: "touch"
 					},
 					children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("table", {
 						style: {
 							width: "100%",
 							borderCollapse: "collapse",
-							fontSize: "13px",
-							background: "var(--bg-color)"
+							fontSize: "13px"
 						},
-						children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("tbody", { children: d.map((n, r) => /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("tr", { children: n.map((n, r) => {
-							let a = "";
-							return n && (typeof n == "string" || typeof n == "number" ? a = String(n) : n.m === void 0 ? n.v !== void 0 && (a = String(n.v)) : a = String(n.m)), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("td", {
+						children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("tbody", { children: d.map((n, r) => /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("tr", {
+							style: { background: r === 0 ? "var(--av-table-header)" : r % 2 == 0 ? "var(--av-table-stripe)" : "transparent" },
+							children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("td", {
 								style: {
-									border: "1px solid var(--border-color)",
-									padding: "4px 8px",
-									minWidth: "50px",
-									color: "var(--text-color)"
+									border: "1px solid var(--av-table-cell-border)",
+									padding: "6px 10px",
+									width: "36px",
+									textAlign: "center",
+									fontSize: "11px",
+									color: "var(--av-text-muted)",
+									background: "var(--av-table-header)",
+									fontWeight: "bold",
+									userSelect: "none"
 								},
-								children: a
-							}, r);
-						}) }, r)) })
+								children: r + 1
+							}), n.map((n, a) => {
+								let o = "";
+								n && (typeof n == "string" || typeof n == "number" ? o = String(n) : n.m === void 0 ? n.v !== void 0 && (o = String(n.v)) : o = String(n.m));
+								let l = r === 0;
+								return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("td", {
+									style: {
+										border: "1px solid var(--av-table-cell-border)",
+										padding: "8px 12px",
+										minWidth: "70px",
+										color: l ? "var(--av-table-header-text)" : "var(--av-text)",
+										fontWeight: l ? 700 : 400,
+										textAlign: typeof n == "number" || !isNaN(Number(o)) && o !== "" ? "right" : "left"
+									},
+									children: o
+								}, a);
+							})]
+						}, r)) })
 					})
 				})]
 			}, r);
@@ -113886,7 +113943,11 @@ function buildSegments(n) {
 		}
 		return `<blockquote>${n}</blockquote>`;
 	};
-	let l = f$2.parse(r, {
+	let l = o.table.bind(o);
+	o.table = function(n) {
+		return `<div class="av-table-wrapper">${l(n)}</div>`;
+	};
+	let d = f$2.parse(r, {
 		renderer: o,
 		walkTokens(n) {
 			if (n.type === "code") {
@@ -113897,68 +113958,68 @@ function buildSegments(n) {
 				}), n.type = "html", n.text = `${PLACEHOLDER_PREFIX}${l}`;
 			}
 		}
-	}), d = [], f = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), p = 0, m;
-	for (; (m = f.exec(l)) !== null;) {
-		let n = l.slice(p, m.index);
-		n.trim() && d.push({
+	}), f = [], p = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), m = 0, h;
+	for (; (h = p.exec(d)) !== null;) {
+		let n = d.slice(m, h.index);
+		n.trim() && f.push({
 			type: "html",
 			html: n
 		});
-		let r = m[1] ?? m[2], o = Number(r);
+		let r = h[1] ?? h[2], o = Number(r);
 		if (!isNaN(o) && a[o] !== void 0) {
 			let n = a[o], r = (n.lang || "").toLowerCase().trim();
-			r === "mermaid" ? d.push({
+			r === "mermaid" ? f.push({
 				type: "mermaid",
 				code: n.code
-			}) : r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? d.push({
+			}) : r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? f.push({
 				type: "html-preview",
 				code: n.code
-			}) : r === "ameva-map" || r === "map" ? d.push({
+			}) : r === "ameva-map" || r === "map" ? f.push({
 				type: "ameva-map",
 				code: normalizeMapCode(n.code)
-			}) : r === "ameva-youtube" || r === "youtube" ? d.push({
+			}) : r === "ameva-youtube" || r === "youtube" ? f.push({
 				type: "ameva-youtube",
 				code: normalizeYoutubeCode(n.code)
-			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? d.push({
+			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? f.push({
 				type: "ameva-link",
 				code: normalizeLinkCode(n.code)
-			}) : r === "ameva-kanban" || r === "kanban" ? d.push({
+			}) : r === "ameva-kanban" || r === "kanban" ? f.push({
 				type: "ameva-kanban",
 				code: normalizeKanbanCode(n.code)
-			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? d.push({
+			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? f.push({
 				type: "ameva-excel",
 				code: n.code
-			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? d.push({
+			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? f.push({
 				type: "ameva-drawing",
 				code: n.code
-			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? d.push({
+			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? f.push({
 				type: "ameva-document",
 				code: n.code
-			}) : r === "ameva-media-editor" ? d.push({
+			}) : r === "ameva-media-editor" ? f.push({
 				type: "ameva-media-editor",
 				code: n.code
-			}) : r === "video" || r === "ameva-video" ? d.push({
+			}) : r === "video" || r === "ameva-video" ? f.push({
 				type: "video",
 				code: n.code
-			}) : r === "audio" || r === "ameva-audio" ? d.push({
+			}) : r === "audio" || r === "ameva-audio" ? f.push({
 				type: "audio",
 				code: n.code
-			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? d.push({
+			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? f.push({
 				type: "image",
 				code: n.code
-			}) : d.push({
+			}) : f.push({
 				type: "code-runner",
 				code: n.code,
 				language: r || "text"
 			});
 		}
-		p = f.lastIndex;
+		m = p.lastIndex;
 	}
-	let h = l.slice(p);
-	return h.trim() && d.push({
+	let g = d.slice(m);
+	return g.trim() && f.push({
 		type: "html",
-		html: h
-	}), d;
+		html: g
+	}), f;
 }
 var mermaidInitialized = !1;
 function MermaidRenderer({ code: n, theme: r }) {
