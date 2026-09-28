@@ -464,32 +464,42 @@
       background: rgba(234, 179, 8, 0.08);
     }
 
-    /* ── In-Article Table of Contents (TOC) Box ────────────────────────────── */
+    /* ── In-Article Table of Contents (TOC) Box - AMEVA Foundation High-Clarity Design ── */
     .in-article-toc-box {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border-subtle);
-      border-left: 3px solid #38bdf8;
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin-bottom: 20px;
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      border-left: 5px solid #004499 !important;
+      border-radius: 6px !important;
+      padding: 16px 20px !important;
+      margin-bottom: 22px !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
     }
     .toc-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 12px;
+      margin-bottom: 14px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid #e2e8f0 !important;
     }
     .toc-box-title {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-size: 0.95rem;
       font-weight: 700;
-      color: var(--text-bright);
+      color: #0f172a !important;
+    }
+    .toc-badge-count {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #475569 !important;
+      background: #e2e8f0 !important;
+      padding: 2px 8px;
+      border-radius: 12px;
     }
     .toc-quick-actions {
       display: flex;
@@ -501,63 +511,119 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 0.74rem;
-      padding: 3px 9px;
-      border-radius: 4px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1 !important;
+      background: #ffffff !important;
+      color: #334155 !important;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     .toc-quick-btn:hover {
-      border-color: #38bdf8;
-      color: #38bdf8;
+      border-color: #004499 !important;
+      color: #004499 !important;
+      background: #f1f5f9 !important;
     }
     .toc-quick-btn.lab {
-      border-color: rgba(34, 197, 94, 0.3);
-      color: #4ade80;
+      border-color: #86efac !important;
+      background: #f0fdf4 !important;
+      color: #166534 !important;
     }
     .toc-quick-btn.lab:hover {
-      background: rgba(34, 197, 94, 0.15);
+      background: #dcfce7 !important;
+      border-color: #16a34a !important;
     }
     .toc-quick-btn.glossary {
-      border-color: rgba(234, 179, 8, 0.3);
-      color: #facc15;
+      border-color: #fde047 !important;
+      background: #fefce8 !important;
+      color: #854d0e !important;
     }
     .toc-quick-btn.glossary:hover {
-      background: rgba(234, 179, 8, 0.15);
+      background: #fef9c3 !important;
+      border-color: #d97706 !important;
     }
     .toc-items-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 7px;
-      max-height: 260px;
+      gap: 8px;
+      max-height: 280px;
       overflow-y: auto;
       padding-right: 6px;
     }
-    .toc-link-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 10px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-decoration: none;
+    .toc-items-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+    .toc-items-grid::-webkit-scrollbar-track {
+      background: #f1f5f9;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid transparent;
-      transition: all 0.15s;
-      cursor: pointer;
     }
+    .toc-items-grid::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .toc-items-grid::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .content a.toc-link-item,
+    .toc-link-item {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      padding: 7px 11px !important;
+      font-size: 0.81rem !important;
+      font-weight: 500 !important;
+      color: #0f172a !important;
+      text-decoration: none !important;
+      border-radius: 5px !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      transition: all 0.15s ease !important;
+      cursor: pointer !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    }
+    .content a.toc-link-item:hover,
     .toc-link-item:hover {
-      background: rgba(56, 189, 248, 0.08);
-      border-color: rgba(56, 189, 248, 0.3);
-      color: var(--text-bright);
+      background: #e8f0fe !important;
+      border-color: #93c5fd !important;
+      color: #004499 !important;
+      text-decoration: none !important;
+      box-shadow: 0 2px 6px rgba(0, 68, 153, 0.1) !important;
+      transform: translateY(-1px);
     }
+    .content a.toc-link-item.h3-indent,
     .toc-link-item.h3-indent {
-      padding-left: 20px;
-      font-size: 0.75rem;
+      padding-left: 22px !important;
+      font-size: 0.77rem !important;
+      color: #334155 !important;
+      border-left: 3px solid #cbd5e1 !important;
+    }
+    .content a.toc-link-item.h3-indent:hover,
+    .toc-link-item.h3-indent:hover {
+      border-left-color: #004499 !important;
+    }
+    .in-article-toc-box .hb-feature-pill {
+      font-size: 0.68rem !important;
+      font-weight: 600 !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      border: 1px solid #cbd5e1 !important;
+      background: #f1f5f9 !important;
+      color: #475569 !important;
+      flex-shrink: 0 !important;
+    }
+    .in-article-toc-box .hb-feature-pill.lab {
+      border-color: #86efac !important;
+      color: #166534 !important;
+      background: #f0fdf4 !important;
+    }
+    .in-article-toc-box .hb-feature-pill.glossary {
+      border-color: #fde047 !important;
+      color: #854d0e !important;
+      background: #fefce8 !important;
     }
 
     /* ── Handbook Chapter Pager (Prev / Next) ──────────────────────────────── */
@@ -1679,11 +1745,24 @@
               }
             });
 
+            let titlePrefix = '📑 핵심 목차 (Table of Contents)';
+            if (isHandbook) {
+              titlePrefix = '📚 강좌 핵심 목차 (Table of Contents)';
+            } else if (this.activeMenuId === 'research-papers') {
+              titlePrefix = '📑 기술 연구 백서 목차 (Table of Contents)';
+            } else if (this.activeMenuId === 'research-benchmarks') {
+              titlePrefix = '⚡ 실기기 벤치마크 목차 (Table of Contents)';
+            } else if (this.activeMenuId === 'research-cluster') {
+              titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
+            } else {
+              titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
+            }
+
             let tocHtml = `
               <div class="toc-box-header">
                 <div class="toc-box-title">
-                  <span>📑 본 강좌 실시간 핵심 목차 (Table of Contents)</span>
-                  <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: normal;">총 ${headings.length}개 섹션 인덱싱</span>
+                  <span>${titlePrefix}</span>
+                  <span class="toc-badge-count">총 ${headings.length}개 섹션</span>
                 </div>
                 <div class="toc-quick-actions">
                   ${labHeading ? `<button class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
