@@ -1,9 +1,9 @@
-# Termux-Diffusion Full Technical Specification (v1.6.8)
+# Termux-Diffusion Full Technical Specification (v1.8.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Pure CPU Native On-Device Stable Diffusion Runtime for Android Termux
-Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.
+Official Z-Image Turbo (6.0B DiT) & Pure Native On-Device Diffusion Acceleration for Android Termux
+Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.
 
 ## 2. Package & Installation
 - PyPI: termux-diffusion

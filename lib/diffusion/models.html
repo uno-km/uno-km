@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
@@ -86,6 +86,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr style="background: rgba(0, 68, 153, 0.05); border-left: 3px solid #004499;">
+                            <td><strong><code>z-image-turbo</code></strong> <span class="status-badge active" style="font-size:0.75em;">Flagship DiT</span></td>
+                            <td>6.0B Diffusion Transformer + Qwen3-4B LLM</td>
+                            <td><code>z_image_turbo-Q2_K.gguf</code> (DiT)<br><code>Qwen3-4B-Instruct-2507-Q2_K.gguf</code> (LLM)<br><code>taef1.safetensors</code> (TAESD)</td>
+                            <td><strong>2.41 GB</strong><br>(1.0 GB VRAM Cap)</td>
+                            <td><strong>8</strong></td>
+                            <td><strong>1.0 (Fixed)</strong></td>
+                            <td>Vulkan GPU (S21 5G Verified)</td>
+                            <td><strong>TAESD Flux</strong></td>
+                        </tr>
                         <tr>
                             <td><strong><code>sdxs</code></strong> (Default)</td>
                             <td>Tiny-SD (1-Step Distilled)</td>
@@ -133,6 +143,14 @@
             <!-- SECTION 2: GOLDEN RULES & ARCHITECTURE -->
             <h3>2. Golden Rules by Model Architecture (아키텍처별 필수 지침)</h3>
             
+            <h4>2.0 Z-Image Turbo (6.0B DiT + Qwen3-4B LLM) — Sovereign Mobile Diffusion Transformer</h4>
+            <ul>
+                <li><strong>Tri-Engine Principle:</strong> Combines a 4.0B LLM for deep natural language prompt understanding, a 6.0B Diffusion Transformer for global optical coherence, and a 10MB TAESD for 1-second latent reconstruction.</li>
+                <li><strong>Golden Rule:</strong> <strong>Enable Layer Streaming and VRAM Capping</strong>: Always invoke with <code>--stream-layers</code>, <code>--max-vram vulkan0=1</code>, and <code>--params-backend diffusion=cpu</code>. This guarantees the 2.41GB DiT model stays strictly within 1.0 GB VRAM, preventing Android LMK kills (Zero-OOM). Use <code>--steps 8</code> with Euler ODE solver and CFG 1.0 for physical PBR fidelity.</li>
+                <li><strong>CLI Example:</strong> <code>sd-cli-vulkan -p "A cinematic photo of a neon cybernetic tiger walking in Seoul street at night" -W 512 -H 512 -t 4 --steps 8 --cfg-scale 1.0 --sampling-method euler --backend clip=cpu,diffusion=vulkan0,vae=cpu --max-vram vulkan0=1 --stream-layers --params-backend diffusion=cpu --diffusion-fa --mmap --vae-tiling --vae-format flux -o cyber_tiger.png</code></li>
+                <li><strong>Research Whitepaper:</strong> Detailed micro-kernel analysis and Samsung Galaxy S21 5G verification traces are documented in the <a href="https://uno-km.vercel.app/labs/" target="_blank"><strong>AMEVA Labs Research Portal</strong></a>.</li>
+            </ul>
+
             <h4>2.1 SDXS (512-tinySDdistilled / 651 MB) — Ultra-Fast Mobile Distillation</h4>
             <ul>
                 <li><strong>Distillation Principle:</strong> Recovers full latent distribution in 1~2 steps via advanced score distillation. TAESD decoder completes VAE stage in under 0.2s.</li>

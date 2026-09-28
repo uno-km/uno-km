@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-Diffusion</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.">
+  <meta name="description" content="Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,8 +21,101 @@
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
+      <div class="alert alert-tip">
+  <span class="alert-title">🚀 Advanced Parameter Control & Hybrid Scheduling</span>
+  <p>Termux-Diffusion exposes granular hardware control across CPU worker threads, Khronos Vulkan compute shaders, and memory-mapped buffers.</p>
+</div>
+
+<h3>1. Production Parameter Taxonomy</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Engineering Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--diffusion-model &lt;path&gt;</code></td>
+      <td>Path</td>
+      <td>Built-in</td>
+      <td>Explicit path to 6.0B DiT or UNet weights (GGUF format)</td>
+    </tr>
+    <tr>
+      <td><code>--llm &lt;path&gt;</code></td>
+      <td>Path</td>
+      <td>Built-in</td>
+      <td>Path to large language model text encoder (e.g. Qwen3-4B-Instruct)</td>
+    </tr>
+    <tr>
+      <td><code>--taesd &lt;path&gt;</code></td>
+      <td>Path</td>
+      <td>Built-in</td>
+      <td>Path to ultra-lightweight Tiny AutoEncoder (taef1.safetensors) for ultra-fast VAE decode</td>
+    </tr>
+    <tr>
+      <td><code>--stream-layers</code></td>
+      <td>Boolean</td>
+      <td>Off</td>
+      <td>Dynamically streams DiT layers across AXI bus to observe strict 1GB VRAM caps</td>
+    </tr>
+    <tr>
+      <td><code>--max-vram &lt;target=size&gt;</code></td>
+      <td>String</td>
+      <td>None</td>
+      <td>Hard allocation ceiling on GPU heap (e.g. <code>vulkan0=1</code>) to prevent Android LMK kills</td>
+    </tr>
+    <tr>
+      <td><code>--params-backend &lt;module=target&gt;</code></td>
+      <td>String</td>
+      <td>Auto</td>
+      <td>Binds model parameter storage (e.g. <code>diffusion=cpu</code>) for LPDDR5 residency</td>
+    </tr>
+    <tr>
+      <td><code>--backend &lt;spec&gt;</code></td>
+      <td>String</td>
+      <td>Auto</td>
+      <td>Asymmetric engine assignment (e.g. <code>clip=cpu,diffusion=vulkan0,vae=cpu</code>)</td>
+    </tr>
+    <tr>
+      <td><code>--diffusion-fa</code></td>
+      <td>Boolean</td>
+      <td>Off</td>
+      <td>Tiled Flash Attention kernel reducing attention memory complexity from O(N²) to O(N)</td>
+    </tr>
+    <tr>
+      <td><code>--vae-on-cpu</code></td>
+      <td>Boolean</td>
+      <td>Off</td>
+      <td>Offloads VAE decoding to CPU cores, freeing GPU VRAM during final image restoration</td>
+    </tr>
+    <tr>
+      <td><code>--vae-tiling</code></td>
+      <td>Boolean</td>
+      <td>Off</td>
+      <td>Tiled spatial latent reconstruction preventing 1.2GB decoding memory spikes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Documentation Overhaul Roadmap (차기 파라미터 전수 개편 계획)</h3>
+<div class="features-grid">
+  <div class="feature-card">
+    <h4>Phase 1: Dynamic VRAM-Budget Autotuning Matrix (v1.8.1)</h4>
+    <p>Interactive parameter calculator querying device SoC and physical RAM to automatically synthesize optimal CLI flags.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Phase 2: Mobile GPU Architecture Presets (v1.8.2)</h4>
+    <p>Targeted configurations tuned for ARM Mali (G68/G78), Qualcomm Adreno (650/730/830), and Samsung Xclipse (RDNA).</p>
+  </div>
+  <div class="feature-card">
+    <h4>Phase 3: Multi-Model Schema Unification (v1.9.0)</h4>
+    <p>Unified JSON schema validation across Python SDK, Node.js SDK, and REST test harnesses with fail-fast assertions.</p>
+  </div>
+</div>
+
     </main>
   </div>
 

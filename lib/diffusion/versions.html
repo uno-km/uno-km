@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Diffusion</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.">
+  <meta name="description" content="Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,11 +21,23 @@
     <main class="content">
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v1.6.8 - Pure CPU Native Engine Release (Current)</h3>
-         <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-         </ul>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.8.0 - Official Z-Image Turbo 6.0B DiT Support & Sovereign Acceleration Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-28</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Official production support for Z-Image Turbo 6.0B Diffusion Transformer on Android Termux.</li>
+          <li>Tri-Engine asymmetric offloading pipeline (Qwen3-4B LLM on CPU + DiT on Vulkan GPU + TAESD VAE).</li>
+          <li>Dynamic layer streaming (--stream-layers) guaranteeing Zero-OOM execution within 1.0 GB VRAM.</li>
+          <li>Physical validation on Samsung Galaxy S21 5G (Exynos 2100 / Mali-G78 MP14) with 100% convergence.</li>
+          <li>Full integration with AMEVA Edge Systems Lab (AESL) research whitepaper and documentation portal.</li>
+          <li>Established complete roadmap for comprehensive parameter manual overhaul.</li>
+        </ul>
+      </div>
     </main>
   </div>
 

@@ -1,4 +1,4 @@
-# Comprehensive Guide to Advanced Parameters in Termux-Diffusion
+﻿# Comprehensive Guide to Advanced Parameters in Termux-Diffusion
 
 `termux-diffusion` exposes the full suite of high-precision diffusion controls powered by the native `sd-cli` (`stable-diffusion.cpp`) engine. This handbook details every advanced parameter, supported values, boundary clamping rules, and production code examples for **Python SDK**, **Node.js SDK**, and **Terminal CLI**.
 
@@ -211,3 +211,62 @@ generate("speedy sports car", taesd="~/models/taesd.gguf")
 | **Invalid `clip_skip` (`< 1` or `> 2`)** | 🟡 **Auto-Clamping & Warning:** Automatically clamped to valid bounds (`1` or `2`). |
 | **Typo in `sampling_method` or `schedule`** | 🟡 **Graceful Default Fallback:** Warns the user and falls back to engine default (`euler_a` / `default`) without failing the batch. |
 | **Unset / `None` / Empty Arguments** | 🟢 **Zero Overhead:** Parameter flags are completely omitted from the C++ command line, preserving 100% native baseline performance. |
+
+---
+
+## 8. 🚀 Z-Image Turbo & Tri-Engine Asymmetric Parameters
+
+With the official release of `v1.8.0`, `termux-diffusion` exposes low-level flags for multi-modal Diffusion Transformers (DiT 6.0B) and heterogeneous CPU/GPU scheduling:
+
+### 8.1 Tri-Engine Subsystem Binding (`--backend`)
+Binds individual neural components to optimal hardware accelerators:
+* `clip=cpu`: Offloads 4.0B LLM text encoder (Qwen3) to 4 CPU Big/Prime cores.
+* `diffusion=vulkan0`: Concentrates Mali/Adreno Vulkan compute shader execution entirely on the 6.0B DiT backbone.
+* `vae=cpu`: Delegates lightweight VAE decoding to CPU, freeing GPU VRAM during final image pixel restoration.
+
+### 8.2 Layer Streaming (`--stream-layers`) & VRAM Capping (`--max-vram`)
+* **`--stream-layers`**: Sequentially streams DiT layers across the AXI bus into GPU memory.
+* **`--max-vram vulkan0=1`**: Strictly enforces a 1.0 GB VRAM limit. Ensures zero Out-of-Memory (OOM) aborts even on memory-constrained mobile devices.
+* **`--params-backend diffusion=cpu`**: Keeps model weights resident in LPDDR5 system RAM while streaming compute passes to Vulkan shaders.
+
+### 8.3 Mobile Verification Case Study (Samsung Galaxy S21 5G)
+* **Target Hardware**: Samsung Galaxy S21 5G (SM-G991N, Exynos 2100 / ARM Mali-G78 MP14)
+* **Prompt**: `"A cinematic photo of a neon cybernetic tiger walking in Seoul street at night"`
+* **Z-Image Turbo (8-Step DiT) Execution**:
+  ```bash
+  sd-cli-vulkan \
+    -p "A cinematic photo of a neon cybernetic tiger walking in Seoul street at night" \
+    -W 512 -H 512 -t 4 --steps 8 --cfg-scale 1.0 --sampling-method euler \
+    --diffusion-model ~/.cache/termux-diffusion/models/z_image_turbo-Q2_K.gguf \
+    --llm ~/.cache/termux-diffusion/models/Qwen3-4B-Instruct-2507-Q2_K.gguf \
+    --taesd ~/.cache/termux-diffusion/models/taef1.safetensors \
+    --clip-on-cpu --vae-on-cpu --vae-format flux --mmap --diffusion-fa \
+    --backend clip=cpu,diffusion=vulkan0,vae=cpu \
+    --max-vram vulkan0=1 --stream-layers --params-backend diffusion=cpu --vae-tiling \
+    -o /sdcard/Pictures/TermuxDiffusion/s21_z_image_turbo_8step.png
+  ```
+* **DreamShaper 8 (LCM 6-Step) Execution**:
+  ```bash
+  sd-cli-vulkan \
+    -p "A cinematic photo of a neon cybernetic tiger walking in Seoul street at night" \
+    -W 512 -H 512 -t 4 --steps 6 --cfg-scale 1.5 --sampling-method lcm --seed 42 \
+    --backend clip=vulkan0,diffusion=vulkan0,vae=cpu --vae-on-cpu --vae-tiling --diffusion-fa --mmap \
+    -o /sdcard/Pictures/TermuxDiffusion/s21_anime_tiger_6step.png
+  ```
+* **Physical Results**: Specular PBR neon light reflections across wet asphalt, crisp cybernetic armor contours, complete convergence without memory spikes.
+* **Academic Whitepaper**: Available via the [AMEVA Labs Research Portal](https://uno-km.vercel.app/labs/) and the [Galaxy S21 Z-Image Turbo Vulkan Research Report](https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md).
+
+---
+
+## 9. 🗺️ Parameter Overhaul & Documentation Rewrite Roadmap (전수 개편 계획)
+
+To support the rapid evolution of on-device generative AI, the AMEVA Foundation has instituted a 3-phase documentation overhaul:
+
+1. **Phase 1: Dynamic VRAM-Budget Autotuning Matrix (v1.8.1)**:
+   - Provide an interactive parameter calculator on [uno-km.vercel.app/lib/diffusion/](https://uno-km.vercel.app/lib/diffusion/).
+   - Query physical hardware limits via `termux-telemetry` to generate recommended flags automatically.
+2. **Phase 2: Mobile GPU Microarchitecture Profiles (v1.8.2)**:
+   - Detailed tuning recommendations for ARM Mali (Bifrost/Valhall), Qualcomm Adreno (600/700/800 series), and Samsung Xclipse (AMD RDNA2/3).
+3. **Phase 3: Multi-Model Schema Unification (v1.9.0)**:
+   - Synchronize parameter names, ranges, and validation logic across Python SDK, Node.js SDK, and REST test harnesses.
+

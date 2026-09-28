@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | Termux-Diffusion</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.">
+  <meta name="description" content="Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,12 +21,74 @@
     <main class="content">
       <h2>Benchmarks & Profiling</h2>
       <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
-      <table class="data-table">
-           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
-           <tbody>
-             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
-           </tbody>
-         </table>
+      <div class="alert alert-tip">
+  <span class="alert-title">📱 Official Samsung Galaxy S21 5G Hardware Case Study</span>
+  <p>Physical mobile verification was completed on Samsung Galaxy S21 5G (Samsung Exynos 2100 / ARM Mali-G78 MP14) on native Android 14 Termux Bionic libc. Total GPU allocation was strictly capped at 1.0 GB VRAM via dynamic layer streaming, achieving 100% convergence with zero memory crashes (OOM Zero).</p>
+</div>
+
+<h3>1. Galaxy S21 5G Verification Parameters</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Verification Case</th>
+      <th>Architecture & Model</th>
+      <th>Prompt</th>
+      <th>Parameters & Hardware Flags</th>
+      <th>Output Artifact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Z-Image Turbo (8-Step DiT)</strong></td>
+      <td>6.0B Diffusion Transformer + Qwen3-4B LLM + TAESD FLUX.1</td>
+      <td><code>"A cinematic photo of a neon cybernetic tiger walking in Seoul street at night"</code></td>
+      <td><code>-W 512 -H 512 -t 4 --steps 8 --cfg-scale 1.0 --sampling-method euler --backend clip=cpu,diffusion=vulkan0,vae=cpu --max-vram vulkan0=1 --stream-layers --params-backend diffusion=cpu --diffusion-fa --mmap --vae-tiling --vae-format flux</code></td>
+      <td><code>s21_z_image_turbo_8step.png</code></td>
+    </tr>
+    <tr>
+      <td><strong>DreamShaper 8 (6-Step LCM)</strong></td>
+      <td>UNet LCM Fast Inference (GGUF Q4_0)</td>
+      <td><code>"A cinematic photo of a neon cybernetic tiger walking in Seoul street at night"</code></td>
+      <td><code>-W 512 -H 512 -t 4 --steps 6 --cfg-scale 1.5 --sampler lcm --seed 42 --backend clip=vulkan0,diffusion=vulkan0,vae=cpu --vae-on-cpu --vae-tiling --diffusion-fa --mmap</code></td>
+      <td><code>s21_anime_tiger_6step.png</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Architectural Memory & Stability Profiling</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Model Architecture</th>
+      <th>Parameter Scale</th>
+      <th>VRAM Footprint</th>
+      <th>System RAM Stability</th>
+      <th>Convergence Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Z-Image Turbo</strong></td>
+      <td>6.0 Billion (DiT)</td>
+      <td>1.0 GB Fixed (Layer Streaming)</td>
+      <td>Stable LPDDR5 Buffer (~2.4 GB)</td>
+      <td>100% (Zero-OOM, Specular PBR Fidelity)</td>
+    </tr>
+    <tr>
+      <td><strong>DreamShaper 8 (LCM)</strong></td>
+      <td>1.0 Billion (UNet)</td>
+      <td>1.55 GB Total Params (Vulkan FP16)</td>
+      <td>Stable LPDDR5 Buffer (~1.9 GB)</td>
+      <td>100% (Zero-OOM, Full MediaStore Sync)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-note">
+  <span class="alert-title">🔬 Academic Whitepaper & Research Lab Reference</span>
+  <p>For complete theoretical formulations, shader dispatch analysis, and micro-kernel memory traces, visit the <a href="https://uno-km.vercel.app/labs/" target="_blank"><strong>AMEVA Edge Systems Lab (AESL) Research Portal</strong></a> and view the official <a href="https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md" target="_blank"><strong>Galaxy S21 Z-Image Turbo Vulkan Research Report</strong></a>.</p>
+</div>
+
     </main>
   </div>
 

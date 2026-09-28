@@ -1,32 +1,24 @@
-# Termux-Diffusion — AI Agent Fast Context
-# Generated: 2026-09-28  |  Version: 1.6.8
+# Termux-Diffusion (v1.8.0)
+> Official Z-Image Turbo (6.0B DiT) & Pure Native On-Device Diffusion Acceleration for Android Termux
 
-## Library
-Name: Termux-Diffusion
-Version: 1.6.8
-GitHub: https://github.com/uno-km/termux-diffusion
-Documentation: https://uno-km.vercel.app/lib/diffusion/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-diffusion
+- Installation: `pip install termux-diffusion && termux-diffusion install
+# or:
+npm install termux-diffusion && npx termux-diffusion install`
+- Architecture: Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.
 
-## Description
+## Canonical Code Pattern
+```python
+import termux_diffusion as td
 
+# Generate image using official on-device acceleration
+image_path = td.generate(
+    prompt="A cinematic photo of a neon cybernetic tiger walking in Seoul street at night",
+    model="anime",
+    steps=6,
+    device="vulkan"
+)
+print(f"Generated and saved to Gallery: {image_path}")
 
-## Documentation Pages
-  - /lib/diffusion/index.html
-  - /lib/diffusion/installation.html
-  - /lib/diffusion/quickstart.html
-  - /lib/diffusion/api-reference.html
-  - /lib/diffusion/models.html
-  - /lib/diffusion/gallery.html
-  - /lib/diffusion/create.html
-  - /lib/diffusion/benchmarks.html
-  - /lib/diffusion/advanced-parameters.html
-  - /lib/diffusion/versions.html
-
-## Quick Install
-pip install termux-diffusion
-npm install termux-diffusion
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/diffusion/llms-full.txt
+```

@@ -112,8 +112,8 @@ libs:
   - id: diffusion
     name: "Termux-Diffusion"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 Android Bionic ARM64 네이티브 Stable Diffusion 연산 엔진. 비루트 구동."
-    tagline_en: "Native on-device Stable Diffusion runtime utilizing device resources for Android ARM64."
+    tagline_ko: "디바이스 리소스를 활용한 Android Bionic ARM64 네이티브 Z-Image Turbo (60억 DiT) & Vulkan GPU 확산 가속 엔진. 비루트 구동."
+    tagline_en: "Official Z-Image Turbo (6.0B DiT) & native on-device Vulkan GPU Diffusion runtime utilizing mobile device resources for Android ARM64."
     links:
       docs: "/lib/diffusion/"
       pypi: "https://pypi.org/project/termux-diffusion/"

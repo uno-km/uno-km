@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Diffusion | Official Documentation</title>
-  <meta name="description" content="Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.">
+  <meta name="description" content="Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -20,13 +20,13 @@
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-Diffusion</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Pure CPU Native On-Device Stable Diffusion Runtime for Android Termux</p>
+      <p class="subtitle" data-i18n="home.subtitle">Official Z-Image Turbo (6.0B DiT) & Pure Native On-Device Diffusion Acceleration for Android Termux</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-diffusion/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-diffusion.svg?color=004499" alt="PyPI Version"></a>
         <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank"><img src="https://img.shields.io/npm/v/termux-diffusion.svg?color=cb3837" alt="npm Version"></a>
         <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-        <img src="https://img.shields.io/badge/platform-Android_ARM64_(Bionic_libc_/_NEON)-blueviolet.svg" alt="Platform">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_(Bionic_libc_/_Vulkan_/_NEON)-blueviolet.svg" alt="Platform">
       </div>
 
       <div class="alert alert-tip">
@@ -38,24 +38,28 @@ npm install termux-diffusion && npx termux-diffusion install</code></pre>
       </div>
 
       <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
-      <p data-i18n="home.challengeText">Generating AI images on mobile devices typically requires cloud API dependencies or heavy virtualized container layers (PRoot) that quickly exceed RAM limits.</p>
+      <p data-i18n="home.challengeText">Executing modern 6.0B Diffusion Transformers on mobile hardware requires cloud dependencies or leads to immediate Out-of-Memory (LMK) aborts due to VRAM exhaustion.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes quantized Stable Diffusion models with ARMv8.2-A DotProd/FP16 NEON SIMD vector instructions, VAE tiling, and direct Android MediaStore synchronization.</p>
+      <p data-i18n="home.breakthroughText">Executes 6.0B DiT (Z-Image Turbo) and quantized Stable Diffusion models with Tri-Engine asymmetric offloading, layer streaming, Vulkan compute shaders, and ARMv8.2-A DotProd/FP16 NEON SIMD.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Zero-PRoot Native ARM64 Bionic</h4>
-          <p data-i18n="home.features.0.desc">Executes directly without root permissions, virtual machines, or PRoot Linux overhead.</p>
+          <h4 data-i18n="home.features.0.title">Official Z-Image Turbo (6.0B DiT)</h4>
+          <p data-i18n="home.features.0.desc">Native mobile execution of 6.0B Diffusion Transformer via Tri-Engine pipeline (Qwen3-4B LLM text encoder + DiT backbone + 10MB fast VAE).</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">One-Touch Pure CPU Native Engine</h4>
-          <p data-i18n="home.features.1.desc">Provisions precompiled ARM64 CPU native binary and OpenMP runtime in seconds without thermal compilation overhead.</p>
+          <h4 data-i18n="home.features.1.title">Dynamic Layer Streaming & Zero-OOM</h4>
+          <p data-i18n="home.features.1.desc">Streams DiT layers into Vulkan VRAM sequentially, maintaining a strict 1.0 GB VRAM footprint to prevent mobile LMK kills.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Android MediaStore Auto-Indexing</h4>
-          <p data-i18n="home.features.2.desc">Automatically synchronizes generated images into Pictures/TermuxDiffusion and registers with Android MediaStore.</p>
+          <h4 data-i18n="home.features.2.title">Dual-Engine Vulkan GPU & CPU Baseline</h4>
+          <p data-i18n="home.features.2.desc">Bypasses PRoot with precompiled Khronos Vulkan 1.1+ compute kernels and OpenMP NEON SIMD vector runtime.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">Android MediaStore Auto-Indexing</h4>
+          <p data-i18n="home.features.3.desc">Automatically synchronizes generated images into Pictures/TermuxDiffusion and registers with Android MediaStore.</p>
         </div>
       </div>
 
@@ -70,13 +74,18 @@ npm install termux-diffusion && npx termux-diffusion install</code></pre>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Diffusion Engine</strong></td>
-            <td>SD 1.5, SD Turbo, LCM, DreamShaper 8, Tiny-SD, GGML Quantized Weights</td>
+            <td><strong>Diffusion Transformer (DiT)</strong></td>
+            <td>Z-Image Turbo (6.0B DiT), Qwen3-4B-Instruct LLM Text Encoder, TAESD FLUX.1 VAE</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Diffusion UNet Engines</strong></td>
+            <td>SD 1.5, SDXS Distilled, SD Turbo, DreamShaper 8 (LCM 6-step), Realistic Vision, GGML Quantized Weights</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
             <td><strong>Compute Acceleration</strong></td>
-            <td>ARM64 ARMv8.2-A DotProd/FP16 NEON SIMD, Multi-Threaded OpenMP</td>
+            <td>Khronos Vulkan 1.1+ GPU Shaders, Dynamic Layer Streaming, ARM64 DotProd/FP16 NEON SIMD, OpenMP</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
@@ -96,12 +105,12 @@ npm install termux-diffusion && npx termux-diffusion install</code></pre>
         <div class="code-tab-content" style="display:block;">
           <pre><code>import termux_diffusion as td
 
-# 1. Generate image using pure CPU on Android hardware
+# Generate image using official on-device acceleration
 image_path = td.generate(
-    prompt="cute dolphin, high quality illustration",
+    prompt="A cinematic photo of a neon cybernetic tiger walking in Seoul street at night",
     model="anime",
     steps=6,
-    device="cpu"
+    device="vulkan"
 )
 print(f"Generated and saved to Gallery: {image_path}")
 </code></pre>
@@ -110,10 +119,10 @@ print(f"Generated and saved to Gallery: {image_path}")
           <pre><code>import { generate } from "termux-diffusion";
 
 const result = await generate({
-  prompt: "cute polar bear, high quality illustration",
+  prompt: "A cinematic photo of a neon cybernetic tiger walking in Seoul street at night",
   model: "anime",
   steps: 6,
-  device: "cpu"
+  device: "vulkan"
 });
 console.log("Image created:", result.outputPath);
 </code></pre>
