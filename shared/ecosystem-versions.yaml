@@ -113,8 +113,8 @@ libraries:
     status: stable
   stt:
     name: Termux-STT
-    version: 1.2.11
-    release_date: '2026-09-18'
+    version: 1.2.13
+    release_date: '2026-09-28'
     npm_package: termux-stt
     pypi_package: termux-stt
     github_repo: uno-km/termux-stt

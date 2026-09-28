@@ -2,6 +2,23 @@
 
 ---
 
+## [Termux-STT v1.2.13] - 2026-09-28
+
+### Overview
+**Termux-STT v1.2.13** (PyPI: `termux-stt 1.2.13` / NPM: `termux-stt@1.2.13`) introduces automated self-healing Vosk STT runtime dependency provisioning (`cffi`, `srt`) on Android Termux, synchronizes full SemVer package manifests across Python and Node.js ecosystems with 100% Zero-Drift, and validates zero silent fallback across all 57 test suites.
+
+### Key Changes
+* **Vosk STT Runtime Dependency Auto-Provisioning**:
+  * Automatically detects and installs required runtime bindings (`cffi>=1.15.0`, `srt>=3.5.0`) during Vosk STT engine provisioning on Android Termux.
+  * Prevents cold-start CFFI/SRT import failures on minimal Termux environments without requiring manual package intervention.
+* **Full SemVer Parity & Manifest Synchronization**:
+  * Completely aligned `pyproject.toml`, `setup.py`, `package.json`, and `termux_stt/__init__.py` to `1.2.13`.
+  * Explicitly declared Python runtime dependencies (`cffi`, `srt`) to prevent environment drift.
+* **Zero-Drift & Fail-Fast Validation**:
+  * Verified 100% test pass rate (57 passed) with zero silent fallbacks and deterministic hardware execution.
+
+---
+
 ## [AMEVA-Runtime v2.5.1] - 2026-09-14
 
 ### Overview
