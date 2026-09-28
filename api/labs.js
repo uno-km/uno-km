@@ -95,9 +95,15 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v1_handbook_and_monographs';
+    const SEED_VERSION = 'v2_deduplicated_archive';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
+      // First, purge any duplicate posts keeping only the lowest canonical ID
+      await sql`
+        DELETE FROM labs_posts a USING labs_posts b
+        WHERE a.id > b.id AND a.menu_id = b.menu_id AND a.title = b.title;
+      `;
+
       const existingRows = await sql`SELECT id, menu_id, title FROM labs_posts;`;
       const postMap = new Map();
       existingRows.forEach(r => postMap.set(`${r.menu_id}:::${r.title}`, r.id));
@@ -116,6 +122,12 @@ async function ensureSchema(sql) {
           `;
         }
       }
+
+      // Final deduplication sweep in case of any concurrent insertions
+      await sql`
+        DELETE FROM labs_posts a USING labs_posts b
+        WHERE a.id > b.id AND a.menu_id = b.menu_id AND a.title = b.title;
+      `;
 
       await sql`
         INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', ${SEED_VERSION})
