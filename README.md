@@ -1,4 +1,4 @@
-# AMEVA Open-Source Foundation (AOSF)
+# AMEVA Edge Systems Lab (AESL)
 
 <p align="center">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="160" height="160">
@@ -42,8 +42,8 @@
 </p>
 
 <p align="center">
-  <strong>Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Egress Dependency</strong><br/>
-  <em>클라우드 종속과 서버 비용 없는 100% 순수 클라이언트 엣지 AI &amp; 분산 자율 소프트웨어 생태계</em>
+  <strong>Architecting Sovereign On-Device Edge Computing Solutions &amp; Autonomous Systems</strong><br/>
+  <em>클라우드 종속과 서버 비용 없는 온디바이스 에지 컴퓨팅 솔루션 및 독립 기술 연구 생태계</em>
 </p>
 
 <p align="center">
@@ -113,13 +113,13 @@
 
 ---
 
-## 1. About AMEVA Open-Source Foundation (AOSF)
+## 1. About AMEVA Edge Systems Lab (아메바 온디바이스 에지 컴퓨팅 연구소)
 
-**AMEVA Open-Source Foundation (AOSF / AMEVA 오픈소스 재단)**은 거대 빅테크의 비싼 클라우드 API 과금과 서버 종속을 거부하고, 전 세계 모든 인디 개발자, 학생, 엔지니어들을 위해 주머니 속 기기에서 100% 자립 구동하는 AI를 만드는 **'거지스트림(The Grassroots Edge Hacker Stream)' 온디바이스 오픈소스 연대**입니다.
+**AMEVA Edge Systems Lab (AESL / 아메바 에지 컴퓨팅 연구소)**은 거대 빅테크의 비싼 클라우드 API 과금과 서버 종속을 거부하고, 스마트폰과 에지 단말기의 하드웨어 한계를 돌파하여 100% 자립 구동하는 **온디바이스 에지 컴퓨팅 솔루션과 자율 시스템 아키텍처**를 연구·개발하는 독립 엔지니어링 랩입니다.
 
-수천만 원짜리 고가 클라우드 GPU 클러스터가 없어도, 내 주머니 속 스마트폰(갤럭시 A35, S21, S25), 친구의 깨진 폰(S20), 어머니 서랍 속 구식 기기(S7)로도 최신 LLM, 음성인식, 컴퓨터 비전, 이미지 생성이 돌아갈 수 있도록 14개 라이브러리를 안드로이드 Bionic과 Vulkan SPIR-V로 바닥부터 뜯어고쳤습니다.
+수천만 원짜리 고가 클라우드 GPU 클러스터가 없어도, 내 주머니 속 스마트폰(갤럭시 A35, S21, S25), 친구의 깨진 폰(S20), 어머니 서랍 속 구식 기기(S7)로도 최신 LLM, 음성인식, 컴퓨터 비전, 이미지 생성이 돌아갈 수 있도록 14개 라이브러리를 안드로이드 Bionic과 Vulkan SPIR-V, WebGPU로 바닥부터 뜯어고쳤습니다.
 
-우리는 스스로 모래주머니를 차거나 지키지도 못할 관료주의적 허세에 목을 매지 않습니다. 오직 실전 동작하는 코드와 성능 지표로 증명하며, 깃허브에서 전 세계 개발자들의 솔직한 피드백과 쓴소리를 달게 받습니다.
+우리는 공허한 오픈소스 구호나 상업적 허세에 목을 매지 않습니다. 오직 하드웨어 한계를 돌파하는 기술적 연구와 실전에서 묵묵히 동작하는 코드 구현 그 자체에 몰입하며, 온디바이스 에지 컴퓨팅의 새로운 지평을 넓혀갑니다.
 
 ---
 
@@ -166,7 +166,7 @@ flowchart TD
 
 | 프로젝트 명 | 기술 스택 & 런타임 | 핵심 기능 및 공학적 해결 과제 | 패키지 설치 및 레퍼런스 |
 | :--- | :--- | :--- | :--- |
-| **`AMEVA Workstation`** | WebGPU, WASM, React | 클라이언트 중심 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[GitHub 저장소](https://github.com/uno-km/AMEVA-Workstation-Web) |
+| **`AMEVA Workstation`** | WebGPU, WASM, React | 클라이언트 중심 100% 클라이언트 온디바이스 WebGPU 로컬 AI 워크스테이션. 대용량 문서 3초 맵리듀스 요약, 인앱 비디오 컷편집, 1초 AI 누끼 및 무음 자동 컷팅 제공. | [Web App 실행](https://ameva-workstation-web-core.vercel.app/)<br/>[공식 포털 안내](https://uno-km.vercel.app/lib/workstation/) *(Core R&D Engine)* |
 | **`Infra-Index Platform`** | Next.js, Python, FastAPI | 글로벌 69개 클라우드 GPU/CPU/스토리지 실시간 시세 집계 및 AI 반도체 시황 인텔리전스 모니터링 플랫폼. | [Web App 실행](https://infraindex-platform-front.vercel.app/)<br/>[공식 문서](https://uno-km.vercel.app/lib/infra-index/) |
 | **`AMEVA-Sentinel`** | TypeScript, WebCrypto, Node | 마우스 좌표 수집 0%, 키로깅 0%의 0-Data 프라이버시 봇 탐지 및 6대 결정론적 스코어카드 기반 다계층 트래픽 거버넌스 보안 SDK. | `npm install ameva-sentinel`<br/>[공식 문서](https://uno-km.vercel.app/lib/sentinel/) |
 | **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.vercel.app/lib/mcp/) |
@@ -188,15 +188,15 @@ flowchart TD
 
 - **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
 - **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))
-- **`Dead Internet Theatre`**: Docker 기반 자율 멀티에이전트 사회 시뮬레이터 ([GitHub](https://github.com/uno-km/AMEVA-Dead-Internet-Threatre))
+- **`Dead Internet Theatre`**: Docker 기반 자율 멀티에이전트 사회 시뮬레이터 *(Internal R&D)*
 - **`AMEVA Agent Orchestra`**: Nobles(전략 의사결정)와 Workers(실행) 계층 분해 기반 다중 에이전트 오케스트레이션 ([GitHub](https://github.com/uno-km/AMEVA-Agent-Orchestra))
-- **`BitNet Kernel Contributions`**: 1-bit(1.58-bit) LLM을 위한 ARM NEON 커널 및 빌드 최적화 오픈소스 기여 ([GitHub](https://github.com/uno-km/BitNet))
+- **`BitNet Kernel Contributions`**: 1-bit(1.58-bit) LLM을 위한 ARM NEON 커널 및 빌드 최적화 기여 ([GitHub](https://github.com/uno-km/BitNet))
 
 ---
 
 ## 5. 스폰서십 및 솔직한 개발 이야기 (Sponsorship & Grassroots Story)
 
-AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 독점 투자나 영리 목적의 유료화 없이, **순수한 오픈 커뮤니티의 자발적 후원과 1인 인디 개발자의 생존 지원**으로 운영됩니다.
+AMEVA의 모든 연구와 온디바이스 에지 컴퓨팅 기술은 상업적 벤더의 독점 투자나 외부 자본에 종속되지 않고, **에지 기술 연구를 향한 1인 인디 개발자의 집념과 순수한 커뮤니티의 자발적 후원**으로 지탱됩니다.
 
 > **"빅테크의 수억 원짜리 H100 클러스터가 없어도, 내 주머니 속 폰과 서랍 속 굴러다니는 구형 기기로 온디바이스 AI를 해낼 수 있다는 것을 증명하고 싶었습니다."**
 
@@ -229,9 +229,9 @@ AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 독
 
 ---
 
-## 6. 오픈소스 커뮤니티 참여 및 깃허브 방문 안내
+## 6. 온디바이스 에지 컴퓨팅 기술 연구 및 커뮤니티 안내
 
-AOSF는 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원의 코드 기여와 거침없는 피드백을 진심으로 환영합니다!
+AMEVA Edge Systems Lab은 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원들과 함께 온디바이스 에지 컴퓨팅의 기술적 돌파구를 열어가고자 합니다.
 
 - **공식 깃허브 조직**: [https://github.com/uno-km](https://github.com/uno-km)
 - **공식 기술 포털**: [https://uno-km.vercel.app/foundation/index.html](https://uno-km.vercel.app/foundation/index.html)

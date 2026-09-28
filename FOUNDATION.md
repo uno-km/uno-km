@@ -1,4 +1,4 @@
-# AMEVA Open-Source Foundation (AOSF)
+# AMEVA Edge Systems Lab (AESL)
 
 <p align="center">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="160" height="160">
@@ -42,8 +42,8 @@
 </p>
 
 <p align="center">
-  <strong>Democratizing On-Device AI &amp; Autonomous Systems Without Cloud Egress Dependency</strong><br/>
-  <em>클라우드 종속과 서버 비용 없는 100% 순수 클라이언트 엣지 AI &amp; 분산 자율 소프트웨어 생태계</em>
+  <strong>Architecting Sovereign On-Device Edge Computing Solutions &amp; Autonomous Systems</strong><br/>
+  <em>클라우드 종속과 서버 비용 없는 온디바이스 에지 컴퓨팅 솔루션 및 독립 기술 연구 생태계</em>
 </p>
 
 <p align="center">
