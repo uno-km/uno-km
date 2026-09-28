@@ -28,6 +28,7 @@
   <meta name="citation_publisher" content="AMEVA Open-Source Foundation">
 
   <!-- Stylesheets -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <link rel="stylesheet" href="/shared/lib-style.css">
   <link rel="stylesheet" href="/shared/ameva-viewer/ameva-viewer.css">
 
@@ -38,8 +39,75 @@
 
   <style>
     /* ==========================================================================
-       AMEVA Labs Unified Clean Styles (Zero-Emoji, High-Density Tech Theme)
+       AMEVA Labs Unified High-Density Sovereign Tech Theme & Typography Tokens
        ========================================================================== */
+    :root {
+      --bg-dark: #090d16;
+      --surface-card: #0f172a;
+      --surface-card-hover: #1e293b;
+      --text-bright: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-subtle: #94a3b8;
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-focus: #38bdf8;
+    }
+
+    body {
+      background-color: #090d16 !important;
+      color: #f8fafc !important;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    header {
+      background-color: #0b101d !important;
+      border-bottom: 2px solid #0284c7 !important;
+    }
+
+    .container {
+      background-color: #090d16 !important;
+    }
+
+    .sidebar {
+      background-color: #0b101d !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .sidebar h3 {
+      color: #94a3b8 !important;
+      border-left-color: #0284c7 !important;
+    }
+
+    .sidebar a {
+      color: #cbd5e1 !important;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(56, 189, 248, 0.1) !important;
+      color: #38bdf8 !important;
+    }
+
+    .sidebar a.active {
+      background-color: rgba(2, 132, 199, 0.2) !important;
+      color: #38bdf8 !important;
+    }
+
+    .sidebar ul.tree-sub-list {
+      border-left-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .sidebar ul.tree-sub-list li.tree-sub-item::before {
+      background: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    .content {
+      background-color: #090d16 !important;
+      color: #f8fafc !important;
+    }
+
     .labs-content-wrap {
       width: 100%;
       box-sizing: border-box;
@@ -645,6 +713,8 @@
       padding: 11px 12px;
       border-bottom: 1px solid var(--border-subtle);
       vertical-align: middle;
+      color: var(--text-bright);
+      font-weight: 450;
     }
     .post-table tr:hover {
       background: rgba(56, 189, 248, 0.03);
