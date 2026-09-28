@@ -254,7 +254,7 @@ Binds individual neural components to optimal hardware accelerators:
     -o /sdcard/Pictures/TermuxDiffusion/s21_anime_tiger_6step.png
   ```
 * **Physical Results**: Specular PBR neon light reflections across wet asphalt, crisp cybernetic armor contours, complete convergence without memory spikes.
-* **Academic Whitepaper**: Available via the [AMEVA Labs Research Portal](https://uno-km.vercel.app/labs/) and the [Galaxy S21 Z-Image Turbo Vulkan Research Report](https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md).
+* **Academic Whitepaper**: Available via the [AMEVA Labs | Sovereign On-Device AI Research, Newsletter & Discussion](https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=32) and the [Galaxy S21 Z-Image Turbo Vulkan Research Report](https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md).
 
 ---
 
