@@ -111,7 +111,30 @@ flowchart TD
 
 ---
 
-## 3. Tier 1: 플래그십 탑레벨 프로젝트 명세 (TLP Catalog)
+## 3. 주권형 이원화 거버넌스 및 능동 방어 분리 원칙 (Dual-Track Sovereign Open-Source Governance)
+
+AMEVA Open-Source Foundation (AOSF)은 전 세계 개발자 생태계를 위한 **공공 오픈소스 런타임 표준(Public Commons)**과 시스템 무결성을 수호하기 위한 **주권형 연구 볼트(Sovereign Vault)**의 엄격한 이원화 거버넌스를 정립합니다.
+
+```mermaid
+graph LR
+    classDef main fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef pub fill:#1e293b,stroke:#22c55e,stroke-width:1.5px,color:#f8fafc;
+    classDef priv fill:#1e293b,stroke:#f43f5e,stroke-width:1.5px,color:#f8fafc;
+
+    AOSF["AOSF 이원화 거버넌스 체계"]:::main
+    AOSF --> T1["Track 1: Public Commons<br/>(100% 완전 공개 / Apache-2.0)<br/>- 14대 온디바이스 런타임 및 SDK<br/>- 시스템 핸드북 26강 & 실측 벤치마크<br/>- 개발자용 CLI 도구 및 표준 API"]:::pub
+    AOSF --> T2["Track 2: Sovereign Research Vault<br/>(작전 보안 OPSEC 비공개 격리)<br/>- Sentinel 능동 방어망 및 카나리 허니팟<br/>- Dead Internet 사회실험 원시 텔레메트리 DB<br/>- 적대적 탈옥(Jailbreak) 방어 필터 가중치"]:::priv
+```
+
+1. **Track 1: Public Commons (100% 투명 공개 / Apache-2.0)**:
+   - 클라우드 종속 없는 온디바이스 AI 자립을 위한 14대 핵심 라이브러리(`termux-*`, `AMEVA-Runtime`, `AMEVA-Forge`), 26개 전공 강의 핸드북, 6종 단말기 실측 벤치마크는 누구나 자유롭게 사용·수정·배포할 수 있도록 완전 공개합니다.
+2. **Track 2: Sovereign Research Vault (작전 보안 OPSEC 비공개 격리 자산)**:
+   - 무단 AI 모델 학습(Data Scraping), 크롤러 수탈, 악의적 트래픽을 실시간 감시·차단하는 **Sentinel 능동 방어망, 카나리 허니팟 트랩(Canary Trap), 적대적 탈옥 방어 필터, Dead Internet 시뮬레이션의 원시 심리 기하 가중치 및 공격자 침해 지표(IoC)**는 보안 공학의 제1원칙인 작전 보안(OPSEC: Operational Security)과 방어망 무력화 방지를 위해 재단 내부 Sovereign Vault에 영구 비공개 격리합니다.
+   - 방어 트랩 시그니처와 허니팟 코드를 공개하는 것은 공격자에게 우회 경로를 제공하는 자폭 행위이므로, 이는 OpenSSF 및 CNCF 보안 표준에 따른 정당하고 합법적인 보안 조치입니다.
+
+---
+
+## 4. Tier 1: 플래그십 탑레벨 프로젝트 명세 (TLP Catalog)
 
 엄격한 자동화 검증과 릴리즈 게이트를 통과하여 프로덕션 환경에서 즉시 사용 가능한 공식 배포 패키지 목록입니다.
 
@@ -135,7 +158,7 @@ flowchart TD
 
 ---
 
-## 4. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
+## 5. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
 
 - **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
 - **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))
@@ -145,7 +168,7 @@ flowchart TD
 
 ---
 
-## 5. 스폰서십 및 솔직한 개발 이야기 (Sponsorship & Grassroots Story)
+## 6. 스폰서십 및 솔직한 개발 이야기 (Sponsorship & Grassroots Story)
 
 AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 독점 투자나 영리 목적의 유료화 없이, **순수한 오픈 커뮤니티의 자발적 후원과 1인 인디 개발자의 생존 지원**으로 운영됩니다.
 
@@ -180,7 +203,7 @@ AOSF의 모든 연구와 오픈소스 소프트웨어는 상업적 벤더의 독
 
 ---
 
-## 6. 오픈소스 커뮤니티 참여 및 깃허브 방문 안내
+## 7. 오픈소스 커뮤니티 참여 및 깃허브 방문 안내
 
 AOSF는 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원의 코드 기여와 거침없는 피드백을 진심으로 환영합니다!
 

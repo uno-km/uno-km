@@ -14,7 +14,30 @@ AMEVA 오픈소스 프로젝트는 복잡한 투표 정족수, 거창한 위원�
 
 ---
 
-## 2. 기여 및 피드백 가이드 (How to Contribute)
+## 2. 주권형 이원화 오픈소스 거버넌스 규정 (Dual-Track Sovereign Governance Policy)
+
+AMEVA Open-Source Foundation (AOSF)은 전 세계 개발자의 온디바이스 자립을 지원하는 **공공 오픈소스 생태계(Public Commons)**와 악의적 데이터 수탈 및 시스템 침해를 차단하는 **주권형 연구 볼트(Sovereign Vault)**의 이원화 거버넌스를 엄격히 준수합니다.
+
+```mermaid
+graph LR
+    classDef main fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef pub fill:#1e293b,stroke:#22c55e,stroke-width:1.5px,color:#f8fafc;
+    classDef priv fill:#1e293b,stroke:#f43f5e,stroke-width:1.5px,color:#f8fafc;
+
+    AOSF["AOSF 이원화 거버넌스"]:::main
+    AOSF --> T1["Track 1: Public Commons<br/>(100% 완전 공개 / Apache-2.0)<br/>- 14대 온디바이스 런타임 및 SDK<br/>- 시스템 핸드북 26강 & 벤치마크"]:::pub
+    AOSF --> T2["Track 2: Sovereign Research Vault<br/>(작전 보안 OPSEC 비공개 격리)<br/>- Sentinel 능동 방어망 및 허니팟<br/>- Dead Internet 원시 인격 벡터 DB"]:::priv
+```
+
+1. **Track 1: Public Commons (공공 오픈소스 계층 - Apache 2.0)**:
+   - `AMEVA-Runtime`, `termux-stt`, `termux-diffusion`, `termux-bitnet`, `termux-vision`, `termux-playwright`, `AMEVA-Forge` 등 온디바이스 AI 런타임 및 개발자 도구 일체는 100% 오픈소스로 투명하게 개방합니다.
+2. **Track 2: Sovereign Research Vault (주권 연구 및 능동 방어 격리 계층)**:
+   - 무단 크롤러 및 적대적 AI 스크래퍼를 차단하는 **Sentinel 능동 방어망, 카나리 허니팟 트랩(Canary Trap), Dead Internet 사회실험 원시 텔레메트리 DB 및 인격 동역학 조작 가중치**는 작전 보안(OPSEC) 원칙에 따라 외부에 공개하지 않고 프라이빗 볼트에 격리합니다.
+   - 방어 트랩 시그니처와 허니팟 코드를 공개하는 것은 공격자에게 우회 경로를 제공하는 자폭 행위이므로, 이는 OpenSSF 및 CNCF 보안 표준에 따른 정당하고 합법적인 비공개 보안 조치입니다.
+
+---
+
+## 3. 기여 및 피드백 가이드 (How to Contribute)
 
 우리는 스스로를 완벽하다고 포장하지 않습니다.  
 우리는 언제나 커뮤니티의 솔직한 피드백과 쓴소리를 진심으로 환영합니다.

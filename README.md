@@ -184,7 +184,19 @@ flowchart TD
 
 ---
 
-## 4. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
+## 4. 주권형 이원화 거버넌스 및 능동 방어 분리 체계 (Dual-Track Sovereign Open-Source Governance)
+
+AMEVA 오픈소스 생태계는 전 세계 개발자들을 위한 **공공 오픈소스 런타임 표준(Public Commons - Apache 2.0)**과 악의적 데이터 수탈 및 적대적 침해를 차단하는 **주권형 연구 볼트(Sovereign Vault)**의 엄격한 이원화 거버넌스를 정립합니다.
+
+1. **Track 1: Public Commons (100% 완전 공개 / Apache-2.0)**:
+   - `termux-*` 및 `AMEVA-Runtime`, `AMEVA-Forge` 등 14대 온디바이스 AI 런타임과 시스템 핸드북 26강, 6종 단말기 실측 벤치마크는 누구나 자유롭게 사용·수정·배포할 수 있도록 완전 공개합니다.
+2. **Track 2: Sovereign Research Vault (작전 보안 OPSEC 비공개 격리 자산)**:
+   - 무단 AI 크롤러와 스크래퍼를 차단하는 **Sentinel 능동 방어망, 카나리 허니팟 트랩(Canary Trap), 적대적 탈옥 방어 필터, Dead Internet 사회실험 원시 텔레메트리 DB 및 인격 동역학 가중치**는 방어망 무력화 방지를 위해 비공개 주권 볼트 체계로 영구 격리 보호합니다. 이는 OpenSSF 및 CNCF 보안 모범 규격에 입각한 정당한 보안 조치입니다.
+   - 상세 정책: [AOSF 이원화 거버넌스 전문 열람 (FOUNDATION.md)](FOUNDATION.md#3-주권형-이원화-거버넌스-및-능동-방어-분리-원칙-dual-track-sovereign-open-source-governance)
+
+---
+
+## 5. Tier 2 & Tier 3: 인큐베이팅 및 선행 연구 프로젝트
 
 - **`AMEVA-Doc-AI`**: 온디바이스 대용량 문서 파싱 및 로컬 벡터 검색 엔진 ([GitHub](https://github.com/uno-km/AMEVA-Doc-AI))
 - **`AMEVA-Sandbox-Runtime`**: WebAssembly 기반 격리형 마이크로 샌드박스 런타임 ([npm](https://www.npmjs.com/package/ameva-sandbox-runtime))
@@ -194,7 +206,7 @@ flowchart TD
 
 ---
 
-## 5. 스폰서십 및 솔직한 개발 이야기 (Sponsorship & Grassroots Story)
+## 6. 스폰서십 및 솔직한 개발 이야기 (Sponsorship & Grassroots Story)
 
 AMEVA의 모든 연구와 온디바이스 에지 컴퓨팅 기술은 상업적 벤더의 독점 투자나 외부 자본에 종속되지 않고, **에지 기술 연구를 향한 1인 인디 개발자의 집념과 순수한 커뮤니티의 자발적 후원**으로 지탱됩니다.
 
@@ -229,7 +241,7 @@ AMEVA의 모든 연구와 온디바이스 에지 컴퓨팅 기술은 상업적 �
 
 ---
 
-## 6. 온디바이스 에지 컴퓨팅 기술 연구 및 커뮤니티 안내
+## 7. 온디바이스 에지 컴퓨팅 기술 연구 및 커뮤니티 안내
 
 AMEVA Edge Systems Lab은 전 세계 모든 소프트웨어 엔지니어, 학생, 연구원들과 함께 온디바이스 에지 컴퓨팅의 기술적 돌파구를 열어가고자 합니다.
 
