@@ -113910,16 +113910,19 @@ function normalizeKanbanCode(n) {
 	}
 	return r;
 }
+function sanitizeMarkdown(n) {
+	return n.replace(/\*\*\[([^\]\n]+)\]\*\*/g, (n, r) => `<strong>[${r}]</strong>`);
+}
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
 	if (!r.trim()) return [];
-	let a = [], o = new f$2.Renderer();
-	o.heading = function({ depth: n, text: r }) {
+	let a = sanitizeMarkdown(r), o = [], l = new f$2.Renderer();
+	l.heading = function({ depth: n, text: r }) {
 		return `<h${n} id="${String(r || "").toLowerCase().replace(/[^\wㄱ-ㅎㅏ-ㅣ가-힣]+/g, "-")}">${r}</h${n}>`;
-	}, o.image = function({ href: n, title: r, text: a }) {
+	}, l.image = function({ href: n, title: r, text: a }) {
 		let o = n || "", l = o.toLowerCase().endsWith(".mp4") || o.toLowerCase().endsWith(".webm") || o.toLowerCase().endsWith(".mov") || o.toLowerCase().endsWith(".ogg") || o.startsWith("data:video/"), d = resolveMediaUrl(o);
 		return l ? `<video src="${d}" controls style="max-width:100%; border-radius:8px; margin:8px 0;"></video>` : `<img src="${d}" alt="${a || ""}" title="${r || ""}" />`;
-	}, o.blockquote = function(n) {
+	}, l.blockquote = function(n) {
 		let r = parseAlertBlock((n.text || "").trim());
 		if (r) {
 			let n = "";
@@ -113950,83 +113953,83 @@ function buildSegments(n) {
 		}
 		return `<blockquote>${n.tokens && this.parser ? this.parser.parse(n.tokens) : n.text || ""}</blockquote>`;
 	};
-	let l = o.table.bind(o);
-	o.table = function(n) {
-		return `<div class="av-table-wrapper">${l(n)}</div>`;
+	let d = l.table.bind(l);
+	l.table = function(n) {
+		return `<div class="av-table-wrapper">${d(n)}</div>`;
 	};
-	let d = f$2.parse(r, {
-		renderer: o,
+	let f = f$2.parse(a, {
+		renderer: l,
 		walkTokens(n) {
 			if (n.type === "code") {
-				let r = (n.lang || "").toLowerCase().trim(), o = decodeHtmlEntities(n.text), l = a.length;
-				a.push({
+				let r = (n.lang || "").toLowerCase().trim(), a = decodeHtmlEntities(n.text), l = o.length;
+				o.push({
 					lang: r,
-					code: o
+					code: a
 				}), n.type = "html", n.text = `${PLACEHOLDER_PREFIX}${l}`;
 			}
 		}
-	}), f = [], p = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), m = 0, h;
-	for (; (h = p.exec(d)) !== null;) {
-		let n = d.slice(m, h.index);
-		n.trim() && f.push({
+	}), p = [], m = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), h = 0, g;
+	for (; (g = m.exec(f)) !== null;) {
+		let n = f.slice(h, g.index);
+		n.trim() && p.push({
 			type: "html",
 			html: n
 		});
-		let r = h[1] ?? h[2], o = Number(r);
-		if (!isNaN(o) && a[o] !== void 0) {
-			let n = a[o], r = (n.lang || "").toLowerCase().trim();
-			r === "mermaid" ? f.push({
+		let r = g[1] ?? g[2], a = Number(r);
+		if (!isNaN(a) && o[a] !== void 0) {
+			let n = o[a], r = (n.lang || "").toLowerCase().trim();
+			r === "mermaid" ? p.push({
 				type: "mermaid",
 				code: n.code
-			}) : r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? f.push({
+			}) : r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? p.push({
 				type: "html-preview",
 				code: n.code
-			}) : r === "ameva-map" || r === "map" ? f.push({
+			}) : r === "ameva-map" || r === "map" ? p.push({
 				type: "ameva-map",
 				code: normalizeMapCode(n.code)
-			}) : r === "ameva-youtube" || r === "youtube" ? f.push({
+			}) : r === "ameva-youtube" || r === "youtube" ? p.push({
 				type: "ameva-youtube",
 				code: normalizeYoutubeCode(n.code)
-			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? f.push({
+			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? p.push({
 				type: "ameva-link",
 				code: normalizeLinkCode(n.code)
-			}) : r === "ameva-kanban" || r === "kanban" ? f.push({
+			}) : r === "ameva-kanban" || r === "kanban" ? p.push({
 				type: "ameva-kanban",
 				code: normalizeKanbanCode(n.code)
-			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? f.push({
+			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? p.push({
 				type: "ameva-excel",
 				code: n.code
-			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? f.push({
+			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? p.push({
 				type: "ameva-drawing",
 				code: n.code
-			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? f.push({
+			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? p.push({
 				type: "ameva-document",
 				code: n.code
-			}) : r === "ameva-media-editor" ? f.push({
+			}) : r === "ameva-media-editor" ? p.push({
 				type: "ameva-media-editor",
 				code: n.code
-			}) : r === "video" || r === "ameva-video" ? f.push({
+			}) : r === "video" || r === "ameva-video" ? p.push({
 				type: "video",
 				code: n.code
-			}) : r === "audio" || r === "ameva-audio" ? f.push({
+			}) : r === "audio" || r === "ameva-audio" ? p.push({
 				type: "audio",
 				code: n.code
-			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? f.push({
+			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? p.push({
 				type: "image",
 				code: n.code
-			}) : f.push({
+			}) : p.push({
 				type: "code-runner",
 				code: n.code,
 				language: r || "text"
 			});
 		}
-		m = p.lastIndex;
+		h = m.lastIndex;
 	}
-	let g = d.slice(m);
-	return g.trim() && f.push({
+	let _ = f.slice(h);
+	return _.trim() && p.push({
 		type: "html",
-		html: g
-	}), f;
+		html: _
+	}), p;
 }
 function MermaidRenderer({ code: n, theme: r }) {
 	let [a, o] = (0, import_react$147.useState)(""), [l, d] = (0, import_react$147.useState)(null), f = (0, import_react$147.useRef)(!0);
