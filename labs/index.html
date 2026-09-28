@@ -39,96 +39,69 @@
 
   <style>
     /* ==========================================================================
-       AMEVA Labs Unified High-Density Sovereign Tech Theme & Typography Tokens
+       AMEVA Foundation - Canonical Enterprise White Design System (SSOT)
+       Scoped AmevaViewer Dark Chassis & Responsive Wide Mode (<-> 1440px)
        ========================================================================== */
-    :root {
-      --bg-dark: #090d16;
-      --surface-card: #0f172a;
-      --surface-card-hover: #1e293b;
-      --text-bright: #f8fafc;
-      --text-muted: #cbd5e1;
-      --text-subtle: #94a3b8;
-      --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-focus: #38bdf8;
-    }
-
     body {
-      background-color: #090d16 !important;
-      color: #f8fafc !important;
-      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif !important;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background-color: var(--bg-main, #ffffff);
+      color: var(--text-main, #0f172a);
     }
 
-    header {
-      background-color: #0b101d !important;
-      border-bottom: 2px solid #0284c7 !important;
-    }
-
-    .container {
-      background-color: #090d16 !important;
-    }
-
-    .sidebar {
-      background-color: #0b101d !important;
-      border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .sidebar h3 {
-      color: #94a3b8 !important;
-      border-left-color: #0284c7 !important;
-    }
-
-    .sidebar a {
-      color: #cbd5e1 !important;
-    }
-
-    .sidebar a:hover {
-      background-color: rgba(56, 189, 248, 0.1) !important;
-      color: #38bdf8 !important;
-    }
-
-    .sidebar a.active {
-      background-color: rgba(2, 132, 199, 0.2) !important;
-      color: #38bdf8 !important;
-    }
-
-    .sidebar ul.tree-sub-list {
-      border-left-color: rgba(255, 255, 255, 0.12) !important;
-    }
-
-    .sidebar ul.tree-sub-list li.tree-sub-item::before {
-      background: rgba(255, 255, 255, 0.18) !important;
-    }
-
-    .content {
-      background-color: #090d16 !important;
-      color: #f8fafc !important;
-    }
-
+    /* ── Wide View Toggle Mode (<-> 1440px) ── */
     .labs-content-wrap {
       width: 100%;
       box-sizing: border-box;
+      transition: max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .labs-content-wrap.wide-mode {
+      max-width: 1440px !important;
     }
 
+    .btn-wide-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 700 !important;
+      border-color: #38bdf8 !important;
+      color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.1) !important;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-wide-toggle:hover {
+      background: rgba(56, 189, 248, 0.25) !important;
+      color: #ffffff !important;
+      border-color: #7dd3fc !important;
+    }
+    .btn-wide-toggle.active {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+      border-color: #0284c7 !important;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.5) !important;
+    }
+
+    /* ── Sovereign Clean Heading (Apache/Enterprise Tech Hybrid) ── */
     .labs-heading-wrap {
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 2px solid #004499;
       padding-bottom: 14px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
     .labs-heading-wrap h2 {
       margin: 0 0 6px 0;
-      font-size: 1.55rem;
+      font-size: 1.65rem;
       font-weight: 800;
-      color: var(--text-bright);
+      color: #002b66;
       letter-spacing: -0.02em;
     }
     .labs-heading-wrap .subtitle {
       margin: 0;
-      font-size: 0.88rem;
-      color: var(--text-muted);
+      font-size: 0.9rem;
+      color: #475569;
       line-height: 1.5;
     }
 
@@ -223,16 +196,17 @@
       box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
     }
 
-    /* ── View 1: NEWS (Newsletter Card Reader) ──────────────────────────────── */
+    /* ── View 1: NEWS (Newsletter Card Reader) - Solid Dark Chassis ──────────── */
     .news-reader-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background: #090d16 !important;
+      border: 1.5px solid #1e293b !important;
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.4);
       position: relative;
       touch-action: pan-y;
       user-select: none;
+      color: #f8fafc !important;
     }
     .news-nav-bar {
       display: flex;
@@ -240,14 +214,14 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       padding-bottom: 14px;
       margin-bottom: 18px;
     }
     .news-edition-select {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-bright);
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
       padding: 5px 12px;
       font-size: 0.82rem;
       border-radius: 4px;
@@ -256,7 +230,7 @@
       display: flex;
       gap: 14px;
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #94a3b8;
       margin: 8px 0 14px 0;
     }
     .news-body-container {
@@ -269,56 +243,58 @@
       gap: 8px;
       margin-top: 20px;
       padding-top: 14px;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       font-size: 0.76rem;
-      color: var(--text-muted);
+      color: #94a3b8;
     }
     .news-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--border-subtle);
+      background: rgba(255, 255, 255, 0.2);
       transition: all 0.2s;
     }
     .news-dot.active {
-      background: #0284c7;
+      background: #38bdf8;
       transform: scale(1.25);
     }
 
-    /* ── View 2: ANAL (Research Feed with 200-char excerpt) ──────────────────── */
+    /* ── View 2: ANAL (Research Feed with 200-char excerpt) - Clean White ────── */
     .anal-feed-list {
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
     .anal-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
       padding: 18px 22px;
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
       display: block;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
     }
     .anal-card:hover {
-      border-color: #38bdf8;
+      border-color: #004499;
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 68, 153, 0.12);
     }
     .anal-title {
       font-size: 1.18rem;
       font-weight: 700;
-      color: var(--text-bright);
+      color: #0f172a;
       margin: 0 0 8px 0;
       line-height: 1.4;
+      transition: color 0.15s ease;
     }
     .anal-card:hover .anal-title {
-      color: #38bdf8;
+      color: #004499;
     }
     .anal-excerpt {
-      font-size: 0.86rem;
-      color: var(--text-muted);
+      font-size: 0.88rem;
+      color: #475569;
       line-height: 1.6;
       margin: 8px 0 14px 0;
     }
@@ -327,24 +303,24 @@
       gap: 14px;
       align-items: center;
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #64748b;
       flex-wrap: wrap;
     }
     .anal-read-link {
       margin-left: auto;
-      color: #38bdf8;
+      color: #004499;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
 
-    /* ── Handbook Curriculum Module Index & Navigation ─────────────────────── */
+    /* ── Handbook Curriculum Module Index & Navigation - Clean White ───────── */
     .handbook-curriculum-nav {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
       padding: 16px 20px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
     }
     .hb-curriculum-header {
       display: flex;
@@ -354,7 +330,7 @@
       gap: 10px;
       margin-bottom: 12px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid #e2e8f0;
     }
     .hb-curriculum-title {
       display: flex;
@@ -362,11 +338,11 @@
       gap: 8px;
       font-size: 1.02rem;
       font-weight: 700;
-      color: var(--text-bright);
+      color: #0f172a;
     }
     .hb-curriculum-stats {
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #64748b;
     }
     .hb-curriculum-pills {
       display: flex;
@@ -380,24 +356,24 @@
       padding: 5px 11px;
       font-size: 0.78rem;
       border-radius: 5px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text-muted);
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
       cursor: pointer;
       transition: all 0.15s ease;
       white-space: nowrap;
     }
     .hb-mod-pill:hover {
-      border-color: #38bdf8;
-      color: var(--text-bright);
-      background: rgba(56, 189, 248, 0.05);
+      border-color: #004499;
+      color: #004499;
+      background: #eff6ff;
     }
     .hb-mod-pill.active {
-      background: #0284c7;
-      border-color: #0284c7;
+      background: #004499;
+      border-color: #004499;
       color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 0 12px rgba(2, 132, 199, 0.4);
+      box-shadow: 0 0 10px rgba(0, 68, 153, 0.35);
     }
     .hb-mod-pill .hb-pill-count {
       font-size: 0.7rem;
@@ -651,28 +627,44 @@
       cursor: pointer;
       transition: all 0.15s;
     }
+    .board-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
     .board-pill:hover {
-      border-color: #38bdf8;
-      color: var(--text-bright);
+      border-color: #004499;
+      color: #004499;
+      background: #eff6ff;
     }
     .board-pill.active {
-      background: #0284c7;
-      border-color: #0284c7;
+      background: #004499;
+      border-color: #004499;
       color: #ffffff;
       font-weight: 700;
+      box-shadow: 0 0 10px rgba(0, 68, 153, 0.35);
     }
 
-    /* In-place Top Post Detail Container */
+    /* ── In-place Top Post Detail Container - Solid Dark Chassis ───────────── */
     .board-top-post-view {
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 22px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background: #090d16 !important;
+      border: 1.5px solid #1e293b !important;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 26px;
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.4);
+      color: #f8fafc !important;
     }
     .post-view-header {
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
       padding-bottom: 14px;
       margin-bottom: 14px;
     }
@@ -680,77 +672,81 @@
       margin: 6px 0;
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-bright);
+      color: #f8fafc !important;
       line-height: 1.4;
     }
     .post-view-meta {
       display: flex;
       gap: 14px;
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #94a3b8 !important;
       flex-wrap: wrap;
     }
 
-    /* Post Table */
+    /* ── DCInside Style Post Table - Canonical Clean White ─────────────────── */
     .post-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.84rem;
-      background: var(--surface-card);
-      border: 1px solid var(--border-subtle);
+      font-size: 0.86rem;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
       overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     }
     .post-table th {
-      padding: 9px 12px;
+      padding: 10px 12px;
       text-align: left;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text-muted);
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
+      background: #f8f9fa;
+      color: #334155;
+      font-weight: 700;
+      border-bottom: 2px solid #cbd5e1;
     }
     .post-table td {
       padding: 11px 12px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid #e2e8f0;
       vertical-align: middle;
-      color: var(--text-bright);
+      color: #0f172a;
       font-weight: 450;
     }
     .post-table tr:hover {
-      background: rgba(56, 189, 248, 0.03);
+      background: #f8fafc;
     }
     .post-table tr.active-row {
-      background: rgba(2, 132, 199, 0.12);
-      border-left: 3px solid #0284c7;
+      background: #eff6ff;
+      border-left: 3px solid #004499;
     }
     .post-title-link {
-      color: var(--text-bright);
+      color: #0f172a;
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
+      transition: color 0.15s ease;
     }
     .post-title-link:hover {
-      color: #38bdf8;
+      color: #004499;
     }
     .comment-count-badge {
-      color: #0284c7;
+      color: #004499;
       font-weight: 700;
       font-size: 0.76rem;
       margin-left: 5px;
     }
 
-    /* Comments Section */
+    /* ── Comments Section (Inside Solid Dark Chassis) ───────────────────────── */
     .comments-wrapper {
       margin-top: 24px;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       padding-top: 18px;
+      color: #f8fafc;
     }
     .comment-card {
       padding: 10px 14px;
-      border-left: 3px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.02);
+      border-left: 3px solid #38bdf8;
+      background: #0f172a;
       border-radius: 0 6px 6px 0;
       margin-bottom: 8px;
+      color: #f1f5f9;
     }
     .comment-card.depth-1 { margin-left: 24px; border-left-color: #38bdf8; }
     .comment-card.depth-2 { margin-left: 48px; border-left-color: #60a5fa; }
@@ -759,7 +755,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.76rem;
-      color: var(--text-muted);
+      color: #94a3b8;
       margin-bottom: 4px;
     }
   </style>
@@ -789,6 +785,7 @@
               <strong id="newsNavTitle" style="font-size: 1.05rem; color: var(--text-bright);"></strong>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" class="btn-action btn-secondary btn-wide-toggle" id="newsWideToggle" onclick="LabsApp.toggleWideMode('news')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
               <button class="btn-action btn-secondary" onclick="LabsApp.prevNewsletter()">이전 호</button>
               <select class="news-edition-select" id="newsEditionSelect" onchange="LabsApp.selectNewsletter(this.value)"></select>
               <button class="btn-action btn-secondary" onclick="LabsApp.nextNewsletter()">다음 호</button>
@@ -841,7 +838,10 @@
             <div id="analInArticleToc" class="in-article-toc-box" style="display: none;"></div>
 
             <div class="viewer-theme-toolbar">
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-bright);">AmevaViewer SDK Engine</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: #f8fafc;">AmevaViewer Engine</span>
+                <button type="button" class="btn-theme-chip btn-wide-toggle" id="analWideToggle" onclick="LabsApp.toggleWideMode('anal')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
+              </div>
               <div style="display: flex; gap: 6px;">
                 <button type="button" class="btn-theme-chip active" id="analThemeDark" onclick="LabsApp.setDetailTheme('dark', 'anal')">Cyber Dark</button>
                 <button type="button" class="btn-theme-chip" id="analThemeWhite" onclick="LabsApp.setDetailTheme('white', 'anal')">Light</button>
@@ -907,7 +907,10 @@
           </div>
 
           <div class="viewer-theme-toolbar">
-            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-bright);">AmevaViewer SDK Engine</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #f8fafc;">AmevaViewer Engine</span>
+              <button type="button" class="btn-theme-chip btn-wide-toggle" id="boardWideToggle" onclick="LabsApp.toggleWideMode('board')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
+            </div>
             <div style="display: flex; gap: 6px;">
               <button type="button" class="btn-theme-chip active" id="boardThemeDark" onclick="LabsApp.setDetailTheme('dark', 'board')">Cyber Dark</button>
               <button type="button" class="btn-theme-chip" id="boardThemeWhite" onclick="LabsApp.setDetailTheme('white', 'board')">Light</button>
@@ -1928,6 +1931,22 @@
         ['dark', 'white', 'retro'].forEach(t => {
           const btn = document.getElementById(`${slot}Theme${t.charAt(0).toUpperCase() + t.slice(1)}`);
           if (btn) btn.classList.toggle('active', t === theme);
+        });
+      },
+
+      toggleWideMode(slot) {
+        const contentWrap = document.querySelector('.labs-content-wrap');
+        if (!contentWrap) return;
+        const isWide = contentWrap.classList.toggle('wide-mode');
+        ['news', 'anal', 'board'].forEach(s => {
+          const btn = document.getElementById(`${s}WideToggle`);
+          if (btn) {
+            btn.classList.toggle('active', isWide);
+            const textSpan = btn.querySelector('.wide-text');
+            const iconSpan = btn.querySelector('.wide-icon');
+            if (textSpan) textSpan.innerText = isWide ? '기본너비' : '와이드';
+            if (iconSpan) iconSpan.innerText = isWide ? '⤡' : '⤢';
+          }
         });
       },
 
