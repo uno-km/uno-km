@@ -95,7 +95,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v3_human_titles';
+    const SEED_VERSION = 'v4_zimage_paper_and_news_vol2';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Clean refresh of master archive
@@ -205,7 +205,8 @@ export default async function handler(req, res) {
             AND p.status = 'published'
           ORDER BY 
             CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
-            p.created_at DESC
+            p.created_at DESC,
+            p.id DESC
           LIMIT 100;
         `;
       } else {
@@ -218,7 +219,8 @@ export default async function handler(req, res) {
           WHERE p.status = 'published'
           ORDER BY 
             CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
-            p.created_at DESC
+            p.created_at DESC,
+            p.id DESC
           LIMIT 100;
         `;
       }
