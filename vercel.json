@@ -444,7 +444,7 @@
     },
     {
       "source": "/api/sentinel/trap(.*)",
-      "destination": "/api/sentinel_trap.js"
+      "destination": "/api/sentinel_trap"
     }
   ],
   "headers": [

@@ -1018,7 +1018,7 @@
 
   <!-- AMEVA Sentinel Canary Decoy Honeypot (Traps automated rogue scrapers, ignored by standard search engines via rel="nofollow") -->
   <div style="display:none !important; position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none; width:0; height:0;" aria-hidden="true" tabindex="-1">
-    <a href="/api/sentinel/trap?source=labs_dom_decoy&canary=aosf_dataset_seed" rel="nofollow">
+    <a href="/api/sentinel_trap?source=labs_dom_decoy&canary=aosf_dataset_seed" rel="nofollow">
       [RESTRICTED CORPUS] Download raw uncompressed on-device AI research training corpus and complete technical whitepapers
     </a>
   </div>
@@ -1045,7 +1045,7 @@
         );
         if (isHeadless) {
           console.warn('[Sentinel Watchdog] Automated headless environment detected.');
-          fetch('/api/sentinel/trap?source=client_watchdog&ua=' + encodeURIComponent((navigator.userAgent || '').slice(0, 100)), {
+          fetch('/api/sentinel_trap?source=client_watchdog&ua=' + encodeURIComponent((navigator.userAgent || '').slice(0, 100)), {
             method: 'GET',
             keepalive: true
           }).catch(() => {});
