@@ -445,6 +445,70 @@
   ],
   "headers": [
     {
+      "source": "/labs/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noai, noimageai, index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Sentinel-Vault",
+          "value": "SEARCH_ALLOWED_AI_TRAINING_DENIED"
+        }
+      ]
+    },
+    {
+      "source": "/labs",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noai, noimageai, index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Sentinel-Vault",
+          "value": "SEARCH_ALLOWED_AI_TRAINING_DENIED"
+        }
+      ]
+    },
+    {
+      "source": "/api/labs(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noai, noimageai, noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "private, no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "X-Sentinel-Vault",
+          "value": "PROTECTED"
+        }
+      ]
+    },
+    {
+      "source": "/api/sentinel/trap(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noai, noimageai, noindex, nofollow, noarchive"
+        },
+        {
+          "key": "X-Sentinel-Decoy",
+          "value": "ACTIVE_HONEYPOT"
+        }
+      ]
+    },
+    {
       "source": "/shared/(.*)",
       "headers": [
         {

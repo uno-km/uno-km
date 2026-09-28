@@ -9822,6 +9822,7 @@ function useCurrentTheme() {
 			attributeFilter: ["data-theme"]
 		}), document.body && a.observe(document.body, {
 			attributes: !0,
+			subtree: !0,
 			attributeFilter: ["data-theme"]
 		});
 		let o = (r) => {
@@ -30168,60 +30169,60 @@ function ConsoleOutput({ success: n, resolvedLanguage: r, tableData: a, outputLi
 //#endregion
 //#region src/renderer/components/JupyterCodeViewer.tsx
 init_mermaid_core();
-function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: o }) {
+function JupyterCodeViewer({ code: n, language: r, theme: a, onRunFailure: o, onAskAgent: l }) {
 	console.debug("Unused vars (JupyterCodeViewer):", {
 		React: import_react$147.default,
-		onRunFailure: a
+		onRunFailure: o
 	});
-	let l = (n || "").split("\n"), d = l[0]?.trim(), f = r, p = n, m = d ? d.match(/^(?:\/\/#|--|<!--)\s*\[AMEVA_LANG:([a-zA-Z0-9_-]+)\](?:\s*-->)?/) || d.match(/^(?:\/\/|#|--)\s*\[AMEVA_LANG:([a-zA-Z0-9_-]+)\]/) : null;
-	m && (f = m[1].toLowerCase(), p = l.slice(1).join("\n"));
-	let { isRunning: h, executeCode: g } = useCodeRuntime(), _ = getLangMeta(f), [v, y] = (0, import_react$147.useState)([]), [x, S] = (0, import_react$147.useState)(!1), [C, w] = (0, import_react$147.useState)(null), [T, D] = (0, import_react$147.useState)(!1), [G, ne] = (0, import_react$147.useState)(!1), [ie, se] = (0, import_react$147.useState)(null), [de, Me] = (0, import_react$147.useState)(f === "mermaid"), [Ie, Ze] = (0, import_react$147.useState)(!1), [et, yt] = (0, import_react$147.useState)(!1), [bt, St] = (0, import_react$147.useState)(!1);
+	let d = (n || "").split("\n"), f = d[0]?.trim(), p = r, m = n, h = f ? f.match(/^(?:\/\/#|--|<!--)\s*\[AMEVA_LANG:([a-zA-Z0-9_-]+)\](?:\s*-->)?/) || f.match(/^(?:\/\/|#|--)\s*\[AMEVA_LANG:([a-zA-Z0-9_-]+)\]/) : null;
+	h && (p = h[1].toLowerCase(), m = d.slice(1).join("\n"));
+	let { isRunning: g, executeCode: _ } = useCodeRuntime(), v = getLangMeta(p), [y, x] = (0, import_react$147.useState)([]), [S, C] = (0, import_react$147.useState)(!1), [w, T] = (0, import_react$147.useState)(null), [D, G] = (0, import_react$147.useState)(!1), [ne, ie] = (0, import_react$147.useState)(!1), [se, de] = (0, import_react$147.useState)(null), [Me, Ie] = (0, import_react$147.useState)(p === "mermaid"), [Ze, et] = (0, import_react$147.useState)(!1), [yt, bt] = (0, import_react$147.useState)(!1), [St, Ct] = (0, import_react$147.useState)(!1);
 	(0, import_react$147.useEffect)(() => {
 		mermaid_default.initialize({
 			startOnLoad: !1,
 			theme: "dark",
 			securityLevel: "loose"
-		}), St(!1);
-	}, [n, f]);
-	let Ct = async () => {
-		S(!0), w(null), se(null), y([{
+		}), Ct(!1);
+	}, [n, p]);
+	let Et = async () => {
+		C(!0), T(null), de(null), x([{
 			type: "info",
-			text: `▶ ${_.label} 코드 실행 중...`
+			text: `▶ ${v.label} 코드 실행 중...`
 		}]);
 		try {
-			if (f === "html") {
-				w(!0), y([{
+			if (p === "html") {
+				T(!0), x([{
 					type: "info",
 					text: "렌더링 완료"
-				}]), St(!0);
+				}]), Ct(!0);
 				return;
 			}
-			let n = await g(f, p);
-			w(n.success), y((n.output || "").split("\n").filter((n, r, a) => !(r === a.length - 1 && n === "")).map((r) => ({
+			let n = await _(p, m);
+			T(n.success), x((n.output || "").split("\n").filter((n, r, a) => !(r === a.length - 1 && n === "")).map((r) => ({
 				type: n.success ? "stdout" : "stderr",
 				text: r
-			}))), se(n.tableData);
+			}))), de(n.tableData);
 		} catch (n) {
-			w(!1), y([{
+			T(!1), x([{
 				type: "stderr",
 				text: n.message || "알 수 없는 에러"
 			}]);
 		}
-	}, Et = async () => {
+	}, Dt = async () => {
 		try {
-			await navigator.clipboard.writeText(p), D(!0), setTimeout(() => D(!1), 1500);
+			await navigator.clipboard.writeText(m), G(!0), setTimeout(() => G(!1), 1500);
 		} catch {}
-	}, { isWhite: Dt, isRetro: Mt } = useCurrentTheme(), It = _.color;
+	}, Mt = useCurrentTheme(), It = a || Mt.theme, Lt = It === "white" || It === "light", zt = It === "retro" || It === "win98", qt = v.color;
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 		className: "jupyter-cell viewer-cell",
 		style: {
 			margin: "14px 0",
-			borderRadius: Mt ? "0px" : "10px",
-			border: Dt ? `1.5px solid ${It}44` : Mt ? "2px outset #ffffff" : `1.5px solid ${It}33`,
-			background: Dt ? "#ffffff" : Mt ? "#c0c0c0" : "rgba(10,12,20,0.85)",
+			borderRadius: zt ? "0px" : "10px",
+			border: Lt ? `1.5px solid ${qt}44` : zt ? "2px outset #ffffff" : `1.5px solid ${qt}33`,
+			background: Lt ? "#ffffff" : zt ? "#c0c0c0" : "rgba(10,12,20,0.85)",
 			overflow: "visible",
-			boxShadow: Dt ? `0 4px 16px rgba(0,0,0,0.06), 0 0 0 1px ${It}22` : Mt ? "2px 2px 0px #000000" : `0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px ${It}22`,
-			fontFamily: Mt ? "\"D2Coding\",\"Fixedsys\",monospace" : "\"JetBrains Mono\",\"Fira Code\",\"Cascadia Code\",monospace",
+			boxShadow: Lt ? `0 4px 16px rgba(0,0,0,0.06), 0 0 0 1px ${qt}22` : zt ? "2px 2px 0px #000000" : `0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px ${qt}22`,
+			fontFamily: zt ? "\"D2Coding\",\"Fixedsys\",monospace" : "\"JetBrains Mono\",\"Fira Code\",\"Cascadia Code\",monospace",
 			position: "relative"
 		},
 		children: [
@@ -30231,8 +30232,8 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 					alignItems: "center",
 					gap: "8px",
 					padding: "7px 12px",
-					background: Dt ? `linear-gradient(90deg, ${It}18 0%, rgba(241, 245, 249, 0.6) 100%)` : Mt ? "linear-gradient(90deg, #000080, #1084d0)" : `linear-gradient(90deg, ${It}22 0%, transparent 100%)`,
-					borderBottom: Dt ? `1px solid ${It}33` : Mt ? "2px groove #ffffff" : `1px solid ${It}33`,
+					background: Lt ? `linear-gradient(90deg, ${qt}18 0%, rgba(241, 245, 249, 0.6) 100%)` : zt ? "linear-gradient(90deg, #000080, #1084d0)" : `linear-gradient(90deg, ${qt}22 0%, transparent 100%)`,
+					borderBottom: Lt ? `1px solid ${qt}33` : zt ? "2px groove #ffffff" : `1px solid ${qt}33`,
 					userSelect: "none",
 					flexWrap: "wrap"
 				},
@@ -30242,23 +30243,23 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 							fontSize: "10px",
 							fontWeight: 800,
 							padding: "3px 8px",
-							borderRadius: Mt ? "0px" : "4px",
-							background: Dt ? `${It}18` : Mt ? "transparent" : `${It}22`,
-							color: Mt ? "#ffffff" : It,
-							border: Mt ? "none" : `1px solid ${It}44`,
+							borderRadius: zt ? "0px" : "4px",
+							background: Lt ? `${qt}18` : zt ? "transparent" : `${qt}22`,
+							color: zt ? "#ffffff" : qt,
+							border: zt ? "none" : `1px solid ${qt}44`,
 							textTransform: "uppercase",
 							letterSpacing: "0.5px"
 						},
-						children: ["● ", _.label]
+						children: ["● ", v.label]
 					}),
-					_.runnable && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
-						onClick: Ct,
-						disabled: h,
+					v.runnable && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
+						onClick: Et,
+						disabled: g,
 						style: {
 							display: "inline-flex",
 							alignItems: "center",
 							gap: "5px",
-							background: h ? "var(--text-muted)" : It,
+							background: g ? "var(--text-muted)" : qt,
 							color: "#fff",
 							border: "none",
 							borderRadius: "4px",
@@ -30266,16 +30267,16 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 							fontSize: "10px",
 							fontWeight: 700,
 							cursor: "pointer",
-							boxShadow: `0 2px 8px ${It}40`,
+							boxShadow: `0 2px 8px ${qt}40`,
 							transition: "all 0.15s ease"
 						},
 						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Play, {
 							size: 10,
 							fill: "#fff"
-						}), _.isHtml ? "렌더링" : "Run"]
+						}), v.isHtml ? "렌더링" : "Run"]
 					}),
-					_.isHtml && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
-						onClick: () => Ze((n) => !n),
+					v.isHtml && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
+						onClick: () => et((n) => !n),
 						style: {
 							display: "inline-flex",
 							alignItems: "center",
@@ -30293,43 +30294,43 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 						},
 						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Eye, { size: 10 }), "Preview"]
 					}),
-					_.isMermaid && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
-						onClick: () => Me((n) => !n),
+					v.isMermaid && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
+						onClick: () => Ie((n) => !n),
 						style: {
 							display: "inline-flex",
 							alignItems: "center",
 							gap: "5px",
-							background: de ? "#2563eb" : "rgba(59, 130, 246,0.3)",
+							background: Me ? "#2563eb" : "rgba(59, 130, 246,0.3)",
 							color: "#fff",
-							border: `1px solid ${de ? "transparent" : "#2563eb"}`,
+							border: `1px solid ${Me ? "transparent" : "#2563eb"}`,
 							borderRadius: "4px",
 							padding: "3px 10px",
 							fontSize: "10px",
 							fontWeight: 700,
 							cursor: "pointer",
-							boxShadow: de ? "0 2px 8px rgba(59, 130, 246,0.4)" : "none",
+							boxShadow: Me ? "0 2px 8px rgba(59, 130, 246,0.4)" : "none",
 							transition: "all 0.15s ease"
 						},
-						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Eye, { size: 10 }), de ? "Hide Diagram" : "Show Diagram"]
+						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Eye, { size: 10 }), Me ? "Hide Diagram" : "Show Diagram"]
 					}),
-					_.label === "Markdown" && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
-						onClick: () => yt((n) => !n),
+					v.label === "Markdown" && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("button", {
+						onClick: () => bt((n) => !n),
 						style: {
 							display: "inline-flex",
 							alignItems: "center",
 							gap: "5px",
-							background: et ? "#34d399" : "rgba(52,211,153,0.3)",
+							background: yt ? "#34d399" : "rgba(52,211,153,0.3)",
 							color: "#fff",
-							border: `1px solid ${et ? "transparent" : "#34d399"}`,
+							border: `1px solid ${yt ? "transparent" : "#34d399"}`,
 							borderRadius: "4px",
 							padding: "3px 10px",
 							fontSize: "10px",
 							fontWeight: 700,
 							cursor: "pointer",
-							boxShadow: et ? "0 2px 8px rgba(52,211,153,0.4)" : "none",
+							boxShadow: yt ? "0 2px 8px rgba(52,211,153,0.4)" : "none",
 							transition: "all 0.15s ease"
 						},
-						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Eye, { size: 10 }), et ? "Hide Render" : "Show Render"]
+						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(Eye, { size: 10 }), yt ? "Hide Render" : "Show Render"]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 						style: {
@@ -30339,8 +30340,8 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 							gap: "6px"
 						},
 						children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("button", {
-							onClick: () => ne((n) => !n),
-							title: G ? "펼치기" : "접기",
+							onClick: () => ie((n) => !n),
+							title: ne ? "펼치기" : "접기",
 							style: {
 								background: "transparent",
 								border: "none",
@@ -30348,18 +30349,18 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 								color: "var(--text-muted)",
 								display: "flex",
 								padding: "2px",
-								transform: G ? "rotate(-90deg)" : "none",
+								transform: ne ? "rotate(-90deg)" : "none",
 								transition: "transform 0.2s"
 							},
 							children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(ChevronDown, { size: 14 })
 						}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("button", {
-							onClick: Et,
+							onClick: Dt,
 							title: "코드 복사",
 							style: {
 								background: "transparent",
 								border: "none",
 								cursor: "pointer",
-								color: T ? "#10b981" : "var(--text-muted)",
+								color: D ? "#10b981" : "var(--text-muted)",
 								display: "flex",
 								padding: "2px"
 							},
@@ -30368,90 +30369,95 @@ function JupyterCodeViewer({ code: n, language: r, onRunFailure: a, onAskAgent: 
 					})
 				]
 			}),
-			!G && p.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("pre", {
+			!ne && m.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("pre", {
 				className: "hljs-pre",
 				style: {
 					margin: 0,
-					padding: "12px 16px",
-					background: Dt ? "#f8fafc" : Mt ? "#ffffff" : "#12131a",
+					padding: "14px 18px",
+					background: Lt ? "#f8fafc" : zt ? "#ffffff" : "#0b0f19",
 					overflowX: "auto",
-					fontSize: "13px",
-					borderBottom: Dt ? `1px solid ${It}25` : Mt ? "1px solid #808080" : `1px solid ${It}18`,
-					borderLeft: Mt ? "2px inset #808080" : "none",
-					borderRight: Mt ? "2px inset #808080" : "none",
+					fontSize: "14px",
+					fontWeight: 500,
+					lineHeight: "1.65",
+					borderBottom: Lt ? `1.5px solid ${qt}25` : zt ? "1px solid #808080" : `1.5px solid ${qt}18`,
+					borderLeft: zt ? "2px inset #808080" : "none",
+					borderRight: zt ? "2px inset #808080" : "none",
 					textAlign: "left"
 				},
 				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("code", {
-					className: `hljs language-${f}`,
-					dangerouslySetInnerHTML: { __html: es_default.highlight(p, { language: es_default.getLanguage(f) ? f : "plaintext" }).value },
+					className: `hljs language-${p}`,
+					dangerouslySetInnerHTML: { __html: es_default.highlight(m, { language: es_default.getLanguage(p) ? p : "plaintext" }).value },
 					style: {
-						fontFamily: Mt ? "\"D2Coding\", \"Fixedsys\", monospace" : "\"JetBrains Mono\", monospace",
-						color: Dt ? "#0f172a" : Mt ? "#000000" : "#e2e8f0"
+						fontFamily: zt ? "\"D2Coding\", \"Fixedsys\", monospace" : "\"JetBrains Mono\", monospace",
+						background: "transparent",
+						color: Lt ? "#0f172a" : zt ? "#000000" : "#f8fafc",
+						fontSize: "14px",
+						fontWeight: 500
 					}
 				})
 			}),
-			!G && !p.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+			!ne && !m.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 				style: {
-					padding: "12px 16px",
-					fontSize: "11px",
-					color: Dt ? "#64748b" : Mt ? "#666666" : "#4b5563",
+					padding: "14px 18px",
+					fontSize: "13px",
+					color: Lt ? "#64748b" : zt ? "#666666" : "#94a3b8",
 					fontStyle: "italic",
 					pointerEvents: "none",
 					userSelect: "none",
-					background: Dt ? "#f8fafc" : Mt ? "#ffffff" : "#12131a",
-					borderBottom: Dt ? `1px solid ${It}25` : Mt ? "1px solid #808080" : `1px solid ${It}18`
+					background: Lt ? "#f8fafc" : zt ? "#ffffff" : "#0b0f19",
+					borderBottom: Lt ? `1.5px solid ${qt}25` : zt ? "1px solid #808080" : `1.5px solid ${qt}18`
 				},
-				children: `// ${_.label} 코드가 비어 있습니다.`
+				children: `// ${v.label} 코드가 비어 있습니다.`
 			}),
-			!G && _.isMermaid && de && p.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+			!ne && v.isMermaid && Me && m.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 				style: {
 					padding: "12px 16px",
-					borderTop: `1px solid ${It}22`
+					borderTop: `1px solid ${qt}22`
 				},
-				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(InlineMermaidRenderer, { code: p })
+				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(InlineMermaidRenderer, { code: m })
 			}),
-			!G && _.label === "Markdown" && et && p.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+			!ne && v.label === "Markdown" && yt && m.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 				className: "markdown-rendered-body",
-				dangerouslySetInnerHTML: { __html: f$2.parse(p) },
+				dangerouslySetInnerHTML: { __html: f$2.parse(m) },
 				style: {
 					padding: "16px 20px",
 					background: "var(--bg-main)",
 					color: "var(--text-main)",
-					borderTop: `1px solid ${It}22`,
+					borderTop: `1px solid ${qt}22`,
 					fontSize: "14px",
 					lineHeight: "1.7",
 					textAlign: "left"
 				}
 			}),
-			!G && _.isHtml && bt && p.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+			!ne && v.isHtml && St && m.trim() && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 				style: {
 					padding: "12px 16px",
-					borderTop: `1px solid ${It}22`
+					borderTop: `1px solid ${qt}22`
 				},
-				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(InlineHtmlRenderer, { code: p })
+				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(InlineHtmlRenderer, { code: m })
 			}),
-			Ie && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(HtmlPreviewModal, {
-				code: p,
-				onClose: () => Ze(!1)
+			Ze && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(HtmlPreviewModal, {
+				code: m,
+				onClose: () => et(!1)
 			}),
-			!G && _.runnable && x && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(ConsoleOutput, {
-				success: C,
-				resolvedLanguage: f,
-				tableData: ie,
-				outputLines: v,
-				accentColor: It,
-				onAskAgent: o ? () => {
-					o(v.filter((n) => n.type === "stderr").map((n) => n.text).join("\n"), p);
+			!ne && v.runnable && S && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(ConsoleOutput, {
+				success: w,
+				resolvedLanguage: p,
+				tableData: se,
+				outputLines: y,
+				accentColor: qt,
+				onAskAgent: l ? () => {
+					l(y.filter((n) => n.type === "stderr").map((n) => n.text).join("\n"), m);
 				} : () => {
-					let n = v.filter((n) => n.type === "stderr").map((n) => n.text).join("\n"), r = {
+					let n = y.filter((n) => n.type === "stderr").map((n) => n.text).join("\n"), r = {
 						type: "code_analyze_error",
 						data: {
 							requestId: `err_${Date.now()}`,
-							language: f,
-							executionContextType: f === "python" ? "python" : "typescript",
+							language: p,
+							executionContextType: p === "python" ? "python" : "typescript",
 							rawErrorLog: n,
 							fullSourceAvailable: !0,
-							codeSnippet: p,
+							codeSnippet: m,
 							errorLineNumber: null,
 							surroundingStartLine: null,
 							surroundingEndLine: null
@@ -113913,8 +113919,8 @@ function buildSegments(n) {
 	}, o.image = function({ href: n, title: r, text: a }) {
 		let o = n || "", l = o.toLowerCase().endsWith(".mp4") || o.toLowerCase().endsWith(".webm") || o.toLowerCase().endsWith(".mov") || o.toLowerCase().endsWith(".ogg") || o.startsWith("data:video/"), d = resolveMediaUrl(o);
 		return l ? `<video src="${d}" controls style="max-width:100%; border-radius:8px; margin:8px 0;"></video>` : `<img src="${d}" alt="${a || ""}" title="${r || ""}" />`;
-	}, o.blockquote = function({ text: n }) {
-		let r = parseAlertBlock((n || "").trim());
+	}, o.blockquote = function(n) {
+		let r = parseAlertBlock((n.text || "").trim());
 		if (r) {
 			let n = "";
 			switch (r.type) {
@@ -113934,14 +113940,15 @@ function buildSegments(n) {
 					n = "ℹ️";
 					break;
 			}
+			let a = f$2.parse(r.body);
 			return `
         <div class="av-alert av-alert-${r.type}">
           <div class="av-alert-title"><span>${n}</span> <span>${r.title}</span></div>
-          <div>${r.body}</div>
+          <div class="av-alert-body">${a}</div>
         </div>
       `;
 		}
-		return `<blockquote>${n}</blockquote>`;
+		return `<blockquote>${n.tokens && this.parser ? this.parser.parse(n.tokens) : n.text || ""}</blockquote>`;
 	};
 	let l = o.table.bind(o);
 	o.table = function(n) {
@@ -114021,28 +114028,66 @@ function buildSegments(n) {
 		html: g
 	}), f;
 }
-var mermaidInitialized = !1;
 function MermaidRenderer({ code: n, theme: r }) {
-	let [a, o] = (0, import_react$147.useState)(""), [l, d] = (0, import_react$147.useState)(null), f = (0, import_react$147.useRef)(`mermaid_${Math.random().toString(36).slice(2, 9)}`), p = (0, import_react$147.useRef)(!0);
+	let [a, o] = (0, import_react$147.useState)(""), [l, d] = (0, import_react$147.useState)(null), f = (0, import_react$147.useRef)(!0);
 	return (0, import_react$147.useEffect)(() => {
-		p.current = !0;
-		let a = !1;
+		f.current = !0;
+		let a = !1, l = r === "white" || r === "light", p = r === "retro" || r === "win98";
 		try {
-			mermaidInitialized ||= (mermaid_default.initialize({
+			mermaid_default.initialize({
 				startOnLoad: !1,
 				securityLevel: "loose",
-				theme: r === "white" || r === "light" ? "default" : "dark",
-				fontFamily: "-apple-system, BlinkMacSystemFont, \"Pretendard\", sans-serif"
-			}), !0), mermaid_default.render(f.current, n).then(({ svg: n }) => {
-				!a && p.current && (o(n), d(null));
+				theme: l ? "default" : p ? "neutral" : "dark",
+				themeVariables: l ? {
+					primaryColor: "#f0f9ff",
+					primaryTextColor: "#0f172a",
+					primaryBorderColor: "#0284c7",
+					lineColor: "#334155",
+					textColor: "#0f172a",
+					mainBkg: "#ffffff",
+					nodeBorder: "#0284c7",
+					clusterBkg: "#f8fafc",
+					clusterBorder: "#cbd5e1",
+					titleColor: "#0f172a",
+					edgeLabelBackground: "#f1f5f9"
+				} : p ? {
+					primaryColor: "#ffffff",
+					primaryTextColor: "#000000",
+					primaryBorderColor: "#000080",
+					lineColor: "#000080",
+					textColor: "#000000",
+					mainBkg: "#ffffff",
+					nodeBorder: "#000080",
+					clusterBkg: "#e0e0e0",
+					clusterBorder: "#808080",
+					titleColor: "#000080",
+					edgeLabelBackground: "#ffffff"
+				} : {
+					primaryColor: "#0f172a",
+					primaryTextColor: "#f8fafc",
+					primaryBorderColor: "#38bdf8",
+					lineColor: "#38bdf8",
+					textColor: "#f8fafc",
+					mainBkg: "#161b22",
+					nodeBorder: "#38bdf8",
+					clusterBkg: "#0d1117",
+					clusterBorder: "rgba(56, 189, 248, 0.4)",
+					titleColor: "#38bdf8",
+					edgeLabelBackground: "#0d1117"
+				},
+				fontFamily: p ? "\"D2Coding\", \"Fixedsys\", monospace" : "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif"
+			});
+			let r = `mermaid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+			mermaid_default.render(r, n).then(({ svg: n }) => {
+				!a && f.current && (o(n), d(null));
 			}).catch((n) => {
-				!a && p.current && d(String(n));
+				!a && f.current && d(String(n));
 			});
 		} catch (n) {
-			!a && p.current && d(n.message || String(n));
+			!a && f.current && d(n.message || String(n));
 		}
 		return () => {
-			a = !0, p.current = !1;
+			a = !0, f.current = !1;
 		};
 	}, [n, r]), l ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 		className: "av-code-block",
@@ -114057,7 +114102,7 @@ function MermaidRenderer({ code: n, theme: r }) {
 		})]
 	}) : /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 		className: "av-mermaid-container",
-		dangerouslySetInnerHTML: { __html: a || "<div style=\"color:var(--av-text-muted);font-size:12px;\">Rendering diagram...</div>" }
+		dangerouslySetInnerHTML: { __html: a || "<div style=\"color:var(--av-text-muted);font-size:12px;padding:12px;\">렌더링 중...</div>" }
 	});
 }
 function HtmlPreviewRenderer({ code: n }) {
@@ -114106,19 +114151,83 @@ var AmevaErrorBoundary = class extends import_react$147.Component {
 			})]
 		}) : this.props.children;
 	}
-}, AmevaViewer = ({ markdown: n, content: r, theme: a = "dark", className: o = "", style: l }) => {
-	let d = n ?? r ?? "", f = typeof d == "string" ? d : String(d || ""), p = (0, import_react$147.useMemo)(() => {
+};
+function AmevaViewerBrandFooter({ theme: n }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("footer", {
+		className: "av-viewer-brand-footer",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
+			className: "av-brand-meta",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
+				className: "av-brand-identity",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+						className: "av-brand-logo-icon",
+						children: "⚡"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+						className: "av-brand-title",
+						children: "AMEVA Document Viewer"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+						className: "av-brand-version",
+						children: "v1.2.0"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+						className: "av-brand-dot",
+						children: "•"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+						className: "av-brand-by",
+						children: "Powered by"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("a", {
+						href: "https://github.com/uno-km/AMEVA-Workstation",
+						target: "_blank",
+						rel: "noopener noreferrer",
+						className: "av-brand-workstation-link",
+						title: "AMEVA Workstation 환경으로 이동",
+						children: "AMEVA Workstation ↗"
+					})
+				]
+			}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("p", {
+				className: "av-brand-description",
+				children: "WebAssembly & WebGPU 기반 차세대 온디바이스 마크다운·인터랙티브 문서 실행 엔진"
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
+			className: "av-brand-nav-links",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
+				href: "https://github.com/uno-km/AMEVA-Workstation",
+				target: "_blank",
+				rel: "noopener noreferrer",
+				className: "av-brand-btn av-brand-btn-primary",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "워크스테이션 방문" }), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+					style: { fontSize: "10px" },
+					children: "↗"
+				})]
+			}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
+				href: "/labs/?menu=research-handbook",
+				className: "av-brand-btn av-brand-btn-secondary",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "연구 핸드북 더보기" }), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+					style: { fontSize: "10px" },
+					children: "→"
+				})]
+			})]
+		})]
+	});
+}
+var AmevaViewer = ({ markdown: n, content: r, theme: a = "dark", className: o = "", style: l, showBrandFooter: d = !0 }) => {
+	let f = n ?? r ?? "", p = typeof f == "string" ? f : String(f || ""), m = (0, import_react$147.useMemo)(() => {
 		try {
-			return buildSegments(f);
+			return buildSegments(p);
 		} catch (n) {
 			return console.error("[AmevaViewer] Parsing exception caught:", n), [];
 		}
-	}, [f]);
-	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(AmevaErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+	}, [p]);
+	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(AmevaErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
 		className: `ameva-viewer-root ${o}`,
 		"data-theme": a,
 		style: l,
-		children: p.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
+		children: [m.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
 			style: {
 				color: "var(--av-text-muted)",
 				padding: "24px",
@@ -114126,7 +114235,7 @@ var AmevaErrorBoundary = class extends import_react$147.Component {
 				fontSize: "13.5px"
 			},
 			children: "내용이 없습니다."
-		}) : p.map((n, r) => n.type === "mermaid" && n.code ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(MermaidRenderer, {
+		}) : m.map((n, r) => n.type === "mermaid" && n.code ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(MermaidRenderer, {
 			code: n.code,
 			theme: a
 		}, r) : n.type === "html-preview" && n.code ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(HtmlPreviewRenderer, { code: n.code }, r) : n.type === "ameva-map" && n.code ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(AmevaErrorBoundary, {
@@ -114201,10 +114310,11 @@ var AmevaErrorBoundary = class extends import_react$147.Component {
 				className: "av-code-runner-wrapper",
 				children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(JupyterCodeViewer, {
 					code: n.code,
-					language: n.language === "js" ? "javascript" : n.language === "py" ? "python" : n.language || "javascript"
+					language: n.language === "js" ? "javascript" : n.language === "py" ? "python" : n.language || "javascript",
+					theme: a
 				})
 			})
-		}, r) : /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", { dangerouslySetInnerHTML: { __html: n.html || "" } }, r))
+		}, r) : /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", { dangerouslySetInnerHTML: { __html: n.html || "" } }, r)), d && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(AmevaViewerBrandFooter, { theme: a })]
 	}) });
 };
 //#endregion

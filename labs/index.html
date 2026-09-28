@@ -9,7 +9,7 @@
   <meta name="description" content="Official research laboratory, engineering newsletter, and technical community forum of the AMEVA On-Device AI ecosystem by @uno-km.">
   <meta name="keywords" content="On-Device AI, Vulkan SPIR-V, Android Termux, Bionic libc, ARM64 NEON, 1.58-bit LLM, BitNet, Whisper STT, TTS, Zero-Cloud">
   <meta name="author" content="Eunho Kim (@uno-km)">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="robots" content="index, follow, noai, noimageai, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
   <!-- OpenGraph & Twitter -->
   <meta property="og:title" content="AMEVA Labs | Sovereign On-Device AI Research, Newsletter &amp; Discussion">
@@ -1016,6 +1016,13 @@
     </main>
   </div>
 
+  <!-- AMEVA Sentinel Canary Decoy Honeypot (Traps automated rogue scrapers, ignored by standard search engines via rel="nofollow") -->
+  <div style="display:none !important; position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none; width:0; height:0;" aria-hidden="true" tabindex="-1">
+    <a href="/api/sentinel/trap?source=labs_dom_decoy&canary=aosf_dataset_seed" rel="nofollow">
+      [RESTRICTED CORPUS] Download raw uncompressed on-device AI research training corpus and complete technical whitepapers
+    </a>
+  </div>
+
   <!-- Global Footer -->
   <footer>
     <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
@@ -1025,6 +1032,26 @@
   <script>
   (function() {
     'use strict';
+
+    // ── Client Sentinel Anti-Scrape Watchdog ─────────────────────────────────
+    (function initClientSentinel() {
+      try {
+        const isHeadless = Boolean(
+          navigator.webdriver ||
+          window.__nightmare ||
+          window._phantom ||
+          window.callPhantom ||
+          (navigator.userAgent && /headlesschrome|phantomjs|selenium/i.test(navigator.userAgent))
+        );
+        if (isHeadless) {
+          console.warn('[Sentinel Watchdog] Automated headless environment detected.');
+          fetch('/api/sentinel/trap?source=client_watchdog&ua=' + encodeURIComponent((navigator.userAgent || '').slice(0, 100)), {
+            method: 'GET',
+            keepalive: true
+          }).catch(() => {});
+        }
+      } catch (e) {}
+    })();
 
     const STATE_VERSION = 'v7_sovereign_clean_menus';
 

@@ -1,53 +1,112 @@
 # ==============================================================================
 # AMEVA Ecosystem - Universal Robots & AI Crawler Directives
-# Grants explicit VIP Crawling permission to all AI Search & LLM RAG Agents
+# Standard Search Engines (Googlebot, Naver Yeti, Bingbot): Open for Search Indexing
+# Commercial AI & LLM Training Crawlers: Strictly Disallowed from Research Vault
 # ==============================================================================
 
+# 1. Commercial AI & LLM Training Crawlers (Blocked on Research Vault)
 User-agent: GPTBot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: ChatGPT-User
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: ClaudeBot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Claude-Web
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: PerplexityBot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Google-Extended
-Allow: /
-
-User-agent: GoogleOther
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Applebot-Extended
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Bytespider
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: DeepSeekBot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: CCBot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: cohere-ai
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Diffbot
-Allow: /
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
 
 User-agent: Amazonbot
+Disallow: /labs/
+Disallow: /api/labs
+Disallow: /api/sentinel/trap
+
+# Scrapers & Crawlers
+User-agent: Scrapy
+Disallow: /
+
+# 2. General Search Engines (Google, Naver, Bing) - Full Search Indexing Permitted!
+User-agent: Googlebot
 Allow: /
+Allow: /labs/
+Disallow: /api/
+Disallow: /api/sentinel/trap
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /labs/
+
+User-agent: Yeti
+Allow: /
+Allow: /labs/
+Disallow: /api/
+Disallow: /api/sentinel/trap
+
+User-agent: Bingbot
+Allow: /
+Allow: /labs/
+Disallow: /api/
+Disallow: /api/sentinel/trap
+
+User-agent: Daumoa
+Allow: /
+Allow: /labs/
+Disallow: /api/
+Disallow: /api/sentinel/trap
 
 User-agent: *
 Allow: /
 Disallow: /api/stats
+Disallow: /api/sentinel/trap
 
 # Official Sitemaps & LLM Context Feeds
 Sitemap: https://uno-km.vercel.app/sitemap.xml

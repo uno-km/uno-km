@@ -158,6 +158,24 @@ export default async function handler(req, res) {
     return res.status(204).end();
   }
 
+  const userAgent = req.headers['user-agent'] || '';
+  const isSearchEngine = /googlebot|bingbot|yeti|daumoa|duckduckbot/i.test(userAgent);
+  const isAiOrScraper = /gptbot|chatgpt|claudebot|claude-web|anthropic|perplexity|deepseek|google-extended|bytespider|cohere-ai|applebot-extended|ccbot|diffbot|amazonbot|scrapy|python-requests|aiohttp|httpclient|urllib|postman|go-http-client|node-fetch|axios|headlesschrome/i.test(userAgent);
+
+  // Sentinel Active Defense: Intercept AI training crawlers and automated scrapers
+  if (!isSearchEngine && isAiOrScraper) {
+    res.setHeader('X-Robots-Tag', 'noai, noimageai, noindex, nofollow, noarchive');
+    res.setHeader('X-Sentinel-Active-Defense', 'LABS_API_VAULT_BLOCKED');
+    return res.status(403).json({
+      ok: false,
+      error: 'SENTINEL_ACTIVE_DEFENSE_ENGAGED',
+      message: 'Automated harvesting of AMEVA Labs research is blocked by Sentinel. Non-commercial research vault protected under AOSF-RFC-001.',
+      status: 403
+    });
+  }
+
+  res.setHeader('X-Robots-Tag', 'noai, noimageai');
+
   const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_URL;
   if (!dbUrl) {
     return res.status(200).json({

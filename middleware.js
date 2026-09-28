@@ -28,6 +28,7 @@ const AI_BOT_PATTERNS = [
     { pattern: /twitterbot/i, name: 'Twitter/X Bot', category: 'SOCIAL_BOT' }
 ];
 
+const AUTOMATED_SCRAPER_PATTERNS = /python-requests|aiohttp|scrapy|curl\/|wget\/|httpclient|urllib|postman|go-http-client|node-fetch|axios|headlesschrome|phantomjs/i;
 const SCANNER_BOT_PATTERNS = /sqlmap|nikto|acunetix|nessus|masscan|zgrab|nmap|dirbuster|gobuster/i;
 const SQLI_PATTERNS = /\b(union\s+select|select.*from|insert\s+into|delete\s+from|drop\s+table|update.*set|pg_sleep|waitfor\s+delay|'\s*or\s*['"\d]+=)/i;
 const XSS_PATTERNS = /<script|javascript:|onerror=|onload=|eval\(|alert\(/i;
@@ -131,13 +132,74 @@ export async function middleware(request) {
         return;
     }
 
-    // 1. AMEVA-Sentinel Observability: Calculate Threat Score (100% Permissive / Zero Blocking)
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+    const country = request.headers.get('x-vercel-ip-country') || 'GLOBAL';
+    const city = request.headers.get('x-vercel-ip-city') ? decodeURIComponent(request.headers.get('x-vercel-ip-city')) : 'Edge';
+    const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
+
+    // Helper for telemetry DB logging
+    const logSentinelTelemetry = (botName, botCategory, reqPath) => {
+        if (!dbUrl) return;
+        try {
+            const parsed = new URL(dbUrl.replace(/^postgres(ql)?:/, 'https:'));
+            const endpoint = `https://${parsed.hostname}/sql`;
+            const authHeader = 'Basic ' + btoa(`${parsed.username}:${parsed.password}`);
+            const queryLogs = `
+                INSERT INTO bot_crawler_logs (bot_name, bot_category, requested_path, ip_address, country, city, user_agent)
+                VALUES ($1, $2, $3, $4, $5, $6, $7);
+            `;
+            const paramsLogs = [
+                botName.slice(0, 100),
+                botCategory.slice(0, 50),
+                reqPath.slice(0, 255),
+                ip.slice(0, 45),
+                country.slice(0, 10),
+                city.slice(0, 100),
+                userAgent.slice(0, 1000)
+            ];
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Authorization': authHeader,
+                    'Content-Type': 'application/json',
+                    'Neon-Connection-String': dbUrl
+                },
+                body: JSON.stringify({ query: queryLogs, params: paramsLogs })
+            }).catch(() => {});
+        } catch (e) {}
+    };
+
+    // ── 0. AMEVA-Sentinel Canary Honeypot Decoy Trap ─────────────────────────
+    if (path === '/api/sentinel/trap' || path.startsWith('/api/sentinel/trap')) {
+        let matchedBot = null;
+        for (const item of AI_BOT_PATTERNS) {
+            if (item.pattern.test(userAgent)) {
+                matchedBot = item;
+                break;
+            }
+        }
+        const entityName = matchedBot ? matchedBot.name : (userAgent.slice(0, 50) || 'Unknown Scraper');
+        logSentinelTelemetry('[HONEYPOT_TRAP] ' + entityName, 'HONEYPOT_CANARY_TRIPPED', path);
+
+        return new Response(`[AMEVA-SENTINEL CANARY HONEYPOT TRAP ACTIVATED]
+SECURITY ALERT: You have touched a hidden decoy honeypot trap intended exclusively for automated scrapers.
+Client IP: ${ip} | User-Agent: ${userAgent} | Timestamp: ${new Date().toISOString()}
+Status: Fingerprinted and logged to Sentinel Threat Intelligence Database.
+Direct harvesting of AMEVA research is strictly prohibited under AOSF-RFC-001.`, {
+            status: 403,
+            headers: {
+                'Content-Type': 'text/plain; charset=utf-8',
+                'X-Sentinel-Trap': 'HONEYPOT_CANARY_TRIPPED',
+                'X-Robots-Tag': 'noai, noimageai, noindex, noarchive',
+                'Cache-Control': 'no-store, private'
+            }
+        });
+    }
+
+    // ── 1. AMEVA-Sentinel Threat Scoring ─────────────────────────────────────
     const { score: threatScore, reasons } = calculateThreatScore(rawUrl, userAgent);
 
-    // 2. Permissive Mode: All requests pass through freely without any 403 blocking
-    // Threat scores are purely evaluated for telemetry and public observability metrics.
-
-    // 3. AI Crawler Identification & GEO Streaming
+    // ── 2. AI Bot & Scraper Identification ───────────────────────────────────
     let matchedBot = null;
     for (const item of AI_BOT_PATTERNS) {
         if (item.pattern.test(userAgent)) {
@@ -145,20 +207,53 @@ export async function middleware(request) {
             break;
         }
     }
+    const SEARCH_ENGINE_PATTERNS = /googlebot|bingbot|yeti|daumoa|duckduckbot|yandexbot/i;
+    const isSearchEngine = SEARCH_ENGINE_PATTERNS.test(userAgent);
+    const isAiCrawler = matchedBot && matchedBot.category === 'AI_AGENT';
+    const isRogueScraper = AUTOMATED_SCRAPER_PATTERNS.test(userAgent) && !isSearchEngine;
 
+    // ── 3. Route-Scoped Research Vault Active Defense (/labs/* & /api/labs/*)
+    const isLabsVault = path === '/labs' || path.startsWith('/labs/') || path === '/api/labs' || path.startsWith('/api/labs');
+
+    if (isLabsVault) {
+        // Search Engines (Googlebot, Naver Yeti, Bingbot) are explicitly PERMITTED for search indexing
+        if (isSearchEngine) {
+            return;
+        }
+
+        // AI Training Crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot) & Rogue Scrapers are TRAPPED
+        if (isAiCrawler || isRogueScraper) {
+            const botDisplayName = matchedBot ? matchedBot.name : 'Automated Scraper (' + (userAgent.slice(0, 30) || 'Headless') + ')';
+            logSentinelTelemetry('[LABS_VAULT_BLOCKED] ' + botDisplayName, 'LABS_RESEARCH_VAULT_BLOCKED', path);
+
+            return new Response(`[AMEVA-SENTINEL ACTIVE DEFENSE: LABS RESEARCH VAULT INTERCEPT]
+ACCESS FORBIDDEN (HTTP 403): Automated AI scraping and dataset harvesting are strictly prohibited on AMEVA Labs research whitepapers and curriculum databases.
+Detected Entity: ${botDisplayName}
+Client IP: ${ip} | Country: ${country} | Path: ${path}
+Governing Policy: AOSF-RFC-001 (Sovereign On-Device Research Vault Protection).
+Notice: Standard search indexing (Googlebot/Bing/Naver) is permitted, but AI model training is strictly denied under 'noai, noimageai' directives.
+Human Web Portal: https://uno-km.vercel.app/labs/`, {
+                status: 403,
+                headers: {
+                    'Content-Type': 'text/plain; charset=utf-8',
+                    'X-Sentinel-Active-Defense': 'LABS_VAULT_INTERCEPT',
+                    'X-Robots-Tag': 'noai, noimageai, index, follow',
+                    'Cache-Control': 'no-store, private'
+                }
+            });
+        }
+        // Human visitors pass through freely to the SPA
+        return;
+    }
+
+    // ── 4. Non-Labs Global AI Search Optimization (GEO Streaming for Docs/Portal) ──
     if (matchedBot) {
         const deepPayload = generateDeepAiPayload(path);
         const servedBytes = new TextEncoder().encode(deepPayload).length;
-        // Zero-Hype: Do not synthesize arbitrary bandwidth savings without explicit client baseline comparison
         const savedBytes = 0;
         const savingsRatio = 0.0;
 
-        const dbUrl = process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
         if (dbUrl) {
-            const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
-            const country = request.headers.get('x-vercel-ip-country') || 'GLOBAL';
-            const city = request.headers.get('x-vercel-ip-city') ? decodeURIComponent(request.headers.get('x-vercel-ip-city')) : 'Edge';
-
             try {
                 const parsed = new URL(dbUrl.replace(/^postgres(ql)?:/, 'https:'));
                 const endpoint = `https://${parsed.hostname}/sql`;
@@ -187,9 +282,7 @@ export async function middleware(request) {
                         'Neon-Connection-String': dbUrl
                     },
                     body: JSON.stringify({ query: queryLogs, params: paramsLogs })
-                }).catch(err => {
-                    console.error('[Middleware Telemetry Crawler Log Error]:', err.message || err);
-                });
+                }).catch(() => {});
 
                 // 2. Insert to sentinel_geo_deliveries
                 const queryGeo = `
@@ -218,12 +311,8 @@ export async function middleware(request) {
                         'Neon-Connection-String': dbUrl
                     },
                     body: JSON.stringify({ query: queryGeo, params: paramsGeo })
-                }).catch(err => {
-                    console.error('[Middleware Telemetry Geo Log Error]:', err.message || err);
-                });
-            } catch (err) {
-                console.error('[Middleware DB Endpoint Configuration Error]:', err.message || err);
-            }
+                }).catch(() => {});
+            } catch (err) {}
         }
 
         return new Response(deepPayload, {
