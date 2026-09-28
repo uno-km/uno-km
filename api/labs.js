@@ -7,11 +7,11 @@ let isSchemaReady = false;
 // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
 const INITIAL_MENUS = [
   { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
-  { id: 'research', name: '연구중이거나 연구내용', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '실리콘 커널, Vulkan 셰이더, ARM64 NEON 어셈블리 및 온디바이스 AI 연구' },
-  { id: 'research-handbook', name: '전공 교재 / 시스템 엔지니어링', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '8대 핵심 모듈 26개 강좌 및 320대 전공 용어 해설집' },
-  { id: 'research-papers', name: '학술 연구 모노그래프 & 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'Bionic Libc 16KB, Vulkan Compute Shaders, L4 소켓 마스킹' },
-  { id: 'research-benchmarks', name: '플릿 하드웨어 실측 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 단말기 8대 모달리티 1,593건 실측 DB' },
-  { id: 'research-cluster', name: '2중 관제탑 & 무인 자가치유 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: 'Host PC + S20 DeX 2중 관제탑 및 무인 1초 자가치유 실증' },
+  { id: 'research', name: '연구', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '온디바이스 AI, Bionic 시스템 연구 및 벤치마크' },
+  { id: 'research-handbook', name: '안드로이드 시스템 핸드북', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '26개 전 강좌 및 320대 핵심 용어 해설집' },
+  { id: 'research-papers', name: '기술 연구 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'GPU 셰이더 컴파일러, 16KB 페이지 호환 등 심층 기술 분석' },
+  { id: 'research-benchmarks', name: '실기기 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 실기기 8대 모달리티 실측 성능 DB' },
+  { id: 'research-cluster', name: '엣지 분산 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: '모바일 기기 분산 서버 구축 및 네트워크 연동' },
   { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
   { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
   { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
@@ -95,39 +95,18 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v2_deduplicated_archive';
+    const SEED_VERSION = 'v3_human_titles';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
-      // First, purge any duplicate posts keeping only the lowest canonical ID
-      await sql`
-        DELETE FROM labs_posts a USING labs_posts b
-        WHERE a.id > b.id AND a.menu_id = b.menu_id AND a.title = b.title;
-      `;
-
-      const existingRows = await sql`SELECT id, menu_id, title FROM labs_posts;`;
-      const postMap = new Map();
-      existingRows.forEach(r => postMap.set(`${r.menu_id}:::${r.title}`, r.id));
+      // Clean refresh of master archive
+      await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
 
       for (const p of SEED_POSTS) {
-        const key = `${p.menu_id}:::${p.title}`;
-        if (postMap.has(key)) {
-          const postId = postMap.get(key);
-          await sql`
-            UPDATE labs_posts SET content = ${p.content} WHERE id = ${postId};
-          `;
-        } else {
-          await sql`
-            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
-            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
-          `;
-        }
+        await sql`
+          INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
+          VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
+        `;
       }
-
-      // Final deduplication sweep in case of any concurrent insertions
-      await sql`
-        DELETE FROM labs_posts a USING labs_posts b
-        WHERE a.id > b.id AND a.menu_id = b.menu_id AND a.title = b.title;
-      `;
 
       await sql`
         INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', ${SEED_VERSION})
