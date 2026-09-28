@@ -114156,66 +114156,31 @@ var AmevaErrorBoundary = class extends import_react$147.Component {
 	}
 };
 function AmevaViewerBrandFooter({ theme: n }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("footer", {
+	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("footer", {
 		className: "av-viewer-brand-footer",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
-			className: "av-brand-meta",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
-				className: "av-brand-identity",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-						className: "av-brand-logo-icon",
-						children: "⚡"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-						className: "av-brand-title",
-						children: "AMEVA Document Viewer"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-						className: "av-brand-version",
-						children: "v1.2.0"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-						className: "av-brand-dot",
-						children: "•"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-						className: "av-brand-by",
-						children: "Powered by"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("a", {
-						href: "https://github.com/uno-km/AMEVA-Workstation",
-						target: "_blank",
-						rel: "noopener noreferrer",
-						className: "av-brand-workstation-link",
-						title: "AMEVA Workstation 환경으로 이동",
-						children: "AMEVA Workstation ↗"
-					})
-				]
-			}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("p", {
-				className: "av-brand-description",
-				children: "WebAssembly & WebGPU 기반 차세대 온디바이스 마크다운·인터랙티브 문서 실행 엔진"
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("div", {
-			className: "av-brand-nav-links",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
-				href: "https://github.com/uno-km/AMEVA-Workstation",
-				target: "_blank",
-				rel: "noopener noreferrer",
-				className: "av-brand-btn av-brand-btn-primary",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "워크스테이션 방문" }), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-					style: { fontSize: "10px" },
-					children: "↗"
-				})]
-			}), /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
-				href: "/labs/?menu=research-handbook",
-				className: "av-brand-btn av-brand-btn-secondary",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "연구 핸드북 더보기" }), /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
-					style: { fontSize: "10px" },
-					children: "→"
-				})]
-			})]
-		})]
+		children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
+			href: "https://github.com/uno-km/AMEVA-Workstation",
+			target: "_blank",
+			rel: "noopener noreferrer",
+			className: "av-brand-watermark-link",
+			title: "AMEVA Workstation 공식 환경으로 이동",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+					className: "av-brand-logo-icon",
+					children: "⚡"
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", { children: "AmevaViewer v1.2" }),
+				/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("span", {
+					className: "av-brand-dot",
+					children: "•"
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("span", { children: [
+					"by ",
+					/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("strong", { children: "AMEVA Workstation" }),
+					" ↗"
+				] })
+			]
+		})
 	});
 }
 var AmevaViewer = ({ markdown: n, content: r, theme: a = "dark", className: o = "", style: l, showBrandFooter: d = !0 }) => {

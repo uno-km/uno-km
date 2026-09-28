@@ -195,6 +195,44 @@
       color: #ffffff;
       box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
     }
+    .viewer-brand-toolbar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: #f8fafc;
+      text-decoration: none;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      transition: all 0.2s ease;
+    }
+    .viewer-brand-toolbar-link:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .viewer-brand-toolbar-link .brand-bolt {
+      color: #38bdf8;
+      font-size: 0.8rem;
+    }
+    .viewer-brand-toolbar-link .brand-by {
+      color: #94a3b8;
+      font-size: 0.7rem;
+    }
+    .viewer-brand-toolbar-link:hover .brand-by {
+      color: #cbd5e1;
+    }
+    .viewer-brand-toolbar-link .brand-arrow {
+      color: #38bdf8;
+      font-size: 0.72rem;
+      transition: transform 0.2s ease;
+    }
+    .viewer-brand-toolbar-link:hover .brand-arrow {
+      transform: translate(1px, -1px);
+    }
 
     /* ── View 1: NEWS (Newsletter Card Reader) - Solid Dark Chassis ──────────── */
     .news-reader-card {
@@ -865,6 +903,23 @@
             <span>추천: <span id="newsLikes">0</span></span>
           </div>
 
+          <div class="viewer-theme-toolbar" style="margin-top: 12px; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <a href="https://github.com/uno-km/AMEVA-Workstation" target="_blank" rel="noopener noreferrer" class="viewer-brand-toolbar-link" title="AMEVA Workstation 공식 환경으로 이동">
+                <span class="brand-bolt">⚡</span>
+                <strong>AmevaViewer Engine</strong>
+                <span class="brand-by">by AMEVA Workstation</span>
+                <span class="brand-arrow">↗</span>
+              </a>
+              <button type="button" class="btn-theme-chip btn-wide-toggle" id="newsWideToggle" onclick="LabsApp.toggleWideMode('news')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn-theme-chip active" id="newsThemeDark" onclick="LabsApp.setDetailTheme('dark', 'news')">Cyber Dark</button>
+              <button type="button" class="btn-theme-chip" id="newsThemeWhite" onclick="LabsApp.setDetailTheme('white', 'news')">Light</button>
+              <button type="button" class="btn-theme-chip" id="newsThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'news')">Retro Win98</button>
+            </div>
+          </div>
+
           <!-- AmevaViewer Embedded Content -->
           <div id="newsViewerBody" class="news-body-container"></div>
 
@@ -905,7 +960,12 @@
 
             <div class="viewer-theme-toolbar">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.75rem; font-weight: 700; color: #f8fafc;">AmevaViewer Engine</span>
+                <a href="https://github.com/uno-km/AMEVA-Workstation" target="_blank" rel="noopener noreferrer" class="viewer-brand-toolbar-link" title="AMEVA Workstation 공식 환경으로 이동">
+                  <span class="brand-bolt">⚡</span>
+                  <strong>AmevaViewer Engine</strong>
+                  <span class="brand-by">by AMEVA Workstation</span>
+                  <span class="brand-arrow">↗</span>
+                </a>
                 <button type="button" class="btn-theme-chip btn-wide-toggle" id="analWideToggle" onclick="LabsApp.toggleWideMode('anal')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
               </div>
               <div style="display: flex; gap: 6px;">
@@ -974,7 +1034,12 @@
 
           <div class="viewer-theme-toolbar">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: #f8fafc;">AmevaViewer Engine</span>
+              <a href="https://github.com/uno-km/AMEVA-Workstation" target="_blank" rel="noopener noreferrer" class="viewer-brand-toolbar-link" title="AMEVA Workstation 공식 환경으로 이동">
+                <span class="brand-bolt">⚡</span>
+                <strong>AmevaViewer Engine</strong>
+                <span class="brand-by">by AMEVA Workstation</span>
+                <span class="brand-arrow">↗</span>
+              </a>
               <button type="button" class="btn-theme-chip btn-wide-toggle" id="boardWideToggle" onclick="LabsApp.toggleWideMode('board')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
             </div>
             <div style="display: flex; gap: 6px;">
@@ -1481,6 +1546,12 @@
           dot.className = `news-dot ${idx === this.newsletterIndex ? 'active' : ''}`;
           dot.onclick = () => { this.newsletterIndex = idx; this.displayActiveNewsletter(); };
           dotsContainer.appendChild(dot);
+        });
+
+        const curTheme = this.currentTheme['news'] || 'dark';
+        ['dark', 'white', 'retro'].forEach(t => {
+          const btn = document.getElementById(`newsTheme${t.charAt(0).toUpperCase() + t.slice(1)}`);
+          if (btn) btn.classList.toggle('active', t === curTheme);
         });
 
         this.mountAmevaViewer('news', '#newsViewerBody', item.content || '');
