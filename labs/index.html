@@ -269,6 +269,297 @@
       font-size: 0.8rem;
     }
 
+    /* ── Handbook Curriculum Module Index & Navigation ─────────────────────── */
+    .handbook-curriculum-nav {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+    .hb-curriculum-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hb-curriculum-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .hb-curriculum-stats {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .hb-curriculum-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .hb-mod-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      font-size: 0.78rem;
+      border-radius: 5px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .hb-mod-pill:hover {
+      border-color: #38bdf8;
+      color: var(--text-bright);
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .hb-mod-pill.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.4);
+    }
+    .hb-mod-pill .hb-pill-count {
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+    }
+    .hb-mod-pill.active .hb-pill-count {
+      background: rgba(0, 0, 0, 0.25);
+      color: #ffffff;
+    }
+
+    /* Module Grouping Header in Feed List */
+    .hb-module-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      margin-top: 22px;
+      margin-bottom: 6px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-left: 4px solid #38bdf8;
+      border-radius: 6px;
+    }
+    .hb-module-header:first-child {
+      margin-top: 0;
+    }
+    .hb-module-badge {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      white-space: nowrap;
+    }
+    .hb-module-info {
+      flex: 1;
+    }
+    .hb-module-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin: 0 0 3px 0;
+    }
+    .hb-module-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Handbook Card Special Badges */
+    .hb-chap-num-badge {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .hb-feature-pill {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .hb-feature-pill.lab {
+      border-color: rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+      background: rgba(34, 197, 94, 0.08);
+    }
+    .hb-feature-pill.glossary {
+      border-color: rgba(234, 179, 8, 0.3);
+      color: #facc15;
+      background: rgba(234, 179, 8, 0.08);
+    }
+
+    /* ── In-Article Table of Contents (TOC) Box ────────────────────────────── */
+    .in-article-toc-box {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid #38bdf8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+    .toc-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .toc-box-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .toc-quick-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toc-quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toc-quick-btn:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .toc-quick-btn.lab {
+      border-color: rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+    }
+    .toc-quick-btn.lab:hover {
+      background: rgba(34, 197, 94, 0.15);
+    }
+    .toc-quick-btn.glossary {
+      border-color: rgba(234, 179, 8, 0.3);
+      color: #facc15;
+    }
+    .toc-quick-btn.glossary:hover {
+      background: rgba(234, 179, 8, 0.15);
+    }
+    .toc-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 7px;
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .toc-link-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .toc-link-item:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--text-bright);
+    }
+    .toc-link-item.h3-indent {
+      padding-left: 20px;
+      font-size: 0.75rem;
+    }
+
+    /* ── Handbook Chapter Pager (Prev / Next) ──────────────────────────────── */
+    .handbook-pager-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .pager-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-bright);
+      cursor: pointer;
+      transition: all 0.2s;
+      max-width: 45%;
+      text-decoration: none;
+    }
+    .pager-btn:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .pager-btn .pager-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .pager-btn .pager-title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     /* ── View 3: BOARD (DCInside Style Board + In-place Top Post View) ──────── */
     .board-top-bar {
       display: flex;
@@ -466,7 +757,7 @@
           </button>
           <div class="board-top-post-view">
             <div class="post-view-header">
-              <span class="board-badge badge-anal">RESEARCH</span>
+              <span class="board-badge badge-anal" id="analDetailBadge">RESEARCH</span>
               <h3 id="analDetailTitle"></h3>
               <div class="post-view-meta">
                 <span>작성자: <strong id="analDetailAuthor"></strong> (<span id="analDetailIp"></span>)</span>
@@ -475,6 +766,9 @@
                 <span>추천: <span id="analDetailLikes">0</span></span>
               </div>
             </div>
+
+            <!-- In-Article TOC Container (Dynamically generated from rendered headings) -->
+            <div id="analInArticleToc" class="in-article-toc-box" style="display: none;"></div>
 
             <div class="viewer-theme-toolbar">
               <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-bright);">AmevaViewer SDK Engine</span>
@@ -487,7 +781,10 @@
 
             <div id="analViewerBody" style="margin-bottom: 16px;"></div>
 
-            <div style="display: flex; gap: 8px;">
+            <!-- Chapter Navigation Pager (Prev / Next chapter in Handbook) -->
+            <div id="handbookChapterPager" class="handbook-pager-bar" style="display: none;"></div>
+
+            <div style="display: flex; gap: 8px; margin-top: 18px;">
               <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('anal')">추천</button>
               <button class="btn-action btn-secondary" onclick="LabsApp.copyBibtexCitation()">BibTeX 인용 복사</button>
             </div>
@@ -502,8 +799,11 @@
 
         <!-- Research Top Toolbar -->
         <div class="board-top-bar" id="analTopBar">
-          <div><span class="board-badge badge-anal">RESEARCH DISPATCHES</span></div>
+          <div><span class="board-badge badge-anal" id="analTopBadge">RESEARCH DISPATCHES</span></div>
         </div>
+
+        <!-- Handbook Curriculum Dashboard & Module Filter (Visible only when menu is research-handbook) -->
+        <div id="handbookCurriculumNav" class="handbook-curriculum-nav" style="display: none;"></div>
 
         <!-- Feed List View (Default) -->
         <div id="analFeedList" class="anal-feed-list"></div>
@@ -600,6 +900,66 @@
       { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
       { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
       { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
+    ];
+
+    // 8 Core Handbook Curriculum Modules (26 Lectures SSOT)
+    const HANDBOOK_MODULES = [
+      {
+        num: 1,
+        title: '모바일 임베디드 OS 설계 철학과 부트스트랩',
+        desc: 'AP 전원인가부터 init 유저스페이스 기동 및 Zygote 포크까지의 아키텍처',
+        range: '1.1 ~ 1.3',
+        chapters: ['1.1', '1.2', '1.3']
+      },
+      {
+        num: 2,
+        title: '리눅스 커널 코어 서브시스템',
+        desc: '바인더 드라이버 IPC, ashmem/dma-buf, Low Memory Killer(lmkd), 전원 관리 거버넌스',
+        range: '2.1 ~ 2.4',
+        chapters: ['2.1', '2.2', '2.3', '2.4']
+      },
+      {
+        num: 3,
+        title: '하드웨어 추상화 계층(HAL) 및 그래픽스',
+        desc: 'HIDL에서 AIDL로의 진화, Gralloc 버퍼, Hardware Composer 및 SurfaceFlinger 16.6ms 락스텝',
+        range: '3.1 ~ 3.2',
+        chapters: ['3.1', '3.2']
+      },
+      {
+        num: 4,
+        title: 'ART 가상머신 및 컴파일러 엔지니어링',
+        desc: 'Dalvik 대치 ART 런타임, JIT/dex2oat AOT 하이브리드 컴파일, Concurrent Copying GC',
+        range: '4.1 ~ 4.3',
+        chapters: ['4.1', '4.2', '4.3']
+      },
+      {
+        num: 5,
+        title: '프레임워크 코어 시스템 서비스',
+        desc: 'SystemServer 부팅, ServiceManager, AMS/ATMS 생명주기 관리, WMS 및 터치 이벤트 디스패치',
+        range: '5.1 ~ 5.4',
+        chapters: ['5.1', '5.2', '5.3', '5.4']
+      },
+      {
+        num: 6,
+        title: '보안 모델 및 샌드박싱',
+        desc: 'UID/GID 애플리케이션 격리, SELinux Type Enforcement 도메인 전이, TEE 및 Keystore',
+        range: '6.1 ~ 6.3',
+        chapters: ['6.1', '6.2', '6.3']
+      },
+      {
+        num: 7,
+        title: '유저스페이스 툴체인 및 특권 획득',
+        desc: 'Termux Bionic libc 해부학, ADB AID_SHELL UID 2000, Shizuku AIDL 데몬 아키텍처',
+        range: '7.1 ~ 7.4',
+        chapters: ['7.1', '7.2', '7.3', '7.4']
+      },
+      {
+        num: 8,
+        title: '분산 엣지 컴퓨팅 및 네트워킹',
+        desc: 'WireGuard/Tailscale L3 메시망, L4 소켓 마스킹 프록시, 무인 자가치유 분산 클러스터',
+        range: '8.1 ~ 8.3',
+        chapters: ['8.1', '8.2', '8.3']
+      }
     ];
 
     // ZERO seed data - all tables start completely empty
@@ -808,6 +1168,8 @@
       store: new LabsStore(),
       activeMenuId: 'newsletter',
       activeBoardFilter: 'free-board',
+      activeHandbookModule: 0, // 0 = All modules, 1~8 = Specific module
+      handbookPosts: [],
       activePostId: null,
       newsletterIndex: 0,
       newsletters: [],
@@ -840,6 +1202,20 @@
 
         this.initNewsletterSwipe();
         await this.selectMenu(initialMenu);
+
+        // Deep linking: ?post=ID
+        const postParam = urlParams.get('post');
+        if (postParam) {
+          const pId = parseInt(postParam, 10);
+          if (!isNaN(pId)) {
+            const curMenu = this.store.menus.find(m => m.id === initialMenu);
+            if (curMenu && curMenu.board_type === 'anal') {
+              await this.openAnalDetail(pId, false);
+            } else if (curMenu && curMenu.board_type === 'board') {
+              await this.openBoardPost(pId, false);
+            }
+          }
+        }
       },
 
       handleSidebarNav(menuId) {
@@ -1006,50 +1382,195 @@
         }, { passive: true });
       },
 
-      // ── VIEW 2: ANAL (Research Feed with 200-char Excerpt) ───────────────────
+      // ── VIEW 2: ANAL (Research Feed with 200-char Excerpt & Curriculum Index) ───
+      renderHandbookCurriculumNav() {
+        const navEl = document.getElementById('handbookCurriculumNav');
+        if (!navEl) return;
+
+        let pillsHtml = `
+          <button class="hb-mod-pill ${this.activeHandbookModule === 0 ? 'active' : ''}" onclick="LabsApp.filterHandbookModule(0)">
+            전체 강좌 <span class="hb-pill-count">26</span>
+          </button>
+        `;
+
+        HANDBOOK_MODULES.forEach(m => {
+          const isAct = (this.activeHandbookModule === m.num) ? 'active' : '';
+          pillsHtml += `
+            <button class="hb-mod-pill ${isAct}" onclick="LabsApp.filterHandbookModule(${m.num})" title="${escapeHtml(m.title)}">
+              모듈 ${m.num} <span class="hb-pill-count">${m.chapters.length}</span>
+            </button>
+          `;
+        });
+
+        navEl.innerHTML = `
+          <div class="hb-curriculum-header">
+            <div class="hb-curriculum-title">
+              <span>📚 안드로이드 시스템 엔지니어링 마스터 커리큘럼</span>
+            </div>
+            <div class="hb-curriculum-stats">
+              8대 핵심 모듈 · 총 26개 전문 강좌 · 320대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
+            </div>
+          </div>
+          <div class="hb-curriculum-pills">
+            ${pillsHtml}
+          </div>
+        `;
+      },
+
+      filterHandbookModule(modNum) {
+        this.activeHandbookModule = modNum;
+        this.renderAnalView();
+      },
+
       async renderAnalView() {
         document.getElementById('viewAnal').style.display = 'block';
         document.getElementById('analDetailView').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'flex';
         document.getElementById('analFeedList').style.display = 'flex';
 
+        const topBadge = document.getElementById('analTopBadge');
+        const isHandbook = (this.activeMenuId === 'research-handbook');
+        const curriculumNav = document.getElementById('handbookCurriculumNav');
+
+        if (topBadge) {
+          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (26 LECTURES)';
+          else if (this.activeMenuId === 'research-papers') topBadge.textContent = 'TECHNICAL PAPERS & MONOGRAPHS';
+          else if (this.activeMenuId === 'research-benchmarks') topBadge.textContent = 'FLEET BENCHMARK LAB (S25~S7 DB)';
+          else if (this.activeMenuId === 'research-cluster') topBadge.textContent = 'EDGE CLUSTER ORCHESTRATION';
+          else topBadge.textContent = 'RESEARCH DISPATCHES';
+        }
+
         const posts = await this.store.getPosts(this.activeMenuId);
         const container = document.getElementById('analFeedList');
         container.innerHTML = '';
 
         if (!posts || posts.length === 0) {
+          if (curriculumNav) curriculumNav.style.display = 'none';
           container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 연구 리포트가 없습니다.</div>`;
           return;
         }
 
-        posts.forEach(p => {
-          const dateStr = (p.created_at || '').substring(0, 10);
-          const excerpt = extractExcerpt(p.content, 200);
+        if (isHandbook) {
+          if (curriculumNav) {
+            curriculumNav.style.display = 'block';
+            this.renderHandbookCurriculumNav();
+          }
 
-          const card = document.createElement('div');
-          card.className = 'anal-card';
-          card.onclick = () => this.openAnalDetail(p.id);
-          card.innerHTML = `
-            <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
-            <h3 class="anal-title">${escapeHtml(p.title)}</h3>
-            <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
-            <div class="anal-meta">
-              <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
-              <span>작성일: ${escapeHtml(dateStr)}</span>
-              <span>조회: ${p.view_count || 0}</span>
-              <span>추천: ${p.like_count || 0}</span>
-              <span>댓글: ${p.comment_count || 0}</span>
-              <span class="anal-read-link">연구 리포트 전문 읽기 →</span>
-            </div>
-          `;
-          container.appendChild(card);
-        });
+          // Sort strictly by chapter number (1.1 to 8.3)
+          const sortedPosts = [...posts].sort((a, b) => {
+            const matchA = a.title.match(/^(\d+)\.(\d+)/);
+            const matchB = b.title.match(/^(\d+)\.(\d+)/);
+            if (matchA && matchB) {
+              const maj = parseInt(matchA[1], 10) - parseInt(matchB[1], 10);
+              if (maj !== 0) return maj;
+              return parseInt(matchA[2], 10) - parseInt(matchB[2], 10);
+            }
+            return a.id - b.id;
+          });
+          this.handbookPosts = sortedPosts;
+
+          const targetModules = (this.activeHandbookModule === 0)
+            ? HANDBOOK_MODULES
+            : HANDBOOK_MODULES.filter(m => m.num === this.activeHandbookModule);
+
+          targetModules.forEach(mod => {
+            const modPosts = sortedPosts.filter(p => {
+              const m = p.title.match(/^(\d+)\./);
+              return m && parseInt(m[1], 10) === mod.num;
+            });
+            if (modPosts.length === 0) return;
+
+            // Module Separator Header
+            const modHeader = document.createElement('div');
+            modHeader.className = 'hb-module-header';
+            modHeader.innerHTML = `
+              <span class="hb-module-badge">MODULE 0${mod.num}</span>
+              <div class="hb-module-info">
+                <h4 class="hb-module-title">모듈 ${mod.num}: ${escapeHtml(mod.title)}</h4>
+                <p class="hb-module-desc">${escapeHtml(mod.desc)} · 제 ${mod.range}강 (${modPosts.length}개 강좌)</p>
+              </div>
+            `;
+            container.appendChild(modHeader);
+
+            // Chapter Cards
+            modPosts.forEach(p => {
+              const dateStr = (p.created_at || '').substring(0, 10);
+              const excerpt = extractExcerpt(p.content, 200);
+              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/);
+              const chapCode = chapCodeMatch ? chapCodeMatch[1] : '';
+
+              const hasGlossary = (p.content || '').includes('용어') || (p.content || '').includes('Glossary');
+              const hasLab = (p.content || '').includes('Lab') || (p.content || '').includes('실습');
+              const hasMermaid = (p.content || '').includes('mermaid');
+
+              const card = document.createElement('div');
+              card.className = 'anal-card';
+              card.onclick = () => this.openAnalDetail(p.id);
+              card.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                  <span class="board-badge badge-anal">HANDBOOK</span>
+                  ${chapCode ? `<span class="hb-chap-num-badge">제 ${chapCode} 강</span>` : ''}
+                  ${hasGlossary ? '<span class="hb-feature-pill glossary">💡 20대 핵심 용어집</span>' : ''}
+                  ${hasLab ? '<span class="hb-feature-pill lab">🔬 Hands-on Lab 실습</span>' : ''}
+                  ${hasMermaid ? '<span class="hb-feature-pill">📊 다이어그램</span>' : ''}
+                </div>
+                <h3 class="anal-title">${escapeHtml(p.title)}</h3>
+                <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
+                <div class="anal-meta">
+                  <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
+                  <span>작성일: ${escapeHtml(dateStr)}</span>
+                  <span>조회: ${p.view_count || 0}</span>
+                  <span>추천: ${p.like_count || 0}</span>
+                  <span>댓글: ${p.comment_count || 0}</span>
+                  <span class="anal-read-link">강좌 전문 및 실습 코드 열람 →</span>
+                </div>
+              `;
+              container.appendChild(card);
+            });
+          });
+        } else {
+          // Standard Research Cards
+          if (curriculumNav) curriculumNav.style.display = 'none';
+
+          posts.forEach(p => {
+            const dateStr = (p.created_at || '').substring(0, 10);
+            const excerpt = extractExcerpt(p.content, 200);
+
+            const card = document.createElement('div');
+            card.className = 'anal-card';
+            card.onclick = () => this.openAnalDetail(p.id);
+            card.innerHTML = `
+              <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
+              <h3 class="anal-title">${escapeHtml(p.title)}</h3>
+              <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
+              <div class="anal-meta">
+                <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
+                <span>작성일: ${escapeHtml(dateStr)}</span>
+                <span>조회: ${p.view_count || 0}</span>
+                <span>추천: ${p.like_count || 0}</span>
+                <span>댓글: ${p.comment_count || 0}</span>
+                <span class="anal-read-link">연구 리포트 전문 읽기 →</span>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        }
       },
 
-      async openAnalDetail(postId) {
+      async openAnalDetail(postId, updateHistory = true) {
         this.activePostId = postId;
         const post = await this.store.getPost(postId);
         if (!post) return;
+
+        if (updateHistory) {
+          history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}&post=${postId}`);
+        }
+
+        const isHandbook = (this.activeMenuId === 'research-handbook');
+        const detailBadge = document.getElementById('analDetailBadge');
+        if (detailBadge) {
+          detailBadge.textContent = isHandbook ? 'HANDBOOK' : 'RESEARCH';
+        }
 
         document.getElementById('analDetailTitle').textContent = post.title;
         document.getElementById('analDetailAuthor').textContent = post.author;
@@ -1060,11 +1581,143 @@
 
         document.getElementById('analFeedList').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'none';
+        const curriculumNav = document.getElementById('handbookCurriculumNav');
+        if (curriculumNav) curriculumNav.style.display = 'none';
         document.getElementById('analDetailView').style.display = 'block';
 
         this.mountAmevaViewer('anal', '#analViewerBody', post.content || '');
+
+        // In-Article Table of Contents (TOC) builder
+        const tocContainer = document.getElementById('analInArticleToc');
+        const buildToc = () => {
+          const headings = Array.from(document.querySelectorAll('#analViewerBody h2, #analViewerBody h3'));
+          if (headings.length >= 2) {
+            let labHeading = null;
+            let glossaryHeading = null;
+
+            headings.forEach((h, idx) => {
+              if (!h.id) h.id = `hb-sec-${idx + 1}`;
+              const txt = h.textContent.trim();
+              if (!labHeading && (txt.includes('Lab') || txt.includes('실습'))) {
+                labHeading = h;
+              }
+              if (!glossaryHeading && (txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary'))) {
+                glossaryHeading = h;
+              }
+            });
+
+            let tocHtml = `
+              <div class="toc-box-header">
+                <div class="toc-box-title">
+                  <span>📑 본 강좌 실시간 핵심 목차 (Table of Contents)</span>
+                  <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: normal;">총 ${headings.length}개 섹션 인덱싱</span>
+                </div>
+                <div class="toc-quick-actions">
+                  ${labHeading ? `<button class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
+                  ${glossaryHeading ? `<button class="toc-quick-btn glossary" onclick="LabsApp.jumpToHeading('${glossaryHeading.id}')">💡 전공 용어 해설집 바로가기</button>` : ''}
+                </div>
+              </div>
+              <div class="toc-items-grid">
+            `;
+
+            headings.forEach(h => {
+              const isH3 = h.tagName.toLowerCase() === 'h3';
+              const txt = h.textContent.trim();
+              const isLab = txt.includes('Lab') || txt.includes('실습');
+              const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
+              let pillBadge = '';
+              if (isLab) pillBadge = '<span class="hb-feature-pill lab">Lab 실습</span>';
+              else if (isGlossary) pillBadge = '<span class="hb-feature-pill glossary">용어 해설집</span>';
+
+              tocHtml += `
+                <a class="toc-link-item ${isH3 ? 'h3-indent' : ''}" onclick="LabsApp.jumpToHeading('${h.id}')" title="${escapeHtml(txt)}">
+                  <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(txt)}</span>
+                  ${pillBadge}
+                </a>
+              `;
+            });
+
+            tocHtml += `</div>`;
+            tocContainer.innerHTML = tocHtml;
+            tocContainer.style.display = 'block';
+          } else {
+            tocContainer.style.display = 'none';
+            tocContainer.innerHTML = '';
+          }
+        };
+
+        buildToc();
+        setTimeout(buildToc, 120);
+
+        // Handbook Chapter Pager (Prev / Next)
+        const pagerContainer = document.getElementById('handbookChapterPager');
+        if (isHandbook && this.handbookPosts.length > 0) {
+          const curIdx = this.handbookPosts.findIndex(p => p.id === postId);
+          if (curIdx !== -1) {
+            const prevPost = (curIdx > 0) ? this.handbookPosts[curIdx - 1] : null;
+            const nextPost = (curIdx < this.handbookPosts.length - 1) ? this.handbookPosts[curIdx + 1] : null;
+
+            let pagerHtml = '';
+            if (prevPost) {
+              pagerHtml += `
+                <button class="pager-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" style="flex: 1;">
+                  <span style="font-size: 1.15rem; line-height: 1;">←</span>
+                  <div style="text-align: left; overflow: hidden;">
+                    <span class="pager-label">이전 강좌</span>
+                    <span class="pager-title">${escapeHtml(prevPost.title)}</span>
+                  </div>
+                </button>
+              `;
+            } else {
+              pagerHtml += `<div style="flex: 1; max-width: 48%;"></div>`;
+            }
+
+            pagerHtml += `
+              <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
+                ≡ 커리큘럼 목차
+              </button>
+            `;
+
+            if (nextPost) {
+              pagerHtml += `
+                <button class="pager-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" style="flex: 1;">
+                  <div style="text-align: right; overflow: hidden;">
+                    <span class="pager-label">다음 강좌</span>
+                    <span class="pager-title">${escapeHtml(nextPost.title)}</span>
+                  </div>
+                  <span style="font-size: 1.15rem; line-height: 1;">→</span>
+                </button>
+              `;
+            } else {
+              pagerHtml += `<div style="flex: 1; max-width: 48%;"></div>`;
+            }
+
+            pagerContainer.innerHTML = pagerHtml;
+            pagerContainer.style.display = 'flex';
+          } else {
+            pagerContainer.style.display = 'none';
+          }
+        } else {
+          pagerContainer.style.display = 'none';
+        }
+
         await this.renderCommentsForView('anal', postId);
         window.scrollTo({ top: document.getElementById('analDetailView').offsetTop - 60, behavior: 'smooth' });
+      },
+
+      jumpToHeading(headingId) {
+        const el = document.getElementById(headingId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const origBg = el.style.backgroundColor;
+          const origTransition = el.style.transition;
+          el.style.transition = 'background-color 0.4s ease';
+          el.style.backgroundColor = 'rgba(56, 189, 248, 0.2)';
+          setTimeout(() => {
+            el.style.backgroundColor = origBg || '';
+            el.style.transition = origTransition || '';
+          }, 1400);
+        }
       },
 
       closeAnalDetail() {
@@ -1076,6 +1729,12 @@
         document.getElementById('analDetailView').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'flex';
         document.getElementById('analFeedList').style.display = 'flex';
+        if (this.activeMenuId === 'research-handbook') {
+          const curriculumNav = document.getElementById('handbookCurriculumNav');
+          if (curriculumNav) curriculumNav.style.display = 'block';
+        }
+        history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
       // ── VIEW 3: BOARD (DCInside Style Board) ─────────────────────────────────
@@ -1131,10 +1790,14 @@
         this.selectMenu(menuId);
       },
 
-      async openBoardPost(postId) {
+      async openBoardPost(postId, updateHistory = true) {
         this.activePostId = postId;
         const post = await this.store.getPost(postId);
         if (!post) return;
+
+        if (updateHistory) {
+          history.pushState(null, '', `/labs/index.html?menu=${this.activeBoardFilter}&post=${postId}`);
+        }
 
         const menu = this.store.menus.find(m => m.id === post.menu_id) || { board_type: 'board', name: '자유' };
         document.getElementById('boardPostBadge').className = `board-badge badge-${menu.board_type || 'board'}`;
@@ -1162,6 +1825,7 @@
           this.viewerInstances.board = null;
         }
         document.getElementById('boardTopPostView').style.display = 'none';
+        history.pushState(null, '', `/labs/index.html?menu=${this.activeBoardFilter}`);
         this.renderBoardView(this.activeBoardFilter);
       },
 
