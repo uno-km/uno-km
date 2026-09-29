@@ -135788,7 +135788,7 @@ function normalizeKanbanCode(n) {
 function sanitizeMarkdown(n) {
 	if (!n) return "";
 	let r = n;
-	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/(\r|\n)?\s*ight\)/g, " \\right)"), r = r.replace(/(\r|\n)?\s*ight\}/g, " \\right\\}"), r = r.replace(/(\r|\n)?\s*ight\]/g, " \\right]"), r;
+	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
 }
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
@@ -135811,17 +135811,17 @@ function buildSegments(n) {
 		}
 		return d.push(`<div class="av-math-display">${o}</div>`), `\n\n${f}${a}_\n\n`;
 	}), a = a.replace(/(^|[^\\])\$([^\$\n]+?)\$/g, (n, r, a) => {
-		if (/^\s*\d+([.,]\d+)?\s*$/.test(a) || /^\s*$/.test(a)) return n;
-		let o = d.length, l = "";
+		if (/^\s*\d+([.,]\d+)?\s*$/.test(a) || /^\s*$/.test(a) || a.includes(l)) return n;
+		let o = d.length, p = "";
 		try {
-			l = katex.renderToString(a.trim(), {
+			p = katex.renderToString(a.trim(), {
 				displayMode: !1,
 				throwOnError: !1
 			});
 		} catch (n) {
-			l = `<span class="katex-error">${n?.message || "Math rendering error"}</span>`;
+			p = `<span class="katex-error">${n?.message || "Math rendering error"}</span>`;
 		}
-		return d.push(`<span class="av-math-inline">${l}</span>`), `${r}${f}${o}_`;
+		return d.push(`<span class="av-math-inline">${p}</span>`), `${r}${f}${o}_`;
 	}), a = a.replace(RegExp(`${l}(\\d+)_`, "g"), (n, r) => o[Number(r)] ?? "");
 	let p = [], m = new f$2.Renderer();
 	m.heading = function({ depth: n, text: r }) {
