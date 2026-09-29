@@ -446,8 +446,11 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, message: 'Database wiped successfully.' });
     }
 
-    // ── Diagnostic / Force Seed Actions ────────────────────────────────────────
+    // ── Diagnostic / Force Seed Actions (Local or Protected) ──────────────────
     if (action === 'debug_db') {
+      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
+        return res.status(403).json({ ok: false, error: 'Unauthorized' });
+      }
       res.setHeader('Cache-Control', 'no-store');
       const postCount = await sql`SELECT count(*) FROM labs_posts;`;
       const meta = await sql`SELECT * FROM labs_meta;`;
@@ -462,6 +465,9 @@ export default async function handler(req, res) {
     }
 
     if (action === 'force_seed') {
+      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
+        return res.status(403).json({ ok: false, error: 'Unauthorized' });
+      }
       res.setHeader('Cache-Control', 'no-store');
       await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
       let inserted = 0;
