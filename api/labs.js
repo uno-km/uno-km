@@ -95,7 +95,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v10_latex_right_and_arrows_repaired';
+    const SEED_VERSION = 'v11_academic_tone_zero_hype_refactored';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Clean refresh of master archive

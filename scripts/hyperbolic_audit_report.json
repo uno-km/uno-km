@@ -1,0 +1,96 @@
+{
+  "timestamp": "2026-09-29T01:10:10.877Z",
+  "grandTotal": 0,
+  "inspectedPostsCount": 44,
+  "flaggedPostsCount": 0,
+  "categoryStats": {
+    "1. 최초성 및 자화자찬 (Primacy & Authority Claims)": 0,
+    "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)": 0,
+    "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)": 0,
+    "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)": 0,
+    "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)": 0,
+    "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)": 0,
+    "7. 유치한 비유 및 비격식 구어체 (Childish Metaphors & Colloquialisms)": 0
+  },
+  "ruleStats": {
+    "first_claim": {
+      "label": "최초성 주장",
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "hits": []
+    },
+    "unmatched_claim": {
+      "label": "독보성·우월성 과장",
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "hits": []
+    },
+    "absolute_assertion": {
+      "label": "절대적 무결성 단정",
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "hits": []
+    },
+    "perfect_assertion": {
+      "label": "완벽성 과장",
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "hits": []
+    },
+    "completely_excessive": {
+      "label": "완전히 수식 과잉",
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "hits": []
+    },
+    "zero_latency_exaggeration": {
+      "label": "0초/0ms 비현실적 지연시간 과장",
+      "count": 0,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "hits": []
+    },
+    "hundred_percent_guarantee": {
+      "label": "100% 보장/무결성 단정",
+      "count": 0,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "hits": []
+    },
+    "prescriptive_must": {
+      "label": "절대적 강제 수사",
+      "count": 0,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "hits": []
+    },
+    "violent_kill": {
+      "label": "사살/처단 과격 어휘",
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "hits": []
+    },
+    "violent_eradicate": {
+      "label": "군사적·폭력적 은유",
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "hits": []
+    },
+    "hyperbolic_emotion": {
+      "label": "극찬·감정적 부풀리기",
+      "count": 0,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "hits": []
+    },
+    "slang_metaphor": {
+      "label": "유치한 은유 및 게임 용어",
+      "count": 0,
+      "category": "7. 유치한 비유 및 비격식 구어체 (Childish Metaphors & Colloquialisms)",
+      "hits": []
+    },
+    "colloquial_verb": {
+      "label": "비격식 구어체 및 슬랭",
+      "count": 0,
+      "category": "7. 유치한 비유 및 비격식 구어체 (Childish Metaphors & Colloquialisms)",
+      "hits": []
+    }
+  },
+  "postStats": []
+}

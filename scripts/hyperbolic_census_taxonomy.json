@@ -1,0 +1,1314 @@
+{
+  "grandTotal": 105,
+  "postCount": 44,
+  "categoryStats": {
+    "1. 최초성 및 자화자찬 (Primacy & Authority Claims)": 1,
+    "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)": 26,
+    "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)": 68,
+    "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)": 7,
+    "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)": 0,
+    "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)": 2,
+    "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)": 1
+  },
+  "termStats": {
+    "최초로 규명": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "세계 최초": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "최초의": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "최초": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "규명하였": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "규명하": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "밝혀내": {
+      "count": 1,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [
+        30
+      ],
+      "snippets": [
+        {
+          "postNum": 30,
+          "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+          "snippet": "한계 초과에 기인함을 실측 데이터를 통해 체계적으로 밝혀내고, C++ 런타임 수준에서 이를 보정하는 아키텍처 해"
+        }
+      ]
+    },
+    "독보적": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "유일무이": {
+      "count": 0,
+      "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "절대적": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "절대로": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "절대 ": {
+      "count": 2,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        22,
+        30
+      ],
+      "snippets": [
+        {
+          "postNum": 22,
+          "title": "7.1 Termux 유저스페이스의 해부학 (Termux Userspace Anatomy: Bionic Linker, Proot, Rootless Environment)",
+          "snippet": "an)의 소스 코드와 바이너리는 시스템 기본 경로들을 절대 경로로 하드코딩하고 있습니다:  - 쉘 경로: `/bi"
+        },
+        {
+          "postNum": 30,
+          "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+          "snippet": "연산 결과와 Vulkan GPU 출력 텐서 간의 평균 절대 오차율. - **물리 공유 메모리 ($M_{\\text{"
+        }
+      ]
+    },
+    "완벽히": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "완벽하게": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "완벽한": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "완전히": {
+      "count": 24,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        19
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "어, 내부 캐시, GPU, 디스플레이 컨트롤러 전원을 완전히 끄고, RAM의 리프레시 전원(Self-Refresh"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "의 OOM(Out of Memory) 킬러는 메모리가 완전히 고갈될 때까지 기다리다가 무차별적으로 프로세스를 강제"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "`은 시스템 부팅과 데몬 프로세스를 관리하는 방식에서 완전히 대척점에 있습니다.  ```mermaid flowch"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "Java/Android 프레임워크의 세계로 제어권을 완전히 넘깁니다.  ---  ## 6. Hands-on La"
+        },
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "코드)를 자동 생성하여 바인더 직렬화 보일러플레이트를 완전히 은닉함.  * 📱 **실제 안드로이드 시스템 적용"
+        }
+      ]
+    },
+    "완전한": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "완전무결": {
+      "count": 0,
+      "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "100%": {
+      "count": 7,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "posts": [
+        3,
+        8,
+        9,
+        21,
+        29,
+        30
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "팬 발열 제어의 문제입니다. 시스템이 24시간 내내 100% CPU 클럭을 유지하더라도 물리적인 시스템 다운은 발"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "스로틀링 관측  별도의 터미널 창을 열고 모든 코어에 100% 부하를 유발하는 수학적 루프를 기동합니다:  ```b"
+        },
+        {
+          "postNum": 8,
+          "title": "2.3 Android 메모리 서브시스템 (Ashmem, ION, DMA-BUF, ZRAM Architecture)",
+          "snippet": "- 물리 RAM의 일정 비율(보통 전체 램의 50%~100%)을 압축 가상 블록 디바이스(`/dev/block/z"
+        },
+        {
+          "postNum": 9,
+          "title": "2.4 전원 관리 서브시스템 (Power Governance: WakeLocks, Runtime PM, Energy-Aware Scheduling)",
+          "snippet": "지 않고 밤새 방치하면, 화면이 꺼져 있어도 CPU가 100% 가동되어 아침에 배터리가 0%로 방전됩니다.    -"
+        },
+        {
+          "postNum": 21,
+          "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+          "snippet": "). C++의 고질적인 메모리 취약점을 근절하기 위해 100% Rust 언어로 재작성되었으며, 바인더 IPC 통신과"
+        }
+      ]
+    },
+    "0ms": {
+      "count": 29,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "posts": [
+        3,
+        7,
+        11,
+        12,
+        14,
+        17,
+        25,
+        28,
+        33,
+        35,
+        37,
+        38,
+        41,
+        44
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "irection LR          T1[\"<b>0.0ms ~ 4.0ms</b><br/>Touch Event P"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "LR          T1[\"<b>0.0ms ~ 4.0ms</b><br/>Touch Event Processin"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "RootImpl)\"]          T2[\"<b>4.0ms ~ 8.0ms</b><br/>UI Layout & V"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": ")\"]          T2[\"<b>4.0ms ~ 8.0ms</b><br/>UI Layout & View Trav"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "/ Record)\"]          T3[\"<b>8.0ms ~ 12.0ms</b><br/>GPU Draw Com"
+        }
+      ]
+    },
+    "0초 만에": {
+      "count": 0,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "posts": [],
+      "snippets": []
+    },
+    "0초": {
+      "count": 32,
+      "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+      "posts": [
+        2,
+        3,
+        5,
+        7,
+        9,
+        15,
+        17,
+        21,
+        25,
+        28,
+        29,
+        32,
+        37,
+        38,
+        44
+      ],
+      "snippets": [
+        {
+          "postNum": 2,
+          "title": "[Vol. 2] AMEVA 주간 엔지니어링 브리핑: 60억 DiT 모바일 완주 & 시스템 핸드북 26강 전면 공개",
+          "snippet": "`DreamShaper 8 (1.0B)`: 16분 40초 완주 (표준 일러스트)   - `Z-Image Tur"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "찼을 때 화면을 터치해도 아무런 반응이 없고 5초~10초간 스마트폰 전체가 얼어붙는 현상(Freeze)의 주범"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "기본 라이브러리를 로드하느라 앱 1개 실행에 5초~10초씩 걸리게 됩니다.  ---  ### 8. System"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "**직관적 비유**: 거대한 공장의 모든 기계실을 30초마다 한 번씩 순찰하며 '기계 잘 돌아가고 있습니까?'"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "oper)에 주기적으로 하트비트 메시지를 전송하고, 60초 이내에 응답이 오지 않으면 교착상태(Deadlock)"
+        }
+      ]
+    },
+    "필수적": {
+      "count": 0,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "posts": [],
+      "snippets": []
+    },
+    "필수불가결": {
+      "count": 0,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "posts": [],
+      "snippets": []
+    },
+    "반드시": {
+      "count": 4,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "posts": [
+        3,
+        6,
+        22
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "% 증가합니다. 또한 NDK/C++ 공유 라이브러리가 반드시 16KB 경계(-Wl,-z,max-page-size="
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "스로틀링 현상을 기록하십시오.  3. 실습 종료 후 반드시 부하 프로세스를 종료합니다:  ```bash  adb"
+        },
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "eption이 발생하며 통신이 중단됩니다. (이 경우 반드시 Ashmem/DMA-BUF나 파일 디스크립터(fd)를"
+        },
+        {
+          "postNum": 22,
+          "title": "7.1 Termux 유저스페이스의 해부학 (Termux Userspace Anatomy: Bionic Linker, Proot, Rootless Environment)",
+          "snippet": "셔뱅(Shebang)은 `#!/bin/sh`가 아니라 반드시 `#!/data/data/com.termux/file"
+        }
+      ]
+    },
+    "무조건": {
+      "count": 2,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "posts": [
+        43
+      ],
+      "snippets": [
+        {
+          "postNum": 43,
+          "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+          "snippet": "습니다 / 그렇습니다\"` | 342 | 74.5% | 무조건적 긍정 | | **2** | `\"공감합니다 / 깊이"
+        },
+        {
+          "postNum": 43,
+          "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+          "snippet": ".0** | | **주요 수렴 양상** | 이전 발언 무조건 복사 | 2~3턴 후 반박 중단 | 논리적 타협점을"
+        }
+      ]
+    },
+    "어떤 경우에도": {
+      "count": 1,
+      "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+      "posts": [
+        20
+      ],
+      "snippets": [
+        {
+          "postNum": 20,
+          "title": "6.2 SELinux Type Enforcement 및 Domain Transition 정책 (SELinux MAC Security Governance)",
+          "snippet": "검증  * 💡 **직관적 비유**: 헌법 제1조: '어떤 경우에도 살인은 정당화될 수 없다'처럼, 하위 법률(벤더 커스"
+        }
+      ]
+    },
+    "영구 박멸": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "박멸": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "처형": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "처단": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "물리적으로 차단": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "분쇄": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "섬멸": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "타겟 확보": {
+      "count": 0,
+      "category": "5. 과격성 및 군사적 은유 (Aggressive & Violent Metaphors)",
+      "posts": [],
+      "snippets": []
+    },
+    "압도적": {
+      "count": 1,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [
+        8
+      ],
+      "snippets": [
+        {
+          "postNum": 8,
+          "title": "2.3 Android 메모리 서브시스템 (Ashmem, ION, DMA-BUF, ZRAM Architecture)",
+          "snippet": "비하면 마이크로초($\\mu\\text{s}$) 단위로 압도적으로 빠릅니다.    ---    ## 5. UFS 4"
+        }
+      ]
+    },
+    "기적적": {
+      "count": 0,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [],
+      "snippets": []
+    },
+    "혁명적": {
+      "count": 0,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [],
+      "snippets": []
+    },
+    "극적": {
+      "count": 1,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [
+        31
+      ],
+      "snippets": [
+        {
+          "postNum": 31,
+          "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+          "snippet": "대해 원인 규명을 포기하고 호환 목록에서 제외하는 소극적 조치를 취해 왔습니다.   본 연구는 물리적 펜스 계"
+        }
+      ]
+    },
+    "비약적": {
+      "count": 0,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [],
+      "snippets": []
+    },
+    "경이로운": {
+      "count": 0,
+      "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+      "posts": [],
+      "snippets": []
+    },
+    "증명하였습니다": {
+      "count": 1,
+      "category": "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)",
+      "posts": [
+        44
+      ],
+      "snippets": [
+        {
+          "postNum": 44,
+          "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+          "snippet": "ext{cpu}}, T_{\\text{gpu}})$)을 증명하였습니다. Qualcomm Snapdragon 8 Elite("
+        }
+      ]
+    },
+    "무한 수긍": {
+      "count": 0,
+      "category": "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)",
+      "posts": [],
+      "snippets": []
+    },
+    "의사 디커플링": {
+      "count": 0,
+      "category": "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)",
+      "posts": [],
+      "snippets": []
+    },
+    "봉착하게": {
+      "count": 0,
+      "category": "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)",
+      "posts": [],
+      "snippets": []
+    }
+  },
+  "postStats": [
+    {
+      "num": 3,
+      "menu_id": "research-handbook",
+      "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+      "total": 14,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "어, 내부 캐시, GPU, 디스플레이 컨트롤러 전원을 완전히 끄고, RAM의 리프레시 전원(Self-Refresh"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "의 OOM(Out of Memory) 킬러는 메모리가 완전히 고갈될 때까지 기다리다가 무차별적으로 프로세스를 강제"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "팬 발열 제어의 문제입니다. 시스템이 24시간 내내 100% CPU 클럭을 유지하더라도 물리적인 시스템 다운은 발"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "스로틀링 관측  별도의 터미널 창을 열고 모든 코어에 100% 부하를 유발하는 수학적 루프를 기동합니다:  ```b"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "irection LR          T1[\"<b>0.0ms ~ 4.0ms</b><br/>Touch Event P"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "LR          T1[\"<b>0.0ms ~ 4.0ms</b><br/>Touch Event Processin"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "RootImpl)\"]          T2[\"<b>4.0ms ~ 8.0ms</b><br/>UI Layout & V"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": ")\"]          T2[\"<b>4.0ms ~ 8.0ms</b><br/>UI Layout & View Trav"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "/ Record)\"]          T3[\"<b>8.0ms ~ 12.0ms</b><br/>GPU Draw Com"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "\"]          T3[\"<b>8.0ms ~ 12.0ms</b><br/>GPU Draw Commands Dis"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "rThread)\"]          T4[\"<b>12.0ms ~ 16.6ms</b><br/>SurfaceFling"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "찼을 때 화면을 터치해도 아무런 반응이 없고 5초~10초간 스마트폰 전체가 얼어붙는 현상(Freeze)의 주범"
+        },
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "% 증가합니다. 또한 NDK/C++ 공유 라이브러리가 반드시 16KB 경계(-Wl,-z,max-page-size="
+        },
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "스로틀링 현상을 기록하십시오.  3. 실습 종료 후 반드시 부하 프로세스를 종료합니다:  ```bash  adb"
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "menu_id": "research-handbook",
+      "title": "2.2 Low Memory Killer (LMK / lmkd) 및 oom_score_adj 평가 메커니즘",
+      "total": 14,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "hrashing)이 발생하여 스마트폰 화면이 수 초간 완전히 멈춥니다.    Android는 이 문제를 해결하기"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "Android는 이 문제를 해결하기 위해, 메모리가 완전히 고갈되기 훨씬 전에 사용자 경험(UX) 관점에서 가장"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "e Stall Information) 엔진의 결합으로 완전히 진화했습니다.    ```mermaid  sequen"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "시스템의 모든 CPU 코어가 메모리 회수를 기다리느라 완전히 멈춰버린 치명적 정체 시간의 비율.    `lmkd`"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "of Memory) 킬러는 물리 메모리와 스왑 공간이 완전히 고갈된 절망적인 순간에만 발동하여 시스템 패닉을 유발"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ", 저장 좀 하고요'라는 마지막 유언을 들을 기회조차 완전히 박탈하고 지체 없이 프로세스를 종료하는 강제 시그널("
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "* 🔬 **공학적 정의**:    - 사용자가 앱을 완전히 닫았더라도 프로세스를 즉시 종료하지 않고 리눅스 메모"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "을 재실행할 때 Zygote fork와 클래스 로딩을 완전히 건너뛰는 핫 스타트(Hot Start: 0.1초 미만"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "`lmkd`는 커널에 `some 100 20` (100ms 윈도우 동안 20ms 이상 정체 발생 시 알림) 트리"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "`some 100 20` (100ms 윈도우 동안 20ms 이상 정체 발생 시 알림) 트리거를 걸어두고, 이벤트"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "의 앱을 띄워두고 카메라를 켤 때, 표준 리눅스라면 10초간 시스템 프리징(스래싱)이 일어나겠지만 안드로이드는"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "되지 못하고 멈춰서 기다린(Stall) 시간의 비율(10초, 60초, 300초 평균)을 계측함. `Some`은"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "고 멈춰서 기다린(Stall) 시간의 비율(10초, 60초, 300초 평균)을 계측함. `Some`은 최소 1개"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "기다린(Stall) 시간의 비율(10초, 60초, 300초 평균)을 계측함. `Some`은 최소 1개 이상의 프"
+        }
+      ]
+    },
+    {
+      "num": 15,
+      "menu_id": "research-handbook",
+      "title": "5.1 SystemServer 토폴로지 및 ServiceManager (SystemServer Topology & ServiceManager)",
+      "total": 10,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "r 내부의 한 스레드가 동기화 락(Lock)에 걸려 60초 이상 응답하지 못하면, Watchdog.java 스레"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "니다:  1. **스레드 핸들러 핑(Ping)**: 30초마다 `main`, `android.ui`, `andr"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": ".  3. **타임아웃 및 자폭**: 특정 스레드가 60초(Half-Watchdog: 30초 경고) 동안 감시"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": ": 특정 스레드가 60초(Half-Watchdog: 30초 경고) 동안 감시 메시지를 처리하지 못하면, Watc"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "## 4. SystemServer Watchdog (60초 데드락 감시 엔진)  * 💡 **직관적 비유**:"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "엔진)  * 💡 **직관적 비유**: 순찰을 돌며 30초마다 모든 부서의 책상 벨을 누르고 다니는 엄격한 감사"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "을 누르고 다니는 엄격한 감사관. 만약 어떤 부서가 60초 동안 대답을 하지 못하고 뻗어 있으면(스레드 락 교착"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "dler 큐에 정기적으로 체크 메시지를 포스팅하고, 60초 이내에 완료되지 않으면 스레드 교착상태(Deadloc"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "세스 트리만을 종료 후 즉시 재생성하여 부팅 시간을 10초 이내로 단축하면서 시스템 서비스를 초기화하는 메커니즘"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "드가 AMS 락을 요청하면 즉시 교착상태가 발생하여 60초 뒤 워치독에 의해 시스템 커널 패닉 및 강제 재부팅이"
+        }
+      ]
+    },
+    {
+      "num": 44,
+      "menu_id": "research-papers",
+      "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+      "total": 6,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "mal_zone*/temp`)를 통해 칩셋 온도를 500ms 주기로 수집.  ### 3.3 표본 기기 추출 및 테"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "병렬 처리력 덕분에 인코더 시간은 S25 기준 2,840ms에서 385ms로 약 7.38배 단축되었습니다. 그러나"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "$N=1$ 커널 런치 오버헤드로 인해 CPU의 1,420ms보다 오히려 2배 이상 증가한 3,120ms를 기록하였"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "의 1,420ms보다 오히려 2배 이상 증가한 3,120ms를 기록하였습니다.  ### 4.3 단계별 이기종 분할"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "다: 1. **인코더 구간의 대량 행렬곱 부하**: 30초 오디오 청크를 80개 멜 채널과 1500개 프레임으로"
+        },
+        {
+          "category": "7. 부자연스러운 AI 번역체 및 비문 (Awkward AI Tone & Artifacts)",
+          "term": "증명하였습니다",
+          "snippet": "ext{cpu}}, T_{\\text{gpu}})$)을 증명하였습니다. Qualcomm Snapdragon 8 Elite("
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "menu_id": "research-handbook",
+      "title": "2.3 Android 메모리 서브시스템 (Ashmem, ION, DMA-BUF, ZRAM Architecture)",
+      "total": 5,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "C/UFS 플래시 메모리의 수명(P/E Cycle)이 완전히 보존됩니다.  2. 레이턴시 트레이드오프: 스왑 인/"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "사례**:    - 최신 AOSP는 파편화된 ION을 완전히 퇴출하고 DMA-BUF Heaps(`/dev/dma_"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "* 🔬 **공학적 정의**:    - 물리적으로 완전히 연속된 거대한 물리 메모리 블록을 필요로 하는 하드웨"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "- 물리 RAM의 일정 비율(보통 전체 램의 50%~100%)을 압축 가상 블록 디바이스(`/dev/block/z"
+        },
+        {
+          "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+          "term": "압도적",
+          "snippet": "비하면 마이크로초($\\mu\\text{s}$) 단위로 압도적으로 빠릅니다.    ---    ## 5. UFS 4"
+        }
+      ]
+    },
+    {
+      "num": 29,
+      "menu_id": "research-papers",
+      "title": "안드로이드 모바일 환경에서 트랜스포머 음성인식 모델의 Vulkan 가속 파이프라인 설계 및 런타임 결함 분석",
+      "total": 5,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "결과, 지원 대상 전 기기에서 드라이버 초기화 성공률 100%를 달성하였으며, 텔레메트리 데이터의 무결성을 확보하였"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "**평가 데이터/도구:** LibriSpeech 및 30초 단위 표준 음성 청크, `whisper-cli`, A"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "5120 |  Whisper Turbo 모델의 경우 30초 오디오 당 인코더 연산량은 약 $1.63\\text{"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "6대 물리 플릿 실측 벤치마크 매트릭스 모든 측정은 30초 표준 오디오 입력을 대상으로 10회 반복 수행 후 평"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "### 5.3 연구의 한계 및 향후 과제 본 논문은 30초 고정 윈도우 인코더 구조를 중심으로 검증되었습니다."
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "menu_id": "research-handbook",
+      "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+      "total": 4,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "Java/Android 프레임워크의 세계로 제어권을 완전히 넘깁니다.  ---  ## 6. Hands-on La"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "기본 라이브러리를 로드하느라 앱 1개 실행에 5초~10초씩 걸리게 됩니다.  ---  ### 8. System"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "**직관적 비유**: 거대한 공장의 모든 기계실을 30초마다 한 번씩 순찰하며 '기계 잘 돌아가고 있습니까?'"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "oper)에 주기적으로 하트비트 메시지를 전송하고, 60초 이내에 응답이 오지 않으면 교착상태(Deadlock)"
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "menu_id": "research-handbook",
+      "title": "2.4 전원 관리 서브시스템 (Power Governance: WakeLocks, Runtime PM, Energy-Aware Scheduling)",
+      "total": 3,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "어, 내부 캐시, GPU, 디스플레이 컨트롤러 전원을 완전히 끄고, RAM의 리프레시 전원(Self-Refresh"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "지 않고 밤새 방치하면, 화면이 꺼져 있어도 CPU가 100% 가동되어 아침에 배터리가 0%로 방전됩니다.    -"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "증  스마트폰 화면 전원 버튼을 눌러 화면을 끈 후 10초 대기합니다.  이후 PC 터미널에서 서스펜드 통계를"
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "menu_id": "research-handbook",
+      "title": "3.1 모놀리식 HAL에서 바인더화된 HAL(Binderized HAL)로의 진화 (Evolution of Hardware Abstraction: HIDL to Stable AIDL)",
+      "total": 3,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ": 식당 주방과 외부 가스 기사실을 두꺼운 방화벽으로 완전히 격리하고, 벽 사이에 안전한 전용 무전기(바인더 IP"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "정의**:    - Android 10부터 HIDL을 완전히 대체하기 위해 도입된 차세대 시스템 인터페이스 표준."
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ": 일반 시민들의 인터넷 통신망(표준 binder)과 완전히 분리된, 군부대와 발전소 전용 특수 보안 광케이블(h"
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "menu_id": "research-handbook",
+      "title": "4.1 Dalvik VM vs ART: 아키텍처 패러다임 전환 (Runtime Architecture: Dalvik to ART)",
+      "total": 3,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "가비지 컬렉터를 기반으로 모바일 런타임의 패러다임을 완전히 전환시켰습니다.    ---    ## 2. 가상머신"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "- Android 5.0부터 Dalvik 가상머신을 완전히 퇴출하고 공식 런타임으로 등극한 차세대 모바일 실행"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "C 정지 시간 (STW) | 2회 발생, 통상 30~50ms (화면 쟁크 유발) | 1회 이하, 1~2ms (동시"
+        }
+      ]
+    },
+    {
+      "num": 30,
+      "menu_id": "research-papers",
+      "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+      "total": 3,
+      "findings": [
+        {
+          "category": "1. 최초성 및 자화자찬 (Primacy & Authority Claims)",
+          "term": "밝혀내",
+          "snippet": "한계 초과에 기인함을 실측 데이터를 통해 체계적으로 밝혀내고, C++ 런타임 수준에서 이를 보정하는 아키텍처 해"
+        },
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대 ",
+          "snippet": "연산 결과와 Vulkan GPU 출력 텐서 간의 평균 절대 오차율. - **물리 공유 메모리 ($M_{\\text{"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "32 (24KB 규격)로 동적 축소하여 컴파일 성공률 100% 달성. 3. **Large Tile GEMM 파이프라"
+        }
+      ]
+    },
+    {
+      "num": 35,
+      "menu_id": "research-benchmarks",
+      "title": "갤럭시 S20 72시간 연속 AI 추론 스트레스 테스트: 발열 및 메모리 누수 분석",
+      "total": 3,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "e Domain') | 5.0 | 5.0 | 633.90ms | ✅ PASS | | **Phase 2** | 인-"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "명주기 획득/해제 | 7.0 | 7.0 | 1105.50ms | ✅ PASS | | **Phase 4** | 연속"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "속 10회 브라우저 수명주기 반복 스트레스 (평균 800ms) | 20.0 | 20.0 | 8883.37ms |"
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "menu_id": "research-handbook",
+      "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "코드)를 자동 생성하여 바인더 직렬화 보일러플레이트를 완전히 은닉함.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "eption이 발생하며 통신이 중단됩니다. (이 경우 반드시 Ashmem/DMA-BUF나 파일 디스크립터(fd)를"
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "menu_id": "research-handbook",
+      "title": "3.2 그래픽 파이프라인 (Graphics Pipeline: Gralloc, HWComposer, SurfaceFlinger, VSYNC Lockstep)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "Note over Clock: VSYNC 0ms (프레임 N 시작)      Clock->>App:"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "*:    - 메인 스레드가 무거운 파일 로딩으로 100ms 동안 멈춰 있더라도, 물결 애니메이션(Ripple E"
+        }
+      ]
+    },
+    {
+      "num": 14,
+      "menu_id": "research-handbook",
+      "title": "4.3 ART 가비지 컬렉션 (ART Garbage Collection: Concurrent Copying GC & Generational Regions)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "과거 Dalvik 시절에는 GC가 한 번 돌 때마다 50ms~100ms씩 STW 정지가 발생하여 스크롤할 때마다"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "vik 시절에는 GC가 한 번 돌 때마다 50ms~100ms씩 STW 정지가 발생하여 스크롤할 때마다 화면이 멈추"
+        }
+      ]
+    },
+    {
+      "num": 17,
+      "menu_id": "research-handbook",
+      "title": "5.3 WMS 및 입력 이벤트 서브시스템 (Window Management & Input Subsystem)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "ISPATCHING_TIMEOUT_NANOS = 5000ms`) 동안 응답을 반환하지 못하면:  1. `Input"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "스레드가 무거운 연산이나 DB 작업으로 블로킹되어 5.0초 이내에 이벤트를 처리하고 응답 신호를 보내지 못하면,"
+        }
+      ]
+    },
+    {
+      "num": 21,
+      "menu_id": "research-handbook",
+      "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "100%",
+          "snippet": "). C++의 고질적인 메모리 취약점을 근절하기 위해 100% Rust 언어로 재작성되었으며, 바인더 IPC 통신과"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "을 수행하며, 5회 이상 실패 시 하드웨어 타이머로 30초간 잠금을 강제함.  * 📱 **실제 안드로이드 시스"
+        }
+      ]
+    },
+    {
+      "num": 22,
+      "menu_id": "research-handbook",
+      "title": "7.1 Termux 유저스페이스의 해부학 (Termux Userspace Anatomy: Bionic Linker, Proot, Rootless Environment)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대 ",
+          "snippet": "an)의 소스 코드와 바이너리는 시스템 기본 경로들을 절대 경로로 하드코딩하고 있습니다:  - 쉘 경로: `/bi"
+        },
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "셔뱅(Shebang)은 `#!/bin/sh`가 아니라 반드시 `#!/data/data/com.termux/file"
+        }
+      ]
+    },
+    {
+      "num": 25,
+      "menu_id": "research-handbook",
+      "title": "7.4 2중 관제탑(Dual-Master) 고가용성 모바일 클러스터 및 자가치유 워치독 아키텍처",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "rt 주입 후 복구 지연시간(Latency): 1,240ms (1.24초) - 신규 PID 할당: PID 2847"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "💡 **직관적 비유**: 잠수함과 지상 기지 간에 10초마다 '생존 확인 핑!' $\rightarrow$ '생존"
+        }
+      ]
+    },
+    {
+      "num": 28,
+      "menu_id": "research-handbook",
+      "title": "8.3 Master-Worker 분산 AI 오케스트레이션 및 Self-Healing Watchdog 설계",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": ">1. L3 Tailscale Ping (&lt; 100ms)<br/>2. SSH Port Probe (:8022"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "prop dev.bootcomplete 대기 (최대 60초)          Wait_Boot --> Shizu"
+        }
+      ]
+    },
+    {
+      "num": 33,
+      "menu_id": "research-benchmarks",
+      "title": "갤럭시 S25부터 S7까지: 6종 단말기 온디바이스 AI 8대 모델 실측 성능 비교",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "**20.0** | 30회 평균 지연시간: **786.0ms**, 메모리 누수 미검출 (RSS 40.2MB 수렴)"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "브라우저 생성-소멸, 평균 회당 지연시간 **786.0ms**)   - 프로세스 메모리 점유율 (RSS): 초기"
+        }
+      ]
+    },
+    {
+      "num": 37,
+      "menu_id": "research-cluster",
+      "title": "PC와 갤럭시 단말기를 활용한 2중 마스터(Dual-Master) 장애 극복(Failover) 체계",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "rt 주입 후 복구 지연시간(Latency): 1,240ms (1.24초) - 신규 PID 할당: PID 2847"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "💡 **직관적 비유**: 잠수함과 지상 기지 간에 10초마다 '생존 확인 핑!' $\rightarrow$ '생존"
+        }
+      ]
+    },
+    {
+      "num": 38,
+      "menu_id": "research-cluster",
+      "title": "이종 스마트폰 분산 AI 추론과 프로세스 자동 복구(Auto-Healing)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": ">1. L3 Tailscale Ping (&lt; 100ms)<br/>2. SSH Port Probe (:8022"
+        },
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "prop dev.bootcomplete 대기 (최대 60초)          Wait_Boot --> Shizu"
+        }
+      ]
+    },
+    {
+      "num": 43,
+      "menu_id": "research-papers",
+      "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+      "total": 2,
+      "findings": [
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "무조건",
+          "snippet": "습니다 / 그렇습니다\"` | 342 | 74.5% | 무조건적 긍정 | | **2** | `\"공감합니다 / 깊이"
+        },
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "무조건",
+          "snippet": ".0** | | **주요 수렴 양상** | 이전 발언 무조건 복사 | 2~3턴 후 반박 중단 | 논리적 타협점을"
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "menu_id": "newsletter",
+      "title": "[Vol. 2] AMEVA 주간 엔지니어링 브리핑: 60억 DiT 모바일 완주 & 시스템 핸드북 26강 전면 공개",
+      "total": 1,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "`DreamShaper 8 (1.0B)`: 16분 40초 완주 (표준 일러스트)   - `Z-Image Tur"
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "menu_id": "research-handbook",
+      "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "`은 시스템 부팅과 데몬 프로세스를 관리하는 방식에서 완전히 대척점에 있습니다.  ```mermaid flowch"
+        }
+      ]
+    },
+    {
+      "num": 13,
+      "menu_id": "research-handbook",
+      "title": "4.2 하이브리드 컴파일 파이프라인 (Hybrid Compilation: JIT, AOT dex2oat, Profile-Guided PGO)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "데이트나 재부팅 시 비용이 큰 바이트코드 검증 과정을 완전히 생략(Skip)할 수 있도록 캐싱해 둔 아티팩트 파일"
+        }
+      ]
+    },
+    {
+      "num": 19,
+      "menu_id": "research-handbook",
+      "title": "6.1 UID/GID 멀티테넌시 샌드박스 (UID/GID Multitenancy Application Sandboxing)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 및 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "의 애플리케이션 = 1명의 가상 Linux 사용자\"로 완전히 재해석하여, 모바일 역사상 가장 강력한 기본 샌드박스"
+        }
+      ]
+    },
+    {
+      "num": 20,
+      "menu_id": "research-handbook",
+      "title": "6.2 SELinux Type Enforcement 및 Domain Transition 정책 (SELinux MAC Security Governance)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "4. 당위성 및 강제성 남발 (Prescriptive Overstatement)",
+          "term": "어떤 경우에도",
+          "snippet": "검증  * 💡 **직관적 비유**: 헌법 제1조: '어떤 경우에도 살인은 정당화될 수 없다'처럼, 하위 법률(벤더 커스"
+        }
+      ]
+    },
+    {
+      "num": 31,
+      "menu_id": "research-papers",
+      "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+      "total": 1,
+      "findings": [
+        {
+          "category": "6. 극찬 및 감정적 수식어 (Emotional & Hyperbolic Adjectives)",
+          "term": "극적",
+          "snippet": "대해 원인 규명을 포기하고 호환 목록에서 제외하는 소극적 조치를 취해 왔습니다.   본 연구는 물리적 펜스 계"
+        }
+      ]
+    },
+    {
+      "num": 32,
+      "menu_id": "research-papers",
+      "title": "메모리 제약 모바일 디바이스에서 레이어 스트리밍을 활용한 대규모 Diffusion Transformer 추론 기법 실증",
+      "total": 1,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0초",
+          "snippet": "| **54초 (초고속 프리뷰)** | **16분 40초 (표준 일러스트)** | **5시간 15분 (정밀 렌"
+        }
+      ]
+    },
+    {
+      "num": 41,
+      "menu_id": "research-papers",
+      "title": "자원 제약 환경의 다중 에이전트 담론 시뮬레이션을 위한 상태 분리형 추론 파이프라인 설계",
+      "total": 1,
+      "findings": [
+        {
+          "category": "3. 100% 및 0ms/0초 비현실적 수치 (Unrealistic 100% & 0-Latency Metrics)",
+          "term": "0ms",
+          "snippet": "율**: `nvidia-smi` 인터페이스를 통해 100ms 주기로 프로세스별 GPU 메모리 사용량을 수집. -"
+        }
+      ]
+    }
+  ]
+}

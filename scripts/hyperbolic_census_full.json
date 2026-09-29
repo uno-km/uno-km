@@ -1,0 +1,2775 @@
+{
+  "grandTotal": 316,
+  "postCount": 44,
+  "categoryStats": {
+    "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)": 32,
+    "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)": 168,
+    "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)": 83,
+    "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)": 4,
+    "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)": 26,
+    "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)": 3
+  },
+  "termStats": {
+    "최초로 규명": {
+      "count": 1,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        31
+      ],
+      "snippets": [
+        {
+          "postNum": 31,
+          "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+          "snippet": "(Integer Truncation) 현상이 원인임을 최초로 규명하였습니다:  $$\\text{loadstride}_b"
+        }
+      ]
+    },
+    "세계 최초": {
+      "count": 0,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [],
+      "snippets": []
+    },
+    "최초의": {
+      "count": 5,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        5
+      ],
+      "snippets": [
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "P의 리셋 라인을 HIGH로 해제하며, Core 0가 최초의 명령어 페치(Fetch)를 개시합니다.  ### 5."
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "호출하여 네이티브 C++ 프로세스 메모리 공간 안에 최초의 Java VM 인스턴스를 구축하고, JNI 인터페이스"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "을 떠 하드웨어의 안전을 점검하는 절대 변조 불가능한 최초의 수문장. * 🔬 **공학적 정의**:   - 스마트"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "각인되어 전원이 인가되는 순간 CPU 코어가 실행하는 최초의 하드웨어 기계어 코드. 외부 플래시 메모리에서 2단계"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "- 리눅스 커널이 부팅을 완료하고 가장 먼저 생성하는 최초의 유저스페이스 프로세스(PID 1). First-Sta"
+        }
+      ]
+    },
+    "최초": {
+      "count": 17,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        3,
+        5,
+        13,
+        23,
+        30,
+        31
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "/b><br/>3.3 GHz @ 1.15V<br/>앱 최초 기동 및 터치 부스트\"]            OPP1"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "레드 극대화 성능을 발휘. UI 터치 인터랙션 및 앱 최초 실행 런처 부트 시에만 순간적으로 기동.  2. **"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "무지막지하게 센 장사. 무거운 돌을 번쩍 들 때(앱 최초 실행, 3D 렌더링)만 잠깐 일하고 바로 잠듦."
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "\"]         PID1[\"PID 1 유저스페이스 최초 프로세스 기동: /system/bin/init\"]"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "Server와 시스템 프레임워크 완성  Zygote가 최초로 `fork()`하여 생성하는 프로세스가 바로 And"
+        }
+      ]
+    },
+    "규명하였": {
+      "count": 5,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        29,
+        31,
+        43
+      ],
+      "snippets": [
+        {
+          "postNum": 29,
+          "title": "안드로이드 모바일 환경에서 트랜스포머 음성인식 모델의 Vulkan 가속 파이프라인 설계 및 런타임 결함 분석",
+          "snippet": "TDR) 와치독 등 모바일 특유의 물리적 제약 요인을 규명하였습니다.  Qualcomm Snapdragon 계열 3"
+        },
+        {
+          "postNum": 31,
+          "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+          "snippet": "eger Truncation) 현상이 원인임을 최초로 규명하였습니다:  $$\\text{loadstride}_b ="
+        },
+        {
+          "postNum": 31,
+          "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+          "snippet": "발생하던 Vulkan 추론 크래시의 원인을 실증적으로 규명하였습니다: - **H1 검증**: 서브그룹 크기 16 환"
+        },
+        {
+          "postNum": 43,
+          "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+          "snippet": "강화(Self-Reinforcement)되기 때문임을 규명하였습니다. 또한 모델 파라미터 크기(1.5B vs 3B"
+        },
+        {
+          "postNum": 43,
+          "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+          "snippet": "를 통해 자율 에이전트 담론의 의견 동조화 메커니즘을 규명하였습니다: - **H1 검증**: 가드레일이 배제된 환경"
+        }
+      ]
+    },
+    "밝혀내었": {
+      "count": 0,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [],
+      "snippets": []
+    },
+    "독보적": {
+      "count": 2,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        6,
+        22
+      ],
+      "snippets": [
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "회로 단축하고, 커널 레벨 송신자 신원 보증을 결합한 독보적인 모바일 IPC 인프라입니다.    그러나 시스템 아"
+        },
+        {
+          "postNum": 22,
+          "title": "7.1 Termux 유저스페이스의 해부학 (Termux Userspace Anatomy: Bionic Linker, Proot, Rootless Environment)",
+          "snippet": "Git, OpenSSH, SQLite 등)를 제공하는 독보적인 터미널 에뮬레이터이자 리눅스 유저스페이스 배포판입니"
+        }
+      ]
+    },
+    "유일무이": {
+      "count": 1,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        6
+      ],
+      "snippets": [
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "명령을 성공적으로 호출한 프로세스만이 바인더 세상의 유일무이한 0번 노드(`ServiceManager`)가 되며,"
+        }
+      ]
+    },
+    "기적적": {
+      "count": 0,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [],
+      "snippets": []
+    },
+    "혁명적": {
+      "count": 0,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [],
+      "snippets": []
+    },
+    "압도적": {
+      "count": 1,
+      "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+      "posts": [
+        8
+      ],
+      "snippets": [
+        {
+          "postNum": 8,
+          "title": "2.3 Android 메모리 서브시스템 (Ashmem, ION, DMA-BUF, ZRAM Architecture)",
+          "snippet": "비하면 마이크로초($\\mu\\text{s}$) 단위로 압도적으로 빠릅니다.    ---    ## 5. UFS 4"
+        }
+      ]
+    },
+    "절대적": {
+      "count": 4,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        3,
+        12,
+        20,
+        21
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "운영체제 차원에서 100% 금지하고 ZRAM을 만든 절대적인 이유입니다.    ---    ### 10. I/O"
+        },
+        {
+          "postNum": 12,
+          "title": "4.1 Dalvik VM vs ART: 아키텍처 패러다임 전환 (Runtime Architecture: Dalvik to ART)",
+          "snippet": ". 실행 시 컴파일 지연과 CPU 소모가 전혀 없다는 절대적 장점이 있음.  * 📱 **실제 안드로이드 시스템"
+        },
+        {
+          "postNum": 20,
+          "title": "6.2 SELinux Type Enforcement 및 Domain Transition 정책 (SELinux MAC Security Governance)",
+          "snippet": "- AOSP의 `sepolicy` 소스코드에 선언된 절대적 보안 불변식 규칙. 벤더나 OEM 제조사가 편의를 위"
+        },
+        {
+          "postNum": 21,
+          "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+          "snippet": "을 하드웨어 레벨에서 수학적으로 검증하는 모든 신뢰의 절대적 시발점.  * 📱 **실제 안드로이드 시스템 적용"
+        }
+      ]
+    },
+    "절대로": {
+      "count": 3,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        4,
+        6,
+        21
+      ],
+      "snippets": [
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "Execute)을 철저히 분리하여, 감상하는 동안에는 절대로 낙서를 못 하게 막는 보안 유리벽. * 🔬 **공학"
+        },
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "거대한 이삿짐 박스는 우체통 입구에 물리적으로 걸려서 절대로 들어갈 수 없음.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "postNum": 21,
+          "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+          "snippet": "d 내부에서만 읽을 수 있으며, Android OS는 절대로 이 키를 볼 수 없습니다.    ---    ## 3"
+        }
+      ]
+    },
+    "완벽히": {
+      "count": 43,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        12,
+        13,
+        14,
+        16,
+        18,
+        19,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        31,
+        37,
+        39,
+        40
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "태스킹(Preemptive Multitasking)을 완벽히 제공하면서도, 배터리라는 유한한 물리적 에너지 예산과"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "에서 빈틈없이 감싸 쥐어 물이 단 한 방울도 안 새게 완벽히 차단하는 구조.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "지 않고도 코어 간 캐시 라인 전송을 통해 0초 만에 완벽히 이전 상태를 이어받아 계산할 수 있는 기반이 됩니다."
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "되면 Android 15/16 16KB 페이지 규격을 완벽히 준수하는 바이너리입니다. `0x1000` (4KB)으"
+        },
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "써, 길고 정교했던 안드로이드 부트스트랩 파이프라인이 완벽히 완료됩니다.  ---  ## 4. 최신 Android"
+        }
+      ]
+    },
+    "완벽하게": {
+      "count": 17,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        5,
+        6,
+        10,
+        12,
+        13,
+        19,
+        20,
+        21,
+        22,
+        23,
+        25,
+        27,
+        37,
+        40
+      ],
+      "snippets": [
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "본 지식과 영어 단어, 교과서 8,000권을 머릿속에 완벽하게 외워둔 슈퍼 복제 인간. 새로운 학생(신규 앱)이 필"
+        },
+        {
+          "postNum": 6,
+          "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+          "snippet": "면 두 나라(프로세스 A와 B)는 내부 사정을 몰라도 완벽하게 소통하고 협력할 수 있음.  * 🔬 **공학적 정의"
+        },
+        {
+          "postNum": 10,
+          "title": "3.1 모놀리식 HAL에서 바인더화된 HAL(Binderized HAL)로의 진화 (Evolution of Hardware Abstraction: HIDL to Stable AIDL)",
+          "snippet": "이커의 자동차(삼성, 샤오미, 소니)에 얹어도 시동이 완벽하게 걸리는 규격화된 순정 엔진 블록.  * 🔬 **공학"
+        },
+        {
+          "postNum": 12,
+          "title": "4.1 Dalvik VM vs ART: 아키텍처 패러다임 전환 (Runtime Architecture: Dalvik to ART)",
+          "snippet": "ik JIT)를 버리고, 책을 사자마자 미리 한국어로 완벽하게 번역해 두고 읽는 초고속 번역 낭독가(ART).  *"
+        },
+        {
+          "postNum": 12,
+          "title": "4.1 Dalvik VM vs ART: 아키텍처 패러다임 전환 (Runtime Architecture: Dalvik to ART)",
+          "snippet": "게 아니라, 가게 오픈 전에 미리 100그릇의 국밥을 완벽하게 끓여두고 손님이 오자마자 0초 만에 상에 올려놓는 사"
+        }
+      ]
+    },
+    "완벽한": {
+      "count": 23,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        5,
+        7,
+        11,
+        13,
+        16,
+        22,
+        23,
+        26,
+        27,
+        28,
+        38,
+        39,
+        40,
+        41
+      ],
+      "snippets": [
+        {
+          "postNum": 5,
+          "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+          "snippet": "는 학생만 자기 노트 한 장에 따로 적어두는(COW) 완벽한 절약법. * 🔬 **공학적 정의**:   - Zyg"
+        },
+        {
+          "postNum": 7,
+          "title": "2.2 Low Memory Killer (LMK / lmkd) 및 oom_score_adj 평가 메커니즘",
+          "snippet": "을 지었을 때 금고를 꺼내 이전 집과 똑같이 꾸며놓는 완벽한 위장술.  * 🔬 **공학적 정의**:    - 안"
+        },
+        {
+          "postNum": 11,
+          "title": "3.2 그래픽 파이프라인 (Graphics Pipeline: Gralloc, HWComposer, SurfaceFlinger, VSYNC Lockstep)",
+          "snippet": "패널 이미지로 합성하여 디스플레이로 쏴주는 전 과정이 완벽한 하드웨어 VSYNC 락스텝(Lockstep) 하에서"
+        },
+        {
+          "postNum": 13,
+          "title": "4.2 하이브리드 컴파일 파이프라인 (Hybrid Compilation: JIT, AOT dex2oat, Profile-Guided PGO)",
+          "snippet": "롭게 책장과 옷장을 정리하는(백그라운드 AOT) 가장 완벽한 이사 전략.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "postNum": 13,
+          "title": "4.2 하이브리드 컴파일 파이프라인 (Hybrid Compilation: JIT, AOT dex2oat, Profile-Guided PGO)",
+          "snippet": "수만 명의 베테랑 게이머들이 먼저 클리어하면서 작성한 완벽한 공략집(클라우드 집계 프로파일)을, 신규 유저가 게임"
+        }
+      ]
+    },
+    "완전히": {
+      "count": 62,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        29,
+        30,
+        32,
+        33,
+        37,
+        40
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "소모가 수백 mW에 달하여 배터리가 8~10시간 만에 완전히 방전됩니다.    #### 2.1.2 Android의"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "(Thrashing)이 발생하여 UI 전체가 수 초간 완전히 멈추게 됩니다.    #### 2.2.2 Androi"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "지스터(Head switch/Foot switch)를 완전히 OFF하여 해당 IP 블록의 전원 공급선($V_{DD"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "누설 전류($P_{\\text{static}}$)까지 완전히 0으로 소멸시키는 심층 절전 기법.  * 📱 **실"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "히 쉬면서 뇌와 근육(CPU 코어, 모뎀, GPU)을 완전히 정지시켜 봄이 올 때까지 최소한의 에너지로 생존함."
+        }
+      ]
+    },
+    "완전무결": {
+      "count": 0,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [],
+      "snippets": []
+    },
+    "완전한": {
+      "count": 16,
+      "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+      "posts": [
+        1,
+        4,
+        10,
+        22,
+        24,
+        27,
+        28,
+        38,
+        40
+      ],
+      "snippets": [
+        {
+          "postNum": 1,
+          "title": "AMEVA Labs 출범 및 온디바이스 AI 연구 생태계 백서 (Vol. 1)",
+          "snippet": ", 사용자 프라이버시 침해, 그리고 네트워크 단절 시 완전한 동작 불능이라는 구조적 한계를 안고 있습니다.  **"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "유저스페이스(User-space) 환경이 결합되어야 완전한 운영체제가 완성됩니다.  역사적으로 전통적인 Linu"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "direction TB         G1[\"완전한 POSIX.1 / ISO C99 표준 준수\"]"
+        },
+        {
+          "postNum": 10,
+          "title": "3.1 모놀리식 HAL에서 바인더화된 HAL(Binderized HAL)로의 진화 (Evolution of Hardware Abstraction: HIDL to Stable AIDL)",
+          "snippet": "임워크)과 /vendor 파티션(하드웨어 드라이버)의 완전한 프로세스 분리 및 IPC 인터페이스 표준화\"입니다."
+        },
+        {
+          "postNum": 10,
+          "title": "3.1 모놀리식 HAL에서 바인더화된 HAL(Binderized HAL)로의 진화 (Evolution of Hardware Abstraction: HIDL to Stable AIDL)",
+          "snippet": "IDL HAL    ### 5.1 HIDL 패스스루의 완전한 단절 (Android 14+)  Android 14부"
+        }
+      ]
+    },
+    "100%": {
+      "count": 76,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        21,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        37,
+        38,
+        39,
+        40
+      ],
+      "snippets": [
+        {
+          "postNum": 1,
+          "title": "AMEVA Labs 출범 및 온디바이스 AI 연구 생태계 백서 (Vol. 1)",
+          "snippet": "Compute SPIR-V, NPU)의 연산 능력을 100% 극한까지 끌어내는 **자율 주권형 온디바이스 인텔리전"
+        },
+        {
+          "postNum": 2,
+          "title": "[Vol. 2] AMEVA 주간 엔지니어링 브리핑: 60억 DiT 모바일 완주 & 시스템 핸드북 26강 전면 공개",
+          "snippet": "임베딩을 분배하고, 무거운 DiT 행렬곱만 GPU에 100% 집중.   3. **초고속 TAESD 결합**: 무거"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "팬 발열 제어의 문제입니다. 시스템이 24시간 내내 100% CPU 클럭을 유지하더라도 물리적인 시스템 다운은 발"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "D}$)을 물리적으로 단선시킴으로써 정적 누설 전류를 100% 차단합니다.  - **EAS와 연계된 DVFS(Dyn"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "스로틀링 관측  별도의 터미널 창을 열고 모든 코어에 100% 부하를 유발하는 수학적 루프를 기동합니다:  ```b"
+        }
+      ]
+    },
+    "100 %": {
+      "count": 0,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "무조건": {
+      "count": 6,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [
+        3,
+        4,
+        17,
+        43
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "WakeLock을 잡고 있지 않은 한 OS가 CPU를 무조건 잠재우도록 설계했습니다.    #### 2.1.3 시"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "S 커널)가 타이머를 재고 있다가 0.01초가 지나면 무조건 마이크를 강제로 뺏어서 다음 사람에게 쥐어주는 공평한"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "유**: 식당에서 소스를 만들 때 레시피를 전 세계에 무조건 무료 공개해야 하는 특수 효모(GPLv3)를 주방에"
+        },
+        {
+          "postNum": 17,
+          "title": "5.3 WMS 및 입력 이벤트 서브시스템 (Window Management & Input Subsystem)",
+          "snippet": "화 창이나 보안 경고 다이얼로그가 항상 앱 화면 위에 무조건 최상위로 덮여 나오는 이유가 높은 Z-Order 값"
+        },
+        {
+          "postNum": 43,
+          "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+          "snippet": "습니다 / 그렇습니다\"` | 342 | 74.5% | 무조건적 긍정 | | **2** | `\"공감합니다 / 깊이"
+        }
+      ]
+    },
+    "무결점": {
+      "count": 0,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "어떠한 경우에도": {
+      "count": 0,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [],
+      "snippets": []
+    },
+    "어떤 경우에도": {
+      "count": 1,
+      "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+      "posts": [
+        20
+      ],
+      "snippets": [
+        {
+          "postNum": 20,
+          "title": "6.2 SELinux Type Enforcement 및 Domain Transition 정책 (SELinux MAC Security Governance)",
+          "snippet": "검증  * 💡 **직관적 비유**: 헌법 제1조: '어떤 경우에도 살인은 정당화될 수 없다'처럼, 하위 법률(벤더 커스"
+        }
+      ]
+    },
+    "영구 박멸": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "박멸": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "분쇄": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "섬멸": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "처형": {
+      "count": 1,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [
+        7
+      ],
+      "snippets": [
+        {
+          "postNum": 7,
+          "title": "2.2 Low Memory Killer (LMK / lmkd) 및 oom_score_adj 평가 메커니즘",
+          "snippet": "시스템 적용 사례**:    - lmkd가 프로세스를 처형할 때 logcat에 `lmkd: Kill 'com.e"
+        }
+      ]
+    },
+    "처단": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "타겟 확보": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "물리적으로 차단": {
+      "count": 3,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [
+        3,
+        19,
+        21
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "ep 서브시스템이 동작하여 CPU 코어의 전압 레일을 물리적으로 차단(Power Gating)합니다.  2. 메인보드의 센"
+        },
+        {
+          "postNum": 19,
+          "title": "6.1 UID/GID 멀티테넌시 샌드박스 (UID/GID Multitenancy Application Sandboxing)",
+          "snippet": "메신저 백업 파일을 몰래 훔쳐보는 스파이웨어 행위가 물리적으로 차단되었습니다.    ---    ### 7. FUSE ("
+        },
+        {
+          "postNum": 21,
+          "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+          "snippet": "하드웨어 버스 에러(Data Abort)를 발생시켜 물리적으로 차단합니다.  3. **SMC (Secure Monitor"
+        }
+      ]
+    },
+    "물리적 박멸": {
+      "count": 0,
+      "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+      "posts": [],
+      "snippets": []
+    },
+    "필수적": {
+      "count": 7,
+      "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+      "posts": [
+        4,
+        9,
+        26,
+        28,
+        38,
+        39
+      ],
+      "snippets": [
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "RT 런타임을 수정하려면 전체 OS OTA 업데이트가 필수적이었습니다. Android 10부터 도입된 Projec"
+        },
+        {
+          "postNum": 9,
+          "title": "2.4 전원 관리 서브시스템 (Power Governance: WakeLocks, Runtime PM, Energy-Aware Scheduling)",
+          "snippet": "라운드 연산을 유지합니다. (Termux 서버 구동에 필수적인 락).  2. `SCREEN_DIM_WAKE_LOC"
+        },
+        {
+          "postNum": 9,
+          "title": "2.4 전원 관리 서브시스템 (Power Governance: WakeLocks, Runtime PM, Energy-Aware Scheduling)",
+          "snippet": "며 배터리를 낭비하는 틱리스 커널(NO_HZ) 튜닝이 필수적입니다.    ### 5.2 Android PowerM"
+        },
+        {
+          "postNum": 26,
+          "title": "8.1 WireGuard / Tailscale L3 오버레이 메쉬 토폴로지 (WireGuard & Tailscale L3 Overlay Mesh Topology)",
+          "snippet": "블랙홀 현상이 발생하므로, MTU 1280 최적화가 필수적입니다.    ---"
+        },
+        {
+          "postNum": 28,
+          "title": "8.3 Master-Worker 분산 AI 오케스트레이션 및 Self-Healing Watchdog 설계",
+          "snippet": "가치유(Self-Healing) 분산 오케스트레이터가 필수적입니다.    본 장에서는 Host Controller"
+        }
+      ]
+    },
+    "필수불가결": {
+      "count": 0,
+      "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+      "posts": [],
+      "snippets": []
+    },
+    "필수 불가결": {
+      "count": 0,
+      "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+      "posts": [],
+      "snippets": []
+    },
+    "반드시": {
+      "count": 19,
+      "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+      "posts": [
+        3,
+        4,
+        6,
+        7,
+        9,
+        16,
+        17,
+        18,
+        19,
+        22,
+        26,
+        39
+      ],
+      "snippets": [
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "스, 원격 프록시 서버를 구축하려는 시스템 엔지니어는 반드시 다음 사실을 기본 전제로 수용해야 합니다:    >"
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "% 증가합니다. 또한 NDK/C++ 공유 라이브러리가 반드시 16KB 경계(-Wl,-z,max-page-size="
+        },
+        {
+          "postNum": 3,
+          "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+          "snippet": "스로틀링 현상을 기록하십시오.  3. 실습 종료 후 반드시 부하 프로세스를 종료합니다:  ```bash  adb"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "램을 직접 실행하거나 쉘 프롬프트를 띄울 수 없으며, 반드시 그 위에 C 표준 라이브러리(libc), 초기화 데몬"
+        },
+        {
+          "postNum": 4,
+          "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+          "snippet": "한 기계어를 메모리에 기록한 후, 이를 실행하기 전에 반드시 `mprotect(addr, size, PROT_RE"
+        }
+      ]
+    },
+    "무한 수긍": {
+      "count": 0,
+      "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+      "posts": [],
+      "snippets": []
+    },
+    "의사 디커플링": {
+      "count": 0,
+      "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+      "posts": [],
+      "snippets": []
+    },
+    "봉착하게": {
+      "count": 0,
+      "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+      "posts": [],
+      "snippets": []
+    },
+    "증명하였습니다": {
+      "count": 3,
+      "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+      "posts": [
+        30,
+        44
+      ],
+      "snippets": [
+        {
+          "postNum": 30,
+          "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+          "snippet": "이터레이션을 누락시키는 심각한 최적화 결함이 있음을 증명하였습니다. 또한 Adreno 650의 물리적 공유 메모리(32"
+        },
+        {
+          "postNum": 44,
+          "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+          "snippet": "ext{cpu}}, T_{\\text{gpu}})$)을 증명하였습니다. Qualcomm Snapdragon 8 Elite("
+        },
+        {
+          "postNum": 44,
+          "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+          "snippet": "pu}}, T_{\\text{gpu}})$을 물리적으로 증명하였습니다.  ### 5.2 학술적 및 시스템 엔지니어링적 시사"
+        }
+      ]
+    }
+  },
+  "postStats": [
+    {
+      "num": 3,
+      "menu_id": "research-handbook",
+      "title": "1.1 모바일 임베디드 운영체제의 설계 철학 및 트레이드오프 (Mobile Embedded OS Design Philosophy & Trade-offs)",
+      "total": 24,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "/b><br/>3.3 GHz @ 1.15V<br/>앱 최초 기동 및 터치 부스트\"]            OPP1"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "레드 극대화 성능을 발휘. UI 터치 인터랙션 및 앱 최초 실행 런처 부트 시에만 순간적으로 기동.  2. **"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "무지막지하게 센 장사. 무거운 돌을 번쩍 들 때(앱 최초 실행, 3D 렌더링)만 잠깐 일하고 바로 잠듦."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대적",
+          "snippet": "운영체제 차원에서 100% 금지하고 ZRAM을 만든 절대적인 이유입니다.    ---    ### 10. I/O"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "태스킹(Preemptive Multitasking)을 완벽히 제공하면서도, 배터리라는 유한한 물리적 에너지 예산과"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "에서 빈틈없이 감싸 쥐어 물이 단 한 방울도 안 새게 완벽히 차단하는 구조.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "지 않고도 코어 간 캐시 라인 전송을 통해 0초 만에 완벽히 이전 상태를 이어받아 계산할 수 있는 기반이 됩니다."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "소모가 수백 mW에 달하여 배터리가 8~10시간 만에 완전히 방전됩니다.    #### 2.1.2 Android의"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "(Thrashing)이 발생하여 UI 전체가 수 초간 완전히 멈추게 됩니다.    #### 2.2.2 Androi"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "지스터(Head switch/Foot switch)를 완전히 OFF하여 해당 IP 블록의 전원 공급선($V_{DD"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "누설 전류($P_{\\text{static}}$)까지 완전히 0으로 소멸시키는 심층 절전 기법.  * 📱 **실"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "히 쉬면서 뇌와 근육(CPU 코어, 모뎀, GPU)을 완전히 정지시켜 봄이 올 때까지 최소한의 에너지로 생존함."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "어, 내부 캐시, GPU, 디스플레이 컨트롤러 전원을 완전히 끄고, RAM의 리프레시 전원(Self-Refresh"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "팬 발열 제어의 문제입니다. 시스템이 24시간 내내 100% CPU 클럭을 유지하더라도 물리적인 시스템 다운은 발"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "D}$)을 물리적으로 단선시킴으로써 정적 누설 전류를 100% 차단합니다.  - **EAS와 연계된 DVFS(Dyn"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "스로틀링 관측  별도의 터미널 창을 열고 모든 코어에 100% 부하를 유발하는 수학적 루프를 기동합니다:  ```b"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "이것이 안드로이드가 디스크 스왑을 운영체제 차원에서 100% 금지하고 ZRAM을 만든 절대적인 이유입니다."
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "의 OOM(Out of Memory) 킬러는 메모리가 100% 바닥날 때까지 기다리다가 무차별적으로 프로세스를 사살"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": "WakeLock을 잡고 있지 않은 한 OS가 CPU를 무조건 잠재우도록 설계했습니다.    #### 2.1.3 시"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": "S 커널)가 타이머를 재고 있다가 0.01초가 지나면 무조건 마이크를 강제로 뺏어서 다음 사람에게 쥐어주는 공평한"
+        },
+        {
+          "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+          "term": "물리적으로 차단",
+          "snippet": "ep 서브시스템이 동작하여 CPU 코어의 전압 레일을 물리적으로 차단(Power Gating)합니다.  2. 메인보드의 센"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "스, 원격 프록시 서버를 구축하려는 시스템 엔지니어는 반드시 다음 사실을 기본 전제로 수용해야 합니다:    >"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "% 증가합니다. 또한 NDK/C++ 공유 라이브러리가 반드시 16KB 경계(-Wl,-z,max-page-size="
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "스로틀링 현상을 기록하십시오.  3. 실습 종료 후 반드시 부하 프로세스를 종료합니다:  ```bash  adb"
+        }
+      ]
+    },
+    {
+      "num": 13,
+      "menu_id": "research-handbook",
+      "title": "4.2 하이브리드 컴파일 파이프라인 (Hybrid Compilation: JIT, AOT dex2oat, Profile-Guided PGO)",
+      "total": 23,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "PK와 함께 패키징하여 다운로드하므로, 사용자는 앱을 최초로 켜는 첫 순간부터 100% 최적화된 기계어 속도로"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "iles를 적용한 앱은 플레이 스토어에서 다운로드받아 최초 실행하는 순간부터 기동 속도가 최대 30~40% 빨라"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "일 밤 짐을 풀며 사는 불편함(100% 인터프리터)을 완벽히 절충하여, 오늘 밤 당장 잘 침대와 이불만 먼저 펴고"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "주요 화면 전환 렌더링 성능은 순수 100% AOT와 완벽히 동일한 수준을 유지합니다.    ---    ###"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "구글 플레이 클라우드 프로파일의 콜드 스타트 문제를 완벽히 해결함.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "전 점검과 현대화 공사(AOT 컴파일)를 거쳐 본관과 완벽히 융합시키는 과정.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "지연이 있을 수 있으나, 다음날부터는 보조 DEX가 완벽히 기계어로 컴파일되어 초고속으로 열립니다.    ---"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "직관적 비유**: 외국어 책의 주요 챕터들을 한국어로 완벽하게 번역해 둔 정식 출판 번역본 책자.  * 🔬 **공"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "를 조립 설명서를 보며 조립하는 대신, 공장에서 이미 완벽하게 조립이 끝난 거대 성채 완성품을 통째로 배송받아 책상"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "인수인계 매뉴얼. 사수가 없어도 첫날부터 실수 없이 완벽하게 업무를 처리할 수 있음.  * 🔬 **공학적 정의*"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "롭게 책장과 옷장을 정리하는(백그라운드 AOT) 가장 완벽한 이사 전략.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "수만 명의 베테랑 게이머들이 먼저 클리어하면서 작성한 완벽한 공략집(클라우드 집계 프로파일)을, 신규 유저가 게임"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "데이트나 재부팅 시 비용이 큰 바이트코드 검증 과정을 완전히 생략(Skip)할 수 있도록 캐싱해 둔 아티팩트 파일"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "이트코드를 `dex2oat`를 통해 네이티브 기계어로 100% 컴파일했습니다. 그러나 이는 다음과 같은 새로운 병목"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "운로드하므로, 사용자는 앱을 최초로 켜는 첫 순간부터 100% 최적화된 기계어 속도로 앱을 구동할 수 있습니다."
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "T 컴파일.     - speed: 전체 바이트코드를 100% AOT 컴파일 (저장 공간 최다 소모).    ---"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "리 용량 비교  ```bash  # 모든 바이트코드를 100% ARM64 네이티브 기계어로 컴파일  adb shel"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "전체를 한 번에 다 푸느라 3일 밤을 새우는 바보짓(100% AOT)과, 매일 밤 짐을 풀며 사는 불편함(100%"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "100% AOT)과, 매일 밤 짐을 풀며 사는 불편함(100% 인터프리터)을 완벽히 절충하여, 오늘 밤 당장 잘 침"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "앱 실행 속도와 주요 화면 전환 렌더링 성능은 순수 100% AOT와 완벽히 동일한 수준을 유지합니다.    --"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "용자는 앱을 단 한 번도 실행하지 않고도 첫 실행부터 100% 최적화된 PGO 혜택을 즉시 누림.  * 📱 **실"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "일, `speed`는 앱의 모든 바이트코드를 남김없이 100% 네이티브 기계어로 컴파일함.  * 📱 **실제 안드"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "**직관적 비유**: 은행에서 위조지폐 검사를 이미 100% 완료하고 '검사 통과' 특수 스탬프를 찍어둔 현금 다"
+        }
+      ]
+    },
+    {
+      "num": 27,
+      "menu_id": "research-handbook",
+      "title": "8.2 소켓 프록싱(Socket Masking)을 통한 통신사 QoS 및 테더링 방화벽 바이패스",
+      "total": 19,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "웃바운드 패킷의 TTL이 단말기 로컬 소켓에서 64로 완벽히 리셋되어 전송됨을 검증합니다.    ---    ##"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "널의 포워딩 라우팅을 거치지 않으므로 패킷의 TTL이 완벽히 순수 단말 자체 생성 값(`64`)으로 전송되어 테더"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "사에 걸리는 취약점을 IPv6 듀얼스택 프록시를 통해 완벽히 방어합니다.    ---    ### 8. TLS C"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "드 순정 스마트폰 사용자들의 표준 걸음걸이와 동일하게 완벽히 걸음걸이를 모방하여 걷는 기술.  * 🔬 **공학적"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "파이썬 L4 프록시 스크립트만으로 테더링 제한 우회를 완벽히 구현할 수 있습니다.    ---    ### 10."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "스 소켓 프록싱(Socket Masking) 기법으로 완벽하게 우회하는 시스템 엔지니어링 원리를 분석합니다."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "1이 A35의 프록시 포트로 자유롭게 진입할 수 있어 완벽한 무제한 데이터 공유망이 완성됩니다.    ---"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "단말기 자체의 Bionic 네트워크 스택에서 생성된 완벽한 모바일 패킷으로 재조립되어 DPI 장비를 100% 무"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "써서(로컬 소켓 재생성) 자기 이름으로 우체통에 넣는 완벽한 신분 세탁.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "지 빈틈없이 새 도장으로 갈아 끼워 검문소를 통과하는 완벽한 보안 위장.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "페이로드를 읽어 스마트폰의 로컬 유저스페이스 소켓에서 완전히 새로운 아웃바운드 TCP 연결을 생성(Re-Origi"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "의 로컬 소켓 프록시(proxy_server.py)는 완전한 L4 유저스페이스 소켓을 생성하므로, 패킷의 TCP"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "앱의 단말 자체 브라우징 트래픽\"<br/>테더링 감지 100% 불가능      Carrier-->>Proxy: ✅"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "성된 완벽한 모바일 패킷으로 재조립되어 DPI 장비를 100% 무력화합니다.    ---    ## 6. Merma"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "`63` 또는 `127`로 감점되어 테더링 트래픽임이 100% 탄로 남.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": ")하여 전송하는 우회 기법. 통신사 기지국 입장에서는 100% 스마트폰 자체 앱이 소켓을 연 것으로 인식됨.  *"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "자체 생성 값(`64`)으로 전송되어 테더링 검열을 100% 무력화합니다.    ---    ### 6. 로컬 단"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "비특권 권한만으로도 소켓 레벨에서 동일한 우회 효과를 100% 달성하는 우아한 엔지니어링 해법.  * 📱 **실제"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "화하여 수백 Mbps 이상의 5G 대역폭을 손실 없이 100% 전송함.  * 📱 **실제 안드로이드 시스템 적용"
+        }
+      ]
+    },
+    {
+      "num": 40,
+      "menu_id": "research-cluster",
+      "title": "통신사 테더링 속도 제한(QoS) 우회: 안드로이드 L4 소켓 프록시 구현",
+      "total": 19,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "웃바운드 패킷의 TTL이 단말기 로컬 소켓에서 64로 완벽히 리셋되어 전송됨을 검증합니다.    ---    ##"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "널의 포워딩 라우팅을 거치지 않으므로 패킷의 TTL이 완벽히 순수 단말 자체 생성 값(`64`)으로 전송되어 테더"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "사에 걸리는 취약점을 IPv6 듀얼스택 프록시를 통해 완벽히 방어합니다.    ---    ### 8. TLS C"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "드 순정 스마트폰 사용자들의 표준 걸음걸이와 동일하게 완벽히 걸음걸이를 모방하여 걷는 기술.  * 🔬 **공학적"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "파이썬 L4 프록시 스크립트만으로 테더링 제한 우회를 완벽히 구현할 수 있습니다.    ---    ### 10."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "스 소켓 프록싱(Socket Masking) 기법으로 완벽하게 우회하는 시스템 엔지니어링 원리를 분석합니다."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "1이 A35의 프록시 포트로 자유롭게 진입할 수 있어 완벽한 무제한 데이터 공유망이 완성됩니다.    ---"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "단말기 자체의 Bionic 네트워크 스택에서 생성된 완벽한 모바일 패킷으로 재조립되어 DPI 장비를 100% 무"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "써서(로컬 소켓 재생성) 자기 이름으로 우체통에 넣는 완벽한 신분 세탁.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "지 빈틈없이 새 도장으로 갈아 끼워 검문소를 통과하는 완벽한 보안 위장.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "페이로드를 읽어 스마트폰의 로컬 유저스페이스 소켓에서 완전히 새로운 아웃바운드 TCP 연결을 생성(Re-Origi"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "의 로컬 소켓 프록시(proxy_server.py)는 완전한 L4 유저스페이스 소켓을 생성하므로, 패킷의 TCP"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "앱의 단말 자체 브라우징 트래픽\"<br/>테더링 감지 100% 불가능      Carrier-->>Proxy: ✅"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "성된 완벽한 모바일 패킷으로 재조립되어 DPI 장비를 100% 무력화합니다.    ---    ## 6. Merma"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "`63` 또는 `127`로 감점되어 테더링 트래픽임이 100% 탄로 남.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": ")하여 전송하는 우회 기법. 통신사 기지국 입장에서는 100% 스마트폰 자체 앱이 소켓을 연 것으로 인식됨.  *"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "자체 생성 값(`64`)으로 전송되어 테더링 검열을 100% 무력화합니다.    ---    ### 6. 로컬 단"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "비특권 권한만으로도 소켓 레벨에서 동일한 우회 효과를 100% 달성하는 우아한 엔지니어링 해법.  * 📱 **실제"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "화하여 수백 Mbps 이상의 5G 대역폭을 손실 없이 100% 전송함.  * 📱 **실제 안드로이드 시스템 적용"
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "menu_id": "research-handbook",
+      "title": "1.3 Android 시스템 부트스트랩 파이프라인 (Bootstrap Pipeline: BootROM to SystemServer)",
+      "total": 17,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초의",
+          "snippet": "P의 리셋 라인을 HIGH로 해제하며, Core 0가 최초의 명령어 페치(Fetch)를 개시합니다.  ### 5."
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초의",
+          "snippet": "호출하여 네이티브 C++ 프로세스 메모리 공간 안에 최초의 Java VM 인스턴스를 구축하고, JNI 인터페이스"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초의",
+          "snippet": "을 떠 하드웨어의 안전을 점검하는 절대 변조 불가능한 최초의 수문장. * 🔬 **공학적 정의**:   - 스마트"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초의",
+          "snippet": "각인되어 전원이 인가되는 순간 CPU 코어가 실행하는 최초의 하드웨어 기계어 코드. 외부 플래시 메모리에서 2단계"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초의",
+          "snippet": "- 리눅스 커널이 부팅을 완료하고 가장 먼저 생성하는 최초의 유저스페이스 프로세스(PID 1). First-Sta"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "\"]         PID1[\"PID 1 유저스페이스 최초 프로세스 기동: /system/bin/init\"]"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "Server와 시스템 프레임워크 완성  Zygote가 최초로 `fork()`하여 생성하는 프로세스가 바로 And"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "P의 리셋 라인을 HIGH로 해제하며, Core 0가 최초의 명령어 페치(Fetch)를 개시합니다.  ### 5"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "호출하여 네이티브 C++ 프로세스 메모리 공간 안에 최초의 Java VM 인스턴스를 구축하고, JNI 인터페이"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "을 떠 하드웨어의 안전을 점검하는 절대 변조 불가능한 최초의 수문장. * 🔬 **공학적 정의**:   - 스마"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "각인되어 전원이 인가되는 순간 CPU 코어가 실행하는 최초의 하드웨어 기계어 코드. 외부 플래시 메모리에서 2단"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "- 리눅스 커널이 부팅을 완료하고 가장 먼저 생성하는 최초의 유저스페이스 프로세스(PID 1). First-St"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "써, 길고 정교했던 안드로이드 부트스트랩 파이프라인이 완벽히 완료됩니다.  ---  ## 4. 최신 Android"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "본 지식과 영어 단어, 교과서 8,000권을 머릿속에 완벽하게 외워둔 슈퍼 복제 인간. 새로운 학생(신규 앱)이 필"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "는 학생만 자기 노트 한 장에 따로 적어두는(COW) 완벽한 절약법. * 🔬 **공학적 정의**:   - Zyg"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "Java/Android 프레임워크의 세계로 제어권을 완전히 넘깁니다.  ---  ## 6. Hands-on La"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "수십 MB의 프레임워크 메모리를 물리적인 복사 없이 100% 공유한 상태로 즉시 실행을 시작합니다.  ### 3."
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "menu_id": "research-handbook",
+      "title": "2.2 Low Memory Killer (LMK / lmkd) 및 oom_score_adj 평가 메커니즘",
+      "total": 15,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "을 지었을 때 금고를 꺼내 이전 집과 똑같이 꾸며놓는 완벽한 위장술.  * 🔬 **공학적 정의**:    - 안"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "hrashing)이 발생하여 스마트폰 화면이 수 초간 완전히 멈춥니다.    Android는 이 문제를 해결하기"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "Android는 이 문제를 해결하기 위해, 메모리가 완전히 고갈되기 훨씬 전에 사용자 경험(UX) 관점에서 가장"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "e Stall Information) 엔진의 결합으로 완전히 진화했습니다.    ```mermaid  sequen"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "시스템의 모든 CPU 코어가 메모리 회수를 기다리느라 완전히 멈춰버린 치명적 정체 시간의 비율.    `lmkd`"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ", 저장 좀 하고요'라는 마지막 유언을 들을 기회조차 완전히 박탈하고 0.0001초 만에 목을 베어버리는 절대 명"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "* 🔬 **공학적 정의**:    - 사용자가 앱을 완전히 닫았더라도 프로세스를 즉시 종료하지 않고 리눅스 메모"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "을 재실행할 때 Zygote fork와 클래스 로딩을 완전히 건너뛰는 핫 스타트(Hot Start: 0.1초 미만"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "다.  2. 표준 OOM Killer: 가용 메모리가 100% 고갈되어 커널 패닉(Panic) 직전에 도달하면, 커"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": ")<br/>ATMS에 보관된 Bundle로 이전 상태 100% 무결 재현!\"]      end  ```    ---"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "관적 비유**: 표준 리눅스 OOM 킬러는 배에 물이 100% 차서 가라앉기 0.1초 전까지 방치하다가 아무 승객이"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "ut of Memory) 킬러는 물리 메모리와 스왑이 100% 바닥난 절망적인 순간에만 발동하여 시스템 패닉을 유발"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "제 재부팅을 방지하고 유저스페이스 lmkd가 통제권을 100% 장악할 수 있도록 커널 튜닝을 적용합니다.    --"
+        },
+        {
+          "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+          "term": "처형",
+          "snippet": "시스템 적용 사례**:    - lmkd가 프로세스를 처형할 때 logcat에 `lmkd: Kill 'com.e"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "파일이 존재하지 않는 순수 메모리 데이터로, 버리려면 반드시 ZRAM/스왑에 압축 저장해야 함. 반면 File-b"
+        }
+      ]
+    },
+    {
+      "num": 21,
+      "menu_id": "research-handbook",
+      "title": "6.3 Hardware-backed Keystore, TrustZone TEE, Samsung Knox Container",
+      "total": 14,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대적",
+          "snippet": "을 하드웨어 레벨에서 수학적으로 검증하는 모든 신뢰의 절대적 시발점.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대로",
+          "snippet": "d 내부에서만 읽을 수 있으며, Android OS는 절대로 이 키를 볼 수 없습니다.    ---    ## 3"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "💡 **직관적 비유**: 하나의 두뇌(CPU) 안에 완벽하게 방탄유리로 차단된 두 개의 다른 세상. [밝은 세상:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "안은 메인 운영체제(Android Linux) 자체가 완전히 해킹당하여 커널 권한이 탈취되는 최악의 시나리오(Fu"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "웨어 버스(AXI Bus) 레벨에서 시스템을 두 개의 완전히 격리된 세계로 분리합니다:    ```mermaid"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "유저 프로필 생성: 메인 사용자(`User 0`)와 완전히 분리된 `User 150` (`android.os.u"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "P의 TrustZone TEE뿐만 아니라, 물리적으로 완전히 분리된 전용 마이크로컨트롤러(Titan M2, 삼성"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "으로 돌아가는 초미니 비밀 정부. 안드로이드 OS와는 완전히 다른 독립된 보안 운영체제(Trusty OS)가 상주"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "지하던 C/C++ 메모리 충돌 버그가 암호화 계층에서 완전히 소멸되었습니다.    ---    ### 7. 하드웨"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "의**:    - 메인 AP 칩셋 실리콘 다이 외부의 완전히 독립된 전용 탬퍼 방지(Tamper-Resistant"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "ndroid 12부터 keystore2 시스템 데몬은 100% Rust 언어로 재작성되었습니다. 바인더 인터페이스"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "이드 OS)'와 'Secure World(TEE)'로 100% 물리 격리함. Normal World는 어떤 특권 명"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "). C++의 고질적인 메모리 취약점을 근절하기 위해 100% Rust 언어로 재작성되었으며, 바인더 IPC 통신과"
+        },
+        {
+          "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+          "term": "물리적으로 차단",
+          "snippet": "하드웨어 버스 에러(Data Abort)를 발생시켜 물리적으로 차단합니다.  3. **SMC (Secure Monitor"
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "menu_id": "research-handbook",
+      "title": "1.2 POSIX GNU/Linux vs Android Bionic Linux: 아키텍처적 분기 (Architectural Divergence)",
+      "total": 10,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대로",
+          "snippet": "Execute)을 철저히 분리하여, 감상하는 동안에는 절대로 낙서를 못 하게 막는 보안 유리벽. * 🔬 **공학"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "되면 Android 15/16 16KB 페이지 규격을 완벽히 준수하는 바이너리입니다. `0x1000` (4KB)으"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "`은 시스템 부팅과 데몬 프로세스를 관리하는 방식에서 완전히 대척점에 있습니다.  ```mermaid flowch"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "유저스페이스(User-space) 환경이 결합되어야 완전한 운영체제가 완성됩니다.  역사적으로 전통적인 Linu"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "direction TB         G1[\"완전한 POSIX.1 / ISO C99 표준 준수\"]"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "이선스 구성 요소를 단 1줄도 남기지 않고 전면 배제(100% Non-GNU)한 독자적인 운영체제 플랫폼입니다."
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": "유**: 식당에서 소스를 만들 때 레시피를 전 세계에 무조건 무료 공개해야 하는 특수 효모(GPLv3)를 주방에"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "RT 런타임을 수정하려면 전체 OS OTA 업데이트가 필수적이었습니다. Android 10부터 도입된 Projec"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "램을 직접 실행하거나 쉘 프롬프트를 띄울 수 없으며, 반드시 그 위에 C 표준 라이브러리(libc), 초기화 데몬"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "한 기계어를 메모리에 기록한 후, 이를 실행하기 전에 반드시 `mprotect(addr, size, PROT_RE"
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "menu_id": "research-handbook",
+      "title": "2.1 Binder IPC 아키텍처 심층 분석 (Binder IPC Architecture Deep-Dive)",
+      "total": 10,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "독보적",
+          "snippet": "회로 단축하고, 커널 레벨 송신자 신원 보증을 결합한 독보적인 모바일 IPC 인프라입니다.    그러나 시스템 아"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "유일무이",
+          "snippet": "명령을 성공적으로 호출한 프로세스만이 바인더 세상의 유일무이한 0번 노드(`ServiceManager`)가 되며,"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대로",
+          "snippet": "거대한 이삿짐 박스는 우체통 입구에 물리적으로 걸려서 절대로 들어갈 수 없음.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "스 드라이버. 유저스페이스 프로세스 간 메모리 공간을 완벽히 격리(Sandboxing)하면서도, 높은 대역폭과 낮"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "면 두 나라(프로세스 A와 B)는 내부 사정을 몰라도 완벽하게 소통하고 협력할 수 있음.  * 🔬 **공학적 정의"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "코드)를 자동 생성하여 바인더 직렬화 보일러플레이트를 완전히 은닉함.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "rship) 및 대여(Borrowing) 검증을 통해 100% 원천 차단한 최신 안드로이드 시스템 엔지니어링 표준."
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "의 D-Bus는 중앙 브로커(Daemon) 프로세스를 반드시 거쳐야 하므로, 클라이언트 ➔ 커널 ➔ D-Bus 데"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "IPC 인프라입니다.    그러나 시스템 아키텍트가 반드시 인지해야 할 한계가 존재합니다:  1. Transac"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "배열로 전송하면 즉시 트랜잭션이 터집니다. (이 경우 반드시 Ashmem/DMA-BUF나 파일 디스크립터(fd)를"
+        }
+      ]
+    },
+    {
+      "num": 19,
+      "menu_id": "research-handbook",
+      "title": "6.1 UID/GID 멀티테넌시 샌드박스 (UID/GID Multitenancy Application Sandboxing)",
+      "total": 10,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "메모리 매핑(`task_struct->mm`)에 의해 완벽히 분리되어 있어, 타 앱의 메모리 변수를 읽거나 조작하"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "로 완전히 분리되며, 암호화 키와 저장소 파일시스템이 완벽히 격리됨.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "* 💡 **직관적 비유**: 하나의 스마트폰 안에 완벽하게 방음벽이 쳐진 두 개의 다른 아파트(개인용 방과 회사"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "의 애플리케이션 = 1명의 가상 Linux 사용자\"로 완전히 재해석하여, 모바일 역사상 가장 강력한 기본 샌드박스"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "당 공간에 설치된 앱의 존재 여부조차 시스템 런처에서 완전히 은닉합니다.    ---    ## 5. Scoped"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "럼 앱 1개당 1명의 독립된 시민(UID)으로 발상을 완전히 뒤바꾼 천재적인 보안 설계.  * 🔬 **공학적 정"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "한 `READ_EXTERNAL_STORAGE` 권한을 완전히 무력화하고, 각 앱이 공유 저장소 내의 자신의 프라이"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ". 각 사용자마다 UID 범위가 100,000 단위로 완전히 분리되며, 암호화 키와 저장소 파일시스템이 완벽히 격"
+        },
+        {
+          "category": "4. 과격성 / 군사적 표현 (Violent / Aggressive Terminology)",
+          "term": "물리적으로 차단",
+          "snippet": "메신저 백업 파일을 몰래 훔쳐보는 스파이웨어 행위가 물리적으로 차단되었습니다.    ---    ### 7. FUSE ("
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "거실(사진 갤러리, 다운로드 폴더)에 물건을 둘 때는 반드시 집주인의 개별 허가를 받게 만든 구조.  * 🔬 *"
+        }
+      ]
+    },
+    {
+      "num": 22,
+      "menu_id": "research-handbook",
+      "title": "7.1 Termux 유저스페이스의 해부학 (Termux Userspace Anatomy: Bionic Linker, Proot, Rootless Environment)",
+      "total": 10,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "독보적",
+          "snippet": "Git, OpenSSH, SQLite 등)를 제공하는 독보적인 터미널 에뮬레이터이자 리눅스 유저스페이스 배포판입니"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "S(`/etc`, `/var`, `/usr`) 환경을 완벽히 누릴 수 있습니다.    ---    ### 6. p"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "e lock held' 알림이 상주하며 CPU 슬립을 완벽히 방어합니다.    ---    ### 12. 루프백"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "극단적인 샌드박스 제약 하에서, 표준 리눅스 도구들을 완벽하게 실행하기 위해 Termux가 구축한 크로스 컴파일 툴"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "고글(PRoot)을 머리에 쓰고, 고글 속에서 자신이 완벽한 리눅스 서버의 최고 관리자(root)인 것처럼 착각하"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "rmux는 일반 비루팅 Android 디바이스 위에서 완전한 POSIX/Linux CLI 생태계(bash, zsh"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "패키지 매니저)를 정밀하게 조립해 넣은 손바닥 위의 완전한 터미널 세계.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": ") 없이 일반 안드로이드 비특권 샌드박스 환경 내에서 완전한 POSIX 호환 CLI 유저스페이스를 제공하는 소프트"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "활용하여, 비루팅(Rootless) 유저스페이스에서 완전한 파일시스템 가상화(`chroot`), 사용자 ID 위"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "셔뱅(Shebang)은 `#!/bin/sh`가 아니라 반드시 `#!/data/data/com.termux/file"
+        }
+      ]
+    },
+    {
+      "num": 25,
+      "menu_id": "research-handbook",
+      "title": "7.4 2중 관제탑(Dual-Master) 고가용성 모바일 클러스터 및 자가치유 워치독 아키텍처",
+      "total": 10,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "인 SPOF이며, 이를 다중화(Redundancy)로 완벽히 소멸시킴. * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "텐트: am start)를 출격시켜 1초 만에 소대를 완벽히 재창설하고 전투를 재개하는 불사조 복구술. * 🔬"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "0.1초 만에 조종간을 낚아채어 비행기를 추락 없이 완벽하게 비행시키는 2중화 시스템. * 🔬 **공학적 정의*"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "통제함으로써, 워커 기기들은 S20을 호스트 PC와 완전히 동일한 신원으로 인식하여 단 하나의 팝업 없이 즉시"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "부품이나 노드가 고장 났을 때 전체 시스템의 동작이 완전히 중단되는 취약 지점. 엔터프라이즈 모바일 클러스터링에"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "53, A35 등)를 인간의 물리적 화면 터치 조작이 완전히 배제된 무인(Unattended) 상태에서 원격 분산"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "트리 복구: [SSH_REVIVED_SUCCESS] (100% 정상 통신 재개) ```  ---  ## 5. 프로덕"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "보조 마스터 단말기(S20)의 Termux 환경으로 100% 동일하게 복제 배포하는 엔지니어링 기법. 모든 워커"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "'USB 디버깅 허용' 팝업이 단 1번도 뜨지 않고 100% 무인 자동 인가됨. * 📱 **실제 안드로이드 시스"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "니터를 직결하여 배터리 방전과 Wi-Fi 전파 간섭을 100% 차단함. * 📱 **실제 안드로이드 시스템 적용 사"
+        }
+      ]
+    },
+    {
+      "num": 31,
+      "menu_id": "research-papers",
+      "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+      "total": 10,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초로 규명",
+          "snippet": "(Integer Truncation) 현상이 원인임을 최초로 규명하였습니다:  $$\\text{loadstride}_b"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "(Integer Truncation) 현상이 원인임을 최초로 규명하였습니다:  $$\\text{loadstride"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "규명하였",
+          "snippet": "eger Truncation) 현상이 원인임을 최초로 규명하였습니다:  $$\\text{loadstride}_b ="
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "규명하였",
+          "snippet": "발생하던 Vulkan 추론 크래시의 원인을 실증적으로 규명하였습니다: - **H1 검증**: 서브그룹 크기 16 환"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "소스코드 수준의 산술 연산 오류임을 증명하고, 이를 완벽히 보정하는 아키텍처 수정을 제시하는 데 목적이 있습니다"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "인으로 라우팅하는 설계를 적용하여, 25개 전 레이어 100% GPU 가속 완주와 4.44 t/s의 안정적인 토큰"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "5 | 0 / 25 (크래시) | **25 / 25 (100% 오프로딩)** | 전 계층 VRAM 상주 | | **"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "| | **GPU TDR 발생 횟수** | 0건 | 100% 발생 | **0건 (72시간 검증 완료)** | 무결"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "Medium 파이프라인 라우팅을 통해 25개 전 계층 100% GPU 가속과 4.44 t/s의 처리 속도를 달성하였"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "수정만으로 Exynos 및 Mali 생태계 전반에서 100% 안정적인 네이티브 GPU LLM 추론을 실현하였습니다"
+        }
+      ]
+    },
+    {
+      "num": 37,
+      "menu_id": "research-cluster",
+      "title": "PC와 갤럭시 단말기를 활용한 2중 마스터(Dual-Master) 장애 극복(Failover) 체계",
+      "total": 10,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "인 SPOF이며, 이를 다중화(Redundancy)로 완벽히 소멸시킴. * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "텐트: am start)를 출격시켜 1초 만에 소대를 완벽히 재창설하고 전투를 재개하는 불사조 복구술. * 🔬"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "0.1초 만에 조종간을 낚아채어 비행기를 추락 없이 완벽하게 비행시키는 2중화 시스템. * 🔬 **공학적 정의*"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "통제함으로써, 워커 기기들은 S20을 호스트 PC와 완전히 동일한 신원으로 인식하여 단 하나의 팝업 없이 즉시"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "부품이나 노드가 고장 났을 때 전체 시스템의 동작이 완전히 중단되는 취약 지점. 엔터프라이즈 모바일 클러스터링에"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "53, A35 등)를 인간의 물리적 화면 터치 조작이 완전히 배제된 무인(Unattended) 상태에서 원격 분산"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "트리 복구: [SSH_REVIVED_SUCCESS] (100% 정상 통신 재개) ```  ---  ## 5. 프로덕"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "보조 마스터 단말기(S20)의 Termux 환경으로 100% 동일하게 복제 배포하는 엔지니어링 기법. 모든 워커"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "'USB 디버깅 허용' 팝업이 단 1번도 뜨지 않고 100% 무인 자동 인가됨. * 📱 **실제 안드로이드 시스"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "니터를 직결하여 배터리 방전과 Wi-Fi 전파 간섭을 100% 차단함. * 📱 **실제 안드로이드 시스템 적용 사"
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "menu_id": "research-handbook",
+      "title": "2.4 전원 관리 서브시스템 (Power Governance: WakeLocks, Runtime PM, Energy-Aware Scheduling)",
+      "total": 9,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "를 3.0GHz로 부스팅하여 120Hz 스크롤 잰크를 완벽히 차단합니다.    ---    ### 10. Dyna"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "넘어갈 때 물리 RAM을 다시 읽지 않고 0초 만에 완벽히 연산을 인계받습니다.    ---    ### 11."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "Down)**: 파워 게이팅이 적용되어 코어 전압이 완전히 차단. 진입 전 L1/L2 캐시의 더티 라인을 반드시"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "몸의 근육(CPU 코어, 모뎀, 화면, 센서) 전원을 완전히 차단하여 봄이 올 때까지 최소한의 에너지로 생존하는"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "어, 내부 캐시, GPU, 디스플레이 컨트롤러 전원을 완전히 끄고, RAM의 리프레시 전원(Self-Refresh"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "지 않고 밤새 방치하면, 화면이 꺼져 있어도 CPU가 100% 가동되어 아침에 배터리가 0%로 방전됩니다.    -"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "라운드 연산을 유지합니다. (Termux 서버 구동에 필수적인 락).  2. `SCREEN_DIM_WAKE_LOC"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "며 배터리를 낭비하는 틱리스 커널(NO_HZ) 튜닝이 필수적입니다.    ### 5.2 Android PowerM"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "완전히 차단. 진입 전 L1/L2 캐시의 더티 라인을 반드시 L3(DSU)나 DRAM으로 전부 플러시(Cache"
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "menu_id": "research-handbook",
+      "title": "3.1 모놀리식 HAL에서 바인더화된 HAL(Binderized HAL)로의 진화 (Evolution of Hardware Abstraction: HIDL to Stable AIDL)",
+      "total": 9,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "/system`). Project Treble 규격을 완벽히 준수하는 모든 안드로이드 단말은 제조사의 드라이버 파"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "이커의 자동차(삼성, 샤오미, 소니)에 얹어도 시동이 완벽하게 걸리는 규격화된 순정 엔진 블록.  * 🔬 **공학"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ": 식당 주방과 외부 가스 기사실을 두꺼운 방화벽으로 완전히 격리하고, 벽 사이에 안전한 전용 무전기(바인더 IP"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "정의**:    - Android 10부터 HIDL을 완전히 대체하기 위해 도입된 차세대 시스템 인터페이스 표준."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": ": 일반 시민들의 인터넷 통신망(표준 binder)과 완전히 분리된, 군부대와 발전소 전용 특수 보안 광케이블(h"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "임워크)과 /vendor 파티션(하드웨어 드라이버)의 완전한 프로세스 분리 및 IPC 인터페이스 표준화\"입니다."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "IDL HAL    ### 5.1 HIDL 패스스루의 완전한 단절 (Android 14+)  Android 14부"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "zed는 현관문 앞에서 문을 닫아두고 물건만 넘겨받는 완전한 표준 방식.  * 🔬 **공학적 정의**:    -"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "1.1)는 기존 인터페이스를 상속하여 하위 호환성을 100% 유지해야 하며, 브레이킹 체인지가 발생하는 메이저 업"
+        }
+      ]
+    },
+    {
+      "num": 26,
+      "menu_id": "research-handbook",
+      "title": "8.1 WireGuard / Tailscale L3 오버레이 메쉬 토폴로지 (WireGuard & Tailscale L3 Overlay Mesh Topology)",
+      "total": 8,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "지 못하는 공인 택배 차량(HTTPS 443 포트)에 완벽히 암호화된 비밀 화물을 실어 중앙 물류센터(DERP 릴"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "ec / OpenVPN)을 단 4,000줄의 간결하고 완벽한 현대 헌법으로 재작성하여, 암호화 통신 속도를 5배"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "데 큰 소리로 암호 조각을 외쳤는데, 정작 본인 둘만 완벽한 비밀 금고 열쇠를 손에 쥐게 되는 신비로운 수학적 마"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "HTTPS (TCP 443) 암호화 패킷으로 중계하여 100% 가용성을 보장합니다.    ---    ## 4. 비"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "레이를 통해 클러스터 제어 트래픽이 절대 끊기지 않고 100% 무중단 유지됩니다.    ---    ### 8. C"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "서명이 일치하지 않아 커널 WireGuard 계층에서 100% 소리 없이 폐기(Drop)됩니다.    ---"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "블랙홀 현상이 발생하므로, MTU 1280 최적화가 필수적입니다.    ---"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "직관적 비유**: 도로 표지판에 '이 방향으로 가려면 반드시 3번 열쇠(공개키)를 가진 사람만 통과할 수 있다'고"
+        }
+      ]
+    },
+    {
+      "num": 39,
+      "menu_id": "research-cluster",
+      "title": "WireGuard와 Tailscale을 활용한 모바일 기기 간 P2P 메시 네트워크 구축",
+      "total": 8,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "지 못하는 공인 택배 차량(HTTPS 443 포트)에 완벽히 암호화된 비밀 화물을 실어 중앙 물류센터(DERP 릴"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "ec / OpenVPN)을 단 4,000줄의 간결하고 완벽한 현대 헌법으로 재작성하여, 암호화 통신 속도를 5배"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "데 큰 소리로 암호 조각을 외쳤는데, 정작 본인 둘만 완벽한 비밀 금고 열쇠를 손에 쥐게 되는 신비로운 수학적 마"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "HTTPS (TCP 443) 암호화 패킷으로 중계하여 100% 가용성을 보장합니다.    ---    ## 4. 비"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "레이를 통해 클러스터 제어 트래픽이 절대 끊기지 않고 100% 무중단 유지됩니다.    ---    ### 8. C"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "서명이 일치하지 않아 커널 WireGuard 계층에서 100% 소리 없이 폐기(Drop)됩니다.    ---"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "블랙홀 현상이 발생하므로, MTU 1280 최적화가 필수적입니다.    ---"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "직관적 비유**: 도로 표지판에 '이 방향으로 가려면 반드시 3번 열쇠(공개키)를 가진 사람만 통과할 수 있다'고"
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "menu_id": "research-handbook",
+      "title": "4.1 Dalvik VM vs ART: 아키텍처 패러다임 전환 (Runtime Architecture: Dalvik to ART)",
+      "total": 7,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대적",
+          "snippet": ". 실행 시 컴파일 지연과 CPU 소모가 전혀 없다는 절대적 장점이 있음.  * 📱 **실제 안드로이드 시스템"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "가비지 컬렉터(CC GC), 네이티브 C++ 런타임과 완벽히 결합하여 프로세스 실행 속도와 전력 효율성을 극대화함"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "ik JIT)를 버리고, 책을 사자마자 미리 한국어로 완벽하게 번역해 두고 읽는 초고속 번역 낭독가(ART).  *"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "게 아니라, 가게 오픈 전에 미리 100그릇의 국밥을 완벽하게 끓여두고 손님이 오자마자 0초 만에 상에 올려놓는 사"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "가비지 컬렉터를 기반으로 모바일 런타임의 패러다임을 완전히 전환시켰습니다.    ---    ## 2. 가상머신"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "- Android 5.0부터 Dalvik 가상머신을 완전히 퇴출하고 공식 런타임으로 등극한 차세대 모바일 실행"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "바이너리(ELF 형식의 `.odex`/`.oat`)로 100% 사전 변환하여 스토리지에 저장하는 컴파일 방식. 실행"
+        }
+      ]
+    },
+    {
+      "num": 30,
+      "menu_id": "research-papers",
+      "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+      "total": 7,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "에 인가된 `[[unroll]]` 지시자를 처리할 때 최초 이터레이션만을 실행하고 후속 이터레이션을 누락시키는"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "연산 값을 노드별로 전수 비교하고, 오차가 발생하는 최초 지점을 추적. - **파이프라인 생성 상태 코드**:"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "m.comp`)에서 이미 심각한 연산 오차가 발생함을 최초로 확인하였습니다: - `rms_norm.comp`의"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "라인 단일화 등의 정밀 패치를 적용하여 수치 무결성을 완전히 회복하였습니다.  ---  ## 1장 서론 (Intr"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "reno 컴파일러는 idx=0만 실행하고 idx=1을 완전히 누락시킴   }   ``` - 해당 루프에서 `[[u"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "32 (24KB 규격)로 동적 축소하여 컴파일 성공률 100% 달성. 3. **Large Tile GEMM 파이프라"
+        },
+        {
+          "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+          "term": "증명하였습니다",
+          "snippet": "이터레이션을 누락시키는 심각한 최적화 결함이 있음을 증명하였습니다. 또한 Adreno 650의 물리적 공유 메모리(32"
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "menu_id": "research-handbook",
+      "title": "2.3 Android 메모리 서브시스템 (Ashmem, ION, DMA-BUF, ZRAM Architecture)",
+      "total": 6,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "압도적",
+          "snippet": "비하면 마이크로초($\\mu\\text{s}$) 단위로 압도적으로 빠릅니다.    ---    ## 5. UFS 4"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "C/UFS 플래시 메모리의 수명(P/E Cycle)이 완전히 보존됩니다.  2. 레이턴시 트레이드오프: 스왑 인/"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "사례**:    - 최신 AOSP는 파편화된 ION을 완전히 퇴출하고 DMA-BUF Heaps(`/dev/dma_"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "* 🔬 **공학적 정의**:    - 물리적으로 완전히 연속된 거대한 물리 메모리 블록을 필요로 하는 하드웨"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "- 물리 RAM의 일정 비율(보통 전체 램의 50%~100%)을 압축 가상 블록 디바이스(`/dev/block/z"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "마운트하는 기술. 플래시 메모리 P/E 사이클 마모를 100% 방지하면서, CPU 압축 알고리즘(LZ4/ZSTD)을"
+        }
+      ]
+    },
+    {
+      "num": 18,
+      "menu_id": "research-handbook",
+      "title": "5.4 전력 거버넌스: Doze Mode, App Standby, Phantom Process Killer",
+      "total": 6,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "시스템이 Doze 모드와 App Standby 정책을 완벽히 준수하며 최적의 타이밍에 작업을 일괄 배치 실행함."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "환되면, 캐시된 앱 프로세스는 CPU 스케줄링 자체가 완전히 0으로 동결(Freeze)되어 단 1사이클의 CPU도"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "ht Doze: 네트워크만 차단)을 자고, 책상 위에 완전히 가만히 내려두면 깊은 겨울잠(Deep Doze: CP"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "가 Doze 모드(Idle 상태)의 알람 지연 정책을 완전히 무시하고 개발자가 지정한 정확한 나노초 타임스탬프에"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "\udca1 **직관적 비유**: 직원에게 심부름을 시킬 때 '반드시 (1) 와이파이에 연결되어 있고, (2) 충전기에 꽂"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "droid 8.0 이상에서 더 이상 깨어나지 않으며, 반드시 JobScheduler나 포그라운드 동적 등록을 사용"
+        }
+      ]
+    },
+    {
+      "num": 20,
+      "menu_id": "research-handbook",
+      "title": "6.2 SELinux Type Enforcement 및 Domain Transition 정책 (SELinux MAC Security Governance)",
+      "total": 6,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "절대적",
+          "snippet": "- AOSP의 `sepolicy` 소스코드에 선언된 절대적 보안 불변식 규칙. 벤더나 OEM 제조사가 편의를 위"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "ansition`, `entrypoint`)이 정책상 완벽히 승인되어 있어야만 성립함.  * 📱 **실제 안드로"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "소켓, 루트 권한 실행 파일에 대한 접근이 정책적으로 완벽히 봉쇄되어 있음.  * 📱 **실제 안드로이드 시스템"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "모아서, 한 치의 논리적 모순이나 법률 충돌이 없도록 완벽하게 단일 헌법 바이너리 책자(sepolicy)로 엮어내는"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "벗고 대장군(Zygote 도메인)으로 신분과 권한이 완전히 바뀌어 새로운 권력을 쥐게 되는 합법적 신분 상승 의"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "어떤 경우에도",
+          "snippet": "검증  * 💡 **직관적 비유**: 헌법 제1조: '어떤 경우에도 살인은 정당화될 수 없다'처럼, 하위 법률(벤더 커스"
+        }
+      ]
+    },
+    {
+      "num": 16,
+      "menu_id": "research-handbook",
+      "title": "5.2 AMS / ATMS: 프로세스 계층 및 태스크 트리 제어 (Activity & Process Governance)",
+      "total": 5,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "n` 클래스를 상속하여 액티비티의 생성과 키 이벤트를 완벽히 통제함.  * 📱 **실제 안드로이드 시스템 적용"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "이 있고, 그 안에 윈도우 인형이 차곡차곡 들어 있는 완벽한 중첩 컨테이너 구조.  * 🔬 **공학적 정의**:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "귀      PAUSED --> STOPPED: 화면 완전히 가려짐 (Activity.onStop())"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "ctivity()를 임의로 호출할 수 없습니다.  - 반드시 사용자가 터치한 직후의 토큰(User Interact"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "불빛 변경 규칙. 빨간불에서 초록불로 건너뛸 수 없고 반드시 주황불을 거쳐야 하듯, 안드로이드 화면도 INITIA"
+        }
+      ]
+    },
+    {
+      "num": 23,
+      "menu_id": "research-handbook",
+      "title": "7.2 ADB 프로토콜 심층 분석 (ADB Protocol Deep-Dive: adbd & AID_SHELL UID 2000)",
+      "total": 5,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "최초",
+          "snippet": "개인키 서명 토큰을 비교합니다:  1. 호스트 PC가 최초 승인 시 생성한 키체인:     - 개인키: `C:\\"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽하게",
+          "snippet": "실행하면 USB 케이블 연결 없이도 원격으로 단말기를 완벽하게 제어할 수 있습니다.    ---    ### 7."
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "x.x.x:5555`)를 통해 외부 호스트 PC에서도 완벽한 원격 제어가 수립됩니다.    ---    ## 11"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "+의 무선 디버깅은 보안되지 않은 평문 TCP 통신을 완전히 폐기하고 TLS 1.3 암호화 터널을 강제합니다:"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "**: 외과의사가 환자의 심장 수술을 할 때, 심장을 완전히 멈추지 않고 미세 바늘(JDWP 포트)을 꽂아 실시간"
+        }
+      ]
+    },
+    {
+      "num": 24,
+      "menu_id": "research-handbook",
+      "title": "7.3 Shizuku Architecture & Rish: AIDL IPC 기반 특권 획득 메커니즘 (Rootless Privilege Escalation)",
+      "total": 5,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "의 합법적인 권한 상속만을 활용하므로 시스템 안정성이 완벽히 보존됩니다.    ---    ### 7. 토큰 기반"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "_policy 1` 설정을 통해 비공개 API 경고를 완전히 끄고 모든 시스템 내부 인터페이스를 호출할 수 있게"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": ", 즉시 `UID 2000(shell)` 권한을 가진 완전한 대화형 인터랙티브 PTY 쉘 세션을 생성해 줌.  *"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "x`)를 지정하고 진입점 메인 클래스를 인자로 넘기면 완전한 ART 가상머신과 안드로이드 런타임을 터미널 프로세스"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "고 SELinux `u:r:shell:s0` 도메인을 100% 동일하게 물려받는 원리.  * 📱 **실제 안드로이"
+        }
+      ]
+    },
+    {
+      "num": 14,
+      "menu_id": "research-handbook",
+      "title": "4.3 ART 가비지 컬렉션 (ART Garbage Collection: Concurrent Copying GC & Generational Regions)",
+      "total": 4,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "스레드를 멈추지 않고도 객체 이동 중의 데이터 충돌을 완벽히 방지합니다.    ---    ### 4. Gener"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽히",
+          "snippet": "크래시가 났지만, CC GC는 실시간 컴팩션으로 이를 완벽히 방어합니다.    ---    ### 8. 카드 테이"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "메모리를 압축하는 도중에도, 앱 스레드는 멈추지 않고 100% 정상 실행을 지속합니다.    ---    ## 4."
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "리 영역으로 복사(Copying)하고 메모리 파편화를 100% 제거하는 이동식(Compacting) 컬렉터. 힙 메"
+        }
+      ]
+    },
+    {
+      "num": 28,
+      "menu_id": "research-handbook",
+      "title": "8.3 Master-Worker 분산 AI 오케스트레이션 및 Self-Healing Watchdog 설계",
+      "total": 4,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "서 일사불란하게 건물을 짓고 결과를 소장에게 보고하는 완벽한 분업.  * 🔬 **공학적 정의**:    - 중앙"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "` 및 `whitelist` 명령을 투하하여 단말기를 완전한 고성능 활성 상태로 강제 복귀시킴.  * 📱 **실"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "워커가 대기 큐의 작업을 이어받아 전체 서비스 가동률 100%를 무결하게 지켜냅니다.    ---    ### 12"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "가치유(Self-Healing) 분산 오케스트레이터가 필수적입니다.    본 장에서는 Host Controller"
+        }
+      ]
+    },
+    {
+      "num": 33,
+      "menu_id": "research-benchmarks",
+      "title": "갤럭시 S25부터 S7까지: 6종 단말기 온디바이스 AI 8대 모델 실측 성능 비교",
+      "total": 4,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "테스트 데이터 및 스크린샷은 로컬과 실기기 양쪽에서 완전히 소거되었습니다.  ---  ### 결론 (Conclu"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "| **Dual-Engine Parity** | **100% Functional Parity Between Pyt"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "bot.sannysoft.com 55 / 55 항목 100% PASS 4. [Enterprise WAF Loadi"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "Node.js(`npm`) 양대 엔진 생태계 전반에서 100% 기능적 동등성(Parity)과 상용 프로덕션 수준의"
+        }
+      ]
+    },
+    {
+      "num": 38,
+      "menu_id": "research-cluster",
+      "title": "이종 스마트폰 분산 AI 추론과 프로세스 자동 복구(Auto-Healing)",
+      "total": 4,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "서 일사불란하게 건물을 짓고 결과를 소장에게 보고하는 완벽한 분업.  * 🔬 **공학적 정의**:    - 중앙"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": "` 및 `whitelist` 명령을 투하하여 단말기를 완전한 고성능 활성 상태로 강제 복귀시킴.  * 📱 **실"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "워커가 대기 큐의 작업을 이어받아 전체 서비스 가동률 100%를 무결하게 지켜냅니다.    ---    ### 12"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "필수적",
+          "snippet": "가치유(Self-Healing) 분산 오케스트레이터가 필수적입니다.    본 장에서는 Host Controller"
+        }
+      ]
+    },
+    {
+      "num": 43,
+      "menu_id": "research-papers",
+      "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+      "total": 4,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "규명하였",
+          "snippet": "강화(Self-Reinforcement)되기 때문임을 규명하였습니다. 또한 모델 파라미터 크기(1.5B vs 3B"
+        },
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "규명하였",
+          "snippet": "를 통해 자율 에이전트 담론의 의견 동조화 메커니즘을 규명하였습니다: - **H1 검증**: 가드레일이 배제된 환경"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": "습니다 / 그렇습니다\"` | 342 | 74.5% | 무조건적 긍정 | | **2** | `\"공감합니다 / 깊이"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": ".0** | | **주요 수렴 양상** | 이전 발언 무조건 복사 | 2~3턴 후 반박 중단 | 논리적 타협점을"
+        }
+      ]
+    },
+    {
+      "num": 29,
+      "menu_id": "research-papers",
+      "title": "안드로이드 모바일 환경에서 트랜스포머 음성인식 모델의 Vulkan 가속 파이프라인 설계 및 런타임 결함 분석",
+      "total": 3,
+      "findings": [
+        {
+          "category": "1. 최초성 / 자화자찬 (Claims of Primacy & Overhype)",
+          "term": "규명하였",
+          "snippet": "TDR) 와치독 등 모바일 특유의 물리적 제약 요인을 규명하였습니다.  Qualcomm Snapdragon 계열 3"
+        },
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "직접 컴파일되어 작동합니다. 외부 네트워크와의 연결이 완전히 차단된 단독 환경에서도 모바일 GPU의 Vulkan"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "결과, 지원 대상 전 기기에서 드라이버 초기화 성공률 100%를 달성하였으며, 텔레메트리 데이터의 무결성을 확보하였"
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "menu_id": "newsletter",
+      "title": "AMEVA Labs 출범 및 온디바이스 AI 연구 생태계 백서 (Vol. 1)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전한",
+          "snippet": ", 사용자 프라이버시 침해, 그리고 네트워크 단절 시 완전한 동작 불능이라는 구조적 한계를 안고 있습니다.  **"
+        },
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "Compute SPIR-V, NPU)의 연산 능력을 100% 극한까지 끌어내는 **자율 주권형 온디바이스 인텔리전"
+        }
+      ]
+    },
+    {
+      "num": 17,
+      "menu_id": "research-handbook",
+      "title": "5.3 WMS 및 입력 이벤트 서브시스템 (Window Management & Input Subsystem)",
+      "total": 2,
+      "findings": [
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "무조건",
+          "snippet": "화 창이나 보안 경고 다이얼로그가 항상 앱 화면 위에 무조건 최상위로 덮여 나오는 이유가 높은 Z-Order 값"
+        },
+        {
+          "category": "5. 강제성 / 당위성 남발 (Prescriptive Overstatement)",
+          "term": "반드시",
+          "snippet": "터 인터랙션의 완결된 제스처 생명주기. 모든 제스처는 반드시 `ACTION_DOWN`으로 시작하여 0개 이상의 `"
+        }
+      ]
+    },
+    {
+      "num": 44,
+      "menu_id": "research-papers",
+      "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+      "total": 2,
+      "findings": [
+        {
+          "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+          "term": "증명하였습니다",
+          "snippet": "ext{cpu}}, T_{\\text{gpu}})$)을 증명하였습니다. Qualcomm Snapdragon 8 Elite("
+        },
+        {
+          "category": "6. 어색한 AI 번역체 / 부자연스러운 학술 조어 (Awkward AI Coinages)",
+          "term": "증명하였습니다",
+          "snippet": "pu}}, T_{\\text{gpu}})$을 물리적으로 증명하였습니다.  ### 5.2 학술적 및 시스템 엔지니어링적 시사"
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "menu_id": "newsletter",
+      "title": "[Vol. 2] AMEVA 주간 엔지니어링 브리핑: 60억 DiT 모바일 완주 & 시스템 핸드북 26강 전면 공개",
+      "total": 1,
+      "findings": [
+        {
+          "category": "3. 100% / 무결점 보장 (Unrealistic 100% / Zero Risk Claims)",
+          "term": "100%",
+          "snippet": "임베딩을 분배하고, 무거운 DiT 행렬곱만 GPU에 100% 집중.   3. **초고속 TAESD 결합**: 무거"
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "menu_id": "research-handbook",
+      "title": "3.2 그래픽 파이프라인 (Graphics Pipeline: Gralloc, HWComposer, SurfaceFlinger, VSYNC Lockstep)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "패널 이미지로 합성하여 디스플레이로 쏴주는 전 과정이 완벽한 하드웨어 VSYNC 락스텝(Lockstep) 하에서"
+        }
+      ]
+    },
+    {
+      "num": 15,
+      "menu_id": "research-handbook",
+      "title": "5.1 SystemServer 토폴로지 및 ServiceManager (SystemServer Topology & ServiceManager)",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "- 배터리 충전 알림이나 위젯 업데이트는 시스템이 완전히 안정화된 `PHASE_BOOT_COMPLETED(10"
+        }
+      ]
+    },
+    {
+      "num": 32,
+      "menu_id": "research-papers",
+      "title": "메모리 제약 모바일 디바이스에서 레이어 스트리밍을 활용한 대규모 Diffusion Transformer 추론 기법 실증",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완전히",
+          "snippet": "안정적으로 구동하여 커널에 의한 프로세스 강제 종료를 완전히 방지하였으며, VAE 디코딩 시간을 기존 15분에서"
+        }
+      ]
+    },
+    {
+      "num": 41,
+      "menu_id": "research-papers",
+      "title": "자원 제약 환경의 다중 에이전트 담론 시뮬레이션을 위한 상태 분리형 추론 파이프라인 설계",
+      "total": 1,
+      "findings": [
+        {
+          "category": "2. 절대성 / 완벽성 (Absolute & Infallible Assertions)",
+          "term": "완벽한",
+          "snippet": "(KB) 수준에 그치므로, GPU VRAM의 점유율은 완벽한 $O(1)$ 상수로 고정됩니다.  ### 2.4 기존"
+        }
+      ]
+    }
+  ]
+}
