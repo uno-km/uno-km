@@ -708,6 +708,502 @@
       white-space: nowrap;
     }
 
+    /* ── Bottom Post Navigation Pager (Prev / Next Post) ─────────────────── */
+    .post-nav-pager-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .post-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-bright);
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 1;
+      max-width: 42%;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    .post-nav-btn:hover:not(:disabled) {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .post-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.01);
+      color: var(--text-muted);
+    }
+    .post-nav-btn .nav-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .post-nav-btn .nav-title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── Bottom 10-Item Posts Table in Detail View ─────────────────────────── */
+    .anal-bottom-list-wrap {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .bottom-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .bottom-list-header h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .anal-bottom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+    .anal-bottom-table th {
+      padding: 9px 12px;
+      text-align: left;
+      background: #1e293b;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.76rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
+    }
+    .anal-bottom-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+      color: #cbd5e1;
+    }
+    .anal-bottom-table tr:hover {
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .anal-bottom-table tr.current-reading-row {
+      background: rgba(56, 189, 248, 0.16) !important;
+      border-left: 4px solid #38bdf8 !important;
+    }
+    .anal-bottom-table tr.current-reading-row td {
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+    .badge-current-reading {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .bottom-title-cell {
+      max-width: 480px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bottom-title-link {
+      color: #f1f5f9;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+    .bottom-title-link:hover {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+    .current-reading-row .bottom-title-link {
+      color: #38bdf8;
+    }
+
+    /* Bottom List Pagination */
+    .bottom-list-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-top: 14px;
+    }
+    .btn-bottom-page {
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-bottom-page:hover:not(:disabled) {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .btn-bottom-page.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+    }
+    .btn-bottom-page:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* ── Enhanced Like Button ─────────────────────────────────────────────── */
+    .btn-like-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-like-action.liked {
+      background: #059669 !important;
+      border-color: #10b981 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+    .like-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── Side Floating Remote (Naver Webtoon Style Draggable) ─────────────── */
+    .floating-remote-chassis {
+      position: fixed;
+      right: 24px;
+      top: 140px;
+      width: 220px;
+      background: #090d16;
+      border: 1.5px solid #1e293b;
+      border-radius: 10px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(56, 189, 248, 0.15);
+      z-index: 9999;
+      color: #f8fafc;
+      font-family: inherit;
+      user-select: none;
+      transition: box-shadow 0.2s ease, opacity 0.2s ease;
+      touch-action: none;
+    }
+    .floating-remote-chassis.dragging {
+      opacity: 0.88;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 16px rgba(56, 189, 248, 0.35);
+      cursor: grabbing !important;
+    }
+    .remote-drag-handle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      border-radius: 8px 8px 0 0;
+      cursor: grab;
+    }
+    .remote-drag-dots {
+      display: flex;
+      gap: 3px;
+    }
+    .remote-drag-dots .dot {
+      width: 4px;
+      height: 4px;
+      background: #64748b;
+      border-radius: 50%;
+    }
+    .remote-title {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: -0.01em;
+    }
+    .btn-remote-mini {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+      border-radius: 3px;
+    }
+    .btn-remote-mini:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .remote-body {
+      padding: 10px;
+    }
+    .remote-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .remote-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 7px 8px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      border-radius: 5px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #f1f5f9;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+    .remote-btn:hover:not(:disabled) {
+      border-color: #38bdf8;
+      background: #0284c7;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .remote-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+    }
+    .remote-btn-like {
+      width: 100%;
+      margin-bottom: 8px;
+      background: rgba(2, 132, 199, 0.15);
+      border-color: rgba(2, 132, 199, 0.4);
+      color: #38bdf8;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+    .remote-btn-like:hover {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .remote-btn-like.liked {
+      background: #059669;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .remote-like-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1px 6px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+    }
+    .remote-section-divider {
+      height: 1px;
+      background: #1e293b;
+      margin: 8px 0;
+    }
+    .remote-viewer-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .remote-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .remote-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      color: #94a3b8;
+      text-decoration: none;
+    }
+    .remote-brand-link:hover {
+      color: #38bdf8;
+    }
+    .remote-theme-pills {
+      display: flex;
+      gap: 4px;
+    }
+    .remote-theme-pills .btn-theme-chip {
+      flex: 1;
+      text-align: center;
+      padding: 3px 4px;
+      font-size: 0.68rem;
+    }
+    .remote-btn-history {
+      width: 100%;
+      justify-content: space-between;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .remote-history-badge {
+      background: #334155;
+      padding: 1px 5px;
+      border-radius: 8px;
+      font-size: 0.68rem;
+      color: #94a3b8;
+    }
+    .remote-history-drawer {
+      margin-top: 8px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .history-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .btn-history-clear {
+      background: transparent;
+      border: none;
+      color: #f43f5e;
+      font-size: 0.68rem;
+      cursor: pointer;
+      padding: 0;
+    }
+    .btn-history-clear:hover {
+      text-decoration: underline;
+    }
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 6px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .history-item:hover {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+    }
+    .history-item.active {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      font-weight: 700;
+    }
+    .history-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .remote-minimized-bubble {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      background: #090d16;
+      border: 1.5px solid #38bdf8;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 10px rgba(56, 189, 248, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .remote-minimized-bubble:hover {
+      transform: scale(1.05);
+    }
+    .remote-minimized-bubble .bolt-icon {
+      color: #38bdf8;
+      font-size: 0.95rem;
+    }
+    .remote-minimized-bubble .bubble-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    /* Toast Notification */
+    .labs-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      color: #f8fafc;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 100000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .labs-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .floating-remote-chassis {
+        right: 12px;
+        top: auto;
+        bottom: 80px;
+        width: 190px;
+      }
+    }
+
     /* ── View 3: BOARD (DCInside Style Board + In-place Top Post View) ──────── */
     .board-top-bar {
       display: flex;
@@ -923,8 +1419,12 @@
           <!-- AmevaViewer Embedded Content -->
           <div id="newsViewerBody" class="news-body-container"></div>
 
-          <div style="display: flex; gap: 8px; margin-top: 14px;">
-            <button class="btn-action btn-primary" onclick="LabsApp.likeActiveNewsletter()">추천</button>
+          <div style="display: flex; gap: 8px; margin-top: 14px; align-items: center; flex-wrap: wrap;">
+            <button class="btn-action btn-primary btn-like-action" id="newsLikeBtn" onclick="LabsApp.likeActiveNewsletter()">
+              <span>👍 추천</span>
+              <span class="like-badge" id="newsDetailBtnLikes">0</span>
+            </button>
+            <button class="btn-action btn-secondary" onclick="LabsApp.scrollToTop()" title="페이지 최상단으로 이동">↑ 맨 위로</button>
           </div>
 
           <div class="news-swipe-indicator">
@@ -977,12 +1477,45 @@
 
             <div id="analViewerBody" style="margin-bottom: 16px;"></div>
 
-            <!-- Chapter Navigation Pager (Prev / Next chapter in Handbook) -->
-            <div id="handbookChapterPager" class="handbook-pager-bar" style="display: none;"></div>
+            <!-- Post Navigation Pager (Prev / List / Next Post) -->
+            <div id="analPostPager" class="post-nav-pager-bar"></div>
 
-            <div style="display: flex; gap: 8px; margin-top: 18px;">
-              <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('anal')">추천</button>
+            <!-- Action Buttons: Like with live count, BibTeX, Scroll to Top -->
+            <div style="display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; align-items: center;">
+              <button class="btn-action btn-primary btn-like-action" id="analLikeBtn" onclick="LabsApp.likeActivePost('anal')">
+                <span>👍 추천</span>
+                <span class="like-badge" id="analDetailBtnLikes">0</span>
+              </button>
               <button class="btn-action btn-secondary" onclick="LabsApp.copyBibtexCitation()">BibTeX 인용 복사</button>
+              <button class="btn-action btn-secondary" onclick="LabsApp.scrollToTop()" title="페이지 최상단으로 이동">↑ 맨 위로</button>
+            </div>
+
+            <!-- Bottom Posts List (10 per page, highlighted current post) -->
+            <div id="analBottomListWrap" class="anal-bottom-list-wrap">
+              <div class="bottom-list-header">
+                <h4 id="analBottomListTitle">📑 해당 카테고리 다른 글</h4>
+                <span id="analBottomListCount" style="font-size: 0.74rem; color: #94a3b8;">총 0편</span>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="anal-bottom-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px; text-align: center;">번호</th>
+                      <th>제목</th>
+                      <th style="width: 110px;">작성자</th>
+                      <th style="width: 95px; text-align: center;">작성일</th>
+                      <th style="width: 60px; text-align: center;">조회</th>
+                      <th style="width: 60px; text-align: center;">추천</th>
+                    </tr>
+                  </thead>
+                  <tbody id="analBottomTableBody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="bottom-list-pagination" id="analBottomPagination">
+                <!-- Dynamic Page Buttons -->
+              </div>
             </div>
 
             <!-- Comments for Anal -->
@@ -1051,8 +1584,15 @@
 
           <div id="boardViewerBody" style="margin-bottom: 16px;"></div>
 
-          <div style="display: flex; gap: 8px;">
-            <button class="btn-action btn-primary" onclick="LabsApp.likeActivePost('board')">추천</button>
+          <!-- Board Post Navigation Pager -->
+          <div id="boardPostPager" class="post-nav-pager-bar"></div>
+
+          <div style="display: flex; gap: 8px; margin-top: 14px; align-items: center; flex-wrap: wrap;">
+            <button class="btn-action btn-primary btn-like-action" id="boardLikeBtn" onclick="LabsApp.likeActivePost('board')">
+              <span>👍 추천</span>
+              <span class="like-badge" id="boardDetailBtnLikes">0</span>
+            </button>
+            <button class="btn-action btn-secondary" onclick="LabsApp.scrollToTop()" title="페이지 최상단으로 이동">↑ 맨 위로</button>
           </div>
 
           <!-- Comments for Board -->
@@ -1092,6 +1632,92 @@
   <footer>
     <p data-i18n="common.footer">&copy; 2026 AMEVA Open-Source Foundation (AOSF). All Rights Reserved. Governed by Meritocracy.</p>
   </footer>
+
+  <!-- Side Floating Remote (Naver Webtoon Style Draggable) -->
+  <aside id="labsFloatingRemote" class="floating-remote-chassis" aria-label="Ameva Navigation Remote">
+    <div class="remote-drag-handle" id="remoteDragHandle" title="드래그하여 원하는 위치로 이동">
+      <div class="remote-drag-dots">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <span class="remote-title">⚡ Ameva Remote</span>
+      <button type="button" class="btn-remote-mini" id="remoteMiniToggle" onclick="LabsApp.toggleRemoteMinimize()" title="리모컨 최소화/펼치기">−</button>
+    </div>
+
+    <div class="remote-body" id="remoteBody">
+      <!-- Top & Scroll Navigation -->
+      <div class="remote-btn-group">
+        <button type="button" class="remote-btn" onclick="LabsApp.scrollToTop()" title="맨 위로 스크롤">
+          <span style="font-size: 0.8rem;">▲</span>
+          <span>TOP</span>
+        </button>
+        <button type="button" class="remote-btn" onclick="LabsApp.navigateAdjacentPost('prev')" id="remotePrevBtn" title="이전 글 이동" disabled>
+          <span>◀</span>
+          <span>이전글</span>
+        </button>
+        <button type="button" class="remote-btn" onclick="LabsApp.navigateAdjacentPost('next')" id="remoteNextBtn" title="다음 글 이동" disabled>
+          <span>다음글</span>
+          <span>▶</span>
+        </button>
+        <button type="button" class="remote-btn" onclick="LabsApp.scrollToBottom()" title="맨 아래로 스크롤">
+          <span style="font-size: 0.8rem;">▼</span>
+          <span>BOT</span>
+        </button>
+      </div>
+
+      <!-- Quick Like Action -->
+      <button type="button" class="remote-btn remote-btn-like" id="remoteLikeBtn" onclick="LabsApp.likeActivePostFromRemote()" title="현재 글 추천하기">
+        <span>👍 추천</span>
+        <span class="remote-like-badge" id="remoteLikeBadge">0</span>
+      </button>
+
+      <!-- Viewer & Engine Controls (2nd Photo feature) -->
+      <div class="remote-section-divider"></div>
+      <div class="remote-viewer-controls">
+        <div class="remote-row">
+          <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" rel="noopener noreferrer" class="remote-brand-link" title="AMEVA Workstation 이동">
+            <span style="color: #38bdf8;">⚡</span>
+            <span style="font-weight: 700;">AmevaViewer</span>
+            <span style="font-size: 0.68rem; color: #38bdf8;">↗</span>
+          </a>
+          <button type="button" class="btn-theme-chip btn-wide-toggle" id="remoteWideToggle" onclick="LabsApp.toggleWideMode('remote')" title="너비 전환 (980px ↔ 1440px)">
+            <span class="wide-icon">⤢</span> <span class="wide-text">와이드</span>
+          </button>
+        </div>
+        <div class="remote-theme-pills">
+          <button type="button" class="btn-theme-chip active" id="remoteThemeDark" onclick="LabsApp.setDetailTheme('dark', 'remote')">Dark</button>
+          <button type="button" class="btn-theme-chip" id="remoteThemeWhite" onclick="LabsApp.setDetailTheme('white', 'remote')">Light</button>
+          <button type="button" class="btn-theme-chip" id="remoteThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'remote')">Win98</button>
+        </div>
+      </div>
+
+      <!-- Recent Reading History -->
+      <div class="remote-section-divider"></div>
+      <button type="button" class="remote-btn remote-btn-history" id="remoteHistoryToggle" onclick="LabsApp.toggleRecentHistoryDrawer()" title="최근 읽은 논문/게시글 목록">
+        <span>📖 최근 읽은 논문</span>
+        <span class="remote-history-badge" id="remoteHistoryBadge">0</span>
+      </button>
+
+      <!-- History Drawer -->
+      <div class="remote-history-drawer" id="remoteHistoryDrawer" style="display: none;">
+        <div class="history-drawer-header">
+          <span style="font-size: 0.72rem; font-weight: 700; color: #94a3b8;">열람 기록 (최근순)</span>
+          <button type="button" class="btn-history-clear" onclick="LabsApp.clearRecentHistory()" title="기록 전체 삭제">삭제</button>
+        </div>
+        <div class="history-list" id="remoteHistoryList">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Minimized Floating Bubble -->
+    <div class="remote-minimized-bubble" id="remoteMiniBubble" onclick="LabsApp.toggleRemoteMinimize()" style="display: none;" title="Ameva 리모컨 펼치기">
+      <span class="bolt-icon">⚡</span>
+      <span class="bubble-text">리모컨</span>
+    </div>
+  </aside>
+
+  <!-- Global Toast Notification Element -->
+  <div id="labsToast" class="labs-toast"></div>
 
   <!-- Unified Labs Application Controller -->
   <script>
@@ -1402,6 +2028,13 @@
       activeHandbookModule: 0, // 0 = All modules, 1~8 = Specific module
       handbookPosts: [],
       activePostId: null,
+      activeSlot: 'anal',
+      adjacentPrevId: null,
+      adjacentNextId: null,
+      bottomListPosts: [],
+      bottomListMenuId: null,
+      bottomListCurPage: 1,
+      isRemoteMinimized: false,
       newsletterIndex: 0,
       newsletters: [],
       viewerInstances: {
@@ -1417,6 +2050,9 @@
 
       async init() {
         await this.store.init();
+
+        this.initDraggableRemote();
+        this.renderRecentHistoryUI();
 
         const urlParams = new URLSearchParams(window.location.search);
         const menuParam = urlParams.get('menu');
@@ -1529,6 +2165,10 @@
         if (!item) return;
 
         this.activePostId = item.id;
+        this.activeSlot = 'news';
+        this.recordRecentRead(item);
+        this.updateLikeButtonUI('news', item.like_count || 0, this.isPostLiked(item.id));
+
         const volNum = this.newsletters.length - this.newsletterIndex;
         const isLatest = (this.newsletterIndex === 0) ? ' (최신호)' : '';
         document.getElementById('newsVolBadge').textContent = `VOL. ${volNum}${isLatest}`;
@@ -1579,9 +2219,15 @@
       async likeActiveNewsletter() {
         const item = this.newsletters[this.newsletterIndex];
         if (!item) return;
+        if (this.isPostLiked(item.id)) {
+          this.showToast(`이미 추천하신 뉴스레터입니다. (현재 추천: ${item.like_count || 0})`);
+          return;
+        }
         const newLikes = await this.store.likePost(item.id);
         item.like_count = newLikes;
-        document.getElementById('newsLikes').textContent = newLikes;
+        this.recordPostLiked(item.id);
+        this.updateLikeButtonUI('news', newLikes, true);
+        this.showToast(`뉴스레터를 추천하였습니다! 👍 (현재 추천: ${newLikes})`);
       },
 
       initNewsletterSwipe() {
@@ -1796,6 +2442,7 @@
 
       async openAnalDetail(postId, updateHistory = true) {
         this.activePostId = postId;
+        this.activeSlot = 'anal';
         const post = await this.store.getPost(postId);
         if (!post) return;
 
@@ -1815,6 +2462,10 @@
         document.getElementById('analDetailDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
         document.getElementById('analDetailViews').textContent = post.view_count || 1;
         document.getElementById('analDetailLikes').textContent = post.like_count || 0;
+
+        // Enhanced Like & Recent Reading History Integration
+        this.updateLikeButtonUI('anal', post.like_count || 0, this.isPostLiked(postId));
+        this.recordRecentRead(post);
 
         document.getElementById('analFeedList').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'none';
@@ -1899,57 +2550,8 @@
         buildToc();
         setTimeout(buildToc, 120);
 
-        // Handbook Chapter Pager (Prev / Next)
-        const pagerContainer = document.getElementById('handbookChapterPager');
-        if (isHandbook && this.handbookPosts.length > 0) {
-          const curIdx = this.handbookPosts.findIndex(p => p.id === postId);
-          if (curIdx !== -1) {
-            const prevPost = (curIdx > 0) ? this.handbookPosts[curIdx - 1] : null;
-            const nextPost = (curIdx < this.handbookPosts.length - 1) ? this.handbookPosts[curIdx + 1] : null;
-
-            let pagerHtml = '';
-            if (prevPost) {
-              pagerHtml += `
-                <button class="pager-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" style="flex: 1;">
-                  <span style="font-size: 1.15rem; line-height: 1;">←</span>
-                  <div style="text-align: left; overflow: hidden;">
-                    <span class="pager-label">이전 강좌</span>
-                    <span class="pager-title">${escapeHtml(prevPost.title)}</span>
-                  </div>
-                </button>
-              `;
-            } else {
-              pagerHtml += `<div style="flex: 1; max-width: 48%;"></div>`;
-            }
-
-            pagerHtml += `
-              <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
-                ≡ 커리큘럼 목차
-              </button>
-            `;
-
-            if (nextPost) {
-              pagerHtml += `
-                <button class="pager-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" style="flex: 1;">
-                  <div style="text-align: right; overflow: hidden;">
-                    <span class="pager-label">다음 강좌</span>
-                    <span class="pager-title">${escapeHtml(nextPost.title)}</span>
-                  </div>
-                  <span style="font-size: 1.15rem; line-height: 1;">→</span>
-                </button>
-              `;
-            } else {
-              pagerHtml += `<div style="flex: 1; max-width: 48%;"></div>`;
-            }
-
-            pagerContainer.innerHTML = pagerHtml;
-            pagerContainer.style.display = 'flex';
-          } else {
-            pagerContainer.style.display = 'none';
-          }
-        } else {
-          pagerContainer.style.display = 'none';
-        }
+        // Render Prev/Next Pager & 10-Item Bottom Posts Table
+        await this.renderAnalBottomListAndPager(post);
 
         await this.renderCommentsForView('anal', postId);
         window.scrollTo({ top: document.getElementById('analDetailView').offsetTop - 60, behavior: 'smooth' });
@@ -1972,6 +2574,9 @@
 
       closeAnalDetail() {
         this.activePostId = null;
+        this.adjacentPrevId = null;
+        this.adjacentNextId = null;
+        this.updateRemoteAdjacentButtons();
         if (this.viewerInstances.anal) {
           try { this.viewerInstances.anal.destroy(); } catch(e) {}
           this.viewerInstances.anal = null;
@@ -2042,6 +2647,7 @@
 
       async openBoardPost(postId, updateHistory = true) {
         this.activePostId = postId;
+        this.activeSlot = 'board';
         const post = await this.store.getPost(postId);
         if (!post) return;
 
@@ -2059,10 +2665,15 @@
         document.getElementById('boardPostViews').textContent = post.view_count || 1;
         document.getElementById('boardPostLikes').textContent = post.like_count || 0;
 
+        // Enhanced Like & Recent Reading History Integration
+        this.updateLikeButtonUI('board', post.like_count || 0, this.isPostLiked(postId));
+        this.recordRecentRead(post);
+
         document.getElementById('boardTopPostView').style.display = 'block';
 
         this.mountAmevaViewer('board', '#boardViewerBody', post.content || '');
         await this.renderCommentsForView('board', postId);
+        await this.renderBoardPager(post);
 
         await this.renderBoardView(this.activeBoardFilter);
         window.scrollTo({ top: document.getElementById('boardTopPostView').offsetTop - 60, behavior: 'smooth' });
@@ -2070,6 +2681,9 @@
 
       closeBoardTopPost() {
         this.activePostId = null;
+        this.adjacentPrevId = null;
+        this.adjacentNextId = null;
+        this.updateRemoteAdjacentButtons();
         if (this.viewerInstances.board) {
           try { this.viewerInstances.board.destroy(); } catch(e) {}
           this.viewerInstances.board = null;
@@ -2101,13 +2715,16 @@
       },
 
       setDetailTheme(theme, slot) {
-        this.currentTheme[slot] = theme;
-        if (this.viewerInstances[slot]) {
-          this.viewerInstances[slot].setTheme(theme);
+        const targetSlot = (slot === 'remote') ? (this.activeSlot || 'anal') : slot;
+        this.currentTheme[targetSlot] = theme;
+        if (this.viewerInstances[targetSlot]) {
+          this.viewerInstances[targetSlot].setTheme(theme);
         }
-        ['dark', 'white', 'retro'].forEach(t => {
-          const btn = document.getElementById(`${slot}Theme${t.charAt(0).toUpperCase() + t.slice(1)}`);
-          if (btn) btn.classList.toggle('active', t === theme);
+        ['news', 'anal', 'board', 'remote'].forEach(s => {
+          ['dark', 'white', 'retro'].forEach(t => {
+            const btn = document.getElementById(`${s}Theme${t.charAt(0).toUpperCase() + t.slice(1)}`);
+            if (btn) btn.classList.toggle('active', t === theme);
+          });
         });
       },
 
@@ -2115,7 +2732,7 @@
         const contentWrap = document.querySelector('.labs-content-wrap');
         if (!contentWrap) return;
         const isWide = contentWrap.classList.toggle('wide-mode');
-        ['news', 'anal', 'board'].forEach(s => {
+        ['news', 'anal', 'board', 'remote'].forEach(s => {
           const btn = document.getElementById(`${s}WideToggle`);
           if (btn) {
             btn.classList.toggle('active', isWide);
@@ -2162,11 +2779,525 @@
         });
       },
 
+      // ── Scroll, Like & Toast Feedback Systems ────────────────────────────────
+      scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      scrollToBottom() {
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+      },
+
+      showToast(msg) {
+        const toast = document.getElementById('labsToast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        if (this._toastTimer) clearTimeout(this._toastTimer);
+        this._toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2400);
+      },
+
+      isPostLiked(postId) {
+        try {
+          const liked = JSON.parse(localStorage.getItem('__labs_liked_posts') || '[]');
+          return liked.includes(Number(postId));
+        } catch (e) {
+          return false;
+        }
+      },
+
+      recordPostLiked(postId) {
+        try {
+          const liked = JSON.parse(localStorage.getItem('__labs_liked_posts') || '[]');
+          const numId = Number(postId);
+          if (!liked.includes(numId)) {
+            liked.push(numId);
+            localStorage.setItem('__labs_liked_posts', JSON.stringify(liked));
+          }
+        } catch (e) {}
+      },
+
+      updateLikeButtonUI(slot, count, isLiked) {
+        const numCount = Number(count) || 0;
+        const analMeta = document.getElementById('analDetailLikes');
+        if (analMeta) analMeta.textContent = numCount;
+        const boardMeta = document.getElementById('boardPostLikes');
+        if (boardMeta) boardMeta.textContent = numCount;
+        const newsMeta = document.getElementById('newsLikes');
+        if (newsMeta) newsMeta.textContent = numCount;
+
+        const analBtnBadge = document.getElementById('analDetailBtnLikes');
+        if (analBtnBadge) analBtnBadge.textContent = numCount;
+        const boardBtnBadge = document.getElementById('boardDetailBtnLikes');
+        if (boardBtnBadge) boardBtnBadge.textContent = numCount;
+        const newsBtnBadge = document.getElementById('newsDetailBtnLikes');
+        if (newsBtnBadge) newsBtnBadge.textContent = numCount;
+        const remoteBadge = document.getElementById('remoteLikeBadge');
+        if (remoteBadge) remoteBadge.textContent = numCount;
+
+        const analBtn = document.getElementById('analLikeBtn');
+        if (analBtn) analBtn.classList.toggle('liked', Boolean(isLiked));
+        const boardBtn = document.getElementById('boardLikeBtn');
+        if (boardBtn) boardBtn.classList.toggle('liked', Boolean(isLiked));
+        const newsBtn = document.getElementById('newsLikeBtn');
+        if (newsBtn) newsBtn.classList.toggle('liked', Boolean(isLiked));
+        const remoteBtn = document.getElementById('remoteLikeBtn');
+        if (remoteBtn) remoteBtn.classList.toggle('liked', Boolean(isLiked));
+      },
+
       async likeActivePost(slot) {
         if (!this.activePostId) return;
-        const newLikes = await this.store.likePost(this.activePostId);
-        const el = document.getElementById(`${slot === 'anal' ? 'analDetailLikes' : 'boardPostLikes'}`);
-        if (el) el.textContent = newLikes;
+        const postId = this.activePostId;
+        if (this.isPostLiked(postId)) {
+          const curPost = this.store.posts.find(p => p.id === postId);
+          const cnt = curPost ? (curPost.like_count || 0) : 0;
+          this.showToast(`이미 추천하신 게시글입니다. (현재 추천: ${cnt})`);
+          return;
+        }
+        const newLikes = await this.store.likePost(postId);
+        this.recordPostLiked(postId);
+        this.updateLikeButtonUI(slot, newLikes, true);
+        this.showToast(`게시글을 추천하였습니다! 👍 (현재 추천: ${newLikes})`);
+
+        if (this.bottomListPosts && this.bottomListPosts.length > 0) {
+          const item = this.bottomListPosts.find(p => p.id === postId);
+          if (item) item.like_count = newLikes;
+          this.renderAnalBottomTablePage(this.bottomListCurPage);
+        }
+      },
+
+      likeActivePostFromRemote() {
+        this.likeActivePost(this.activeSlot || 'anal');
+      },
+
+      // ── Recent Reading History ───────────────────────────────────────────────
+      recordRecentRead(post) {
+        if (!post || !post.id) return;
+        try {
+          let hist = JSON.parse(localStorage.getItem('__labs_recent_posts') || '[]');
+          hist = hist.filter(h => h.id !== post.id);
+          hist.unshift({
+            id: post.id,
+            title: post.title,
+            menu_id: post.menu_id,
+            read_at: Date.now()
+          });
+          if (hist.length > 15) hist = hist.slice(0, 15);
+          localStorage.setItem('__labs_recent_posts', JSON.stringify(hist));
+          this.renderRecentHistoryUI();
+        } catch (e) {}
+      },
+
+      renderRecentHistoryUI() {
+        try {
+          const hist = JSON.parse(localStorage.getItem('__labs_recent_posts') || '[]');
+          const badge = document.getElementById('remoteHistoryBadge');
+          if (badge) badge.textContent = hist.length;
+
+          const listEl = document.getElementById('remoteHistoryList');
+          if (!listEl) return;
+          if (hist.length === 0) {
+            listEl.innerHTML = '<div style="text-align: center; color: #64748b; font-size: 0.72rem; padding: 10px 4px;">최근 열람한 논문이 없습니다.</div>';
+            return;
+          }
+          listEl.innerHTML = hist.map(item => {
+            const isCur = (item.id === this.activePostId);
+            return `
+              <div class="history-item ${isCur ? 'active' : ''}" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(item.title)}">
+                <span style="color: #38bdf8; font-size: 0.7rem;">${isCur ? '👉' : '•'}</span>
+                <span class="history-title">${escapeHtml(item.title)}</span>
+              </div>
+            `;
+          }).join('');
+        } catch (e) {}
+      },
+
+      clearRecentHistory() {
+        try {
+          localStorage.removeItem('__labs_recent_posts');
+          this.renderRecentHistoryUI();
+          this.showToast('최근 열람 기록이 삭제되었습니다.');
+        } catch (e) {}
+      },
+
+      toggleRecentHistoryDrawer() {
+        const drawer = document.getElementById('remoteHistoryDrawer');
+        if (!drawer) return;
+        const isHidden = (drawer.style.display === 'none' || !drawer.style.display);
+        drawer.style.display = isHidden ? 'block' : 'none';
+      },
+
+      toggleRemoteMinimize() {
+        const remote = document.getElementById('labsFloatingRemote');
+        const body = document.getElementById('remoteBody');
+        const bubble = document.getElementById('remoteMiniBubble');
+        if (!remote || !body || !bubble) return;
+        this.isRemoteMinimized = !this.isRemoteMinimized;
+        if (this.isRemoteMinimized) {
+          body.style.display = 'none';
+          document.getElementById('remoteDragHandle').style.display = 'none';
+          bubble.style.display = 'flex';
+          remote.style.background = 'transparent';
+          remote.style.border = 'none';
+          remote.style.boxShadow = 'none';
+          remote.style.width = 'auto';
+        } else {
+          body.style.display = 'block';
+          document.getElementById('remoteDragHandle').style.display = 'flex';
+          bubble.style.display = 'none';
+          remote.style.background = '#090d16';
+          remote.style.border = '1.5px solid #1e293b';
+          remote.style.boxShadow = '0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(56, 189, 248, 0.15)';
+          remote.style.width = '220px';
+        }
+      },
+
+      initDraggableRemote() {
+        const remote = document.getElementById('labsFloatingRemote');
+        const handle = document.getElementById('remoteDragHandle');
+        if (!remote || !handle) return;
+
+        try {
+          const saved = JSON.parse(sessionStorage.getItem('__labs_remote_pos') || 'null');
+          if (saved && typeof saved.top === 'number' && typeof saved.left === 'number') {
+            const maxTop = Math.max(10, window.innerHeight - 80);
+            const maxLeft = Math.max(10, window.innerWidth - 80);
+            remote.style.top = `${Math.min(Math.max(10, saved.top), maxTop)}px`;
+            remote.style.left = `${Math.min(Math.max(10, saved.left), maxLeft)}px`;
+            remote.style.right = 'auto';
+            remote.style.bottom = 'auto';
+          }
+        } catch (e) {}
+
+        let isDragging = false;
+        let startX = 0, startY = 0, initLeft = 0, initTop = 0;
+
+        const onDragStart = (e) => {
+          if (e.target.closest('#remoteMiniToggle')) return;
+          isDragging = true;
+          remote.classList.add('dragging');
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          startX = clientX;
+          startY = clientY;
+          const rect = remote.getBoundingClientRect();
+          initLeft = rect.left;
+          initTop = rect.top;
+          if (e.type === 'touchstart') {
+            window.addEventListener('touchmove', onDragMove, { passive: false });
+            window.addEventListener('touchend', onDragEnd);
+          } else {
+            window.addEventListener('mousemove', onDragMove);
+            window.addEventListener('mouseup', onDragEnd);
+          }
+        };
+
+        const onDragMove = (e) => {
+          if (!isDragging) return;
+          if (e.cancelable) e.preventDefault();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          const deltaX = clientX - startX;
+          const deltaY = clientY - startY;
+
+          let newLeft = initLeft + deltaX;
+          let newTop = initTop + deltaY;
+
+          const remW = remote.offsetWidth || 220;
+          const remH = remote.offsetHeight || 260;
+          newLeft = Math.max(8, Math.min(window.innerWidth - remW - 8, newLeft));
+          newTop = Math.max(8, Math.min(window.innerHeight - remH - 8, newTop));
+
+          remote.style.left = `${newLeft}px`;
+          remote.style.top = `${newTop}px`;
+          remote.style.right = 'auto';
+          remote.style.bottom = 'auto';
+        };
+
+        const onDragEnd = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          remote.classList.remove('dragging');
+          window.removeEventListener('mousemove', onDragMove);
+          window.removeEventListener('mouseup', onDragEnd);
+          window.removeEventListener('touchmove', onDragMove);
+          window.removeEventListener('touchend', onDragEnd);
+
+          const rect = remote.getBoundingClientRect();
+          try {
+            sessionStorage.setItem('__labs_remote_pos', JSON.stringify({ top: rect.top, left: rect.left }));
+          } catch (e) {}
+        };
+
+        handle.addEventListener('mousedown', onDragStart);
+        handle.addEventListener('touchstart', onDragStart, { passive: true });
+      },
+
+      async openPostByMenuAndId(menuId, postId) {
+        if (!menuId || !postId) return;
+        const curMenu = this.store.menus.find(m => m.id === menuId);
+        if (curMenu && curMenu.board_type === 'anal') {
+          if (this.activeMenuId !== menuId) {
+            await this.selectMenu(menuId);
+          }
+          await this.openAnalDetail(postId);
+        } else if (curMenu && curMenu.board_type === 'board') {
+          if (this.activeMenuId !== menuId && this.activeBoardFilter !== menuId) {
+            await this.selectMenu(menuId);
+          }
+          await this.openBoardPost(postId);
+        } else if (curMenu && curMenu.board_type === 'news') {
+          await this.selectMenu('newsletter');
+        }
+      },
+
+      navigateAdjacentPost(dir) {
+        const targetId = (dir === 'prev') ? this.adjacentPrevId : this.adjacentNextId;
+        if (!targetId) return;
+        if (this.activeSlot === 'board') {
+          this.openBoardPost(targetId);
+        } else {
+          this.openAnalDetail(targetId);
+        }
+      },
+
+      updateRemoteAdjacentButtons() {
+        const prevBtn = document.getElementById('remotePrevBtn');
+        const nextBtn = document.getElementById('remoteNextBtn');
+        if (prevBtn) {
+          prevBtn.disabled = !this.adjacentPrevId;
+          prevBtn.title = this.adjacentPrevId ? '이전 글 이동' : '이전 글이 없습니다';
+        }
+        if (nextBtn) {
+          nextBtn.disabled = !this.adjacentNextId;
+          nextBtn.title = this.adjacentNextId ? '다음 글 이동' : '다음 글이 없습니다';
+        }
+      },
+
+      // ── Bottom Post List & Pager (10 Posts per Page) ─────────────────────────
+      async renderAnalBottomListAndPager(post) {
+        const menuId = this.activeMenuId;
+        const curMenu = this.store.menus.find(m => m.id === menuId) || { name: '연구' };
+        let allPosts = await this.store.getPosts(menuId);
+
+        if (menuId === 'research-handbook') {
+          allPosts = allPosts.slice().sort((a, b) => {
+            const matchA = a.title.match(/^(\d+)\.(\d+)/);
+            const matchB = b.title.match(/^(\d+)\.(\d+)/);
+            if (matchA && matchB) {
+              const maj = parseInt(matchA[1], 10) - parseInt(matchB[1], 10);
+              if (maj !== 0) return maj;
+              return parseInt(matchA[2], 10) - parseInt(matchB[2], 10);
+            }
+            return a.id - b.id;
+          });
+        } else {
+          allPosts = allPosts.slice().sort((a, b) => {
+            const dateA = new Date(a.created_at || 0).getTime();
+            const dateB = new Date(b.created_at || 0).getTime();
+            if (dateB !== dateA) return dateB - dateA;
+            return b.id - a.id;
+          });
+        }
+
+        this.bottomListPosts = allPosts;
+        this.bottomListMenuId = menuId;
+
+        const curIdx = allPosts.findIndex(p => p.id === post.id);
+        const prevPost = (curIdx > 0) ? allPosts[curIdx - 1] : null;
+        const nextPost = (curIdx !== -1 && curIdx < allPosts.length - 1) ? allPosts[curIdx + 1] : null;
+
+        this.adjacentPrevId = prevPost ? prevPost.id : null;
+        this.adjacentNextId = nextPost ? nextPost.id : null;
+        this.updateRemoteAdjacentButtons();
+
+        // Render analPostPager
+        const pagerEl = document.getElementById('analPostPager');
+        if (pagerEl) {
+          let pagerHtml = '';
+          if (prevPost) {
+            pagerHtml += `
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" title="${escapeHtml(prevPost.title)}">
+                <span style="font-size: 1.15rem; line-height: 1;">←</span>
+                <div style="text-align: left; overflow: hidden; flex: 1;">
+                  <span class="nav-label">이전 글</span>
+                  <span class="nav-title">${escapeHtml(prevPost.title)}</span>
+                </div>
+              </button>
+            `;
+          } else {
+            pagerHtml += `
+              <button class="post-nav-btn" disabled>
+                <span style="font-size: 1.15rem; line-height: 1;">←</span>
+                <div style="text-align: left; overflow: hidden; flex: 1;">
+                  <span class="nav-label">이전 글</span>
+                  <span class="nav-title">이전 글이 없습니다</span>
+                </div>
+              </button>
+            `;
+          }
+
+          pagerHtml += `
+            <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
+              ≡ ${escapeHtml(curMenu.name)} 목록
+            </button>
+          `;
+
+          if (nextPost) {
+            pagerHtml += `
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" title="${escapeHtml(nextPost.title)}">
+                <div style="text-align: right; overflow: hidden; flex: 1;">
+                  <span class="nav-label">다음 글</span>
+                  <span class="nav-title">${escapeHtml(nextPost.title)}</span>
+                </div>
+                <span style="font-size: 1.15rem; line-height: 1;">→</span>
+              </button>
+            `;
+          } else {
+            pagerHtml += `
+              <button class="post-nav-btn" disabled>
+                <div style="text-align: right; overflow: hidden; flex: 1;">
+                  <span class="nav-label">다음 글</span>
+                  <span class="nav-title">다음 글이 없습니다</span>
+                </div>
+                <span style="font-size: 1.15rem; line-height: 1;">→</span>
+              </button>
+            `;
+          }
+
+          pagerEl.innerHTML = pagerHtml;
+          pagerEl.style.display = 'flex';
+        }
+
+        // Render Bottom List
+        const titleEl = document.getElementById('analBottomListTitle');
+        const countEl = document.getElementById('analBottomListCount');
+        if (titleEl) titleEl.textContent = `📑 ${curMenu.name} 전체 글 목록`;
+        if (countEl) countEl.textContent = `총 ${allPosts.length}편`;
+
+        const curPage = (curIdx >= 0) ? Math.floor(curIdx / 10) + 1 : 1;
+        this.bottomListCurPage = curPage;
+        this.renderAnalBottomTablePage(curPage);
+      },
+
+      renderAnalBottomTablePage(page) {
+        const tbody = document.getElementById('analBottomTableBody');
+        const pagination = document.getElementById('analBottomPagination');
+        if (!tbody || !this.bottomListPosts) return;
+
+        const posts = this.bottomListPosts;
+        const total = posts.length;
+        const pageSize = 10;
+        const totalPages = Math.max(1, Math.ceil(total / pageSize));
+        const curPage = Math.min(Math.max(1, page), totalPages);
+        this.bottomListCurPage = curPage;
+
+        const startIdx = (curPage - 1) * pageSize;
+        const pageItems = posts.slice(startIdx, startIdx + pageSize);
+
+        tbody.innerHTML = pageItems.map((p, idx) => {
+          const overallIndex = total - (startIdx + idx);
+          const isCur = (p.id === this.activePostId);
+          const dateStr = (p.created_at || '').substring(0, 10);
+          return `
+            <tr class="${isCur ? 'current-reading-row' : ''}">
+              <td style="text-align: center; color: var(--text-muted); font-size: 0.78rem;">${overallIndex}</td>
+              <td class="bottom-title-cell">
+                ${isCur ? '<span class="badge-current-reading">열람중</span>' : ''}
+                <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id})">${escapeHtml(p.title)}</a>
+                ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
+              </td>
+              <td style="font-size: 0.78rem;">${escapeHtml(p.author)}</td>
+              <td style="text-align: center; color: var(--text-muted); font-size: 0.76rem;">${escapeHtml(dateStr)}</td>
+              <td style="text-align: center; color: var(--text-muted); font-size: 0.76rem;">${p.view_count || 0}</td>
+              <td style="text-align: center; color: #38bdf8; font-weight: 700; font-size: 0.76rem;">${p.like_count || 0}</td>
+            </tr>
+          `;
+        }).join('');
+
+        if (pagination) {
+          if (totalPages <= 1) {
+            pagination.innerHTML = '';
+          } else {
+            let pagesHtml = '';
+            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage - 1})" ${curPage === 1 ? 'disabled' : ''}>« 이전</button>`;
+            for (let i = 1; i <= totalPages; i++) {
+              pagesHtml += `<button class="btn-bottom-page ${i === curPage ? 'active' : ''}" onclick="LabsApp.renderAnalBottomTablePage(${i})">${i}</button>`;
+            }
+            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage + 1})" ${curPage === totalPages ? 'disabled' : ''}>다음 »</button>`;
+            pagination.innerHTML = pagesHtml;
+          }
+        }
+      },
+
+      async renderBoardPager(post) {
+        const posts = await this.store.getPosts(this.activeBoardFilter);
+        const curIdx = posts.findIndex(p => p.id === post.id);
+        const prevPost = (curIdx > 0) ? posts[curIdx - 1] : null;
+        const nextPost = (curIdx !== -1 && curIdx < posts.length - 1) ? posts[curIdx + 1] : null;
+
+        this.adjacentPrevId = prevPost ? prevPost.id : null;
+        this.adjacentNextId = nextPost ? nextPost.id : null;
+        this.updateRemoteAdjacentButtons();
+
+        const pagerEl = document.getElementById('boardPostPager');
+        if (pagerEl) {
+          let pagerHtml = '';
+          if (prevPost) {
+            pagerHtml += `
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${prevPost.id})" title="${escapeHtml(prevPost.title)}">
+                <span style="font-size: 1.15rem; line-height: 1;">←</span>
+                <div style="text-align: left; overflow: hidden; flex: 1;">
+                  <span class="nav-label">이전 글</span>
+                  <span class="nav-title">${escapeHtml(prevPost.title)}</span>
+                </div>
+              </button>
+            `;
+          } else {
+            pagerHtml += `
+              <button class="post-nav-btn" disabled>
+                <span style="font-size: 1.15rem; line-height: 1;">←</span>
+                <div style="text-align: left; overflow: hidden; flex: 1;">
+                  <span class="nav-label">이전 글</span>
+                  <span class="nav-title">이전 글이 없습니다</span>
+                </div>
+              </button>
+            `;
+          }
+
+          pagerHtml += `
+            <button class="btn-action btn-secondary" onclick="LabsApp.closeBoardTopPost()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
+              ✕ 본문 닫기
+            </button>
+          `;
+
+          if (nextPost) {
+            pagerHtml += `
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${nextPost.id})" title="${escapeHtml(nextPost.title)}">
+                <div style="text-align: right; overflow: hidden; flex: 1;">
+                  <span class="nav-label">다음 글</span>
+                  <span class="nav-title">${escapeHtml(nextPost.title)}</span>
+                </div>
+                <span style="font-size: 1.15rem; line-height: 1;">→</span>
+              </button>
+            `;
+          } else {
+            pagerHtml += `
+              <button class="post-nav-btn" disabled>
+                <div style="text-align: right; overflow: hidden; flex: 1;">
+                  <span class="nav-label">다음 글</span>
+                  <span class="nav-title">다음 글이 없습니다</span>
+                </div>
+                <span style="font-size: 1.15rem; line-height: 1;">→</span>
+              </button>
+            `;
+          }
+
+          pagerEl.innerHTML = pagerHtml;
+          pagerEl.style.display = 'flex';
+        }
       },
 
       copyBibtexCitation() {
