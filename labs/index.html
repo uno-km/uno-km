@@ -1820,7 +1820,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v7_sovereign_clean_menus';
+    const STATE_VERSION = 'v8_lightweight_cache_and_perf';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -1904,6 +1904,7 @@
       constructor() {
         this.apiAvailable = true;
         this.databaseConnected = false;
+        this.cachedPosts = {}; // Fast in-memory cache per menu_id
         this.loadLocal();
       }
 
@@ -1944,9 +1945,22 @@
 
       saveLocal() {
         try {
+          // Zero-Jank: Save only lightweight headers (strip heavy markdown body)
+          const lightweightPosts = (this.posts || []).slice(0, 100).map(p => ({
+            id: p.id,
+            menu_id: p.menu_id,
+            title: p.title,
+            excerpt: p.excerpt || (p.content ? p.content.substring(0, 200) : ''),
+            author: p.author,
+            view_count: p.view_count,
+            like_count: p.like_count,
+            comment_count: p.comment_count,
+            created_at: p.created_at,
+            status: p.status
+          }));
           localStorage.setItem('__ameva_labs_state', JSON.stringify({
             menus: this.menus,
-            posts: this.posts,
+            posts: lightweightPosts,
             comments: this.comments
           }));
         } catch (e) {}
@@ -1981,7 +1995,12 @@
         return ids;
       }
 
-      async getPosts(menuId) {
+      async getPosts(menuId, forceRefresh = false) {
+        // Fast path: In-memory cached posts for ultra-responsive tab switching
+        if (!forceRefresh && this.cachedPosts[menuId] && this.cachedPosts[menuId].length > 0) {
+          return this.cachedPosts[menuId];
+        }
+
         const targetIds = this.getDescendantMenuIds(menuId);
         if (this.apiAvailable) {
           try {
@@ -1989,6 +2008,7 @@
             if (res.ok) {
               const data = await res.json();
               if (data.ok && Array.isArray(data.posts)) {
+                this.cachedPosts[menuId] = data.posts;
                 this.posts = data.posts;
                 this.saveLocal();
                 return data.posts;
@@ -2498,13 +2518,13 @@
             // Chapter Cards
             modPosts.forEach(p => {
               const dateStr = (p.created_at || '').substring(0, 10);
-              const excerpt = extractExcerpt(p.content, 200);
+              const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
               const chapCodeMatch = p.title.match(/^(\d+\.\d+)/);
               const chapCode = chapCodeMatch ? chapCodeMatch[1] : '';
 
-              const hasGlossary = (p.content || '').includes('용어') || (p.content || '').includes('Glossary');
-              const hasLab = (p.content || '').includes('Lab') || (p.content || '').includes('실습');
-              const hasMermaid = (p.content || '').includes('mermaid');
+              const hasGlossary = (p.content || p.excerpt || '').includes('용어') || (p.content || p.excerpt || '').includes('Glossary');
+              const hasLab = (p.content || p.excerpt || '').includes('Lab') || (p.content || p.excerpt || '').includes('실습');
+              const hasMermaid = (p.content || p.excerpt || '').includes('mermaid');
 
               const card = document.createElement('div');
               card.className = 'anal-card';
@@ -2537,7 +2557,7 @@
 
           posts.forEach(p => {
             const dateStr = (p.created_at || '').substring(0, 10);
-            const excerpt = extractExcerpt(p.content, 200);
+            const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
 
             const card = document.createElement('div');
             card.className = 'anal-card';

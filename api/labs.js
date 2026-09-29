@@ -94,31 +94,41 @@ async function ensureSchema(sql) {
       `;
     }
 
-    // Dynamic Seed & Sync of Research Posts & Handbook Chapters
-    const SEED_VERSION = 'v11_academic_tone_zero_hype_refactored';
+    // Dynamic Seed & Sync of Research Posts & Handbook Chapters with Optimistic Lock
+    const SEED_VERSION = 'v12_optimistic_lock_and_slim_payload';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
-      // Clean refresh of master archive
-      await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
+      // Optimistic Concurrency Lock: Only the first concurrent instance acquires the lock
+      const lockAcquired = await sql`
+        INSERT INTO labs_meta (key, value)
+        VALUES ('seed_posts_version', ${SEED_VERSION})
+        ON CONFLICT (key) DO UPDATE SET value = ${SEED_VERSION}
+        WHERE labs_meta.value IS DISTINCT FROM ${SEED_VERSION}
+        RETURNING key;
+      `;
 
-      for (const p of SEED_POSTS) {
-        if (p.created_at) {
+      if (lockAcquired && lockAcquired.length > 0) {
+        // Clean refresh of master archive: Truncate and insert with strict unique IDs
+        await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
+
+        for (const p of SEED_POSTS) {
+          const createdAt = p.created_at || new Date().toISOString();
           await sql`
-            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status, created_at, updated_at)
-            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${p.created_at}, ${p.created_at});
-          `;
-        } else {
-          await sql`
-            INSERT INTO labs_posts (menu_id, title, content, author, author_ip, status)
-            VALUES (${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published');
+            INSERT INTO labs_posts (id, menu_id, title, content, author, author_ip, status, created_at, updated_at)
+            VALUES (${p.id}, ${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
+            ON CONFLICT (id) DO UPDATE SET
+              menu_id = EXCLUDED.menu_id,
+              title = EXCLUDED.title,
+              content = EXCLUDED.content,
+              author = EXCLUDED.author,
+              status = EXCLUDED.status,
+              updated_at = EXCLUDED.updated_at;
           `;
         }
-      }
 
-      await sql`
-        INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', ${SEED_VERSION})
-        ON CONFLICT (key) DO UPDATE SET value = ${SEED_VERSION};
-      `;
+        // Align Postgres sequence to max id to ensure subsequent user posts work seamlessly
+        await sql`SELECT setval(pg_get_serial_sequence('labs_posts', 'id'), COALESCE((SELECT MAX(id) FROM labs_posts), 1));`;
+      }
     }
 
     isSchemaReady = true;
@@ -218,25 +228,50 @@ export default async function handler(req, res) {
     // ── 2. Posts (CRUD) ───────────────────────────────────────────────────────
     if (action === 'get_posts') {
       const menu_id = req.query.menu_id;
+      const includeContent = req.query.include_content === 'true' || menu_id === 'newsletter';
+
       let posts;
       if (menu_id && menu_id !== 'all') {
-        posts = await sql`
-          SELECT p.id, p.menu_id, p.title, p.content, p.author, p.author_ip, p.status, 
-                 p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
-                 m.name as menu_name, m.board_type
-          FROM labs_posts p
-          JOIN labs_menus m ON p.menu_id = m.id
-          WHERE (p.menu_id = ${menu_id} OR m.parent_id = ${menu_id})
-            AND p.status = 'published'
-          ORDER BY 
-            CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
-            p.created_at DESC,
-            p.id DESC
-          LIMIT 100;
-        `;
+        if (includeContent) {
+          posts = await sql`
+            SELECT p.id, p.menu_id, p.title, p.content, 
+                   SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
+                   p.author, p.author_ip, p.status, 
+                   p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
+                   m.name as menu_name, m.board_type
+            FROM labs_posts p
+            JOIN labs_menus m ON p.menu_id = m.id
+            WHERE (p.menu_id = ${menu_id} OR m.parent_id = ${menu_id})
+              AND p.status = 'published'
+            ORDER BY 
+              CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
+              p.created_at DESC,
+              p.id DESC
+            LIMIT 100;
+          `;
+        } else {
+          posts = await sql`
+            SELECT p.id, p.menu_id, p.title, 
+                   SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
+                   p.author, p.author_ip, p.status, 
+                   p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
+                   m.name as menu_name, m.board_type
+            FROM labs_posts p
+            JOIN labs_menus m ON p.menu_id = m.id
+            WHERE (p.menu_id = ${menu_id} OR m.parent_id = ${menu_id})
+              AND p.status = 'published'
+            ORDER BY 
+              CASE WHEN p.menu_id = 'research-handbook' THEN p.id END ASC,
+              p.created_at DESC,
+              p.id DESC
+            LIMIT 100;
+          `;
+        }
       } else {
         posts = await sql`
-          SELECT p.id, p.menu_id, p.title, p.content, p.author, p.author_ip, p.status, 
+          SELECT p.id, p.menu_id, p.title, 
+                 SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
+                 p.author, p.author_ip, p.status, 
                  p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
                  m.name as menu_name, m.board_type
           FROM labs_posts p
