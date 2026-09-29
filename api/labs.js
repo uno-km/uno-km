@@ -4,6 +4,46 @@ import { SEED_POSTS } from './seed_posts.js';
 
 let isSchemaReady = false;
 
+// ── In-Memory Serverless Cache (10-minute TTL for Warm Instances) ─────────────
+const CACHE_TTL_MS = 10 * 60 * 1000;
+const SERVER_CACHE = {
+  menus: { data: null, expiresAt: 0 },
+  posts: new Map(), // cacheKey -> { data, expiresAt }
+  postDetail: new Map(), // postId -> { data, expiresAt }
+
+  getMenus() {
+    if (this.menus.data && Date.now() < this.menus.expiresAt) return this.menus.data;
+    return null;
+  },
+  setMenus(data) {
+    this.menus = { data, expiresAt: Date.now() + CACHE_TTL_MS };
+  },
+
+  getPosts(key) {
+    const entry = this.posts.get(key);
+    if (entry && Date.now() < entry.expiresAt) return entry.data;
+    return null;
+  },
+  setPosts(key, data) {
+    this.posts.set(key, { data, expiresAt: Date.now() + CACHE_TTL_MS });
+  },
+
+  getPost(id) {
+    const entry = this.postDetail.get(id);
+    if (entry && Date.now() < entry.expiresAt) return entry.data;
+    return null;
+  },
+  setPost(id, data) {
+    this.postDetail.set(id, { data, expiresAt: Date.now() + CACHE_TTL_MS });
+  },
+
+  invalidateAll() {
+    this.menus.data = null;
+    this.posts.clear();
+    this.postDetail.clear();
+  }
+};
+
 // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
 const INITIAL_MENUS = [
   { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
@@ -216,19 +256,33 @@ export default async function handler(req, res) {
 
     // ── 1. Menus (Tree hierarchy) ─────────────────────────────────────────────
     if (action === 'get_menus') {
+      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=3600, stale-while-revalidate=86400');
+      const cached = SERVER_CACHE.getMenus();
+      if (cached) {
+        return res.status(200).json({ ok: true, database_connected: true, cached: true, menus: cached });
+      }
+
       const menus = await sql`
         SELECT id, name, parent_id, depth, sort_order, board_type, description, is_active
         FROM labs_menus
         WHERE is_active = TRUE
         ORDER BY depth ASC, sort_order ASC, name ASC;
       `;
+      SERVER_CACHE.setMenus(menus);
       return res.status(200).json({ ok: true, database_connected: true, menus });
     }
 
     // ── 2. Posts (CRUD) ───────────────────────────────────────────────────────
     if (action === 'get_posts') {
-      const menu_id = req.query.menu_id;
+      res.setHeader('Cache-Control', 'public, max-age=30, s-maxage=600, stale-while-revalidate=3600');
+      const menu_id = req.query.menu_id || 'all';
       const includeContent = req.query.include_content === 'true' || menu_id === 'newsletter';
+      const cacheKey = `${menu_id}_${includeContent}`;
+
+      const cached = SERVER_CACHE.getPosts(cacheKey);
+      if (cached) {
+        return res.status(200).json({ ok: true, database_connected: true, cached: true, posts: cached });
+      }
 
       let posts;
       if (menu_id && menu_id !== 'all') {
@@ -284,12 +338,21 @@ export default async function handler(req, res) {
           LIMIT 100;
         `;
       }
+      SERVER_CACHE.setPosts(cacheKey, posts);
       return res.status(200).json({ ok: true, database_connected: true, posts });
     }
 
     if (action === 'get_post') {
+      res.setHeader('Cache-Control', 'public, max-age=30, s-maxage=1800, stale-while-revalidate=86400');
       const post_id = parseInt(req.query.post_id, 10);
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
+
+      const cached = SERVER_CACHE.getPost(post_id);
+      if (cached) {
+        // Asynchronously track view count without blocking response
+        sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`.catch(() => {});
+        return res.status(200).json({ ok: true, database_connected: true, cached: true, post: cached });
+      }
 
       // Increment view count
       await sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`;
@@ -303,10 +366,12 @@ export default async function handler(req, res) {
       if (!rows || rows.length === 0) {
         return res.status(404).json({ ok: false, error: 'Post not found' });
       }
+      SERVER_CACHE.setPost(post_id, rows[0]);
       return res.status(200).json({ ok: true, database_connected: true, post: rows[0] });
     }
 
     if (action === 'create_post' && req.method === 'POST') {
+      res.setHeader('Cache-Control', 'no-store');
       return res.status(403).json({
         ok: false,
         error: '보안 정책: AMEVA Labs는 읽기 전용 영구 주권 보관소(Read-Only Sovereign Archive)로 외부 임의 게시글 작성을 영구 차단합니다.'
@@ -314,6 +379,7 @@ export default async function handler(req, res) {
     }
 
     if (action === 'delete_post' && req.method === 'POST') {
+      res.setHeader('Cache-Control', 'no-store');
       return res.status(403).json({
         ok: false,
         error: '보안 정책: AMEVA Labs는 영구 아카이브로 게시글 삭제가 허용되지 않습니다.'
@@ -321,6 +387,7 @@ export default async function handler(req, res) {
     }
 
     if (action === 'like_post' && req.method === 'POST') {
+      res.setHeader('Cache-Control', 'no-store');
       const { post_id } = req.body;
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
       const updated = await sql`
@@ -329,6 +396,7 @@ export default async function handler(req, res) {
         WHERE id = ${post_id}
         RETURNING like_count;
       `;
+      SERVER_CACHE.invalidateAll();
       return res.status(200).json({ 
         ok: true, 
         database_connected: true,
@@ -338,6 +406,7 @@ export default async function handler(req, res) {
 
     // ── 3. Comments (Nested hierarchy) ────────────────────────────────────────
     if (action === 'get_comments') {
+      res.setHeader('Cache-Control', 'public, max-age=5, s-maxage=30, stale-while-revalidate=60');
       const post_id = parseInt(req.query.post_id, 10);
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
 

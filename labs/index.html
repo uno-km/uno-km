@@ -2022,14 +2022,23 @@
       }
 
       async getPost(postId) {
+        if (!this.cachedPostDetails) this.cachedPostDetails = {};
+        if (this.cachedPostDetails[postId]) {
+          return this.cachedPostDetails[postId];
+        }
+
         if (this.apiAvailable) {
           try {
             const res = await fetch(`/api/labs?action=get_post&post_id=${postId}`);
             if (res.ok) {
               const data = await res.json();
               if (data.ok && data.post) {
+                this.cachedPostDetails[postId] = data.post;
                 const existingIdx = this.posts.findIndex(p => p.id === postId);
-                if (existingIdx !== -1) this.posts[existingIdx] = data.post;
+                if (existingIdx !== -1) {
+                  this.posts[existingIdx].view_count = data.post.view_count;
+                  this.posts[existingIdx].like_count = data.post.like_count;
+                }
                 return data.post;
               }
             }
@@ -2038,7 +2047,6 @@
         const p = this.posts.find(x => x.id === postId);
         if (p) {
           p.view_count = (p.view_count || 0) + 1;
-          this.saveLocal();
         }
         return p;
       }
@@ -2072,11 +2080,15 @@
             });
             const data = await res.json();
             const post = this.posts.find(p => p.id === postId);
+            const newLikeCount = (data && data.like_count !== undefined) ? data.like_count : ((post ? post.like_count : 0) + 1);
             if (post) {
-              post.like_count = (data && data.like_count !== undefined) ? data.like_count : (post.like_count || 0) + 1;
+              post.like_count = newLikeCount;
               this.saveLocal();
-              return post.like_count;
             }
+            if (this.cachedPostDetails && this.cachedPostDetails[postId]) {
+              this.cachedPostDetails[postId].like_count = newLikeCount;
+            }
+            return newLikeCount;
           } catch (e) {}
         }
         const post = this.posts.find(p => p.id === postId);
