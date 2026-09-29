@@ -444,6 +444,56 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, message: 'Database wiped successfully.' });
     }
 
+    // ── Diagnostic / Force Seed Actions ────────────────────────────────────────
+    if (action === 'debug_db') {
+      res.setHeader('Cache-Control', 'no-store');
+      const postCount = await sql`SELECT count(*) FROM labs_posts;`;
+      const meta = await sql`SELECT * FROM labs_meta;`;
+      const samplePosts = await sql`SELECT id, menu_id, title FROM labs_posts LIMIT 5;`;
+      return res.status(200).json({
+        ok: true,
+        postCount: postCount[0]?.count,
+        meta,
+        samplePosts,
+        lastSchemaError
+      });
+    }
+
+    if (action === 'force_seed') {
+      res.setHeader('Cache-Control', 'no-store');
+      await sql`TRUNCATE TABLE labs_posts RESTART IDENTITY CASCADE;`;
+      let inserted = 0;
+      const errors = [];
+      for (let i = 0; i < SEED_POSTS.length; i++) {
+        const p = SEED_POSTS[i];
+        const postId = i + 1;
+        const createdAt = p.created_at || new Date().toISOString();
+        try {
+          await sql`
+            INSERT INTO labs_posts (id, menu_id, title, content, author, author_ip, status, created_at, updated_at)
+            VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
+            ON CONFLICT (id) DO UPDATE SET
+              menu_id = EXCLUDED.menu_id,
+              title = EXCLUDED.title,
+              content = EXCLUDED.content,
+              author = EXCLUDED.author,
+              status = EXCLUDED.status,
+              updated_at = EXCLUDED.updated_at;
+          `;
+          inserted++;
+        } catch (e) {
+          errors.push({ id: postId, title: p.title, error: e.message });
+        }
+      }
+      await sql`SELECT setval(pg_get_serial_sequence('labs_posts', 'id'), COALESCE((SELECT MAX(id) FROM labs_posts), 1));`;
+      await sql`
+        INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', 'v13_fix_seed_id_and_cache')
+        ON CONFLICT (key) DO UPDATE SET value = 'v13_fix_seed_id_and_cache';
+      `;
+      SERVER_CACHE.invalidateAll();
+      return res.status(200).json({ ok: true, inserted, errors, total: SEED_POSTS.length });
+    }
+
     return res.status(400).json({ ok: false, error: `Unknown action: ${action}` });
   } catch (err) {
     console.error('[Labs API Error]:', err);
