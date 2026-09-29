@@ -72,9 +72,14 @@ export async function initGraph() {
       let fallback;
       try {
         fallback = await fetch('data/graph_index.json');
+        if (!fallback.ok) fallback = await fetch('/foundation/dashboard/data/graph_index.json');
         if (!fallback.ok) fallback = await fetch('/dashboard/data/graph_index.json');
       } catch (e) {
-        fallback = await fetch('/dashboard/data/graph_index.json');
+        try {
+          fallback = await fetch('/foundation/dashboard/data/graph_index.json');
+        } catch (e2) {
+          fallback = await fetch('/dashboard/data/graph_index.json');
+        }
       }
       if (fallback && fallback.ok) {
         data = await fallback.json();
@@ -503,9 +508,14 @@ async function loadMuseumDocentData() {
     let tourRes;
     try {
       tourRes = await fetch('data/tour_data.json');
+      if (!tourRes.ok) tourRes = await fetch('/foundation/dashboard/data/tour_data.json');
       if (!tourRes.ok) tourRes = await fetch('/dashboard/data/tour_data.json');
     } catch(e) {
-      tourRes = await fetch('/dashboard/data/tour_data.json');
+      try {
+        tourRes = await fetch('/foundation/dashboard/data/tour_data.json');
+      } catch (e2) {
+        tourRes = await fetch('/dashboard/data/tour_data.json');
+      }
     }
     const tourJson = await tourRes.json();
     return tourJson.steps || [];

@@ -1659,6 +1659,17 @@ async function ensureGraphSchemaAndSeed(sql) {
             );
         `;
 
+        // Ensure missing columns exist in existing graph_nodes tables
+        await sql`
+            ALTER TABLE graph_nodes 
+                ADD COLUMN IF NOT EXISTS readme_url TEXT,
+                ADD COLUMN IF NOT EXISTS demo_url TEXT,
+                ADD COLUMN IF NOT EXISTS pypi_package VARCHAR(100),
+                ADD COLUMN IF NOT EXISTS npm_package VARCHAR(100),
+                ADD COLUMN IF NOT EXISTS tour_order INT,
+                ADD COLUMN IF NOT EXISTS audio_narrative TEXT;
+        `;
+
         for (const n of SEED_NODES) {
             await sql`
                 INSERT INTO graph_nodes (
@@ -1772,6 +1783,16 @@ export default async function handler(req, res) {
         });
     } catch (error) {
         console.error('Neon DB Graph API Error:', error);
-        return res.status(500).json({ ok: false, error: error.message });
+        return res.status(200).json({
+            ok: true,
+            source: 'embedded_fallback_on_db_error',
+            error: error.message,
+            total_nodes: SEED_NODES.length,
+            total_edges: SEED_EDGES.length,
+            data: {
+                nodes: SEED_NODES,
+                links: SEED_EDGES
+            }
+        });
     }
 }
