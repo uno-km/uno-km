@@ -67,8 +67,8 @@ sdks:
   - id: vulkan
     name: "AMEVA-Runtime"
     badge: "pip / npm"
-    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 6대 모달리티 AI 가속 런타임 (Z-Image Turbo DiT 지원)."
-    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with Z-Image Turbo DiT)."
+    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 6대 모달리티 AI 가속 런타임 (Vulkan / OpenCL / CPU 5대 표준 백엔드 지원)."
+    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with Vulkan, OpenCL & CPU 5-Backend Standard)."
     links:
       docs: "/lib/vulkan/"
       pypi: "https://pypi.org/project/ameva-runtime/"
@@ -145,8 +145,8 @@ libs:
   - id: llamacpp
     name: "Termux-LlamaCpp"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 Android Termux ARM64 전용 GGUF LLM 런타임, 모델 매니저 및 OpenAI 호환 REST/SSE 서버."
-    tagline_en: "Production-grade GGUF LLM runtime utilizing device resources for Android Termux & ARM64."
+    tagline_ko: "디바이스 리소스를 활용한 Android Termux ARM64 전용 GGUF LLM 런타임 (Vulkan / Adreno OpenCL 2.0 / Pure CPU 5대 백엔드 라우팅 및 OpenAI REST 서버)."
+    tagline_en: "Production-grade GGUF LLM runtime utilizing device resources for Android Termux & ARM64 with Vulkan, Adreno OpenCL 2.0 & Pure CPU 5-backend routing."
     links:
       docs: "/lib/llamacpp/"
       pypi: "https://pypi.org/project/termux-llamacpp/"

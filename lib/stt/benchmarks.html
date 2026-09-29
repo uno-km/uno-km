@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | Termux-STT</title>
   <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -32,6 +32,26 @@
     <tr><th>Hardware Device</th><th>Model Tier</th><th>Parameters</th><th>Model Size</th><th>Inference Time (60s Audio)</th><th>Real-Time Factor (RTF)</th><th>Peak RAM</th><th>WER Status</th></tr>
   </thead>
   <tbody>
+    <tr>
+      <td><strong>Galaxy S25 (SD 8 Elite)</strong></td>
+      <td><strong>Whisper Small (Hybrid -sm)</strong></td>
+      <td>244M</td>
+      <td>466 MB</td>
+      <td><strong>12.93s</strong></td>
+      <td><strong>0.2133x (4.7x Faster)</strong></td>
+      <td>48.5 MB</td>
+      <td><span class="status-badge active">PASS (SOTA)</span></td>
+    </tr>
+    <tr>
+      <td><strong>Galaxy S25 (SD 8 Elite)</strong></td>
+      <td><strong>Whisper Korean (Vulkan)</strong></td>
+      <td>74M</td>
+      <td>142 MB</td>
+      <td><strong>8.00s (45s audio)</strong></td>
+      <td><strong>0.1777x (5.6x Faster)</strong></td>
+      <td>42.1 MB</td>
+      <td><span class="status-badge active">100% Ground Truth</span></td>
+    </tr>
     <tr>
       <td><strong>Galaxy S21 (SD865)</strong></td>
       <td><strong>Whisper Tiny</strong></td>

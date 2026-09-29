@@ -1,4 +1,4 @@
-# termux-tts Full Technical Specification (v1.5.0)
+# termux-tts Full Technical Specification (v1.5.5)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview

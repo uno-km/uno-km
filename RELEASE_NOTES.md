@@ -2,6 +2,85 @@
 
 ---
 
+## [AMEVA Ecosystem Unified 5-Backend & Qualcomm OpenCL 2.0 Fleet Release] - 2026-09-29
+
+### Overview
+This ecosystem-wide release finalizes the **Unified 5-Backend Standard (`["auto", "gpu", "vulkan", "opencl", "cpu"]`)**, establishes first-class **Qualcomm Adreno 600 Series OpenCL 2.0 Acceleration**, completely bans misleading ad-hoc arguments (`cpu_neon`, `vulkan-force`), and synchronizes production releases across PyPI and NPM for the entire 6-modality fleet.
+
+### Released Packages
+| Package | Version | PyPI Distribution | NPM Distribution | Key Highlight |
+| :--- | :---: | :--- | :--- | :--- |
+| **`ameva-runtime`** | **`2.7.5`** | `ameva-runtime 2.7.5` | `@ameva/runtime@2.7.5` | 5-backend standard, system OpenCL path injection, Bionic isolation |
+| **`termux-llamacpp`** | **`1.3.13`** | `termux-llamacpp 1.3.13` | `termux-llamacpp@1.3.13` | Native OpenCL kernel dispatch, model resolution bugfix, S20 validated |
+| **`termux-vision`** | **`1.4.6`** | `termux-vision 1.4.6` | `termux-vision@1.4.6` | Purged `vulkan-force`, 5-backend choices, VLMResponse mock aligned |
+| **`termux-diffusion`** | **`1.8.1`** | `termux-diffusion 1.8.1` | `termux-diffusion@1.8.1` | 5-backend choices, Zero-Silent-Fallback enforcement |
+| **`termux-stt`** | **`1.3.3`** | `termux-stt 1.3.3` | `termux-stt@1.3.3` | 5-backend choices, Whisper/Vosk/Sherpa unified stability |
+| **`termux-bitnet`** | **`1.4.6`** | `termux-bitnet 1.4.6` | `termux-bitnet@1.4.6` | 5-backend choices, 1.58-bit ARM64 NEON DotProd runtime |
+| **`termux-tts`** | **`1.5.5`** | `termux-tts 1.5.5` | `termux-tts@1.5.5` | 5-backend choices, 4-tier neural speech synthesis |
+
+### Key Architectural Changes
+* **Unified 5-Backend Whitelist**: Every CLI parser and adapter layer strictly bounds device execution to `["auto", "gpu", "vulkan", "opencl", "cpu"]`. Passing unauthorized backend choices (such as `cpu_neon`) triggers immediate Fail-Fast rejection.
+* **Adreno 650 (Galaxy S20) Hardware Quirk Resolution**: Legacy Qualcomm Adreno 600 series SPIR-V subnormal floating-point truncation is completely circumvented by routing matrix multiplications to optimized Qualcomm OpenCL 2.0 kernels (`GGML_OPENCL_USE_ADRENO_KERNELS`), producing 100% verified arithmetic and linguistic tokens.
+* **Zero-Drift Web Documentation**: Fully synchronized 8 standard HTML documents, 3-tier sidebars, and central catalog across the foundation portal.
+
+---
+
+## [AMEVA-Runtime v2.7.4] - 2026-09-29
+
+### Overview
+**AMEVA-Runtime v2.7.4** (PyPI: `ameva-runtime 2.7.4` / NPM: `@ameva/runtime@2.7.4`) introduces Android 15/16 Bionic dynamic linker namespace isolation by permanently purging regressive `$PREFIX/lib` injection from `get_vulkan_env()`, standardizes automatic ChatML prompt templating (`<|im_start|>`) and reverse stop token binding (`-r "<|im_end|>"`) for Qwen and Llama-3 instruction models, and enforces the `-fa 0` (Flash Attention disabled) defense for Qualcomm Adreno 600 series (Snapdragon 865) to prevent driver segmentation faults while maintaining full Flash Attention on Adreno 830 and ARM Mali GPUs.
+
+### Key Changes
+* **Android 15/16 Bionic Dynamic Linker Namespace Isolation (`adapters/base.py`)**:
+  * Purged `$PREFIX/lib` from `LD_LIBRARY_PATH` during Vulkan environment setup. Bionic binaries embed `$PREFIX/lib` in their ELF dynamic `DT_RUNPATH`, making userland `LD_LIBRARY_PATH` injection redundant and causing fatal `libunwindstack.so` (`Xzs_Construct`) symbol collision crashes with system libraries.
+* **ChatML Prompt Template Auto-Encapsulation (`adapters/llamacpp.py`)**:
+  * Added automated ChatML encapsulation (`<|im_start|>user ... <|im_start|>assistant`) and reverse stop token binding (`-r "<|im_end|>"`).
+  * Eliminates raw text prompt repetition loops and token attractors on Qwen and Llama-3 instruction models.
+* **Qualcomm Adreno 600 Series Flash Attention Defense (`adapters/llamacpp.py`, `router.py`)**:
+  * Enforced `-fa 0` defense on Snapdragon 865 (Adreno 600 series) to prevent Qualcomm proprietary driver segmentation faults and NaN divergence.
+  * Preserves full Flash Attention acceleration on flagship Adreno 830 (Snapdragon 8 Elite) and ARM Mali GPUs.
+* **Empirical Multi-SoC Telemetry**:
+  * **Galaxy S25 (Adreno 830)**: LLM Vulkan Prompt 30.9 t/s, Generation 27.1 tok/s; STT Vulkan 8.0s (45s Korean speech), 84% GPU load, 0 repetition.
+  * **Galaxy S21 (Exynos 2100)**: CPU NEON Prompt 72.0 t/s, Generation 28.5 tok/s (Fleet-wide CPU record).
+  * **Galaxy A35 (Exynos 1380)**: Vulkan Medium MatMul Prompt 13.0 t/s (+46% vs CPU), Generation 3.9 tok/s.
+
+---
+
+## [Termux-LlamaCpp v1.3.12] - 2026-09-29
+
+### Overview
+**Termux-LlamaCpp v1.3.12** (PyPI: `termux-llamacpp 1.3.12` / NPM: `termux-llamacpp@1.3.12`) synchronizes with AMEVA-Runtime v2.7.4's Bionic isolation architecture, permanently purging regressive `$PREFIX/lib` injection from fallback runtime environments, standardizing `<|im_start|>` ChatML prompt auto-formatting to resolve model repetition degeneration, and maintaining cross-SoC mobile inference stability across Qualcomm Adreno and ARM Mali GPUs.
+
+### Key Changes
+* **Dynamic Linker Bionic Isolation (`engine.py`)**:
+  * Purged regressive `$PREFIX/lib` injection from `LlamaCppAdapter` fallback environment, guaranteeing Android 15/16 Bionic namespace isolation and zero `libunwindstack.so` symbol collisions.
+* **ChatML Auto-Templating & Token Attractor Mitigation**:
+  * Standardized `<|im_start|>` prompt encapsulation and automatic `-r "<|im_end|>"` reverse stop token injection, eliminating repetition loops on Qwen and Llama-3 models.
+* **Cross-SoC Mobile Inference Stability**:
+  * Enforced verified `-fa 0` defense on legacy Adreno 600 series while maintaining Flash Attention on Adreno 830 (Snapdragon 8 Elite) and ARM Mali GPUs.
+  * Validated pure CPU device isolation with zero Vulkan driver inquiries when `--device cpu` is selected.
+
+---
+
+## [Termux-STT v1.3.2] - 2026-09-29
+
+### Overview
+**Termux-STT v1.3.2** (PyPI: `termux-stt 1.3.2` / NPM: `termux-stt@1.3.2`) delivers SmartRouter dynamic capability filtering, de-duplicates CLI thread flags, refines conditional Vulkan backend dispatch, and aligns SHA-256 checksums across upstream Hugging Face model registries.
+
+### Key Changes
+* **SmartRouter Dynamic Split-Mode Filtering (`whisper_engine.py`)**:
+  * Automatically inspects native `whisper-cli` binary capabilities and strips the `-sm` flag when the installed binary does not advertise split-mode support, preventing unknown argument aborts.
+* **Thread Flag `-t` De-Duplication**:
+  * Enforces single authoritative `-t <threads>` argument passed to `whisper-cli`, eliminating duplicate CLI argument collisions.
+* **Conditional Vulkan Request Logic**:
+  * Restricts `requested_backend="vulkan"` strictly to explicit GPU/Vulkan target execution, ensuring pure CPU execution when `--device cpu` is selected.
+* **Upstream Model Registry Hash Alignment (`registry.py`)**:
+  * Synchronized SHA-256 checksums and model download URLs for Whisper quantized GGML models in the central registry.
+* **Asymmetric Hybrid Pipeline Telemetry**:
+  * Galaxy S25 (Snapdragon 8 Elite): Whisper Small JFK 60s speech in 12.93s (4.7x faster than real-time); Korean 45s speech in 8.0s (5.6x faster than real-time, 84% GPU load, 0 repetition).
+
+---
+
 ## [Termux-LlamaCpp v1.3.11] - 2026-09-28
 
 ### Overview

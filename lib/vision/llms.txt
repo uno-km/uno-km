@@ -1,29 +1,26 @@
-# Termux-Vision — AI Agent Fast Context
-# Generated: 2026-09-29  |  Version: 1.4.5
+# Termux-Vision (v1.4.6)
+> Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine Utilizing Device Resources for Android Termux
 
-## Library
-Name: Termux-Vision
-Version: 1.4.5
-GitHub: https://github.com/uno-km/termux-vision
-Documentation: https://uno-km.vercel.app/lib/vision/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-vision
+- Installation: `pip install termux-vision
+# or: pip install https://github.com/uno-km/termux-vision/releases/download/v1.4.3/termux_vision-1.4.3-py3-none-any.whl
+# or: npm install -g termux-vision
+# or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)`
+- Architecture: Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.
 
-## Description
+## Canonical Code Pattern
+```python
+import termux_vision as tv
 
+# 1. Zero-Dependency Spatial Filtering (0.01s ultra-fast)
+img = tv.io.load_image("photo.jpg")
+edges = tv.cv.canny(tv.transforms.to_grayscale(img), 40, 120)
+tv.io.save_image(edges, "edges.png")
 
-## Documentation Pages
-  - /lib/vision/index.html
-  - /lib/vision/installation.html
-  - /lib/vision/quickstart.html
-  - /lib/vision/api-reference.html
-  - /lib/vision/benchmarks.html
-  - /lib/vision/advanced-parameters.html
-  - /lib/vision/versions.html
+# 2. On-Device VLM Multimodal Inference with Vulkan GPU Acceleration
+with tv.vlm.load("smolvlm-500m", device="gpu") as engine:
+    res = engine.describe("photo.jpg", prompt="Describe this scene in detail.", quality="optimal")
+    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s): {res.text}")
 
-## Quick Install
-pip install termux-vision
-npm install termux-vision
-
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/vision/llms-full.txt
+```

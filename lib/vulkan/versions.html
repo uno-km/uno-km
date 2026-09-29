@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | AMEVA-Runtime</title>
@@ -41,6 +40,7 @@
 - Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
 - Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
 ">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -57,6 +57,20 @@
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.4 - Android 15 Linker Namespace Isolation, ChatML Auto-Templating & Adreno 600 Defense</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Android 15/16 Bionic Dynamic Linker Namespace Isolation: Purged regressive $PREFIX/lib injection from get_vulkan_env(), preventing libunwindstack symbol collision crashes with Termux userland.</li>
+          <li>ChatML Prompt Template Auto-Encapsulation: Added automated ChatML encapsulation (<|im_start|> tags) and reverse stop token binding (-r "<|im_end|>") for Qwen and Llama-3 models, eliminating repetition loops.</li>
+          <li>Qualcomm Adreno 600 Series Flash Attention Defense: Implemented automatic -fa 0 injection for Snapdragon 865 (Adreno 600) to prevent closed-source driver segfaults, while preserving Flash Attention on Adreno 830 and Mali GPUs.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.3 - Termux-Diffusion Integration (Z-Image Turbo 6.0B DiT), Two-Track Supply Chain & Android 15 Zero-Collision</h3>
           <div>

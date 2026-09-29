@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | Termux-LlamaCpp</title>
   <meta name="description" content="Ships verified Android ARM64 native binaries with bundled shared libraries and device resource optimization, enabling instant zero-compilation local inference and a robust OpenAI-compatible REST/SSE server.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,8 +21,49 @@
     <main class="content">
       <h2>Benchmarks & Profiling</h2>
       <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
-      <h3>1. Real-Device Samsung Galaxy A35 (Exynos 1380 / Mali-G68 GPU)</h3>
-<p>Measured on Samsung Galaxy A35 5G running Android 14 Termux:</p>
+      <h3>1. Flagship Real-Device Samsung Galaxy S25 (Snapdragon 8 Elite / Adreno 830)</h3>
+<p>Empirical on-device inference measured on Samsung Galaxy S25 under Android 15 Termux (Qwen2.5-0.5B-Instruct GGUF Q4_K_M):</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Hardware Mode</th><th>CLI Configuration</th><th>Prompt Speed</th><th>Generation Speed</th><th>VRAM / Memory</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Vulkan GPU Full Offload</strong></td>
+      <td><code>--device vulkan -ngl 32 -fa 0</code></td>
+      <td><strong>30.9 tokens/sec</strong></td>
+      <td><strong>27.1 tokens/sec</strong></td>
+      <td>1,721 MiB</td>
+      <td><span class="status-badge active">PASS (Optimal)</span></td>
+    </tr>
+    <tr>
+      <td><strong>Pure CPU NEON</strong></td>
+      <td><code>--device cpu -t 4</code></td>
+      <td><strong>19.8 tokens/sec</strong></td>
+      <td><strong>21.2 tokens/sec</strong></td>
+      <td>620 MiB</td>
+      <td><span class="status-badge active">PASS</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Samsung Galaxy S21 (Exynos 2100 / ARM Cortex-X1 & A78)</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Hardware Mode</th><th>Execution Path</th><th>Prompt Speed</th><th>Generation Speed</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pure CPU NEON Big-Core</strong></td>
+      <td><code>--device cpu -t 4</code></td>
+      <td><strong>72.0 tokens/sec</strong></td>
+      <td><strong>28.5 tokens/sec</strong></td>
+      <td><span class="status-badge active">PASS (Fleet Record)</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Samsung Galaxy A35 (Exynos 1380 / Mali-G68 GPU)</h3>
 <table class="data-table">
   <thead>
     <tr><th>Interface Mode</th><th>Model</th><th>Prompt Speed</th><th>Generation Speed</th><th>Status</th></tr>
@@ -31,9 +72,9 @@
     <tr>
       <td><strong>CLI Mode</strong> (<code>termux-llama run</code>)</td>
       <td>Qwen 2.5 0.5B Instruct</td>
-      <td><strong>9.4 tokens/sec</strong></td>
-      <td><strong>5.0 tokens/sec</strong></td>
-      <td><span class="status-badge active">PASS</span></td>
+      <td><strong>13.0 tokens/sec</strong></td>
+      <td><strong>3.9 tokens/sec</strong></td>
+      <td><span class="status-badge active">PASS (Medium MatMul)</span></td>
     </tr>
     <tr>
       <td><strong>Python SDK</strong> (<code>LlamaRuntime.generate</code>)</td>
@@ -42,17 +83,10 @@
       <td><strong>8.5 tokens/sec</strong></td>
       <td><span class="status-badge active">PASS</span></td>
     </tr>
-    <tr>
-      <td><strong>Node.js ESM</strong> (<code>termux-llama</code> Bridge)</td>
-      <td>Qwen 2.5 0.5B Instruct</td>
-      <td><strong>12.5 tokens/sec</strong></td>
-      <td><strong>6.4 tokens/sec</strong></td>
-      <td><span class="status-badge active">PASS</span></td>
-    </tr>
   </tbody>
 </table>
 
-<h3>2. Samsung Galaxy S20+ (Snapdragon 865 / Adreno 650)</h3>
+<h3>4. Samsung Galaxy S20+ (Snapdragon 865 / Adreno 650)</h3>
 <table class="data-table">
   <thead>
     <tr><th>Model</th><th>Quantization</th><th>Cold Warmup</th><th>Prompt Speed</th><th>Generation Speed</th></tr>

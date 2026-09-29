@@ -1,4 +1,4 @@
-# Termux-Diffusion Full Technical Specification (v1.8.0)
+# Termux-Diffusion Full Technical Specification (v1.8.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
