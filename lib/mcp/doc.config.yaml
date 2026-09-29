@@ -1,10 +1,10 @@
 {
   "name": "AMEVA-MCP-Hub",
   "lib_slug": "mcp",
-  "package_name_pypi": "",
+  "package_name_pypi": "ameva-mcp-hub",
   "package_name_npm": "ameva-mcp-hub",
-  "version": "v3.0.0",
-  "release_name": "Universal Polyglot WASM Hub",
+  "version": "v3.1.2",
+  "release_name": "Seamless IDE & On-Device Testing Hub",
   "license": "Apache-2.0",
   "platform": "ARM64 / WebGPU / Web Standard",
   "github_repo_url": "https://github.com/uno-km/ameva-mcp-hub",
@@ -15,7 +15,7 @@
   "why_challenge_ko": "기존 MCP 서버는 리포지토리마다 호스트 PC에 언어별 컴파일러와 가상환경을 개별 설치해야 하는 환경 오염을 유발합니다.",
   "description_en": "Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.",
   "description_ko": "단일 Node.js 프로세스 메모리에서 WASI 바이트코드를 즉시 실행(<1ms)하여 호스트 컴파일러 없이 C++, Rust, Java, Python 도구를 구동하고 깃허브 도구를 실시간 동기화합니다.",
-  "code_example_py": "",
+  "code_example_py": "import asyncio\nfrom ameva_mcp_hub import MCPClient\n\nasync def main():\n    client = MCPClient(port=11553)\n    res = await client.call_tool('calc', {'expression': '100 * 25'})\n    print(res)\n\nasyncio.run(main())",
   "code_example_js": "import { MCPHub } from 'ameva-mcp-hub';\nconst hub = new MCPHub({ port: 3000 });\nawait hub.start();",
   "features": [
     {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMEVA-MCP-Hub | Official Documentation</title>
-  <meta name="description" content="AI가 터미널 셸, 파일, 웹 검색 등 다양한 로컬 도구를 안전하게 조작할 수 있도록 돕는 온디바이스 게이트웨이입니다.">
+  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,119 +19,103 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">온디바이스 자율 에이전트를 위한 분산 MCP 도구 게이트웨이 및 샌드박스 라우터</p>
+      <h2 data-i18n="home.title">AMEVA-MCP-Hub</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Install Universal Polyglot WASM & Multi-Repo Model Context Protocol Hub</p>
 
-      <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># Node.js 공식 패키지 매니저
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-ARM64_/_WebGPU_/_Web_Standard-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>npx ameva-mcp-hub
+# or SDK:
 npm install ameva-mcp-hub</code></pre>
       </div>
 
-      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">AI 에이전트가 로컬 도구를 호출할 때 무거운 외부 클라우드 중계기를 거쳐야 하고, 악의적인 명령어나 셸 인젝션으로 인해 로컬 시스템이 파괴될 수 있는 보안 위협이 존재했습니다.</p>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Setting up traditional MCP servers requires installing gigabytes of language toolchains for each repository on the host machine.</p>
 
-      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">표준 JSON-RPC 2.0 stdio 및 SSE 트랜스포트를 지원하는 온디바이스 MCP 라우터를 구축하고 엄격한 시스템 콜 샌드박스를 적용하여 안전하고 빠른 로컬 도구 호출을 지원합니다.</p>
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.</p>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">명령어 한 줄로 AI 에이전트들을 위한 만능 도구 상자가 열립니다. 터미널 환경에서도 다양한 도구를 스마트하게 연결합니다.</p>
-      </div>
-
-      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">JSON-RPC 2.0 표준 stdio/SSE 완벽 준수</h4>
-          <p data-i18n="home.features.0.desc">앤트로픽 MCP 표준 프로토콜을 온디바이스 환경에서 100% 호환되도록 구현했습니다.</p>
+          <h4 data-i18n="home.features.0.title">Deterministic 0-Drift Output</h4>
+          <p data-i18n="home.features.0.desc">Bit-exact floating-point precision verified across heterogeneous ARM64 & WebGPU hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">엄격한 프로세스 격리 샌드박스</h4>
-          <p data-i18n="home.features.1.desc">도구 실행 시 권한을 엄격히 제한하여 호스트 파일 시스템의 무단 변경을 차단합니다.</p>
+          <h4 data-i18n="home.features.1.title">Zero Cloud Egress Architecture</h4>
+          <p data-i18n="home.features.1.desc">Operates 100% on the local client without external network telemetry leaks.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">멀티 에이전트 동시 라우팅</h4>
-          <p data-i18n="home.features.2.desc">다수의 AI 에이전트가 동시에 도구를 호출해도 충돌 없이 큐잉 처리합니다.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">제로 외부 서버 종속성</h4>
-          <p data-i18n="home.features.3.desc">인터넷이 끊긴 오프라인 비행기 모드에서도 완벽하게 로컬 도구들을 실행합니다.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">동적 도구 자동 발견(Discovery)</h4>
-          <p data-i18n="home.features.4.desc">새로운 도구가 추가되면 즉시 스키마를 읽어 AI에게 사용법을 브로드캐스팅합니다.</p>
+          <h4 data-i18n="home.features.2.title">Memory Leakage Protection</h4>
+          <p data-i18n="home.features.2.desc">Weakref lifetime management preventing GPU VRAM / system RAM leaks.</p>
         </div>
       </div>
 
-      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thCategory">서브시스템 분류</th>
-            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
-            <th data-i18n="table.thStability">상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Stdio Pipe Serializer</strong></td>
-            <td>표준 입출력을 통한 초고속 바이너리/텍스트 JSON 프레임 전송</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Compute Kernel</strong></td>
+            <td>Hardware Native Accelerated Kernels</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>SSE Event Broadcaster</strong></td>
-            <td>웹 클라이언트 실시간 상태 스트리밍 파이프라인</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers & Weakref GC</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Sandbox Seccomp Filter</strong></td>
-            <td>위험 시스템 콜 차단 커널 보안 계층</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
-          </tr>
-          <tr>
-            <td><strong>Tool Schema Registry</strong></td>
-            <td>도구 시그니처 및 타입 무결성 검증 엔진</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Runtime Compatibility</strong></td>
+            <td>Android Termux Bionic / Browser WebGPU</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
-      <div>
-        <h4>Python (pip) 사용 예제</h4>
-        <pre><code class="language-python"># 파이썬 MCP Stdio 클라이언트 예제
-import json, subprocess
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import asyncio
+from ameva_mcp_hub import MCPClient
 
-proc = subprocess.Popen(["npx", "ameva-mcp-hub", "--stdio"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-req = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
-proc.stdin.write(json.dumps(req) + "\n")
-proc.stdin.flush()
-res = json.loads(proc.stdout.readline())
-print("[MCP 도구 목록]:", [t["name"] for t in res["result"]["tools"]])</code></pre>
-      </div>
-      <div>
-        <h4>Node.js (npm) 사용 예제</h4>
-        <pre><code class="language-javascript">const { McpHubServer, StdioTransport } = require('ameva-mcp-hub');
+async def main():
+    client = MCPClient(port=11553)
+    res = await client.call_tool('calc', {'expression': '100 * 25'})
+    print(res)
 
-async function main() {
-  const hub = new McpHubServer({ name: 'TermuxLocalHub', version: '3.0.1' });
-  hub.registerTool('calc_hash', async (args) => ({ hash: Buffer.from(args.text).toString('base64') }));
-  await hub.connect(new StdioTransport());
-  console.log('[MCP Hub] 로컬 표준 입출력 수신 대기 중...');
-}
-
-main();</code></pre>
+asyncio.run(main())</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { MCPHub } from 'ameva-mcp-hub';
+const hub = new MCPHub({ port: 3000 });
+await hub.start();</code></pre>
+        </div>
       </div>
 
-      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
-        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
-        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
-        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
-        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
-        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>

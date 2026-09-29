@@ -136,7 +136,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters with Optimistic Lock
-    const SEED_VERSION = 'v13_fix_seed_id_and_cache';
+    const SEED_VERSION = 'v15_s25_llamacpp_degeneration_paper';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Optimistic Concurrency Lock: Only the first concurrent instance acquires the lock
@@ -495,8 +495,8 @@ export default async function handler(req, res) {
       }
       await sql`SELECT setval(pg_get_serial_sequence('labs_posts', 'id'), COALESCE((SELECT MAX(id) FROM labs_posts), 1));`;
       await sql`
-        INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', 'v13_fix_seed_id_and_cache')
-        ON CONFLICT (key) DO UPDATE SET value = 'v13_fix_seed_id_and_cache';
+        INSERT INTO labs_meta (key, value) VALUES ('seed_posts_version', 'v15_s25_llamacpp_degeneration_paper')
+        ON CONFLICT (key) DO UPDATE SET value = 'v15_s25_llamacpp_degeneration_paper';
       `;
       SERVER_CACHE.invalidateAll();
       return res.status(200).json({ ok: true, inserted, errors, total: SEED_POSTS.length });

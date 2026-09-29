@@ -23,10 +23,10 @@ libraries:
     status: stable
   mcp:
     name: AMEVA-MCP-Hub
-    version: 3.0.2
-    release_date: '2026-09-17'
+    version: 3.1.2
+    release_date: '2026-09-29'
     npm_package: ameva-mcp-hub
-    pypi_package: null
+    pypi_package: ameva-mcp-hub
     github_repo: uno-km/ameva-mcp-hub
     lib_path: lib/mcp
     doc_pages:

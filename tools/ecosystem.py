@@ -102,6 +102,8 @@ def compile_target_readmes(lib_dir: Path, config: dict):
     repo_url = config.get("github_repo_url") or config.get("github_repo", f"https://github.com/uno-km/{lib_dir.name}")
     if lib_dir.name.lower() in ("vulkan", "ameva-vulkan", "ameva-runtime", "ameva-vulkan-runtime"):
         slug = "vulkan"
+    elif lib_dir.name.lower() in ("mcp", "mcp-hub", "ameva-mcp", "ameva-mcp-hub"):
+        slug = "mcp"
     else:
         slug = lib_dir.name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').lower()
     doc_url = f"https://uno-km.vercel.app/lib/{slug}/"
@@ -308,6 +310,8 @@ def build_library_docs(lib_name: str, config: dict):
     if config_file and config_file.exists():
         if lib_name.lower() in ("vulkan", "ameva-vulkan", "ameva-runtime", "ameva-vulkan-runtime"):
             slug = "vulkan"
+        elif lib_name.lower() in ("mcp", "mcp-hub", "ameva-mcp", "ameva-mcp-hub"):
+            slug = "mcp"
         else:
             slug = lib_name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').replace('-runtime', '').lower()
         output_dir = ROOT_DIR / "lib" / slug
