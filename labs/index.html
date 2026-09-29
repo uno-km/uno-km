@@ -988,6 +988,7 @@
 
     /* ── Side Floating Remote (Naver Webtoon Style Draggable) ─────────────── */
     .floating-remote-chassis {
+      display: none; /* Initially hidden on list/menu view */
       position: fixed;
       right: 24px;
       top: 140px;
@@ -1709,7 +1710,7 @@
   </footer>
 
   <!-- Side Floating Remote (Naver Webtoon Style Draggable) -->
-  <aside id="labsFloatingRemote" class="floating-remote-chassis" aria-label="Ameva Navigation Remote">
+  <aside id="labsFloatingRemote" class="floating-remote-chassis" aria-label="Ameva Navigation Remote" style="display: none;">
     <div class="remote-drag-handle" id="remoteDragHandle" title="드래그하여 원하는 위치로 이동">
       <div class="remote-drag-dots">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
@@ -2158,6 +2159,29 @@
             }
           }
         }
+
+        // Browser Back/Forward navigation listener
+        window.addEventListener('popstate', async () => {
+          const params = new URLSearchParams(window.location.search);
+          const m = params.get('menu') || 'newsletter';
+          const p = params.get('post');
+          if (p) {
+            const pId = parseInt(p, 10);
+            if (!isNaN(pId)) {
+              const curMenu = this.store.menus.find(item => item.id === m);
+              if (curMenu && curMenu.board_type === 'anal') {
+                if (this.activeMenuId !== m) await this.selectMenu(m);
+                await this.openAnalDetail(pId, false);
+                return;
+              } else if (curMenu && curMenu.board_type === 'board') {
+                if (this.activeMenuId !== m) await this.selectMenu(m);
+                await this.openBoardPost(pId, false);
+                return;
+              }
+            }
+          }
+          await this.selectMenu(m);
+        });
       },
 
       handleSidebarNav(menuId) {
@@ -2184,14 +2208,35 @@
         window.__curLabsMenu = menuId;
         this.updateSidebarHighlight(menuId);
 
+        // Reset active post state, like UI, and hide remote when switching menus
+        this.activePostId = null;
+        this.adjacentPrevId = null;
+        this.adjacentNextId = null;
+        this.updateRemoteAdjacentButtons();
+        this.updateLikeButtonUI(null, 0, false);
+        this.hideRemote();
+
+        if (this.viewerInstances.anal) {
+          try { this.viewerInstances.anal.destroy(); } catch(e) {}
+          this.viewerInstances.anal = null;
+        }
+        if (this.viewerInstances.board) {
+          try { this.viewerInstances.board.destroy(); } catch(e) {}
+          this.viewerInstances.board = null;
+        }
+
         const curMenu = this.store.menus.find(m => m.id === menuId) || { board_type: 'board', name: '게시판' };
         document.getElementById('mainHeading').textContent = curMenu.name;
         document.getElementById('mainSubtitle').textContent = curMenu.description || '';
 
-        // Hide all views
+        // Hide all views and detail containers
         document.getElementById('viewNews').style.display = 'none';
         document.getElementById('viewAnal').style.display = 'none';
         document.getElementById('viewBoard').style.display = 'none';
+        const analDetail = document.getElementById('analDetailView');
+        if (analDetail) analDetail.style.display = 'none';
+        const boardTop = document.getElementById('boardTopPostView');
+        if (boardTop) boardTop.style.display = 'none';
 
         if (curMenu.board_type === 'news') {
           await this.renderNewsView();
@@ -2541,6 +2586,7 @@
         // Enhanced Like & Recent Reading History Integration
         this.updateLikeButtonUI('anal', post.like_count || 0, this.isPostLiked(postId));
         this.recordRecentRead(post);
+        this.showRemote();
 
         document.getElementById('analFeedList').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'none';
@@ -2652,6 +2698,8 @@
         this.adjacentPrevId = null;
         this.adjacentNextId = null;
         this.updateRemoteAdjacentButtons();
+        this.updateLikeButtonUI(null, 0, false);
+        this.hideRemote();
         if (this.viewerInstances.anal) {
           try { this.viewerInstances.anal.destroy(); } catch(e) {}
           this.viewerInstances.anal = null;
@@ -2743,6 +2791,7 @@
         // Enhanced Like & Recent Reading History Integration
         this.updateLikeButtonUI('board', post.like_count || 0, this.isPostLiked(postId));
         this.recordRecentRead(post);
+        this.showRemote();
 
         document.getElementById('boardTopPostView').style.display = 'block';
 
@@ -2759,6 +2808,8 @@
         this.adjacentPrevId = null;
         this.adjacentNextId = null;
         this.updateRemoteAdjacentButtons();
+        this.updateLikeButtonUI(null, 0, false);
+        this.hideRemote();
         if (this.viewerInstances.board) {
           try { this.viewerInstances.board.destroy(); } catch(e) {}
           this.viewerInstances.board = null;
@@ -3026,6 +3077,20 @@
           remote.style.border = '1.5px solid #1e293b';
           remote.style.boxShadow = '0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(56, 189, 248, 0.15)';
           remote.style.width = '220px';
+        }
+      },
+
+      showRemote() {
+        const remote = document.getElementById('labsFloatingRemote');
+        if (remote) {
+          remote.style.display = 'block';
+        }
+      },
+
+      hideRemote() {
+        const remote = document.getElementById('labsFloatingRemote');
+        if (remote) {
+          remote.style.display = 'none';
         }
       },
 
