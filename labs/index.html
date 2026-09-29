@@ -583,45 +583,158 @@
       background: #fef9c3 !important;
       border-color: #d97706 !important;
     }
-    .toc-items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 8px;
-      max-height: 280px;
+    /* ── Hierarchical TOC Container & Scrollable List ── */
+    .toc-hierarchy-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-height: 440px;
       overflow-y: auto;
       padding-right: 6px;
     }
-    .toc-items-grid::-webkit-scrollbar {
+    .toc-hierarchy-list::-webkit-scrollbar {
       width: 6px;
     }
-    .toc-items-grid::-webkit-scrollbar-track {
+    .toc-hierarchy-list::-webkit-scrollbar-track {
       background: #f1f5f9;
       border-radius: 4px;
     }
-    .toc-items-grid::-webkit-scrollbar-thumb {
+    .toc-hierarchy-list::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 4px;
     }
-    .toc-items-grid::-webkit-scrollbar-thumb:hover {
+    .toc-hierarchy-list::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
+
+    /* ── Section Group Card (H2 Group) ── */
+    .toc-section-group {
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 6px !important;
+      background: #ffffff !important;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+      overflow: hidden;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .toc-section-group:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+    }
+    .toc-section-group.solo {
+      border-left: 4px solid #004499 !important;
+    }
+
+    /* ── H2 Header Bar ── */
+    .toc-group-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px;
+      padding: 8px 12px !important;
+      background: #f8fafc !important;
+      border-bottom: 1px solid #eef2f6 !important;
+      border-left: 4px solid #004499 !important;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+    .toc-group-header:hover {
+      background: #f1f5f9 !important;
+    }
+    .toc-group-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+    .toc-group-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #004499;
+      background: #e0edff;
+      border: 1px solid #bfdbfe;
+      padding: 1px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+    .toc-group-title {
+      font-size: 0.84rem !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-decoration: none !important;
+    }
+    .toc-group-header:hover .toc-group-title {
+      color: #004499 !important;
+    }
+    .toc-group-header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .toc-child-count-pill {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #475569;
+      background: #e2e8f0;
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+    .toc-toggle-icon {
+      font-size: 0.75rem;
+      color: #64748b;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      border-radius: 3px;
+    }
+    .toc-toggle-icon:hover {
+      background: #cbd5e1;
+      color: #0f172a;
+    }
+    .toc-section-group.collapsed .toc-toggle-icon {
+      transform: rotate(-90deg);
+    }
+    .toc-section-group.collapsed .toc-sub-grid {
+      display: none !important;
+    }
+
+    /* ── Sub Grid for H3 / H4 Items ── */
+    .toc-sub-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+      gap: 6px !important;
+      padding: 8px 10px 10px 10px !important;
+      background: #ffffff !important;
+    }
+
+    /* ── TOC Item Card (Preserved Aesthetic Card Design) ── */
     .content a.toc-link-item,
     .toc-link-item {
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      gap: 8px !important;
-      padding: 7px 11px !important;
-      font-size: 0.81rem !important;
+      gap: 6px !important;
+      padding: 6px 10px !important;
+      font-size: 0.79rem !important;
       font-weight: 500 !important;
-      color: #0f172a !important;
+      color: #1e293b !important;
       text-decoration: none !important;
       border-radius: 5px !important;
-      background: #ffffff !important;
+      background: #fafcff !important;
       border: 1px solid #e2e8f0 !important;
       transition: all 0.15s ease !important;
       cursor: pointer !important;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+      min-width: 0;
     }
     .content a.toc-link-item:hover,
     .toc-link-item:hover {
@@ -632,16 +745,37 @@
       box-shadow: 0 2px 6px rgba(0, 68, 153, 0.1) !important;
       transform: translateY(-1px);
     }
-    .content a.toc-link-item.h3-indent,
-    .toc-link-item.h3-indent {
-      padding-left: 22px !important;
-      font-size: 0.77rem !important;
-      color: #334155 !important;
-      border-left: 3px solid #cbd5e1 !important;
+    .toc-link-item .toc-item-icon {
+      color: #94a3b8;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+      margin-right: 2px;
+      font-family: monospace;
     }
-    .content a.toc-link-item.h3-indent:hover,
-    .toc-link-item.h3-indent:hover {
+    .toc-link-item:hover .toc-item-icon {
+      color: #004499;
+    }
+    .toc-link-item.solo-h2 {
+      background: #ffffff !important;
+      padding: 8px 12px !important;
+      font-size: 0.83rem !important;
+      font-weight: 600 !important;
+      border: none !important;
+      border-radius: 0 !important;
+    }
+    .toc-link-item.solo-h2:hover {
+      background: #f1f5f9 !important;
+    }
+    .toc-link-item.h4-item {
+      padding-left: 14px !important;
+      font-size: 0.74rem !important;
+      color: #475569 !important;
+      background: #f8fafc !important;
+      border-left: 2px dashed #cbd5e1 !important;
+    }
+    .toc-link-item.h4-item:hover {
       border-left-color: #004499 !important;
+      color: #004499 !important;
     }
     .in-article-toc-box .hb-feature-pill {
       font-size: 0.68rem !important;
@@ -1826,7 +1960,7 @@
     const SEED_MENUS = [
       { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
       { id: 'research', name: '연구', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '온디바이스 AI, Bionic 시스템 연구 및 벤치마크' },
-      { id: 'research-handbook', name: '안드로이드 시스템 핸드북', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '26개 전 강좌 및 320대 핵심 용어 해설집' },
+      { id: 'research-handbook', name: '안드로이드 시스템 핸드북', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '27개 전 강좌 및 330대 핵심 용어 해설집' },
       { id: 'research-papers', name: '기술 연구 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'GPU 셰이더 컴파일러, 16KB 페이지 호환 등 심층 기술 분석' },
       { id: 'research-benchmarks', name: '실기기 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 실기기 8대 모달리티 실측 성능 DB' },
       { id: 'research-cluster', name: '엣지 분산 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: '모바일 기기 분산 서버 구축 및 네트워크 연동' },
@@ -1835,7 +1969,7 @@
       { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
     ];
 
-    // 8 Core Handbook Curriculum Modules (26 Lectures SSOT)
+    // 8 Core Handbook Curriculum Modules (27 Lectures SSOT)
     const HANDBOOK_MODULES = [
       {
         num: 1,
@@ -1855,8 +1989,8 @@
         num: 3,
         title: '하드웨어 추상화 계층(HAL) 및 그래픽스',
         desc: 'HIDL에서 AIDL로의 진화, Gralloc 버퍼, Hardware Composer 및 SurfaceFlinger 16.6ms 락스텝',
-        range: '3.1 ~ 3.2',
-        chapters: ['3.1', '3.2']
+        range: '3.1 ~ 3.3',
+        chapters: ['3.1', '3.2', '3.3']
       },
       {
         num: 4,
@@ -2424,7 +2558,7 @@
 
         let pillsHtml = `
           <button class="hb-mod-pill ${this.activeHandbookModule === 0 ? 'active' : ''}" onclick="LabsApp.filterHandbookModule(0)">
-            전체 강좌 <span class="hb-pill-count">26</span>
+            전체 강좌 <span class="hb-pill-count">27</span>
           </button>
         `;
 
@@ -2443,7 +2577,7 @@
               <span>📚 안드로이드 시스템 엔지니어링 마스터 커리큘럼</span>
             </div>
             <div class="hb-curriculum-stats">
-              8대 핵심 모듈 · 총 26개 전문 강좌 · 320대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
+              8대 핵심 모듈 · 총 27개 전문 강좌 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
             </div>
           </div>
           <div class="hb-curriculum-pills">
@@ -2468,7 +2602,7 @@
         const curriculumNav = document.getElementById('handbookCurriculumNav');
 
         if (topBadge) {
-          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (26 LECTURES)';
+          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (27 LECTURES)';
           else if (this.activeMenuId === 'research-papers') topBadge.textContent = 'TECHNICAL PAPERS & MONOGRAPHS';
           else if (this.activeMenuId === 'research-benchmarks') topBadge.textContent = 'FLEET BENCHMARK LAB (S25~S7 DB)';
           else if (this.activeMenuId === 'research-cluster') topBadge.textContent = 'EDGE CLUSTER ORCHESTRATION';
@@ -2628,76 +2762,195 @@
 
         this.mountAmevaViewer('anal', '#analViewerBody', post.content || '');
 
-        // In-Article Table of Contents (TOC) builder
+        // In-Article Table of Contents (TOC) builder with Full Hierarchy Support (#, ##, ###, ####)
         const tocContainer = document.getElementById('analInArticleToc');
         const buildToc = () => {
-          const headings = Array.from(document.querySelectorAll('#analViewerBody h2, #analViewerBody h3'));
-          if (headings.length >= 2) {
-            let labHeading = null;
-            let glossaryHeading = null;
-
-            headings.forEach((h, idx) => {
-              if (!h.id) h.id = `hb-sec-${idx + 1}`;
-              const txt = h.textContent.trim();
-              if (!labHeading && (txt.includes('Lab') || txt.includes('실습'))) {
-                labHeading = h;
-              }
-              if (!glossaryHeading && (txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary'))) {
-                glossaryHeading = h;
-              }
-            });
-
-            let titlePrefix = '📑 핵심 목차 (Table of Contents)';
-            if (isHandbook) {
-              titlePrefix = '📚 강좌 핵심 목차 (Table of Contents)';
-            } else if (this.activeMenuId === 'research-papers') {
-              titlePrefix = '📑 기술 연구 백서 목차 (Table of Contents)';
-            } else if (this.activeMenuId === 'research-benchmarks') {
-              titlePrefix = '⚡ 실기기 벤치마크 목차 (Table of Contents)';
-            } else if (this.activeMenuId === 'research-cluster') {
-              titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
-            } else {
-              titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
-            }
-
-            let tocHtml = `
-              <div class="toc-box-header">
-                <div class="toc-box-title">
-                  <span>${titlePrefix}</span>
-                  <span class="toc-badge-count">총 ${headings.length}개 섹션</span>
-                </div>
-                <div class="toc-quick-actions">
-                  ${labHeading ? `<button class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
-                  ${glossaryHeading ? `<button class="toc-quick-btn glossary" onclick="LabsApp.jumpToHeading('${glossaryHeading.id}')">💡 전공 용어 해설집 바로가기</button>` : ''}
-                </div>
-              </div>
-              <div class="toc-items-grid">
-            `;
-
-            headings.forEach(h => {
-              const isH3 = h.tagName.toLowerCase() === 'h3';
-              const txt = h.textContent.trim();
-              const isLab = txt.includes('Lab') || txt.includes('실습');
-              const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
-              let pillBadge = '';
-              if (isLab) pillBadge = '<span class="hb-feature-pill lab">Lab 실습</span>';
-              else if (isGlossary) pillBadge = '<span class="hb-feature-pill glossary">용어 해설집</span>';
-
-              tocHtml += `
-                <a class="toc-link-item ${isH3 ? 'h3-indent' : ''}" onclick="LabsApp.jumpToHeading('${h.id}')" title="${escapeHtml(txt)}">
-                  <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(txt)}</span>
-                  ${pillBadge}
-                </a>
-              `;
-            });
-
-            tocHtml += `</div>`;
-            tocContainer.innerHTML = tocHtml;
-            tocContainer.style.display = 'block';
-          } else {
+          const allHeadings = Array.from(document.querySelectorAll('#analViewerBody h1, #analViewerBody h2, #analViewerBody h3, #analViewerBody h4'));
+          if (allHeadings.length < 2) {
             tocContainer.style.display = 'none';
             tocContainer.innerHTML = '';
+            return;
           }
+
+          let labHeading = null;
+          let glossaryHeading = null;
+
+          allHeadings.forEach((h, idx) => {
+            if (!h.id) h.id = `hb-sec-${idx + 1}`;
+            const txt = h.textContent.trim();
+            if (!labHeading && (txt.includes('Lab') || txt.includes('실습'))) {
+              labHeading = h;
+            }
+            if (!glossaryHeading && (txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary'))) {
+              glossaryHeading = h;
+            }
+          });
+
+          // Determine Top-Level Sections:
+          // If first heading is H1 (document title) and no other H1 exists, start hierarchy from H2
+          let effectiveHeadings = allHeadings;
+          if (allHeadings.length > 0 && allHeadings[0].tagName.toLowerCase() === 'h1') {
+            const hasMultipleH1 = allHeadings.slice(1).some(h => h.tagName.toLowerCase() === 'h1');
+            if (!hasMultipleH1) {
+              effectiveHeadings = allHeadings.slice(1);
+            }
+          }
+
+          if (effectiveHeadings.length === 0) {
+            effectiveHeadings = allHeadings;
+          }
+
+          // Build Multi-Level Hierarchy Tree
+          const getLevel = (tag) => parseInt(tag.replace(/^h/i, ''), 10) || 2;
+          const tree = [];
+          const stack = [];
+
+          effectiveHeadings.forEach(h => {
+            const level = getLevel(h.tagName);
+            const txt = h.textContent.trim();
+            const isLab = txt.includes('Lab') || txt.includes('실습');
+            const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
+
+            const node = {
+              id: h.id,
+              level,
+              tag: h.tagName.toLowerCase(),
+              text: txt,
+              isLab,
+              isGlossary,
+              children: []
+            };
+
+            while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+              stack.pop();
+            }
+
+            if (stack.length === 0) {
+              tree.push(node);
+            } else {
+              stack[stack.length - 1].children.push(node);
+            }
+            stack.push(node);
+          });
+
+          let titlePrefix = '📑 핵심 목차 (Table of Contents)';
+          if (isHandbook) {
+            titlePrefix = '📚 강좌 핵심 목차 (Table of Contents)';
+          } else if (this.activeMenuId === 'research-papers') {
+            titlePrefix = '📑 기술 연구 백서 목차 (Table of Contents)';
+          } else if (this.activeMenuId === 'research-benchmarks') {
+            titlePrefix = '⚡ 실기기 벤치마크 목차 (Table of Contents)';
+          } else if (this.activeMenuId === 'research-cluster') {
+            titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
+          } else {
+            titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
+          }
+
+          const countTotalDescendants = (node) => {
+            let count = node.children.length;
+            node.children.forEach(c => { count += countTotalDescendants(c); });
+            return count;
+          };
+
+          const totalHeadingsCount = effectiveHeadings.length;
+          const majorSectionsCount = tree.length;
+          const subTopicsCount = totalHeadingsCount - majorSectionsCount;
+
+          let tocHtml = `
+            <div class="toc-box-header">
+              <div class="toc-box-title">
+                <span>${titlePrefix}</span>
+                <span class="toc-badge-count">총 ${majorSectionsCount}개 대단원 · ${subTopicsCount > 0 ? `세부 ${subTopicsCount}개 항목` : `전체 ${totalHeadingsCount}개`}</span>
+              </div>
+              <div class="toc-quick-actions">
+                ${labHeading ? `<button type="button" class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
+                ${glossaryHeading ? `<button type="button" class="toc-quick-btn glossary" onclick="LabsApp.jumpToHeading('${glossaryHeading.id}')">💡 전공 용어 해설집 바로가기</button>` : ''}
+              </div>
+            </div>
+            <div class="toc-hierarchy-list">
+          `;
+
+          tree.forEach((group, gIdx) => {
+            const hasChildren = group.children && group.children.length > 0;
+            const totalChildCount = countTotalDescendants(group);
+
+            let groupPill = '';
+            if (group.isLab) groupPill = '<span class="hb-feature-pill lab">Lab 실습</span>';
+            else if (group.isGlossary) groupPill = '<span class="hb-feature-pill glossary">용어 해설집</span>';
+
+            if (!hasChildren) {
+              // Solo H2 Section Card
+              tocHtml += `
+                <div class="toc-section-group solo">
+                  <a class="toc-link-item solo-h2" onclick="LabsApp.jumpToHeading('${group.id}')" title="${escapeHtml(group.text)}">
+                    <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                      <span class="toc-group-tag">§ ${gIdx + 1}</span>
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(group.text)}</span>
+                    </div>
+                    ${groupPill}
+                  </a>
+                </div>
+              `;
+            } else {
+              // H2 Section Group with Sub-grid
+              const groupId = `toc-grp-${gIdx + 1}`;
+              const childCountLabel = group.isGlossary ? `${totalChildCount}개 전공용어` : `세부 ${totalChildCount}개 항목`;
+
+              tocHtml += `
+                <div class="toc-section-group" id="${groupId}">
+                  <div class="toc-group-header" onclick="LabsApp.handleTocGroupHeaderClick(event, '${group.id}', '${groupId}')" title="클릭: 대단원 본문 이동 / 우측 아이콘: 접기">
+                    <div class="toc-group-header-left">
+                      <span class="toc-group-tag">§ ${gIdx + 1}</span>
+                      <span class="toc-group-title">${escapeHtml(group.text)}</span>
+                    </div>
+                    <div class="toc-group-header-right">
+                      ${groupPill}
+                      <span class="toc-child-count-pill">${childCountLabel}</span>
+                      <span class="toc-toggle-icon" onclick="LabsApp.toggleTocGroup(event, '${groupId}')" title="접기/펼치기">▾</span>
+                    </div>
+                  </div>
+                  <div class="toc-sub-grid">
+              `;
+
+              group.children.forEach(sub => {
+                let subPill = '';
+                if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
+                else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
+
+                tocHtml += `
+                  <a class="toc-link-item" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
+                    <div style="display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1;">
+                      <span class="toc-item-icon">↳</span>
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sub.text)}</span>
+                    </div>
+                    ${subPill}
+                  </a>
+                `;
+
+                if (sub.children && sub.children.length > 0) {
+                  sub.children.forEach(h4 => {
+                    tocHtml += `
+                      <a class="toc-link-item h4-item" onclick="LabsApp.jumpToHeading('${h4.id}')" title="${escapeHtml(h4.text)}">
+                        <div style="display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1;">
+                          <span class="toc-item-icon">↳↳</span>
+                          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(h4.text)}</span>
+                        </div>
+                      </a>
+                    `;
+                  });
+                }
+              });
+
+              tocHtml += `
+                  </div>
+                </div>
+              `;
+            }
+          });
+
+          tocHtml += `</div>`;
+          tocContainer.innerHTML = tocHtml;
+          tocContainer.style.display = 'block';
         };
 
         buildToc();
@@ -2708,6 +2961,21 @@
 
         await this.renderCommentsForView('anal', postId);
         window.scrollTo({ top: document.getElementById('analDetailView').offsetTop - 60, behavior: 'smooth' });
+      },
+
+      toggleTocGroup(event, groupId) {
+        if (event) event.stopPropagation();
+        const grp = document.getElementById(groupId);
+        if (grp) {
+          grp.classList.toggle('collapsed');
+        }
+      },
+
+      handleTocGroupHeaderClick(event, headingId, groupId) {
+        if (event && event.target && event.target.classList.contains('toc-toggle-icon')) {
+          return;
+        }
+        this.jumpToHeading(headingId);
       },
 
       jumpToHeading(headingId) {
