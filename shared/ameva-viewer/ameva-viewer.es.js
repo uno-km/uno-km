@@ -1,15 +1,15 @@
 import { a as __toCommonJS, i as __require, n as __esmMin, o as __toESM, r as __exportAll, t as __commonJSMin } from "./rolldown-runtime-DY7j01NX.js";
 import { n as require_react, t as require_jsx_runtime } from "./jsx-runtime-18mgyzjG.js";
 import { t as require_react_dom } from "./react-dom-BArcbfWT.js";
-import { n as mermaid_default, t as init_mermaid_core } from "./mermaid.core-Dr3v1epP.js";
+import { n as mermaid_default, t as init_mermaid_core } from "./mermaid.core-CN17QvQg.js";
 import { n as init_chunk_ZUYEQ4TG, t as c } from "./chunk-ZUYEQ4TG-DXARgubT.js";
-import { a as init_chunk_SRAX5OIU, i, n as g$2, r as h$1 } from "./chunk-SRAX5OIU-CLKYmKdq.js";
-import { $ as Dd$2, $a as aF, $c as ph, $i as We$1, $l as ug$1, $n as M4, $o as f$, $r as Rb$1, $s as k$1, $t as I2$1, $u as zp$2, A as BY, Aa as ZB, Ac as mx, Ai as UP, Al as sg$2, An as Ka$2, Ao as d2$1, Ar as Oh$1, As as hi$2, At as Fo$2, Au as xh$1, B as C$, Ba as _E, Bc as ny$1, Bi as Va$1, Bl as th$1, Bn as L4, Bo as dr$2, Br as Pi$2, Bs as ia, Bt as Gx, Bu as yd$1, C as At, Ca as Ye$1, Cc as mH, Ci as Ts$1, Cl as rg$1, Cn as Jx, Co as cF, Cr as O4, Cs as h9, Ct as FN, Cu as wt$2, D as B9, Da as Z$4, Dc as mn$2, Di as U9, Dl as sE, Dn as KN, Do as cp$2, Dr as OY, Ds as hd$2, Dt as Fe$1, Du as xE, E as B4, Ea as Yx, Ec as mi$1, Ei as U4, El as s4, En as KE$1, Eo as co$1, Er as ON, Es as hO, Et as Fa$1, Eu as x7, F as Bn$2, Fa as Zn$2, Fc as nd$2, Fi as Uy$1, Fl as t9, Fn as Ko$1, Fo as de$2, Fr as P9, Fs as i4, Ft as GO, Fu as y9, G as Cs$1, Ga as _n$2, Gc as ot$1, Gi as Vt$2, Gl as tt$3, Gn as Ld$2, Go as eE, Gr as Q4, Gs as is$1, Gt as HK, Gu as z$3, H as Ch$1, Ha as _Y, Hc as oe$3, Hi as Vh$1, Hl as to$2, Hn as LK, Ho as dt$3, Hr as Pr$3, Hs as ig$2, Ht as H4, Hu as yo$2, I as Bo$1, Ia as Zr$1, Ic as ng$2, Ii as V$, Il as tE, In as Kt, Io as dg$2, Ir as PE, It as Ga$1, Iu as yE, J as D6, Ja as _s$1, Jc as p4, Ji as W4, Jl as u7, Jn as Lo$1, Jo as eh$1, Jr as Qt, Js as j4, Jt as Hh$1, Ju as z9, K as D1$1, Ka as _o$2, Kc as oy$1, Ki as Vx, Kl as ty$1, Kn as Lg$1, Ko as ea$1, Kr as Q9, Ks as it$3, Kt as Ha$2, Ku as z2$1, L as Bp$1, La as Zs$2, Lc as nn$2, Li as V2, Ll as ta$1, Ln as Kx, Lo as dh$1, Lr as PY, Ls as iE, Lt as Gh$1, Lu as yH, M as Bb$1, Ma as Zb$1, Mc as n9, Mi as Ug$1, Ml as sr$2, Mn as Kh$1, Mo as dB, Mr as Oo$2, Ms as hn$2, Mt as Fx, Mu as xn$3, N as Be$1, Na as Ze$2, Nc as nY, Ni as Uh$1, Nl as sy$1, Nn as Ki$2, No as dE, Nr as Ot$1, Ns as hs$1, Nt as G4, Nu as xt$1, O as BN, Oa as Z2, Oc as mo$1, Oi as UB, Ol as sF, On as KO, Oo as cs$1, Or as Oa$1, Os as he$1, Ot as Fh$1, Ou as xH, P as Bi$2, Pa as Zh$1, Pc as na$1, Pi as Ux, Pl as t4, Pn as Km$1, Po as dF, Pr as Ox, Ps as ht$3, Pt as GB, Pu as xx, Q as DY, Qa as aE, Qc as pg$2, Qi as Wb$1, Ql as ue$1, Qn as M2$1, Qo as es$1, Qr as RF, Qs as jx, Qt as Hx, Qu as zh$1, R as Bx, Ra as _4, Rc as np$1, Ri as V4, Rl as td$2, Rn as L1$1, Ro as di$1, Rr as Pe$2, Rs as iJ, Rt as Gp$2, Ru as yO, S as Ar$2, Sa as Yb$1, Sc as mE, Si as To$1, Sl as re$2, Sn as Jt$2, So as cE, Sr as O2$1, Ss as h6, St as FE, Su as wg$2, T as B2$1, Ta as Yt$1, Tc as mh$1, Ti as Tx, Tl as ry$1, Tn as K9, To as ch$1, Tr as OE, Ts as hH, Tt as FY, Tu as x4, U as Ci$2, Ua as _a$1, Uc as og$2, Ui as Vn$2, Ul as tp$1, Un as LO, Uo as dy$1, Ur as Px, Us as init_chunk_K2UTITRG, Ut as H9, Uu as yr$2, V as C4, Va as _N, Vc as o4, Vi as Vg$1, Vl as ti$1, Vn as LF, Vo as ds$1, Vr as Pm$1, Vs as ie$2, Vt as H$2, Vu as yg$2, W as Co$1, Wa as _h$1, Wc as op$1, Wi as Vr$2, Wl as ts$1, Wn as Lb$1, Wo as e4, Wr as Q$2, Ws as io$2, Wt as HE, Wu as yx, X as DF, Xa as a4, Xc as pB, Xi as WE$1, Xl as uK, Xn as Ls$1, Xo as ep$1, Xr as R2$1, Xs as je$2, Xt as Hm$1, Xu as zb$1, Y as DE, Ya as _x, Yc as p7, Yi as W9, Yl as uH, Yn as Lp$2, Yo as en, Yr as Qx, Ys as j9, Yt as Hi$2, Yu as za$1, Z as DK, Za as a9, Zc as pd$2, Zi as WF, Zl as ud$2, Zn as Lx, Zo as er$2, Zr as R4, Zs as jh$1, Zt as Hp$2, Zu as ze$2, _ as Ag$1, _a as Y$2, _c as la$1, _i as TF, _l as r6, _n as Jb$1, _o as bp$2, _r as Nn$2, _s as gd$2, _t as Ep$1, _u as w4, a as $g$1, aa as X$4, ac as ki$3, ad as init_rough, ai as SK, al as q4, an as Ib$1, ao as at$3, ar as Mm$1, as as fN, at as Dx, au as ux, b as An$2, ba as YE$1, bc as ly$1, bi as Td$1, bl as ra$1, bn as Jm$1, bo as c4, br as Nx, bs as gt$1, bt as F4, bu as wa, c as $r$2, cc as kr$3, cd as init_index_browser, ci as Sg$1, cl as qa$2, cn as Ih$1, co as b4, cr as Mx, cs as fi$1, ct as E6, cu as vK, d as A4, da as Xa$2, dc as l4, dd as open_color_default, di as Sx, dl as qh$1, dn as J4, do as bE, dr as N9, ds as g4, dt as EE, du as ve$2, ea as Wh$1, ec as k4, ed as zs$1, ei as Re$1, el as pi$2, en as I4, eo as ab$1, er as M9, es as f4, et as Dg$1, eu as uh, f as AE, fa as Xh$1, fc as l9, fi as T$2, fl as qi$1, fn as J7, fo as bH, fr as NP, fs as g9, ft as EH, fu as vg$2, g as Ae$1, ga as Xx, gc as lP, gi as TA$1, gl as r4, gn as Ja$2, go as bn$3, gr as Nh$1, gs as ga, gt as Eh$1, gu as w2$1, h as Ad$2, ha as Xr$1, hc as lF, hi as T9, hl as qx, hn as J_$1, ho as bh$1, hr as Ne$1, hs as gH, ht as Eg$1, hu as vx, i as $e$2, ia as Wx, ic as kh$1, id as init_clsx_m, ii as S9, il as q1$1, in as IO, io as ao$2, ir as Mh$1, is as fJ, it as Dt$1, iu as up$2, j as Ba$1, ja as Za$2, jc as n4, ji as Ua$1, jl as sh$1, jn as Kg$1, jo as d4, jr as On$1, js as hm$1, jt as Ft, ju as xm$1, k as BO, ka as Z4, kc as mt, ki as UF, kl as se$2, kn as KY, ko as cy$1, kr as Og$2, ks as hg$2, kt as Fn$2, ku as xg$1, l as $x, la as XB, lc as ks$1, ld as nanoid, li as Sh$1, ll as qe$1, ln as Io$1, lo as b6, lr as N4, ls as fn$2, lt as E7, lu as vP, m as AY, ma as Xp$2, mc as lE, mi as T4, ml as qt$1, mn as JE$1, mo as bg$2, mr as Na$1, ms as gE, mt as Ee$1, mu as vt$1, n as $E$1, na as Ws$2, nc as kB, nd as init_dist$20, ni as Rx, nl as px, nn as IF, no as ag$2, nr as Mb$1, ns as fB, nt as Dn$2, nu as un$2, o as $h$1, oa as X2, oc as ko$1, od as rough_default, oi as SY, ol as qB, on as Ie$2, oo as ay$1, or as Mo$1, os as fg$2, ot as E2$1, ou as v4, p as AN, pa as Xi$2, pc as lB, pi as T2$1, pl as qr$2, pn as J9, po as ba, pr as NY, ps as gB, pt as Ed$2, pu as vh$1, q as D4, qc as p2$1, qi as W2, ql as u, qn as Lh$1, qo as ee$2, qr as Qh$1, qs as iy$1, qt as Hb$1, qu as z4, r as $Y, ra as Wt$2, rc as ke$1, rd as clsx_m_default, ri as S4, rl as q$, rn as IH, ro as an$2, rr as Mg$1, rs as fF, rt as Ds$1, ru as uo$1, s as $o$1, sa as X4, sc as kp$1, sd as require_lodash_throttle, si as Sb$1, sl as qO, sn as Ig$1, so as b2$1, sr as Mp$2, ss as fh$1, st as E4, su as vE, t as $2, ta as Wo, tc as k7, td as e, ti as Rg$1, tl as pp$2, tn as IE, to as ae$4, tr as MF, ts as f9, tt as Dh$1, tu as ui$1, u as A$, ua as XO$1, uc as kt$2, ud as init_open_color, ui as Sn$2, ul as qg, un as Ix, uo as b7, ur as N6, us as fx, ut as E9, uu as vY, v as Ah, va as Y$, vc as lg$2, vi as Ta, vl as r9, vn as Je$2, vo as bs$1, vr as Np$2, vs as gg$2, vt as Es$1, vu as wE, w as Ax, wa as Yh$1, wc as mg$2, wi as Tt$2, wl as rp$1, wn as K4, wo as cg$2, wr as O9, ws as hE, wt as FP, wu as wx, x as Ap$2, xa as Y_$1, xc as m4, xi as Tg$1, xl as rd$2, xn as Js$2, xo as cB, xr as O$2, xs as gx, xt as F6, xu as wb$1, y as Am$1, ya as Y4, yc as lh$1, yi as Tb$1, yl as rY, yn as Jh$1, yo as bx, yr as Nr$3, ys as gh$1, yt as Ex, yu as wF, z as C$3, za as _9, zc as nt$1, zi as VB, zl as te$1, zn as L2$1, zo as dn$2, zr as Ph$1, zs as iP, zt as Gr$3, zu as yb$1 } from "./chunk-K2UTITRG-DKwCMfva.js";
+import { a as init_chunk_SRAX5OIU, i as i$1, n as g$2, r as h$1 } from "./chunk-SRAX5OIU-CLKYmKdq.js";
+import { $ as Dd$2, $a as aF, $c as ph, $i as We$1, $l as ug$1, $n as M4, $o as f$, $r as Rb$1, $s as k$1, $t as I2$1, $u as zp$2, A as BY, Aa as ZB, Ac as mx, Ai as UP, Al as sg$2, An as Ka$2, Ao as d2$1, Ar as Oh$1, As as hi$2, At as Fo$2, Au as xh$1, B as C$, Ba as _E, Bc as ny$1, Bi as Va$1, Bl as th$1, Bn as L4, Bo as dr$2, Br as Pi$2, Bs as ia, Bt as Gx, Bu as yd$1, C as At, Ca as Ye$1, Cc as mH, Ci as Ts$1, Cl as rg$1, Cn as Jx, Co as cF, Cr as O4, Cs as h9, Ct as FN, Cu as wt$2, D as B9, Da as Z$4, Dc as mn$2, Di as U9, Dl as sE, Dn as KN, Do as cp$2, Dr as OY, Ds as hd$2, Dt as Fe$1, Du as xE, E as B4, Ea as Yx, Ec as mi$1, Ei as U4, El as s4, En as KE$1, Eo as co$1, Er as ON, Es as hO, Et as Fa$1, Eu as x7, F as Bn$2, Fa as Zn$2, Fc as nd$2, Fi as Uy$1, Fl as t9, Fn as Ko$1, Fo as de$2, Fr as P9, Fs as i4, Ft as GO, Fu as y9, G as Cs$1, Ga as _n$2, Gc as ot$1, Gi as Vt$2, Gl as tt$3, Gn as Ld$2, Go as eE, Gr as Q4, Gs as is$1, Gt as HK, Gu as z$3, H as Ch$1, Ha as _Y, Hc as oe$3, Hi as Vh$1, Hl as to$2, Hn as LK, Ho as dt$3, Hr as Pr$3, Hs as ig$2, Ht as H4, Hu as yo$2, I as Bo$1, Ia as Zr$1, Ic as ng$2, Ii as V$, Il as tE, In as Kt, Io as dg$2, Ir as PE, It as Ga$1, Iu as yE, J as D6, Ja as _s$1, Jc as p4, Ji as W4, Jl as u7, Jn as Lo$1, Jo as eh$1, Jr as Qt, Js as j4, Jt as Hh$1, Ju as z9, K as D1$1, Ka as _o$2, Kc as oy$1, Ki as Vx, Kl as ty$1, Kn as Lg$1, Ko as ea$1, Kr as Q9, Ks as it$3, Kt as Ha$2, Ku as z2$1, L as Bp$1, La as Zs$2, Lc as nn$2, Li as V2, Ll as ta$1, Ln as Kx, Lo as dh$1, Lr as PY, Ls as iE, Lt as Gh$1, Lu as yH, M as Bb$1, Ma as Zb$1, Mc as n9, Mi as Ug$1, Ml as sr$2, Mn as Kh$1, Mo as dB, Mr as Oo$2, Ms as hn$2, Mt as Fx, Mu as xn$3, N as Be$1, Na as Ze$2, Nc as nY, Ni as Uh$1, Nl as sy$1, Nn as Ki$2, No as dE, Nr as Ot$1, Ns as hs$1, Nt as G4, Nu as xt$1, O as BN, Oa as Z2, Oc as mo$1, Oi as UB, Ol as sF, On as KO, Oo as cs$1, Or as Oa$1, Os as he$1, Ot as Fh$1, Ou as xH, P as Bi$2, Pa as Zh$1, Pc as na$1, Pi as Ux, Pl as t4, Pn as Km$1, Po as dF, Pr as Ox, Ps as ht$3, Pt as GB, Pu as xx, Q as DY, Qa as aE, Qc as pg$2, Qi as Wb$1, Ql as ue$1, Qn as M2$1, Qo as es$1, Qr as RF, Qs as jx, Qt as Hx, Qu as zh$1, R as Bx, Ra as _4, Rc as np$1, Ri as V4, Rl as td$2, Rn as L1$1, Ro as di$1, Rr as Pe$2, Rs as iJ, Rt as Gp$2, Ru as yO, S as Ar$2, Sa as Yb$1, Sc as mE, Si as To$1, Sl as re$2, Sn as Jt$2, So as cE, Sr as O2$1, Ss as h6, St as FE, Su as wg$2, T as B2$1, Ta as Yt$1, Tc as mh$1, Ti as Tx, Tl as ry$1, Tn as K9, To as ch$2, Tr as OE, Ts as hH, Tt as FY, Tu as x4, U as Ci$2, Ua as _a$1, Uc as og$2, Ui as Vn$2, Ul as tp$1, Un as LO, Uo as dy$1, Ur as Px, Us as init_chunk_K2UTITRG, Ut as H9, Uu as yr$2, V as C4, Va as _N, Vc as o4, Vi as Vg$1, Vl as ti$1, Vn as LF, Vo as ds$1, Vr as Pm$1, Vs as ie$2, Vt as H$2, Vu as yg$2, W as Co$1, Wa as _h$1, Wc as op$2, Wi as Vr$2, Wl as ts$1, Wn as Lb$1, Wo as e4, Wr as Q$2, Ws as io$2, Wt as HE, Wu as yx, X as DF, Xa as a4, Xc as pB, Xi as WE$1, Xl as uK, Xn as Ls$1, Xo as ep$1, Xr as R2$1, Xs as je$2, Xt as Hm$1, Xu as zb$1, Y as DE, Ya as _x, Yc as p7, Yi as W9, Yl as uH, Yn as Lp$2, Yo as en, Yr as Qx, Ys as j9, Yt as Hi$2, Yu as za$1, Z as DK, Za as a9, Zc as pd$2, Zi as WF, Zl as ud$2, Zn as Lx, Zo as er$2, Zr as R4, Zs as jh$1, Zt as Hp$2, Zu as ze$2, _ as Ag$1, _a as Y$2, _c as la$1, _i as TF, _l as r6, _n as Jb$1, _o as bp$2, _r as Nn$2, _s as gd$2, _t as Ep$1, _u as w4, a as $g$1, aa as X$4, ac as ki$3, ad as init_rough, ai as SK, al as q4, an as Ib$1, ao as at$3, ar as Mm$1, as as fN, at as Dx, au as ux, b as An$2, ba as YE$1, bc as ly$1, bi as Td$1, bl as ra$1, bn as Jm$1, bo as c4, br as Nx, bs as gt$1, bt as F4, bu as wa, c as $r$2, cc as kr$3, cd as init_index_browser, ci as Sg$1, cl as qa$2, cn as Ih$1, co as b4, cr as Mx, cs as fi$1, ct as E6, cu as vK, d as A4, da as Xa$2, dc as l4, dd as open_color_default, di as Sx, dl as qh$1, dn as J4, do as bE, dr as N9, ds as g4, dt as EE, du as ve$2, ea as Wh$1, ec as k4, ed as zs$1, ei as Re$1, el as pi$2, en as I4, eo as ab$1, er as M9, es as f4, et as Dg$1, eu as uh, f as AE, fa as Xh$1, fc as l9, fi as T$3, fl as qi$1, fn as J7, fo as bH, fr as NP, fs as g9, ft as EH, fu as vg$2, g as Ae$1, ga as Xx, gc as lP, gi as TA$1, gl as r4, gn as Ja$2, go as bn$3, gr as Nh$1, gs as ga, gt as Eh$1, gu as w2$1, h as Ad$2, ha as Xr$1, hc as lF, hi as T9, hl as qx, hn as J_$1, ho as bh$1, hr as Ne$1, hs as gH, ht as Eg$1, hu as vx, i as $e$2, ia as Wx, ic as kh$1, id as init_clsx_m, ii as S9, il as q1$1, in as IO, io as ao$2, ir as Mh$1, is as fJ, it as Dt$1, iu as up$2, j as Ba$1, ja as Za$2, jc as n4, ji as Ua$1, jl as sh$1, jn as Kg$1, jo as d4, jr as On$1, js as hm$1, jt as Ft, ju as xm$1, k as BO, ka as Z4, kc as mt, ki as UF, kl as se$2, kn as KY, ko as cy$1, kr as Og$2, ks as hg$2, kt as Fn$2, ku as xg$1, l as $x, la as XB, lc as ks$1, ld as nanoid, li as Sh$1, ll as qe$1, ln as Io$1, lo as b6, lr as N4, ls as fn$2, lt as E7, lu as vP, m as AY, ma as Xp$2, mc as lE, mi as T4, ml as qt$1, mn as JE$1, mo as bg$2, mr as Na$1, ms as gE, mt as Ee$1, mu as vt$1, n as $E$1, na as Ws$2, nc as kB, nd as init_dist$20, ni as Rx, nl as px, nn as IF, no as ag$2, nr as Mb$1, ns as fB, nt as Dn$2, nu as un$2, o as $h$1, oa as X2, oc as ko$1, od as rough_default, oi as SY, ol as qB, on as Ie$2, oo as ay$1, or as Mo$1, os as fg$2, ot as E2$1, ou as v4, p as AN, pa as Xi$2, pc as lB, pi as T2$1, pl as qr$2, pn as J9, po as ba, pr as NY, ps as gB, pt as Ed$2, pu as vh$1, q as D4, qc as p2$1, qi as W2, ql as u, qn as Lh$1, qo as ee$2, qr as Qh$1, qs as iy$1, qt as Hb$1, qu as z4, r as $Y, ra as Wt$2, rc as ke$1, rd as clsx_m_default, ri as S4, rl as q$, rn as IH, ro as an$2, rr as Mg$1, rs as fF, rt as Ds$1, ru as uo$1, s as $o$1, sa as X4, sc as kp$1, sd as require_lodash_throttle, si as Sb$1, sl as qO, sn as Ig$1, so as b2$1, sr as Mp$2, ss as fh$1, st as E4, su as vE, t as $2, ta as Wo, tc as k7, td as e, ti as Rg$1, tl as pp$2, tn as IE, to as ae$4, tr as MF, ts as f9, tt as Dh$1, tu as ui$1, u as A$, ua as XO$1, uc as kt$2, ud as init_open_color, ui as Sn$2, ul as qg, un as Ix, uo as b7, ur as N6, us as fx, ut as E9, uu as vY, v as Ah, va as Y$, vc as lg$2, vi as Ta, vl as r9, vn as Je$2, vo as bs$1, vr as Np$2, vs as gg$2, vt as Es$1, vu as wE, w as Ax, wa as Yh$1, wc as mg$2, wi as Tt$2, wl as rp$1, wn as K4, wo as cg$2, wr as O9, ws as hE, wt as FP, wu as wx, x as Ap$2, xa as Y_$1, xc as m4, xi as Tg$1, xl as rd$2, xn as Js$2, xo as cB, xr as O$2, xs as gx, xt as F6, xu as wb$1, y as Am$1, ya as Y4, yc as lh$1, yi as Tb$1, yl as rY, yn as Jh$1, yo as bx, yr as Nr$3, ys as gh$1, yt as Ex, yu as wF, z as C$3, za as _9, zc as nt$1, zi as VB, zl as te$1, zn as L2$1, zo as dn$2, zr as Ph$1, zs as iP, zt as Gr$3, zu as yb$1 } from "./chunk-K2UTITRG-DKwCMfva.js";
 import { C as init_chunk_6U3AYISY, n as B$3 } from "./chunk-6U3AYISY--ug_EDHU.js";
 import { r as init_chunk_Z3N5DIM6, t as N$1 } from "./chunk-Z3N5DIM6-rCnV9vYG.js";
 import { a as flip, c as limitShift, d as size, f as useFloating, i as autoPlacement, l as offset, m as init_floating_ui_dom, n as require_shim, o as hide, p as autoUpdate, r as arrow, s as init_floating_ui_react_dom, t as require_with_selector, u as shift } from "./with-selector-BzHsq6IS.js";
 import { a as __rest, o as __spreadArray, s as init_tslib_es6, t as __assign } from "./tslib.es6-BHYlNaQz.js";
-import { $ as NodeView, A as Gn$2, B as We$2, C as ut$2, D as E$4, E as D$1, F as O$3, G as Z$6, H as Wr$2, I as Pr$4, J as jr$1, K as _n$3, L as T$3, M as K$4, N as Le$2, O as Fn$3, P as Mn$3, Q as x$3, R as Ur$3, S as rn$3, T as C$4, U as X$5, V as Wn$2, W as Y$3, X as vn$2, Y as qe$2, Z as w$3, _ as s, a as G$3, b as ct$3, c as M, d as U$4, et as getRenderedAttributes, f as W$3, g as z$4, h as q$4, i as B$4, j as Jt$3, k as Fr$3, l as N$2, m as j$1, n as t, nt as TextSelection, o as K$3, p as Z$5, q as jn$1, r as A$1, rt as safePolygon, s as L$2, t as v$2, tt as isNodeViewSelected, u as P$2, v as Yt$2, w as Ar$3, x as lt$1, y as Zt$1, z as Vr$3 } from "./comments-CJcI5zkG.js";
+import { $ as NodeView, A as Gn$2, B as We$2, C as ut$2, D as E$4, E as D$2, F as O$3, G as Z$6, H as Wr$2, I as Pr$4, J as jr$1, K as _n$3, L as T$4, M as K$4, N as Le$2, O as Fn$3, P as Mn$3, Q as x$3, R as Ur$3, S as rn$3, T as C$4, U as X$5, V as Wn$2, W as Y$3, X as vn$2, Y as qe$2, Z as w$3, _ as s, a as G$3, b as ct$3, c as M, d as U$4, et as getRenderedAttributes, f as W$3, g as z$4, h as q$4, i as B$4, j as Jt$3, k as Fr$3, l as N$2, m as j$1, n as t, nt as TextSelection, o as K$3, p as Z$5, q as jn$1, r as A$1, rt as safePolygon, s as L$2, t as v$2, tt as isNodeViewSelected, u as P$2, v as Yt$2, w as Ar$3, x as lt$1, y as Zt$1, z as Vr$3 } from "./comments-CJcI5zkG.js";
 //#region ../../node_modules/scheduler/cjs/scheduler.production.js
 var require_scheduler_production = /* @__PURE__ */ __commonJSMin(((n) => {
 	function r(n, r) {
@@ -8832,7 +8832,7 @@ ${n}</tr>
 		}
 		return a;
 	}
-}, S$2 = class {
+}, S$3 = class {
 	options;
 	block;
 	constructor(n) {
@@ -8877,7 +8877,7 @@ ${n}</tr>
 	TextRenderer = L$1;
 	Lexer = x$2;
 	Tokenizer = y$1;
-	Hooks = S$2;
+	Hooks = S$3;
 	constructor(...n) {
 		this.use(...n);
 	}
@@ -8958,13 +8958,13 @@ ${n}</tr>
 				a.tokenizer = r;
 			}
 			if (n.hooks) {
-				let r = this.defaults.hooks || new S$2();
+				let r = this.defaults.hooks || new S$3();
 				for (let a in n.hooks) {
 					if (!(a in r)) throw Error(`hook '${a}' does not exist`);
 					if (["options", "block"].includes(a)) continue;
 					let o = a, l = n.hooks[o], d = r[o];
-					S$2.passThroughHooks.has(a) ? r[o] = (n) => {
-						if (this.defaults.async && S$2.passThroughHooksRespectAsync.has(a)) return (async () => {
+					S$3.passThroughHooks.has(a) ? r[o] = (n) => {
+						if (this.defaults.async && S$3.passThroughHooksRespectAsync.has(a)) return (async () => {
 							let a = await l.call(r, n);
 							return d.call(r, a);
 						})();
@@ -9054,11 +9054,21886 @@ function kt$1(...n) {
 }
 f$2.use = kt$1, f$2.walkTokens = function(n, r) {
 	return E$3.walkTokens(n, r);
-}, f$2.parseInline = E$3.parseInline, f$2.Parser = b, f$2.parser = b.parse, f$2.Renderer = P$1, f$2.TextRenderer = L$1, f$2.Lexer = x$2, f$2.lexer = x$2.lex, f$2.Tokenizer = y$1, f$2.Hooks = S$2, f$2.parse = f$2;
-var nn$1 = f$2.options, rn$2 = f$2.setOptions, sn$1 = f$2.walkTokens, on$1 = f$2.parseInline, an$1 = f$2, ln$2 = b.parse, pn$2 = x$2.lex;
-//#endregion
-//#region src/sdk/viewer.css
-init_mermaid_core();
+}, f$2.parseInline = E$3.parseInline, f$2.Parser = b, f$2.parser = b.parse, f$2.Renderer = P$1, f$2.TextRenderer = L$1, f$2.Lexer = x$2, f$2.lexer = x$2.lex, f$2.Tokenizer = y$1, f$2.Hooks = S$3, f$2.parse = f$2;
+var nn$1 = f$2.options, rn$2 = f$2.setOptions, sn$1 = f$2.walkTokens, on$1 = f$2.parseInline, an$1 = f$2, ln$2 = b.parse, pn$2 = x$2.lex, katex_exports = /* @__PURE__ */ __exportAll({
+	ParseError: () => ParseError,
+	SETTINGS_SCHEMA: () => SETTINGS_SCHEMA,
+	__defineFunction: () => defineFunction,
+	__defineMacro: () => defineMacro,
+	__defineSymbol: () => defineSymbol,
+	__domTree: () => __domTree,
+	__parse: () => generateParseTree,
+	__renderToDomTree: () => renderToDomTree,
+	__renderToHTMLTree: () => renderToHTMLTree,
+	__setFontMetrics: () => setFontMetrics,
+	default: () => katex,
+	render: () => render,
+	renderToString: () => renderToString,
+	version: () => version$1
+});
+function getImplicitDefault(n) {
+	if (typeof n != "string") return n.enum[0];
+	switch (n) {
+		case "boolean": return !1;
+		case "string": return "";
+		case "number": return 0;
+		case "object": return {};
+		default: throw Error("Unexpected schema type; settings must declare an explicit default.");
+	}
+}
+function getDefaultValue(n) {
+	return n.default === void 0 ? getImplicitDefault(Array.isArray(n.type) ? n.type[0] : n.type) : n.default;
+}
+function applySetting(n, r, a, o) {
+	var l = a[r];
+	n[r] = l === void 0 ? getDefaultValue(o) : o.processor ? o.processor(l) : l;
+}
+function scriptFromCodepoint(n) {
+	for (var r = 0; r < scriptData.length; r++) for (var a = scriptData[r], o = 0; o < a.blocks.length; o++) {
+		var l = a.blocks[o];
+		if (n >= l[0] && n <= l[1]) return a.name;
+	}
+	return null;
+}
+function supportedCodepoint(n) {
+	for (var r = 0; r < allBlocks.length; r += 2) if (n >= allBlocks[r] && n <= allBlocks[r + 1]) return !0;
+	return !1;
+}
+function isMathDomNode(n) {
+	return "toText" in n;
+}
+function assertSymbolDomNode(n) {
+	if (n instanceof SymbolNode) return n;
+	throw Error("Expected symbolNode but got " + String(n) + ".");
+}
+function assertSpan(n) {
+	if (n instanceof Span) return n;
+	throw Error("Expected span<HtmlDomNode> but got " + String(n) + ".");
+}
+function setFontMetrics(n, r) {
+	fontMetricsData[n] = r;
+}
+function getCharacterMetrics(n, r, a) {
+	if (!fontMetricsData[r]) throw Error("Font metrics not found for font: " + r + ".");
+	var o = n.charCodeAt(0), l = fontMetricsData[r][o];
+	if (!l && n[0] in extraCharacterMap && (o = extraCharacterMap[n[0]].charCodeAt(0), l = fontMetricsData[r][o]), !l && a === "text" && supportedCodepoint(o) && (l = fontMetricsData[r][77]), l) return {
+		depth: l[0],
+		height: l[1],
+		italic: l[2],
+		skew: l[3],
+		width: l[4]
+	};
+}
+function getGlobalMetrics(n) {
+	var r = n >= 5 ? 0 : n >= 3 ? 1 : 2;
+	if (!fontMetricsBySizeIndex[r]) {
+		var a = fontMetricsBySizeIndex[r] = { cssEmPerMu: sigmasAndXis.quad[r] / 18 };
+		for (var o in sigmasAndXis) sigmasAndXis.hasOwnProperty(o) && (a[o] = sigmasAndXis[o][r]);
+	}
+	return fontMetricsBySizeIndex[r];
+}
+function defineSymbol(n, r, a, o, l, d) {
+	symbols[n][l] = {
+		font: r,
+		group: a,
+		replace: o
+	}, d && o && (symbols[n][o] = symbols[n][l]);
+}
+function defineFunction(n) {
+	for (var { type: r, names: a, props: o, handler: l, htmlBuilder: d, mathmlBuilder: f } = n, p = {
+		type: r,
+		numArgs: o.numArgs,
+		argTypes: o.argTypes,
+		allowedInArgument: !!o.allowedInArgument,
+		allowedInText: !!o.allowedInText,
+		allowedInMath: o.allowedInMath === void 0 ? !0 : o.allowedInMath,
+		numOptionalArgs: o.numOptionalArgs || 0,
+		infix: !!o.infix,
+		primitive: !!o.primitive,
+		handler: l
+	}, m = 0; m < a.length; ++m) _functions[a[m]] = p;
+	r && (d && (_htmlGroupBuilders[r] = d), f && (_mathmlGroupBuilders[r] = f));
+}
+function defineFunctionBuilders(n) {
+	var { type: r, htmlBuilder: a, mathmlBuilder: o } = n;
+	defineFunction({
+		type: r,
+		names: [],
+		props: { numArgs: 0 },
+		handler() {
+			throw Error("Should never be called.");
+		},
+		htmlBuilder: a,
+		mathmlBuilder: o
+	});
+}
+function buildHTMLUnbreakable(n, r) {
+	var a = makeSpan(["base"], n, r), o = makeSpan(["strut"]);
+	return o.style.height = makeEm(a.height + a.depth), a.depth && (o.style.verticalAlign = makeEm(-a.depth)), a.children.unshift(o), a;
+}
+function buildHTML(n, r) {
+	var a = null;
+	n.length === 1 && n[0].type === "tag" && (a = n[0].tag, n = n[0].body);
+	var o = buildExpression$1(n, r, "root"), l;
+	o.length === 2 && o[1].hasClass("tag") && (l = o.pop());
+	for (var d = [], f = [], p = 0; p < o.length; p++) if (f.push(o[p]), o[p].hasClass("mbin") || o[p].hasClass("mrel") || o[p].hasClass("allowbreak")) {
+		for (var m = !1; p < o.length - 1 && o[p + 1].hasClass("mspace") && !o[p + 1].hasClass("newline");) p++, f.push(o[p]), o[p].hasClass("nobreak") && (m = !0);
+		m || (d.push(buildHTMLUnbreakable(f, r)), f = []);
+	} else o[p].hasClass("newline") && (f.pop(), f.length > 0 && (d.push(buildHTMLUnbreakable(f, r)), f = []), d.push(o[p]));
+	f.length > 0 && d.push(buildHTMLUnbreakable(f, r));
+	var h;
+	a ? (h = buildHTMLUnbreakable(buildExpression$1(a, r, !0), r), h.classes = ["tag"], d.push(h)) : l && d.push(l);
+	var g = makeSpan(["katex-html"], d);
+	if (g.setAttribute("aria-hidden", "true"), h) {
+		var _ = h.children[0];
+		_.style.height = makeEm(g.height + g.depth), g.depth && (_.style.verticalAlign = makeEm(-g.depth));
+	}
+	return g;
+}
+function newDocumentFragment(n) {
+	return new DocumentFragment(n);
+}
+function isNumberPunctuation(n) {
+	if (!n) return !1;
+	if (n.type === "mi" && n.children.length === 1) {
+		var r = n.children[0];
+		return r instanceof TextNode && r.text === ".";
+	} else if (n.type === "mo" && n.children.length === 1 && n.getAttribute("separator") === "true" && n.getAttribute("lspace") === "0em" && n.getAttribute("rspace") === "0em") {
+		var a = n.children[0];
+		return a instanceof TextNode && a.text === ",";
+	} else return !1;
+}
+function buildMathML(n, r, a, o, l) {
+	var d = buildExpression(n, a), f = d.length === 1 && d[0] instanceof MathNode && rowLikeTypes.has(d[0].type) ? d[0] : new MathNode("mrow", d), p = new MathNode("annotation", [new TextNode(r)]);
+	p.setAttribute("encoding", "application/x-tex");
+	var m = new MathNode("math", [new MathNode("semantics", [f, p])]);
+	return m.setAttribute("xmlns", "http://www.w3.org/1998/Math/MathML"), o && m.setAttribute("display", "block"), makeSpan([l ? "katex" : "katex-mathml"], [m]);
+}
+function isAtom(n) {
+	return n in ATOMS;
+}
+function assertNodeType(n, r) {
+	if (!n || n.type !== r) throw Error("Expected node of type " + r + ", but got " + (n ? "node of type " + n.type : String(n)));
+	return n;
+}
+function assertSymbolNodeType(n) {
+	var r = checkSymbolNodeType(n);
+	if (!r) throw Error("Expected node of symbol group type, but got " + (n ? "node of type " + n.type : String(n)));
+	return r;
+}
+function checkSymbolNodeType(n) {
+	return n && (n.type === "atom" || NON_ATOMS.hasOwnProperty(n.type)) ? n : null;
+}
+function htmlBuilder$9(n, r) {
+	var a = buildExpression$1(n.body, r, !0);
+	return makeSpan([n.mclass], a, r);
+}
+function mathmlBuilder$8(n, r) {
+	var a, o = buildExpression(n.body, r);
+	return n.mclass === "minner" ? a = new MathNode("mpadded", o) : n.mclass === "mord" ? n.isCharacterBox ? (a = o[0], a.type = "mi") : a = new MathNode("mi", o) : (n.isCharacterBox ? (a = o[0], a.type = "mo") : a = new MathNode("mo", o), n.mclass === "mbin" ? (a.attributes.lspace = "0.22em", a.attributes.rspace = "0.22em") : n.mclass === "mpunct" ? (a.attributes.lspace = "0em", a.attributes.rspace = "0.17em") : n.mclass === "mopen" || n.mclass === "mclose" ? (a.attributes.lspace = "0em", a.attributes.rspace = "0em") : n.mclass === "minner" && (a.attributes.lspace = "0.0556em", a.attributes.width = "+0.1111em")), a;
+}
+function cdArrow(n, r, a) {
+	var o = cdArrowFunctionName[n];
+	switch (o) {
+		case "\\\\cdrightarrow":
+		case "\\\\cdleftarrow": return a.callFunction(o, [r[0]], [r[1]]);
+		case "\\uparrow":
+		case "\\downarrow":
+			var l = a.callFunction("\\\\cdleft", [r[0]], []), d = {
+				type: "atom",
+				text: o,
+				mode: "math",
+				family: "rel"
+			}, f = {
+				type: "ordgroup",
+				mode: "math",
+				body: [
+					l,
+					a.callFunction("\\Big", [d], []),
+					a.callFunction("\\\\cdright", [r[1]], [])
+				]
+			};
+			return a.callFunction("\\\\cdparent", [f], []);
+		case "\\\\cdlongequal": return a.callFunction("\\\\cdlongequal", [], []);
+		case "\\Vert": return a.callFunction("\\Big", [{
+			type: "textord",
+			text: "\\Vert",
+			mode: "math"
+		}], []);
+		default: return {
+			type: "textord",
+			text: " ",
+			mode: "math"
+		};
+	}
+}
+function parseCD(n) {
+	var r = [];
+	for (n.gullet.beginGroup(), n.gullet.macros.set("\\cr", "\\\\\\relax"), n.gullet.beginGroup();;) {
+		r.push(n.parseExpression(!1, "\\\\")), n.gullet.endGroup(), n.gullet.beginGroup();
+		var a = n.fetch().text;
+		if (a === "&" || a === "\\\\") n.consume();
+		else if (a === "\\end") {
+			r[r.length - 1].length === 0 && r.pop();
+			break;
+		} else throw new ParseError("Expected \\\\ or \\cr or \\end", n.nextToken);
+	}
+	for (var o = [], l = [o], d = 0; d < r.length; d++) {
+		for (var f = r[d], p = newCell(), m = 0; m < f.length; m++) if (!isStartOfArrow(f[m])) p.body.push(f[m]);
+		else {
+			o.push(p), m += 1;
+			var h = assertSymbolNodeType(f[m]).text, g = [, ,];
+			if (g[0] = {
+				type: "ordgroup",
+				mode: "math",
+				body: []
+			}, g[1] = {
+				type: "ordgroup",
+				mode: "math",
+				body: []
+			}, !"=|.".includes(h)) if ("<>AV".includes(h)) for (var _ = 0; _ < 2; _++) {
+				for (var v = !0, y = m + 1; y < f.length; y++) {
+					if (isLabelEnd(f[y], h)) {
+						v = !1, m = y;
+						break;
+					}
+					if (isStartOfArrow(f[y])) throw new ParseError("Missing a " + h + " character to complete a CD arrow.", f[y]);
+					g[_].body.push(f[y]);
+				}
+				if (v) throw new ParseError("Missing a " + h + " character to complete a CD arrow.", f[m]);
+			}
+			else throw new ParseError("Expected one of \"<>AV=|.\" after @", f[m]);
+			var x = {
+				type: "styling",
+				body: [cdArrow(h, g, n)],
+				mode: "math",
+				style: "display",
+				resetFont: !0
+			};
+			o.push(x), p = newCell();
+		}
+		d % 2 == 0 ? o.push(p) : o.shift(), o = [], l.push(o);
+	}
+	return n.gullet.endGroup(), n.gullet.endGroup(), {
+		type: "array",
+		mode: "math",
+		body: l,
+		arraystretch: 1,
+		addJot: !0,
+		rowGaps: [null],
+		cols: Array(l[0].length).fill({
+			type: "align",
+			align: "c",
+			pregap: .25,
+			postgap: .25
+		}),
+		colSeparationType: "CD",
+		hLinesBeforeRow: Array(l.length + 1).fill([])
+	};
+}
+function isMiddleDelimNode(n) {
+	return "isMiddle" in n;
+}
+function checkDelimiter(n, r) {
+	var a = checkSymbolNodeType(n);
+	if (a && delimiters.has(a.text)) return a;
+	throw a ? new ParseError("Invalid delimiter '" + a.text + "' after '" + r.funcName + "'", n) : new ParseError("Invalid delimiter type '" + n.type + "'", n);
+}
+function assertParsed(n) {
+	if (!n.body) throw Error("Bug: The leftright ParseNode wasn't fully parsed.");
+}
+function defineEnvironment(n) {
+	for (var { type: r, names: a, props: o, handler: l, htmlBuilder: d, mathmlBuilder: f } = n, p = {
+		type: r,
+		numArgs: o.numArgs || 0,
+		allowedInText: !1,
+		numOptionalArgs: 0,
+		handler: l
+	}, m = 0; m < a.length; ++m) _environments[a[m]] = p;
+	d && (_htmlGroupBuilders[r] = d), f && (_mathmlGroupBuilders[r] = f);
+}
+function defineMacro(n, r) {
+	_macros[n] = r;
+}
+function getHLines(n) {
+	var r = [];
+	n.consumeSpaces();
+	var a = n.fetch().text;
+	for (a === "\\relax" && (n.consume(), n.consumeSpaces(), a = n.fetch().text); a === "\\hline" || a === "\\hdashline";) n.consume(), r.push(a === "\\hdashline"), n.consumeSpaces(), a = n.fetch().text;
+	return r;
+}
+function getAutoTag(n) {
+	if (!n.includes("ed")) return !n.includes("*");
+}
+function parseArray(n, r, a) {
+	var { hskipBeforeAndAfter: o, addJot: l, cols: d, arraystretch: f, colSeparationType: p, autoTag: m, singleRow: h, emptySingleRow: g, maxNumCols: _, leqno: v } = r;
+	if (n.gullet.beginGroup(), h || n.gullet.macros.set("\\cr", "\\\\\\relax"), !f) {
+		var y = n.gullet.expandMacroAsText("\\arraystretch");
+		if (y == null) f = 1;
+		else if (f = parseFloat(y), !f || f < 0) throw new ParseError("Invalid \\arraystretch: " + y);
+	}
+	n.gullet.beginGroup();
+	var x = [], S = [x], C = [], w = [], T = m == null ? void 0 : [];
+	function D() {
+		m && n.gullet.macros.set("\\@eqnsw", "1", !0);
+	}
+	function G() {
+		T && (n.gullet.macros.get("\\df@tag") ? (T.push(n.subparse([new Token("\\df@tag")])), n.gullet.macros.set("\\df@tag", void 0, !0)) : T.push(!!m && n.gullet.macros.get("\\@eqnsw") === "1"));
+	}
+	for (D(), w.push(getHLines(n));;) {
+		var ne = n.parseExpression(!1, h ? "\\end" : "\\\\");
+		n.gullet.endGroup(), n.gullet.beginGroup();
+		var ie = {
+			type: "ordgroup",
+			mode: n.mode,
+			body: ne
+		};
+		a && (ie = {
+			type: "styling",
+			mode: n.mode,
+			style: a,
+			resetFont: !0,
+			body: [ie]
+		}), x.push(ie);
+		var se = n.fetch().text;
+		if (se === "&") {
+			if (_ && x.length === _) {
+				if (h || p) throw new ParseError("Too many tab characters: &", n.nextToken);
+				n.settings.reportNonstrict("textEnv", "Too few columns specified in the {array} column argument.");
+			}
+			n.consume();
+		} else if (se === "\\end") {
+			G(), x.length === 1 && ie.type === "styling" && ie.body.length === 1 && ie.body[0].type === "ordgroup" && ie.body[0].body.length === 0 && (S.length > 1 || !g) && S.pop(), w.length < S.length + 1 && w.push([]);
+			break;
+		} else if (se === "\\\\") {
+			n.consume();
+			var de = void 0;
+			n.gullet.future().text !== " " && (de = n.parseSizeGroup(!0)), C.push(de ? de.value : null), G(), w.push(getHLines(n)), x = [], S.push(x), D();
+		} else throw new ParseError("Expected & or \\\\ or \\cr or \\end", n.nextToken);
+	}
+	return n.gullet.endGroup(), n.gullet.endGroup(), {
+		type: "array",
+		mode: n.mode,
+		addJot: l,
+		arraystretch: f,
+		body: S,
+		cols: d,
+		rowGaps: C,
+		hskipBeforeAndAfter: o,
+		hLinesBeforeRow: w,
+		colSeparationType: p,
+		tags: T,
+		leqno: v
+	};
+}
+function dCellStyle(n) {
+	return n.slice(0, 1) === "d" ? "display" : "text";
+}
+function sizingGroup(n, r, a) {
+	for (var o = buildExpression$1(n, r, !1), l = r.sizeMultiplier / a.sizeMultiplier, d = 0; d < o.length; d++) {
+		var f = o[d].classes.indexOf("sizing");
+		f < 0 ? Array.prototype.push.apply(o[d].classes, r.sizingClasses(a)) : o[d].classes[f + 1] === "reset-size" + r.size && (o[d].classes[f + 1] = "reset-size" + a.size), o[d].height *= l, o[d].depth *= l;
+	}
+	return makeFragment(o);
+}
+function isStyleStr(n) {
+	return n in styleMap;
+}
+var ParseError, uppercase, hyphenate, ESCAPE_LOOKUP, ESCAPE_REGEX, escape$1, getBaseElem, characterNodesTypes, isCharacterBox, protocolFromUrl, SETTINGS_SCHEMA, Settings, Style$1, D$1, Dc$2, T$2, Tc$2, S$2, Sc$2, SS$1, SSc, styles, sup, sub, fracNum, fracDen, cramp, text$1, Style$1$1, scriptData, allBlocks, doubleBrushStroke, hLinePad, sqrtMain, sqrtSize1, sqrtSize2, sqrtSize3, sqrtSize4, phasePath, sqrtTall, sqrtPath, innerPath, path, tallDelim, DocumentFragment, ptPerUnit, relativeUnit, validUnit, calculateSize, makeEm, createClass, cssStyleToString, initNode, toNode, invalidAttributeNameRegex, toMarkup, Span, Anchor$1, Img, iCombinations, SymbolNode, SvgNode, PathNode, LineNode, hasHtmlDomChildren, fontMetricsData, sigmasAndXis, extraCharacterMap, fontMetricsBySizeIndex, symbols, math, text, main, ams, accent, bin, close, inner, mathord, op$1, open, punct, rel, spacing, textord, ligatures, mathTextSymbols, i, ch$1, textSymbols, _i$3, _ch, letters, _i2, _ch2, wideChar, _i3, _ch3, _i4, _ch4, extraLatin, _i5, _ch5, boldUpright, italic, boldItalic, script, noFont, fraktur, doubleStruck, boldFraktur, sansSerif, boldSansSerif, italicSansSerif, monospace, wideLatinLetterData, wideNumeralData, wideCharacterFont, lookupSymbol, makeSymbol, mathsym, boldSymbol, makeOrd, canCombine, tryCombineChars, sizeElementFromChildren, makeSpan, makeSvgSpan, makeLineSpan, makeAnchor, makeFragment, wrapFragment, getVListChildrenAndDepth, makeVList, makeGlue, retrieveTextFontName, fontMap, svgData, staticSvg, thinspace, mediumspace, thickspace, spacings, tightSpacings, _functions, _htmlGroupBuilders, _mathmlGroupBuilders, normalizeArgument, ordargument, binLeftCanceller, binRightCanceller, styleMap$1, DomEnum, buildExpression$1, _traverseNonSpaceNodes, checkPartialGroup, _getOutermostNode, getTypeOfDomTree, makeNullDelimiter, buildGroup$1, MathNode, TextNode, SpaceNode, noVariantSymbols, rowLikeTypes, makeText, makeRow, mathFontVariants, getVariant, buildExpression, buildExpressionRow, buildGroup, sizeStyleMap, sizeMultipliers, sizeAtStyle, Options, optionsFromSettings, displayWrap, buildTree, buildHTMLTree, stretchyCodePoint, stretchyMathML, katexImagesData, wideAccentLabels, stretchySvg, stretchyEnclose, ATOMS, NON_ATOMS, getBaseSymbol, htmlBuilder$a, mathmlBuilder$9, NON_STRETCHY_ACCENT_REGEX, paddedNode, binrelClass, cdArrowFunctionName, newCell, isStartOfArrow, isLabelEnd, htmlBuilder$8, mathmlBuilder$7, globalMap, checkControlSequence, getRHS, letCommand, getMetrics, styleWrap, centerSpan, makeSmallDelim, mathrmSize, makeLargeDelim, makeGlyphSpan, makeInner, lapInEms, lap, verts, doubleVerts, makeStackedDelim, vbPad, emPad, sqrtSvg, makeSqrtImage, stackLargeDelimiters, stackAlwaysDelimiters, stackNeverDelimiters, sizeToMaxHeight, makeSizedDelim, stackNeverDelimiterSequence, stackAlwaysDelimiterSequence, stackLargeDelimiterSequence, delimTypeToFont, traverseSequence, makeCustomSizedDelim, makeLeftRightDelim, delimiterSizes, delimiters, htmlBuilder$7, mathmlBuilder$6, _environments, _macros, SourceLocation, Token, validateAmsEnvironmentContext, gatherEnvironments, htmlBuilder$6, alignMap, mathmlBuilder$5, alignedHandler, environments, htmlBuilder$5, mathmlBuilder$4, fontAliases, htmlBuilder$4, mathmlBuilder$3, wrapWithStyle, stylArray, delimFromValue, htmlBuilder$3, mathmlBuilder$2, sizeData, chooseMathStyle, assembleSupSub, noSuccessor, htmlBuilder$2, mathmlBuilder$1, singleCharBigOps, singleCharIntegrals, htmlBuilder$1, mathmlBuilder, sizeFuncs, htmlBuilder, styleMap, htmlBuilderDelegate, defaultVariant, cssSpace, regularSpace, pad, textFontFamilies, textFontWeights, textFontShapes, optionsWithFont, makeVerb, functions, spaceRegexString, controlWordRegexString, controlSymbolRegexString, controlWordWhitespaceRegexString, controlSpaceRegexString, combiningDiacriticalMarkString, combiningDiacriticalMarksEndRegex, tokenRegexString, Lexer, Namespace, macros, digitToNumber, newcommand, dotsByToken, dotsbGroups, spaceAfterDots, latexRaiseA, braketHelper, implicitCommands, MacroExpander, unicodeSubRegEx, uSubsAndSups, unicodeAccents, unicodeSymbols, Parser, parseTree, render, renderToString, generateParseTree, renderError, renderToDomTree, renderToHTMLTree, version$1, __domTree, katex, init_katex = __esmMin((() => {
+	for (ParseError = class n extends Error {
+		constructor(r, a) {
+			var o = "KaTeX parse error: " + r, l, d, f = a && a.loc;
+			if (f && f.start <= f.end) {
+				var p = f.lexer.input;
+				l = f.start, d = f.end, l === p.length ? o += " at end of input: " : o += " at position " + (l + 1) + ": ";
+				var m = p.slice(l, d).replace(/[^]/g, "$&̲"), h = l > 15 ? "…" + p.slice(l - 15, l) : p.slice(0, l), g = d + 15 < p.length ? p.slice(d, d + 15) + "…" : p.slice(d);
+				o += h + m + g;
+			}
+			super(o), this.name = "ParseError", this.position = void 0, this.length = void 0, this.rawMessage = void 0, Object.setPrototypeOf(this, n.prototype), this.position = l, l != null && d != null && (this.length = d - l), this.rawMessage = r;
+		}
+	}, uppercase = /([A-Z])/g, hyphenate = (n) => n.replace(uppercase, "-$1").toLowerCase(), ESCAPE_LOOKUP = {
+		"&": "&amp;",
+		">": "&gt;",
+		"<": "&lt;",
+		"\"": "&quot;",
+		"'": "&#x27;"
+	}, ESCAPE_REGEX = /[&><"']/g, escape$1 = (n) => String(n).replace(ESCAPE_REGEX, (n) => ESCAPE_LOOKUP[n]), getBaseElem = (n) => n.type === "ordgroup" || n.type === "color" ? n.body.length === 1 ? getBaseElem(n.body[0]) : n : n.type === "font" ? getBaseElem(n.body) : n, characterNodesTypes = /* @__PURE__ */ new Set([
+		"mathord",
+		"textord",
+		"atom"
+	]), isCharacterBox = (n) => characterNodesTypes.has(getBaseElem(n).type), protocolFromUrl = (n) => {
+		var r = /^[\x00-\x20]*([^\\/#?]*?)(:|&#0*58|&#x0*3a|&colon)/i.exec(n);
+		return r ? r[2] !== ":" || !/^[a-zA-Z][a-zA-Z0-9+\-.]*$/.test(r[1]) ? null : r[1].toLowerCase() : "_relative";
+	}, SETTINGS_SCHEMA = {
+		displayMode: {
+			type: "boolean",
+			description: "Render math in display mode, which puts the math in display style (so \\int and \\sum are large, for example), and centers the math on the page on its own line.",
+			cli: "-d, --display-mode"
+		},
+		output: {
+			type: { enum: [
+				"htmlAndMathml",
+				"html",
+				"mathml"
+			] },
+			description: "Determines the markup language of the output.",
+			cli: "-F, --format <type>"
+		},
+		leqno: {
+			type: "boolean",
+			description: "Render display math in leqno style (left-justified tags)."
+		},
+		fleqn: {
+			type: "boolean",
+			description: "Render display math flush left."
+		},
+		throwOnError: {
+			type: "boolean",
+			default: !0,
+			cli: "-t, --no-throw-on-error",
+			cliDescription: "Render errors (in the color given by --error-color) instead of throwing a ParseError exception when encountering an error."
+		},
+		errorColor: {
+			type: "string",
+			default: "#cc0000",
+			cli: "-c, --error-color <color>",
+			cliDescription: "A color string given in the format 'rgb' or 'rrggbb' (no #). This option determines the color of errors rendered by the -t option.",
+			cliProcessor: (n) => "#" + n
+		},
+		macros: {
+			type: "object",
+			cli: "-m, --macro <def>",
+			cliDescription: "Define custom macro of the form '\\foo:expansion' (use multiple -m arguments for multiple macros).",
+			cliDefault: [],
+			cliProcessor: (n, r) => (r.push(n), r)
+		},
+		minRuleThickness: {
+			type: "number",
+			description: "Specifies a minimum thickness, in ems, for fraction lines, `\\sqrt` top lines, `{array}` vertical lines, `\\hline`, `\\hdashline`, `\\underline`, `\\overline`, and the borders of `\\fbox`, `\\boxed`, and `\\fcolorbox`.",
+			processor: (n) => Math.max(0, n),
+			cli: "--min-rule-thickness <size>",
+			cliProcessor: parseFloat
+		},
+		colorIsTextColor: {
+			type: "boolean",
+			description: "Makes \\color behave like LaTeX's 2-argument \\textcolor, instead of LaTeX's one-argument \\color mode change.",
+			cli: "-b, --color-is-text-color"
+		},
+		strict: {
+			type: [
+				{ enum: [
+					"warn",
+					"ignore",
+					"error"
+				] },
+				"boolean",
+				"function"
+			],
+			description: "Turn on strict / LaTeX faithfulness mode, which throws an error if the input uses features that are not supported by LaTeX.",
+			cli: "-S, --strict",
+			cliDefault: !1
+		},
+		trust: {
+			type: ["boolean", "function"],
+			description: "Trust the input, enabling all HTML features such as \\url.",
+			cli: "-T, --trust"
+		},
+		maxSize: {
+			type: "number",
+			default: Infinity,
+			description: "If non-zero, all user-specified sizes, e.g. in \\rule{500em}{500em}, will be capped to maxSize ems. Otherwise, elements and spaces can be arbitrarily large",
+			processor: (n) => Math.max(0, n),
+			cli: "-s, --max-size <n>",
+			cliProcessor: parseInt
+		},
+		maxExpand: {
+			type: "number",
+			default: 1e3,
+			description: "Limit the number of macro expansions to the specified number, to prevent e.g. infinite macro loops. If set to Infinity, the macro expander will try to fully expand as in LaTeX.",
+			processor: (n) => Math.max(0, n),
+			cli: "-e, --max-expand <n>",
+			cliProcessor: (n) => n === "Infinity" ? Infinity : parseInt(n)
+		},
+		globalGroup: {
+			type: "boolean",
+			cli: !1
+		}
+	}, Settings = class {
+		constructor(n) {
+			n === void 0 && (n = {}), this.displayMode = void 0, this.output = void 0, this.leqno = void 0, this.fleqn = void 0, this.throwOnError = void 0, this.errorColor = void 0, this.macros = void 0, this.minRuleThickness = void 0, this.colorIsTextColor = void 0, this.strict = void 0, this.trust = void 0, this.maxSize = void 0, this.maxExpand = void 0, this.globalGroup = void 0, n ||= {};
+			for (var r of Object.keys(SETTINGS_SCHEMA)) {
+				var a = SETTINGS_SCHEMA[r];
+				a && applySetting(this, r, n, a);
+			}
+		}
+		reportNonstrict(n, r, a) {
+			var o = this.strict;
+			if (typeof o == "function" && (o = o(n, r, a)), !(!o || o === "ignore")) {
+				if (o === !0 || o === "error") throw new ParseError("LaTeX-incompatible input and strict mode is set to 'error': " + (r + " [" + n + "]"), a);
+				o === "warn" ? typeof console < "u" && console.warn("LaTeX-incompatible input and strict mode is set to 'warn': " + (r + " [" + n + "]")) : typeof console < "u" && console.warn("LaTeX-incompatible input and strict mode is set to " + ("unrecognized '" + o + "': " + r + " [" + n + "]"));
+			}
+		}
+		useStrictBehavior(n, r, a) {
+			var o = this.strict;
+			if (typeof o == "function") try {
+				o = o(n, r, a);
+			} catch {
+				o = "error";
+			}
+			return !o || o === "ignore" ? !1 : o === !0 || o === "error" ? !0 : o === "warn" ? (typeof console < "u" && console.warn("LaTeX-incompatible input and strict mode is set to 'warn': " + (r + " [" + n + "]")), !1) : (typeof console < "u" && console.warn("LaTeX-incompatible input and strict mode is set to " + ("unrecognized '" + o + "': " + r + " [" + n + "]")), !1);
+		}
+		isTrusted(n) {
+			if ("url" in n && n.url && !n.protocol) {
+				var r = protocolFromUrl(n.url);
+				if (r == null) return !1;
+				n.protocol = r;
+			}
+			return !!(typeof this.trust == "function" ? this.trust(n) : this.trust);
+		}
+	}, Style$1 = class {
+		constructor(n, r, a) {
+			this.id = void 0, this.size = void 0, this.cramped = void 0, this.id = n, this.size = r, this.cramped = a;
+		}
+		sup() {
+			return styles[sup[this.id]];
+		}
+		sub() {
+			return styles[sub[this.id]];
+		}
+		fracNum() {
+			return styles[fracNum[this.id]];
+		}
+		fracDen() {
+			return styles[fracDen[this.id]];
+		}
+		cramp() {
+			return styles[cramp[this.id]];
+		}
+		text() {
+			return styles[text$1[this.id]];
+		}
+		isTight() {
+			return this.size >= 2;
+		}
+	}, D$1 = 0, Dc$2 = 1, T$2 = 2, Tc$2 = 3, S$2 = 4, Sc$2 = 5, SS$1 = 6, SSc = 7, styles = [
+		new Style$1(D$1, 0, !1),
+		new Style$1(Dc$2, 0, !0),
+		new Style$1(T$2, 1, !1),
+		new Style$1(Tc$2, 1, !0),
+		new Style$1(S$2, 2, !1),
+		new Style$1(Sc$2, 2, !0),
+		new Style$1(SS$1, 3, !1),
+		new Style$1(SSc, 3, !0)
+	], sup = [
+		S$2,
+		Sc$2,
+		S$2,
+		Sc$2,
+		SS$1,
+		SSc,
+		SS$1,
+		SSc
+	], sub = [
+		Sc$2,
+		Sc$2,
+		Sc$2,
+		Sc$2,
+		SSc,
+		SSc,
+		SSc,
+		SSc
+	], fracNum = [
+		T$2,
+		Tc$2,
+		S$2,
+		Sc$2,
+		SS$1,
+		SSc,
+		SS$1,
+		SSc
+	], fracDen = [
+		Tc$2,
+		Tc$2,
+		Sc$2,
+		Sc$2,
+		SSc,
+		SSc,
+		SSc,
+		SSc
+	], cramp = [
+		Dc$2,
+		Dc$2,
+		Tc$2,
+		Tc$2,
+		Sc$2,
+		Sc$2,
+		SSc,
+		SSc
+	], text$1 = [
+		D$1,
+		Dc$2,
+		T$2,
+		Tc$2,
+		T$2,
+		Tc$2,
+		T$2,
+		Tc$2
+	], Style$1$1 = {
+		DISPLAY: styles[D$1],
+		TEXT: styles[T$2],
+		SCRIPT: styles[S$2],
+		SCRIPTSCRIPT: styles[SS$1]
+	}, scriptData = [
+		{
+			name: "latin",
+			blocks: [[256, 591], [768, 879]]
+		},
+		{
+			name: "cyrillic",
+			blocks: [[1024, 1279]]
+		},
+		{
+			name: "armenian",
+			blocks: [[1328, 1423]]
+		},
+		{
+			name: "brahmic",
+			blocks: [[2304, 4255]]
+		},
+		{
+			name: "georgian",
+			blocks: [[4256, 4351]]
+		},
+		{
+			name: "cjk",
+			blocks: [
+				[12288, 12543],
+				[19968, 40879],
+				[65280, 65376]
+			]
+		},
+		{
+			name: "hangul",
+			blocks: [[44032, 55215]]
+		}
+	], allBlocks = [], scriptData.forEach((n) => n.blocks.forEach((n) => allBlocks.push(...n))), doubleBrushStroke = (n) => n + " " + n, hLinePad = 80, sqrtMain = function(n, r) {
+		return "M95," + (622 + n + r) + "\nc-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14\nc0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54\nc44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10\ns173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429\nc69,-144,104.5,-217.7,106.5,-221\nl" + n / 2.075 + " -" + n + "\nc5.3,-9.3,12,-14,20,-14\nH400000v" + (40 + n) + "H845.2724\ns-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7\nc-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z\nM" + (834 + n) + " " + r + "h400000v" + (40 + n) + "h-400000z";
+	}, sqrtSize1 = function(n, r) {
+		return "M263," + (601 + n + r) + "c0.7,0,18,39.7,52,119\nc34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120\nc340,-704.7,510.7,-1060.3,512,-1067\nl" + n / 2.084 + " -" + n + "\nc4.7,-7.3,11,-11,19,-11\nH40000v" + (40 + n) + "H1012.3\ns-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232\nc-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1\ns-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26\nc-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z\nM" + (1001 + n) + " " + r + "h400000v" + (40 + n) + "h-400000z";
+	}, sqrtSize2 = function(n, r) {
+		return "M983 " + (10 + n + r) + "\nl" + n / 3.13 + " -" + n + "\nc4,-6.7,10,-10,18,-10 H400000v" + (40 + n) + "\nH1013.1s-83.4,268,-264.1,840c-180.7,572,-277,876.3,-289,913c-4.7,4.7,-12.7,7,-24,7\ns-12,0,-12,0c-1.3,-3.3,-3.7,-11.7,-7,-25c-35.3,-125.3,-106.7,-373.3,-214,-744\nc-10,12,-21,25,-33,39s-32,39,-32,39c-6,-5.3,-15,-14,-27,-26s25,-30,25,-30\nc26.7,-32.7,52,-63,76,-91s52,-60,52,-60s208,722,208,722\nc56,-175.3,126.3,-397.3,211,-666c84.7,-268.7,153.8,-488.2,207.5,-658.5\nc53.7,-170.3,84.5,-266.8,92.5,-289.5z\nM" + (1001 + n) + " " + r + "h400000v" + (40 + n) + "h-400000z";
+	}, sqrtSize3 = function(n, r) {
+		return "M424," + (2398 + n + r) + "\nc-1.3,-0.7,-38.5,-172,-111.5,-514c-73,-342,-109.8,-513.3,-110.5,-514\nc0,-2,-10.7,14.3,-32,49c-4.7,7.3,-9.8,15.7,-15.5,25c-5.7,9.3,-9.8,16,-12.5,20\ns-5,7,-5,7c-4,-3.3,-8.3,-7.7,-13,-13s-13,-13,-13,-13s76,-122,76,-122s77,-121,77,-121\ns209,968,209,968c0,-2,84.7,-361.7,254,-1079c169.3,-717.3,254.7,-1077.7,256,-1081\nl" + n / 4.223 + " -" + n + "c4,-6.7,10,-10,18,-10 H400000\nv" + (40 + n) + "H1014.6\ns-87.3,378.7,-272.6,1166c-185.3,787.3,-279.3,1182.3,-282,1185\nc-2,6,-10,9,-24,9\nc-8,0,-12,-0.7,-12,-2z M" + (1001 + n) + " " + r + "\nh400000v" + (40 + n) + "h-400000z";
+	}, sqrtSize4 = function(n, r) {
+		return "M473," + (2713 + n + r) + "\nc339.3,-1799.3,509.3,-2700,510,-2702 l" + n / 5.298 + " -" + n + "\nc3.3,-7.3,9.3,-11,18,-11 H400000v" + (40 + n) + "H1017.7\ns-90.5,478,-276.2,1466c-185.7,988,-279.5,1483,-281.5,1485c-2,6,-10,9,-24,9\nc-8,0,-12,-0.7,-12,-2c0,-1.3,-5.3,-32,-16,-92c-50.7,-293.3,-119.7,-693.3,-207,-1200\nc0,-1.3,-5.3,8.7,-16,30c-10.7,21.3,-21.3,42.7,-32,64s-16,33,-16,33s-26,-26,-26,-26\ns76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,104,\n606zM" + (1001 + n) + " " + r + "h400000v" + (40 + n) + "H1017.7z";
+	}, phasePath = function(n) {
+		var r = n / 2;
+		return "M400000 " + n + " H0 L" + r + " 0 l65 45 L145 " + (n - 80) + " H400000z";
+	}, sqrtTall = function(n, r, a) {
+		var o = a - 54 - r - n;
+		return "M702 " + (n + r) + "H400000" + (40 + n) + "\nH742v" + o + "l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1\nh-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170\nc-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667\n219 661 l218 661zM702 " + r + "H400000v" + (40 + n) + "H742z";
+	}, sqrtPath = function(n, r, a) {
+		r = 1e3 * r;
+		var o = "";
+		switch (n) {
+			case "sqrtMain":
+				o = sqrtMain(r, hLinePad);
+				break;
+			case "sqrtSize1":
+				o = sqrtSize1(r, hLinePad);
+				break;
+			case "sqrtSize2":
+				o = sqrtSize2(r, hLinePad);
+				break;
+			case "sqrtSize3":
+				o = sqrtSize3(r, hLinePad);
+				break;
+			case "sqrtSize4":
+				o = sqrtSize4(r, hLinePad);
+				break;
+			case "sqrtTall": o = sqrtTall(r, hLinePad, a);
+		}
+		return o;
+	}, innerPath = function(n, r) {
+		switch (n) {
+			case "⎜": return doubleBrushStroke("M291 0 H417 V" + r + " H291z");
+			case "∣": return doubleBrushStroke("M145 0 H188 V" + r + " H145z");
+			case "∥": return doubleBrushStroke("M145 0 H188 V" + r + " H145z") + doubleBrushStroke("M367 0 H410 V" + r + " H367z");
+			case "⎟": return doubleBrushStroke("M457 0 H583 V" + r + " H457z");
+			case "⎢": return doubleBrushStroke("M319 0 H403 V" + r + " H319z");
+			case "⎥": return doubleBrushStroke("M263 0 H347 V" + r + " H263z");
+			case "⎪": return doubleBrushStroke("M384 0 H504 V" + r + " H384z");
+			case "⏐": return doubleBrushStroke("M312 0 H355 V" + r + " H312z");
+			case "‖": return doubleBrushStroke("M257 0 H300 V" + r + " H257z") + doubleBrushStroke("M478 0 H521 V" + r + " H478z");
+			default: return "";
+		}
+	}, path = {
+		doubleleftarrow: "M262 157\nl10-10c34-36 62.7-77 86-123 3.3-8 5-13.3 5-16 0-5.3-6.7-8-20-8-7.3\n 0-12.2.5-14.5 1.5-2.3 1-4.8 4.5-7.5 10.5-49.3 97.3-121.7 169.3-217 216-28\n 14-57.3 25-88 33-6.7 2-11 3.8-13 5.5-2 1.7-3 4.2-3 7.5s1 5.8 3 7.5\nc2 1.7 6.3 3.5 13 5.5 68 17.3 128.2 47.8 180.5 91.5 52.3 43.7 93.8 96.2 124.5\n 157.5 9.3 8 15.3 12.3 18 13h6c12-.7 18-4 18-10 0-2-1.7-7-5-15-23.3-46-52-87\n-86-123l-10-10h399738v-40H218c328 0 0 0 0 0l-10-8c-26.7-20-65.7-43-117-69 2.7\n-2 6-3.7 10-5 36.7-16 72.3-37.3 107-64l10-8h399782v-40z\nm8 0v40h399730v-40zm0 194v40h399730v-40z",
+		doublerightarrow: "M399738 392l\n-10 10c-34 36-62.7 77-86 123-3.3 8-5 13.3-5 16 0 5.3 6.7 8 20 8 7.3 0 12.2-.5\n 14.5-1.5 2.3-1 4.8-4.5 7.5-10.5 49.3-97.3 121.7-169.3 217-216 28-14 57.3-25 88\n-33 6.7-2 11-3.8 13-5.5 2-1.7 3-4.2 3-7.5s-1-5.8-3-7.5c-2-1.7-6.3-3.5-13-5.5-68\n-17.3-128.2-47.8-180.5-91.5-52.3-43.7-93.8-96.2-124.5-157.5-9.3-8-15.3-12.3-18\n-13h-6c-12 .7-18 4-18 10 0 2 1.7 7 5 15 23.3 46 52 87 86 123l10 10H0v40h399782\nc-328 0 0 0 0 0l10 8c26.7 20 65.7 43 117 69-2.7 2-6 3.7-10 5-36.7 16-72.3 37.3\n-107 64l-10 8H0v40zM0 157v40h399730v-40zm0 194v40h399730v-40z",
+		leftarrow: "M400000 241H110l3-3c68.7-52.7 113.7-120\n 135-202 4-14.7 6-23 6-25 0-7.3-7-11-21-11-8 0-13.2.8-15.5 2.5-2.3 1.7-4.2 5.8\n-5.5 12.5-1.3 4.7-2.7 10.3-4 17-12 48.7-34.8 92-68.5 130S65.3 228.3 18 247\nc-10 4-16 7.7-18 11 0 8.7 6 14.3 18 17 47.3 18.7 87.8 47 121.5 85S196 441.3 208\n 490c.7 2 1.3 5 2 9s1.2 6.7 1.5 8c.3 1.3 1 3.3 2 6s2.2 4.5 3.5 5.5c1.3 1 3.3\n 1.8 6 2.5s6 1 10 1c14 0 21-3.7 21-11 0-2-2-10.3-6-25-20-79.3-65-146.7-135-202\n l-3-3h399890zM100 241v40h399900v-40z",
+		leftbrace: "M6 548l-6-6v-35l6-11c56-104 135.3-181.3 238-232 57.3-28.7 117\n-45 179-50h399577v120H403c-43.3 7-81 15-113 26-100.7 33-179.7 91-237 174-2.7\n 5-6 9-10 13-.7 1-7.3 1-20 1H6z",
+		leftbraceunder: "M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13\n 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688\n 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7\n-331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z",
+		leftgroup: "M400000 80\nH435C64 80 168.3 229.4 21 260c-5.9 1.2-18 0-18 0-2 0-3-1-3-3v-38C76 61 257 0\n 435 0h399565z",
+		leftgroupunder: "M400000 262\nH435C64 262 168.3 112.6 21 82c-5.9-1.2-18 0-18 0-2 0-3 1-3 3v38c76 158 257 219\n 435 219h399565z",
+		leftharpoon: "M0 267c.7 5.3 3 10 7 14h399993v-40H93c3.3\n-3.3 10.2-9.5 20.5-18.5s17.8-15.8 22.5-20.5c50.7-52 88-110.3 112-175 4-11.3 5\n-18.3 3-21-1.3-4-7.3-6-18-6-8 0-13 .7-15 2s-4.7 6.7-8 16c-42 98.7-107.3 174.7\n-196 228-6.7 4.7-10.7 8-12 10-1.3 2-2 5.7-2 11zm100-26v40h399900v-40z",
+		leftharpoonplus: "M0 267c.7 5.3 3 10 7 14h399993v-40H93c3.3-3.3 10.2-9.5\n 20.5-18.5s17.8-15.8 22.5-20.5c50.7-52 88-110.3 112-175 4-11.3 5-18.3 3-21-1.3\n-4-7.3-6-18-6-8 0-13 .7-15 2s-4.7 6.7-8 16c-42 98.7-107.3 174.7-196 228-6.7 4.7\n-10.7 8-12 10-1.3 2-2 5.7-2 11zm100-26v40h399900v-40zM0 435v40h400000v-40z\nm0 0v40h400000v-40z",
+		leftharpoondown: "M7 241c-4 4-6.333 8.667-7 14 0 5.333.667 9 2 11s5.333\n 5.333 12 10c90.667 54 156 130 196 228 3.333 10.667 6.333 16.333 9 17 2 .667 5\n 1 9 1h5c10.667 0 16.667-2 18-6 2-2.667 1-9.667-3-21-32-87.333-82.667-157.667\n-152-211l-3-3h399907v-40zM93 281 H400000 v-40L7 241z",
+		leftharpoondownplus: "M7 435c-4 4-6.3 8.7-7 14 0 5.3.7 9 2 11s5.3 5.3 12\n 10c90.7 54 156 130 196 228 3.3 10.7 6.3 16.3 9 17 2 .7 5 1 9 1h5c10.7 0 16.7\n-2 18-6 2-2.7 1-9.7-3-21-32-87.3-82.7-157.7-152-211l-3-3h399907v-40H7zm93 0\nv40h399900v-40zM0 241v40h399900v-40zm0 0v40h399900v-40z",
+		lefthook: "M400000 281 H103s-33-11.2-61-33.5S0 197.3 0 164s14.2-61.2 42.5\n-83.5C70.8 58.2 104 47 142 47 c16.7 0 25 6.7 25 20 0 12-8.7 18.7-26 20-40 3.3\n-68.7 15.7-86 37-10 12-15 25.3-15 40 0 22.7 9.8 40.7 29.5 54 19.7 13.3 43.5 21\n 71.5 23h399859zM103 281v-40h399897v40z",
+		leftlinesegment: doubleBrushStroke("M40 281 V428 H0 V94 H40 V241 H400000 v40z"),
+		leftbracketunder: doubleBrushStroke("M0 0 h120 V290 H399995 v120 H0z"),
+		leftbracketover: doubleBrushStroke("M0 440 h120 V150 H399995 v-120 H0z"),
+		leftmapsto: doubleBrushStroke("M40 281 V448H0V74H40V241H400000v40z"),
+		leftToFrom: "M0 147h400000v40H0zm0 214c68 40 115.7 95.7 143 167h22c15.3 0 23\n-.3 23-1 0-1.3-5.3-13.7-16-37-18-35.3-41.3-69-70-101l-7-8h399905v-40H95l7-8\nc28.7-32 52-65.7 70-101 10.7-23.3 16-35.7 16-37 0-.7-7.7-1-23-1h-22C115.7 265.3\n 68 321 0 361zm0-174v-40h399900v40zm100 154v40h399900v-40z",
+		longequal: doubleBrushStroke("M0 50 h400000 v40H0z m0 194h40000v40H0z"),
+		midbrace: "M200428 334\nc-100.7-8.3-195.3-44-280-108-55.3-42-101.7-93-139-153l-9-14c-2.7 4-5.7 8.7-9 14\n-53.3 86.7-123.7 153-211 199-66.7 36-137.3 56.3-212 62H0V214h199568c178.3-11.7\n 311.7-78.3 403-201 6-8 9.7-12 11-12 .7-.7 6.7-1 18-1s17.3.3 18 1c1.3 0 5 4 11\n 12 44.7 59.3 101.3 106.3 170 141s145.3 54.3 229 60h199572v120z",
+		midbraceunder: "M199572 214\nc100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14\n 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3\n 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0\n-5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z",
+		oiintSize1: "M512.6 71.6c272.6 0 320.3 106.8 320.3 178.2 0 70.8-47.7 177.6\n-320.3 177.6S193.1 320.6 193.1 249.8c0-71.4 46.9-178.2 319.5-178.2z\nm368.1 178.2c0-86.4-60.9-215.4-368.1-215.4-306.4 0-367.3 129-367.3 215.4 0 85.8\n60.9 214.8 367.3 214.8 307.2 0 368.1-129 368.1-214.8z",
+		oiintSize2: "M757.8 100.1c384.7 0 451.1 137.6 451.1 230 0 91.3-66.4 228.8\n-451.1 228.8-386.3 0-452.7-137.5-452.7-228.8 0-92.4 66.4-230 452.7-230z\nm502.4 230c0-111.2-82.4-277.2-502.4-277.2s-504 166-504 277.2\nc0 110 84 276 504 276s502.4-166 502.4-276z",
+		oiiintSize1: "M681.4 71.6c408.9 0 480.5 106.8 480.5 178.2 0 70.8-71.6 177.6\n-480.5 177.6S202.1 320.6 202.1 249.8c0-71.4 70.5-178.2 479.3-178.2z\nm525.8 178.2c0-86.4-86.8-215.4-525.7-215.4-437.9 0-524.7 129-524.7 215.4 0\n85.8 86.8 214.8 524.7 214.8 438.9 0 525.7-129 525.7-214.8z",
+		oiiintSize2: "M1021.2 53c603.6 0 707.8 165.8 707.8 277.2 0 110-104.2 275.8\n-707.8 275.8-606 0-710.2-165.8-710.2-275.8C311 218.8 415.2 53 1021.2 53z\nm770.4 277.1c0-131.2-126.4-327.6-770.5-327.6S248.4 198.9 248.4 330.1\nc0 130 128.8 326.4 772.7 326.4s770.5-196.4 770.5-326.4z",
+		rightarrow: "M0 241v40h399891c-47.3 35.3-84 78-110 128\n-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20\n 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7\n 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85\n-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5\n-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67\n 151.7 139 205zm0 0v40h399900v-40z",
+		rightbrace: "M400000 542l\n-6 6h-17c-12.7 0-19.3-.3-20-1-4-4-7.3-8.3-10-13-35.3-51.3-80.8-93.8-136.5-127.5\ns-117.2-55.8-184.5-66.5c-.7 0-2-.3-4-1-18.7-2.7-76-4.3-172-5H0V214h399571l6 1\nc124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z",
+		rightbraceunder: "M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3\n 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237\n-174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z",
+		rightgroup: "M0 80h399565c371 0 266.7 149.4 414 180 5.9 1.2 18 0 18 0 2 0\n 3-1 3-3v-38c-76-158-257-219-435-219H0z",
+		rightgroupunder: "M0 262h399565c371 0 266.7-149.4 414-180 5.9-1.2 18 0 18\n 0 2 0 3 1 3 3v38c-76 158-257 219-435 219H0z",
+		rightharpoon: "M0 241v40h399993c4.7-4.7 7-9.3 7-14 0-9.3\n-3.7-15.3-11-18-92.7-56.7-159-133.7-199-231-3.3-9.3-6-14.7-8-16-2-1.3-7-2-15-2\n-10.7 0-16.7 2-18 6-2 2.7-1 9.7 3 21 15.3 42 36.7 81.8 64 119.5 27.3 37.7 58\n 69.2 92 94.5zm0 0v40h399900v-40z",
+		rightharpoonplus: "M0 241v40h399993c4.7-4.7 7-9.3 7-14 0-9.3-3.7-15.3-11\n-18-92.7-56.7-159-133.7-199-231-3.3-9.3-6-14.7-8-16-2-1.3-7-2-15-2-10.7 0-16.7\n 2-18 6-2 2.7-1 9.7 3 21 15.3 42 36.7 81.8 64 119.5 27.3 37.7 58 69.2 92 94.5z\nm0 0v40h399900v-40z m100 194v40h399900v-40zm0 0v40h399900v-40z",
+		rightharpoondown: "M399747 511c0 7.3 6.7 11 20 11 8 0 13-.8 15-2.5s4.7-6.8\n 8-15.5c40-94 99.3-166.3 178-217 13.3-8 20.3-12.3 21-13 5.3-3.3 8.5-5.8 9.5\n-7.5 1-1.7 1.5-5.2 1.5-10.5s-2.3-10.3-7-15H0v40h399908c-34 25.3-64.7 57-92 95\n-27.3 38-48.7 77.7-64 119-3.3 8.7-5 14-5 16zM0 241v40h399900v-40z",
+		rightharpoondownplus: "M399747 705c0 7.3 6.7 11 20 11 8 0 13-.8\n 15-2.5s4.7-6.8 8-15.5c40-94 99.3-166.3 178-217 13.3-8 20.3-12.3 21-13 5.3-3.3\n 8.5-5.8 9.5-7.5 1-1.7 1.5-5.2 1.5-10.5s-2.3-10.3-7-15H0v40h399908c-34 25.3\n-64.7 57-92 95-27.3 38-48.7 77.7-64 119-3.3 8.7-5 14-5 16zM0 435v40h399900v-40z\nm0-194v40h400000v-40zm0 0v40h400000v-40z",
+		righthook: "M399859 241c-764 0 0 0 0 0 40-3.3 68.7-15.7 86-37 10-12 15-25.3\n 15-40 0-22.7-9.8-40.7-29.5-54-19.7-13.3-43.5-21-71.5-23-17.3-1.3-26-8-26-20 0\n-13.3 8.7-20 26-20 38 0 71 11.2 99 33.5 0 0 7 5.6 21 16.7 14 11.2 21 33.5 21\n 66.8s-14 61.2-42 83.5c-28 22.3-61 33.5-99 33.5L0 241z M0 281v-40h399859v40z",
+		rightlinesegment: doubleBrushStroke("M399960 241 V94 h40 V428 h-40 V281 H0 v-40z"),
+		rightbracketunder: doubleBrushStroke("M399995 0 h-120 V290 H0 v120 H400000z"),
+		rightbracketover: doubleBrushStroke("M399995 440 h-120 V150 H0 v-120 H399995z"),
+		rightToFrom: "M400000 167c-70.7-42-118-97.7-142-167h-23c-15.3 0-23 .3-23\n 1 0 1.3 5.3 13.7 16 37 18 35.3 41.3 69 70 101l7 8H0v40h399905l-7 8c-28.7 32\n-52 65.7-70 101-10.7 23.3-16 35.7-16 37 0 .7 7.7 1 23 1h23c24-69.3 71.3-125 142\n-167z M100 147v40h399900v-40zM0 341v40h399900v-40z",
+		twoheadleftarrow: "M0 167c68 40\n 115.7 95.7 143 167h22c15.3 0 23-.3 23-1 0-1.3-5.3-13.7-16-37-18-35.3-41.3-69\n-70-101l-7-8h125l9 7c50.7 39.3 85 86 103 140h46c0-4.7-6.3-18.7-19-42-18-35.3\n-40-67.3-66-96l-9-9h399716v-40H284l9-9c26-28.7 48-60.7 66-96 12.7-23.333 19\n-37.333 19-42h-46c-18 54-52.3 100.7-103 140l-9 7H95l7-8c28.7-32 52-65.7 70-101\n 10.7-23.333 16-35.7 16-37 0-.7-7.7-1-23-1h-22C115.7 71.3 68 127 0 167z",
+		twoheadrightarrow: "M400000 167\nc-68-40-115.7-95.7-143-167h-22c-15.3 0-23 .3-23 1 0 1.3 5.3 13.7 16 37 18 35.3\n 41.3 69 70 101l7 8h-125l-9-7c-50.7-39.3-85-86-103-140h-46c0 4.7 6.3 18.7 19 42\n 18 35.3 40 67.3 66 96l9 9H0v40h399716l-9 9c-26 28.7-48 60.7-66 96-12.7 23.333\n-19 37.333-19 42h46c18-54 52.3-100.7 103-140l9-7h125l-7 8c-28.7 32-52 65.7-70\n 101-10.7 23.333-16 35.7-16 37 0 .7 7.7 1 23 1h22c27.3-71.3 75-127 143-167z",
+		tilde1: "M200 55.538c-77 0-168 73.953-177 73.953-3 0-7\n-2.175-9-5.437L2 97c-1-2-2-4-2-6 0-4 2-7 5-9l20-12C116 12 171 0 207 0c86 0\n 114 68 191 68 78 0 168-68 177-68 4 0 7 2 9 5l12 19c1 2.175 2 4.35 2 6.525 0\n 4.35-2 7.613-5 9.788l-19 13.05c-92 63.077-116.937 75.308-183 76.128\n-68.267.847-113-73.952-191-73.952z",
+		tilde2: "M344 55.266c-142 0-300.638 81.316-311.5 86.418\n-8.01 3.762-22.5 10.91-23.5 5.562L1 120c-1-2-1-3-1-4 0-5 3-9 8-10l18.4-9C160.9\n 31.9 283 0 358 0c148 0 188 122 331 122s314-97 326-97c4 0 8 2 10 7l7 21.114\nc1 2.14 1 3.21 1 4.28 0 5.347-3 9.626-7 10.696l-22.3 12.622C852.6 158.372 751\n 181.476 676 181.476c-149 0-189-126.21-332-126.21z",
+		tilde3: "M786 59C457 59 32 175.242 13 175.242c-6 0-10-3.457\n-11-10.37L.15 138c-1-7 3-12 10-13l19.2-6.4C378.4 40.7 634.3 0 804.3 0c337 0\n 411.8 157 746.8 157 328 0 754-112 773-112 5 0 10 3 11 9l1 14.075c1 8.066-.697\n 16.595-6.697 17.492l-21.052 7.31c-367.9 98.146-609.15 122.696-778.15 122.696\n -338 0-409-156.573-744-156.573z",
+		tilde4: "M786 58C457 58 32 177.487 13 177.487c-6 0-10-3.345\n-11-10.035L.15 143c-1-7 3-12 10-13l22-6.7C381.2 35 637.15 0 807.15 0c337 0 409\n 177 744 177 328 0 754-127 773-127 5 0 10 3 11 9l1 14.794c1 7.805-3 13.38-9\n 14.495l-20.7 5.574c-366.85 99.79-607.3 139.372-776.3 139.372-338 0-409\n -175.236-744-175.236z",
+		vec: "M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5\n3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11\n10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63\n-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1\n-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59\nH213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359\nc-16-25.333-24-45-24-59z",
+		widehat1: "M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z",
+		widehat2: "M1181 0h2l1171 176c6 0 10 5 10 11l-2 23c-1 6-5 10\n-11 10h-1L1182 67 15 220h-1c-6 0-10-4-11-10l-2-23c-1-6 4-11 10-11z",
+		widehat3: "M1181 0h2l1171 236c6 0 10 5 10 11l-2 23c-1 6-5 10\n-11 10h-1L1182 67 15 280h-1c-6 0-10-4-11-10l-2-23c-1-6 4-11 10-11z",
+		widehat4: "M1181 0h2l1171 296c6 0 10 5 10 11l-2 23c-1 6-5 10\n-11 10h-1L1182 67 15 340h-1c-6 0-10-4-11-10l-2-23c-1-6 4-11 10-11z",
+		widecheck1: "M529,159h5l519,-115c5,-1,9,-5,9,-10c0,-1,-1,-2,-1,-3l-4,-22c-1,\n-5,-5,-9,-11,-9h-2l-512,92l-513,-92h-2c-5,0,-9,4,-11,9l-5,22c-1,6,2,12,8,13z",
+		widecheck2: "M1181,220h2l1171,-176c6,0,10,-5,10,-11l-2,-23c-1,-6,-5,-10,\n-11,-10h-1l-1168,153l-1167,-153h-1c-6,0,-10,4,-11,10l-2,23c-1,6,4,11,10,11z",
+		widecheck3: "M1181,280h2l1171,-236c6,0,10,-5,10,-11l-2,-23c-1,-6,-5,-10,\n-11,-10h-1l-1168,213l-1167,-213h-1c-6,0,-10,4,-11,10l-2,23c-1,6,4,11,10,11z",
+		widecheck4: "M1181,340h2l1171,-296c6,0,10,-5,10,-11l-2,-23c-1,-6,-5,-10,\n-11,-10h-1l-1168,273l-1167,-273h-1c-6,0,-10,4,-11,10l-2,23c-1,6,4,11,10,11z",
+		baraboveleftarrow: "M400000 620h-399890l3 -3c68.7 -52.7 113.7 -120 135 -202\nc4 -14.7 6 -23 6 -25c0 -7.3 -7 -11 -21 -11c-8 0 -13.2 0.8 -15.5 2.5\nc-2.3 1.7 -4.2 5.8 -5.5 12.5c-1.3 4.7 -2.7 10.3 -4 17c-12 48.7 -34.8 92 -68.5 130\ns-74.2 66.3 -121.5 85c-10 4 -16 7.7 -18 11c0 8.7 6 14.3 18 17c47.3 18.7 87.8 47\n121.5 85s56.5 81.3 68.5 130c0.7 2 1.3 5 2 9s1.2 6.7 1.5 8c0.3 1.3 1 3.3 2 6\ns2.2 4.5 3.5 5.5c1.3 1 3.3 1.8 6 2.5s6 1 10 1c14 0 21 -3.7 21 -11\nc0 -2 -2 -10.3 -6 -25c-20 -79.3 -65 -146.7 -135 -202l-3 -3h399890z\nM100 620v40h399900v-40z M0 241v40h399900v-40zM0 241v40h399900v-40z",
+		rightarrowabovebar: "M0 241v40h399891c-47.3 35.3-84 78-110 128-16.7 32\n-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20 11 8 0\n13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7 39\n-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85-40.5\n-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5\n-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67\n151.7 139 205zm96 379h399894v40H0zm0 0h399904v40H0z",
+		baraboveshortleftharpoon: "M507,435c-4,4,-6.3,8.7,-7,14c0,5.3,0.7,9,2,11\nc1.3,2,5.3,5.3,12,10c90.7,54,156,130,196,228c3.3,10.7,6.3,16.3,9,17\nc2,0.7,5,1,9,1c0,0,5,0,5,0c10.7,0,16.7,-2,18,-6c2,-2.7,1,-9.7,-3,-21\nc-32,-87.3,-82.7,-157.7,-152,-211c0,0,-3,-3,-3,-3l399351,0l0,-40\nc-398570,0,-399437,0,-399437,0z M593 435 v40 H399500 v-40z\nM0 281 v-40 H399908 v40z M0 281 v-40 H399908 v40z",
+		rightharpoonaboveshortbar: "M0,241 l0,40c399126,0,399993,0,399993,0\nc4.7,-4.7,7,-9.3,7,-14c0,-9.3,-3.7,-15.3,-11,-18c-92.7,-56.7,-159,-133.7,-199,\n-231c-3.3,-9.3,-6,-14.7,-8,-16c-2,-1.3,-7,-2,-15,-2c-10.7,0,-16.7,2,-18,6\nc-2,2.7,-1,9.7,3,21c15.3,42,36.7,81.8,64,119.5c27.3,37.7,58,69.2,92,94.5z\nM0 241 v40 H399908 v-40z M0 475 v-40 H399500 v40z M0 475 v-40 H399500 v40z",
+		shortbaraboveleftharpoon: "M7,435c-4,4,-6.3,8.7,-7,14c0,5.3,0.7,9,2,11\nc1.3,2,5.3,5.3,12,10c90.7,54,156,130,196,228c3.3,10.7,6.3,16.3,9,17c2,0.7,5,1,9,\n1c0,0,5,0,5,0c10.7,0,16.7,-2,18,-6c2,-2.7,1,-9.7,-3,-21c-32,-87.3,-82.7,-157.7,\n-152,-211c0,0,-3,-3,-3,-3l399907,0l0,-40c-399126,0,-399993,0,-399993,0z\nM93 435 v40 H400000 v-40z M500 241 v40 H400000 v-40z M500 241 v40 H400000 v-40z",
+		shortrightharpoonabovebar: "M53,241l0,40c398570,0,399437,0,399437,0\nc4.7,-4.7,7,-9.3,7,-14c0,-9.3,-3.7,-15.3,-11,-18c-92.7,-56.7,-159,-133.7,-199,\n-231c-3.3,-9.3,-6,-14.7,-8,-16c-2,-1.3,-7,-2,-15,-2c-10.7,0,-16.7,2,-18,6\nc-2,2.7,-1,9.7,3,21c15.3,42,36.7,81.8,64,119.5c27.3,37.7,58,69.2,92,94.5z\nM500 241 v40 H399408 v-40z M500 435 v40 H400000 v-40z"
+	}, tallDelim = function(n, r) {
+		switch (n) {
+			case "lbrack": return "M403 1759 V84 H666 V0 H319 V1759 v" + r + " v1759 v84 h347 v-84\nH403z M403 1759 V0 H319 V1759 v" + r + " v1759 v84 h84z";
+			case "rbrack": return "M347 1759 V0 H0 V84 H263 V1759 v" + r + " v1759 H0 v84 H347z\nM347 1759 V0 H263 V1759 v" + r + " v1759 h84z";
+			case "vert": return "M145 15 v585 v" + r + " v585 c2.667,10,9.667,15,21,15\nc10,0,16.667,-5,20,-15 v-585 v" + -r + " v-585 c-2.667,-10,-9.667,-15,-21,-15\nc-10,0,-16.667,5,-20,15z M188 15 H145 v585 v" + r + " v585 h43z";
+			case "doublevert": return "M145 15 v585 v" + r + " v585 c2.667,10,9.667,15,21,15\nc10,0,16.667,-5,20,-15 v-585 v" + -r + " v-585 c-2.667,-10,-9.667,-15,-21,-15\nc-10,0,-16.667,5,-20,15z M188 15 H145 v585 v" + r + " v585 h43z\nM367 15 v585 v" + r + " v585 c2.667,10,9.667,15,21,15\nc10,0,16.667,-5,20,-15 v-585 v" + -r + " v-585 c-2.667,-10,-9.667,-15,-21,-15\nc-10,0,-16.667,5,-20,15z M410 15 H367 v585 v" + r + " v585 h43z";
+			case "lfloor": return "M319 602 V0 H403 V602 v" + r + " v1715 h263 v84 H319z\nMM319 602 V0 H403 V602 v" + r + " v1715 H319z";
+			case "rfloor": return "M319 602 V0 H403 V602 v" + r + " v1799 H0 v-84 H319z\nMM319 602 V0 H403 V602 v" + r + " v1715 H319z";
+			case "lceil": return "M403 1759 V84 H666 V0 H319 V1759 v" + r + " v602 h84z\nM403 1759 V0 H319 V1759 v" + r + " v602 h84z";
+			case "rceil": return "M347 1759 V0 H0 V84 H263 V1759 v" + r + " v602 h84z\nM347 1759 V0 h-84 V1759 v" + r + " v602 h84z";
+			case "lparen": return "M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1\nc-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,\n-36,557 l0," + (r + 84) + "c0.2,6,0,26,0,60c2,159.3,10,310.7,24,454c53.3,528,210,\n949.7,470,1265c4.7,6,9.7,11.7,15,17c0.7,0.7,7,1,19,1c0,0,18,0,18,0c4,-4,6,-7,6,-9\nc0,-2.7,-3.3,-8.7,-10,-18c-135.3,-192.7,-235.5,-414.3,-300.5,-665c-65,-250.7,-102.5,\n-544.7,-112.5,-882c-2,-104,-3,-167,-3,-189\nl0,-" + (r + 92) + "c0,-162.7,5.7,-314,17,-454c20.7,-272,63.7,-513,129,-723c65.3,\n-210,155.3,-396.3,270,-559c6.7,-9.3,10,-15.3,10,-18z";
+			case "rparen": return "M76,0c-16.7,0,-25,3,-25,9c0,2,2,6.3,6,13c21.3,28.7,42.3,60.3,\n63,95c96.7,156.7,172.8,332.5,228.5,527.5c55.7,195,92.8,416.5,111.5,664.5\nc11.3,139.3,17,290.7,17,454c0,28,1.7,43,3.3,45l0," + (r + 9) + "\nc-3,4,-3.3,16.7,-3.3,38c0,162,-5.7,313.7,-17,455c-18.7,248,-55.8,469.3,-111.5,664\nc-55.7,194.7,-131.8,370.3,-228.5,527c-20.7,34.7,-41.7,66.3,-63,95c-2,3.3,-4,7,-6,11\nc0,7.3,5.7,11,17,11c0,0,11,0,11,0c9.3,0,14.3,-0.3,15,-1c5.3,-5.3,10.3,-11,15,-17\nc242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558\nl0,-" + (r + 144) + "c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,\n-470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z";
+			default: throw Error("Unknown stretchy delimiter.");
+		}
+	}, DocumentFragment = class {
+		constructor(n) {
+			this.children = void 0, this.classes = void 0, this.height = void 0, this.depth = void 0, this.maxFontSize = void 0, this.style = void 0, this.children = n, this.classes = [], this.height = 0, this.depth = 0, this.maxFontSize = 0, this.style = {};
+		}
+		hasClass(n) {
+			return this.classes.includes(n);
+		}
+		toNode() {
+			for (var n = document.createDocumentFragment(), r = 0; r < this.children.length; r++) n.appendChild(this.children[r].toNode());
+			return n;
+		}
+		toMarkup() {
+			for (var n = "", r = 0; r < this.children.length; r++) n += this.children[r].toMarkup();
+			return n;
+		}
+		toText() {
+			return this.children.map((n) => {
+				if (isMathDomNode(n)) return n.toText();
+				throw Error("Expected MathDomNode with toText, got " + n.constructor.name);
+			}).join("");
+		}
+	}, ptPerUnit = {
+		pt: 1,
+		mm: 7227 / 2540,
+		cm: 7227 / 254,
+		in: 72.27,
+		bp: 803 / 800,
+		pc: 12,
+		dd: 1238 / 1157,
+		cc: 14856 / 1157,
+		nd: 685 / 642,
+		nc: 1370 / 107,
+		sp: 1 / 65536,
+		px: 803 / 800
+	}, relativeUnit = {
+		ex: !0,
+		em: !0,
+		mu: !0
+	}, validUnit = function(n) {
+		return typeof n != "string" && (n = n.unit), n in ptPerUnit || n in relativeUnit || n === "ex";
+	}, calculateSize = function(n, r) {
+		var a;
+		if (n.unit in ptPerUnit) a = ptPerUnit[n.unit] / r.fontMetrics().ptPerEm / r.sizeMultiplier;
+		else if (n.unit === "mu") a = r.fontMetrics().cssEmPerMu;
+		else {
+			var o = r.style.isTight() ? r.havingStyle(r.style.text()) : r;
+			if (n.unit === "ex") a = o.fontMetrics().xHeight;
+			else if (n.unit === "em") a = o.fontMetrics().quad;
+			else throw new ParseError("Invalid unit: '" + n.unit + "'");
+			o !== r && (a *= o.sizeMultiplier / r.sizeMultiplier);
+		}
+		return Math.min(n.number * a, r.maxSize);
+	}, makeEm = function(n) {
+		return +n.toFixed(4) + "em";
+	}, createClass = function(n) {
+		return n.filter((n) => n).join(" ");
+	}, cssStyleToString = function(n) {
+		var r = "";
+		for (var a of Object.keys(n)) {
+			var o = n[a];
+			o !== void 0 && (r += hyphenate(a) + ":" + o + ";");
+		}
+		return r;
+	}, initNode = function(n, r, a) {
+		if (this.classes = n || [], this.attributes = {}, this.height = 0, this.depth = 0, this.maxFontSize = 0, this.style = a || {}, r) {
+			r.style.isTight() && this.classes.push("mtight");
+			var o = r.getColor();
+			o && (this.style.color = o);
+		}
+	}, toNode = function(n) {
+		var r = document.createElement(n);
+		r.className = createClass(this.classes), Object.assign(r.style, this.style);
+		for (var a of Object.keys(this.attributes)) r.setAttribute(a, this.attributes[a]);
+		for (var o = 0; o < this.children.length; o++) r.appendChild(this.children[o].toNode());
+		return r;
+	}, invalidAttributeNameRegex = /[\s"'>/=\x00-\x1f]/, toMarkup = function(n) {
+		var r = "<" + n;
+		this.classes.length && (r += " class=\"" + escape$1(createClass(this.classes)) + "\"");
+		var a = cssStyleToString(this.style);
+		a && (r += " style=\"" + escape$1(a) + "\"");
+		for (var o of Object.keys(this.attributes)) {
+			if (invalidAttributeNameRegex.test(o)) throw new ParseError("Invalid attribute name '" + o + "'");
+			r += " " + o + "=\"" + escape$1(this.attributes[o]) + "\"";
+		}
+		r += ">";
+		for (var l = 0; l < this.children.length; l++) r += this.children[l].toMarkup();
+		return r += "</" + n + ">", r;
+	}, Span = class {
+		constructor(n, r, a, o) {
+			this.children = void 0, this.attributes = void 0, this.classes = void 0, this.height = void 0, this.depth = void 0, this.width = void 0, this.maxFontSize = void 0, this.style = void 0, this.italic = void 0, initNode.call(this, n, a, o), this.children = r || [];
+		}
+		setAttribute(n, r) {
+			this.attributes[n] = r;
+		}
+		hasClass(n) {
+			return this.classes.includes(n);
+		}
+		toNode() {
+			return toNode.call(this, "span");
+		}
+		toMarkup() {
+			return toMarkup.call(this, "span");
+		}
+	}, Anchor$1 = class {
+		constructor(n, r, a, o) {
+			this.children = void 0, this.attributes = void 0, this.classes = void 0, this.height = void 0, this.depth = void 0, this.maxFontSize = void 0, this.style = void 0, initNode.call(this, r, o), this.children = a || [], this.setAttribute("href", n);
+		}
+		setAttribute(n, r) {
+			this.attributes[n] = r;
+		}
+		hasClass(n) {
+			return this.classes.includes(n);
+		}
+		toNode() {
+			return toNode.call(this, "a");
+		}
+		toMarkup() {
+			return toMarkup.call(this, "a");
+		}
+	}, Img = class {
+		constructor(n, r, a) {
+			this.src = void 0, this.alt = void 0, this.classes = void 0, this.height = void 0, this.depth = void 0, this.maxFontSize = void 0, this.style = void 0, this.alt = r, this.src = n, this.classes = ["mord"], this.height = 0, this.depth = 0, this.maxFontSize = 0, this.style = a;
+		}
+		hasClass(n) {
+			return this.classes.includes(n);
+		}
+		toNode() {
+			var n = document.createElement("img");
+			return n.src = this.src, n.alt = this.alt, n.className = "mord", Object.assign(n.style, this.style), n;
+		}
+		toMarkup() {
+			var n = "<img src=\"" + escape$1(this.src) + "\"" + (" alt=\"" + escape$1(this.alt) + "\""), r = cssStyleToString(this.style);
+			return r && (n += " style=\"" + escape$1(r) + "\""), n += "'/>", n;
+		}
+	}, iCombinations = {
+		î: "ı̂",
+		ï: "ı̈",
+		í: "ı́",
+		ì: "ı̀"
+	}, SymbolNode = class {
+		constructor(n, r, a, o, l, d, f, p) {
+			this.text = void 0, this.height = void 0, this.depth = void 0, this.italic = void 0, this.skew = void 0, this.width = void 0, this.maxFontSize = void 0, this.classes = void 0, this.style = void 0, this.text = n, this.height = r || 0, this.depth = a || 0, this.italic = o || 0, this.skew = l || 0, this.width = d || 0, this.classes = f || [], this.style = p || {}, this.maxFontSize = 0;
+			var m = scriptFromCodepoint(this.text.charCodeAt(0));
+			m && this.classes.push(m + "_fallback"), /[îïíì]/.test(this.text) && (this.text = iCombinations[this.text]);
+		}
+		hasClass(n) {
+			return this.classes.includes(n);
+		}
+		toNode() {
+			var n = document.createTextNode(this.text), r = null;
+			return this.italic > 0 && (r = document.createElement("span"), r.style.marginRight = makeEm(this.italic)), this.classes.length > 0 && (r ||= document.createElement("span"), r.className = createClass(this.classes)), Object.keys(this.style).length > 0 && (r ||= document.createElement("span"), Object.assign(r.style, this.style)), r ? (r.appendChild(n), r) : n;
+		}
+		toMarkup() {
+			var n = !1, r = "<span";
+			this.classes.length && (n = !0, r += " class=\"", r += escape$1(createClass(this.classes)), r += "\"");
+			var a = "";
+			this.italic > 0 && (a += "margin-right:" + makeEm(this.italic) + ";"), a += cssStyleToString(this.style), a && (n = !0, r += " style=\"" + escape$1(a) + "\"");
+			var o = escape$1(this.text);
+			return n ? (r += ">", r += o, r += "</span>", r) : o;
+		}
+	}, SvgNode = class {
+		constructor(n, r) {
+			this.children = void 0, this.attributes = void 0, this.children = n || [], this.attributes = r || {};
+		}
+		toNode() {
+			var n = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			for (var r of Object.keys(this.attributes)) n.setAttribute(r, this.attributes[r]);
+			for (var a = 0; a < this.children.length; a++) n.appendChild(this.children[a].toNode());
+			return n;
+		}
+		toMarkup() {
+			var n = "<svg xmlns=\"http://www.w3.org/2000/svg\"";
+			for (var r of Object.keys(this.attributes)) n += " " + r + "=\"" + escape$1(this.attributes[r]) + "\"";
+			n += ">";
+			for (var a = 0; a < this.children.length; a++) n += this.children[a].toMarkup();
+			return n += "</svg>", n;
+		}
+	}, PathNode = class {
+		constructor(n, r) {
+			this.pathName = void 0, this.alternate = void 0, this.pathName = n, this.alternate = r;
+		}
+		toNode() {
+			var n = document.createElementNS("http://www.w3.org/2000/svg", "path");
+			return this.alternate ? n.setAttribute("d", this.alternate) : n.setAttribute("d", path[this.pathName]), n;
+		}
+		toMarkup() {
+			return this.alternate ? "<path d=\"" + escape$1(this.alternate) + "\"/>" : "<path d=\"" + escape$1(path[this.pathName]) + "\"/>";
+		}
+	}, LineNode = class {
+		constructor(n) {
+			this.attributes = void 0, this.attributes = n || {};
+		}
+		toNode() {
+			var n = document.createElementNS("http://www.w3.org/2000/svg", "line");
+			for (var r of Object.keys(this.attributes)) n.setAttribute(r, this.attributes[r]);
+			return n;
+		}
+		toMarkup() {
+			var n = "<line";
+			for (var r of Object.keys(this.attributes)) n += " " + r + "=\"" + escape$1(this.attributes[r]) + "\"";
+			return n += "/>", n;
+		}
+	}, hasHtmlDomChildren = (n) => n instanceof Span || n instanceof Anchor$1 || n instanceof DocumentFragment, fontMetricsData = {
+		"AMS-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			65: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			66: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			67: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			68: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			69: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			70: [
+				0,
+				.68889,
+				0,
+				0,
+				.61111
+			],
+			71: [
+				0,
+				.68889,
+				0,
+				0,
+				.77778
+			],
+			72: [
+				0,
+				.68889,
+				0,
+				0,
+				.77778
+			],
+			73: [
+				0,
+				.68889,
+				0,
+				0,
+				.38889
+			],
+			74: [
+				.16667,
+				.68889,
+				0,
+				0,
+				.5
+			],
+			75: [
+				0,
+				.68889,
+				0,
+				0,
+				.77778
+			],
+			76: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			77: [
+				0,
+				.68889,
+				0,
+				0,
+				.94445
+			],
+			78: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			79: [
+				.16667,
+				.68889,
+				0,
+				0,
+				.77778
+			],
+			80: [
+				0,
+				.68889,
+				0,
+				0,
+				.61111
+			],
+			81: [
+				.16667,
+				.68889,
+				0,
+				0,
+				.77778
+			],
+			82: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			83: [
+				0,
+				.68889,
+				0,
+				0,
+				.55556
+			],
+			84: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			85: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			86: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			87: [
+				0,
+				.68889,
+				0,
+				0,
+				1
+			],
+			88: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			89: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			90: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			107: [
+				0,
+				.68889,
+				0,
+				0,
+				.55556
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			165: [
+				0,
+				.675,
+				.025,
+				0,
+				.75
+			],
+			174: [
+				.15559,
+				.69224,
+				0,
+				0,
+				.94666
+			],
+			240: [
+				0,
+				.68889,
+				0,
+				0,
+				.55556
+			],
+			295: [
+				0,
+				.68889,
+				0,
+				0,
+				.54028
+			],
+			710: [
+				0,
+				.825,
+				0,
+				0,
+				2.33334
+			],
+			732: [
+				0,
+				.9,
+				0,
+				0,
+				2.33334
+			],
+			770: [
+				0,
+				.825,
+				0,
+				0,
+				2.33334
+			],
+			771: [
+				0,
+				.9,
+				0,
+				0,
+				2.33334
+			],
+			989: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			1008: [
+				0,
+				.43056,
+				.04028,
+				0,
+				.66667
+			],
+			8245: [
+				0,
+				.54986,
+				0,
+				0,
+				.275
+			],
+			8463: [
+				0,
+				.68889,
+				0,
+				0,
+				.54028
+			],
+			8487: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			8498: [
+				0,
+				.68889,
+				0,
+				0,
+				.55556
+			],
+			8502: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			8503: [
+				0,
+				.68889,
+				0,
+				0,
+				.44445
+			],
+			8504: [
+				0,
+				.68889,
+				0,
+				0,
+				.66667
+			],
+			8513: [
+				0,
+				.68889,
+				0,
+				0,
+				.63889
+			],
+			8592: [
+				-.03598,
+				.46402,
+				0,
+				0,
+				.5
+			],
+			8594: [
+				-.03598,
+				.46402,
+				0,
+				0,
+				.5
+			],
+			8602: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8603: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8606: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1
+			],
+			8608: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1
+			],
+			8610: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1.11111
+			],
+			8611: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1.11111
+			],
+			8619: [
+				0,
+				.54986,
+				0,
+				0,
+				1
+			],
+			8620: [
+				0,
+				.54986,
+				0,
+				0,
+				1
+			],
+			8621: [
+				-.13313,
+				.37788,
+				0,
+				0,
+				1.38889
+			],
+			8622: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8624: [
+				0,
+				.69224,
+				0,
+				0,
+				.5
+			],
+			8625: [
+				0,
+				.69224,
+				0,
+				0,
+				.5
+			],
+			8630: [
+				0,
+				.43056,
+				0,
+				0,
+				1
+			],
+			8631: [
+				0,
+				.43056,
+				0,
+				0,
+				1
+			],
+			8634: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8635: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8638: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.41667
+			],
+			8639: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.41667
+			],
+			8642: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.41667
+			],
+			8643: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.41667
+			],
+			8644: [
+				.1808,
+				.675,
+				0,
+				0,
+				1
+			],
+			8646: [
+				.1808,
+				.675,
+				0,
+				0,
+				1
+			],
+			8647: [
+				.1808,
+				.675,
+				0,
+				0,
+				1
+			],
+			8648: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.83334
+			],
+			8649: [
+				.1808,
+				.675,
+				0,
+				0,
+				1
+			],
+			8650: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.83334
+			],
+			8651: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1
+			],
+			8652: [
+				.01354,
+				.52239,
+				0,
+				0,
+				1
+			],
+			8653: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8654: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8655: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8666: [
+				.13667,
+				.63667,
+				0,
+				0,
+				1
+			],
+			8667: [
+				.13667,
+				.63667,
+				0,
+				0,
+				1
+			],
+			8669: [
+				-.13313,
+				.37788,
+				0,
+				0,
+				1
+			],
+			8672: [
+				-.064,
+				.437,
+				0,
+				0,
+				1.334
+			],
+			8674: [
+				-.064,
+				.437,
+				0,
+				0,
+				1.334
+			],
+			8705: [
+				0,
+				.825,
+				0,
+				0,
+				.5
+			],
+			8708: [
+				0,
+				.68889,
+				0,
+				0,
+				.55556
+			],
+			8709: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8717: [
+				0,
+				.43056,
+				0,
+				0,
+				.42917
+			],
+			8722: [
+				-.03598,
+				.46402,
+				0,
+				0,
+				.5
+			],
+			8724: [
+				.08198,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8726: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8733: [
+				0,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8736: [
+				0,
+				.69224,
+				0,
+				0,
+				.72222
+			],
+			8737: [
+				0,
+				.69224,
+				0,
+				0,
+				.72222
+			],
+			8738: [
+				.03517,
+				.52239,
+				0,
+				0,
+				.72222
+			],
+			8739: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.22222
+			],
+			8740: [
+				.25142,
+				.74111,
+				0,
+				0,
+				.27778
+			],
+			8741: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.38889
+			],
+			8742: [
+				.25142,
+				.74111,
+				0,
+				0,
+				.5
+			],
+			8756: [
+				0,
+				.69224,
+				0,
+				0,
+				.66667
+			],
+			8757: [
+				0,
+				.69224,
+				0,
+				0,
+				.66667
+			],
+			8764: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				.77778
+			],
+			8765: [
+				-.13313,
+				.37788,
+				0,
+				0,
+				.77778
+			],
+			8769: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				.77778
+			],
+			8770: [
+				-.03625,
+				.46375,
+				0,
+				0,
+				.77778
+			],
+			8774: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8776: [
+				-.01688,
+				.48312,
+				0,
+				0,
+				.77778
+			],
+			8778: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8782: [
+				.06062,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8783: [
+				.06062,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8785: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8786: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8787: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8790: [
+				0,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8791: [
+				.22958,
+				.72958,
+				0,
+				0,
+				.77778
+			],
+			8796: [
+				.08198,
+				.91667,
+				0,
+				0,
+				.77778
+			],
+			8806: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			8807: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			8808: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			8809: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			8812: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.5
+			],
+			8814: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8815: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8816: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8817: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8818: [
+				.22958,
+				.72958,
+				0,
+				0,
+				.77778
+			],
+			8819: [
+				.22958,
+				.72958,
+				0,
+				0,
+				.77778
+			],
+			8822: [
+				.1808,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8823: [
+				.1808,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8828: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8829: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8830: [
+				.22958,
+				.72958,
+				0,
+				0,
+				.77778
+			],
+			8831: [
+				.22958,
+				.72958,
+				0,
+				0,
+				.77778
+			],
+			8832: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8833: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8840: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8841: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8842: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8843: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8847: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8848: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8858: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8859: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8861: [
+				.08198,
+				.58198,
+				0,
+				0,
+				.77778
+			],
+			8862: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8863: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8864: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8865: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			8872: [
+				0,
+				.69224,
+				0,
+				0,
+				.61111
+			],
+			8873: [
+				0,
+				.69224,
+				0,
+				0,
+				.72222
+			],
+			8874: [
+				0,
+				.69224,
+				0,
+				0,
+				.88889
+			],
+			8876: [
+				0,
+				.68889,
+				0,
+				0,
+				.61111
+			],
+			8877: [
+				0,
+				.68889,
+				0,
+				0,
+				.61111
+			],
+			8878: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			8879: [
+				0,
+				.68889,
+				0,
+				0,
+				.72222
+			],
+			8882: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8883: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8884: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8885: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8888: [
+				0,
+				.54986,
+				0,
+				0,
+				1.11111
+			],
+			8890: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.55556
+			],
+			8891: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.61111
+			],
+			8892: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.61111
+			],
+			8901: [
+				0,
+				.54986,
+				0,
+				0,
+				.27778
+			],
+			8903: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8905: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8906: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			8907: [
+				0,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8908: [
+				0,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8909: [
+				-.03598,
+				.46402,
+				0,
+				0,
+				.77778
+			],
+			8910: [
+				0,
+				.54986,
+				0,
+				0,
+				.76042
+			],
+			8911: [
+				0,
+				.54986,
+				0,
+				0,
+				.76042
+			],
+			8912: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8913: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			8914: [
+				0,
+				.54986,
+				0,
+				0,
+				.66667
+			],
+			8915: [
+				0,
+				.54986,
+				0,
+				0,
+				.66667
+			],
+			8916: [
+				0,
+				.69224,
+				0,
+				0,
+				.66667
+			],
+			8918: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8919: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8920: [
+				.03517,
+				.54986,
+				0,
+				0,
+				1.33334
+			],
+			8921: [
+				.03517,
+				.54986,
+				0,
+				0,
+				1.33334
+			],
+			8922: [
+				.38569,
+				.88569,
+				0,
+				0,
+				.77778
+			],
+			8923: [
+				.38569,
+				.88569,
+				0,
+				0,
+				.77778
+			],
+			8926: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8927: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			8928: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8929: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8934: [
+				.23222,
+				.74111,
+				0,
+				0,
+				.77778
+			],
+			8935: [
+				.23222,
+				.74111,
+				0,
+				0,
+				.77778
+			],
+			8936: [
+				.23222,
+				.74111,
+				0,
+				0,
+				.77778
+			],
+			8937: [
+				.23222,
+				.74111,
+				0,
+				0,
+				.77778
+			],
+			8938: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8939: [
+				.20576,
+				.70576,
+				0,
+				0,
+				.77778
+			],
+			8940: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8941: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			8994: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			8995: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.77778
+			],
+			9416: [
+				.15559,
+				.69224,
+				0,
+				0,
+				.90222
+			],
+			9484: [
+				0,
+				.69224,
+				0,
+				0,
+				.5
+			],
+			9488: [
+				0,
+				.69224,
+				0,
+				0,
+				.5
+			],
+			9492: [
+				0,
+				.37788,
+				0,
+				0,
+				.5
+			],
+			9496: [
+				0,
+				.37788,
+				0,
+				0,
+				.5
+			],
+			9585: [
+				.19444,
+				.68889,
+				0,
+				0,
+				.88889
+			],
+			9586: [
+				.19444,
+				.74111,
+				0,
+				0,
+				.88889
+			],
+			9632: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			9633: [
+				0,
+				.675,
+				0,
+				0,
+				.77778
+			],
+			9650: [
+				0,
+				.54986,
+				0,
+				0,
+				.72222
+			],
+			9651: [
+				0,
+				.54986,
+				0,
+				0,
+				.72222
+			],
+			9654: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			9660: [
+				0,
+				.54986,
+				0,
+				0,
+				.72222
+			],
+			9661: [
+				0,
+				.54986,
+				0,
+				0,
+				.72222
+			],
+			9664: [
+				.03517,
+				.54986,
+				0,
+				0,
+				.77778
+			],
+			9674: [
+				.11111,
+				.69224,
+				0,
+				0,
+				.66667
+			],
+			9733: [
+				.19444,
+				.69224,
+				0,
+				0,
+				.94445
+			],
+			10003: [
+				0,
+				.69224,
+				0,
+				0,
+				.83334
+			],
+			10016: [
+				0,
+				.69224,
+				0,
+				0,
+				.83334
+			],
+			10731: [
+				.11111,
+				.69224,
+				0,
+				0,
+				.66667
+			],
+			10846: [
+				.19444,
+				.75583,
+				0,
+				0,
+				.61111
+			],
+			10877: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			10878: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			10885: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			10886: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			10887: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			10888: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			10889: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10890: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10891: [
+				.48256,
+				.98256,
+				0,
+				0,
+				.77778
+			],
+			10892: [
+				.48256,
+				.98256,
+				0,
+				0,
+				.77778
+			],
+			10901: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			10902: [
+				.13667,
+				.63667,
+				0,
+				0,
+				.77778
+			],
+			10933: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10934: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10935: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10936: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10937: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10938: [
+				.26167,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			10949: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			10950: [
+				.25583,
+				.75583,
+				0,
+				0,
+				.77778
+			],
+			10955: [
+				.28481,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			10956: [
+				.28481,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			57350: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.22222
+			],
+			57351: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.38889
+			],
+			57352: [
+				.08167,
+				.58167,
+				0,
+				0,
+				.77778
+			],
+			57353: [
+				0,
+				.43056,
+				.04028,
+				0,
+				.66667
+			],
+			57356: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57357: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57358: [
+				.41951,
+				.91951,
+				0,
+				0,
+				.77778
+			],
+			57359: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			57360: [
+				.30274,
+				.79383,
+				0,
+				0,
+				.77778
+			],
+			57361: [
+				.41951,
+				.91951,
+				0,
+				0,
+				.77778
+			],
+			57366: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57367: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57368: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57369: [
+				.25142,
+				.75726,
+				0,
+				0,
+				.77778
+			],
+			57370: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			57371: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			]
+		},
+		"Caligraphic-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			65: [
+				0,
+				.68333,
+				0,
+				.19445,
+				.79847
+			],
+			66: [
+				0,
+				.68333,
+				.03041,
+				.13889,
+				.65681
+			],
+			67: [
+				0,
+				.68333,
+				.05834,
+				.13889,
+				.52653
+			],
+			68: [
+				0,
+				.68333,
+				.02778,
+				.08334,
+				.77139
+			],
+			69: [
+				0,
+				.68333,
+				.08944,
+				.11111,
+				.52778
+			],
+			70: [
+				0,
+				.68333,
+				.09931,
+				.11111,
+				.71875
+			],
+			71: [
+				.09722,
+				.68333,
+				.0593,
+				.11111,
+				.59487
+			],
+			72: [
+				0,
+				.68333,
+				.00965,
+				.11111,
+				.84452
+			],
+			73: [
+				0,
+				.68333,
+				.07382,
+				0,
+				.54452
+			],
+			74: [
+				.09722,
+				.68333,
+				.18472,
+				.16667,
+				.67778
+			],
+			75: [
+				0,
+				.68333,
+				.01445,
+				.05556,
+				.76195
+			],
+			76: [
+				0,
+				.68333,
+				0,
+				.13889,
+				.68972
+			],
+			77: [
+				0,
+				.68333,
+				0,
+				.13889,
+				1.2009
+			],
+			78: [
+				0,
+				.68333,
+				.14736,
+				.08334,
+				.82049
+			],
+			79: [
+				0,
+				.68333,
+				.02778,
+				.11111,
+				.79611
+			],
+			80: [
+				0,
+				.68333,
+				.08222,
+				.08334,
+				.69556
+			],
+			81: [
+				.09722,
+				.68333,
+				0,
+				.11111,
+				.81667
+			],
+			82: [
+				0,
+				.68333,
+				0,
+				.08334,
+				.8475
+			],
+			83: [
+				0,
+				.68333,
+				.075,
+				.13889,
+				.60556
+			],
+			84: [
+				0,
+				.68333,
+				.25417,
+				0,
+				.54464
+			],
+			85: [
+				0,
+				.68333,
+				.09931,
+				.08334,
+				.62583
+			],
+			86: [
+				0,
+				.68333,
+				.08222,
+				0,
+				.61278
+			],
+			87: [
+				0,
+				.68333,
+				.08222,
+				.08334,
+				.98778
+			],
+			88: [
+				0,
+				.68333,
+				.14643,
+				.13889,
+				.7133
+			],
+			89: [
+				.09722,
+				.68333,
+				.08222,
+				.08334,
+				.66834
+			],
+			90: [
+				0,
+				.68333,
+				.07944,
+				.13889,
+				.72473
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			]
+		},
+		"Fraktur-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69141,
+				0,
+				0,
+				.29574
+			],
+			34: [
+				0,
+				.69141,
+				0,
+				0,
+				.21471
+			],
+			38: [
+				0,
+				.69141,
+				0,
+				0,
+				.73786
+			],
+			39: [
+				0,
+				.69141,
+				0,
+				0,
+				.21201
+			],
+			40: [
+				.24982,
+				.74947,
+				0,
+				0,
+				.38865
+			],
+			41: [
+				.24982,
+				.74947,
+				0,
+				0,
+				.38865
+			],
+			42: [
+				0,
+				.62119,
+				0,
+				0,
+				.27764
+			],
+			43: [
+				.08319,
+				.58283,
+				0,
+				0,
+				.75623
+			],
+			44: [
+				0,
+				.10803,
+				0,
+				0,
+				.27764
+			],
+			45: [
+				.08319,
+				.58283,
+				0,
+				0,
+				.75623
+			],
+			46: [
+				0,
+				.10803,
+				0,
+				0,
+				.27764
+			],
+			47: [
+				.24982,
+				.74947,
+				0,
+				0,
+				.50181
+			],
+			48: [
+				0,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			49: [
+				0,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			50: [
+				0,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			51: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			52: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			53: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			54: [
+				0,
+				.69141,
+				0,
+				0,
+				.50181
+			],
+			55: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			56: [
+				0,
+				.69141,
+				0,
+				0,
+				.50181
+			],
+			57: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50181
+			],
+			58: [
+				0,
+				.47534,
+				0,
+				0,
+				.21606
+			],
+			59: [
+				.12604,
+				.47534,
+				0,
+				0,
+				.21606
+			],
+			61: [
+				-.13099,
+				.36866,
+				0,
+				0,
+				.75623
+			],
+			63: [
+				0,
+				.69141,
+				0,
+				0,
+				.36245
+			],
+			65: [
+				0,
+				.69141,
+				0,
+				0,
+				.7176
+			],
+			66: [
+				0,
+				.69141,
+				0,
+				0,
+				.88397
+			],
+			67: [
+				0,
+				.69141,
+				0,
+				0,
+				.61254
+			],
+			68: [
+				0,
+				.69141,
+				0,
+				0,
+				.83158
+			],
+			69: [
+				0,
+				.69141,
+				0,
+				0,
+				.66278
+			],
+			70: [
+				.12604,
+				.69141,
+				0,
+				0,
+				.61119
+			],
+			71: [
+				0,
+				.69141,
+				0,
+				0,
+				.78539
+			],
+			72: [
+				.06302,
+				.69141,
+				0,
+				0,
+				.7203
+			],
+			73: [
+				0,
+				.69141,
+				0,
+				0,
+				.55448
+			],
+			74: [
+				.12604,
+				.69141,
+				0,
+				0,
+				.55231
+			],
+			75: [
+				0,
+				.69141,
+				0,
+				0,
+				.66845
+			],
+			76: [
+				0,
+				.69141,
+				0,
+				0,
+				.66602
+			],
+			77: [
+				0,
+				.69141,
+				0,
+				0,
+				1.04953
+			],
+			78: [
+				0,
+				.69141,
+				0,
+				0,
+				.83212
+			],
+			79: [
+				0,
+				.69141,
+				0,
+				0,
+				.82699
+			],
+			80: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.82753
+			],
+			81: [
+				.03781,
+				.69141,
+				0,
+				0,
+				.82699
+			],
+			82: [
+				0,
+				.69141,
+				0,
+				0,
+				.82807
+			],
+			83: [
+				0,
+				.69141,
+				0,
+				0,
+				.82861
+			],
+			84: [
+				0,
+				.69141,
+				0,
+				0,
+				.66899
+			],
+			85: [
+				0,
+				.69141,
+				0,
+				0,
+				.64576
+			],
+			86: [
+				0,
+				.69141,
+				0,
+				0,
+				.83131
+			],
+			87: [
+				0,
+				.69141,
+				0,
+				0,
+				1.04602
+			],
+			88: [
+				0,
+				.69141,
+				0,
+				0,
+				.71922
+			],
+			89: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.83293
+			],
+			90: [
+				.12604,
+				.69141,
+				0,
+				0,
+				.60201
+			],
+			91: [
+				.24982,
+				.74947,
+				0,
+				0,
+				.27764
+			],
+			93: [
+				.24982,
+				.74947,
+				0,
+				0,
+				.27764
+			],
+			94: [
+				0,
+				.69141,
+				0,
+				0,
+				.49965
+			],
+			97: [
+				0,
+				.47534,
+				0,
+				0,
+				.50046
+			],
+			98: [
+				0,
+				.69141,
+				0,
+				0,
+				.51315
+			],
+			99: [
+				0,
+				.47534,
+				0,
+				0,
+				.38946
+			],
+			100: [
+				0,
+				.62119,
+				0,
+				0,
+				.49857
+			],
+			101: [
+				0,
+				.47534,
+				0,
+				0,
+				.40053
+			],
+			102: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.32626
+			],
+			103: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.5037
+			],
+			104: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.52126
+			],
+			105: [
+				0,
+				.69141,
+				0,
+				0,
+				.27899
+			],
+			106: [
+				0,
+				.69141,
+				0,
+				0,
+				.28088
+			],
+			107: [
+				0,
+				.69141,
+				0,
+				0,
+				.38946
+			],
+			108: [
+				0,
+				.69141,
+				0,
+				0,
+				.27953
+			],
+			109: [
+				0,
+				.47534,
+				0,
+				0,
+				.76676
+			],
+			110: [
+				0,
+				.47534,
+				0,
+				0,
+				.52666
+			],
+			111: [
+				0,
+				.47534,
+				0,
+				0,
+				.48885
+			],
+			112: [
+				.18906,
+				.52396,
+				0,
+				0,
+				.50046
+			],
+			113: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.48912
+			],
+			114: [
+				0,
+				.47534,
+				0,
+				0,
+				.38919
+			],
+			115: [
+				0,
+				.47534,
+				0,
+				0,
+				.44266
+			],
+			116: [
+				0,
+				.62119,
+				0,
+				0,
+				.33301
+			],
+			117: [
+				0,
+				.47534,
+				0,
+				0,
+				.5172
+			],
+			118: [
+				0,
+				.52396,
+				0,
+				0,
+				.5118
+			],
+			119: [
+				0,
+				.52396,
+				0,
+				0,
+				.77351
+			],
+			120: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.38865
+			],
+			121: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.49884
+			],
+			122: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.39054
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			8216: [
+				0,
+				.69141,
+				0,
+				0,
+				.21471
+			],
+			8217: [
+				0,
+				.69141,
+				0,
+				0,
+				.21471
+			],
+			58112: [
+				0,
+				.62119,
+				0,
+				0,
+				.49749
+			],
+			58113: [
+				0,
+				.62119,
+				0,
+				0,
+				.4983
+			],
+			58114: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.33328
+			],
+			58115: [
+				.18906,
+				.69141,
+				0,
+				0,
+				.32923
+			],
+			58116: [
+				.18906,
+				.47534,
+				0,
+				0,
+				.50343
+			],
+			58117: [
+				0,
+				.69141,
+				0,
+				0,
+				.33301
+			],
+			58118: [
+				0,
+				.62119,
+				0,
+				0,
+				.33409
+			],
+			58119: [
+				0,
+				.47534,
+				0,
+				0,
+				.50073
+			]
+		},
+		"Main-Bold": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				0,
+				0,
+				.35
+			],
+			34: [
+				0,
+				.69444,
+				0,
+				0,
+				.60278
+			],
+			35: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.95833
+			],
+			36: [
+				.05556,
+				.75,
+				0,
+				0,
+				.575
+			],
+			37: [
+				.05556,
+				.75,
+				0,
+				0,
+				.95833
+			],
+			38: [
+				0,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			39: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			40: [
+				.25,
+				.75,
+				0,
+				0,
+				.44722
+			],
+			41: [
+				.25,
+				.75,
+				0,
+				0,
+				.44722
+			],
+			42: [
+				0,
+				.75,
+				0,
+				0,
+				.575
+			],
+			43: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			44: [
+				.19444,
+				.15556,
+				0,
+				0,
+				.31944
+			],
+			45: [
+				0,
+				.44444,
+				0,
+				0,
+				.38333
+			],
+			46: [
+				0,
+				.15556,
+				0,
+				0,
+				.31944
+			],
+			47: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			48: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			49: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			50: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			51: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			52: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			53: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			54: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			55: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			56: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			57: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			58: [
+				0,
+				.44444,
+				0,
+				0,
+				.31944
+			],
+			59: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.31944
+			],
+			60: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			61: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				.89444
+			],
+			62: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			63: [
+				0,
+				.69444,
+				0,
+				0,
+				.54305
+			],
+			64: [
+				0,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			65: [
+				0,
+				.68611,
+				0,
+				0,
+				.86944
+			],
+			66: [
+				0,
+				.68611,
+				0,
+				0,
+				.81805
+			],
+			67: [
+				0,
+				.68611,
+				0,
+				0,
+				.83055
+			],
+			68: [
+				0,
+				.68611,
+				0,
+				0,
+				.88194
+			],
+			69: [
+				0,
+				.68611,
+				0,
+				0,
+				.75555
+			],
+			70: [
+				0,
+				.68611,
+				0,
+				0,
+				.72361
+			],
+			71: [
+				0,
+				.68611,
+				0,
+				0,
+				.90416
+			],
+			72: [
+				0,
+				.68611,
+				0,
+				0,
+				.9
+			],
+			73: [
+				0,
+				.68611,
+				0,
+				0,
+				.43611
+			],
+			74: [
+				0,
+				.68611,
+				0,
+				0,
+				.59444
+			],
+			75: [
+				0,
+				.68611,
+				0,
+				0,
+				.90138
+			],
+			76: [
+				0,
+				.68611,
+				0,
+				0,
+				.69166
+			],
+			77: [
+				0,
+				.68611,
+				0,
+				0,
+				1.09166
+			],
+			78: [
+				0,
+				.68611,
+				0,
+				0,
+				.9
+			],
+			79: [
+				0,
+				.68611,
+				0,
+				0,
+				.86388
+			],
+			80: [
+				0,
+				.68611,
+				0,
+				0,
+				.78611
+			],
+			81: [
+				.19444,
+				.68611,
+				0,
+				0,
+				.86388
+			],
+			82: [
+				0,
+				.68611,
+				0,
+				0,
+				.8625
+			],
+			83: [
+				0,
+				.68611,
+				0,
+				0,
+				.63889
+			],
+			84: [
+				0,
+				.68611,
+				0,
+				0,
+				.8
+			],
+			85: [
+				0,
+				.68611,
+				0,
+				0,
+				.88472
+			],
+			86: [
+				0,
+				.68611,
+				.01597,
+				0,
+				.86944
+			],
+			87: [
+				0,
+				.68611,
+				.01597,
+				0,
+				1.18888
+			],
+			88: [
+				0,
+				.68611,
+				0,
+				0,
+				.86944
+			],
+			89: [
+				0,
+				.68611,
+				.02875,
+				0,
+				.86944
+			],
+			90: [
+				0,
+				.68611,
+				0,
+				0,
+				.70277
+			],
+			91: [
+				.25,
+				.75,
+				0,
+				0,
+				.31944
+			],
+			92: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			93: [
+				.25,
+				.75,
+				0,
+				0,
+				.31944
+			],
+			94: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			95: [
+				.31,
+				.13444,
+				.03194,
+				0,
+				.575
+			],
+			97: [
+				0,
+				.44444,
+				0,
+				0,
+				.55902
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			99: [
+				0,
+				.44444,
+				0,
+				0,
+				.51111
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			101: [
+				0,
+				.44444,
+				0,
+				0,
+				.52708
+			],
+			102: [
+				0,
+				.69444,
+				.10903,
+				0,
+				.35139
+			],
+			103: [
+				.19444,
+				.44444,
+				.01597,
+				0,
+				.575
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			105: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			106: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.35139
+			],
+			107: [
+				0,
+				.69444,
+				0,
+				0,
+				.60694
+			],
+			108: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			109: [
+				0,
+				.44444,
+				0,
+				0,
+				.95833
+			],
+			110: [
+				0,
+				.44444,
+				0,
+				0,
+				.63889
+			],
+			111: [
+				0,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			112: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.63889
+			],
+			113: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.60694
+			],
+			114: [
+				0,
+				.44444,
+				0,
+				0,
+				.47361
+			],
+			115: [
+				0,
+				.44444,
+				0,
+				0,
+				.45361
+			],
+			116: [
+				0,
+				.63492,
+				0,
+				0,
+				.44722
+			],
+			117: [
+				0,
+				.44444,
+				0,
+				0,
+				.63889
+			],
+			118: [
+				0,
+				.44444,
+				.01597,
+				0,
+				.60694
+			],
+			119: [
+				0,
+				.44444,
+				.01597,
+				0,
+				.83055
+			],
+			120: [
+				0,
+				.44444,
+				0,
+				0,
+				.60694
+			],
+			121: [
+				.19444,
+				.44444,
+				.01597,
+				0,
+				.60694
+			],
+			122: [
+				0,
+				.44444,
+				0,
+				0,
+				.51111
+			],
+			123: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			124: [
+				.25,
+				.75,
+				0,
+				0,
+				.31944
+			],
+			125: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			126: [
+				.35,
+				.34444,
+				0,
+				0,
+				.575
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			163: [
+				0,
+				.69444,
+				0,
+				0,
+				.86853
+			],
+			168: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			172: [
+				0,
+				.44444,
+				0,
+				0,
+				.76666
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.86944
+			],
+			177: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.51111
+			],
+			198: [
+				0,
+				.68611,
+				0,
+				0,
+				1.04166
+			],
+			215: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			216: [
+				.04861,
+				.73472,
+				0,
+				0,
+				.89444
+			],
+			223: [
+				0,
+				.69444,
+				0,
+				0,
+				.59722
+			],
+			230: [
+				0,
+				.44444,
+				0,
+				0,
+				.83055
+			],
+			247: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			248: [
+				.09722,
+				.54167,
+				0,
+				0,
+				.575
+			],
+			305: [
+				0,
+				.44444,
+				0,
+				0,
+				.31944
+			],
+			338: [
+				0,
+				.68611,
+				0,
+				0,
+				1.16944
+			],
+			339: [
+				0,
+				.44444,
+				0,
+				0,
+				.89444
+			],
+			567: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.35139
+			],
+			710: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			711: [
+				0,
+				.63194,
+				0,
+				0,
+				.575
+			],
+			713: [
+				0,
+				.59611,
+				0,
+				0,
+				.575
+			],
+			714: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			728: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			729: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.86944
+			],
+			732: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			733: [
+				0,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			915: [
+				0,
+				.68611,
+				0,
+				0,
+				.69166
+			],
+			916: [
+				0,
+				.68611,
+				0,
+				0,
+				.95833
+			],
+			920: [
+				0,
+				.68611,
+				0,
+				0,
+				.89444
+			],
+			923: [
+				0,
+				.68611,
+				0,
+				0,
+				.80555
+			],
+			926: [
+				0,
+				.68611,
+				0,
+				0,
+				.76666
+			],
+			928: [
+				0,
+				.68611,
+				0,
+				0,
+				.9
+			],
+			931: [
+				0,
+				.68611,
+				0,
+				0,
+				.83055
+			],
+			933: [
+				0,
+				.68611,
+				0,
+				0,
+				.89444
+			],
+			934: [
+				0,
+				.68611,
+				0,
+				0,
+				.83055
+			],
+			936: [
+				0,
+				.68611,
+				0,
+				0,
+				.89444
+			],
+			937: [
+				0,
+				.68611,
+				0,
+				0,
+				.83055
+			],
+			8211: [
+				0,
+				.44444,
+				.03194,
+				0,
+				.575
+			],
+			8212: [
+				0,
+				.44444,
+				.03194,
+				0,
+				1.14999
+			],
+			8216: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			8217: [
+				0,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			8220: [
+				0,
+				.69444,
+				0,
+				0,
+				.60278
+			],
+			8221: [
+				0,
+				.69444,
+				0,
+				0,
+				.60278
+			],
+			8224: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.51111
+			],
+			8225: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.51111
+			],
+			8242: [
+				0,
+				.55556,
+				0,
+				0,
+				.34444
+			],
+			8407: [
+				0,
+				.72444,
+				.15486,
+				0,
+				.575
+			],
+			8463: [
+				0,
+				.69444,
+				0,
+				0,
+				.66759
+			],
+			8465: [
+				0,
+				.69444,
+				0,
+				0,
+				.83055
+			],
+			8467: [
+				0,
+				.69444,
+				0,
+				0,
+				.47361
+			],
+			8472: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.74027
+			],
+			8476: [
+				0,
+				.69444,
+				0,
+				0,
+				.83055
+			],
+			8501: [
+				0,
+				.69444,
+				0,
+				0,
+				.70277
+			],
+			8592: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8593: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			8594: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8595: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.575
+			],
+			8596: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8597: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			8598: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.14999
+			],
+			8599: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.14999
+			],
+			8600: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.14999
+			],
+			8601: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.14999
+			],
+			8636: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8637: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8640: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8641: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8656: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8657: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.70277
+			],
+			8658: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8659: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.70277
+			],
+			8660: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				1.14999
+			],
+			8661: [
+				.25,
+				.75,
+				0,
+				0,
+				.70277
+			],
+			8704: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			8706: [
+				0,
+				.69444,
+				.06389,
+				0,
+				.62847
+			],
+			8707: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			8709: [
+				.05556,
+				.75,
+				0,
+				0,
+				.575
+			],
+			8711: [
+				0,
+				.68611,
+				0,
+				0,
+				.95833
+			],
+			8712: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.76666
+			],
+			8715: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.76666
+			],
+			8722: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8723: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8725: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			8726: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			8727: [
+				-.02778,
+				.47222,
+				0,
+				0,
+				.575
+			],
+			8728: [
+				-.02639,
+				.47361,
+				0,
+				0,
+				.575
+			],
+			8729: [
+				-.02639,
+				.47361,
+				0,
+				0,
+				.575
+			],
+			8730: [
+				.18,
+				.82,
+				0,
+				0,
+				.95833
+			],
+			8733: [
+				0,
+				.44444,
+				0,
+				0,
+				.89444
+			],
+			8734: [
+				0,
+				.44444,
+				0,
+				0,
+				1.14999
+			],
+			8736: [
+				0,
+				.69224,
+				0,
+				0,
+				.72222
+			],
+			8739: [
+				.25,
+				.75,
+				0,
+				0,
+				.31944
+			],
+			8741: [
+				.25,
+				.75,
+				0,
+				0,
+				.575
+			],
+			8743: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8744: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8745: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8746: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8747: [
+				.19444,
+				.69444,
+				.12778,
+				0,
+				.56875
+			],
+			8764: [
+				-.10889,
+				.39111,
+				0,
+				0,
+				.89444
+			],
+			8768: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.31944
+			],
+			8771: [
+				.00222,
+				.50222,
+				0,
+				0,
+				.89444
+			],
+			8773: [
+				.027,
+				.638,
+				0,
+				0,
+				.894
+			],
+			8776: [
+				.02444,
+				.52444,
+				0,
+				0,
+				.89444
+			],
+			8781: [
+				.00222,
+				.50222,
+				0,
+				0,
+				.89444
+			],
+			8801: [
+				.00222,
+				.50222,
+				0,
+				0,
+				.89444
+			],
+			8804: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8805: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8810: [
+				.08556,
+				.58556,
+				0,
+				0,
+				1.14999
+			],
+			8811: [
+				.08556,
+				.58556,
+				0,
+				0,
+				1.14999
+			],
+			8826: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			8827: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			8834: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			8835: [
+				.08556,
+				.58556,
+				0,
+				0,
+				.89444
+			],
+			8838: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8839: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8846: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8849: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8850: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			8851: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8852: [
+				0,
+				.55556,
+				0,
+				0,
+				.76666
+			],
+			8853: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8854: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8855: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8856: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8857: [
+				.13333,
+				.63333,
+				0,
+				0,
+				.89444
+			],
+			8866: [
+				0,
+				.69444,
+				0,
+				0,
+				.70277
+			],
+			8867: [
+				0,
+				.69444,
+				0,
+				0,
+				.70277
+			],
+			8868: [
+				0,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			8869: [
+				0,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			8900: [
+				-.02639,
+				.47361,
+				0,
+				0,
+				.575
+			],
+			8901: [
+				-.02639,
+				.47361,
+				0,
+				0,
+				.31944
+			],
+			8902: [
+				-.02778,
+				.47222,
+				0,
+				0,
+				.575
+			],
+			8968: [
+				.25,
+				.75,
+				0,
+				0,
+				.51111
+			],
+			8969: [
+				.25,
+				.75,
+				0,
+				0,
+				.51111
+			],
+			8970: [
+				.25,
+				.75,
+				0,
+				0,
+				.51111
+			],
+			8971: [
+				.25,
+				.75,
+				0,
+				0,
+				.51111
+			],
+			8994: [
+				-.13889,
+				.36111,
+				0,
+				0,
+				1.14999
+			],
+			8995: [
+				-.13889,
+				.36111,
+				0,
+				0,
+				1.14999
+			],
+			9651: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.02222
+			],
+			9657: [
+				-.02778,
+				.47222,
+				0,
+				0,
+				.575
+			],
+			9661: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.02222
+			],
+			9667: [
+				-.02778,
+				.47222,
+				0,
+				0,
+				.575
+			],
+			9711: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1.14999
+			],
+			9824: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			9825: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			9826: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			9827: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.89444
+			],
+			9837: [
+				0,
+				.75,
+				0,
+				0,
+				.44722
+			],
+			9838: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.44722
+			],
+			9839: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.44722
+			],
+			10216: [
+				.25,
+				.75,
+				0,
+				0,
+				.44722
+			],
+			10217: [
+				.25,
+				.75,
+				0,
+				0,
+				.44722
+			],
+			10815: [
+				0,
+				.68611,
+				0,
+				0,
+				.9
+			],
+			10927: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			10928: [
+				.19667,
+				.69667,
+				0,
+				0,
+				.89444
+			],
+			57376: [
+				.19444,
+				.69444,
+				0,
+				0,
+				0
+			]
+		},
+		"Main-BoldItalic": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				.11417,
+				0,
+				.38611
+			],
+			34: [
+				0,
+				.69444,
+				.07939,
+				0,
+				.62055
+			],
+			35: [
+				.19444,
+				.69444,
+				.06833,
+				0,
+				.94444
+			],
+			37: [
+				.05556,
+				.75,
+				.12861,
+				0,
+				.94444
+			],
+			38: [
+				0,
+				.69444,
+				.08528,
+				0,
+				.88555
+			],
+			39: [
+				0,
+				.69444,
+				.12945,
+				0,
+				.35555
+			],
+			40: [
+				.25,
+				.75,
+				.15806,
+				0,
+				.47333
+			],
+			41: [
+				.25,
+				.75,
+				.03306,
+				0,
+				.47333
+			],
+			42: [
+				0,
+				.75,
+				.14333,
+				0,
+				.59111
+			],
+			43: [
+				.10333,
+				.60333,
+				.03306,
+				0,
+				.88555
+			],
+			44: [
+				.19444,
+				.14722,
+				0,
+				0,
+				.35555
+			],
+			45: [
+				0,
+				.44444,
+				.02611,
+				0,
+				.41444
+			],
+			46: [
+				0,
+				.14722,
+				0,
+				0,
+				.35555
+			],
+			47: [
+				.25,
+				.75,
+				.15806,
+				0,
+				.59111
+			],
+			48: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			49: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			50: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			51: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			52: [
+				.19444,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			53: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			54: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			55: [
+				.19444,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			56: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			57: [
+				0,
+				.64444,
+				.13167,
+				0,
+				.59111
+			],
+			58: [
+				0,
+				.44444,
+				.06695,
+				0,
+				.35555
+			],
+			59: [
+				.19444,
+				.44444,
+				.06695,
+				0,
+				.35555
+			],
+			61: [
+				-.10889,
+				.39111,
+				.06833,
+				0,
+				.88555
+			],
+			63: [
+				0,
+				.69444,
+				.11472,
+				0,
+				.59111
+			],
+			64: [
+				0,
+				.69444,
+				.09208,
+				0,
+				.88555
+			],
+			65: [
+				0,
+				.68611,
+				0,
+				0,
+				.86555
+			],
+			66: [
+				0,
+				.68611,
+				.0992,
+				0,
+				.81666
+			],
+			67: [
+				0,
+				.68611,
+				.14208,
+				0,
+				.82666
+			],
+			68: [
+				0,
+				.68611,
+				.09062,
+				0,
+				.87555
+			],
+			69: [
+				0,
+				.68611,
+				.11431,
+				0,
+				.75666
+			],
+			70: [
+				0,
+				.68611,
+				.12903,
+				0,
+				.72722
+			],
+			71: [
+				0,
+				.68611,
+				.07347,
+				0,
+				.89527
+			],
+			72: [
+				0,
+				.68611,
+				.17208,
+				0,
+				.8961
+			],
+			73: [
+				0,
+				.68611,
+				.15681,
+				0,
+				.47166
+			],
+			74: [
+				0,
+				.68611,
+				.145,
+				0,
+				.61055
+			],
+			75: [
+				0,
+				.68611,
+				.14208,
+				0,
+				.89499
+			],
+			76: [
+				0,
+				.68611,
+				0,
+				0,
+				.69777
+			],
+			77: [
+				0,
+				.68611,
+				.17208,
+				0,
+				1.07277
+			],
+			78: [
+				0,
+				.68611,
+				.17208,
+				0,
+				.8961
+			],
+			79: [
+				0,
+				.68611,
+				.09062,
+				0,
+				.85499
+			],
+			80: [
+				0,
+				.68611,
+				.0992,
+				0,
+				.78721
+			],
+			81: [
+				.19444,
+				.68611,
+				.09062,
+				0,
+				.85499
+			],
+			82: [
+				0,
+				.68611,
+				.02559,
+				0,
+				.85944
+			],
+			83: [
+				0,
+				.68611,
+				.11264,
+				0,
+				.64999
+			],
+			84: [
+				0,
+				.68611,
+				.12903,
+				0,
+				.7961
+			],
+			85: [
+				0,
+				.68611,
+				.17208,
+				0,
+				.88083
+			],
+			86: [
+				0,
+				.68611,
+				.18625,
+				0,
+				.86555
+			],
+			87: [
+				0,
+				.68611,
+				.18625,
+				0,
+				1.15999
+			],
+			88: [
+				0,
+				.68611,
+				.15681,
+				0,
+				.86555
+			],
+			89: [
+				0,
+				.68611,
+				.19803,
+				0,
+				.86555
+			],
+			90: [
+				0,
+				.68611,
+				.14208,
+				0,
+				.70888
+			],
+			91: [
+				.25,
+				.75,
+				.1875,
+				0,
+				.35611
+			],
+			93: [
+				.25,
+				.75,
+				.09972,
+				0,
+				.35611
+			],
+			94: [
+				0,
+				.69444,
+				.06709,
+				0,
+				.59111
+			],
+			95: [
+				.31,
+				.13444,
+				.09811,
+				0,
+				.59111
+			],
+			97: [
+				0,
+				.44444,
+				.09426,
+				0,
+				.59111
+			],
+			98: [
+				0,
+				.69444,
+				.07861,
+				0,
+				.53222
+			],
+			99: [
+				0,
+				.44444,
+				.05222,
+				0,
+				.53222
+			],
+			100: [
+				0,
+				.69444,
+				.10861,
+				0,
+				.59111
+			],
+			101: [
+				0,
+				.44444,
+				.085,
+				0,
+				.53222
+			],
+			102: [
+				.19444,
+				.69444,
+				.21778,
+				0,
+				.4
+			],
+			103: [
+				.19444,
+				.44444,
+				.105,
+				0,
+				.53222
+			],
+			104: [
+				0,
+				.69444,
+				.09426,
+				0,
+				.59111
+			],
+			105: [
+				0,
+				.69326,
+				.11387,
+				0,
+				.35555
+			],
+			106: [
+				.19444,
+				.69326,
+				.1672,
+				0,
+				.35555
+			],
+			107: [
+				0,
+				.69444,
+				.11111,
+				0,
+				.53222
+			],
+			108: [
+				0,
+				.69444,
+				.10861,
+				0,
+				.29666
+			],
+			109: [
+				0,
+				.44444,
+				.09426,
+				0,
+				.94444
+			],
+			110: [
+				0,
+				.44444,
+				.09426,
+				0,
+				.64999
+			],
+			111: [
+				0,
+				.44444,
+				.07861,
+				0,
+				.59111
+			],
+			112: [
+				.19444,
+				.44444,
+				.07861,
+				0,
+				.59111
+			],
+			113: [
+				.19444,
+				.44444,
+				.105,
+				0,
+				.53222
+			],
+			114: [
+				0,
+				.44444,
+				.11111,
+				0,
+				.50167
+			],
+			115: [
+				0,
+				.44444,
+				.08167,
+				0,
+				.48694
+			],
+			116: [
+				0,
+				.63492,
+				.09639,
+				0,
+				.385
+			],
+			117: [
+				0,
+				.44444,
+				.09426,
+				0,
+				.62055
+			],
+			118: [
+				0,
+				.44444,
+				.11111,
+				0,
+				.53222
+			],
+			119: [
+				0,
+				.44444,
+				.11111,
+				0,
+				.76777
+			],
+			120: [
+				0,
+				.44444,
+				.12583,
+				0,
+				.56055
+			],
+			121: [
+				.19444,
+				.44444,
+				.105,
+				0,
+				.56166
+			],
+			122: [
+				0,
+				.44444,
+				.13889,
+				0,
+				.49055
+			],
+			126: [
+				.35,
+				.34444,
+				.11472,
+				0,
+				.59111
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			168: [
+				0,
+				.69444,
+				.11473,
+				0,
+				.59111
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.94888
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.53222
+			],
+			198: [
+				0,
+				.68611,
+				.11431,
+				0,
+				1.02277
+			],
+			216: [
+				.04861,
+				.73472,
+				.09062,
+				0,
+				.88555
+			],
+			223: [
+				.19444,
+				.69444,
+				.09736,
+				0,
+				.665
+			],
+			230: [
+				0,
+				.44444,
+				.085,
+				0,
+				.82666
+			],
+			248: [
+				.09722,
+				.54167,
+				.09458,
+				0,
+				.59111
+			],
+			305: [
+				0,
+				.44444,
+				.09426,
+				0,
+				.35555
+			],
+			338: [
+				0,
+				.68611,
+				.11431,
+				0,
+				1.14054
+			],
+			339: [
+				0,
+				.44444,
+				.085,
+				0,
+				.82666
+			],
+			567: [
+				.19444,
+				.44444,
+				.04611,
+				0,
+				.385
+			],
+			710: [
+				0,
+				.69444,
+				.06709,
+				0,
+				.59111
+			],
+			711: [
+				0,
+				.63194,
+				.08271,
+				0,
+				.59111
+			],
+			713: [
+				0,
+				.59444,
+				.10444,
+				0,
+				.59111
+			],
+			714: [
+				0,
+				.69444,
+				.08528,
+				0,
+				.59111
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.59111
+			],
+			728: [
+				0,
+				.69444,
+				.10333,
+				0,
+				.59111
+			],
+			729: [
+				0,
+				.69444,
+				.12945,
+				0,
+				.35555
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.94888
+			],
+			732: [
+				0,
+				.69444,
+				.11472,
+				0,
+				.59111
+			],
+			733: [
+				0,
+				.69444,
+				.11472,
+				0,
+				.59111
+			],
+			915: [
+				0,
+				.68611,
+				.12903,
+				0,
+				.69777
+			],
+			916: [
+				0,
+				.68611,
+				0,
+				0,
+				.94444
+			],
+			920: [
+				0,
+				.68611,
+				.09062,
+				0,
+				.88555
+			],
+			923: [
+				0,
+				.68611,
+				0,
+				0,
+				.80666
+			],
+			926: [
+				0,
+				.68611,
+				.15092,
+				0,
+				.76777
+			],
+			928: [
+				0,
+				.68611,
+				.17208,
+				0,
+				.8961
+			],
+			931: [
+				0,
+				.68611,
+				.11431,
+				0,
+				.82666
+			],
+			933: [
+				0,
+				.68611,
+				.10778,
+				0,
+				.88555
+			],
+			934: [
+				0,
+				.68611,
+				.05632,
+				0,
+				.82666
+			],
+			936: [
+				0,
+				.68611,
+				.10778,
+				0,
+				.88555
+			],
+			937: [
+				0,
+				.68611,
+				.0992,
+				0,
+				.82666
+			],
+			8211: [
+				0,
+				.44444,
+				.09811,
+				0,
+				.59111
+			],
+			8212: [
+				0,
+				.44444,
+				.09811,
+				0,
+				1.18221
+			],
+			8216: [
+				0,
+				.69444,
+				.12945,
+				0,
+				.35555
+			],
+			8217: [
+				0,
+				.69444,
+				.12945,
+				0,
+				.35555
+			],
+			8220: [
+				0,
+				.69444,
+				.16772,
+				0,
+				.62055
+			],
+			8221: [
+				0,
+				.69444,
+				.07939,
+				0,
+				.62055
+			]
+		},
+		"Main-Italic": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				.12417,
+				0,
+				.30667
+			],
+			34: [
+				0,
+				.69444,
+				.06961,
+				0,
+				.51444
+			],
+			35: [
+				.19444,
+				.69444,
+				.06616,
+				0,
+				.81777
+			],
+			37: [
+				.05556,
+				.75,
+				.13639,
+				0,
+				.81777
+			],
+			38: [
+				0,
+				.69444,
+				.09694,
+				0,
+				.76666
+			],
+			39: [
+				0,
+				.69444,
+				.12417,
+				0,
+				.30667
+			],
+			40: [
+				.25,
+				.75,
+				.16194,
+				0,
+				.40889
+			],
+			41: [
+				.25,
+				.75,
+				.03694,
+				0,
+				.40889
+			],
+			42: [
+				0,
+				.75,
+				.14917,
+				0,
+				.51111
+			],
+			43: [
+				.05667,
+				.56167,
+				.03694,
+				0,
+				.76666
+			],
+			44: [
+				.19444,
+				.10556,
+				0,
+				0,
+				.30667
+			],
+			45: [
+				0,
+				.43056,
+				.02826,
+				0,
+				.35778
+			],
+			46: [
+				0,
+				.10556,
+				0,
+				0,
+				.30667
+			],
+			47: [
+				.25,
+				.75,
+				.16194,
+				0,
+				.51111
+			],
+			48: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			49: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			50: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			51: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			52: [
+				.19444,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			53: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			54: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			55: [
+				.19444,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			56: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			57: [
+				0,
+				.64444,
+				.13556,
+				0,
+				.51111
+			],
+			58: [
+				0,
+				.43056,
+				.0582,
+				0,
+				.30667
+			],
+			59: [
+				.19444,
+				.43056,
+				.0582,
+				0,
+				.30667
+			],
+			61: [
+				-.13313,
+				.36687,
+				.06616,
+				0,
+				.76666
+			],
+			63: [
+				0,
+				.69444,
+				.1225,
+				0,
+				.51111
+			],
+			64: [
+				0,
+				.69444,
+				.09597,
+				0,
+				.76666
+			],
+			65: [
+				0,
+				.68333,
+				0,
+				0,
+				.74333
+			],
+			66: [
+				0,
+				.68333,
+				.10257,
+				0,
+				.70389
+			],
+			67: [
+				0,
+				.68333,
+				.14528,
+				0,
+				.71555
+			],
+			68: [
+				0,
+				.68333,
+				.09403,
+				0,
+				.755
+			],
+			69: [
+				0,
+				.68333,
+				.12028,
+				0,
+				.67833
+			],
+			70: [
+				0,
+				.68333,
+				.13305,
+				0,
+				.65277
+			],
+			71: [
+				0,
+				.68333,
+				.08722,
+				0,
+				.77361
+			],
+			72: [
+				0,
+				.68333,
+				.16389,
+				0,
+				.74333
+			],
+			73: [
+				0,
+				.68333,
+				.15806,
+				0,
+				.38555
+			],
+			74: [
+				0,
+				.68333,
+				.14028,
+				0,
+				.525
+			],
+			75: [
+				0,
+				.68333,
+				.14528,
+				0,
+				.76888
+			],
+			76: [
+				0,
+				.68333,
+				0,
+				0,
+				.62722
+			],
+			77: [
+				0,
+				.68333,
+				.16389,
+				0,
+				.89666
+			],
+			78: [
+				0,
+				.68333,
+				.16389,
+				0,
+				.74333
+			],
+			79: [
+				0,
+				.68333,
+				.09403,
+				0,
+				.76666
+			],
+			80: [
+				0,
+				.68333,
+				.10257,
+				0,
+				.67833
+			],
+			81: [
+				.19444,
+				.68333,
+				.09403,
+				0,
+				.76666
+			],
+			82: [
+				0,
+				.68333,
+				.03868,
+				0,
+				.72944
+			],
+			83: [
+				0,
+				.68333,
+				.11972,
+				0,
+				.56222
+			],
+			84: [
+				0,
+				.68333,
+				.13305,
+				0,
+				.71555
+			],
+			85: [
+				0,
+				.68333,
+				.16389,
+				0,
+				.74333
+			],
+			86: [
+				0,
+				.68333,
+				.18361,
+				0,
+				.74333
+			],
+			87: [
+				0,
+				.68333,
+				.18361,
+				0,
+				.99888
+			],
+			88: [
+				0,
+				.68333,
+				.15806,
+				0,
+				.74333
+			],
+			89: [
+				0,
+				.68333,
+				.19383,
+				0,
+				.74333
+			],
+			90: [
+				0,
+				.68333,
+				.14528,
+				0,
+				.61333
+			],
+			91: [
+				.25,
+				.75,
+				.1875,
+				0,
+				.30667
+			],
+			93: [
+				.25,
+				.75,
+				.10528,
+				0,
+				.30667
+			],
+			94: [
+				0,
+				.69444,
+				.06646,
+				0,
+				.51111
+			],
+			95: [
+				.31,
+				.12056,
+				.09208,
+				0,
+				.51111
+			],
+			97: [
+				0,
+				.43056,
+				.07671,
+				0,
+				.51111
+			],
+			98: [
+				0,
+				.69444,
+				.06312,
+				0,
+				.46
+			],
+			99: [
+				0,
+				.43056,
+				.05653,
+				0,
+				.46
+			],
+			100: [
+				0,
+				.69444,
+				.10333,
+				0,
+				.51111
+			],
+			101: [
+				0,
+				.43056,
+				.07514,
+				0,
+				.46
+			],
+			102: [
+				.19444,
+				.69444,
+				.21194,
+				0,
+				.30667
+			],
+			103: [
+				.19444,
+				.43056,
+				.08847,
+				0,
+				.46
+			],
+			104: [
+				0,
+				.69444,
+				.07671,
+				0,
+				.51111
+			],
+			105: [
+				0,
+				.65536,
+				.1019,
+				0,
+				.30667
+			],
+			106: [
+				.19444,
+				.65536,
+				.14467,
+				0,
+				.30667
+			],
+			107: [
+				0,
+				.69444,
+				.10764,
+				0,
+				.46
+			],
+			108: [
+				0,
+				.69444,
+				.10333,
+				0,
+				.25555
+			],
+			109: [
+				0,
+				.43056,
+				.07671,
+				0,
+				.81777
+			],
+			110: [
+				0,
+				.43056,
+				.07671,
+				0,
+				.56222
+			],
+			111: [
+				0,
+				.43056,
+				.06312,
+				0,
+				.51111
+			],
+			112: [
+				.19444,
+				.43056,
+				.06312,
+				0,
+				.51111
+			],
+			113: [
+				.19444,
+				.43056,
+				.08847,
+				0,
+				.46
+			],
+			114: [
+				0,
+				.43056,
+				.10764,
+				0,
+				.42166
+			],
+			115: [
+				0,
+				.43056,
+				.08208,
+				0,
+				.40889
+			],
+			116: [
+				0,
+				.61508,
+				.09486,
+				0,
+				.33222
+			],
+			117: [
+				0,
+				.43056,
+				.07671,
+				0,
+				.53666
+			],
+			118: [
+				0,
+				.43056,
+				.10764,
+				0,
+				.46
+			],
+			119: [
+				0,
+				.43056,
+				.10764,
+				0,
+				.66444
+			],
+			120: [
+				0,
+				.43056,
+				.12042,
+				0,
+				.46389
+			],
+			121: [
+				.19444,
+				.43056,
+				.08847,
+				0,
+				.48555
+			],
+			122: [
+				0,
+				.43056,
+				.12292,
+				0,
+				.40889
+			],
+			126: [
+				.35,
+				.31786,
+				.11585,
+				0,
+				.51111
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			168: [
+				0,
+				.66786,
+				.10474,
+				0,
+				.51111
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.83129
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.46
+			],
+			198: [
+				0,
+				.68333,
+				.12028,
+				0,
+				.88277
+			],
+			216: [
+				.04861,
+				.73194,
+				.09403,
+				0,
+				.76666
+			],
+			223: [
+				.19444,
+				.69444,
+				.10514,
+				0,
+				.53666
+			],
+			230: [
+				0,
+				.43056,
+				.07514,
+				0,
+				.71555
+			],
+			248: [
+				.09722,
+				.52778,
+				.09194,
+				0,
+				.51111
+			],
+			338: [
+				0,
+				.68333,
+				.12028,
+				0,
+				.98499
+			],
+			339: [
+				0,
+				.43056,
+				.07514,
+				0,
+				.71555
+			],
+			710: [
+				0,
+				.69444,
+				.06646,
+				0,
+				.51111
+			],
+			711: [
+				0,
+				.62847,
+				.08295,
+				0,
+				.51111
+			],
+			713: [
+				0,
+				.56167,
+				.10333,
+				0,
+				.51111
+			],
+			714: [
+				0,
+				.69444,
+				.09694,
+				0,
+				.51111
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.51111
+			],
+			728: [
+				0,
+				.69444,
+				.10806,
+				0,
+				.51111
+			],
+			729: [
+				0,
+				.66786,
+				.11752,
+				0,
+				.30667
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.83129
+			],
+			732: [
+				0,
+				.66786,
+				.11585,
+				0,
+				.51111
+			],
+			733: [
+				0,
+				.69444,
+				.1225,
+				0,
+				.51111
+			],
+			915: [
+				0,
+				.68333,
+				.13305,
+				0,
+				.62722
+			],
+			916: [
+				0,
+				.68333,
+				0,
+				0,
+				.81777
+			],
+			920: [
+				0,
+				.68333,
+				.09403,
+				0,
+				.76666
+			],
+			923: [
+				0,
+				.68333,
+				0,
+				0,
+				.69222
+			],
+			926: [
+				0,
+				.68333,
+				.15294,
+				0,
+				.66444
+			],
+			928: [
+				0,
+				.68333,
+				.16389,
+				0,
+				.74333
+			],
+			931: [
+				0,
+				.68333,
+				.12028,
+				0,
+				.71555
+			],
+			933: [
+				0,
+				.68333,
+				.11111,
+				0,
+				.76666
+			],
+			934: [
+				0,
+				.68333,
+				.05986,
+				0,
+				.71555
+			],
+			936: [
+				0,
+				.68333,
+				.11111,
+				0,
+				.76666
+			],
+			937: [
+				0,
+				.68333,
+				.10257,
+				0,
+				.71555
+			],
+			8211: [
+				0,
+				.43056,
+				.09208,
+				0,
+				.51111
+			],
+			8212: [
+				0,
+				.43056,
+				.09208,
+				0,
+				1.02222
+			],
+			8216: [
+				0,
+				.69444,
+				.12417,
+				0,
+				.30667
+			],
+			8217: [
+				0,
+				.69444,
+				.12417,
+				0,
+				.30667
+			],
+			8220: [
+				0,
+				.69444,
+				.1685,
+				0,
+				.51444
+			],
+			8221: [
+				0,
+				.69444,
+				.06961,
+				0,
+				.51444
+			],
+			8463: [
+				0,
+				.68889,
+				0,
+				0,
+				.54028
+			]
+		},
+		"Main-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			34: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			35: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.83334
+			],
+			36: [
+				.05556,
+				.75,
+				0,
+				0,
+				.5
+			],
+			37: [
+				.05556,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			38: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			39: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			40: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			41: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			42: [
+				0,
+				.75,
+				0,
+				0,
+				.5
+			],
+			43: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			44: [
+				.19444,
+				.10556,
+				0,
+				0,
+				.27778
+			],
+			45: [
+				0,
+				.43056,
+				0,
+				0,
+				.33333
+			],
+			46: [
+				0,
+				.10556,
+				0,
+				0,
+				.27778
+			],
+			47: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			48: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			49: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			50: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			51: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			52: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			53: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			54: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			55: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			56: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			57: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			58: [
+				0,
+				.43056,
+				0,
+				0,
+				.27778
+			],
+			59: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.27778
+			],
+			60: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			61: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				.77778
+			],
+			62: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			63: [
+				0,
+				.69444,
+				0,
+				0,
+				.47222
+			],
+			64: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			65: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			66: [
+				0,
+				.68333,
+				0,
+				0,
+				.70834
+			],
+			67: [
+				0,
+				.68333,
+				0,
+				0,
+				.72222
+			],
+			68: [
+				0,
+				.68333,
+				0,
+				0,
+				.76389
+			],
+			69: [
+				0,
+				.68333,
+				0,
+				0,
+				.68056
+			],
+			70: [
+				0,
+				.68333,
+				0,
+				0,
+				.65278
+			],
+			71: [
+				0,
+				.68333,
+				0,
+				0,
+				.78472
+			],
+			72: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			73: [
+				0,
+				.68333,
+				0,
+				0,
+				.36111
+			],
+			74: [
+				0,
+				.68333,
+				0,
+				0,
+				.51389
+			],
+			75: [
+				0,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			76: [
+				0,
+				.68333,
+				0,
+				0,
+				.625
+			],
+			77: [
+				0,
+				.68333,
+				0,
+				0,
+				.91667
+			],
+			78: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			79: [
+				0,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			80: [
+				0,
+				.68333,
+				0,
+				0,
+				.68056
+			],
+			81: [
+				.19444,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			82: [
+				0,
+				.68333,
+				0,
+				0,
+				.73611
+			],
+			83: [
+				0,
+				.68333,
+				0,
+				0,
+				.55556
+			],
+			84: [
+				0,
+				.68333,
+				0,
+				0,
+				.72222
+			],
+			85: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			86: [
+				0,
+				.68333,
+				.01389,
+				0,
+				.75
+			],
+			87: [
+				0,
+				.68333,
+				.01389,
+				0,
+				1.02778
+			],
+			88: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			89: [
+				0,
+				.68333,
+				.025,
+				0,
+				.75
+			],
+			90: [
+				0,
+				.68333,
+				0,
+				0,
+				.61111
+			],
+			91: [
+				.25,
+				.75,
+				0,
+				0,
+				.27778
+			],
+			92: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			93: [
+				.25,
+				.75,
+				0,
+				0,
+				.27778
+			],
+			94: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			95: [
+				.31,
+				.12056,
+				.02778,
+				0,
+				.5
+			],
+			97: [
+				0,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			99: [
+				0,
+				.43056,
+				0,
+				0,
+				.44445
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			101: [
+				0,
+				.43056,
+				0,
+				0,
+				.44445
+			],
+			102: [
+				0,
+				.69444,
+				.07778,
+				0,
+				.30556
+			],
+			103: [
+				.19444,
+				.43056,
+				.01389,
+				0,
+				.5
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			105: [
+				0,
+				.66786,
+				0,
+				0,
+				.27778
+			],
+			106: [
+				.19444,
+				.66786,
+				0,
+				0,
+				.30556
+			],
+			107: [
+				0,
+				.69444,
+				0,
+				0,
+				.52778
+			],
+			108: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			109: [
+				0,
+				.43056,
+				0,
+				0,
+				.83334
+			],
+			110: [
+				0,
+				.43056,
+				0,
+				0,
+				.55556
+			],
+			111: [
+				0,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			112: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.55556
+			],
+			113: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.52778
+			],
+			114: [
+				0,
+				.43056,
+				0,
+				0,
+				.39167
+			],
+			115: [
+				0,
+				.43056,
+				0,
+				0,
+				.39445
+			],
+			116: [
+				0,
+				.61508,
+				0,
+				0,
+				.38889
+			],
+			117: [
+				0,
+				.43056,
+				0,
+				0,
+				.55556
+			],
+			118: [
+				0,
+				.43056,
+				.01389,
+				0,
+				.52778
+			],
+			119: [
+				0,
+				.43056,
+				.01389,
+				0,
+				.72222
+			],
+			120: [
+				0,
+				.43056,
+				0,
+				0,
+				.52778
+			],
+			121: [
+				.19444,
+				.43056,
+				.01389,
+				0,
+				.52778
+			],
+			122: [
+				0,
+				.43056,
+				0,
+				0,
+				.44445
+			],
+			123: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			124: [
+				.25,
+				.75,
+				0,
+				0,
+				.27778
+			],
+			125: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			126: [
+				.35,
+				.31786,
+				0,
+				0,
+				.5
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			163: [
+				0,
+				.69444,
+				0,
+				0,
+				.76909
+			],
+			167: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.44445
+			],
+			168: [
+				0,
+				.66786,
+				0,
+				0,
+				.5
+			],
+			172: [
+				0,
+				.43056,
+				0,
+				0,
+				.66667
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.75
+			],
+			177: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			182: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.44445
+			],
+			198: [
+				0,
+				.68333,
+				0,
+				0,
+				.90278
+			],
+			215: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			216: [
+				.04861,
+				.73194,
+				0,
+				0,
+				.77778
+			],
+			223: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			230: [
+				0,
+				.43056,
+				0,
+				0,
+				.72222
+			],
+			247: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			248: [
+				.09722,
+				.52778,
+				0,
+				0,
+				.5
+			],
+			305: [
+				0,
+				.43056,
+				0,
+				0,
+				.27778
+			],
+			338: [
+				0,
+				.68333,
+				0,
+				0,
+				1.01389
+			],
+			339: [
+				0,
+				.43056,
+				0,
+				0,
+				.77778
+			],
+			567: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.30556
+			],
+			710: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			711: [
+				0,
+				.62847,
+				0,
+				0,
+				.5
+			],
+			713: [
+				0,
+				.56778,
+				0,
+				0,
+				.5
+			],
+			714: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			728: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			729: [
+				0,
+				.66786,
+				0,
+				0,
+				.27778
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.75
+			],
+			732: [
+				0,
+				.66786,
+				0,
+				0,
+				.5
+			],
+			733: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			915: [
+				0,
+				.68333,
+				0,
+				0,
+				.625
+			],
+			916: [
+				0,
+				.68333,
+				0,
+				0,
+				.83334
+			],
+			920: [
+				0,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			923: [
+				0,
+				.68333,
+				0,
+				0,
+				.69445
+			],
+			926: [
+				0,
+				.68333,
+				0,
+				0,
+				.66667
+			],
+			928: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			931: [
+				0,
+				.68333,
+				0,
+				0,
+				.72222
+			],
+			933: [
+				0,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			934: [
+				0,
+				.68333,
+				0,
+				0,
+				.72222
+			],
+			936: [
+				0,
+				.68333,
+				0,
+				0,
+				.77778
+			],
+			937: [
+				0,
+				.68333,
+				0,
+				0,
+				.72222
+			],
+			8211: [
+				0,
+				.43056,
+				.02778,
+				0,
+				.5
+			],
+			8212: [
+				0,
+				.43056,
+				.02778,
+				0,
+				1
+			],
+			8216: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			8217: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			8220: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			8221: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			8224: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.44445
+			],
+			8225: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.44445
+			],
+			8230: [
+				0,
+				.123,
+				0,
+				0,
+				1.172
+			],
+			8242: [
+				0,
+				.55556,
+				0,
+				0,
+				.275
+			],
+			8407: [
+				0,
+				.71444,
+				.15382,
+				0,
+				.5
+			],
+			8463: [
+				0,
+				.68889,
+				0,
+				0,
+				.54028
+			],
+			8465: [
+				0,
+				.69444,
+				0,
+				0,
+				.72222
+			],
+			8467: [
+				0,
+				.69444,
+				0,
+				.11111,
+				.41667
+			],
+			8472: [
+				.19444,
+				.43056,
+				0,
+				.11111,
+				.63646
+			],
+			8476: [
+				0,
+				.69444,
+				0,
+				0,
+				.72222
+			],
+			8501: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			8592: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8593: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			8594: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8595: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			8596: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8597: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			8598: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1
+			],
+			8599: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1
+			],
+			8600: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1
+			],
+			8601: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1
+			],
+			8614: [
+				.011,
+				.511,
+				0,
+				0,
+				1
+			],
+			8617: [
+				.011,
+				.511,
+				0,
+				0,
+				1.126
+			],
+			8618: [
+				.011,
+				.511,
+				0,
+				0,
+				1.126
+			],
+			8636: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8637: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8640: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8641: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8652: [
+				.011,
+				.671,
+				0,
+				0,
+				1
+			],
+			8656: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8657: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			8658: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8659: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			8660: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				1
+			],
+			8661: [
+				.25,
+				.75,
+				0,
+				0,
+				.61111
+			],
+			8704: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			8706: [
+				0,
+				.69444,
+				.05556,
+				.08334,
+				.5309
+			],
+			8707: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			8709: [
+				.05556,
+				.75,
+				0,
+				0,
+				.5
+			],
+			8711: [
+				0,
+				.68333,
+				0,
+				0,
+				.83334
+			],
+			8712: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.66667
+			],
+			8715: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.66667
+			],
+			8722: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8723: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8725: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			8726: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			8727: [
+				-.03472,
+				.46528,
+				0,
+				0,
+				.5
+			],
+			8728: [
+				-.05555,
+				.44445,
+				0,
+				0,
+				.5
+			],
+			8729: [
+				-.05555,
+				.44445,
+				0,
+				0,
+				.5
+			],
+			8730: [
+				.2,
+				.8,
+				0,
+				0,
+				.83334
+			],
+			8733: [
+				0,
+				.43056,
+				0,
+				0,
+				.77778
+			],
+			8734: [
+				0,
+				.43056,
+				0,
+				0,
+				1
+			],
+			8736: [
+				0,
+				.69224,
+				0,
+				0,
+				.72222
+			],
+			8739: [
+				.25,
+				.75,
+				0,
+				0,
+				.27778
+			],
+			8741: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			8743: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8744: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8745: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8746: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8747: [
+				.19444,
+				.69444,
+				.11111,
+				0,
+				.41667
+			],
+			8764: [
+				-.13313,
+				.36687,
+				0,
+				0,
+				.77778
+			],
+			8768: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			8771: [
+				-.03625,
+				.46375,
+				0,
+				0,
+				.77778
+			],
+			8773: [
+				-.022,
+				.589,
+				0,
+				0,
+				.778
+			],
+			8776: [
+				-.01688,
+				.48312,
+				0,
+				0,
+				.77778
+			],
+			8781: [
+				-.03625,
+				.46375,
+				0,
+				0,
+				.77778
+			],
+			8784: [
+				-.133,
+				.673,
+				0,
+				0,
+				.778
+			],
+			8801: [
+				-.03625,
+				.46375,
+				0,
+				0,
+				.77778
+			],
+			8804: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8805: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8810: [
+				.0391,
+				.5391,
+				0,
+				0,
+				1
+			],
+			8811: [
+				.0391,
+				.5391,
+				0,
+				0,
+				1
+			],
+			8826: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8827: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8834: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8835: [
+				.0391,
+				.5391,
+				0,
+				0,
+				.77778
+			],
+			8838: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8839: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8846: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8849: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8850: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			8851: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8852: [
+				0,
+				.55556,
+				0,
+				0,
+				.66667
+			],
+			8853: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8854: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8855: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8856: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8857: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			8866: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			8867: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			8868: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			8869: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			8872: [
+				.249,
+				.75,
+				0,
+				0,
+				.867
+			],
+			8900: [
+				-.05555,
+				.44445,
+				0,
+				0,
+				.5
+			],
+			8901: [
+				-.05555,
+				.44445,
+				0,
+				0,
+				.27778
+			],
+			8902: [
+				-.03472,
+				.46528,
+				0,
+				0,
+				.5
+			],
+			8904: [
+				.005,
+				.505,
+				0,
+				0,
+				.9
+			],
+			8942: [
+				.03,
+				.903,
+				0,
+				0,
+				.278
+			],
+			8943: [
+				-.19,
+				.313,
+				0,
+				0,
+				1.172
+			],
+			8945: [
+				-.1,
+				.823,
+				0,
+				0,
+				1.282
+			],
+			8968: [
+				.25,
+				.75,
+				0,
+				0,
+				.44445
+			],
+			8969: [
+				.25,
+				.75,
+				0,
+				0,
+				.44445
+			],
+			8970: [
+				.25,
+				.75,
+				0,
+				0,
+				.44445
+			],
+			8971: [
+				.25,
+				.75,
+				0,
+				0,
+				.44445
+			],
+			8994: [
+				-.14236,
+				.35764,
+				0,
+				0,
+				1
+			],
+			8995: [
+				-.14236,
+				.35764,
+				0,
+				0,
+				1
+			],
+			9136: [
+				.244,
+				.744,
+				0,
+				0,
+				.412
+			],
+			9137: [
+				.244,
+				.745,
+				0,
+				0,
+				.412
+			],
+			9651: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.88889
+			],
+			9657: [
+				-.03472,
+				.46528,
+				0,
+				0,
+				.5
+			],
+			9661: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.88889
+			],
+			9667: [
+				-.03472,
+				.46528,
+				0,
+				0,
+				.5
+			],
+			9711: [
+				.19444,
+				.69444,
+				0,
+				0,
+				1
+			],
+			9824: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			9825: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			9826: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			9827: [
+				.12963,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			9837: [
+				0,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			9838: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.38889
+			],
+			9839: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.38889
+			],
+			10216: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			10217: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			10222: [
+				.244,
+				.744,
+				0,
+				0,
+				.412
+			],
+			10223: [
+				.244,
+				.745,
+				0,
+				0,
+				.412
+			],
+			10229: [
+				.011,
+				.511,
+				0,
+				0,
+				1.609
+			],
+			10230: [
+				.011,
+				.511,
+				0,
+				0,
+				1.638
+			],
+			10231: [
+				.011,
+				.511,
+				0,
+				0,
+				1.859
+			],
+			10232: [
+				.024,
+				.525,
+				0,
+				0,
+				1.609
+			],
+			10233: [
+				.024,
+				.525,
+				0,
+				0,
+				1.638
+			],
+			10234: [
+				.024,
+				.525,
+				0,
+				0,
+				1.858
+			],
+			10236: [
+				.011,
+				.511,
+				0,
+				0,
+				1.638
+			],
+			10815: [
+				0,
+				.68333,
+				0,
+				0,
+				.75
+			],
+			10927: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			10928: [
+				.13597,
+				.63597,
+				0,
+				0,
+				.77778
+			],
+			57376: [
+				.19444,
+				.69444,
+				0,
+				0,
+				0
+			]
+		},
+		"Math-BoldItalic": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			48: [
+				0,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			49: [
+				0,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			50: [
+				0,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			51: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			52: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			53: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			54: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			55: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			56: [
+				0,
+				.64444,
+				0,
+				0,
+				.575
+			],
+			57: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.575
+			],
+			65: [
+				0,
+				.68611,
+				0,
+				0,
+				.86944
+			],
+			66: [
+				0,
+				.68611,
+				.04835,
+				0,
+				.8664
+			],
+			67: [
+				0,
+				.68611,
+				.06979,
+				0,
+				.81694
+			],
+			68: [
+				0,
+				.68611,
+				.03194,
+				0,
+				.93812
+			],
+			69: [
+				0,
+				.68611,
+				.05451,
+				0,
+				.81007
+			],
+			70: [
+				0,
+				.68611,
+				.15972,
+				0,
+				.68889
+			],
+			71: [
+				0,
+				.68611,
+				0,
+				0,
+				.88673
+			],
+			72: [
+				0,
+				.68611,
+				.08229,
+				0,
+				.98229
+			],
+			73: [
+				0,
+				.68611,
+				.07778,
+				0,
+				.51111
+			],
+			74: [
+				0,
+				.68611,
+				.10069,
+				0,
+				.63125
+			],
+			75: [
+				0,
+				.68611,
+				.06979,
+				0,
+				.97118
+			],
+			76: [
+				0,
+				.68611,
+				0,
+				0,
+				.75555
+			],
+			77: [
+				0,
+				.68611,
+				.11424,
+				0,
+				1.14201
+			],
+			78: [
+				0,
+				.68611,
+				.11424,
+				0,
+				.95034
+			],
+			79: [
+				0,
+				.68611,
+				.03194,
+				0,
+				.83666
+			],
+			80: [
+				0,
+				.68611,
+				.15972,
+				0,
+				.72309
+			],
+			81: [
+				.19444,
+				.68611,
+				0,
+				0,
+				.86861
+			],
+			82: [
+				0,
+				.68611,
+				.00421,
+				0,
+				.87235
+			],
+			83: [
+				0,
+				.68611,
+				.05382,
+				0,
+				.69271
+			],
+			84: [
+				0,
+				.68611,
+				.15972,
+				0,
+				.63663
+			],
+			85: [
+				0,
+				.68611,
+				.11424,
+				0,
+				.80027
+			],
+			86: [
+				0,
+				.68611,
+				.25555,
+				0,
+				.67778
+			],
+			87: [
+				0,
+				.68611,
+				.15972,
+				0,
+				1.09305
+			],
+			88: [
+				0,
+				.68611,
+				.07778,
+				0,
+				.94722
+			],
+			89: [
+				0,
+				.68611,
+				.25555,
+				0,
+				.67458
+			],
+			90: [
+				0,
+				.68611,
+				.06979,
+				0,
+				.77257
+			],
+			97: [
+				0,
+				.44444,
+				0,
+				0,
+				.63287
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.52083
+			],
+			99: [
+				0,
+				.44444,
+				0,
+				0,
+				.51342
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				0,
+				.60972
+			],
+			101: [
+				0,
+				.44444,
+				0,
+				0,
+				.55361
+			],
+			102: [
+				.19444,
+				.69444,
+				.11042,
+				0,
+				.56806
+			],
+			103: [
+				.19444,
+				.44444,
+				.03704,
+				0,
+				.5449
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.66759
+			],
+			105: [
+				0,
+				.69326,
+				0,
+				0,
+				.4048
+			],
+			106: [
+				.19444,
+				.69326,
+				.0622,
+				0,
+				.47083
+			],
+			107: [
+				0,
+				.69444,
+				.01852,
+				0,
+				.6037
+			],
+			108: [
+				0,
+				.69444,
+				.0088,
+				0,
+				.34815
+			],
+			109: [
+				0,
+				.44444,
+				0,
+				0,
+				1.0324
+			],
+			110: [
+				0,
+				.44444,
+				0,
+				0,
+				.71296
+			],
+			111: [
+				0,
+				.44444,
+				0,
+				0,
+				.58472
+			],
+			112: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.60092
+			],
+			113: [
+				.19444,
+				.44444,
+				.03704,
+				0,
+				.54213
+			],
+			114: [
+				0,
+				.44444,
+				.03194,
+				0,
+				.5287
+			],
+			115: [
+				0,
+				.44444,
+				0,
+				0,
+				.53125
+			],
+			116: [
+				0,
+				.63492,
+				0,
+				0,
+				.41528
+			],
+			117: [
+				0,
+				.44444,
+				0,
+				0,
+				.68102
+			],
+			118: [
+				0,
+				.44444,
+				.03704,
+				0,
+				.56666
+			],
+			119: [
+				0,
+				.44444,
+				.02778,
+				0,
+				.83148
+			],
+			120: [
+				0,
+				.44444,
+				0,
+				0,
+				.65903
+			],
+			121: [
+				.19444,
+				.44444,
+				.03704,
+				0,
+				.59028
+			],
+			122: [
+				0,
+				.44444,
+				.04213,
+				0,
+				.55509
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			915: [
+				0,
+				.68611,
+				.15972,
+				0,
+				.65694
+			],
+			916: [
+				0,
+				.68611,
+				0,
+				0,
+				.95833
+			],
+			920: [
+				0,
+				.68611,
+				.03194,
+				0,
+				.86722
+			],
+			923: [
+				0,
+				.68611,
+				0,
+				0,
+				.80555
+			],
+			926: [
+				0,
+				.68611,
+				.07458,
+				0,
+				.84125
+			],
+			928: [
+				0,
+				.68611,
+				.08229,
+				0,
+				.98229
+			],
+			931: [
+				0,
+				.68611,
+				.05451,
+				0,
+				.88507
+			],
+			933: [
+				0,
+				.68611,
+				.15972,
+				0,
+				.67083
+			],
+			934: [
+				0,
+				.68611,
+				0,
+				0,
+				.76666
+			],
+			936: [
+				0,
+				.68611,
+				.11653,
+				0,
+				.71402
+			],
+			937: [
+				0,
+				.68611,
+				.04835,
+				0,
+				.8789
+			],
+			945: [
+				0,
+				.44444,
+				0,
+				0,
+				.76064
+			],
+			946: [
+				.19444,
+				.69444,
+				.03403,
+				0,
+				.65972
+			],
+			947: [
+				.19444,
+				.44444,
+				.06389,
+				0,
+				.59003
+			],
+			948: [
+				0,
+				.69444,
+				.03819,
+				0,
+				.52222
+			],
+			949: [
+				0,
+				.44444,
+				0,
+				0,
+				.52882
+			],
+			950: [
+				.19444,
+				.69444,
+				.06215,
+				0,
+				.50833
+			],
+			951: [
+				.19444,
+				.44444,
+				.03704,
+				0,
+				.6
+			],
+			952: [
+				0,
+				.69444,
+				.03194,
+				0,
+				.5618
+			],
+			953: [
+				0,
+				.44444,
+				0,
+				0,
+				.41204
+			],
+			954: [
+				0,
+				.44444,
+				0,
+				0,
+				.66759
+			],
+			955: [
+				0,
+				.69444,
+				0,
+				0,
+				.67083
+			],
+			956: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.70787
+			],
+			957: [
+				0,
+				.44444,
+				.06898,
+				0,
+				.57685
+			],
+			958: [
+				.19444,
+				.69444,
+				.03021,
+				0,
+				.50833
+			],
+			959: [
+				0,
+				.44444,
+				0,
+				0,
+				.58472
+			],
+			960: [
+				0,
+				.44444,
+				.03704,
+				0,
+				.68241
+			],
+			961: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.6118
+			],
+			962: [
+				.09722,
+				.44444,
+				.07917,
+				0,
+				.42361
+			],
+			963: [
+				0,
+				.44444,
+				.03704,
+				0,
+				.68588
+			],
+			964: [
+				0,
+				.44444,
+				.13472,
+				0,
+				.52083
+			],
+			965: [
+				0,
+				.44444,
+				.03704,
+				0,
+				.63055
+			],
+			966: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.74722
+			],
+			967: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.71805
+			],
+			968: [
+				.19444,
+				.69444,
+				.03704,
+				0,
+				.75833
+			],
+			969: [
+				0,
+				.44444,
+				.03704,
+				0,
+				.71782
+			],
+			977: [
+				0,
+				.69444,
+				0,
+				0,
+				.69155
+			],
+			981: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.7125
+			],
+			982: [
+				0,
+				.44444,
+				.03194,
+				0,
+				.975
+			],
+			1009: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.6118
+			],
+			1013: [
+				0,
+				.44444,
+				0,
+				0,
+				.48333
+			],
+			57649: [
+				0,
+				.44444,
+				0,
+				0,
+				.39352
+			],
+			57911: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.43889
+			]
+		},
+		"Math-Italic": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			48: [
+				0,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			49: [
+				0,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			50: [
+				0,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			51: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			52: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			53: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			54: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			55: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			56: [
+				0,
+				.64444,
+				0,
+				0,
+				.5
+			],
+			57: [
+				.19444,
+				.43056,
+				0,
+				0,
+				.5
+			],
+			65: [
+				0,
+				.68333,
+				0,
+				.13889,
+				.75
+			],
+			66: [
+				0,
+				.68333,
+				.05017,
+				.08334,
+				.75851
+			],
+			67: [
+				0,
+				.68333,
+				.07153,
+				.08334,
+				.71472
+			],
+			68: [
+				0,
+				.68333,
+				.02778,
+				.05556,
+				.82792
+			],
+			69: [
+				0,
+				.68333,
+				.05764,
+				.08334,
+				.7382
+			],
+			70: [
+				0,
+				.68333,
+				.13889,
+				.08334,
+				.64306
+			],
+			71: [
+				0,
+				.68333,
+				0,
+				.08334,
+				.78625
+			],
+			72: [
+				0,
+				.68333,
+				.08125,
+				.05556,
+				.83125
+			],
+			73: [
+				0,
+				.68333,
+				.07847,
+				.11111,
+				.43958
+			],
+			74: [
+				0,
+				.68333,
+				.09618,
+				.16667,
+				.55451
+			],
+			75: [
+				0,
+				.68333,
+				.07153,
+				.05556,
+				.84931
+			],
+			76: [
+				0,
+				.68333,
+				0,
+				.02778,
+				.68056
+			],
+			77: [
+				0,
+				.68333,
+				.10903,
+				.08334,
+				.97014
+			],
+			78: [
+				0,
+				.68333,
+				.10903,
+				.08334,
+				.80347
+			],
+			79: [
+				0,
+				.68333,
+				.02778,
+				.08334,
+				.76278
+			],
+			80: [
+				0,
+				.68333,
+				.13889,
+				.08334,
+				.64201
+			],
+			81: [
+				.19444,
+				.68333,
+				0,
+				.08334,
+				.79056
+			],
+			82: [
+				0,
+				.68333,
+				.00773,
+				.08334,
+				.75929
+			],
+			83: [
+				0,
+				.68333,
+				.05764,
+				.08334,
+				.6132
+			],
+			84: [
+				0,
+				.68333,
+				.13889,
+				.08334,
+				.58438
+			],
+			85: [
+				0,
+				.68333,
+				.10903,
+				.02778,
+				.68278
+			],
+			86: [
+				0,
+				.68333,
+				.22222,
+				0,
+				.58333
+			],
+			87: [
+				0,
+				.68333,
+				.13889,
+				0,
+				.94445
+			],
+			88: [
+				0,
+				.68333,
+				.07847,
+				.08334,
+				.82847
+			],
+			89: [
+				0,
+				.68333,
+				.22222,
+				0,
+				.58056
+			],
+			90: [
+				0,
+				.68333,
+				.07153,
+				.08334,
+				.68264
+			],
+			97: [
+				0,
+				.43056,
+				0,
+				0,
+				.52859
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.42917
+			],
+			99: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.43276
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				.16667,
+				.52049
+			],
+			101: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.46563
+			],
+			102: [
+				.19444,
+				.69444,
+				.10764,
+				.16667,
+				.48959
+			],
+			103: [
+				.19444,
+				.43056,
+				.03588,
+				.02778,
+				.47697
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.57616
+			],
+			105: [
+				0,
+				.65952,
+				0,
+				0,
+				.34451
+			],
+			106: [
+				.19444,
+				.65952,
+				.05724,
+				0,
+				.41181
+			],
+			107: [
+				0,
+				.69444,
+				.03148,
+				0,
+				.5206
+			],
+			108: [
+				0,
+				.69444,
+				.01968,
+				.08334,
+				.29838
+			],
+			109: [
+				0,
+				.43056,
+				0,
+				0,
+				.87801
+			],
+			110: [
+				0,
+				.43056,
+				0,
+				0,
+				.60023
+			],
+			111: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.48472
+			],
+			112: [
+				.19444,
+				.43056,
+				0,
+				.08334,
+				.50313
+			],
+			113: [
+				.19444,
+				.43056,
+				.03588,
+				.08334,
+				.44641
+			],
+			114: [
+				0,
+				.43056,
+				.02778,
+				.05556,
+				.45116
+			],
+			115: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.46875
+			],
+			116: [
+				0,
+				.61508,
+				0,
+				.08334,
+				.36111
+			],
+			117: [
+				0,
+				.43056,
+				0,
+				.02778,
+				.57246
+			],
+			118: [
+				0,
+				.43056,
+				.03588,
+				.02778,
+				.48472
+			],
+			119: [
+				0,
+				.43056,
+				.02691,
+				.08334,
+				.71592
+			],
+			120: [
+				0,
+				.43056,
+				0,
+				.02778,
+				.57153
+			],
+			121: [
+				.19444,
+				.43056,
+				.03588,
+				.05556,
+				.49028
+			],
+			122: [
+				0,
+				.43056,
+				.04398,
+				.05556,
+				.46505
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			915: [
+				0,
+				.68333,
+				.13889,
+				.08334,
+				.61528
+			],
+			916: [
+				0,
+				.68333,
+				0,
+				.16667,
+				.83334
+			],
+			920: [
+				0,
+				.68333,
+				.02778,
+				.08334,
+				.76278
+			],
+			923: [
+				0,
+				.68333,
+				0,
+				.16667,
+				.69445
+			],
+			926: [
+				0,
+				.68333,
+				.07569,
+				.08334,
+				.74236
+			],
+			928: [
+				0,
+				.68333,
+				.08125,
+				.05556,
+				.83125
+			],
+			931: [
+				0,
+				.68333,
+				.05764,
+				.08334,
+				.77986
+			],
+			933: [
+				0,
+				.68333,
+				.13889,
+				.05556,
+				.58333
+			],
+			934: [
+				0,
+				.68333,
+				0,
+				.08334,
+				.66667
+			],
+			936: [
+				0,
+				.68333,
+				.11,
+				.05556,
+				.61222
+			],
+			937: [
+				0,
+				.68333,
+				.05017,
+				.08334,
+				.7724
+			],
+			945: [
+				0,
+				.43056,
+				.0037,
+				.02778,
+				.6397
+			],
+			946: [
+				.19444,
+				.69444,
+				.05278,
+				.08334,
+				.56563
+			],
+			947: [
+				.19444,
+				.43056,
+				.05556,
+				0,
+				.51773
+			],
+			948: [
+				0,
+				.69444,
+				.03785,
+				.05556,
+				.44444
+			],
+			949: [
+				0,
+				.43056,
+				0,
+				.08334,
+				.46632
+			],
+			950: [
+				.19444,
+				.69444,
+				.07378,
+				.08334,
+				.4375
+			],
+			951: [
+				.19444,
+				.43056,
+				.03588,
+				.05556,
+				.49653
+			],
+			952: [
+				0,
+				.69444,
+				.02778,
+				.08334,
+				.46944
+			],
+			953: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.35394
+			],
+			954: [
+				0,
+				.43056,
+				0,
+				0,
+				.57616
+			],
+			955: [
+				0,
+				.69444,
+				0,
+				0,
+				.58334
+			],
+			956: [
+				.19444,
+				.43056,
+				0,
+				.02778,
+				.60255
+			],
+			957: [
+				0,
+				.43056,
+				.06366,
+				.02778,
+				.49398
+			],
+			958: [
+				.19444,
+				.69444,
+				.04601,
+				.11111,
+				.4375
+			],
+			959: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.48472
+			],
+			960: [
+				0,
+				.43056,
+				.03588,
+				0,
+				.57003
+			],
+			961: [
+				.19444,
+				.43056,
+				0,
+				.08334,
+				.51702
+			],
+			962: [
+				.09722,
+				.43056,
+				.07986,
+				.08334,
+				.36285
+			],
+			963: [
+				0,
+				.43056,
+				.03588,
+				0,
+				.57141
+			],
+			964: [
+				0,
+				.43056,
+				.1132,
+				.02778,
+				.43715
+			],
+			965: [
+				0,
+				.43056,
+				.03588,
+				.02778,
+				.54028
+			],
+			966: [
+				.19444,
+				.43056,
+				0,
+				.08334,
+				.65417
+			],
+			967: [
+				.19444,
+				.43056,
+				0,
+				.05556,
+				.62569
+			],
+			968: [
+				.19444,
+				.69444,
+				.03588,
+				.11111,
+				.65139
+			],
+			969: [
+				0,
+				.43056,
+				.03588,
+				0,
+				.62245
+			],
+			977: [
+				0,
+				.69444,
+				0,
+				.08334,
+				.59144
+			],
+			981: [
+				.19444,
+				.69444,
+				0,
+				.08334,
+				.59583
+			],
+			982: [
+				0,
+				.43056,
+				.02778,
+				0,
+				.82813
+			],
+			1009: [
+				.19444,
+				.43056,
+				0,
+				.08334,
+				.51702
+			],
+			1013: [
+				0,
+				.43056,
+				0,
+				.05556,
+				.4059
+			],
+			57649: [
+				0,
+				.43056,
+				0,
+				.02778,
+				.32246
+			],
+			57911: [
+				.19444,
+				.43056,
+				0,
+				.08334,
+				.38403
+			]
+		},
+		"SansSerif-Bold": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				0,
+				0,
+				.36667
+			],
+			34: [
+				0,
+				.69444,
+				0,
+				0,
+				.55834
+			],
+			35: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.91667
+			],
+			36: [
+				.05556,
+				.75,
+				0,
+				0,
+				.55
+			],
+			37: [
+				.05556,
+				.75,
+				0,
+				0,
+				1.02912
+			],
+			38: [
+				0,
+				.69444,
+				0,
+				0,
+				.83056
+			],
+			39: [
+				0,
+				.69444,
+				0,
+				0,
+				.30556
+			],
+			40: [
+				.25,
+				.75,
+				0,
+				0,
+				.42778
+			],
+			41: [
+				.25,
+				.75,
+				0,
+				0,
+				.42778
+			],
+			42: [
+				0,
+				.75,
+				0,
+				0,
+				.55
+			],
+			43: [
+				.11667,
+				.61667,
+				0,
+				0,
+				.85556
+			],
+			44: [
+				.10556,
+				.13056,
+				0,
+				0,
+				.30556
+			],
+			45: [
+				0,
+				.45833,
+				0,
+				0,
+				.36667
+			],
+			46: [
+				0,
+				.13056,
+				0,
+				0,
+				.30556
+			],
+			47: [
+				.25,
+				.75,
+				0,
+				0,
+				.55
+			],
+			48: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			49: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			50: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			51: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			52: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			53: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			54: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			55: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			56: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			57: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			58: [
+				0,
+				.45833,
+				0,
+				0,
+				.30556
+			],
+			59: [
+				.10556,
+				.45833,
+				0,
+				0,
+				.30556
+			],
+			61: [
+				-.09375,
+				.40625,
+				0,
+				0,
+				.85556
+			],
+			63: [
+				0,
+				.69444,
+				0,
+				0,
+				.51945
+			],
+			64: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			65: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			66: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			67: [
+				0,
+				.69444,
+				0,
+				0,
+				.70278
+			],
+			68: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			69: [
+				0,
+				.69444,
+				0,
+				0,
+				.64167
+			],
+			70: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			71: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			72: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			73: [
+				0,
+				.69444,
+				0,
+				0,
+				.33056
+			],
+			74: [
+				0,
+				.69444,
+				0,
+				0,
+				.51945
+			],
+			75: [
+				0,
+				.69444,
+				0,
+				0,
+				.76389
+			],
+			76: [
+				0,
+				.69444,
+				0,
+				0,
+				.58056
+			],
+			77: [
+				0,
+				.69444,
+				0,
+				0,
+				.97778
+			],
+			78: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			79: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			80: [
+				0,
+				.69444,
+				0,
+				0,
+				.70278
+			],
+			81: [
+				.10556,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			82: [
+				0,
+				.69444,
+				0,
+				0,
+				.70278
+			],
+			83: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			84: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			85: [
+				0,
+				.69444,
+				0,
+				0,
+				.76389
+			],
+			86: [
+				0,
+				.69444,
+				.01528,
+				0,
+				.73334
+			],
+			87: [
+				0,
+				.69444,
+				.01528,
+				0,
+				1.03889
+			],
+			88: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			89: [
+				0,
+				.69444,
+				.0275,
+				0,
+				.73334
+			],
+			90: [
+				0,
+				.69444,
+				0,
+				0,
+				.67223
+			],
+			91: [
+				.25,
+				.75,
+				0,
+				0,
+				.34306
+			],
+			93: [
+				.25,
+				.75,
+				0,
+				0,
+				.34306
+			],
+			94: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			95: [
+				.35,
+				.10833,
+				.03056,
+				0,
+				.55
+			],
+			97: [
+				0,
+				.45833,
+				0,
+				0,
+				.525
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.56111
+			],
+			99: [
+				0,
+				.45833,
+				0,
+				0,
+				.48889
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				0,
+				.56111
+			],
+			101: [
+				0,
+				.45833,
+				0,
+				0,
+				.51111
+			],
+			102: [
+				0,
+				.69444,
+				.07639,
+				0,
+				.33611
+			],
+			103: [
+				.19444,
+				.45833,
+				.01528,
+				0,
+				.55
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.56111
+			],
+			105: [
+				0,
+				.69444,
+				0,
+				0,
+				.25556
+			],
+			106: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.28611
+			],
+			107: [
+				0,
+				.69444,
+				0,
+				0,
+				.53056
+			],
+			108: [
+				0,
+				.69444,
+				0,
+				0,
+				.25556
+			],
+			109: [
+				0,
+				.45833,
+				0,
+				0,
+				.86667
+			],
+			110: [
+				0,
+				.45833,
+				0,
+				0,
+				.56111
+			],
+			111: [
+				0,
+				.45833,
+				0,
+				0,
+				.55
+			],
+			112: [
+				.19444,
+				.45833,
+				0,
+				0,
+				.56111
+			],
+			113: [
+				.19444,
+				.45833,
+				0,
+				0,
+				.56111
+			],
+			114: [
+				0,
+				.45833,
+				.01528,
+				0,
+				.37222
+			],
+			115: [
+				0,
+				.45833,
+				0,
+				0,
+				.42167
+			],
+			116: [
+				0,
+				.58929,
+				0,
+				0,
+				.40417
+			],
+			117: [
+				0,
+				.45833,
+				0,
+				0,
+				.56111
+			],
+			118: [
+				0,
+				.45833,
+				.01528,
+				0,
+				.5
+			],
+			119: [
+				0,
+				.45833,
+				.01528,
+				0,
+				.74445
+			],
+			120: [
+				0,
+				.45833,
+				0,
+				0,
+				.5
+			],
+			121: [
+				.19444,
+				.45833,
+				.01528,
+				0,
+				.5
+			],
+			122: [
+				0,
+				.45833,
+				0,
+				0,
+				.47639
+			],
+			126: [
+				.35,
+				.34444,
+				0,
+				0,
+				.55
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			168: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			180: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.48889
+			],
+			305: [
+				0,
+				.45833,
+				0,
+				0,
+				.25556
+			],
+			567: [
+				.19444,
+				.45833,
+				0,
+				0,
+				.28611
+			],
+			710: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			711: [
+				0,
+				.63542,
+				0,
+				0,
+				.55
+			],
+			713: [
+				0,
+				.63778,
+				0,
+				0,
+				.55
+			],
+			728: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			729: [
+				0,
+				.69444,
+				0,
+				0,
+				.30556
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			732: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			733: [
+				0,
+				.69444,
+				0,
+				0,
+				.55
+			],
+			915: [
+				0,
+				.69444,
+				0,
+				0,
+				.58056
+			],
+			916: [
+				0,
+				.69444,
+				0,
+				0,
+				.91667
+			],
+			920: [
+				0,
+				.69444,
+				0,
+				0,
+				.85556
+			],
+			923: [
+				0,
+				.69444,
+				0,
+				0,
+				.67223
+			],
+			926: [
+				0,
+				.69444,
+				0,
+				0,
+				.73334
+			],
+			928: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			931: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			933: [
+				0,
+				.69444,
+				0,
+				0,
+				.85556
+			],
+			934: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			936: [
+				0,
+				.69444,
+				0,
+				0,
+				.85556
+			],
+			937: [
+				0,
+				.69444,
+				0,
+				0,
+				.79445
+			],
+			8211: [
+				0,
+				.45833,
+				.03056,
+				0,
+				.55
+			],
+			8212: [
+				0,
+				.45833,
+				.03056,
+				0,
+				1.10001
+			],
+			8216: [
+				0,
+				.69444,
+				0,
+				0,
+				.30556
+			],
+			8217: [
+				0,
+				.69444,
+				0,
+				0,
+				.30556
+			],
+			8220: [
+				0,
+				.69444,
+				0,
+				0,
+				.55834
+			],
+			8221: [
+				0,
+				.69444,
+				0,
+				0,
+				.55834
+			]
+		},
+		"SansSerif-Italic": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				.05733,
+				0,
+				.31945
+			],
+			34: [
+				0,
+				.69444,
+				.00316,
+				0,
+				.5
+			],
+			35: [
+				.19444,
+				.69444,
+				.05087,
+				0,
+				.83334
+			],
+			36: [
+				.05556,
+				.75,
+				.11156,
+				0,
+				.5
+			],
+			37: [
+				.05556,
+				.75,
+				.03126,
+				0,
+				.83334
+			],
+			38: [
+				0,
+				.69444,
+				.03058,
+				0,
+				.75834
+			],
+			39: [
+				0,
+				.69444,
+				.07816,
+				0,
+				.27778
+			],
+			40: [
+				.25,
+				.75,
+				.13164,
+				0,
+				.38889
+			],
+			41: [
+				.25,
+				.75,
+				.02536,
+				0,
+				.38889
+			],
+			42: [
+				0,
+				.75,
+				.11775,
+				0,
+				.5
+			],
+			43: [
+				.08333,
+				.58333,
+				.02536,
+				0,
+				.77778
+			],
+			44: [
+				.125,
+				.08333,
+				0,
+				0,
+				.27778
+			],
+			45: [
+				0,
+				.44444,
+				.01946,
+				0,
+				.33333
+			],
+			46: [
+				0,
+				.08333,
+				0,
+				0,
+				.27778
+			],
+			47: [
+				.25,
+				.75,
+				.13164,
+				0,
+				.5
+			],
+			48: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			49: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			50: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			51: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			52: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			53: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			54: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			55: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			56: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			57: [
+				0,
+				.65556,
+				.11156,
+				0,
+				.5
+			],
+			58: [
+				0,
+				.44444,
+				.02502,
+				0,
+				.27778
+			],
+			59: [
+				.125,
+				.44444,
+				.02502,
+				0,
+				.27778
+			],
+			61: [
+				-.13,
+				.37,
+				.05087,
+				0,
+				.77778
+			],
+			63: [
+				0,
+				.69444,
+				.11809,
+				0,
+				.47222
+			],
+			64: [
+				0,
+				.69444,
+				.07555,
+				0,
+				.66667
+			],
+			65: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			66: [
+				0,
+				.69444,
+				.08293,
+				0,
+				.66667
+			],
+			67: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.63889
+			],
+			68: [
+				0,
+				.69444,
+				.07555,
+				0,
+				.72223
+			],
+			69: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.59722
+			],
+			70: [
+				0,
+				.69444,
+				.13372,
+				0,
+				.56945
+			],
+			71: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.66667
+			],
+			72: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.70834
+			],
+			73: [
+				0,
+				.69444,
+				.13372,
+				0,
+				.27778
+			],
+			74: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.47222
+			],
+			75: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.69445
+			],
+			76: [
+				0,
+				.69444,
+				0,
+				0,
+				.54167
+			],
+			77: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.875
+			],
+			78: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.70834
+			],
+			79: [
+				0,
+				.69444,
+				.07555,
+				0,
+				.73611
+			],
+			80: [
+				0,
+				.69444,
+				.08293,
+				0,
+				.63889
+			],
+			81: [
+				.125,
+				.69444,
+				.07555,
+				0,
+				.73611
+			],
+			82: [
+				0,
+				.69444,
+				.08293,
+				0,
+				.64584
+			],
+			83: [
+				0,
+				.69444,
+				.09205,
+				0,
+				.55556
+			],
+			84: [
+				0,
+				.69444,
+				.13372,
+				0,
+				.68056
+			],
+			85: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.6875
+			],
+			86: [
+				0,
+				.69444,
+				.1615,
+				0,
+				.66667
+			],
+			87: [
+				0,
+				.69444,
+				.1615,
+				0,
+				.94445
+			],
+			88: [
+				0,
+				.69444,
+				.13372,
+				0,
+				.66667
+			],
+			89: [
+				0,
+				.69444,
+				.17261,
+				0,
+				.66667
+			],
+			90: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.61111
+			],
+			91: [
+				.25,
+				.75,
+				.15942,
+				0,
+				.28889
+			],
+			93: [
+				.25,
+				.75,
+				.08719,
+				0,
+				.28889
+			],
+			94: [
+				0,
+				.69444,
+				.0799,
+				0,
+				.5
+			],
+			95: [
+				.35,
+				.09444,
+				.08616,
+				0,
+				.5
+			],
+			97: [
+				0,
+				.44444,
+				.00981,
+				0,
+				.48056
+			],
+			98: [
+				0,
+				.69444,
+				.03057,
+				0,
+				.51667
+			],
+			99: [
+				0,
+				.44444,
+				.08336,
+				0,
+				.44445
+			],
+			100: [
+				0,
+				.69444,
+				.09483,
+				0,
+				.51667
+			],
+			101: [
+				0,
+				.44444,
+				.06778,
+				0,
+				.44445
+			],
+			102: [
+				0,
+				.69444,
+				.21705,
+				0,
+				.30556
+			],
+			103: [
+				.19444,
+				.44444,
+				.10836,
+				0,
+				.5
+			],
+			104: [
+				0,
+				.69444,
+				.01778,
+				0,
+				.51667
+			],
+			105: [
+				0,
+				.67937,
+				.09718,
+				0,
+				.23889
+			],
+			106: [
+				.19444,
+				.67937,
+				.09162,
+				0,
+				.26667
+			],
+			107: [
+				0,
+				.69444,
+				.08336,
+				0,
+				.48889
+			],
+			108: [
+				0,
+				.69444,
+				.09483,
+				0,
+				.23889
+			],
+			109: [
+				0,
+				.44444,
+				.01778,
+				0,
+				.79445
+			],
+			110: [
+				0,
+				.44444,
+				.01778,
+				0,
+				.51667
+			],
+			111: [
+				0,
+				.44444,
+				.06613,
+				0,
+				.5
+			],
+			112: [
+				.19444,
+				.44444,
+				.0389,
+				0,
+				.51667
+			],
+			113: [
+				.19444,
+				.44444,
+				.04169,
+				0,
+				.51667
+			],
+			114: [
+				0,
+				.44444,
+				.10836,
+				0,
+				.34167
+			],
+			115: [
+				0,
+				.44444,
+				.0778,
+				0,
+				.38333
+			],
+			116: [
+				0,
+				.57143,
+				.07225,
+				0,
+				.36111
+			],
+			117: [
+				0,
+				.44444,
+				.04169,
+				0,
+				.51667
+			],
+			118: [
+				0,
+				.44444,
+				.10836,
+				0,
+				.46111
+			],
+			119: [
+				0,
+				.44444,
+				.10836,
+				0,
+				.68334
+			],
+			120: [
+				0,
+				.44444,
+				.09169,
+				0,
+				.46111
+			],
+			121: [
+				.19444,
+				.44444,
+				.10836,
+				0,
+				.46111
+			],
+			122: [
+				0,
+				.44444,
+				.08752,
+				0,
+				.43472
+			],
+			126: [
+				.35,
+				.32659,
+				.08826,
+				0,
+				.5
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			168: [
+				0,
+				.67937,
+				.06385,
+				0,
+				.5
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.73752
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.44445
+			],
+			305: [
+				0,
+				.44444,
+				.04169,
+				0,
+				.23889
+			],
+			567: [
+				.19444,
+				.44444,
+				.04169,
+				0,
+				.26667
+			],
+			710: [
+				0,
+				.69444,
+				.0799,
+				0,
+				.5
+			],
+			711: [
+				0,
+				.63194,
+				.08432,
+				0,
+				.5
+			],
+			713: [
+				0,
+				.60889,
+				.08776,
+				0,
+				.5
+			],
+			714: [
+				0,
+				.69444,
+				.09205,
+				0,
+				.5
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			728: [
+				0,
+				.69444,
+				.09483,
+				0,
+				.5
+			],
+			729: [
+				0,
+				.67937,
+				.07774,
+				0,
+				.27778
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.73752
+			],
+			732: [
+				0,
+				.67659,
+				.08826,
+				0,
+				.5
+			],
+			733: [
+				0,
+				.69444,
+				.09205,
+				0,
+				.5
+			],
+			915: [
+				0,
+				.69444,
+				.13372,
+				0,
+				.54167
+			],
+			916: [
+				0,
+				.69444,
+				0,
+				0,
+				.83334
+			],
+			920: [
+				0,
+				.69444,
+				.07555,
+				0,
+				.77778
+			],
+			923: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			926: [
+				0,
+				.69444,
+				.12816,
+				0,
+				.66667
+			],
+			928: [
+				0,
+				.69444,
+				.08094,
+				0,
+				.70834
+			],
+			931: [
+				0,
+				.69444,
+				.11983,
+				0,
+				.72222
+			],
+			933: [
+				0,
+				.69444,
+				.09031,
+				0,
+				.77778
+			],
+			934: [
+				0,
+				.69444,
+				.04603,
+				0,
+				.72222
+			],
+			936: [
+				0,
+				.69444,
+				.09031,
+				0,
+				.77778
+			],
+			937: [
+				0,
+				.69444,
+				.08293,
+				0,
+				.72222
+			],
+			8211: [
+				0,
+				.44444,
+				.08616,
+				0,
+				.5
+			],
+			8212: [
+				0,
+				.44444,
+				.08616,
+				0,
+				1
+			],
+			8216: [
+				0,
+				.69444,
+				.07816,
+				0,
+				.27778
+			],
+			8217: [
+				0,
+				.69444,
+				.07816,
+				0,
+				.27778
+			],
+			8220: [
+				0,
+				.69444,
+				.14205,
+				0,
+				.5
+			],
+			8221: [
+				0,
+				.69444,
+				.00316,
+				0,
+				.5
+			]
+		},
+		"SansSerif-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			33: [
+				0,
+				.69444,
+				0,
+				0,
+				.31945
+			],
+			34: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			35: [
+				.19444,
+				.69444,
+				0,
+				0,
+				.83334
+			],
+			36: [
+				.05556,
+				.75,
+				0,
+				0,
+				.5
+			],
+			37: [
+				.05556,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			38: [
+				0,
+				.69444,
+				0,
+				0,
+				.75834
+			],
+			39: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			40: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			41: [
+				.25,
+				.75,
+				0,
+				0,
+				.38889
+			],
+			42: [
+				0,
+				.75,
+				0,
+				0,
+				.5
+			],
+			43: [
+				.08333,
+				.58333,
+				0,
+				0,
+				.77778
+			],
+			44: [
+				.125,
+				.08333,
+				0,
+				0,
+				.27778
+			],
+			45: [
+				0,
+				.44444,
+				0,
+				0,
+				.33333
+			],
+			46: [
+				0,
+				.08333,
+				0,
+				0,
+				.27778
+			],
+			47: [
+				.25,
+				.75,
+				0,
+				0,
+				.5
+			],
+			48: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			49: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			50: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			51: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			52: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			53: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			54: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			55: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			56: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			57: [
+				0,
+				.65556,
+				0,
+				0,
+				.5
+			],
+			58: [
+				0,
+				.44444,
+				0,
+				0,
+				.27778
+			],
+			59: [
+				.125,
+				.44444,
+				0,
+				0,
+				.27778
+			],
+			61: [
+				-.13,
+				.37,
+				0,
+				0,
+				.77778
+			],
+			63: [
+				0,
+				.69444,
+				0,
+				0,
+				.47222
+			],
+			64: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			65: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			66: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			67: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			68: [
+				0,
+				.69444,
+				0,
+				0,
+				.72223
+			],
+			69: [
+				0,
+				.69444,
+				0,
+				0,
+				.59722
+			],
+			70: [
+				0,
+				.69444,
+				0,
+				0,
+				.56945
+			],
+			71: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			72: [
+				0,
+				.69444,
+				0,
+				0,
+				.70834
+			],
+			73: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			74: [
+				0,
+				.69444,
+				0,
+				0,
+				.47222
+			],
+			75: [
+				0,
+				.69444,
+				0,
+				0,
+				.69445
+			],
+			76: [
+				0,
+				.69444,
+				0,
+				0,
+				.54167
+			],
+			77: [
+				0,
+				.69444,
+				0,
+				0,
+				.875
+			],
+			78: [
+				0,
+				.69444,
+				0,
+				0,
+				.70834
+			],
+			79: [
+				0,
+				.69444,
+				0,
+				0,
+				.73611
+			],
+			80: [
+				0,
+				.69444,
+				0,
+				0,
+				.63889
+			],
+			81: [
+				.125,
+				.69444,
+				0,
+				0,
+				.73611
+			],
+			82: [
+				0,
+				.69444,
+				0,
+				0,
+				.64584
+			],
+			83: [
+				0,
+				.69444,
+				0,
+				0,
+				.55556
+			],
+			84: [
+				0,
+				.69444,
+				0,
+				0,
+				.68056
+			],
+			85: [
+				0,
+				.69444,
+				0,
+				0,
+				.6875
+			],
+			86: [
+				0,
+				.69444,
+				.01389,
+				0,
+				.66667
+			],
+			87: [
+				0,
+				.69444,
+				.01389,
+				0,
+				.94445
+			],
+			88: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			89: [
+				0,
+				.69444,
+				.025,
+				0,
+				.66667
+			],
+			90: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			91: [
+				.25,
+				.75,
+				0,
+				0,
+				.28889
+			],
+			93: [
+				.25,
+				.75,
+				0,
+				0,
+				.28889
+			],
+			94: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			95: [
+				.35,
+				.09444,
+				.02778,
+				0,
+				.5
+			],
+			97: [
+				0,
+				.44444,
+				0,
+				0,
+				.48056
+			],
+			98: [
+				0,
+				.69444,
+				0,
+				0,
+				.51667
+			],
+			99: [
+				0,
+				.44444,
+				0,
+				0,
+				.44445
+			],
+			100: [
+				0,
+				.69444,
+				0,
+				0,
+				.51667
+			],
+			101: [
+				0,
+				.44444,
+				0,
+				0,
+				.44445
+			],
+			102: [
+				0,
+				.69444,
+				.06944,
+				0,
+				.30556
+			],
+			103: [
+				.19444,
+				.44444,
+				.01389,
+				0,
+				.5
+			],
+			104: [
+				0,
+				.69444,
+				0,
+				0,
+				.51667
+			],
+			105: [
+				0,
+				.67937,
+				0,
+				0,
+				.23889
+			],
+			106: [
+				.19444,
+				.67937,
+				0,
+				0,
+				.26667
+			],
+			107: [
+				0,
+				.69444,
+				0,
+				0,
+				.48889
+			],
+			108: [
+				0,
+				.69444,
+				0,
+				0,
+				.23889
+			],
+			109: [
+				0,
+				.44444,
+				0,
+				0,
+				.79445
+			],
+			110: [
+				0,
+				.44444,
+				0,
+				0,
+				.51667
+			],
+			111: [
+				0,
+				.44444,
+				0,
+				0,
+				.5
+			],
+			112: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.51667
+			],
+			113: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.51667
+			],
+			114: [
+				0,
+				.44444,
+				.01389,
+				0,
+				.34167
+			],
+			115: [
+				0,
+				.44444,
+				0,
+				0,
+				.38333
+			],
+			116: [
+				0,
+				.57143,
+				0,
+				0,
+				.36111
+			],
+			117: [
+				0,
+				.44444,
+				0,
+				0,
+				.51667
+			],
+			118: [
+				0,
+				.44444,
+				.01389,
+				0,
+				.46111
+			],
+			119: [
+				0,
+				.44444,
+				.01389,
+				0,
+				.68334
+			],
+			120: [
+				0,
+				.44444,
+				0,
+				0,
+				.46111
+			],
+			121: [
+				.19444,
+				.44444,
+				.01389,
+				0,
+				.46111
+			],
+			122: [
+				0,
+				.44444,
+				0,
+				0,
+				.43472
+			],
+			126: [
+				.35,
+				.32659,
+				0,
+				0,
+				.5
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			168: [
+				0,
+				.67937,
+				0,
+				0,
+				.5
+			],
+			176: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			184: [
+				.17014,
+				0,
+				0,
+				0,
+				.44445
+			],
+			305: [
+				0,
+				.44444,
+				0,
+				0,
+				.23889
+			],
+			567: [
+				.19444,
+				.44444,
+				0,
+				0,
+				.26667
+			],
+			710: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			711: [
+				0,
+				.63194,
+				0,
+				0,
+				.5
+			],
+			713: [
+				0,
+				.60889,
+				0,
+				0,
+				.5
+			],
+			714: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			715: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			728: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			729: [
+				0,
+				.67937,
+				0,
+				0,
+				.27778
+			],
+			730: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			732: [
+				0,
+				.67659,
+				0,
+				0,
+				.5
+			],
+			733: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			915: [
+				0,
+				.69444,
+				0,
+				0,
+				.54167
+			],
+			916: [
+				0,
+				.69444,
+				0,
+				0,
+				.83334
+			],
+			920: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			923: [
+				0,
+				.69444,
+				0,
+				0,
+				.61111
+			],
+			926: [
+				0,
+				.69444,
+				0,
+				0,
+				.66667
+			],
+			928: [
+				0,
+				.69444,
+				0,
+				0,
+				.70834
+			],
+			931: [
+				0,
+				.69444,
+				0,
+				0,
+				.72222
+			],
+			933: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			934: [
+				0,
+				.69444,
+				0,
+				0,
+				.72222
+			],
+			936: [
+				0,
+				.69444,
+				0,
+				0,
+				.77778
+			],
+			937: [
+				0,
+				.69444,
+				0,
+				0,
+				.72222
+			],
+			8211: [
+				0,
+				.44444,
+				.02778,
+				0,
+				.5
+			],
+			8212: [
+				0,
+				.44444,
+				.02778,
+				0,
+				1
+			],
+			8216: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			8217: [
+				0,
+				.69444,
+				0,
+				0,
+				.27778
+			],
+			8220: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			],
+			8221: [
+				0,
+				.69444,
+				0,
+				0,
+				.5
+			]
+		},
+		"Script-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			65: [
+				0,
+				.7,
+				.22925,
+				0,
+				.80253
+			],
+			66: [
+				0,
+				.7,
+				.04087,
+				0,
+				.90757
+			],
+			67: [
+				0,
+				.7,
+				.1689,
+				0,
+				.66619
+			],
+			68: [
+				0,
+				.7,
+				.09371,
+				0,
+				.77443
+			],
+			69: [
+				0,
+				.7,
+				.18583,
+				0,
+				.56162
+			],
+			70: [
+				0,
+				.7,
+				.13634,
+				0,
+				.89544
+			],
+			71: [
+				0,
+				.7,
+				.17322,
+				0,
+				.60961
+			],
+			72: [
+				0,
+				.7,
+				.29694,
+				0,
+				.96919
+			],
+			73: [
+				0,
+				.7,
+				.19189,
+				0,
+				.80907
+			],
+			74: [
+				.27778,
+				.7,
+				.19189,
+				0,
+				1.05159
+			],
+			75: [
+				0,
+				.7,
+				.31259,
+				0,
+				.91364
+			],
+			76: [
+				0,
+				.7,
+				.19189,
+				0,
+				.87373
+			],
+			77: [
+				0,
+				.7,
+				.15981,
+				0,
+				1.08031
+			],
+			78: [
+				0,
+				.7,
+				.3525,
+				0,
+				.9015
+			],
+			79: [
+				0,
+				.7,
+				.08078,
+				0,
+				.73787
+			],
+			80: [
+				0,
+				.7,
+				.08078,
+				0,
+				1.01262
+			],
+			81: [
+				0,
+				.7,
+				.03305,
+				0,
+				.88282
+			],
+			82: [
+				0,
+				.7,
+				.06259,
+				0,
+				.85
+			],
+			83: [
+				0,
+				.7,
+				.19189,
+				0,
+				.86767
+			],
+			84: [
+				0,
+				.7,
+				.29087,
+				0,
+				.74697
+			],
+			85: [
+				0,
+				.7,
+				.25815,
+				0,
+				.79996
+			],
+			86: [
+				0,
+				.7,
+				.27523,
+				0,
+				.62204
+			],
+			87: [
+				0,
+				.7,
+				.27523,
+				0,
+				.80532
+			],
+			88: [
+				0,
+				.7,
+				.26006,
+				0,
+				.94445
+			],
+			89: [
+				0,
+				.7,
+				.2939,
+				0,
+				.70961
+			],
+			90: [
+				0,
+				.7,
+				.24037,
+				0,
+				.8212
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			]
+		},
+		"Size1-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			40: [
+				.35001,
+				.85,
+				0,
+				0,
+				.45834
+			],
+			41: [
+				.35001,
+				.85,
+				0,
+				0,
+				.45834
+			],
+			47: [
+				.35001,
+				.85,
+				0,
+				0,
+				.57778
+			],
+			91: [
+				.35001,
+				.85,
+				0,
+				0,
+				.41667
+			],
+			92: [
+				.35001,
+				.85,
+				0,
+				0,
+				.57778
+			],
+			93: [
+				.35001,
+				.85,
+				0,
+				0,
+				.41667
+			],
+			123: [
+				.35001,
+				.85,
+				0,
+				0,
+				.58334
+			],
+			125: [
+				.35001,
+				.85,
+				0,
+				0,
+				.58334
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			710: [
+				0,
+				.72222,
+				0,
+				0,
+				.55556
+			],
+			732: [
+				0,
+				.72222,
+				0,
+				0,
+				.55556
+			],
+			770: [
+				0,
+				.72222,
+				0,
+				0,
+				.55556
+			],
+			771: [
+				0,
+				.72222,
+				0,
+				0,
+				.55556
+			],
+			8214: [
+				-99e-5,
+				.601,
+				0,
+				0,
+				.77778
+			],
+			8593: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.66667
+			],
+			8595: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.66667
+			],
+			8657: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.77778
+			],
+			8659: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.77778
+			],
+			8719: [
+				.25001,
+				.75,
+				0,
+				0,
+				.94445
+			],
+			8720: [
+				.25001,
+				.75,
+				0,
+				0,
+				.94445
+			],
+			8721: [
+				.25001,
+				.75,
+				0,
+				0,
+				1.05556
+			],
+			8730: [
+				.35001,
+				.85,
+				0,
+				0,
+				1
+			],
+			8739: [
+				-.00599,
+				.606,
+				0,
+				0,
+				.33333
+			],
+			8741: [
+				-.00599,
+				.606,
+				0,
+				0,
+				.55556
+			],
+			8747: [
+				.30612,
+				.805,
+				.19445,
+				0,
+				.47222
+			],
+			8748: [
+				.306,
+				.805,
+				.19445,
+				0,
+				.47222
+			],
+			8749: [
+				.306,
+				.805,
+				.19445,
+				0,
+				.47222
+			],
+			8750: [
+				.30612,
+				.805,
+				.19445,
+				0,
+				.47222
+			],
+			8896: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			8897: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			8898: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			8899: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			8968: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			8969: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			8970: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			8971: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			9168: [
+				-99e-5,
+				.601,
+				0,
+				0,
+				.66667
+			],
+			10216: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			10217: [
+				.35001,
+				.85,
+				0,
+				0,
+				.47222
+			],
+			10752: [
+				.25001,
+				.75,
+				0,
+				0,
+				1.11111
+			],
+			10753: [
+				.25001,
+				.75,
+				0,
+				0,
+				1.11111
+			],
+			10754: [
+				.25001,
+				.75,
+				0,
+				0,
+				1.11111
+			],
+			10756: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			],
+			10758: [
+				.25001,
+				.75,
+				0,
+				0,
+				.83334
+			]
+		},
+		"Size2-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			40: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.59722
+			],
+			41: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.59722
+			],
+			47: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.81111
+			],
+			91: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.47222
+			],
+			92: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.81111
+			],
+			93: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.47222
+			],
+			123: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.66667
+			],
+			125: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.66667
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			710: [
+				0,
+				.75,
+				0,
+				0,
+				1
+			],
+			732: [
+				0,
+				.75,
+				0,
+				0,
+				1
+			],
+			770: [
+				0,
+				.75,
+				0,
+				0,
+				1
+			],
+			771: [
+				0,
+				.75,
+				0,
+				0,
+				1
+			],
+			8719: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.27778
+			],
+			8720: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.27778
+			],
+			8721: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.44445
+			],
+			8730: [
+				.65002,
+				1.15,
+				0,
+				0,
+				1
+			],
+			8747: [
+				.86225,
+				1.36,
+				.44445,
+				0,
+				.55556
+			],
+			8748: [
+				.862,
+				1.36,
+				.44445,
+				0,
+				.55556
+			],
+			8749: [
+				.862,
+				1.36,
+				.44445,
+				0,
+				.55556
+			],
+			8750: [
+				.86225,
+				1.36,
+				.44445,
+				0,
+				.55556
+			],
+			8896: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			],
+			8897: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			],
+			8898: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			],
+			8899: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			],
+			8968: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.52778
+			],
+			8969: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.52778
+			],
+			8970: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.52778
+			],
+			8971: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.52778
+			],
+			10216: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.61111
+			],
+			10217: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.61111
+			],
+			10752: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.51112
+			],
+			10753: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.51112
+			],
+			10754: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.51112
+			],
+			10756: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			],
+			10758: [
+				.55001,
+				1.05,
+				0,
+				0,
+				1.11111
+			]
+		},
+		"Size3-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			40: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.73611
+			],
+			41: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.73611
+			],
+			47: [
+				.95003,
+				1.45,
+				0,
+				0,
+				1.04445
+			],
+			91: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.52778
+			],
+			92: [
+				.95003,
+				1.45,
+				0,
+				0,
+				1.04445
+			],
+			93: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.52778
+			],
+			123: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.75
+			],
+			125: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.75
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			710: [
+				0,
+				.75,
+				0,
+				0,
+				1.44445
+			],
+			732: [
+				0,
+				.75,
+				0,
+				0,
+				1.44445
+			],
+			770: [
+				0,
+				.75,
+				0,
+				0,
+				1.44445
+			],
+			771: [
+				0,
+				.75,
+				0,
+				0,
+				1.44445
+			],
+			8730: [
+				.95003,
+				1.45,
+				0,
+				0,
+				1
+			],
+			8968: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.58334
+			],
+			8969: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.58334
+			],
+			8970: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.58334
+			],
+			8971: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.58334
+			],
+			10216: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.75
+			],
+			10217: [
+				.95003,
+				1.45,
+				0,
+				0,
+				.75
+			]
+		},
+		"Size4-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			40: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.79167
+			],
+			41: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.79167
+			],
+			47: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				1.27778
+			],
+			91: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.58334
+			],
+			92: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				1.27778
+			],
+			93: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.58334
+			],
+			123: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.80556
+			],
+			125: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.80556
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.25
+			],
+			710: [
+				0,
+				.825,
+				0,
+				0,
+				1.8889
+			],
+			732: [
+				0,
+				.825,
+				0,
+				0,
+				1.8889
+			],
+			770: [
+				0,
+				.825,
+				0,
+				0,
+				1.8889
+			],
+			771: [
+				0,
+				.825,
+				0,
+				0,
+				1.8889
+			],
+			8730: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				1
+			],
+			8968: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.63889
+			],
+			8969: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.63889
+			],
+			8970: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.63889
+			],
+			8971: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.63889
+			],
+			9115: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.875
+			],
+			9116: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.875
+			],
+			9117: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.875
+			],
+			9118: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.875
+			],
+			9119: [
+				1e-5,
+				.6,
+				0,
+				0,
+				.875
+			],
+			9120: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.875
+			],
+			9121: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.66667
+			],
+			9122: [
+				-99e-5,
+				.601,
+				0,
+				0,
+				.66667
+			],
+			9123: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.66667
+			],
+			9124: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.66667
+			],
+			9125: [
+				-99e-5,
+				.601,
+				0,
+				0,
+				.66667
+			],
+			9126: [
+				.64502,
+				1.155,
+				0,
+				0,
+				.66667
+			],
+			9127: [
+				1e-5,
+				.9,
+				0,
+				0,
+				.88889
+			],
+			9128: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.88889
+			],
+			9129: [
+				.90001,
+				0,
+				0,
+				0,
+				.88889
+			],
+			9130: [
+				0,
+				.3,
+				0,
+				0,
+				.88889
+			],
+			9131: [
+				1e-5,
+				.9,
+				0,
+				0,
+				.88889
+			],
+			9132: [
+				.65002,
+				1.15,
+				0,
+				0,
+				.88889
+			],
+			9133: [
+				.90001,
+				0,
+				0,
+				0,
+				.88889
+			],
+			9143: [
+				.88502,
+				.915,
+				0,
+				0,
+				1.05556
+			],
+			10216: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.80556
+			],
+			10217: [
+				1.25003,
+				1.75,
+				0,
+				0,
+				.80556
+			],
+			57344: [
+				-.00499,
+				.605,
+				0,
+				0,
+				1.05556
+			],
+			57345: [
+				-.00499,
+				.605,
+				0,
+				0,
+				1.05556
+			],
+			57680: [
+				0,
+				.12,
+				0,
+				0,
+				.45
+			],
+			57681: [
+				0,
+				.12,
+				0,
+				0,
+				.45
+			],
+			57682: [
+				0,
+				.12,
+				0,
+				0,
+				.45
+			],
+			57683: [
+				0,
+				.12,
+				0,
+				0,
+				.45
+			]
+		},
+		"Typewriter-Regular": {
+			32: [
+				0,
+				0,
+				0,
+				0,
+				.525
+			],
+			33: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			34: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			35: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			36: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			37: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			38: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			39: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			40: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			41: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			42: [
+				0,
+				.52083,
+				0,
+				0,
+				.525
+			],
+			43: [
+				-.08056,
+				.53055,
+				0,
+				0,
+				.525
+			],
+			44: [
+				.13889,
+				.125,
+				0,
+				0,
+				.525
+			],
+			45: [
+				-.08056,
+				.53055,
+				0,
+				0,
+				.525
+			],
+			46: [
+				0,
+				.125,
+				0,
+				0,
+				.525
+			],
+			47: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			48: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			49: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			50: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			51: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			52: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			53: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			54: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			55: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			56: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			57: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			58: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			59: [
+				.13889,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			60: [
+				-.05556,
+				.55556,
+				0,
+				0,
+				.525
+			],
+			61: [
+				-.19549,
+				.41562,
+				0,
+				0,
+				.525
+			],
+			62: [
+				-.05556,
+				.55556,
+				0,
+				0,
+				.525
+			],
+			63: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			64: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			65: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			66: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			67: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			68: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			69: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			70: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			71: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			72: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			73: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			74: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			75: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			76: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			77: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			78: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			79: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			80: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			81: [
+				.13889,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			82: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			83: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			84: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			85: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			86: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			87: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			88: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			89: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			90: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			91: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			92: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			93: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			94: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			95: [
+				.09514,
+				0,
+				0,
+				0,
+				.525
+			],
+			96: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			97: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			98: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			99: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			100: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			101: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			102: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			103: [
+				.22222,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			104: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			105: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			106: [
+				.22222,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			107: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			108: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			109: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			110: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			111: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			112: [
+				.22222,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			113: [
+				.22222,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			114: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			115: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			116: [
+				0,
+				.55358,
+				0,
+				0,
+				.525
+			],
+			117: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			118: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			119: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			120: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			121: [
+				.22222,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			122: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			123: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			124: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			125: [
+				.08333,
+				.69444,
+				0,
+				0,
+				.525
+			],
+			126: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			127: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			160: [
+				0,
+				0,
+				0,
+				0,
+				.525
+			],
+			176: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			184: [
+				.19445,
+				0,
+				0,
+				0,
+				.525
+			],
+			305: [
+				0,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			567: [
+				.22222,
+				.43056,
+				0,
+				0,
+				.525
+			],
+			711: [
+				0,
+				.56597,
+				0,
+				0,
+				.525
+			],
+			713: [
+				0,
+				.56555,
+				0,
+				0,
+				.525
+			],
+			714: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			715: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			728: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			730: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			770: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			771: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			776: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			915: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			916: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			920: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			923: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			926: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			928: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			931: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			933: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			934: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			936: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			937: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			8216: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			8217: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			8242: [
+				0,
+				.61111,
+				0,
+				0,
+				.525
+			],
+			9251: [
+				.11111,
+				.21944,
+				0,
+				0,
+				.525
+			]
+		}
+	}, sigmasAndXis = {
+		slant: [
+			.25,
+			.25,
+			.25
+		],
+		space: [
+			0,
+			0,
+			0
+		],
+		stretch: [
+			0,
+			0,
+			0
+		],
+		shrink: [
+			0,
+			0,
+			0
+		],
+		xHeight: [
+			.431,
+			.431,
+			.431
+		],
+		quad: [
+			1,
+			1.171,
+			1.472
+		],
+		extraSpace: [
+			0,
+			0,
+			0
+		],
+		num1: [
+			.677,
+			.732,
+			.925
+		],
+		num2: [
+			.394,
+			.384,
+			.387
+		],
+		num3: [
+			.444,
+			.471,
+			.504
+		],
+		denom1: [
+			.686,
+			.752,
+			1.025
+		],
+		denom2: [
+			.345,
+			.344,
+			.532
+		],
+		sup1: [
+			.413,
+			.503,
+			.504
+		],
+		sup2: [
+			.363,
+			.431,
+			.404
+		],
+		sup3: [
+			.289,
+			.286,
+			.294
+		],
+		sub1: [
+			.15,
+			.143,
+			.2
+		],
+		sub2: [
+			.247,
+			.286,
+			.4
+		],
+		supDrop: [
+			.386,
+			.353,
+			.494
+		],
+		subDrop: [
+			.05,
+			.071,
+			.1
+		],
+		delim1: [
+			2.39,
+			1.7,
+			1.98
+		],
+		delim2: [
+			1.01,
+			1.157,
+			1.42
+		],
+		axisHeight: [
+			.25,
+			.25,
+			.25
+		],
+		defaultRuleThickness: [
+			.04,
+			.049,
+			.049
+		],
+		bigOpSpacing1: [
+			.111,
+			.111,
+			.111
+		],
+		bigOpSpacing2: [
+			.166,
+			.166,
+			.166
+		],
+		bigOpSpacing3: [
+			.2,
+			.2,
+			.2
+		],
+		bigOpSpacing4: [
+			.6,
+			.611,
+			.611
+		],
+		bigOpSpacing5: [
+			.1,
+			.143,
+			.143
+		],
+		sqrtRuleThickness: [
+			.04,
+			.04,
+			.04
+		],
+		ptPerEm: [
+			10,
+			10,
+			10
+		],
+		doubleRuleSep: [
+			.2,
+			.2,
+			.2
+		],
+		arrayRuleWidth: [
+			.04,
+			.04,
+			.04
+		],
+		fboxsep: [
+			.3,
+			.3,
+			.3
+		],
+		fboxrule: [
+			.04,
+			.04,
+			.04
+		]
+	}, extraCharacterMap = {
+		Å: "A",
+		Ð: "D",
+		Þ: "o",
+		å: "a",
+		ð: "d",
+		þ: "o",
+		А: "A",
+		Б: "B",
+		В: "B",
+		Г: "F",
+		Д: "A",
+		Е: "E",
+		Ж: "K",
+		З: "3",
+		И: "N",
+		Й: "N",
+		К: "K",
+		Л: "N",
+		М: "M",
+		Н: "H",
+		О: "O",
+		П: "N",
+		Р: "P",
+		С: "C",
+		Т: "T",
+		У: "y",
+		Ф: "O",
+		Х: "X",
+		Ц: "U",
+		Ч: "h",
+		Ш: "W",
+		Щ: "W",
+		Ъ: "B",
+		Ы: "X",
+		Ь: "B",
+		Э: "3",
+		Ю: "X",
+		Я: "R",
+		а: "a",
+		б: "b",
+		в: "a",
+		г: "r",
+		д: "y",
+		е: "e",
+		ж: "m",
+		з: "e",
+		и: "n",
+		й: "n",
+		к: "n",
+		л: "n",
+		м: "m",
+		н: "n",
+		о: "o",
+		п: "n",
+		р: "p",
+		с: "c",
+		т: "o",
+		у: "y",
+		ф: "b",
+		х: "x",
+		ц: "n",
+		ч: "n",
+		ш: "w",
+		щ: "w",
+		ъ: "a",
+		ы: "m",
+		ь: "a",
+		э: "e",
+		ю: "m",
+		я: "r"
+	}, fontMetricsBySizeIndex = {}, symbols = {
+		math: {},
+		text: {}
+	}, math = "math", text = "text", main = "main", ams = "ams", accent = "accent-token", bin = "bin", close = "close", inner = "inner", mathord = "mathord", op$1 = "op-token", open = "open", punct = "punct", rel = "rel", spacing = "spacing", textord = "textord", defineSymbol(math, main, rel, "≡", "\\equiv", !0), defineSymbol(math, main, rel, "≺", "\\prec", !0), defineSymbol(math, main, rel, "≻", "\\succ", !0), defineSymbol(math, main, rel, "∼", "\\sim", !0), defineSymbol(math, main, rel, "⊥", "\\perp"), defineSymbol(math, main, rel, "⪯", "\\preceq", !0), defineSymbol(math, main, rel, "⪰", "\\succeq", !0), defineSymbol(math, main, rel, "≃", "\\simeq", !0), defineSymbol(math, main, rel, "∣", "\\mid", !0), defineSymbol(math, main, rel, "≪", "\\ll", !0), defineSymbol(math, main, rel, "≫", "\\gg", !0), defineSymbol(math, main, rel, "≍", "\\asymp", !0), defineSymbol(math, main, rel, "∥", "\\parallel"), defineSymbol(math, main, rel, "⋈", "\\bowtie", !0), defineSymbol(math, main, rel, "⌣", "\\smile", !0), defineSymbol(math, main, rel, "⊑", "\\sqsubseteq", !0), defineSymbol(math, main, rel, "⊒", "\\sqsupseteq", !0), defineSymbol(math, main, rel, "≐", "\\doteq", !0), defineSymbol(math, main, rel, "⌢", "\\frown", !0), defineSymbol(math, main, rel, "∋", "\\ni", !0), defineSymbol(math, main, rel, "∝", "\\propto", !0), defineSymbol(math, main, rel, "⊢", "\\vdash", !0), defineSymbol(math, main, rel, "⊣", "\\dashv", !0), defineSymbol(math, main, rel, "∋", "\\owns"), defineSymbol(math, main, punct, ".", "\\ldotp"), defineSymbol(math, main, punct, "⋅", "\\cdotp"), defineSymbol(math, main, punct, "⋅", "·"), defineSymbol(text, main, textord, "⋅", "·"), defineSymbol(math, main, textord, "#", "\\#"), defineSymbol(text, main, textord, "#", "\\#"), defineSymbol(math, main, textord, "&", "\\&"), defineSymbol(text, main, textord, "&", "\\&"), defineSymbol(math, main, textord, "ℵ", "\\aleph", !0), defineSymbol(math, main, textord, "∀", "\\forall", !0), defineSymbol(math, main, textord, "ℏ", "\\hbar", !0), defineSymbol(math, main, textord, "∃", "\\exists", !0), defineSymbol(math, main, textord, "∇", "\\nabla", !0), defineSymbol(math, main, textord, "♭", "\\flat", !0), defineSymbol(math, main, textord, "ℓ", "\\ell", !0), defineSymbol(math, main, textord, "♮", "\\natural", !0), defineSymbol(math, main, textord, "♣", "\\clubsuit", !0), defineSymbol(math, main, textord, "℘", "\\wp", !0), defineSymbol(math, main, textord, "♯", "\\sharp", !0), defineSymbol(math, main, textord, "♢", "\\diamondsuit", !0), defineSymbol(math, main, textord, "ℜ", "\\Re", !0), defineSymbol(math, main, textord, "♡", "\\heartsuit", !0), defineSymbol(math, main, textord, "ℑ", "\\Im", !0), defineSymbol(math, main, textord, "♠", "\\spadesuit", !0), defineSymbol(math, main, textord, "§", "\\S", !0), defineSymbol(text, main, textord, "§", "\\S"), defineSymbol(math, main, textord, "¶", "\\P", !0), defineSymbol(text, main, textord, "¶", "\\P"), defineSymbol(math, main, textord, "†", "\\dag"), defineSymbol(text, main, textord, "†", "\\dag"), defineSymbol(text, main, textord, "†", "\\textdagger"), defineSymbol(math, main, textord, "‡", "\\ddag"), defineSymbol(text, main, textord, "‡", "\\ddag"), defineSymbol(text, main, textord, "‡", "\\textdaggerdbl"), defineSymbol(math, main, close, "⎱", "\\rmoustache", !0), defineSymbol(math, main, open, "⎰", "\\lmoustache", !0), defineSymbol(math, main, close, "⟯", "\\rgroup", !0), defineSymbol(math, main, open, "⟮", "\\lgroup", !0), defineSymbol(math, main, bin, "∓", "\\mp", !0), defineSymbol(math, main, bin, "⊖", "\\ominus", !0), defineSymbol(math, main, bin, "⊎", "\\uplus", !0), defineSymbol(math, main, bin, "⊓", "\\sqcap", !0), defineSymbol(math, main, bin, "∗", "\\ast"), defineSymbol(math, main, bin, "⊔", "\\sqcup", !0), defineSymbol(math, main, bin, "◯", "\\bigcirc", !0), defineSymbol(math, main, bin, "∙", "\\bullet", !0), defineSymbol(math, main, bin, "‡", "\\ddagger"), defineSymbol(math, main, bin, "≀", "\\wr", !0), defineSymbol(math, main, bin, "⨿", "\\amalg"), defineSymbol(math, main, bin, "&", "\\And"), defineSymbol(math, main, rel, "⟵", "\\longleftarrow", !0), defineSymbol(math, main, rel, "⇐", "\\Leftarrow", !0), defineSymbol(math, main, rel, "⟸", "\\Longleftarrow", !0), defineSymbol(math, main, rel, "⟶", "\\longrightarrow", !0), defineSymbol(math, main, rel, "⇒", "\\Rightarrow", !0), defineSymbol(math, main, rel, "⟹", "\\Longrightarrow", !0), defineSymbol(math, main, rel, "↔", "\\leftrightarrow", !0), defineSymbol(math, main, rel, "⟷", "\\longleftrightarrow", !0), defineSymbol(math, main, rel, "⇔", "\\Leftrightarrow", !0), defineSymbol(math, main, rel, "⟺", "\\Longleftrightarrow", !0), defineSymbol(math, main, rel, "↦", "\\mapsto", !0), defineSymbol(math, main, rel, "⟼", "\\longmapsto", !0), defineSymbol(math, main, rel, "↗", "\\nearrow", !0), defineSymbol(math, main, rel, "↩", "\\hookleftarrow", !0), defineSymbol(math, main, rel, "↪", "\\hookrightarrow", !0), defineSymbol(math, main, rel, "↘", "\\searrow", !0), defineSymbol(math, main, rel, "↼", "\\leftharpoonup", !0), defineSymbol(math, main, rel, "⇀", "\\rightharpoonup", !0), defineSymbol(math, main, rel, "↙", "\\swarrow", !0), defineSymbol(math, main, rel, "↽", "\\leftharpoondown", !0), defineSymbol(math, main, rel, "⇁", "\\rightharpoondown", !0), defineSymbol(math, main, rel, "↖", "\\nwarrow", !0), defineSymbol(math, main, rel, "⇌", "\\rightleftharpoons", !0), defineSymbol(math, ams, rel, "≮", "\\nless", !0), defineSymbol(math, ams, rel, "", "\\@nleqslant"), defineSymbol(math, ams, rel, "", "\\@nleqq"), defineSymbol(math, ams, rel, "⪇", "\\lneq", !0), defineSymbol(math, ams, rel, "≨", "\\lneqq", !0), defineSymbol(math, ams, rel, "", "\\@lvertneqq"), defineSymbol(math, ams, rel, "⋦", "\\lnsim", !0), defineSymbol(math, ams, rel, "⪉", "\\lnapprox", !0), defineSymbol(math, ams, rel, "⊀", "\\nprec", !0), defineSymbol(math, ams, rel, "⋠", "\\npreceq", !0), defineSymbol(math, ams, rel, "⋨", "\\precnsim", !0), defineSymbol(math, ams, rel, "⪹", "\\precnapprox", !0), defineSymbol(math, ams, rel, "≁", "\\nsim", !0), defineSymbol(math, ams, rel, "", "\\@nshortmid"), defineSymbol(math, ams, rel, "∤", "\\nmid", !0), defineSymbol(math, ams, rel, "⊬", "\\nvdash", !0), defineSymbol(math, ams, rel, "⊭", "\\nvDash", !0), defineSymbol(math, ams, rel, "⋪", "\\ntriangleleft"), defineSymbol(math, ams, rel, "⋬", "\\ntrianglelefteq", !0), defineSymbol(math, ams, rel, "⊊", "\\subsetneq", !0), defineSymbol(math, ams, rel, "", "\\@varsubsetneq"), defineSymbol(math, ams, rel, "⫋", "\\subsetneqq", !0), defineSymbol(math, ams, rel, "", "\\@varsubsetneqq"), defineSymbol(math, ams, rel, "≯", "\\ngtr", !0), defineSymbol(math, ams, rel, "", "\\@ngeqslant"), defineSymbol(math, ams, rel, "", "\\@ngeqq"), defineSymbol(math, ams, rel, "⪈", "\\gneq", !0), defineSymbol(math, ams, rel, "≩", "\\gneqq", !0), defineSymbol(math, ams, rel, "", "\\@gvertneqq"), defineSymbol(math, ams, rel, "⋧", "\\gnsim", !0), defineSymbol(math, ams, rel, "⪊", "\\gnapprox", !0), defineSymbol(math, ams, rel, "⊁", "\\nsucc", !0), defineSymbol(math, ams, rel, "⋡", "\\nsucceq", !0), defineSymbol(math, ams, rel, "⋩", "\\succnsim", !0), defineSymbol(math, ams, rel, "⪺", "\\succnapprox", !0), defineSymbol(math, ams, rel, "≆", "\\ncong", !0), defineSymbol(math, ams, rel, "", "\\@nshortparallel"), defineSymbol(math, ams, rel, "∦", "\\nparallel", !0), defineSymbol(math, ams, rel, "⊯", "\\nVDash", !0), defineSymbol(math, ams, rel, "⋫", "\\ntriangleright"), defineSymbol(math, ams, rel, "⋭", "\\ntrianglerighteq", !0), defineSymbol(math, ams, rel, "", "\\@nsupseteqq"), defineSymbol(math, ams, rel, "⊋", "\\supsetneq", !0), defineSymbol(math, ams, rel, "", "\\@varsupsetneq"), defineSymbol(math, ams, rel, "⫌", "\\supsetneqq", !0), defineSymbol(math, ams, rel, "", "\\@varsupsetneqq"), defineSymbol(math, ams, rel, "⊮", "\\nVdash", !0), defineSymbol(math, ams, rel, "⪵", "\\precneqq", !0), defineSymbol(math, ams, rel, "⪶", "\\succneqq", !0), defineSymbol(math, ams, rel, "", "\\@nsubseteqq"), defineSymbol(math, ams, bin, "⊴", "\\unlhd"), defineSymbol(math, ams, bin, "⊵", "\\unrhd"), defineSymbol(math, ams, rel, "↚", "\\nleftarrow", !0), defineSymbol(math, ams, rel, "↛", "\\nrightarrow", !0), defineSymbol(math, ams, rel, "⇍", "\\nLeftarrow", !0), defineSymbol(math, ams, rel, "⇏", "\\nRightarrow", !0), defineSymbol(math, ams, rel, "↮", "\\nleftrightarrow", !0), defineSymbol(math, ams, rel, "⇎", "\\nLeftrightarrow", !0), defineSymbol(math, ams, rel, "△", "\\vartriangle"), defineSymbol(math, ams, textord, "ℏ", "\\hslash"), defineSymbol(math, ams, textord, "▽", "\\triangledown"), defineSymbol(math, ams, textord, "◊", "\\lozenge"), defineSymbol(math, ams, textord, "Ⓢ", "\\circledS"), defineSymbol(math, ams, textord, "®", "\\circledR"), defineSymbol(text, ams, textord, "®", "\\circledR"), defineSymbol(math, ams, textord, "∡", "\\measuredangle", !0), defineSymbol(math, ams, textord, "∄", "\\nexists"), defineSymbol(math, ams, textord, "℧", "\\mho"), defineSymbol(math, ams, textord, "Ⅎ", "\\Finv", !0), defineSymbol(math, ams, textord, "⅁", "\\Game", !0), defineSymbol(math, ams, textord, "‵", "\\backprime"), defineSymbol(math, ams, textord, "▲", "\\blacktriangle"), defineSymbol(math, ams, textord, "▼", "\\blacktriangledown"), defineSymbol(math, ams, textord, "■", "\\blacksquare"), defineSymbol(math, ams, textord, "⧫", "\\blacklozenge"), defineSymbol(math, ams, textord, "★", "\\bigstar"), defineSymbol(math, ams, textord, "∢", "\\sphericalangle", !0), defineSymbol(math, ams, textord, "∁", "\\complement", !0), defineSymbol(math, ams, textord, "ð", "\\eth", !0), defineSymbol(text, main, textord, "ð", "ð"), defineSymbol(math, ams, textord, "╱", "\\diagup"), defineSymbol(math, ams, textord, "╲", "\\diagdown"), defineSymbol(math, ams, textord, "□", "\\square"), defineSymbol(math, ams, textord, "□", "\\Box"), defineSymbol(math, ams, textord, "◊", "\\Diamond"), defineSymbol(math, ams, textord, "¥", "\\yen", !0), defineSymbol(text, ams, textord, "¥", "\\yen", !0), defineSymbol(math, ams, textord, "✓", "\\checkmark", !0), defineSymbol(text, ams, textord, "✓", "\\checkmark"), defineSymbol(math, ams, textord, "ℶ", "\\beth", !0), defineSymbol(math, ams, textord, "ℸ", "\\daleth", !0), defineSymbol(math, ams, textord, "ℷ", "\\gimel", !0), defineSymbol(math, ams, textord, "ϝ", "\\digamma", !0), defineSymbol(math, ams, textord, "ϰ", "\\varkappa"), defineSymbol(math, ams, open, "┌", "\\@ulcorner", !0), defineSymbol(math, ams, close, "┐", "\\@urcorner", !0), defineSymbol(math, ams, open, "└", "\\@llcorner", !0), defineSymbol(math, ams, close, "┘", "\\@lrcorner", !0), defineSymbol(math, ams, rel, "≦", "\\leqq", !0), defineSymbol(math, ams, rel, "⩽", "\\leqslant", !0), defineSymbol(math, ams, rel, "⪕", "\\eqslantless", !0), defineSymbol(math, ams, rel, "≲", "\\lesssim", !0), defineSymbol(math, ams, rel, "⪅", "\\lessapprox", !0), defineSymbol(math, ams, rel, "≊", "\\approxeq", !0), defineSymbol(math, ams, bin, "⋖", "\\lessdot"), defineSymbol(math, ams, rel, "⋘", "\\lll", !0), defineSymbol(math, ams, rel, "≶", "\\lessgtr", !0), defineSymbol(math, ams, rel, "⋚", "\\lesseqgtr", !0), defineSymbol(math, ams, rel, "⪋", "\\lesseqqgtr", !0), defineSymbol(math, ams, rel, "≑", "\\doteqdot"), defineSymbol(math, ams, rel, "≓", "\\risingdotseq", !0), defineSymbol(math, ams, rel, "≒", "\\fallingdotseq", !0), defineSymbol(math, ams, rel, "∽", "\\backsim", !0), defineSymbol(math, ams, rel, "⋍", "\\backsimeq", !0), defineSymbol(math, ams, rel, "⫅", "\\subseteqq", !0), defineSymbol(math, ams, rel, "⋐", "\\Subset", !0), defineSymbol(math, ams, rel, "⊏", "\\sqsubset", !0), defineSymbol(math, ams, rel, "≼", "\\preccurlyeq", !0), defineSymbol(math, ams, rel, "⋞", "\\curlyeqprec", !0), defineSymbol(math, ams, rel, "≾", "\\precsim", !0), defineSymbol(math, ams, rel, "⪷", "\\precapprox", !0), defineSymbol(math, ams, rel, "⊲", "\\vartriangleleft"), defineSymbol(math, ams, rel, "⊴", "\\trianglelefteq"), defineSymbol(math, ams, rel, "⊨", "\\vDash", !0), defineSymbol(math, ams, rel, "⊪", "\\Vvdash", !0), defineSymbol(math, ams, rel, "⌣", "\\smallsmile"), defineSymbol(math, ams, rel, "⌢", "\\smallfrown"), defineSymbol(math, ams, rel, "≏", "\\bumpeq", !0), defineSymbol(math, ams, rel, "≎", "\\Bumpeq", !0), defineSymbol(math, ams, rel, "≧", "\\geqq", !0), defineSymbol(math, ams, rel, "⩾", "\\geqslant", !0), defineSymbol(math, ams, rel, "⪖", "\\eqslantgtr", !0), defineSymbol(math, ams, rel, "≳", "\\gtrsim", !0), defineSymbol(math, ams, rel, "⪆", "\\gtrapprox", !0), defineSymbol(math, ams, bin, "⋗", "\\gtrdot"), defineSymbol(math, ams, rel, "⋙", "\\ggg", !0), defineSymbol(math, ams, rel, "≷", "\\gtrless", !0), defineSymbol(math, ams, rel, "⋛", "\\gtreqless", !0), defineSymbol(math, ams, rel, "⪌", "\\gtreqqless", !0), defineSymbol(math, ams, rel, "≖", "\\eqcirc", !0), defineSymbol(math, ams, rel, "≗", "\\circeq", !0), defineSymbol(math, ams, rel, "≜", "\\triangleq", !0), defineSymbol(math, ams, rel, "∼", "\\thicksim"), defineSymbol(math, ams, rel, "≈", "\\thickapprox"), defineSymbol(math, ams, rel, "⫆", "\\supseteqq", !0), defineSymbol(math, ams, rel, "⋑", "\\Supset", !0), defineSymbol(math, ams, rel, "⊐", "\\sqsupset", !0), defineSymbol(math, ams, rel, "≽", "\\succcurlyeq", !0), defineSymbol(math, ams, rel, "⋟", "\\curlyeqsucc", !0), defineSymbol(math, ams, rel, "≿", "\\succsim", !0), defineSymbol(math, ams, rel, "⪸", "\\succapprox", !0), defineSymbol(math, ams, rel, "⊳", "\\vartriangleright"), defineSymbol(math, ams, rel, "⊵", "\\trianglerighteq"), defineSymbol(math, ams, rel, "⊩", "\\Vdash", !0), defineSymbol(math, ams, rel, "∣", "\\shortmid"), defineSymbol(math, ams, rel, "∥", "\\shortparallel"), defineSymbol(math, ams, rel, "≬", "\\between", !0), defineSymbol(math, ams, rel, "⋔", "\\pitchfork", !0), defineSymbol(math, ams, rel, "∝", "\\varpropto"), defineSymbol(math, ams, rel, "◀", "\\blacktriangleleft"), defineSymbol(math, ams, rel, "∴", "\\therefore", !0), defineSymbol(math, ams, rel, "∍", "\\backepsilon"), defineSymbol(math, ams, rel, "▶", "\\blacktriangleright"), defineSymbol(math, ams, rel, "∵", "\\because", !0), defineSymbol(math, ams, rel, "⋘", "\\llless"), defineSymbol(math, ams, rel, "⋙", "\\gggtr"), defineSymbol(math, ams, bin, "⊲", "\\lhd"), defineSymbol(math, ams, bin, "⊳", "\\rhd"), defineSymbol(math, ams, rel, "≂", "\\eqsim", !0), defineSymbol(math, main, rel, "⋈", "\\Join"), defineSymbol(math, ams, rel, "≑", "\\Doteq", !0), defineSymbol(math, ams, bin, "∔", "\\dotplus", !0), defineSymbol(math, ams, bin, "∖", "\\smallsetminus"), defineSymbol(math, ams, bin, "⋒", "\\Cap", !0), defineSymbol(math, ams, bin, "⋓", "\\Cup", !0), defineSymbol(math, ams, bin, "⩞", "\\doublebarwedge", !0), defineSymbol(math, ams, bin, "⊟", "\\boxminus", !0), defineSymbol(math, ams, bin, "⊞", "\\boxplus", !0), defineSymbol(math, ams, bin, "⋇", "\\divideontimes", !0), defineSymbol(math, ams, bin, "⋉", "\\ltimes", !0), defineSymbol(math, ams, bin, "⋊", "\\rtimes", !0), defineSymbol(math, ams, bin, "⋋", "\\leftthreetimes", !0), defineSymbol(math, ams, bin, "⋌", "\\rightthreetimes", !0), defineSymbol(math, ams, bin, "⋏", "\\curlywedge", !0), defineSymbol(math, ams, bin, "⋎", "\\curlyvee", !0), defineSymbol(math, ams, bin, "⊝", "\\circleddash", !0), defineSymbol(math, ams, bin, "⊛", "\\circledast", !0), defineSymbol(math, ams, bin, "⋅", "\\centerdot"), defineSymbol(math, ams, bin, "⊺", "\\intercal", !0), defineSymbol(math, ams, bin, "⋒", "\\doublecap"), defineSymbol(math, ams, bin, "⋓", "\\doublecup"), defineSymbol(math, ams, bin, "⊠", "\\boxtimes", !0), defineSymbol(math, ams, rel, "⇢", "\\dashrightarrow", !0), defineSymbol(math, ams, rel, "⇠", "\\dashleftarrow", !0), defineSymbol(math, ams, rel, "⇇", "\\leftleftarrows", !0), defineSymbol(math, ams, rel, "⇆", "\\leftrightarrows", !0), defineSymbol(math, ams, rel, "⇚", "\\Lleftarrow", !0), defineSymbol(math, ams, rel, "↞", "\\twoheadleftarrow", !0), defineSymbol(math, ams, rel, "↢", "\\leftarrowtail", !0), defineSymbol(math, ams, rel, "↫", "\\looparrowleft", !0), defineSymbol(math, ams, rel, "⇋", "\\leftrightharpoons", !0), defineSymbol(math, ams, rel, "↶", "\\curvearrowleft", !0), defineSymbol(math, ams, rel, "↺", "\\circlearrowleft", !0), defineSymbol(math, ams, rel, "↰", "\\Lsh", !0), defineSymbol(math, ams, rel, "⇈", "\\upuparrows", !0), defineSymbol(math, ams, rel, "↿", "\\upharpoonleft", !0), defineSymbol(math, ams, rel, "⇃", "\\downharpoonleft", !0), defineSymbol(math, main, rel, "⊶", "\\origof", !0), defineSymbol(math, main, rel, "⊷", "\\imageof", !0), defineSymbol(math, ams, rel, "⊸", "\\multimap", !0), defineSymbol(math, ams, rel, "↭", "\\leftrightsquigarrow", !0), defineSymbol(math, ams, rel, "⇉", "\\rightrightarrows", !0), defineSymbol(math, ams, rel, "⇄", "\\rightleftarrows", !0), defineSymbol(math, ams, rel, "↠", "\\twoheadrightarrow", !0), defineSymbol(math, ams, rel, "↣", "\\rightarrowtail", !0), defineSymbol(math, ams, rel, "↬", "\\looparrowright", !0), defineSymbol(math, ams, rel, "↷", "\\curvearrowright", !0), defineSymbol(math, ams, rel, "↻", "\\circlearrowright", !0), defineSymbol(math, ams, rel, "↱", "\\Rsh", !0), defineSymbol(math, ams, rel, "⇊", "\\downdownarrows", !0), defineSymbol(math, ams, rel, "↾", "\\upharpoonright", !0), defineSymbol(math, ams, rel, "⇂", "\\downharpoonright", !0), defineSymbol(math, ams, rel, "⇝", "\\rightsquigarrow", !0), defineSymbol(math, ams, rel, "⇝", "\\leadsto"), defineSymbol(math, ams, rel, "⇛", "\\Rrightarrow", !0), defineSymbol(math, ams, rel, "↾", "\\restriction"), defineSymbol(math, main, textord, "‘", "`"), defineSymbol(math, main, textord, "$", "\\$"), defineSymbol(text, main, textord, "$", "\\$"), defineSymbol(text, main, textord, "$", "\\textdollar"), defineSymbol(math, main, textord, "%", "\\%"), defineSymbol(text, main, textord, "%", "\\%"), defineSymbol(math, main, textord, "_", "\\_"), defineSymbol(text, main, textord, "_", "\\_"), defineSymbol(text, main, textord, "_", "\\textunderscore"), defineSymbol(math, main, textord, "∠", "\\angle", !0), defineSymbol(math, main, textord, "∞", "\\infty", !0), defineSymbol(math, main, textord, "′", "\\prime"), defineSymbol(math, main, textord, "△", "\\triangle"), defineSymbol(math, main, textord, "Γ", "\\Gamma", !0), defineSymbol(math, main, textord, "Δ", "\\Delta", !0), defineSymbol(math, main, textord, "Θ", "\\Theta", !0), defineSymbol(math, main, textord, "Λ", "\\Lambda", !0), defineSymbol(math, main, textord, "Ξ", "\\Xi", !0), defineSymbol(math, main, textord, "Π", "\\Pi", !0), defineSymbol(math, main, textord, "Σ", "\\Sigma", !0), defineSymbol(math, main, textord, "Υ", "\\Upsilon", !0), defineSymbol(math, main, textord, "Φ", "\\Phi", !0), defineSymbol(math, main, textord, "Ψ", "\\Psi", !0), defineSymbol(math, main, textord, "Ω", "\\Omega", !0), defineSymbol(math, main, textord, "A", "Α"), defineSymbol(math, main, textord, "B", "Β"), defineSymbol(math, main, textord, "E", "Ε"), defineSymbol(math, main, textord, "Z", "Ζ"), defineSymbol(math, main, textord, "H", "Η"), defineSymbol(math, main, textord, "I", "Ι"), defineSymbol(math, main, textord, "K", "Κ"), defineSymbol(math, main, textord, "M", "Μ"), defineSymbol(math, main, textord, "N", "Ν"), defineSymbol(math, main, textord, "O", "Ο"), defineSymbol(math, main, textord, "P", "Ρ"), defineSymbol(math, main, textord, "T", "Τ"), defineSymbol(math, main, textord, "X", "Χ"), defineSymbol(math, main, textord, "¬", "\\neg", !0), defineSymbol(math, main, textord, "¬", "\\lnot"), defineSymbol(math, main, textord, "⊤", "\\top"), defineSymbol(math, main, textord, "⊥", "\\bot"), defineSymbol(math, main, textord, "∅", "\\emptyset"), defineSymbol(math, ams, textord, "∅", "\\varnothing"), defineSymbol(math, main, mathord, "α", "\\alpha", !0), defineSymbol(math, main, mathord, "β", "\\beta", !0), defineSymbol(math, main, mathord, "γ", "\\gamma", !0), defineSymbol(math, main, mathord, "δ", "\\delta", !0), defineSymbol(math, main, mathord, "ϵ", "\\epsilon", !0), defineSymbol(math, main, mathord, "ζ", "\\zeta", !0), defineSymbol(math, main, mathord, "η", "\\eta", !0), defineSymbol(math, main, mathord, "θ", "\\theta", !0), defineSymbol(math, main, mathord, "ι", "\\iota", !0), defineSymbol(math, main, mathord, "κ", "\\kappa", !0), defineSymbol(math, main, mathord, "λ", "\\lambda", !0), defineSymbol(math, main, mathord, "μ", "\\mu", !0), defineSymbol(math, main, mathord, "ν", "\\nu", !0), defineSymbol(math, main, mathord, "ξ", "\\xi", !0), defineSymbol(math, main, mathord, "ο", "\\omicron", !0), defineSymbol(math, main, mathord, "π", "\\pi", !0), defineSymbol(math, main, mathord, "ρ", "\\rho", !0), defineSymbol(math, main, mathord, "σ", "\\sigma", !0), defineSymbol(math, main, mathord, "τ", "\\tau", !0), defineSymbol(math, main, mathord, "υ", "\\upsilon", !0), defineSymbol(math, main, mathord, "ϕ", "\\phi", !0), defineSymbol(math, main, mathord, "χ", "\\chi", !0), defineSymbol(math, main, mathord, "ψ", "\\psi", !0), defineSymbol(math, main, mathord, "ω", "\\omega", !0), defineSymbol(math, main, mathord, "ε", "\\varepsilon", !0), defineSymbol(math, main, mathord, "ϑ", "\\vartheta", !0), defineSymbol(math, main, mathord, "ϖ", "\\varpi", !0), defineSymbol(math, main, mathord, "ϱ", "\\varrho", !0), defineSymbol(math, main, mathord, "ς", "\\varsigma", !0), defineSymbol(math, main, mathord, "φ", "\\varphi", !0), defineSymbol(math, main, bin, "∗", "*", !0), defineSymbol(math, main, bin, "+", "+"), defineSymbol(math, main, bin, "−", "-", !0), defineSymbol(math, main, bin, "⋅", "\\cdot", !0), defineSymbol(math, main, bin, "∘", "\\circ", !0), defineSymbol(math, main, bin, "÷", "\\div", !0), defineSymbol(math, main, bin, "±", "\\pm", !0), defineSymbol(math, main, bin, "×", "\\times", !0), defineSymbol(math, main, bin, "∩", "\\cap", !0), defineSymbol(math, main, bin, "∪", "\\cup", !0), defineSymbol(math, main, bin, "∖", "\\setminus", !0), defineSymbol(math, main, bin, "∧", "\\land"), defineSymbol(math, main, bin, "∨", "\\lor"), defineSymbol(math, main, bin, "∧", "\\wedge", !0), defineSymbol(math, main, bin, "∨", "\\vee", !0), defineSymbol(math, main, textord, "√", "\\surd"), defineSymbol(math, main, open, "⟨", "\\langle", !0), defineSymbol(math, main, open, "∣", "\\lvert"), defineSymbol(math, main, open, "∥", "\\lVert"), defineSymbol(math, main, close, "?", "?"), defineSymbol(math, main, close, "!", "!"), defineSymbol(math, main, close, "⟩", "\\rangle", !0), defineSymbol(math, main, close, "∣", "\\rvert"), defineSymbol(math, main, close, "∥", "\\rVert"), defineSymbol(math, main, rel, "=", "="), defineSymbol(math, main, rel, ":", ":"), defineSymbol(math, main, rel, "≈", "\\approx", !0), defineSymbol(math, main, rel, "≅", "\\cong", !0), defineSymbol(math, main, rel, "≥", "\\ge"), defineSymbol(math, main, rel, "≥", "\\geq", !0), defineSymbol(math, main, rel, "←", "\\gets"), defineSymbol(math, main, rel, ">", "\\gt", !0), defineSymbol(math, main, rel, "∈", "\\in", !0), defineSymbol(math, main, rel, "", "\\@not"), defineSymbol(math, main, rel, "⊂", "\\subset", !0), defineSymbol(math, main, rel, "⊃", "\\supset", !0), defineSymbol(math, main, rel, "⊆", "\\subseteq", !0), defineSymbol(math, main, rel, "⊇", "\\supseteq", !0), defineSymbol(math, ams, rel, "⊈", "\\nsubseteq", !0), defineSymbol(math, ams, rel, "⊉", "\\nsupseteq", !0), defineSymbol(math, main, rel, "⊨", "\\models"), defineSymbol(math, main, rel, "←", "\\leftarrow", !0), defineSymbol(math, main, rel, "≤", "\\le"), defineSymbol(math, main, rel, "≤", "\\leq", !0), defineSymbol(math, main, rel, "<", "\\lt", !0), defineSymbol(math, main, rel, "→", "\\rightarrow", !0), defineSymbol(math, main, rel, "→", "\\to"), defineSymbol(math, ams, rel, "≱", "\\ngeq", !0), defineSymbol(math, ams, rel, "≰", "\\nleq", !0), defineSymbol(math, main, spacing, "\xA0", "\\ "), defineSymbol(math, main, spacing, "\xA0", "\\space"), defineSymbol(math, main, spacing, "\xA0", "\\nobreakspace"), defineSymbol(text, main, spacing, "\xA0", "\\ "), defineSymbol(text, main, spacing, "\xA0", " "), defineSymbol(text, main, spacing, "\xA0", "\\space"), defineSymbol(text, main, spacing, "\xA0", "\\nobreakspace"), defineSymbol(math, main, spacing, "", "\\nobreak"), defineSymbol(math, main, spacing, "", "\\allowbreak"), defineSymbol(math, main, punct, ",", ","), defineSymbol(math, main, punct, ";", ";"), defineSymbol(math, ams, bin, "⊼", "\\barwedge", !0), defineSymbol(math, ams, bin, "⊻", "\\veebar", !0), defineSymbol(math, main, bin, "⊙", "\\odot", !0), defineSymbol(math, main, bin, "⊕", "\\oplus", !0), defineSymbol(math, main, bin, "⊗", "\\otimes", !0), defineSymbol(math, main, textord, "∂", "\\partial", !0), defineSymbol(math, main, bin, "⊘", "\\oslash", !0), defineSymbol(math, ams, bin, "⊚", "\\circledcirc", !0), defineSymbol(math, ams, bin, "⊡", "\\boxdot", !0), defineSymbol(math, main, bin, "△", "\\bigtriangleup"), defineSymbol(math, main, bin, "▽", "\\bigtriangledown"), defineSymbol(math, main, bin, "†", "\\dagger"), defineSymbol(math, main, bin, "⋄", "\\diamond"), defineSymbol(math, main, bin, "⋆", "\\star"), defineSymbol(math, main, bin, "◃", "\\triangleleft"), defineSymbol(math, main, bin, "▹", "\\triangleright"), defineSymbol(math, main, open, "{", "\\{"), defineSymbol(text, main, textord, "{", "\\{"), defineSymbol(text, main, textord, "{", "\\textbraceleft"), defineSymbol(math, main, close, "}", "\\}"), defineSymbol(text, main, textord, "}", "\\}"), defineSymbol(text, main, textord, "}", "\\textbraceright"), defineSymbol(math, main, open, "{", "\\lbrace"), defineSymbol(math, main, close, "}", "\\rbrace"), defineSymbol(math, main, open, "[", "\\lbrack", !0), defineSymbol(text, main, textord, "[", "\\lbrack", !0), defineSymbol(math, main, close, "]", "\\rbrack", !0), defineSymbol(text, main, textord, "]", "\\rbrack", !0), defineSymbol(math, main, open, "(", "\\lparen", !0), defineSymbol(math, main, close, ")", "\\rparen", !0), defineSymbol(text, main, textord, "<", "\\textless", !0), defineSymbol(text, main, textord, ">", "\\textgreater", !0), defineSymbol(math, main, open, "⌊", "\\lfloor", !0), defineSymbol(math, main, close, "⌋", "\\rfloor", !0), defineSymbol(math, main, open, "⌈", "\\lceil", !0), defineSymbol(math, main, close, "⌉", "\\rceil", !0), defineSymbol(math, main, textord, "\\", "\\backslash"), defineSymbol(math, main, textord, "∣", "|"), defineSymbol(math, main, textord, "∣", "\\vert"), defineSymbol(text, main, textord, "|", "\\textbar", !0), defineSymbol(math, main, textord, "∥", "\\|"), defineSymbol(math, main, textord, "∥", "\\Vert"), defineSymbol(text, main, textord, "∥", "\\textbardbl"), defineSymbol(text, main, textord, "~", "\\textasciitilde"), defineSymbol(text, main, textord, "\\", "\\textbackslash"), defineSymbol(text, main, textord, "^", "\\textasciicircum"), defineSymbol(math, main, rel, "↑", "\\uparrow", !0), defineSymbol(math, main, rel, "⇑", "\\Uparrow", !0), defineSymbol(math, main, rel, "↓", "\\downarrow", !0), defineSymbol(math, main, rel, "⇓", "\\Downarrow", !0), defineSymbol(math, main, rel, "↕", "\\updownarrow", !0), defineSymbol(math, main, rel, "⇕", "\\Updownarrow", !0), defineSymbol(math, main, op$1, "∐", "\\coprod"), defineSymbol(math, main, op$1, "⋁", "\\bigvee"), defineSymbol(math, main, op$1, "⋀", "\\bigwedge"), defineSymbol(math, main, op$1, "⨄", "\\biguplus"), defineSymbol(math, main, op$1, "⋂", "\\bigcap"), defineSymbol(math, main, op$1, "⋃", "\\bigcup"), defineSymbol(math, main, op$1, "∫", "\\int"), defineSymbol(math, main, op$1, "∫", "\\intop"), defineSymbol(math, main, op$1, "∬", "\\iint"), defineSymbol(math, main, op$1, "∭", "\\iiint"), defineSymbol(math, main, op$1, "∏", "\\prod"), defineSymbol(math, main, op$1, "∑", "\\sum"), defineSymbol(math, main, op$1, "⨂", "\\bigotimes"), defineSymbol(math, main, op$1, "⨁", "\\bigoplus"), defineSymbol(math, main, op$1, "⨀", "\\bigodot"), defineSymbol(math, main, op$1, "∮", "\\oint"), defineSymbol(math, main, op$1, "∯", "\\oiint"), defineSymbol(math, main, op$1, "∰", "\\oiiint"), defineSymbol(math, main, op$1, "⨆", "\\bigsqcup"), defineSymbol(math, main, op$1, "∫", "\\smallint"), defineSymbol(text, main, inner, "…", "\\textellipsis"), defineSymbol(math, main, inner, "…", "\\mathellipsis"), defineSymbol(text, main, inner, "…", "\\ldots", !0), defineSymbol(math, main, inner, "…", "\\ldots", !0), defineSymbol(math, main, inner, "⋯", "\\@cdots", !0), defineSymbol(math, main, inner, "⋱", "\\ddots", !0), defineSymbol(math, main, textord, "⋮", "\\varvdots"), defineSymbol(text, main, textord, "⋮", "\\varvdots"), defineSymbol(math, main, accent, "ˊ", "\\acute"), defineSymbol(math, main, accent, "ˋ", "\\grave"), defineSymbol(math, main, accent, "¨", "\\ddot"), defineSymbol(math, main, accent, "~", "\\tilde"), defineSymbol(math, main, accent, "ˉ", "\\bar"), defineSymbol(math, main, accent, "˘", "\\breve"), defineSymbol(math, main, accent, "ˇ", "\\check"), defineSymbol(math, main, accent, "^", "\\hat"), defineSymbol(math, main, accent, "⃗", "\\vec"), defineSymbol(math, main, accent, "˙", "\\dot"), defineSymbol(math, main, accent, "˚", "\\mathring"), defineSymbol(math, main, mathord, "", "\\@imath"), defineSymbol(math, main, mathord, "", "\\@jmath"), defineSymbol(math, main, textord, "ı", "ı"), defineSymbol(math, main, textord, "ȷ", "ȷ"), defineSymbol(text, main, textord, "ı", "\\i", !0), defineSymbol(text, main, textord, "ȷ", "\\j", !0), defineSymbol(text, main, textord, "ß", "\\ss", !0), defineSymbol(text, main, textord, "æ", "\\ae", !0), defineSymbol(text, main, textord, "œ", "\\oe", !0), defineSymbol(text, main, textord, "ø", "\\o", !0), defineSymbol(text, main, textord, "Æ", "\\AE", !0), defineSymbol(text, main, textord, "Œ", "\\OE", !0), defineSymbol(text, main, textord, "Ø", "\\O", !0), defineSymbol(text, main, accent, "ˊ", "\\'"), defineSymbol(text, main, accent, "ˋ", "\\`"), defineSymbol(text, main, accent, "ˆ", "\\^"), defineSymbol(text, main, accent, "˜", "\\~"), defineSymbol(text, main, accent, "ˉ", "\\="), defineSymbol(text, main, accent, "˘", "\\u"), defineSymbol(text, main, accent, "˙", "\\."), defineSymbol(text, main, accent, "¸", "\\c"), defineSymbol(text, main, accent, "˚", "\\r"), defineSymbol(text, main, accent, "ˇ", "\\v"), defineSymbol(text, main, accent, "¨", "\\\""), defineSymbol(text, main, accent, "˝", "\\H"), defineSymbol(text, main, accent, "◯", "\\textcircled"), ligatures = {
+		"--": !0,
+		"---": !0,
+		"``": !0,
+		"''": !0
+	}, defineSymbol(text, main, textord, "–", "--", !0), defineSymbol(text, main, textord, "–", "\\textendash"), defineSymbol(text, main, textord, "—", "---", !0), defineSymbol(text, main, textord, "—", "\\textemdash"), defineSymbol(text, main, textord, "‘", "`", !0), defineSymbol(text, main, textord, "‘", "\\textquoteleft"), defineSymbol(text, main, textord, "’", "'", !0), defineSymbol(text, main, textord, "’", "\\textquoteright"), defineSymbol(text, main, textord, "“", "``", !0), defineSymbol(text, main, textord, "“", "\\textquotedblleft"), defineSymbol(text, main, textord, "”", "''", !0), defineSymbol(text, main, textord, "”", "\\textquotedblright"), defineSymbol(math, main, textord, "°", "\\degree", !0), defineSymbol(text, main, textord, "°", "\\degree"), defineSymbol(text, main, textord, "°", "\\textdegree", !0), defineSymbol(math, main, textord, "£", "\\pounds"), defineSymbol(math, main, textord, "£", "\\mathsterling", !0), defineSymbol(text, main, textord, "£", "\\pounds"), defineSymbol(text, main, textord, "£", "\\textsterling", !0), defineSymbol(math, ams, textord, "✠", "\\maltese"), defineSymbol(text, ams, textord, "✠", "\\maltese"), mathTextSymbols = "0123456789/@.\"", i = 0; i < mathTextSymbols.length; i++) ch$1 = mathTextSymbols.charAt(i), defineSymbol(math, main, textord, ch$1, ch$1);
+	for (textSymbols = "0123456789!@*()-=+\";:?/.,", _i$3 = 0; _i$3 < textSymbols.length; _i$3++) _ch = textSymbols.charAt(_i$3), defineSymbol(text, main, textord, _ch, _ch);
+	for (letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", _i2 = 0; _i2 < letters.length; _i2++) _ch2 = letters.charAt(_i2), defineSymbol(math, main, mathord, _ch2, _ch2), defineSymbol(text, main, textord, _ch2, _ch2);
+	for (defineSymbol(math, ams, textord, "C", "ℂ"), defineSymbol(text, ams, textord, "C", "ℂ"), defineSymbol(math, ams, textord, "H", "ℍ"), defineSymbol(text, ams, textord, "H", "ℍ"), defineSymbol(math, ams, textord, "N", "ℕ"), defineSymbol(text, ams, textord, "N", "ℕ"), defineSymbol(math, ams, textord, "P", "ℙ"), defineSymbol(text, ams, textord, "P", "ℙ"), defineSymbol(math, ams, textord, "Q", "ℚ"), defineSymbol(text, ams, textord, "Q", "ℚ"), defineSymbol(math, ams, textord, "R", "ℝ"), defineSymbol(text, ams, textord, "R", "ℝ"), defineSymbol(math, ams, textord, "Z", "ℤ"), defineSymbol(text, ams, textord, "Z", "ℤ"), defineSymbol(math, main, mathord, "h", "ℎ"), defineSymbol(text, main, mathord, "h", "ℎ"), _i3 = 0; _i3 < letters.length; _i3++) _ch3 = letters.charAt(_i3), wideChar = String.fromCharCode(55349, 56320 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56372 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56424 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56580 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56684 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56736 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56788 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56840 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56944 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), _i3 < 26 && (wideChar = String.fromCharCode(55349, 56632 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar), wideChar = String.fromCharCode(55349, 56476 + _i3), defineSymbol(math, main, mathord, _ch3, wideChar), defineSymbol(text, main, textord, _ch3, wideChar));
+	for (wideChar = String.fromCharCode(55349, 56668), defineSymbol(math, main, mathord, "k", wideChar), defineSymbol(text, main, textord, "k", wideChar), _i4 = 0; _i4 < 10; _i4++) _ch4 = _i4.toString(), wideChar = String.fromCharCode(55349, 57294 + _i4), defineSymbol(math, main, mathord, _ch4, wideChar), defineSymbol(text, main, textord, _ch4, wideChar), wideChar = String.fromCharCode(55349, 57314 + _i4), defineSymbol(math, main, mathord, _ch4, wideChar), defineSymbol(text, main, textord, _ch4, wideChar), wideChar = String.fromCharCode(55349, 57324 + _i4), defineSymbol(math, main, mathord, _ch4, wideChar), defineSymbol(text, main, textord, _ch4, wideChar), wideChar = String.fromCharCode(55349, 57334 + _i4), defineSymbol(math, main, mathord, _ch4, wideChar), defineSymbol(text, main, textord, _ch4, wideChar);
+	for (extraLatin = "ÐÞþ", _i5 = 0; _i5 < extraLatin.length; _i5++) _ch5 = extraLatin.charAt(_i5), defineSymbol(math, main, mathord, _ch5, _ch5), defineSymbol(text, main, textord, _ch5, _ch5);
+	boldUpright = {
+		mathClass: "mathbf",
+		textClass: "textbf",
+		font: "Main-Bold"
+	}, italic = {
+		mathClass: "mathnormal",
+		textClass: "textit",
+		font: "Math-Italic"
+	}, boldItalic = {
+		mathClass: "boldsymbol",
+		textClass: "boldsymbol",
+		font: "Main-BoldItalic"
+	}, script = {
+		mathClass: "mathscr",
+		textClass: "textscr",
+		font: "Script-Regular"
+	}, noFont = {
+		mathClass: "",
+		textClass: "",
+		font: ""
+	}, fraktur = {
+		mathClass: "mathfrak",
+		textClass: "textfrak",
+		font: "Fraktur-Regular"
+	}, doubleStruck = {
+		mathClass: "mathbb",
+		textClass: "textbb",
+		font: "AMS-Regular"
+	}, boldFraktur = {
+		mathClass: "mathboldfrak",
+		textClass: "textboldfrak",
+		font: "Fraktur-Regular"
+	}, sansSerif = {
+		mathClass: "mathsf",
+		textClass: "textsf",
+		font: "SansSerif-Regular"
+	}, boldSansSerif = {
+		mathClass: "mathboldsf",
+		textClass: "textboldsf",
+		font: "SansSerif-Bold"
+	}, italicSansSerif = {
+		mathClass: "mathitsf",
+		textClass: "textitsf",
+		font: "SansSerif-Italic"
+	}, monospace = {
+		mathClass: "mathtt",
+		textClass: "texttt",
+		font: "Typewriter-Regular"
+	}, wideLatinLetterData = [
+		boldUpright,
+		boldUpright,
+		italic,
+		italic,
+		boldItalic,
+		boldItalic,
+		script,
+		noFont,
+		noFont,
+		noFont,
+		fraktur,
+		fraktur,
+		doubleStruck,
+		doubleStruck,
+		boldFraktur,
+		boldFraktur,
+		sansSerif,
+		sansSerif,
+		boldSansSerif,
+		boldSansSerif,
+		italicSansSerif,
+		italicSansSerif,
+		noFont,
+		noFont,
+		monospace,
+		monospace
+	], wideNumeralData = [
+		boldUpright,
+		noFont,
+		sansSerif,
+		boldSansSerif,
+		monospace
+	], wideCharacterFont = (n) => {
+		var r = n.charCodeAt(0), a = n.charCodeAt(1), o = (r - 55296) * 1024 + (a - 56320) + 65536;
+		if (119808 <= o && o < 120484) return wideLatinLetterData[Math.floor((o - 119808) / 26)];
+		if (120782 <= o && o <= 120831) return wideNumeralData[Math.floor((o - 120782) / 10)];
+		if (o === 120485 || o === 120486) return wideLatinLetterData[0];
+		if (120486 < o && o < 120782) return noFont;
+		throw new ParseError("Unsupported character: " + n);
+	}, lookupSymbol = function(n, r, a) {
+		if (symbols[a][n]) {
+			var o = symbols[a][n].replace;
+			o && (n = o);
+		}
+		return {
+			value: n,
+			metrics: getCharacterMetrics(n, r, a)
+		};
+	}, makeSymbol = function(n, r, a, o, l) {
+		var d = lookupSymbol(n, r, a), f = d.metrics;
+		n = d.value;
+		var p;
+		if (f) {
+			var m = f.italic;
+			(a === "text" || o && o.font === "mathit") && (m = 0), p = new SymbolNode(n, f.height, f.depth, m, f.skew, f.width, l);
+		} else typeof console < "u" && console.warn("No character metrics " + ("for '" + n + "' in style '" + r + "' and mode '" + a + "'")), p = new SymbolNode(n, 0, 0, 0, 0, 0, l);
+		if (o) {
+			p.maxFontSize = o.sizeMultiplier, o.style.isTight() && p.classes.push("mtight");
+			var h = o.getColor();
+			h && (p.style.color = h);
+		}
+		return p;
+	}, mathsym = function(n, r, a, o) {
+		return o === void 0 && (o = []), a.font === "boldsymbol" && lookupSymbol(n, "Main-Bold", r).metrics ? makeSymbol(n, "Main-Bold", r, a, o.concat(["mathbf"])) : n === "\\" || symbols[r][n].font === "main" ? makeSymbol(n, "Main-Regular", r, a, o) : makeSymbol(n, "AMS-Regular", r, a, o.concat(["amsrm"]));
+	}, boldSymbol = function(n, r, a) {
+		return a !== "textord" && lookupSymbol(n, "Math-BoldItalic", r).metrics ? {
+			fontName: "Math-BoldItalic",
+			fontClass: "boldsymbol"
+		} : {
+			fontName: "Main-Bold",
+			fontClass: "mathbf"
+		};
+	}, makeOrd = function(n, r, a) {
+		var o = n.mode, l = n.text, d = ["mord"], { font: f, fontFamily: p, fontWeight: m, fontShape: h } = r, g = o === "math" || o === "text" && !!f, _ = g ? f : p, v = "", y = "";
+		if (l.charCodeAt(0) === 55349) {
+			var x = wideCharacterFont(l);
+			v = x.font, y = x[o + "Class"];
+		}
+		if (v) return makeSymbol(l, v, o, r, d.concat(y));
+		if (_) {
+			var S, C;
+			if (_ === "boldsymbol") {
+				var w = boldSymbol(l, o, a);
+				S = w.fontName, C = [w.fontClass];
+			} else g ? (S = fontMap[f].fontName, C = [f]) : (S = retrieveTextFontName(p, m, h), C = [
+				p,
+				m,
+				h
+			]);
+			if (lookupSymbol(l, S, o).metrics) return makeSymbol(l, S, o, r, d.concat(C));
+			if (ligatures.hasOwnProperty(l) && S.slice(0, 10) === "Typewriter") {
+				for (var T = [], D = 0; D < l.length; D++) T.push(makeSymbol(l[D], S, o, r, d.concat(C)));
+				return makeFragment(T);
+			}
+		}
+		if (a === "mathord") return makeSymbol(l, "Math-Italic", o, r, d.concat(["mathnormal"]));
+		if (a === "textord") {
+			var G = symbols[o][l] && symbols[o][l].font;
+			if (G === "ams") return makeSymbol(l, retrieveTextFontName("amsrm", m, h), o, r, d.concat("amsrm", m, h));
+			if (G === "main" || !G) return makeSymbol(l, retrieveTextFontName("textrm", m, h), o, r, d.concat(m, h));
+			var ne = retrieveTextFontName(G, m, h);
+			return makeSymbol(l, ne, o, r, d.concat(ne, m, h));
+		} else throw Error("unexpected type: " + a + " in makeOrd");
+	}, canCombine = (n, r) => {
+		if (createClass(n.classes) !== createClass(r.classes) || n.skew !== r.skew || n.maxFontSize !== r.maxFontSize || n.italic !== 0 && n.hasClass("mathnormal")) return !1;
+		if (n.classes.length === 1) {
+			var a = n.classes[0];
+			if (a === "mbin" || a === "mord") return !1;
+		}
+		for (var o of Object.keys(n.style)) if (n.style[o] !== r.style[o]) return !1;
+		for (var l of Object.keys(r.style)) if (n.style[l] !== r.style[l]) return !1;
+		return !0;
+	}, tryCombineChars = (n) => {
+		for (var r = 0; r < n.length - 1; r++) {
+			var a = n[r], o = n[r + 1];
+			a instanceof SymbolNode && o instanceof SymbolNode && canCombine(a, o) && (a.text += o.text, a.height = Math.max(a.height, o.height), a.depth = Math.max(a.depth, o.depth), a.italic = o.italic, n.splice(r + 1, 1), r--);
+		}
+		return n;
+	}, sizeElementFromChildren = function(n) {
+		for (var r = 0, a = 0, o = 0, l = 0; l < n.children.length; l++) {
+			var d = n.children[l];
+			d.height > r && (r = d.height), d.depth > a && (a = d.depth), d.maxFontSize > o && (o = d.maxFontSize);
+		}
+		n.height = r, n.depth = a, n.maxFontSize = o;
+	}, makeSpan = function(n, r, a, o) {
+		var l = new Span(n, r, a, o);
+		return sizeElementFromChildren(l), l;
+	}, makeSvgSpan = (n, r, a, o) => new Span(n, r, a, o), makeLineSpan = function(n, r, a) {
+		var o = makeSpan([n], [], r);
+		return o.height = Math.max(a || r.fontMetrics().defaultRuleThickness, r.minRuleThickness), o.style.borderBottomWidth = makeEm(o.height), o.maxFontSize = 1, o;
+	}, makeAnchor = function(n, r, a, o) {
+		var l = new Anchor$1(n, r, a, o);
+		return sizeElementFromChildren(l), l;
+	}, makeFragment = function(n) {
+		var r = new DocumentFragment(n);
+		return sizeElementFromChildren(r), r;
+	}, wrapFragment = function(n, r) {
+		return n instanceof DocumentFragment ? makeSpan([], [n], r) : n;
+	}, getVListChildrenAndDepth = function(n) {
+		if (n.positionType === "individualShift") {
+			for (var r = n.children, a = [r[0]], o = -r[0].shift - r[0].elem.depth, l = o, d = 1; d < r.length; d++) {
+				var f = -r[d].shift - l - r[d].elem.depth, p = f - (r[d - 1].elem.height + r[d - 1].elem.depth);
+				l += f, a.push({
+					type: "kern",
+					size: p
+				}), a.push(r[d]);
+			}
+			return {
+				children: a,
+				depth: o
+			};
+		}
+		var m;
+		if (n.positionType === "top") {
+			for (var h = n.positionData, g = 0; g < n.children.length; g++) {
+				var _ = n.children[g];
+				h -= _.type === "kern" ? _.size : _.elem.height + _.elem.depth;
+			}
+			m = h;
+		} else if (n.positionType === "bottom") m = -n.positionData;
+		else {
+			var v = n.children[0];
+			if (v.type !== "elem") throw Error("First child must have type \"elem\".");
+			if (n.positionType === "shift") m = -v.elem.depth - n.positionData;
+			else if (n.positionType === "firstBaseline") m = -v.elem.depth;
+			else throw Error("Invalid positionType " + n.positionType + ".");
+		}
+		return {
+			children: n.children,
+			depth: m
+		};
+	}, makeVList = function(n, r) {
+		for (var { children: a, depth: o } = getVListChildrenAndDepth(n), l = 0, d = 0; d < a.length; d++) {
+			var f = a[d];
+			if (f.type === "elem") {
+				var p = f.elem;
+				l = Math.max(l, p.maxFontSize, p.height);
+			}
+		}
+		l += 2;
+		var m = makeSpan(["pstrut"], []);
+		m.style.height = makeEm(l);
+		for (var h = [], g = o, _ = o, v = o, y = 0; y < a.length; y++) {
+			var x = a[y];
+			if (x.type === "kern") v += x.size;
+			else {
+				var S = x.elem, C = x.wrapperClasses || [], w = x.wrapperStyle || {}, T = makeSpan(C, [m, S], void 0, w);
+				T.style.top = makeEm(-l - v - S.depth), x.marginLeft && (T.style.marginLeft = x.marginLeft), x.marginRight && (T.style.marginRight = x.marginRight), h.push(T), v += S.height + S.depth;
+			}
+			g = Math.min(g, v), _ = Math.max(_, v);
+		}
+		var D = makeSpan(["vlist"], h);
+		D.style.height = makeEm(_);
+		var G;
+		if (g < 0) {
+			var ne = makeSpan(["vlist"], [makeSpan([], [])]);
+			ne.style.height = makeEm(-g), G = [makeSpan(["vlist-r"], [D, makeSpan(["vlist-s"], [new SymbolNode("​")])]), makeSpan(["vlist-r"], [ne])];
+		} else G = [makeSpan(["vlist-r"], [D])];
+		var ie = makeSpan(["vlist-t"], G);
+		return G.length === 2 && ie.classes.push("vlist-t2"), ie.height = _, ie.depth = -g, ie;
+	}, makeGlue = (n, r) => {
+		var a = makeSpan(["mspace"], [], r), o = calculateSize(n, r);
+		return a.style.marginRight = makeEm(o), a;
+	}, retrieveTextFontName = (n, r, a) => {
+		var o, l;
+		switch (n) {
+			case "amsrm":
+				o = "AMS";
+				break;
+			case "textrm":
+				o = "Main";
+				break;
+			case "textsf":
+				o = "SansSerif";
+				break;
+			case "texttt":
+				o = "Typewriter";
+				break;
+			default: o = n;
+		}
+		return l = r === "textbf" && a === "textit" ? "BoldItalic" : r === "textbf" ? "Bold" : a === "textit" ? "Italic" : "Regular", o + "-" + l;
+	}, fontMap = {
+		mathbf: {
+			variant: "bold",
+			fontName: "Main-Bold"
+		},
+		mathrm: {
+			variant: "normal",
+			fontName: "Main-Regular"
+		},
+		textit: {
+			variant: "italic",
+			fontName: "Main-Italic"
+		},
+		mathit: {
+			variant: "italic",
+			fontName: "Main-Italic"
+		},
+		mathnormal: {
+			variant: "italic",
+			fontName: "Math-Italic"
+		},
+		mathsfit: {
+			variant: "sans-serif-italic",
+			fontName: "SansSerif-Italic"
+		},
+		mathbb: {
+			variant: "double-struck",
+			fontName: "AMS-Regular"
+		},
+		mathcal: {
+			variant: "script",
+			fontName: "Caligraphic-Regular"
+		},
+		mathfrak: {
+			variant: "fraktur",
+			fontName: "Fraktur-Regular"
+		},
+		mathscr: {
+			variant: "script",
+			fontName: "Script-Regular"
+		},
+		mathsf: {
+			variant: "sans-serif",
+			fontName: "SansSerif-Regular"
+		},
+		mathtt: {
+			variant: "monospace",
+			fontName: "Typewriter-Regular"
+		}
+	}, svgData = {
+		vec: [
+			"vec",
+			.471,
+			.714
+		],
+		oiintSize1: [
+			"oiintSize1",
+			.957,
+			.499
+		],
+		oiintSize2: [
+			"oiintSize2",
+			1.472,
+			.659
+		],
+		oiiintSize1: [
+			"oiiintSize1",
+			1.304,
+			.499
+		],
+		oiiintSize2: [
+			"oiiintSize2",
+			1.98,
+			.659
+		]
+	}, staticSvg = function(n, r) {
+		var [a, o, l] = svgData[n], d = makeSvgSpan(["overlay"], [new SvgNode([new PathNode(a)], {
+			width: makeEm(o),
+			height: makeEm(l),
+			style: "width:" + makeEm(o),
+			viewBox: "0 0 " + 1e3 * o + " " + 1e3 * l,
+			preserveAspectRatio: "xMinYMin"
+		})], r);
+		return d.height = l, d.style.height = makeEm(l), d.style.width = makeEm(o), d;
+	}, thinspace = {
+		number: 3,
+		unit: "mu"
+	}, mediumspace = {
+		number: 4,
+		unit: "mu"
+	}, thickspace = {
+		number: 5,
+		unit: "mu"
+	}, spacings = {
+		mord: {
+			mop: thinspace,
+			mbin: mediumspace,
+			mrel: thickspace,
+			minner: thinspace
+		},
+		mop: {
+			mord: thinspace,
+			mop: thinspace,
+			mrel: thickspace,
+			minner: thinspace
+		},
+		mbin: {
+			mord: mediumspace,
+			mop: mediumspace,
+			mopen: mediumspace,
+			minner: mediumspace
+		},
+		mrel: {
+			mord: thickspace,
+			mop: thickspace,
+			mopen: thickspace,
+			minner: thickspace
+		},
+		mopen: {},
+		mclose: {
+			mop: thinspace,
+			mbin: mediumspace,
+			mrel: thickspace,
+			minner: thinspace
+		},
+		mpunct: {
+			mord: thinspace,
+			mop: thinspace,
+			mrel: thickspace,
+			mopen: thinspace,
+			mclose: thinspace,
+			mpunct: thinspace,
+			minner: thinspace
+		},
+		minner: {
+			mord: thinspace,
+			mop: thinspace,
+			mbin: mediumspace,
+			mrel: thickspace,
+			mopen: thinspace,
+			mpunct: thinspace,
+			minner: thinspace
+		}
+	}, tightSpacings = {
+		mord: { mop: thinspace },
+		mop: {
+			mord: thinspace,
+			mop: thinspace
+		},
+		mbin: {},
+		mrel: {},
+		mopen: {},
+		mclose: { mop: thinspace },
+		mpunct: {},
+		minner: { mop: thinspace }
+	}, _functions = {}, _htmlGroupBuilders = {}, _mathmlGroupBuilders = {}, normalizeArgument = function(n) {
+		return n.type === "ordgroup" && n.body.length === 1 ? n.body[0] : n;
+	}, ordargument = function(n) {
+		return n.type === "ordgroup" ? n.body : [n];
+	}, binLeftCanceller = /* @__PURE__ */ new Set([
+		"leftmost",
+		"mbin",
+		"mopen",
+		"mrel",
+		"mop",
+		"mpunct"
+	]), binRightCanceller = /* @__PURE__ */ new Set([
+		"rightmost",
+		"mrel",
+		"mclose",
+		"mpunct"
+	]), styleMap$1 = {
+		display: Style$1$1.DISPLAY,
+		text: Style$1$1.TEXT,
+		script: Style$1$1.SCRIPT,
+		scriptscript: Style$1$1.SCRIPTSCRIPT
+	}, DomEnum = {
+		mord: "mord",
+		mop: "mop",
+		mbin: "mbin",
+		mrel: "mrel",
+		mopen: "mopen",
+		mclose: "mclose",
+		mpunct: "mpunct",
+		minner: "minner"
+	}, buildExpression$1 = function(n, r, a, o) {
+		o === void 0 && (o = [null, null]);
+		for (var l = [], d = 0; d < n.length; d++) {
+			var f = buildGroup$1(n[d], r);
+			if (f instanceof DocumentFragment) {
+				var p = f.children;
+				l.push(...p);
+			} else l.push(f);
+		}
+		if (tryCombineChars(l), !a) return l;
+		var m = r;
+		if (n.length === 1) {
+			var h = n[0];
+			h.type === "sizing" ? m = r.havingSize(h.size) : h.type === "styling" && (m = r.havingStyle(styleMap$1[h.style]));
+		}
+		var g = makeSpan([o[0] || "leftmost"], [], r), _ = makeSpan([o[1] || "rightmost"], [], r), v = a === "root";
+		return _traverseNonSpaceNodes(l, (n, r) => {
+			var a = r.classes[0], o = n.classes[0];
+			a === "mbin" && binRightCanceller.has(o) ? r.classes[0] = "mord" : o === "mbin" && binLeftCanceller.has(a) && (n.classes[0] = "mord");
+		}, { node: g }, _, v), _traverseNonSpaceNodes(l, (n, r) => {
+			var a, o, l = getTypeOfDomTree(r), d = getTypeOfDomTree(n), f = l && d ? n.hasClass("mtight") ? tightSpacings[l]?.[d] : spacings[l]?.[d] : null;
+			if (f) return makeGlue(f, m);
+		}, { node: g }, _, v), l;
+	}, _traverseNonSpaceNodes = function(n, r, a, o, l) {
+		o && n.push(o);
+		for (var d = 0; d < n.length; d++) {
+			var f = n[d], p = checkPartialGroup(f);
+			if (p) {
+				_traverseNonSpaceNodes(p.children, r, a, null, l);
+				continue;
+			}
+			var m = !f.hasClass("mspace");
+			if (m) {
+				var h = r(f, a.node);
+				h && (a.insertAfter ? a.insertAfter(h) : (n.unshift(h), d++));
+			}
+			m ? a.node = f : l && f.hasClass("newline") && (a.node = makeSpan(["leftmost"])), a.insertAfter = ((r) => (a) => {
+				n.splice(r + 1, 0, a), d++;
+			})(d);
+		}
+		o && n.pop();
+	}, checkPartialGroup = function(n) {
+		return n instanceof DocumentFragment || n instanceof Anchor$1 || n instanceof Span && n.hasClass("enclosing") ? n : null;
+	}, _getOutermostNode = function(n, r) {
+		var a = checkPartialGroup(n);
+		if (a) {
+			var o = a.children;
+			if (o.length) {
+				if (r === "right") return _getOutermostNode(o[o.length - 1], "right");
+				if (r === "left") return _getOutermostNode(o[0], "left");
+			}
+		}
+		return n;
+	}, getTypeOfDomTree = function(n, r) {
+		return n ? (r && (n = _getOutermostNode(n, r)), DomEnum[n.classes[0]] || null) : null;
+	}, makeNullDelimiter = function(n, r) {
+		var a = ["nulldelimiter"].concat(n.baseSizingClasses());
+		return makeSpan(r.concat(a));
+	}, buildGroup$1 = function(n, r, a) {
+		if (!n) return makeSpan();
+		if (_htmlGroupBuilders[n.type]) {
+			var o = _htmlGroupBuilders[n.type](n, r);
+			if (a && r.size !== a.size) {
+				o = makeSpan(r.sizingClasses(a), [o], r);
+				var l = r.sizeMultiplier / a.sizeMultiplier;
+				o.height *= l, o.depth *= l;
+			}
+			return o;
+		} else throw new ParseError("Got group of unknown type: '" + n.type + "'");
+	}, MathNode = class {
+		constructor(n, r, a) {
+			this.type = void 0, this.attributes = void 0, this.children = void 0, this.classes = void 0, this.type = n, this.attributes = {}, this.children = r || [], this.classes = a || [];
+		}
+		setAttribute(n, r) {
+			this.attributes[n] = r;
+		}
+		getAttribute(n) {
+			return this.attributes[n];
+		}
+		toNode() {
+			var n = document.createElementNS("http://www.w3.org/1998/Math/MathML", this.type);
+			for (var r in this.attributes) Object.prototype.hasOwnProperty.call(this.attributes, r) && n.setAttribute(r, this.attributes[r]);
+			this.classes.length > 0 && (n.className = createClass(this.classes));
+			for (var a = 0; a < this.children.length; a++) if (this.children[a] instanceof TextNode && this.children[a + 1] instanceof TextNode) {
+				for (var o = this.children[a].toText() + this.children[++a].toText(); this.children[a + 1] instanceof TextNode;) o += this.children[++a].toText();
+				n.appendChild(new TextNode(o).toNode());
+			} else n.appendChild(this.children[a].toNode());
+			return n;
+		}
+		toMarkup() {
+			var n = "<" + this.type;
+			for (var r in this.attributes) Object.prototype.hasOwnProperty.call(this.attributes, r) && (n += " " + r + "=\"", n += escape$1(this.attributes[r]), n += "\"");
+			this.classes.length > 0 && (n += " class =\"" + escape$1(createClass(this.classes)) + "\""), n += ">";
+			for (var a = 0; a < this.children.length; a++) n += this.children[a].toMarkup();
+			return n += "</" + this.type + ">", n;
+		}
+		toText() {
+			return this.children.map((n) => n.toText()).join("");
+		}
+	}, TextNode = class {
+		constructor(n) {
+			this.text = void 0, this.text = n;
+		}
+		toNode() {
+			return document.createTextNode(this.text);
+		}
+		toMarkup() {
+			return escape$1(this.toText());
+		}
+		toText() {
+			return this.text;
+		}
+	}, SpaceNode = class {
+		constructor(n) {
+			this.width = void 0, this.character = void 0, this.width = n, n >= .05555 && n <= .05556 ? this.character = " " : n >= .1666 && n <= .1667 ? this.character = " " : n >= .2222 && n <= .2223 ? this.character = " " : n >= .2777 && n <= .2778 ? this.character = "  " : n >= -.05556 && n <= -.05555 ? this.character = " ⁣" : n >= -.1667 && n <= -.1666 ? this.character = " ⁣" : n >= -.2223 && n <= -.2222 ? this.character = " ⁣" : n >= -.2778 && n <= -.2777 ? this.character = " ⁣" : this.character = null;
+		}
+		toNode() {
+			if (this.character) return document.createTextNode(this.character);
+			var n = document.createElementNS("http://www.w3.org/1998/Math/MathML", "mspace");
+			return n.setAttribute("width", makeEm(this.width)), n;
+		}
+		toMarkup() {
+			return this.character ? "<mtext>" + this.character + "</mtext>" : "<mspace width=\"" + makeEm(this.width) + "\"/>";
+		}
+		toText() {
+			return this.character ? this.character : " ";
+		}
+	}, noVariantSymbols = /* @__PURE__ */ new Set(["\\imath", "\\jmath"]), rowLikeTypes = /* @__PURE__ */ new Set(["mrow", "mtable"]), makeText = function(n, r, a) {
+		return symbols[r][n] && symbols[r][n].replace && n.charCodeAt(0) !== 55349 && !(ligatures.hasOwnProperty(n) && a && (a.fontFamily && a.fontFamily.slice(4, 6) === "tt" || a.font && a.font.slice(4, 6) === "tt")) && (n = symbols[r][n].replace), new TextNode(n);
+	}, makeRow = function(n) {
+		return n.length === 1 ? n[0] : new MathNode("mrow", n);
+	}, mathFontVariants = {
+		mathit: "italic",
+		boldsymbol: (n) => n.type === "textord" ? "bold" : "bold-italic",
+		mathbf: "bold",
+		mathbb: "double-struck",
+		mathsfit: "sans-serif-italic",
+		mathfrak: "fraktur",
+		mathscr: "script",
+		mathcal: "script",
+		mathsf: "sans-serif",
+		mathtt: "monospace"
+	}, getVariant = (n, r) => {
+		if (n.mode === "text") {
+			if (r.fontFamily === "texttt") return "monospace";
+			if (r.fontFamily === "textsf") return r.fontShape === "textit" && r.fontWeight === "textbf" ? "sans-serif-bold-italic" : r.fontShape === "textit" ? "sans-serif-italic" : r.fontWeight === "textbf" ? "bold-sans-serif" : "sans-serif";
+			if (r.fontShape === "textit" && r.fontWeight === "textbf") return "bold-italic";
+			if (r.fontShape === "textit") return "italic";
+			if (r.fontWeight === "textbf") return "bold";
+		}
+		var a = r.font;
+		if (!a || a === "mathnormal") return null;
+		var o = n.mode, l = mathFontVariants[a];
+		if (l) return typeof l == "function" ? l(n) : l;
+		var d = n.text;
+		if (noVariantSymbols.has(d)) return null;
+		if (symbols[o][d]) {
+			var f = symbols[o][d].replace;
+			f && (d = f);
+		}
+		var p = fontMap[a].fontName;
+		return getCharacterMetrics(d, p, o) ? fontMap[a].variant : null;
+	}, buildExpression = function(n, r, a) {
+		if (n.length === 1) {
+			var o = buildGroup(n[0], r);
+			return a && o instanceof MathNode && o.type === "mo" && (o.setAttribute("lspace", "0em"), o.setAttribute("rspace", "0em")), [o];
+		}
+		for (var l = [], d, f = 0; f < n.length; f++) {
+			var p = buildGroup(n[f], r);
+			if (p instanceof MathNode && d instanceof MathNode) {
+				if (p.type === "mtext" && d.type === "mtext" && p.getAttribute("mathvariant") === d.getAttribute("mathvariant")) {
+					d.children.push(...p.children);
+					continue;
+				} else if (p.type === "mn" && d.type === "mn") {
+					d.children.push(...p.children);
+					continue;
+				} else if (isNumberPunctuation(p) && d.type === "mn") {
+					d.children.push(...p.children);
+					continue;
+				} else if (p.type === "mn" && isNumberPunctuation(d)) p.children = [...d.children, ...p.children], l.pop();
+				else if ((p.type === "msup" || p.type === "msub") && p.children.length >= 1 && (d.type === "mn" || isNumberPunctuation(d))) {
+					var m = p.children[0];
+					m instanceof MathNode && m.type === "mn" && (m.children = [...d.children, ...m.children], l.pop());
+				} else if (d.type === "mi" && d.children.length === 1) {
+					var h = d.children[0];
+					if (h instanceof TextNode && h.text === "̸" && (p.type === "mo" || p.type === "mi" || p.type === "mn")) {
+						var g = p.children[0];
+						g instanceof TextNode && g.text.length > 0 && (g.text = g.text.slice(0, 1) + "̸" + g.text.slice(1), l.pop());
+					}
+				}
+			}
+			l.push(p), d = p;
+		}
+		return l;
+	}, buildExpressionRow = function(n, r, a) {
+		return makeRow(buildExpression(n, r, a));
+	}, buildGroup = function(n, r) {
+		if (!n) return new MathNode("mrow");
+		if (_mathmlGroupBuilders[n.type]) return _mathmlGroupBuilders[n.type](n, r);
+		throw new ParseError("Got group of unknown type: '" + n.type + "'");
+	}, sizeStyleMap = [
+		[
+			1,
+			1,
+			1
+		],
+		[
+			2,
+			1,
+			1
+		],
+		[
+			3,
+			1,
+			1
+		],
+		[
+			4,
+			2,
+			1
+		],
+		[
+			5,
+			2,
+			1
+		],
+		[
+			6,
+			3,
+			1
+		],
+		[
+			7,
+			4,
+			2
+		],
+		[
+			8,
+			6,
+			3
+		],
+		[
+			9,
+			7,
+			6
+		],
+		[
+			10,
+			8,
+			7
+		],
+		[
+			11,
+			10,
+			9
+		]
+	], sizeMultipliers = [
+		.5,
+		.6,
+		.7,
+		.8,
+		.9,
+		1,
+		1.2,
+		1.44,
+		1.728,
+		2.074,
+		2.488
+	], sizeAtStyle = function(n, r) {
+		return r.size < 2 ? n : sizeStyleMap[n - 1][r.size - 1];
+	}, Options = class n {
+		constructor(r) {
+			this.style = void 0, this.color = void 0, this.size = void 0, this.textSize = void 0, this.phantom = void 0, this.font = void 0, this.fontFamily = void 0, this.fontWeight = void 0, this.fontShape = void 0, this.sizeMultiplier = void 0, this.maxSize = void 0, this.minRuleThickness = void 0, this._fontMetrics = void 0, this.style = r.style, this.color = r.color, this.size = r.size || n.BASESIZE, this.textSize = r.textSize || this.size, this.phantom = !!r.phantom, this.font = r.font || "", this.fontFamily = r.fontFamily || "", this.fontWeight = r.fontWeight || "", this.fontShape = r.fontShape || "", this.sizeMultiplier = sizeMultipliers[this.size - 1], this.maxSize = r.maxSize, this.minRuleThickness = r.minRuleThickness, this._fontMetrics = void 0;
+		}
+		extend(r) {
+			var a = {
+				style: this.style,
+				size: this.size,
+				textSize: this.textSize,
+				color: this.color,
+				phantom: this.phantom,
+				font: this.font,
+				fontFamily: this.fontFamily,
+				fontWeight: this.fontWeight,
+				fontShape: this.fontShape,
+				maxSize: this.maxSize,
+				minRuleThickness: this.minRuleThickness
+			};
+			return Object.assign(a, r), new n(a);
+		}
+		havingStyle(n) {
+			return this.style === n ? this : this.extend({
+				style: n,
+				size: sizeAtStyle(this.textSize, n)
+			});
+		}
+		havingCrampedStyle() {
+			return this.havingStyle(this.style.cramp());
+		}
+		havingSize(n) {
+			return this.size === n && this.textSize === n ? this : this.extend({
+				style: this.style.text(),
+				size: n,
+				textSize: n,
+				sizeMultiplier: sizeMultipliers[n - 1]
+			});
+		}
+		havingBaseStyle(r) {
+			r ||= this.style.text();
+			var a = sizeAtStyle(n.BASESIZE, r);
+			return this.size === a && this.textSize === n.BASESIZE && this.style === r ? this : this.extend({
+				style: r,
+				size: a
+			});
+		}
+		havingBaseSizing() {
+			var n;
+			switch (this.style.id) {
+				case 4:
+				case 5:
+					n = 3;
+					break;
+				case 6:
+				case 7:
+					n = 1;
+					break;
+				default: n = 6;
+			}
+			return this.extend({
+				style: this.style.text(),
+				size: n
+			});
+		}
+		withColor(n) {
+			return this.extend({ color: n });
+		}
+		withPhantom() {
+			return this.extend({ phantom: !0 });
+		}
+		withFont(n) {
+			return this.extend({ font: n });
+		}
+		withTextFontFamily(n) {
+			return this.extend({
+				fontFamily: n,
+				font: ""
+			});
+		}
+		withTextFontWeight(n) {
+			return this.extend({
+				fontWeight: n,
+				font: ""
+			});
+		}
+		withTextFontShape(n) {
+			return this.extend({
+				fontShape: n,
+				font: ""
+			});
+		}
+		sizingClasses(n) {
+			return n.size === this.size ? [] : [
+				"sizing",
+				"reset-size" + n.size,
+				"size" + this.size
+			];
+		}
+		baseSizingClasses() {
+			return this.size === n.BASESIZE ? [] : [
+				"sizing",
+				"reset-size" + this.size,
+				"size" + n.BASESIZE
+			];
+		}
+		fontMetrics() {
+			return this._fontMetrics ||= getGlobalMetrics(this.size), this._fontMetrics;
+		}
+		getColor() {
+			return this.phantom ? "transparent" : this.color;
+		}
+	}, Options.BASESIZE = 6, optionsFromSettings = function(n) {
+		return new Options({
+			style: n.displayMode ? Style$1$1.DISPLAY : Style$1$1.TEXT,
+			maxSize: n.maxSize,
+			minRuleThickness: n.minRuleThickness
+		});
+	}, displayWrap = function(n, r) {
+		if (r.displayMode) {
+			var a = ["katex-display"];
+			r.leqno && a.push("leqno"), r.fleqn && a.push("fleqn"), n = makeSpan(a, [n]);
+		}
+		return n;
+	}, buildTree = function(n, r, a) {
+		var o = optionsFromSettings(a), l;
+		return a.output === "mathml" ? buildMathML(n, r, o, a.displayMode, !0) : (l = a.output === "html" ? makeSpan(["katex"], [buildHTML(n, o)]) : makeSpan(["katex"], [buildMathML(n, r, o, a.displayMode, !1), buildHTML(n, o)]), displayWrap(l, a));
+	}, buildHTMLTree = function(n, r, a) {
+		return displayWrap(makeSpan(["katex"], [buildHTML(n, optionsFromSettings(a))]), a);
+	}, stretchyCodePoint = {
+		widehat: "^",
+		widecheck: "ˇ",
+		widetilde: "~",
+		utilde: "~",
+		overleftarrow: "←",
+		underleftarrow: "←",
+		xleftarrow: "←",
+		overrightarrow: "→",
+		underrightarrow: "→",
+		xrightarrow: "→",
+		underbrace: "⏟",
+		overbrace: "⏞",
+		underbracket: "⎵",
+		overbracket: "⎴",
+		overgroup: "⏠",
+		undergroup: "⏡",
+		overleftrightarrow: "↔",
+		underleftrightarrow: "↔",
+		xleftrightarrow: "↔",
+		Overrightarrow: "⇒",
+		xRightarrow: "⇒",
+		overleftharpoon: "↼",
+		xleftharpoonup: "↼",
+		overrightharpoon: "⇀",
+		xrightharpoonup: "⇀",
+		xLeftarrow: "⇐",
+		xLeftrightarrow: "⇔",
+		xhookleftarrow: "↩",
+		xhookrightarrow: "↪",
+		xmapsto: "↦",
+		xrightharpoondown: "⇁",
+		xleftharpoondown: "↽",
+		xrightleftharpoons: "⇌",
+		xleftrightharpoons: "⇋",
+		xtwoheadleftarrow: "↞",
+		xtwoheadrightarrow: "↠",
+		xlongequal: "=",
+		xtofrom: "⇄",
+		xrightleftarrows: "⇄",
+		xrightequilibrium: "⇌",
+		xleftequilibrium: "⇋",
+		"\\cdrightarrow": "→",
+		"\\cdleftarrow": "←",
+		"\\cdlongequal": "="
+	}, stretchyMathML = function(n) {
+		var r = new MathNode("mo", [new TextNode(stretchyCodePoint[n.replace(/^\\/, "")])]);
+		return r.setAttribute("stretchy", "true"), r;
+	}, katexImagesData = {
+		overrightarrow: [
+			["rightarrow"],
+			.888,
+			522,
+			"xMaxYMin"
+		],
+		overleftarrow: [
+			["leftarrow"],
+			.888,
+			522,
+			"xMinYMin"
+		],
+		underrightarrow: [
+			["rightarrow"],
+			.888,
+			522,
+			"xMaxYMin"
+		],
+		underleftarrow: [
+			["leftarrow"],
+			.888,
+			522,
+			"xMinYMin"
+		],
+		xrightarrow: [
+			["rightarrow"],
+			1.469,
+			522,
+			"xMaxYMin"
+		],
+		"\\cdrightarrow": [
+			["rightarrow"],
+			3,
+			522,
+			"xMaxYMin"
+		],
+		xleftarrow: [
+			["leftarrow"],
+			1.469,
+			522,
+			"xMinYMin"
+		],
+		"\\cdleftarrow": [
+			["leftarrow"],
+			3,
+			522,
+			"xMinYMin"
+		],
+		Overrightarrow: [
+			["doublerightarrow"],
+			.888,
+			560,
+			"xMaxYMin"
+		],
+		xRightarrow: [
+			["doublerightarrow"],
+			1.526,
+			560,
+			"xMaxYMin"
+		],
+		xLeftarrow: [
+			["doubleleftarrow"],
+			1.526,
+			560,
+			"xMinYMin"
+		],
+		overleftharpoon: [
+			["leftharpoon"],
+			.888,
+			522,
+			"xMinYMin"
+		],
+		xleftharpoonup: [
+			["leftharpoon"],
+			.888,
+			522,
+			"xMinYMin"
+		],
+		xleftharpoondown: [
+			["leftharpoondown"],
+			.888,
+			522,
+			"xMinYMin"
+		],
+		overrightharpoon: [
+			["rightharpoon"],
+			.888,
+			522,
+			"xMaxYMin"
+		],
+		xrightharpoonup: [
+			["rightharpoon"],
+			.888,
+			522,
+			"xMaxYMin"
+		],
+		xrightharpoondown: [
+			["rightharpoondown"],
+			.888,
+			522,
+			"xMaxYMin"
+		],
+		xlongequal: [
+			["longequal"],
+			.888,
+			334,
+			"xMinYMin"
+		],
+		"\\cdlongequal": [
+			["longequal"],
+			3,
+			334,
+			"xMinYMin"
+		],
+		xtwoheadleftarrow: [
+			["twoheadleftarrow"],
+			.888,
+			334,
+			"xMinYMin"
+		],
+		xtwoheadrightarrow: [
+			["twoheadrightarrow"],
+			.888,
+			334,
+			"xMaxYMin"
+		],
+		overleftrightarrow: [
+			["leftarrow", "rightarrow"],
+			.888,
+			522
+		],
+		overbrace: [
+			[
+				"leftbrace",
+				"midbrace",
+				"rightbrace"
+			],
+			1.6,
+			548
+		],
+		underbrace: [
+			[
+				"leftbraceunder",
+				"midbraceunder",
+				"rightbraceunder"
+			],
+			1.6,
+			548
+		],
+		underleftrightarrow: [
+			["leftarrow", "rightarrow"],
+			.888,
+			522
+		],
+		xleftrightarrow: [
+			["leftarrow", "rightarrow"],
+			1.75,
+			522
+		],
+		xLeftrightarrow: [
+			["doubleleftarrow", "doublerightarrow"],
+			1.75,
+			560
+		],
+		xrightleftharpoons: [
+			["leftharpoondownplus", "rightharpoonplus"],
+			1.75,
+			716
+		],
+		xleftrightharpoons: [
+			["leftharpoonplus", "rightharpoondownplus"],
+			1.75,
+			716
+		],
+		xhookleftarrow: [
+			["leftarrow", "righthook"],
+			1.08,
+			522
+		],
+		xhookrightarrow: [
+			["lefthook", "rightarrow"],
+			1.08,
+			522
+		],
+		overlinesegment: [
+			["leftlinesegment", "rightlinesegment"],
+			.888,
+			522
+		],
+		underlinesegment: [
+			["leftlinesegment", "rightlinesegment"],
+			.888,
+			522
+		],
+		overbracket: [
+			["leftbracketover", "rightbracketover"],
+			1.6,
+			440
+		],
+		underbracket: [
+			["leftbracketunder", "rightbracketunder"],
+			1.6,
+			410
+		],
+		overgroup: [
+			["leftgroup", "rightgroup"],
+			.888,
+			342
+		],
+		undergroup: [
+			["leftgroupunder", "rightgroupunder"],
+			.888,
+			342
+		],
+		xmapsto: [
+			["leftmapsto", "rightarrow"],
+			1.5,
+			522
+		],
+		xtofrom: [
+			["leftToFrom", "rightToFrom"],
+			1.75,
+			528
+		],
+		xrightleftarrows: [
+			["baraboveleftarrow", "rightarrowabovebar"],
+			1.75,
+			901
+		],
+		xrightequilibrium: [
+			["baraboveshortleftharpoon", "rightharpoonaboveshortbar"],
+			1.75,
+			716
+		],
+		xleftequilibrium: [
+			["shortbaraboveleftharpoon", "shortrightharpoonabovebar"],
+			1.75,
+			716
+		]
+	}, wideAccentLabels = /* @__PURE__ */ new Set([
+		"widehat",
+		"widecheck",
+		"widetilde",
+		"utilde"
+	]), stretchySvg = function(n, r) {
+		function a() {
+			var a = 4e5, o = n.label.slice(1);
+			if (wideAccentLabels.has(o) && "base" in n) {
+				var l = n.base.type === "ordgroup" ? n.base.body.length : 1, d, f, p;
+				if (l > 5) o === "widehat" || o === "widecheck" ? (d = 420, a = 2364, p = .42, f = o + "4") : (d = 312, a = 2340, p = .34, f = "tilde4");
+				else {
+					var m = [
+						1,
+						1,
+						2,
+						2,
+						3,
+						3
+					][l];
+					o === "widehat" || o === "widecheck" ? (a = [
+						0,
+						1062,
+						2364,
+						2364,
+						2364
+					][m], d = [
+						0,
+						239,
+						300,
+						360,
+						420
+					][m], p = [
+						0,
+						.24,
+						.3,
+						.3,
+						.36,
+						.42
+					][m], f = o + m) : (a = [
+						0,
+						600,
+						1033,
+						2339,
+						2340
+					][m], d = [
+						0,
+						260,
+						286,
+						306,
+						312
+					][m], p = [
+						0,
+						.26,
+						.286,
+						.3,
+						.306,
+						.34
+					][m], f = "tilde" + m);
+				}
+				return {
+					span: makeSvgSpan([], [new SvgNode([new PathNode(f)], {
+						width: "100%",
+						height: makeEm(p),
+						viewBox: "0 0 " + a + " " + d,
+						preserveAspectRatio: "none"
+					})], r),
+					minWidth: 0,
+					height: p
+				};
+			} else {
+				var h = [], g = katexImagesData[o];
+				if (!g) throw Error("No SVG data for \"" + o + "\".");
+				var [_, v, y] = g, x = y / 1e3, S = _.length, C, w;
+				if (S === 1) {
+					if (g.length !== 4) throw Error("Expected 4-tuple for single-path SVG data \"" + o + "\".");
+					C = ["hide-tail"], w = [g[3]];
+				} else if (S === 2) C = ["halfarrow-left", "halfarrow-right"], w = ["xMinYMin", "xMaxYMin"];
+				else if (S === 3) C = [
+					"brace-left",
+					"brace-center",
+					"brace-right"
+				], w = [
+					"xMinYMin",
+					"xMidYMin",
+					"xMaxYMin"
+				];
+				else throw Error("Correct katexImagesData or update code here to support\n                    " + S + " children.");
+				for (var T = 0; T < S; T++) {
+					var D = new SvgNode([new PathNode(_[T])], {
+						width: "400em",
+						height: makeEm(x),
+						viewBox: "0 0 " + a + " " + y,
+						preserveAspectRatio: w[T] + " slice"
+					}), G = makeSvgSpan([C[T]], [D], r);
+					if (S === 1) return {
+						span: G,
+						minWidth: v,
+						height: x
+					};
+					G.style.height = makeEm(x), h.push(G);
+				}
+				return {
+					span: makeSpan(["stretchy"], h, r),
+					minWidth: v,
+					height: x
+				};
+			}
+		}
+		var { span: o, minWidth: l, height: d } = a();
+		return o.height = d, o.style.height = makeEm(d), l > 0 && (o.style.minWidth = makeEm(l)), o;
+	}, stretchyEnclose = function(n, r, a, o, l) {
+		var d, f = n.height + n.depth + a + o;
+		if (/fbox|color|angl/.test(r)) {
+			if (d = makeSpan(["stretchy", r], [], l), r === "fbox") {
+				var p = l.color && l.getColor();
+				p && (d.style.borderColor = p);
+			}
+		} else {
+			var m = [];
+			/^[bx]cancel$/.test(r) && m.push(new LineNode({
+				x1: "0",
+				y1: "0",
+				x2: "100%",
+				y2: "100%",
+				"stroke-width": "0.046em"
+			})), /^x?cancel$/.test(r) && m.push(new LineNode({
+				x1: "0",
+				y1: "100%",
+				x2: "100%",
+				y2: "0",
+				"stroke-width": "0.046em"
+			})), d = makeSvgSpan([], [new SvgNode(m, {
+				width: "100%",
+				height: makeEm(f)
+			})], l);
+		}
+		return d.height = f, d.style.height = makeEm(f), d;
+	}, ATOMS = {
+		bin: 1,
+		close: 1,
+		inner: 1,
+		open: 1,
+		punct: 1,
+		rel: 1
+	}, NON_ATOMS = {
+		"accent-token": 1,
+		mathord: 1,
+		"op-token": 1,
+		spacing: 1,
+		textord: 1
+	}, getBaseSymbol = (n) => {
+		if (n instanceof SymbolNode) return n;
+		if (hasHtmlDomChildren(n) && n.children.length === 1) return getBaseSymbol(n.children[0]);
+	}, htmlBuilder$a = (n, r) => {
+		var a, o, l;
+		n && n.type === "supsub" ? (o = assertNodeType(n.base, "accent"), a = o.base, n.base = a, l = assertSpan(buildGroup$1(n, r)), n.base = o) : (o = assertNodeType(n, "accent"), a = o.base);
+		var d = buildGroup$1(a, r.havingCrampedStyle()), f = o.isShifty && isCharacterBox(a), p = 0;
+		if (f) {
+			var m, h;
+			p = getBaseSymbol(d)?.skew ?? 0;
+		}
+		var g = o.label === "\\c", _ = g ? d.height + d.depth : Math.min(d.height, r.fontMetrics().xHeight), v;
+		if (o.isStretchy) v = stretchySvg(o, r), v = makeVList({
+			positionType: "firstBaseline",
+			children: [{
+				type: "elem",
+				elem: d
+			}, {
+				type: "elem",
+				elem: v,
+				wrapperClasses: ["svg-align"],
+				wrapperStyle: p > 0 ? {
+					width: "calc(100% - " + makeEm(2 * p) + ")",
+					marginLeft: makeEm(2 * p)
+				} : void 0
+			}]
+		});
+		else {
+			var y, x;
+			o.label === "\\vec" ? (y = staticSvg("vec", r), x = svgData.vec[1]) : (y = makeOrd({
+				type: "textord",
+				mode: o.mode,
+				text: o.label
+			}, r, "textord"), y = assertSymbolDomNode(y), y.italic = 0, x = y.width, g && (_ += y.depth)), v = makeSpan(["accent-body"], [y]);
+			var S = o.label === "\\textcircled";
+			S && (v.classes.push("accent-full"), _ = d.height);
+			var C = p;
+			S || (C -= x / 2), v.style.left = makeEm(C), o.label === "\\textcircled" && (v.style.top = ".2em"), v = makeVList({
+				positionType: "firstBaseline",
+				children: [
+					{
+						type: "elem",
+						elem: d
+					},
+					{
+						type: "kern",
+						size: -_
+					},
+					{
+						type: "elem",
+						elem: v
+					}
+				]
+			});
+		}
+		var w = makeSpan(["mord", "accent"], [v], r);
+		return l ? (l.children[0] = w, l.height = Math.max(w.height, l.height), l.classes[0] = "mord", l) : w;
+	}, mathmlBuilder$9 = (n, r) => {
+		var a = n.isStretchy ? stretchyMathML(n.label) : new MathNode("mo", [makeText(n.label, n.mode)]), o = new MathNode("mover", [buildGroup(n.base, r), a]);
+		return o.setAttribute("accent", "true"), o;
+	}, NON_STRETCHY_ACCENT_REGEX = new RegExp([
+		"\\acute",
+		"\\grave",
+		"\\ddot",
+		"\\tilde",
+		"\\bar",
+		"\\breve",
+		"\\check",
+		"\\hat",
+		"\\vec",
+		"\\dot",
+		"\\mathring"
+	].map((n) => "\\" + n).join("|")), defineFunction({
+		type: "accent",
+		names: [
+			"\\acute",
+			"\\grave",
+			"\\ddot",
+			"\\tilde",
+			"\\bar",
+			"\\breve",
+			"\\check",
+			"\\hat",
+			"\\vec",
+			"\\dot",
+			"\\mathring",
+			"\\widecheck",
+			"\\widehat",
+			"\\widetilde",
+			"\\overrightarrow",
+			"\\overleftarrow",
+			"\\Overrightarrow",
+			"\\overleftrightarrow",
+			"\\overgroup",
+			"\\overlinesegment",
+			"\\overleftharpoon",
+			"\\overrightharpoon"
+		],
+		props: { numArgs: 1 },
+		handler: (n, r) => {
+			var a = normalizeArgument(r[0]), o = !NON_STRETCHY_ACCENT_REGEX.test(n.funcName), l = !o || n.funcName === "\\widehat" || n.funcName === "\\widetilde" || n.funcName === "\\widecheck";
+			return {
+				type: "accent",
+				mode: n.parser.mode,
+				label: n.funcName,
+				isStretchy: o,
+				isShifty: l,
+				base: a
+			};
+		},
+		htmlBuilder: htmlBuilder$a,
+		mathmlBuilder: mathmlBuilder$9
+	}), defineFunction({
+		type: "accent",
+		names: [
+			"\\'",
+			"\\`",
+			"\\^",
+			"\\~",
+			"\\=",
+			"\\u",
+			"\\.",
+			"\\\"",
+			"\\c",
+			"\\r",
+			"\\H",
+			"\\v",
+			"\\textcircled"
+		],
+		props: {
+			numArgs: 1,
+			allowedInText: !0,
+			allowedInMath: !0,
+			argTypes: ["primitive"]
+		},
+		handler: (n, r) => {
+			var a = r[0], o = n.parser.mode;
+			return o === "math" && (n.parser.settings.reportNonstrict("mathVsTextAccents", "LaTeX's accent " + n.funcName + " works only in text mode"), o = "text"), {
+				type: "accent",
+				mode: o,
+				label: n.funcName,
+				isStretchy: !1,
+				isShifty: !0,
+				base: a
+			};
+		},
+		htmlBuilder: htmlBuilder$a,
+		mathmlBuilder: mathmlBuilder$9
+	}), defineFunction({
+		type: "accentUnder",
+		names: [
+			"\\underleftarrow",
+			"\\underrightarrow",
+			"\\underleftrightarrow",
+			"\\undergroup",
+			"\\underlinesegment",
+			"\\utilde"
+		],
+		props: { numArgs: 1 },
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "accentUnder",
+				mode: a.mode,
+				label: o,
+				base: l
+			};
+		},
+		htmlBuilder: (n, r) => {
+			var a = buildGroup$1(n.base, r), o = stretchySvg(n, r), l = n.label === "\\utilde" ? .12 : 0;
+			return makeSpan(["mord", "accentunder"], [makeVList({
+				positionType: "top",
+				positionData: a.height,
+				children: [
+					{
+						type: "elem",
+						elem: o,
+						wrapperClasses: ["svg-align"]
+					},
+					{
+						type: "kern",
+						size: l
+					},
+					{
+						type: "elem",
+						elem: a
+					}
+				]
+			})], r);
+		},
+		mathmlBuilder: (n, r) => {
+			var a = stretchyMathML(n.label), o = new MathNode("munder", [buildGroup(n.base, r), a]);
+			return o.setAttribute("accentunder", "true"), o;
+		}
+	}), paddedNode = (n) => {
+		var r = new MathNode("mpadded", n ? [n] : []);
+		return r.setAttribute("width", "+0.6em"), r.setAttribute("lspace", "0.3em"), r;
+	}, defineFunction({
+		type: "xArrow",
+		names: [
+			"\\xleftarrow",
+			"\\xrightarrow",
+			"\\xLeftarrow",
+			"\\xRightarrow",
+			"\\xleftrightarrow",
+			"\\xLeftrightarrow",
+			"\\xhookleftarrow",
+			"\\xhookrightarrow",
+			"\\xmapsto",
+			"\\xrightharpoondown",
+			"\\xrightharpoonup",
+			"\\xleftharpoondown",
+			"\\xleftharpoonup",
+			"\\xrightleftharpoons",
+			"\\xleftrightharpoons",
+			"\\xlongequal",
+			"\\xtwoheadrightarrow",
+			"\\xtwoheadleftarrow",
+			"\\xtofrom",
+			"\\xrightleftarrows",
+			"\\xrightequilibrium",
+			"\\xleftequilibrium",
+			"\\\\cdrightarrow",
+			"\\\\cdleftarrow",
+			"\\\\cdlongequal"
+		],
+		props: {
+			numArgs: 1,
+			numOptionalArgs: 1
+		},
+		handler(n, r, a) {
+			var { parser: o, funcName: l } = n;
+			return {
+				type: "xArrow",
+				mode: o.mode,
+				label: l,
+				body: r[0],
+				below: a[0]
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = r.style, o = r.havingStyle(a.sup()), l = wrapFragment(buildGroup$1(n.body, o, r), r), d = n.label.slice(0, 2) === "\\x" ? "x" : "cd";
+			l.classes.push(d + "-arrow-pad");
+			var f;
+			n.below && (o = r.havingStyle(a.sub()), f = wrapFragment(buildGroup$1(n.below, o, r), r), f.classes.push(d + "-arrow-pad"));
+			var p = stretchySvg(n, r), m = -r.fontMetrics().axisHeight + .5 * p.height, h = -r.fontMetrics().axisHeight - .5 * p.height - .111;
+			(l.depth > .25 || n.label === "\\xleftequilibrium") && (h -= l.depth);
+			var g;
+			if (f) {
+				var _ = -r.fontMetrics().axisHeight + f.height + .5 * p.height + .111;
+				g = makeVList({
+					positionType: "individualShift",
+					children: [
+						{
+							type: "elem",
+							elem: l,
+							shift: h
+						},
+						{
+							type: "elem",
+							elem: p,
+							shift: m,
+							wrapperClasses: ["svg-align"]
+						},
+						{
+							type: "elem",
+							elem: f,
+							shift: _
+						}
+					]
+				});
+			} else g = makeVList({
+				positionType: "individualShift",
+				children: [{
+					type: "elem",
+					elem: l,
+					shift: h
+				}, {
+					type: "elem",
+					elem: p,
+					shift: m,
+					wrapperClasses: ["svg-align"]
+				}]
+			});
+			return makeSpan(["mrel", "x-arrow"], [g], r);
+		},
+		mathmlBuilder(n, r) {
+			var a = stretchyMathML(n.label);
+			a.setAttribute("minsize", n.label.charAt(0) === "x" ? "1.75em" : "3.0em");
+			var o;
+			if (n.body) {
+				var l = paddedNode(buildGroup(n.body, r));
+				o = n.below ? new MathNode("munderover", [
+					a,
+					paddedNode(buildGroup(n.below, r)),
+					l
+				]) : new MathNode("mover", [a, l]);
+			} else n.below ? o = new MathNode("munder", [a, paddedNode(buildGroup(n.below, r))]) : (o = paddedNode(), o = new MathNode("mover", [a, o]));
+			return o;
+		}
+	}), defineFunction({
+		type: "mclass",
+		names: [
+			"\\mathord",
+			"\\mathbin",
+			"\\mathrel",
+			"\\mathopen",
+			"\\mathclose",
+			"\\mathpunct",
+			"\\mathinner"
+		],
+		props: {
+			numArgs: 1,
+			primitive: !0
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "mclass",
+				mode: a.mode,
+				mclass: "m" + o.slice(5),
+				body: ordargument(l),
+				isCharacterBox: isCharacterBox(l)
+			};
+		},
+		htmlBuilder: htmlBuilder$9,
+		mathmlBuilder: mathmlBuilder$8
+	}), binrelClass = (n) => {
+		var r = n.type === "ordgroup" && n.body.length ? n.body[0] : n;
+		return r.type === "atom" && (r.family === "bin" || r.family === "rel") ? "m" + r.family : "mord";
+	}, defineFunction({
+		type: "mclass",
+		names: ["\\@binrel"],
+		props: { numArgs: 2 },
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "mclass",
+				mode: a.mode,
+				mclass: binrelClass(r[0]),
+				body: ordargument(r[1]),
+				isCharacterBox: isCharacterBox(r[1])
+			};
+		}
+	}), defineFunction({
+		type: "mclass",
+		names: [
+			"\\stackrel",
+			"\\overset",
+			"\\underset"
+		],
+		props: { numArgs: 2 },
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = r[1], d = r[0], f = o === "\\stackrel" ? "mrel" : binrelClass(l), p = {
+				type: "op",
+				mode: l.mode,
+				limits: !0,
+				alwaysHandleSupSub: !0,
+				parentIsSupSub: !1,
+				symbol: !1,
+				suppressBaseShift: o !== "\\stackrel",
+				body: ordargument(l)
+			}, m = {
+				type: "supsub",
+				mode: d.mode,
+				base: p,
+				sup: o === "\\underset" ? null : d,
+				sub: o === "\\underset" ? d : null
+			};
+			return {
+				type: "mclass",
+				mode: a.mode,
+				mclass: f,
+				body: [m],
+				isCharacterBox: isCharacterBox(m)
+			};
+		},
+		htmlBuilder: htmlBuilder$9,
+		mathmlBuilder: mathmlBuilder$8
+	}), defineFunction({
+		type: "pmb",
+		names: ["\\pmb"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "pmb",
+				mode: a.mode,
+				mclass: binrelClass(r[0]),
+				body: ordargument(r[0])
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildExpression$1(n.body, r, !0), o = makeSpan([n.mclass], a, r);
+			return o.style.textShadow = "0.02em 0.01em 0.04px", o;
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mstyle", buildExpression(n.body, r));
+			return a.setAttribute("style", "text-shadow: 0.02em 0.01em 0.04px"), a;
+		}
+	}), cdArrowFunctionName = {
+		">": "\\\\cdrightarrow",
+		"<": "\\\\cdleftarrow",
+		"=": "\\\\cdlongequal",
+		A: "\\uparrow",
+		V: "\\downarrow",
+		"|": "\\Vert",
+		".": "no arrow"
+	}, newCell = () => ({
+		type: "styling",
+		body: [],
+		mode: "math",
+		style: "display",
+		resetFont: !0
+	}), isStartOfArrow = (n) => n.type === "textord" && n.text === "@", isLabelEnd = (n, r) => (n.type === "mathord" || n.type === "atom") && n.text === r, defineFunction({
+		type: "cdlabel",
+		names: ["\\\\cdleft", "\\\\cdright"],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var { parser: a, funcName: o } = n;
+			return {
+				type: "cdlabel",
+				mode: a.mode,
+				side: o.slice(4),
+				label: r[0]
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = r.havingStyle(r.style.sup()), o = wrapFragment(buildGroup$1(n.label, a, r), r);
+			return o.classes.push("cd-label-" + n.side), o.style.bottom = makeEm(.8 - o.depth), o.height = 0, o.depth = 0, o;
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mrow", [buildGroup(n.label, r)]);
+			return a = new MathNode("mpadded", [a]), a.setAttribute("width", "0"), n.side === "left" && a.setAttribute("lspace", "-1width"), a.setAttribute("voffset", "0.7em"), a = new MathNode("mstyle", [a]), a.setAttribute("displaystyle", "false"), a.setAttribute("scriptlevel", "1"), a;
+		}
+	}), defineFunction({
+		type: "cdlabelparent",
+		names: ["\\\\cdparent"],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "cdlabelparent",
+				mode: a.mode,
+				fragment: r[0]
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = wrapFragment(buildGroup$1(n.fragment, r), r);
+			return a.classes.push("cd-vert-arrow"), a;
+		},
+		mathmlBuilder(n, r) {
+			return new MathNode("mrow", [buildGroup(n.fragment, r)]);
+		}
+	}), defineFunction({
+		type: "textord",
+		names: ["\\@char"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			for (var { parser: a } = n, o = assertNodeType(r[0], "ordgroup").body, l = "", d = 0; d < o.length; d++) {
+				var f = assertNodeType(o[d], "textord");
+				l += f.text;
+			}
+			var p = parseInt(l), m;
+			if (isNaN(p)) throw new ParseError("\\@char has non-numeric argument " + l);
+			if (p < 0 || p >= 1114111) throw new ParseError("\\@char with invalid code point " + l);
+			return p <= 65535 ? m = String.fromCharCode(p) : (p -= 65536, m = String.fromCharCode((p >> 10) + 55296, (p & 1023) + 56320)), {
+				type: "textord",
+				mode: a.mode,
+				text: m
+			};
+		}
+	}), htmlBuilder$8 = (n, r) => makeFragment(buildExpression$1(n.body, r.withColor(n.color), !1)), mathmlBuilder$7 = (n, r) => {
+		var a = new MathNode("mstyle", buildExpression(n.body, r.withColor(n.color)));
+		return a.setAttribute("mathcolor", n.color), a;
+	}, defineFunction({
+		type: "color",
+		names: ["\\textcolor"],
+		props: {
+			numArgs: 2,
+			allowedInText: !0,
+			argTypes: ["color", "original"]
+		},
+		handler(n, r) {
+			var { parser: a } = n, o = assertNodeType(r[0], "color-token").color, l = r[1];
+			return {
+				type: "color",
+				mode: a.mode,
+				color: o,
+				body: ordargument(l)
+			};
+		},
+		htmlBuilder: htmlBuilder$8,
+		mathmlBuilder: mathmlBuilder$7
+	}), defineFunction({
+		type: "color",
+		names: ["\\color"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0,
+			argTypes: ["color"]
+		},
+		handler(n, r) {
+			var { parser: a, breakOnTokenText: o } = n, l = assertNodeType(r[0], "color-token").color;
+			a.gullet.macros.set("\\current@color", l);
+			var d = a.parseExpression(!0, o);
+			return {
+				type: "color",
+				mode: a.mode,
+				color: l,
+				body: d
+			};
+		},
+		htmlBuilder: htmlBuilder$8,
+		mathmlBuilder: mathmlBuilder$7
+	}), defineFunction({
+		type: "cr",
+		names: ["\\\\"],
+		props: {
+			numArgs: 0,
+			numOptionalArgs: 0,
+			allowedInText: !0
+		},
+		handler(n, r, a) {
+			var { parser: o } = n, l = o.gullet.future().text === "[" ? o.parseSizeGroup(!0) : null, d = !o.settings.displayMode || !o.settings.useStrictBehavior("newLineInDisplayMode", "In LaTeX, \\\\ or \\newline does nothing in display mode");
+			return {
+				type: "cr",
+				mode: o.mode,
+				newLine: d,
+				size: l && assertNodeType(l, "size").value
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = makeSpan(["mspace"], [], r);
+			return n.newLine && (a.classes.push("newline"), n.size && (a.style.marginTop = makeEm(calculateSize(n.size, r)))), a;
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mspace");
+			return n.newLine && (a.setAttribute("linebreak", "newline"), n.size && a.setAttribute("height", makeEm(calculateSize(n.size, r)))), a;
+		}
+	}), globalMap = {
+		"\\global": "\\global",
+		"\\long": "\\\\globallong",
+		"\\\\globallong": "\\\\globallong",
+		"\\def": "\\gdef",
+		"\\gdef": "\\gdef",
+		"\\edef": "\\xdef",
+		"\\xdef": "\\xdef",
+		"\\let": "\\\\globallet",
+		"\\futurelet": "\\\\globalfuture"
+	}, checkControlSequence = (n) => {
+		var r = n.text;
+		if (/^(?:[\\{}$&#^_]|EOF)$/.test(r)) throw new ParseError("Expected a control sequence", n);
+		return r;
+	}, getRHS = (n) => {
+		var r = n.gullet.popToken();
+		return r.text === "=" && (r = n.gullet.popToken(), r.text === " " && (r = n.gullet.popToken())), r;
+	}, letCommand = (n, r, a, o) => {
+		var l = n.gullet.macros.get(a.text);
+		l ??= (a.noexpand = !0, {
+			tokens: [a],
+			numArgs: 0,
+			unexpandable: !n.gullet.isExpandable(a.text)
+		}), n.gullet.macros.set(r, l, o);
+	}, defineFunction({
+		type: "internal",
+		names: [
+			"\\global",
+			"\\long",
+			"\\\\globallong"
+		],
+		props: {
+			numArgs: 0,
+			allowedInText: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a } = n;
+			r.consumeSpaces();
+			var o = r.fetch();
+			if (globalMap[o.text]) return (a === "\\global" || a === "\\\\globallong") && (o.text = globalMap[o.text]), assertNodeType(r.parseFunction(), "internal");
+			throw new ParseError("Invalid token after macro prefix", o);
+		}
+	}), defineFunction({
+		type: "internal",
+		names: [
+			"\\def",
+			"\\gdef",
+			"\\edef",
+			"\\xdef"
+		],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			primitive: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a } = n, o = r.gullet.popToken(), l = o.text;
+			if (/^(?:[\\{}$&#^_]|EOF)$/.test(l)) throw new ParseError("Expected a control sequence", o);
+			for (var d = 0, f, p = [[]]; r.gullet.future().text !== "{";) if (o = r.gullet.popToken(), o.text === "#") {
+				if (r.gullet.future().text === "{") {
+					f = r.gullet.future(), p[d].push("{");
+					break;
+				}
+				if (o = r.gullet.popToken(), !/^[1-9]$/.test(o.text)) throw new ParseError("Invalid argument number \"" + o.text + "\"");
+				if (parseInt(o.text) !== d + 1) throw new ParseError("Argument number \"" + o.text + "\" out of order");
+				d++, p.push([]);
+			} else if (o.text === "EOF") throw new ParseError("Expected a macro definition");
+			else p[d].push(o.text);
+			var { tokens: m } = r.gullet.consumeArg();
+			return f && m.unshift(f), (a === "\\edef" || a === "\\xdef") && (m = r.gullet.expandTokens(m), m.reverse()), r.gullet.macros.set(l, {
+				tokens: m,
+				numArgs: d,
+				delimiters: p
+			}, a === globalMap[a]), {
+				type: "internal",
+				mode: r.mode
+			};
+		}
+	}), defineFunction({
+		type: "internal",
+		names: ["\\let", "\\\\globallet"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			primitive: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a } = n, o = checkControlSequence(r.gullet.popToken());
+			return r.gullet.consumeSpaces(), letCommand(r, o, getRHS(r), a === "\\\\globallet"), {
+				type: "internal",
+				mode: r.mode
+			};
+		}
+	}), defineFunction({
+		type: "internal",
+		names: ["\\futurelet", "\\\\globalfuture"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			primitive: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a } = n, o = checkControlSequence(r.gullet.popToken()), l = r.gullet.popToken(), d = r.gullet.popToken();
+			return letCommand(r, o, d, a === "\\\\globalfuture"), r.gullet.pushToken(d), r.gullet.pushToken(l), {
+				type: "internal",
+				mode: r.mode
+			};
+		}
+	}), getMetrics = function(n, r, a) {
+		var o = getCharacterMetrics(symbols.math[n] && symbols.math[n].replace || n, r, a);
+		if (!o) throw Error("Unsupported symbol " + n + " and font size " + r + ".");
+		return o;
+	}, styleWrap = function(n, r, a, o) {
+		var l = a.havingBaseStyle(r), d = makeSpan(o.concat(l.sizingClasses(a)), [n], a), f = l.sizeMultiplier / a.sizeMultiplier;
+		return d.height *= f, d.depth *= f, d.maxFontSize = l.sizeMultiplier, d;
+	}, centerSpan = function(n, r, a) {
+		var o = r.havingBaseStyle(a), l = (1 - r.sizeMultiplier / o.sizeMultiplier) * r.fontMetrics().axisHeight;
+		n.classes.push("delimcenter"), n.style.top = makeEm(l), n.height -= l, n.depth += l;
+	}, makeSmallDelim = function(n, r, a, o, l, d) {
+		var f = styleWrap(makeSymbol(n, "Main-Regular", l, o), r, o, d);
+		return a && centerSpan(f, o, r), f;
+	}, mathrmSize = function(n, r, a, o) {
+		return makeSymbol(n, "Size" + r + "-Regular", a, o);
+	}, makeLargeDelim = function(n, r, a, o, l, d) {
+		var f = mathrmSize(n, r, l, o), p = styleWrap(makeSpan(["delimsizing", "size" + r], [f], o), Style$1$1.TEXT, o, d);
+		return a && centerSpan(p, o, Style$1$1.TEXT), p;
+	}, makeGlyphSpan = function(n, r, a) {
+		return {
+			type: "elem",
+			elem: makeSpan(["delimsizinginner", r === "Size1-Regular" ? "delim-size1" : "delim-size4"], [makeSpan([], [makeSymbol(n, r, a)])])
+		};
+	}, makeInner = function(n, r, a) {
+		var o = fontMetricsData["Size4-Regular"][n.charCodeAt(0)] ? fontMetricsData["Size4-Regular"][n.charCodeAt(0)][4] : fontMetricsData["Size1-Regular"][n.charCodeAt(0)][4], l = makeSvgSpan([], [new SvgNode([new PathNode("inner", innerPath(n, Math.round(1e3 * r)))], {
+			width: makeEm(o),
+			height: makeEm(r),
+			style: "width:" + makeEm(o),
+			viewBox: "0 0 " + 1e3 * o + " " + Math.round(1e3 * r),
+			preserveAspectRatio: "xMinYMin"
+		})], a);
+		return l.height = r, l.style.height = makeEm(r), l.style.width = makeEm(o), {
+			type: "elem",
+			elem: l
+		};
+	}, lapInEms = .008, lap = {
+		type: "kern",
+		size: -1 * lapInEms
+	}, verts = /* @__PURE__ */ new Set([
+		"|",
+		"\\lvert",
+		"\\rvert",
+		"\\vert"
+	]), doubleVerts = /* @__PURE__ */ new Set([
+		"\\|",
+		"\\lVert",
+		"\\rVert",
+		"\\Vert"
+	]), makeStackedDelim = function(n, r, a, o, l, d) {
+		var f, p, m, h, g = "", _ = 0;
+		f = m = h = n, p = null;
+		var v = "Size1-Regular";
+		n === "\\uparrow" ? m = h = "⏐" : n === "\\Uparrow" ? m = h = "‖" : n === "\\downarrow" ? f = m = "⏐" : n === "\\Downarrow" ? f = m = "‖" : n === "\\updownarrow" ? (f = "\\uparrow", m = "⏐", h = "\\downarrow") : n === "\\Updownarrow" ? (f = "\\Uparrow", m = "‖", h = "\\Downarrow") : verts.has(n) ? (m = "∣", g = "vert", _ = 333) : doubleVerts.has(n) ? (m = "∥", g = "doublevert", _ = 556) : n === "[" || n === "\\lbrack" ? (f = "⎡", m = "⎢", h = "⎣", v = "Size4-Regular", g = "lbrack", _ = 667) : n === "]" || n === "\\rbrack" ? (f = "⎤", m = "⎥", h = "⎦", v = "Size4-Regular", g = "rbrack", _ = 667) : n === "\\lfloor" || n === "⌊" ? (m = f = "⎢", h = "⎣", v = "Size4-Regular", g = "lfloor", _ = 667) : n === "\\lceil" || n === "⌈" ? (f = "⎡", m = h = "⎢", v = "Size4-Regular", g = "lceil", _ = 667) : n === "\\rfloor" || n === "⌋" ? (m = f = "⎥", h = "⎦", v = "Size4-Regular", g = "rfloor", _ = 667) : n === "\\rceil" || n === "⌉" ? (f = "⎤", m = h = "⎥", v = "Size4-Regular", g = "rceil", _ = 667) : n === "(" || n === "\\lparen" ? (f = "⎛", m = "⎜", h = "⎝", v = "Size4-Regular", g = "lparen", _ = 875) : n === ")" || n === "\\rparen" ? (f = "⎞", m = "⎟", h = "⎠", v = "Size4-Regular", g = "rparen", _ = 875) : n === "\\{" || n === "\\lbrace" ? (f = "⎧", p = "⎨", h = "⎩", m = "⎪", v = "Size4-Regular") : n === "\\}" || n === "\\rbrace" ? (f = "⎫", p = "⎬", h = "⎭", m = "⎪", v = "Size4-Regular") : n === "\\lgroup" || n === "⟮" ? (f = "⎧", h = "⎩", m = "⎪", v = "Size4-Regular") : n === "\\rgroup" || n === "⟯" ? (f = "⎫", h = "⎭", m = "⎪", v = "Size4-Regular") : n === "\\lmoustache" || n === "⎰" ? (f = "⎧", h = "⎭", m = "⎪", v = "Size4-Regular") : (n === "\\rmoustache" || n === "⎱") && (f = "⎫", h = "⎩", m = "⎪", v = "Size4-Regular");
+		var y = getMetrics(f, v, l), x = y.height + y.depth, S = getMetrics(m, v, l), C = S.height + S.depth, w = getMetrics(h, v, l), T = w.height + w.depth, D = 0, G = 1;
+		if (p !== null) {
+			var ne = getMetrics(p, v, l);
+			D = ne.height + ne.depth, G = 2;
+		}
+		var ie = x + T + D, se = ie + Math.max(0, Math.ceil((r - ie) / (G * C))) * G * C, de = o.fontMetrics().axisHeight;
+		a && (de *= o.sizeMultiplier);
+		var Me = se / 2 - de, Ie = [];
+		if (g.length > 0) {
+			var Ze = se - x - T, et = Math.round(se * 1e3), yt = tallDelim(g, Math.round(Ze * 1e3)), bt = new PathNode(g, yt), St = makeEm(_ / 1e3), Ct = makeEm(et / 1e3), Et = makeSvgSpan([], [new SvgNode([bt], {
+				width: St,
+				height: Ct,
+				viewBox: "0 0 " + _ + " " + et
+			})], o);
+			Et.height = et / 1e3, Et.style.width = St, Et.style.height = Ct, Ie.push({
+				type: "elem",
+				elem: Et
+			});
+		} else {
+			if (Ie.push(makeGlyphSpan(h, v, l)), Ie.push(lap), p === null) {
+				var Dt = se - x - T + 2 * lapInEms;
+				Ie.push(makeInner(m, Dt, o));
+			} else {
+				var Mt = (se - x - T - D) / 2 + 2 * lapInEms;
+				Ie.push(makeInner(m, Mt, o)), Ie.push(lap), Ie.push(makeGlyphSpan(p, v, l)), Ie.push(lap), Ie.push(makeInner(m, Mt, o));
+			}
+			Ie.push(lap), Ie.push(makeGlyphSpan(f, v, l));
+		}
+		var It = o.havingBaseStyle(Style$1$1.TEXT);
+		return styleWrap(makeSpan(["delimsizing", "mult"], [makeVList({
+			positionType: "bottom",
+			positionData: Me,
+			children: Ie
+		})], It), Style$1$1.TEXT, o, d);
+	}, vbPad = 80, emPad = .08, sqrtSvg = function(n, r, a, o, l) {
+		return makeSvgSpan(["hide-tail"], [new SvgNode([new PathNode(n, sqrtPath(n, o, a))], {
+			width: "400em",
+			height: makeEm(r),
+			viewBox: "0 0 400000 " + a,
+			preserveAspectRatio: "xMinYMin slice"
+		})], l);
+	}, makeSqrtImage = function(n, r) {
+		var a = r.havingBaseSizing(), o = traverseSequence("\\surd", n * a.sizeMultiplier, stackLargeDelimiterSequence, a), l = a.sizeMultiplier, d = Math.max(0, r.minRuleThickness - r.fontMetrics().sqrtRuleThickness), f, p, m, h, g;
+		return o.type === "small" ? (h = 1e3 + 1e3 * d + vbPad, n < 1 ? l = 1 : n < 1.4 && (l = .7), p = (1 + d + emPad) / l, m = (1 + d) / l, f = sqrtSvg("sqrtMain", p, h, d, r), f.style.minWidth = "0.853em", g = .833 / l) : o.type === "large" ? (h = (1e3 + vbPad) * sizeToMaxHeight[o.size], m = (sizeToMaxHeight[o.size] + d) / l, p = (sizeToMaxHeight[o.size] + d + emPad) / l, f = sqrtSvg("sqrtSize" + o.size, p, h, d, r), f.style.minWidth = "1.02em", g = 1 / l) : (p = n + d + emPad, m = n + d, h = Math.floor(1e3 * n + d) + vbPad, f = sqrtSvg("sqrtTall", p, h, d, r), f.style.minWidth = "0.742em", g = 1.056), f.height = m, f.style.height = makeEm(p), {
+			span: f,
+			advanceWidth: g,
+			ruleWidth: (r.fontMetrics().sqrtRuleThickness + d) * l
+		};
+	}, stackLargeDelimiters = /* @__PURE__ */ new Set([
+		"(",
+		"\\lparen",
+		")",
+		"\\rparen",
+		"[",
+		"\\lbrack",
+		"]",
+		"\\rbrack",
+		"\\{",
+		"\\lbrace",
+		"\\}",
+		"\\rbrace",
+		"\\lfloor",
+		"\\rfloor",
+		"⌊",
+		"⌋",
+		"\\lceil",
+		"\\rceil",
+		"⌈",
+		"⌉",
+		"\\surd"
+	]), stackAlwaysDelimiters = /* @__PURE__ */ new Set([
+		"\\uparrow",
+		"\\downarrow",
+		"\\updownarrow",
+		"\\Uparrow",
+		"\\Downarrow",
+		"\\Updownarrow",
+		"|",
+		"\\|",
+		"\\vert",
+		"\\Vert",
+		"\\lvert",
+		"\\rvert",
+		"\\lVert",
+		"\\rVert",
+		"\\lgroup",
+		"\\rgroup",
+		"⟮",
+		"⟯",
+		"\\lmoustache",
+		"\\rmoustache",
+		"⎰",
+		"⎱"
+	]), stackNeverDelimiters = /* @__PURE__ */ new Set([
+		"<",
+		">",
+		"\\langle",
+		"\\rangle",
+		"/",
+		"\\backslash",
+		"\\lt",
+		"\\gt"
+	]), sizeToMaxHeight = [
+		0,
+		1.2,
+		1.8,
+		2.4,
+		3
+	], makeSizedDelim = function(n, r, a, o, l) {
+		if (n === "<" || n === "\\lt" || n === "⟨" ? n = "\\langle" : (n === ">" || n === "\\gt" || n === "⟩") && (n = "\\rangle"), stackLargeDelimiters.has(n) || stackNeverDelimiters.has(n)) return makeLargeDelim(n, r, !1, a, o, l);
+		if (stackAlwaysDelimiters.has(n)) return makeStackedDelim(n, sizeToMaxHeight[r], !1, a, o, l);
+		throw new ParseError("Illegal delimiter: '" + n + "'");
+	}, stackNeverDelimiterSequence = [
+		{
+			type: "small",
+			style: Style$1$1.SCRIPTSCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.SCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.TEXT
+		},
+		{
+			type: "large",
+			size: 1
+		},
+		{
+			type: "large",
+			size: 2
+		},
+		{
+			type: "large",
+			size: 3
+		},
+		{
+			type: "large",
+			size: 4
+		}
+	], stackAlwaysDelimiterSequence = [
+		{
+			type: "small",
+			style: Style$1$1.SCRIPTSCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.SCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.TEXT
+		},
+		{ type: "stack" }
+	], stackLargeDelimiterSequence = [
+		{
+			type: "small",
+			style: Style$1$1.SCRIPTSCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.SCRIPT
+		},
+		{
+			type: "small",
+			style: Style$1$1.TEXT
+		},
+		{
+			type: "large",
+			size: 1
+		},
+		{
+			type: "large",
+			size: 2
+		},
+		{
+			type: "large",
+			size: 3
+		},
+		{
+			type: "large",
+			size: 4
+		},
+		{ type: "stack" }
+	], delimTypeToFont = function(n) {
+		if (n.type === "small") return "Main-Regular";
+		if (n.type === "large") return "Size" + n.size + "-Regular";
+		if (n.type === "stack") return "Size4-Regular";
+		var r = n.type;
+		throw Error("Add support for delim type '" + r + "' here.");
+	}, traverseSequence = function(n, r, a, o) {
+		for (var l = Math.min(2, 3 - o.style.size); l < a.length; l++) {
+			var d = a[l];
+			if (d.type === "stack") break;
+			var f = getMetrics(n, delimTypeToFont(d), "math"), p = f.height + f.depth;
+			if (d.type === "small") {
+				var m = o.havingBaseStyle(d.style);
+				p *= m.sizeMultiplier;
+			}
+			if (p > r) return d;
+		}
+		return a[a.length - 1];
+	}, makeCustomSizedDelim = function(n, r, a, o, l, d) {
+		n === "<" || n === "\\lt" || n === "⟨" ? n = "\\langle" : (n === ">" || n === "\\gt" || n === "⟩") && (n = "\\rangle");
+		var f = stackNeverDelimiters.has(n) ? stackNeverDelimiterSequence : stackLargeDelimiters.has(n) ? stackLargeDelimiterSequence : stackAlwaysDelimiterSequence, p = traverseSequence(n, r, f, o);
+		return p.type === "small" ? makeSmallDelim(n, p.style, a, o, l, d) : p.type === "large" ? makeLargeDelim(n, p.size, a, o, l, d) : makeStackedDelim(n, r, a, o, l, d);
+	}, makeLeftRightDelim = function(n, r, a, o, l, d) {
+		var f = o.fontMetrics().axisHeight * o.sizeMultiplier, p = 901, m = 5 / o.fontMetrics().ptPerEm, h = Math.max(r - f, a + f);
+		return makeCustomSizedDelim(n, Math.max(h / 500 * p, 2 * h - m), !0, o, l, d);
+	}, delimiterSizes = {
+		"\\bigl": {
+			mclass: "mopen",
+			size: 1
+		},
+		"\\Bigl": {
+			mclass: "mopen",
+			size: 2
+		},
+		"\\biggl": {
+			mclass: "mopen",
+			size: 3
+		},
+		"\\Biggl": {
+			mclass: "mopen",
+			size: 4
+		},
+		"\\bigr": {
+			mclass: "mclose",
+			size: 1
+		},
+		"\\Bigr": {
+			mclass: "mclose",
+			size: 2
+		},
+		"\\biggr": {
+			mclass: "mclose",
+			size: 3
+		},
+		"\\Biggr": {
+			mclass: "mclose",
+			size: 4
+		},
+		"\\bigm": {
+			mclass: "mrel",
+			size: 1
+		},
+		"\\Bigm": {
+			mclass: "mrel",
+			size: 2
+		},
+		"\\biggm": {
+			mclass: "mrel",
+			size: 3
+		},
+		"\\Biggm": {
+			mclass: "mrel",
+			size: 4
+		},
+		"\\big": {
+			mclass: "mord",
+			size: 1
+		},
+		"\\Big": {
+			mclass: "mord",
+			size: 2
+		},
+		"\\bigg": {
+			mclass: "mord",
+			size: 3
+		},
+		"\\Bigg": {
+			mclass: "mord",
+			size: 4
+		}
+	}, delimiters = /* @__PURE__ */ new Set(/* @__PURE__ */ "(,\\lparen,),\\rparen,[,\\lbrack,],\\rbrack,\\{,\\lbrace,\\},\\rbrace,\\lfloor,\\rfloor,⌊,⌋,\\lceil,\\rceil,⌈,⌉,<,>,\\langle,⟨,\\rangle,⟩,\\lt,\\gt,\\lvert,\\rvert,\\lVert,\\rVert,\\lgroup,\\rgroup,⟮,⟯,\\lmoustache,\\rmoustache,⎰,⎱,/,\\backslash,|,\\vert,\\|,\\Vert,\\uparrow,\\Uparrow,\\downarrow,\\Downarrow,\\updownarrow,\\Updownarrow,.".split(",")), defineFunction({
+		type: "delimsizing",
+		names: [
+			"\\bigl",
+			"\\Bigl",
+			"\\biggl",
+			"\\Biggl",
+			"\\bigr",
+			"\\Bigr",
+			"\\biggr",
+			"\\Biggr",
+			"\\bigm",
+			"\\Bigm",
+			"\\biggm",
+			"\\Biggm",
+			"\\big",
+			"\\Big",
+			"\\bigg",
+			"\\Bigg"
+		],
+		props: {
+			numArgs: 1,
+			argTypes: ["primitive"]
+		},
+		handler: (n, r) => {
+			var a = checkDelimiter(r[0], n);
+			return {
+				type: "delimsizing",
+				mode: n.parser.mode,
+				size: delimiterSizes[n.funcName].size,
+				mclass: delimiterSizes[n.funcName].mclass,
+				delim: a.text
+			};
+		},
+		htmlBuilder: (n, r) => n.delim === "." ? makeSpan([n.mclass]) : makeSizedDelim(n.delim, n.size, r, n.mode, [n.mclass]),
+		mathmlBuilder: (n) => {
+			var r = [];
+			n.delim !== "." && r.push(makeText(n.delim, n.mode));
+			var a = new MathNode("mo", r);
+			n.mclass === "mopen" || n.mclass === "mclose" ? a.setAttribute("fence", "true") : a.setAttribute("fence", "false"), a.setAttribute("stretchy", "true");
+			var o = makeEm(sizeToMaxHeight[n.size]);
+			return a.setAttribute("minsize", o), a.setAttribute("maxsize", o), a;
+		}
+	}), defineFunction({
+		type: "leftright-right",
+		names: ["\\right"],
+		props: {
+			numArgs: 1,
+			primitive: !0
+		},
+		handler: (n, r) => {
+			var a = n.parser.gullet.macros.get("\\current@color");
+			if (a && typeof a != "string") throw new ParseError("\\current@color set to non-string in \\right");
+			return {
+				type: "leftright-right",
+				mode: n.parser.mode,
+				delim: checkDelimiter(r[0], n).text,
+				color: a
+			};
+		}
+	}), defineFunction({
+		type: "leftright",
+		names: ["\\left"],
+		props: {
+			numArgs: 1,
+			primitive: !0
+		},
+		handler: (n, r) => {
+			var a = checkDelimiter(r[0], n), o = n.parser;
+			++o.leftrightDepth;
+			var l = o.parseExpression(!1);
+			--o.leftrightDepth, o.expect("\\right", !1);
+			var d = assertNodeType(o.parseFunction(), "leftright-right");
+			return {
+				type: "leftright",
+				mode: o.mode,
+				body: l,
+				left: a.text,
+				right: d.delim,
+				rightColor: d.color
+			};
+		},
+		htmlBuilder: (n, r) => {
+			assertParsed(n);
+			for (var a = buildExpression$1(n.body, r, !0, ["mopen", "mclose"]), o = 0, l = 0, d = !1, f = 0; f < a.length; f++) {
+				var p = a[f];
+				isMiddleDelimNode(p) ? d = !0 : (o = Math.max(a[f].height, o), l = Math.max(a[f].depth, l));
+			}
+			o *= r.sizeMultiplier, l *= r.sizeMultiplier;
+			var m = n.left === "." ? makeNullDelimiter(r, ["mopen"]) : makeLeftRightDelim(n.left, o, l, r, n.mode, ["mopen"]);
+			if (a.unshift(m), d) for (var h = 1; h < a.length; h++) {
+				var g = a[h];
+				if (isMiddleDelimNode(g)) {
+					var _ = g.isMiddle;
+					a[h] = makeLeftRightDelim(_.delim, o, l, _.options, n.mode, []);
+				}
+			}
+			var v;
+			if (n.right === ".") v = makeNullDelimiter(r, ["mclose"]);
+			else {
+				var y = n.rightColor ? r.withColor(n.rightColor) : r;
+				v = makeLeftRightDelim(n.right, o, l, y, n.mode, ["mclose"]);
+			}
+			return a.push(v), makeSpan(["minner"], a, r);
+		},
+		mathmlBuilder: (n, r) => {
+			assertParsed(n);
+			var a = buildExpression(n.body, r);
+			if (n.left !== ".") {
+				var o = new MathNode("mo", [makeText(n.left, n.mode)]);
+				o.setAttribute("fence", "true"), a.unshift(o);
+			}
+			if (n.right !== ".") {
+				var l = new MathNode("mo", [makeText(n.right, n.mode)]);
+				l.setAttribute("fence", "true"), n.rightColor && l.setAttribute("mathcolor", n.rightColor), a.push(l);
+			}
+			return makeRow(a);
+		}
+	}), defineFunction({
+		type: "middle",
+		names: ["\\middle"],
+		props: {
+			numArgs: 1,
+			primitive: !0
+		},
+		handler: (n, r) => {
+			var a = checkDelimiter(r[0], n);
+			if (!n.parser.leftrightDepth) throw new ParseError("\\middle without preceding \\left", a);
+			return {
+				type: "middle",
+				mode: n.parser.mode,
+				delim: a.text
+			};
+		},
+		htmlBuilder: (n, r) => {
+			var a;
+			return n.delim === "." ? a = makeNullDelimiter(r, []) : (a = makeSizedDelim(n.delim, 1, r, n.mode, []), a.isMiddle = {
+				delim: n.delim,
+				options: r
+			}), a;
+		},
+		mathmlBuilder: (n, r) => {
+			var a = new MathNode("mo", [n.delim === "\\vert" || n.delim === "|" ? makeText("|", "text") : makeText(n.delim, n.mode)]);
+			return a.setAttribute("fence", "true"), a.setAttribute("lspace", "0.05em"), a.setAttribute("rspace", "0.05em"), a;
+		}
+	}), htmlBuilder$7 = (n, r) => {
+		var a = wrapFragment(buildGroup$1(n.body, r), r), o = n.label.slice(1), l = r.sizeMultiplier, d, f, p = isCharacterBox(n.body);
+		if (o === "sout") d = makeSpan(["stretchy", "sout"]), d.height = r.fontMetrics().defaultRuleThickness / l, f = -.5 * r.fontMetrics().xHeight;
+		else if (o === "phase") {
+			var m = calculateSize({
+				number: .6,
+				unit: "pt"
+			}, r), h = calculateSize({
+				number: .35,
+				unit: "ex"
+			}, r), g = r.havingBaseSizing();
+			l /= g.sizeMultiplier;
+			var _ = a.height + a.depth + m + h;
+			a.style.paddingLeft = makeEm(_ / 2 + m);
+			var v = Math.floor(1e3 * _ * l);
+			d = makeSvgSpan(["hide-tail"], [new SvgNode([new PathNode("phase", phasePath(v))], {
+				width: "400em",
+				height: makeEm(v / 1e3),
+				viewBox: "0 0 400000 " + v,
+				preserveAspectRatio: "xMinYMin slice"
+			})], r), d.style.height = makeEm(_), f = a.depth + m + h;
+		} else {
+			/cancel/.test(o) ? p || a.classes.push("cancel-pad") : o === "angl" ? a.classes.push("anglpad") : a.classes.push("boxpad");
+			var y, x, S = 0;
+			/box/.test(o) ? (S = Math.max(r.fontMetrics().fboxrule, r.minRuleThickness), y = r.fontMetrics().fboxsep + (o === "colorbox" ? 0 : S), x = y) : o === "angl" ? (S = Math.max(r.fontMetrics().defaultRuleThickness, r.minRuleThickness), y = 4 * S, x = Math.max(0, .25 - a.depth)) : (y = p ? .2 : 0, x = y), d = stretchyEnclose(a, o, y, x, r), /fbox|boxed|fcolorbox/.test(o) ? (d.style.borderStyle = "solid", d.style.borderWidth = makeEm(S)) : o === "angl" && S !== .049 && (d.style.borderTopWidth = makeEm(S), d.style.borderRightWidth = makeEm(S)), f = a.depth + x, n.backgroundColor && (d.style.backgroundColor = n.backgroundColor, n.borderColor && (d.style.borderColor = n.borderColor));
+		}
+		var C;
+		if (n.backgroundColor) C = makeVList({
+			positionType: "individualShift",
+			children: [{
+				type: "elem",
+				elem: d,
+				shift: f
+			}, {
+				type: "elem",
+				elem: a,
+				shift: 0
+			}]
+		});
+		else {
+			var w = /cancel|phase/.test(o) ? ["svg-align"] : [];
+			C = makeVList({
+				positionType: "individualShift",
+				children: [{
+					type: "elem",
+					elem: a,
+					shift: 0
+				}, {
+					type: "elem",
+					elem: d,
+					shift: f,
+					wrapperClasses: w
+				}]
+			});
+		}
+		return /cancel/.test(o) && (C.height = a.height, C.depth = a.depth), /cancel/.test(o) && !p ? makeSpan(["mord", "cancel-lap"], [C], r) : makeSpan(["mord"], [C], r);
+	}, mathmlBuilder$6 = (n, r) => {
+		var a, o = new MathNode(n.label.includes("colorbox") ? "mpadded" : "menclose", [buildGroup(n.body, r)]);
+		switch (n.label) {
+			case "\\cancel":
+				o.setAttribute("notation", "updiagonalstrike");
+				break;
+			case "\\bcancel":
+				o.setAttribute("notation", "downdiagonalstrike");
+				break;
+			case "\\phase":
+				o.setAttribute("notation", "phasorangle");
+				break;
+			case "\\sout":
+				o.setAttribute("notation", "horizontalstrike");
+				break;
+			case "\\fbox":
+				o.setAttribute("notation", "box");
+				break;
+			case "\\angl":
+				o.setAttribute("notation", "actuarial");
+				break;
+			case "\\fcolorbox":
+			case "\\colorbox":
+				if (a = r.fontMetrics().fboxsep * r.fontMetrics().ptPerEm, o.setAttribute("width", "+" + 2 * a + "pt"), o.setAttribute("height", "+" + 2 * a + "pt"), o.setAttribute("lspace", a + "pt"), o.setAttribute("voffset", a + "pt"), n.label === "\\fcolorbox") {
+					var l = Math.max(r.fontMetrics().fboxrule, r.minRuleThickness);
+					o.setAttribute("style", "border: " + makeEm(l) + " solid " + n.borderColor);
+				}
+				break;
+			case "\\xcancel":
+				o.setAttribute("notation", "updiagonalstrike downdiagonalstrike");
+				break;
+		}
+		return n.backgroundColor && o.setAttribute("mathbackground", n.backgroundColor), o;
+	}, defineFunction({
+		type: "enclose",
+		names: ["\\colorbox"],
+		props: {
+			numArgs: 2,
+			allowedInText: !0,
+			argTypes: ["color", "hbox"]
+		},
+		handler(n, r, a) {
+			var { parser: o, funcName: l } = n, d = assertNodeType(r[0], "color-token").color, f = r[1];
+			return {
+				type: "enclose",
+				mode: o.mode,
+				label: l,
+				backgroundColor: d,
+				body: f
+			};
+		},
+		htmlBuilder: htmlBuilder$7,
+		mathmlBuilder: mathmlBuilder$6
+	}), defineFunction({
+		type: "enclose",
+		names: ["\\fcolorbox"],
+		props: {
+			numArgs: 3,
+			allowedInText: !0,
+			argTypes: [
+				"color",
+				"color",
+				"hbox"
+			]
+		},
+		handler(n, r, a) {
+			var { parser: o, funcName: l } = n, d = assertNodeType(r[0], "color-token").color, f = assertNodeType(r[1], "color-token").color, p = r[2];
+			return {
+				type: "enclose",
+				mode: o.mode,
+				label: l,
+				backgroundColor: f,
+				borderColor: d,
+				body: p
+			};
+		},
+		htmlBuilder: htmlBuilder$7,
+		mathmlBuilder: mathmlBuilder$6
+	}), defineFunction({
+		type: "enclose",
+		names: ["\\fbox"],
+		props: {
+			numArgs: 1,
+			argTypes: ["hbox"],
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "enclose",
+				mode: a.mode,
+				label: "\\fbox",
+				body: r[0]
+			};
+		}
+	}), defineFunction({
+		type: "enclose",
+		names: [
+			"\\cancel",
+			"\\bcancel",
+			"\\xcancel",
+			"\\phase"
+		],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "enclose",
+				mode: a.mode,
+				label: o,
+				body: l
+			};
+		},
+		htmlBuilder: htmlBuilder$7,
+		mathmlBuilder: mathmlBuilder$6
+	}), defineFunction({
+		type: "enclose",
+		names: ["\\sout"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o } = n;
+			a.mode === "math" && a.settings.reportNonstrict("mathVsSout", "LaTeX's \\sout works only in text mode");
+			var l = r[0];
+			return {
+				type: "enclose",
+				mode: a.mode,
+				label: o,
+				body: l
+			};
+		},
+		htmlBuilder: htmlBuilder$7,
+		mathmlBuilder: mathmlBuilder$6
+	}), defineFunction({
+		type: "enclose",
+		names: ["\\angl"],
+		props: {
+			numArgs: 1,
+			argTypes: ["hbox"],
+			allowedInText: !1
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "enclose",
+				mode: a.mode,
+				label: "\\angl",
+				body: r[0]
+			};
+		}
+	}), _environments = {}, _macros = {}, SourceLocation = class n {
+		constructor(n, r, a) {
+			this.lexer = void 0, this.start = void 0, this.end = void 0, this.lexer = n, this.start = r, this.end = a;
+		}
+		static range(r, a) {
+			return a ? !r || !r.loc || !a.loc || r.loc.lexer !== a.loc.lexer ? null : new n(r.loc.lexer, r.loc.start, a.loc.end) : r && r.loc;
+		}
+	}, Token = class n {
+		constructor(n, r) {
+			this.text = void 0, this.loc = void 0, this.noexpand = void 0, this.treatAsRelax = void 0, this.text = n, this.loc = r;
+		}
+		range(r, a) {
+			return new n(a, SourceLocation.range(this, r));
+		}
+	}, validateAmsEnvironmentContext = (n) => {
+		if (!n.parser.settings.displayMode) throw new ParseError("{" + n.envName + "} can be used only in display mode.");
+	}, gatherEnvironments = /* @__PURE__ */ new Set(["gather", "gather*"]), htmlBuilder$6 = function(n, r) {
+		var a, o, l = n.body.length, d = n.hLinesBeforeRow, f = 0, p = Array(l), m = [], h = Math.max(r.fontMetrics().arrayRuleWidth, r.minRuleThickness), g = 1 / r.fontMetrics().ptPerEm, _ = 5 * g;
+		n.colSeparationType && n.colSeparationType === "small" && (_ = .2778 * (r.havingStyle(Style$1$1.SCRIPT).sizeMultiplier / r.sizeMultiplier));
+		var v = n.colSeparationType === "CD" ? calculateSize({
+			number: 3,
+			unit: "ex"
+		}, r) : 12 * g, y = 3 * g, x = n.arraystretch * v, S = .7 * x, C = .3 * x, w = 0;
+		function T(n) {
+			for (var r = 0; r < n.length; ++r) r > 0 && (w += .25), m.push({
+				pos: w,
+				isDashed: n[r]
+			});
+		}
+		for (T(d[0]), a = 0; a < n.body.length; ++a) {
+			var D = n.body[a], G = S, ne = C;
+			f < D.length && (f = D.length);
+			var ie = {
+				cells: Array(D.length),
+				height: 0,
+				depth: 0,
+				pos: 0
+			};
+			for (o = 0; o < D.length; ++o) {
+				var se = buildGroup$1(D[o], r);
+				ne < se.depth && (ne = se.depth), G < se.height && (G = se.height), ie.cells[o] = se;
+			}
+			var de = n.rowGaps[a], Me = 0;
+			de && (Me = calculateSize(de, r), Me > 0 && (Me += C, ne < Me && (ne = Me), Me = 0)), n.addJot && a < n.body.length - 1 && (ne += y), ie.height = G, ie.depth = ne, w += G, ie.pos = w, w += ne + Me, p[a] = ie, T(d[a + 1]);
+		}
+		var Ie = w / 2 + r.fontMetrics().axisHeight, Ze = n.cols || [], et = [], yt, bt, St = [];
+		if (n.tags && n.tags.some((n) => n)) for (a = 0; a < l; ++a) {
+			var Ct = p[a], Et = Ct.pos - Ie, Dt = n.tags[a], Mt = void 0;
+			Mt = Dt === !0 ? makeSpan(["eqn-num"], [], r) : Dt === !1 ? makeSpan([], [], r) : makeSpan([], buildExpression$1(Dt, r, !0), r), Mt.depth = Ct.depth, Mt.height = Ct.height, St.push({
+				type: "elem",
+				elem: Mt,
+				shift: Et
+			});
+		}
+		for (o = 0, bt = 0; o < f || bt < Ze.length; ++o, ++bt) {
+			for (var It, Lt = Ze[bt], zt = !0; (qt = Lt)?.type === "separator";) {
+				var qt;
+				if (zt || (yt = makeSpan(["arraycolsep"], []), yt.style.width = makeEm(r.fontMetrics().doubleRuleSep), et.push(yt)), Lt.separator === "|" || Lt.separator === ":") {
+					var Yt = Lt.separator === "|" ? "solid" : "dashed", $t = makeSpan(["vertical-separator"], [], r);
+					$t.style.height = makeEm(w), $t.style.borderRightWidth = makeEm(h), $t.style.borderRightStyle = Yt, $t.style.margin = "0 " + makeEm(-h / 2);
+					var oa = w - Ie;
+					oa && ($t.style.verticalAlign = makeEm(-oa)), et.push($t);
+				} else throw new ParseError("Invalid separator type: " + Lt.separator);
+				bt++, Lt = Ze[bt], zt = !1;
+			}
+			if (!(o >= f)) {
+				var va = void 0;
+				if (o > 0 || n.hskipBeforeAndAfter) {
+					var ya, xa;
+					va = Lt?.pregap ?? _, va !== 0 && (yt = makeSpan(["arraycolsep"], []), yt.style.width = makeEm(va), et.push(yt));
+				}
+				var Sa = [];
+				for (a = 0; a < l; ++a) {
+					var Ca = p[a], Ea = Ca.cells[o];
+					if (Ea) {
+						var Da = Ca.pos - Ie;
+						Ea.depth = Ca.depth, Ea.height = Ca.height, Sa.push({
+							type: "elem",
+							elem: Ea,
+							shift: Da
+						});
+					}
+				}
+				var Oa = makeVList({
+					positionType: "individualShift",
+					children: Sa
+				}), ka = makeSpan(["col-align-" + (Lt?.align || "c")], [Oa]);
+				if (et.push(ka), o < f - 1 || n.hskipBeforeAndAfter) {
+					var Aa, Ia;
+					va = Lt?.postgap ?? _, va !== 0 && (yt = makeSpan(["arraycolsep"], []), yt.style.width = makeEm(va), et.push(yt));
+				}
+			}
+		}
+		var La = makeSpan(["mtable"], et);
+		if (m.length > 0) {
+			for (var Ba = makeLineSpan("hline", r, h), Wa = makeLineSpan("hdashline", r, h), No = [{
+				type: "elem",
+				elem: La,
+				shift: 0
+			}]; m.length > 0;) {
+				var Ro = m.pop(), zo = Ro.pos - Ie;
+				Ro.isDashed ? No.push({
+					type: "elem",
+					elem: Wa,
+					shift: zo
+				}) : No.push({
+					type: "elem",
+					elem: Ba,
+					shift: zo
+				});
+			}
+			La = makeVList({
+				positionType: "individualShift",
+				children: No
+			});
+		}
+		if (St.length === 0) return makeSpan(["mord"], [La], r);
+		var Bo = makeSpan(["tag"], [makeVList({
+			positionType: "individualShift",
+			children: St
+		})], r);
+		return makeFragment([La, Bo]);
+	}, alignMap = {
+		c: "center ",
+		l: "left ",
+		r: "right "
+	}, mathmlBuilder$5 = function(n, r) {
+		for (var a = [], o = new MathNode("mtd", [], ["mtr-glue"]), l = new MathNode("mtd", [], ["mml-eqn-num"]), d = 0; d < n.body.length; d++) {
+			for (var f = n.body[d], p = [], m = 0; m < f.length; m++) p.push(new MathNode("mtd", [buildGroup(f[m], r)]));
+			n.tags && n.tags[d] && (p.unshift(o), p.push(o), n.leqno ? p.unshift(l) : p.push(l)), a.push(new MathNode("mtr", p));
+		}
+		var h = new MathNode("mtable", a), g = n.arraystretch === .5 ? .1 : .16 + n.arraystretch - 1 + (n.addJot ? .09 : 0);
+		h.setAttribute("rowspacing", makeEm(g));
+		var _ = "", v = "";
+		if (n.cols && n.cols.length > 0) {
+			var y = n.cols, x = "", S = !1, C = 0, w = y.length;
+			y[0].type === "separator" && (_ += "top ", C = 1), y[y.length - 1].type === "separator" && (_ += "bottom ", --w);
+			for (var T = C; T < w; T++) {
+				var D = y[T];
+				D.type === "align" ? (v += alignMap[D.align], S && (x += "none "), S = !0) : D.type === "separator" && (S &&= (x += D.separator === "|" ? "solid " : "dashed ", !1));
+			}
+			h.setAttribute("columnalign", v.trim()), /[sd]/.test(x) && h.setAttribute("columnlines", x.trim());
+		}
+		if (n.colSeparationType === "align") {
+			for (var G = n.cols || [], ne = "", ie = 1; ie < G.length; ie++) ne += ie % 2 ? "0em " : "1em ";
+			h.setAttribute("columnspacing", ne.trim());
+		} else n.colSeparationType === "alignat" || n.colSeparationType === "gather" ? h.setAttribute("columnspacing", "0em") : n.colSeparationType === "small" ? h.setAttribute("columnspacing", "0.2778em") : n.colSeparationType === "CD" ? h.setAttribute("columnspacing", "0.5em") : h.setAttribute("columnspacing", "1em");
+		var se = "", de = n.hLinesBeforeRow;
+		_ += de[0].length > 0 ? "left " : "", _ += de[de.length - 1].length > 0 ? "right " : "";
+		for (var Me = 1; Me < de.length - 1; Me++) se += de[Me].length === 0 ? "none " : de[Me][0] ? "dashed " : "solid ";
+		return /[sd]/.test(se) && h.setAttribute("rowlines", se.trim()), _ !== "" && (h = new MathNode("menclose", [h]), h.setAttribute("notation", _.trim())), n.arraystretch && n.arraystretch < 1 && (h = new MathNode("mstyle", [h]), h.setAttribute("scriptlevel", "1")), h;
+	}, alignedHandler = function(n, r) {
+		n.envName.includes("ed") || validateAmsEnvironmentContext(n);
+		var a = [], o = n.envName.includes("at") ? "alignat" : "align", l = n.envName === "split", d = parseArray(n.parser, {
+			cols: a,
+			addJot: !0,
+			autoTag: l ? void 0 : getAutoTag(n.envName),
+			emptySingleRow: !0,
+			colSeparationType: o,
+			maxNumCols: l ? 2 : void 0,
+			leqno: n.parser.settings.leqno
+		}, "display"), f = 0, p = 0, m = {
+			type: "ordgroup",
+			mode: n.mode,
+			body: []
+		};
+		if (r[0] && r[0].type === "ordgroup") {
+			for (var h = "", g = 0; g < r[0].body.length; g++) {
+				var _ = assertNodeType(r[0].body[g], "textord");
+				h += _.text;
+			}
+			f = Number(h), p = f * 2;
+		}
+		var v = !p;
+		d.body.forEach(function(n) {
+			for (var r = 1; r < n.length; r += 2) assertNodeType(assertNodeType(n[r], "styling").body[0], "ordgroup").body.unshift(m);
+			if (v) p < n.length && (p = n.length);
+			else {
+				var a = n.length / 2;
+				if (f < a) throw new ParseError("Too many math in a row: " + ("expected " + f + ", but got " + a), n[0]);
+			}
+		});
+		for (var y = 0; y < p; ++y) {
+			var x = "r", S = 0;
+			y % 2 == 1 ? x = "l" : y > 0 && v && (S = 1), a[y] = {
+				type: "align",
+				align: x,
+				pregap: S,
+				postgap: 0
+			};
+		}
+		return d.colSeparationType = v ? "align" : "alignat", d;
+	}, defineEnvironment({
+		type: "array",
+		names: ["array", "darray"],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var a = (checkSymbolNodeType(r[0]) ? [r[0]] : assertNodeType(r[0], "ordgroup").body).map(function(n) {
+				var r = assertSymbolNodeType(n).text;
+				if ("lcr".includes(r)) return {
+					type: "align",
+					align: r
+				};
+				if (r === "|") return {
+					type: "separator",
+					separator: "|"
+				};
+				if (r === ":") return {
+					type: "separator",
+					separator: ":"
+				};
+				throw new ParseError("Unknown column alignment: " + r, n);
+			}), o = {
+				cols: a,
+				hskipBeforeAndAfter: !0,
+				maxNumCols: a.length
+			};
+			return parseArray(n.parser, o, dCellStyle(n.envName));
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: [
+			"matrix",
+			"pmatrix",
+			"bmatrix",
+			"Bmatrix",
+			"vmatrix",
+			"Vmatrix",
+			"matrix*",
+			"pmatrix*",
+			"bmatrix*",
+			"Bmatrix*",
+			"vmatrix*",
+			"Vmatrix*"
+		],
+		props: { numArgs: 0 },
+		handler(n) {
+			var r = {
+				matrix: null,
+				pmatrix: ["(", ")"],
+				bmatrix: ["[", "]"],
+				Bmatrix: ["\\{", "\\}"],
+				vmatrix: ["|", "|"],
+				Vmatrix: ["\\Vert", "\\Vert"]
+			}[n.envName.replace("*", "")], a = "c", o = {
+				hskipBeforeAndAfter: !1,
+				cols: [{
+					type: "align",
+					align: a
+				}]
+			};
+			if (n.envName.charAt(n.envName.length - 1) === "*") {
+				var l = n.parser;
+				if (l.consumeSpaces(), l.fetch().text === "[") {
+					if (l.consume(), l.consumeSpaces(), a = l.fetch().text, !"lcr".includes(a)) throw new ParseError("Expected l or c or r", l.nextToken);
+					l.consume(), l.consumeSpaces(), l.expect("]"), l.consume(), o.cols = [{
+						type: "align",
+						align: a
+					}];
+				}
+			}
+			var d = parseArray(n.parser, o, dCellStyle(n.envName)), f = Math.max(0, ...d.body.map((n) => n.length));
+			return d.cols = Array(f).fill({
+				type: "align",
+				align: a
+			}), r ? {
+				type: "leftright",
+				mode: n.mode,
+				body: [d],
+				left: r[0],
+				right: r[1],
+				rightColor: void 0
+			} : d;
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: ["smallmatrix"],
+		props: { numArgs: 0 },
+		handler(n) {
+			var r = parseArray(n.parser, { arraystretch: .5 }, "script");
+			return r.colSeparationType = "small", r;
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: ["subarray"],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var a = (checkSymbolNodeType(r[0]) ? [r[0]] : assertNodeType(r[0], "ordgroup").body).map(function(n) {
+				var r = assertSymbolNodeType(n).text;
+				if ("lc".includes(r)) return {
+					type: "align",
+					align: r
+				};
+				throw new ParseError("Unknown column alignment: " + r, n);
+			});
+			if (a.length > 1) throw new ParseError("{subarray} can contain only one column");
+			var o = {
+				cols: a,
+				hskipBeforeAndAfter: !1,
+				arraystretch: .5
+			}, l = parseArray(n.parser, o, "script");
+			if (l.body.length > 0 && l.body[0].length > 1) throw new ParseError("{subarray} can contain only one column");
+			return l;
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: [
+			"cases",
+			"dcases",
+			"rcases",
+			"drcases"
+		],
+		props: { numArgs: 0 },
+		handler(n) {
+			var r = parseArray(n.parser, {
+				arraystretch: 1.2,
+				cols: [{
+					type: "align",
+					align: "l",
+					pregap: 0,
+					postgap: 1
+				}, {
+					type: "align",
+					align: "l",
+					pregap: 0,
+					postgap: 0
+				}]
+			}, dCellStyle(n.envName));
+			return {
+				type: "leftright",
+				mode: n.mode,
+				body: [r],
+				left: n.envName.includes("r") ? "." : "\\{",
+				right: n.envName.includes("r") ? "\\}" : ".",
+				rightColor: void 0
+			};
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: [
+			"align",
+			"align*",
+			"aligned",
+			"split"
+		],
+		props: { numArgs: 0 },
+		handler: alignedHandler,
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: [
+			"gathered",
+			"gather",
+			"gather*"
+		],
+		props: { numArgs: 0 },
+		handler(n) {
+			gatherEnvironments.has(n.envName) && validateAmsEnvironmentContext(n);
+			var r = {
+				cols: [{
+					type: "align",
+					align: "c"
+				}],
+				addJot: !0,
+				colSeparationType: "gather",
+				autoTag: getAutoTag(n.envName),
+				emptySingleRow: !0,
+				leqno: n.parser.settings.leqno
+			};
+			return parseArray(n.parser, r, "display");
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: [
+			"alignat",
+			"alignat*",
+			"alignedat"
+		],
+		props: { numArgs: 1 },
+		handler: alignedHandler,
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: ["equation", "equation*"],
+		props: { numArgs: 0 },
+		handler(n) {
+			validateAmsEnvironmentContext(n);
+			var r = {
+				autoTag: getAutoTag(n.envName),
+				emptySingleRow: !0,
+				singleRow: !0,
+				maxNumCols: 1,
+				leqno: n.parser.settings.leqno
+			};
+			return parseArray(n.parser, r, "display");
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineEnvironment({
+		type: "array",
+		names: ["CD"],
+		props: { numArgs: 0 },
+		handler(n) {
+			return validateAmsEnvironmentContext(n), parseCD(n.parser);
+		},
+		htmlBuilder: htmlBuilder$6,
+		mathmlBuilder: mathmlBuilder$5
+	}), defineMacro("\\nonumber", "\\gdef\\@eqnsw{0}"), defineMacro("\\notag", "\\nonumber"), defineFunction({
+		type: "text",
+		names: ["\\hline", "\\hdashline"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			allowedInMath: !0
+		},
+		handler(n, r) {
+			throw new ParseError(n.funcName + " valid only within array environment");
+		}
+	}), environments = _environments, defineFunction({
+		type: "environment",
+		names: ["\\begin", "\\end"],
+		props: {
+			numArgs: 1,
+			argTypes: ["text"]
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = r[0];
+			if (l.type !== "ordgroup") throw new ParseError("Invalid environment name", l);
+			for (var d = "", f = 0; f < l.body.length; ++f) d += assertNodeType(l.body[f], "textord").text;
+			if (o === "\\begin") {
+				if (!environments.hasOwnProperty(d)) throw new ParseError("No such environment: " + d, l);
+				var p = environments[d], { args: m, optArgs: h } = a.parseArguments("\\begin{" + d + "}", p), g = {
+					mode: a.mode,
+					envName: d,
+					parser: a
+				}, _ = p.handler(g, m, h);
+				a.expect("\\end", !1);
+				var v = a.nextToken, y = assertNodeType(a.parseFunction(), "environment");
+				if (y.name !== d) throw new ParseError("Mismatch: \\begin{" + d + "} matched by \\end{" + y.name + "}", v);
+				return _;
+			}
+			return {
+				type: "environment",
+				mode: a.mode,
+				name: d,
+				nameGroup: l
+			};
+		}
+	}), htmlBuilder$5 = (n, r) => {
+		var a = n.font, o = r.withFont(a);
+		return buildGroup$1(n.body, o);
+	}, mathmlBuilder$4 = (n, r) => {
+		var a = n.font, o = r.withFont(a);
+		return buildGroup(n.body, o);
+	}, fontAliases = {
+		"\\Bbb": "\\mathbb",
+		"\\bold": "\\mathbf",
+		"\\frak": "\\mathfrak"
+	}, defineFunction({
+		type: "font",
+		names: [
+			"\\mathrm",
+			"\\mathit",
+			"\\mathbf",
+			"\\mathnormal",
+			"\\mathsfit",
+			"\\mathbb",
+			"\\mathcal",
+			"\\mathfrak",
+			"\\mathscr",
+			"\\mathsf",
+			"\\mathtt",
+			"\\Bbb",
+			"\\bold",
+			"\\frak"
+		],
+		props: {
+			numArgs: 1,
+			allowedInArgument: !0
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = normalizeArgument(r[0]), d = o;
+			return d in fontAliases && (d = fontAliases[d]), {
+				type: "font",
+				mode: a.mode,
+				font: d.slice(1),
+				body: l
+			};
+		},
+		htmlBuilder: htmlBuilder$5,
+		mathmlBuilder: mathmlBuilder$4
+	}), defineFunction({
+		type: "mclass",
+		names: ["\\boldsymbol", "\\bm"],
+		props: { numArgs: 1 },
+		handler: (n, r) => {
+			var { parser: a } = n, o = r[0];
+			return {
+				type: "mclass",
+				mode: a.mode,
+				mclass: binrelClass(o),
+				body: [{
+					type: "font",
+					mode: a.mode,
+					font: "boldsymbol",
+					body: o
+				}],
+				isCharacterBox: isCharacterBox(o)
+			};
+		}
+	}), defineFunction({
+		type: "font",
+		names: [
+			"\\rm",
+			"\\sf",
+			"\\tt",
+			"\\bf",
+			"\\it",
+			"\\cal"
+		],
+		props: {
+			numArgs: 0,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o, breakOnTokenText: l } = n, { mode: d } = a, f = a.parseExpression(!0, l);
+			return {
+				type: "font",
+				mode: d,
+				font: "math" + o.slice(1),
+				body: {
+					type: "ordgroup",
+					mode: a.mode,
+					body: f
+				}
+			};
+		},
+		htmlBuilder: htmlBuilder$5,
+		mathmlBuilder: mathmlBuilder$4
+	}), htmlBuilder$4 = (n, r) => {
+		var a = r.style, o = a.fracNum(), l = a.fracDen(), d = r.havingStyle(o), f = buildGroup$1(n.numer, d, r);
+		if (n.continued) {
+			var p = 8.5 / r.fontMetrics().ptPerEm, m = 3.5 / r.fontMetrics().ptPerEm;
+			f.height = f.height < p ? p : f.height, f.depth = f.depth < m ? m : f.depth;
+		}
+		d = r.havingStyle(l);
+		var h = buildGroup$1(n.denom, d, r), g, _, v;
+		n.hasBarLine ? (n.barSize ? (_ = calculateSize(n.barSize, r), g = makeLineSpan("frac-line", r, _)) : g = makeLineSpan("frac-line", r), _ = g.height, v = g.height) : (g = null, _ = 0, v = r.fontMetrics().defaultRuleThickness);
+		var y, x, S;
+		a.size === Style$1$1.DISPLAY.size ? (y = r.fontMetrics().num1, x = _ > 0 ? 3 * v : 7 * v, S = r.fontMetrics().denom1) : (_ > 0 ? (y = r.fontMetrics().num2, x = v) : (y = r.fontMetrics().num3, x = 3 * v), S = r.fontMetrics().denom2);
+		var C;
+		if (g) {
+			var w = r.fontMetrics().axisHeight;
+			y - f.depth - (w + .5 * _) < x && (y += x - (y - f.depth - (w + .5 * _))), w - .5 * _ - (h.height - S) < x && (S += x - (w - .5 * _ - (h.height - S)));
+			var T = -(w - .5 * _);
+			C = makeVList({
+				positionType: "individualShift",
+				children: [
+					{
+						type: "elem",
+						elem: h,
+						shift: S
+					},
+					{
+						type: "elem",
+						elem: g,
+						shift: T
+					},
+					{
+						type: "elem",
+						elem: f,
+						shift: -y
+					}
+				]
+			});
+		} else {
+			var D = y - f.depth - (h.height - S);
+			D < x && (y += .5 * (x - D), S += .5 * (x - D)), C = makeVList({
+				positionType: "individualShift",
+				children: [{
+					type: "elem",
+					elem: h,
+					shift: S
+				}, {
+					type: "elem",
+					elem: f,
+					shift: -y
+				}]
+			});
+		}
+		d = r.havingStyle(a), C.height *= d.sizeMultiplier / r.sizeMultiplier, C.depth *= d.sizeMultiplier / r.sizeMultiplier;
+		var G = a.size === Style$1$1.DISPLAY.size ? r.fontMetrics().delim1 : a.size === Style$1$1.SCRIPTSCRIPT.size ? r.havingStyle(Style$1$1.SCRIPT).fontMetrics().delim2 : r.fontMetrics().delim2, ne = n.leftDelim == null ? makeNullDelimiter(r, ["mopen"]) : makeCustomSizedDelim(n.leftDelim, G, !0, r.havingStyle(a), n.mode, ["mopen"]), ie = n.continued ? makeSpan([]) : n.rightDelim == null ? makeNullDelimiter(r, ["mclose"]) : makeCustomSizedDelim(n.rightDelim, G, !0, r.havingStyle(a), n.mode, ["mclose"]);
+		return makeSpan(["mord"].concat(d.sizingClasses(r)), [
+			ne,
+			makeSpan(["mfrac"], [C]),
+			ie
+		], r);
+	}, mathmlBuilder$3 = (n, r) => {
+		var a = new MathNode("mfrac", [buildGroup(n.numer, r), buildGroup(n.denom, r)]);
+		if (!n.hasBarLine) a.setAttribute("linethickness", "0px");
+		else if (n.barSize) {
+			var o = calculateSize(n.barSize, r);
+			a.setAttribute("linethickness", makeEm(o));
+		}
+		if (n.leftDelim != null || n.rightDelim != null) {
+			var l = [];
+			if (n.leftDelim != null) {
+				var d = new MathNode("mo", [new TextNode(n.leftDelim.replace("\\", ""))]);
+				d.setAttribute("fence", "true"), l.push(d);
+			}
+			if (l.push(a), n.rightDelim != null) {
+				var f = new MathNode("mo", [new TextNode(n.rightDelim.replace("\\", ""))]);
+				f.setAttribute("fence", "true"), l.push(f);
+			}
+			return makeRow(l);
+		}
+		return a;
+	}, wrapWithStyle = (n, r) => r ? {
+		type: "styling",
+		mode: n.mode,
+		style: r,
+		body: [n]
+	} : n, defineFunction({
+		type: "genfrac",
+		names: [
+			"\\cfrac",
+			"\\dfrac",
+			"\\frac",
+			"\\tfrac",
+			"\\dbinom",
+			"\\binom",
+			"\\tbinom",
+			"\\\\atopfrac",
+			"\\\\bracefrac",
+			"\\\\brackfrac"
+		],
+		props: {
+			numArgs: 2,
+			allowedInArgument: !0
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = r[0], d = r[1], f, p = null, m = null;
+			switch (o) {
+				case "\\cfrac":
+				case "\\dfrac":
+				case "\\frac":
+				case "\\tfrac":
+					f = !0;
+					break;
+				case "\\\\atopfrac":
+					f = !1;
+					break;
+				case "\\dbinom":
+				case "\\binom":
+				case "\\tbinom":
+					f = !1, p = "(", m = ")";
+					break;
+				case "\\\\bracefrac":
+					f = !1, p = "\\{", m = "\\}";
+					break;
+				case "\\\\brackfrac":
+					f = !1, p = "[", m = "]";
+					break;
+				default: throw Error("Unrecognized genfrac command");
+			}
+			var h = o === "\\cfrac", g = null;
+			return h || o.startsWith("\\d") ? g = "display" : o.startsWith("\\t") && (g = "text"), wrapWithStyle({
+				type: "genfrac",
+				mode: a.mode,
+				numer: l,
+				denom: d,
+				continued: h,
+				hasBarLine: f,
+				leftDelim: p,
+				rightDelim: m,
+				barSize: null
+			}, g);
+		},
+		htmlBuilder: htmlBuilder$4,
+		mathmlBuilder: mathmlBuilder$3
+	}), defineFunction({
+		type: "infix",
+		names: [
+			"\\over",
+			"\\choose",
+			"\\atop",
+			"\\brace",
+			"\\brack"
+		],
+		props: {
+			numArgs: 0,
+			infix: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a, token: o } = n, l;
+			switch (a) {
+				case "\\over":
+					l = "\\frac";
+					break;
+				case "\\choose":
+					l = "\\binom";
+					break;
+				case "\\atop":
+					l = "\\\\atopfrac";
+					break;
+				case "\\brace":
+					l = "\\\\bracefrac";
+					break;
+				case "\\brack":
+					l = "\\\\brackfrac";
+					break;
+				default: throw Error("Unrecognized infix genfrac command");
+			}
+			return {
+				type: "infix",
+				mode: r.mode,
+				replaceWith: l,
+				token: o
+			};
+		}
+	}), stylArray = [
+		"display",
+		"text",
+		"script",
+		"scriptscript"
+	], delimFromValue = function(n) {
+		var r = null;
+		return n.length > 0 && (r = n, r = r === "." ? null : r), r;
+	}, defineFunction({
+		type: "genfrac",
+		names: ["\\genfrac"],
+		props: {
+			numArgs: 6,
+			allowedInArgument: !0,
+			argTypes: [
+				"math",
+				"math",
+				"size",
+				"text",
+				"math",
+				"math"
+			]
+		},
+		handler(n, r) {
+			var { parser: a } = n, o = r[4], l = r[5], d = normalizeArgument(r[0]), f = d.type === "atom" && d.family === "open" ? delimFromValue(d.text) : null, p = normalizeArgument(r[1]), m = p.type === "atom" && p.family === "close" ? delimFromValue(p.text) : null, h = assertNodeType(r[2], "size"), g, _ = null;
+			h.isBlank ? g = !0 : (_ = h.value, g = _.number > 0);
+			var v = null, y = r[3];
+			if (y.type === "ordgroup") {
+				if (y.body.length > 0) {
+					var x = assertNodeType(y.body[0], "textord");
+					v = stylArray[Number(x.text)];
+				}
+			} else y = assertNodeType(y, "textord"), v = stylArray[Number(y.text)];
+			return wrapWithStyle({
+				type: "genfrac",
+				mode: a.mode,
+				numer: o,
+				denom: l,
+				continued: !1,
+				hasBarLine: g,
+				barSize: _,
+				leftDelim: f,
+				rightDelim: m
+			}, v);
+		}
+	}), defineFunction({
+		type: "infix",
+		names: ["\\above"],
+		props: {
+			numArgs: 1,
+			argTypes: ["size"],
+			infix: !0
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o, token: l } = n;
+			return {
+				type: "infix",
+				mode: a.mode,
+				replaceWith: "\\\\abovefrac",
+				size: assertNodeType(r[0], "size").value,
+				token: l
+			};
+		}
+	}), defineFunction({
+		type: "genfrac",
+		names: ["\\\\abovefrac"],
+		props: {
+			numArgs: 3,
+			argTypes: [
+				"math",
+				"size",
+				"math"
+			]
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = r[0], d = assertNodeType(r[1], "infix").size;
+			if (!d) throw Error("\\\\abovefrac expected size, but got " + String(d));
+			var f = r[2], p = d.number > 0;
+			return {
+				type: "genfrac",
+				mode: a.mode,
+				numer: l,
+				denom: f,
+				continued: !1,
+				hasBarLine: p,
+				barSize: d,
+				leftDelim: null,
+				rightDelim: null
+			};
+		}
+	}), htmlBuilder$3 = (n, r) => {
+		var a = r.style, o, l;
+		n.type === "supsub" ? (o = n.sup ? buildGroup$1(n.sup, r.havingStyle(a.sup()), r) : buildGroup$1(n.sub, r.havingStyle(a.sub()), r), l = assertNodeType(n.base, "horizBrace")) : l = assertNodeType(n, "horizBrace");
+		var d = buildGroup$1(l.base, r.havingBaseStyle(Style$1$1.DISPLAY)), f = stretchySvg(l, r), p = l.isOver ? makeVList({
+			positionType: "firstBaseline",
+			children: [
+				{
+					type: "elem",
+					elem: d
+				},
+				{
+					type: "kern",
+					size: .1
+				},
+				{
+					type: "elem",
+					elem: f,
+					wrapperClasses: ["svg-align"]
+				}
+			]
+		}) : makeVList({
+			positionType: "bottom",
+			positionData: d.depth + .1 + f.height,
+			children: [
+				{
+					type: "elem",
+					elem: f,
+					wrapperClasses: ["svg-align"]
+				},
+				{
+					type: "kern",
+					size: .1
+				},
+				{
+					type: "elem",
+					elem: d
+				}
+			]
+		});
+		if (o) {
+			var m = makeSpan(["minner", l.isOver ? "mover" : "munder"], [p], r);
+			p = l.isOver ? makeVList({
+				positionType: "firstBaseline",
+				children: [
+					{
+						type: "elem",
+						elem: m
+					},
+					{
+						type: "kern",
+						size: .2
+					},
+					{
+						type: "elem",
+						elem: o
+					}
+				]
+			}) : makeVList({
+				positionType: "bottom",
+				positionData: m.depth + .2 + o.height + o.depth,
+				children: [
+					{
+						type: "elem",
+						elem: o
+					},
+					{
+						type: "kern",
+						size: .2
+					},
+					{
+						type: "elem",
+						elem: m
+					}
+				]
+			});
+		}
+		return makeSpan(["minner", l.isOver ? "mover" : "munder"], [p], r);
+	}, mathmlBuilder$2 = (n, r) => {
+		var a = stretchyMathML(n.label);
+		return new MathNode(n.isOver ? "mover" : "munder", [buildGroup(n.base, r), a]);
+	}, defineFunction({
+		type: "horizBrace",
+		names: [
+			"\\overbrace",
+			"\\underbrace",
+			"\\overbracket",
+			"\\underbracket"
+		],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var { parser: a, funcName: o } = n;
+			return {
+				type: "horizBrace",
+				mode: a.mode,
+				label: o,
+				isOver: o.includes("\\over"),
+				base: r[0]
+			};
+		},
+		htmlBuilder: htmlBuilder$3,
+		mathmlBuilder: mathmlBuilder$2
+	}), defineFunction({
+		type: "href",
+		names: ["\\href"],
+		props: {
+			numArgs: 2,
+			argTypes: ["url", "original"],
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n, o = r[1], l = assertNodeType(r[0], "url").url;
+			return a.settings.isTrusted({
+				command: "\\href",
+				url: l
+			}) ? {
+				type: "href",
+				mode: a.mode,
+				href: l,
+				body: ordargument(o)
+			} : a.formatUnsupportedCmd("\\href");
+		},
+		htmlBuilder: (n, r) => {
+			var a = buildExpression$1(n.body, r, !1);
+			return makeAnchor(n.href, [], a, r);
+		},
+		mathmlBuilder: (n, r) => {
+			var a = buildExpressionRow(n.body, r);
+			return a instanceof MathNode || (a = new MathNode("mrow", [a])), a.setAttribute("href", n.href), a;
+		}
+	}), defineFunction({
+		type: "href",
+		names: ["\\url"],
+		props: {
+			numArgs: 1,
+			argTypes: ["url"],
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n, o = assertNodeType(r[0], "url").url;
+			if (!a.settings.isTrusted({
+				command: "\\url",
+				url: o
+			})) return a.formatUnsupportedCmd("\\url");
+			for (var l = [], d = 0; d < o.length; d++) {
+				var f = o[d];
+				f === "~" && (f = "\\textasciitilde"), l.push({
+					type: "textord",
+					mode: "text",
+					text: f
+				});
+			}
+			var p = {
+				type: "text",
+				mode: a.mode,
+				font: "\\texttt",
+				body: l
+			};
+			return {
+				type: "href",
+				mode: a.mode,
+				href: o,
+				body: ordargument(p)
+			};
+		}
+	}), defineFunction({
+		type: "hbox",
+		names: ["\\hbox"],
+		props: {
+			numArgs: 1,
+			argTypes: ["text"],
+			allowedInText: !0,
+			primitive: !0
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "hbox",
+				mode: a.mode,
+				body: ordargument(r[0])
+			};
+		},
+		htmlBuilder(n, r) {
+			return makeFragment(buildExpression$1(n.body, r.withFont(""), !1));
+		},
+		mathmlBuilder(n, r) {
+			return new MathNode("mrow", buildExpression(n.body, r.withFont("")));
+		}
+	}), defineFunction({
+		type: "html",
+		names: [
+			"\\htmlClass",
+			"\\htmlId",
+			"\\htmlStyle",
+			"\\htmlData"
+		],
+		props: {
+			numArgs: 2,
+			argTypes: ["raw", "original"],
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o, token: l } = n, d = assertNodeType(r[0], "raw").string, f = r[1];
+			a.settings.strict && a.settings.reportNonstrict("htmlExtension", "HTML extension is disabled on strict mode");
+			var p, m = {};
+			switch (o) {
+				case "\\htmlClass":
+					m.class = d, p = {
+						command: "\\htmlClass",
+						class: d
+					};
+					break;
+				case "\\htmlId":
+					m.id = d, p = {
+						command: "\\htmlId",
+						id: d
+					};
+					break;
+				case "\\htmlStyle":
+					m.style = d, p = {
+						command: "\\htmlStyle",
+						style: d
+					};
+					break;
+				case "\\htmlData":
+					for (var h = d.split(","), g = 0; g < h.length; g++) {
+						var _ = h[g], v = _.indexOf("=");
+						if (v < 0) throw new ParseError("\\htmlData key/value '" + _ + "' missing equals sign");
+						var y = _.slice(0, v), x = _.slice(v + 1);
+						m["data-" + y.trim()] = x;
+					}
+					p = {
+						command: "\\htmlData",
+						attributes: m
+					};
+					break;
+				default: throw Error("Unrecognized html command");
+			}
+			return a.settings.isTrusted(p) ? {
+				type: "html",
+				mode: a.mode,
+				attributes: m,
+				body: ordargument(f)
+			} : a.formatUnsupportedCmd(o);
+		},
+		htmlBuilder: (n, r) => {
+			var a = buildExpression$1(n.body, r, !1), o = ["enclosing"];
+			n.attributes.class && o.push(...n.attributes.class.trim().split(/\s+/));
+			var l = makeSpan(o, a, r);
+			for (var d in n.attributes) d !== "class" && n.attributes.hasOwnProperty(d) && l.setAttribute(d, n.attributes[d]);
+			return l;
+		},
+		mathmlBuilder: (n, r) => buildExpressionRow(n.body, r)
+	}), defineFunction({
+		type: "htmlmathml",
+		names: ["\\html@mathml"],
+		props: {
+			numArgs: 2,
+			allowedInArgument: !0,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n;
+			return {
+				type: "htmlmathml",
+				mode: a.mode,
+				html: ordargument(r[0]),
+				mathml: ordargument(r[1])
+			};
+		},
+		htmlBuilder: (n, r) => makeFragment(buildExpression$1(n.html, r, !1)),
+		mathmlBuilder: (n, r) => buildExpressionRow(n.mathml, r)
+	}), sizeData = function(n) {
+		if (/^[-+]? *(\d+(\.\d*)?|\.\d+)$/.test(n)) return {
+			number: +n,
+			unit: "bp"
+		};
+		var r = /([-+]?) *(\d+(?:\.\d*)?|\.\d+) *([a-z]{2})/.exec(n);
+		if (!r) throw new ParseError("Invalid size: '" + n + "' in \\includegraphics");
+		var a = {
+			number: +(r[1] + r[2]),
+			unit: r[3]
+		};
+		if (!validUnit(a)) throw new ParseError("Invalid unit: '" + a.unit + "' in \\includegraphics.");
+		return a;
+	}, defineFunction({
+		type: "includegraphics",
+		names: ["\\includegraphics"],
+		props: {
+			numArgs: 1,
+			numOptionalArgs: 1,
+			argTypes: ["raw", "url"],
+			allowedInText: !1
+		},
+		handler: (n, r, a) => {
+			var { parser: o } = n, l = {
+				number: 0,
+				unit: "em"
+			}, d = {
+				number: .9,
+				unit: "em"
+			}, f = {
+				number: 0,
+				unit: "em"
+			}, p = "";
+			if (a[0]) for (var m = assertNodeType(a[0], "raw").string.split(","), h = 0; h < m.length; h++) {
+				var g = m[h].split("=");
+				if (g.length === 2) {
+					var _ = g[1].trim();
+					switch (g[0].trim()) {
+						case "alt":
+							p = _;
+							break;
+						case "width":
+							l = sizeData(_);
+							break;
+						case "height":
+							d = sizeData(_);
+							break;
+						case "totalheight":
+							f = sizeData(_);
+							break;
+						default: throw new ParseError("Invalid key: '" + g[0] + "' in \\includegraphics.");
+					}
+				}
+			}
+			var v = assertNodeType(r[0], "url").url;
+			return p === "" && (p = v, p = p.replace(/^.*[\\/]/, ""), p = p.substring(0, p.lastIndexOf("."))), o.settings.isTrusted({
+				command: "\\includegraphics",
+				url: v
+			}) ? {
+				type: "includegraphics",
+				mode: o.mode,
+				alt: p,
+				width: l,
+				height: d,
+				totalheight: f,
+				src: v
+			} : o.formatUnsupportedCmd("\\includegraphics");
+		},
+		htmlBuilder: (n, r) => {
+			var a = calculateSize(n.height, r), o = 0;
+			n.totalheight.number > 0 && (o = calculateSize(n.totalheight, r) - a);
+			var l = 0;
+			n.width.number > 0 && (l = calculateSize(n.width, r));
+			var d = { height: makeEm(a + o) };
+			l > 0 && (d.width = makeEm(l)), o > 0 && (d.verticalAlign = makeEm(-o));
+			var f = new Img(n.src, n.alt, d);
+			return f.height = a, f.depth = o, f;
+		},
+		mathmlBuilder: (n, r) => {
+			var a = new MathNode("mglyph", []);
+			a.setAttribute("alt", n.alt);
+			var o = calculateSize(n.height, r), l = 0;
+			if (n.totalheight.number > 0 && (l = calculateSize(n.totalheight, r) - o, a.setAttribute("valign", makeEm(-l))), a.setAttribute("height", makeEm(o + l)), n.width.number > 0) {
+				var d = calculateSize(n.width, r);
+				a.setAttribute("width", makeEm(d));
+			}
+			return a.setAttribute("src", n.src), a;
+		}
+	}), defineFunction({
+		type: "kern",
+		names: [
+			"\\kern",
+			"\\mkern",
+			"\\hskip",
+			"\\mskip"
+		],
+		props: {
+			numArgs: 1,
+			argTypes: ["size"],
+			primitive: !0,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = assertNodeType(r[0], "size");
+			if (a.settings.strict) {
+				var d = o[1] === "m", f = l.value.unit === "mu";
+				d ? (f || a.settings.reportNonstrict("mathVsTextUnits", "LaTeX's " + o + " supports only mu units, " + ("not " + l.value.unit + " units")), a.mode !== "math" && a.settings.reportNonstrict("mathVsTextUnits", "LaTeX's " + o + " works only in math mode")) : f && a.settings.reportNonstrict("mathVsTextUnits", "LaTeX's " + o + " doesn't support mu units");
+			}
+			return {
+				type: "kern",
+				mode: a.mode,
+				dimension: l.value
+			};
+		},
+		htmlBuilder(n, r) {
+			return makeGlue(n.dimension, r);
+		},
+		mathmlBuilder(n, r) {
+			return new SpaceNode(calculateSize(n.dimension, r));
+		}
+	}), defineFunction({
+		type: "lap",
+		names: [
+			"\\mathllap",
+			"\\mathrlap",
+			"\\mathclap"
+		],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "lap",
+				mode: a.mode,
+				alignment: o.slice(5),
+				body: l
+			};
+		},
+		htmlBuilder: (n, r) => {
+			var a;
+			n.alignment === "clap" ? (a = makeSpan([], [buildGroup$1(n.body, r)]), a = makeSpan(["inner"], [a], r)) : a = makeSpan(["inner"], [buildGroup$1(n.body, r)]);
+			var o = makeSpan(["fix"], []), l = makeSpan([n.alignment], [a, o], r), d = makeSpan(["strut"]);
+			return d.style.height = makeEm(l.height + l.depth), l.depth && (d.style.verticalAlign = makeEm(-l.depth)), l.children.unshift(d), l = makeSpan(["thinbox"], [l], r), makeSpan(["mord", "vbox"], [l], r);
+		},
+		mathmlBuilder: (n, r) => {
+			var a = new MathNode("mpadded", [buildGroup(n.body, r)]);
+			if (n.alignment !== "rlap") {
+				var o = n.alignment === "llap" ? "-1" : "-0.5";
+				a.setAttribute("lspace", o + "width");
+			}
+			return a.setAttribute("width", "0px"), a;
+		}
+	}), defineFunction({
+		type: "styling",
+		names: ["\\(", "$"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			allowedInMath: !1
+		},
+		handler(n, r) {
+			var { funcName: a, parser: o } = n, l = o.mode;
+			o.switchMode("math");
+			var d = a === "\\(" ? "\\)" : "$", f = o.parseExpression(!1, d);
+			return o.expect(d), o.switchMode(l), {
+				type: "styling",
+				mode: o.mode,
+				style: "text",
+				resetFont: !0,
+				body: f
+			};
+		}
+	}), defineFunction({
+		type: "text",
+		names: ["\\)", "\\]"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			allowedInMath: !1
+		},
+		handler(n, r) {
+			throw new ParseError("Mismatched " + n.funcName);
+		}
+	}), chooseMathStyle = (n, r) => {
+		switch (r.style.size) {
+			case Style$1$1.DISPLAY.size: return n.display;
+			case Style$1$1.TEXT.size: return n.text;
+			case Style$1$1.SCRIPT.size: return n.script;
+			case Style$1$1.SCRIPTSCRIPT.size: return n.scriptscript;
+			default: return n.text;
+		}
+	}, defineFunction({
+		type: "mathchoice",
+		names: ["\\mathchoice"],
+		props: {
+			numArgs: 4,
+			primitive: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n;
+			return {
+				type: "mathchoice",
+				mode: a.mode,
+				display: ordargument(r[0]),
+				text: ordargument(r[1]),
+				script: ordargument(r[2]),
+				scriptscript: ordargument(r[3])
+			};
+		},
+		htmlBuilder: (n, r) => makeFragment(buildExpression$1(chooseMathStyle(n, r), r, !1)),
+		mathmlBuilder: (n, r) => buildExpressionRow(chooseMathStyle(n, r), r)
+	}), assembleSupSub = (n, r, a, o, l, d, f) => {
+		n = makeSpan([], [n]);
+		var p = a && isCharacterBox(a), m, h;
+		if (r) {
+			var g = buildGroup$1(r, o.havingStyle(l.sup()), o);
+			h = {
+				elem: g,
+				kern: Math.max(o.fontMetrics().bigOpSpacing1, o.fontMetrics().bigOpSpacing3 - g.depth)
+			};
+		}
+		if (a) {
+			var _ = buildGroup$1(a, o.havingStyle(l.sub()), o);
+			m = {
+				elem: _,
+				kern: Math.max(o.fontMetrics().bigOpSpacing2, o.fontMetrics().bigOpSpacing4 - _.height)
+			};
+		}
+		var v;
+		if (h && m) v = makeVList({
+			positionType: "bottom",
+			positionData: o.fontMetrics().bigOpSpacing5 + m.elem.height + m.elem.depth + m.kern + n.depth + f,
+			children: [
+				{
+					type: "kern",
+					size: o.fontMetrics().bigOpSpacing5
+				},
+				{
+					type: "elem",
+					elem: m.elem,
+					marginLeft: makeEm(-d)
+				},
+				{
+					type: "kern",
+					size: m.kern
+				},
+				{
+					type: "elem",
+					elem: n
+				},
+				{
+					type: "kern",
+					size: h.kern
+				},
+				{
+					type: "elem",
+					elem: h.elem,
+					marginLeft: makeEm(d)
+				},
+				{
+					type: "kern",
+					size: o.fontMetrics().bigOpSpacing5
+				}
+			]
+		});
+		else if (m) v = makeVList({
+			positionType: "top",
+			positionData: n.height - f,
+			children: [
+				{
+					type: "kern",
+					size: o.fontMetrics().bigOpSpacing5
+				},
+				{
+					type: "elem",
+					elem: m.elem,
+					marginLeft: makeEm(-d)
+				},
+				{
+					type: "kern",
+					size: m.kern
+				},
+				{
+					type: "elem",
+					elem: n
+				}
+			]
+		});
+		else if (h) v = makeVList({
+			positionType: "bottom",
+			positionData: n.depth + f,
+			children: [
+				{
+					type: "elem",
+					elem: n
+				},
+				{
+					type: "kern",
+					size: h.kern
+				},
+				{
+					type: "elem",
+					elem: h.elem,
+					marginLeft: makeEm(d)
+				},
+				{
+					type: "kern",
+					size: o.fontMetrics().bigOpSpacing5
+				}
+			]
+		});
+		else return n;
+		var y = [v];
+		if (m && d !== 0 && !p) {
+			var x = makeSpan(["mspace"], [], o);
+			x.style.marginRight = makeEm(d), y.unshift(x);
+		}
+		return makeSpan(["mop", "op-limits"], y, o);
+	}, noSuccessor = /* @__PURE__ */ new Set(["\\smallint"]), htmlBuilder$2 = (n, r) => {
+		var a, o, l = !1, d;
+		n.type === "supsub" ? (a = n.sup, o = n.sub, d = assertNodeType(n.base, "op"), l = !0) : d = assertNodeType(n, "op");
+		var f = r.style, p = !1;
+		f.size === Style$1$1.DISPLAY.size && d.symbol && !noSuccessor.has(d.name) && (p = !0);
+		var m, h;
+		if (d.symbol) {
+			var g = p ? "Size2-Regular" : "Size1-Regular", _ = "";
+			if ((d.name === "\\oiint" || d.name === "\\oiiint") && (_ = d.name.slice(1), d.name = _ === "oiint" ? "\\iint" : "\\iiint"), m = makeSymbol(d.name, g, "math", r, [
+				"mop",
+				"op-symbol",
+				p ? "large-op" : "small-op"
+			]), h = m.italic, _.length > 0) {
+				var v = staticSvg(_ + "Size" + (p ? "2" : "1"), r);
+				m = makeVList({
+					positionType: "individualShift",
+					children: [{
+						type: "elem",
+						elem: m,
+						shift: 0
+					}, {
+						type: "elem",
+						elem: v,
+						shift: p ? .08 : 0
+					}]
+				}), d.name = "\\" + _, m.classes.unshift("mop"), m.italic = h;
+			}
+		} else if (d.body) {
+			var y = buildExpression$1(d.body, r, !0);
+			y.length === 1 && y[0] instanceof SymbolNode ? (m = y[0], m.classes[0] = "mop") : m = makeSpan(["mop"], y, r);
+		} else {
+			for (var x = [], S = 1; S < d.name.length; S++) x.push(mathsym(d.name[S], d.mode, r));
+			m = makeSpan(["mop"], x, r);
+		}
+		var C = 0, w = 0;
+		if ((m instanceof SymbolNode || d.name === "\\oiint" || d.name === "\\oiiint") && !d.suppressBaseShift) {
+			var T;
+			C = (m.height - m.depth) / 2 - r.fontMetrics().axisHeight, w = m.italic ?? 0;
+		}
+		return l ? assembleSupSub(m, a, o, r, f, w, C) : (C && (m.style.position = "relative", m.style.top = makeEm(C)), m);
+	}, mathmlBuilder$1 = (n, r) => {
+		var a;
+		if (n.symbol) a = new MathNode("mo", [makeText(n.name, n.mode)]), noSuccessor.has(n.name) && a.setAttribute("largeop", "false");
+		else if (n.body) a = new MathNode("mo", buildExpression(n.body, r));
+		else {
+			a = new MathNode("mi", [new TextNode(n.name.slice(1))]);
+			var o = new MathNode("mo", [makeText("⁡", "text")]);
+			a = n.parentIsSupSub ? new MathNode("mrow", [a, o]) : newDocumentFragment([a, o]);
+		}
+		return a;
+	}, singleCharBigOps = {
+		"∏": "\\prod",
+		"∐": "\\coprod",
+		"∑": "\\sum",
+		"⋀": "\\bigwedge",
+		"⋁": "\\bigvee",
+		"⋂": "\\bigcap",
+		"⋃": "\\bigcup",
+		"⨀": "\\bigodot",
+		"⨁": "\\bigoplus",
+		"⨂": "\\bigotimes",
+		"⨄": "\\biguplus",
+		"⨆": "\\bigsqcup"
+	}, defineFunction({
+		type: "op",
+		names: /* @__PURE__ */ "\\coprod.\\bigvee.\\bigwedge.\\biguplus.\\bigcap.\\bigcup.\\intop.\\prod.\\sum.\\bigotimes.\\bigoplus.\\bigodot.\\bigsqcup.\\smallint.∏.∐.∑.⋀.⋁.⋂.⋃.⨀.⨁.⨂.⨄.⨆".split("."),
+		props: { numArgs: 0 },
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = o;
+			return l.length === 1 && (l = singleCharBigOps[l]), {
+				type: "op",
+				mode: a.mode,
+				limits: !0,
+				parentIsSupSub: !1,
+				symbol: !0,
+				name: l
+			};
+		},
+		htmlBuilder: htmlBuilder$2,
+		mathmlBuilder: mathmlBuilder$1
+	}), defineFunction({
+		type: "op",
+		names: ["\\mathop"],
+		props: {
+			numArgs: 1,
+			primitive: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n, o = r[0];
+			return {
+				type: "op",
+				mode: a.mode,
+				limits: !1,
+				parentIsSupSub: !1,
+				symbol: !1,
+				body: ordargument(o)
+			};
+		},
+		htmlBuilder: htmlBuilder$2,
+		mathmlBuilder: mathmlBuilder$1
+	}), singleCharIntegrals = {
+		"∫": "\\int",
+		"∬": "\\iint",
+		"∭": "\\iiint",
+		"∮": "\\oint",
+		"∯": "\\oiint",
+		"∰": "\\oiiint"
+	}, defineFunction({
+		type: "op",
+		names: /* @__PURE__ */ "\\arcsin.\\arccos.\\arctan.\\arctg.\\arcctg.\\arg.\\ch.\\cos.\\cosec.\\cosh.\\cot.\\cotg.\\coth.\\csc.\\ctg.\\cth.\\deg.\\dim.\\exp.\\hom.\\ker.\\lg.\\ln.\\log.\\sec.\\sin.\\sinh.\\sh.\\tan.\\tanh.\\tg.\\th".split("."),
+		props: { numArgs: 0 },
+		handler(n) {
+			var { parser: r, funcName: a } = n;
+			return {
+				type: "op",
+				mode: r.mode,
+				limits: !1,
+				parentIsSupSub: !1,
+				symbol: !1,
+				name: a
+			};
+		},
+		htmlBuilder: htmlBuilder$2,
+		mathmlBuilder: mathmlBuilder$1
+	}), defineFunction({
+		type: "op",
+		names: [
+			"\\det",
+			"\\gcd",
+			"\\inf",
+			"\\lim",
+			"\\max",
+			"\\min",
+			"\\Pr",
+			"\\sup"
+		],
+		props: { numArgs: 0 },
+		handler(n) {
+			var { parser: r, funcName: a } = n;
+			return {
+				type: "op",
+				mode: r.mode,
+				limits: !0,
+				parentIsSupSub: !1,
+				symbol: !1,
+				name: a
+			};
+		},
+		htmlBuilder: htmlBuilder$2,
+		mathmlBuilder: mathmlBuilder$1
+	}), defineFunction({
+		type: "op",
+		names: [
+			"\\int",
+			"\\iint",
+			"\\iiint",
+			"\\oint",
+			"\\oiint",
+			"\\oiiint",
+			"∫",
+			"∬",
+			"∭",
+			"∮",
+			"∯",
+			"∰"
+		],
+		props: {
+			numArgs: 0,
+			allowedInArgument: !0
+		},
+		handler(n) {
+			var { parser: r, funcName: a } = n, o = a;
+			return o.length === 1 && (o = singleCharIntegrals[o]), {
+				type: "op",
+				mode: r.mode,
+				limits: !1,
+				parentIsSupSub: !1,
+				symbol: !0,
+				name: o
+			};
+		},
+		htmlBuilder: htmlBuilder$2,
+		mathmlBuilder: mathmlBuilder$1
+	}), htmlBuilder$1 = (n, r) => {
+		var a, o, l = !1, d;
+		n.type === "supsub" ? (a = n.sup, o = n.sub, d = assertNodeType(n.base, "operatorname"), l = !0) : d = assertNodeType(n, "operatorname");
+		var f;
+		if (d.body.length > 0) {
+			for (var p = buildExpression$1(d.body.map((n) => {
+				var r = "text" in n ? n.text : void 0;
+				return typeof r == "string" ? {
+					type: "textord",
+					mode: n.mode,
+					text: r
+				} : n;
+			}), r.withFont("mathrm"), !0), m = 0; m < p.length; m++) {
+				var h = p[m];
+				h instanceof SymbolNode && (h.text = h.text.replace(/\u2212/, "-").replace(/\u2217/, "*"));
+			}
+			f = makeSpan(["mop"], p, r);
+		} else f = makeSpan(["mop"], [], r);
+		return l ? assembleSupSub(f, a, o, r, r.style, 0, 0) : f;
+	}, mathmlBuilder = (n, r) => {
+		for (var a = buildExpression(n.body, r.withFont("mathrm")), o = !0, l = 0; l < a.length; l++) {
+			var d = a[l];
+			if (!(d instanceof SpaceNode)) if (d instanceof MathNode) switch (d.type) {
+				case "mi":
+				case "mn":
+				case "mspace":
+				case "mtext": break;
+				case "mo":
+					var f = d.children[0];
+					d.children.length === 1 && f instanceof TextNode ? f.text = f.text.replace(/\u2212/, "-").replace(/\u2217/, "*") : o = !1;
+					break;
+				default: o = !1;
+			}
+			else o = !1;
+		}
+		o && (a = [new TextNode(a.map((n) => n.toText()).join(""))]);
+		var p = new MathNode("mi", a);
+		p.setAttribute("mathvariant", "normal");
+		var m = new MathNode("mo", [makeText("⁡", "text")]);
+		return n.parentIsSupSub ? new MathNode("mrow", [p, m]) : newDocumentFragment([p, m]);
+	}, defineFunction({
+		type: "operatorname",
+		names: ["\\operatorname@", "\\operatornamewithlimits"],
+		props: { numArgs: 1 },
+		handler: (n, r) => {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "operatorname",
+				mode: a.mode,
+				body: ordargument(l),
+				alwaysHandleSupSub: o === "\\operatornamewithlimits",
+				limits: !1,
+				parentIsSupSub: !1
+			};
+		},
+		htmlBuilder: htmlBuilder$1,
+		mathmlBuilder
+	}), defineMacro("\\operatorname", "\\@ifstar\\operatornamewithlimits\\operatorname@"), defineFunctionBuilders({
+		type: "ordgroup",
+		htmlBuilder(n, r) {
+			return n.semisimple ? makeFragment(buildExpression$1(n.body, r, !1)) : makeSpan(["mord"], buildExpression$1(n.body, r, !0), r);
+		},
+		mathmlBuilder(n, r) {
+			return buildExpressionRow(n.body, r, !0);
+		}
+	}), defineFunction({
+		type: "overline",
+		names: ["\\overline"],
+		props: { numArgs: 1 },
+		handler(n, r) {
+			var { parser: a } = n, o = r[0];
+			return {
+				type: "overline",
+				mode: a.mode,
+				body: o
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildGroup$1(n.body, r.havingCrampedStyle()), o = makeLineSpan("overline-line", r), l = r.fontMetrics().defaultRuleThickness;
+			return makeSpan(["mord", "overline"], [makeVList({
+				positionType: "firstBaseline",
+				children: [
+					{
+						type: "elem",
+						elem: a
+					},
+					{
+						type: "kern",
+						size: 3 * l
+					},
+					{
+						type: "elem",
+						elem: o
+					},
+					{
+						type: "kern",
+						size: l
+					}
+				]
+			})], r);
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mo", [new TextNode("‾")]);
+			a.setAttribute("stretchy", "true");
+			var o = new MathNode("mover", [buildGroup(n.body, r), a]);
+			return o.setAttribute("accent", "true"), o;
+		}
+	}), defineFunction({
+		type: "phantom",
+		names: ["\\phantom"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n, o = r[0];
+			return {
+				type: "phantom",
+				mode: a.mode,
+				body: ordargument(o)
+			};
+		},
+		htmlBuilder: (n, r) => makeFragment(buildExpression$1(n.body, r.withPhantom(), !1)),
+		mathmlBuilder: (n, r) => new MathNode("mphantom", buildExpression(n.body, r))
+	}), defineMacro("\\hphantom", "\\smash{\\phantom{#1}}"), defineFunction({
+		type: "vphantom",
+		names: ["\\vphantom"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { parser: a } = n, o = r[0];
+			return {
+				type: "vphantom",
+				mode: a.mode,
+				body: o
+			};
+		},
+		htmlBuilder: (n, r) => makeSpan(["mord", "rlap"], [makeSpan(["inner"], [buildGroup$1(n.body, r.withPhantom())]), makeSpan(["fix"], [])], r),
+		mathmlBuilder: (n, r) => {
+			var a = new MathNode("mpadded", [new MathNode("mphantom", buildExpression(ordargument(n.body), r))]);
+			return a.setAttribute("width", "0px"), a;
+		}
+	}), defineFunction({
+		type: "raisebox",
+		names: ["\\raisebox"],
+		props: {
+			numArgs: 2,
+			argTypes: ["size", "hbox"],
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a } = n, o = assertNodeType(r[0], "size").value, l = r[1];
+			return {
+				type: "raisebox",
+				mode: a.mode,
+				dy: o,
+				body: l
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildGroup$1(n.body, r);
+			return makeVList({
+				positionType: "shift",
+				positionData: -calculateSize(n.dy, r),
+				children: [{
+					type: "elem",
+					elem: a
+				}]
+			});
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mpadded", [buildGroup(n.body, r)]), o = n.dy.number + n.dy.unit;
+			return a.setAttribute("voffset", o), a;
+		}
+	}), defineFunction({
+		type: "internal",
+		names: ["\\relax"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			allowedInArgument: !0
+		},
+		handler(n) {
+			var { parser: r } = n;
+			return {
+				type: "internal",
+				mode: r.mode
+			};
+		}
+	}), defineFunction({
+		type: "rule",
+		names: ["\\rule"],
+		props: {
+			numArgs: 2,
+			numOptionalArgs: 1,
+			allowedInText: !0,
+			allowedInMath: !0,
+			argTypes: [
+				"size",
+				"size",
+				"size"
+			]
+		},
+		handler(n, r, a) {
+			var { parser: o } = n, l = a[0], d = assertNodeType(r[0], "size"), f = assertNodeType(r[1], "size");
+			return {
+				type: "rule",
+				mode: o.mode,
+				shift: l && assertNodeType(l, "size").value,
+				width: d.value,
+				height: f.value
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = makeSpan(["mord", "rule"], [], r), o = calculateSize(n.width, r), l = calculateSize(n.height, r), d = n.shift ? calculateSize(n.shift, r) : 0;
+			return a.style.borderRightWidth = makeEm(o), a.style.borderTopWidth = makeEm(l), a.style.bottom = makeEm(d), a.width = o, a.height = l + d, a.depth = -d, a.maxFontSize = l * 1.125 * r.sizeMultiplier, a;
+		},
+		mathmlBuilder(n, r) {
+			var a = calculateSize(n.width, r), o = calculateSize(n.height, r), l = n.shift ? calculateSize(n.shift, r) : 0, d = r.color && r.getColor() || "black", f = new MathNode("mspace");
+			f.setAttribute("mathbackground", d), f.setAttribute("width", makeEm(a)), f.setAttribute("height", makeEm(o));
+			var p = new MathNode("mpadded", [f]);
+			return l >= 0 ? p.setAttribute("height", makeEm(l)) : (p.setAttribute("height", makeEm(l)), p.setAttribute("depth", makeEm(-l))), p.setAttribute("voffset", makeEm(l)), p;
+		}
+	}), sizeFuncs = [
+		"\\tiny",
+		"\\sixptsize",
+		"\\scriptsize",
+		"\\footnotesize",
+		"\\small",
+		"\\normalsize",
+		"\\large",
+		"\\Large",
+		"\\LARGE",
+		"\\huge",
+		"\\Huge"
+	], htmlBuilder = (n, r) => {
+		var a = r.havingSize(n.size);
+		return sizingGroup(n.body, a, r);
+	}, defineFunction({
+		type: "sizing",
+		names: sizeFuncs,
+		props: {
+			numArgs: 0,
+			allowedInText: !0
+		},
+		handler: (n, r) => {
+			var { breakOnTokenText: a, funcName: o, parser: l } = n, d = l.parseExpression(!1, a);
+			return {
+				type: "sizing",
+				mode: l.mode,
+				size: sizeFuncs.indexOf(o) + 1,
+				body: d
+			};
+		},
+		htmlBuilder,
+		mathmlBuilder: (n, r) => {
+			var a = r.havingSize(n.size), o = new MathNode("mstyle", buildExpression(n.body, a));
+			return o.setAttribute("mathsize", makeEm(a.sizeMultiplier)), o;
+		}
+	}), defineFunction({
+		type: "smash",
+		names: ["\\smash"],
+		props: {
+			numArgs: 1,
+			numOptionalArgs: 1,
+			allowedInText: !0
+		},
+		handler: (n, r, a) => {
+			var { parser: o } = n, l = !1, d = !1, f = a[0] && assertNodeType(a[0], "ordgroup");
+			if (f) for (var p, m = 0; m < f.body.length; ++m) {
+				var h = f.body[m];
+				if (p = assertSymbolNodeType(h).text, p === "t") l = !0;
+				else if (p === "b") d = !0;
+				else {
+					l = !1, d = !1;
+					break;
+				}
+			}
+			else l = !0, d = !0;
+			var g = r[0];
+			return {
+				type: "smash",
+				mode: o.mode,
+				body: g,
+				smashHeight: l,
+				smashDepth: d
+			};
+		},
+		htmlBuilder: (n, r) => {
+			var a = makeSpan([], [buildGroup$1(n.body, r)]);
+			if (!n.smashHeight && !n.smashDepth) return a;
+			if (n.smashHeight && (a.height = 0), n.smashDepth && (a.depth = 0), n.smashHeight && n.smashDepth) return makeSpan(["mord", "smash"], [a], r);
+			if (a.children) for (var o = 0; o < a.children.length; o++) n.smashHeight && (a.children[o].height = 0), n.smashDepth && (a.children[o].depth = 0);
+			return makeSpan(["mord"], [makeVList({
+				positionType: "firstBaseline",
+				children: [{
+					type: "elem",
+					elem: a
+				}]
+			})], r);
+		},
+		mathmlBuilder: (n, r) => {
+			var a = new MathNode("mpadded", [buildGroup(n.body, r)]);
+			return n.smashHeight && a.setAttribute("height", "0px"), n.smashDepth && a.setAttribute("depth", "0px"), a;
+		}
+	}), defineFunction({
+		type: "sqrt",
+		names: ["\\sqrt"],
+		props: {
+			numArgs: 1,
+			numOptionalArgs: 1
+		},
+		handler(n, r, a) {
+			var { parser: o } = n, l = a[0], d = r[0];
+			return {
+				type: "sqrt",
+				mode: o.mode,
+				body: d,
+				index: l
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildGroup$1(n.body, r.havingCrampedStyle());
+			a.height === 0 && (a.height = r.fontMetrics().xHeight), a = wrapFragment(a, r);
+			var o = r.fontMetrics().defaultRuleThickness, l = o;
+			r.style.id < Style$1$1.TEXT.id && (l = r.fontMetrics().xHeight);
+			var d = o + l / 4, { span: f, ruleWidth: p, advanceWidth: m } = makeSqrtImage(a.height + a.depth + d + o, r), h = f.height - p;
+			h > a.height + a.depth + d && (d = (d + h - a.height - a.depth) / 2);
+			var g = f.height - a.height - d - p;
+			a.style.paddingLeft = makeEm(m);
+			var _ = makeVList({
+				positionType: "firstBaseline",
+				children: [
+					{
+						type: "elem",
+						elem: a,
+						wrapperClasses: ["svg-align"]
+					},
+					{
+						type: "kern",
+						size: -(a.height + g)
+					},
+					{
+						type: "elem",
+						elem: f
+					},
+					{
+						type: "kern",
+						size: p
+					}
+				]
+			});
+			if (n.index) {
+				var v = r.havingStyle(Style$1$1.SCRIPTSCRIPT), y = buildGroup$1(n.index, v, r);
+				return makeSpan(["mord", "sqrt"], [makeSpan(["root"], [makeVList({
+					positionType: "shift",
+					positionData: -(.6 * (_.height - _.depth)),
+					children: [{
+						type: "elem",
+						elem: y
+					}]
+				})]), _], r);
+			} else return makeSpan(["mord", "sqrt"], [_], r);
+		},
+		mathmlBuilder(n, r) {
+			var { body: a, index: o } = n;
+			return o ? new MathNode("mroot", [buildGroup(a, r), buildGroup(o, r)]) : new MathNode("msqrt", [buildGroup(a, r)]);
+		}
+	}), styleMap = {
+		display: Style$1$1.DISPLAY,
+		text: Style$1$1.TEXT,
+		script: Style$1$1.SCRIPT,
+		scriptscript: Style$1$1.SCRIPTSCRIPT
+	}, defineFunction({
+		type: "styling",
+		names: [
+			"\\displaystyle",
+			"\\textstyle",
+			"\\scriptstyle",
+			"\\scriptscriptstyle"
+		],
+		props: {
+			numArgs: 0,
+			allowedInText: !0,
+			primitive: !0
+		},
+		handler(n, r) {
+			var { breakOnTokenText: a, funcName: o, parser: l } = n, d = l.parseExpression(!0, a), f = o.slice(1, o.length - 5);
+			if (!isStyleStr(f)) throw Error("Unknown style: " + f);
+			return {
+				type: "styling",
+				mode: l.mode,
+				style: f,
+				body: d
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = styleMap[n.style], o = r.havingStyle(a);
+			return n.resetFont && (o = o.withFont("")), sizingGroup(n.body, o, r);
+		},
+		mathmlBuilder(n, r) {
+			var a = styleMap[n.style], o = r.havingStyle(a);
+			n.resetFont && (o = o.withFont(""));
+			var l = new MathNode("mstyle", buildExpression(n.body, o)), d = {
+				display: ["0", "true"],
+				text: ["0", "false"],
+				script: ["1", "false"],
+				scriptscript: ["2", "false"]
+			}[n.style];
+			return l.setAttribute("scriptlevel", d[0]), l.setAttribute("displaystyle", d[1]), l;
+		}
+	}), htmlBuilderDelegate = function(n, r) {
+		var a = n.base;
+		return a ? a.type === "op" ? a.limits && (r.style.size === Style$1$1.DISPLAY.size || a.alwaysHandleSupSub) ? htmlBuilder$2 : null : a.type === "operatorname" ? a.alwaysHandleSupSub && (r.style.size === Style$1$1.DISPLAY.size || a.limits) ? htmlBuilder$1 : null : a.type === "accent" ? isCharacterBox(a.base) ? htmlBuilder$a : null : a.type === "horizBrace" && !n.sub === a.isOver ? htmlBuilder$3 : null : null;
+	}, defineFunctionBuilders({
+		type: "supsub",
+		htmlBuilder(n, r) {
+			var a = htmlBuilderDelegate(n, r);
+			if (a) return a(n, r);
+			var { base: o, sup: l, sub: d } = n, f = buildGroup$1(o, r), p, m, h = r.fontMetrics(), g = 0, _ = 0, v = o && isCharacterBox(o);
+			if (l) {
+				var y = r.havingStyle(r.style.sup());
+				p = buildGroup$1(l, y, r), v || (g = f.height - y.fontMetrics().supDrop * y.sizeMultiplier / r.sizeMultiplier);
+			}
+			if (d) {
+				var x = r.havingStyle(r.style.sub());
+				m = buildGroup$1(d, x, r), v || (_ = f.depth + x.fontMetrics().subDrop * x.sizeMultiplier / r.sizeMultiplier);
+			}
+			var S = r.style === Style$1$1.DISPLAY ? h.sup1 : r.style.cramped ? h.sup3 : h.sup2, C = r.sizeMultiplier, w = makeEm(.5 / h.ptPerEm / C), T = null;
+			if (m) {
+				var D = n.base && n.base.type === "op" && n.base.name && (n.base.name === "\\oiint" || n.base.name === "\\oiiint");
+				if (f instanceof SymbolNode || D) {
+					var G;
+					T = makeEm(-(f.italic ?? 0));
+				}
+			}
+			var ne;
+			if (p && m) {
+				g = Math.max(g, S, p.depth + .25 * h.xHeight), _ = Math.max(_, h.sub2);
+				var ie = 4 * h.defaultRuleThickness;
+				if (g - p.depth - (m.height - _) < ie) {
+					_ = ie - (g - p.depth) + m.height;
+					var se = .8 * h.xHeight - (g - p.depth);
+					se > 0 && (g += se, _ -= se);
+				}
+				ne = makeVList({
+					positionType: "individualShift",
+					children: [{
+						type: "elem",
+						elem: m,
+						shift: _,
+						marginRight: w,
+						marginLeft: T
+					}, {
+						type: "elem",
+						elem: p,
+						shift: -g,
+						marginRight: w
+					}]
+				});
+			} else if (m) _ = Math.max(_, h.sub1, m.height - .8 * h.xHeight), ne = makeVList({
+				positionType: "shift",
+				positionData: _,
+				children: [{
+					type: "elem",
+					elem: m,
+					marginLeft: T,
+					marginRight: w
+				}]
+			});
+			else if (p) g = Math.max(g, S, p.depth + .25 * h.xHeight), ne = makeVList({
+				positionType: "shift",
+				positionData: -g,
+				children: [{
+					type: "elem",
+					elem: p,
+					marginRight: w
+				}]
+			});
+			else throw Error("supsub must have either sup or sub.");
+			return makeSpan([getTypeOfDomTree(f, "right") || "mord"], [f, makeSpan(["msupsub"], [ne])], r);
+		},
+		mathmlBuilder(n, r) {
+			var a = !1, o, l;
+			n.base && n.base.type === "horizBrace" && (l = !!n.sup, l === n.base.isOver && (a = !0, o = n.base.isOver)), n.base && (n.base.type === "op" || n.base.type === "operatorname") && (n.base.parentIsSupSub = !0);
+			var d = [buildGroup(n.base, r)];
+			n.sub && d.push(buildGroup(n.sub, r)), n.sup && d.push(buildGroup(n.sup, r));
+			var f;
+			if (a) f = o ? "mover" : "munder";
+			else if (!n.sub) {
+				var p = n.base;
+				f = p && p.type === "op" && p.limits && (r.style === Style$1$1.DISPLAY || p.alwaysHandleSupSub) || p && p.type === "operatorname" && p.alwaysHandleSupSub && (p.limits || r.style === Style$1$1.DISPLAY) ? "mover" : "msup";
+			} else if (n.sup) {
+				var m = n.base;
+				f = m && m.type === "op" && m.limits && r.style === Style$1$1.DISPLAY || m && m.type === "operatorname" && m.alwaysHandleSupSub && (r.style === Style$1$1.DISPLAY || m.limits) ? "munderover" : "msubsup";
+			} else {
+				var h = n.base;
+				f = h && h.type === "op" && h.limits && (r.style === Style$1$1.DISPLAY || h.alwaysHandleSupSub) || h && h.type === "operatorname" && h.alwaysHandleSupSub && (h.limits || r.style === Style$1$1.DISPLAY) ? "munder" : "msub";
+			}
+			return new MathNode(f, d);
+		}
+	}), defineFunctionBuilders({
+		type: "atom",
+		htmlBuilder(n, r) {
+			return mathsym(n.text, n.mode, r, ["m" + n.family]);
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mo", [makeText(n.text, n.mode)]);
+			if (n.family === "bin") {
+				var o = getVariant(n, r);
+				o === "bold-italic" && a.setAttribute("mathvariant", o);
+			} else n.family === "punct" ? a.setAttribute("separator", "true") : (n.family === "open" || n.family === "close") && a.setAttribute("stretchy", "false");
+			return a;
+		}
+	}), defaultVariant = {
+		mi: "italic",
+		mn: "normal",
+		mtext: "normal"
+	}, defineFunctionBuilders({
+		type: "mathord",
+		htmlBuilder(n, r) {
+			return makeOrd(n, r, "mathord");
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mi", [makeText(n.text, n.mode, r)]), o = getVariant(n, r) || "italic";
+			return o !== defaultVariant[a.type] && a.setAttribute("mathvariant", o), a;
+		}
+	}), defineFunctionBuilders({
+		type: "textord",
+		htmlBuilder(n, r) {
+			return makeOrd(n, r, "textord");
+		},
+		mathmlBuilder(n, r) {
+			var a = makeText(n.text, n.mode, r), o = getVariant(n, r) || "normal", l = n.mode === "text" ? new MathNode("mtext", [a]) : /[0-9]/.test(n.text) ? new MathNode("mn", [a]) : n.text === "\\prime" ? new MathNode("mo", [a]) : new MathNode("mi", [a]);
+			return o !== defaultVariant[l.type] && l.setAttribute("mathvariant", o), l;
+		}
+	}), cssSpace = {
+		"\\nobreak": "nobreak",
+		"\\allowbreak": "allowbreak"
+	}, regularSpace = {
+		" ": {},
+		"\\ ": {},
+		"~": { className: "nobreak" },
+		"\\space": {},
+		"\\nobreakspace": { className: "nobreak" }
+	}, defineFunctionBuilders({
+		type: "spacing",
+		htmlBuilder(n, r) {
+			if (regularSpace.hasOwnProperty(n.text)) {
+				var a = regularSpace[n.text].className || "";
+				if (n.mode === "text") {
+					var o = makeOrd(n, r, "textord");
+					return o.classes.push(a), o;
+				} else return makeSpan(["mspace", a], [mathsym(n.text, n.mode, r)], r);
+			} else if (cssSpace.hasOwnProperty(n.text)) return makeSpan(["mspace", cssSpace[n.text]], [], r);
+			else throw new ParseError("Unknown type of space \"" + n.text + "\"");
+		},
+		mathmlBuilder(n, r) {
+			var a;
+			if (regularSpace.hasOwnProperty(n.text)) a = new MathNode("mtext", [new TextNode("\xA0")]);
+			else if (cssSpace.hasOwnProperty(n.text)) return new MathNode("mspace");
+			else throw new ParseError("Unknown type of space \"" + n.text + "\"");
+			return a;
+		}
+	}), pad = () => {
+		var n = new MathNode("mtd", []);
+		return n.setAttribute("width", "50%"), n;
+	}, defineFunctionBuilders({
+		type: "tag",
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mtable", [new MathNode("mtr", [
+				pad(),
+				new MathNode("mtd", [buildExpressionRow(n.body, r)]),
+				pad(),
+				new MathNode("mtd", [buildExpressionRow(n.tag, r)])
+			])]);
+			return a.setAttribute("width", "100%"), a;
+		}
+	}), textFontFamilies = {
+		"\\text": void 0,
+		"\\textrm": "textrm",
+		"\\textsf": "textsf",
+		"\\texttt": "texttt",
+		"\\textnormal": "textrm"
+	}, textFontWeights = {
+		"\\textbf": "textbf",
+		"\\textmd": "textmd"
+	}, textFontShapes = {
+		"\\textit": "textit",
+		"\\textup": "textup"
+	}, optionsWithFont = (n, r) => {
+		var a = n.font;
+		return a ? textFontFamilies[a] ? r.withTextFontFamily(textFontFamilies[a]) : textFontWeights[a] ? r.withTextFontWeight(textFontWeights[a]) : a === "\\emph" ? r.fontShape === "textit" ? r.withTextFontShape("textup") : r.withTextFontShape("textit") : r.withTextFontShape(textFontShapes[a]) : r;
+	}, defineFunction({
+		type: "text",
+		names: [
+			"\\text",
+			"\\textrm",
+			"\\textsf",
+			"\\texttt",
+			"\\textnormal",
+			"\\textbf",
+			"\\textmd",
+			"\\textit",
+			"\\textup",
+			"\\emph"
+		],
+		props: {
+			numArgs: 1,
+			argTypes: ["text"],
+			allowedInArgument: !0,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a, funcName: o } = n, l = r[0];
+			return {
+				type: "text",
+				mode: a.mode,
+				body: ordargument(l),
+				font: o
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = optionsWithFont(n, r);
+			return makeSpan(["mord", "text"], buildExpression$1(n.body, a, !0), a);
+		},
+		mathmlBuilder(n, r) {
+			var a = optionsWithFont(n, r);
+			return buildExpressionRow(n.body, a);
+		}
+	}), defineFunction({
+		type: "underline",
+		names: ["\\underline"],
+		props: {
+			numArgs: 1,
+			allowedInText: !0
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "underline",
+				mode: a.mode,
+				body: r[0]
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildGroup$1(n.body, r), o = makeLineSpan("underline-line", r), l = r.fontMetrics().defaultRuleThickness;
+			return makeSpan(["mord", "underline"], [makeVList({
+				positionType: "top",
+				positionData: a.height,
+				children: [
+					{
+						type: "kern",
+						size: l
+					},
+					{
+						type: "elem",
+						elem: o
+					},
+					{
+						type: "kern",
+						size: 3 * l
+					},
+					{
+						type: "elem",
+						elem: a
+					}
+				]
+			})], r);
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mo", [new TextNode("‾")]);
+			a.setAttribute("stretchy", "true");
+			var o = new MathNode("munder", [buildGroup(n.body, r), a]);
+			return o.setAttribute("accentunder", "true"), o;
+		}
+	}), defineFunction({
+		type: "vcenter",
+		names: ["\\vcenter"],
+		props: {
+			numArgs: 1,
+			argTypes: ["original"],
+			allowedInText: !1
+		},
+		handler(n, r) {
+			var { parser: a } = n;
+			return {
+				type: "vcenter",
+				mode: a.mode,
+				body: r[0]
+			};
+		},
+		htmlBuilder(n, r) {
+			var a = buildGroup$1(n.body, r), o = r.fontMetrics().axisHeight;
+			return makeVList({
+				positionType: "shift",
+				positionData: .5 * (a.height - o - (a.depth + o)),
+				children: [{
+					type: "elem",
+					elem: a
+				}]
+			});
+		},
+		mathmlBuilder(n, r) {
+			return new MathNode("mrow", [new MathNode("mpadded", [buildGroup(n.body, r)], ["vcenter"])]);
+		}
+	}), defineFunction({
+		type: "verb",
+		names: ["\\verb"],
+		props: {
+			numArgs: 0,
+			allowedInText: !0
+		},
+		handler(n, r, a) {
+			throw new ParseError("\\verb ended by end of line instead of matching delimiter");
+		},
+		htmlBuilder(n, r) {
+			for (var a = makeVerb(n), o = [], l = r.havingStyle(r.style.text()), d = 0; d < a.length; d++) {
+				var f = a[d];
+				f === "~" && (f = "\\textasciitilde"), o.push(makeSymbol(f, "Typewriter-Regular", n.mode, l, ["mord", "texttt"]));
+			}
+			return makeSpan(["mord", "text"].concat(l.sizingClasses(r)), tryCombineChars(o), l);
+		},
+		mathmlBuilder(n, r) {
+			var a = new MathNode("mtext", [new TextNode(makeVerb(n))]);
+			return a.setAttribute("mathvariant", "monospace"), a;
+		}
+	}), makeVerb = (n) => n.body.replace(/ /g, n.star ? "␣" : "\xA0"), functions = _functions, spaceRegexString = "[ \r\n	]", controlWordRegexString = "\\\\[a-zA-Z@]+", controlSymbolRegexString = "\\\\[^\ud800-\udfff]", controlWordWhitespaceRegexString = "(" + controlWordRegexString + ")" + spaceRegexString + "*", controlSpaceRegexString = "\\\\(\n|[ \r	]+\n?)[ \r	]*", combiningDiacriticalMarkString = "[̀-ͯ]", combiningDiacriticalMarksEndRegex = RegExp(combiningDiacriticalMarkString + "+$"), tokenRegexString = "(" + spaceRegexString + "+)|" + (controlSpaceRegexString + "|") + "([!-\\[\\]-‧‪-퟿豈-￿]" + (combiningDiacriticalMarkString + "*") + "|[\ud800-\udbff][\udc00-\udfff]" + (combiningDiacriticalMarkString + "*") + "|\\\\verb\\*([^]).*?\\4|\\\\verb([^*a-zA-Z]).*?\\5" + ("|" + controlWordWhitespaceRegexString) + ("|" + controlSymbolRegexString + ")"), Lexer = class {
+		constructor(n, r) {
+			this.input = void 0, this.settings = void 0, this.tokenRegex = void 0, this.catcodes = void 0, this.input = n, this.settings = r, this.tokenRegex = new RegExp(tokenRegexString, "g"), this.catcodes = {
+				"%": 14,
+				"~": 13
+			};
+		}
+		setCatcode(n, r) {
+			this.catcodes[n] = r;
+		}
+		lex() {
+			var n = this.input, r = this.tokenRegex.lastIndex;
+			if (r === n.length) return new Token("EOF", new SourceLocation(this, r, r));
+			var a = this.tokenRegex.exec(n);
+			if (a === null || a.index !== r) throw new ParseError("Unexpected character: '" + n[r] + "'", new Token(n[r], new SourceLocation(this, r, r + 1)));
+			var o = a[6] || a[3] || (a[2] ? "\\ " : " ");
+			if (this.catcodes[o] === 14) {
+				var l = n.indexOf("\n", this.tokenRegex.lastIndex);
+				return l === -1 ? (this.tokenRegex.lastIndex = n.length, this.settings.reportNonstrict("commentAtEnd", "% comment has no terminating newline; LaTeX would fail because of commenting the end of math mode (e.g. $)")) : this.tokenRegex.lastIndex = l + 1, this.lex();
+			}
+			return new Token(o, new SourceLocation(this, r, this.tokenRegex.lastIndex));
+		}
+	}, Namespace = class {
+		constructor(n, r) {
+			n === void 0 && (n = {}), r === void 0 && (r = {}), this.current = void 0, this.builtins = void 0, this.undefStack = void 0, this.current = r, this.builtins = n, this.undefStack = [];
+		}
+		beginGroup() {
+			this.undefStack.push({});
+		}
+		endGroup() {
+			if (this.undefStack.length === 0) throw new ParseError("Unbalanced namespace destruction: attempt to pop global namespace; please report this as a bug");
+			var n = this.undefStack.pop();
+			for (var r in n) n.hasOwnProperty(r) && (n[r] == null ? delete this.current[r] : this.current[r] = n[r]);
+		}
+		endGroups() {
+			for (; this.undefStack.length > 0;) this.endGroup();
+		}
+		has(n) {
+			return this.current.hasOwnProperty(n) || this.builtins.hasOwnProperty(n);
+		}
+		get(n) {
+			return this.current.hasOwnProperty(n) ? this.current[n] : this.builtins[n];
+		}
+		set(n, r, a) {
+			if (a === void 0 && (a = !1), a) {
+				for (var o = 0; o < this.undefStack.length; o++) delete this.undefStack[o][n];
+				this.undefStack.length > 0 && (this.undefStack[this.undefStack.length - 1][n] = r);
+			} else {
+				var l = this.undefStack[this.undefStack.length - 1];
+				l && !l.hasOwnProperty(n) && (l[n] = this.current[n]);
+			}
+			r == null ? delete this.current[n] : this.current[n] = r;
+		}
+	}, macros = _macros, defineMacro("\\noexpand", function(n) {
+		var r = n.popToken();
+		return n.isExpandable(r.text) && (r.noexpand = !0, r.treatAsRelax = !0), {
+			tokens: [r],
+			numArgs: 0
+		};
+	}), defineMacro("\\expandafter", function(n) {
+		var r = n.popToken();
+		return n.expandOnce(!0), {
+			tokens: [r],
+			numArgs: 0
+		};
+	}), defineMacro("\\@firstoftwo", function(n) {
+		return {
+			tokens: n.consumeArgs(2)[0],
+			numArgs: 0
+		};
+	}), defineMacro("\\@secondoftwo", function(n) {
+		return {
+			tokens: n.consumeArgs(2)[1],
+			numArgs: 0
+		};
+	}), defineMacro("\\@ifnextchar", function(n) {
+		var r = n.consumeArgs(3);
+		n.consumeSpaces();
+		var a = n.future();
+		return r[0].length === 1 && r[0][0].text === a.text ? {
+			tokens: r[1],
+			numArgs: 0
+		} : {
+			tokens: r[2],
+			numArgs: 0
+		};
+	}), defineMacro("\\@ifstar", "\\@ifnextchar *{\\@firstoftwo{#1}}"), defineMacro("\\TextOrMath", function(n) {
+		var r = n.consumeArgs(2);
+		return n.mode === "text" ? {
+			tokens: r[0],
+			numArgs: 0
+		} : {
+			tokens: r[1],
+			numArgs: 0
+		};
+	}), digitToNumber = {
+		0: 0,
+		1: 1,
+		2: 2,
+		3: 3,
+		4: 4,
+		5: 5,
+		6: 6,
+		7: 7,
+		8: 8,
+		9: 9,
+		a: 10,
+		A: 10,
+		b: 11,
+		B: 11,
+		c: 12,
+		C: 12,
+		d: 13,
+		D: 13,
+		e: 14,
+		E: 14,
+		f: 15,
+		F: 15
+	}, defineMacro("\\char", function(n) {
+		var r = n.popToken(), a, o = 0;
+		if (r.text === "'") a = 8, r = n.popToken();
+		else if (r.text === "\"") a = 16, r = n.popToken();
+		else if (r.text === "`") if (r = n.popToken(), r.text[0] === "\\") o = r.text.charCodeAt(1);
+		else if (r.text === "EOF") throw new ParseError("\\char` missing argument");
+		else o = r.text.charCodeAt(0);
+		else a = 10;
+		if (a) {
+			if (o = digitToNumber[r.text], o == null || o >= a) throw new ParseError("Invalid base-" + a + " digit " + r.text);
+			for (var l; (l = digitToNumber[n.future().text]) != null && l < a;) o *= a, o += l, n.popToken();
+		}
+		return "\\@char{" + o + "}";
+	}), newcommand = (n, r, a, o) => {
+		var l = n.consumeArg().tokens;
+		if (l.length !== 1) throw new ParseError("\\newcommand's first argument must be a macro name");
+		var d = l[0].text, f = n.isDefined(d);
+		if (f && !r) throw new ParseError("\\newcommand{" + d + "} attempting to redefine " + (d + "; use \\renewcommand"));
+		if (!f && !a) throw new ParseError("\\renewcommand{" + d + "} when command " + d + " does not yet exist; use \\newcommand");
+		var p = 0;
+		if (l = n.consumeArg().tokens, l.length === 1 && l[0].text === "[") {
+			for (var m = "", h = n.expandNextToken(); h.text !== "]" && h.text !== "EOF";) m += h.text, h = n.expandNextToken();
+			if (!m.match(/^\s*[0-9]+\s*$/)) throw new ParseError("Invalid number of arguments: " + m);
+			p = parseInt(m), l = n.consumeArg().tokens;
+		}
+		return f && o || n.macros.set(d, {
+			tokens: l,
+			numArgs: p
+		}), "";
+	}, defineMacro("\\newcommand", (n) => newcommand(n, !1, !0, !1)), defineMacro("\\renewcommand", (n) => newcommand(n, !0, !1, !1)), defineMacro("\\providecommand", (n) => newcommand(n, !0, !0, !0)), defineMacro("\\message", (n) => {
+		var r = n.consumeArgs(1)[0];
+		return console.log(r.reverse().map((n) => n.text).join("")), "";
+	}), defineMacro("\\errmessage", (n) => {
+		var r = n.consumeArgs(1)[0];
+		return console.error(r.reverse().map((n) => n.text).join("")), "";
+	}), defineMacro("\\show", (n) => {
+		var r = n.popToken(), a = r.text;
+		return console.log(r, n.macros.get(a), functions[a], symbols.math[a], symbols.text[a]), "";
+	}), defineMacro("\\bgroup", "{"), defineMacro("\\egroup", "}"), defineMacro("~", "\\nobreakspace"), defineMacro("\\lq", "`"), defineMacro("\\rq", "'"), defineMacro("\\aa", "\\r a"), defineMacro("\\AA", "\\r A"), defineMacro("\\textcopyright", "\\html@mathml{\\textcircled{c}}{\\char`©}"), defineMacro("\\copyright", "\\TextOrMath{\\textcopyright}{\\text{\\textcopyright}}"), defineMacro("\\textregistered", "\\html@mathml{\\textcircled{\\scriptsize R}}{\\char`®}"), defineMacro("ℬ", "\\mathscr{B}"), defineMacro("ℰ", "\\mathscr{E}"), defineMacro("ℱ", "\\mathscr{F}"), defineMacro("ℋ", "\\mathscr{H}"), defineMacro("ℐ", "\\mathscr{I}"), defineMacro("ℒ", "\\mathscr{L}"), defineMacro("ℳ", "\\mathscr{M}"), defineMacro("ℛ", "\\mathscr{R}"), defineMacro("ℭ", "\\mathfrak{C}"), defineMacro("ℌ", "\\mathfrak{H}"), defineMacro("ℨ", "\\mathfrak{Z}"), defineMacro("\\Bbbk", "\\Bbb{k}"), defineMacro("\\llap", "\\mathllap{\\textrm{#1}}"), defineMacro("\\rlap", "\\mathrlap{\\textrm{#1}}"), defineMacro("\\clap", "\\mathclap{\\textrm{#1}}"), defineMacro("\\mathstrut", "\\vphantom{(}"), defineMacro("\\underbar", "\\underline{\\text{#1}}"), defineMacro("\\not", "\\html@mathml{\\mathrel{\\mathrlap\\@not}\\nobreak}{\\char\"338}"), defineMacro("\\neq", "\\html@mathml{\\mathrel{\\not=}}{\\mathrel{\\char`≠}}"), defineMacro("\\ne", "\\neq"), defineMacro("≠", "\\neq"), defineMacro("\\notin", "\\html@mathml{\\mathrel{{\\in}\\mathllap{/\\mskip1mu}}}{\\mathrel{\\char`∉}}"), defineMacro("∉", "\\notin"), defineMacro("≘", "\\html@mathml{\\mathrel{=\\kern{-1em}\\raisebox{0.4em}{$\\scriptsize\\frown$}}}{\\mathrel{\\char`≘}}"), defineMacro("≙", "\\html@mathml{\\stackrel{\\tiny\\wedge}{=}}{\\mathrel{\\char`≘}}"), defineMacro("≚", "\\html@mathml{\\stackrel{\\tiny\\vee}{=}}{\\mathrel{\\char`≚}}"), defineMacro("≛", "\\html@mathml{\\stackrel{\\scriptsize\\star}{=}}{\\mathrel{\\char`≛}}"), defineMacro("≝", "\\html@mathml{\\stackrel{\\tiny\\mathrm{def}}{=}}{\\mathrel{\\char`≝}}"), defineMacro("≞", "\\html@mathml{\\stackrel{\\tiny\\mathrm{m}}{=}}{\\mathrel{\\char`≞}}"), defineMacro("≟", "\\html@mathml{\\stackrel{\\tiny?}{=}}{\\mathrel{\\char`≟}}"), defineMacro("⟂", "\\perp"), defineMacro("‼", "\\mathclose{!\\mkern-0.8mu!}"), defineMacro("∌", "\\notni"), defineMacro("⌜", "\\ulcorner"), defineMacro("⌝", "\\urcorner"), defineMacro("⌞", "\\llcorner"), defineMacro("⌟", "\\lrcorner"), defineMacro("©", "\\copyright"), defineMacro("®", "\\textregistered"), defineMacro("\\ulcorner", "\\html@mathml{\\@ulcorner}{\\mathop{\\char\"231c}}"), defineMacro("\\urcorner", "\\html@mathml{\\@urcorner}{\\mathop{\\char\"231d}}"), defineMacro("\\llcorner", "\\html@mathml{\\@llcorner}{\\mathop{\\char\"231e}}"), defineMacro("\\lrcorner", "\\html@mathml{\\@lrcorner}{\\mathop{\\char\"231f}}"), defineMacro("\\vdots", "{\\varvdots\\rule{0pt}{15pt}}"), defineMacro("⋮", "\\vdots"), defineMacro("\\varGamma", "\\mathit{\\Gamma}"), defineMacro("\\varDelta", "\\mathit{\\Delta}"), defineMacro("\\varTheta", "\\mathit{\\Theta}"), defineMacro("\\varLambda", "\\mathit{\\Lambda}"), defineMacro("\\varXi", "\\mathit{\\Xi}"), defineMacro("\\varPi", "\\mathit{\\Pi}"), defineMacro("\\varSigma", "\\mathit{\\Sigma}"), defineMacro("\\varUpsilon", "\\mathit{\\Upsilon}"), defineMacro("\\varPhi", "\\mathit{\\Phi}"), defineMacro("\\varPsi", "\\mathit{\\Psi}"), defineMacro("\\varOmega", "\\mathit{\\Omega}"), defineMacro("\\substack", "\\begin{subarray}{c}#1\\end{subarray}"), defineMacro("\\colon", "\\nobreak\\mskip2mu\\mathpunct{}\\mathchoice{\\mkern-3mu}{\\mkern-3mu}{}{}{:}\\mskip6mu\\relax"), defineMacro("\\boxed", "\\fbox{$\\displaystyle{#1}$}"), defineMacro("\\iff", "\\DOTSB\\;\\Longleftrightarrow\\;"), defineMacro("\\implies", "\\DOTSB\\;\\Longrightarrow\\;"), defineMacro("\\impliedby", "\\DOTSB\\;\\Longleftarrow\\;"), defineMacro("\\dddot", "{\\overset{\\raisebox{-0.1ex}{\\normalsize ...}}{#1}}"), defineMacro("\\ddddot", "{\\overset{\\raisebox{-0.1ex}{\\normalsize ....}}{#1}}"), dotsByToken = {
+		",": "\\dotsc",
+		"\\not": "\\dotsb",
+		"+": "\\dotsb",
+		"=": "\\dotsb",
+		"<": "\\dotsb",
+		">": "\\dotsb",
+		"-": "\\dotsb",
+		"*": "\\dotsb",
+		":": "\\dotsb",
+		"\\DOTSB": "\\dotsb",
+		"\\coprod": "\\dotsb",
+		"\\bigvee": "\\dotsb",
+		"\\bigwedge": "\\dotsb",
+		"\\biguplus": "\\dotsb",
+		"\\bigcap": "\\dotsb",
+		"\\bigcup": "\\dotsb",
+		"\\prod": "\\dotsb",
+		"\\sum": "\\dotsb",
+		"\\bigotimes": "\\dotsb",
+		"\\bigoplus": "\\dotsb",
+		"\\bigodot": "\\dotsb",
+		"\\bigsqcup": "\\dotsb",
+		"\\And": "\\dotsb",
+		"\\longrightarrow": "\\dotsb",
+		"\\Longrightarrow": "\\dotsb",
+		"\\longleftarrow": "\\dotsb",
+		"\\Longleftarrow": "\\dotsb",
+		"\\longleftrightarrow": "\\dotsb",
+		"\\Longleftrightarrow": "\\dotsb",
+		"\\mapsto": "\\dotsb",
+		"\\longmapsto": "\\dotsb",
+		"\\hookrightarrow": "\\dotsb",
+		"\\doteq": "\\dotsb",
+		"\\mathbin": "\\dotsb",
+		"\\mathrel": "\\dotsb",
+		"\\relbar": "\\dotsb",
+		"\\Relbar": "\\dotsb",
+		"\\xrightarrow": "\\dotsb",
+		"\\xleftarrow": "\\dotsb",
+		"\\DOTSI": "\\dotsi",
+		"\\int": "\\dotsi",
+		"\\oint": "\\dotsi",
+		"\\iint": "\\dotsi",
+		"\\iiint": "\\dotsi",
+		"\\iiiint": "\\dotsi",
+		"\\idotsint": "\\dotsi",
+		"\\DOTSX": "\\dotsx"
+	}, dotsbGroups = /* @__PURE__ */ new Set(["bin", "rel"]), defineMacro("\\dots", function(n) {
+		var r = "\\dotso", a = n.expandAfterFuture().text;
+		return a in dotsByToken ? r = dotsByToken[a] : (a.slice(0, 4) === "\\not" || a in symbols.math && dotsbGroups.has(symbols.math[a].group)) && (r = "\\dotsb"), r;
+	}), spaceAfterDots = {
+		")": !0,
+		"]": !0,
+		"\\rbrack": !0,
+		"\\}": !0,
+		"\\rbrace": !0,
+		"\\rangle": !0,
+		"\\rceil": !0,
+		"\\rfloor": !0,
+		"\\rgroup": !0,
+		"\\rmoustache": !0,
+		"\\right": !0,
+		"\\bigr": !0,
+		"\\biggr": !0,
+		"\\Bigr": !0,
+		"\\Biggr": !0,
+		$: !0,
+		";": !0,
+		".": !0,
+		",": !0
+	}, defineMacro("\\dotso", function(n) {
+		return n.future().text in spaceAfterDots ? "\\ldots\\," : "\\ldots";
+	}), defineMacro("\\dotsc", function(n) {
+		var r = n.future().text;
+		return r in spaceAfterDots && r !== "," ? "\\ldots\\," : "\\ldots";
+	}), defineMacro("\\cdots", function(n) {
+		return n.future().text in spaceAfterDots ? "\\@cdots\\," : "\\@cdots";
+	}), defineMacro("\\dotsb", "\\cdots"), defineMacro("\\dotsm", "\\cdots"), defineMacro("\\dotsi", "\\!\\cdots"), defineMacro("\\dotsx", "\\ldots\\,"), defineMacro("\\DOTSI", "\\relax"), defineMacro("\\DOTSB", "\\relax"), defineMacro("\\DOTSX", "\\relax"), defineMacro("\\tmspace", "\\TextOrMath{\\kern#1#3}{\\mskip#1#2}\\relax"), defineMacro("\\,", "\\tmspace+{3mu}{.1667em}"), defineMacro("\\thinspace", "\\,"), defineMacro("\\>", "\\mskip{4mu}"), defineMacro("\\:", "\\tmspace+{4mu}{.2222em}"), defineMacro("\\medspace", "\\:"), defineMacro("\\;", "\\tmspace+{5mu}{.2777em}"), defineMacro("\\thickspace", "\\;"), defineMacro("\\!", "\\tmspace-{3mu}{.1667em}"), defineMacro("\\negthinspace", "\\!"), defineMacro("\\negmedspace", "\\tmspace-{4mu}{.2222em}"), defineMacro("\\negthickspace", "\\tmspace-{5mu}{.277em}"), defineMacro("\\enspace", "\\kern.5em "), defineMacro("\\enskip", "\\hskip.5em\\relax"), defineMacro("\\quad", "\\hskip1em\\relax"), defineMacro("\\qquad", "\\hskip2em\\relax"), defineMacro("\\tag", "\\@ifstar\\tag@literal\\tag@paren"), defineMacro("\\tag@paren", "\\tag@literal{({#1})}"), defineMacro("\\tag@literal", (n) => {
+		if (n.macros.get("\\df@tag")) throw new ParseError("Multiple \\tag");
+		return "\\gdef\\df@tag{\\text{#1}}";
+	}), defineMacro("\\bmod", "\\mathchoice{\\mskip1mu}{\\mskip1mu}{\\mskip5mu}{\\mskip5mu}\\mathbin{\\rm mod}\\mathchoice{\\mskip1mu}{\\mskip1mu}{\\mskip5mu}{\\mskip5mu}"), defineMacro("\\pod", "\\allowbreak\\mathchoice{\\mkern18mu}{\\mkern8mu}{\\mkern8mu}{\\mkern8mu}(#1)"), defineMacro("\\pmod", "\\pod{{\\rm mod}\\mkern6mu#1}"), defineMacro("\\mod", "\\allowbreak\\mathchoice{\\mkern18mu}{\\mkern12mu}{\\mkern12mu}{\\mkern12mu}{\\rm mod}\\,\\,#1"), defineMacro("\\newline", "\\\\\\relax"), defineMacro("\\TeX", "\\textrm{\\html@mathml{T\\kern-.1667em\\raisebox{-.5ex}{E}\\kern-.125emX}{TeX}}"), latexRaiseA = makeEm(fontMetricsData["Main-Regular"][84][1] - .7 * fontMetricsData["Main-Regular"][65][1]), defineMacro("\\LaTeX", "\\textrm{\\html@mathml{" + ("L\\kern-.36em\\raisebox{" + latexRaiseA + "}{\\scriptstyle A}") + "\\kern-.15em\\TeX}{LaTeX}}"), defineMacro("\\KaTeX", "\\textrm{\\html@mathml{" + ("K\\kern-.17em\\raisebox{" + latexRaiseA + "}{\\scriptstyle A}") + "\\kern-.15em\\TeX}{KaTeX}}"), defineMacro("\\hspace", "\\@ifstar\\@hspacer\\@hspace"), defineMacro("\\@hspace", "\\hskip #1\\relax"), defineMacro("\\@hspacer", "\\rule{0pt}{0pt}\\hskip #1\\relax"), defineMacro("\\ordinarycolon", ":"), defineMacro("\\vcentcolon", "\\mathrel{\\mathop\\ordinarycolon}"), defineMacro("\\dblcolon", "\\html@mathml{\\mathrel{\\vcentcolon\\mathrel{\\mkern-.9mu}\\vcentcolon}}{\\mathop{\\char\"2237}}"), defineMacro("\\coloneqq", "\\html@mathml{\\mathrel{\\vcentcolon\\mathrel{\\mkern-1.2mu}=}}{\\mathop{\\char\"2254}}"), defineMacro("\\Coloneqq", "\\html@mathml{\\mathrel{\\dblcolon\\mathrel{\\mkern-1.2mu}=}}{\\mathop{\\char\"2237\\char\"3d}}"), defineMacro("\\coloneq", "\\html@mathml{\\mathrel{\\vcentcolon\\mathrel{\\mkern-1.2mu}\\mathrel{-}}}{\\mathop{\\char\"3a\\char\"2212}}"), defineMacro("\\Coloneq", "\\html@mathml{\\mathrel{\\dblcolon\\mathrel{\\mkern-1.2mu}\\mathrel{-}}}{\\mathop{\\char\"2237\\char\"2212}}"), defineMacro("\\eqqcolon", "\\html@mathml{\\mathrel{=\\mathrel{\\mkern-1.2mu}\\vcentcolon}}{\\mathop{\\char\"2255}}"), defineMacro("\\Eqqcolon", "\\html@mathml{\\mathrel{=\\mathrel{\\mkern-1.2mu}\\dblcolon}}{\\mathop{\\char\"3d\\char\"2237}}"), defineMacro("\\eqcolon", "\\html@mathml{\\mathrel{\\mathrel{-}\\mathrel{\\mkern-1.2mu}\\vcentcolon}}{\\mathop{\\char\"2239}}"), defineMacro("\\Eqcolon", "\\html@mathml{\\mathrel{\\mathrel{-}\\mathrel{\\mkern-1.2mu}\\dblcolon}}{\\mathop{\\char\"2212\\char\"2237}}"), defineMacro("\\colonapprox", "\\html@mathml{\\mathrel{\\vcentcolon\\mathrel{\\mkern-1.2mu}\\approx}}{\\mathop{\\char\"3a\\char\"2248}}"), defineMacro("\\Colonapprox", "\\html@mathml{\\mathrel{\\dblcolon\\mathrel{\\mkern-1.2mu}\\approx}}{\\mathop{\\char\"2237\\char\"2248}}"), defineMacro("\\colonsim", "\\html@mathml{\\mathrel{\\vcentcolon\\mathrel{\\mkern-1.2mu}\\sim}}{\\mathop{\\char\"3a\\char\"223c}}"), defineMacro("\\Colonsim", "\\html@mathml{\\mathrel{\\dblcolon\\mathrel{\\mkern-1.2mu}\\sim}}{\\mathop{\\char\"2237\\char\"223c}}"), defineMacro("∷", "\\dblcolon"), defineMacro("∹", "\\eqcolon"), defineMacro("≔", "\\coloneqq"), defineMacro("≕", "\\eqqcolon"), defineMacro("⩴", "\\Coloneqq"), defineMacro("\\ratio", "\\vcentcolon"), defineMacro("\\coloncolon", "\\dblcolon"), defineMacro("\\colonequals", "\\coloneqq"), defineMacro("\\coloncolonequals", "\\Coloneqq"), defineMacro("\\equalscolon", "\\eqqcolon"), defineMacro("\\equalscoloncolon", "\\Eqqcolon"), defineMacro("\\colonminus", "\\coloneq"), defineMacro("\\coloncolonminus", "\\Coloneq"), defineMacro("\\minuscolon", "\\eqcolon"), defineMacro("\\minuscoloncolon", "\\Eqcolon"), defineMacro("\\coloncolonapprox", "\\Colonapprox"), defineMacro("\\coloncolonsim", "\\Colonsim"), defineMacro("\\simcolon", "\\mathrel{\\sim\\mathrel{\\mkern-1.2mu}\\vcentcolon}"), defineMacro("\\simcoloncolon", "\\mathrel{\\sim\\mathrel{\\mkern-1.2mu}\\dblcolon}"), defineMacro("\\approxcolon", "\\mathrel{\\approx\\mathrel{\\mkern-1.2mu}\\vcentcolon}"), defineMacro("\\approxcoloncolon", "\\mathrel{\\approx\\mathrel{\\mkern-1.2mu}\\dblcolon}"), defineMacro("\\notni", "\\html@mathml{\\not\\ni}{\\mathrel{\\char`∌}}"), defineMacro("\\limsup", "\\DOTSB\\operatorname*{lim\\,sup}"), defineMacro("\\liminf", "\\DOTSB\\operatorname*{lim\\,inf}"), defineMacro("\\injlim", "\\DOTSB\\operatorname*{inj\\,lim}"), defineMacro("\\projlim", "\\DOTSB\\operatorname*{proj\\,lim}"), defineMacro("\\varlimsup", "\\DOTSB\\operatorname*{\\overline{lim}}"), defineMacro("\\varliminf", "\\DOTSB\\operatorname*{\\underline{lim}}"), defineMacro("\\varinjlim", "\\DOTSB\\operatorname*{\\underrightarrow{lim}}"), defineMacro("\\varprojlim", "\\DOTSB\\operatorname*{\\underleftarrow{lim}}"), defineMacro("\\gvertneqq", "\\html@mathml{\\@gvertneqq}{≩}"), defineMacro("\\lvertneqq", "\\html@mathml{\\@lvertneqq}{≨}"), defineMacro("\\ngeqq", "\\html@mathml{\\@ngeqq}{≱}"), defineMacro("\\ngeqslant", "\\html@mathml{\\@ngeqslant}{≱}"), defineMacro("\\nleqq", "\\html@mathml{\\@nleqq}{≰}"), defineMacro("\\nleqslant", "\\html@mathml{\\@nleqslant}{≰}"), defineMacro("\\nshortmid", "\\html@mathml{\\@nshortmid}{∤}"), defineMacro("\\nshortparallel", "\\html@mathml{\\@nshortparallel}{∦}"), defineMacro("\\nsubseteqq", "\\html@mathml{\\@nsubseteqq}{⊈}"), defineMacro("\\nsupseteqq", "\\html@mathml{\\@nsupseteqq}{⊉}"), defineMacro("\\varsubsetneq", "\\html@mathml{\\@varsubsetneq}{⊊}"), defineMacro("\\varsubsetneqq", "\\html@mathml{\\@varsubsetneqq}{⫋}"), defineMacro("\\varsupsetneq", "\\html@mathml{\\@varsupsetneq}{⊋}"), defineMacro("\\varsupsetneqq", "\\html@mathml{\\@varsupsetneqq}{⫌}"), defineMacro("\\imath", "\\html@mathml{\\@imath}{ı}"), defineMacro("\\jmath", "\\html@mathml{\\@jmath}{ȷ}"), defineMacro("\\llbracket", "\\html@mathml{\\mathopen{[\\mkern-3.2mu[}}{\\mathopen{\\char`⟦}}"), defineMacro("\\rrbracket", "\\html@mathml{\\mathclose{]\\mkern-3.2mu]}}{\\mathclose{\\char`⟧}}"), defineMacro("⟦", "\\llbracket"), defineMacro("⟧", "\\rrbracket"), defineMacro("\\lBrace", "\\html@mathml{\\mathopen{\\{\\mkern-3.2mu[}}{\\mathopen{\\char`⦃}}"), defineMacro("\\rBrace", "\\html@mathml{\\mathclose{]\\mkern-3.2mu\\}}}{\\mathclose{\\char`⦄}}"), defineMacro("⦃", "\\lBrace"), defineMacro("⦄", "\\rBrace"), defineMacro("\\minuso", "\\mathbin{\\html@mathml{{\\mathrlap{\\mathchoice{\\kern{0.145em}}{\\kern{0.145em}}{\\kern{0.1015em}}{\\kern{0.0725em}}\\circ}{-}}}{\\char`⦵}}"), defineMacro("⦵", "\\minuso"), defineMacro("\\darr", "\\downarrow"), defineMacro("\\dArr", "\\Downarrow"), defineMacro("\\Darr", "\\Downarrow"), defineMacro("\\lang", "\\langle"), defineMacro("\\rang", "\\rangle"), defineMacro("\\uarr", "\\uparrow"), defineMacro("\\uArr", "\\Uparrow"), defineMacro("\\Uarr", "\\Uparrow"), defineMacro("\\N", "\\mathbb{N}"), defineMacro("\\R", "\\mathbb{R}"), defineMacro("\\Z", "\\mathbb{Z}"), defineMacro("\\alef", "\\aleph"), defineMacro("\\alefsym", "\\aleph"), defineMacro("\\Alpha", "\\mathrm{A}"), defineMacro("\\Beta", "\\mathrm{B}"), defineMacro("\\bull", "\\bullet"), defineMacro("\\Chi", "\\mathrm{X}"), defineMacro("\\clubs", "\\clubsuit"), defineMacro("\\cnums", "\\mathbb{C}"), defineMacro("\\Complex", "\\mathbb{C}"), defineMacro("\\Dagger", "\\ddagger"), defineMacro("\\diamonds", "\\diamondsuit"), defineMacro("\\empty", "\\emptyset"), defineMacro("\\Epsilon", "\\mathrm{E}"), defineMacro("\\Eta", "\\mathrm{H}"), defineMacro("\\exist", "\\exists"), defineMacro("\\harr", "\\leftrightarrow"), defineMacro("\\hArr", "\\Leftrightarrow"), defineMacro("\\Harr", "\\Leftrightarrow"), defineMacro("\\hearts", "\\heartsuit"), defineMacro("\\image", "\\Im"), defineMacro("\\infin", "\\infty"), defineMacro("\\Iota", "\\mathrm{I}"), defineMacro("\\isin", "\\in"), defineMacro("\\Kappa", "\\mathrm{K}"), defineMacro("\\larr", "\\leftarrow"), defineMacro("\\lArr", "\\Leftarrow"), defineMacro("\\Larr", "\\Leftarrow"), defineMacro("\\lrarr", "\\leftrightarrow"), defineMacro("\\lrArr", "\\Leftrightarrow"), defineMacro("\\Lrarr", "\\Leftrightarrow"), defineMacro("\\Mu", "\\mathrm{M}"), defineMacro("\\natnums", "\\mathbb{N}"), defineMacro("\\Nu", "\\mathrm{N}"), defineMacro("\\Omicron", "\\mathrm{O}"), defineMacro("\\plusmn", "\\pm"), defineMacro("\\rarr", "\\rightarrow"), defineMacro("\\rArr", "\\Rightarrow"), defineMacro("\\Rarr", "\\Rightarrow"), defineMacro("\\real", "\\Re"), defineMacro("\\reals", "\\mathbb{R}"), defineMacro("\\Reals", "\\mathbb{R}"), defineMacro("\\Rho", "\\mathrm{P}"), defineMacro("\\sdot", "\\cdot"), defineMacro("\\sect", "\\S"), defineMacro("\\spades", "\\spadesuit"), defineMacro("\\sub", "\\subset"), defineMacro("\\sube", "\\subseteq"), defineMacro("\\supe", "\\supseteq"), defineMacro("\\Tau", "\\mathrm{T}"), defineMacro("\\thetasym", "\\vartheta"), defineMacro("\\weierp", "\\wp"), defineMacro("\\Zeta", "\\mathrm{Z}"), defineMacro("\\argmin", "\\DOTSB\\operatorname*{arg\\,min}"), defineMacro("\\argmax", "\\DOTSB\\operatorname*{arg\\,max}"), defineMacro("\\plim", "\\DOTSB\\mathop{\\operatorname{plim}}\\limits"), defineMacro("\\bra", "\\mathinner{\\langle{#1}|}"), defineMacro("\\ket", "\\mathinner{|{#1}\\rangle}"), defineMacro("\\braket", "\\mathinner{\\langle{#1}\\rangle}"), defineMacro("\\Bra", "\\left\\langle#1\\right|"), defineMacro("\\Ket", "\\left|#1\\right\\rangle"), braketHelper = (n) => (r) => {
+		var a = r.consumeArg().tokens, o = r.consumeArg().tokens, l = r.consumeArg().tokens, d = r.consumeArg().tokens, f = r.macros.get("|"), p = r.macros.get("\\|");
+		r.macros.beginGroup();
+		var m = (r) => (a) => {
+			n && (a.macros.set("|", f), l.length && a.macros.set("\\|", p));
+			var d = r;
+			return !r && l.length && a.future().text === "|" && (a.popToken(), d = !0), {
+				tokens: d ? l : o,
+				numArgs: 0
+			};
+		};
+		r.macros.set("|", m(!1)), l.length && r.macros.set("\\|", m(!0));
+		var h = r.consumeArg().tokens, g = r.expandTokens([
+			...d,
+			...h,
+			...a
+		]);
+		return r.macros.endGroup(), {
+			tokens: g.reverse(),
+			numArgs: 0
+		};
+	}, defineMacro("\\bra@ket", braketHelper(!1)), defineMacro("\\bra@set", braketHelper(!0)), defineMacro("\\Braket", "\\bra@ket{\\left\\langle}{\\,\\middle\\vert\\,}{\\,\\middle\\vert\\,}{\\right\\rangle}"), defineMacro("\\Set", "\\bra@set{\\left\\{\\:}{\\;\\middle\\vert\\;}{\\;\\middle\\Vert\\;}{\\:\\right\\}}"), defineMacro("\\set", "\\bra@set{\\{\\,}{\\mid}{}{\\,\\}}"), defineMacro("\\angln", "{\\angl n}"), defineMacro("\\blue", "\\textcolor{##6495ed}{#1}"), defineMacro("\\orange", "\\textcolor{##ffa500}{#1}"), defineMacro("\\pink", "\\textcolor{##ff00af}{#1}"), defineMacro("\\red", "\\textcolor{##df0030}{#1}"), defineMacro("\\green", "\\textcolor{##28ae7b}{#1}"), defineMacro("\\gray", "\\textcolor{gray}{#1}"), defineMacro("\\purple", "\\textcolor{##9d38bd}{#1}"), defineMacro("\\blueA", "\\textcolor{##ccfaff}{#1}"), defineMacro("\\blueB", "\\textcolor{##80f6ff}{#1}"), defineMacro("\\blueC", "\\textcolor{##63d9ea}{#1}"), defineMacro("\\blueD", "\\textcolor{##11accd}{#1}"), defineMacro("\\blueE", "\\textcolor{##0c7f99}{#1}"), defineMacro("\\tealA", "\\textcolor{##94fff5}{#1}"), defineMacro("\\tealB", "\\textcolor{##26edd5}{#1}"), defineMacro("\\tealC", "\\textcolor{##01d1c1}{#1}"), defineMacro("\\tealD", "\\textcolor{##01a995}{#1}"), defineMacro("\\tealE", "\\textcolor{##208170}{#1}"), defineMacro("\\greenA", "\\textcolor{##b6ffb0}{#1}"), defineMacro("\\greenB", "\\textcolor{##8af281}{#1}"), defineMacro("\\greenC", "\\textcolor{##74cf70}{#1}"), defineMacro("\\greenD", "\\textcolor{##1fab54}{#1}"), defineMacro("\\greenE", "\\textcolor{##0d923f}{#1}"), defineMacro("\\goldA", "\\textcolor{##ffd0a9}{#1}"), defineMacro("\\goldB", "\\textcolor{##ffbb71}{#1}"), defineMacro("\\goldC", "\\textcolor{##ff9c39}{#1}"), defineMacro("\\goldD", "\\textcolor{##e07d10}{#1}"), defineMacro("\\goldE", "\\textcolor{##a75a05}{#1}"), defineMacro("\\redA", "\\textcolor{##fca9a9}{#1}"), defineMacro("\\redB", "\\textcolor{##ff8482}{#1}"), defineMacro("\\redC", "\\textcolor{##f9685d}{#1}"), defineMacro("\\redD", "\\textcolor{##e84d39}{#1}"), defineMacro("\\redE", "\\textcolor{##bc2612}{#1}"), defineMacro("\\maroonA", "\\textcolor{##ffbde0}{#1}"), defineMacro("\\maroonB", "\\textcolor{##ff92c6}{#1}"), defineMacro("\\maroonC", "\\textcolor{##ed5fa6}{#1}"), defineMacro("\\maroonD", "\\textcolor{##ca337c}{#1}"), defineMacro("\\maroonE", "\\textcolor{##9e034e}{#1}"), defineMacro("\\purpleA", "\\textcolor{##ddd7ff}{#1}"), defineMacro("\\purpleB", "\\textcolor{##c6b9fc}{#1}"), defineMacro("\\purpleC", "\\textcolor{##aa87ff}{#1}"), defineMacro("\\purpleD", "\\textcolor{##7854ab}{#1}"), defineMacro("\\purpleE", "\\textcolor{##543b78}{#1}"), defineMacro("\\mintA", "\\textcolor{##f5f9e8}{#1}"), defineMacro("\\mintB", "\\textcolor{##edf2df}{#1}"), defineMacro("\\mintC", "\\textcolor{##e0e5cc}{#1}"), defineMacro("\\grayA", "\\textcolor{##f6f7f7}{#1}"), defineMacro("\\grayB", "\\textcolor{##f0f1f2}{#1}"), defineMacro("\\grayC", "\\textcolor{##e3e5e6}{#1}"), defineMacro("\\grayD", "\\textcolor{##d6d8da}{#1}"), defineMacro("\\grayE", "\\textcolor{##babec2}{#1}"), defineMacro("\\grayF", "\\textcolor{##888d93}{#1}"), defineMacro("\\grayG", "\\textcolor{##626569}{#1}"), defineMacro("\\grayH", "\\textcolor{##3b3e40}{#1}"), defineMacro("\\grayI", "\\textcolor{##21242c}{#1}"), defineMacro("\\kaBlue", "\\textcolor{##314453}{#1}"), defineMacro("\\kaGreen", "\\textcolor{##71B307}{#1}"), implicitCommands = {
+		"^": !0,
+		_: !0,
+		"\\limits": !0,
+		"\\nolimits": !0
+	}, MacroExpander = class {
+		constructor(n, r, a) {
+			this.settings = void 0, this.expansionCount = void 0, this.lexer = void 0, this.macros = void 0, this.stack = void 0, this.mode = void 0, this.settings = r, this.expansionCount = 0, this.feed(n), this.macros = new Namespace(macros, r.macros), this.mode = a, this.stack = [];
+		}
+		feed(n) {
+			this.lexer = new Lexer(n, this.settings);
+		}
+		switchMode(n) {
+			this.mode = n;
+		}
+		beginGroup() {
+			this.macros.beginGroup();
+		}
+		endGroup() {
+			this.macros.endGroup();
+		}
+		endGroups() {
+			this.macros.endGroups();
+		}
+		future() {
+			return this.stack.length === 0 && this.pushToken(this.lexer.lex()), this.stack[this.stack.length - 1];
+		}
+		popToken() {
+			return this.future(), this.stack.pop();
+		}
+		pushToken(n) {
+			this.stack.push(n);
+		}
+		pushTokens(n) {
+			this.stack.push(...n);
+		}
+		scanArgument(n) {
+			var r, a, o;
+			if (n) {
+				if (this.consumeSpaces(), this.future().text !== "[") return null;
+				r = this.popToken(), {tokens: o, end: a} = this.consumeArg(["]"]);
+			} else ({tokens: o, start: r, end: a} = this.consumeArg());
+			return this.pushToken(new Token("EOF", a.loc)), this.pushTokens(o), new Token("", SourceLocation.range(r, a));
+		}
+		consumeSpaces() {
+			for (; this.future().text === " ";) this.stack.pop();
+		}
+		consumeArg(n) {
+			var r = [], a = n && n.length > 0;
+			a || this.consumeSpaces();
+			var o = this.future(), l, d = 0, f = 0;
+			do {
+				if (l = this.popToken(), r.push(l), l.text === "{") ++d;
+				else if (l.text === "}") {
+					if (--d, d === -1) throw new ParseError("Extra }", l);
+				} else if (l.text === "EOF") throw new ParseError("Unexpected end of input in a macro argument, expected '" + (n && a ? n[f] : "}") + "'", l);
+				if (n && a) if ((d === 0 || d === 1 && n[f] === "{") && l.text === n[f]) {
+					if (++f, f === n.length) {
+						r.splice(-f, f);
+						break;
+					}
+				} else f = 0;
+			} while (d !== 0 || a);
+			return o.text === "{" && r[r.length - 1].text === "}" && (r.pop(), r.shift()), r.reverse(), {
+				tokens: r,
+				start: o,
+				end: l
+			};
+		}
+		consumeArgs(n, r) {
+			if (r) {
+				if (r.length !== n + 1) throw new ParseError("The length of delimiters doesn't match the number of args!");
+				for (var a = r[0], o = 0; o < a.length; o++) {
+					var l = this.popToken();
+					if (a[o] !== l.text) throw new ParseError("Use of the macro doesn't match its definition", l);
+				}
+			}
+			for (var d = [], f = 0; f < n; f++) d.push(this.consumeArg(r && r[f + 1]).tokens);
+			return d;
+		}
+		countExpansion(n) {
+			if (this.expansionCount += n, this.expansionCount > this.settings.maxExpand) throw new ParseError("Too many expansions: infinite loop or need to increase maxExpand setting");
+		}
+		expandOnce(n) {
+			var r = this.popToken(), a = r.text, o = r.noexpand ? null : this._getExpansion(a);
+			if (o == null || n && o.unexpandable) {
+				if (n && o == null && a[0] === "\\" && !this.isDefined(a)) throw new ParseError("Undefined control sequence: " + a);
+				return this.pushToken(r), !1;
+			}
+			this.countExpansion(1);
+			var l = o.tokens, d = this.consumeArgs(o.numArgs, o.delimiters);
+			if (o.numArgs) {
+				l = l.slice();
+				for (var f = l.length - 1; f >= 0; --f) {
+					var p = l[f];
+					if (p.text === "#") {
+						if (f === 0) throw new ParseError("Incomplete placeholder at end of macro body", p);
+						if (p = l[--f], p.text === "#") l.splice(f + 1, 1);
+						else if (/^[1-9]$/.test(p.text)) l.splice(f, 2, ...d[p.text - 1]);
+						else throw new ParseError("Not a valid argument number", p);
+					}
+				}
+			}
+			return this.pushTokens(l), l.length;
+		}
+		expandAfterFuture() {
+			return this.expandOnce(), this.future();
+		}
+		expandNextToken() {
+			for (;;) if (this.expandOnce() === !1) {
+				var n = this.stack.pop();
+				return n.treatAsRelax && (n.text = "\\relax"), n;
+			}
+		}
+		expandMacro(n) {
+			return this.macros.has(n) ? this.expandTokens([new Token(n)]) : void 0;
+		}
+		expandTokens(n) {
+			var r = [], a = this.stack.length;
+			for (this.pushTokens(n); this.stack.length > a;) if (this.expandOnce(!0) === !1) {
+				var o = this.stack.pop();
+				o.treatAsRelax &&= (o.noexpand = !1, !1), r.push(o);
+			}
+			return this.countExpansion(r.length), r;
+		}
+		expandMacroAsText(n) {
+			var r = this.expandMacro(n);
+			return r && r.map((n) => n.text).join("");
+		}
+		_getExpansion(n) {
+			var r = this.macros.get(n);
+			if (r == null) return r;
+			if (n.length === 1) {
+				var a = this.lexer.catcodes[n];
+				if (a != null && a !== 13) return;
+			}
+			var o = typeof r == "function" ? r(this) : r;
+			if (typeof o == "string") {
+				var l = 0;
+				if (o.includes("#")) for (var d = o.replace(/##/g, ""); d.includes("#" + (l + 1));) ++l;
+				for (var f = new Lexer(o, this.settings), p = [], m = f.lex(); m.text !== "EOF";) p.push(m), m = f.lex();
+				return p.reverse(), {
+					tokens: p,
+					numArgs: l
+				};
+			}
+			return o;
+		}
+		isDefined(n) {
+			return this.macros.has(n) || functions.hasOwnProperty(n) || symbols.math.hasOwnProperty(n) || symbols.text.hasOwnProperty(n) || implicitCommands.hasOwnProperty(n);
+		}
+		isExpandable(n) {
+			var r = this.macros.get(n);
+			return r == null ? functions.hasOwnProperty(n) && !functions[n].primitive : typeof r == "string" || typeof r == "function" || !r.unexpandable;
+		}
+	}, unicodeSubRegEx = /^[₊₋₌₍₎₀₁₂₃₄₅₆₇₈₉ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓᵦᵧᵨᵩᵪ]/, uSubsAndSups = Object.freeze({
+		"₊": "+",
+		"₋": "-",
+		"₌": "=",
+		"₍": "(",
+		"₎": ")",
+		"₀": "0",
+		"₁": "1",
+		"₂": "2",
+		"₃": "3",
+		"₄": "4",
+		"₅": "5",
+		"₆": "6",
+		"₇": "7",
+		"₈": "8",
+		"₉": "9",
+		ₐ: "a",
+		ₑ: "e",
+		ₕ: "h",
+		ᵢ: "i",
+		ⱼ: "j",
+		ₖ: "k",
+		ₗ: "l",
+		ₘ: "m",
+		ₙ: "n",
+		ₒ: "o",
+		ₚ: "p",
+		ᵣ: "r",
+		ₛ: "s",
+		ₜ: "t",
+		ᵤ: "u",
+		ᵥ: "v",
+		ₓ: "x",
+		ᵦ: "β",
+		ᵧ: "γ",
+		ᵨ: "ρ",
+		ᵩ: "ϕ",
+		ᵪ: "χ",
+		"⁺": "+",
+		"⁻": "-",
+		"⁼": "=",
+		"⁽": "(",
+		"⁾": ")",
+		"⁰": "0",
+		"¹": "1",
+		"²": "2",
+		"³": "3",
+		"⁴": "4",
+		"⁵": "5",
+		"⁶": "6",
+		"⁷": "7",
+		"⁸": "8",
+		"⁹": "9",
+		ᴬ: "A",
+		ᴮ: "B",
+		ᴰ: "D",
+		ᴱ: "E",
+		ᴳ: "G",
+		ᴴ: "H",
+		ᴵ: "I",
+		ᴶ: "J",
+		ᴷ: "K",
+		ᴸ: "L",
+		ᴹ: "M",
+		ᴺ: "N",
+		ᴼ: "O",
+		ᴾ: "P",
+		ᴿ: "R",
+		ᵀ: "T",
+		ᵁ: "U",
+		ⱽ: "V",
+		ᵂ: "W",
+		ᵃ: "a",
+		ᵇ: "b",
+		ᶜ: "c",
+		ᵈ: "d",
+		ᵉ: "e",
+		ᶠ: "f",
+		ᵍ: "g",
+		ʰ: "h",
+		ⁱ: "i",
+		ʲ: "j",
+		ᵏ: "k",
+		ˡ: "l",
+		ᵐ: "m",
+		ⁿ: "n",
+		ᵒ: "o",
+		ᵖ: "p",
+		ʳ: "r",
+		ˢ: "s",
+		ᵗ: "t",
+		ᵘ: "u",
+		ᵛ: "v",
+		ʷ: "w",
+		ˣ: "x",
+		ʸ: "y",
+		ᶻ: "z",
+		ᵝ: "β",
+		ᵞ: "γ",
+		ᵟ: "δ",
+		ᵠ: "ϕ",
+		ᵡ: "χ",
+		ᶿ: "θ"
+	}), unicodeAccents = {
+		"́": {
+			text: "\\'",
+			math: "\\acute"
+		},
+		"̀": {
+			text: "\\`",
+			math: "\\grave"
+		},
+		"̈": {
+			text: "\\\"",
+			math: "\\ddot"
+		},
+		"̃": {
+			text: "\\~",
+			math: "\\tilde"
+		},
+		"̄": {
+			text: "\\=",
+			math: "\\bar"
+		},
+		"̆": {
+			text: "\\u",
+			math: "\\breve"
+		},
+		"̌": {
+			text: "\\v",
+			math: "\\check"
+		},
+		"̂": {
+			text: "\\^",
+			math: "\\hat"
+		},
+		"̇": {
+			text: "\\.",
+			math: "\\dot"
+		},
+		"̊": {
+			text: "\\r",
+			math: "\\mathring"
+		},
+		"̋": { text: "\\H" },
+		"̧": { text: "\\c" }
+	}, unicodeSymbols = {
+		á: "á",
+		à: "à",
+		ä: "ä",
+		ǟ: "ǟ",
+		ã: "ã",
+		ā: "ā",
+		ă: "ă",
+		ắ: "ắ",
+		ằ: "ằ",
+		ẵ: "ẵ",
+		ǎ: "ǎ",
+		â: "â",
+		ấ: "ấ",
+		ầ: "ầ",
+		ẫ: "ẫ",
+		ȧ: "ȧ",
+		ǡ: "ǡ",
+		å: "å",
+		ǻ: "ǻ",
+		ḃ: "ḃ",
+		ć: "ć",
+		ḉ: "ḉ",
+		č: "č",
+		ĉ: "ĉ",
+		ċ: "ċ",
+		ç: "ç",
+		ď: "ď",
+		ḋ: "ḋ",
+		ḑ: "ḑ",
+		é: "é",
+		è: "è",
+		ë: "ë",
+		ẽ: "ẽ",
+		ē: "ē",
+		ḗ: "ḗ",
+		ḕ: "ḕ",
+		ĕ: "ĕ",
+		ḝ: "ḝ",
+		ě: "ě",
+		ê: "ê",
+		ế: "ế",
+		ề: "ề",
+		ễ: "ễ",
+		ė: "ė",
+		ȩ: "ȩ",
+		ḟ: "ḟ",
+		ǵ: "ǵ",
+		ḡ: "ḡ",
+		ğ: "ğ",
+		ǧ: "ǧ",
+		ĝ: "ĝ",
+		ġ: "ġ",
+		ģ: "ģ",
+		ḧ: "ḧ",
+		ȟ: "ȟ",
+		ĥ: "ĥ",
+		ḣ: "ḣ",
+		ḩ: "ḩ",
+		í: "í",
+		ì: "ì",
+		ï: "ï",
+		ḯ: "ḯ",
+		ĩ: "ĩ",
+		ī: "ī",
+		ĭ: "ĭ",
+		ǐ: "ǐ",
+		î: "î",
+		ǰ: "ǰ",
+		ĵ: "ĵ",
+		ḱ: "ḱ",
+		ǩ: "ǩ",
+		ķ: "ķ",
+		ĺ: "ĺ",
+		ľ: "ľ",
+		ļ: "ļ",
+		ḿ: "ḿ",
+		ṁ: "ṁ",
+		ń: "ń",
+		ǹ: "ǹ",
+		ñ: "ñ",
+		ň: "ň",
+		ṅ: "ṅ",
+		ņ: "ņ",
+		ó: "ó",
+		ò: "ò",
+		ö: "ö",
+		ȫ: "ȫ",
+		õ: "õ",
+		ṍ: "ṍ",
+		ṏ: "ṏ",
+		ȭ: "ȭ",
+		ō: "ō",
+		ṓ: "ṓ",
+		ṑ: "ṑ",
+		ŏ: "ŏ",
+		ǒ: "ǒ",
+		ô: "ô",
+		ố: "ố",
+		ồ: "ồ",
+		ỗ: "ỗ",
+		ȯ: "ȯ",
+		ȱ: "ȱ",
+		ő: "ő",
+		ṕ: "ṕ",
+		ṗ: "ṗ",
+		ŕ: "ŕ",
+		ř: "ř",
+		ṙ: "ṙ",
+		ŗ: "ŗ",
+		ś: "ś",
+		ṥ: "ṥ",
+		š: "š",
+		ṧ: "ṧ",
+		ŝ: "ŝ",
+		ṡ: "ṡ",
+		ş: "ş",
+		ẗ: "ẗ",
+		ť: "ť",
+		ṫ: "ṫ",
+		ţ: "ţ",
+		ú: "ú",
+		ù: "ù",
+		ü: "ü",
+		ǘ: "ǘ",
+		ǜ: "ǜ",
+		ǖ: "ǖ",
+		ǚ: "ǚ",
+		ũ: "ũ",
+		ṹ: "ṹ",
+		ū: "ū",
+		ṻ: "ṻ",
+		ŭ: "ŭ",
+		ǔ: "ǔ",
+		û: "û",
+		ů: "ů",
+		ű: "ű",
+		ṽ: "ṽ",
+		ẃ: "ẃ",
+		ẁ: "ẁ",
+		ẅ: "ẅ",
+		ŵ: "ŵ",
+		ẇ: "ẇ",
+		ẘ: "ẘ",
+		ẍ: "ẍ",
+		ẋ: "ẋ",
+		ý: "ý",
+		ỳ: "ỳ",
+		ÿ: "ÿ",
+		ỹ: "ỹ",
+		ȳ: "ȳ",
+		ŷ: "ŷ",
+		ẏ: "ẏ",
+		ẙ: "ẙ",
+		ź: "ź",
+		ž: "ž",
+		ẑ: "ẑ",
+		ż: "ż",
+		Á: "Á",
+		À: "À",
+		Ä: "Ä",
+		Ǟ: "Ǟ",
+		Ã: "Ã",
+		Ā: "Ā",
+		Ă: "Ă",
+		Ắ: "Ắ",
+		Ằ: "Ằ",
+		Ẵ: "Ẵ",
+		Ǎ: "Ǎ",
+		Â: "Â",
+		Ấ: "Ấ",
+		Ầ: "Ầ",
+		Ẫ: "Ẫ",
+		Ȧ: "Ȧ",
+		Ǡ: "Ǡ",
+		Å: "Å",
+		Ǻ: "Ǻ",
+		Ḃ: "Ḃ",
+		Ć: "Ć",
+		Ḉ: "Ḉ",
+		Č: "Č",
+		Ĉ: "Ĉ",
+		Ċ: "Ċ",
+		Ç: "Ç",
+		Ď: "Ď",
+		Ḋ: "Ḋ",
+		Ḑ: "Ḑ",
+		É: "É",
+		È: "È",
+		Ë: "Ë",
+		Ẽ: "Ẽ",
+		Ē: "Ē",
+		Ḗ: "Ḗ",
+		Ḕ: "Ḕ",
+		Ĕ: "Ĕ",
+		Ḝ: "Ḝ",
+		Ě: "Ě",
+		Ê: "Ê",
+		Ế: "Ế",
+		Ề: "Ề",
+		Ễ: "Ễ",
+		Ė: "Ė",
+		Ȩ: "Ȩ",
+		Ḟ: "Ḟ",
+		Ǵ: "Ǵ",
+		Ḡ: "Ḡ",
+		Ğ: "Ğ",
+		Ǧ: "Ǧ",
+		Ĝ: "Ĝ",
+		Ġ: "Ġ",
+		Ģ: "Ģ",
+		Ḧ: "Ḧ",
+		Ȟ: "Ȟ",
+		Ĥ: "Ĥ",
+		Ḣ: "Ḣ",
+		Ḩ: "Ḩ",
+		Í: "Í",
+		Ì: "Ì",
+		Ï: "Ï",
+		Ḯ: "Ḯ",
+		Ĩ: "Ĩ",
+		Ī: "Ī",
+		Ĭ: "Ĭ",
+		Ǐ: "Ǐ",
+		Î: "Î",
+		İ: "İ",
+		Ĵ: "Ĵ",
+		Ḱ: "Ḱ",
+		Ǩ: "Ǩ",
+		Ķ: "Ķ",
+		Ĺ: "Ĺ",
+		Ľ: "Ľ",
+		Ļ: "Ļ",
+		Ḿ: "Ḿ",
+		Ṁ: "Ṁ",
+		Ń: "Ń",
+		Ǹ: "Ǹ",
+		Ñ: "Ñ",
+		Ň: "Ň",
+		Ṅ: "Ṅ",
+		Ņ: "Ņ",
+		Ó: "Ó",
+		Ò: "Ò",
+		Ö: "Ö",
+		Ȫ: "Ȫ",
+		Õ: "Õ",
+		Ṍ: "Ṍ",
+		Ṏ: "Ṏ",
+		Ȭ: "Ȭ",
+		Ō: "Ō",
+		Ṓ: "Ṓ",
+		Ṑ: "Ṑ",
+		Ŏ: "Ŏ",
+		Ǒ: "Ǒ",
+		Ô: "Ô",
+		Ố: "Ố",
+		Ồ: "Ồ",
+		Ỗ: "Ỗ",
+		Ȯ: "Ȯ",
+		Ȱ: "Ȱ",
+		Ő: "Ő",
+		Ṕ: "Ṕ",
+		Ṗ: "Ṗ",
+		Ŕ: "Ŕ",
+		Ř: "Ř",
+		Ṙ: "Ṙ",
+		Ŗ: "Ŗ",
+		Ś: "Ś",
+		Ṥ: "Ṥ",
+		Š: "Š",
+		Ṧ: "Ṧ",
+		Ŝ: "Ŝ",
+		Ṡ: "Ṡ",
+		Ş: "Ş",
+		Ť: "Ť",
+		Ṫ: "Ṫ",
+		Ţ: "Ţ",
+		Ú: "Ú",
+		Ù: "Ù",
+		Ü: "Ü",
+		Ǘ: "Ǘ",
+		Ǜ: "Ǜ",
+		Ǖ: "Ǖ",
+		Ǚ: "Ǚ",
+		Ũ: "Ũ",
+		Ṹ: "Ṹ",
+		Ū: "Ū",
+		Ṻ: "Ṻ",
+		Ŭ: "Ŭ",
+		Ǔ: "Ǔ",
+		Û: "Û",
+		Ů: "Ů",
+		Ű: "Ű",
+		Ṽ: "Ṽ",
+		Ẃ: "Ẃ",
+		Ẁ: "Ẁ",
+		Ẅ: "Ẅ",
+		Ŵ: "Ŵ",
+		Ẇ: "Ẇ",
+		Ẍ: "Ẍ",
+		Ẋ: "Ẋ",
+		Ý: "Ý",
+		Ỳ: "Ỳ",
+		Ÿ: "Ÿ",
+		Ỹ: "Ỹ",
+		Ȳ: "Ȳ",
+		Ŷ: "Ŷ",
+		Ẏ: "Ẏ",
+		Ź: "Ź",
+		Ž: "Ž",
+		Ẑ: "Ẑ",
+		Ż: "Ż",
+		ά: "ά",
+		ὰ: "ὰ",
+		ᾱ: "ᾱ",
+		ᾰ: "ᾰ",
+		έ: "έ",
+		ὲ: "ὲ",
+		ή: "ή",
+		ὴ: "ὴ",
+		ί: "ί",
+		ὶ: "ὶ",
+		ϊ: "ϊ",
+		ΐ: "ΐ",
+		ῒ: "ῒ",
+		ῑ: "ῑ",
+		ῐ: "ῐ",
+		ό: "ό",
+		ὸ: "ὸ",
+		ύ: "ύ",
+		ὺ: "ὺ",
+		ϋ: "ϋ",
+		ΰ: "ΰ",
+		ῢ: "ῢ",
+		ῡ: "ῡ",
+		ῠ: "ῠ",
+		ώ: "ώ",
+		ὼ: "ὼ",
+		Ύ: "Ύ",
+		Ὺ: "Ὺ",
+		Ϋ: "Ϋ",
+		Ῡ: "Ῡ",
+		Ῠ: "Ῠ",
+		Ώ: "Ώ",
+		Ὼ: "Ὼ"
+	}, Parser = class n {
+		constructor(n, r) {
+			this.mode = void 0, this.gullet = void 0, this.settings = void 0, this.leftrightDepth = void 0, this.nextToken = void 0, this.mode = "math", this.gullet = new MacroExpander(n, r, this.mode), this.settings = r, this.leftrightDepth = 0, this.nextToken = null;
+		}
+		expect(n, r) {
+			if (r === void 0 && (r = !0), this.fetch().text !== n) throw new ParseError("Expected '" + n + "', got '" + this.fetch().text + "'", this.fetch());
+			r && this.consume();
+		}
+		consume() {
+			this.nextToken = null;
+		}
+		fetch() {
+			return this.nextToken ??= this.gullet.expandNextToken(), this.nextToken;
+		}
+		switchMode(n) {
+			this.mode = n, this.gullet.switchMode(n);
+		}
+		parse() {
+			this.settings.globalGroup || this.gullet.beginGroup(), this.settings.colorIsTextColor && this.gullet.macros.set("\\color", "\\textcolor");
+			try {
+				var n = this.parseExpression(!1);
+				return this.expect("EOF"), this.settings.globalGroup || this.gullet.endGroup(), n;
+			} finally {
+				this.gullet.endGroups();
+			}
+		}
+		subparse(n) {
+			var r = this.nextToken;
+			this.consume(), this.gullet.pushToken(new Token("}")), this.gullet.pushTokens(n);
+			var a = this.parseExpression(!1);
+			return this.expect("}"), this.nextToken = r, a;
+		}
+		parseExpression(r, a) {
+			for (var o = [];;) {
+				this.mode === "math" && this.consumeSpaces();
+				var l = this.fetch();
+				if (n.endOfExpression.has(l.text) || a && l.text === a || r && functions[l.text] && functions[l.text].infix) break;
+				var d = this.parseAtom(a);
+				if (!d) break;
+				d.type !== "internal" && o.push(d);
+			}
+			return this.mode === "text" && this.formLigatures(o), this.handleInfixNodes(o);
+		}
+		handleInfixNodes(n) {
+			for (var r = -1, a, o = 0; o < n.length; o++) {
+				var l = n[o];
+				if (l.type === "infix") {
+					if (r !== -1) throw new ParseError("only one infix operator per group", l.token);
+					r = o, a = l.replaceWith;
+				}
+			}
+			if (r !== -1 && a) {
+				var d, f, p = n.slice(0, r), m = n.slice(r + 1);
+				return d = p.length === 1 && p[0].type === "ordgroup" ? p[0] : {
+					type: "ordgroup",
+					mode: this.mode,
+					body: p
+				}, f = m.length === 1 && m[0].type === "ordgroup" ? m[0] : {
+					type: "ordgroup",
+					mode: this.mode,
+					body: m
+				}, [a === "\\\\abovefrac" ? this.callFunction(a, [
+					d,
+					n[r],
+					f
+				], []) : this.callFunction(a, [d, f], [])];
+			} else return n;
+		}
+		handleSupSubscript(n) {
+			var r = this.fetch(), a = r.text;
+			this.consume(), this.consumeSpaces();
+			var o;
+			do {
+				var l;
+				o = this.parseGroup(n);
+			} while (o?.type === "internal");
+			if (!o) throw new ParseError("Expected group after '" + a + "'", r);
+			return o;
+		}
+		formatUnsupportedCmd(n) {
+			for (var r = [], a = 0; a < n.length; a++) r.push({
+				type: "textord",
+				mode: "text",
+				text: n[a]
+			});
+			var o = {
+				type: "text",
+				mode: this.mode,
+				body: r
+			};
+			return {
+				type: "color",
+				mode: this.mode,
+				color: this.settings.errorColor,
+				body: [o]
+			};
+		}
+		parseAtom(n) {
+			var r = this.parseGroup("atom", n);
+			if (r?.type === "internal" || this.mode === "text") return r;
+			for (var a, o;;) {
+				this.consumeSpaces();
+				var l = this.fetch();
+				if (l.text === "\\limits" || l.text === "\\nolimits") {
+					if (r && r.type === "op") r.limits = l.text === "\\limits", r.alwaysHandleSupSub = !0;
+					else if (r && r.type === "operatorname") r.alwaysHandleSupSub && (r.limits = l.text === "\\limits");
+					else throw new ParseError("Limit controls must follow a math operator", l);
+					this.consume();
+				} else if (l.text === "^") {
+					if (a) throw new ParseError("Double superscript", l);
+					a = this.handleSupSubscript("superscript");
+				} else if (l.text === "_") {
+					if (o) throw new ParseError("Double subscript", l);
+					o = this.handleSupSubscript("subscript");
+				} else if (l.text === "'") {
+					if (a) throw new ParseError("Double superscript", l);
+					var d = {
+						type: "textord",
+						mode: this.mode,
+						text: "\\prime"
+					}, f = [d];
+					for (this.consume(); this.fetch().text === "'";) f.push(d), this.consume();
+					this.fetch().text === "^" && f.push(this.handleSupSubscript("superscript")), a = {
+						type: "ordgroup",
+						mode: this.mode,
+						body: f
+					};
+				} else if (uSubsAndSups[l.text]) {
+					var p = unicodeSubRegEx.test(l.text), m = [];
+					for (m.push(new Token(uSubsAndSups[l.text])), this.consume();;) {
+						var h = this.fetch().text;
+						if (!uSubsAndSups[h] || unicodeSubRegEx.test(h) !== p) break;
+						m.unshift(new Token(uSubsAndSups[h])), this.consume();
+					}
+					var g = this.subparse(m);
+					p ? o = {
+						type: "ordgroup",
+						mode: "math",
+						body: g
+					} : a = {
+						type: "ordgroup",
+						mode: "math",
+						body: g
+					};
+				} else break;
+			}
+			return a || o ? {
+				type: "supsub",
+				mode: this.mode,
+				base: r,
+				sup: a,
+				sub: o
+			} : r;
+		}
+		parseFunction(n, r) {
+			var a = this.fetch(), o = a.text, l = functions[o];
+			if (!l) return null;
+			if (this.consume(), r && r !== "atom" && !l.allowedInArgument) throw new ParseError("Got function '" + o + "' with no arguments" + (r ? " as " + r : ""), a);
+			if (this.mode === "text" && !l.allowedInText) throw new ParseError("Can't use function '" + o + "' in text mode", a);
+			if (this.mode === "math" && l.allowedInMath === !1) throw new ParseError("Can't use function '" + o + "' in math mode", a);
+			var { args: d, optArgs: f } = this.parseArguments(o, l);
+			return this.callFunction(o, d, f, a, n);
+		}
+		callFunction(n, r, a, o, l) {
+			var d = {
+				funcName: n,
+				parser: this,
+				token: o,
+				breakOnTokenText: l
+			}, f = functions[n];
+			if (f && f.handler) return f.handler(d, r, a);
+			throw new ParseError("No function handler for " + n);
+		}
+		parseArguments(n, r) {
+			var a = r.numArgs + r.numOptionalArgs;
+			if (a === 0) return {
+				args: [],
+				optArgs: []
+			};
+			for (var o = [], l = [], d = 0; d < a; d++) {
+				var f = r.argTypes && r.argTypes[d], p = d < r.numOptionalArgs;
+				("primitive" in r && r.primitive && f == null || r.type === "sqrt" && d === 1 && l[0] == null) && (f = "primitive");
+				var m = this.parseGroupOfType("argument to '" + n + "'", f, p);
+				if (p) l.push(m);
+				else if (m != null) o.push(m);
+				else throw new ParseError("Null argument, please report this as a bug");
+			}
+			return {
+				args: o,
+				optArgs: l
+			};
+		}
+		parseGroupOfType(n, r, a) {
+			switch (r) {
+				case "color": return this.parseColorGroup(a);
+				case "size": return this.parseSizeGroup(a);
+				case "url": return this.parseUrlGroup(a);
+				case "math":
+				case "text": return this.parseArgumentGroup(a, r);
+				case "hbox":
+					var o = this.parseArgumentGroup(a, "text");
+					return o == null ? null : {
+						type: "styling",
+						mode: o.mode,
+						body: [o],
+						style: "text",
+						resetFont: !0
+					};
+				case "raw":
+					var l = this.parseStringGroup("raw", a);
+					return l == null ? null : {
+						type: "raw",
+						mode: "text",
+						string: l.text
+					};
+				case "primitive":
+					if (a) throw new ParseError("A primitive argument cannot be optional");
+					var d = this.parseGroup(n);
+					if (d == null) throw new ParseError("Expected group as " + n, this.fetch());
+					return d;
+				case "original":
+				case null:
+				case void 0: return this.parseArgumentGroup(a);
+				default: throw new ParseError("Unknown group type as " + n, this.fetch());
+			}
+		}
+		consumeSpaces() {
+			for (; this.fetch().text === " ";) this.consume();
+		}
+		parseStringGroup(n, r) {
+			var a = this.gullet.scanArgument(r);
+			if (a == null) return null;
+			for (var o = "", l; (l = this.fetch()).text !== "EOF";) o += l.text, this.consume();
+			return this.consume(), a.text = o, a;
+		}
+		parseRegexGroup(n, r) {
+			for (var a = this.fetch(), o = a, l = "", d; (d = this.fetch()).text !== "EOF" && n.test(l + d.text);) o = d, l += o.text, this.consume();
+			if (l === "") throw new ParseError("Invalid " + r + ": '" + a.text + "'", a);
+			return a.range(o, l);
+		}
+		parseColorGroup(n) {
+			var r = this.parseStringGroup("color", n);
+			if (r == null) return null;
+			var a = /^(#[a-f0-9]{3,4}|#[a-f0-9]{6}|#[a-f0-9]{8}|[a-f0-9]{6}|[a-z]+)$/i.exec(r.text);
+			if (!a) throw new ParseError("Invalid color: '" + r.text + "'", r);
+			var o = a[0];
+			return /^[0-9a-f]{6}$/i.test(o) && (o = "#" + o), {
+				type: "color-token",
+				mode: this.mode,
+				color: o
+			};
+		}
+		parseSizeGroup(n) {
+			var r, a = !1;
+			if (this.gullet.consumeSpaces(), r = !n && this.gullet.future().text !== "{" ? this.parseRegexGroup(/^[-+]? *(?:$|\d+|\d+\.\d*|\.\d*) *[a-z]{0,2} *$/, "size") : this.parseStringGroup("size", n), !r) return null;
+			!n && r.text.length === 0 && (r.text = "0pt", a = !0);
+			var o = /([-+]?) *(\d+(?:\.\d*)?|\.\d+) *([a-z]{2})/.exec(r.text);
+			if (!o) throw new ParseError("Invalid size: '" + r.text + "'", r);
+			var l = {
+				number: +(o[1] + o[2]),
+				unit: o[3]
+			};
+			if (!validUnit(l)) throw new ParseError("Invalid unit: '" + l.unit + "'", r);
+			return {
+				type: "size",
+				mode: this.mode,
+				value: l,
+				isBlank: a
+			};
+		}
+		parseUrlGroup(n) {
+			this.gullet.lexer.setCatcode("%", 13), this.gullet.lexer.setCatcode("~", 12);
+			var r = this.parseStringGroup("url", n);
+			if (this.gullet.lexer.setCatcode("%", 14), this.gullet.lexer.setCatcode("~", 13), r == null) return null;
+			var a = r.text.replace(/\\([#$%&~_^{}])/g, "$1");
+			return {
+				type: "url",
+				mode: this.mode,
+				url: a
+			};
+		}
+		parseArgumentGroup(n, r) {
+			var a = this.gullet.scanArgument(n);
+			if (a == null) return null;
+			var o = this.mode;
+			r && this.switchMode(r), this.gullet.beginGroup();
+			var l = this.parseExpression(!1, "EOF");
+			this.expect("EOF"), this.gullet.endGroup();
+			var d = {
+				type: "ordgroup",
+				mode: this.mode,
+				loc: a.loc,
+				body: l
+			};
+			return r && this.switchMode(o), d;
+		}
+		parseGroup(n, r) {
+			var a = this.fetch(), o = a.text, l;
+			if (o === "{" || o === "\\begingroup") {
+				this.consume();
+				var d = o === "{" ? "}" : "\\endgroup";
+				this.gullet.beginGroup();
+				var f = this.parseExpression(!1, d), p = this.fetch();
+				this.expect(d), this.gullet.endGroup(), l = {
+					type: "ordgroup",
+					mode: this.mode,
+					loc: SourceLocation.range(a, p),
+					body: f,
+					semisimple: o === "\\begingroup" || void 0
+				};
+			} else if (l = this.parseFunction(r, n) || this.parseSymbol(), l == null && o[0] === "\\" && !implicitCommands.hasOwnProperty(o)) {
+				if (this.settings.throwOnError) throw new ParseError("Undefined control sequence: " + o, a);
+				l = this.formatUnsupportedCmd(o), this.consume();
+			}
+			return l;
+		}
+		formLigatures(n) {
+			for (var r = n.length - 1, a = 0; a < r; ++a) {
+				var o = n[a];
+				if (o.type === "textord") {
+					var l = o.text, d = n[a + 1];
+					if (!(!d || d.type !== "textord")) {
+						if (l === "-" && d.text === "-") {
+							var f = n[a + 2];
+							a + 1 < r && f && f.type === "textord" && f.text === "-" ? (n.splice(a, 3, {
+								type: "textord",
+								mode: "text",
+								loc: SourceLocation.range(o, f),
+								text: "---"
+							}), r -= 2) : (n.splice(a, 2, {
+								type: "textord",
+								mode: "text",
+								loc: SourceLocation.range(o, d),
+								text: "--"
+							}), --r);
+						}
+						(l === "'" || l === "`") && d.text === l && (n.splice(a, 2, {
+							type: "textord",
+							mode: "text",
+							loc: SourceLocation.range(o, d),
+							text: l + l
+						}), --r);
+					}
+				}
+			}
+		}
+		parseSymbol() {
+			var n = this.fetch(), r = n.text;
+			if (/^\\verb[^a-zA-Z]/.test(r)) {
+				this.consume();
+				var a = r.slice(5), o = a.charAt(0) === "*";
+				if (o && (a = a.slice(1)), a.length < 2 || a.charAt(0) !== a.slice(-1)) throw new ParseError("\\verb assertion failed --\n                    please report what input caused this bug");
+				return a = a.slice(1, -1), {
+					type: "verb",
+					mode: "text",
+					body: a,
+					star: o
+				};
+			}
+			unicodeSymbols.hasOwnProperty(r[0]) && !symbols[this.mode][r[0]] && (this.settings.strict && this.mode === "math" && this.settings.reportNonstrict("unicodeTextInMathMode", "Accented Unicode text character \"" + r[0] + "\" used in math mode", n), r = unicodeSymbols[r[0]] + r.slice(1));
+			var l = combiningDiacriticalMarksEndRegex.exec(r);
+			l && (r = r.substring(0, l.index), r === "i" ? r = "ı" : r === "j" && (r = "ȷ"));
+			var d;
+			if (symbols[this.mode][r]) {
+				this.settings.strict && this.mode === "math" && extraLatin.includes(r) && this.settings.reportNonstrict("unicodeTextInMathMode", "Latin-1/Unicode text character \"" + r[0] + "\" used in math mode", n);
+				var f = symbols[this.mode][r].group, p = SourceLocation.range(n);
+				d = isAtom(f) ? {
+					type: "atom",
+					mode: this.mode,
+					family: f,
+					loc: p,
+					text: r
+				} : {
+					type: f,
+					mode: this.mode,
+					loc: p,
+					text: r
+				};
+			} else if (r.charCodeAt(0) >= 128) this.settings.strict && (supportedCodepoint(r.charCodeAt(0)) ? this.mode === "math" && this.settings.reportNonstrict("unicodeTextInMathMode", "Unicode text character \"" + r[0] + "\" used in math mode", n) : this.settings.reportNonstrict("unknownSymbol", "Unrecognized Unicode character \"" + r[0] + "\"" + (" (" + r.charCodeAt(0) + ")"), n)), d = {
+				type: "textord",
+				mode: "text",
+				loc: SourceLocation.range(n),
+				text: r
+			};
+			else return null;
+			if (this.consume(), l) for (var m = 0; m < l[0].length; m++) {
+				var h = l[0][m];
+				if (!unicodeAccents[h]) throw new ParseError("Unknown accent ' " + h + "'", n);
+				var g = unicodeAccents[h][this.mode] || unicodeAccents[h].text;
+				if (!g) throw new ParseError("Accent " + h + " unsupported in " + this.mode + " mode", n);
+				d = {
+					type: "accent",
+					mode: this.mode,
+					loc: SourceLocation.range(n),
+					label: g,
+					isStretchy: !1,
+					isShifty: !0,
+					base: d
+				};
+			}
+			return d;
+		}
+	}, Parser.endOfExpression = /* @__PURE__ */ new Set([
+		"}",
+		"\\endgroup",
+		"\\end",
+		"\\right",
+		"&"
+	]), parseTree = function(n, r) {
+		if (!(typeof n == "string" || n instanceof String)) throw TypeError("KaTeX can only parse string typed expression");
+		var a = new Parser(n, r);
+		delete a.gullet.macros.current["\\df@tag"];
+		var o = a.parse();
+		if (delete a.gullet.macros.current["\\current@color"], delete a.gullet.macros.current["\\color"], a.gullet.macros.get("\\df@tag")) {
+			if (!r.displayMode) throw new ParseError("\\tag works only in display equations");
+			o = [{
+				type: "tag",
+				mode: "text",
+				body: o,
+				tag: a.subparse([new Token("\\df@tag")])
+			}];
+		}
+		return o;
+	}, render = function(n, r, a) {
+		r.textContent = "";
+		var o = renderToDomTree(n, a).toNode();
+		r.appendChild(o);
+	}, typeof document < "u" && document.compatMode !== "CSS1Compat" && (typeof console < "u" && console.warn("Warning: KaTeX doesn't work in quirks mode. Make sure your website has a suitable doctype."), render = function() {
+		throw new ParseError("KaTeX doesn't work in quirks mode.");
+	}), renderToString = function(n, r) {
+		return renderToDomTree(n, r).toMarkup();
+	}, generateParseTree = function(n, r) {
+		return parseTree(n, new Settings(r));
+	}, renderError = function(n, r, a) {
+		if (a.throwOnError || !(n instanceof ParseError)) throw n;
+		var o = makeSpan(["katex-error"], [new SymbolNode(r)]);
+		return o.setAttribute("title", n.toString()), o.setAttribute("style", "color:" + a.errorColor), o;
+	}, renderToDomTree = function(n, r) {
+		var a = new Settings(r);
+		try {
+			return buildTree(parseTree(n, a), n, a);
+		} catch (r) {
+			return renderError(r, n, a);
+		}
+	}, renderToHTMLTree = function(n, r) {
+		var a = new Settings(r);
+		try {
+			return buildHTMLTree(parseTree(n, a), n, a);
+		} catch (r) {
+			return renderError(r, n, a);
+		}
+	}, version$1 = "0.16.47", __domTree = {
+		Span,
+		Anchor: Anchor$1,
+		SymbolNode,
+		SvgNode,
+		PathNode,
+		LineNode
+	}, katex = {
+		version: version$1,
+		render,
+		renderToString,
+		ParseError,
+		SETTINGS_SCHEMA,
+		__parse: generateParseTree,
+		__renderToDomTree: renderToDomTree,
+		__renderToHTMLTree: renderToHTMLTree,
+		__setFontMetrics: setFontMetrics,
+		__defineSymbol: defineSymbol,
+		__defineFunction: defineFunction,
+		__defineMacro: defineMacro,
+		__domTree
+	};
+}));
+init_mermaid_core(), init_katex();
 //#endregion
 //#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
 var mergeClasses = (...n) => n.filter((n, r, a) => !!n && n.trim() !== "" && a.indexOf(n) === r).join(" ").trim(), toKebabCase = (n) => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), toCamelCase = (n) => n.replace(/^([A-Z])|[\s-_]+(\w)/g, (n, r, a) => a ? a.toUpperCase() : r.toLowerCase()), toPascalCase = (n) => {
@@ -34732,7 +56607,7 @@ var $8cd7efb5af385306$export$7d15b64cf5a3a4c4, $94cfa2cfccc8cc22$export$6531021b
 	hashElementsVersion: () => rY,
 	hashString: () => X2,
 	isElementInsideBBox: () => Ap$2,
-	isElementLink: () => op$1,
+	isElementLink: () => op$2,
 	isInvisiblySmallElement: () => ao$2,
 	isLinearElement: () => ae$4,
 	languages: () => xi$2,
@@ -36229,7 +58104,7 @@ var import_react, import_react$1, import_react$2, import_react$3, import_jsx_run
 			"zindex",
 			"layer"
 		],
-		icon: ch$1,
+		icon: ch$2,
 		trackEvent: { category: "element" },
 		perform: (n, r) => ({
 			elements: ay(n, r),
@@ -36242,7 +58117,7 @@ var import_react, import_react$1, import_react$2, import_react$3, import_jsx_run
 			className: "zIndexButton",
 			onClick: (r) => n(null),
 			title: `${g$1("labels.bringToFront")} \u2014 ${cg$2(uo$1 ? "CtrlOrCmd+Alt+]" : "CtrlOrCmd+Shift+]")}`,
-			children: ch$1
+			children: ch$2
 		})
 	}), bp$1 = L2$1({
 		name: "selectAll",
@@ -40226,7 +62101,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 	}, OI = (n, r, a) => {
 		if (!n.link) return;
 		let o = Ii$1();
-		o.classList.add("excalidraw-tooltip--visible"), o.style.maxWidth = "20rem", o.textContent = op$1(n.link) ? g$1("labels.link.goToElement") : n.link;
+		o.classList.add("excalidraw-tooltip--visible"), o.style.maxWidth = "20rem", o.textContent = op$2(n.link) ? g$1("labels.link.goToElement") : n.link;
 		let [l, d, f, p] = C$3(n, a), [m, h, g, _] = is$1([
 			l,
 			d,
@@ -40401,7 +62276,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		};
 	}, kc$1 = class {
 		constructor() {
-			i(this, "jobs", []), i(this, "running", !1);
+			i$1(this, "jobs", []), i$1(this, "running", !1);
 		}
 		tick() {
 			if (this.running) return;
@@ -40437,7 +62312,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		return o;
 	}, mu = class {
 		constructor(n) {
-			i(this, "currLibraryItems", []), i(this, "prevLibraryItems", Ya$1(this.currLibraryItems)), i(this, "app"), i(this, "updateQueue", []), i(this, "getLastUpdateTask", () => this.updateQueue[this.updateQueue.length - 1]), i(this, "notifyListeners", () => {
+			i$1(this, "currLibraryItems", []), i$1(this, "prevLibraryItems", Ya$1(this.currLibraryItems)), i$1(this, "app"), i$1(this, "updateQueue", []), i$1(this, "getLastUpdateTask", () => this.updateQueue[this.updateQueue.length - 1]), i$1(this, "notifyListeners", () => {
 				if (this.updateQueue.length > 0) st$1.set(Cn$2, (n) => ({
 					status: "loading",
 					libraryItems: this.currLibraryItems,
@@ -40458,16 +62333,16 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 						console.error(n);
 					}
 				}
-			}), i(this, "destroy", () => {
+			}), i$1(this, "destroy", () => {
 				this.updateQueue = [], this.currLibraryItems = [], st$1.set(du$1, /* @__PURE__ */ new Map());
-			}), i(this, "resetLibrary", () => this.setLibrary([])), i(this, "getLatestLibrary", () => new Promise(async (n) => {
+			}), i$1(this, "resetLibrary", () => this.setLibrary([])), i$1(this, "getLatestLibrary", () => new Promise(async (n) => {
 				try {
 					let r = await (this.getLastUpdateTask() || this.currLibraryItems);
 					this.updateQueue.length > 0 ? n(this.getLatestLibrary()) : n(Ya$1(r));
 				} catch {
 					return n(this.currLibraryItems);
 				}
-			})), i(this, "updateLibrary", async ({ libraryItems: n, prompt: r = !1, merge: a = !1, openLibraryMenu: o = !1, defaultStatus: l = "unpublished" }) => (o && this.app.setState({ openSidebar: {
+			})), i$1(this, "updateLibrary", async ({ libraryItems: n, prompt: r = !1, merge: a = !1, openLibraryMenu: o = !1, defaultStatus: l = "unpublished" }) => (o && this.app.setState({ openSidebar: {
 				name: ks$1.name,
 				tab: "library"
 			} }), this.setLibrary(() => new Promise(async (o, d) => {
@@ -40477,7 +62352,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 				} catch (n) {
 					d(n);
 				}
-			})))), i(this, "setLibrary", (n) => {
+			})))), i$1(this, "setLibrary", (n) => {
 				let r = new Promise(async (r, a) => {
 					try {
 						await this.getLastUpdateTask(), typeof n == "function" && (n = n(this.currLibraryItems)), this.currLibraryItems = Ya$1(await n), r(this.currLibraryItems);
@@ -40532,7 +62407,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		} : null;
 	}, _r$1 = class n {
 		constructor(n) {
-			i(this, "adapter"), this.adapter = n;
+			i$1(this, "adapter"), this.adapter = n;
 		}
 		static async getLibraryItems(r, a, o = !0) {
 			let l = () => new Promise(async (n, o) => {
@@ -40547,7 +62422,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		getLibraryItems(r) {
 			return n.getLibraryItems(this.adapter, r, !1);
 		}
-	}, i(_r$1, "queue", new kc$1()), i(_r$1, "run", async (n, r) => {
+	}, i$1(_r$1, "queue", new kc$1()), i$1(_r$1, "run", async (n, r) => {
 		let a = new _r$1(n);
 		return _r$1.queue.push(() => r(a));
 	}), Ri$1 = _r$1, Va = 0, Lc$1 = 0, Ac$1 = (n) => X2(n.map((n) => `${n.id}:${rY(n.elements)}`).sort().join()), Dv = async (n, r) => {
@@ -40787,13 +62662,13 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 				return console.warn(`localStorage.getItem error: ${n.message}`), null;
 			}
 		}
-	}, i(ro$1, "set", (n, r) => {
+	}, i$1(ro$1, "set", (n, r) => {
 		try {
 			return window.localStorage.setItem(n, JSON.stringify(r)), !0;
 		} catch (n) {
 			return console.warn(`localStorage.setItem error: ${n.message}`), !1;
 		}
-	}), i(ro$1, "delete", (n) => {
+	}), i$1(ro$1, "delete", (n) => {
 		try {
 			window.localStorage.removeItem(n);
 		} catch (n) {
@@ -42337,7 +64212,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		}
 	}, Xa$1 = class n {
 		constructor() {
-			i(this, "onHistoryChangedEmitter", new hi$2()), i(this, "undoStack", []), i(this, "redoStack", []);
+			i$1(this, "onHistoryChangedEmitter", new hi$2()), i$1(this, "undoStack", []), i$1(this, "redoStack", []);
 		}
 		get isUndoStackEmpty() {
 			return this.undoStack.length === 0;
@@ -42481,7 +64356,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		}
 	}, $c$1 = class {
 		constructor(n, r, a, o) {
-			i(this, "actions", {}), i(this, "updater"), i(this, "getAppState"), i(this, "getElementsIncludingDeleted"), i(this, "app"), i(this, "renderAction", (n, r) => {
+			i$1(this, "actions", {}), i$1(this, "updater"), i$1(this, "getAppState"), i$1(this, "getElementsIncludingDeleted"), i$1(this, "app"), i$1(this, "renderAction", (n, r) => {
 				let a = this.app.props.UIOptions.canvasActions;
 				if (this.actions[n] && "PanelComponent" in this.actions[n] && (!(n in a) || a[n])) {
 					let a = this.actions[n], o = a.PanelComponent;
@@ -42499,7 +64374,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 					});
 				}
 				return null;
-			}), i(this, "isActionEnabled", (n) => {
+			}), i$1(this, "isActionEnabled", (n) => {
 				let r = this.getElementsIncludingDeleted(), a = this.getAppState();
 				return !n.predicate || n.predicate(r, a, this.app.props, this.app);
 			}), this.updater = (r) => {
@@ -43106,7 +64981,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		};
 	}, qc$1 = class {
 		constructor() {
-			i(this, "isExploring", !1), i(this, "sameLevelNodes", []), i(this, "sameLevelIndex", 0), i(this, "direction", null), i(this, "visitedNodes", /* @__PURE__ */ new Set());
+			i$1(this, "isExploring", !1), i$1(this, "sameLevelNodes", []), i$1(this, "sameLevelIndex", 0), i$1(this, "direction", null), i$1(this, "visitedNodes", /* @__PURE__ */ new Set());
 		}
 		clear() {
 			this.isExploring = !1, this.sameLevelNodes = [], this.sameLevelIndex = 0, this.direction = null, this.visitedNodes.clear();
@@ -43130,7 +65005,7 @@ ${g$1("hints.firefox_clipboard_write")}`) : Error(g$1("alerts.couldNotCopyToClip
 		}
 	}, Qc$1 = class {
 		constructor() {
-			i(this, "isCreatingChart", !1), i(this, "numberOfNodes", 0), i(this, "direction", "right"), i(this, "pendingNodes", null);
+			i$1(this, "isCreatingChart", !1), i$1(this, "numberOfNodes", 0), i$1(this, "direction", "right"), i$1(this, "pendingNodes", null);
 		}
 		createNodes(n, r, a, o) {
 			if (o !== this.direction) {
@@ -45269,7 +67144,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		C.current = S;
 		let [w, T] = (0, import_react$78.useState)({
 			loaded: !1,
-			api: import("./dist-B0zBF_GF.js")
+			api: import("./dist-Dkz8xAVn.js")
 		});
 		(0, import_react$78.useEffect)(() => {
 			(async () => {
@@ -45425,7 +67300,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 	})).filter((n) => n.original !== void 0 && n.latest !== void 0), Ln$2 = (n, r, a, o, l, d, f, p = !0) => {
 		let m = o.get(a.id);
 		if (!m) return;
-		let [h, g] = [a.x + a.width / 2, a.y + a.height / 2], [_, v] = T$2(u(a.x, a.y), u(h, g), a.angle), y = n - _, x = r - v, [S, C] = T$2(u(n, r), u(h + y, g + x), -a.angle);
+		let [h, g] = [a.x + a.width / 2, a.y + a.height / 2], [_, v] = T$3(u(a.x, a.y), u(h, g), a.angle), y = n - _, x = r - v, [S, C] = T$3(u(n, r), u(h + y, g + x), -a.angle);
 		Y$2(m, {
 			x: S,
 			y: C
@@ -45850,7 +67725,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 			appState: a
 		});
 	}, v1 = L_, w1 = 10, __ = ({ accumulatedChange: n, instantChange: r, originalElements: a, originalElementsMap: o, shouldChangeByStepSize: l, nextValue: d, property: f, scene: p, originalAppState: m }) => {
-		let h = p.getNonDeletedElementsMap(), g = p.getNonDeletedElements(), _ = a[0], [v, y] = [_.x + _.width / 2, _.y + _.height / 2], [x, S] = T$2(u(_.x, _.y), u(v, y), _.angle);
+		let h = p.getNonDeletedElementsMap(), g = p.getNonDeletedElements(), _ = a[0], [v, y] = [_.x + _.width / 2, _.y + _.height / 2], [x, S] = T$3(u(_.x, _.y), u(v, y), _.angle);
 		if (m.croppingElementId === _.id) {
 			let n = h.get(_.id);
 			if (!n || !Ye$1(n) || !n.crop) return;
@@ -45887,7 +67762,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		let C = f === "x" ? n : 0, w = f === "y" ? n : 0;
 		Ln$2(f === "x" ? Math.round(l ? Oe$1(_.x + C, w1) : x + C) : x, f === "y" ? Math.round(l ? Oe$1(_.y + w, w1) : S + w) : S, _, h, g, p, o);
 	}, M_ = ({ property: n, element: r, elementsMap: a, scene: o, appState: l }) => {
-		let [d, f] = T$2(u(r.x, r.y), u(r.x + r.width / 2, r.y + r.height / 2), r.angle), p = To$1(n === "x" ? d : f, 2);
+		let [d, f] = T$3(u(r.x, r.y), u(r.x + r.width / 2, r.y + r.height / 2), r.angle), p = To$1(n === "x" ? d : f, 2);
 		if (l.croppingElementId === r.id && Ye$1(r) && r.crop) {
 			let a = UP(r);
 			a && (p = To$1(n === "x" ? a.x : a.y, 2));
@@ -45903,7 +67778,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		});
 	}, xg = M_, R_ = 10, N_ = (n, r, a, o, l, d, f, p) => {
 		for (let m = 0; m < o.length; m++) {
-			let h = l[m], [g, _] = [h.x + h.width / 2, h.y + h.height / 2], [v, y] = T$2(u(h.x, h.y), u(g, _), h.angle);
+			let h = l[m], [g, _] = [h.x + h.width / 2, h.y + h.height / 2], [v, y] = T$3(u(h.x, h.y), u(g, _), h.angle);
 			Ln$2(n === "x" ? Math.round(v + r) : v, n === "y" ? Math.round(y + a) : y, h, d, o, p, f, !1);
 		}
 	}, O_ = (n, r, a, o, l, d, f) => {
@@ -45911,7 +67786,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		for (let n = 0; n < a.length; n++) {
 			let r = a[n], p = o.get(r.id);
 			if (p && (!k$1(p) || !p.containerId)) {
-				let [n, a] = [p.x + p.width / 2, p.y + p.height / 2], [m, _] = T$2(u(p.x, p.y), u(n, a), p.angle);
+				let [n, a] = [p.x + p.width / 2, p.y + p.height / 2], [m, _] = T$3(u(p.x, p.y), u(n, a), p.angle);
 				Ln$2(m + h, _ + g, r, o, l, f, d, !1);
 			}
 		}
@@ -45926,7 +67801,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				} else {
 					let n = r[0]?.original, o = r[0]?.latest;
 					if (n && o && Pt(o, d)) {
-						let [r, o] = [n.x + n.width / 2, n.y + n.height / 2], [p, g] = T$2(u(n.x, n.y), u(r, o), n.angle);
+						let [r, o] = [n.x + n.width / 2, n.y + n.height / 2], [p, g] = T$3(u(n.x, n.y), u(r, o), n.angle);
 						Ln$2(d === "x" ? l : p, d === "y" ? l : g, n, m, h, f, a, !1);
 					}
 				}
@@ -45943,7 +67818,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				let [r, a] = $e$2(o);
 				return Math.round((n === "x" ? r : a) * 100) / 100;
 			}
-			let [l] = o, [d, f] = [l.x + l.width / 2, l.y + l.height / 2], [p, m] = T$2(u(l.x, l.y), u(d, f), l.angle);
+			let [l] = o, [d, f] = [l.x + l.width / 2, l.y + l.height / 2], [p, m] = T$3(u(l.x, l.y), u(d, f), l.angle);
 			return Math.round((n === "x" ? p : m) * 100) / 100;
 		}), [
 			o,
@@ -46875,9 +68750,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		};
 	}, Tg = class {
 		constructor() {
-			i(this, "excalidrawElements", /* @__PURE__ */ new Map()), i(this, "add", (n) => {
+			i$1(this, "excalidrawElements", /* @__PURE__ */ new Map()), i$1(this, "add", (n) => {
 				n && this.excalidrawElements.set(n.id, n);
-			}), i(this, "getElements", () => An$2(Array.from(this.excalidrawElements.values()))), i(this, "getElementsMap", () => tt$3(te$1(this.getElements()))), i(this, "getElement", (n) => this.excalidrawElements.get(n));
+			}), i$1(this, "getElements", () => An$2(Array.from(this.excalidrawElements.values()))), i$1(this, "getElementsMap", () => tt$3(te$1(this.getElements()))), i$1(this, "getElement", (n) => this.excalidrawElements.get(n));
 		}
 	}, Yi$1 = (n, r) => {
 		if (!n) return [];
@@ -47485,7 +69360,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		croppingElementId: n.croppingElementId
 	}), R5 = (n, r) => n.sceneNonce !== r.sceneNonce || n.scale !== r.scale || n.elementsMap !== r.elementsMap || n.visibleElements !== r.visibleElements ? !1 : Qt(Q1(n.appState), Q1(r.appState)) && Qt(n.renderConfig, r.renderConfig), Lg = import_react$87.memo(P5, R5), il$1 = class {
 		constructor(n) {
-			i(this, "scene"), i(this, "getRenderableElements", (() => {
+			i$1(this, "scene"), i$1(this, "getRenderableElements", (() => {
 				let n = ({ elementsMap: n, zoom: r, offsetLeft: a, offsetTop: o, scrollX: l, scrollY: d, height: f, width: p }) => {
 					let m = [];
 					for (let h of n.values()) kp$1(h, p, f, {
@@ -47602,7 +69477,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		})
 	}), nT = V5, Dd$1 = class {
 		constructor() {
-			i(this, "targets", /* @__PURE__ */ new WeakMap()), i(this, "rafIds", /* @__PURE__ */ new WeakMap());
+			i$1(this, "targets", /* @__PURE__ */ new WeakMap()), i$1(this, "rafIds", /* @__PURE__ */ new WeakMap());
 		}
 		register(n, r) {
 			this.targets.set(n, {
@@ -47648,7 +69523,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		}
 	}, An$1 = class {
 		constructor(n, r, a) {
-			this.animationFrameHandler = n, this.app = r, this.options = a, i(this, "currentTrail"), i(this, "pastTrails", []), i(this, "container"), i(this, "trailElement"), this.animationFrameHandler.register(this, this.onFrame.bind(this)), this.trailElement = document.createElementNS(re$2, "path");
+			this.animationFrameHandler = n, this.app = r, this.options = a, i$1(this, "currentTrail"), i$1(this, "pastTrails", []), i$1(this, "container"), i$1(this, "trailElement"), this.animationFrameHandler.register(this, this.onFrame.bind(this)), this.trailElement = document.createElementNS(re$2, "path");
 		}
 		get hasCurrentTrail() {
 			return !!this.currentTrail;
@@ -47708,7 +69583,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		}
 	}, Pd$1 = class {
 		constructor(n, r) {
-			this.animationFrameHandler = n, this.app = r, i(this, "localTrail"), i(this, "collabTrails", /* @__PURE__ */ new Map()), i(this, "container"), this.animationFrameHandler.register(this, this.onFrame.bind(this)), this.localTrail = new An$1(n, r, {
+			this.animationFrameHandler = n, this.app = r, i$1(this, "localTrail"), i$1(this, "collabTrails", /* @__PURE__ */ new Map()), i$1(this, "container"), this.animationFrameHandler.register(this, this.onFrame.bind(this)), this.localTrail = new An$1(n, r, {
 				...this.getTrailOptions(),
 				fill: () => "red"
 			});
@@ -48052,10 +69927,10 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 		initialScale: null
 	}, Ng = class n extends import_react$4.Component {
 		constructor(r) {
-			super(r), i(this, "canvas"), i(this, "interactiveCanvas", null), i(this, "rc"), i(this, "unmounted", !1), i(this, "actionManager"), i(this, "device", fT), i(this, "excalidrawContainerRef", import_react$4.createRef()), i(this, "scene"), i(this, "fonts"), i(this, "renderer"), i(this, "visibleElements"), i(this, "resizeObserver"), i(this, "nearestScrollableContainer"), i(this, "library"), i(this, "libraryItemsFromStorage"), i(this, "id"), i(this, "store"), i(this, "history"), i(this, "excalidrawContainerValue"), i(this, "files", {}), i(this, "imageCache", /* @__PURE__ */ new Map()), i(this, "iFrameRefs", /* @__PURE__ */ new Map()), i(this, "embedsValidationStatus", /* @__PURE__ */ new Map()), i(this, "initializedEmbeds", /* @__PURE__ */ new Set()), i(this, "elementsPendingErasure", /* @__PURE__ */ new Set()), i(this, "flowChartCreator", new Qc$1()), i(this, "flowChartNavigator", new qc$1()), i(this, "hitLinkElement"), i(this, "lastPointerDownEvent", null), i(this, "lastPointerUpEvent", null), i(this, "lastPointerMoveEvent", null), i(this, "lastPointerMoveCoords", null), i(this, "lastViewportPosition", {
+			super(r), i$1(this, "canvas"), i$1(this, "interactiveCanvas", null), i$1(this, "rc"), i$1(this, "unmounted", !1), i$1(this, "actionManager"), i$1(this, "device", fT), i$1(this, "excalidrawContainerRef", import_react$4.createRef()), i$1(this, "scene"), i$1(this, "fonts"), i$1(this, "renderer"), i$1(this, "visibleElements"), i$1(this, "resizeObserver"), i$1(this, "nearestScrollableContainer"), i$1(this, "library"), i$1(this, "libraryItemsFromStorage"), i$1(this, "id"), i$1(this, "store"), i$1(this, "history"), i$1(this, "excalidrawContainerValue"), i$1(this, "files", {}), i$1(this, "imageCache", /* @__PURE__ */ new Map()), i$1(this, "iFrameRefs", /* @__PURE__ */ new Map()), i$1(this, "embedsValidationStatus", /* @__PURE__ */ new Map()), i$1(this, "initializedEmbeds", /* @__PURE__ */ new Set()), i$1(this, "elementsPendingErasure", /* @__PURE__ */ new Set()), i$1(this, "flowChartCreator", new Qc$1()), i$1(this, "flowChartNavigator", new qc$1()), i$1(this, "hitLinkElement"), i$1(this, "lastPointerDownEvent", null), i$1(this, "lastPointerUpEvent", null), i$1(this, "lastPointerMoveEvent", null), i$1(this, "lastPointerMoveCoords", null), i$1(this, "lastViewportPosition", {
 				x: 0,
 				y: 0
-			}), i(this, "animationFrameHandler", new Dd$1()), i(this, "laserTrails", new Pd$1(this.animationFrameHandler, this)), i(this, "eraserTrail", new An$1(this.animationFrameHandler, this, {
+			}), i$1(this, "animationFrameHandler", new Dd$1()), i$1(this, "laserTrails", new Pd$1(this.animationFrameHandler, this)), i$1(this, "eraserTrail", new An$1(this.animationFrameHandler, this, {
 				streamline: .2,
 				size: 5,
 				keepHead: !0,
@@ -48064,9 +69939,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					return Math.min(ud$2(a), ud$2(r));
 				},
 				fill: () => this.state.theme === ke$1.LIGHT ? "rgba(0, 0, 0, 0.2)" : "rgba(255, 255, 255, 0.2)"
-			})), i(this, "onChangeEmitter", new hi$2()), i(this, "onPointerDownEmitter", new hi$2()), i(this, "onPointerUpEmitter", new hi$2()), i(this, "onUserFollowEmitter", new hi$2()), i(this, "onScrollChangeEmitter", new hi$2()), i(this, "missingPointerEventCleanupEmitter", new hi$2()), i(this, "onRemoveEventListenersEmitter", new hi$2()), i(this, "getEffectiveGridSize", () => Sb$1(this) ? this.state.gridSize : null), i(this, "updateEmbedValidationStatus", (n, r) => {
+			})), i$1(this, "onChangeEmitter", new hi$2()), i$1(this, "onPointerDownEmitter", new hi$2()), i$1(this, "onPointerUpEmitter", new hi$2()), i$1(this, "onUserFollowEmitter", new hi$2()), i$1(this, "onScrollChangeEmitter", new hi$2()), i$1(this, "missingPointerEventCleanupEmitter", new hi$2()), i$1(this, "onRemoveEventListenersEmitter", new hi$2()), i$1(this, "getEffectiveGridSize", () => Sb$1(this) ? this.state.gridSize : null), i$1(this, "updateEmbedValidationStatus", (n, r) => {
 				this.embedsValidationStatus.set(n.id, r), he$1.delete(n);
-			}), i(this, "updateEmbeddables", () => {
+			}), i$1(this, "updateEmbeddables", () => {
 				let n = /* @__PURE__ */ new Set(), r = !1;
 				this.scene.getNonDeletedElements().filter((a) => {
 					if (Bo$1(a)) {
@@ -48080,7 +69955,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				}), r && this.scene.triggerUpdate(), this.iFrameRefs.forEach((r, a) => {
 					n.has(a) || this.iFrameRefs.delete(a);
 				});
-			}), i(this, "getFrameNameDOMId", (n) => `${this.id}-frame-name-${n.id}`), i(this, "frameNameBoundsCache", {
+			}), i$1(this, "getFrameNameDOMId", (n) => `${this.id}-frame-name-${n.id}`), i$1(this, "frameNameBoundsCache", {
 				get: (n) => {
 					let r = this.frameNameBoundsCache._cache.get(n.id);
 					if (!r || r.zoom !== this.state.zoom.value || r.versionNonce !== n.versionNonce) {
@@ -48108,9 +69983,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					return r;
 				},
 				_cache: /* @__PURE__ */ new Map()
-			}), i(this, "resetEditingFrame", (n) => {
+			}), i$1(this, "resetEditingFrame", (n) => {
 				n && Y$2(n, { name: n.name?.trim() || null }), this.setState({ editingFrame: null });
-			}), i(this, "renderFrameNames", () => {
+			}), i$1(this, "renderFrameNames", () => {
 				if (!this.state.frameRendering.enabled || !this.state.frameRendering.name) return this.state.editingFrame && this.resetEditingFrame(null), null;
 				let n = this.state.theme === ke$1.DARK;
 				return this.scene.getNonDeletedFramesLikes().map((r) => {
@@ -48188,15 +70063,15 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						children: d
 					}, r.id);
 				});
-			}), i(this, "focusContainer", () => {
+			}), i$1(this, "focusContainer", () => {
 				this.excalidrawContainerRef.current?.focus();
-			}), i(this, "getSceneElementsIncludingDeleted", () => this.scene.getElementsIncludingDeleted()), i(this, "getSceneElements", () => this.scene.getNonDeletedElements()), i(this, "onInsertElements", (n) => {
+			}), i$1(this, "getSceneElementsIncludingDeleted", () => this.scene.getElementsIncludingDeleted()), i$1(this, "getSceneElements", () => this.scene.getNonDeletedElements()), i$1(this, "onInsertElements", (n) => {
 				this.addElementsFromPasteOrLibrary({
 					elements: n,
 					position: "center",
 					files: null
 				});
-			}), i(this, "onExportImage", async (n, r, a) => {
+			}), i$1(this, "onExportImage", async (n, r, a) => {
 				le$1("export", n, "ui");
 				let o = await vn$1(n, r, this.state, this.files, {
 					exportBackground: this.state.exportBackground,
@@ -48207,9 +70082,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					console.error(n), this.setState({ errorMessage: n.message });
 				});
 				this.state.exportEmbedScene && o && W2(o) && this.setState({ fileHandle: o });
-			}), i(this, "magicGenerations", /* @__PURE__ */ new Map()), i(this, "updateMagicGeneration", ({ frameElement: n, data: r }) => {
+			}), i$1(this, "magicGenerations", /* @__PURE__ */ new Map()), i$1(this, "updateMagicGeneration", ({ frameElement: n, data: r }) => {
 				r.status === "pending" ? Y$2(n, { customData: { generationData: void 0 } }, !1) : Y$2(n, { customData: { generationData: r } }, !1), this.magicGenerations.set(n.id, r), this.triggerRender();
-			}), i(this, "plugins", {}), i(this, "onMagicframeToolSelect", () => {
+			}), i$1(this, "plugins", {}), i$1(this, "onMagicframeToolSelect", () => {
 				let n = this.scene.getSelectedElements({ selectedElementIds: this.state.selectedElementIds });
 				if (n.length === 0) this.setActiveTool({ type: fn$2.magicframe }), le$1("ai", "tool-select (empty-selection)", "d2c");
 				else {
@@ -48237,7 +70112,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					}
 					this.onMagicFrameGenerate(a, "upstream");
 				}
-			}), i(this, "openEyeDropper", ({ type: n }) => {
+			}), i$1(this, "openEyeDropper", ({ type: n }) => {
 				st$1.set(Sr$1, {
 					swapPreviewOnAlt: !0,
 					colorPickerType: n === "stroke" ? "elementStroke" : "elementBackground",
@@ -48262,11 +70137,11 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					},
 					keepOpenOnAlt: !1
 				});
-			}), i(this, "dismissLinearEditor", () => {
+			}), i$1(this, "dismissLinearEditor", () => {
 				setTimeout(() => {
 					this.setState({ editingLinearElement: null });
 				});
-			}), i(this, "syncActionResult", Fe((n) => {
+			}), i$1(this, "syncActionResult", Fe((n) => {
 				if (this.unmounted || n === !1) return;
 				n.captureUpdate === dr$2.NEVER ? this.store.shouldUpdateSnapshot() : n.captureUpdate === dr$2.IMMEDIATELY && this.store.shouldCaptureIncrement();
 				let r = !1, a = null;
@@ -48290,23 +70165,23 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					}), r = !0;
 				}
 				!r && n.captureUpdate !== dr$2.EVENTUALLY && this.scene.triggerUpdate();
-			})), i(this, "onBlur", Fe(() => {
+			})), i$1(this, "onBlur", Fe(() => {
 				Mn$2 = !1, this.setState({ isBindingEnabled: !0 });
-			})), i(this, "onUnload", () => {
+			})), i$1(this, "onUnload", () => {
 				this.onBlur();
-			}), i(this, "disableEvent", (n) => {
+			}), i$1(this, "disableEvent", (n) => {
 				n.preventDefault();
-			}), i(this, "resetHistory", () => {
+			}), i$1(this, "resetHistory", () => {
 				this.history.clear();
-			}), i(this, "resetStore", () => {
+			}), i$1(this, "resetStore", () => {
 				this.store.clear();
-			}), i(this, "resetScene", Fe((n) => {
+			}), i$1(this, "resetScene", Fe((n) => {
 				this.scene.replaceAllElements([]), this.setState((r) => ({
 					...mt(),
 					isLoading: n?.resetLoadingState ? !1 : r.isLoading,
 					theme: this.state.theme
 				})), this.resetStore(), this.resetHistory();
-			})), i(this, "initializeScene", async () => {
+			})), i$1(this, "initializeScene", async () => {
 				"launchQueue" in window && "LaunchParams" in window && window.launchQueue.setConsumer(async (n) => {
 					if (!n.files.length) return;
 					let r = n.files[0], a = await r.getFile();
@@ -48348,8 +70223,8 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					captureUpdate: dr$2.NEVER
 				}), this.clearImageShapeCache(), this.fonts.loadSceneFonts().then((n) => {
 					this.fonts.onLoaded(n);
-				}), op$1(window.location.href) && this.scrollToContent(window.location.href, { animate: !1 });
-			}), i(this, "isMobileBreakpoint", (n, r) => n < 730 || r < 500 && n < 1e3), i(this, "refreshViewportBreakpoints", () => {
+				}), op$2(window.location.href) && this.scrollToContent(window.location.href, { animate: !1 });
+			}), i$1(this, "isMobileBreakpoint", (n, r) => n < 730 || r < 500 && n < 1e3), i$1(this, "refreshViewportBreakpoints", () => {
 				if (!this.excalidrawContainerRef.current) return;
 				let { clientWidth: n, clientHeight: r } = document.body, a = this.device.viewport, o = Ig$1(a, {
 					isLandscape: n > r,
@@ -48359,7 +70234,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					...this.device,
 					viewport: o
 				}, !0);
-			}), i(this, "refreshEditorBreakpoints", () => {
+			}), i$1(this, "refreshEditorBreakpoints", () => {
 				let n = this.excalidrawContainerRef.current;
 				if (!n) return;
 				let { width: r, height: a } = n.getBoundingClientRect(), o = this.props.UIOptions.dockedSidebarBreakpoint == null ? _E : this.props.UIOptions.dockedSidebarBreakpoint, l = this.device.editor, d = Ig$1(l, {
@@ -48370,25 +70245,25 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					...this.device,
 					editor: d
 				}, !0);
-			}), i(this, "onResize", Fe(() => {
+			}), i$1(this, "onResize", Fe(() => {
 				this.scene.getElementsIncludingDeleted().forEach((n) => he$1.delete(n)), this.refreshViewportBreakpoints(), this.updateDOMRect(), cE || this.refreshEditorBreakpoints(), this.setState({});
-			})), i(this, "onFullscreenChange", () => {
+			})), i$1(this, "onFullscreenChange", () => {
 				!document.fullscreenElement && this.state.activeEmbeddable?.state === "active" && this.setState({ activeEmbeddable: null });
-			}), i(this, "renderInteractiveSceneCallback", ({ atLeastOneVisibleElement: n, scrollBars: r, elementsMap: a }) => {
+			}), i$1(this, "renderInteractiveSceneCallback", ({ atLeastOneVisibleElement: n, scrollBars: r, elementsMap: a }) => {
 				r && (Pg = r);
 				let o = this.state.editingTextElement ? !1 : !n && a.size > 0;
 				this.state.scrolledOutside !== o && this.setState({ scrolledOutside: o }), this.scheduleImageRefresh();
-			}), i(this, "onScroll", $o$1(() => {
+			}), i$1(this, "onScroll", $o$1(() => {
 				let { offsetTop: n, offsetLeft: r } = this.getCanvasOffsets();
 				this.setState((a) => a.offsetLeft === r && a.offsetTop === n ? null : {
 					offsetTop: n,
 					offsetLeft: r
 				});
-			}, 100)), i(this, "onCut", Fe((n) => {
+			}, 100)), i$1(this, "onCut", Fe((n) => {
 				!this.excalidrawContainerRef.current?.contains(document.activeElement) || ag$2(n.target) || (this.actionManager.executeAction(yc$1, "keyboard", n), n.preventDefault(), n.stopPropagation());
-			})), i(this, "onCopy", Fe((n) => {
+			})), i$1(this, "onCopy", Fe((n) => {
 				!this.excalidrawContainerRef.current?.contains(document.activeElement) || ag$2(n.target) || (this.actionManager.executeAction(_i$2, "keyboard", n), n.preventDefault(), n.stopPropagation());
-			})), i(this, "onTouchStart", (r) => {
+			})), i$1(this, "onTouchStart", (r) => {
 				if (_s$1 && r.preventDefault(), !al$1) {
 					al$1 = !0, clearTimeout(Mg), Mg = window.setTimeout(n.resetTapTwice, 300);
 					return;
@@ -48404,12 +70279,12 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					selectedElementIds: Ha$2({}, this.state),
 					activeEmbeddable: null
 				});
-			}), i(this, "onTouchEnd", (n) => {
+			}), i$1(this, "onTouchEnd", (n) => {
 				this.resetContextMenuTimer(), n.touches.length > 0 ? this.setState({
 					previousSelectedElementIds: {},
 					selectedElementIds: Ha$2(this.state.previousSelectedElementIds, this.state)
 				}) : fe$1.pointers.clear();
-			}), i(this, "pasteFromClipboard", Fe(async (n) => {
+			}), i$1(this, "pasteFromClipboard", Fe(async (n) => {
 				let r = !!Rd, a = document.activeElement, o = this.excalidrawContainerRef.current?.contains(a);
 				if (n && !o) return;
 				let l = document.elementFromPoint(this.lastViewportPosition.x, this.lastViewportPosition.y);
@@ -48461,7 +70336,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					});
 				} else if (m.text) {
 					if (m.text && lT(m.text)) {
-						let n = await import("./dist-B0zBF_GF.js");
+						let n = await import("./dist-Dkz8xAVn.js");
 						try {
 							let { elements: r, files: a = {} } = await n.parseMermaidToExcalidraw(m.text), o = Yi$1(r, { regenerateIds: !0 });
 							this.addElementsFromPasteOrLibrary({
@@ -48491,7 +70366,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					this.addTextFromPaste(m.text, r);
 				}
 				this.setActiveTool({ type: "selection" }), n?.preventDefault();
-			})), i(this, "addElementsFromPasteOrLibrary", (n) => {
+			})), i$1(this, "addElementsFromPasteOrLibrary", (n) => {
 				let r = Mp$2(n.elements, null, void 0), [a, o, l, d] = $e$2(r), f = dt$3(a, l) / 2, p = dt$3(o, d) / 2, { x: m, y: h } = Dn$2({
 					clientX: typeof n.position == "object" ? n.position.clientX : n.position === "cursor" ? this.lastViewportPosition.x : this.state.width / 2 + this.state.offsetLeft,
 					clientY: typeof n.position == "object" ? n.position.clientY : n.position === "cursor" ? this.lastViewportPosition.y : this.state.height / 2 + this.state.offsetTop
@@ -48527,17 +70402,17 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					fitToContent: !0,
 					canvasOffsets: this.getEditorUIOffsets()
 				});
-			}), i(this, "setAppState", (n, r) => {
+			}), i$1(this, "setAppState", (n, r) => {
 				this.setState(n, r);
-			}), i(this, "removePointer", (n) => {
+			}), i$1(this, "removePointer", (n) => {
 				Ur$2 && this.resetContextMenuTimer(), fe$1.pointers.delete(n.pointerId);
-			}), i(this, "toggleLock", (n = "ui") => {
+			}), i$1(this, "toggleLock", (n = "ui") => {
 				this.state.activeTool.locked || le$1("toolbar", "toggleLock", `${n} (${this.device.editor.isMobile ? "mobile" : "desktop"})`), this.setState((n) => ({ activeTool: {
 					...n.activeTool,
 					...$r$2(this.state, n.activeTool.locked ? { type: "selection" } : n.activeTool),
 					locked: !n.activeTool.locked
 				} }));
-			}), i(this, "updateFrameRendering", (n) => {
+			}), i$1(this, "updateFrameRendering", (n) => {
 				this.setState((r) => {
 					let a = typeof n == "function" ? n(r.frameRendering) : n;
 					return { frameRendering: {
@@ -48547,28 +70422,28 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						outline: a?.outline ?? r.frameRendering.outline
 					} };
 				});
-			}), i(this, "togglePenMode", (n) => {
+			}), i$1(this, "togglePenMode", (n) => {
 				this.setState((r) => ({
 					penMode: n ?? !r.penMode,
 					penDetected: !0
 				}));
-			}), i(this, "onHandToolToggle", () => {
+			}), i$1(this, "onHandToolToggle", () => {
 				this.actionManager.executeAction(Zy);
-			}), i(this, "zoomCanvas", (n) => {
+			}), i$1(this, "zoomCanvas", (n) => {
 				this.setState({ ...Qo$1({
 					viewportX: this.state.width / 2 + this.state.offsetLeft,
 					viewportY: this.state.height / 2 + this.state.offsetTop,
 					nextZoom: Oa$1(n)
 				}, this.state) });
-			}), i(this, "cancelInProgressAnimation", null), i(this, "scrollToContent", (n = this.scene.getNonDeletedElements(), r) => {
+			}), i$1(this, "cancelInProgressAnimation", null), i$1(this, "scrollToContent", (n = this.scene.getNonDeletedElements(), r) => {
 				if (typeof n == "string") {
 					let a;
-					if (a = op$1(n) ? GO(n) : n, a) {
+					if (a = op$2(n) ? GO(n) : n, a) {
 						let o = this.scene.getElementsFromId(a);
 						o?.length ? this.scrollToContent(o, {
 							fitToContent: r?.fitToContent ?? !0,
 							animate: r?.animate ?? !0
-						}) : op$1(n) && this.setState({ toast: {
+						}) : op$2(n) && this.setState({ toast: {
 							message: g$1("elementLink.notFound"),
 							duration: 3e3,
 							closable: !0
@@ -48634,13 +70509,13 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					scrollY: d,
 					zoom: o
 				});
-			}), i(this, "maybeUnfollowRemoteUser", () => {
+			}), i$1(this, "maybeUnfollowRemoteUser", () => {
 				this.state.userToFollow && this.setState({ userToFollow: null });
-			}), i(this, "translateCanvas", (n) => {
+			}), i$1(this, "translateCanvas", (n) => {
 				this.cancelInProgressAnimation?.(), this.maybeUnfollowRemoteUser(), this.setState(n);
-			}), i(this, "setToast", (n) => {
+			}), i$1(this, "setToast", (n) => {
 				this.setState({ toast: n });
-			}), i(this, "restoreFileFromShare", async () => {
+			}), i$1(this, "restoreFileFromShare", async () => {
 				try {
 					let n = await caches.open("web-share-target"), r = await n.match("shared-file");
 					if (r) {
@@ -48650,10 +70525,10 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				} catch (n) {
 					this.setState({ errorMessage: n.message });
 				}
-			}), i(this, "addFiles", Fe((n) => {
+			}), i$1(this, "addFiles", Fe((n) => {
 				let { addedFiles: r } = this.addMissingFiles(n);
 				this.clearImageShapeCache(r), this.scene.triggerUpdate(), this.addNewImagesToImageCache();
-			})), i(this, "addMissingFiles", (n, r = !1) => {
+			})), i$1(this, "addMissingFiles", (n, r = !1) => {
 				let a = r ? {} : { ...this.files }, o = {}, l = Array.isArray(n) ? n : Object.values(n);
 				for (let n of l) if (!a[n.id] && (o[n.id] = n, a[n.id] = n, n.mimeType === H$2.svg)) try {
 					let r = NY(LO(BY(n.dataURL)), H$2.svg);
@@ -48662,23 +70537,23 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					console.error(n);
 				}
 				return this.files = a, { addedFiles: o };
-			}), i(this, "updateScene", Fe((n) => {
+			}), i$1(this, "updateScene", Fe((n) => {
 				let r = An$2(n.elements ?? []);
 				if (n.captureUpdate && n.captureUpdate !== dr$2.EVENTUALLY) {
 					let a = this.store.snapshot.appState, o = this.store.snapshot.elements, l = n.appState ? Object.assign({}, a, n.appState) : a, d = n.elements ? this.store.filterUncomittedElements(this.scene.getElementsMapIncludingDeleted(), te$1(r)) : o;
 					n.captureUpdate === dr$2.IMMEDIATELY ? this.store.captureIncrement(d, l) : n.captureUpdate === dr$2.NEVER && this.store.updateSnapshot(d, l);
 				}
 				n.appState && this.setState(n.appState), n.elements && this.scene.replaceAllElements(r), n.collaborators && this.setState({ collaborators: n.collaborators });
-			})), i(this, "triggerRender", (n) => {
+			})), i$1(this, "triggerRender", (n) => {
 				n === !0 ? this.scene.triggerUpdate() : this.setState({});
-			}), i(this, "toggleSidebar", ({ name: n, tab: r, force: a }) => {
+			}), i$1(this, "toggleSidebar", ({ name: n, tab: r, force: a }) => {
 				let o;
 				o = a === void 0 ? this.state.openSidebar?.name === n && this.state.openSidebar?.tab === r ? null : n : a ? n : null;
 				let l = o ? { name: o } : null;
 				return l && r && (l.tab = r), this.setState({ openSidebar: l }), !!o;
-			}), i(this, "updateCurrentCursorPosition", Fe((n) => {
+			}), i$1(this, "updateCurrentCursorPosition", Fe((n) => {
 				this.lastViewportPosition.x = n.clientX, this.lastViewportPosition.y = n.clientY;
-			})), i(this, "getEditorUIOffsets", () => {
+			})), i$1(this, "getEditorUIOffsets", () => {
 				let n = this.excalidrawContainerRef?.current?.querySelector(".App-toolbar")?.getBoundingClientRect()?.bottom ?? 0, r = this.excalidrawContainerRef?.current?.querySelector(".sidebar")?.getBoundingClientRect(), a = this.excalidrawContainerRef?.current?.querySelector(".App-menu__left")?.getBoundingClientRect(), o = 16;
 				return qo$1().rtl ? {
 					top: n + 16,
@@ -48691,7 +70566,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					bottom: 16,
 					left: Math.max(a?.right ?? 0, 0) + 16
 				};
-			}), i(this, "onKeyDown", Fe((n) => {
+			}), i$1(this, "onKeyDown", Fe((n) => {
 				if ("Proxy" in window && (!n.shiftKey && /^[A-Z]$/.test(n.key) || n.shiftKey && /^[a-z]$/.test(n.key)) && (n = new Proxy(n, { get(r, a) {
 					let o = r[a];
 					return typeof o == "function" ? o.bind(r) : a === "key" ? n.shiftKey ? r.key.toUpperCase() : r.key.toLowerCase() : o;
@@ -48829,7 +70704,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				n[Q$2.CTRL_OR_CMD] && (n.key === Q$2.BACKSPACE || n.key === Q$2.DELETE) && st$1.set(In$1, "clearCanvas");
 				let r = n.key.toLocaleLowerCase(), a = r === Q$2.S && n.shiftKey, o = n.key === Q$2.I || r === Q$2.G && n.shiftKey;
 				(a || o) && this.openEyeDropper({ type: a ? "stroke" : "background" });
-			})), i(this, "onKeyUp", Fe((n) => {
+			})), i$1(this, "onKeyUp", Fe((n) => {
 				if (n.key === Q$2.SPACE && (this.state.viewModeEnabled || this.state.openDialog?.name === "elementLinkSelector" ? Jb$1(this.interactiveCanvas, mo$1.GRAB) : this.state.activeTool.type === "selection" ? Hb$1(this.interactiveCanvas) : ($2(this.interactiveCanvas, this.state), this.setState({
 					selectedElementIds: Ha$2({}, this.state),
 					selectedGroupIds: {},
@@ -48850,7 +70725,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						canvasOffsets: this.getEditorUIOffsets()
 					})), this.flowChartCreator.clear(), this.syncActionResult({ captureUpdate: dr$2.IMMEDIATELY });
 				}
-			})), i(this, "isToolSupported", (n) => this.props.UIOptions.tools?.[n] !== !1), i(this, "setActiveTool", (n) => {
+			})), i$1(this, "isToolSupported", (n) => this.props.UIOptions.tools?.[n] !== !1), i$1(this, "setActiveTool", (n) => {
 				if (!this.isToolSupported(n.type)) {
 					console.warn(`"${n.type}" tool is disabled via "UIOptions.canvasActions.tools.${n.type}"`);
 					return;
@@ -48879,18 +70754,18 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						...a
 					};
 				});
-			}), i(this, "setOpenDialog", (n) => {
+			}), i$1(this, "setOpenDialog", (n) => {
 				this.setState({ openDialog: n });
-			}), i(this, "setCursor", (n) => {
+			}), i$1(this, "setCursor", (n) => {
 				Jb$1(this.interactiveCanvas, n);
-			}), i(this, "resetCursor", () => {
+			}), i$1(this, "resetCursor", () => {
 				Hb$1(this.interactiveCanvas);
-			}), i(this, "isTouchScreenMultiTouchGesture", () => fe$1.pointers.size >= 2), i(this, "getName", () => this.state.name || this.props.name || `${g$1("labels.untitled")}-${ng$2()}`), i(this, "onGestureStart", Fe((n) => {
+			}), i$1(this, "isTouchScreenMultiTouchGesture", () => fe$1.pointers.size >= 2), i$1(this, "getName", () => this.state.name || this.props.name || `${g$1("labels.untitled")}-${ng$2()}`), i$1(this, "onGestureStart", Fe((n) => {
 				n.preventDefault(), this.isTouchScreenMultiTouchGesture() && this.setState({
 					selectedElementIds: Ha$2({}, this.state),
 					activeEmbeddable: null
 				}), fe$1.initialScale = this.state.zoom.value;
-			})), i(this, "onGestureChange", Fe((n) => {
+			})), i$1(this, "onGestureChange", Fe((n) => {
 				if (n.preventDefault(), this.isTouchScreenMultiTouchGesture()) return;
 				let r = fe$1.initialScale;
 				r && this.setState((a) => ({ ...Qo$1({
@@ -48898,12 +70773,12 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					viewportY: this.lastViewportPosition.y,
 					nextZoom: Oa$1(r * n.scale)
 				}, a) }));
-			})), i(this, "onGestureEnd", Fe((n) => {
+			})), i$1(this, "onGestureEnd", Fe((n) => {
 				n.preventDefault(), this.isTouchScreenMultiTouchGesture() && this.setState({
 					previousSelectedElementIds: {},
 					selectedElementIds: Ha$2(this.state.previousSelectedElementIds, this.state)
 				}), fe$1.initialScale = null;
-			})), i(this, "startTextEditing", ({ sceneX: n, sceneY: r, insertAtParentCenter: a = !0, container: o, autoEdit: l = !0 }) => {
+			})), i$1(this, "startTextEditing", ({ sceneX: n, sceneY: r, insertAtParentCenter: a = !0, container: o, autoEdit: l = !0 }) => {
 				let d = !1, f = a && this.getTextWysiwygSnappedToCenterPosition(n, r, this.state, o);
 				o && f && (oe$3(o, this.scene.getNonDeletedElementsMap()) || (d = !0));
 				let p = null, m = this.scene.getSelectedElements(this.state);
@@ -48954,11 +70829,11 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					newElement: y,
 					multiElement: null
 				});
-			}), i(this, "startImageCropping", (n) => {
+			}), i$1(this, "startImageCropping", (n) => {
 				this.store.shouldCaptureIncrement(), this.setState({ croppingElementId: n.id });
-			}), i(this, "finishImageCropping", () => {
+			}), i$1(this, "finishImageCropping", () => {
 				this.state.croppingElementId && (this.store.shouldCaptureIncrement(), this.setState({ croppingElementId: null }));
-			}), i(this, "handleCanvasDoubleClick", (n) => {
+			}), i$1(this, "handleCanvasDoubleClick", (n) => {
 				if (this.state.multiElement || this.state.activeTool.type !== "selection") return;
 				let r = this.scene.getSelectedElements(this.state), { x: a, y: o } = Dn$2(n, this.state);
 				if (r.length === 1 && ae$4(r[0])) {
@@ -49039,13 +70914,13 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						container: l
 					});
 				}
-			}), i(this, "getElementLinkAtPosition", (n, r) => {
+			}), i$1(this, "getElementLinkAtPosition", (n, r) => {
 				let a = this.scene.getNonDeletedElements(), o = -1;
 				for (let l = a.length - 1; l >= 0; l--) {
 					let d = a[l];
 					if (r && d.id === r.id && (o = l), d.link && l >= o && BO(d, this.scene.getNonDeletedElementsMap(), this.state, u(n.x, n.y), this.device.editor.isMobile)) return d;
 				}
-			}), i(this, "redirectToLink", (n, r) => {
+			}), i$1(this, "redirectToLink", (n, r) => {
 				let a = ie$2(u(this.lastPointerDownEvent.clientX, this.lastPointerDownEvent.clientY), u(this.lastPointerUpEvent.clientX, this.lastPointerUpEvent.clientY));
 				if (!this.hitLinkElement || a > 10) return;
 				let o = Dn$2(this.lastPointerDownEvent, this.state), l = this.scene.getNonDeletedElementsMap(), d = BO(this.hitLinkElement, l, this.state, u(o.x, o.y), this.device.editor.isMobile), f = Dn$2(this.lastPointerUpEvent, this.state), p = BO(this.hitLinkElement, l, this.state, u(f.x, f.y), this.device.editor.isMobile);
@@ -49064,10 +70939,10 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						}
 					}
 				}
-			}), i(this, "getTopLayerFrameAtSceneCoords", (n) => {
+			}), i$1(this, "getTopLayerFrameAtSceneCoords", (n) => {
 				let r = this.scene.getNonDeletedElementsMap(), a = this.scene.getNonDeletedFramesLikes().filter((a) => mH(n, a, r));
 				return a.length ? a[a.length - 1] : null;
-			}), i(this, "handleCanvasPointerMove", (n) => {
+			}), i$1(this, "handleCanvasPointerMove", (n) => {
 				this.savePointer(n.clientX, n.clientY, this.state.cursorButton), this.lastPointerMoveEvent = n.nativeEvent, fe$1.pointers.has(n.pointerId) && fe$1.pointers.set(n.pointerId, {
 					x: n.clientX,
 					y: n.clientY
@@ -49155,7 +71030,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					editingGroupId: n.editingGroupId,
 					selectedElementIds: { [m.id]: !0 }
 				}, this.scene.getNonDeletedElements(), n, this).selectedElementIds) })) : this.state.openDialog?.name === "elementLinkSelector" && !m && this.setState((n) => ({ hoveredElementIds: Dg$1(n.hoveredElementIds, {}) })));
-			}), i(this, "handleEraser", (n, r, a) => {
+			}), i$1(this, "handleEraser", (n, r, a) => {
 				this.eraserTrail.addPointToPath(a.x, a.y);
 				let o = !1, l = /* @__PURE__ */ new Set(), d = this.scene.getNonDeletedElements(), f = (r) => {
 					for (let a of r) {
@@ -49179,9 +71054,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					for (let r of this.scene.getNonDeletedElements()) Ne$1(r) && (this.elementsPendingErasure.has(r.id) || this.elementsPendingErasure.has(r.containerId)) && (n.altKey ? (this.elementsPendingErasure.delete(r.id), this.elementsPendingErasure.delete(r.containerId)) : (this.elementsPendingErasure.add(r.id), this.elementsPendingErasure.add(r.containerId)));
 					this.elementsPendingErasure = new Set(this.elementsPendingErasure), this.triggerRender();
 				}
-			}), i(this, "handleTouchMove", (n) => {
+			}), i$1(this, "handleTouchMove", (n) => {
 				sl$1 = !0;
-			}), i(this, "handleCanvasPointerDown", (n) => {
+			}), i$1(this, "handleCanvasPointerDown", (n) => {
 				let r = n.target;
 				if (r.setPointerCapture && r.setPointerCapture(n.pointerId), this.maybeCleanupAfterMissingPointerUp(n.nativeEvent), this.maybeUnfollowRemoteUser(), this.state.searchMatches && (this.setState((n) => ({ searchMatches: n.searchMatches.map((n) => ({
 					...n,
@@ -49254,7 +71129,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				this.props?.onPointerDown?.(this.state.activeTool, o), this.onPointerDownEmitter.trigger(this.state.activeTool, o, n), this.state.activeTool.type === "eraser" && this.eraserTrail.startPath(o.lastCoords.x, o.lastCoords.y);
 				let l = this.onPointerMoveFromPointerDownHandler(o), d = this.onPointerUpFromPointerDownHandler(o), f = this.onKeyDownFromPointerDownHandler(o), p = this.onKeyUpFromPointerDownHandler(o);
 				this.missingPointerEventCleanupEmitter.once((r) => d(r || n.nativeEvent)), (!this.state.viewModeEnabled || this.state.activeTool.type === "laser") && (window.addEventListener("pointermove", l), window.addEventListener("pointerup", d), window.addEventListener("keydown", f), window.addEventListener("keyup", p), o.eventListeners.onMove = l, o.eventListeners.onUp = d, o.eventListeners.onKeyUp = p, o.eventListeners.onKeyDown = f);
-			}), i(this, "handleCanvasPointerUp", (n) => {
+			}), i$1(this, "handleCanvasPointerUp", (n) => {
 				this.removePointer(n), this.lastPointerUpEvent = n;
 				let r = Dn$2({
 					clientX: n.clientX,
@@ -49275,15 +71150,15 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					activeEmbeddable: null,
 					selectedElementIds: {}
 				});
-			}), i(this, "maybeOpenContextMenuAfterPointerDownOnTouchDevices", (n) => {
+			}), i$1(this, "maybeOpenContextMenuAfterPointerDownOnTouchDevices", (n) => {
 				n.pointerType === "touch" && (sl$1 = !1, Ur$2 ? sl$1 = !0 : Ur$2 = window.setTimeout(() => {
 					Ur$2 = 0, sl$1 || this.handleCanvasContextMenu(n);
 				}, 500));
-			}), i(this, "resetContextMenuTimer", () => {
+			}), i$1(this, "resetContextMenuTimer", () => {
 				clearTimeout(Ur$2), Ur$2 = 0, sl$1 = !1;
-			}), i(this, "maybeCleanupAfterMissingPointerUp", (n) => {
+			}), i$1(this, "maybeCleanupAfterMissingPointerUp", (n) => {
 				cl$1?.(), this.missingPointerEventCleanupEmitter.trigger(n).clear();
-			}), i(this, "handleCanvasPanUsingWheelOrSpaceDrag", (n) => {
+			}), i$1(this, "handleCanvasPanUsingWheelOrSpaceDrag", (n) => {
 				if (!(fe$1.pointers.size <= 1 && (n.button === mE.WHEEL || n.button === mE.MAIN && Mn$2 || nd$2(this.state) || this.state.viewModeEnabled))) return !1;
 				ll$1 = !0, this.focusContainer(), this.state.editingTextElement || n.preventDefault();
 				let r = !1, a = /Linux/.test(window.navigator.platform);
@@ -49309,14 +71184,14 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					cl$1 = null, ll$1 = !1, Mn$2 || (this.state.viewModeEnabled ? Jb$1(this.interactiveCanvas, mo$1.GRAB) : $2(this.interactiveCanvas, this.state)), this.setState({ cursorButton: "up" }), this.savePointer(n.clientX, n.clientY, "up"), window.removeEventListener("pointermove", d), window.removeEventListener("pointerup", f), window.removeEventListener("blur", f), d.flush();
 				});
 				return window.addEventListener("blur", f), window.addEventListener("pointermove", d, { passive: !0 }), window.addEventListener("pointerup", f), !0;
-			}), i(this, "clearSelectionIfNotUsingSelection", () => {
+			}), i$1(this, "clearSelectionIfNotUsingSelection", () => {
 				this.state.activeTool.type !== "selection" && this.setState({
 					selectedElementIds: Ha$2({}, this.state),
 					selectedGroupIds: {},
 					editingGroupId: null,
 					activeEmbeddable: null
 				});
-			}), i(this, "handleSelectionOnPointerDown", (n, r) => {
+			}), i$1(this, "handleSelectionOnPointerDown", (n, r) => {
 				if (this.state.activeTool.type === "selection") {
 					let a = this.scene.getNonDeletedElements(), o = this.scene.getNonDeletedElementsMap(), l = this.scene.getSelectedElements(this.state);
 					if (l.length === 1 && !this.state.editingLinearElement && !X$4(l[0]) && !(this.state.selectedLinearElement && this.state.selectedLinearElement.hoverPointIndex !== -1)) {
@@ -49380,7 +71255,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					}
 				}
 				return !1;
-			}), i(this, "handleTextOnPointerDown", (n, r) => {
+			}), i$1(this, "handleTextOnPointerDown", (n, r) => {
 				if (this.state.editingTextElement) return;
 				let a = r.origin.x, o = r.origin.y, l = this.getElementAtPosition(a, o, { includeBoundTextElement: !0 }), d = this.getTextBindableContainerAtPosition(a, o);
 				bn$3(l) && (d = l, a = l.x + l.width / 2, o = l.y + l.height / 2), this.startTextEditing({
@@ -49390,7 +71265,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					container: d,
 					autoEdit: !1
 				}), Hb$1(this.interactiveCanvas), this.state.activeTool.locked || this.setState({ activeTool: $r$2(this.state, { type: "selection" }) });
-			}), i(this, "handleFreeDrawElementOnPointerDown", (n, r, a) => {
+			}), i$1(this, "handleFreeDrawElementOnPointerDown", (n, r, a) => {
 				let [o, l] = Vr$2(a.origin.x, a.origin.y, null), d = this.getTopLayerFrameAtSceneCoords({
 					x: o,
 					y: l
@@ -49422,7 +71297,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					startBoundElement: m,
 					suggestedBindings: []
 				});
-			}), i(this, "insertIframeElement", ({ sceneX: n, sceneY: r, width: a, height: o }) => {
+			}), i$1(this, "insertIframeElement", ({ sceneX: n, sceneY: r, width: a, height: o }) => {
 				let [l, d] = Vr$2(n, r, this.lastPointerDownEvent?.[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), f = qB({
 					type: "iframe",
 					x: l,
@@ -49440,7 +71315,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					height: o
 				});
 				return this.scene.insertElement(f), f;
-			}), i(this, "insertEmbeddableElement", ({ sceneX: n, sceneY: r, link: a }) => {
+			}), i$1(this, "insertEmbeddableElement", ({ sceneX: n, sceneY: r, link: a }) => {
 				let [o, l] = Vr$2(n, r, this.lastPointerDownEvent?.[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), d = V2(a);
 				if (!d) return;
 				d.error instanceof URIError && this.setToast({
@@ -49465,7 +71340,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					link: a
 				});
 				return this.scene.insertElement(f), f;
-			}), i(this, "createImageElement", ({ sceneX: n, sceneY: r, addToFrameUnderCursor: a = !0 }) => {
+			}), i$1(this, "createImageElement", ({ sceneX: n, sceneY: r, addToFrameUnderCursor: a = !0 }) => {
 				let [o, l] = Vr$2(n, r, this.lastPointerDownEvent?.[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), d = a ? this.getTopLayerFrameAtSceneCoords({
 					x: o,
 					y: l
@@ -49485,7 +71360,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					locked: !1,
 					frameId: d ? d.id : null
 				});
-			}), i(this, "handleLinearElementOnPointerDown", (n, r, a) => {
+			}), i$1(this, "handleLinearElementOnPointerDown", (n, r, a) => {
 				if (this.state.multiElement) {
 					let { multiElement: n } = this.state;
 					if (n.type === "line" && Kt(n.points, this.state.zoom.value)) {
@@ -49553,7 +71428,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						suggestedBindings: []
 					});
 				}
-			}), i(this, "createGenericElementOnPointerDown", (n, r) => {
+			}), i$1(this, "createGenericElementOnPointerDown", (n, r) => {
 				let [a, o] = Vr$2(r.origin.x, r.origin.y, this.lastPointerDownEvent?.[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), l = this.getTopLayerFrameAtSceneCoords({
 					x: a,
 					y: o
@@ -49581,7 +71456,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					multiElement: null,
 					newElement: f
 				}));
-			}), i(this, "createFrameElementOnPointerDown", (n, r) => {
+			}), i$1(this, "createFrameElementOnPointerDown", (n, r) => {
 				let [a, o] = Vr$2(n.origin.x, n.origin.y, this.lastPointerDownEvent?.[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), l = {
 					x: a,
 					y: o,
@@ -49593,12 +71468,12 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					multiElement: null,
 					newElement: d
 				});
-			}), i(this, "restoreReadyToEraseElements", () => {
+			}), i$1(this, "restoreReadyToEraseElements", () => {
 				this.elementsPendingErasure = /* @__PURE__ */ new Set(), this.triggerRender();
-			}), i(this, "eraseElements", () => {
+			}), i$1(this, "eraseElements", () => {
 				let n = !1, r = this.scene.getElementsIncludingDeleted().map((r) => this.elementsPendingErasure.has(r.id) || r.frameId && this.elementsPendingErasure.has(r.frameId) || Ne$1(r) && this.elementsPendingErasure.has(r.containerId) ? (n = !0, vt$1(r, { isDeleted: !0 })) : r);
 				this.elementsPendingErasure = /* @__PURE__ */ new Set(), n && (this.store.shouldCaptureIncrement(), this.scene.replaceAllElements(r));
-			}), i(this, "initializeImage", async ({ imageFile: n, imageElement: r, showCursorImagePreview: a = !1 }) => {
+			}), i$1(this, "initializeImage", async ({ imageFile: n, imageElement: r, showCursorImagePreview: a = !1 }) => {
 				if (!Hi$2(n)) throw Error(g$1("errors.unsupportedFileType"));
 				let o = n.type;
 				if (Jb$1(this.interactiveCanvas, "wait"), o === H$2.svg) try {
@@ -49638,7 +71513,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						a || Hb$1(this.interactiveCanvas);
 					}
 				});
-			}), i(this, "insertImageElement", async (n, r, a) => {
+			}), i$1(this, "insertImageElement", async (n, r, a) => {
 				if (!this.isToolSupported("image")) {
 					this.setState({ errorMessage: g$1("errors.imageToolNotSupported") });
 					return;
@@ -49653,7 +71528,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 				} catch (r) {
 					return Y$2(n, { isDeleted: !0 }), this.actionManager.executeAction(Ht$1), this.setState({ errorMessage: r.message || g$1("errors.imageInsertError") }), null;
 				}
-			}), i(this, "setImagePreviewCursor", async (n) => {
+			}), i$1(this, "setImagePreviewCursor", async (n) => {
 				let r;
 				try {
 					r = await _Y(n, { maxWidthOrHeight: 96 });
@@ -49668,7 +71543,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					l.height = r, l.width = o, l.getContext("2d").drawImage(n, 0, 0, o, r), a = l.toDataURL(H$2.svg);
 				}
 				this.state.pendingImageElementId && Jb$1(this.interactiveCanvas, `url(${a}) 4 4, auto`);
-			}), i(this, "onImageAction", async ({ insertOnCanvasDirectly: n }) => {
+			}), i$1(this, "onImageAction", async ({ insertOnCanvasDirectly: n }) => {
 				try {
 					let { x: r, y: a } = Dn$2({
 						clientX: this.state.width / 2 + this.state.offsetLeft,
@@ -49695,7 +71570,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						this.actionManager.executeAction(Ht$1);
 					});
 				}
-			}), i(this, "initializeImageDimensions", (n, r = !1) => {
+			}), i$1(this, "initializeImageDimensions", (n, r = !1) => {
 				let a = At(n) && this.imageCache.get(n.fileId)?.image;
 				if (!a || a instanceof Promise) {
 					if (n.width < 10 / this.state.zoom.value && n.height < 10 / this.state.zoom.value) {
@@ -49719,7 +71594,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						crop: null
 					});
 				}
-			}), i(this, "updateImageCache", async (n, r = this.files) => {
+			}), i$1(this, "updateImageCache", async (n, r = this.files) => {
 				let { updatedFiles: a, erroredFiles: o } = await ep$1({
 					imageCache: this.imageCache,
 					fileIds: n.map((n) => n.fileId),
@@ -49730,30 +71605,30 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					updatedFiles: a,
 					erroredFiles: o
 				};
-			}), i(this, "addNewImagesToImageCache", async (n = tp$1(this.scene.getNonDeletedElements()), r = this.files) => {
+			}), i$1(this, "addNewImagesToImageCache", async (n = tp$1(this.scene.getNonDeletedElements()), r = this.files) => {
 				let a = n.filter((n) => !n.isDeleted && !this.imageCache.has(n.fileId));
 				if (a.length) {
 					let { updatedFiles: n } = await this.updateImageCache(a, r);
 					n.size && this.scene.triggerUpdate();
 				}
-			}), i(this, "scheduleImageRefresh", (0, import_lodash_throttle$2.default)(() => {
+			}), i$1(this, "scheduleImageRefresh", (0, import_lodash_throttle$2.default)(() => {
 				this.addNewImagesToImageCache();
-			}, 500)), i(this, "updateBindingEnabledOnPointerMove", (n) => {
+			}, 500)), i$1(this, "updateBindingEnabledOnPointerMove", (n) => {
 				let r = FN(n);
 				this.state.isBindingEnabled !== r && this.setState({ isBindingEnabled: r });
-			}), i(this, "maybeSuggestBindingAtCursor", (n, r) => {
+			}), i$1(this, "maybeSuggestBindingAtCursor", (n, r) => {
 				let a = Bn$2(n, this.scene.getNonDeletedElements(), this.scene.getNonDeletedElementsMap(), this.state.zoom, !1, r);
 				this.setState({ suggestedBindings: a == null ? [] : [a] });
-			}), i(this, "maybeSuggestBindingsForLinearElementAtCoords", (n, r, a) => {
+			}), i$1(this, "maybeSuggestBindingsForLinearElementAtCoords", (n, r, a) => {
 				if (!r.length) return;
 				let o = r.reduce((r, o) => {
 					let l = Bn$2(o, this.scene.getNonDeletedElements(), this.scene.getNonDeletedElementsMap(), this.state.zoom, X$4(n), X$4(n));
 					return l != null && !ab$1(n, a?.id, l) && r.push(l), r;
 				}, []);
 				this.setState({ suggestedBindings: o });
-			}), i(this, "handleInteractiveCanvasRef", (n) => {
+			}), i$1(this, "handleInteractiveCanvasRef", (n) => {
 				n === null ? (this.interactiveCanvas?.removeEventListener("touchstart", this.onTouchStart), this.interactiveCanvas?.removeEventListener("touchend", this.onTouchEnd)) : (this.interactiveCanvas = n, this.interactiveCanvas.addEventListener("touchstart", this.onTouchStart, { passive: !1 }), this.interactiveCanvas.addEventListener("touchend", this.onTouchEnd));
-			}), i(this, "handleAppOnDrop", async (n) => {
+			}), i$1(this, "handleAppOnDrop", async (n) => {
 				let { file: r, fileHandle: a } = await KY(n), { x: o, y: l } = Dn$2(n, this.state);
 				try {
 					if (Hi$2(r) && this.isToolSupported("image")) {
@@ -49810,7 +71685,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						n && this.setState({ selectedElementIds: { [n.id]: !0 } });
 					}
 				}
-			}), i(this, "loadFileToCanvas", async (n, r) => {
+			}), i$1(this, "loadFileToCanvas", async (n, r) => {
 				n = await ts$1(n);
 				try {
 					let a = this.scene.getElementsIncludingDeleted(), o;
@@ -49853,7 +71728,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						errorMessage: n.message
 					});
 				}
-			}), i(this, "handleCanvasContextMenu", (n) => {
+			}), i$1(this, "handleCanvasContextMenu", (n) => {
 				if (n.preventDefault(), ("pointerType" in n.nativeEvent && n.nativeEvent.pointerType === "touch" || "pointerType" in n.nativeEvent && n.nativeEvent.pointerType === "pen" && n.button !== mE.SECONDARY) && this.state.activeTool.type !== "selection") return;
 				let { x: r, y: a } = Dn$2(n, this.state), o = this.getElementAtPosition(r, a, {
 					preferSelected: !0,
@@ -49879,7 +71754,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						items: this.getContextMenuItems(f)
 					} });
 				});
-			}), i(this, "maybeDragNewGenericElement", (n, r, a = !0) => {
+			}), i$1(this, "maybeDragNewGenericElement", (n, r, a = !0) => {
 				let o = this.state.selectionElement, l = n.lastCoords;
 				if (o && this.state.activeTool.type !== "eraser") {
 					_9({
@@ -49925,7 +71800,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					originOffset: this.state.originSnapOffset,
 					informMutation: a
 				}), this.setState({ newElement: d }), (this.state.activeTool.type === fn$2.frame || this.state.activeTool.type === fn$2.magicframe) && this.setState({ elementsToHighlight: EH(this.scene.getNonDeletedElements(), d, this.state, this.scene.getNonDeletedElementsMap()) });
-			}), i(this, "maybeHandleCrop", (n, r) => {
+			}), i$1(this, "maybeHandleCrop", (n, r) => {
 				if (!this.state.croppingElementId) return !1;
 				let a = n.resize.handleType, o = n.lastCoords, [l, d] = Vr$2(o.x - n.resize.offset.x, o.y - n.resize.offset.y, r[Q$2.CTRL_OR_CMD] ? null : this.getEffectiveGridSize()), f = this.scene.getNonDeletedElementsMap().get(this.state.croppingElementId);
 				if (a && f && Ye$1(f)) {
@@ -49948,7 +71823,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					return !0;
 				}
 				return !1;
-			}), i(this, "maybeHandleResize", (n, r) => {
+			}), i$1(this, "maybeHandleResize", (n, r) => {
 				let a = this.scene.getSelectedElements(this.state), o = a.filter((n) => de$2(n)), l = n.resize.handleType;
 				if (o.length > 0 && l === "rotation" || a.length === 1 && X$4(a[0]) || this.state.croppingElementId) return !1;
 				this.setState({
@@ -49983,7 +71858,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					}), !0;
 				}
 				return !1;
-			}), i(this, "getContextMenuItems", (n) => {
+			}), i$1(this, "getContextMenuItems", (n) => {
 				let r = [];
 				return r.push(wc$1, vc$1), n === "canvas" ? this.state.viewModeEnabled ? [
 					...r,
@@ -50050,7 +71925,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					$e,
 					_a
 				]);
-			}), i(this, "handleWheel", Fe((n) => {
+			}), i$1(this, "handleWheel", Fe((n) => {
 				if (!(n.target instanceof HTMLCanvasElement || n.target instanceof HTMLTextAreaElement || n.target instanceof HTMLIFrameElement)) {
 					n[Q$2.CTRL_OR_CMD] && n.preventDefault();
 					return;
@@ -50079,7 +71954,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					scrollX: o - r / n.value,
 					scrollY: l - a / n.value
 				}));
-			})), i(this, "savePointer", (n, r, a) => {
+			})), i$1(this, "savePointer", (n, r, a) => {
 				if (!n || !r) return;
 				let { x: o, y: l } = Dn$2({
 					clientX: n,
@@ -50094,9 +71969,9 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 					button: a,
 					pointersMap: fe$1.pointers
 				});
-			}), i(this, "resetShouldCacheIgnoreZoomDebounced", $o$1(() => {
+			}), i$1(this, "resetShouldCacheIgnoreZoomDebounced", $o$1(() => {
 				this.unmounted || this.setState({ shouldCacheIgnoreZoom: !1 });
-			}, 300)), i(this, "updateDOMRect", (n) => {
+			}, 300)), i$1(this, "updateDOMRect", (n) => {
 				if (this.excalidrawContainerRef?.current) {
 					let { width: r, height: a, left: o, top: l } = this.excalidrawContainerRef.current.getBoundingClientRect(), { width: d, height: f, offsetTop: p, offsetLeft: m } = this.state;
 					if (r === d && a === f && o === m && l === p) {
@@ -50112,7 +71987,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 						n && n();
 					});
 				}
-			}), i(this, "refresh", () => {
+			}), i$1(this, "refresh", () => {
 				this.setState({ ...this.getCanvasOffsets() });
 			});
 			let a = mt(), { excalidrawAPI: o, viewModeEnabled: l = !1, zenModeEnabled: d = !1, gridModeEnabled: f = !1, objectsSnapModeEnabled: p = !1, theme: m = a.theme, name: h = `${g$1("labels.untitled")}-${ng$2()}` } = r;
@@ -51175,7 +73050,7 @@ TTD mermaid definition render errror: ${n.message}`, "color: yellow"), le$1("ai"
 							if (r && Ye$1(r) && r.crop !== null && n.hit.element === r) {
 								let n = r.crop, l = At(r) && this.imageCache.get(r.fileId)?.image;
 								if (l && !(l instanceof Promise)) {
-									let d = ue$1(Be$1(a.x - o.x, a.y - o.y), Math.max(this.state.zoom.value, 2)), [p, m, h, g, _, v] = C$3(r, f), y = O$2(T$2(u(p, m), u(_, v), r.angle)), x = O$2(T$2(u(h, m), u(_, v), r.angle)), S = O$2(T$2(u(p, g), u(_, v), r.angle)), C = Je$2(Lo$1(x, y)), w = Je$2(Lo$1(S, y)), T = Be$1(h6(d, C), h6(d, w));
+									let d = ue$1(Be$1(a.x - o.x, a.y - o.y), Math.max(this.state.zoom.value, 2)), [p, m, h, g, _, v] = C$3(r, f), y = O$2(T$3(u(p, m), u(_, v), r.angle)), x = O$2(T$3(u(h, m), u(_, v), r.angle)), S = O$2(T$3(u(p, g), u(_, v), r.angle)), C = Je$2(Lo$1(x, y)), w = Je$2(Lo$1(S, y)), T = Be$1(h6(d, C), h6(d, w));
 									Y$2(r, { crop: {
 										...n,
 										x: se$2(n.x - T[0] * Math.sign(r.scale[0]), 0, l.naturalWidth - n.width),
@@ -54718,7 +76593,7 @@ var z$1 = (n) => {
 	if (!l) throw Error("Trying to render reaction badge for non-existing reaction");
 	let [d, f] = (0, import_react$147.useState)([]), p = R$1(d);
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(r.Generic.Badge.Root, {
-		className: D$1("bn-badge", "bn-comment-reaction"),
+		className: D$2("bn-badge", "bn-comment-reaction"),
 		text: l.userIds.length.toString(),
 		icon: l.emoji,
 		isSelected: o.threadStore.auth.canDeleteReaction(n.comment, l.emoji),
@@ -54730,7 +76605,7 @@ var z$1 = (n) => {
 }, B = (0, import_react$147.memo)(({ isEmpty: n, comment: r, isEditing: a, threadStore: o, onReactionSelect: l, onEditSubmit: d, onEditCancel: f, onEmojiPickerOpenChange: p, Components: m, dict: h }) => {
 	let g = o.auth.canAddReaction(r);
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)(import_jsx_runtime$167.Fragment, { children: [r.reactions.length > 0 && !a && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)(m.Generic.Badge.Group, {
-		className: D$1("bn-badge-group", "bn-comment-reactions"),
+		className: D$2("bn-badge-group", "bn-comment-reactions"),
 		children: [r.reactions.map((n) => /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(z$1, {
 			comment: r,
 			emoji: n.emoji,
@@ -54739,7 +76614,7 @@ var z$1 = (n) => {
 			onEmojiSelect: (n) => l(n.native),
 			onOpenChange: p,
 			children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(m.Generic.Badge.Root, {
-				className: D$1("bn-badge", "bn-comment-add-reaction"),
+				className: D$2("bn-badge", "bn-comment-add-reaction"),
 				text: "+",
 				icon: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(RiEmotionLine, { size: 16 }),
 				mainTooltip: h.comments.actions.add_reaction
@@ -54747,7 +76622,7 @@ var z$1 = (n) => {
 		})]
 	}), a && /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)(m.Generic.Toolbar.Root, {
 		variant: "action-toolbar",
-		className: D$1("bn-action-toolbar", "bn-comment-actions"),
+		className: D$2("bn-action-toolbar", "bn-comment-actions"),
 		children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(m.Generic.Toolbar.Button, {
 			mainTooltip: h.comments.save_button_text,
 			variant: "compact",
@@ -54817,7 +76692,7 @@ var z$1 = (n) => {
 	if (!n.body) return null;
 	let G, ne = _.auth.canAddReaction(n), ie = _.auth.canDeleteComment(n), se = _.auth.canUpdateComment(n), de = a && (r.resolved ? _.auth.canUnresolveThread(r) : _.auth.canResolveThread(r));
 	p || (G = /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)(f.Generic.Toolbar.Root, {
-		className: D$1("bn-action-toolbar", "bn-comment-actions"),
+		className: D$2("bn-action-toolbar", "bn-comment-actions"),
 		variant: "action-toolbar",
 		children: [
 			ne && /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(I, {
@@ -54923,7 +76798,7 @@ var z$1 = (n) => {
 	}, "expand-prompt")), d;
 }, U$1 = (0, import_react$147.memo)(({ isEmpty: n, onNewCommentSave: r, Components: a, dict: o }) => n ? null : /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.Generic.Toolbar.Root, {
 	variant: "action-toolbar",
-	className: D$1("bn-action-toolbar", "bn-comment-actions"),
+	className: D$2("bn-action-toolbar", "bn-comment-actions"),
 	children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.Generic.Toolbar.Button, {
 		mainTooltip: o.comments.save_button_text,
 		variant: "compact",
@@ -54950,7 +76825,7 @@ var z$1 = (n) => {
 		n.id
 	]);
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)(m.Comments.Card, {
-		className: D$1("bn-thread", a && "bn-thread-orphaned"),
+		className: D$2("bn-thread", a && "bn-thread-orphaned"),
 		headerText: o,
 		onFocus: d,
 		onBlur: f,
@@ -55041,7 +76916,7 @@ var FloatingComposerController_5A3GJtK4_exports = /* @__PURE__ */ __exportAll({
 });
 init_floating_ui_react_dom();
 var x$1 = (0, import_react$147.memo)(({ isEmpty: n, onSave: r, Components: a, dict: o }) => /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.Generic.Toolbar.Root, {
-	className: D$1("bn-action-toolbar", "bn-comment-actions"),
+	className: D$2("bn-action-toolbar", "bn-comment-actions"),
 	variant: "action-toolbar",
 	children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.Generic.Toolbar.Button, {
 		className: "bn-button",
@@ -57043,7 +78918,7 @@ function lr$1(n) {
 				className: "bn-suggestion-menu-label",
 				children: n
 			}, n))), a.push(/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(r.SuggestionMenu.Item, {
-				className: D$1("bn-suggestion-menu-item", p.size === "small" ? "bn-suggestion-menu-item-small" : ""),
+				className: D$2("bn-suggestion-menu-item", p.size === "small" ? "bn-suggestion-menu-item-small" : ""),
 				item: p,
 				id: `bn-suggestion-menu-item-${l}`,
 				isSelected: l === d,
@@ -57315,7 +79190,7 @@ var _r = (n, r = .3) => {
 		n,
 		o
 	]), a.isEditable ? /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(r.TableHandle.ExtendButton, {
-		className: D$1("bn-extend-button", n.orientation === "addOrRemoveColumns" ? "bn-extend-button-add-remove-columns" : "bn-extend-button-add-remove-rows", f === null ? "" : "bn-extend-button-editing"),
+		className: D$2("bn-extend-button", n.orientation === "addOrRemoveColumns" ? "bn-extend-button-add-remove-columns" : "bn-extend-button-add-remove-rows", f === null ? "" : "bn-extend-button-editing"),
 		onClick: h,
 		onMouseDown: m,
 		children: n.children || /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(RiAddFill, {
@@ -57547,7 +79422,7 @@ var _r = (n, r = .3) => {
 		},
 		position: "right",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.Generic.Menu.Trigger, { children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(a.TableHandle.Root, {
-			className: D$1("bn-table-handle", o ? "bn-table-handle-dragging" : "", m ? "" : "bn-table-handle-not-draggable"),
+			className: D$2("bn-table-handle", o ? "bn-table-handle-dragging" : "", m ? "" : "bn-table-handle-not-draggable"),
 			draggable: m,
 			onDragStart: (r) => {
 				l(!0), n.hideOtherElements(!0), n.orientation === "column" ? f.colDragStart(r) : f.rowDragStart(r);
@@ -57857,7 +79732,7 @@ function Ur$1(n, r) {
 	}, [a]);
 	(0, import_react$147.useEffect)(() => {
 		if (!a.portalElement) throw Error("Portal element not found");
-		a.portalElement.className = D$1("bn-root", Ze, o || ""), a.portalElement.setAttribute("data-color-scheme", Ze);
+		a.portalElement.className = D$2("bn-root", Ze, o || ""), a.portalElement.setAttribute("data-color-scheme", Ze);
 	}, [
 		a,
 		Ze,
@@ -57903,7 +79778,7 @@ function Ur$1(n, r) {
 	});
 }
 var Wr$1 = import_react$147.forwardRef(({ className: n, renderEditor: r, editorColorScheme: a, children: o, ...l }, d) => /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("div", {
-	className: D$1("bn-root", "bn-container", a, n),
+	className: D$2("bn-root", "bn-container", a, n),
 	"data-color-scheme": a,
 	...l,
 	ref: d,
@@ -57958,7 +79833,7 @@ function Jr(n) {
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)(NodeViewWrapper, {
 		onDragOver: (n) => n.preventDefault(),
 		...Object.fromEntries(Object.entries(n.domAttributes || {}).filter(([n]) => n !== "class")),
-		className: D$1("bn-block-content", n.domAttributes?.class || ""),
+		className: D$2("bn-block-content", n.domAttributes?.class || ""),
 		"data-content-type": n.blockType,
 		...Object.fromEntries(Object.entries(n.blockProps).filter(([r, a]) => a !== n.propSchema[r].default).map(([n, r]) => [O$3(n), r])),
 		"data-file-block": n.isFileBlock === !0 || void 0,
@@ -57984,7 +79859,7 @@ function Z$1(n, r, a) {
 							block: n,
 							editor: r,
 							contentRef: (n) => {
-								f(n), n && (n.className = D$1("bn-inline-content", n.className));
+								f(n), n && (n.className = D$2("bn-inline-content", n.className));
 							},
 							context: a
 						})
@@ -58005,7 +79880,7 @@ function Z$1(n, r, a) {
 								block: a,
 								editor: r,
 								contentRef: (n) => {
-									o(n), n && (n.className = D$1("bn-inline-content", n.className), n.dataset.nodeViewContent = "");
+									o(n), n && (n.className = D$2("bn-inline-content", n.className), n.dataset.nodeViewContent = "");
 								}
 							})
 						});
@@ -58021,7 +79896,7 @@ function Z$1(n, r, a) {
 								block: n,
 								editor: r,
 								contentRef: (n) => {
-									o(n), n && (n.className = D$1("bn-inline-content", n.className));
+									o(n), n && (n.className = D$2("bn-inline-content", n.className));
 								}
 							})
 						}), r);
@@ -58320,7 +80195,7 @@ var ei$1 = (n) => {
 	if (r.type === "toggled") return !n;
 	if (r.type === "childAdded") return !0;
 	if (r.type === "lastChildRemoved") return !1;
-	throw new T$3(r);
+	throw new T$4(r);
 }, bi$1 = (n) => {
 	let { block: r, editor: a, children: o, toggledState: l } = n, [d, f] = (0, import_react$147.useReducer)(yi$1, (l || Fn$3).get(r)), p = (n) => {
 		(l || Fn$3).set(a.getBlock(n), !d), f({ type: "toggled" });
@@ -113911,18 +135786,50 @@ function normalizeKanbanCode(n) {
 	return r;
 }
 function sanitizeMarkdown(n) {
-	return n.replace(/\*\*\[([^\]\n]+)\]\*\*/g, (n, r) => `<strong>[${r}]</strong>`);
+	if (!n) return "";
+	let r = n;
+	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/(\r|\n)?\s*ight\)/g, " \\right)"), r = r.replace(/(\r|\n)?\s*ight\}/g, " \\right\\}"), r = r.replace(/(\r|\n)?\s*ight\]/g, " \\right]"), r;
 }
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
 	if (!r.trim()) return [];
-	let a = sanitizeMarkdown(r), o = [], l = new f$2.Renderer();
-	l.heading = function({ depth: n, text: r }) {
+	let a = sanitizeMarkdown(r), o = [], l = "AMEVA_CODE_PROTECT_";
+	a = a.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (n) => {
+		let r = o.length;
+		return o.push(n), `${l}${r}_`;
+	});
+	let d = [], f = "AMEVA_MATH_TOKEN_";
+	a = a.replace(/\$\$([\s\S]+?)\$\$/g, (n, r) => {
+		let a = d.length, o = "";
+		try {
+			o = katex.renderToString(r.trim(), {
+				displayMode: !0,
+				throwOnError: !1
+			});
+		} catch (n) {
+			o = `<span class="katex-error">${n?.message || "Math rendering error"}</span>`;
+		}
+		return d.push(`<div class="av-math-display">${o}</div>`), `\n\n${f}${a}_\n\n`;
+	}), a = a.replace(/(^|[^\\])\$([^\$\n]+?)\$/g, (n, r, a) => {
+		if (/^\s*\d+([.,]\d+)?\s*$/.test(a) || /^\s*$/.test(a)) return n;
+		let o = d.length, l = "";
+		try {
+			l = katex.renderToString(a.trim(), {
+				displayMode: !1,
+				throwOnError: !1
+			});
+		} catch (n) {
+			l = `<span class="katex-error">${n?.message || "Math rendering error"}</span>`;
+		}
+		return d.push(`<span class="av-math-inline">${l}</span>`), `${r}${f}${o}_`;
+	}), a = a.replace(RegExp(`${l}(\\d+)_`, "g"), (n, r) => o[Number(r)] ?? "");
+	let p = [], m = new f$2.Renderer();
+	m.heading = function({ depth: n, text: r }) {
 		return `<h${n} id="${String(r || "").toLowerCase().replace(/[^\wㄱ-ㅎㅏ-ㅣ가-힣]+/g, "-")}">${r}</h${n}>`;
-	}, l.image = function({ href: n, title: r, text: a }) {
+	}, m.image = function({ href: n, title: r, text: a }) {
 		let o = n || "", l = o.toLowerCase().endsWith(".mp4") || o.toLowerCase().endsWith(".webm") || o.toLowerCase().endsWith(".mov") || o.toLowerCase().endsWith(".ogg") || o.startsWith("data:video/"), d = resolveMediaUrl(o);
 		return l ? `<video src="${d}" controls style="max-width:100%; border-radius:8px; margin:8px 0;"></video>` : `<img src="${d}" alt="${a || ""}" title="${r || ""}" />`;
-	}, l.blockquote = function(n) {
+	}, m.blockquote = function(n) {
 		let r = parseAlertBlock((n.text || "").trim());
 		if (r) {
 			let n = "";
@@ -113953,83 +135860,100 @@ function buildSegments(n) {
 		}
 		return `<blockquote>${n.tokens && this.parser ? this.parser.parse(n.tokens) : n.text || ""}</blockquote>`;
 	};
-	let d = l.table.bind(l);
-	l.table = function(n) {
-		return `<div class="av-table-wrapper">${d(n)}</div>`;
+	let h = m.table.bind(m);
+	m.table = function(n) {
+		return `<div class="av-table-wrapper">${h(n)}</div>`;
 	};
-	let f = f$2.parse(a, {
-		renderer: l,
+	let g = f$2.parse(a, {
+		renderer: m,
 		walkTokens(n) {
 			if (n.type === "code") {
-				let r = (n.lang || "").toLowerCase().trim(), a = decodeHtmlEntities(n.text), l = o.length;
-				o.push({
+				let r = (n.lang || "").toLowerCase().trim(), a = decodeHtmlEntities(n.text), o = p.length;
+				p.push({
 					lang: r,
 					code: a
-				}), n.type = "html", n.text = `${PLACEHOLDER_PREFIX}${l}`;
+				}), n.type = "html", n.text = `${PLACEHOLDER_PREFIX}${o}`;
 			}
 		}
-	}), p = [], m = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), h = 0, g;
-	for (; (g = m.exec(f)) !== null;) {
-		let n = f.slice(h, g.index);
-		n.trim() && p.push({
+	});
+	g = g.replace(RegExp(`<p>\\s*${f}(\\d+)_\\s*<\\/p>`, "g"), (n, r) => d[Number(r)] ?? ""), g = g.replace(RegExp(`${f}(\\d+)_`, "g"), (n, r) => d[Number(r)] ?? "");
+	let _ = [], v = RegExp(`<p>\\s*${PLACEHOLDER_PREFIX}(\\d+)\\s*<\\/p>|${PLACEHOLDER_PREFIX}(\\d+)`, "g"), y = 0, x;
+	for (; (x = v.exec(g)) !== null;) {
+		let n = g.slice(y, x.index);
+		n.trim() && _.push({
 			type: "html",
 			html: n
 		});
-		let r = g[1] ?? g[2], a = Number(r);
-		if (!isNaN(a) && o[a] !== void 0) {
-			let n = o[a], r = (n.lang || "").toLowerCase().trim();
-			r === "mermaid" ? p.push({
+		let r = x[1] ?? x[2], a = Number(r);
+		if (!isNaN(a) && p[a] !== void 0) {
+			let n = p[a], r = (n.lang || "").toLowerCase().trim();
+			if (r === "mermaid") _.push({
 				type: "mermaid",
 				code: n.code
-			}) : r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? p.push({
+			});
+			else if (r === "math" || r === "latex" || r === "katex") {
+				let r = "";
+				try {
+					r = katex.renderToString(n.code.trim(), {
+						displayMode: !0,
+						throwOnError: !1
+					});
+				} catch (n) {
+					r = `<span class="katex-error">${n?.message || "Math error"}</span>`;
+				}
+				_.push({
+					type: "html",
+					html: `<div class="av-math-display">${r}</div>`
+				});
+			} else r === "html" && (n.code.includes("<html") || n.code.includes("<div") || n.code.includes("<style") || n.code.includes("<!doctype")) || r === "html-preview" ? _.push({
 				type: "html-preview",
 				code: n.code
-			}) : r === "ameva-map" || r === "map" ? p.push({
+			}) : r === "ameva-map" || r === "map" ? _.push({
 				type: "ameva-map",
 				code: normalizeMapCode(n.code)
-			}) : r === "ameva-youtube" || r === "youtube" ? p.push({
+			}) : r === "ameva-youtube" || r === "youtube" ? _.push({
 				type: "ameva-youtube",
 				code: normalizeYoutubeCode(n.code)
-			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? p.push({
+			}) : r === "ameva-link" || r === "link" || r === "link-preview" ? _.push({
 				type: "ameva-link",
 				code: normalizeLinkCode(n.code)
-			}) : r === "ameva-kanban" || r === "kanban" ? p.push({
+			}) : r === "ameva-kanban" || r === "kanban" ? _.push({
 				type: "ameva-kanban",
 				code: normalizeKanbanCode(n.code)
-			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? p.push({
+			}) : r === "ameva-excel" || r === "excel" || r === "spreadsheet" || r === "sheet" ? _.push({
 				type: "ameva-excel",
 				code: n.code
-			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? p.push({
+			}) : r === "ameva-drawing" || r === "drawing" || r === "excalidraw" ? _.push({
 				type: "ameva-drawing",
 				code: n.code
-			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? p.push({
+			}) : r === "ameva-document" || r === "document" || r === "doc" || r === "pdf" || r === "pptx" || r === "docx" || r === "xlsx" ? _.push({
 				type: "ameva-document",
 				code: n.code
-			}) : r === "ameva-media-editor" ? p.push({
+			}) : r === "ameva-media-editor" ? _.push({
 				type: "ameva-media-editor",
 				code: n.code
-			}) : r === "video" || r === "ameva-video" ? p.push({
+			}) : r === "video" || r === "ameva-video" ? _.push({
 				type: "video",
 				code: n.code
-			}) : r === "audio" || r === "ameva-audio" ? p.push({
+			}) : r === "audio" || r === "ameva-audio" ? _.push({
 				type: "audio",
 				code: n.code
-			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? p.push({
+			}) : r === "image" || r === "images" || r === "gallery" || r === "ameva-image" ? _.push({
 				type: "image",
 				code: n.code
-			}) : p.push({
+			}) : _.push({
 				type: "code-runner",
 				code: n.code,
 				language: r || "text"
 			});
 		}
-		h = m.lastIndex;
+		y = v.lastIndex;
 	}
-	let _ = f.slice(h);
-	return _.trim() && p.push({
+	let S = g.slice(y);
+	return S.trim() && _.push({
 		type: "html",
-		html: _
-	}), p;
+		html: S
+	}), _;
 }
 function MermaidRenderer({ code: n, theme: r }) {
 	let [a, o] = (0, import_react$147.useState)(""), [l, d] = (0, import_react$147.useState)(null), f = (0, import_react$147.useRef)(!0);
@@ -114159,7 +136083,7 @@ function AmevaViewerBrandFooter({ theme: n }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime$167.jsx)("footer", {
 		className: "av-viewer-brand-footer",
 		children: /* @__PURE__ */ (0, import_jsx_runtime$167.jsxs)("a", {
-			href: "https://github.com/uno-km/AMEVA-Workstation",
+			href: "https://ameva-workstation-web-core.vercel.app/",
 			target: "_blank",
 			rel: "noopener noreferrer",
 			className: "av-brand-watermark-link",
@@ -114361,4 +136285,4 @@ var AmevaViewerSDK = {
 };
 typeof window < "u" && (window.AmevaViewer = AmevaViewerSDK);
 //#endregion
-export { AmevaErrorBoundary, AmevaViewer, AmevaViewerElement, AmevaViewerSDK as default, mount };
+export { AmevaErrorBoundary, AmevaViewer, AmevaViewerElement, AmevaViewerSDK as default, mount, katex_exports as n, init_katex as t };
