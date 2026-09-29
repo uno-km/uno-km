@@ -587,10 +587,11 @@
     .toc-hierarchy-list {
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      max-height: 440px;
+      gap: 10px;
+      max-height: 480px;
       overflow-y: auto;
       padding-right: 6px;
+      padding-bottom: 4px;
     }
     .toc-hierarchy-list::-webkit-scrollbar {
       width: 6px;
@@ -607,14 +608,17 @@
       background: #94a3b8;
     }
 
-    /* ── Section Group Card (H2 Group) ── */
+    /* ── Section Group Card (H2 Group) - Zero Collapse / Safe Shrink ── */
     .toc-section-group {
+      flex-shrink: 0 !important;
+      min-height: 42px !important;
       border: 1px solid #e2e8f0 !important;
       border-radius: 6px !important;
       background: #ffffff !important;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
       overflow: hidden;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-sizing: border-box !important;
     }
     .toc-section-group:hover {
       border-color: #cbd5e1 !important;
@@ -630,7 +634,9 @@
       align-items: center !important;
       justify-content: space-between !important;
       gap: 10px;
-      padding: 8px 12px !important;
+      padding: 9px 13px !important;
+      min-height: 42px !important;
+      box-sizing: border-box !important;
       background: #f8fafc !important;
       border-bottom: 1px solid #eef2f6 !important;
       border-left: 4px solid #004499 !important;
@@ -660,7 +666,7 @@
       letter-spacing: 0.02em;
     }
     .toc-group-title {
-      font-size: 0.84rem !important;
+      font-size: 0.85rem !important;
       font-weight: 700 !important;
       color: #0f172a !important;
       white-space: nowrap;
@@ -682,18 +688,18 @@
       font-weight: 600;
       color: #475569;
       background: #e2e8f0;
-      padding: 1px 7px;
+      padding: 2px 7px;
       border-radius: 10px;
     }
     .toc-toggle-icon {
       font-size: 0.75rem;
       color: #64748b;
       transition: transform 0.2s ease;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      line-height: 16px;
-      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
       border-radius: 3px;
     }
     .toc-toggle-icon:hover {
@@ -703,20 +709,126 @@
     .toc-section-group.collapsed .toc-toggle-icon {
       transform: rotate(-90deg);
     }
-    .toc-section-group.collapsed .toc-sub-grid {
+    .toc-section-group.collapsed .toc-sub-body {
       display: none !important;
     }
 
-    /* ── Sub Grid for H3 / H4 Items ── */
-    .toc-sub-grid {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-      gap: 6px !important;
-      padding: 8px 10px 10px 10px !important;
+    /* ── Sub Body (Container for H3/H4 inside H2) ── */
+    .toc-sub-body {
+      padding: 8px 12px 10px 12px !important;
       background: #ffffff !important;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-sizing: border-box !important;
+    }
+    .toc-sub-body.scrollable-sub {
+      max-height: 240px;
+      overflow-y: auto;
+      padding-right: 6px !important;
+    }
+    .toc-sub-body.scrollable-sub::-webkit-scrollbar {
+      width: 5px;
+    }
+    .toc-sub-body.scrollable-sub::-webkit-scrollbar-track {
+      background: #f8fafc;
+      border-radius: 3px;
+    }
+    .toc-sub-body.scrollable-sub::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
     }
 
-    /* ── TOC Item Card (Preserved Aesthetic Card Design) ── */
+    /* ── Sub Grid for Flat H3 Items (e.g. Glossary, or H3 without H4) ── */
+    .toc-sub-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+      gap: 6px !important;
+      width: 100%;
+    }
+
+    /* ── H3 Block with H4 Sub-chips ── */
+    .toc-h3-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 7px 10px;
+      border: 1px solid #eef2f6;
+      border-radius: 5px;
+      background: #fafcff;
+      transition: all 0.15s ease;
+    }
+    .toc-h3-block:hover {
+      border-color: #cbd5e1;
+      background: #f4f8fe;
+    }
+    .toc-h3-title-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.81rem;
+      font-weight: 600;
+      color: #1e293b;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .toc-h3-title-link:hover {
+      color: #004499;
+    }
+    .toc-h4-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding-left: 14px;
+    }
+    .toc-h4-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: #475569;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .toc-h4-chip:hover {
+      border-color: #93c5fd;
+      color: #004499;
+      background: #e8f0fe;
+      transform: translateY(-1px);
+    }
+
+    /* ── Solo H2 Link Item ── */
+    .toc-link-item.solo-h2 {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      width: 100% !important;
+      min-height: 42px !important;
+      box-sizing: border-box !important;
+      padding: 9px 13px !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      background: #ffffff !important;
+      border: none !important;
+      border-radius: 0 !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .toc-link-item.solo-h2:hover {
+      background: #f1f5f9 !important;
+      color: #004499 !important;
+    }
+
+    /* ── Standard TOC Sub Link Item (Flat card in sub-grid) ── */
     .content a.toc-link-item,
     .toc-link-item {
       display: flex !important;
@@ -729,7 +841,7 @@
       color: #1e293b !important;
       text-decoration: none !important;
       border-radius: 5px !important;
-      background: #fafcff !important;
+      background: #ffffff !important;
       border: 1px solid #e2e8f0 !important;
       transition: all 0.15s ease !important;
       cursor: pointer !important;
@@ -744,38 +856,6 @@
       text-decoration: none !important;
       box-shadow: 0 2px 6px rgba(0, 68, 153, 0.1) !important;
       transform: translateY(-1px);
-    }
-    .toc-link-item .toc-item-icon {
-      color: #94a3b8;
-      font-size: 0.72rem;
-      flex-shrink: 0;
-      margin-right: 2px;
-      font-family: monospace;
-    }
-    .toc-link-item:hover .toc-item-icon {
-      color: #004499;
-    }
-    .toc-link-item.solo-h2 {
-      background: #ffffff !important;
-      padding: 8px 12px !important;
-      font-size: 0.83rem !important;
-      font-weight: 600 !important;
-      border: none !important;
-      border-radius: 0 !important;
-    }
-    .toc-link-item.solo-h2:hover {
-      background: #f1f5f9 !important;
-    }
-    .toc-link-item.h4-item {
-      padding-left: 14px !important;
-      font-size: 0.74rem !important;
-      color: #475569 !important;
-      background: #f8fafc !important;
-      border-left: 2px dashed #cbd5e1 !important;
-    }
-    .toc-link-item.h4-item:hover {
-      border-left-color: #004499 !important;
-      color: #004499 !important;
     }
     .in-article-toc-box .hb-feature-pill {
       font-size: 0.68rem !important;
@@ -2764,6 +2844,16 @@
 
         // In-Article Table of Contents (TOC) builder with Full Hierarchy Support (#, ##, ###, ####)
         const tocContainer = document.getElementById('analInArticleToc');
+        const cleanTitle = (str) => {
+          if (!str) return '';
+          return str
+            .replace(/\\text\{([^}]+)\}/g, '$1')
+            .replace(/\$([^$]+)\$/g, '$1')
+            .replace(/[*_`]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+        };
+
         const buildToc = () => {
           const allHeadings = Array.from(document.querySelectorAll('#analViewerBody h1, #analViewerBody h2, #analViewerBody h3, #analViewerBody h4'));
           if (allHeadings.length < 2) {
@@ -2787,7 +2877,6 @@
           });
 
           // Determine Top-Level Sections:
-          // If first heading is H1 (document title) and no other H1 exists, start hierarchy from H2
           let effectiveHeadings = allHeadings;
           if (allHeadings.length > 0 && allHeadings[0].tagName.toLowerCase() === 'h1') {
             const hasMultipleH1 = allHeadings.slice(1).some(h => h.tagName.toLowerCase() === 'h1');
@@ -2807,7 +2896,8 @@
 
           effectiveHeadings.forEach(h => {
             const level = getLevel(h.tagName);
-            const txt = h.textContent.trim();
+            const rawTxt = h.textContent.trim();
+            const txt = cleanTitle(rawTxt);
             const isLab = txt.includes('Lab') || txt.includes('실습');
             const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
 
@@ -2816,6 +2906,7 @@
               level,
               tag: h.tagName.toLowerCase(),
               text: txt,
+              rawText: rawTxt,
               isLab,
               isGlossary,
               children: []
@@ -2879,22 +2970,24 @@
             else if (group.isGlossary) groupPill = '<span class="hb-feature-pill glossary">용어 해설집</span>';
 
             if (!hasChildren) {
-              // Solo H2 Section Card
+              // Solo H2 Section Card (Guaranteed Full-Height and Unshrinkable)
               tocHtml += `
                 <div class="toc-section-group solo">
                   <a class="toc-link-item solo-h2" onclick="LabsApp.jumpToHeading('${group.id}')" title="${escapeHtml(group.text)}">
                     <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
                       <span class="toc-group-tag">§ ${gIdx + 1}</span>
-                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(group.text)}</span>
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700;">${escapeHtml(group.text)}</span>
                     </div>
                     ${groupPill}
                   </a>
                 </div>
               `;
             } else {
-              // H2 Section Group with Sub-grid
+              // H2 Section Group with Sub-body
               const groupId = `toc-grp-${gIdx + 1}`;
               const childCountLabel = group.isGlossary ? `${totalChildCount}개 전공용어` : `세부 ${totalChildCount}개 항목`;
+              const isScrollable = totalChildCount >= 8;
+              const hasSubH4 = group.children.some(c => c.children && c.children.length > 0);
 
               tocHtml += `
                 <div class="toc-section-group" id="${groupId}">
@@ -2909,37 +3002,60 @@
                       <span class="toc-toggle-icon" onclick="LabsApp.toggleTocGroup(event, '${groupId}')" title="접기/펼치기">▾</span>
                     </div>
                   </div>
-                  <div class="toc-sub-grid">
+                  <div class="toc-sub-body ${isScrollable ? 'scrollable-sub' : ''}">
               `;
 
-              group.children.forEach(sub => {
-                let subPill = '';
-                if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
-                else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
+              if (hasSubH4) {
+                // Render H3 Blocks with subordinate H4 chips
+                group.children.forEach(sub => {
+                  const hasH4 = sub.children && sub.children.length > 0;
+                  let subPill = '';
+                  if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
+                  else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
 
-                tocHtml += `
-                  <a class="toc-link-item" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
-                    <div style="display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1;">
-                      <span class="toc-item-icon">↳</span>
-                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sub.text)}</span>
-                    </div>
-                    ${subPill}
-                  </a>
-                `;
-
-                if (sub.children && sub.children.length > 0) {
-                  sub.children.forEach(h4 => {
-                    tocHtml += `
-                      <a class="toc-link-item h4-item" onclick="LabsApp.jumpToHeading('${h4.id}')" title="${escapeHtml(h4.text)}">
-                        <div style="display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1;">
-                          <span class="toc-item-icon">↳↳</span>
-                          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(h4.text)}</span>
-                        </div>
+                  tocHtml += `
+                    <div class="toc-h3-block">
+                      <a class="toc-h3-title-link" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
+                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">↳ ${escapeHtml(sub.text)}</span>
+                        ${subPill}
                       </a>
-                    `;
-                  });
-                }
-              });
+                  `;
+
+                  if (hasH4) {
+                    tocHtml += `<div class="toc-h4-chips">`;
+                    sub.children.forEach(h4 => {
+                      tocHtml += `
+                        <a class="toc-h4-chip" onclick="LabsApp.jumpToHeading('${h4.id}')" title="${escapeHtml(h4.text)}">
+                          <span style="color: #004499; font-weight: 600;">↳↳</span>
+                          <span>${escapeHtml(h4.text)}</span>
+                        </a>
+                      `;
+                    });
+                    tocHtml += `</div>`;
+                  }
+
+                  tocHtml += `</div>`;
+                });
+              } else {
+                // Render as clean 2-column sub-grid for flat H3s (e.g. Glossary 20 terms, or standard sub-sections)
+                tocHtml += `<div class="toc-sub-grid">`;
+                group.children.forEach(sub => {
+                  let subPill = '';
+                  if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
+                  else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
+
+                  tocHtml += `
+                    <a class="toc-link-item" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
+                      <div style="display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1;">
+                        <span style="color: #94a3b8; font-size: 0.72rem; flex-shrink: 0;">↳</span>
+                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sub.text)}</span>
+                      </div>
+                      ${subPill}
+                    </a>
+                  `;
+                });
+                tocHtml += `</div>`;
+              }
 
               tocHtml += `
                   </div>
