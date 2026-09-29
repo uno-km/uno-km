@@ -3,6 +3,7 @@ import { neon } from '@neondatabase/serverless';
 import { SEED_POSTS } from './seed_posts.js';
 
 let isSchemaReady = false;
+let lastSchemaError = null;
 
 // ── In-Memory Serverless Cache (10-minute TTL for Warm Instances) ─────────────
 const CACHE_TTL_MS = 10 * 60 * 1000;
@@ -175,6 +176,7 @@ async function ensureSchema(sql) {
 
     isSchemaReady = true;
   } catch (err) {
+    lastSchemaError = err.message;
     console.warn('[Labs API] Schema init error:', err.message);
   }
 }
