@@ -2031,7 +2031,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v8_lightweight_cache_and_perf';
+    const STATE_VERSION = 'v9_opensource_and_detail_view_fix';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -2896,8 +2896,8 @@
         this.showRemote();
 
         document.getElementById('viewNews').style.display = 'none';
-        document.getElementById('viewAnal').style.display = 'none';
         document.getElementById('viewBoard').style.display = 'none';
+        document.getElementById('viewAnal').style.display = 'block';
         document.getElementById('analFeedList').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'none';
         const curriculumNav = document.getElementById('handbookCurriculumNav');
@@ -3190,9 +3190,11 @@
 
         const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal' };
         if (curMenu.board_type === 'board' || curMenu.board_type === 'blog') {
+          document.getElementById('viewAnal').style.display = 'none';
           document.getElementById('viewBoard').style.display = 'block';
           this.renderBoardView(this.activeMenuId);
         } else {
+          document.getElementById('viewBoard').style.display = 'none';
           document.getElementById('viewAnal').style.display = 'block';
           document.getElementById('analTopBar').style.display = 'flex';
           document.getElementById('analFeedList').style.display = 'flex';
@@ -3665,7 +3667,7 @@
 
       // ── Bottom Post List & Pager (10 Posts per Page) ─────────────────────────
       async renderAnalBottomListAndPager(post) {
-        const menuId = this.activeMenuId;
+        const menuId = (post && post.menu_id) ? post.menu_id : this.activeMenuId;
         const curMenu = this.store.menus.find(m => m.id === menuId) || { name: '연구' };
         let allPosts = await this.store.getPosts(menuId);
 
