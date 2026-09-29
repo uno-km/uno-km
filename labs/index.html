@@ -722,116 +722,142 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 14px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border-radius: 6px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text-bright);
+      padding: 11px 16px !important;
+      font-size: 0.84rem !important;
+      font-weight: 600 !important;
+      border-radius: 8px !important;
+      border: 1.5px solid #2d3f5e !important;
+      background: #0f172a !important;
+      color: #f8fafc !important;
       cursor: pointer;
       transition: all 0.2s;
       flex: 1;
-      max-width: 42%;
+      max-width: 44%;
       text-decoration: none;
       box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
     .post-nav-btn:hover:not(:disabled) {
-      border-color: #38bdf8;
-      color: #38bdf8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-color: #38bdf8 !important;
+      background: #1e293b !important;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
     }
     .post-nav-btn:disabled {
-      opacity: 0.35;
+      opacity: 0.4 !important;
       cursor: not-allowed;
-      border-color: rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.01);
-      color: var(--text-muted);
+      border-color: #1e293b !important;
+      background: #090e1a !important;
+      color: #64748b !important;
     }
     .post-nav-btn .nav-label {
-      font-size: 0.68rem;
-      color: var(--text-muted);
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      color: #38bdf8 !important;
       display: block;
+      margin-bottom: 2px;
     }
     .post-nav-btn .nav-title {
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      color: #f8fafc !important;
+      font-size: 0.84rem !important;
+      font-weight: 600 !important;
     }
 
-    /* ── Bottom 10-Item Posts Table in Detail View ─────────────────────────── */
+    /* ── Bottom 10-Item Posts Table in Detail View (High-Contrast Redesign) ── */
     .anal-bottom-list-wrap {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.15);
     }
     .bottom-list-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .bottom-list-header h4 {
       margin: 0;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #f8fafc;
+      font-size: 1.05rem !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+    .bottom-count-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      color: #38bdf8 !important;
+      background: #1e293b !important;
+      border: 1px solid #334155 !important;
+      border-radius: 12px;
     }
     .anal-bottom-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.82rem;
-      background: #0f172a;
-      border: 1px solid #1e293b;
+      font-size: 0.86rem !important;
+      background: #090e1a !important;
+      border: 1.5px solid #1e293b !important;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
     }
     .anal-bottom-table th {
-      padding: 9px 12px;
+      padding: 12px 14px !important;
       text-align: left;
-      background: #1e293b;
-      color: #94a3b8;
-      font-weight: 700;
-      font-size: 0.76rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #131d31 !important;
+      color: #f1f5f9 !important;
+      font-weight: 700 !important;
+      font-size: 0.82rem !important;
+      border-bottom: 2px solid #2d3f5e !important;
       white-space: nowrap;
+      letter-spacing: -0.01em;
     }
     .anal-bottom-table td {
-      padding: 9px 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px 14px !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
       vertical-align: middle;
-      color: #cbd5e1;
+      color: #e2e8f0 !important;
+      font-size: 0.85rem !important;
+    }
+    .anal-bottom-table tr {
+      transition: background-color 0.15s ease;
     }
     .anal-bottom-table tr:hover {
-      background: rgba(56, 189, 248, 0.06);
+      background: rgba(56, 189, 248, 0.12) !important;
+      cursor: pointer;
     }
     .anal-bottom-table tr.current-reading-row {
-      background: rgba(56, 189, 248, 0.16) !important;
-      border-left: 4px solid #38bdf8 !important;
+      background: rgba(14, 116, 144, 0.3) !important;
+      border-left: 5px solid #38bdf8 !important;
     }
     .anal-bottom-table tr.current-reading-row td {
       color: #ffffff !important;
-      font-weight: 700;
+      font-weight: 700 !important;
     }
     .badge-current-reading {
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.5);
-      border-radius: 3px;
-      padding: 1px 5px;
-      margin-right: 6px;
+      font-size: 0.72rem !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      background: #0284c7 !important;
+      border: 1px solid #38bdf8 !important;
+      border-radius: 4px;
+      padding: 2px 7px !important;
+      margin-right: 8px;
       vertical-align: middle;
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.6) !important;
     }
     .bottom-title-cell {
       max-width: 480px;
@@ -839,18 +865,64 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .bottom-title-link {
-      color: #f1f5f9;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.15s ease;
+    /* Force high specificity over .content a rule */
+    .content a.bottom-title-link,
+    .anal-bottom-table .bottom-title-link,
+    a.bottom-title-link {
+      color: #f8fafc !important; /* Pure crisp bright white */
+      font-size: 0.88rem !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      display: inline !important;
+      transition: color 0.15s ease !important;
     }
-    .bottom-title-link:hover {
-      color: #38bdf8;
-      text-decoration: underline;
+    .content a.bottom-title-link:hover,
+    .anal-bottom-table .bottom-title-link:hover,
+    a.bottom-title-link:hover {
+      color: #38bdf8 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 3px !important;
     }
-    .current-reading-row .bottom-title-link {
-      color: #38bdf8;
+    .current-reading-row .bottom-title-link,
+    .current-reading-row a.bottom-title-link {
+      color: #38bdf8 !important;
+      font-weight: 700 !important;
+    }
+    .anal-bottom-table .comment-count-badge {
+      color: #38bdf8 !important;
+      font-weight: 700 !important;
+      font-size: 0.78rem !important;
+      margin-left: 6px;
+    }
+    .anal-bottom-table td.col-num {
+      color: #94a3b8 !important;
+      font-weight: 600 !important;
+      font-size: 0.84rem !important;
+      text-align: center;
+    }
+    .anal-bottom-table td.col-author {
+      color: #cbd5e1 !important;
+      font-size: 0.84rem !important;
+      font-weight: 600 !important;
+    }
+    .anal-bottom-table td.col-date {
+      color: #94a3b8 !important;
+      font-size: 0.82rem !important;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .anal-bottom-table td.col-views {
+      color: #cbd5e1 !important;
+      font-size: 0.84rem !important;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .anal-bottom-table td.col-likes {
+      color: #38bdf8 !important;
+      font-weight: 700 !important;
+      font-size: 0.84rem !important;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
     }
 
     /* Bottom List Pagination */
@@ -858,35 +930,38 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 5px;
-      margin-top: 14px;
+      gap: 6px;
+      margin-top: 18px;
     }
     .btn-bottom-page {
-      padding: 4px 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: #cbd5e1;
+      padding: 6px 14px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      border-radius: 5px !important;
+      border: 1px solid #2d3f5e !important;
+      background: #131d31 !important;
+      color: #f1f5f9 !important;
       cursor: pointer;
       transition: all 0.15s ease;
     }
     .btn-bottom-page:hover:not(:disabled) {
-      border-color: #38bdf8;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8 !important;
+      color: #38bdf8 !important;
+      background: #1e293b !important;
     }
     .btn-bottom-page.active {
-      background: #0284c7;
-      border-color: #0284c7;
-      color: #ffffff;
-      font-weight: 700;
-      box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+      background: #0284c7 !important;
+      border-color: #38bdf8 !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.5) !important;
     }
     .btn-bottom-page:disabled {
-      opacity: 0.35;
+      opacity: 0.35 !important;
       cursor: not-allowed;
+      border-color: #1e293b !important;
+      background: #090e1a !important;
+      color: #64748b !important;
     }
 
     /* ── Enhanced Like Button ─────────────────────────────────────────────── */
@@ -1494,7 +1569,7 @@
             <div id="analBottomListWrap" class="anal-bottom-list-wrap">
               <div class="bottom-list-header">
                 <h4 id="analBottomListTitle">📑 해당 카테고리 다른 글</h4>
-                <span id="analBottomListCount" style="font-size: 0.74rem; color: #94a3b8;">총 0편</span>
+                <span id="analBottomListCount" class="bottom-count-chip">총 0편</span>
               </div>
               <div style="overflow-x: auto;">
                 <table class="anal-bottom-table">
@@ -3203,16 +3278,16 @@
           const dateStr = (p.created_at || '').substring(0, 10);
           return `
             <tr class="${isCur ? 'current-reading-row' : ''}">
-              <td style="text-align: center; color: var(--text-muted); font-size: 0.78rem;">${overallIndex}</td>
+              <td class="col-num">${overallIndex}</td>
               <td class="bottom-title-cell">
                 ${isCur ? '<span class="badge-current-reading">열람중</span>' : ''}
                 <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id})">${escapeHtml(p.title)}</a>
                 ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
               </td>
-              <td style="font-size: 0.78rem;">${escapeHtml(p.author)}</td>
-              <td style="text-align: center; color: var(--text-muted); font-size: 0.76rem;">${escapeHtml(dateStr)}</td>
-              <td style="text-align: center; color: var(--text-muted); font-size: 0.76rem;">${p.view_count || 0}</td>
-              <td style="text-align: center; color: #38bdf8; font-weight: 700; font-size: 0.76rem;">${p.like_count || 0}</td>
+              <td class="col-author">${escapeHtml(p.author)}</td>
+              <td class="col-date">${escapeHtml(dateStr)}</td>
+              <td class="col-views">${p.view_count || 0}</td>
+              <td class="col-likes">${p.like_count || 0}</td>
             </tr>
           `;
         }).join('');
