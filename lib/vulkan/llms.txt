@@ -1,4 +1,4 @@
-# AMEVA-Runtime (v2.7.6)
+# AMEVA-Runtime (v2.7.7)
 > Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Library Isolation & Adreno OpenCL Smart Routing)
 
 ## Quick Specification for AI Coding Agents
