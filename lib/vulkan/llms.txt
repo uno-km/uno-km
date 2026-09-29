@@ -1,5 +1,5 @@
-# AMEVA-Runtime (v2.7.5)
-> Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with Z-Image Turbo DiT)
+# AMEVA-Runtime (v2.7.6)
+> Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Library Isolation & Adreno OpenCL Smart Routing)
 
 ## Quick Specification for AI Coding Agents
 - Official Repo: https://github.com/uno-km/ameva-runtime

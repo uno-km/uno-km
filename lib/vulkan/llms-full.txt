@@ -1,8 +1,8 @@
-# AMEVA-Runtime Full Technical Specification (v2.7.5)
+# AMEVA-Runtime Full Technical Specification (v2.7.6)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with Z-Image Turbo DiT)
+Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Library Isolation & Adreno OpenCL Smart Routing)
 AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
 
 ### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)

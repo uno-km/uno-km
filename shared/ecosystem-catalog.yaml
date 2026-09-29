@@ -67,8 +67,8 @@ sdks:
   - id: vulkan
     name: "AMEVA-Runtime"
     badge: "pip / npm"
-    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 6대 모달리티 AI 가속 런타임 (Vulkan / OpenCL / CPU 5대 표준 백엔드 지원)."
-    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with Vulkan, OpenCL & CPU 5-Backend Standard)."
+    tagline_ko: "모바일 및 엣지 환경을 위한 차세대 통합 온디바이스 하드웨어 오케스트레이션 및 6대 모달리티 AI 가속 런타임 (1:1 모달리티 라이브러리 격리 및 Adreno OpenCL 스마트 라우팅)."
+    tagline_en: "Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Isolation & Adreno OpenCL Smart Routing)."
     links:
       docs: "/lib/vulkan/"
       pypi: "https://pypi.org/project/ameva-runtime/"

@@ -58,6 +58,34 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.6 - Target-Aware 6-Modality Library Isolation & Qualcomm Adreno OpenCL Smart Routing</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Target-Aware 6-Modality Library Isolation: Replaced monolithic for-loop library path injection with strict 1:1 MODALITY_LIBRARY_MAP in base.py and get_vulkan_env(), completely eliminating cross-contamination crashes between whisper.cpp and llama.cpp (libggml-vulkan.so).</li>
+          <li>Universal Modality Contract Enforcement: Standardized modality = "<name>" and kwargs.setdefault("modality", cls.modality) across all 6 adapters (llamacpp, stt, vision, tts, diffusion, bitnet).</li>
+          <li>Qualcomm Adreno Smart Routing Architecture: Configured SmartRouter to auto-dispatch Snapdragon 865 (Adreno 650) to high-precision OpenCL backend (llama-cli-opencl) or CPU NEON, eliminating Vulkan subnormal FP16 repetition degeneration while retaining full GPU execution for Mali and modern Adreno 800+ silicons.</li>
+          <li>Adreno 600 Flash Attention Auto-Defense: Enforced -fa 0 injection for legacy Adreno GPUs in termux-llamacpp to prevent driver shader compilation deadlocks.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.5 - Unified 5-Backend Architecture Standard & OpenCL Driver System Path Injection</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Unified 5-Backend Architecture Standard: Formalized Vulkan, OpenCL, OpenCL-System, CPU NEON, and CPU Reference execution matrix.</li>
+          <li>OpenCL System Driver Injection: Added auto-detection and injection for vendor OpenCL ICD loaders across mobile chipsets.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.4 - Android 15 Linker Namespace Isolation, ChatML Auto-Templating & Adreno 600 Defense</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
