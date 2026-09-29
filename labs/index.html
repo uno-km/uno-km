@@ -1666,6 +1666,9 @@
         <p class="subtitle" id="mainSubtitle">온디바이스 시스템 및 생태계 공식 엔지니어링 소식</p>
       </div>
 
+      <!-- Universal Submenu Filter Pills (Auto-populated from DB menu tree for parent menus like 'research' & 'free-board') -->
+      <div id="commonSubmenuPills" class="board-filter-pills" style="display: none; margin-bottom: 18px; flex-wrap: wrap;"></div>
+
       <!-- VIEW 1: NEWS (Newsletter Card Reader with Drag/Swipe) -->
       <div id="viewNews" style="display: none;">
         <div class="news-reader-card" id="newsletterCard">
@@ -1830,14 +1833,8 @@
 
       <!-- VIEW 3: BOARD (DCInside Style Board + Top Post View + Bottom List) -->
       <div id="viewBoard" style="display: none;">
-        <!-- Top Toolbar -->
-        <div class="board-top-bar">
-          <div class="board-filter-pills">
-            <button class="board-pill active" id="pillAll" onclick="LabsApp.filterBoardSubmenu('free-board')">전체</button>
-            <button class="board-pill" id="pillAi" onclick="LabsApp.filterBoardSubmenu('board-ai')">AI</button>
-            <button class="board-pill" id="pillCs" onclick="LabsApp.filterBoardSubmenu('board-cs')">CS</button>
-          </div>
-        </div>
+        <!-- Top Toolbar (Legacy filter bar replaced by universal commonSubmenuPills) -->
+        <div class="board-top-bar" style="display: none;"></div>
 
         <!-- In-Place Top Post Detail View (Opened when row clicked) -->
         <div id="boardTopPostView" class="board-top-post-view" style="display: none;">
@@ -2449,10 +2446,60 @@
         }
       },
 
+      renderSubmenuTabs(menuId) {
+        const pillsContainer = document.getElementById('commonSubmenuPills');
+        if (!pillsContainer) return;
+
+        const curMenu = this.store.menus.find(m => m.id === menuId);
+        if (!curMenu) {
+          pillsContainer.style.display = 'none';
+          return;
+        }
+
+        // Determine Root Parent Menu
+        let rootParentId = null;
+        if (!curMenu.parent_id) {
+          const hasChildren = this.store.menus.some(m => m.parent_id === curMenu.id);
+          if (hasChildren) rootParentId = curMenu.id;
+        } else {
+          rootParentId = curMenu.parent_id;
+        }
+
+        if (!rootParentId) {
+          pillsContainer.style.display = 'none';
+          pillsContainer.innerHTML = '';
+          return;
+        }
+
+        const parentMenu = this.store.menus.find(m => m.id === rootParentId);
+        const children = this.store.menus
+          .filter(m => m.parent_id === rootParentId)
+          .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+
+        let pillsHtml = `
+          <button type="button" class="board-pill ${menuId === rootParentId ? 'active' : ''}" onclick="LabsApp.handleSidebarNav('${rootParentId}')">
+            전체
+          </button>
+        `;
+
+        children.forEach(child => {
+          const isAct = (menuId === child.id) ? 'active' : '';
+          pillsHtml += `
+            <button type="button" class="board-pill ${isAct}" onclick="LabsApp.handleSidebarNav('${child.id}')">
+              ${escapeHtml(child.name)}
+            </button>
+          `;
+        });
+
+        pillsContainer.innerHTML = pillsHtml;
+        pillsContainer.style.display = 'flex';
+      },
+
       async selectMenu(menuId) {
         this.activeMenuId = menuId;
         window.__curLabsMenu = menuId;
         this.updateSidebarHighlight(menuId);
+        this.renderSubmenuTabs(menuId);
 
         // Reset active post state, like UI, and hide remote when switching menus
         this.activePostId = null;
@@ -2816,10 +2863,22 @@
           history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}&post=${postId}`);
         }
 
-        const isHandbook = (this.activeMenuId === 'research-handbook');
+        const curMenu = this.store.menus.find(m => m.id === (post.menu_id || this.activeMenuId)) || { name: '연구', board_type: 'anal' };
+        const isHandbook = (curMenu.id === 'research-handbook');
         const detailBadge = document.getElementById('analDetailBadge');
         if (detailBadge) {
-          detailBadge.textContent = isHandbook ? 'HANDBOOK' : 'RESEARCH';
+          detailBadge.textContent = curMenu.name.toUpperCase();
+          detailBadge.className = `board-badge badge-${curMenu.board_type || 'anal'}`;
+        }
+
+        const backBtn = document.querySelector('button[onclick*="closeAnalDetail"]');
+        if (backBtn) {
+          backBtn.innerHTML = `← ${escapeHtml(curMenu.name)} 목록으로 돌아가기`;
+        }
+
+        const bibtexBtn = document.querySelector('button[onclick*="copyBibtexCitation"]');
+        if (bibtexBtn) {
+          bibtexBtn.style.display = (curMenu.board_type === 'anal') ? 'inline-flex' : 'none';
         }
 
         document.getElementById('analDetailTitle').textContent = post.title;
@@ -2834,6 +2893,9 @@
         this.recordRecentRead(post);
         this.showRemote();
 
+        document.getElementById('viewNews').style.display = 'none';
+        document.getElementById('viewAnal').style.display = 'none';
+        document.getElementById('viewBoard').style.display = 'none';
         document.getElementById('analFeedList').style.display = 'none';
         document.getElementById('analTopBar').style.display = 'none';
         const curriculumNav = document.getElementById('handbookCurriculumNav');
@@ -3121,11 +3183,19 @@
           this.viewerInstances.anal = null;
         }
         document.getElementById('analDetailView').style.display = 'none';
-        document.getElementById('analTopBar').style.display = 'flex';
-        document.getElementById('analFeedList').style.display = 'flex';
-        if (this.activeMenuId === 'research-handbook') {
-          const curriculumNav = document.getElementById('handbookCurriculumNav');
-          if (curriculumNav) curriculumNav.style.display = 'block';
+
+        const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal' };
+        if (curMenu.board_type === 'board' || curMenu.board_type === 'blog') {
+          document.getElementById('viewBoard').style.display = 'block';
+          this.renderBoardView(this.activeMenuId);
+        } else {
+          document.getElementById('viewAnal').style.display = 'block';
+          document.getElementById('analTopBar').style.display = 'flex';
+          document.getElementById('analFeedList').style.display = 'flex';
+          if (this.activeMenuId === 'research-handbook') {
+            const curriculumNav = document.getElementById('handbookCurriculumNav');
+            if (curriculumNav) curriculumNav.style.display = 'block';
+          }
         }
         history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}`);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3185,54 +3255,11 @@
       },
 
       async openBoardPost(postId, updateHistory = true) {
-        this.activePostId = postId;
-        this.activeSlot = 'board';
-        const post = await this.store.getPost(postId);
-        if (!post) return;
-
-        if (updateHistory) {
-          history.pushState(null, '', `/labs/index.html?menu=${this.activeBoardFilter}&post=${postId}`);
-        }
-
-        const menu = this.store.menus.find(m => m.id === post.menu_id) || { board_type: 'board', name: '자유' };
-        document.getElementById('boardPostBadge').className = `board-badge badge-${menu.board_type || 'board'}`;
-        document.getElementById('boardPostBadge').textContent = menu.name;
-        document.getElementById('boardPostTitle').textContent = post.title;
-        document.getElementById('boardPostAuthor').textContent = post.author;
-        document.getElementById('boardPostIp').textContent = post.author_ip || '127.0.0.1';
-        document.getElementById('boardPostDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
-        document.getElementById('boardPostViews').textContent = post.view_count || 1;
-        document.getElementById('boardPostLikes').textContent = post.like_count || 0;
-
-        // Enhanced Like & Recent Reading History Integration
-        this.updateLikeButtonUI('board', post.like_count || 0, this.isPostLiked(postId));
-        this.recordRecentRead(post);
-        this.showRemote();
-
-        document.getElementById('boardTopPostView').style.display = 'block';
-
-        this.mountAmevaViewer('board', '#boardViewerBody', post.content || '');
-        await this.renderCommentsForView('board', postId);
-        await this.renderBoardPager(post);
-
-        await this.renderBoardView(this.activeBoardFilter);
-        window.scrollTo({ top: document.getElementById('boardTopPostView').offsetTop - 60, behavior: 'smooth' });
+        return await this.openAnalDetail(postId, updateHistory);
       },
 
       closeBoardTopPost() {
-        this.activePostId = null;
-        this.adjacentPrevId = null;
-        this.adjacentNextId = null;
-        this.updateRemoteAdjacentButtons();
-        this.updateLikeButtonUI(null, 0, false);
-        this.hideRemote();
-        if (this.viewerInstances.board) {
-          try { this.viewerInstances.board.destroy(); } catch(e) {}
-          this.viewerInstances.board = null;
-        }
-        document.getElementById('boardTopPostView').style.display = 'none';
-        history.pushState(null, '', `/labs/index.html?menu=${this.activeBoardFilter}`);
-        this.renderBoardView(this.activeBoardFilter);
+        this.closeAnalDetail();
       },
 
       // ── Shared AmevaViewer Mounting ──────────────────────────────────────────
