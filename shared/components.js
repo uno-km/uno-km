@@ -77,7 +77,7 @@
     },
     "bitnet": {
       "name": "Termux-BitNet",
-      "version": "v2.0.0",
+      "version": "v2.0.1",
       "github": "https://github.com/uno-km/termux-bitnet",
       "pypi": "termux-bitnet",
       "npm": "termux-bitnet",
@@ -202,7 +202,7 @@
     },
     "vision": {
       "name": "Termux-Vision",
-      "version": "v1.5.0",
+      "version": "v1.6.0",
       "github": "https://github.com/uno-km/termux-vision",
       "pypi": "termux-vision",
       "npm": "termux-vision",
