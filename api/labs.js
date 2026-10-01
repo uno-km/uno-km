@@ -137,7 +137,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters with Optimistic Lock
-    const SEED_VERSION = 'v17_opensource_upstream_contributions';
+    const SEED_VERSION = 'v18_arm64_bitnet_ternary_collapse_whitepaper';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Optimistic Concurrency Lock: Only the first concurrent instance acquires the lock
