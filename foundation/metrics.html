@@ -57,6 +57,26 @@
     .badge-npm { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
     .badge-pypi { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
     .badge-total { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    a.stat-badge {
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    }
+    a.stat-badge:hover {
+      filter: brightness(0.92);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+      text-decoration: none;
+    }
+    a.stat-badge:active {
+      transform: translateY(0);
+    }
+    a.stat-badge:focus-visible {
+      outline: 2px solid var(--primary-color, #004499);
+      outline-offset: 1px;
+    }
+    a.badge-npm { color: #b91c1c; }
+    a.badge-pypi { color: #0369a1; }
     .live-pulse {
       display: inline-block;
       width: 8px;
@@ -117,7 +137,7 @@
       <div class="alert alert-tip">
         <span class="alert-title">Live Dynamic Registry API Synchronization</span>
         <p style="margin-bottom: 0;">
-          본 대시보드는 <strong>NPM Registry Official API</strong> 및 <strong>PyPI 검증 통계</strong>를 연동하여 최신 다운로드 지표를 브라우저 로드 시 실시간으로 계산하며, <strong>총 다운로드 수 내림차순(최다 순위 순)</strong>으로 자동 정렬됩니다.
+          본 대시보드는 <strong>NPM Registry Official API</strong> 및 <strong>PyPI 검증 통계</strong>를 연동하여 최신 다운로드 지표를 브라우저 로드 시 실시간으로 계산하며, <strong>총 다운로드 수 내림차순(최다 순위 순)</strong>으로 자동 정렬됩니다. 각 패키지의 <strong>NPM 및 PyPI 다운로드 배지를 클릭</strong>하면 해당 공식 레지스트리 웹페이지로 바로 이동합니다.
         </p>
       </div>
 
@@ -356,6 +376,8 @@
             const total = (npmDownloads || 0) + (pypiDownloads || 0);
             directPackages[key] = {
               version: liveVer ? (liveVer.startsWith('v') ? liveVer : 'v' + liveVer) : 'v0.0.1',
+              npm_package: npmPkg,
+              pypi_package: pypiPkg,
               npm_downloads: npmDownloads,
               pypi_downloads: pypiDownloads,
               total_downloads: (npmDownloads !== null || pypiDownloads !== null) ? total : null
@@ -388,16 +410,60 @@
             verCell.textContent = data.version;
           }
 
-          // NPM downloads
-          if (npmCell && typeof data.npm_downloads === 'number') {
-            npmCell.textContent = data.npm_downloads.toLocaleString();
-            npmCell.style.color = '';
+          // NPM downloads & official registry link
+          const npmPkg = data.npm_package || row.getAttribute('data-npm');
+          if (npmCell) {
+            if (typeof data.npm_downloads === 'number' && npmPkg) {
+              const formattedVal = data.npm_downloads.toLocaleString();
+              const npmUrl = `https://www.npmjs.com/package/${npmPkg}`;
+              if (npmCell.tagName.toLowerCase() === 'a') {
+                npmCell.href = npmUrl;
+                npmCell.textContent = formattedVal;
+                npmCell.title = `${npmPkg} 공식 NPM 레지스트리 페이지 열기 (새 창)`;
+              } else {
+                const a = document.createElement('a');
+                a.className = npmCell.className;
+                a.href = npmUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.title = `${npmPkg} 공식 NPM 레지스트리 페이지 열기 (새 창)`;
+                a.textContent = formattedVal;
+                npmCell.parentNode.replaceChild(a, npmCell);
+              }
+            } else if (npmCell.tagName.toLowerCase() === 'a') {
+              const span = document.createElement('span');
+              span.className = npmCell.className;
+              span.textContent = '-';
+              npmCell.parentNode.replaceChild(span, npmCell);
+            }
           }
 
-          // PyPI downloads
-          if (pypiCell && typeof data.pypi_downloads === 'number') {
-            pypiCell.textContent = data.pypi_downloads.toLocaleString();
-            pypiCell.style.color = '';
+          // PyPI downloads & official registry link
+          const pypiPkg = data.pypi_package || row.getAttribute('data-pypi-pkg');
+          if (pypiCell) {
+            if (typeof data.pypi_downloads === 'number' && pypiPkg) {
+              const formattedVal = data.pypi_downloads.toLocaleString();
+              const pypiUrl = `https://pypi.org/project/${encodeURIComponent(pypiPkg)}/`;
+              if (pypiCell.tagName.toLowerCase() === 'a') {
+                pypiCell.href = pypiUrl;
+                pypiCell.textContent = formattedVal;
+                pypiCell.title = `${pypiPkg} 공식 PyPI 패키지 페이지 열기 (새 창)`;
+              } else {
+                const a = document.createElement('a');
+                a.className = pypiCell.className;
+                a.href = pypiUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.title = `${pypiPkg} 공식 PyPI 패키지 페이지 열기 (새 창)`;
+                a.textContent = formattedVal;
+                pypiCell.parentNode.replaceChild(a, pypiCell);
+              }
+            } else if (pypiCell.tagName.toLowerCase() === 'a') {
+              const span = document.createElement('span');
+              span.className = pypiCell.className;
+              span.textContent = '-';
+              pypiCell.parentNode.replaceChild(span, pypiCell);
+            }
           }
 
           // Total downloads
