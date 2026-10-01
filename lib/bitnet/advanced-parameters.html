@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-BitNet</title>
-  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime, achieving up to 17.56 tok/s (12.58x speedup) on Qualcomm Adreno 830 and 3.47 tok/s (5.94x speedup) on ARM Mali-G68 under a sub-250MB RAM footprint.">
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,43 +21,31 @@
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>1. Native Vulkan Compute Acceleration via AMEVA-Runtime</h3>
-<p>Version 1.4.0 integrates with <code>dev/ameva-runtime</code> to execute all 30 transformer layers and FP16 LM Head directly on mobile GPU hardware:</p>
-<ul>
-  <li><strong>bitnet_gemv_i2_s.comp</strong>: 1.58-bit ternary matrix-vector product compute kernel.</li>
-  <li><strong>bitnet_gemv_f16.comp</strong>: 626.2 MB FP16 LM Head output projection offloaded to GPU with <code>unpackHalf2x16</code>.</li>
-  <li><strong>rope.comp, attention_decode.comp, swiglu_silu.comp, rmsnorm_norm.comp, residual_add.comp</strong>: Full transformer layer compute shaders.</li>
-  <li><strong>DispatchFullTokenChain</strong>: Single <code>VkCommandBuffer</code> submission and single fence wait per generated token.</li>
-</ul>
-<h3>2. Dynamic C ABI Parameter Synchronization</h3>
-<p>The engine maintains thread-safe state synchronization under <code>std::mutex</code>, enabling runtime updates without reloading weights:</p>
-<pre><code>typedef struct {
-    float temperature;
-    float top_p;
-    float min_p;
-    float typical_p;
-    float repeat_penalty;
-    float frequency_penalty;
-    float presence_penalty;
-    int32_t top_k;
-    int32_t repeat_last_n;
-    uint32_t seed;
-    const char* stop_tokens;
-} bitnet_params_t;
+      <h3>1. Mathematical Resolution of Ternary Numerical Collapse</h3>
+<p>In accordance with technical whitepaper <code>AOSF-TR-2026-BITNET-TERNARY-02</code>, low-level unpacking maps 2-bit unsigned containers to ternary weights using canonical relation:</p>
+<pre><code>// Canonical Microsoft BitNet b1.58 dequantization formula:
+int8_t w0 = (int8_t)(byte_val & 3) - 1;
+int8_t w1 = (int8_t)((byte_val >> 2) & 3) - 1;
+int8_t w2 = (int8_t)((byte_val >> 4) & 3) - 1;
+int8_t w3 = (int8_t)((byte_val >> 6) & 3) - 1;
 
-int bitnet_set_params(bitnet_context_t ctx, const bitnet_params_t* params);
-int bitnet_has_vulkan(void);</code></pre>
-<h3>3. Device Routing &amp; Fallback Policy</h3>
-<table class="data-table">
-  <thead>
-    <tr><th>Option</th><th>Target Backend</th><th>Failure Policy</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>--device auto</code></td><td>Vulkan GPU via ameva-runtime if available</td><td>Safe fallback to ARM64 NEON CPU with INFO notice</td></tr>
-    <tr><td><code>--device gpu</code></td><td>Vulkan GPU exclusive</td><td>Fail-Fast: Raises [ERROR: AMEVA-BITNET-E002] and exits</td></tr>
-    <tr><td><code>--device cpu</code></td><td>ARM64 NEON SIMD exclusive</td><td>Direct CPU execution without GPU probe overhead</td></tr>
-  </tbody>
-</table>
+// Integrated 32-byte GGUF tensor trailer weight scale:
+float total_scale = dequant_scale * weight_scale;
+out[r] *= total_scale;</code></pre>
+<h3>2. Dynamic Activation Dispatcher (Squared ReLU vs SwiGLU)</h3>
+<p>The engine introspects layer tensors at load time to automatically branch activation functions without user intervention:</p>
+<ul>
+  <li><strong>BitNet 2B-4T</strong>: Squared ReLU (<code>relu(x)^2</code>) coupled with Sub-LayerNorm (<code>ffn_sub_norm</code>).</li>
+  <li><strong>Falcon-E-1B & Falcon3-7B</strong>: Standard SwiGLU (<code>SiLU(x) * up</code>) without Sub-LayerNorm.</li>
+</ul>
+<h3>3. Upstream Open-Source Contributions & Credibility</h3>
+<p>Our foundational research directly powers and resolves global open-source issues across Microsoft and GGML:</p>
+<ul>
+  <li><a href="https://github.com/microsoft/BitNet/pull/551" target="_blank"><strong>microsoft/BitNet #551</strong></a>: Solved ARM QK=128 stride tensor corruption and word salad.</li>
+  <li><a href="https://github.com/microsoft/BitNet/pull/624" target="_blank"><strong>microsoft/BitNet #624</strong></a>: Completed 1x4_32W parallel NEON sdot acceleration kernel with Android Termux tooling.</li>
+  <li><a href="https://github.com/ggml-org/whisper.cpp/pull/4089" target="_blank"><strong>ggml-org/whisper.cpp #4089</strong></a>: Mobile heterogeneous GPU-Encoder / CPU-Decoder split-mode pipeline.</li>
+  <li><a href="https://uno-km.vercel.app/labs/?menu=research-papers" target="_blank"><strong>AOSF-TR-2026-BITNET-TERNARY-02</strong></a>: Official Foundation Research Technical Whitepaper on ARM64 1.58-bit Ternary Numerical Collapse.</li>
+</ul>
 
     </main>
   </div>

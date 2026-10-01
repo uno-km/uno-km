@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
@@ -37,33 +37,40 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr style="background: rgba(34, 197, 94, 0.08);">
+            <td><code>falcon-e-1b</code></td>
+            <td><code>tiiuae/Falcon-E-1B-Instruct-GGUF</code></td>
+            <td>1.0B / <strong>635 MB</strong> (SwiGLU)</td>
+            <td>Real-Time Mobile Dialog (Galaxy A53: <strong>9.69 tok/s</strong>)</td>
+            <td><code>termux-bitnet download falcon-e-1b</code></td>
+          </tr>
+          <tr style="background: rgba(14, 165, 233, 0.08);">
             <td><code>bitnet-2b</code></td>
             <td><code>microsoft/bitnet-b1.58-2B-4T-gguf</code></td>
-            <td>2.4B / <strong>1.13 GB</strong></td>
-            <td>Mid-to-High Range Devices (Galaxy S20+)</td>
+            <td>2.0B / <strong>1.13 GB</strong> (Squared ReLU)</td>
+            <td>General Reasoning (Galaxy S25: <strong>3.95 tok/s</strong>, A53: <strong>5.91 tok/s</strong>)</td>
             <td><code>termux-bitnet download bitnet-2b</code></td>
+          </tr>
+          <tr>
+            <td><code>bitnet-embed-270m</code></td>
+            <td><code>microsoft/bitnet-embedding-270m</code></td>
+            <td>268M / <strong>367 MB</strong> (Embedding)</td>
+            <td>On-Device Vector Search & Local RAG (Galaxy A53: <strong>30.68 tok/s</strong>)</td>
+            <td><code>termux-bitnet download bitnet-embed-270m</code></td>
+          </tr>
+          <tr style="background: rgba(168, 85, 247, 0.08);">
+            <td><code>falcon3-7b</code></td>
+            <td><code>tiiuae/Falcon3-7B-Instruct-1.58bit-GGUF</code></td>
+            <td>7.45B / <strong>3.05 GB</strong> (SwiGLU)</td>
+            <td>High-Capacity Reasoning on 6GB RAM Phones (Galaxy A53: <strong>2.00 tok/s</strong>)</td>
+            <td><code>termux-bitnet download falcon3-7b</code></td>
           </tr>
           <tr>
             <td><code>bitnet-large</code></td>
             <td><code>RichardErkhov/1bitLLM_-_bitnet_b1_58-large-gguf</code></td>
             <td>0.7B / <strong>404 MB</strong></td>
-            <td>Constrained Memory / Low-End Devices</td>
+            <td>Ultra-Constrained Legacy Devices</td>
             <td><code>termux-bitnet download bitnet-large</code></td>
-          </tr>
-          <tr>
-            <td><code>bitnet-3b</code></td>
-            <td><code>Green-Sky/bitnet_b1_58-3B-GGUF</code></td>
-            <td>3.3B / <strong>730 MB</strong></td>
-            <td>High-Capacity On-Device Tasks</td>
-            <td><code>termux-bitnet download bitnet-3b</code></td>
-          </tr>
-          <tr>
-            <td><code>bitnet-3b-q4</code></td>
-            <td><code>RichardErkhov/1bitLLM_-_bitnet_b1_58-3B-gguf</code></td>
-            <td>3.3B / <strong>1.83 GB</strong></td>
-            <td>High-Precision 4-bit Hybrid</td>
-            <td><code>termux-bitnet download bitnet-3b-q4</code></td>
           </tr>
         </tbody>
       </table>

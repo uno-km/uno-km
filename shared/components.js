@@ -77,7 +77,7 @@
     },
     "bitnet": {
       "name": "Termux-BitNet",
-      "version": "v1.4.7",
+      "version": "v2.0.0",
       "github": "https://github.com/uno-km/termux-bitnet",
       "pypi": "termux-bitnet",
       "npm": "termux-bitnet",
