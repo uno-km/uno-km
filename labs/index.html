@@ -1741,7 +1741,7 @@
               <span class="board-badge badge-anal" id="analDetailBadge">RESEARCH</span>
               <h3 id="analDetailTitle"></h3>
               <div id="analDetailTitleEng" style="font-size: 0.95rem; color: #94a3b8; margin-top: 4px; font-weight: 500; display: none;"></div>
-              <div id="analDetailTags" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; margin-bottom: 6px;"></div>
+              
               <div class="post-view-meta">
                 <span>작성자: <strong id="analDetailAuthor"></strong> (<span id="analDetailIp"></span>)</span>
                 <span>작성일: <span id="analDetailDate"></span></span>
@@ -1767,10 +1767,24 @@
                 <button type="button" class="btn-theme-chip active" id="analThemeDark" onclick="LabsApp.setDetailTheme('dark', 'anal')">Cyber Dark</button>
                 <button type="button" class="btn-theme-chip" id="analThemeWhite" onclick="LabsApp.setDetailTheme('white', 'anal')">Light</button>
                 <button type="button" class="btn-theme-chip" id="analThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'anal')">Retro Win98</button>
+                <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.15); margin: 0 4px;"></div>
+                <button type="button" class="btn-theme-chip btn-lang-toggle" id="analLangToggle" onclick="LabsApp.toggleLanguage('anal')" title="언어 전환 (KO ↔ EN)"><span class="lang-icon">🌐</span> <span class="lang-text">English (EN)</span></button>
               </div>
             </div>
 
             <div id="analViewerBody" style="margin-bottom: 16px;"></div>
+
+            <!-- Ontology Knowledge Tags at the Bottom of Post -->
+            <div id="analDetailBottomTags" class="post-bottom-tags-container" style="margin-top: 24px; margin-bottom: 20px; padding: 16px 20px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 1rem;">🏷️</span>
+                  <span style="font-size: 0.85rem; font-weight: 700; color: #60a5fa; letter-spacing: 0.5px;">온톨로지 지식 태그 (Knowledge Graph & Vector Tags)</span>
+                </div>
+                <span style="font-size: 0.72rem; color: #94a3b8;"># 태그를 클릭하여 관련 연구를 검색하세요</span>
+              </div>
+              <div id="analDetailTags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+            </div>
 
             <!-- Post Navigation Pager (Prev / List / Next Post) -->
             <div id="analPostPager" class="post-nav-pager-bar"></div>
@@ -1822,8 +1836,11 @@
         </div>
 
         <!-- Research Top Toolbar -->
-        <div class="board-top-bar" id="analTopBar">
+        <div class="board-top-bar" id="analTopBar" style="display: flex; justify-content: space-between; align-items: center;">
           <div><span class="board-badge badge-anal" id="analTopBadge">RESEARCH DISPATCHES</span></div>
+          <button type="button" class="btn-theme-chip btn-lang-toggle" onclick="LabsApp.toggleLanguage('anal')" title="언어 전환 (KO ↔ EN)" style="font-weight: 600;">
+            <span class="lang-icon">🌐</span> <span class="lang-text">English (EN)</span>
+          </button>
         </div>
 
         <!-- Handbook Curriculum Dashboard & Module Filter (Visible only when menu is research-handbook) -->
@@ -2351,6 +2368,8 @@
       handbookPosts: [],
       activePostId: null,
       activeSlot: 'anal',
+      currentLang: localStorage.getItem('labs_lang') || 'ko',
+      currentPostData: null,
       adjacentPrevId: null,
       adjacentNextId: null,
       bottomListPosts: [],
@@ -2814,7 +2833,7 @@
                   ${hasLab ? '<span class="hb-feature-pill lab">🔬 Hands-on Lab 실습</span>' : ''}
                   ${hasMermaid ? '<span class="hb-feature-pill">📊 다이어그램</span>' : ''}
                 </div>
-                <h3 class="anal-title">${escapeHtml(p.title)}</h3>
+                <h3 class="anal-title">${escapeHtml((LabsApp.currentLang === 'en' && p.title_eng) ? p.title_eng : p.title)}</h3>
                 <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
                 <div class="anal-meta">
                   <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
@@ -2841,7 +2860,7 @@
             card.onclick = () => this.openAnalDetail(p.id);
             card.innerHTML = `
               <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
-              <h3 class="anal-title">${escapeHtml(p.title)}</h3>
+              <h3 class="anal-title">${escapeHtml((LabsApp.currentLang === 'en' && p.title_eng) ? p.title_eng : p.title)}</h3>
               <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
               <div class="anal-meta">
                 <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
@@ -2898,17 +2917,32 @@
         }
 
         const tagsEl = document.getElementById('analDetailTags');
+        const bottomTagsWrap = document.getElementById('analDetailBottomTags');
         if (tagsEl) {
           tagsEl.innerHTML = '';
-          if (post.tags) {
-            const rawTags = post.tags.split('#').map(t => t.trim()).filter(Boolean);
-            rawTags.forEach(tag => {
-              const tagBadge = document.createElement('span');
-              tagBadge.className = 'post-tag-badge';
-              tagBadge.textContent = `#${tag}`;
-              tagBadge.style.cssText = 'background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.78rem; font-weight: 600;';
+          const rawTags = (post.tags || '').match(/#[^#]+/g) || [];
+          if (rawTags.length > 0) {
+            if (bottomTagsWrap) bottomTagsWrap.style.display = 'block';
+            rawTags.forEach(rawTag => {
+              const cleanTag = rawTag.trim();
+              if (!cleanTag) return;
+              const tagBadge = document.createElement('button');
+              tagBadge.type = 'button';
+              tagBadge.className = 'post-tag-badge ontology-tag-chip';
+              tagBadge.textContent = cleanTag;
+              tagBadge.title = `'${cleanTag}' 관련 연구 검색 및 온톨로지 필터`;
+              tagBadge.style.cssText = 'background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 4px;';
+              tagBadge.onclick = () => {
+                const searchInput = document.getElementById('labsSearchInput') || document.querySelector('input[type="search"]');
+                if (searchInput) {
+                  searchInput.value = cleanTag;
+                  searchInput.dispatchEvent(new Event('input'));
+                }
+              };
               tagsEl.appendChild(tagBadge);
             });
+          } else {
+            if (bottomTagsWrap) bottomTagsWrap.style.display = 'none';
           }
         }
 
@@ -2932,7 +2966,8 @@
         if (curriculumNav) curriculumNav.style.display = 'none';
         document.getElementById('analDetailView').style.display = 'block';
 
-        this.mountAmevaViewer('anal', '#analViewerBody', post.content || '');
+        this.currentPostData = post;
+        this.renderDetailContentForLang(post);
 
         // In-Article Table of Contents (TOC) builder with Full Hierarchy Support (#, ##, ###, ####)
         const tocContainer = document.getElementById('analInArticleToc');
@@ -3294,6 +3329,85 @@
 
       closeBoardTopPost() {
         this.closeAnalDetail();
+      },
+
+      // ── Multi-Language (KO/EN) and Content Engine ──────────────────────────
+      toggleLanguage(slot = 'anal') {
+        this.currentLang = (this.currentLang === 'ko') ? 'en' : 'ko';
+        localStorage.setItem('labs_lang', this.currentLang);
+        this.updateLanguageUI();
+      },
+
+      updateLanguageUI() {
+        const isEn = (this.currentLang === 'en');
+        const langToggles = document.querySelectorAll('.btn-lang-toggle');
+        langToggles.forEach(btn => {
+          const textSpan = btn.querySelector('.lang-text');
+          if (textSpan) {
+            textSpan.textContent = isEn ? '한국어 (KO)' : 'English (EN)';
+          } else {
+            btn.textContent = isEn ? '🌐 KO' : '🌐 EN';
+          }
+          btn.classList.toggle('active', isEn);
+        });
+
+        if (this.currentPostData) {
+          this.renderDetailContentForLang(this.currentPostData);
+        } else if (this.activePostId) {
+          this.store.getPost(this.activePostId).then(post => {
+            if (post) this.renderDetailContentForLang(post);
+          });
+        }
+
+        const analFeedList = document.getElementById('analFeedList');
+        if (analFeedList && analFeedList.style.display !== 'none') {
+          this.renderAnalView();
+        }
+      },
+
+      renderDetailContentForLang(post) {
+        if (!post) return;
+        this.currentPostData = post;
+        const isEn = (this.currentLang === 'en');
+        const titleEl = document.getElementById('analDetailTitle');
+        const engTitleEl = document.getElementById('analDetailTitleEng');
+
+        if (isEn && post.title_eng) {
+          if (titleEl) titleEl.textContent = post.title_eng;
+          if (engTitleEl) {
+            engTitleEl.textContent = `원문: ${post.title}`;
+            engTitleEl.style.display = 'block';
+          }
+        } else {
+          if (titleEl) titleEl.textContent = post.title;
+          if (engTitleEl) {
+            if (post.title_eng) {
+              engTitleEl.textContent = post.title_eng;
+              engTitleEl.style.display = 'block';
+            } else {
+              engTitleEl.style.display = 'none';
+            }
+          }
+        }
+
+        // Choose markdown content
+        const markdown = (isEn && post.content_eng) ? post.content_eng : (post.content || '');
+        this.mountAmevaViewer('anal', '#analViewerBody', markdown);
+
+        // Update language button state
+        const langToggle = document.getElementById('analLangToggle');
+        if (langToggle) {
+          const textSpan = langToggle.querySelector('.lang-text');
+          if (textSpan) textSpan.textContent = isEn ? '한국어 (KO)' : 'English (EN)';
+          langToggle.classList.toggle('active', isEn);
+        }
+
+        // Trigger TOC rebuild if active
+        setTimeout(() => {
+          if (typeof this.rebuildInArticleToc === 'function') {
+            this.rebuildInArticleToc();
+          }
+        }, 120);
       },
 
       // ── Shared AmevaViewer Mounting ──────────────────────────────────────────
