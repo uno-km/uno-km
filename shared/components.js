@@ -9,10 +9,10 @@
   const ECOSYSTEM_REGISTRY = {
     "sentinel": {
       "name": "AMEVA-Sentinel",
-      "version": "v1.0.1",
+      "version": "v2.3.0",
       "github": "https://github.com/uno-km/ameva-sentinel",
-      "pypi": "",
-      "npm": "ameva-sentinel",
+      "pypi": "ameva-sentinel",
+      "npm": "@ameva/sentinel",
       "doc_pages": [
         ["index.html", "Home / Architecture"],
         ["installation.html", "Installation Guide"],
@@ -26,7 +26,7 @@
     },
     "mcp": {
       "name": "AMEVA-MCP-Hub",
-      "version": "v3.0.1",
+      "version": "v3.1.2",
       "github": "https://github.com/uno-km/ameva-mcp-hub",
       "pypi": "ameva-mcp-hub",
       "npm": "ameva-mcp-hub",
@@ -43,7 +43,7 @@
     },
     "vulkan": {
       "name": "AMEVA-Runtime",
-      "version": "v2.1.0",
+      "version": "v2.7.7",
       "github": "https://github.com/uno-km/ameva-runtime",
       "pypi": "ameva-runtime",
       "npm": "@ameva/runtime",
@@ -60,7 +60,7 @@
     },
     "aichain": {
       "name": "Termux-AIChain",
-      "version": "v1.1.2",
+      "version": "v1.1.4",
       "github": "https://github.com/uno-km/termux-aichain",
       "pypi": "termux-aichain",
       "npm": "termux-aichain",
@@ -76,7 +76,7 @@
     },
     "bitnet": {
       "name": "Termux-BitNet",
-      "version": "v1.1.3",
+      "version": "v1.4.6",
       "github": "https://github.com/uno-km/termux-bitnet",
       "pypi": "termux-bitnet",
       "npm": "termux-bitnet",
@@ -93,7 +93,7 @@
     },
     "diffusion": {
       "name": "Termux-Diffusion",
-      "version": "v1.4.3",
+      "version": "v1.8.1",
       "github": "https://github.com/uno-km/termux-diffusion",
       "pypi": "termux-diffusion",
       "npm": "termux-diffusion",
@@ -112,7 +112,7 @@
     },
     "playwright": {
       "name": "Termux-Playwright",
-      "version": "v1.81.1",
+      "version": "v1.81.2",
       "github": "https://github.com/uno-km/termux-playwright",
       "pypi": "termux-playwright",
       "npm": "termux-playwright",
@@ -132,7 +132,7 @@
     },
     "stt": {
       "name": "Termux-STT",
-      "version": "v1.1.8",
+      "version": "v1.3.3",
       "github": "https://github.com/uno-km/termux-stt",
       "pypi": "termux-stt",
       "npm": "termux-stt",
@@ -150,7 +150,7 @@
     },
     "tts": {
       "name": "Termux-TTS",
-      "version": "v1.3.0",
+      "version": "v1.5.5",
       "github": "https://github.com/uno-km/termux-tts",
       "pypi": "termux-tts",
       "npm": "termux-tts",
@@ -167,7 +167,7 @@
     },
     "train": {
       "name": "Termux-Train",
-      "version": "v1.0.1",
+      "version": "v1.1.5",
       "github": "https://github.com/uno-km/termux-train",
       "pypi": "termux-train",
       "npm": "termux-train",
@@ -185,7 +185,7 @@
     },
     "llamacpp": {
       "name": "Termux-LlamaCpp",
-      "version": "v1.2.2",
+      "version": "v1.3.13",
       "github": "https://github.com/uno-km/termux-llamacpp",
       "pypi": "termux-llamacpp",
       "npm": "termux-llamacpp",
@@ -201,7 +201,7 @@
     },
     "vision": {
       "name": "Termux-Vision",
-      "version": "v1.1.2",
+      "version": "v1.5.0",
       "github": "https://github.com/uno-km/termux-vision",
       "pypi": "termux-vision",
       "npm": "termux-vision",

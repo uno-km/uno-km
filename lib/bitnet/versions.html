@@ -23,9 +23,25 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.0 - Native Vulkan Compute GPU Acceleration, Permanent VRAM Residency & Dynamic C ABI</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.6 - Unified 5-Backend Standard &amp; ARMv8.2-A NEON sdot Acceleration</h3>
           <div>
-            <span class="status-badge active" style="margin-right: 6px;">Latest Production Release</span>
+            <span class="status-badge active" style="margin-right: 6px;">Latest Production Release (Current)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Unified 5-Backend Standard Architecture</strong>: Standardized <code>--device auto|gpu|vulkan|opencl|cpu</code> across CLI and Python/Node.js API bindings.</li>
+          <li><strong>ARMv8.2-A NEON 1x4_32W sdot Hardware Acceleration Kernel</strong>: Completed native assembly kernel utilizing <code>vdotq_s32</code> integer dot-products, accelerating 1.58-bit ternary GEMV on mobile ARM64.</li>
+          <li><strong>Gate 1 Zero-Collision Hardening</strong>: Permanently purged <code>LD_LIBRARY_PATH</code> bin directory injection to guarantee total Bionic dynamic linker isolation.</li>
+          <li><strong>i2_s Quantization Defect Resolution (Word Salad Cure)</strong>: Integrated upstream BitNet #551 patch eliminating weight unpacking corruption on non-AVX2 / ARM mobile architectures.</li>
+          <li><strong>Adreno &amp; Mali Watchdog Defenses</strong>: Integrated fence timeout hardening preventing Android kernel kgsl driver aborts under high-concurrency token generation.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--border-color, #cbd5e1);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--text-main, #0f172a);">v1.4.0 - Native Vulkan Compute GPU Acceleration, Permanent VRAM Residency &amp; Dynamic C ABI</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-07</span>
           </div>
         </div>

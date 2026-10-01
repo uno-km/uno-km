@@ -24,11 +24,44 @@
 
       <div class="timeline">
         <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Stable Release</div>
+          <div class="timeline-badge">Latest Release</div>
           <div class="timeline-content">
-            <h3>v1.0.1 - Maintenance Release &mdash; 2026-09-04</h3>
+            <h3>v1.1.5 - Unified Vulkan Specs &amp; Environment Discovery &mdash; 2026-09-05</h3>
             <ul>
-              <li>일부 문구 수정 (Minor wording and documentation adjustments).</li>
+              <li><strong>Dependency Standardization:</strong> Aligned Vulkan compute engine docstrings and dependency specifications with unified <code>@ameva/runtime</code> / <code>ameva-runtime</code>.</li>
+              <li><strong>Platform Probe Alignment:</strong> Standardized <code>is_termux</code> and <code>is_android</code> platform detection via ecosystem SSOT.</li>
+              <li><strong>Node.js PYTHONPATH Injection:</strong> Hardened test suite against cross-language module load failure.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#2563eb;">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.1.4 - Hardware Acceleration Delegation &mdash; 2026-09-05</h3>
+            <ul>
+              <li><strong>Unified Runtime:</strong> Migrated hardware acceleration dependency to unified <code>@ameva/runtime &gt;= 2.0.0</code>.</li>
+              <li><strong>Backend Delegation:</strong> Standardized Vulkan compute backend delegation and streamlined one-touch installation workflow.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Dual-Engine Milestone</div>
+          <div class="timeline-content">
+            <h3>v1.1.0 - Dual-Engine Architecture &amp; MMap Dataset &mdash; 2026-09-02</h3>
+            <ul>
+              <li><strong>Node.js / TypeScript Dual-Engine:</strong> Native npm ecosystem integration with dual CLI (<code>termux-train</code>, <code>tt</code>).</li>
+              <li><strong>Bounded MMap Dataset Streaming:</strong> Zero-copy token streaming pipeline supporting large datasets within bounded memory footprint.</li>
+              <li><strong>Multilingual ByteTokenizer:</strong> Native UTF-8, CJK ideographs, Hangul, and Emoji encoding support.</li>
+              <li><strong>Safety Guards:</strong> HuggingFace SafeTensors boundary defense and divergence early-abort validation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#64748b;">Maintenance Release</div>
+          <div class="timeline-content">
+            <h3>v1.0.1 - Documentation &amp; Environment Fixes &mdash; 2026-09-04</h3>
+            <ul>
+              <li>Refined documentation and platform configuration alignment.</li>
             </ul>
           </div>
         </div>

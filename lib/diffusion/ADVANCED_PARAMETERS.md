@@ -1,4 +1,4 @@
-﻿# Comprehensive Guide to Advanced Parameters in Termux-Diffusion
+# Comprehensive Guide to Advanced Parameters in Termux-Diffusion
 
 `termux-diffusion` exposes the full suite of high-precision diffusion controls powered by the native `sd-cli` (`stable-diffusion.cpp`) engine. This handbook details every advanced parameter, supported values, boundary clamping rules, and production code examples for **Python SDK**, **Node.js SDK**, and **Terminal CLI**.
 
@@ -254,7 +254,7 @@ Binds individual neural components to optimal hardware accelerators:
     -o /sdcard/Pictures/TermuxDiffusion/s21_anime_tiger_6step.png
   ```
 * **Physical Results**: Specular PBR neon light reflections across wet asphalt, crisp cybernetic armor contours, complete convergence without memory spikes.
-* **Academic Whitepaper**: Available via the [AMEVA Labs | Sovereign On-Device AI Research, Newsletter & Discussion](https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=32) and the [Galaxy S21 Z-Image Turbo Vulkan Research Report](https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md).
+* **Academic Whitepaper**: Available via the [AMEVA Labs | Sovereign On-Device AI Research, Newsletter & Discussion](https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=33) and the [Galaxy S21 Z-Image Turbo Vulkan Research Report](https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md).
 
 ---
 
