@@ -281,15 +281,15 @@
       }
 
       if (!packages) {
-        // Build resilient fallback from ECOSYSTEM_REGISTRY
+        // Baseline fallback strictly defaulting to v0.0.1
         packages = {};
         Object.keys(ECOSYSTEM_REGISTRY).forEach(k => {
           const item = ECOSYSTEM_REGISTRY[k];
           packages[k] = {
             key: k,
             name: item.name,
-            version: item.version,
-            raw_version: item.version.replace(/^v/, ''),
+            version: 'v0.0.1',
+            raw_version: '0.0.1',
             pypi_package: item.pypi,
             npm_package: item.npm
           };

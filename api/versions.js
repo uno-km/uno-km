@@ -8,20 +8,20 @@
  */
 
 const REGISTRY = {
-  "sentinel": { name: "AMEVA-Sentinel", pypi: "ameva-sentinel", npm: "@ameva/sentinel", fallback: "2.3.0" },
-  "mcp": { name: "AMEVA-MCP-Hub", pypi: "ameva-mcp-hub", npm: "ameva-mcp-hub", fallback: "3.1.2" },
-  "vulkan": { name: "AMEVA-Runtime", pypi: "ameva-runtime", npm: "@ameva/runtime", fallback: "2.7.7" },
-  "aichain": { name: "Termux-AIChain", pypi: "termux-aichain", npm: "termux-aichain", fallback: "1.1.4" },
-  "bitnet": { name: "Termux-BitNet", pypi: "termux-bitnet", npm: "termux-bitnet", fallback: "1.4.6" },
-  "diffusion": { name: "Termux-Diffusion", pypi: "termux-diffusion", npm: "termux-diffusion", fallback: "1.8.1" },
-  "playwright": { name: "Termux-Playwright", pypi: "termux-playwright", npm: "termux-playwright", fallback: "1.81.2" },
-  "stt": { name: "Termux-STT", pypi: "termux-stt", npm: "termux-stt", fallback: "1.3.3" },
-  "tts": { name: "Termux-TTS", pypi: "termux-tts", npm: "termux-tts", fallback: "1.5.5" },
-  "train": { name: "Termux-Train", pypi: "termux-train", npm: "termux-train", fallback: "1.1.5" },
-  "llamacpp": { name: "Termux-LlamaCpp", pypi: "termux-llamacpp", npm: "termux-llamacpp", fallback: "1.3.13" },
-  "vision": { name: "Termux-Vision", pypi: "termux-vision", npm: "termux-vision", fallback: "1.5.0" },
-  "forge": { name: "AMEVA-Forge", pypi: "ameva-forge", npm: "ameva-forge", fallback: "1.0.1" },
-  "infra-index": { name: "Infra-Index", pypi: "infra-index", npm: "infra-index", fallback: "1.0.1" }
+  "sentinel": { name: "AMEVA-Sentinel", pypi: "ameva-sentinel", npm: "@ameva/sentinel", fallback: "0.0.1" },
+  "mcp": { name: "AMEVA-MCP-Hub", pypi: "ameva-mcp-hub", npm: "ameva-mcp-hub", fallback: "0.0.1" },
+  "vulkan": { name: "AMEVA-Runtime", pypi: "ameva-runtime", npm: "@ameva/runtime", fallback: "0.0.1" },
+  "aichain": { name: "Termux-AIChain", pypi: "termux-aichain", npm: "termux-aichain", fallback: "0.0.1" },
+  "bitnet": { name: "Termux-BitNet", pypi: "termux-bitnet", npm: "termux-bitnet", fallback: "0.0.1" },
+  "diffusion": { name: "Termux-Diffusion", pypi: "termux-diffusion", npm: "termux-diffusion", fallback: "0.0.1" },
+  "playwright": { name: "Termux-Playwright", pypi: "termux-playwright", npm: "termux-playwright", fallback: "0.0.1" },
+  "stt": { name: "Termux-STT", pypi: "termux-stt", npm: "termux-stt", fallback: "0.0.1" },
+  "tts": { name: "Termux-TTS", pypi: "termux-tts", npm: "termux-tts", fallback: "0.0.1" },
+  "train": { name: "Termux-Train", pypi: "termux-train", npm: "termux-train", fallback: "0.0.1" },
+  "llamacpp": { name: "Termux-LlamaCpp", pypi: "termux-llamacpp", npm: "termux-llamacpp", fallback: "0.0.1" },
+  "vision": { name: "Termux-Vision", pypi: "termux-vision", npm: "termux-vision", fallback: "0.0.1" },
+  "forge": { name: "AMEVA-Forge", pypi: "ameva-forge", npm: "ameva-forge", fallback: "0.0.1" },
+  "infra-index": { name: "Infra-Index", pypi: "infra-index", npm: "infra-index", fallback: "0.0.1" }
 };
 
 let cachedResponse = null;
