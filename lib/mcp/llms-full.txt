@@ -1,4 +1,4 @@
-# AMEVA-MCP-Hub Full Technical Specification (v3.1.2)
+# AMEVA-MCP-Hub Full Technical Specification (v3.1.3)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMEVA-Sentinel Security Observability Manager (v2.3.0)</title>
-    <link rel="icon" type="image/svg+xml" href="https://uno-km.vercel.app/shared/brand/favicon.svg">
     <!-- Leaflet OpenStreetMap Engine -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -291,19 +291,14 @@
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
         .modal-box { background: #ffffff; border: 2px solid var(--primary-color); border-radius: 4px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 12px; }
     </style>
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="header-brand">
-            <img src="https://uno-km.vercel.app/shared/brand/favicon.svg" alt="Logo">
-            <h1>AMEVA-Sentinel</h1>
-        </div>
-        <div class="header-controls">
-            <span class="tomcat-badge badge-shadow">v2.3.0 Standard Dashboard</span>
-            <span class="tomcat-badge badge-live">LIVE TELEMETRY</span>
-            <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn primary">🐙 GitHub</a>
-        </div>
-    </header>
+    <ameva-header></ameva-header>
 
     <div class="tomcat-container">
         <!-- 1. System Status Header -->
