@@ -23,23 +23,38 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.12 - Dynamic Linker Bionic Isolation & ChatML Repetition Mitigation</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.13 - OpenCL Acceleration Engine &amp; Unified 5-Backend Standard</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
           </div>
         </div>
         <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Unified 5-Backend Standard:</strong> Standardized all CLI subcommands (<code>run</code>, <code>serve</code>, <code>benchmark</code>) to enforce the unified backend choices: <code>auto</code>, <code>gpu</code>, <code>vulkan</code>, <code>opencl</code>, <code>cpu</code>.</li>
+          <li><strong>Qualcomm Adreno OpenCL Acceleration:</strong> Added native <code>opencl</code> backend routing via optimized OpenCL 2.0 kernels, successfully resolving driver-level SPIR-V Vulkan defect on Adreno 650 (Snapdragon 865).</li>
+          <li><strong>Installer Symlink Hardening:</strong> Purged conflicting symlinks to prevent unintentional overwrite of native binary assets.</li>
+          <li><strong>Fleet Verification:</strong> Empirically verified on Galaxy S20 (OpenCL offload) and Galaxy S25 (Vulkan/Flash Attention).</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.12 - Dynamic Linker Bionic Isolation &amp; ChatML Repetition Mitigation</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
           <li>Dynamic Linker Bionic Isolation: Purged regressive $PREFIX/lib injection from fallback runtime environment, guaranteeing Android 15/16 Bionic namespace isolation and zero libunwindstack symbol collisions.</li>
-          <li>ChatML Auto-Templating: Standardized <|im_start|> prompt encapsulation and automatic -r '<|im_end|>' reverse stop token injection, eliminating repetition loops on Qwen and Llama-3.</li>
+          <li>ChatML Auto-Templating: Standardized &lt;|im_start|&gt; prompt encapsulation and automatic -r '&lt;|im_end|&gt;' reverse stop token injection, eliminating repetition loops on Qwen and Llama-3.</li>
           <li>Cross-SoC Mobile Inference Stability: Retained verified -fa 0 defense on Adreno 600 while maintaining Flash Attention on Adreno 830 and ARM Mali GPUs.</li>
         </ul>
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.10 - Dynamic Network Resume & Qualcomm Adreno Flash Attention Defense</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.10 - Dynamic Network Resume &amp; Qualcomm Adreno Flash Attention Defense</h3>
           <div>
-            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-28</span>
           </div>
         </div>
