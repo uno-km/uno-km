@@ -135788,7 +135788,7 @@ function normalizeKanbanCode(n) {
 function sanitizeMarkdown(n) {
 	if (!n) return "";
 	let r = n;
-	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
+	return r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
 }
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
