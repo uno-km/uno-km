@@ -1,4 +1,4 @@
-# Termux-BitNet (v2.0.0)
+# Termux-BitNet (v2.0.1)
 > Sovereign 1.58-Bit On-Device LLM Inference Engine with ARM64 NEON DotProd SIMD & Native Vulkan GPU Acceleration
 
 ## Quick Specification for AI Coding Agents

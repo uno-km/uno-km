@@ -23,6 +23,21 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.1 - Native GPU Acceleration Engine Audit, Mali Chunked Inference & Multi-Device Hardening</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Patch and Engineering Hardening Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-01</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Full GPU Acceleration Engine Audit</strong>: Comprehensive inventory and validation of all 8 GLSL compute shaders, compiled SPIR-V bytecode binaries, embedded C++ array headers, and dynamic Vulkan loader.</li>
+          <li><strong>Mali Watchdog Timeout Prevention</strong>: Introduced --chunk-layers (default 4) command-line option to slice GPU command dispatch buffers, eliminating the 2.5s Mali GPU watchdog fence timeout.</li>
+          <li><strong>Dynamic Vocabulary Slicing</strong>: Added --vocab-slice (default 32768) option to dynamically slice LM Head linear projection, reducing GPU VRAM allocation by 576MB.</li>
+          <li><strong>Cross-Platform Flag Introspection & Quality Safeguard</strong>: Added configurable CLI options (--prompt-template, --act-fn, -ngl) enabling user-directed architecture control and multi-device automated quality validation.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.0 - Sovereign Ternary - Universal Multi-Model 1.58-Bit Engine & 7B Edge Inference</h3>
           <div>
             <span class="status-badge" style="margin-right: 6px;">Major Architectural Generation Release</span>

@@ -2315,7 +2315,14 @@
               const seedPosts = await seedRes.value.json();
               if (Array.isArray(seedPosts) && seedPosts.length > 0) {
                 if (!this.cachedPostDetails) this.cachedPostDetails = {};
+                // Preserve dynamically synced view_count and like_count from local storage
+                const localMap = new Map((this.posts || []).map(p => [p.id, p]));
                 seedPosts.forEach(p => {
+                  const local = localMap.get(p.id);
+                  if (local) {
+                    if (local.view_count !== undefined && local.view_count !== null) p.view_count = local.view_count;
+                    if (local.like_count !== undefined && local.like_count !== null) p.like_count = local.like_count;
+                  }
                   this.cachedPostDetails[p.id] = p;
                 });
                 this.posts = seedPosts;
@@ -2415,11 +2422,32 @@
               .then(r => r.json())
               .then(data => {
                 if (data && data.ok && data.post) {
-                  cached.view_count = data.post.view_count;
-                  cached.like_count = data.post.like_count;
-                  const viewEl = document.getElementById('analDetailViews');
-                  if (viewEl && LabsApp.activePostId === postId) {
-                    viewEl.textContent = data.post.view_count;
+                  const freshViews = Number(data.post.view_count) || 0;
+                  const freshLikes = Number(data.post.like_count) || 0;
+                  cached.view_count = freshViews;
+                  cached.like_count = freshLikes;
+
+                  // Update detail UI elements if currently viewing this post
+                  if (LabsApp.activePostId === postId) {
+                    const viewEl = document.getElementById('analDetailViews');
+                    if (viewEl) viewEl.textContent = freshViews;
+                    const newsViewEl = document.getElementById('newsViews');
+                    if (newsViewEl) newsViewEl.textContent = freshViews;
+
+                    const likeEl = document.getElementById('analDetailLikes');
+                    if (likeEl) likeEl.textContent = freshLikes;
+                    const newsLikeEl = document.getElementById('newsLikes');
+                    if (newsLikeEl) newsLikeEl.textContent = freshLikes;
+
+                    LabsApp.updateLikeButtonUI(LabsApp.activeSlot || 'anal', freshLikes, LabsApp.isPostLiked(postId));
+                  }
+
+                  // Update posts collection and persist to localStorage
+                  const pItem = (this.posts || []).find(p => p.id === postId);
+                  if (pItem) {
+                    pItem.view_count = freshViews;
+                    pItem.like_count = freshLikes;
+                    this.saveLocal();
                   }
                 }
               }).catch(() => {});
@@ -2433,14 +2461,19 @@
             if (res.ok) {
               const data = await res.json();
               if (data.ok && data.post) {
+                const freshViews = Number(data.post.view_count) || 0;
+                const freshLikes = Number(data.post.like_count) || 0;
+                data.post.view_count = freshViews;
+                data.post.like_count = freshLikes;
                 this.cachedPostDetails[postId] = data.post;
                 const existingIdx = this.posts.findIndex(p => p.id === postId);
                 if (existingIdx !== -1) {
-                  this.posts[existingIdx].view_count = data.post.view_count;
-                  this.posts[existingIdx].like_count = data.post.like_count;
+                  this.posts[existingIdx].view_count = freshViews;
+                  this.posts[existingIdx].like_count = freshLikes;
                 } else {
                   this.posts.push(data.post);
                 }
+                this.saveLocal();
                 return data.post;
               }
             }
@@ -2781,8 +2814,10 @@
         document.getElementById('newsNavTitle').textContent = item.title;
         document.getElementById('newsAuthor').textContent = item.author;
         document.getElementById('newsDate').textContent = (item.created_at || '').substring(0, 10);
-        document.getElementById('newsViews').textContent = item.view_count || 1;
-        document.getElementById('newsLikes').textContent = item.like_count || 0;
+        const newsViews = (item.view_count !== undefined && item.view_count !== null) ? Number(item.view_count) : 0;
+        const newsLikes = (item.like_count !== undefined && item.like_count !== null) ? Number(item.like_count) : 0;
+        document.getElementById('newsViews').textContent = newsViews;
+        document.getElementById('newsLikes').textContent = newsLikes;
         document.getElementById('newsEditionSelect').value = this.newsletterIndex;
 
         const dotsContainer = document.getElementById('newsDotsContainer');
@@ -3155,11 +3190,13 @@
         document.getElementById('analDetailAuthor').textContent = post.author;
         document.getElementById('analDetailIp').textContent = post.author_ip || '127.0.0.1';
         document.getElementById('analDetailDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
-        document.getElementById('analDetailViews').textContent = post.view_count || 1;
-        document.getElementById('analDetailLikes').textContent = post.like_count || 0;
+        const curViews = (post.view_count !== undefined && post.view_count !== null) ? Number(post.view_count) : 0;
+        const curLikes = (post.like_count !== undefined && post.like_count !== null) ? Number(post.like_count) : 0;
+        document.getElementById('analDetailViews').textContent = curViews;
+        document.getElementById('analDetailLikes').textContent = curLikes;
 
         // Enhanced Like & Recent Reading History Integration
-        this.updateLikeButtonUI('anal', post.like_count || 0, this.isPostLiked(postId));
+        this.updateLikeButtonUI('anal', curLikes, this.isPostLiked(postId));
         this.recordRecentRead(post);
 
         // Stage 2: Render Content (AmevaViewer SetMarkdown / Reconciliation)
@@ -3790,6 +3827,10 @@
         this.recordPostLiked(postId);
         this.updateLikeButtonUI(slot, newLikes, true);
         this.showToast(`게시글을 추천하였습니다! 👍 (현재 추천: ${newLikes})`);
+
+        if (this.currentPostData && this.currentPostData.id === postId) {
+          this.currentPostData.like_count = newLikes;
+        }
 
         if (this.bottomListPosts && this.bottomListPosts.length > 0) {
           const item = this.bottomListPosts.find(p => p.id === postId);

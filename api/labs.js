@@ -54,7 +54,7 @@ try {
       id,
       author_ip: '127.0.0.1',
       status: 'published',
-      view_count: p.view_count || 100,
+      view_count: p.view_count || 0,
       like_count: p.like_count || 0,
       comment_count: 0,
       menu_name: p.menu_id,
@@ -85,6 +85,12 @@ async function ensureSchema(sql) {
     try {
       const fastCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
       if (fastCheck && fastCheck.length > 0 && fastCheck[0].value === SEED_VERSION) {
+        // One-time fix: Reset any lingering mock view_count of 100
+        const counterMigrated = await sql`SELECT value FROM labs_meta WHERE key = 'counter_fix_v24' LIMIT 1;`;
+        if (!counterMigrated || counterMigrated.length === 0) {
+          await sql`UPDATE labs_posts SET view_count = 0 WHERE view_count = 100;`;
+          await sql`INSERT INTO labs_meta (key, value) VALUES ('counter_fix_v24', 'done') ON CONFLICT (key) DO NOTHING;`;
+        }
         isSchemaReady = true;
         return;
       }
@@ -373,7 +379,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
 
     // ── 2. Posts (CRUD) ───────────────────────────────────────────────────────
     if (action === 'get_posts') {
-      res.setHeader('Cache-Control', 'public, max-age=30, s-maxage=600, stale-while-revalidate=3600');
+      res.setHeader('Cache-Control', 'public, max-age=5, s-maxage=10, stale-while-revalidate=30');
       const menu_id = req.query.menu_id || 'all';
       const includeContent = req.query.include_content === 'true' || menu_id === 'newsletter';
       const cacheKey = `${menu_id}_${includeContent}`;
@@ -447,29 +453,43 @@ Human Web Portal: https://uno-km.vercel.app/labs/
     }
 
     if (action === 'get_post') {
-      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=3600, stale-while-revalidate=86400');
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
       const post_id = parseInt(req.query.post_id, 10);
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
 
-      // Asynchronously track view count in background (fire-and-forget, zero blocking)
-      sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`.catch(() => {});
+      try {
+        // Atomic increment of view count directly on PostgreSQL
+        await sql`
+          UPDATE labs_posts 
+          SET view_count = COALESCE(view_count, 0) + 1 
+          WHERE id = ${post_id};
+        `;
 
-      const cached = SERVER_CACHE.getPost(post_id);
-      if (cached) {
-        return res.status(200).json({ ok: true, database_connected: true, cached: true, post: cached });
-      }
-
-      const rows = await sql`
-        SELECT p.*, m.name as menu_name, m.board_type
-        FROM labs_posts p
-        JOIN labs_menus m ON p.menu_id = m.id
-        WHERE p.id = ${post_id};
-      `;
-      if (!rows || rows.length === 0) {
+        const rows = await sql`
+          SELECT p.*, m.name as menu_name, m.board_type
+          FROM labs_posts p
+          JOIN labs_menus m ON p.menu_id = m.id
+          WHERE p.id = ${post_id};
+        `;
+        if (rows && rows.length > 0) {
+          const post = rows[0];
+          post.view_count = parseInt(post.view_count || 0, 10);
+          post.like_count = parseInt(post.like_count || 0, 10);
+          SERVER_CACHE.setPost(post_id, post);
+          return res.status(200).json({ ok: true, database_connected: true, post });
+        }
         return res.status(404).json({ ok: false, error: 'Post not found' });
+      } catch (dbErr) {
+        // Fallback to server cache if DB has transient connection issue
+        const cached = SERVER_CACHE.getPost(post_id);
+        if (cached) {
+          cached.view_count = (parseInt(cached.view_count || 0, 10)) + 1;
+          return res.status(200).json({ ok: true, database_connected: false, cached: true, post: cached });
+        }
+        return res.status(500).json({ ok: false, error: dbErr.message });
       }
-      SERVER_CACHE.setPost(post_id, rows[0]);
-      return res.status(200).json({ ok: true, database_connected: true, post: rows[0] });
     }
 
     if (action === 'create_post' && req.method === 'POST') {
@@ -489,21 +509,47 @@ Human Web Portal: https://uno-km.vercel.app/labs/
     }
 
     if (action === 'like_post' && req.method === 'POST') {
-      res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
       const { post_id } = req.body;
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
-      const updated = await sql`
-        UPDATE labs_posts 
-        SET like_count = like_count + 1 
-        WHERE id = ${post_id}
-        RETURNING like_count;
-      `;
-      SERVER_CACHE.invalidateAll();
-      return res.status(200).json({ 
-        ok: true, 
-        database_connected: true,
-        like_count: (updated && updated[0]) ? updated[0].like_count : 0 
-      });
+
+      try {
+        const updated = await sql`
+          UPDATE labs_posts 
+          SET like_count = COALESCE(like_count, 0) + 1 
+          WHERE id = ${post_id}
+          RETURNING like_count;
+        `;
+        const newLikes = (updated && updated.length > 0) ? parseInt(updated[0].like_count, 10) : 1;
+
+        // Clear list cache so feeds show updated count immediately
+        SERVER_CACHE.posts.clear();
+
+        const cached = SERVER_CACHE.getPost(post_id);
+        if (cached) {
+          cached.like_count = newLikes;
+        }
+
+        return res.status(200).json({ 
+          ok: true, 
+          database_connected: true,
+          like_count: newLikes 
+        });
+      } catch (dbErr) {
+        const cached = SERVER_CACHE.getPost(post_id);
+        let newLikes = 1;
+        if (cached) {
+          cached.like_count = (parseInt(cached.like_count || 0, 10)) + 1;
+          newLikes = cached.like_count;
+        }
+        return res.status(200).json({ 
+          ok: true, 
+          database_connected: false,
+          like_count: newLikes 
+        });
+      }
     }
 
     // ── 3. Comments (Nested hierarchy) ────────────────────────────────────────
