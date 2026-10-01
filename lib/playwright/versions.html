@@ -24,12 +24,35 @@
 
       <div class="timeline">
         <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Production Release</div>
+          <div class="timeline-badge">Latest Release</div>
           <div class="timeline-content">
-            <h3>v1.81.1 - Direct Socket VPN Bypass & Stealth Engine (Current)</h3>
+            <h3>v1.81.2 - Platform SSOT &amp; TermuxWakeLock Standardization &mdash; 2026-09-07</h3>
             <ul>
-              <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-              <li>Integrated 6-language client-side i18n DOM translation engine.</li>
+              <li><strong>Platform Probe Alignment:</strong> Standardized <code>is_termux</code> platform detection and unified <code>TermuxWakeLock</code> interface across Bionic environments.</li>
+              <li><strong>Installation Optimization:</strong> Purged redundant <code>pip install --upgrade pip</code> antipattern from bootstrap installer.</li>
+              <li><strong>CI/CD Release Automation:</strong> Unified GitHub Actions release workflows across dual PyPI/NPM pipelines.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#2563eb;">Stable Release</div>
+          <div class="timeline-content">
+            <h3>v1.81.1 - Unified Release Synchronization &mdash; 2026-09-06</h3>
+            <ul>
+              <li>Synchronized dual-engine Python and Node.js package manifests across PyPI and NPM.</li>
+              <li>Validated clean package isolation and zero-dependency runtime provenance.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+          <div class="timeline-badge" style="background:#475569;">Major Feature Release</div>
+          <div class="timeline-content">
+            <h3>v1.81.0 - Direct Socket DNS Bypass Tunnel &amp; Stealth Engine &mdash; 2026-09-06</h3>
+            <ul>
+              <li><strong>Direct Socket DNS Bypass:</strong> Implemented RFC 1035 UDP socket DNS resolver in dual Python/Node.js engines, circumventing Android VPN (Tailscale, WireGuard) <code>dnsproxyd</code> blackhole timeouts.</li>
+              <li><strong>In-Process CONNECT Proxy:</strong> Lightweight loopback HTTP proxy routing Chromium traffic through direct upstream IP sockets with transparent TCP tunneling.</li>
+              <li><strong>Fluent BrowserBuilder API:</strong> Added fluent builder interfaces across Python and TypeScript ecosystems.</li>
+              <li><strong>CLI Crawl Command:</strong> Native <code>crawl</code> subcommand with headless execution and dynamic DOM extraction.</li>
             </ul>
           </div>
         </div>
