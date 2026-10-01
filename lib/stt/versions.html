@@ -23,9 +23,24 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - SmartRouter Capability Filtering & CLI Flag De-Duplication</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.3 - Vulkan Pipeline Caching &amp; Unified 5-Backend Standard</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Unified 5-Backend Standard:</strong> Standardized speech transcription choices to the ecosystem standard <code>--device auto|gpu|vulkan|opencl|cpu</code> across <code>transcribe</code>, <code>stream</code>, and <code>diarize</code>.</li>
+          <li><strong>Vulkan Pipeline Caching:</strong> Integrated GPU pipeline caching to significantly reduce shader recompilation latency on subsequent runs.</li>
+          <li><strong>Fail-Fast Parameter Policy:</strong> Enforced strict argument validation eliminating unsupported hardware flags.</li>
+          <li><strong>Fleet Verification:</strong> Validated by 57 automated unit tests across Whisper hybrid routing, Vosk engine, and audio DSP.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - SmartRouter Capability Filtering &amp; CLI Flag De-Duplication</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
           </div>
         </div>
@@ -40,7 +55,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.1 - Asymmetric Mobile SoC Hybrid Pipeline (Encoder Vulkan GPU / Decoder CPU SIMD)</h3>
           <div>
-            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
           </div>
         </div>
