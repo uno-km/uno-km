@@ -691,6 +691,15 @@
       });
 
       async function fetchDynamicVersions() {
+        if (typeof window.getLiveEcosystemVersions === 'function') {
+          try {
+            const pkgs = await window.getLiveEcosystemVersions();
+            if (pkgs && Object.keys(pkgs).length > 0) {
+              return;
+            }
+          } catch (e) {}
+        }
+
         const verElements = document.querySelectorAll('.pkg-dyn-ver');
         verElements.forEach(async function(el) {
           const npmPkg = el.getAttribute('data-npm');

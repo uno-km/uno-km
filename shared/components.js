@@ -253,6 +253,145 @@
     }
   };
 
+  // ── Centralized Live Ecosystem Version Hydration Engine ───────────────────
+  let versionsPromise = null;
+
+  async function getLiveEcosystemVersions() {
+    if (global.__ECOSYSTEM_VERSIONS_DATA) {
+      return global.__ECOSYSTEM_VERSIONS_DATA;
+    }
+    if (versionsPromise) {
+      return versionsPromise;
+    }
+
+    versionsPromise = (async () => {
+      let packages = null;
+      try {
+        const res = await fetch('/api/versions', {
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.ok && data.packages) {
+            packages = data.packages;
+          }
+        }
+      } catch (e) {
+        // Network or offline fallback
+      }
+
+      if (!packages) {
+        // Build resilient fallback from ECOSYSTEM_REGISTRY
+        packages = {};
+        Object.keys(ECOSYSTEM_REGISTRY).forEach(k => {
+          const item = ECOSYSTEM_REGISTRY[k];
+          packages[k] = {
+            key: k,
+            name: item.name,
+            version: item.version,
+            raw_version: item.version.replace(/^v/, ''),
+            pypi_package: item.pypi,
+            npm_package: item.npm
+          };
+        });
+      }
+
+      global.__ECOSYSTEM_VERSIONS_DATA = packages;
+
+      // Update registry in-memory versions
+      Object.keys(packages).forEach(k => {
+        if (ECOSYSTEM_REGISTRY[k] && packages[k].version) {
+          ECOSYSTEM_REGISTRY[k].version = packages[k].version;
+        }
+      });
+
+      // Hydrate all DOM elements across the document
+      hydrateEcosystemBadges(packages);
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('ameva:versions-synced', { detail: packages }));
+      }
+
+      return packages;
+    })();
+
+    return versionsPromise;
+  }
+
+  function hydrateEcosystemBadges(packages, targetRoot) {
+    if (!packages || typeof document === 'undefined') return;
+    const root = targetRoot || document;
+    const ctx = detectContext();
+
+    // 1. Update AmevaHeader release-tag if present
+    const headerReleaseTag = root.querySelector('ameva-header .release-tag, header .release-tag');
+    if (headerReleaseTag && ctx.libKey && packages[ctx.libKey]) {
+      headerReleaseTag.textContent = packages[ctx.libKey].version;
+    }
+
+    // 2. Hydrate elements with explicit [data-package-version] attribute
+    root.querySelectorAll('[data-package-version]').forEach(el => {
+      const key = el.getAttribute('data-package-version');
+      if (packages[key] && packages[key].version) {
+        el.textContent = packages[key].version;
+      }
+    });
+
+    // 3. Hydrate Foundation Package Matrix Table (.pkg-dyn-ver)
+    root.querySelectorAll('.pkg-dyn-ver').forEach(el => {
+      const pypi = el.getAttribute('data-pypi');
+      const npm = el.getAttribute('data-npm');
+      const key = el.getAttribute('data-key');
+      let matched = null;
+      if (key && packages[key]) {
+        matched = packages[key];
+      } else {
+        matched = Object.values(packages).find(p => (pypi && p.pypi_package === pypi) || (npm && p.npm_package === npm));
+      }
+      if (matched && matched.version) {
+        el.textContent = matched.version;
+        el.title = `Live verified: ${matched.version}`;
+      }
+    });
+
+    // 4. Synchronize .badges-bar on library documentation pages
+    const badgesBar = root.querySelector('.badges-bar');
+    if (badgesBar && ctx.libKey && packages[ctx.libKey]) {
+      const curPkg = packages[ctx.libKey];
+      let liveBadge = badgesBar.querySelector('.live-badge-indicator');
+      if (!liveBadge) {
+        liveBadge = document.createElement('span');
+        liveBadge.className = 'live-badge-indicator';
+        liveBadge.style.cssText = 'display:inline-flex; align-items:center; background:#0f172a; color:#38bdf8; font-family:ui-monospace, monospace; font-size:0.75rem; font-weight:700; padding:3px 8px; border-radius:4px; border:1px solid #0284c7; margin-left:4px; vertical-align:middle; text-decoration:none;';
+        badgesBar.appendChild(liveBadge);
+      }
+      liveBadge.innerHTML = `<span style="width:6px; height:6px; background:#22c55e; border-radius:50%; display:inline-block; margin-right:6px; box-shadow:0 0 6px #22c55e;"></span><span class="live-ver-text">${curPkg.version}</span>`;
+      liveBadge.title = `Real-time official release synchronized: ${curPkg.version}`;
+    }
+
+    // 5. Update Sidebar Flagship links hover title / attributes
+    root.querySelectorAll('.sidebar a[data-lib-key]').forEach(a => {
+      const lk = a.getAttribute('data-lib-key');
+      if (packages[lk] && packages[lk].version) {
+        a.title = `${packages[lk].name} (${packages[lk].version})`;
+      }
+    });
+
+    // 6. Synchronize Foundation Metrics Table (.cell-version)
+    root.querySelectorAll('#metrics-tbody tr').forEach(row => {
+      const pypi = row.getAttribute('data-pypi-pkg');
+      const npm = row.getAttribute('data-npm');
+      const matched = Object.values(packages).find(p => (pypi && p.pypi_package === pypi) || (npm && p.npm_package === npm));
+      if (matched && matched.version) {
+        const verCode = row.querySelector('.cell-version');
+        if (verCode) {
+          verCode.textContent = matched.version;
+          verCode.title = `Live synchronized: ${matched.version}`;
+        }
+      }
+    });
+  }
+
   const FLAGSHIP_LIST = [
     ["/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"],
     ["/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"],
@@ -441,40 +580,16 @@
   </header>`;
 
       
-      // Dynamic live release tag fetcher (real-time query to PyPI / npm API)
-      if (libData && (pypiPkg || npmPkg)) {
-        const tagEl = this.querySelector('.release-tag');
-        if (tagEl) {
-          (async () => {
-            try {
-              if (pypiPkg) {
-                const res = await fetch(`https://pypi.org/pypi/${pypiPkg}/json`, { mode: 'cors' });
-                if (res.ok) {
-                  const data = await res.json();
-                  if (data && data.info && data.info.version) {
-                    const ver = data.info.version.startsWith('v') ? data.info.version : 'v' + data.info.version;
-                    tagEl.textContent = ver;
-                    return;
-                  }
-                }
-              }
-              if (npmPkg) {
-                const res = await fetch(`https://data.jsdelivr.com/v1/package/npm/${npmPkg}`, { mode: 'cors' });
-                if (res.ok) {
-                  const data = await res.json();
-                  const latest = (data && data.tags && data.tags.latest) || (data && data.versions && data.versions[0]);
-                  if (latest) {
-                    const ver = latest.startsWith('v') ? latest : 'v' + latest;
-                    tagEl.textContent = ver;
-                    return;
-                  }
-                }
-              }
-            } catch (err) {
-              // Keep static SSOT version on network error
+      // Real-time Ecosystem Live Version Sync (Backend /api/versions & In-Memory Hydration)
+      if (libData) {
+        getLiveEcosystemVersions().then(packages => {
+          if (packages && libKey && packages[libKey]) {
+            const tagEl = this.querySelector('.release-tag');
+            if (tagEl && packages[libKey].version) {
+              tagEl.textContent = packages[libKey].version;
             }
-          })();
-        }
+          }
+        }).catch(() => {});
       }
 
       if (global.i18n && typeof global.i18n._setupLanguageSelectors === 'function') {
@@ -570,7 +685,7 @@
       FLAGSHIP_LIST.forEach(([href, lk, title]) => {
         const act = (!ctx.isFoundation && lk === libKey) ? ' class="active"' : '';
         const target = href.startsWith('http') ? ' target="_blank"' : '';
-        tier2Items.push(`      <li><a href="${href}"${act}${target}>${title}</a></li>`);
+        tier2Items.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}">${title}</a></li>`);
       });
 
       let tier3Items = [];
@@ -626,6 +741,19 @@ ${tier3Items.join('\n')}
     }
   }
 
+  // Auto-initiate live version synchronization once DOM is ready
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        getLiveEcosystemVersions();
+      });
+    } else {
+      getLiveEcosystemVersions();
+    }
+  }
+
+  global.getLiveEcosystemVersions = getLiveEcosystemVersions;
+  global.hydrateEcosystemBadges = hydrateEcosystemBadges;
   global.ECOSYSTEM_REGISTRY = ECOSYSTEM_REGISTRY;
 
 })(typeof window !== 'undefined' ? window : global);
