@@ -45,6 +45,24 @@ const SERVER_CACHE = {
   }
 };
 
+// Pre-populate server cache with master research seed posts (0ms instant lookup)
+try {
+  SEED_POSTS.forEach((p, idx) => {
+    const id = p.id || (idx + 1);
+    SERVER_CACHE.setPost(id, {
+      ...p,
+      id,
+      author_ip: '127.0.0.1',
+      status: 'published',
+      view_count: p.view_count || 100,
+      like_count: p.like_count || 0,
+      comment_count: 0,
+      menu_name: p.menu_id,
+      board_type: (p.menu_id === 'newsletter') ? 'news' : 'anal'
+    });
+  });
+} catch (e) {}
+
 // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
 const INITIAL_MENUS = [
   { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
@@ -61,7 +79,19 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
+  const SEED_VERSION = 'v23_perf_boost_and_fast_lookup';
   try {
+    // ── Ultra-Fast Validation Gate (1 lightweight check skips 17 DDL/DML roundtrips) ──
+    try {
+      const fastCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
+      if (fastCheck && fastCheck.length > 0 && fastCheck[0].value === SEED_VERSION) {
+        isSchemaReady = true;
+        return;
+      }
+    } catch (fastErr) {
+      // Table labs_meta does not exist yet; proceed with full initialization below
+    }
+
     await sql`
       CREATE TABLE IF NOT EXISTS labs_menus (
         id VARCHAR(50) PRIMARY KEY,
@@ -145,7 +175,6 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters with Optimistic Lock
-    const SEED_VERSION = 'v22_bitnet_633_pr_and_sovereign_ternary_breakthrough';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Optimistic Concurrency Lock: Only the first concurrent instance acquires the lock
@@ -412,20 +441,23 @@ Human Web Portal: https://uno-km.vercel.app/labs/
       return res.status(200).json({ ok: true, database_connected: true, posts });
     }
 
+    if (action === 'get_seed_posts') {
+      res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+      return res.status(200).json({ ok: true, posts: SEED_POSTS });
+    }
+
     if (action === 'get_post') {
-      res.setHeader('Cache-Control', 'public, max-age=30, s-maxage=1800, stale-while-revalidate=86400');
+      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=3600, stale-while-revalidate=86400');
       const post_id = parseInt(req.query.post_id, 10);
       if (!post_id) return res.status(400).json({ ok: false, error: 'post_id required' });
 
+      // Asynchronously track view count in background (fire-and-forget, zero blocking)
+      sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`.catch(() => {});
+
       const cached = SERVER_CACHE.getPost(post_id);
       if (cached) {
-        // Asynchronously track view count without blocking response
-        sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`.catch(() => {});
         return res.status(200).json({ ok: true, database_connected: true, cached: true, post: cached });
       }
-
-      // Increment view count
-      await sql`UPDATE labs_posts SET view_count = view_count + 1 WHERE id = ${post_id};`;
 
       const rows = await sql`
         SELECT p.*, m.name as menu_name, m.board_type

@@ -234,6 +234,107 @@
       transform: translate(1px, -1px);
     }
 
+    /* ==========================================================================
+       Mermaid Global Anti-Clipping & Responsive Typography Engine
+       ========================================================================== */
+    .av-mermaid-container {
+      overflow-x: auto !important;
+      overflow-y: visible !important;
+      padding: 24px 16px !important;
+    }
+    .av-mermaid-container svg {
+      max-width: 100% !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+    .av-mermaid-container .node foreignObject {
+      overflow: visible !important;
+    }
+    .av-mermaid-container .node foreignObject div {
+      line-height: 1.4 !important;
+      font-family: inherit !important;
+      text-align: center !important;
+      padding: 4px 6px !important;
+      box-sizing: border-box !important;
+    }
+    .av-mermaid-container .node rect,
+    .av-mermaid-container .node circle,
+    .av-mermaid-container .node polygon {
+      overflow: visible !important;
+    }
+    .av-mermaid-container .node .label {
+      line-height: 1.4 !important;
+    }
+
+    /* ==========================================================================
+       Transformer Staged Morphing Assembly Engine (Zero-Jank Cybernetic Transition)
+       ========================================================================== */
+    @keyframes transformerAssemble {
+      0% {
+        opacity: 0;
+        transform: translateY(14px) scale(0.985);
+        filter: blur(3px);
+      }
+      65% {
+        opacity: 0.95;
+        transform: translateY(-2px) scale(1.002);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: none;
+      }
+    }
+
+    @keyframes cyberScanSweep {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .transformer-part {
+      will-change: transform, opacity;
+    }
+
+    .transformer-active .transformer-part-header {
+      animation: transformerAssemble 0.28s cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+    }
+    .transformer-active .transformer-part-toc {
+      animation: transformerAssemble 0.32s cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+    }
+    .transformer-active .transformer-part-toolbar {
+      animation: transformerAssemble 0.30s cubic-bezier(0.16, 1, 0.3, 1) 70ms both;
+    }
+    .transformer-active .transformer-part-body {
+      animation: transformerAssemble 0.36s cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
+    }
+    .transformer-active .transformer-part-tags {
+      animation: transformerAssemble 0.32s cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
+    }
+    .transformer-active .transformer-part-pager {
+      animation: transformerAssemble 0.34s cubic-bezier(0.16, 1, 0.3, 1) 210ms both;
+    }
+    .transformer-active .transformer-part-table {
+      animation: transformerAssemble 0.34s cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+    }
+    .transformer-active .transformer-part-comments {
+      animation: transformerAssemble 0.35s cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
+    }
+
+    .transformer-scan-line {
+      height: 2.5px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, #38bdf8, transparent);
+      background-size: 200% 100%;
+      opacity: 0;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .transformer-active .transformer-scan-line {
+      opacity: 1;
+      animation: cyberScanSweep 0.8s ease-out 1 forwards;
+    }
+
     /* ── View 1: NEWS (Newsletter Card Reader) - Solid Dark Chassis ──────────── */
     .news-reader-card {
       background: #090d16 !important;
@@ -1737,7 +1838,8 @@
             ← 연구 목록으로 돌아가기
           </button>
           <div class="board-top-post-view">
-            <div class="post-view-header">
+            <div id="transformerScanLine" class="transformer-scan-line"></div>
+            <div class="post-view-header transformer-part transformer-part-header">
               <span class="board-badge badge-anal" id="analDetailBadge">RESEARCH</span>
               <h3 id="analDetailTitle"></h3>
               <div id="analDetailTitleEng" style="font-size: 0.95rem; color: #94a3b8; margin-top: 4px; font-weight: 500; display: none;"></div>
@@ -1751,9 +1853,9 @@
             </div>
 
             <!-- In-Article TOC Container (Dynamically generated from rendered headings) -->
-            <div id="analInArticleToc" class="in-article-toc-box" style="display: none;"></div>
+            <div id="analInArticleToc" class="in-article-toc-box transformer-part transformer-part-toc" style="display: none;"></div>
 
-            <div class="viewer-theme-toolbar">
+            <div class="viewer-theme-toolbar transformer-part transformer-part-toolbar">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" rel="noopener noreferrer" class="viewer-brand-toolbar-link" title="AMEVA Workstation 공식 환경으로 이동">
                   <span class="brand-bolt">⚡</span>
@@ -1772,10 +1874,10 @@
               </div>
             </div>
 
-            <div id="analViewerBody" style="margin-bottom: 16px;"></div>
+            <div id="analViewerBody" class="transformer-part transformer-part-body" style="margin-bottom: 16px;"></div>
 
             <!-- Ontology Knowledge Tags at the Bottom of Post -->
-            <div id="analDetailBottomTags" class="post-bottom-tags-container" style="margin-top: 24px; margin-bottom: 20px; padding: 16px 20px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <div id="analDetailBottomTags" class="post-bottom-tags-container transformer-part transformer-part-tags" style="margin-top: 24px; margin-bottom: 20px; padding: 16px 20px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 1rem;">🏷️</span>
@@ -1787,10 +1889,10 @@
             </div>
 
             <!-- Post Navigation Pager (Prev / List / Next Post) -->
-            <div id="analPostPager" class="post-nav-pager-bar"></div>
+            <div id="analPostPager" class="post-nav-pager-bar transformer-part transformer-part-pager"></div>
 
             <!-- Action Buttons: Like with live count, BibTeX, Scroll to Top -->
-            <div style="display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; align-items: center;">
+            <div class="transformer-part transformer-part-footer" style="display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; align-items: center;">
               <button class="btn-action btn-primary btn-like-action" id="analLikeBtn" onclick="LabsApp.likeActivePost('anal')">
                 <span>👍 추천</span>
                 <span class="like-badge" id="analDetailBtnLikes">0</span>
@@ -1800,7 +1902,7 @@
             </div>
 
             <!-- Bottom Posts List (10 per page, highlighted current post) -->
-            <div id="analBottomListWrap" class="anal-bottom-list-wrap">
+            <div id="analBottomListWrap" class="anal-bottom-list-wrap transformer-part transformer-part-table">
               <div class="bottom-list-header">
                 <h4 id="analBottomListTitle">📑 해당 카테고리 다른 글</h4>
                 <span id="analBottomListCount" class="bottom-count-chip">총 0편</span>
@@ -1828,7 +1930,7 @@
             </div>
 
             <!-- Comments for Anal -->
-            <div class="comments-wrapper">
+            <div class="comments-wrapper transformer-part transformer-part-comments">
               <h4 style="margin: 0 0 12px 0;">댓글 토론 (<span id="analCommentCount">0</span>)</h4>
               <div id="analCommentList"></div>
             </div>
@@ -2136,6 +2238,7 @@
         this.apiAvailable = true;
         this.databaseConnected = false;
         this.cachedPosts = {}; // Fast in-memory cache per menu_id
+        this.cachedPostDetails = {}; // Fast in-memory cache per post_id
         this.loadLocal();
       }
 
@@ -2181,6 +2284,8 @@
             id: p.id,
             menu_id: p.menu_id,
             title: p.title,
+            title_eng: p.title_eng,
+            tags: p.tags,
             excerpt: p.excerpt || (p.content ? p.content.substring(0, 200) : ''),
             author: p.author,
             view_count: p.view_count,
@@ -2199,9 +2304,27 @@
 
       async init() {
         try {
-          const res = await fetch('/api/labs?action=get_menus');
-          if (res.ok) {
-            const data = await res.json();
+          // Edge Pre-warming: Parallel fetch menus and static pre-rendered seed posts archive
+          const [menuRes, seedRes] = await Promise.allSettled([
+            fetch('/api/labs?action=get_menus'),
+            fetch('/shared/seed_posts.json')
+          ]);
+
+          if (seedRes.status === 'fulfilled' && seedRes.value.ok) {
+            try {
+              const seedPosts = await seedRes.value.json();
+              if (Array.isArray(seedPosts) && seedPosts.length > 0) {
+                if (!this.cachedPostDetails) this.cachedPostDetails = {};
+                seedPosts.forEach(p => {
+                  this.cachedPostDetails[p.id] = p;
+                });
+                this.posts = seedPosts;
+              }
+            } catch (err) {}
+          }
+
+          if (menuRes.status === 'fulfilled' && menuRes.value.ok) {
+            const data = await menuRes.value.json();
             if (data.ok && Array.isArray(data.menus) && data.menus.length > 0) {
               this.menus = data.menus;
               localStorage.setItem('__labs_cached_menus', JSON.stringify(data.menus));
@@ -2227,12 +2350,34 @@
       }
 
       async getPosts(menuId, forceRefresh = false) {
-        // Fast path: In-memory cached posts for ultra-responsive tab switching
+        // Fast path 1: In-memory cached posts for ultra-responsive tab switching
         if (!forceRefresh && this.cachedPosts[menuId] && this.cachedPosts[menuId].length > 0) {
           return this.cachedPosts[menuId];
         }
 
         const targetIds = this.getDescendantMenuIds(menuId);
+
+        // Fast path 2: Instant in-memory filter from pre-warmed posts (0ms return)
+        if (!forceRefresh && this.posts && this.posts.length > 0) {
+          const filtered = this.posts
+            .filter(p => targetIds.includes(p.menu_id) && p.status === 'published')
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+          if (filtered.length > 0) {
+            this.cachedPosts[menuId] = filtered;
+            // Background sync with API
+            if (this.apiAvailable) {
+              fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`)
+                .then(r => r.json())
+                .then(data => {
+                  if (data && data.ok && Array.isArray(data.posts)) {
+                    this.cachedPosts[menuId] = data.posts;
+                  }
+                }).catch(() => {});
+            }
+            return filtered;
+          }
+        }
+
         if (this.apiAvailable) {
           try {
             const res = await fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`);
@@ -2254,8 +2399,32 @@
 
       async getPost(postId) {
         if (!this.cachedPostDetails) this.cachedPostDetails = {};
-        if (this.cachedPostDetails[postId]) {
-          return this.cachedPostDetails[postId];
+
+        let cached = this.cachedPostDetails[postId];
+        if (!cached) {
+          cached = (this.posts || []).find(p => p.id === postId && p.content);
+          if (cached) {
+            this.cachedPostDetails[postId] = cached;
+          }
+        }
+
+        // Fast path: Cached in memory -> 0ms return + fire-and-forget background view/like count sync
+        if (cached && cached.content) {
+          if (this.apiAvailable) {
+            fetch(`/api/labs?action=get_post&post_id=${postId}`)
+              .then(r => r.json())
+              .then(data => {
+                if (data && data.ok && data.post) {
+                  cached.view_count = data.post.view_count;
+                  cached.like_count = data.post.like_count;
+                  const viewEl = document.getElementById('analDetailViews');
+                  if (viewEl && LabsApp.activePostId === postId) {
+                    viewEl.textContent = data.post.view_count;
+                  }
+                }
+              }).catch(() => {});
+          }
+          return cached;
         }
 
         if (this.apiAvailable) {
@@ -2269,6 +2438,8 @@
                 if (existingIdx !== -1) {
                   this.posts[existingIdx].view_count = data.post.view_count;
                   this.posts[existingIdx].like_count = data.post.like_count;
+                } else {
+                  this.posts.push(data.post);
                 }
                 return data.post;
               }
@@ -2879,15 +3050,49 @@
       async openAnalDetail(postId, updateHistory = true) {
         this.activePostId = postId;
         this.activeSlot = 'anal';
-        const post = await this.store.getPost(postId);
-        if (!post) return;
 
         if (updateHistory) {
           history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}&post=${postId}`);
         }
 
+        // STEP 1: 0ms Synchronous View Activation & Cybernetic Staged Kickoff
+        document.getElementById('viewNews').style.display = 'none';
+        document.getElementById('viewBoard').style.display = 'none';
+        document.getElementById('viewAnal').style.display = 'block';
+        document.getElementById('analFeedList').style.display = 'none';
+        document.getElementById('analTopBar').style.display = 'none';
+        const curriculumNav = document.getElementById('handbookCurriculumNav');
+        if (curriculumNav) curriculumNav.style.display = 'none';
+
+        const detailView = document.getElementById('analDetailView');
+        detailView.style.display = 'block';
+
+        // Trigger Cybernetic Transformer Assembly Sequence
+        detailView.classList.remove('transformer-active');
+        void detailView.offsetWidth; // Force CSS repaint
+        detailView.classList.add('transformer-active');
+
+        // Trigger Cyber Scan Sweep
+        const scanLine = document.getElementById('transformerScanLine');
+        if (scanLine) {
+          scanLine.style.display = 'block';
+          scanLine.style.animation = 'none';
+          void scanLine.offsetWidth;
+          scanLine.style.animation = 'cyberScanSweep 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+        }
+
+        // Instant smooth scroll to top of article
+        window.scrollTo({ top: Math.max(0, detailView.offsetTop - 60), behavior: 'smooth' });
+
+        this.showRemote();
+
+        // STEP 2: Fetch Post Data (0ms In-Memory Fast Path Hit)
+        const post = await this.store.getPost(postId);
+        if (!post) return;
+
         const curMenu = this.store.menus.find(m => m.id === (post.menu_id || this.activeMenuId)) || { name: '연구', board_type: 'anal' };
-        const isHandbook = (curMenu.id === 'research-handbook');
+        
+        // Stage 1: Header / Badges / Title / Meta Assembly
         const detailBadge = document.getElementById('analDetailBadge');
         if (detailBadge) {
           detailBadge.textContent = curMenu.name.toUpperCase();
@@ -2916,6 +3121,7 @@
           }
         }
 
+        // Tags Assembly
         const tagsEl = document.getElementById('analDetailTags');
         const bottomTagsWrap = document.getElementById('analDetailBottomTags');
         if (tagsEl) {
@@ -2955,22 +3161,26 @@
         // Enhanced Like & Recent Reading History Integration
         this.updateLikeButtonUI('anal', post.like_count || 0, this.isPostLiked(postId));
         this.recordRecentRead(post);
-        this.showRemote();
 
-        document.getElementById('viewNews').style.display = 'none';
-        document.getElementById('viewBoard').style.display = 'none';
-        document.getElementById('viewAnal').style.display = 'block';
-        document.getElementById('analFeedList').style.display = 'none';
-        document.getElementById('analTopBar').style.display = 'none';
-        const curriculumNav = document.getElementById('handbookCurriculumNav');
-        if (curriculumNav) curriculumNav.style.display = 'none';
-        document.getElementById('analDetailView').style.display = 'block';
-
+        // Stage 2: Render Content (AmevaViewer SetMarkdown / Reconciliation)
         this.currentPostData = post;
         this.renderDetailContentForLang(post);
 
-        // In-Article Table of Contents (TOC) builder with Full Hierarchy Support (#, ##, ###, ####)
+        // Stage 3: In-Article Table of Contents (TOC) Assembly
+        this.rebuildInArticleToc();
+        setTimeout(() => this.rebuildInArticleToc(), 100);
+
+        // Stage 4: Prev/Next Pager & 10-Item Bottom Posts Table (Non-blocking async schedule)
+        this.renderAnalBottomListAndPager(post).catch(() => {});
+
+        // Stage 5: Comments Discussion (Non-blocking async schedule)
+        this.renderCommentsForView('anal', postId).catch(() => {});
+      },
+
+      rebuildInArticleToc() {
         const tocContainer = document.getElementById('analInArticleToc');
+        if (!tocContainer) return;
+
         const cleanTitle = (str) => {
           if (!str) return '';
           return str
@@ -2981,231 +3191,221 @@
             .trim();
         };
 
-        const buildToc = () => {
-          const allHeadings = Array.from(document.querySelectorAll('#analViewerBody h1, #analViewerBody h2, #analViewerBody h3, #analViewerBody h4'));
-          if (allHeadings.length < 2) {
-            tocContainer.style.display = 'none';
-            tocContainer.innerHTML = '';
-            return;
+        const allHeadings = Array.from(document.querySelectorAll('#analViewerBody h1, #analViewerBody h2, #analViewerBody h3, #analViewerBody h4'));
+        if (allHeadings.length < 2) {
+          tocContainer.style.display = 'none';
+          tocContainer.innerHTML = '';
+          return;
+        }
+
+        let labHeading = null;
+        let glossaryHeading = null;
+
+        allHeadings.forEach((h, idx) => {
+          if (!h.id) h.id = `hb-sec-${idx + 1}`;
+          const txt = h.textContent.trim();
+          if (!labHeading && (txt.includes('Lab') || txt.includes('실습'))) {
+            labHeading = h;
           }
-
-          let labHeading = null;
-          let glossaryHeading = null;
-
-          allHeadings.forEach((h, idx) => {
-            if (!h.id) h.id = `hb-sec-${idx + 1}`;
-            const txt = h.textContent.trim();
-            if (!labHeading && (txt.includes('Lab') || txt.includes('실습'))) {
-              labHeading = h;
-            }
-            if (!glossaryHeading && (txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary'))) {
-              glossaryHeading = h;
-            }
-          });
-
-          // Determine Top-Level Sections:
-          let effectiveHeadings = allHeadings;
-          if (allHeadings.length > 0 && allHeadings[0].tagName.toLowerCase() === 'h1') {
-            const hasMultipleH1 = allHeadings.slice(1).some(h => h.tagName.toLowerCase() === 'h1');
-            if (!hasMultipleH1) {
-              effectiveHeadings = allHeadings.slice(1);
-            }
+          if (!glossaryHeading && (txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary'))) {
+            glossaryHeading = h;
           }
+        });
 
-          if (effectiveHeadings.length === 0) {
-            effectiveHeadings = allHeadings;
+        // Determine Top-Level Sections:
+        let effectiveHeadings = allHeadings;
+        if (allHeadings.length > 0 && allHeadings[0].tagName.toLowerCase() === 'h1') {
+          const hasMultipleH1 = allHeadings.slice(1).some(h => h.tagName.toLowerCase() === 'h1');
+          if (!hasMultipleH1) {
+            effectiveHeadings = allHeadings.slice(1);
           }
+        }
 
-          // Build Multi-Level Hierarchy Tree
-          const getLevel = (tag) => parseInt(tag.replace(/^h/i, ''), 10) || 2;
-          const tree = [];
-          const stack = [];
+        if (effectiveHeadings.length === 0) {
+          effectiveHeadings = allHeadings;
+        }
 
-          effectiveHeadings.forEach(h => {
-            const level = getLevel(h.tagName);
-            const rawTxt = h.textContent.trim();
-            const txt = cleanTitle(rawTxt);
-            const isLab = txt.includes('Lab') || txt.includes('실습');
-            const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
+        // Build Multi-Level Hierarchy Tree
+        const getLevel = (tag) => parseInt(tag.replace(/^h/i, ''), 10) || 2;
+        const tree = [];
+        const stack = [];
 
-            const node = {
-              id: h.id,
-              level,
-              tag: h.tagName.toLowerCase(),
-              text: txt,
-              rawText: rawTxt,
-              isLab,
-              isGlossary,
-              children: []
-            };
+        effectiveHeadings.forEach(h => {
+          const level = getLevel(h.tagName);
+          const rawTxt = h.textContent.trim();
+          const txt = cleanTitle(rawTxt);
+          const isLab = txt.includes('Lab') || txt.includes('실습');
+          const isGlossary = txt.includes('용어') || txt.includes('해설집') || txt.includes('Glossary');
 
-            while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-              stack.pop();
-            }
-
-            if (stack.length === 0) {
-              tree.push(node);
-            } else {
-              stack[stack.length - 1].children.push(node);
-            }
-            stack.push(node);
-          });
-
-          let titlePrefix = '📑 핵심 목차 (Table of Contents)';
-          if (isHandbook) {
-            titlePrefix = '📚 강좌 핵심 목차 (Table of Contents)';
-          } else if (this.activeMenuId === 'research-papers') {
-            titlePrefix = '📑 기술 연구 백서 목차 (Table of Contents)';
-          } else if (this.activeMenuId === 'research-benchmarks') {
-            titlePrefix = '⚡ 실기기 벤치마크 목차 (Table of Contents)';
-          } else if (this.activeMenuId === 'research-cluster') {
-            titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
-          } else if (this.activeMenuId === 'research-opensource') {
-            titlePrefix = '🐙 오픈소스 기여 및 PR 분석 목차 (Table of Contents)';
-          } else {
-            titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
-          }
-
-          const countTotalDescendants = (node) => {
-            let count = node.children.length;
-            node.children.forEach(c => { count += countTotalDescendants(c); });
-            return count;
+          const node = {
+            id: h.id,
+            level,
+            tag: h.tagName.toLowerCase(),
+            text: txt,
+            rawText: rawTxt,
+            isLab,
+            isGlossary,
+            children: []
           };
 
-          const totalHeadingsCount = effectiveHeadings.length;
-          const majorSectionsCount = tree.length;
-          const subTopicsCount = totalHeadingsCount - majorSectionsCount;
+          while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+            stack.pop();
+          }
 
-          let tocHtml = `
-            <div class="toc-box-header">
-              <div class="toc-box-title">
-                <span>${titlePrefix}</span>
-                <span class="toc-badge-count">총 ${majorSectionsCount}개 대단원 · ${subTopicsCount > 0 ? `세부 ${subTopicsCount}개 항목` : `전체 ${totalHeadingsCount}개`}</span>
-              </div>
-              <div class="toc-quick-actions">
-                ${labHeading ? `<button type="button" class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
-                ${glossaryHeading ? `<button type="button" class="toc-quick-btn glossary" onclick="LabsApp.jumpToHeading('${glossaryHeading.id}')">💡 전공 용어 해설집 바로가기</button>` : ''}
-              </div>
-            </div>
-            <div class="toc-hierarchy-list">
-          `;
+          if (stack.length === 0) {
+            tree.push(node);
+          } else {
+            stack[stack.length - 1].children.push(node);
+          }
+          stack.push(node);
+        });
 
-          tree.forEach((group, gIdx) => {
-            const hasChildren = group.children && group.children.length > 0;
-            const totalChildCount = countTotalDescendants(group);
+        const isHandbook = (this.activeMenuId === 'research-handbook');
+        let titlePrefix = '📑 핵심 목차 (Table of Contents)';
+        if (isHandbook) {
+          titlePrefix = '📚 강좌 핵심 목차 (Table of Contents)';
+        } else if (this.activeMenuId === 'research-papers') {
+          titlePrefix = '📑 기술 연구 백서 목차 (Table of Contents)';
+        } else if (this.activeMenuId === 'research-benchmarks') {
+          titlePrefix = '⚡ 실기기 벤치마크 목차 (Table of Contents)';
+        } else if (this.activeMenuId === 'research-cluster') {
+          titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
+        } else if (this.activeMenuId === 'research-opensource') {
+          titlePrefix = '🐙 오픈소스 기여 및 PR 분석 목차 (Table of Contents)';
+        } else {
+          titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
+        }
 
-            let groupPill = '';
-            if (group.isLab) groupPill = '<span class="hb-feature-pill lab">Lab 실습</span>';
-            else if (group.isGlossary) groupPill = '<span class="hb-feature-pill glossary">용어 해설집</span>';
-
-            if (!hasChildren) {
-              // Solo H2 Section Card (Guaranteed Full-Height and Unshrinkable)
-              tocHtml += `
-                <div class="toc-section-group solo">
-                  <a class="toc-link-item solo-h2" onclick="LabsApp.jumpToHeading('${group.id}')" title="${escapeHtml(group.text)}">
-                    <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-                      <span class="toc-group-tag">§ ${gIdx + 1}</span>
-                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700;">${escapeHtml(group.text)}</span>
-                    </div>
-                    ${groupPill}
-                  </a>
-                </div>
-              `;
-            } else {
-              // H2 Section Group with Sub-body
-              const groupId = `toc-grp-${gIdx + 1}`;
-              const childCountLabel = group.isGlossary ? `${totalChildCount}개 전공용어` : `세부 ${totalChildCount}개 항목`;
-              const isScrollable = totalChildCount >= 8;
-              const hasSubH4 = group.children.some(c => c.children && c.children.length > 0);
-
-              tocHtml += `
-                <div class="toc-section-group" id="${groupId}">
-                  <div class="toc-group-header" onclick="LabsApp.handleTocGroupHeaderClick(event, '${group.id}', '${groupId}')" title="클릭: 대단원 본문 이동 / 우측 아이콘: 접기">
-                    <div class="toc-group-header-left">
-                      <span class="toc-group-tag">§ ${gIdx + 1}</span>
-                      <span class="toc-group-title">${escapeHtml(group.text)}</span>
-                    </div>
-                    <div class="toc-group-header-right">
-                      ${groupPill}
-                      <span class="toc-child-count-pill">${childCountLabel}</span>
-                      <span class="toc-toggle-icon" onclick="LabsApp.toggleTocGroup(event, '${groupId}')" title="접기/펼치기">▾</span>
-                    </div>
-                  </div>
-                  <div class="toc-sub-body ${isScrollable ? 'scrollable-sub' : ''}">
-              `;
-
-              if (hasSubH4) {
-                // Render H3 Blocks with subordinate H4 chips
-                group.children.forEach(sub => {
-                  const hasH4 = sub.children && sub.children.length > 0;
-                  let subPill = '';
-                  if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
-                  else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
-
-                  tocHtml += `
-                    <div class="toc-h3-block">
-                      <a class="toc-h3-title-link" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
-                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">↳ ${escapeHtml(sub.text)}</span>
-                        ${subPill}
-                      </a>
-                  `;
-
-                  if (hasH4) {
-                    tocHtml += `<div class="toc-h4-chips">`;
-                    sub.children.forEach(h4 => {
-                      tocHtml += `
-                        <a class="toc-h4-chip" onclick="LabsApp.jumpToHeading('${h4.id}')" title="${escapeHtml(h4.text)}">
-                          <span style="color: #004499; font-weight: 600;">↳↳</span>
-                          <span>${escapeHtml(h4.text)}</span>
-                        </a>
-                      `;
-                    });
-                    tocHtml += `</div>`;
-                  }
-
-                  tocHtml += `</div>`;
-                });
-              } else {
-                // Render as clean 2-column sub-grid for flat H3s (e.g. Glossary 20 terms, or standard sub-sections)
-                tocHtml += `<div class="toc-sub-grid">`;
-                group.children.forEach(sub => {
-                  let subPill = '';
-                  if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
-                  else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
-
-                  tocHtml += `
-                    <a class="toc-link-item" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
-                      <div style="display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1;">
-                        <span style="color: #94a3b8; font-size: 0.72rem; flex-shrink: 0;">↳</span>
-                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sub.text)}</span>
-                      </div>
-                      ${subPill}
-                    </a>
-                  `;
-                });
-                tocHtml += `</div>`;
-              }
-
-              tocHtml += `
-                  </div>
-                </div>
-              `;
-            }
-          });
-
-          tocHtml += `</div>`;
-          tocContainer.innerHTML = tocHtml;
-          tocContainer.style.display = 'block';
+        const countTotalDescendants = (node) => {
+          let count = node.children.length;
+          node.children.forEach(c => { count += countTotalDescendants(c); });
+          return count;
         };
 
-        buildToc();
-        setTimeout(buildToc, 120);
+        const totalHeadingsCount = effectiveHeadings.length;
+        const majorSectionsCount = tree.length;
+        const subTopicsCount = totalHeadingsCount - majorSectionsCount;
 
-        // Render Prev/Next Pager & 10-Item Bottom Posts Table
-        await this.renderAnalBottomListAndPager(post);
+        let tocHtml = `
+          <div class="toc-box-header">
+            <div class="toc-box-title">
+              <span>${titlePrefix}</span>
+              <span class="toc-badge-count">총 ${majorSectionsCount}개 대단원 · ${subTopicsCount > 0 ? `세부 ${subTopicsCount}개 항목` : `전체 ${totalHeadingsCount}개`}</span>
+            </div>
+            <div class="toc-quick-actions">
+              ${labHeading ? `<button type="button" class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
+              ${glossaryHeading ? `<button type="button" class="toc-quick-btn glossary" onclick="LabsApp.jumpToHeading('${glossaryHeading.id}')">💡 전공 용어 해설집 바로가기</button>` : ''}
+            </div>
+          </div>
+          <div class="toc-hierarchy-list">
+        `;
 
-        await this.renderCommentsForView('anal', postId);
-        window.scrollTo({ top: document.getElementById('analDetailView').offsetTop - 60, behavior: 'smooth' });
+        tree.forEach((group, gIdx) => {
+          const hasChildren = group.children && group.children.length > 0;
+          const totalChildCount = countTotalDescendants(group);
+
+          let groupPill = '';
+          if (group.isLab) groupPill = '<span class="hb-feature-pill lab">Lab 실습</span>';
+          else if (group.isGlossary) groupPill = '<span class="hb-feature-pill glossary">용어 해설집</span>';
+
+          if (!hasChildren) {
+            // Solo H2 Section Card (Guaranteed Full-Height and Unshrinkable)
+            tocHtml += `
+              <div class="toc-section-group solo">
+                <a class="toc-link-item solo-h2" onclick="LabsApp.jumpToHeading('${group.id}')" title="${escapeHtml(group.text)}">
+                  <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                    <span class="toc-group-tag">§ ${gIdx + 1}</span>
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700;">${escapeHtml(group.text)}</span>
+                  </div>
+                  ${groupPill}
+                </a>
+              </div>
+            `;
+          } else {
+            // H2 Section Group with Sub-body
+            const groupId = `toc-grp-${gIdx + 1}`;
+            const childCountLabel = group.isGlossary ? `${totalChildCount}개 전공용어` : `세부 ${totalChildCount}개 항목`;
+            const isScrollable = totalChildCount >= 8;
+            const hasSubH4 = group.children.some(c => c.children && c.children.length > 0);
+
+            tocHtml += `
+              <div class="toc-section-group" id="${groupId}">
+                <div class="toc-group-header" onclick="LabsApp.handleTocGroupHeaderClick(event, '${group.id}', '${groupId}')" title="클릭: 대단원 본문 이동 / 우측 아이콘: 접기">
+                  <div class="toc-group-header-left">
+                    <span class="toc-group-tag">§ ${gIdx + 1}</span>
+                    <span class="toc-group-title">${escapeHtml(group.text)}</span>
+                  </div>
+                  <div class="toc-group-header-right">
+                    ${groupPill}
+                    <span class="toc-child-count-pill">${childCountLabel}</span>
+                    <span class="toc-toggle-icon" onclick="LabsApp.toggleTocGroup(event, '${groupId}')" title="접기/펼치기">▾</span>
+                  </div>
+                </div>
+                <div class="toc-sub-body ${isScrollable ? 'scrollable-sub' : ''}">
+            `;
+
+            if (hasSubH4) {
+              // Render H3 Blocks with subordinate H4 chips
+              group.children.forEach(sub => {
+                const hasH4 = sub.children && sub.children.length > 0;
+                let subPill = '';
+                if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
+                else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
+
+                tocHtml += `
+                  <div class="toc-h3-block">
+                    <a class="toc-h3-title-link" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">↳ ${escapeHtml(sub.text)}</span>
+                      ${subPill}
+                    </a>
+                `;
+
+                if (hasH4) {
+                  tocHtml += `<div class="toc-h4-chips">`;
+                  sub.children.forEach(h4 => {
+                    tocHtml += `
+                      <a class="toc-h4-chip" onclick="LabsApp.jumpToHeading('${h4.id}')" title="${escapeHtml(h4.text)}">
+                        <span style="color: #004499; font-weight: 600;">↳↳</span>
+                        <span>${escapeHtml(h4.text)}</span>
+                      </a>
+                    `;
+                  });
+                  tocHtml += `</div>`;
+                }
+
+                tocHtml += `</div>`;
+              });
+            } else {
+              // Render as clean 2-column sub-grid for flat H3s (e.g. Glossary 20 terms, or standard sub-sections)
+              tocHtml += `<div class="toc-sub-grid">`;
+              group.children.forEach(sub => {
+                let subPill = '';
+                if (sub.isLab) subPill = '<span class="hb-feature-pill lab">Lab</span>';
+                else if (sub.isGlossary) subPill = '<span class="hb-feature-pill glossary">용어</span>';
+
+                tocHtml += `
+                  <a class="toc-link-item" onclick="LabsApp.jumpToHeading('${sub.id}')" title="${escapeHtml(sub.text)}">
+                    <div style="display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1;">
+                      <span style="color: #94a3b8; font-size: 0.72rem; flex-shrink: 0;">↳</span>
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sub.text)}</span>
+                    </div>
+                    ${subPill}
+                  </a>
+                `;
+              });
+              tocHtml += `</div>`;
+            }
+
+            tocHtml += `
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        tocHtml += `</div>`;
+        tocContainer.innerHTML = tocHtml;
+        tocContainer.style.display = 'block';
       },
 
       toggleTocGroup(event, groupId) {
@@ -3414,6 +3614,19 @@
       mountAmevaViewer(slot, targetSelector, markdown) {
         const el = document.querySelector(targetSelector);
         if (!el) return;
+
+        // Ultra-Fast Virtual DOM Reconciliation: Reuse existing mounted root
+        if (this.viewerInstances[slot] && typeof this.viewerInstances[slot].setMarkdown === 'function') {
+          try {
+            this.viewerInstances[slot].setMarkdown(markdown);
+            if (typeof this.viewerInstances[slot].setTheme === 'function') {
+              this.viewerInstances[slot].setTheme(this.currentTheme[slot] || 'dark');
+            }
+            return;
+          } catch(e) {
+            console.warn('[LabsApp] setMarkdown reconciliation warning, remounting...', e);
+          }
+        }
 
         if (this.viewerInstances[slot]) {
           try { this.viewerInstances[slot].destroy(); } catch(e) {}
