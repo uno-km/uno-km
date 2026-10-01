@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-BitNet</title>
-  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features hallucination-prevention prompt wrapping, a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B), GPU watchdog fence chunking, and Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -23,17 +23,18 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.1 - Native GPU Acceleration Engine Audit, Mali Chunked Inference & Multi-Device Hardening</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.1 - Hallucination Prevention Prompt Wrapping, Mali GPU Chunking & Multi-Device Hardening</h3>
           <div>
             <span class="status-badge" style="margin-right: 6px;">Patch and Engineering Hardening Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-01</span>
           </div>
         </div>
         <ul style="margin-left: 20px; line-height: 1.8;">
-          <li><strong>Full GPU Acceleration Engine Audit</strong>: Comprehensive inventory and validation of all 8 GLSL compute shaders, compiled SPIR-V bytecode binaries, embedded C++ array headers, and dynamic Vulkan loader.</li>
-          <li><strong>Mali Watchdog Timeout Prevention</strong>: Introduced --chunk-layers (default 4) command-line option to slice GPU command dispatch buffers, eliminating the 2.5s Mali GPU watchdog fence timeout.</li>
+          <li><strong>Hallucination Prevention Prompt Wrapping</strong>: Introduced configurable --prompt-template (chatml, falcon, raw, none) alongside custom prefixes/suffixes and EOS overrides to eliminate conversational divergence across models.</li>
+          <li><strong>Mali Watchdog Timeout Prevention</strong>: Introduced --chunk-layers (default 4) command-line option to slice GPU command dispatch buffers, eliminating the 2.5s Mali GPU watchdog fence timeout on Exynos devices.</li>
           <li><strong>Dynamic Vocabulary Slicing</strong>: Added --vocab-slice (default 32768) option to dynamically slice LM Head linear projection, reducing GPU VRAM allocation by 576MB.</li>
-          <li><strong>Cross-Platform Flag Introspection & Quality Safeguard</strong>: Added configurable CLI options (--prompt-template, --act-fn, -ngl) enabling user-directed architecture control and multi-device automated quality validation.</li>
+          <li><strong>Architecture Routing Control</strong>: Added explicit --act-fn (auto, relu2, swiglu) flag for user-directed mathematical activation kernel selection.</li>
+          <li><strong>Full GPU Acceleration Engine Audit</strong>: Comprehensive inventory and validation of all 8 GLSL compute shaders, compiled SPIR-V bytecode binaries, embedded C++ array headers, and dynamic Vulkan loader.</li>
         </ul>
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">

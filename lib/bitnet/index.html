@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-BitNet | Official Documentation</title>
-  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features hallucination-prevention prompt wrapping, a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B), GPU watchdog fence chunking, and Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -44,29 +44,33 @@
       <p data-i18n="home.challengeText">Standard FP16/INT4 LLM inference on mobile architectures suffers from memory bandwidth saturation, severe battery drain, and thermal throttling. Furthermore, upstream 1.58-bit execution historically suffered from ternary bitfield misallocations (word salad), missing weight scales, rigid activation functions, and lack of mobile memory management.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.</p>
+      <p data-i18n="home.breakthroughText">Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features hallucination-prevention prompt wrapping, a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B), GPU watchdog fence chunking, and Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Dynamic Zero-Overhead Activation Dispatcher</h4>
-          <p data-i18n="home.features.0.desc">Dynamically auto-dispatches between Squared ReLU (relu2) with Sub-LayerNorm (Microsoft BitNet 2B) and standard SwiGLU (SiLU) without Sub-LayerNorm (Falcon-E-1B, Falcon3-7B) based on tensor layout introspection.</p>
+          <h4 data-i18n="home.features.0.title">Hallucination Prevention Prompt Wrapping & Architecture Control</h4>
+          <p data-i18n="home.features.0.desc">Provides full user-configurable prompt formatting (--prompt-template chatml|falcon|raw), custom prefixes/suffixes, and explicit activation routing (--act-fn auto|relu2|swiglu) to permanently eradicate generation drift and word salad across diverse model weights.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Mathematical Elimination of Ternary Numerical Collapse</h4>
-          <p data-i18n="home.features.1.desc">Canonical mathematical decoding w = (b & 3) - 1 eradicates 49.6% inactive neuron corruption, while integrating 32-byte GGUF tensor trailer weight scales into GEMV scaling for calibrated logit distributions.</p>
+          <h4 data-i18n="home.features.1.title">Mobile GPU Memory Slicing & Watchdog Defense</h4>
+          <p data-i18n="home.features.1.desc">Bypasses the 2.5s ARM Mali GPU watchdog fence timeout via chunked layer dispatch (--chunk-layers 4) while dynamically slicing LM Head FP16 projections (--vocab-slice 32768) to reduce GPU VRAM consumption by 576MB.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Zero-Copy Mmap Streaming for 7.45B Edge Inference</h4>
-          <p data-i18n="home.features.2.desc">Enables seamless on-device execution of 3.05GB 7.45B models (Falcon3-7B) on 6GB RAM devices without triggering Android Low Memory Killer (LMK) eviction.</p>
+          <h4 data-i18n="home.features.2.title">Dynamic Zero-Overhead Activation Dispatcher</h4>
+          <p data-i18n="home.features.2.desc">Dynamically auto-dispatches between Squared ReLU (relu2) with Sub-LayerNorm (Microsoft BitNet 2B) and standard SwiGLU (SiLU) without Sub-LayerNorm (Falcon-E-1B, Falcon3-7B) based on tensor layout introspection.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">Real-Time Mobile Conversational Speed (9.69 tok/s)</h4>
-          <p data-i18n="home.features.3.desc">Generates up to 9.69 tok/s on mainstream mobile silicon (Galaxy A53 / Exynos 1280) running Falcon-E-1B, surpassing human silent reading speed completely offline.</p>
+          <h4 data-i18n="home.features.3.title">Mathematical Elimination of Ternary Numerical Collapse</h4>
+          <p data-i18n="home.features.3.desc">Canonical mathematical decoding w = (b & 3) - 1 eradicates 49.6% inactive neuron corruption, while integrating 32-byte GGUF tensor trailer weight scales into GEMV scaling for calibrated logit distributions.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">Native Vulkan Compute GPU Acceleration</h4>
-          <p data-i18n="home.features.4.desc">Powered by AMEVA-Runtime's modular SPIR-V compute pipeline (Ternary GEMV, RoPE, Attention Decode, SwiGLU, RMSNorm, FP16 LM Head), fusing 30 transformer layers into a single VkCommandBuffer submission.</p>
+          <h4 data-i18n="home.features.4.title">Zero-Copy Mmap Streaming for 7.45B Edge Inference</h4>
+          <p data-i18n="home.features.4.desc">Enables seamless on-device execution of 3.05GB 7.45B models (Falcon3-7B) on 6GB RAM devices without triggering Android Low Memory Killer (LMK) eviction.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">Native Vulkan Compute GPU Acceleration</h4>
+          <p data-i18n="home.features.5.desc">Powered by AMEVA-Runtime's modular SPIR-V compute pipeline (Ternary GEMV, RoPE, Attention Decode, SwiGLU, RMSNorm, FP16 LM Head), fusing 30 transformer layers into a single VkCommandBuffer submission.</p>
         </div>
       </div>
 
@@ -83,12 +87,22 @@
           <tr>
             <td><strong>Supported Architectures</strong></td>
             <td>Microsoft BitNet b1.58 (2B-4T), TII Falcon-E (1B Instruct), TII Falcon3 (7.45B Instruct), BitNet Embedding (270M)</td>
-            <td><span class="status-badge active">Production (v2.0.0)</span></td>
+            <td><span class="status-badge active">Production (v2.0.1)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hallucination Defense & Wrapping</strong></td>
+            <td>ChatML, Falcon Instruct, Raw QA, Custom Prefix/Suffix, Dynamic EOS Overrides (--prompt-template)</td>
+            <td><span class="status-badge active">Production (v2.0.1)</span></td>
+          </tr>
+          <tr>
+            <td><strong>GPU Slicing & Watchdog Defense</strong></td>
+            <td>Layer Chunking (--chunk-layers 4), Vocabulary Slicing (--vocab-slice 32768, -576MB VRAM)</td>
+            <td><span class="status-badge active">Production (v2.0.1)</span></td>
           </tr>
           <tr>
             <td><strong>Activation Dispatch</strong></td>
-            <td>Squared ReLU (relu2) with Sub-LayerNorm, SwiGLU (SiLU), RMSNorm, LayerNorm</td>
-            <td><span class="status-badge active">Production</span></td>
+            <td>Squared ReLU (relu2) with Sub-LayerNorm, SwiGLU (SiLU), RMSNorm, LayerNorm (--act-fn)</td>
+            <td><span class="status-badge active">Production (v2.0.1)</span></td>
           </tr>
           <tr>
             <td><strong>CPU Kernel Core</strong></td>
@@ -122,20 +136,24 @@
         <div class="code-tab-content" style="display:block;">
           <pre><code>from termux_bitnet import BitNetEngine, BitNetConfig
 
-# 1. Initialize engine with multi-model support (BitNet 2B, Falcon-E 1B, Falcon3 7B)
+# 1. Initialize engine with model wrapping and GPU acceleration options
 config = BitNetConfig(
     model_path="~/.cache/termux-bitnet/models/falcon-e-1b-instruct-i2_s.gguf",
-    device="auto",        # "auto", "cpu", or "gpu" (Vulkan via ameva-runtime)
+    device="gpu",           # "auto", "cpu", or "gpu" (Vulkan via ameva-runtime)
+    n_gpu_layers=24,        # Offload 24 layers to GPU
+    chat_template="falcon", # Auto-wrapping: ChatML, Falcon, or Raw
+    chunk_layers=4,         # Prevent Mali GPU watchdog timeout
+    vocab_slice=32768,      # Save 576MB VRAM on LM Head
     n_threads=4,
     temperature=0.7,
     top_p=0.95
 )
 
-# 2. Stream tokens in real time (9.69 tok/s on Galaxy A53)
+# 2. Stream tokens in real time (up to 34.35 tok/s on S25, 4.46 tok/s on A53)
 with BitNetEngine(config) as engine:
-    print("[Prompt]: Explain quantum entanglement in one sentence.")
+    print("[Prompt]: What is the capital of France?")
     print("[Response]: ", end="", flush=True)
-    for token in engine.generate_stream("Explain quantum entanglement in one sentence:"):
+    for token in engine.generate_stream("What is the capital of France?"):
         print(token, end="", flush=True)
     print()
     metrics = engine.get_last_metrics()
@@ -146,10 +164,14 @@ with BitNetEngine(config) as engine:
           <pre><code>const { createEngine } = require('termux-bitnet');
 
 async function main() {
-  // 1. Initialize engine with dynamic activation support
+  // 1. Initialize engine with model-specific wrapping & GPU chunking
   const engine = createEngine({
     modelPath: '~/.cache/termux-bitnet/models/falcon-e-1b-instruct-i2_s.gguf',
-    device: 'auto',      // 'auto', 'cpu', or 'gpu'
+    device: 'gpu',
+    gpuLayers: 24,
+    chatTemplate: 'falcon',
+    chunkLayers: 4,
+    vocabSlice: 32768,
     threads: 4,
     temperature: 0.7,
     topP: 0.95

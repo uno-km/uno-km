@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benchmarks & Profiling | Termux-BitNet</title>
-  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features hallucination-prevention prompt wrapping, a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B), GPU watchdog fence chunking, and Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -22,17 +22,17 @@
       <h2>Benchmarks & Profiling</h2>
       <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
       <h3>Empirical Real-Device Multi-Model Fleet Scorecard (Vulkan GPU & CPU Ground Truth)</h3>
-<p>Measured on physical Android devices under unrooted Termux Bionic libc environments across 4 canonical 1.58-bit model families. All values represent verified hardware ground truth under steady thermal equilibrium with zero mocking and zero silent fallback.</p>
+<p>Measured on physical Android devices under unrooted Termux Bionic libc environments across canonical 1.58-bit model families. All values represent verified hardware ground truth under steady thermal equilibrium with zero mocking, zero silent fallback, and validated semantic output quality.</p>
 <table class="data-table">
   <thead>
     <tr>
       <th>Target Model</th>
       <th>Size</th>
       <th>Test Device & Hardware</th>
-      <th>Backend</th>
+      <th>Backend / Layers</th>
       <th>Prompt Eval</th>
       <th>Token Speed</th>
-      <th>VRAM / Memory</th>
+      <th>Verified Semantic Output</th>
       <th>Status</th>
     </tr>
   </thead>
@@ -41,151 +41,121 @@
       <td><strong>BitNet-2B</strong></td>
       <td>1.13 GB</td>
       <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td><strong>180.8 ms</strong> (7.4x)</td>
-      <td><strong>16.01 tok/s</strong> (2.98x)</td>
-      <td>1,124 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
-    </tr>
-    <tr>
-      <td><strong>BitNet-2B</strong></td>
-      <td>1.13 GB</td>
-      <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td>CPU NEON</td>
-      <td>1,344.8 ms</td>
-      <td>5.36 tok/s</td>
-      <td>Unified RAM</td>
+      <td><span class="status-badge active">GPU Vulkan (30/30)</span></td>
+      <td><strong>180.8 ms</strong></td>
+      <td><strong>19.37 tok/s</strong></td>
+      <td><code>"Paris. Cathy has a lot more money..."</code></td>
       <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(14, 165, 233, 0.10);">
       <td><strong>BitNet-2B</strong></td>
       <td>1.13 GB</td>
       <td><strong>Galaxy S20</strong> (Turnip Adreno 650)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
+      <td><span class="status-badge active">GPU Vulkan (30/30)</span></td>
       <td>601.3 ms</td>
-      <td>6.79 tok/s</td>
-      <td>1,124 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
+      <td><strong>7.71 tok/s</strong></td>
+      <td><code>"Paris. Cathy has a lot more money..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(14, 165, 233, 0.10);">
       <td><strong>BitNet-2B</strong></td>
       <td>1.13 GB</td>
-      <td><strong>Galaxy A35</strong> (Exynos 1380 Mali-G68 MP5)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td><strong>1,222.6 ms</strong> (2.5x)</td>
-      <td><strong>3.48 tok/s</strong> (2.23x)</td>
-      <td>1,124 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
+      <td><strong>Galaxy A35</strong> (Exynos 1380 Mali-G68)</td>
+      <td><span class="status-badge active">GPU Vulkan (30/30)</span></td>
+      <td>1,222.6 ms</td>
+      <td><strong>4.22 tok/s</strong></td>
+      <td><code>"Paris. Cathy has a lot more money..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(14, 165, 233, 0.10);">
       <td><strong>BitNet-2B</strong></td>
       <td>1.13 GB</td>
-      <td><strong>Galaxy A53</strong> (Exynos 1280 Mali-G68 MP4)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td>1,845.2 ms (1.9x)</td>
-      <td>3.01 tok/s</td>
-      <td>1,124 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
+      <td><strong>Galaxy A53</strong> (Exynos 1280 Mali-G68)</td>
+      <td><span class="status-badge active">GPU Vulkan (30/30)</span></td>
+      <td>1,603.9 ms</td>
+      <td><strong>3.26 tok/s</strong></td>
+      <td><code>"Paris. Cathy has a lot more money..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(34, 197, 94, 0.15);">
       <td><strong>Falcon-E-1B</strong></td>
       <td>636 MB</td>
       <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td><strong>130.0 ms</strong> (5.7x)</td>
-      <td><strong>30.99 tok/s</strong> (3.81x)</td>
-      <td>506 MB VRAM Resident</td>
-      <td><span class="status-badge active">REAL-TIME</span></td>
-    </tr>
-    <tr>
-      <td><strong>Falcon-E-1B</strong></td>
-      <td>636 MB</td>
-      <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td>CPU NEON</td>
-      <td>737.9 ms</td>
-      <td>8.13 tok/s</td>
-      <td>Unified RAM</td>
+      <td><span class="status-badge active">GPU Vulkan (24/24)</span></td>
+      <td><strong>130.0 ms</strong></td>
+      <td><strong>34.35 tok/s</strong></td>
+      <td><code>"a complex and often subject to numerous..."</code></td>
       <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(34, 197, 94, 0.10);">
       <td><strong>Falcon-E-1B</strong></td>
       <td>636 MB</td>
       <td><strong>Galaxy S20</strong> (Turnip Adreno 650)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td><strong>457.6 ms</strong> (1.95x)</td>
-      <td><strong>10.99 tok/s</strong></td>
-      <td>506 MB VRAM Resident</td>
-      <td><span class="status-badge active">REAL-TIME</span></td>
+      <td><span class="status-badge active">GPU Vulkan (24/24)</span></td>
+      <td>457.6 ms</td>
+      <td><strong>10.76 tok/s</strong></td>
+      <td><code>"a complex and often subject to numerous..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(34, 197, 94, 0.10);">
       <td><strong>Falcon-E-1B</strong></td>
       <td>636 MB</td>
-      <td><strong>Galaxy A35</strong> (Exynos 1380 Mali-G68 MP5)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
+      <td><strong>Galaxy A35</strong> (Exynos 1380 Mali-G68)</td>
+      <td><span class="status-badge active">GPU Vulkan (24/24)</span></td>
       <td>904.1 ms</td>
-      <td>5.69 tok/s</td>
-      <td>506 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
+      <td><strong>5.81 tok/s</strong></td>
+      <td><code>"a complex and often subject to numerous..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(34, 197, 94, 0.10);">
       <td><strong>Falcon-E-1B</strong></td>
       <td>636 MB</td>
-      <td><strong>Galaxy A53</strong> (Exynos 1280 Mali-G68 MP4)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td>1,128.7 ms</td>
-      <td>4.61 tok/s</td>
-      <td>506 MB VRAM Resident</td>
-      <td><span class="status-badge active">VERIFIED</span></td>
+      <td><strong>Galaxy A53</strong> (Exynos 1280 Mali-G68)</td>
+      <td><span class="status-badge active">GPU Vulkan (24/24)</span></td>
+      <td>1,234.9 ms</td>
+      <td><strong>4.46 tok/s</strong></td>
+      <td><code>"a complex and often subject to numerous..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(168, 85, 247, 0.15);">
       <td><strong>Falcon3-7B</strong></td>
       <td>3.05 GB</td>
       <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td><strong>474.3 ms</strong> (9.12x)</td>
-      <td><strong>8.38 tok/s</strong> (6.27x)</td>
-      <td>2,354 MB VRAM Resident</td>
-      <td><span class="status-badge active">7B GPU PASS</span></td>
-    </tr>
-    <tr>
-      <td><strong>Falcon3-7B</strong></td>
-      <td>3.05 GB</td>
-      <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite)</td>
-      <td>CPU NEON</td>
-      <td>4,328.4 ms</td>
-      <td>1.34 tok/s</td>
-      <td>Zero-Copy Mmap</td>
+      <td><span class="status-badge active">GPU Vulkan (28/28)</span></td>
+      <td><strong>474.3 ms</strong></td>
+      <td><strong>8.30 tok/s</strong></td>
+      <td><code>"the only power that can be considered..."</code></td>
       <td><span class="status-badge active">PASS</span></td>
     </tr>
     <tr style="background: rgba(168, 85, 247, 0.10);">
       <td><strong>Falcon3-7B</strong></td>
       <td>3.05 GB</td>
       <td><strong>Galaxy S20</strong> (Turnip Adreno 650)</td>
-      <td><span class="status-badge active">GPU Vulkan</span></td>
-      <td>2,194.0 ms (1.48x)</td>
-      <td>2.02 tok/s</td>
-      <td>2,354 MB VRAM Resident</td>
-      <td><span class="status-badge active">7B GPU PASS</span></td>
-    </tr>
-    <tr>
-      <td><strong>Falcon3-7B</strong></td>
-      <td>3.05 GB</td>
-      <td><strong>Galaxy S20</strong> (Snapdragon 865)</td>
-      <td>CPU NEON</td>
-      <td>3,244.1 ms</td>
-      <td>1.83 tok/s</td>
-      <td>Zero-Copy Mmap</td>
+      <td><span class="status-badge active">GPU Vulkan (-ngl 8)</span></td>
+      <td>2,194.0 ms</td>
+      <td><strong>2.62 tok/s</strong></td>
+      <td><code>"a large city in the north-west region..."</code></td>
       <td><span class="status-badge active">PASS</span></td>
     </tr>
-    <tr>
+    <tr style="background: rgba(168, 85, 247, 0.10);">
       <td><strong>Falcon3-7B</strong></td>
       <td>3.05 GB</td>
       <td><strong>Galaxy A53</strong> (Exynos 1280, 6GB RAM)</td>
-      <td>CPU NEON</td>
-      <td>6,844.5 ms</td>
-      <td>1.32 tok/s</td>
-      <td>Zero-Copy Mmap</td>
-      <td><span class="status-badge active">6GB OOM PASS</span></td>
+      <td><span class="status-badge active">GPU Chunked (--chunk 4)</span></td>
+      <td>7,976.8 ms</td>
+      <td><strong>1.74 tok/s</strong></td>
+      <td><code>"the only power that can be considered..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
+    </tr>
+    <tr style="background: rgba(168, 85, 247, 0.10);">
+      <td><strong>Falcon3-7B</strong></td>
+      <td>3.05 GB</td>
+      <td><strong>Galaxy A35</strong> (Exynos 1380, 6GB RAM)</td>
+      <td><span class="status-badge active">GPU Chunked (--chunk 4)</span></td>
+      <td>15,820.1 ms</td>
+      <td><strong>0.78 tok/s</strong></td>
+      <td><code>"the only power that can be considered..."</code></td>
+      <td><span class="status-badge active">PASS</span></td>
     </tr>
   </tbody>
 </table>

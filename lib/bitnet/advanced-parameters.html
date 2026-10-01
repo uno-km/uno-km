@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-BitNet</title>
-  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B) alongside Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
+  <meta name="description" content="Executes 1.58-bit ternary quantized weights {-1, 0, +1} directly via hand-vectorized ARM64 NEON assembly kernels and native Vulkan compute shaders powered by AMEVA-Runtime. Features hallucination-prevention prompt wrapping, a dynamic zero-overhead activation dispatcher supporting Squared ReLU (Microsoft 2B) and SwiGLU (Falcon-E-1B / Falcon3-7B), GPU watchdog fence chunking, and Zero-Copy mmap streaming for 7.45B model execution on 6GB RAM smartphones.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -21,7 +21,67 @@
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>1. Mathematical Resolution of Ternary Numerical Collapse</h3>
+      <h3>1. Hallucination Prevention & Prompt Template Wrapping Guide</h3>
+<p>In <code>v2.0.1</code>, user-configurable prompt formatting flags resolve conversational divergence and word-salad by ensuring model-specific dialogue boundaries:</p>
+<ul>
+  <li><code>--prompt-template chatml</code>: Formats prompt using canonical ChatML tags (<code>&lt;|im_start|&gt;user\n{prompt}&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n</code>). Required for <strong>Falcon3-7B Instruct</strong>.</li>
+  <li><code>--prompt-template falcon</code>: Enforces Falcon instruction format. Required for <strong>Falcon-E-1B Instruct</strong>.</li>
+  <li><code>--prompt-template raw</code>: Disables wrapping and passes raw text directly. Recommended for <strong>BitNet 2B-4T</strong> base reasoning.</li>
+  <li><code>--prompt-prefix &lt;str&gt;</code> & <code>--prompt-suffix &lt;str&gt;</code>: Custom dialogue wrapping prefixes/suffixes.</li>
+  <li><code>--eos-token-id &lt;int&gt;</code>: Override end-of-sequence token ID to prevent infinite token run-on.</li>
+</ul>
+
+<h3>2. Supported Models & Optimal Deployment Matrix</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Model Name</th>
+      <th>Weights File</th>
+      <th>Activation</th>
+      <th>Recommended Template</th>
+      <th>Recommended GPU Flags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Microsoft BitNet 2B-4T</strong></td>
+      <td><code>bitnet-2b-ggml-model-i2_s.gguf</code></td>
+      <td><code>--act-fn relu2</code></td>
+      <td><code>--prompt-template raw</code></td>
+      <td><code>-ngl 30</code> (Full GPU offload)</td>
+    </tr>
+    <tr>
+      <td><strong>TII Falcon-E 1B Instruct</strong></td>
+      <td><code>falcon-e-1b-instruct-i2_s.gguf</code></td>
+      <td><code>--act-fn swiglu</code></td>
+      <td><code>--prompt-template falcon</code></td>
+      <td><code>-ngl 24</code> (Full GPU offload)</td>
+    </tr>
+    <tr>
+      <td><strong>TII Falcon3 7B Instruct</strong></td>
+      <td><code>falcon3-7b-instruct-i2_s.gguf</code></td>
+      <td><code>--act-fn swiglu</code></td>
+      <td><code>--prompt-template chatml</code></td>
+      <td><code>--chunk-layers 4 --vocab-slice 32768</code></td>
+    </tr>
+    <tr>
+      <td><strong>BitNet Embedding 270M</strong></td>
+      <td><code>bitnet-b1.58-270M-embed-i2_s.gguf</code></td>
+      <td>Linear / RMSNorm</td>
+      <td><code>--prompt-template raw</code></td>
+      <td>CPU / Zero-Copy Mmap Vector Search</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Mobile GPU Memory Slicing & Watchdog Defense Architecture</h3>
+<p>To operate 7B scale models reliably across heterogeneous mobile chipsets, <code>v2.0.1</code> introduces hardware-level execution governance:</p>
+<ul>
+  <li><strong>Fence Chunking (<code>--chunk-layers 4</code>)</strong>: Splits the 28-layer transformer graph into 4-layer command buffer sub-dispatches with intermediate fence waits. This completely bypasses the ARM Mali 2,500ms kernel watchdog timer on Exynos 1280/1380 devices.</li>
+  <li><strong>Vocabulary Slicing (<code>--vocab-slice 32768</code>)</strong>: Falcon3-7B features a massive 131,080-token FP16 vocabulary matrix consuming 768MB VRAM. By slicing the linear projection to the top 32,768 tokens and masking non-computed logits to <code>-1e9f</code>, VRAM consumption drops to 192MB (-576MB reduction) with zero impact on common vocabulary generation.</li>
+</ul>
+
+<h3>4. Mathematical Resolution of Ternary Numerical Collapse</h3>
 <p>In accordance with technical whitepaper <code>AOSF-TR-2026-BITNET-TERNARY-02</code>, low-level unpacking maps 2-bit unsigned containers to ternary weights using canonical relation:</p>
 <pre><code>// Canonical Microsoft BitNet b1.58 dequantization formula:
 int8_t w0 = (int8_t)(byte_val & 3) - 1;
@@ -32,13 +92,8 @@ int8_t w3 = (int8_t)((byte_val >> 6) & 3) - 1;
 // Integrated 32-byte GGUF tensor trailer weight scale:
 float total_scale = dequant_scale * weight_scale;
 out[r] *= total_scale;</code></pre>
-<h3>2. Dynamic Activation Dispatcher (Squared ReLU vs SwiGLU)</h3>
-<p>The engine introspects layer tensors at load time to automatically branch activation functions without user intervention:</p>
-<ul>
-  <li><strong>BitNet 2B-4T</strong>: Squared ReLU (<code>relu(x)^2</code>) coupled with Sub-LayerNorm (<code>ffn_sub_norm</code>).</li>
-  <li><strong>Falcon-E-1B & Falcon3-7B</strong>: Standard SwiGLU (<code>SiLU(x) * up</code>) without Sub-LayerNorm.</li>
-</ul>
-<h3>3. Upstream Open-Source Contributions & Credibility</h3>
+
+<h3>5. Upstream Open-Source Contributions & Credibility</h3>
 <p>Our foundational research directly powers and resolves global open-source issues across Microsoft and GGML:</p>
 <ul>
   <li><a href="https://github.com/microsoft/BitNet/pull/551" target="_blank"><strong>microsoft/BitNet #551</strong></a>: Solved ARM QK=128 stride tensor corruption and word salad.</li>
