@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | AMEVA-Sentinel</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Sentinel.">
+  <title>버전 아카이브 &amp; 릴리즈 이력 | AMEVA-Sentinel</title>
+  <meta name="description" content="AMEVA-Sentinel 전체 버전 아카이브, 프라이버시 우선 보안 평가 및 비용 방어 레이어 체인지로그">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,29 +19,60 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Sentinel</p>
+      <h2>버전 아카이브 &amp; 릴리즈 이력 (Changelog)</h2>
+      <p class="subtitle">불변의 릴리즈 내역 및 시맨틱 버저닝 마일스톤 (AMEVA-Sentinel)</p>
 
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.1 - Maintenance Release &mdash; 2026-09-04</h3>
-            <ul>
-              <li>일부 문구 수정 (Minor wording and documentation adjustments).</li>
-            </ul>
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/sentinel.svg?color=cb3837" alt="NPM Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/Security-Shadow_Mode_Guard-emerald.svg" alt="Security Guard">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.3.0 - Hierarchical Cost Guard &amp; Active Defense Tarpit</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-28</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.0 - Target Discrimination Standard (Current)</h3>
-            <ul>
-              <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-              <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Hierarchical Cost Guard Engine</strong>: 요청 페이로드 크기 및 응답 버짓(Response Budget)을 실시간으로 제한하여 클라우드 LLM 및 백엔드 연산 비용 폭주 방어.</li>
+          <li><strong>Active Defense Tarpit Engine</strong>: 고위험 봇 클라이언트에 대해 연결을 즉시 끊지 않고 HTTP 소켓 스트리밍을 인위적으로 지연(최대 5,000ms)시켜 공격자 자원을 소모시키는 타르핏 탑재.</li>
+          <li><strong>Redis Token Bucket &amp; Threat Aggregator</strong>: 분산 환경에서의 계층형 토큰 버킷과 인메모리 비상 로컬 폴백 저장소(LocalEmergencyBudgetStore) 통합.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.2.0 - Dual-Runtime SDKs (TypeScript &amp; Python) &amp; Shadow Mode</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>TypeScript &amp; Python 듀얼 런타임 패리티</strong>: Node.js(Express, Fastify, Next.js) 및 Python(FastAPI, Starlette, Flask) 완벽 지원.</li>
+          <li><strong>섀도우 모드(Shadow Mode) 가드레일</strong>: 프로덕션 트래픽에 영향을 주지 않고 백그라운드에서 위험도를 사전 관측·기록하는 섀도우 평가 체계 확립.</li>
+          <li><strong>프라이버시 중심 마이크로 인터랙션 분석</strong>: 브라우저 좌표 수집 없이 Shannon 엔트로피 지터와 DOM 상호작용 신호만으로 정상 사용자 판별.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid #64748b;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #475569;">v2.0.0 - Core Observability Framework Overhaul</h3>
+          <div>
+            <span class="status-badge" style="background:#64748b; margin-right: 6px;">Major Milestone</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-07-15</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>결정론적 HMAC-SHA256 클라이언트 인증 토큰 시스템 구축.</li>
+          <li>서브 밀리초(&lt;0.25ms) 클라이언트 브라우저 신호 도출 엔진 탑재.</li>
+          <li>Cloudflare, Fastly, AWS CloudFront 에지 헤더 정규화 지원.</li>
+        </ul>
       </div>
     </main>
   </div>

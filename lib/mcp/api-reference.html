@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete API Reference | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <title>API 명세서 및 인터페이스 규격 | AMEVA-MCP-Hub</title>
+  <meta name="description" content="AMEVA-MCP-Hub Node.js/Python SDK 클래스, WASI 런타임, 도구 등록 및 플릿 테스터 API 명세">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,15 +19,115 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Complete API Reference</h2>
-      <p class="subtitle">100% Full Class, Struct, and Method Documentation</p>
-      <h3>Engine Subsystem</h3>
-         <table class="data-table">
-           <thead><tr><th>Method / Struct</th><th>Signature</th><th>Description</th></tr></thead>
-           <tbody>
-             <tr><td><code>Engine.__init__</code></td><td><code>(device='auto', precision='fp16')</code></td><td>Initializes hardware backend accelerator</td></tr>
-           </tbody>
-         </table>
+      <h2>API 인터페이스 명세서 &amp; 프로토콜 규격</h2>
+      <p class="subtitle">WASI 인메모리 런타임, MCPHub 서버 및 클라이언트 SDK API (AMEVA-MCP-Hub)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="mcp">v3.1.3</code></span>
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/WASI-Polyglot_WASM-blue.svg" alt="WASI Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>JSON-RPC 2.0 표준 MCP 프로토콜과 WASI 가상 머신 인터페이스를 완벽히 바인딩하여, 언어 제약 없는 초고속 도구 생태계를 구축할 수 있습니다.</p>
+      </div>
+
+      <h3>1. MCPHub 서버 API (TypeScript / Node.js)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>클래스 / 메서드</th>
+            <th>시그니처</th>
+            <th>설명 및 엔지니어링 동작</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>new MCPHub(options?)</code></td>
+            <td><code>constructor(opts?: HubOptions)</code></td>
+            <td>WASI 런타임 및 stdio/WebSocket 리스너를 갖춘 허브 인스턴스를 생성합니다.</td>
+          </tr>
+          <tr>
+            <td><code>hub.start()</code></td>
+            <td><code>async start(): Promise&lt;ServerInfo&gt;</code></td>
+            <td>지정 포트에서 서버를 기동하거나, 이미 실행 중인 경우 자동으로 브리지 포워더를 활성화합니다.</td>
+          </tr>
+          <tr>
+            <td><code>hub.registerTool(def)</code></td>
+            <td><code>registerTool(name: string, schema: object, handler: Function): void</code></td>
+            <td>동적 WASI 또는 자바스크립트 핸들러 함수를 표준 MCP 도구로 등록합니다.</td>
+          </tr>
+          <tr>
+            <td><code>hub.stop()</code></td>
+            <td><code>async stop(): Promise&lt;void&gt;</code></td>
+            <td>모든 활성 소켓 및 하위 WASI 인스턴스를 메모리 누수 없이 정상 종료합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 온디바이스 플릿 테스터 도구군 (Fleet Tester Adapter)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>도구 식별자</th>
+            <th>입력 파라미터</th>
+            <th>기능 설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tester_probe_fleet</code></td>
+            <td><code>{}</code></td>
+            <td>연결된 모든 실기기(Android Termux 등)의 CPU, GPU, NPU, Vulkan HAL 토폴로지를 정밀 진단합니다.</td>
+          </tr>
+          <tr>
+            <td><code>tester_get_devices</code></td>
+            <td><code>{}</code></td>
+            <td>현재 활성 연결된 단말기 목록과 통신 상태 메타데이터를 반환합니다.</td>
+          </tr>
+          <tr>
+            <td><code>tester_inspect_device</code></td>
+            <td><code>{ device_id: string }</code></td>
+            <td>지정 단말기의 상세 메모리, 커널 버전, Vulkan 드라이버 속성을 조회합니다.</td>
+          </tr>
+          <tr>
+            <td><code>tester_run_benchmark</code></td>
+            <td><code>{ device_id: string, modality: string }</code></td>
+            <td>원격 실기기 상에서 STT, TTS, Diffusion, LLM 온디바이스 AI 벤치마크를 원격 지휘합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. 에러 핸들링 및 예외 클래스</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>예외 클래스</th>
+            <th>원인 및 발생 조건</th>
+            <th>시스템 안전 조치</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>WasiFuelExhaustedError</code></td>
+            <td>WASI 연산이 <code>fuelLimit</code> 한도를 초과한 경우</td>
+            <td>호스트 프로세스 보호를 위해 즉각 실행을 중단하고 에러 응답 반환.</td>
+          </tr>
+          <tr>
+            <td><code>BridgeConnectionError</code></td>
+            <td>다중 인스턴스 브리지 연결 시 원격 허브 소켓이 응답하지 않을 때</td>
+            <td>독립 신규 허브 프로세스로 자체 폴백 기동.</td>
+          </tr>
+          <tr>
+            <td><code>ToolNotFoundError</code></td>
+            <td>등록되지 않은 MCP 도구명을 호출한 경우</td>
+            <td>사용 가능한 도구 목록 힌트와 함께 JSON-RPC 에러(-32601) 반환.</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   </div>
 

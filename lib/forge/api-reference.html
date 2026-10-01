@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API 명세서 및 프로토콜 규격 | AMEVA-Forge</title>
-  <meta name="description" content="AMEVA-Forge 클래스 시그니처, 파라미터 타입, 반환값 규격 및 메모리 수명주기">
+  <title>API 명세서 및 인터페이스 규격 | AMEVA-Forge</title>
+  <meta name="description" content="AMEVA-Forge WebGPU 엔진, 텐서 Autograd, GGUF 모델 로더, 토크나이저 API 인터페이스 규격">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,109 +19,116 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="api.title">API 인터페이스 명세서</h2>
-      <p class="subtitle" data-i18n="api.subtitle">클래스 시그니처, 파라미터 타입, 반환값 규격 및 메모리 수명주기 (AMEVA-Forge)</p>
+      <h2>API 명세서 및 프로토콜 규격</h2>
+      <p class="subtitle">클래스 시그니처, WebGPU 파이프라인 인터페이스, 반환값 및 에러 핸들링 (AMEVA-Forge)</p>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="api.valueProp">더 이상 무거운 프레임워크에 끌려다니지 않고 텐서 연산을 손끝으로 지휘하는 핵심 API 규격서입니다.</p>
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="forge">v1.0.1</code></span>
+        <a href="https://pypi.org/project/ameva-forge/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/WebGPU-WGSL_Compute_Shader-blue.svg" alt="WebGPU Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
       </div>
 
-      <h3 data-i18n="api.sec1Title">1. 코어 엔진 인터페이스 및 메서드</h3>
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>복잡한 셰이더 컴파일과 GPU 버퍼 바인딩을 추상화하여, 모던 웹 표준 API 1줄로 브라우저 상에서 LLM 및 딥러닝 모델을 직접 제어할 수 있는 표준 SDK 인터페이스입니다.</p>
+      </div>
+
+      <h3>1. ForgeEngine 코어 API (TypeScript / JavaScript)</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thParamName">파라미터명</th>
-            <th data-i18n="table.thType">데이터 타입</th>
-            <th data-i18n="table.thDefault">기본값</th>
-            <th data-i18n="table.thRequired">필수 여부</th>
-            <th data-i18n="table.thDesc">기능 및 엔지니어링 설명</th>
+            <th>메서드 / 프로퍼티</th>
+            <th>시그니처</th>
+            <th>설명 및 엔지니어링 동작</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>device</code></td>
-            <td><code>str</code></td>
-            <td><code>"auto"</code></td>
-            <td>선택</td>
-            <td>하드웨어 가속 백엔드 선택: <code>"auto"</code> (자동 감지), <code>"vulkan"</code> (GPU), <code>"cpu"</code> (NEON).</td>
+            <td><code>ForgeEngine.init(options?)</code></td>
+            <td><code>async init(opts?: ForgeOptions): Promise&lt;WebGPUDeviceProfile&gt;</code></td>
+            <td>브라우저 WebGPU 어댑터를 초기화하고 WGSL 셰이더 모듈 및 파이프라인 레이아웃을 컴파일합니다.</td>
           </tr>
           <tr>
-            <td><code>threads</code></td>
-            <td><code>int</code></td>
-            <td><code>4</code></td>
-            <td>선택</td>
-            <td>물리 CPU 고성능 빅코어에 바인딩할 워커 스레드 개수.</td>
+            <td><code>ForgeEngine.loadModel(source, onProgress?)</code></td>
+            <td><code>async loadModel(src: string | File | Blob, cb?: (ratio: number) =&gt; void): Promise&lt;ModelMetadata&gt;</code></td>
+            <td>Hugging Face URL 또는 로컬 파일에서 GGUF 가중치를 파싱하여 WebGPU VRAM에 바인딩합니다 (OPFS 캐시 지원).</td>
           </tr>
           <tr>
-            <td><code>shm_buffer</code></td>
-            <td><code>bool</code></td>
-            <td><code>True</code></td>
-            <td>선택</td>
-            <td>프로세스 간 제로카피 텐서 스트리밍을 위한 POSIX 공유 메모리 링 버퍼 사용 여부.</td>
+            <td><code>ForgeEngine.generate(prompt, options?)</code></td>
+            <td><code>async *generate(prompt: string, opts?: GenOptions): AsyncGenerator&lt;string&gt;</code></td>
+            <td>KV 캐시 기반 자동회귀 디코딩을 수행하며 생성된 토큰 문자열을 실시간 비동기 제너레이터로 스트리밍합니다.</td>
           </tr>
           <tr>
-            <td><code>temperature</code></td>
-            <td><code>float</code></td>
-            <td><code>0.7</code></td>
-            <td>선택</td>
-            <td>출력 다양성 및 무작위성 제어 (0.0: 결정론적 고정 ~ 1.2: 고창의성).</td>
+            <td><code>ForgeEngine.tokenize(text)</code></td>
+            <td><code>tokenize(text: string): Int32Array</code></td>
+            <td>Universal Byte-Level BPE 토크나이저를 구동하여 텍스트를 정수 토큰 ID 배열로 인코딩합니다.</td>
+          </tr>
+          <tr>
+            <td><code>ForgeEngine.decode(tokens)</code></td>
+            <td><code>decode(tokens: Int32Array | number[]): string</code></td>
+            <td>토큰 ID 시퀀스를 원래의 UTF-8 문자열로 무손실 복원합니다.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="api.sec2Title">2. 이벤트 라이프사이클 및 스트리밍 콜백</h3>
+      <h3>2. 브라우저 Autograd &amp; 텐서 연산 API</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thException">예외 클래스</th>
-            <th data-i18n="table.thExitCode">시스템 종료 / HTTP 코드</th>
-            <th data-i18n="table.thCondition">발생 조건 및 세부 원인</th>
+            <th>함수 / 클래스</th>
+            <th>호출 형식</th>
+            <th>기능 설명</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>HardwareAccelerationError</code></td>
-            <td>종료 코드 71 (EX_OSERR)</td>
-            <td>Vulkan 디바이스 초기화 실패, 호환되지 않는 GPU 드라이버 버전 또는 셰이더 컴파일 오류.</td>
+            <td><code>forge.tensor(data, shape, dtype?)</code></td>
+            <td><code>forge.tensor([1, 2, 3, 4], [2, 2], 'float32')</code></td>
+            <td>WebGPU 버퍼와 매핑되는 다차원 텐서 인스턴스를 생성합니다.</td>
           </tr>
           <tr>
-            <td><code>MemoryAllocationError</code></td>
-            <td>종료 코드 75 (EX_TEMPFAIL)</td>
-            <td>안드로이드 OS DRAM/VRAM 가용 한도 초과 (OOM 킬러 선제 방어).</td>
+            <td><code>forge.matmul(a, b)</code></td>
+            <td><code>forge.matmul(tensorA, tensorB)</code></td>
+            <td>타일드 WGSL 셰이더 커널을 통해 하드웨어 가속 행렬 곱셈을 수행합니다.</td>
           </tr>
           <tr>
-            <td><code>ProtocolValidationError</code></td>
-            <td>종료 코드 65 (EX_DATAERR)</td>
-            <td>입력 데이터 페이로드 암호화 무결성 또는 스키마 검증 실패.</td>
+            <td><code>tensor.backward()</code></td>
+            <td><code>loss.backward()</code></td>
+            <td>동적 연산 그래프(DAG)를 역방향 순회하여 모든 리프 텐서의 <code>grad</code> 버퍼를 갱신합니다.</td>
+          </tr>
+          <tr>
+            <td><code>forge.optim.AdamW(params, lr)</code></td>
+            <td><code>const opt = new forge.optim.AdamW(model.parameters(), 1e-3)</code></td>
+            <td>WebGPU 가속 가중치 감쇠(Weight Decay) 모멘텀 최적화 알고리즘을 실행합니다.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="api.sec3Title">3. 저수준 네이티브 커널 연동 명세</h3>
+      <h3>3. 에러 핸들링 및 예외 코드</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thLifecycle">수명주기 단계</th>
-            <th data-i18n="table.thAllocation">메모리 할당 메커니즘</th>
-            <th data-i18n="table.thOwnership">소유권 및 안전한 자원 해제</th>
+            <th>예외 클래스</th>
+            <th>원인 및 발생 조건</th>
+            <th>권장 조치 방안</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>초기화 단계</strong></td>
-            <td><code>shm_open()</code> 및 <code>mmap()</code> 기반 POSIX 공유 메모리 링 버퍼 생성.</td>
-            <td>엔진 인스턴스 메모리 풀에 독점 등록되어 상주합니다.</td>
+            <td><code>WebGPUNotSupportedError</code></td>
+            <td>브라우저가 WebGPU를 지원하지 않거나 하드웨어 블랙리스트에 등록된 경우</td>
+            <td>Chrome 113+ / Edge 113+ 브라우저 업데이트 안내 또는 하드웨어 가속 설정 확인.</td>
           </tr>
           <tr>
-            <td><strong>추론 및 연산 단계</strong></td>
-            <td>힙 메모리 재할당 없는 직접 포인터 오프셋 참조 (Zero memcpy).</td>
-            <td>프로세스 경계 간 복사 오버헤드 0으로 초고속 전송됩니다.</td>
+            <td><code>GGUFParseError</code></td>
+            <td>GGUF 매직 헤더(<code>GGUF</code>) 불일치 또는 미지원 텐서 퀀트 타입 로드 시</td>
+            <td>Q4_K_M, Q8_0, F16 등 공식 지원 GGUF 모델 가중치 파일로 교체.</td>
           </tr>
           <tr>
-            <td><strong>소멸 및 반납 단계</strong></td>
-            <td>RAII 소멸자를 통한 <code>munmap()</code> 및 <code>shm_unlink()</code> 즉시 호출.</td>
-            <td>프로세스 재시작 시 메모리 누수가 100% 방지됩니다.</td>
+            <td><code>VRAMAllocationLimitError</code></td>
+            <td>요청한 KV 캐시 및 가중치 크기가 브라우저 WebGPU 버퍼 상한(<code>maxBufferSize</code>)을 초과한 경우</td>
+            <td><code>kvCacheBudgetMb</code> 파라미터를 낮추거나 더 작은 모델(SmolLM-135M 등) 로드.</td>
           </tr>
         </tbody>
       </table>

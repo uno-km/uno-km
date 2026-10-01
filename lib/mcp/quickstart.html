@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quickstart & Execution Recipes | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <title>퀵스타트 및 실행 레시피 | AMEVA-MCP-Hub</title>
+  <meta name="description" content="AMEVA-MCP-Hub Python 및 Node.js 클라이언트 SDK, WASI 인메모리 도구 호출 최소 실행 코드 레시피">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,18 +19,58 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Quickstart & Execution Recipes</h2>
-      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
-      <h3>Basic Execution Recipe</h3>
-         <pre><code>import asyncio
+      <h2>퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle">Python, TypeScript 및 CLI 도구 즉시 호출 표준 코드 (AMEVA-MCP-Hub)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="mcp">v3.1.3</code></span>
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/WASI-Polyglot_WASM-blue.svg" alt="WASI Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>인메모리 WASI 샌드박스를 통해 단 1ms 미만의 지연시간으로 수십 개의 다국어 AI 도구를 안전하게 실행합니다.</p>
+      </div>
+
+      <h3>1. Node.js / TypeScript SDK 레시피</h3>
+      <pre><code class="language-typescript">import { MCPHub, MCPClient } from 'ameva-mcp-hub';
+
+// 1. 인메모리 허브 서버 기동 (기본 포트: 11553)
+const hub = new MCPHub({ port: 11553, requireToken: false });
+await hub.start();
+
+// 2. 클라이언트 연결 및 WASI 도구 실행
+const client = new MCPClient({ port: 11553 });
+const result = await client.callTool('calc', { expression: '1024 * 768' });
+console.log(`[WASI 도구 실행 결과]:`, result);</code></pre>
+
+      <h3>2. Python 클라이언트 SDK 레시피</h3>
+      <pre><code class="language-python">import asyncio
 from ameva_mcp_hub import MCPClient
 
 async def main():
+    # 실행 중인 MCP 허브에 비동기 연결
     client = MCPClient(port=11553)
-    res = await client.call_tool('calc', {'expression': '100 * 25'})
-    print(res)
+    
+    # 1. 사용 가능한 도구 목록 조회
+    tools = await client.list_tools()
+    print(f"등록된 도구 개수: {len(tools)}")
+    
+    # 2. WASI 기반 계산기 및 텍스트 변환 도구 호출
+    res = await client.call_tool("calc", {"expression": "2 ** 16"})
+    print(f"도구 반환값: {res}")
 
 asyncio.run(main())</code></pre>
+
+      <h3>3. CLI 1줄 도구 실행</h3>
+      <pre><code class="language-bash"># 허브 데몬 백그라운드 기동
+npx ameva-mcp-hub --headless
+
+# 연결된 원격 실기기 플릿 하드웨어 탐색
+npx ameva-mcp-hub call tester_probe_fleet</code></pre>
     </main>
   </div>
 

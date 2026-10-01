@@ -1,46 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benchmarks & Profiling | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
-
-### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
-
-| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
-| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
-| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
-
-### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
-
-- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
-- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
-
-| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
-| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
-
-### 3. Root-Cause Defect Resolution (Ground Truth)
-
-#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
-- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
-- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
-- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
-
-#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
-- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
-- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
-- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
-
-### 4. Single Package Architecture
-- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
-- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
-">
+  <title>하드웨어 벤치마크 &amp; 실측 프로파일링 | AMEVA-Runtime</title>
+  <meta name="description" content="삼성 갤럭시 S25, S22, S21, S20, A35 실기기 기반 AMEVA-Runtime 6-모달리티 가속 및 지연시간, VRAM 실측 계측 데이터">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -54,14 +19,238 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Benchmarks & Profiling</h2>
-      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
+      <h2>하드웨어 벤치마크 &amp; 실측 프로파일링</h2>
+      <p class="subtitle">모바일 실기기 플릿 기반 무과장(Zero-Hype) 엄격 실측 계측치 (AMEVA-Runtime)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="vulkan">v2.7.7</code></span>
+        <a href="https://pypi.org/project/ameva-runtime/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/runtime.svg?color=b91c1c" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/Vulkan-1.3_Compute-purple.svg" alt="Vulkan Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>실제 안드로이드 Termux 환경에서 계측된 무결한 하드웨어 실측치(Ground Truth)로, 각 모달리티별 CPU 대비 가속 배율과 시스템 자원 점유율을 가감 없이 보고합니다.</p>
+      </div>
+
+      <h3>1. 온디바이스 LLM 추론 실측 벤치마크 (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)</h3>
       <table class="data-table">
-           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
-           <tbody>
-             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
-           </tbody>
-         </table>
+        <thead>
+          <tr>
+            <th>단말기 및 칩셋</th>
+            <th>GPU 아키텍처</th>
+            <th>실행 백엔드</th>
+            <th>VRAM 오프로드</th>
+            <th>생성 속도 (t/s)</th>
+            <th>프롬프트 속도 (t/s)</th>
+            <th>CPU 대비 가속</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>삼성 갤럭시 S25</strong> (Snapdragon 8 Elite)</td>
+            <td>Qualcomm Adreno 830</td>
+            <td><strong>VULKAN 1.3</strong></td>
+            <td><strong>25/25 (100%)</strong></td>
+            <td><strong>35.80 t/s</strong> (27.9 ms/t)</td>
+            <td>4.53 t/s</td>
+            <td><strong>35.8배 가속</strong></td>
+          </tr>
+          <tr>
+            <td><strong>삼성 갤럭시 A35</strong> (Exynos 1380)</td>
+            <td>ARM Mali-G68 MP5</td>
+            <td><strong>VULKAN (Medium MatMul)</strong></td>
+            <td><strong>25/25 (100%)</strong></td>
+            <td><strong>4.44 t/s</strong> (225 ms/t)</td>
+            <td>6.12 t/s</td>
+            <td><strong>+26.9% 가속</strong></td>
+          </tr>
+          <tr>
+            <td><strong>삼성 갤럭시 A35</strong> (Exynos 1380)</td>
+            <td>Cortex-A78 x4</td>
+            <td>CPU-NEON (3 Threads)</td>
+            <td>0/25</td>
+            <td>3.55 t/s (281 ms/t)</td>
+            <td>8.05 t/s</td>
+            <td>기준선 (1.0x)</td>
+          </tr>
+          <tr>
+            <td><strong>삼성 갤럭시 S20</strong> (Snapdragon 865)</td>
+            <td>Kryo 585 / Adreno 650</td>
+            <td><strong>OpenCL / CPU NEON</strong></td>
+            <td>스마트 라우팅 우회</td>
+            <td><strong>26.20 t/s</strong></td>
+            <td>12.40 t/s</td>
+            <td>Vulkan FP16 결함 차단</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 음성인식 (STT) 가속 실측 벤치마크 (Whisper Large-v3-Turbo Q5_0, 548MB)</h3>
+      <p>JFK 1분 실제 연설 오디오 (<code>jfk_1min.wav</code>) 기준 계측치:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>단말기</th>
+            <th>하드웨어 구성</th>
+            <th>백엔드 모드</th>
+            <th>소요 시간</th>
+            <th>GPU 부하 / 주파수</th>
+            <th>CPU 부하</th>
+            <th>가속 배율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>갤럭시 S25</strong></td>
+            <td>Snapdragon 8 Elite / Adreno 830</td>
+            <td><strong>Vulkan GPU</strong></td>
+            <td><strong>4.40 초 (0.07x RTF)</strong></td>
+            <td>Adreno Turbo</td>
+            <td>~12% (유휴)</td>
+            <td><strong>18.5배 가속</strong></td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 S22</strong></td>
+            <td>Snapdragon 8 Gen 1 / Adreno 730</td>
+            <td><strong>Vulkan GPU</strong></td>
+            <td><strong>5.13 초 (인코더)</strong></td>
+            <td>Adreno Native</td>
+            <td>~14%</td>
+            <td><strong>3.73배 가속</strong></td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 A35</strong></td>
+            <td>Exynos 1380 / Mali-G68 MP5</td>
+            <td><strong>Vulkan GPU</strong></td>
+            <td><strong>360.60 초 (6분 00초)</strong></td>
+            <td><strong>949 MHz (100%)</strong></td>
+            <td>20~30%</td>
+            <td><strong>2.26배 가속 (56% 절감)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 A35</strong></td>
+            <td>Cortex-A78 x4 코어</td>
+            <td>CPU NEON (-dev -1)</td>
+            <td>816.48 초 (13분 36초)</td>
+            <td>0%</td>
+            <td>291% (빅코어 점유)</td>
+            <td>기준선 (1.0x)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. 음성합성 (TTS) 온디바이스 Bionic Vulkan 실측 벤치마크</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>단말기</th>
+            <th>신경망 엔진 및 모델</th>
+            <th>백엔드</th>
+            <th>합성 지연시간</th>
+            <th>실시간 계수 (RTF)</th>
+            <th>신호 무결성 (RMS/Peak)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>갤럭시 S25</strong></td>
+            <td>Supertonic 3 Flow / Piper</td>
+            <td><strong>Bionic Vulkan GPU</strong></td>
+            <td><strong>380 ms</strong></td>
+            <td><strong>0.12x RTF</strong></td>
+            <td>0.1042 / 0.8120</td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 S21</strong></td>
+            <td>Piper VITS (On-chip Tiled)</td>
+            <td><strong>Bionic Vulkan GPU</strong></td>
+            <td><strong>560 ms</strong></td>
+            <td><strong>0.18x RTF</strong></td>
+            <td>0.0921 / 0.7412 (5.5배 고속)</td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 S20</strong></td>
+            <td>Piper VITS (On-chip Tiled)</td>
+            <td><strong>Bionic Vulkan GPU</strong></td>
+            <td><strong>750 ms</strong></td>
+            <td><strong>0.24x RTF</strong></td>
+            <td>0.0890 / 0.7105 (4.1배 고속)</td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 S22</strong></td>
+            <td>MeloTTS Universal Bilingual</td>
+            <td><strong>Bionic Vulkan GPU</strong></td>
+            <td><strong>2,750 ms</strong></td>
+            <td><strong>0.88x RTF</strong></td>
+            <td>0.0814 / 0.6974 (실시간 합성)</td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 A35</strong></td>
+            <td>Piper VITS (lessac-medium)</td>
+            <td><strong>Vulkan GPU</strong></td>
+            <td><strong>5,180 ms</strong></td>
+            <td>1.146x RTF</td>
+            <td>0.0782 / 0.6540</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4. BitNet 1.58-bit 초저전력 연산 (Microsoft BitNet b1.58 2B-4T i2_s)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>단말기</th>
+            <th>하드웨어 구성</th>
+            <th>활성 백엔드</th>
+            <th>생성 속도 (t/s)</th>
+            <th>프롬프트 지연시간</th>
+            <th>CPU 대비 가속</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>갤럭시 S25</strong></td>
+            <td>Snapdragon 8 Elite / Adreno 830</td>
+            <td><strong>AMEVA Vulkan GPU</strong></td>
+            <td><strong>17.558 t/s</strong></td>
+            <td><strong>205.9 ms</strong></td>
+            <td><strong>12.58배 가속</strong></td>
+          </tr>
+          <tr>
+            <td>갤럭시 S25</td>
+            <td>Snapdragon 8 Elite / Oryon CPU</td>
+            <td>Native CPU (4 Threads)</td>
+            <td>1.396 t/s</td>
+            <td>2,041.0 ms</td>
+            <td>기준선 (1.0x)</td>
+          </tr>
+          <tr>
+            <td><strong>갤럭시 A35</strong></td>
+            <td>Exynos 1380 / Mali-G68 MP5</td>
+            <td><strong>AMEVA Vulkan GPU</strong></td>
+            <td><strong>3.471 t/s</strong></td>
+            <td><strong>1,552.8 ms</strong></td>
+            <td><strong>5.94배 가속</strong></td>
+          </tr>
+          <tr>
+            <td>갤럭시 A35</td>
+            <td>Exynos 1380 / Cortex-A78 CPU</td>
+            <td>Native CPU (4 Threads)</td>
+            <td>0.584 t/s</td>
+            <td>8,775.0 ms</td>
+            <td>기준선 (1.0x)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5. 디퓨전 이미지 생성 (SDXS 및 Z-Image Turbo 6.0B DiT)</h3>
+      <ul>
+        <li><strong>Galaxy S25 (Adreno 830)</strong>: SDXS 256&times;256 1-Step 651.92 MB VRAM 오프로드 <strong>4.39초</strong> 완주. Z-Image Turbo 6.0B DiT Flash Attention (<code>--diffusion-fa</code>) 가속 파이프라인 탑재.</li>
+        <li><strong>Galaxy S21 (Mali-G78)</strong>: Modulo-128 가드 패치(<code>ne01 % 128 == 0</code>) 적용으로 MMU Page Fault(<code>VK_ERROR_DEVICE_LOST</code>) 차단. Flash Attention 적용 시 VRAM 소비량 1.07 GB에서 4 MB로 급감, 소요 시간 310초에서 <strong>18.69초</strong>로 16.5배 단축.</li>
+      </ul>
     </main>
   </div>
 

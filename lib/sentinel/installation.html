@@ -22,6 +22,14 @@
       <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
       <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (AMEVA-Sentinel)</p>
 
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/sentinel.svg?color=cb3837" alt="NPM Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/Security-Shadow_Mode_Guard-emerald.svg" alt="Security Guard">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
       <div class="alert alert-success">
         <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
         <p data-i18n="install.valueProp">내 웹사이트를 해커와 매크로 봇으로부터 안전하게 지켜주는 똑똑한 경비원을 단 1초 만에 설치합니다.</p>
@@ -29,8 +37,11 @@
 
       <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
       <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
-      <pre><code># Node.js 공식 패키지 매니저
-npm install ameva-sentinel</code></pre>
+      <pre><code># Node.js 공식 패키지 매니저 (TypeScript / 브라우저 &amp; 백엔드 SDK)
+npm install @ameva/sentinel
+
+# Python 공식 패키지 매니저 (FastAPI / Flask / Django 미들웨어)
+pip install ameva-sentinel</code></pre>
 
       <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
       <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>

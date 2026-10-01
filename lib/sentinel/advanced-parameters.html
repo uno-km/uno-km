@@ -22,12 +22,20 @@
       <h2 data-i18n="advanced.title">고급 엔지니어링 파라미터 제어</h2>
       <p class="subtitle" data-i18n="advanced.subtitle">하드웨어 미세 조정, 캐시 할당, 스레드 고정 및 물리적 트레이드오프 분석 (AMEVA-Sentinel)</p>
 
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/sentinel.svg?color=cb3837" alt="NPM Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/Security-Shadow_Mode_Guard-emerald.svg" alt="Security Guard">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
       <div class="alert alert-success">
         <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
         <p data-i18n="advanced.valueProp">정상적인 손님에게는 불편을 주지 않으면서도 집요한 공격자만을 족집게처럼 잡아내는 미세 감도 조율판입니다.</p>
       </div>
 
-      <h3 data-i18n="advanced.sec1Title">1. 런타임 컴퓨트 및 메모리 제어 파라미터</h3>
+      <h3 data-i18n="advanced.sec1Title">1. 보안 탐지 엔진 및 슬라이딩 윈도우 제어 파라미터</h3>
       <table class="data-table">
         <thead>
           <tr>
@@ -38,49 +46,56 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>temperature</code></td>
-            <td><code>0.0 ~ 1.2</code></td>
-            <td><strong>0.0</strong>: 완벽한 결정론적 수치 고정. <strong>0.7</strong>: 최적의 표준 균형. <strong>1.2</strong>: 창의적 다양성 증가하나 환각 위험 동반.</td>
+            <td><code>rate_limit_window_ms</code></td>
+            <td><code>1,000 ~ 60,000 ms</code></td>
+            <td>슬라이딩 윈도우 시간폭. 짧을수록 버스트 DDoS 방어에 민감하며, 길수록 크롤러의 저속 지속 스크래핑을 정확히 탐지합니다.</td>
           </tr>
           <tr>
-            <td><code>top_p</code></td>
-            <td><code>0.1 ~ 1.0</code></td>
-            <td><strong>0.1</strong>: 상위 10% 확률 어휘만 엄격 선택. <strong>0.9</strong>: 표준 자연어 대화군. <strong>1.0</strong>: 전체 어휘군 샘플링.</td>
+            <td><code>max_requests_per_window</code></td>
+            <td><code>10 ~ 1,000 req</code></td>
+            <td>단일 클라이언트 IP/세션당 윈도우 내 최대 허용 요청 횟수. 초과 시 즉시 레이트리미트 차단 또는 타르핏(Tarpit)으로 격리합니다.</td>
           </tr>
           <tr>
-            <td><code>thread_affinity</code></td>
-            <td><code>[4, 5, 6, 7]</code></td>
-            <td>Cortex-X / Cortex-A 고성능 빅코어에 프로세스를 물리적으로 고정하여 OS 스케줄러 컨텍스트 스위칭 지연을 차단합니다.</td>
+            <td><code>risk_score_threshold</code></td>
+            <td><code>0 ~ 100 (기본: 85)</code></td>
+            <td>자동 차단 조치 위험도 점수 임계값. 85 이상 도달 시 악성 봇으로 단정하여 실시간 트래픽을 필터링합니다.</td>
           </tr>
           <tr>
-            <td><code>shm_pool_mb</code></td>
-            <td><code>16 ~ 128 MB</code></td>
-            <td>버스트 스트리밍 환경에서 링 버퍼 오버플로우를 방지하며, 정적 DRAM 소비량과의 트레이드오프가 존재합니다.</td>
+            <td><code>tarpit_delay_ms</code></td>
+            <td><code>500 ~ 5,000 ms</code></td>
+            <td>HTTP 타르핏 지연 응답 스트리밍 시간. 악성 봇의 소켓 연결을 장시간 붙잡아 공격자 측 리소스를 고갈시킵니다.</td>
           </tr>
           <tr>
-            <td><code>vulkan_workgroup</code></td>
-            <td><code>64 / 128 / 256</code></td>
-            <td>워크그룹 크기 128은 ARM Mali Valhall 아키텍처에서 레지스터 유출(Spill) 없이 가장 안정적인 연산 효율을 보장합니다.</td>
+            <td><code>token_ttl_seconds</code></td>
+            <td><code>30 ~ 3,600 s</code></td>
+            <td>HMAC-SHA256 클라이언트 인증 토큰 유효 기간. 재생 공격(Replay Attack)을 원천 차단합니다.</td>
           </tr>
           <tr>
-            <td><code>quant_granularity</code></td>
-            <td><code>per-channel / per-tensor</code></td>
-            <td>채널별(per-channel) 양자화는 약 4%의 메모리 오버헤드로 부동소수점 오차 누적을 크게 방지합니다.</td>
+            <td><code>shannon_entropy_min</code></td>
+            <td><code>1.5 ~ 4.0 bit</code></td>
+            <td>인간 상호작용 신호(마우스/스크롤 지터)의 최소 Shannon 엔트로피 기준선. 미달 시 매크로 자동화 봇으로 판별합니다.</td>
+          </tr>
+          <tr>
+            <td><code>honeypot_endpoints</code></td>
+            <td><code>Array&lt;string&gt;</code></td>
+            <td>공격자가 탐색할 법한 가짜 경로(<code>/.env</code>, <code>/admin/debug</code>). 접근 즉시 해당 IP의 위험 점수가 100으로 최대화됩니다.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="advanced.sec2Title">2. 추론 정밀도 및 하이퍼파라미터 튜닝</h3>
-      <p>실제 배포 환경에서 최적의 성능을 발휘하는 <code>/etc/ameva/sentinel.conf</code> 설정 파일입니다:</p>
-      <pre><code># /etc/ameva/sentinel.conf
-device: "vulkan"
-workgroup_size: 128
-thread_affinity: [4, 5, 6, 7]
-shm_buffer_mb: 32
-temperature: 0.7
-top_p: 0.95
-fail_fast_on_oom: true
-audit_trail_enabled: true</code></pre>
+      <h3 data-i18n="advanced.sec2Title">2. 프로덕션 환경 구성 파일 예시</h3>
+      <p>실제 배포 환경에서 최적의 방어 성능을 발휘하는 <code>sentinel.config.json</code> 설정 파일입니다:</p>
+      <pre><code>{
+  "rate_limit_window_ms": 60000,
+  "max_requests_per_window": 120,
+  "risk_score_threshold": 85,
+  "tarpit_delay_ms": 2000,
+  "token_ttl_seconds": 300,
+  "shannon_entropy_min": 2.1,
+  "honeypot_endpoints": ["/api/v1/debug", "/.env", "/wp-login.php"],
+  "fail_open_on_error": false,
+  "audit_trail_enabled": true
+}</code></pre>
     </main>
   </div>
 

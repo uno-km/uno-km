@@ -26,7 +26,7 @@
     },
     "mcp": {
       "name": "AMEVA-MCP-Hub",
-      "version": "v3.1.2",
+      "version": "v3.1.3",
       "github": "https://github.com/uno-km/ameva-mcp-hub",
       "pypi": "ameva-mcp-hub",
       "npm": "ameva-mcp-hub",
@@ -36,6 +36,7 @@
         ["quickstart.html", "Quickstart & Recipes"],
         ["api-reference.html", "API Reference"],
         ["tools.html", "WASM Tools Catalog"],
+        ["showcase.html", "Feature Showcase"],
         ["benchmarks.html", "Benchmarks & Profiling"],
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]
@@ -218,9 +219,9 @@
     "forge": {
       "name": "AMEVA-Forge",
       "version": "v1.0.1",
-      "github": "https://github.com/uno-km/ameva-forge",
+      "github": "https://github.com/uno-km/AMEVA-Forge",
       "pypi": "ameva-forge",
-      "npm": "ameva-forge",
+      "npm": "@uno-km/ameva-forge",
       "doc_pages": [
         ["index.html", "Home / Architecture"],
         ["all-modal-studio.html", "All-Modal WebGPU Studio"],
@@ -230,22 +231,6 @@
         ["api-reference.html", "API Reference"],
         ["forge-vs-pytorch.html", "Forge vs PyTorch"],
         ["demo.html", "Live WebGPU Demo"],
-        ["benchmarks.html", "Benchmarks & Profiling"],
-        ["advanced-parameters.html", "Advanced Parameters"],
-        ["versions.html", "Version Archive"]
-      ]
-    },
-    "infra-index": {
-      "name": "Infra-Index",
-      "version": "v1.0.1",
-      "github": "https://github.com/uno-km/infra-index",
-      "pypi": "infra-index",
-      "npm": "infra-index",
-      "doc_pages": [
-        ["index.html", "Home / Architecture"],
-        ["installation.html", "Installation Guide"],
-        ["quickstart.html", "Quickstart & Recipes"],
-        ["api-reference.html", "API Reference"],
         ["benchmarks.html", "Benchmarks & Profiling"],
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]

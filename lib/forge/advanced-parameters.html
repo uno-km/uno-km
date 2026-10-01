@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>고급 파라미터 제어 및 성능 최적화 | AMEVA-Forge</title>
-  <meta name="description" content="AMEVA-Forge 하드웨어 튜닝, 캐시 할당, 스레드 고정 및 물리적 트레이드오프 분석">
+  <title>고급 파라미터 제어 및 튜닝 | AMEVA-Forge</title>
+  <meta name="description" content="AMEVA-Forge WebGPU 셰이더 워크그룹, 버퍼 풀링, 캐시 예산 및 샘플러 고급 파라미터 튜닝 가이드">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,68 +19,111 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="advanced.title">고급 엔지니어링 파라미터 제어</h2>
-      <p class="subtitle" data-i18n="advanced.subtitle">하드웨어 미세 조정, 캐시 할당, 스레드 고정 및 물리적 트레이드오프 분석 (AMEVA-Forge)</p>
+      <h2>고급 파라미터 제어 및 성능 최적화</h2>
+      <p class="subtitle">WebGPU WGSL 컴퓨트 파이프라인, 메모리 버퍼 풀링 및 샘플러 제어 (AMEVA-Forge)</p>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="advanced.valueProp">스마트폰의 메모리를 한 방울도 낭비하지 않고 극한의 속도를 이끌어내는 정밀 튜닝 가이드입니다.</p>
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="forge">v1.0.1</code></span>
+        <a href="https://pypi.org/project/ameva-forge/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/WebGPU-WGSL_Compute_Shader-blue.svg" alt="WebGPU Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
       </div>
 
-      <h3 data-i18n="advanced.sec1Title">1. 런타임 컴퓨트 및 메모리 제어 파라미터</h3>
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>브라우저 샌드박스의 물리적 GPU VRAM과 메모리 한계를 우회하고, 60fps 논블로킹 UI를 유지하며 초고속 토큰 생성을 달성하는 WebGPU 튜닝 명세입니다.</p>
+      </div>
+
+      <h3>1. WebGPU 런타임 및 메모리 버퍼 제어 파라미터</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thParamName">파라미터명</th>
-            <th data-i18n="table.thRange">권장 설정 범위</th>
-            <th data-i18n="table.thImpact">물리적 시스템 거동 및 하드웨어 트레이드오프 상세 분석</th>
+            <th>파라미터명</th>
+            <th>권장 설정 범위</th>
+            <th>물리적 시스템 거동 및 하드웨어 트레이드오프 상세 분석</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>devicePreference</code></td>
+            <td><code>"high-performance" | "low-power"</code></td>
+            <td><code>navigator.gpu.requestAdapter</code> 호출 시 디스크리트 GPU(dGPU) 우선 할당 또는 모바일 내장 절전 GPU 선택.</td>
+          </tr>
+          <tr>
+            <td><code>workgroupSize</code></td>
+            <td><code>[64, 1, 1] ~ [256, 1, 1]</code></td>
+            <td>WGSL 셰이더 1D 워크그룹 크기. Adreno/Mali 모바일 환경은 64 또는 128이 레지스터 유출 없이 최적의 점유율(Occupancy)을 달성합니다.</td>
+          </tr>
+          <tr>
+            <td><code>kvCacheBudgetMb</code></td>
+            <td><code>128 ~ 1024 MB</code></td>
+            <td>어텐션 KV 캐시 VRAM 버퍼 할당 상한선. 초과 시 선입선출(FIFO) 슬라이딩 윈도우로 축소하여 브라우저 OOM을 선제 방어합니다.</td>
+          </tr>
+          <tr>
+            <td><code>cacheStorage</code></td>
+            <td><code>"opfs" | "cache-api" | "none"</code></td>
+            <td>모델 가중치 브라우저 영속 캐시 엔진. <code>"opfs"</code>(Origin Private File System) 선택 시 최대 I/O 처리량과 무손실 2회차 즉각 로드를 제공합니다.</td>
+          </tr>
+          <tr>
+            <td><code>yieldIntervalMs</code></td>
+            <td><code>8 ~ 32 ms (기본값: 16 ms)</code></td>
+            <td>토큰 생성 루프 중 브라우저 메인 렌더링 이벤트 루프(<code>requestAnimationFrame</code>)에 제어권을 양보하는 주기. 60fps 부드러운 UI를 보장합니다.</td>
+          </tr>
+          <tr>
+            <td><code>directDma</code></td>
+            <td><code>true | false</code></td>
+            <td>32비트 WASM 메모리(2GB 제한)를 완전히 우회하여 GGUF 버퍼를 WebGPU 버퍼로 직접 복사(GPUBufferUpload)하는 락 우회 모드.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 소프트맥스 샘플러 및 텍스트 생성 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>파라미터명</th>
+            <th>기본값 / 범위</th>
+            <th>알고리즘 및 생성 제어 특성</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>temperature</code></td>
-            <td><code>0.0 ~ 1.2</code></td>
-            <td><strong>0.0</strong>: 완벽한 결정론적 수치 고정. <strong>0.7</strong>: 최적의 표준 균형. <strong>1.2</strong>: 창의적 다양성 증가하나 환각 위험 동반.</td>
+            <td><code>0.7 (0.0 ~ 2.0)</code></td>
+            <td><strong>0.0</strong>: 완전한 결정론적 ArgMax 탐욕 샘플링. <strong>0.7</strong>: 자연어 균형. <strong>1.0+</strong>: 높은 창의성과 어휘 다양성.</td>
+          </tr>
+          <tr>
+            <td><code>top_k</code></td>
+            <td><code>40 (1 ~ 100)</code></td>
+            <td>확률 상위 K개 토큰만 후보군으로 제한하여 저확률 쓰레기 토큰 유입을 차단합니다.</td>
           </tr>
           <tr>
             <td><code>top_p</code></td>
-            <td><code>0.1 ~ 1.0</code></td>
-            <td><strong>0.1</strong>: 상위 10% 확률 어휘만 엄격 선택. <strong>0.9</strong>: 표준 자연어 대화군. <strong>1.0</strong>: 전체 어휘군 샘플링.</td>
+            <td><code>0.9 (0.1 ~ 1.0)</code></td>
+            <td>누적 확률 질량 P(Nucleus Sampling) 이하의 토큰 군집을 동적으로 슬라이싱합니다.</td>
           </tr>
           <tr>
-            <td><code>thread_affinity</code></td>
-            <td><code>[4, 5, 6, 7]</code></td>
-            <td>Cortex-X / Cortex-A 고성능 빅코어에 프로세스를 물리적으로 고정하여 OS 스케줄러 컨텍스트 스위칭 지연을 차단합니다.</td>
-          </tr>
-          <tr>
-            <td><code>shm_pool_mb</code></td>
-            <td><code>16 ~ 128 MB</code></td>
-            <td>버스트 스트리밍 환경에서 링 버퍼 오버플로우를 방지하며, 정적 DRAM 소비량과의 트레이드오프가 존재합니다.</td>
-          </tr>
-          <tr>
-            <td><code>vulkan_workgroup</code></td>
-            <td><code>64 / 128 / 256</code></td>
-            <td>워크그룹 크기 128은 ARM Mali Valhall 아키텍처에서 레지스터 유출(Spill) 없이 가장 안정적인 연산 효율을 보장합니다.</td>
-          </tr>
-          <tr>
-            <td><code>quant_granularity</code></td>
-            <td><code>per-channel / per-tensor</code></td>
-            <td>채널별(per-channel) 양자화는 약 4%의 메모리 오버헤드로 부동소수점 오차 누적을 크게 방지합니다.</td>
+            <td><code>repetition_penalty</code></td>
+            <td><code>1.1 (1.0 ~ 2.0)</code></td>
+            <td>Shifted Logit 페널티를 적용하여 문장 반복 루프와 동어 반복 현상을 방지합니다.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="advanced.sec2Title">2. 추론 정밀도 및 하이퍼파라미터 튜닝</h3>
-      <p>실제 배포 환경에서 최적의 성능을 발휘하는 <code>/etc/ameva/forge.conf</code> 설정 파일입니다:</p>
-      <pre><code># /etc/ameva/forge.conf
-device: "vulkan"
-workgroup_size: 128
-thread_affinity: [4, 5, 6, 7]
-shm_buffer_mb: 32
-temperature: 0.7
-top_p: 0.95
-fail_fast_on_oom: true
-audit_trail_enabled: true</code></pre>
+      <h3>3. WebGPU 프로덕션 설정 예제 (JavaScript)</h3>
+      <pre><code class="language-javascript">import { ForgeEngine } from '@uno-km/ameva-forge';
+
+const engine = new ForgeEngine({
+  devicePreference: 'high-performance',
+  workgroupSize: [128, 1, 1],
+  kvCacheBudgetMb: 512,
+  cacheStorage: 'opfs',
+  directDma: true,
+  yieldIntervalMs: 16
+});
+
+await engine.init();
+console.log('[AMEVA-Forge] WebGPU 런타임 하드웨어 파이프라인 구성 완료');</code></pre>
     </main>
   </div>
 

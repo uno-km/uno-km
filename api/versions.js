@@ -20,7 +20,7 @@ const REGISTRY = {
   "train": { name: "Termux-Train", pypi: "termux-train", npm: "termux-train", fallback: "0.0.1" },
   "llamacpp": { name: "Termux-LlamaCpp", pypi: "termux-llamacpp", npm: "termux-llamacpp", fallback: "0.0.1" },
   "vision": { name: "Termux-Vision", pypi: "termux-vision", npm: "termux-vision", fallback: "0.0.1" },
-  "forge": { name: "AMEVA-Forge", pypi: "ameva-forge", npm: "ameva-forge", fallback: "0.0.1" }
+  "forge": { name: "AMEVA-Forge", pypi: "ameva-forge", npm: "@uno-km/ameva-forge", fallback: "0.0.1" }
 };
 
 let cachedResponse = null;

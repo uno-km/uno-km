@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>퀵스타트 및 실행 레시피 | AMEVA-Sentinel</title>
-  <meta name="description" content="AMEVA-Sentinel 즉시 실행 CLI, 최소 파이썬/JS 코드 및 추천 모델 프로파일">
+  <meta name="description" content="AMEVA-Sentinel 클라이언트 행동 관측, 프라이버시 우선 보안 평가 및 미들웨어 연동 최소 코드 레시피">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,89 +19,101 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="quickstart.title">퀵스타트 및 실행 레시피</h2>
-      <p class="subtitle" data-i18n="quickstart.subtitle">즉시 실행 가능한 1줄 CLI 명령어, 최소 코드 레시피 및 하드웨어 검증 모델 프로파일 (AMEVA-Sentinel)</p>
+      <h2>퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle">프라이버시 우선 보안 평가 및 듀얼 런타임 미들웨어 연동 표준 코드 (AMEVA-Sentinel)</p>
 
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="quickstart.valueProp">코드 몇 줄만 넣으면 방문자가 진짜 사람인지 매크로 프로그램인지 즉시 판별해 줍니다.</p>
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/sentinel.svg?color=cb3837" alt="NPM Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/Security-Shadow_Mode_Guard-emerald.svg" alt="Security Guard">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
       </div>
 
-      <h3 data-i18n="quickstart.sec1Title">1. 1줄 CLI 즉시 실행</h3>
-      <p data-i18n="quickstart.sec1Desc">기본값이 사전 구성되어 있어 별도 설정 없이 바로 실행할 수 있습니다:</p>
-      <pre><code>npx ameva-sentinel audit --target https://localhost:8080</code></pre>
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>개인식별정보(PII)나 마우스 좌표를 절대 수집하지 않고, 브라우저 마이크로 인터랙션 엔트로피와 암호화 토큰만으로 정상 사용자와 봇 트래픽을 단 0.25ms 만에 판별합니다.</p>
+      </div>
 
-      <h3 data-i18n="quickstart.sec2Title">2. Python 최소 실행 레시피</h3>
-      <pre><code class="language-python"># AMEVA-Sentinel 파이썬 서버 검증 예제
-import hmac, hashlib
+      <h3>1. Node.js / Express 미들웨어 레시피</h3>
+      <pre><code class="language-typescript">import express from 'express';
+import { Sentinel } from '@ameva/sentinel';
 
-def verify_sentinel_token(payload: bytes, token: str, secret: bytes) -> bool:
-    expected = hmac.new(secret, payload, hashlib.sha256).hexdigest()
-    return hmac.compare_digest(expected, token)
+const app = express();
+const sentinel = new Sentinel({
+  secretKey: process.env.SENTINEL_SECRET || 'secret_key_prod',
+  riskThreshold: 80,
+  shadowMode: false
+});
 
-is_valid = verify_sentinel_token(b"sample_payload", "8f3d6c...9a", b"prod_secret_key")
-print(f"[Sentinel] 클라이언트 토큰 인증 결과: {is_valid}")</code></pre>
+// 미들웨어 등록: 비정상 봇 요청 선제 차단 및 타르핏 지연
+app.use(sentinel.middleware());
 
-      <h3 data-i18n="quickstart.sec3Title">3. JavaScript / Node.js 최소 실행 레시피</h3>
-      <pre><code class="language-javascript">const { SentinelEngine } = require('ameva-sentinel');
+app.get('/api/protected', (req, res) => {
+  res.json({ status: 'ok', riskScore: req.sentinel.riskScore });
+});
 
-async function main() {
-  const sentinel = new SentinelEngine({ secret: 'prod_secret_key', strictEntropy: true });
-  const evalResult = await sentinel.evaluateSignals();
-  console.log(`[Sentinel] 위협 점수: ${evalResult.score} / 100`);
-  console.log(`[Sentinel] 인증 HMAC 토큰: ${evalResult.token}`);
-}
+app.listen(3000, () => console.log('Sentinel 보안 미들웨어 활성화'));</code></pre>
 
-main();</code></pre>
+      <h3>2. Python FastAPI 미들웨어 레시피</h3>
+      <pre><code class="language-python">from fastapi import FastAPI, Request
+from ameva_sentinel import SentinelMiddleware
 
-      <h3 data-i18n="quickstart.sec4Title">4. 추천 모델 및 워크로드 프로파일</h3>
+app = FastAPI()
+
+# FastAPI 미들웨어 주입
+app.add_middleware(
+    SentinelMiddleware,
+    secret_key="prod_secret_key",
+    rate_limit_window_ms=60000,
+    risk_threshold=80
+)
+
+@app.get("/api/data")
+async def get_data(request: Request):
+    return {"message": "정상 인증 통과", "risk": request.state.risk_score}</code></pre>
+
+      <h3>3. 브라우저 클라이언트 SDK 레시피 (Telemetry)</h3>
+      <pre><code class="language-html">&lt;script src="https://uno-km.vercel.app/lib/sentinel/sentinel.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // 좌표 수집 없는 순수 인터랙션 지터 엔트로피 토큰 생성
+  const token = window.SentinelClient.generateAttestationToken();
+  
+  // 백엔드 요청 시 X-Sentinel-Token 헤더 첨부
+  fetch('/api/protected', {
+    headers: { 'X-Sentinel-Token': token }
+  });
+&lt;/script&gt;</code></pre>
+
+      <h3>4. 위협 대응 프로토콜 (Threat Response Matrix)</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thModel">모델 / 프로파일</th>
-            <th data-i18n="table.thScore">검증 상태</th>
-            <th data-i18n="table.thVram">VRAM 점유</th>
-            <th data-i18n="table.thSpeed">추론 속도</th>
-            <th data-i18n="table.thEnv">대상 환경 및 아키텍처 특징</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Heuristic-Structural-L1</strong></td><td>★ 4.8</td><td>8 MB RAM</td><td>1.2 ms 평가</td><td>DOM 트리 구조 무결성 검사, 오버헤드 0%</td></tr>
-          <tr><td><strong>HMAC-Deterministic-Token</strong></td><td>★ 5.0</td><td>4 MB RAM</td><td>0.4 ms 평가</td><td>비트 단위 암호화 페이로드 검증</td></tr>
-          <tr><td><strong>Behavioral-Entropy-L2</strong></td><td>★ 4.5</td><td>16 MB RAM</td><td>3.5 ms 평가</td><td>마이크로 인터랙션 지터 Shannon 엔트로피 분석</td></tr>
-          <tr><td><strong>TLS-Client-Fingerprint</strong></td><td>★ 4.2</td><td>12 MB RAM</td><td>2.1 ms 평가</td><td>헤더 및 암호화 스위트 순서 일치성 검증</td></tr>
-        </tbody>
-      </table>
-
-      <h3 data-i18n="advanced.sec3Title">5. 하드웨어 장애 대응 및 자동 복구 프로토콜</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th data-i18n="table.thSymptom">발생 증상 (에러 로그)</th>
-            <th data-i18n="table.thCause">근본 원인 (Root Cause)</th>
-            <th data-i18n="table.thAction">엔지니어링 조치 프로토콜</th>
+            <th>위협 탐지 이벤트</th>
+            <th>원인 및 이상 징후</th>
+            <th>자동 방어 조치</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>VK_ERROR_DEVICE_LOST</code></td>
-            <td>Mali Valhall 아키텍처 정수 나눗셈 보폭 0 절삭 무한 루프 발생.</td>
-            <td><code>--enforce-medium-matmul</code> 옵션으로 워크그룹 크기 128 커널을 강제 바인딩합니다.</td>
+            <td><code>SHANNON_ENTROPY_COLLAPSE</code></td>
+            <td>헤드리스 브라우저 매크로의 기계적 직선 이동 (엔트로피 &lt; 2.5)</td>
+            <td>위협 점수 +45 부여 및 타르핏 5,000ms 강제 지연.</td>
           </tr>
           <tr>
-            <td><code>VK_ERROR_UNKNOWN (-13)</code></td>
-            <td>스냅드래곤 Adreno JIT 컴파일러 레지스터 할당 한도 초과.</td>
-            <td>특수화 상수 <code>mul_mat_vec_max_cols = 2</code>로 고정하여 안전하게 실행합니다.</td>
+            <td><code>HONEYPOT_TRIGGERED</code></td>
+            <td>DOM 숨김 미끼 링크(<code>/hidden-trap</code>) 크롤러 탐지</td>
+            <td>클라이언트 IP 즉각 차단 및 HTTP 403 Forbidden 반환.</td>
           </tr>
           <tr>
-            <td>배터리 구동 시 지연시간 급증</td>
-            <td>안드로이드 OS의 배터리 세이버가 CPU 빅코어를 오프라인 전환함.</td>
-            <td>스레드 친화도(<code>thread_affinity=[4,5,6,7]</code>)를 통해 고성능 빅코어에 프로세스를 고정합니다.</td>
+            <td><code>RATE_LIMIT_EXCEEDED</code></td>
+            <td>윈도우 내 요청 한도(60,000ms 내 120회) 초과 시</td>
+            <td>토큰 버킷 고갈로 HTTP 429 Too Many Requests 반환.</td>
           </tr>
           <tr>
-            <td>프로세스 종료 후 VRAM 미반납</td>
-            <td>비정상 종료로 인한 POSIX 공유 메모리 핸들 잔류.</td>
-            <td>RAII 소멸자를 호출하거나 <code>shm_unlink()</code>를 통해 좀비 버퍼를 즉시 회수합니다.</td>
+            <td><code>TOKEN_HMAC_INVALID</code></td>
+            <td>위변조되거나 만료된 서명 토큰 감지 시</td>
+            <td>즉각 세션 무효화 및 HTTP 401 Unauthorized 처리.</td>
           </tr>
         </tbody>
       </table>

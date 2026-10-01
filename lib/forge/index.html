@@ -20,47 +20,53 @@
 
     <main class="content">
       <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">PyTorch 런타임 종속성 없는 순수 C++ 텐서 연산 코어 및 초경량 오토그라드(Autograd) 엔진</p>
+      <p class="subtitle" data-i18n="home.subtitle">브라우저 네이티브 WebGPU 하드웨어 가속 및 제로 서버 비용 클라이언트 딥러닝 Autograd 텐서 엔진</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="forge">v1.0.1</code></span>
+        <a href="https://pypi.org/project/ameva-forge/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/WebGPU-WGSL_Compute_Shader-blue.svg" alt="WebGPU Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
 
       <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># 파이썬 공식 패키지 매니저
-pip install ameva</code></pre>
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 및 임포트 가이드</span>
+        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저 또는 브라우저 스크립트로 직접 로드하세요:</p>
+        <pre><code># Python 패키지 매니저 (GGUF 로더 &amp; 텐서 브리지)
+pip install ameva-forge
+
+# 브라우저 스크립트 직접 임포트 (Zero-Install WebGPU)
+&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</code></pre>
       </div>
 
       <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">모바일 인공지능 애플리케이션 개발 시 2GB가 넘는 무거운 PyTorch 런타임으로 인해 앱 다운로드 용량이 폭증하고 메모리 로딩 속도가 극도로 저하되는 문제가 있었습니다.</p>
+      <p data-i18n="home.challengeText">기존 웹 인공지능 서비스는 막대한 클라우드 GPU 인프라 비용을 요구하거나, 수백 MB의 무거운 WASM 번들로 인해 모바일/데스크톱 브라우저 환경에서 극심한 로딩 지연과 메모리 병목을 유발했습니다.</p>
 
       <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">수십 메가바이트의 순수 C++20 템플릿 메타프로그래밍과 ARM NEON 및 Vulkan 셰이더 직결 텐서 코어를 구축하여, 무의존성 초고속 자동 미분 및 추론 엔진을 완성했습니다.</p>
+      <p data-i18n="home.breakthroughText">표준 브라우저 WebGPU API와 WGSL 컴퓨트 셰이더 커널을 직결하여, 0원의 서버 비용으로 클라이언트 단말기의 물리 GPU에서 순수 텐서 연산 및 자동 미분(Autograd) 역전파를 완벽히 수행합니다.</p>
 
       <div class="alert alert-success">
         <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">기가바이트 단위의 무거운 파이토치를 걷어내고, 불과 수십 메가바이트의 날렵한 C++ 엔진으로 모바일 인공지능을 가동합니다.</p>
+        <p data-i18n="home.valuePropText">서버 GPU 비용 0원. 브라우저 표준 WebGPU 컴퓨트 파이프라인으로 사용자 기기의 하드웨어를 직접 활용하여 완벽한 프라이버시와 초고속 딥러닝을 제공합니다.</p>
       </div>
 
       <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">2GB+ 파이토치 완벽 배제</h4>
-          <p data-i18n="home.features.0.desc">수십 메가바이트의 순수 C++ 엔진으로 모바일 임베디드 환경에 완벽 최적화되었습니다.</p>
+          <h4 data-i18n="home.features.0.title">서버 비용 0원 클라이언트 연산</h4>
+          <p data-i18n="home.features.0.desc">모든 순전파 및 역전파 텐서 연산이 사용자의 브라우저 WebGPU에서 직접 처리되어 서버 인프라 비용이 들지 않습니다.</p>
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.1.title">PyTorch 호환 텐서 API</h4>
-          <p data-i18n="home.features.1.desc">tensor.matmul(), tensor.backward() 등 친숙한 문법을 그대로 지원합니다.</p>
+          <p data-i18n="home.features.1.desc"><code>tensor.backward()</code>, <code>optim.AdamW</code>, <code>nn.Linear</code> 등 표준 딥러닝 직관을 그대로 유지합니다.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">메모리 풀링 재할당 오버헤드 0화</h4>
-          <p data-i18n="home.features.2.desc">사전 할당된 텐서 버퍼 풀을 재사용하여 가비지 컬렉션 멈춤 현상을 완전히 제거했습니다.</p>
+          <h4 data-i18n="home.features.2.title">100% 로컬 데이터 프라이버시</h4>
+          <p data-i18n="home.features.2.desc">사용자 입력과 학습 데이터가 외부 네트워크를 거치지 않고 오직 로컬 GPU 버퍼 내에서만 안전하게 순환합니다.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">락리스 공유 메모리 텐서 IPC</h4>
-          <p data-i18n="home.features.3.desc">프로세스 간 텐서 데이터를 복사 없이 0.05ms 만에 초고속 공유합니다.</p>
-        </div>
-        <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">결정론적 비트 단위 재현성</h4>
-          <p data-i18n="home.features.4.desc">이기종 모바일 기기 간에도 완벽히 동일한 연산 결과를 보장합니다.</p>
+          <h4 data-i18n="home.features.3.title">GGUF 모델 브라우저 직접 로딩</h4>
+          <p data-i18n="home.features.3.desc">양자화된 GGUF 신경망 가중치를 브라우저 메모리에 직접 마운트하여 실시간 스트리밍 추론을 가동합니다.</p>
         </div>
       </div>
 

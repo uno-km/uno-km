@@ -1,46 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Parameters & Tuning | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
-
-### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
-
-| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
-| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
-| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
-
-### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
-
-- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
-- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
-
-| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
-| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
-
-### 3. Root-Cause Defect Resolution (Ground Truth)
-
-#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
-- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
-- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
-- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
-
-#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
-- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
-- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
-- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
-
-### 4. Single Package Architecture
-- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
-- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
-">
+  <title>고급 파라미터 제어 및 튜닝 | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA-Runtime 모바일 실리콘 셰이더 커널 튜닝, Adreno/Mali 하드웨어 쿼크 제어 및 메모리 오프로드 파라미터 명세">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -54,10 +19,106 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Advanced Parameters & Tuning</h2>
-      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
+      <h2>고급 파라미터 제어 및 하드웨어 튜닝</h2>
+      <p class="subtitle">모바일 실리콘 셰이더 커널 파라미터, 쿼크 격벽 및 VRAM 오프로드 제어 (AMEVA-Runtime)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="vulkan">v2.7.7</code></span>
+        <a href="https://pypi.org/project/ameva-runtime/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/runtime.svg?color=b91c1c" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/Vulkan-1.3_Compute-purple.svg" alt="Vulkan Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>Qualcomm Adreno 및 ARM Mali 드라이버의 특이 거동(Quirks)과 컴파일러 결함을 물리적으로 우회하고, 6대 모달리티 파이프라인에서 최대 연산 처리량을 확보하기 위한 핵심 설정 규격입니다.</p>
+      </div>
+
+      <h3>1. 모바일 GPU 하드웨어 쿼크 및 파이프라인 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>파라미터명</th>
+            <th>기본값 / 범위</th>
+            <th>하드웨어 트레이드오프 및 엔지니어링 동작 상세</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>enforce_medium_matmul</code></td>
+            <td><code>true (bool)</code></td>
+            <td>ARM Mali-G68/G78(서브그룹 크기 16)에서 GLSL 정수 절삭(<code>loadstride_b = 16 * 1 / 32 = 0</code>)으로 인한 무한 루프를 방지하기 위해 워크그룹 크기 128인 미디엄 커널(<code>_m</code>, <code>loadstride_b = 4 &gt; 0</code>)을 강제합니다.</td>
+          </tr>
+          <tr>
+            <td><code>mul_mat_vec_max_cols</code></td>
+            <td><code>2 (1 ~ 8)</code></td>
+            <td>Snapdragon 8 Elite (Adreno 830) JIT 컴파일러가 특수화 상수 <code>NUM_COLS &gt;= 3</code>에서 레지스터 할당 실패(<code>VK_ERROR_UNKNOWN -13</code>)를 일으키는 결함을 방어하기 위해 열 수를 2로 제한합니다.</td>
+          </tr>
+          <tr>
+            <td><code>flash_attention</code></td>
+            <td><code>1 (auto: 0 for Adreno 600)</code></td>
+            <td>스냅드래곤 865 등 구형 Adreno 600 계열 감지 시 <code>-fa 0</code>을 자동 주입하여 셰이더 JIT 크래시를 방지하고, Adreno 830 및 Mali GPU는 초고속 Flash Attention을 활성화합니다.</td>
+          </tr>
+          <tr>
+            <td><code>requested_ngl</code></td>
+            <td><code>999 (0 ~ 999)</code></td>
+            <td>모바일 GPU VRAM에 오프로드할 신경망 레이어 개수. <code>999</code> 설정 시 25/25 레이어 전체를 GPU에 적재하여 CPU 컨텍스트 스위칭 지연을 제거합니다.</td>
+          </tr>
+          <tr>
+            <td><code>bionic_direct_link</code></td>
+            <td><code>true (bool)</code></td>
+            <td>Termux <code>$PREFIX/lib/libvulkan.so</code>의 Mesa llvmpipe CPU 에뮬레이터 함정을 우회하고, Android Bionic <code>/system/lib64/libvulkan.so</code>를 직접 바인딩합니다.</td>
+          </tr>
+          <tr>
+            <td><code>modality_isolation</code></td>
+            <td><code>true (bool)</code></td>
+            <td>Whisper.cpp와 LLaMA.cpp 간 공유 라이브러리(<code>libggml-vulkan.so</code>) 심볼 충돌을 방지하기 위해 1:1 전용 환경변수 격리 맵을 강제 적용합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. 오디오 및 비전 버퍼 타일링 제어 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>파라미터명</th>
+            <th>권장 설정값</th>
+            <th>물리적 시스템 거동 분석</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tts_temporal_tiling</code></td>
+            <td><code>chunk_size &lt;= 819</code></td>
+            <td>MeloTTS / Piper HiFi-GAN 보코더 52.4MB 버퍼 오버플로우로 인한 모바일 GPU TDR 리셋을 방어하기 위해 시간축 청크 슬라이싱을 수행합니다.</td>
+          </tr>
+          <tr>
+            <td><code>diffusion_fa</code></td>
+            <td><code>true</code></td>
+            <td>Z-Image Turbo 6.0B DiT 및 SDXS 이미지 생성 시 VRAM 피크 점유율을 1.07GB에서 수 메가바이트 수준으로 압축하는 온디바이스 플래시 어텐션 플래그.</td>
+          </tr>
+          <tr>
+            <td><code>stt_beam_size</code></td>
+            <td><code>1 (Greedy Decoding)</code></td>
+            <td>Whisper 음성인식 추론 시 불필요한 빔 탐색 메모리 확장을 차단하고 최소 지연시간(0.07x RTF)을 유지합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. 런타임 구성 템플릿 (Python)</h3>
+      <pre><code class="language-python">import ameva_runtime as ameva
+
+# 하드웨어 자동 감지 및 최적 쿼크 주입
+config = ameva.EngineConfig(
+    requested_ngl=999,
+    enforce_medium_matmul=True,
+    mul_mat_vec_max_cols=2,
+    bionic_direct_link=True
+)
+
+engine = ameva.create_engine("llm", config=config)
+print(f"[AMEVA-Runtime] 가속 파이프라인 준비 완료 (백엔드: {engine.backend})")</code></pre>
     </main>
   </div>
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version Archive & Changelog | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <title>버전 아카이브 &amp; 릴리즈 이력 | AMEVA-MCP-Hub</title>
+  <meta name="description" content="AMEVA-MCP-Hub 전체 버전 아카이브, WASI 인메모리 런타임 및 다중 인스턴스 브리지 체인지로그">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,13 +19,64 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version Archive & Changelog</h2>
-      <p class="subtitle">Changelog history and immutable releases</p>
-      <h3>v3.1.3 - Seamless Multi-Instance Hub & Port Forwarding (Current)</h3>
-         <ul>
-           <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-           <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-         </ul>
+      <h2>버전 아카이브 &amp; 릴리즈 이력 (Changelog)</h2>
+      <p class="subtitle">불변의 릴리즈 내역 및 시맨틱 버저닝 마일스톤 (AMEVA-MCP-Hub)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="mcp">v3.1.3</code></span>
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/WASI-Polyglot_WASM-blue.svg" alt="WASI Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v3.1.3 - Seamless Multi-Instance Hub &amp; Port Forwarding</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-01</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Seamless Multi-Instance Port Reuse (Bridge Mode)</strong>: 11553 포트 점유 시 새 프로세스가 <code>EADDRINUSE</code>로 크래시되지 않고 기존 허브에 자동으로 투명 stdio 브리지 모드로 연결.</li>
+          <li><strong>Dual-Endpoint Proxy Discovery</strong>: <code>/api/identity</code>와 루트 <code>/</code> 폴백 탐색을 통해 제로 토큰 환경에서도 100% 인스턴스 자동 판별.</li>
+          <li><strong>Bridge Mode 브라우저 팝업 방어</strong>: <code>startBridgeMode</code> 내 <code>noAutoOpen</code> 가드를 강제하여 IDE 백그라운드 구동 시 불필요한 브라우저 창 팝업 원천 차단.</li>
+          <li><strong>WebSocket 핸드셰이크 프로토콜 보강</strong>: 제로 토큰 환경에서 <code>auth_response</code> 및 <code>tab_assigned</code> 패킷 라우팅 신뢰성 확보.</li>
+          <li><strong>프론트엔드 재연결 지수 백오프</strong>: 서버 재시작 시 콘솔 로그 폭주를 방지하는 최대 15초 지수 백오프 적용.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v3.1.2 - Seamless IDE Integration, Zero-Token Mode &amp; Fleet Testing</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Zero-Token Local Execution Mode</strong>: 로컬 루프백 인터페이스 접속 시 불필요한 보안 토큰 요구 해제.</li>
+          <li><strong>On-Device Tester Fleet Adapter 통합</strong>: <code>tester_probe_fleet</code>, <code>tester_get_devices</code>, <code>tester_inspect_device</code>, <code>tester_run_benchmark</code>, <code>tester_remote_fs</code>, <code>tester_kill_process</code>, <code>tester_purge_device</code> 7대 도구 탑재.</li>
+          <li><strong>Silent Background Daemon Mode</strong>: IDE stdio 파이프 구동 시 브라우저 자동 실행을 차단하고 50ms 미만 초고속 부팅 보장.</li>
+          <li><strong>Node.js 24 ESM 호환성</strong>: <code>fileURLToPath</code>를 통한 모듈 경로 해석 표준화.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid #64748b;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #475569;">v3.0.0 - Universal Polyglot WASM Hub Master Release</h3>
+          <div>
+            <span class="status-badge" style="background:#64748b; margin-right: 6px;">Major Milestone</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>단일 Node.js 프로세스 인메모리 WASI 실행 엔진 최초 릴리즈.</li>
+          <li>GitHub 멀티 리포지토리 동적 도구 구독 및 실시간 동기화.</li>
+          <li>1536차원 AI 벡터 코사인 유사도 연산 및 Top-K RAG 검색 엔진 탑재.</li>
+        </ul>
+      </div>
     </main>
   </div>
 

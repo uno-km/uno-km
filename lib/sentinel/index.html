@@ -22,11 +22,21 @@
       <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
       <p class="subtitle" data-i18n="home.subtitle">프라이버시 중심 제로 데이터 수집 웹 브라우저 관측성 및 결정론적 0~100 위협 채점 SDK</p>
 
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/%40ameva%2Fsentinel.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
       <div class="alert alert-info">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
         <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># Node.js 공식 패키지 매니저
-npm install ameva-sentinel</code></pre>
+        <pre><code># Node.js 공식 패키지 매니저 (TypeScript / 브라우저 &amp; 백엔드 SDK)
+npm install @ameva/sentinel
+
+# Python 공식 패키지 매니저 (FastAPI / Flask / Django 미들웨어)
+pip install ameva-sentinel</code></pre>
       </div>
 
       <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>

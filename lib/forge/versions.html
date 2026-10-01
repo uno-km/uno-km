@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | AMEVA-Forge</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Forge.">
+  <title>버전 아카이브 &amp; 릴리즈 노팅 | AMEVA-Forge</title>
+  <meta name="description" content="AMEVA-Forge 전체 버전 아카이브, WebGPU Autograd 및 GGUF 모델 허브 릴리즈 체인지로그">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,29 +19,48 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for AMEVA-Forge</p>
+      <h2>버전 아카이브 &amp; 릴리즈 이력 (Changelog)</h2>
+      <p class="subtitle">불변의 릴리즈 내역 및 시맨틱 버저닝 마일스톤 (AMEVA-Forge)</p>
 
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.1 - Maintenance Release &mdash; 2026-09-04</h3>
-            <ul>
-              <li>일부 문구 수정 (Minor wording and documentation adjustments).</li>
-            </ul>
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="forge">v1.0.1</code></span>
+        <a href="https://pypi.org/project/ameva-forge/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/WebGPU-WGSL_Compute_Shader-blue.svg" alt="WebGPU Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.1 - Universal Plug &amp; Play WebGPU AI Runtime &amp; Model Hub</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-04</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.0 - Browser-Native WebGPU Autograd (Current)</h3>
-            <ul>
-              <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-              <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>Plug &amp; Play On-Device GGUF Model Hub</strong>: Hugging Face CDN URL 및 로컬 <code>.gguf</code> 파일 드래그 앤 드롭을 통한 브라우저 WebGPU VRAM 직결(Direct DMA). 32비트 WASM 2GB 메모리 락을 우회하여 브라우저 OOM 방지.</li>
+          <li><strong>Universal Byte-Level BPE &amp; SentencePiece Tokenizer</strong>: GGUF 메타데이터(<code>tokenizer.ggml.tokens</code>) 파싱을 통한 어휘 사전 구축 및 무손실 가역 인코딩/디코딩 보장.</li>
+          <li><strong>Autoregressive Streaming Generator &amp; Shifted Softmax Sampler</strong>: Shifted Exp 수치 안정화가 적용된 Top-K, Top-P, Temperature, Repetition Penalty 통합 샘플러 및 60fps 논블로킹 타자기 스트리밍.</li>
+          <li><strong>Web Worker Background Neural Runner</strong>: 메인 렌더링 스레드와 연산 파이프라인을 완전 분리하여 UI 프레임 드랍 및 OS GPU TDR 타임아웃 차단.</li>
+          <li><strong>Interactive Live WebGPU Studio &amp; 6-Language i18n</strong>: <code>demo.html</code> 및 <code>all-modal-studio.html</code> 인터랙티브 챗봇/속도계 탑재, 6개 국어 100% 동기화.</li>
+          <li><strong>공식 배포 활성화</strong>: PyPI (<code>pip install ameva-forge</code>) 및 NPM (<code>@uno-km/ameva-forge</code>) 공식 등록.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid #64748b;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #475569;">v1.0.0 - Browser-Native WebGPU Autograd Core Engine</h3>
+          <div>
+            <span class="status-badge" style="background:#64748b; margin-right: 6px;">Initial Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-20</span>
           </div>
         </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>순수 WebGPU WGSL 기반 다차원 텐서 연산 커널(MatMul, RMSNorm, Softmax, RoPE) 최초 구축.</li>
+          <li>동적 연산 그래프(DAG) 기반 Reverse-mode 자동 미분(Autograd) 엔진 탑재.</li>
+          <li>PyTorch 1:1 호환 <code>forge.nn</code> 및 <code>forge.optim.AdamW</code> 모듈 구현.</li>
+          <li>6개 국어 실시간 i18n DOM 번역 엔진 연동.</li>
+        </ul>
       </div>
     </main>
   </div>

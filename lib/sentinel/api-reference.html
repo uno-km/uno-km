@@ -22,109 +22,133 @@
       <h2 data-i18n="api.title">API 인터페이스 명세서</h2>
       <p class="subtitle" data-i18n="api.subtitle">클래스 시그니처, 파라미터 타입, 반환값 규격 및 메모리 수명주기 (AMEVA-Sentinel)</p>
 
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="sentinel">v2.3.0</code></span>
+        <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/sentinel.svg?color=cb3837" alt="NPM Version"></a>
+        <a href="https://pypi.org/project/ameva-sentinel/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-sentinel.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/Security-Shadow_Mode_Guard-emerald.svg" alt="Security Guard">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
       <div class="alert alert-success">
         <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
         <p data-i18n="api.valueProp">보안 감도와 차단 기준을 손쉽게 설정하여 내 서비스의 안전을 완벽하게 통제하는 가이드입니다.</p>
       </div>
 
-      <h3 data-i18n="api.sec1Title">1. 코어 엔진 인터페이스 및 메서드</h3>
+      <h3 data-i18n="api.sec1Title">1. 코어 엔진 인터페이스 및 주요 메서드</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thParamName">파라미터명</th>
-            <th data-i18n="table.thType">데이터 타입</th>
-            <th data-i18n="table.thDefault">기본값</th>
-            <th data-i18n="table.thRequired">필수 여부</th>
+            <th data-i18n="table.thParamName">메서드 / 인터페이스</th>
+            <th data-i18n="table.thType">시그니처</th>
+            <th data-i18n="table.thDefault">반환 타입</th>
             <th data-i18n="table.thDesc">기능 및 엔지니어링 설명</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>device</code></td>
-            <td><code>str</code></td>
-            <td><code>"auto"</code></td>
-            <td>선택</td>
-            <td>하드웨어 가속 백엔드 선택: <code>"auto"</code> (자동 감지), <code>"vulkan"</code> (GPU), <code>"cpu"</code> (NEON).</td>
+            <td><code>Sentinel.init()</code></td>
+            <td><code>(config: SentinelConfig)</code></td>
+            <td><code>SentinelInstance</code></td>
+            <td>싱글톤 보안 관측성 인스턴스 초기화. 윈도우 폭, 토큰 시크릿, 허니팟 배열을 주입합니다.</td>
           </tr>
           <tr>
-            <td><code>threads</code></td>
-            <td><code>int</code></td>
-            <td><code>4</code></td>
-            <td>선택</td>
-            <td>물리 CPU 고성능 빅코어에 바인딩할 워커 스레드 개수.</td>
+            <td><code>Sentinel.middleware()</code></td>
+            <td><code>(options?: MiddlewareOptions)</code></td>
+            <td><code>RequestHandler</code></td>
+            <td>Express, Fastify, Next.js, FastAPI 등에 바인딩할 자동 트래픽 검증 및 차단 미들웨어 생성.</td>
           </tr>
           <tr>
-            <td><code>shm_buffer</code></td>
-            <td><code>bool</code></td>
-            <td><code>True</code></td>
-            <td>선택</td>
-            <td>프로세스 간 제로카피 텐서 스트리밍을 위한 POSIX 공유 메모리 링 버퍼 사용 여부.</td>
+            <td><code>Sentinel.verifyToken()</code></td>
+            <td><code>(token: string, clientIp: string)</code></td>
+            <td><code>AttestationResult</code></td>
+            <td>클라이언트 브라우저가 발행한 HMAC-SHA256 토큰의 무결성 및 재생 공격 여부를 결정론적 검증.</td>
           </tr>
           <tr>
-            <td><code>temperature</code></td>
-            <td><code>float</code></td>
-            <td><code>0.7</code></td>
-            <td>선택</td>
-            <td>출력 다양성 및 무작위성 제어 (0.0: 결정론적 고정 ~ 1.2: 고창의성).</td>
+            <td><code>Sentinel.recordAnomaly()</code></td>
+            <td><code>(event: SecurityAnomalyEvent)</code></td>
+            <td><code>AnomalyRecord</code></td>
+            <td>허니팟 엔드포인트 접촉 또는 비정상 헤더 주입 시 위험 점수를 가산하고 메트릭에 기록.</td>
+          </tr>
+          <tr>
+            <td><code>Sentinel.getRiskScore()</code></td>
+            <td><code>(identifier: string)</code></td>
+            <td><code>Promise&lt;RiskScore&gt;</code></td>
+            <td>클라이언트 IP 또는 토큰 세션 식별자 기준 현재 누적 위험도 점수(0~100) 산출.</td>
+          </tr>
+          <tr>
+            <td><code>Sentinel.tarpit()</code></td>
+            <td><code>(res: Response, delayMs?: number)</code></td>
+            <td><code>Promise&lt;void&gt;</code></td>
+            <td>악성 봇/스크래퍼에 대해 청크 단위 지연 스트리밍을 수행하여 공격자 소켓 리소스를 고갈.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="api.sec2Title">2. 이벤트 라이프사이클 및 스트리밍 콜백</h3>
+      <h3 data-i18n="api.sec2Title">2. 보안 예외 클래스 및 HTTP 상태 코드</h3>
       <table class="data-table">
         <thead>
           <tr>
             <th data-i18n="table.thException">예외 클래스</th>
-            <th data-i18n="table.thExitCode">시스템 종료 / HTTP 코드</th>
+            <th data-i18n="table.thExitCode">HTTP 상태 코드</th>
             <th data-i18n="table.thCondition">발생 조건 및 세부 원인</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>HardwareAccelerationError</code></td>
-            <td>종료 코드 71 (EX_OSERR)</td>
-            <td>Vulkan 디바이스 초기화 실패, 호환되지 않는 GPU 드라이버 버전 또는 셰이더 컴파일 오류.</td>
+            <td><code>RateLimitExceededError</code></td>
+            <td>HTTP 429 Too Many Requests</td>
+            <td>슬라이딩 윈도우 내 최대 허용 요청 횟수를 초과한 과도한 버스트 트래픽 인입 시 발생.</td>
           </tr>
           <tr>
-            <td><code>MemoryAllocationError</code></td>
-            <td>종료 코드 75 (EX_TEMPFAIL)</td>
-            <td>안드로이드 OS DRAM/VRAM 가용 한도 초과 (OOM 킬러 선제 방어).</td>
+            <td><code>TokenAttestationFailedError</code></td>
+            <td>HTTP 403 Forbidden</td>
+            <td>클라이언트 토큰 HMAC 서명이 불일치하거나 위조된 토큰 헤더가 탐지되었을 때 분출.</td>
           </tr>
           <tr>
-            <td><code>ProtocolValidationError</code></td>
-            <td>종료 코드 65 (EX_DATAERR)</td>
-            <td>입력 데이터 페이로드 암호화 무결성 또는 스키마 검증 실패.</td>
+            <td><code>HoneypotTriggeredError</code></td>
+            <td>HTTP 403 Forbidden / Tarpit</td>
+            <td>보안 유인용 가짜 경로(<code>/.env</code>, <code>/admin/debug</code>)에 무단 접근 시 즉각 분출.</td>
+          </tr>
+          <tr>
+            <td><code>ReplayAttackDetectedError</code></td>
+            <td>HTTP 401 Unauthorized</td>
+            <td>타임스탬프 유효 범위를 초과했거나 이미 소비된 1회용 토큰을 재사용한 경우 차단.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="api.sec3Title">3. 저수준 네이티브 커널 연동 명세</h3>
+      <h3 data-i18n="api.sec3Title">3. 요청 인터셉션 라이프사이클 명세</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thLifecycle">수명주기 단계</th>
-            <th data-i18n="table.thAllocation">메모리 할당 메커니즘</th>
-            <th data-i18n="table.thOwnership">소유권 및 안전한 자원 해제</th>
+            <th data-i18n="table.thLifecycle">라이프사이클 단계</th>
+            <th data-i18n="table.thAllocation">검증 및 필터 메커니즘</th>
+            <th data-i18n="table.thOwnership">차단 조치 및 로깅 정책</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>초기화 단계</strong></td>
-            <td><code>shm_open()</code> 및 <code>mmap()</code> 기반 POSIX 공유 메모리 링 버퍼 생성.</td>
-            <td>엔진 인스턴스 메모리 풀에 독점 등록되어 상주합니다.</td>
+            <td><code>onRequest</code></td>
+            <td>클라이언트 IP 및 인바운드 헤더 기반 슬라이딩 윈도우 카운터 인메모리 증분</td>
+            <td>임계치 초과 시 즉시 HTTP 429 반환 또는 Tarpit 지연 큐로 핸들러 위임</td>
           </tr>
           <tr>
-            <td><strong>추론 및 연산 단계</strong></td>
-            <td>힙 메모리 재할당 없는 직접 포인터 오프셋 참조 (Zero memcpy).</td>
-            <td>프로세스 경계 간 복사 오버헤드 0으로 초고속 전송됩니다.</td>
+            <td><code>onTokenVerify</code></td>
+            <td>HMAC-SHA256 결정론적 해시 일치 검증 및 윈도우 타임스탬프 유효성 평가</td>
+            <td>위조 시 IP 위험 점수를 100으로 갱신하고 인메모리 블랙리스트에 등록</td>
           </tr>
           <tr>
-            <td><strong>소멸 및 반납 단계</strong></td>
-            <td>RAII 소멸자를 통한 <code>munmap()</code> 및 <code>shm_unlink()</code> 즉시 호출.</td>
-            <td>프로세스 재시작 시 메모리 누수가 100% 방지됩니다.</td>
+            <td><code>onPayloadCheck</code></td>
+            <td>사용자 마우스/스크롤 지터의 Shannon 엔트로피 신호 평가 (최소 2.1 bit)</td>
+            <td>엔트로피 부족(매크로 봇 판별) 시 CAPTCHA 챌린지 또는 방어 모드로 격리</td>
+          </tr>
+          <tr>
+            <td><code>onAuditTrail</code></td>
+            <td>보안 이벤트(IP, 위험점수, 차단유형) 비동기 감사 로그 버퍼 기록</td>
+            <td>개인식별정보(PII) 제로 수집 정책을 준수하며 내부 보안 텔레메트리만 보존</td>
           </tr>
         </tbody>
-      </table>
     </main>
   </div>
 

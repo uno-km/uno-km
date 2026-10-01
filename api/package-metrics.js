@@ -25,7 +25,7 @@ const REGISTRY = [
   { key: "vulkan", name: "AMEVA-Runtime", desc: "온디바이스 하드웨어 오케스트레이션 & 6-모달리티 가속", npm: "@ameva/runtime", pypi: "ameva-runtime", fallback_ver: "0.0.1" },
   { key: "sentinel", name: "AMEVA-Sentinel", desc: "클라이언트 행동 이상 관측 SDK", npm: "@ameva/sentinel", pypi: "ameva-sentinel", fallback_ver: "0.0.1" },
   { key: "mcp", name: "AMEVA-MCP-Hub", desc: "WASI 인메모리 AI 도구 허브 & SDK", npm: "ameva-mcp-hub", pypi: "ameva-mcp-hub", fallback_ver: "0.0.1" },
-  { key: "forge", name: "AMEVA-Forge", desc: "브라우저 WebGPU 딥러닝 텐서 엔진", npm: "ameva-forge", pypi: "ameva-forge", fallback_ver: "0.0.1" }
+  { key: "forge", name: "AMEVA-Forge", desc: "브라우저 WebGPU 딥러닝 텐서 엔진", npm: "@uno-km/ameva-forge", pypi: "ameva-forge", fallback_ver: "0.0.1" }
 ];
 
 let cachedPayload = null;

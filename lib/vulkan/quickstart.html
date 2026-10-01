@@ -1,46 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quickstart & Execution Recipes | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
-
-### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
-
-| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
-| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
-| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
-
-### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
-
-- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
-- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
-
-| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
-| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
-
-### 3. Root-Cause Defect Resolution (Ground Truth)
-
-#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
-- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
-- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
-- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
-
-#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
-- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
-- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
-- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
-
-### 4. Single Package Architecture
-- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
-- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
-">
+  <title>퀵스타트 및 실행 레시피 | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA-Runtime 모바일 온디바이스 Python/Node.js SDK 빠른 시작 및 6대 모달리티 실행 코드 레시피">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -54,26 +19,62 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Quickstart & Execution Recipes</h2>
-      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
-      <h3>Basic Execution Recipe</h3>
-         <pre><code>import ameva_runtime as ameva
+      <h2>퀵스타트 및 실행 레시피</h2>
+      <p class="subtitle">Python, TypeScript 및 CLI 온디바이스 하드웨어 가속 표준 코드 (AMEVA-Runtime)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="vulkan">v2.7.7</code></span>
+        <a href="https://pypi.org/project/ameva-runtime/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/runtime.svg?color=b91c1c" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/Vulkan-1.3_Compute-purple.svg" alt="Vulkan Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>기기 토폴로지와 칩셋 특성을 런타임이 자동 감지하여, 단 3줄의 코드로 하드웨어 풀 가속(Vulkan GPU / NEON CPU) AI 파이프라인을 기동합니다.</p>
+      </div>
+
+      <h3>1. Python SDK 최소 실행 레시피</h3>
+      <pre><code class="language-python">import ameva_runtime as ameva
 from ameva_runtime import vulkan
 
-# 1. Execute LLM inference directly with optimal on-device hardware dispatch
+# 1. 단말기 실리콘 토폴로지 자동 감지
+profile = ameva.detect_hardware()
+print(f"[AMEVA-Runtime] 감지된 SoC: {profile.soc_name} | GPU: {profile.gpu_vendor}")
+
+# 2. 온디바이스 LLM 추론 즉시 실행 (최적 가속 백엔드 자동 라우팅)
 result = ameva.run(
     model="qwen2.5-0.5b",
-    prompt="Space in Korean is:",
-    max_tokens=32
+    prompt="스마트폰 온디바이스 AI의 장점은:",
+    max_tokens=64
 )
-print(f"Generated text: {result.text}")
-print(f"Hardware backend: {result.backend_used} ({result.tokens_per_second:.2f} t/s)")
+print(f"생성 텍스트: {result.text}")
+print(f"사용 백엔드: {result.backend_used} ({result.tokens_per_second:.2f} t/s)")
 
-# 2. Hardware diagnostic inspection via Vulkan engine
+# 3. 12단계 하드웨어 무결성 자가 진단
 doc = vulkan.Doctor()
 report = doc.run_self_test(verbose=False)
-print(f"GPU Target: {report.device_name} (Passed: {report.passed_stages}/{report.total_stages})")
-</code></pre>
+print(f"진단 결과: {report.passed_stages}/{report.total_stages} 단계 통과")</code></pre>
+
+      <h3>2. TypeScript / Node.js 실행 레시피</h3>
+      <pre><code class="language-typescript">import { Doctor, createContext } from '@ameva/runtime';
+
+// 1. 하드웨어 진단기 실행
+const doc = new Doctor();
+const report = await doc.runSelfTest();
+console.log(`Vulkan GPU Target: ${report.deviceName}`);
+
+// 2. 가속 컨텍스트 초기화
+const ctx = await createContext({ device: 'auto' });
+console.log(`초기화 완료 디바이스: ${ctx.deviceName}`);</code></pre>
+
+      <h3>3. CLI 1줄 진단 및 상태 점검</h3>
+      <pre><code class="language-bash"># 시스템 진단 및 Vulkan 드라이버 무결성 확인
+ameva doctor
+
+# 사용 가능한 모델 및 가속 엔진 목록 조회
+ameva list</code></pre>
     </main>
   </div>
 

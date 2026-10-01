@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Parameters & Tuning | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <title>고급 파라미터 제어 및 튜닝 | AMEVA-MCP-Hub</title>
+  <meta name="description" content="AMEVA-MCP-Hub WASI 인메모리 샌드박스 퓨얼 제한, 메모리 페이지 상한, 포트 브리지 및 데몬 파라미터 명세">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,10 +19,100 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Advanced Parameters & Tuning</h2>
-      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Memory Buffer Pool Configuration</h3>
-         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
+      <h2>고급 파라미터 제어 및 런타임 튜닝</h2>
+      <p class="subtitle">WASI 샌드박스 보안 격벽, 인메모리 퓨얼 할당 및 포트 브리지 제어 (AMEVA-MCP-Hub)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="mcp">v3.1.3</code></span>
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/WASI-Polyglot_WASM-blue.svg" alt="WASI Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>WASI 바이트코드 실행 중 악의적인 무한 루프나 메모리 점유를 원천 차단하고, 다중 IDE 동시 연동 시 포트 충돌 없이 안정적인 도구 중계를 보장하는 런타임 파라미터 규격입니다.</p>
+      </div>
+
+      <h3>1. 허브 서버 및 네트워크 브리지 제어 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>파라미터명 (CLI 플래그)</th>
+            <th>기본값 / 범위</th>
+            <th>시스템 동작 및 네트워크 엔지니어링 분석</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--port</code></td>
+            <td><code>11553 (1024 ~ 65535)</code></td>
+            <td>허브가 청취하는 TCP 포트. 이미 활성 인스턴스가 존재할 경우 자동 감지하여 <strong>브리지 모드</strong>로 전환합니다.</td>
+          </tr>
+          <tr>
+            <td><code>--bridge-mode</code></td>
+            <td><code>auto (true | false)</code></td>
+            <td>포트 점유 시 <code>EADDRINUSE</code> 오류를 내는 대신 기존 프로세스에 투명하게 stdio를 포워딩하는 다중 인스턴스 공유 모드.</td>
+          </tr>
+          <tr>
+            <td><code>--headless</code></td>
+            <td><code>false (IDE 연동 시 auto)</code></td>
+            <td>서버 기동 시 브라우저 관리자 대시보드 팝업을 차단하고 백그라운드 데몬으로 조용히 실행하는 헤드리스 플래그.</td>
+          </tr>
+          <tr>
+            <td><code>--require-token</code></td>
+            <td><code>false (loopback)</code></td>
+            <td>로컬 루프백 인터페이스 접속 시 불필요한 보안 토큰 인증을 생략하여 IDE 연동 마찰을 제거합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. WASI 샌드박스 리소스 격벽 파라미터</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>파라미터명</th>
+            <th>기본값</th>
+            <th>보안 격벽 기능</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>fuel_limit</code></td>
+            <td><code>10,000,000 연산</code></td>
+            <td>WASI 바이트코드 실행 인스트럭션 한도. 계산 복잡도 폭증이나 무한 루프 감지 시 즉각 실행을 중단합니다.</td>
+          </tr>
+          <tr>
+            <td><code>max_memory_pages</code></td>
+            <td><code>256 페이지 (16 MB)</code></td>
+            <td>WASM 선형 메모리 상한선 (64KB/페이지 단위). 호스트 프로세스의 OOM 공격을 선제 차단합니다.</td>
+          </tr>
+          <tr>
+            <td><code>timeout_ms</code></td>
+            <td><code>30,000 ms</code></td>
+            <td>개별 도구 호출의 최대 허용 실행 시간. 초과 시 강제 타임아웃 인터럽트를 발생시킵니다.</td>
+          </tr>
+          <tr>
+            <td><code>vector_dimensions</code></td>
+            <td><code>1536 차원</code></td>
+            <td>AI 임베딩 벡터 코사인 유사도 연산 및 Top-K 검색 버퍼 차원 수.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. 설정 파일 템플릿 (JSON)</h3>
+      <pre><code class="language-json">{
+  "port": 11553,
+  "bridgeMode": true,
+  "headless": true,
+  "requireToken": false,
+  "wasi": {
+    "fuelLimit": 10000000,
+    "maxMemoryPages": 256,
+    "timeoutMs": 30000
+  }
+}</code></pre>
     </main>
   </div>
 

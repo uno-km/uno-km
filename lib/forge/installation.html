@@ -22,36 +22,51 @@
       <h2 data-i18n="install.title">설치 및 환경 구성 가이드</h2>
       <p class="subtitle" data-i18n="install.subtitle">프로덕션 배포, 하드웨어 의존성 및 단말기 환경 프로비저닝 (AMEVA-Forge)</p>
 
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="forge">v1.0.1</code></span>
+        <a href="https://pypi.org/project/ameva-forge/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-forge.svg?color=004499" alt="PyPI Version"></a>
+        <img src="https://img.shields.io/badge/WebGPU-WGSL_Compute_Shader-blue.svg" alt="WebGPU Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
       <div class="alert alert-success">
         <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="install.valueProp">수 기가바이트의 무거운 인공지능 라이브러리 대신, 깃털처럼 가벼운 순수 C++ 딥러닝 심장을 스마트폰에 심어줍니다.</p>
+        <p data-i18n="install.valueProp">별도의 CUDA/드라이버 설치 없이, 브라우저 표준 WebGPU 컴퓨트 셰이더 기반 순수 딥러닝 Autograd 엔진을 즉각 구동합니다.</p>
       </div>
 
       <h3 data-i18n="install.sec1Title">1. 표준 패키지 매니저 설치</h3>
-      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 엔드포인트를 통해 직접 설치할 수 있습니다:</p>
-      <pre><code># 파이썬 공식 패키지 매니저
-pip install ameva</code></pre>
+      <p data-i18n="install.sec1Desc">공식 배포 레지스트리 및 브라우저 스크립트 임포트를 통해 직접 실행할 수 있습니다:</p>
+      <pre><code># Python 공식 패키지 매니저 (GGUF 로더 &amp; 텐서 브리지)
+pip install ameva-forge
 
-      <h3 data-i18n="install.sec2Title">2. 필수 시스템 패키지 의존성</h3>
-      <p data-i18n="install.sec2Desc">안드로이드 Bionic libc 및 POSIX 툴체인 연결을 위해 사전에 설치되어야 하는 시스템 패키지 목록입니다:</p>
+# HTML 브라우저 스크립트 직접 임포트 (Zero-Install WebGPU)
+&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</code></pre>
+
+      <h3 data-i18n="install.sec2Title">2. 필수 런타임 환경 요구사항</h3>
+      <p data-i18n="install.sec2Desc">브라우저 네이티브 GPU 연산 및 텐서 브리지를 위해 권장되는 환경 사양입니다:</p>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thPkg">패키지명</th>
+            <th data-i18n="table.thPkg">런타임 구성요소</th>
             <th data-i18n="table.thPurpose">엔지니어링 도입 목적 (한 줄 명확한 사유)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td><code>clang</code></td><td>C++20 템플릿 메타프로그래밍 텐서 커널 컴파일</td></tr>
-          <tr><td><code>cmake</code></td><td>크로스 플랫폼 네이티브 Bionic 빌드 오케스트레이션</td></tr>
-          <tr><td><code>ninja</code></td><td>컴파일 빌드 사이클 시간을 최소화하는 초고속 빌드 툴</td></tr>
-          <tr><td><code>libvulkan-dev</code></td><td>하드웨어 직접 디스패치용 Vulkan 컴퓨트 헤더</td></tr>
+          <tr><td><code>WebGPU Browser</code></td><td>Chrome 113+, Edge 113+, Safari 18+ (WGSL 셰이더 직접 연산)</td></tr>
+          <tr><td><code>Python 3.9+</code></td><td><code>pip install ameva-forge</code> CLI 및 Pyodide 인터페이스 연동</td></tr>
+          <tr><td><code>Node.js 18+</code></td><td>TypeScript 번들러 및 브라우저 개발 워크스페이스 환경</td></tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="install.sec3Title">3. install.sh 원클릭 자동 프로비저닝</h3>
-      <p data-i18n="install.sec3Desc">단말기 SoC 아키텍처를 자동 감지하고 최적 NEON/Vulkan 커널을 한 번에 컴파일 및 검증하려면 아래 명령어를 실행하세요:</p>
-      <pre><code>curl -fsSL https://raw.githubusercontent.com/uno-km/AMEVA-Forge/main/install.sh | bash</code></pre>
+      <h3 data-i18n="install.sec3Title">3. 브라우저 1줄 빠른 검증 코드</h3>
+      <p data-i18n="install.sec3Desc">브라우저 콘솔에서 WebGPU 텐서 초기화 및 행렬곱(MatMul) 가속을 즉시 테스트할 수 있습니다:</p>
+      <pre><code>import { Forge } from './dist/index.js';
+const forge = await Forge.init({ device: 'webgpu' });
+const a = forge.tensor([[1, 2], [3, 4]], { requiresGrad: true });
+const b = forge.tensor([[5, 6], [7, 8]]);
+const c = a.matmul(b);
+c.backward();
+console.log('Output Tensor:', c.data, 'Grad A:', a.grad);</code></pre>
 
       <h3 data-i18n="install.sec4Title">4. 패키지 단독 설치 vs 풀스택 자동화 설치 비교</h3>
       <table class="data-table">

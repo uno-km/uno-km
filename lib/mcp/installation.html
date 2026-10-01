@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Installation & Setup Guide | AMEVA-MCP-Hub</title>
-  <meta name="description" content="Executes WASI WebAssembly bytecodes in-memory inside a single Node process (<1ms) with live GitHub multi-repo tool synchronization.">
+  <title>설치 및 환경 구성 가이드 | AMEVA-MCP-Hub</title>
+  <meta name="description" content="AMEVA-MCP-Hub npx 무설치 실행, WASI 인메모리 런타임 및 IDE stdio 브리지 연동 가이드">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,16 +19,43 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Installation & Setup Guide</h2>
-      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
-      <div class="alert alert-tip">
-           <span class="alert-title">Prerequisites</span>
-           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
-         </div>
-         <h3>Package Managers</h3>
-         <pre><code>npx ameva-mcp-hub
-# or SDK:
-npm install ameva-mcp-hub</code></pre>
+      <h2>설치 및 환경 구성 가이드</h2>
+      <p class="subtitle">WASI 인메모리 런타임, npx 무설치 실행 및 IDE stdio 브리지 구성 (AMEVA-MCP-Hub)</p>
+
+      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="mcp">v3.1.3</code></span>
+        <a href="https://pypi.org/project/ameva-mcp-hub/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-mcp-hub.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/ameva-mcp-hub.svg?color=cb3837" alt="NPM Version"></a>
+        <img src="https://img.shields.io/badge/WASI-Polyglot_WASM-blue.svg" alt="WASI Engine">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+      </div>
+
+      <div class="alert alert-success">
+        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
+        <p>호스트 환경에 C++, Rust, Python 등 개별 언어 컴파일러를 설치할 필요 없이, 단일 Node.js 프로세스 메모리 상에서 WASI 바이트코드를 즉시 실행하는 제로 오염 유니버설 MCP 허브입니다.</p>
+      </div>
+
+      <h3>1. 1줄 즉시 실행 및 패키지 설치</h3>
+      <pre><code class="language-bash"># 설치 없이 1줄로 즉시 MCP 허브 데몬 기동
+npx ameva-mcp-hub
+
+# Node.js 프로젝트 SDK 종속성 설치
+npm install ameva-mcp-hub
+
+# Python 클라이언트 SDK 설치
+pip install ameva-mcp-hub</code></pre>
+
+      <h3>2. IDE 연동 가이드 (Claude Desktop / Cursor / Antigravity)</h3>
+      <p>에이전트 IDE 환경의 <code>claude_desktop_config.json</code> 또는 MCP 설정 파일에 아래 구성을 추가합니다:</p>
+      <pre><code class="language-json">{
+  "mcpServers": {
+    "ameva-mcp-hub": {
+      "command": "npx",
+      "args": ["-y", "ameva-mcp-hub", "--headless"]
+    }
+  }
+}</code></pre>
+      <p>이미 11553 포트에서 허브가 실행 중인 경우, 새로 생성된 IDE stdio 프로세스는 자동으로 <strong>투명 브리지 모드(Bridge Mode)</strong>로 전환되어 포트 충돌 없이 단일 인스턴스에 즉각 직결됩니다.</p>
     </main>
   </div>
 
