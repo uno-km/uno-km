@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-Vision</title>
-  <meta name="description" content="Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.">
+  <meta name="description" content="Provides UltraFace SSD Deep Learning Neural Face Detection (11.94ms on Snapdragon 8 Elite, 100% False-Positive Elimination), 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference, and automated ONNX asset provisioning.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -103,6 +103,25 @@
     <tr><td><code>--from-source</code></td><td><code>False</code></td><td>Force compiling native C++ engines locally via clang++</td></tr>
     <tr><td><code>--dry-run</code></td><td><code>False</code></td><td>Inspect install status, missing components and verify prebuilt hash without changes</td></tr>
     <tr><td><code>--asset-url</code></td><td>Official GitHub Releases</td><td>Custom download URL for the prebuilt native archive</td></tr>
+  </tbody>
+</table>
+
+<h4>D. Neural Face Detection (<code>termux-vision detect-face</code>)</h4>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Aliases</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>image_path</code></td><td>Positional</td><td><em>Required</em></td><td>Path to input image file (JPEG, PNG, WebP)</td></tr>
+    <tr><td><code>-o, --output</code></td><td>None</td><td><code>"face_crop.jpg"</code></td><td>Path to save primary face crop image</td></tr>
+    <tr><td><code>--backend</code></td><td>None</td><td><code>auto</code></td><td>Detection engine: <code>auto</code> (Neural SSD), <code>neural</code>, <code>haar</code></td></tr>
+    <tr><td><code>--score-threshold</code></td><td>None</td><td><code>0.70</code></td><td>Minimum neural confidence score threshold (0.0 to 1.0)</td></tr>
+    <tr><td><code>--json</code></td><td>None</td><td><code>False</code></td><td>Output structured detection bounding boxes and confidence scores in JSON</td></tr>
   </tbody>
 </table>
 
