@@ -205,8 +205,8 @@ libraries:
     status: stable
   vision:
     name: Termux-Vision
-    version: 1.4.6
-    release_date: '2026-09-29'
+    version: 1.5.0
+    release_date: '2026-10-01'
     npm_package: termux-vision
     pypi_package: termux-vision
     github_repo: uno-km/termux-vision

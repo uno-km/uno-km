@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | Termux-Vision</title>
-  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
+  <meta name="description" content="Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -34,17 +34,22 @@
     <tr>
       <td><code>termux_vision.vlm.load</code></td>
       <td><code>load(model_id, device='auto', ngl=None)</code></td>
-      <td>Context manager initializing the multimodal VLM engine with hardware offload.</td>
+      <td>Context manager initializing multimodal VLM engine with 5-backend hardware offload.</td>
     </tr>
     <tr>
       <td><code>VLMEngine.describe</code></td>
       <td><code>describe(image_path, prompt, quality='optimal', max_tokens=150)</code></td>
-      <td>Executes multimodal visual inference and returns text response with performance metrics.</td>
+      <td>Executes multimodal visual inference and returns VLMResponse with token metrics.</td>
     </tr>
     <tr>
       <td><code>termux_vision.cv.canny</code></td>
-      <td><code>canny(image_gray, low_threshold=40, high_threshold=120)</code></td>
-      <td>Ultra-fast 5-stage Canny edge detector with 8-directional BFS hysteresis.</td>
+      <td><code>canny(image_gray, low_threshold=40, high_threshold=120, backend='auto')</code></td>
+      <td>Hardware-accelerated Canny edge detector: 100% Vulkan GPU (0.23ms) or ARM64 NEON (3.02ms).</td>
+    </tr>
+    <tr>
+      <td><code>termux_vision.installer.ensure_installed</code></td>
+      <td><code>ensure_installed(force=False, from_source=False, dry_run=False)</code></td>
+      <td>Idempotent prebuilt installer provisioning native C++/Vulkan acceleration binaries.</td>
     </tr>
     <tr>
       <td><code>termux_vision.detect.detect_faces</code></td>
@@ -54,7 +59,7 @@
     <tr>
       <td><code>termux_vision.cli.doctor.run_doctor</code></td>
       <td><code>run_doctor(probe_vulkan=True)</code></td>
-      <td>Probes Vulkan ICD driver, RAM headroom, and big.LITTLE CPU topology.</td>
+      <td>Probes Vulkan ICD driver, RAM headroom, big.LITTLE CPU topology, and native binary health.</td>
     </tr>
   </tbody>
 </table>

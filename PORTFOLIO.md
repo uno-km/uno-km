@@ -305,18 +305,19 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 
 - **카테고리**: 모바일 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진
 - **기술 스택**: Python 3, JavaScript/TypeScript, ARM64 NEON SIMD, Zero-Dependency
-- **배포 버전**: `v1.0.0`
+- **배포 버전**: `v1.5.0`
 - **기존 문제**: OpenCV 등 기존 비전 라이브러리는 수백 MB의 바이너리 크기와 Bionic libc 호환 문제, 빌드 실패율로 인해 모바일 Termux에서 활용이 제한적임.
-- **해결 방식**: 순수 Python/JS 및 NEON 벡터화 커널로 5단계 Canny 엣지, Haar Cascade 얼굴 검출을 구현하고, SmolVLM/Qwen2-VL 모델을 디바이스 리소스 최적화 파이프라인으로 150MB 메모리 안에서 구동.
+- **해결 방식**: 100% Vulkan GPU Compute Canny(0.23ms), 초월함수 배제 ARM64 NEON C++ 커널(3.02ms), 멱등성 인스톨러(0.005s) 및 5-백엔드 표준을 통해 온디바이스 비전 및 VLM 멀티모달 추론을 극대화.
 - **실제 사용자가 쓰는 핵심 기능**:
-  1. **제로 디펜던시 클래식 비전**: OpenCV 설치 없이 엣지 검출, 가우시안 블러, 적분 영상, 얼굴 인식을 즉시 실행.
-  2. **온디바이스 VLM 멀티모달 질의응답**: 스마트폰에서 직접 이미지를 입력받아 VQA(시각 질의응답) 및 캡셔닝 수행.
-  3. **termux-train 연동**: 추출된 비전 특징 맵을 `termux-train` 자동미분 텐서로 전달하여 온디바이스 LoRA 파인튜닝 지원.
+  1. **100% Vulkan GPU Canny (0.23ms)**: VRAM 내부 3-Pass 셰이더 체이닝으로 834배 가속 엣지 검출.
+  2. **초경량 온디바이스 VLM 멀티모달 질의응답**: 스마트폰에서 직접 이미지를 입력받아 VQA 및 캡셔닝 수행.
+  3. **사전 빌드 멱등성 인스톨러**: `termux-vision install`로 2초 만에 ARM64 최적화 네이티브 엔진 안착.
 - **설치 명령어**:
   ```bash
   pip install termux-vision
+  termux-vision install
   # 또는
-  npm install termux-vision
+  npm install -g termux-vision
   ```
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-vision/)
@@ -378,22 +379,24 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 ---
 
 ### 1.16 Termux-Vision
-안드로이드 Termux 환경에서 외부 무거운 C++ 빌드 의존성(OpenCV 등) 없이 순수 Python/JS 및 ARM64 NEON SIMD 커널로 구동되는 제로 디펜던시 컴퓨터 비전 & SmolVLM 온디바이스 VLM 멀티모달 추론 프레임워크입니다.
+안드로이드 Termux 환경에서 외부 무거운 의존성(OpenCV 등) 없이 100% 순수 Vulkan GPU Compute Canny(0.23ms), 초월함수 배제 ARM64 NEON C++ 커널(3.02ms), 그리고 사전 빌드 멱등성 인스톨러(0.005s) 기반으로 온디바이스 컴퓨터 비전 및 VLM 멀티모달 추론을 가속하는 프레임워크입니다.
 
 - **카테고리**: 모바일 온디바이스 컴퓨터 비전 & VLM 멀티모달 SDK
-- **기술 스택**: Python, Node.js/TypeScript, ARMv8.2-A NEON SIMD, Canny/Sobel, SmolVLM (GGUF), Llama-CLI Bridge
-- **배포 버전**: `v1.4.1`
+- **기술 스택**: Python 3, Node.js/TypeScript, Vulkan SPIR-V Compute, ARMv8.2-A NEON SIMD, SmolVLM/Moondream2 (GGUF)
+- **배포 버전**: `v1.5.0`
 - **기존 문제**: 모바일 Termux 환경에서 OpenCV나 TorchVision 등 기존 비전 프레임워크는 바이너리 크기가 150MB를 초과하고 컴파일 실패율이 높으며, 온디바이스 VLM 멀티모달 파이프라인의 부재로 인해 이미지 시각 이해 모델 구동이 어려움.
-- **해결 방식**: 100KB 초경량 순수 CPU 비전 커널(Canny 엣지 검출, Sobel, 적분 영상, Haar 캐스케이드)을 자체 구현하고, 2,048 토큰 컨텍스트 지원을 통해 SmolVLM-500M ViT 이미지 토큰(1,139개)을 스마트폰 순수 CPU에서 메모리 안전하게 고속 추론(S25: ~37.7 t/s, S21: ~46.1 t/s)함.
+- **해결 방식**: Sobel-NMS-Hysteresis 3-Pass SPIR-V 셰이더를 VRAM 내부에서 파이프라인 배리어로 체이닝하여 0.23ms(834배 가속)를 달성하고, atan2f 삼각함수를 제거한 탄젠트 비율 양자화 NEON C++ 커널(3.02ms)을 구축함. 사전 빌드 자산 우선 멱등성 인스톨러(0.005초 스킵) 및 5-백엔드 표준 체계를 완비함.
 - **실제 사용자가 쓰는 핵심 기능**:
-  1. **초경량 온디바이스 VLM 멀티모달 추론**: 스마트폰에서 `termux-vision vlm photo.jpg -p "설명해줘"` 한 줄로 사진을 시각적으로 이해하고 상세 자연어 설명 생성.
-  2. **무의존성 전통 컴퓨터 비전 필터**: OpenCV 없이 16~600ms 속도로 Canny 엣지 검출, 얼굴 후보 영역 검출, 이미지 변환 수행.
-  3. **Python 및 Node.js 완전 지원**: `pip install termux-vision` 및 `npm install -g termux-vision`으로 즉시 사용.
+  1. **100% Vulkan GPU Canny 엣지 검출 (0.23ms)**: `termux-vision canny photo.jpg -o edges.png --gpu` 한 줄로 VRAM 내부에서 0.23ms 초고속 필터링.
+  2. **초경량 온디바이스 VLM 멀티모달 추론**: `termux-vision vlm photo.jpg -p "설명해줘"`로 디바이스 GPU 가속 기반 시각 언어 모델 추론.
+  3. **사전 빌드 멱등성 인스톨러**: `termux-vision install`로 컴파일 없이 검증된 ARM64 네이티브 바이너리 2초 만에 안착 (이미 설치 시 0.005초 스킵).
+  4. **Python 및 Node.js 완전 지원**: `pip install termux-vision` 및 `npm install -g termux-vision`으로 즉시 사용.
 - **설치 명령어**:
   ```bash
   pip install termux-vision
+  termux-vision install
   # 또는
-  npm install termux-vision
+  npm install -g termux-vision
   ```
 - **관련 링크**:
   - [PyPI 패키지](https://pypi.org/project/termux-vision/)

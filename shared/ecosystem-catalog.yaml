@@ -156,8 +156,8 @@ libs:
   - id: vision
     name: "Termux-Vision"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 안드로이드 Termux 제로 디펜던시 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
-    tagline_en: "Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine utilizing device resources for Android Termux."
+    tagline_ko: "순수 Vulkan GPU(0.23ms) 및 ARM64 NEON(3.02ms) 가속 온디바이스 컴퓨터 비전 & VLM 멀티모달 추론 엔진."
+    tagline_en: "Pure Vulkan GPU (0.23ms) & ARM64 NEON (3.02ms) Accelerated On-Device Computer Vision & Multimodal VLM Inference Engine for Android Termux."
     links:
       docs: "/lib/vision/"
       pypi: "https://pypi.org/project/termux-vision/"

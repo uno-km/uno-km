@@ -2,6 +2,25 @@
 
 ---
 
+## [Termux-Vision v1.5.0 Pure Vulkan GPU & ARM64 NEON Compute Release] - 2026-10-01
+
+### Overview
+**Termux-Vision v1.5.0** (PyPI: `termux-vision 1.5.0` / NPM: `termux-vision@1.5.0`) introduces the **100% Native Vulkan GPU Compute Canny Edge Pipeline (`0.23 ms`)**, a transcendent-free **ARM64 NEON C++ Canny Engine (`3.02 ms`)**, the **Prebuilt-Asset-First Idempotent Installer (`0.005s skip`)**, unified **5-backend parameter compliance (`--gpu`, `--cpu`, `--opencl`)**, and a zero-deception multimodal gatekeeper enforcing strict Fail-Fast error diagnostics (`E014` ~ `E017`).
+
+### Released Packages
+| Package | Version | PyPI Distribution | NPM Distribution | Key Highlight |
+| :--- | :---: | :--- | :--- | :--- |
+| **`termux-vision`** | **`1.5.0`** | `termux-vision 1.5.0` | `termux-vision@1.5.0` | 100% Vulkan GPU Canny (0.23ms), NEON CPU (3.02ms), 멱등성 인스톨러 (0.005s), 5-백엔드 표준 |
+
+### Key Architectural Changes
+* **100% End-to-End Pure Vulkan GPU Compute Canny (`0.23 ms`)**: Sobel 3x3, NMS, and Hysteresis compute shaders are chained entirely within VRAM using `vkCmdPipelineBarrier`, accelerating edge detection by **834x** on Snapdragon 8 Elite (Adreno 830) with **0.00 MiB CPU mapped VRAM**.
+* **Trigonometric-Free ARM64 NEON C++ Kernel (`3.02 ms`)**: Permanently eliminated `atan2f` transcendent function evaluations through tangent ratio rational boundary checks, quantizing gradient directions into 4 integer sectors within 1-byte direction buffers (**3.02 ms** on Snapdragon 865, **4.36 ms** on Exynos 1380).
+* **Prebuilt-Asset-First Idempotent Installer (`termux-vision install`)**: Provisions verified ARM64 precompiled assets (`termux-vision-android-arm64.tar.gz`, 1.79 MB) in 2 seconds; achieves **0.005s instant skip** if valid binaries already exist. Supports `--force`, `--from-source`, and `--dry-run`.
+* **Zero-Deception Fail-Fast Gatekeeper**: Pre-validates `llama-cli --help` for `--mmproj` support before execution, blocking defective text-only binaries (`E015`) and corrupted weights (`E014`) without silent fallbacks.
+* **5-Backend Unified Ecosystem Compliance**: Fully synchronized `["auto", "gpu", "vulkan", "opencl", "cpu"]` and direct `--gpu`, `--cpu`, `--opencl` switches across all subcommands (`vlm`, `canny`, `doctor`, `install`).
+
+---
+
 ## [AMEVA Ecosystem Unified 5-Backend & Qualcomm OpenCL 2.0 Fleet Release] - 2026-09-29
 
 ### Overview

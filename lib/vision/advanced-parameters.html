@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-Vision</title>
-  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
+  <meta name="description" content="Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -21,8 +21,27 @@
     <main class="content">
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
-      <h3>Unified CLI & Engine Parameter Matrix</h3>
-<p>termux-vision adheres 100% to the uno-km ecosystem CLI standard:</p>
+      <h3>1. Unified 5-Backend CLI Standard Matrix</h3>
+<p>termux-vision strictly adheres to the uno-km ecosystem 5-backend standard (<code>auto</code>, <code>gpu</code>, <code>vulkan</code>, <code>opencl</code>, <code>cpu</code>):</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Backend Choice</th>
+      <th>Convenience Flag</th>
+      <th>Target Microarchitecture</th>
+      <th>Technical Mechanics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>auto</code> (Default)</td><td>None</td><td>All Android SoCs</td><td>Probes GPU Vulkan support; if available routes to Vulkan GPU, otherwise falls back to NEON CPU.</td></tr>
+    <tr><td><code>gpu</code> / <code>vulkan</code></td><td><code>--gpu</code></td><td>Adreno 830, Mali-G78/G68</td><td>100% End-to-End Vulkan SPIR-V Compute shaders (3-pass VRAM pipeline barrier for CV, -ngl 99 for VLM).</td></tr>
+    <tr><td><code>opencl</code></td><td><code>--opencl</code></td><td>Qualcomm Adreno 600 (S20)</td><td>Adreno OpenCL 2.0 kernel acceleration, avoiding SPIR-V float subnormal quirks.</td></tr>
+    <tr><td><code>cpu</code></td><td><code>--cpu</code></td><td>8-Core ARM64 (big.LITTLE)</td><td>High-efficiency ARM64 NEON SIMD kernels without trigonometric atan2f; strict 0.00 MiB GPU VRAM.</td></tr>
+  </tbody>
+</table>
+
+<h3>2. Subcommand Parameter Matrix</h3>
+<h4>A. Multimodal VLM Inference (<code>termux-vision vlm</code>)</h4>
 <table class="data-table">
   <thead>
     <tr>
@@ -33,21 +52,75 @@
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>-d, --device</code></td><td><code>-b, --backend</code></td><td><code>auto</code></td><td>Compute acceleration backend: <code>auto</code>, <code>gpu</code>, <code>vulkan</code>, <code>cpu</code>, <code>vulkan-force</code></td></tr>
     <tr><td><code>-i, --image</code></td><td><code>--image-path</code></td><td><em>Required</em></td><td>Path to input image file (PNG, JPG, WebP)</td></tr>
     <tr><td><code>-p, --prompt</code></td><td>None</td><td><code>"Describe this image"</code></td><td>Multimodal query or instruction prompt</td></tr>
     <tr><td><code>-m, --model</code></td><td>None</td><td><code>smolvlm-500m</code></td><td>Language model GGUF path or catalog preset ID</td></tr>
     <tr><td><code>--mmproj</code></td><td>None</td><td><em>Auto-paired</em></td><td>Vision projector GGUF model path (mmproj-*.gguf)</td></tr>
+    <tr><td><code>-b, --backend</code></td><td><code>-d, --device</code></td><td><code>auto</code></td><td>Backend acceleration: <code>auto</code>, <code>gpu</code>, <code>vulkan</code>, <code>opencl</code>, <code>cpu</code></td></tr>
+    <tr><td><code>--gpu</code> / <code>--cpu</code> / <code>--opencl</code></td><td>None</td><td>None</td><td>Convenience shorthand flags for backend selection</td></tr>
     <tr><td><code>-n, --max-tokens</code></td><td><code>--n-predict</code></td><td><code>150</code></td><td>Maximum number of output tokens</td></tr>
     <tr><td><code>-c, --ctx-size</code></td><td><code>--ctx</code></td><td><code>2048</code></td><td>Context window size</td></tr>
-    <tr><td><code>-t, --threads</code></td><td>None</td><td><code>auto</code></td><td>Number of CPU execution threads</td></tr>
-    <tr><td><code>-W, --width</code></td><td>None</td><td>None</td><td>Resize image width in pixels</td></tr>
-    <tr><td><code>-H, --height</code></td><td>None</td><td>None</td><td>Resize image height in pixels</td></tr>
+    <tr><td><code>-t, --threads</code></td><td>None</td><td><code>auto</code></td><td>Number of CPU execution threads (affinity-aware)</td></tr>
     <tr><td><code>--image-size</code></td><td>None</td><td>None</td><td>Explicit resolution scaling (e.g. <code>224x224</code>, <code>384x384</code>)</td></tr>
     <tr><td><code>-q, --quality</code></td><td>None</td><td><code>optimal</code></td><td>4-tier preset: <code>fast</code> (384px), <code>optimal</code> (768px), <code>high</code> (1280px), <code>original</code> (1:1)</td></tr>
     <tr><td><code>--tune-mali</code></td><td>None</td><td><code>False</code></td><td>Enable ARM Mali GPU MMVQ optimization (<code>GGML_VK_FORCE_MMVQ=1</code>)</td></tr>
     <tr><td><code>--json</code></td><td>None</td><td><code>False</code></td><td>Output structured machine-readable JSON metrics</td></tr>
     <tr><td><code>-v, --verbose</code></td><td>None</td><td><code>False</code></td><td>Print detailed GPU layer offload logs</td></tr>
+  </tbody>
+</table>
+
+<h4>B. Classical Canny Edge Detection (<code>termux-vision canny</code>)</h4>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Aliases</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>-i, --image</code></td><td>Positional</td><td><em>Required</em></td><td>Path to input image file</td></tr>
+    <tr><td><code>-o, --output</code></td><td>None</td><td><code>"output_edges.png"</code></td><td>Path to save output binary edge image</td></tr>
+    <tr><td><code>--low</code></td><td>None</td><td><code>40</code></td><td>Low hysteresis threshold (0-255)</td></tr>
+    <tr><td><code>--high</code></td><td>None</td><td><code>120</code></td><td>High hysteresis threshold (0-255)</td></tr>
+    <tr><td><code>-b, --backend</code></td><td><code>-d, --device</code></td><td><code>auto</code></td><td>Execution backend: <code>auto</code>, <code>gpu</code>, <code>vulkan</code>, <code>cpu</code></td></tr>
+    <tr><td><code>--gpu</code> / <code>--cpu</code></td><td>None</td><td>None</td><td>Shorthand for 100% Vulkan GPU (0.23ms) vs NEON CPU (3.02ms)</td></tr>
+  </tbody>
+</table>
+
+<h4>C. Prebuilt Idempotent Installer (<code>termux-vision install</code>)</h4>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--force</code></td><td><code>False</code></td><td>Force download & reinstallation even if valid binaries exist</td></tr>
+    <tr><td><code>--from-source</code></td><td><code>False</code></td><td>Force compiling native C++ engines locally via clang++</td></tr>
+    <tr><td><code>--dry-run</code></td><td><code>False</code></td><td>Inspect install status, missing components and verify prebuilt hash without changes</td></tr>
+    <tr><td><code>--asset-url</code></td><td>Official GitHub Releases</td><td>Custom download URL for the prebuilt native archive</td></tr>
+  </tbody>
+</table>
+
+<h3>3. Zero-Deception Fail-Fast Diagnostics</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Error Code</th>
+      <th>Condition</th>
+      <th>Cause</th>
+      <th>Fail-Fast Resolution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>E014_VLM_MODEL_CORRUPTED</code></td><td>GGUF &lt; 10 MB or truncated header</td><td>Corrupted or incomplete download</td><td>Auto-rejects broken files and prompts re-downloading model</td></tr>
+    <tr><td><code>E015_LLAMA_CLI_NO_MMPROJ</code></td><td>llama-cli missing <code>--mmproj</code></td><td>Text-only binary used for VLM</td><td>Blocks execution; guides running <code>termux-vision install</code></td></tr>
+    <tr><td><code>E016_VULKAN_ICD_UNREACHABLE</code></td><td><code>--backend gpu</code> on unsupported device</td><td>No Vulkan 1.1+ ICD driver</td><td>Strict error with GPU diagnosis; refuses silent fake execution</td></tr>
+    <tr><td><code>E017_MISSING_MMPROJ</code></td><td>VLM execution without mmproj</td><td>Missing vision projector weights</td><td>Displays required mmproj download link and file path</td></tr>
   </tbody>
 </table>
 

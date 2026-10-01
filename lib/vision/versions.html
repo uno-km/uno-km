@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Vision</title>
-  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
+  <meta name="description" content="Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -22,6 +22,23 @@
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.5.0 - Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-01</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>100% Native Vulkan GPU Compute Canny Edge Pipeline: 3-pass SPIR-V shader chain within VRAM via vkCmdPipelineBarrier, achieving 0.23ms (834x speedup vs Python) on Snapdragon 8 Elite (Adreno 830).</li>
+          <li>Ultra-Fast ARM64 NEON C++ Kernel: Eliminated trigonometric atan2f via tangent ratio bit quantization and 1-byte direction buffers, running Canny filtering in 3.02ms on Snapdragon 865 and 4.36ms on Exynos 1380.</li>
+          <li>Prebuilt-Asset-First Idempotent Installer: New 'termux-vision install' command instantly provisions verified precompiled ARM64 native binaries (1.79MB archive) with SHA-256 validation; zero-build 0.005s instant skip if already installed.</li>
+          <li>Unified 5-Backend Architecture: Fully standardized ['auto', 'gpu', 'vulkan', 'opencl', 'cpu'] and shorthand flags (--gpu, --cpu, --opencl) across all subcommands.</li>
+          <li>Zero-Deception Fail-Fast Multimodal Gatekeeper: Enforced strict binary pre-validation rejecting defective text-only binaries lacking --mmproj (E015) and corrupted model weights (E014), permanently banning silent fallbacks.</li>
+          <li>Galaxy Fleet Multi-Device Validation: Confirmed 100% operational integrity on Galaxy S25 (Adreno 830), Galaxy S20 (Snapdragon 865), and Galaxy A35 (Exynos 1380).</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.4.0 - Release</h3>
           <div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Vision | Official Documentation</title>
-  <meta name="description" content="Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.">
+  <meta name="description" content="Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
@@ -20,7 +20,7 @@
 
     <main class="content">
       <h2 data-i18n="home.title">Termux-Vision</h2>
-      <p class="subtitle" data-i18n="home.subtitle">Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine Utilizing Device Resources for Android Termux</p>
+      <p class="subtitle" data-i18n="home.subtitle">Zero-Dependency On-Device Computer Vision & Multimodal VLM Inference Engine with Pure Vulkan GPU (0.23ms) & ARM64 NEON (3.02ms) Acceleration for Android Termux</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-vision/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-vision.svg?color=004499" alt="PyPI Version"></a>
@@ -33,7 +33,7 @@
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
         <pre><code>pip install termux-vision
-# or: pip install https://github.com/uno-km/termux-vision/releases/download/v1.4.3/termux_vision-1.4.3-py3-none-any.whl
+# or: termux-vision install
 # or: npm install -g termux-vision
 # or: bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-vision/main/install.sh)</code></pre>
       </div>
@@ -42,25 +42,25 @@
       <p data-i18n="home.challengeText">Standard vision frameworks (OpenCV, TorchVision) suffer from massive binary sizes (>150MB), complex C++ compilation bottlenecks on ARM64 Termux, and lack seamless mobile VLM multimodal pipelines.</p>
 
       <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
-      <p data-i18n="home.breakthroughText">Provides pure Python/JS 5-stage Canny Edge, Sobel 3x3, Gaussian Blur, 2D Integral Images, Haar Cascade Face Detection, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with pure CPU ARM64 NEON optimization and optional modular Vulkan acceleration.</p>
+      <p data-i18n="home.breakthroughText">Provides 100% End-to-End Vulkan GPU Compute Canny Edge Detection (0.23ms), ultra-optimized ARM64 NEON C++ kernels (3.02ms), 5-stage classical filters, and on-device SmolVLM/Qwen2-VL Multimodal Vision-Language inference with Prebuilt-Asset-First idempotent installer.</p>
 
       <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Universal Parameter Suite & Sibling Alignment</h4>
-          <p data-i18n="home.features.0.desc">Standardizes compute backend (-d/--device, -b/--backend), quantization (-m, --mmproj), and resolution scaling (-W, -H, --image-size) across CLI, Python, and Node.js.</p>
+          <h4 data-i18n="home.features.0.title">100% End-to-End Pure Vulkan GPU Compute Canny (0.23 ms)</h4>
+          <p data-i18n="home.features.0.desc">Chains Sobel 3x3, NMS, and Hysteresis compute shaders entirely within VRAM using vkCmdPipelineBarrier, accelerating edge detection by 834x (0.23ms on Snapdragon 8 Elite Adreno 830).</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">Pure Vulkan GPU Full-Layer Offloading</h4>
-          <p data-i18n="home.features.1.desc">Achieves 0.00 MiB CPU Mapped VRAM on Qualcomm Adreno (830) and ARM Mali (G78/G68), accelerating token generation up to 15.00 tok/s.</p>
+          <h4 data-i18n="home.features.1.title">Ultra-Fast ARM64 NEON C++ Kernel (3.02 ms)</h4>
+          <p data-i18n="home.features.1.desc">Eliminates atan2f via tangent ratio bit quantization and 1-byte direction buffers, running Canny filtering in 3.02ms on Snapdragon 865 and 4.36ms on Exynos 1380.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">Zero-Heavy C++ Dependency</h4>
-          <p data-i18n="home.features.2.desc">Runs out-of-the-box on vanilla Termux Python (pip) and Node.js (npm) without complex OpenCV or node-gyp builds.</p>
+          <h4 data-i18n="home.features.2.title">Prebuilt-Asset-First Idempotent Installer (0.005s Skip)</h4>
+          <p data-i18n="home.features.2.desc">Provisions verified precompiled ARM64 native binaries in 2 seconds from official releases, guaranteeing zero-build instant skip if assets already exist.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">Silicon Architecture Roadmap</h4>
-          <p data-i18n="home.features.3.desc">Qualcomm Adreno 830 and ARM Mali GPU production verified; Samsung Xclipse backend under active engineering.</p>
+          <h4 data-i18n="home.features.3.title">5-Backend Unified CLI Standard & Fail-Fast Gatekeeper</h4>
+          <p data-i18n="home.features.3.desc">Enforces ['auto', 'gpu', 'vulkan', 'opencl', 'cpu'] across all subcommands; strictly rejects defective text-only binaries lacking --mmproj.</p>
         </div>
       </div>
 
@@ -111,15 +111,15 @@
         <div class="code-tab-content" style="display:block;">
           <pre><code>import termux_vision as tv
 
-# 1. Zero-Dependency Spatial Filtering (0.01s ultra-fast)
+# 1. 100% Vulkan GPU Canny Edge Detection (0.23ms) or NEON CPU (3.02ms)
 img = tv.io.load_image("photo.jpg")
-edges = tv.cv.canny(tv.transforms.to_grayscale(img), 40, 120)
+edges = tv.cv.canny(tv.transforms.to_grayscale(img), low_threshold=40, high_threshold=120, backend="auto")
 tv.io.save_image(edges, "edges.png")
 
-# 2. On-Device VLM Multimodal Inference with Vulkan GPU Acceleration
+# 2. On-Device VLM Multimodal Inference with 5-Backend Hardware Acceleration
 with tv.vlm.load("smolvlm-500m", device="gpu") as engine:
     res = engine.describe("photo.jpg", prompt="Describe this scene in detail.", quality="optimal")
-    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s): {res.text}")
+    print(f"Generated ({res.metrics.tokens_per_second:.1f} t/s via {res.metrics.backend}): {res.text}")
 </code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
