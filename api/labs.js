@@ -82,7 +82,10 @@ async function ensureSchema(sql) {
         id BIGSERIAL PRIMARY KEY,
         menu_id VARCHAR(50) NOT NULL REFERENCES labs_menus(id) ON DELETE CASCADE,
         title VARCHAR(255) NOT NULL,
+        title_eng VARCHAR(255) DEFAULT '',
         content TEXT NOT NULL,
+        content_eng TEXT DEFAULT '',
+        tags VARCHAR(4000) DEFAULT '',
         author VARCHAR(50) NOT NULL,
         author_ip VARCHAR(50) NOT NULL,
         password_hash VARCHAR(64),
@@ -94,6 +97,11 @@ async function ensureSchema(sql) {
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
+
+    // Safe Schema Migration for existing DB instances
+    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS title_eng VARCHAR(255) DEFAULT '';`;
+    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS content_eng TEXT DEFAULT '';`;
+    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS tags VARCHAR(4000) DEFAULT '';`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS labs_comments (
@@ -137,7 +145,7 @@ async function ensureSchema(sql) {
     }
 
     // Dynamic Seed & Sync of Research Posts & Handbook Chapters with Optimistic Lock
-    const SEED_VERSION = 'v18_arm64_bitnet_ternary_collapse_whitepaper';
+    const SEED_VERSION = 'v19_schema_title_content_eng_tags';
     const seedCheck = await sql`SELECT value FROM labs_meta WHERE key = 'seed_posts_version' LIMIT 1;`;
     if (!seedCheck || seedCheck.length === 0 || seedCheck[0].value !== SEED_VERSION) {
       // Optimistic Concurrency Lock: Only the first concurrent instance acquires the lock
@@ -158,12 +166,15 @@ async function ensureSchema(sql) {
           const postId = p.id || (i + 1);
           const createdAt = p.created_at || new Date().toISOString();
           await sql`
-            INSERT INTO labs_posts (id, menu_id, title, content, author, author_ip, status, created_at, updated_at)
-            VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.content}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
+            INSERT INTO labs_posts (id, menu_id, title, title_eng, content, content_eng, tags, author, author_ip, status, created_at, updated_at)
+            VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.title_eng || ''}, ${p.content}, ${p.content_eng || ''}, ${p.tags || ''}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
             ON CONFLICT (id) DO UPDATE SET
               menu_id = EXCLUDED.menu_id,
               title = EXCLUDED.title,
+              title_eng = EXCLUDED.title_eng,
               content = EXCLUDED.content,
+              content_eng = EXCLUDED.content_eng,
+              tags = EXCLUDED.tags,
               author = EXCLUDED.author,
               status = EXCLUDED.status,
               updated_at = EXCLUDED.updated_at;
@@ -347,7 +358,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
       if (menu_id && menu_id !== 'all') {
         if (includeContent) {
           posts = await sql`
-            SELECT p.id, p.menu_id, p.title, p.content, 
+            SELECT p.id, p.menu_id, p.title, p.title_eng, p.content, p.content_eng, p.tags, 
                    SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                    p.author, p.author_ip, p.status, 
                    p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
@@ -364,7 +375,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
           `;
         } else {
           posts = await sql`
-            SELECT p.id, p.menu_id, p.title, 
+            SELECT p.id, p.menu_id, p.title, p.title_eng, p.tags, 
                    SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                    p.author, p.author_ip, p.status, 
                    p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
@@ -382,7 +393,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
         }
       } else {
         posts = await sql`
-          SELECT p.id, p.menu_id, p.title, 
+          SELECT p.id, p.menu_id, p.title, p.title_eng, p.tags, 
                  SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                  p.author, p.author_ip, p.status, 
                  p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,

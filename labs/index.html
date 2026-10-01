@@ -1740,6 +1740,8 @@
             <div class="post-view-header">
               <span class="board-badge badge-anal" id="analDetailBadge">RESEARCH</span>
               <h3 id="analDetailTitle"></h3>
+              <div id="analDetailTitleEng" style="font-size: 0.95rem; color: #94a3b8; margin-top: 4px; font-weight: 500; display: none;"></div>
+              <div id="analDetailTags" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; margin-bottom: 6px;"></div>
               <div class="post-view-meta">
                 <span>작성자: <strong id="analDetailAuthor"></strong> (<span id="analDetailIp"></span>)</span>
                 <span>작성일: <span id="analDetailDate"></span></span>
@@ -2884,6 +2886,32 @@
         }
 
         document.getElementById('analDetailTitle').textContent = post.title;
+
+        const engTitleEl = document.getElementById('analDetailTitleEng');
+        if (engTitleEl) {
+          if (post.title_eng) {
+            engTitleEl.textContent = post.title_eng;
+            engTitleEl.style.display = 'block';
+          } else {
+            engTitleEl.style.display = 'none';
+          }
+        }
+
+        const tagsEl = document.getElementById('analDetailTags');
+        if (tagsEl) {
+          tagsEl.innerHTML = '';
+          if (post.tags) {
+            const rawTags = post.tags.split('#').map(t => t.trim()).filter(Boolean);
+            rawTags.forEach(tag => {
+              const tagBadge = document.createElement('span');
+              tagBadge.className = 'post-tag-badge';
+              tagBadge.textContent = `#${tag}`;
+              tagBadge.style.cssText = 'background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.78rem; font-weight: 600;';
+              tagsEl.appendChild(tagBadge);
+            });
+          }
+        }
+
         document.getElementById('analDetailAuthor').textContent = post.author;
         document.getElementById('analDetailIp').textContent = post.author_ip || '127.0.0.1';
         document.getElementById('analDetailDate').textContent = (post.created_at || '').substring(0, 19).replace('T', ' ');
