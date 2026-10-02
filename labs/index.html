@@ -3312,6 +3312,8 @@
 
         // Reset active post state, like UI, and hide remote when switching menus
         this.activePostId = null;
+        this.currentReadingPost = null;
+        this.updateCurrentReadingIndicator(null);
         this.adjacentPrevId = null;
         this.adjacentNextId = null;
         this.updateRemoteAdjacentButtons();
@@ -3337,6 +3339,8 @@
         if (analDetail) analDetail.style.display = 'none';
         const boardTop = document.getElementById('boardTopPostView');
         if (boardTop) boardTop.style.display = 'none';
+
+        const curMenu = this.store.menus.find(m => m.id === menuId) || { board_type: (menuId === 'newsletter' ? 'news' : 'anal') };
 
         if (curMenu.board_type === 'news') {
           await this.renderNewsView();
@@ -3564,6 +3568,8 @@
 
         this.activePostId = item.id;
         this.activeSlot = 'news';
+        this.currentReadingPost = item;
+        this.updateCurrentReadingIndicator(item);
         this.recordRecentRead(item);
         this.updateLikeButtonUI('news', item.like_count || 0, this.isPostLiked(item.id));
 
@@ -3764,11 +3770,63 @@
 
         if (!posts || posts.length === 0) {
           if (curriculumNav) curriculumNav.style.display = 'none';
+          const rWidget = document.getElementById('analRankingWidget');
+          if (rWidget) rWidget.style.display = 'none';
+          const sBar = document.getElementById('analSortBar');
+          if (sBar) sBar.style.display = 'none';
           container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 50px 20px;">등록된 연구 리포트가 없습니다.</div>`;
           return;
         }
 
+        // Render Universal TOP 5 Ranking & Sort Bar for Research Views
+        this.renderTop5RankingWidget('analRankingWidget', posts);
+        this.renderSortBar('analSortBar', posts.length);
+
         if (isHandbook) {
+          // If custom sort by views or likes is active, render sorted cards
+          if (this.activeSortKey === 'views' || this.activeSortKey === 'likes') {
+            if (curriculumNav) curriculumNav.style.display = 'none';
+            const isEn = (this.currentLang === 'en');
+            const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+            const sortedPosts = this.applySort(posts);
+
+            sortedPosts.forEach(p => {
+              const dateStr = (p.created_at || '').substring(0, 10);
+              const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
+              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/);
+              const chapCode = chapCodeMatch ? chapCodeMatch[1] : '';
+
+              const hasGlossary = (p.content || p.excerpt || '').includes('용어') || (p.content || p.excerpt || '').includes('Glossary');
+              const hasLab = (p.content || p.excerpt || '').includes('Lab') || (p.content || p.excerpt || '').includes('실습');
+              const hasMermaid = (p.content || p.excerpt || '').includes('mermaid');
+
+              const card = document.createElement('div');
+              card.className = 'anal-card';
+              card.onclick = () => this.openAnalDetail(p.id);
+              card.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                  <span class="board-badge badge-anal">HANDBOOK</span>
+                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? `Lecture ${chapCode}` : `제 ${chapCode} 강`}</span>` : ''}
+                  ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
+                  ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
+                  ${hasMermaid ? `<span class="hb-feature-pill">${isEn ? '📊 Architecture Diagram' : '📊 다이어그램'}</span>` : ''}
+                </div>
+                <h3 class="anal-title">${escapeHtml((isEn && p.title_eng) ? p.title_eng : p.title)}</h3>
+                <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
+                <div class="anal-meta">
+                  <span>${dict.label_author} <strong>${escapeHtml(p.author)}</strong></span>
+                  <span>${dict.label_date} ${escapeHtml(dateStr)}</span>
+                  <span>${dict.label_views} ${p.view_count || 0}</span>
+                  <span>${dict.label_likes} ${p.like_count || 0}</span>
+                  <span>${dict.label_comments} ${p.comment_count || 0}</span>
+                  <span class="anal-read-link">${dict.read_more_hb}</span>
+                </div>
+              `;
+              container.appendChild(card);
+            });
+            return;
+          }
+
           if (curriculumNav) {
             curriculumNav.style.display = 'block';
             this.renderHandbookCurriculumNav();
@@ -3855,7 +3913,9 @@
           const isEn = (this.currentLang === 'en');
           const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
 
-          posts.forEach(p => {
+          const sortedPosts = this.applySort(posts);
+
+          sortedPosts.forEach(p => {
             const dateStr = (p.created_at || '').substring(0, 10);
             const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
 
@@ -3896,6 +3956,10 @@
         document.getElementById('analTopBar').style.display = 'none';
         const curriculumNav = document.getElementById('handbookCurriculumNav');
         if (curriculumNav) curriculumNav.style.display = 'none';
+        const rankingWidget = document.getElementById('analRankingWidget');
+        if (rankingWidget) rankingWidget.style.display = 'none';
+        const sortBar = document.getElementById('analSortBar');
+        if (sortBar) sortBar.style.display = 'none';
 
         const detailView = document.getElementById('analDetailView');
         detailView.style.display = 'block';
@@ -3922,6 +3986,9 @@
         // STEP 2: Fetch Post Data (0ms In-Memory Fast Path Hit)
         const post = await this.store.getPost(postId);
         if (!post) return;
+
+        this.currentReadingPost = post;
+        this.updateCurrentReadingIndicator(post);
 
         const curMenu = this.store.menus.find(m => m.id === (post.menu_id || this.activeMenuId)) || { name: '연구', board_type: 'anal' };
         
@@ -4275,6 +4342,8 @@
 
       closeAnalDetail() {
         this.activePostId = null;
+        this.currentReadingPost = null;
+        this.updateCurrentReadingIndicator(null);
         this.adjacentPrevId = null;
         this.adjacentNextId = null;
         this.updateRemoteAdjacentButtons();
@@ -4296,10 +4365,7 @@
           document.getElementById('viewAnal').style.display = 'block';
           document.getElementById('analTopBar').style.display = 'flex';
           document.getElementById('analFeedList').style.display = 'flex';
-          if (this.activeMenuId === 'research-handbook') {
-            const curriculumNav = document.getElementById('handbookCurriculumNav');
-            if (curriculumNav) curriculumNav.style.display = 'block';
-          }
+          this.renderAnalView();
         }
         history.pushState(null, '', `/labs/index.html?menu=${this.activeMenuId}`);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4329,24 +4395,35 @@
         tbody.innerHTML = '';
 
         if (!posts || posts.length === 0) {
+          const rWidget = document.getElementById('boardRankingWidget');
+          if (rWidget) rWidget.style.display = 'none';
+          const sBar = document.getElementById('boardSortBar');
+          if (sBar) sBar.style.display = 'none';
           tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 40px 20px;">${isEn ? 'No posts registered.' : '등록된 게시글이 없습니다.'}</td></tr>`;
           return;
         }
 
-        posts.forEach((p, idx) => {
+        // Render Universal TOP 5 Ranking & Sort Bar for Board
+        this.renderTop5RankingWidget('boardRankingWidget', posts);
+        this.renderSortBar('boardSortBar', posts.length);
+
+        const sortedPosts = this.applySort(posts);
+
+        sortedPosts.forEach((p, idx) => {
           const dateStr = (p.created_at || '').substring(0, 10);
           const menu = this.store.menus.find(m => m.id === p.menu_id) || { board_type: 'board', name: '자유' };
           const badgeClass = `badge-${menu.board_type || 'board'}`;
-          const isSelected = (p.id === this.activePostId);
+          const isSelected = (String(p.id) === String(this.activePostId));
           const menuDisplayName = (isEn && dict.menu && dict.menu[p.menu_id]) ? dict.menu[p.menu_id].name : menu.name;
           const postTitle = (isEn && p.title_eng) ? p.title_eng : p.title;
 
           const tr = document.createElement('tr');
-          if (isSelected) tr.className = 'active-row';
+          if (isSelected) tr.className = 'active-row current-reading-row';
           tr.innerHTML = `
-            <td style="text-align: center; color: var(--text-muted);">${posts.length - idx}</td>
+            <td style="text-align: center; color: var(--text-muted);">${sortedPosts.length - idx}</td>
             <td><span class="board-badge ${badgeClass}">${escapeHtml(menuDisplayName)}</span></td>
             <td>
+              ${isSelected ? `<span class="badge-current-reading">${dict.badge_reading}</span> ` : ''}
               <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id})">${isSelected ? '▶ ' : ''}${escapeHtml(postTitle)}</a>
               ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
             </td>
@@ -4518,6 +4595,7 @@
         // 8. Re-render Active Content & Details
         if (this.currentPostData) {
           this.renderDetailContentForLang(this.currentPostData);
+          this.updateCurrentReadingIndicator(this.currentPostData);
           if (this.bottomListPosts && this.bottomListPosts.length > 0) {
             this.renderAnalBottomTablePage(this.bottomListCurPage);
             const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal', name: '연구' };
@@ -4529,7 +4607,10 @@
           }
         } else if (this.activePostId) {
           this.store.getPost(this.activePostId).then(post => {
-            if (post) this.renderDetailContentForLang(post);
+            if (post) {
+              this.renderDetailContentForLang(post);
+              this.updateCurrentReadingIndicator(post);
+            }
           });
         }
 
@@ -4836,7 +4917,7 @@
             return;
           }
           listEl.innerHTML = hist.map(item => {
-            const isCur = (item.id === this.activePostId);
+            const isCur = (String(item.id) === String(this.activePostId));
             let displayTitle = item.title;
             if (isEn) {
               if (item.title_eng) {
@@ -4994,20 +5075,23 @@
       },
 
       async openPostByMenuAndId(menuId, postId) {
-        if (!menuId || !postId) return;
-        const curMenu = this.store.menus.find(m => m.id === menuId);
+        if (!postId) return;
+        const targetMenuId = menuId || this.activeMenuId;
+        const curMenu = this.store.menus.find(m => m.id === targetMenuId);
         if (curMenu && curMenu.board_type === 'anal') {
-          if (this.activeMenuId !== menuId) {
-            await this.selectMenu(menuId);
+          if (this.activeMenuId !== targetMenuId) {
+            await this.selectMenu(targetMenuId);
           }
           await this.openAnalDetail(postId);
         } else if (curMenu && curMenu.board_type === 'board') {
-          if (this.activeMenuId !== menuId && this.activeBoardFilter !== menuId) {
-            await this.selectMenu(menuId);
+          if (this.activeMenuId !== targetMenuId && this.activeBoardFilter !== targetMenuId) {
+            await this.selectMenu(targetMenuId);
           }
           await this.openBoardPost(postId);
         } else if (curMenu && curMenu.board_type === 'news') {
           await this.selectMenu('newsletter');
+        } else {
+          await this.openAnalDetail(postId);
         }
       },
 
@@ -5063,7 +5147,7 @@
         this.bottomListPosts = allPosts;
         this.bottomListMenuId = menuId;
 
-        const curIdx = allPosts.findIndex(p => p.id === post.id);
+        const curIdx = allPosts.findIndex(p => String(p.id) === String(post.id));
         const prevPost = (curIdx > 0) ? allPosts[curIdx - 1] : null;
         const nextPost = (curIdx !== -1 && curIdx < allPosts.length - 1) ? allPosts[curIdx + 1] : null;
 
@@ -5166,7 +5250,7 @@
 
         tbody.innerHTML = pageItems.map((p, idx) => {
           const overallIndex = total - (startIdx + idx);
-          const isCur = (p.id === this.activePostId);
+          const isCur = (String(p.id) === String(this.activePostId));
           const dateStr = (p.created_at || '').substring(0, 10);
           const postTitle = (isEn && p.title_eng) ? p.title_eng : p.title;
           return `
