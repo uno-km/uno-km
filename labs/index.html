@@ -85,11 +85,20 @@
       box-shadow: 0 0 12px rgba(2, 132, 199, 0.5) !important;
     }
 
-    /* ── Sovereign Clean Heading (Apache/Enterprise Tech Hybrid) ── */
+    /* ── Sovereign Clean Heading & Master Language Bar ── */
     .labs-heading-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
       border-bottom: 2px solid #004499;
       padding-bottom: 14px;
       margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .labs-heading-left {
+      flex: 1;
+      min-width: 260px;
     }
     .labs-heading-wrap h2 {
       margin: 0 0 6px 0;
@@ -103,6 +112,64 @@
       font-size: 0.9rem;
       color: #475569;
       line-height: 1.5;
+    }
+    .labs-heading-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .lang-segmented-control {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    .lang-seg-btn {
+      border: none;
+      background: transparent;
+      color: #475569;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      user-select: none;
+    }
+    .lang-seg-btn:hover {
+      color: #004499;
+    }
+    .lang-seg-btn.active {
+      background: #004499;
+      color: #ffffff !important;
+      box-shadow: 0 2px 6px rgba(0, 68, 153, 0.3);
+    }
+    body[data-theme="dark"] .lang-segmented-control,
+    .dark .lang-segmented-control {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    body[data-theme="dark"] .lang-seg-btn,
+    .dark .lang-seg-btn {
+      color: #94a3b8;
+    }
+    body[data-theme="dark"] .lang-seg-btn:hover,
+    .dark .lang-seg-btn:hover {
+      color: #38bdf8;
+    }
+    body[data-theme="dark"] .lang-seg-btn.active,
+    .dark .lang-seg-btn.active {
+      background: #0284c7;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.45);
     }
 
     /* Board Badges */
@@ -1463,6 +1530,24 @@
       padding: 3px 4px;
       font-size: 0.68rem;
     }
+    #remoteLangPills .btn-theme-chip {
+      font-weight: 700;
+      padding: 5px 6px;
+      font-size: 0.72rem;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #remoteLangPills .btn-theme-chip:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    #remoteLangPills .btn-theme-chip.active {
+      background: #0284c7 !important;
+      border-color: #38bdf8 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5) !important;
+    }
     .remote-btn-history {
       width: 100%;
       justify-content: space-between;
@@ -1761,10 +1846,22 @@
 
     <!-- Main Content Area -->
     <main class="content labs-content-wrap">
-      <!-- Clean Page Title & Subtitle -->
+      <!-- Clean Page Title & Subtitle + Master Language Segmented Control -->
       <div class="labs-heading-wrap">
-        <h2 id="mainHeading">뉴스레터</h2>
-        <p class="subtitle" id="mainSubtitle">온디바이스 시스템 및 생태계 공식 엔지니어링 소식</p>
+        <div class="labs-heading-left">
+          <h2 id="mainHeading">뉴스레터</h2>
+          <p class="subtitle" id="mainSubtitle">온디바이스 시스템 및 생태계 공식 엔지니어링 소식</p>
+        </div>
+        <div class="labs-heading-controls">
+          <div class="lang-segmented-control" role="group" aria-label="Labs Language Switcher">
+            <button type="button" class="lang-seg-btn active" id="headerLangKo" onclick="LabsApp.setLanguage('ko')" title="한국어로 포털 전체 표시">
+              <span>🇰🇷</span> <span>한국어</span>
+            </button>
+            <button type="button" class="lang-seg-btn" id="headerLangEn" onclick="LabsApp.setLanguage('en')" title="View entire portal in English">
+              <span>🌐</span> <span>English</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Universal Submenu Filter Pills (Auto-populated from DB menu tree for parent menus like 'research' & 'free-board') -->
@@ -2098,6 +2195,19 @@
           <button type="button" class="btn-theme-chip active" id="remoteThemeDark" onclick="LabsApp.setDetailTheme('dark', 'remote')">Dark</button>
           <button type="button" class="btn-theme-chip" id="remoteThemeWhite" onclick="LabsApp.setDetailTheme('white', 'remote')">Light</button>
           <button type="button" class="btn-theme-chip" id="remoteThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'remote')">Win98</button>
+        </div>
+        <div class="remote-section-subdivider" style="height: 1px; background: rgba(255,255,255,0.08); margin: 8px 0 6px 0;"></div>
+        <div class="remote-row" style="margin-bottom: 4px;">
+          <span style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">🌐 <span id="remoteLangLabel">Language</span></span>
+          <span id="remoteCurrentLangBadge" style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">KO</span>
+        </div>
+        <div class="remote-theme-pills" id="remoteLangPills">
+          <button type="button" class="btn-theme-chip active" id="remoteLangKo" onclick="LabsApp.setLanguage('ko')" style="flex: 1; text-align: center; justify-content: center; display: inline-flex; align-items: center; gap: 4px;">
+            <span>🇰🇷</span> <span>한국어</span>
+          </button>
+          <button type="button" class="btn-theme-chip" id="remoteLangEn" onclick="LabsApp.setLanguage('en')" style="flex: 1; text-align: center; justify-content: center; display: inline-flex; align-items: center; gap: 4px;">
+            <span>🌐</span> <span>English</span>
+          </button>
         </div>
       </div>
 
@@ -2566,6 +2676,124 @@
       return clean.substring(0, length) + '...';
     }
 
+    // ── Master I18N Multilingual Resource Dictionary ──────────────────────────
+    const LABS_I18N = {
+      ko: {
+        menu: {
+          'newsletter': { name: '뉴스레터', desc: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
+          'research': { name: '기술 연구 백서', desc: 'AMEVA 온디바이스 AI 및 분산 커널 학술 연구' },
+          'research-handbook': { name: '아메바 핸드북', desc: '전공자를 위한 온디바이스 AI 시스템 및 엔진 아키텍처' },
+          'research-papers': { name: '기술 연구 백서', desc: 'AMEVA 온디바이스 AI 및 분산 커널 학술 연구' },
+          'research-benchmarks': { name: '실기기 벤치마크', desc: 'Adreno/Mali/Apple Silicon 실기기 성능 측정 및 NPU 지연시간 분석' },
+          'research-cluster': { name: '엣지 클러스터', desc: '분산 온디바이스 토큰 파이프라인 및 P2P 클러스터링 연구' },
+          'research-opensource': { name: '오픈소스 기여', desc: 'AMEVA 공식 기여 가이드라인, 커널 PR 분석 및 로드맵' },
+          'free-board': { name: '자유게시판', desc: '연구원 및 엔지니어 자유 토론 공간' },
+          'free-qna': { name: 'Q&A 질문/답변', desc: '온디바이스 AI 구현 및 커널 트러블슈팅 질의응답' },
+          'free-tech': { name: '기술 토론', desc: '아키텍처 설계 및 최적화 기법 집중 토론' }
+        },
+        all: '전체',
+        th_no: '번호',
+        th_category: '구분',
+        th_title: '제목',
+        th_author: '작성자',
+        th_date: '작성일',
+        th_views: '조회',
+        th_likes: '추천',
+        btn_prev_edition: '이전 호',
+        btn_next_edition: '다음 호',
+        btn_prev_post: '이전 글',
+        btn_next_post: '다음 글',
+        btn_no_prev_post: '이전 글이 없습니다',
+        btn_no_next_post: '다음 글이 없습니다',
+        btn_list: '목록',
+        btn_close_post: '✕ 본문 닫기',
+        btn_back_to_list: '← 연구 목록으로 돌아가기',
+        btn_top: '↑ 맨 위로',
+        btn_like: '👍 추천',
+        btn_bibtex: 'BibTeX 인용 복사',
+        btn_wide: '와이드',
+        btn_standard: '기본너비',
+        badge_reading: '열람중',
+        badge_latest: ' (최신호)',
+        label_author: '작성자:',
+        label_date: '작성일:',
+        label_published: '발행일:',
+        label_views: '조회:',
+        label_likes: '추천:',
+        label_comments: '댓글:',
+        total_posts: (n) => `총 ${n}편`,
+        related_posts: (name) => `📑 ${name} 전체 글 목록`,
+        read_more_anal: '연구 리포트 전문 읽기 →',
+        read_more_hb: '강좌 전문 및 실습 코드 열람 →',
+        remote_prev: '이전글',
+        remote_next: '다음글',
+        remote_like: '👍 추천',
+        remote_recent: '📖 최근 읽은 논문',
+        remote_lang_label: 'Language / 언어',
+        comment_title: '댓글 토론',
+        no_comments: '작성된 댓글이 없습니다.',
+        ontology_title: '온톨로지 지식 태그 (Knowledge Graph & Vector Tags)',
+        ontology_guide: '# 태그를 클릭하여 관련 연구를 검색하세요'
+      },
+      en: {
+        menu: {
+          'newsletter': { name: 'Newsletter', desc: 'Official On-Device System & Ecosystem Engineering Dispatches' },
+          'research': { name: 'Technical Papers', desc: 'AMEVA On-Device AI & Distributed Kernel Academic Research' },
+          'research-handbook': { name: 'AMEVA Handbook', desc: 'On-Device AI Systems & Engine Architecture for Engineers' },
+          'research-papers': { name: 'Technical Papers', desc: 'AMEVA On-Device AI & Distributed Kernel Academic Research' },
+          'research-benchmarks': { name: 'Device Benchmarks', desc: 'Adreno/Mali/Apple Silicon Performance & NPU Latency Profiling' },
+          'research-cluster': { name: 'Edge Clusters', desc: 'Distributed On-Device Token Pipeline & P2P Clustering Research' },
+          'research-opensource': { name: 'Open-Source Contributions', desc: 'Official Contribution Guidelines, Kernel PRs & Roadmap' },
+          'free-board': { name: 'Community Forum', desc: 'Open Technical Discussion for Researchers & Engineers' },
+          'free-qna': { name: 'Q&A', desc: 'On-Device AI Implementation & Kernel Troubleshooting' },
+          'free-tech': { name: 'Tech Discussion', desc: 'Deep Dive into Architecture & Optimization' }
+        },
+        all: 'All',
+        th_no: 'No.',
+        th_category: 'Category',
+        th_title: 'Title',
+        th_author: 'Author',
+        th_date: 'Date',
+        th_views: 'Views',
+        th_likes: 'Likes',
+        btn_prev_edition: 'Prev Edition',
+        btn_next_edition: 'Next Edition',
+        btn_prev_post: 'Previous',
+        btn_next_post: 'Next',
+        btn_no_prev_post: 'No previous post',
+        btn_no_next_post: 'No next post',
+        btn_list: 'List',
+        btn_close_post: '✕ Close Article',
+        btn_back_to_list: '← Back to Research List',
+        btn_top: '↑ Top',
+        btn_like: '👍 Recommend',
+        btn_bibtex: 'Copy BibTeX Citation',
+        btn_wide: 'Wide',
+        btn_standard: 'Standard',
+        badge_reading: 'Reading',
+        badge_latest: ' (Latest)',
+        label_author: 'Author:',
+        label_date: 'Date:',
+        label_published: 'Published:',
+        label_views: 'Views:',
+        label_likes: 'Likes:',
+        label_comments: 'Comments:',
+        total_posts: (n) => `Total ${n} posts`,
+        related_posts: (name) => `📑 ${name} Post List`,
+        read_more_anal: 'Read Full Research Report →',
+        read_more_hb: 'Read Full Lecture & Lab Code →',
+        remote_prev: 'Prev',
+        remote_next: 'Next',
+        remote_like: '👍 Recommend',
+        remote_recent: '📖 Recent Papers',
+        remote_lang_label: 'Language',
+        comment_title: 'Discussion & Comments',
+        no_comments: 'No comments yet.',
+        ontology_title: 'Ontology Knowledge Tags (Knowledge Graph & Vector Tags)',
+        ontology_guide: '# Click tags to explore related research'
+      }
+    };
+
     // Labs Application Controller
     window.LabsApp = {
       store: new LabsStore(),
@@ -2616,6 +2844,7 @@
         });
 
         this.initNewsletterSwipe();
+        this.updateLanguageUI(false);
         await this.selectMenu(initialMenu);
 
         // Deep linking: ?post=ID
@@ -2705,23 +2934,40 @@
           .filter(m => m.parent_id === rootParentId)
           .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
 
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
         let pillsHtml = `
           <button type="button" class="board-pill ${menuId === rootParentId ? 'active' : ''}" onclick="LabsApp.handleSidebarNav('${rootParentId}')">
-            전체
+            ${dict.all}
           </button>
         `;
 
         children.forEach(child => {
           const isAct = (menuId === child.id) ? 'active' : '';
+          const childName = (isEn && dict.menu && dict.menu[child.id]) ? dict.menu[child.id].name : child.name;
           pillsHtml += `
             <button type="button" class="board-pill ${isAct}" onclick="LabsApp.handleSidebarNav('${child.id}')">
-              ${escapeHtml(child.name)}
+              ${escapeHtml(childName)}
             </button>
           `;
         });
 
         pillsContainer.innerHTML = pillsHtml;
         pillsContainer.style.display = 'flex';
+      },
+
+      updateHeadingUI(menuId) {
+        const curMenuId = menuId || this.activeMenuId || 'newsletter';
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+        const info = (dict.menu && dict.menu[curMenuId]) || null;
+        const curMenu = this.store.menus.find(m => m.id === curMenuId) || { board_type: 'board', name: '게시판' };
+
+        const headingEl = document.getElementById('mainHeading');
+        const subtitleEl = document.getElementById('mainSubtitle');
+        if (headingEl) headingEl.textContent = info ? info.name : curMenu.name;
+        if (subtitleEl) subtitleEl.textContent = info ? info.desc : (curMenu.description || '');
       },
 
       async selectMenu(menuId) {
@@ -2747,9 +2993,7 @@
           this.viewerInstances.board = null;
         }
 
-        const curMenu = this.store.menus.find(m => m.id === menuId) || { board_type: 'board', name: '게시판' };
-        document.getElementById('mainHeading').textContent = curMenu.name;
-        document.getElementById('mainSubtitle').textContent = curMenu.description || '';
+        this.updateHeadingUI(menuId);
 
         // Hide all views and detail containers
         document.getElementById('viewNews').style.display = 'none';
@@ -3059,6 +3303,9 @@
             container.appendChild(modHeader);
 
             // Chapter Cards
+            const isEn = (this.currentLang === 'en');
+            const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
             modPosts.forEach(p => {
               const dateStr = (p.created_at || '').substring(0, 10);
               const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
@@ -3075,20 +3322,20 @@
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
-                  ${chapCode ? `<span class="hb-chap-num-badge">제 ${chapCode} 강</span>` : ''}
-                  ${hasGlossary ? '<span class="hb-feature-pill glossary">💡 20대 핵심 용어집</span>' : ''}
-                  ${hasLab ? '<span class="hb-feature-pill lab">🔬 Hands-on Lab 실습</span>' : ''}
-                  ${hasMermaid ? '<span class="hb-feature-pill">📊 다이어그램</span>' : ''}
+                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? `Lecture ${chapCode}` : `제 ${chapCode} 강`}</span>` : ''}
+                  ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
+                  ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
+                  ${hasMermaid ? `<span class="hb-feature-pill">${isEn ? '📊 Architecture Diagram' : '📊 다이어그램'}</span>` : ''}
                 </div>
-                <h3 class="anal-title">${escapeHtml((LabsApp.currentLang === 'en' && p.title_eng) ? p.title_eng : p.title)}</h3>
+                <h3 class="anal-title">${escapeHtml((isEn && p.title_eng) ? p.title_eng : p.title)}</h3>
                 <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
                 <div class="anal-meta">
-                  <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
-                  <span>작성일: ${escapeHtml(dateStr)}</span>
-                  <span>조회: ${p.view_count || 0}</span>
-                  <span>추천: ${p.like_count || 0}</span>
-                  <span>댓글: ${p.comment_count || 0}</span>
-                  <span class="anal-read-link">강좌 전문 및 실습 코드 열람 →</span>
+                  <span>${dict.label_author} <strong>${escapeHtml(p.author)}</strong></span>
+                  <span>${dict.label_date} ${escapeHtml(dateStr)}</span>
+                  <span>${dict.label_views} ${p.view_count || 0}</span>
+                  <span>${dict.label_likes} ${p.like_count || 0}</span>
+                  <span>${dict.label_comments} ${p.comment_count || 0}</span>
+                  <span class="anal-read-link">${dict.read_more_hb}</span>
                 </div>
               `;
               container.appendChild(card);
@@ -3097,6 +3344,8 @@
         } else {
           // Standard Research Cards
           if (curriculumNav) curriculumNav.style.display = 'none';
+          const isEn = (this.currentLang === 'en');
+          const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
 
           posts.forEach(p => {
             const dateStr = (p.created_at || '').substring(0, 10);
@@ -3107,15 +3356,15 @@
             card.onclick = () => this.openAnalDetail(p.id);
             card.innerHTML = `
               <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
-              <h3 class="anal-title">${escapeHtml((LabsApp.currentLang === 'en' && p.title_eng) ? p.title_eng : p.title)}</h3>
+              <h3 class="anal-title">${escapeHtml((isEn && p.title_eng) ? p.title_eng : p.title)}</h3>
               <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
               <div class="anal-meta">
-                <span>작성자: <strong>${escapeHtml(p.author)}</strong></span>
-                <span>작성일: ${escapeHtml(dateStr)}</span>
-                <span>조회: ${p.view_count || 0}</span>
-                <span>추천: ${p.like_count || 0}</span>
-                <span>댓글: ${p.comment_count || 0}</span>
-                <span class="anal-read-link">연구 리포트 전문 읽기 →</span>
+                <span>${dict.label_author} <strong>${escapeHtml(p.author)}</strong></span>
+                <span>${dict.label_date} ${escapeHtml(dateStr)}</span>
+                <span>${dict.label_views} ${p.view_count || 0}</span>
+                <span>${dict.label_likes} ${p.like_count || 0}</span>
+                <span>${dict.label_comments} ${p.comment_count || 0}</span>
+                <span class="anal-read-link">${dict.read_more_anal}</span>
               </div>
             `;
             container.appendChild(card);
@@ -3552,14 +3801,17 @@
       async renderBoardView(targetMenuId) {
         document.getElementById('viewBoard').style.display = 'block';
         this.activeBoardFilter = targetMenuId || 'free-board';
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
 
         const pillsContainer = document.querySelector('.board-filter-pills');
         if (pillsContainer) {
           const subMenus = this.store.menus.filter(m => m.parent_id === 'free-board');
-          let pillsHtml = `<button class="board-pill ${this.activeBoardFilter === 'free-board' ? 'active' : ''}" id="pillAll" onclick="LabsApp.filterBoardSubmenu('free-board')">전체</button>`;
+          let pillsHtml = `<button class="board-pill ${this.activeBoardFilter === 'free-board' ? 'active' : ''}" id="pillAll" onclick="LabsApp.filterBoardSubmenu('free-board')">${dict.all}</button>`;
           subMenus.forEach(s => {
             const isAct = (this.activeBoardFilter === s.id) ? 'active' : '';
-            pillsHtml += `<button class="board-pill ${isAct}" id="pill_${s.id}" onclick="LabsApp.filterBoardSubmenu('${s.id}')">${s.name}</button>`;
+            const subName = (isEn && dict.menu && dict.menu[s.id]) ? dict.menu[s.id].name : s.name;
+            pillsHtml += `<button class="board-pill ${isAct}" id="pill_${s.id}" onclick="LabsApp.filterBoardSubmenu('${s.id}')">${escapeHtml(subName)}</button>`;
           });
           pillsContainer.innerHTML = pillsHtml;
         }
@@ -3569,7 +3821,7 @@
         tbody.innerHTML = '';
 
         if (!posts || posts.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 40px 20px;">등록된 게시글이 없습니다.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 40px 20px;">${isEn ? 'No posts registered.' : '등록된 게시글이 없습니다.'}</td></tr>`;
           return;
         }
 
@@ -3578,14 +3830,16 @@
           const menu = this.store.menus.find(m => m.id === p.menu_id) || { board_type: 'board', name: '자유' };
           const badgeClass = `badge-${menu.board_type || 'board'}`;
           const isSelected = (p.id === this.activePostId);
+          const menuDisplayName = (isEn && dict.menu && dict.menu[p.menu_id]) ? dict.menu[p.menu_id].name : menu.name;
+          const postTitle = (isEn && p.title_eng) ? p.title_eng : p.title;
 
           const tr = document.createElement('tr');
           if (isSelected) tr.className = 'active-row';
           tr.innerHTML = `
             <td style="text-align: center; color: var(--text-muted);">${posts.length - idx}</td>
-            <td><span class="board-badge ${badgeClass}">${escapeHtml(menu.name)}</span></td>
+            <td><span class="board-badge ${badgeClass}">${escapeHtml(menuDisplayName)}</span></td>
             <td>
-              <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id})">${isSelected ? '▶ ' : ''}${escapeHtml(p.title)}</a>
+              <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id})">${isSelected ? '▶ ' : ''}${escapeHtml(postTitle)}</a>
               ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
             </td>
             <td><strong>${escapeHtml(p.author)}</strong> <span style="font-size: 0.72rem; color: #94a3b8;">(${escapeHtml(p.author_ip || '127.0.0.1')})</span></td>
@@ -3609,15 +3863,67 @@
         this.closeAnalDetail();
       },
 
-      // ── Multi-Language (KO/EN) and Content Engine ──────────────────────────
-      toggleLanguage(slot = 'anal') {
-        this.currentLang = (this.currentLang === 'ko') ? 'en' : 'ko';
-        localStorage.setItem('labs_lang', this.currentLang);
-        this.updateLanguageUI();
+      // ── Multi-Language (KO/EN) and Universal Content Synchronization Engine ──
+      setLanguage(lang) {
+        if (lang !== 'ko' && lang !== 'en') lang = 'ko';
+        this.currentLang = lang;
+        localStorage.setItem('labs_lang', lang);
+        this.updateLanguageUI(true);
       },
 
-      updateLanguageUI() {
+      toggleLanguage(slot = 'anal') {
+        this.setLanguage(this.currentLang === 'ko' ? 'en' : 'ko');
+      },
+
+      updateTableHeaders() {
         const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+        // Post Table TH
+        const boardThs = document.querySelectorAll('.post-table thead tr th');
+        if (boardThs && boardThs.length >= 7) {
+          boardThs[0].textContent = dict.th_no;
+          boardThs[1].textContent = dict.th_category;
+          boardThs[2].textContent = dict.th_title;
+          boardThs[3].textContent = dict.th_author;
+          boardThs[4].textContent = dict.th_date;
+          boardThs[5].textContent = dict.th_views;
+          boardThs[6].textContent = dict.th_likes;
+        }
+
+        // Anal Bottom Table TH
+        const analThs = document.querySelectorAll('.anal-bottom-table thead tr th');
+        if (analThs && analThs.length >= 6) {
+          analThs[0].textContent = dict.th_no;
+          analThs[1].textContent = dict.th_title;
+          analThs[2].textContent = dict.th_author;
+          analThs[3].textContent = dict.th_date;
+          analThs[4].textContent = dict.th_views;
+          analThs[5].textContent = dict.th_likes;
+        }
+      },
+
+      updateLanguageUI(rerenderViews = true) {
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+        // 1. Synchronize Master Switchers in Top Header & Floating Remote
+        const headerKo = document.getElementById('headerLangKo');
+        const headerEn = document.getElementById('headerLangEn');
+        if (headerKo) headerKo.classList.toggle('active', !isEn);
+        if (headerEn) headerEn.classList.toggle('active', isEn);
+
+        const remoteKo = document.getElementById('remoteLangKo');
+        const remoteEn = document.getElementById('remoteLangEn');
+        if (remoteKo) remoteKo.classList.toggle('active', !isEn);
+        if (remoteEn) remoteEn.classList.toggle('active', isEn);
+
+        const remoteBadge = document.getElementById('remoteCurrentLangBadge');
+        if (remoteBadge) remoteBadge.textContent = isEn ? 'EN' : 'KO';
+        const remoteLangLabel = document.getElementById('remoteLangLabel');
+        if (remoteLangLabel) remoteLangLabel.textContent = isEn ? 'Language' : '언어 선택';
+
+        // 2. Synchronize Legacy Toolbar Buttons (if present in DOM)
         const langToggles = document.querySelectorAll('.btn-lang-toggle');
         langToggles.forEach(btn => {
           const textSpan = btn.querySelector('.lang-text');
@@ -3629,15 +3935,96 @@
           btn.classList.toggle('active', isEn);
         });
 
+        // 3. Synchronize Top Page Heading and Subtitle
+        this.updateHeadingUI(this.activeMenuId);
+
+        // 4. Synchronize Submenu Navigation Pills
+        this.renderSubmenuTabs(this.activeMenuId);
+
+        // 5. Synchronize Remote Button Labels
+        const remotePrevBtn = document.getElementById('remotePrevBtn');
+        if (remotePrevBtn) {
+          const spans = remotePrevBtn.querySelectorAll('span');
+          if (spans.length >= 2) spans[1].textContent = dict.remote_prev;
+        }
+        const remoteNextBtn = document.getElementById('remoteNextBtn');
+        if (remoteNextBtn) {
+          const spans = remoteNextBtn.querySelectorAll('span');
+          if (spans.length >= 1) spans[0].textContent = dict.remote_next;
+        }
+        const remoteLikeBtn = document.getElementById('remoteLikeBtn');
+        if (remoteLikeBtn) {
+          const spanText = remoteLikeBtn.querySelector('span:first-child');
+          if (spanText) spanText.textContent = dict.remote_like;
+        }
+        const remoteHistoryToggle = document.getElementById('remoteHistoryToggle');
+        if (remoteHistoryToggle) {
+          const spanText = remoteHistoryToggle.querySelector('span:first-child');
+          if (spanText) spanText.textContent = dict.remote_recent;
+        }
+
+        // Synchronize Remote History Drawer Content
+        this.renderRecentHistoryUI();
+
+        // 6. Synchronize Table Headers
+        this.updateTableHeaders();
+
+        // 7. Synchronize Static UI Elements in Detail Views
+        const backBtn = document.querySelector('#analDetailView > button.btn-action');
+        if (backBtn) backBtn.textContent = dict.btn_back_to_list;
+
+        const analLikeBtn = document.getElementById('analLikeBtn');
+        if (analLikeBtn) {
+          const textSpan = analLikeBtn.querySelector('span:first-child');
+          if (textSpan) textSpan.textContent = dict.btn_like;
+        }
+        const boardLikeBtn = document.getElementById('boardLikeBtn');
+        if (boardLikeBtn) {
+          const textSpan = boardLikeBtn.querySelector('span:first-child');
+          if (textSpan) textSpan.textContent = dict.btn_like;
+        }
+        const newsLikeBtn = document.getElementById('newsLikeBtn');
+        if (newsLikeBtn) {
+          const textSpan = newsLikeBtn.querySelector('span:first-child');
+          if (textSpan) textSpan.textContent = dict.btn_like;
+        }
+
+        // Newsletter navigation buttons
+        const newsPrevNavBtn = document.querySelector('#newsletterCard .news-nav-bar button:nth-child(2)');
+        if (newsPrevNavBtn && newsPrevNavBtn.textContent.includes('호')) {
+          newsPrevNavBtn.textContent = dict.btn_prev_edition;
+        }
+        const newsNextNavBtn = document.querySelector('#newsletterCard .news-nav-bar button:nth-child(4)');
+        if (newsNextNavBtn && newsNextNavBtn.textContent.includes('호')) {
+          newsNextNavBtn.textContent = dict.btn_next_edition;
+        }
+
+        // Ontology tags title & guide
+        const ontTitle = document.querySelector('#analDetailBottomTags span[style*="font-weight: 700"]');
+        if (ontTitle) ontTitle.textContent = dict.ontology_title;
+        const ontGuide = document.querySelector('#analDetailBottomTags span[style*="color: #94a3b8"]');
+        if (ontGuide) ontGuide.textContent = dict.ontology_guide;
+
+        if (!rerenderViews) return;
+
+        // 8. Re-render Active Content & Details
         if (this.currentPostData) {
           this.renderDetailContentForLang(this.currentPostData);
+          if (this.bottomListPosts && this.bottomListPosts.length > 0) {
+            this.renderAnalBottomTablePage(this.bottomListCurPage);
+            const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal', name: '연구' };
+            const curMenuName = (isEn && dict.menu && dict.menu[curMenu.id]) ? dict.menu[curMenu.id].name : curMenu.name;
+            const titleEl = document.getElementById('analBottomListTitle');
+            const countEl = document.getElementById('analBottomListCount');
+            if (titleEl) titleEl.textContent = dict.related_posts(curMenuName);
+            if (countEl) countEl.textContent = dict.total_posts(this.bottomListPosts.length);
+          }
         } else if (this.activePostId) {
           this.store.getPost(this.activePostId).then(post => {
             if (post) this.renderDetailContentForLang(post);
           });
         }
 
-        // Re-render active newsletter if newsletter view is currently visible
         const newsView = document.getElementById('viewNews');
         if (newsView && newsView.style.display !== 'none' && this.newsletters && this.newsletters.length > 0) {
           this.displayActiveNewsletter();
@@ -3646,6 +4033,11 @@
         const analFeedList = document.getElementById('analFeedList');
         if (analFeedList && analFeedList.style.display !== 'none') {
           this.renderAnalView();
+        }
+
+        const viewBoard = document.getElementById('viewBoard');
+        if (viewBoard && viewBoard.style.display !== 'none') {
+          this.renderBoardView(this.activeBoardFilter);
         }
       },
 
@@ -3899,6 +4291,7 @@
           hist.unshift({
             id: post.id,
             title: post.title,
+            title_eng: post.title_eng || '',
             menu_id: post.menu_id,
             read_at: Date.now()
           });
@@ -3914,18 +4307,42 @@
           const badge = document.getElementById('remoteHistoryBadge');
           if (badge) badge.textContent = hist.length;
 
+          const isEn = (this.currentLang === 'en');
+          const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+          // Synchronize Drawer Header and Clear Button text
+          const drawerHeaderTitle = document.querySelector('.history-drawer-header span');
+          if (drawerHeaderTitle) {
+            drawerHeaderTitle.textContent = isEn ? 'Reading History (Latest)' : '열람 기록 (최근순)';
+          }
+          const drawerClearBtn = document.querySelector('.history-drawer-header button');
+          if (drawerClearBtn) {
+            drawerClearBtn.textContent = isEn ? 'Clear' : '삭제';
+            drawerClearBtn.title = isEn ? 'Clear all history' : '기록 전체 삭제';
+          }
+
           const listEl = document.getElementById('remoteHistoryList');
           if (!listEl) return;
           if (hist.length === 0) {
-            listEl.innerHTML = '<div style="text-align: center; color: #64748b; font-size: 0.72rem; padding: 10px 4px;">최근 열람한 논문이 없습니다.</div>';
+            listEl.innerHTML = `<div style="text-align: center; color: #64748b; font-size: 0.72rem; padding: 10px 4px;">${isEn ? 'No recent reading history.' : '최근 열람한 논문이 없습니다.'}</div>`;
             return;
           }
           listEl.innerHTML = hist.map(item => {
             const isCur = (item.id === this.activePostId);
+            let displayTitle = item.title;
+            if (isEn) {
+              if (item.title_eng) {
+                displayTitle = item.title_eng;
+              } else {
+                const p = (this.store.posts && this.store.posts.find(x => x.id === item.id)) ||
+                          (this.newsletters && this.newsletters.find(x => x.id === item.id));
+                if (p && p.title_eng) displayTitle = p.title_eng;
+              }
+            }
             return `
-              <div class="history-item ${isCur ? 'active' : ''}" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(item.title)}">
+              <div class="history-item ${isCur ? 'active' : ''}" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(displayTitle)}">
                 <span style="color: #38bdf8; font-size: 0.7rem;">${isCur ? '👉' : '•'}</span>
-                <span class="history-title">${escapeHtml(item.title)}</span>
+                <span class="history-title">${escapeHtml(displayTitle)}</span>
               </div>
             `;
           }).join('');
@@ -3934,9 +4351,10 @@
 
       clearRecentHistory() {
         try {
+          const isEn = (this.currentLang === 'en');
           localStorage.removeItem('__labs_recent_posts');
           this.renderRecentHistoryUI();
-          this.showToast('최근 열람 기록이 삭제되었습니다.');
+          this.showToast(isEn ? 'Reading history has been cleared.' : '최근 열람 기록이 삭제되었습니다.');
         } catch (e) {}
       },
 
@@ -4146,16 +4564,21 @@
         this.updateRemoteAdjacentButtons();
 
         // Render analPostPager
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+        const curMenuName = (isEn && dict.menu && dict.menu[curMenu.id]) ? dict.menu[curMenu.id].name : curMenu.name;
+
         const pagerEl = document.getElementById('analPostPager');
         if (pagerEl) {
           let pagerHtml = '';
           if (prevPost) {
+            const prevTitle = (isEn && prevPost.title_eng) ? prevPost.title_eng : prevPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" title="${escapeHtml(prevPost.title)}">
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" title="${escapeHtml(prevTitle)}">
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
-                  <span class="nav-label">이전 글</span>
-                  <span class="nav-title">${escapeHtml(prevPost.title)}</span>
+                  <span class="nav-label">${dict.btn_prev_post}</span>
+                  <span class="nav-title">${escapeHtml(prevTitle)}</span>
                 </div>
               </button>
             `;
@@ -4164,8 +4587,8 @@
               <button class="post-nav-btn" disabled>
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
-                  <span class="nav-label">이전 글</span>
-                  <span class="nav-title">이전 글이 없습니다</span>
+                  <span class="nav-label">${dict.btn_prev_post}</span>
+                  <span class="nav-title">${dict.btn_no_prev_post}</span>
                 </div>
               </button>
             `;
@@ -4173,16 +4596,17 @@
 
           pagerHtml += `
             <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
-              ≡ ${escapeHtml(curMenu.name)} 목록
+              ≡ ${escapeHtml(curMenuName)} ${dict.btn_list}
             </button>
           `;
 
           if (nextPost) {
+            const nextTitle = (isEn && nextPost.title_eng) ? nextPost.title_eng : nextPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" title="${escapeHtml(nextPost.title)}">
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" title="${escapeHtml(nextTitle)}">
                 <div style="text-align: right; overflow: hidden; flex: 1;">
-                  <span class="nav-label">다음 글</span>
-                  <span class="nav-title">${escapeHtml(nextPost.title)}</span>
+                  <span class="nav-label">${dict.btn_next_post}</span>
+                  <span class="nav-title">${escapeHtml(nextTitle)}</span>
                 </div>
                 <span style="font-size: 1.15rem; line-height: 1;">→</span>
               </button>
@@ -4191,8 +4615,8 @@
             pagerHtml += `
               <button class="post-nav-btn" disabled>
                 <div style="text-align: right; overflow: hidden; flex: 1;">
-                  <span class="nav-label">다음 글</span>
-                  <span class="nav-title">다음 글이 없습니다</span>
+                  <span class="nav-label">${dict.btn_next_post}</span>
+                  <span class="nav-title">${dict.btn_no_next_post}</span>
                 </div>
                 <span style="font-size: 1.15rem; line-height: 1;">→</span>
               </button>
@@ -4206,8 +4630,8 @@
         // Render Bottom List
         const titleEl = document.getElementById('analBottomListTitle');
         const countEl = document.getElementById('analBottomListCount');
-        if (titleEl) titleEl.textContent = `📑 ${curMenu.name} 전체 글 목록`;
-        if (countEl) countEl.textContent = `총 ${allPosts.length}편`;
+        if (titleEl) titleEl.textContent = dict.related_posts(curMenuName);
+        if (countEl) countEl.textContent = dict.total_posts(allPosts.length);
 
         const curPage = (curIdx >= 0) ? Math.floor(curIdx / 10) + 1 : 1;
         this.bottomListCurPage = curPage;
@@ -4218,6 +4642,9 @@
         const tbody = document.getElementById('analBottomTableBody');
         const pagination = document.getElementById('analBottomPagination');
         if (!tbody || !this.bottomListPosts) return;
+
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
 
         const posts = this.bottomListPosts;
         const total = posts.length;
@@ -4233,12 +4660,13 @@
           const overallIndex = total - (startIdx + idx);
           const isCur = (p.id === this.activePostId);
           const dateStr = (p.created_at || '').substring(0, 10);
+          const postTitle = (isEn && p.title_eng) ? p.title_eng : p.title;
           return `
             <tr class="${isCur ? 'current-reading-row' : ''}">
               <td class="col-num">${overallIndex}</td>
               <td class="bottom-title-cell">
-                ${isCur ? '<span class="badge-current-reading">열람중</span>' : ''}
-                <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id})">${escapeHtml(p.title)}</a>
+                ${isCur ? `<span class="badge-current-reading">${dict.badge_reading}</span>` : ''}
+                <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id})">${escapeHtml(postTitle)}</a>
                 ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
               </td>
               <td class="col-author">${escapeHtml(p.author)}</td>
@@ -4254,11 +4682,11 @@
             pagination.innerHTML = '';
           } else {
             let pagesHtml = '';
-            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage - 1})" ${curPage === 1 ? 'disabled' : ''}>« 이전</button>`;
+            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage - 1})" ${curPage === 1 ? 'disabled' : ''}>« ${dict.btn_prev_post}</button>`;
             for (let i = 1; i <= totalPages; i++) {
               pagesHtml += `<button class="btn-bottom-page ${i === curPage ? 'active' : ''}" onclick="LabsApp.renderAnalBottomTablePage(${i})">${i}</button>`;
             }
-            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage + 1})" ${curPage === totalPages ? 'disabled' : ''}>다음 »</button>`;
+            pagesHtml += `<button class="btn-bottom-page" onclick="LabsApp.renderAnalBottomTablePage(${curPage + 1})" ${curPage === totalPages ? 'disabled' : ''}>${dict.btn_next_post} »</button>`;
             pagination.innerHTML = pagesHtml;
           }
         }
@@ -4274,16 +4702,20 @@
         this.adjacentNextId = nextPost ? nextPost.id : null;
         this.updateRemoteAdjacentButtons();
 
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
         const pagerEl = document.getElementById('boardPostPager');
         if (pagerEl) {
           let pagerHtml = '';
           if (prevPost) {
+            const prevTitle = (isEn && prevPost.title_eng) ? prevPost.title_eng : prevPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${prevPost.id})" title="${escapeHtml(prevPost.title)}">
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${prevPost.id})" title="${escapeHtml(prevTitle)}">
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
-                  <span class="nav-label">이전 글</span>
-                  <span class="nav-title">${escapeHtml(prevPost.title)}</span>
+                  <span class="nav-label">${dict.btn_prev_post}</span>
+                  <span class="nav-title">${escapeHtml(prevTitle)}</span>
                 </div>
               </button>
             `;
@@ -4292,8 +4724,8 @@
               <button class="post-nav-btn" disabled>
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
-                  <span class="nav-label">이전 글</span>
-                  <span class="nav-title">이전 글이 없습니다</span>
+                  <span class="nav-label">${dict.btn_prev_post}</span>
+                  <span class="nav-title">${dict.btn_no_prev_post}</span>
                 </div>
               </button>
             `;
@@ -4301,16 +4733,17 @@
 
           pagerHtml += `
             <button class="btn-action btn-secondary" onclick="LabsApp.closeBoardTopPost()" style="padding: 10px 14px; font-size: 0.8rem; white-space: nowrap;">
-              ✕ 본문 닫기
+              ${dict.btn_close_post}
             </button>
           `;
 
           if (nextPost) {
+            const nextTitle = (isEn && nextPost.title_eng) ? nextPost.title_eng : nextPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${nextPost.id})" title="${escapeHtml(nextPost.title)}">
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${nextPost.id})" title="${escapeHtml(nextTitle)}">
                 <div style="text-align: right; overflow: hidden; flex: 1;">
-                  <span class="nav-label">다음 글</span>
-                  <span class="nav-title">${escapeHtml(nextPost.title)}</span>
+                  <span class="nav-label">${dict.btn_next_post}</span>
+                  <span class="nav-title">${escapeHtml(nextTitle)}</span>
                 </div>
                 <span style="font-size: 1.15rem; line-height: 1;">→</span>
               </button>
@@ -4319,8 +4752,8 @@
             pagerHtml += `
               <button class="post-nav-btn" disabled>
                 <div style="text-align: right; overflow: hidden; flex: 1;">
-                  <span class="nav-label">다음 글</span>
-                  <span class="nav-title">다음 글이 없습니다</span>
+                  <span class="nav-label">${dict.btn_next_post}</span>
+                  <span class="nav-title">${dict.btn_no_next_post}</span>
                 </div>
                 <span style="font-size: 1.15rem; line-height: 1;">→</span>
               </button>
