@@ -1671,6 +1671,289 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* ── Current Reading Indicator Banner & Ticker ── */
+    .current-reading-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.2), rgba(15, 23, 42, 0.75));
+      border: 1.5px solid #0284c7;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25);
+    }
+    .reading-pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #38bdf8;
+      animation: pulse-glow 1.5s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+    .reading-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .reading-title {
+      font-size: 0.88rem;
+      color: #f8fafc;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    /* Remote Current Reading Ticker */
+    .remote-now-reading {
+      background: rgba(2, 132, 199, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .remote-now-reading:hover {
+      background: rgba(2, 132, 199, 0.3);
+      border-color: #38bdf8;
+    }
+    .remote-now-reading-tag {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .remote-now-reading-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #f8fafc;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+
+    /* Enhanced Current Reading Row Highlight */
+    tr.current-reading-row {
+      background: rgba(2, 132, 199, 0.22) !important;
+      border-left: 4px solid #38bdf8 !important;
+      box-shadow: inset 0 0 16px rgba(56, 189, 248, 0.15) !important;
+    }
+    tr.current-reading-row td {
+      color: #f8fafc !important;
+      font-weight: 600;
+    }
+    tr.current-reading-row .bottom-title-link,
+    tr.current-reading-row .post-title-link {
+      color: #38bdf8 !important;
+      font-weight: 800;
+    }
+    .badge-current-reading {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      background: #0284c7;
+      color: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+      margin-right: 6px;
+      animation: pulse-glow 2s infinite;
+    }
+
+    /* ── TOP 5 Ranking Widgets (Views & Likes) ── */
+    .labs-ranking-widget-wrap {
+      margin-bottom: 22px;
+    }
+    .ranking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .ranking-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.2s ease;
+    }
+    .ranking-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    }
+    .ranking-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .ranking-header-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ranking-badge-type {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+    }
+    .ranking-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ranking-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .ranking-item:hover {
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateX(3px);
+    }
+    .ranking-num {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .ranking-num.rank-1 { background: linear-gradient(135deg, #fbbf24, #d97706); color: #000; box-shadow: 0 0 8px rgba(251, 191, 36, 0.5); }
+    .ranking-num.rank-2 { background: linear-gradient(135deg, #cbd5e1, #94a3b8); color: #000; }
+    .ranking-num.rank-3 { background: linear-gradient(135deg, #b45309, #78350f); color: #fff; }
+    .ranking-num.rank-other { background: rgba(255, 255, 255, 0.06); color: #94a3b8; }
+    .ranking-item-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .ranking-item:hover .ranking-item-title {
+      color: #38bdf8;
+    }
+    .ranking-item-stat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94a3b8;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .ranking-item-stat.views { color: #38bdf8; }
+    .ranking-item-stat.likes { color: #f43f5e; }
+
+    /* ── 3-Way Bidirectional Sort Control Bar ── */
+    .labs-sort-bar-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 9px 14px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+    .sort-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sort-bar-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #94a3b8;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sort-btn-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2px;
+      border-radius: 6px;
+    }
+    .sort-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      user-select: none;
+    }
+    .sort-btn:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .sort-btn.active {
+      background: #0284c7;
+      color: #ffffff !important;
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+    }
+    .sort-arrow {
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+    .sort-count-badge {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
     @media (max-width: 768px) {
       .floating-remote-chassis {
         right: 12px;
@@ -2007,6 +2290,12 @@
                 <h4 id="analBottomListTitle">📑 해당 카테고리 다른 글</h4>
                 <span id="analBottomListCount" class="bottom-count-chip">총 0편</span>
               </div>
+              <!-- Explicit Current Reading Indicator Banner -->
+              <div class="current-reading-banner" id="currentReadingBanner" style="display: none;">
+                <span class="reading-pulse-dot"></span>
+                <span class="reading-label" id="currentReadingLabel">현재 열람 중:</span>
+                <strong class="reading-title" id="currentReadingTitle"></strong>
+              </div>
               <div style="overflow-x: auto;">
                 <table class="anal-bottom-table">
                   <thead>
@@ -2044,6 +2333,12 @@
             <span class="lang-icon">🌐</span> <span class="lang-text">English (EN)</span>
           </button>
         </div>
+
+        <!-- Universal TOP 5 Ranking Widgets (Views & Likes) -->
+        <div id="analRankingWidget" class="labs-ranking-widget-wrap" style="display: none;"></div>
+
+        <!-- Universal 3-Way Sort Bar (Date, Views, Likes with Asc/Desc) -->
+        <div id="analSortBar" class="labs-sort-bar-wrap"></div>
 
         <!-- Handbook Curriculum Dashboard & Module Filter (Visible only when menu is research-handbook) -->
         <div id="handbookCurriculumNav" class="handbook-curriculum-nav" style="display: none;"></div>
@@ -2110,6 +2405,11 @@
           </div>
         </div>
 
+        <!-- Universal TOP 5 Ranking Widgets for Board -->
+        <div id="boardRankingWidget" class="labs-ranking-widget-wrap" style="display: none;"></div>
+        <!-- Universal 3-Way Sort Bar for Board -->
+        <div id="boardSortBar" class="labs-sort-bar-wrap"></div>
+
         <!-- DCInside Bottom Posts Table (Always Visible) -->
         <table class="post-table">
           <thead>
@@ -2152,6 +2452,15 @@
     </div>
 
     <div class="remote-body" id="remoteBody">
+      <!-- Current Reading Post Ticker in Remote -->
+      <div class="remote-now-reading" id="remoteNowReading" style="display: none;" onclick="LabsApp.scrollToTop()" title="클릭 시 본문 맨 위로 스크롤">
+        <div class="remote-now-reading-tag">
+          <span class="reading-pulse-dot"></span>
+          <span id="remoteNowReadingTag">NOW READING</span>
+        </div>
+        <div class="remote-now-reading-title" id="remoteNowReadingTitle"></div>
+      </div>
+
       <!-- Top & Scroll Navigation -->
       <div class="remote-btn-group">
         <button type="button" class="remote-btn" onclick="LabsApp.scrollToTop()" title="맨 위로 스크롤">
@@ -2265,7 +2574,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v11_bitnet_pr633_and_enriched_triad_newsletter';
+    const STATE_VERSION = 'v12_ondevice_ai_7tier_and_bitnet_dynamic_activation';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -2733,7 +3042,18 @@
         comment_title: '댓글 토론',
         no_comments: '작성된 댓글이 없습니다.',
         ontology_title: '온톨로지 지식 태그 (Knowledge Graph & Vector Tags)',
-        ontology_guide: '# 태그를 클릭하여 관련 연구를 검색하세요'
+        ontology_guide: '# 태그를 클릭하여 관련 연구를 검색하세요',
+        // Ranking & Sort I18N
+        rank_top5_views: '🔥 실시간 조회수 TOP 5',
+        rank_top5_likes: '👍 최다 추천수 TOP 5',
+        rank_most_viewed: '최다 조회',
+        rank_most_liked: '최다 추천',
+        sort_label: '정렬',
+        sort_date: '작성일',
+        sort_views: '조회수',
+        sort_likes: '추천수',
+        now_reading_banner: '현재 열람 중:',
+        now_reading_ticker: 'NOW READING'
       },
       en: {
         menu: {
@@ -2790,7 +3110,18 @@
         comment_title: 'Discussion & Comments',
         no_comments: 'No comments yet.',
         ontology_title: 'Ontology Knowledge Tags (Knowledge Graph & Vector Tags)',
-        ontology_guide: '# Click tags to explore related research'
+        ontology_guide: '# Click tags to explore related research',
+        // Ranking & Sort I18N
+        rank_top5_views: '🔥 Most Viewed TOP 5',
+        rank_top5_likes: '👍 Most Recommended TOP 5',
+        rank_most_viewed: 'Most Viewed',
+        rank_most_liked: 'Most Liked',
+        sort_label: 'Sort by',
+        sort_date: 'Date',
+        sort_views: 'Views',
+        sort_likes: 'Likes',
+        now_reading_banner: 'NOW READING:',
+        now_reading_ticker: 'NOW READING'
       }
     };
 
@@ -2803,6 +3134,9 @@
       handbookPosts: [],
       activePostId: null,
       activeSlot: 'anal',
+      activeSortKey: 'date', // 'date' | 'views' | 'likes'
+      activeSortOrder: 'desc', // 'desc' | 'asc'
+      currentReadingPost: null,
       currentLang: localStorage.getItem('labs_lang') || 'ko',
       currentPostData: null,
       adjacentPrevId: null,
@@ -3011,6 +3345,180 @@
         } else {
           this.activeBoardFilter = menuId;
           await this.renderBoardView(menuId);
+        }
+      },
+
+      // ── Common Templates: 3-Way Sorting & Top 5 Ranking Widgets ────────────
+      setSort(key) {
+        if (this.activeSortKey === key) {
+          this.activeSortOrder = (this.activeSortOrder === 'desc') ? 'asc' : 'desc';
+        } else {
+          this.activeSortKey = key;
+          this.activeSortOrder = 'desc';
+        }
+        // Re-render currently active view
+        const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal' };
+        if (curMenu.board_type === 'board' || curMenu.board_type === 'blog') {
+          this.renderBoardView(this.activeBoardFilter);
+        } else if (curMenu.board_type === 'anal') {
+          this.renderAnalView();
+        }
+      },
+
+      applySort(posts) {
+        if (!posts || !Array.isArray(posts)) return [];
+        const isDesc = (this.activeSortOrder === 'desc');
+        return posts.slice().sort((a, b) => {
+          let diff = 0;
+          if (this.activeSortKey === 'views') {
+            diff = (b.view_count || 0) - (a.view_count || 0);
+          } else if (this.activeSortKey === 'likes') {
+            diff = (b.like_count || 0) - (a.like_count || 0);
+          } else {
+            // date
+            const tA = new Date(a.created_at || 0).getTime();
+            const tB = new Date(b.created_at || 0).getTime();
+            diff = tB - tA;
+          }
+          if (diff === 0) {
+            diff = (b.id || 0) - (a.id || 0);
+          }
+          return isDesc ? diff : -diff;
+        });
+      },
+
+      renderSortBar(containerId, totalCount) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+        const makeSortBtn = (key, label) => {
+          const isAct = (this.activeSortKey === key);
+          const arrow = isAct ? (this.activeSortOrder === 'desc' ? '↓' : '↑') : '';
+          return `
+            <button type="button" class="sort-btn ${isAct ? 'active' : ''}" onclick="LabsApp.setSort('${key}')">
+              <span>${label}</span>
+              ${isAct ? `<span class="sort-arrow">${arrow}</span>` : ''}
+            </button>
+          `;
+        };
+
+        container.innerHTML = `
+          <div class="sort-bar-left">
+            <span class="sort-bar-label">⚙️ ${dict.sort_label}:</span>
+            <div class="sort-btn-group">
+              ${makeSortBtn('date', dict.sort_date)}
+              ${makeSortBtn('views', dict.sort_views)}
+              ${makeSortBtn('likes', dict.sort_likes)}
+            </div>
+          </div>
+          <div class="sort-count-badge">
+            ${dict.total_posts(totalCount)}
+          </div>
+        `;
+        container.style.display = 'flex';
+      },
+
+      renderTop5RankingWidget(containerId, posts) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (!posts || posts.length === 0) {
+          container.style.display = 'none';
+          container.innerHTML = '';
+          return;
+        }
+
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+        // Top 5 by Views
+        const topViews = posts.slice()
+          .sort((a, b) => ((b.view_count || 0) - (a.view_count || 0)) || (b.id - a.id))
+          .slice(0, 5);
+
+        // Top 5 by Likes
+        const topLikes = posts.slice()
+          .sort((a, b) => ((b.like_count || 0) - (a.like_count || 0)) || (b.id - a.id))
+          .slice(0, 5);
+
+        const renderItems = (list, type) => {
+          return list.map((item, idx) => {
+            const rankClass = idx === 0 ? 'rank-1' : (idx === 1 ? 'rank-2' : (idx === 2 ? 'rank-3' : 'rank-other'));
+            const title = (isEn && item.title_eng) ? item.title_eng : item.title;
+            const statText = type === 'views'
+              ? `👁️ ${item.view_count || 0}`
+              : `👍 ${item.like_count || 0}`;
+            const statClass = type === 'views' ? 'views' : 'likes';
+            return `
+              <div class="ranking-item" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(title)}">
+                <span class="ranking-num ${rankClass}">${idx + 1}</span>
+                <span class="ranking-item-title">${escapeHtml(title)}</span>
+                <span class="ranking-item-stat ${statClass}">${statText}</span>
+              </div>
+            `;
+          }).join('');
+        };
+
+        container.innerHTML = `
+          <div class="ranking-grid">
+            <div class="ranking-card">
+              <div class="ranking-header">
+                <div class="ranking-header-title">
+                  <span>${dict.rank_top5_views}</span>
+                </div>
+                <span class="ranking-badge-type">${dict.rank_most_viewed}</span>
+              </div>
+              <div class="ranking-list">
+                ${renderItems(topViews, 'views')}
+              </div>
+            </div>
+            <div class="ranking-card">
+              <div class="ranking-header">
+                <div class="ranking-header-title">
+                  <span>${dict.rank_top5_likes}</span>
+                </div>
+                <span class="ranking-badge-type">${dict.rank_most_liked}</span>
+              </div>
+              <div class="ranking-list">
+                ${renderItems(topLikes, 'likes')}
+              </div>
+            </div>
+          </div>
+        `;
+        container.style.display = 'block';
+      },
+
+      updateCurrentReadingIndicator(post) {
+        const isEn = (this.currentLang === 'en');
+        const dict = isEn ? LABS_I18N.en : LABS_I18N.ko;
+
+        // Bottom List Banner
+        const banner = document.getElementById('currentReadingBanner');
+        const bLabel = document.getElementById('currentReadingLabel');
+        const bTitle = document.getElementById('currentReadingTitle');
+        if (banner && bLabel && bTitle) {
+          if (post) {
+            bLabel.textContent = dict.now_reading_banner;
+            bTitle.textContent = (isEn && post.title_eng) ? post.title_eng : post.title;
+            banner.style.display = 'flex';
+          } else {
+            banner.style.display = 'none';
+          }
+        }
+
+        // Remote Ticker
+        const remoteTicker = document.getElementById('remoteNowReading');
+        const remoteTag = document.getElementById('remoteNowReadingTag');
+        const remoteTitle = document.getElementById('remoteNowReadingTitle');
+        if (remoteTicker && remoteTag && remoteTitle) {
+          if (post) {
+            remoteTag.textContent = dict.now_reading_ticker;
+            remoteTitle.textContent = (isEn && post.title_eng) ? post.title_eng : post.title;
+            remoteTicker.style.display = 'block';
+          } else {
+            remoteTicker.style.display = 'none';
+          }
         }
       },
 

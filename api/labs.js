@@ -79,7 +79,7 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v23_perf_boost_and_fast_lookup';
+  const SEED_VERSION = 'v24_ondevice_ai_7tier_and_bitnet_dynamic_activation';
   try {
     // ── Ultra-Fast Validation Gate (1 lightweight check skips 17 DDL/DML roundtrips) ──
     try {
