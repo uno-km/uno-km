@@ -135932,7 +135932,11 @@ function normalizeKanbanCode(n) {
 function sanitizeMarkdown(n) {
 	if (!n) return "";
 	let r = n;
-	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
+	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/₩([a-zA-Z]+)/g, (n, r) => "\\" + r), r = r.replace(/\\longleftr[\s\S]*?ightarrow/g, "\\longleftrightarrow"), r = r.replace(/\\longleftrightarrow/g, "\\longleftrightarrow"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r = r.replace(/\\text\{kv_cache\}/g, "\\text{kv\\_cache}"), r = r.replace(/mathcal\{O\}left\(/g, "\\mathcal{O}\\left("), r = r.replace(/\\cdot\s+left\(/g, "\\cdot \\left("), r = r.replace(/\+\s+left\(/g, "+ \\left("), r = r.replace(/[\u0007•]lpha/g, "\\alpha"), r = r.replace(/[\u0007•]pprox/g, "\\approx"), r = r.replace(/\\u0007pprox/g, "\\approx"), r = r.replace(/\\u0007lpha/g, "\\alpha"), r = r.replace(/[\u0008]eta/g, "\\beta"), r = r.replace(/[\u0008]ar\{/g, "\\bar{"), r = r.replace(/[\u000b?]ec\{/g, "\\vec{"), r = r.replace(/[\u000c♀]rac\{/g, "\\frac{"), r = r.replace(/\t(?:imes|\\times)/g, " \\times "), r = r.replace(/(?<=\s|\d|\)|\])imes\b/g, " \\times"), r = r.replace(/\t(?:ext|\\text)/g, "\\text"), r = r.replace(/\t(?:au|\\tau)/g, "\\tau"), r = r.replace(/\t(?:heta|\\theta)/g, "\\theta"), r = r.replace(/\bext\{/g, "\\text{"), r = r.replace(/\bau_([a-zA-Z0-9_{}]+)/g, "\\tau_$1"), r = r.replace(/(?<=\s|\(|\$|^)rac\{/g, "\\frac{"), r = r.replace(/(?<=[\r\n\s$]|^)ightarrow/g, "\\rightarrow"), r = r.replace(/(?<=\\left[([{|.]\s*[^]*?)(?:\r\n|\r|\n|\s)+ight([)\]}|.])/g, " \\right$1"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\bcdot\b/g, "\\cdot"), r = r.replace(/\bquad\b/g, "\\quad"), r = r.replace(/\bsum\b/g, "\\sum"), r = r.replace(/\bland\b/g, "\\land"), r = r.replace(/\bsim\b/g, "\\sim"), r;
+}
+function cleanTexFormula(n) {
+	let r = n.trim();
+	return r = r.replace(/\\\\([a-zA-Z]+)/g, (n, r) => "\\" + r), r;
 }
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
@@ -135946,7 +135950,8 @@ function buildSegments(n) {
 	a = a.replace(/\$\$([\s\S]+?)\$\$/g, (n, r) => {
 		let a = d.length, o = "";
 		try {
-			o = katex.renderToString(r.trim(), {
+			let n = cleanTexFormula(r);
+			o = katex.renderToString(n, {
 				displayMode: !0,
 				throwOnError: !1
 			});
@@ -135958,7 +135963,8 @@ function buildSegments(n) {
 		if (/^\s*\d+([.,]\d+)?\s*$/.test(a) || /^\s*$/.test(a) || a.includes(l)) return n;
 		let o = d.length, p = "";
 		try {
-			p = katex.renderToString(a.trim(), {
+			let n = cleanTexFormula(a);
+			p = katex.renderToString(n, {
 				displayMode: !1,
 				throwOnError: !1
 			});
