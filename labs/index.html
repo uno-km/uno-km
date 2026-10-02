@@ -44,9 +44,9 @@
        ========================================================================== */
     body {
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: subpixel-antialiased;
+      -moz-osx-font-smoothing: auto;
+      text-rendering: geometricPrecision;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
       background-color: var(--bg-main, #ffffff);
       color: var(--text-main, #0f172a);
@@ -367,18 +367,11 @@
     @keyframes transformerAssemble {
       0% {
         opacity: 0;
-        transform: translateY(14px) scale(0.985);
-        filter: blur(3px);
-      }
-      65% {
-        opacity: 0.95;
-        transform: translateY(-2px) scale(1.002);
-        filter: blur(0px);
+        transform: translateY(6px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: none;
+        transform: none;
       }
     }
 
@@ -388,32 +381,47 @@
     }
 
     .transformer-part {
-      will-change: transform, opacity;
+      /* Zero persistent will-change: guarantees 100% crisp subpixel ClearType rendering */
     }
 
     .transformer-active .transformer-part-header {
-      animation: transformerAssemble 0.28s cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+      animation: transformerAssemble 0.22s cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
     }
     .transformer-active .transformer-part-toc {
-      animation: transformerAssemble 0.32s cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+      animation: transformerAssemble 0.24s cubic-bezier(0.16, 1, 0.3, 1) 30ms both;
     }
     .transformer-active .transformer-part-toolbar {
-      animation: transformerAssemble 0.30s cubic-bezier(0.16, 1, 0.3, 1) 70ms both;
+      animation: transformerAssemble 0.24s cubic-bezier(0.16, 1, 0.3, 1) 50ms both;
     }
     .transformer-active .transformer-part-body {
-      animation: transformerAssemble 0.36s cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
+      animation: transformerAssemble 0.26s cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
     }
     .transformer-active .transformer-part-tags {
-      animation: transformerAssemble 0.32s cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
+      animation: transformerAssemble 0.26s cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
     }
     .transformer-active .transformer-part-pager {
-      animation: transformerAssemble 0.34s cubic-bezier(0.16, 1, 0.3, 1) 210ms both;
+      animation: transformerAssemble 0.28s cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
     }
     .transformer-active .transformer-part-table {
-      animation: transformerAssemble 0.34s cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+      animation: transformerAssemble 0.28s cubic-bezier(0.16, 1, 0.3, 1) 170ms both;
     }
     .transformer-active .transformer-part-comments {
-      animation: transformerAssemble 0.35s cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
+      animation: transformerAssemble 0.30s cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+    }
+
+    /* ── AmevaViewer Crystal-Clear Text Rendering (Anti-Blur DirectWrite ClearType) ── */
+    #analViewerBody,
+    #newsViewerBody,
+    #boardViewerBody,
+    .news-body-container,
+    .transformer-part-body,
+    .ameva-viewer-root {
+      transform: none !important;
+      filter: none !important;
+      will-change: auto !important;
+      -webkit-font-smoothing: subpixel-antialiased !important;
+      -moz-osx-font-smoothing: auto !important;
+      text-rendering: geometricPrecision !important;
     }
 
     .transformer-scan-line {
@@ -4012,6 +4020,9 @@
         detailView.classList.remove('transformer-active');
         void detailView.offsetWidth; // Force CSS repaint
         detailView.classList.add('transformer-active');
+        setTimeout(() => {
+          detailView.classList.remove('transformer-active');
+        }, 350);
 
         // Trigger Cyber Scan Sweep
         const scanLine = document.getElementById('transformerScanLine');
