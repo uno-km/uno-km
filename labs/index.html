@@ -2161,7 +2161,7 @@
     const SEED_MENUS = [
       { id: 'newsletter', name: '뉴스레터', parent_id: null, depth: 0, sort_order: 1, board_type: 'news', description: '온디바이스 시스템 및 생태계 공식 엔지니어링 소식' },
       { id: 'research', name: '연구', parent_id: null, depth: 0, sort_order: 2, board_type: 'anal', description: '온디바이스 AI, Bionic 시스템 연구 및 벤치마크' },
-      { id: 'research-handbook', name: '안드로이드 시스템 핸드북', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '27개 전 강좌 및 330대 핵심 용어 해설집' },
+      { id: 'research-handbook', name: '안드로이드 시스템 핸드북', parent_id: 'research', depth: 1, sort_order: 1, board_type: 'anal', description: '29개 전 강좌 및 330대 핵심 용어 해설집' },
       { id: 'research-papers', name: '기술 연구 백서', parent_id: 'research', depth: 1, sort_order: 2, board_type: 'anal', description: 'GPU 셰이더 컴파일러, 16KB 페이지 호환 등 심층 기술 분석' },
       { id: 'research-benchmarks', name: '실기기 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 실기기 8대 모달리티 실측 성능 DB' },
       { id: 'research-cluster', name: '엣지 분산 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: '모바일 기기 분산 서버 구축 및 네트워크 연동' },
@@ -2171,7 +2171,7 @@
       { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
     ];
 
-    // 8 Core Handbook Curriculum Modules (27 Lectures SSOT)
+    // 8 Core Handbook Curriculum Modules (29 Lectures SSOT)
     const HANDBOOK_MODULES = [
       {
         num: 1,
@@ -2191,8 +2191,8 @@
         num: 3,
         title: '하드웨어 추상화 계층(HAL) 및 그래픽스',
         desc: 'HIDL에서 AIDL로의 진화, Gralloc 버퍼, Hardware Composer 및 SurfaceFlinger 16.6ms 락스텝',
-        range: '3.1 ~ 3.3',
-        chapters: ['3.1', '3.2', '3.3']
+        range: '3.1 ~ 3.5',
+        chapters: ['3.1', '3.2', '3.3', '3.4', '3.5']
       },
       {
         num: 4,
@@ -2219,8 +2219,8 @@
         num: 7,
         title: '유저스페이스 툴체인 및 특권 획득',
         desc: 'Termux Bionic libc 해부학, ADB AID_SHELL UID 2000, Shizuku AIDL 데몬 아키텍처',
-        range: '7.1 ~ 7.4',
-        chapters: ['7.1', '7.2', '7.3', '7.4']
+        range: '7.1 ~ 7.5',
+        chapters: ['7.1', '7.2', '7.3', '7.4', '7.5']
       },
       {
         num: 8,
@@ -2954,7 +2954,7 @@
 
         let pillsHtml = `
           <button class="hb-mod-pill ${this.activeHandbookModule === 0 ? 'active' : ''}" onclick="LabsApp.filterHandbookModule(0)">
-            전체 강좌 <span class="hb-pill-count">27</span>
+            전체 강좌 <span class="hb-pill-count">29</span>
           </button>
         `;
 
@@ -2973,7 +2973,7 @@
               <span>📚 안드로이드 시스템 엔지니어링 마스터 커리큘럼</span>
             </div>
             <div class="hb-curriculum-stats">
-              8대 핵심 모듈 · 총 27개 전문 강좌 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
+              8대 핵심 모듈 · 총 29개 전문 강좌 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
             </div>
           </div>
           <div class="hb-curriculum-pills">
@@ -2998,7 +2998,7 @@
         const curriculumNav = document.getElementById('handbookCurriculumNav');
 
         if (topBadge) {
-          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (27 LECTURES)';
+          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (29 LECTURES)';
           else if (this.activeMenuId === 'research-papers') topBadge.textContent = 'TECHNICAL PAPERS & MONOGRAPHS';
           else if (this.activeMenuId === 'research-benchmarks') topBadge.textContent = 'FLEET BENCHMARK LAB (S25~S7 DB)';
           else if (this.activeMenuId === 'research-cluster') topBadge.textContent = 'EDGE CLUSTER ORCHESTRATION';
