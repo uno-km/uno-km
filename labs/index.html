@@ -1774,9 +1774,10 @@
       <div id="viewNews" style="display: none;">
         <div class="news-reader-card" id="newsletterCard">
           <div class="news-nav-bar">
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
               <span class="board-badge badge-news" id="newsVolBadge">VOL. 2 (최신호)</span>
               <strong id="newsNavTitle" style="font-size: 1.05rem; color: var(--text-bright);"></strong>
+              <span id="newsNavTitleSub" style="font-size: 0.82rem; color: var(--text-muted); display: none;"></span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <button type="button" class="btn-action btn-secondary btn-wide-toggle" id="newsWideToggle" onclick="LabsApp.toggleWideMode('news')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
@@ -1801,12 +1802,14 @@
                 <span class="brand-by">by AMEVA Workstation</span>
                 <span class="brand-arrow">↗</span>
               </a>
-              <button type="button" class="btn-theme-chip btn-wide-toggle" id="newsWideToggle" onclick="LabsApp.toggleWideMode('news')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
+              <button type="button" class="btn-theme-chip btn-wide-toggle" id="newsToolbarWideToggle" onclick="LabsApp.toggleWideMode('news')" title="너비 전환 (980px ↔ 1440px)"><span class="wide-icon">⤢</span> <span class="wide-text">와이드</span></button>
             </div>
-            <div style="display: flex; gap: 6px;">
+            <div style="display: flex; gap: 6px; align-items: center;">
               <button type="button" class="btn-theme-chip active" id="newsThemeDark" onclick="LabsApp.setDetailTheme('dark', 'news')">Cyber Dark</button>
               <button type="button" class="btn-theme-chip" id="newsThemeWhite" onclick="LabsApp.setDetailTheme('white', 'news')">Light</button>
               <button type="button" class="btn-theme-chip" id="newsThemeRetro" onclick="LabsApp.setDetailTheme('retro', 'news')">Retro Win98</button>
+              <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.15); margin: 0 4px;"></div>
+              <button type="button" class="btn-theme-chip btn-lang-toggle" id="newsLangToggle" onclick="LabsApp.toggleLanguage('news')" title="언어 전환 (KO ↔ EN)"><span class="lang-icon">🌐</span> <span class="lang-text">English (EN)</span></button>
             </div>
           </div>
 
@@ -2786,14 +2789,18 @@
           return;
         }
 
+        const isEn = (this.currentLang === 'en');
         const selectEl = document.getElementById('newsEditionSelect');
-        selectEl.innerHTML = '';
-        this.newsletters.forEach((item, idx) => {
-          const opt = document.createElement('option');
-          opt.value = idx;
-          opt.textContent = `Vol. ${this.newsletters.length - idx} - ${item.title.substring(0, 24)}...`;
-          selectEl.appendChild(opt);
-        });
+        if (selectEl) {
+          selectEl.innerHTML = '';
+          this.newsletters.forEach((item, idx) => {
+            const opt = document.createElement('option');
+            opt.value = idx;
+            const itTitle = (isEn && item.title_eng) ? item.title_eng : item.title;
+            opt.textContent = `Vol. ${this.newsletters.length - idx} - ${itTitle.substring(0, 24)}...`;
+            selectEl.appendChild(opt);
+          });
+        }
 
         this.newsletterIndex = 0;
         this.displayActiveNewsletter();
@@ -2808,17 +2815,50 @@
         this.recordRecentRead(item);
         this.updateLikeButtonUI('news', item.like_count || 0, this.isPostLiked(item.id));
 
+        const isEn = (this.currentLang === 'en');
         const volNum = this.newsletters.length - this.newsletterIndex;
-        const isLatest = (this.newsletterIndex === 0) ? ' (최신호)' : '';
+        const isLatest = (this.newsletterIndex === 0) ? (isEn ? ' (Latest)' : ' (최신호)') : '';
         document.getElementById('newsVolBadge').textContent = `VOL. ${volNum}${isLatest}`;
-        document.getElementById('newsNavTitle').textContent = item.title;
+
+        const titleEl = document.getElementById('newsNavTitle');
+        const subTitleEl = document.getElementById('newsNavTitleSub');
+        if (isEn && item.title_eng) {
+          titleEl.textContent = item.title_eng;
+          if (subTitleEl) {
+            subTitleEl.textContent = `[원문: ${item.title}]`;
+            subTitleEl.style.display = 'inline';
+          }
+        } else {
+          titleEl.textContent = item.title;
+          if (subTitleEl) {
+            if (item.title_eng) {
+              subTitleEl.textContent = `[EN: ${item.title_eng}]`;
+              subTitleEl.style.display = 'inline';
+            } else {
+              subTitleEl.style.display = 'none';
+            }
+          }
+        }
+
         document.getElementById('newsAuthor').textContent = item.author;
         document.getElementById('newsDate').textContent = (item.created_at || '').substring(0, 10);
         const newsViews = (item.view_count !== undefined && item.view_count !== null) ? Number(item.view_count) : 0;
         const newsLikes = (item.like_count !== undefined && item.like_count !== null) ? Number(item.like_count) : 0;
         document.getElementById('newsViews').textContent = newsViews;
         document.getElementById('newsLikes').textContent = newsLikes;
-        document.getElementById('newsEditionSelect').value = this.newsletterIndex;
+
+        const editionSelect = document.getElementById('newsEditionSelect');
+        if (editionSelect) {
+          editionSelect.innerHTML = '';
+          this.newsletters.forEach((it, idx) => {
+            const opt = document.createElement('option');
+            opt.value = idx;
+            const itTitle = (isEn && it.title_eng) ? it.title_eng : it.title;
+            opt.textContent = `Vol. ${this.newsletters.length - idx} - ${itTitle.substring(0, 24)}...`;
+            editionSelect.appendChild(opt);
+          });
+          editionSelect.value = this.newsletterIndex;
+        }
 
         const dotsContainer = document.getElementById('newsDotsContainer');
         dotsContainer.innerHTML = '';
@@ -2835,7 +2875,8 @@
           if (btn) btn.classList.toggle('active', t === curTheme);
         });
 
-        this.mountAmevaViewer('news', '#newsViewerBody', item.content || '');
+        const targetContent = (isEn && item.content_eng && item.content_eng.trim()) ? item.content_eng : (item.content || '');
+        this.mountAmevaViewer('news', '#newsViewerBody', targetContent);
       },
 
       prevNewsletter() {
@@ -3594,6 +3635,12 @@
           this.store.getPost(this.activePostId).then(post => {
             if (post) this.renderDetailContentForLang(post);
           });
+        }
+
+        // Re-render active newsletter if newsletter view is currently visible
+        const newsView = document.getElementById('viewNews');
+        if (newsView && newsView.style.display !== 'none' && this.newsletters && this.newsletters.length > 0) {
+          this.displayActiveNewsletter();
         }
 
         const analFeedList = document.getElementById('analFeedList');
