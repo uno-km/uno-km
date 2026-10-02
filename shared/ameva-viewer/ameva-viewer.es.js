@@ -50692,14 +50692,32 @@ function useSQLRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/javaWorker.ts?worker&inline
+var jsContent$7 = "(function(){let e=[],t=[],n={out:{print:function(...t){let n=t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `);e.length>0&&!e[e.length-1].endsWith(`\n`)?e[e.length-1]+=n:e.push(n)},println:function(...t){let n=t.length===0?``:t.map(e=>typeof e==`object`?e===null?`null`:JSON.stringify(e,null,2):String(e)).join(` `);e.push(n)},printf:function(t,...n){let r=0,i=String(t).replace(/%[sdfn]/g,e=>e===`%n`?`\n`:r<n.length?String(n[r++]):e);e.push(i)}},err:{print:function(...e){let n=e.map(e=>String(e)).join(` `);t.push(n)},println:function(...e){let n=e.length===0?``:e.map(e=>String(e)).join(` `);t.push(n)}},currentTimeMillis:function(){return Date.now()},nanoTime:function(){return Math.floor(performance.now()*1e6)},arraycopy:function(e,t,n,r,i){for(let a=0;a<i;a++)n[r+a]=e[t+a]}};var r=class extends Array{add(e){return this.push(e),!0}get(e){return this[e]}set(e,t){let n=this[e];return this[e]=t,n}remove(e){if(typeof e==`number`)return this.splice(e,1)[0];let t=this.indexOf(e);return t>=0?(this.splice(t,1),!0):!1}size(){return this.length}isEmpty(){return this.length===0}contains(e){return this.includes(e)}clear(){this.length=0}},i=class extends Map{put(e,t){return this.set(e,t),t}get(e){return super.get(e)===void 0?null:super.get(e)}containsKey(e){return this.has(e)}remove(e){let t=this.get(e);return this.delete(e),t}size(){return super.size}isEmpty(){return super.size===0}keySet(){return Array.from(this.keys())}values(){return Array.from(super.values())}},a=class extends Set{add(e){return super.add(e),this}contains(e){return this.has(e)}remove(e){return this.delete(e)}size(){return super.size}isEmpty(){return super.size===0}},o=class{buffer;constructor(e=``){this.buffer=[String(e)]}append(e){return this.buffer.push(String(e)),this}insert(e,t){let n=this.toString();return this.buffer=[n.slice(0,e)+String(t)+n.slice(e)],this}delete(e,t){let n=this.toString();return this.buffer=[n.slice(0,e)+n.slice(t)],this}reverse(){let e=this.toString().split(``).reverse().join(``);return this.buffer=[e],this}length(){return this.toString().length}toString(){return this.buffer.join(``)}};let s={toString:function(e){return JSON.stringify(e)},sort:function(e){return Array.isArray(e)&&e.sort((e,t)=>e-t),e},equals:function(e,t){return JSON.stringify(e)===JSON.stringify(t)},fill:function(e,t){return Array.isArray(e)&&e.fill(t),e}},c={sort:function(e){Array.isArray(e)&&e.sort((e,t)=>typeof e==`string`?e.localeCompare(t):e-t)},reverse:function(e){Array.isArray(e)&&e.reverse()},max:function(e){return Math.max(...e)},min:function(e){return Math.min(...e)}};if([`fetch`,`XMLHttpRequest`,`importScripts`,`WebSocket`,`EventSource`].forEach(e=>{try{Object.defineProperty(self,e,{get(){throw Error(`[SECURITY ERROR] `+e+` 접근이 거부되었습니다.`)},configurable:!1})}catch{}}),self.navigator)try{self.navigator.sendBeacon=void 0}catch{}function l(e){let t=e;return t=t.replace(/\\bpackage\\s+[a-zA-Z0-9_.]+;/g,``),t=t.replace(/\\bimport\\s+[a-zA-Z0-9_.*]+;/g,``),t=t.replace(/\\b(public|private|protected|final|abstract|synchronized|transient|volatile)\\b/g,` `),t=t.replace(/throw\\s+new\\s+(?:RuntimeException|Exception|IllegalArgumentException|IllegalStateException|NullPointerException)\\s*\\(([^)]*)\\)/g,`throw new Error($1)`),t=t.replace(/\\b(?:int|long|double|float|boolean|char|byte|short|String|Object)\\s*\\[\\s*\\]\\s*([a-zA-Z0-9_]+)\\s*=\\s*\\{([^}]+)\\};/g,`let $1 = [$2];`),t=t.replace(/new\\s+(?:int|long|double|float|boolean|char|byte|short|String|Object)\\s*\\[\\s*\\]\\s*\\{([^}]+)\\}/g,`[$1]`),t=t.replace(/\\bnew\\s+(?:int|long|double|float|boolean|char|byte|short|String|Object)\\s*\\[\\s*(\\d+)\\s*\\]/g,`new Array($1).fill(0)`),t=t.replace(/\\b(?:int|long|double|float|boolean|char|byte|short|String|Integer|Double|Float|Long|Boolean|Character|Byte|Short|Object|var)\\s+([a-zA-Z0-9_]+)\\s*=/g,`let $1 =`),t=t.replace(/\\b(?:int|long|double|float|boolean|char|byte|short|String|Integer|Double|Float|Long|Boolean|Character|Byte|Short|Object|var)\\s+([a-zA-Z0-9_]+)\\s*;/g,`let $1;`),t=t.replace(/\\b([A-Z][a-zA-Z0-9_]*)(?:<[^>]*>)?\\s+([a-zA-Z0-9_]+)\\s*=/g,`let $2 =`),t=t.replace(/\\b([A-Z][a-zA-Z0-9_]*)(?:<[^>]*>)?\\s+([a-zA-Z0-9_]+)\\s*;/g,`let $2;`),t=t.replace(/\\bnew\\s+([A-Z][a-zA-Z0-9_]*)\\s*<[^>]*>\\s*\\(/g,`new $1(`),t=t.replace(/for\\s*\\(\\s*(?:[a-zA-Z0-9_<>\\[\\]]+)\\s+([a-zA-Z0-9_]+)\\s*:\\s*([^)]+)\\)/g,`for (let $1 of $2)`),t=t.replace(/\\bstatic\\s+(?:void|[a-zA-Z0-9_<>\\[\\]]+)\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)\\s*(?:throws\\s+[^{]+)?\\{/g,(e,t,n)=>{if([`if`,`while`,`for`,`switch`,`catch`].includes(t))return e;let r=n.split(`,`).map(e=>e.trim().split(/\\s+/).pop()).filter(Boolean).join(`, `);return`static async `+t+`(`+r+`) {`}),t=t.replace(/(?<!static\\s+|async\\s+)\\b(?:void|int|long|double|float|boolean|char|byte|short|String|Object|[A-Z][a-zA-Z0-9_]*)\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)\\s*(?:throws\\s+[^{]+)?\\{/g,(e,t,n)=>{if([`if`,`while`,`for`,`switch`,`catch`,`class`,`static`,`async`].includes(t))return e;let r=n.split(`,`).map(e=>e.trim().split(/\\s+/).pop()).filter(Boolean).join(`, `);return`async `+t+`(`+r+`) {`}),t=t.replace(/\\.equals\\(([^)]+)\\)/g,` === $1`),t=t.replace(/\\.length\\(\\)/g,`.length`),t+=`\n;if (typeof main === \"function\") { await main([]); } else if (typeof Main !== \"undefined\" && typeof Main.main === \"function\") { await Main.main([]); } else if (typeof Main !== \"undefined\") { const _inst = new Main(); if (typeof _inst.main === \"function\") await _inst.main([]); }\n`,t}self.onmessage=async function(u){e.length=0,t.length=0;let d=u.data||``;try{let u=l(d);await Function(`System`,`ArrayList`,`HashMap`,`HashSet`,`StringBuilder`,`Arrays`,`Collections`,`return (async () => { `+u+` })()`)(n,r,i,a,o,s,c);let f=e.join(`\n`),p=t.join(`\n`),m=p?f?f+`\n`+p:p:f;self.postMessage({success:t.length===0,output:m||(t.length===0?`(실행 완료 - 출력 없음)`:p)})}catch(e){self.postMessage({success:!1,output:`[Java Runtime Error] `+(e.message||String(e))})}}})();", blob$7 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$7], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$8(n) {
+	let r;
+	try {
+		if (r = blob$7 && (self.URL || self.webkitURL).createObjectURL(blob$7), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$7), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useJavaRuntime.ts
 function getOrCreateJavaWorker() {
 	if (RuntimeState.javaWorker) return RuntimeState.javaWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/javaWorker-OY5Vycmq.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$8();
+	} catch (r) {
+		console.warn("[Java Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/javaWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.javaWorker = n, n;
 }
 function useJavaRuntime() {
@@ -50758,14 +50776,32 @@ ${r}
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/bashWorker.ts?worker&inline
+var jsContent$6 = "(function(){let e={\"/\":{home:{user:{projects:{\"README.md\":`# AMEVA Virtual Shell Workspace\nReady for scripting.`,\"app.sh\":`#!/bin/bash\necho \"App initialized successfully.\"`}}},etc:{\"os-release\":`NAME=\"AMEVA OS Web\"\nVERSION=\"0.8.20\"\nID=ameva\nPRETTY_NAME=\"AMEVA Workstation OS\"`}}},t=`/home/user`,n={USER:`ameva`,HOME:`/home/user`,SHELL:`/bin/bash`,PATH:`/bin:/usr/bin:/usr/local/bin`,TERM:`xterm-256color`,PWD:t};function r(e){return e.startsWith(`/`)?e:e===`~`||e.startsWith(`~/`)?e.replace(`~`,`/home/user`):(t===`/`?``:t)+`/`+e}function i(t){let n=r(t).split(`/`).filter(Boolean),i=e[`/`];for(let e of n){if(!i||typeof i!=`object`)return null;i=i[e]}return i}function a(e){let o=e.trim();if(!o||o.startsWith(`#`))return{output:``,exitCode:0};let s=o.replace(/\\$\\{?([a-zA-Z0-9_]+)\\}?/g,(e,t)=>n[t]===void 0?``:n[t]);s=s.replace(/\\$\\(([^)]+)\\)|`([^`]+)`/g,(e,t,n)=>a(t||n).output.trim());let c=s.split(/\\s+/),l=c[0],u=c.slice(1);switch(l){case`echo`:return{output:u.join(` `),exitCode:0};case`pwd`:return{output:t,exitCode:0};case`whoami`:return{output:n.USER||`ameva`,exitCode:0};case`uname`:return u.includes(`-a`)?{output:`Linux ameva-workstation 6.6.0-wasm #1 SMP PREEMPT WebAssembly x86_64 GNU/Linux`,exitCode:0}:{output:`Linux`,exitCode:0};case`date`:return{output:new Date().toUTCString(),exitCode:0};case`ls`:{let e=u.find(e=>!e.startsWith(`-`))||t,n=i(e);if(n&&typeof n==`object`){let e=Object.keys(n);if(u.includes(`-la`)||u.includes(`-l`)){let t=e.map(e=>`${typeof n[e]==`object`?`drwxr-xr-x`:`-rw-r--r--`} 1 ameva ameva 4096 Sep 02 12:00 ${e}`);return{output:`total ${e.length}\\n${t.join(`\n`)}`,exitCode:0}}return{output:e.join(`  `),exitCode:0}}return{output:`ls: cannot access '${e}': No such file or directory`,exitCode:1}}case`cat`:{let e=u[0];if(!e)return{output:`cat: missing file operand`,exitCode:1};let t=i(e);return typeof t==`string`?{output:t,exitCode:0}:typeof t==`object`?{output:`cat: ${e}: Is a directory`,exitCode:1}:{output:`cat: ${e}: No such file or directory`,exitCode:1}}case`cd`:{let e=u[0]||`/home/user`,a=r(e),o=i(a);return o&&typeof o==`object`?(t=a,n.PWD=t,{output:``,exitCode:0}):{output:`cd: ${e}: No such file or directory`,exitCode:1}}case`export`:{let[e,t]=u.join(` `).split(`=`);return e&&t!==void 0&&(n[e.trim()]=t.replace(/^[\"']|[\"']$/g,``).trim()),{output:``,exitCode:0}}case`env`:return{output:Object.entries(n).map(([e,t])=>`${e}=${t}`).join(`\n`),exitCode:0};case`clear`:return{output:``,exitCode:0};default:return{output:`[Virtual Shell] ${l}: command executed (virtual exit 0)`,exitCode:0}}}function o(e){let t=e.split(`\n`),r=[],i=!0,o=!1,s=``,c=[],l=[];for(let e=0;e<t.length;e++){let u=t[e].trim();if(!u||u.startsWith(`#`))continue;let d=u.match(/^for\\s+([a-zA-Z0-9_]+)\\s+in\\s+(.+?)(?:;\\s*do)?$/);if(d){o=!0,s=d[1],c=d[2].replace(/;.*$/,``).split(/\\s+/).filter(Boolean),l=[];continue}if(o){if(u===`do`)continue;if(u===`done`){o=!1;for(let e of c){n[s]=e;for(let e of l){let t=a(e);t.output&&r.push(t.output),t.exitCode!==0&&(i=!1)}}delete n[s];continue}l.push(u);continue}let f=a(u);f.output&&r.push(f.output),f.exitCode!==0&&(i=!1)}return{output:r.join(`\n`)||`(실행 완료 - 출력 없음)`,success:i}}self.onmessage=function(e){let t=e.data||``;try{let e=o(t);self.postMessage(e)}catch(e){self.postMessage({success:!1,output:`[Bash Runtime Error] `+(e.message||String(e))})}}})();", blob$6 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$6], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$7(n) {
+	let r;
+	try {
+		if (r = blob$6 && (self.URL || self.webkitURL).createObjectURL(blob$6), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$6), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useBashRuntime.ts
 function getOrCreateBashWorker() {
 	if (RuntimeState.bashWorker) return RuntimeState.bashWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/bashWorker-Clj-xstk.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$7();
+	} catch (r) {
+		console.warn("[Bash Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/bashWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.bashWorker = n, n;
 }
 function useBashRuntime() {
@@ -50809,14 +50845,32 @@ function useBashRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/luaWorker.ts?worker&inline
+var jsContent$5 = "(function(){let e=[];function t(e){let t=e;return t=t.replace(/--\\[\\[[\\s\\S]*?\\]\\]/g,``),t=t.replace(/--.*$/gm,``),t=t.replace(/\\s*\\.\\.\\s*/g,` + `),t=t.replace(/\\bprint\\s*\\(([\\s\\S]*?)\\)/g,`luaPrint($1)`),t=t.replace(/\\blocal\\s+([a-zA-Z0-9_,\\s]+)=/g,`let $1 =`),t=t.replace(/\\blocal\\s+([a-zA-Z0-9_]+)\\b/g,`let $1`),t=t.replace(/\\bnil\\b/g,`null`),t=t.replace(/~=/g,`!==`),t=t.replace(/\\band\\b/g,`&&`),t=t.replace(/\\bor\\b/g,`||`),t=t.replace(/\\bnot\\b/g,`!`),t=t.replace(/\\{([^{}]*)\\}/g,(e,t)=>t.includes(`=`)?`{ ${t.replace(/([a-zA-Z0-9_]+)\\s*=/g,`\"$1\":`)} }`:`[${t}]`),t=t.replace(/for\\s+([a-zA-Z0-9_]+)\\s*,\\s*([a-zA-Z0-9_]+)\\s+in\\s+ipairs\\(([^)]+)\\)\\s+do/g,`for (const [$1, $2] of ($3).entries()) {`),t=t.replace(/for\\s+([a-zA-Z0-9_]+)\\s*,\\s*([a-zA-Z0-9_]+)\\s+in\\s+pairs\\(([^)]+)\\)\\s+do/g,`for (const [$1, $2] of Object.entries($3)) {`),t=t.replace(/for\\s+([a-zA-Z0-9_]+)\\s*=\\s*([^,]+),\\s*([^,\\s]+)(?:,\\s*([^,\\s]+))?\\s+do/g,(e,t,n,r,i)=>`for (let ${t} = ${n}; ${t} <= ${r}; ${t} += ${i||`1`}) {`),t=t.replace(/\\bif\\s+(.+?)\\s+then/g,`if ($1) {`),t=t.replace(/\\belseif\\s+(.+?)\\s+then/g,`} else if ($1) {`),t=t.replace(/\\belse\\b/g,`} else {`),t=t.replace(/\\bfunction\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)/g,`function $1($2) {`),t=t.replace(/\\bend\\b/g,`}`),t}self.onmessage=async function(n){e.length=0;let r=n.data||``;try{let n=t(r),i=(...t)=>{e.push(t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(`	`))},a=Math;Function(`luaPrint`,`math`,`string`,`table`,n)(i,a,{len:e=>String(e).length,sub:(e,t,n)=>String(e).slice(t-1,n),upper:e=>String(e).toUpperCase(),lower:e=>String(e).toLowerCase()},{insert:(e,t)=>{Array.isArray(e)&&e.push(t)},concat:(e,t=``)=>Array.isArray(e)?e.join(t):``}),self.postMessage({success:!0,output:e.join(`\n`)||`(실행 완료 - 출력 없음)`})}catch(e){self.postMessage({success:!1,output:`[Lua Runtime Error] `+(e.message||String(e))})}}})();", blob$5 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$5], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$6(n) {
+	let r;
+	try {
+		if (r = blob$5 && (self.URL || self.webkitURL).createObjectURL(blob$5), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$5), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useLuaRuntime.ts
 function getOrCreateLuaWorker() {
 	if (RuntimeState.luaWorker) return RuntimeState.luaWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/luaWorker-p834Y3TE.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$6();
+	} catch (r) {
+		console.warn("[Lua Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/luaWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.luaWorker = n, n;
 }
 function useLuaRuntime() {
@@ -50860,14 +50914,32 @@ function useLuaRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/solidityWorker.ts?worker&inline
+var jsContent$4 = "(function(){function e(e){let t=[],n=e.match(/pragma\\s+solidity\\s+([^;]+);/),r=n?n[1].trim():`^0.8.20`,i=e.match(/contract\\s+([a-zA-Z0-9_]+)/);if(!i)return{output:`[Solidity Compiler Error] contract 선언을 찾을 수 없습니다. (contract Name { ... })`,success:!1};let a=i[1];t.push(`[Solidity EVM Compiler] Version: ${r}`),t.push(`[Contract Compiled] -> ${a}`),t.push(`[Gas Estimated] Deployment: ~142,500 gas | Execution: ~21,000 gas`),t.push(`--------------------------------------------------`);let o={contractName:a,variables:{},events:[],logs:[]},s=e.match(/string\\s+(?:public\\s+)?([a-zA-Z0-9_]+)\\s*=\\s*\"([^\"]*)\";/);s&&(o.variables[s[1]]=s[2]);let c=e.match(/(?:uint|uint256|int|int256)\\s+(?:public\\s+)?([a-zA-Z0-9_]+)\\s*=\\s*(\\d+);/);c&&(o.variables[c[1]]=parseInt(c[2],10));let l=e.match(/address\\s+(?:public\\s+)?([a-zA-Z0-9_]+)\\s*=\\s*(0x[a-fA-F0-9]{40});/);l?o.variables[l[1]]=l[2]:o.variables.owner=`0x71C...3a9 (msg.sender)`,t.push(`[EVM State Variables Initialized]:`);for(let[e,n]of Object.entries(o.variables))t.push(`  • ${e} (${typeof n}) = ${JSON.stringify(n)}`);let u=Array.from(e.matchAll(/function\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)\\s*(?:public|external|view|pure|\\s)*(?:returns\\s*\\(([^)]*)\\))?/g));if(u.length>0){t.push(`--------------------------------------------------`),t.push(`[EVM Exposed ABI Endpoints]:`);for(let e of u){let n=e[1],r=e[2].trim()||`void`,i=e[3]?` -> (${e[3].trim()})`:``;t.push(`  ▶ ${n}(${r})${i}`)}}return t.push(`--------------------------------------------------`),t.push(`[Transaction Result]: SUCCESS (Status: 0x1)`),t.push(`[Deployed Bytecode Size]: 1,284 bytes`),{output:t.join(`\n`),success:!0}}self.onmessage=function(t){let n=t.data||``;try{let t=e(n);self.postMessage(t)}catch(e){self.postMessage({success:!1,output:`[Solidity Runtime Error] `+(e.message||String(e))})}}})();", blob$4 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$4], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$5(n) {
+	let r;
+	try {
+		if (r = blob$4 && (self.URL || self.webkitURL).createObjectURL(blob$4), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$4), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useSolidityRuntime.ts
 function getOrCreateSolidityWorker() {
 	if (RuntimeState.solidityWorker) return RuntimeState.solidityWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/solidityWorker-BREG2u8U.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$5();
+	} catch (r) {
+		console.warn("[Solidity Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/solidityWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.solidityWorker = n, n;
 }
 function useSolidityRuntime() {
@@ -50911,14 +50983,32 @@ function useSolidityRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/cWorker.ts?worker&inline
+var jsContent$3 = "(function(){let e=[],t=new Set(`return.if.else.while.for.do.switch.case.break.continue.goto.default.typedef.struct.union.enum.static.const.constexpr.inline.extern.volatile.register.sizeof.typeof.true.false.null.nullptr`.split(`.`));function n(e){let n=e.replace(/\\r\\n/g,`\n`).trim();if(!n.includes(`;`)&&!n.includes(`{`)&&!n.includes(`(`))return`cPrintf(${JSON.stringify(n+`\n`)});`;let r=[];if(n=n.replace(/\"(?:[^\"\\\\]|\\\\.)*\"/g,e=>{let t=r.length;return r.push(e.replace(/\\n/g,`\\\\n`)),`__STR_TOKEN_${t}__`}),n=n.replace(/#include\\s*<[^>]+>/g,`// #include`),n=n.replace(/#include\\s*__STR_TOKEN_\\d+__/g,`// #include`),n=n.replace(/using\\s+namespace\\s+std;/g,`// using namespace std;`),n=n.replace(/^[ \\t]*#define\\s+([A-Za-z_][A-Za-z0-9_]*)\\s+([0-9xXxa-fA-F]+|__STR_TOKEN_\\d+__|true|false)\\s*$/gm,`const $1 = $2;`),n=n.replace(/^[ \\t]*#(?:if|ifdef|ifndef|elif|else|endif|pragma|error|warning|undef|define)\\b.*$/gm,`// preproc`),n=n.replace(/(?:typedef\\s+)?(?:struct|union|enum)\\s+[A-Za-z0-9_]*\\s*\\{[\\s\\S]*?\\}\\s*(?:[A-Za-z0-9_]+)?\\s*;/g,e=>`/* `+e.replace(/\\*\\//g,`* /`)+` */`),n=n.replace(/(?:struct|union|enum)\\s+[A-Za-z0-9_]+\\s*;/g,`// forward decl`),n=n.replace(/^[ \\t]*(?:extern\\s+)?(?:static\\s+)?(?:inline\\s+)?(?:void|int|char|long|float|double|uint\\w+|int\\w+|bool|size_t|[A-Za-z0-9_]+)\\s*\\*?\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\([^)]*\\)\\s*;/gm,`// decl: $1`),n=n.replace(/(?:static\\s+)?(?:constexpr|const)\\s+[A-Za-z0-9_*&]+\\s+([A-Za-z_][A-Za-z0-9_]*)(?:\\[[^\\]]*\\])?\\s*=\\s*\\{([^}]+)\\};/g,`const $1 = [$2];`),n=n.replace(/(?:static\\s+)?(?:constexpr|const)\\s+[A-Za-z0-9_*&]+\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*([^;]+);/g,`const $1 = $2;`),n=n.replace(/([a-zA-Z_][a-zA-Z0-9_]*)->([a-zA-Z_][a-zA-Z0-9_]*)/g,`$1?.$2`),n=n.replace(/\\bnullptr\\b/g,`null`),n=n.replace(/(?:std::)?cout\\s*<<\\s*([^;]+);/g,(e,t)=>`cPrint(${t.split(`<<`).map(e=>{let t=e.trim();return t===`std::endl`||t===`endl`?`\"\\\\n\"`:t}).join(`, `)});`),n=n.replace(/printf\\s*\\(\\s*(__STR_TOKEN_\\d+__)\\s*(?:,\\s*([^)]*))?\\);/g,(e,t,n)=>n?`cPrintf(${t}, ${n});`:`cPrintf(${t});`),/int\\s+main\\s*\\([^)]*\\)\\s*\\{/.test(n)){let e=n.match(/int\\s+main\\s*\\([^)]*\\)\\s*\\{([\\s\\S]*)\\}/);if(e){let r=e[1];r=r.replace(/(?:struct\\s+)?\\b([A-Za-z_][A-Za-z0-9_]*)\\s*\\*\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*=/g,(e,n,r)=>t.has(n)||t.has(r)?e:`let ${r} =`),r=r.replace(/(?:struct\\s+)?\\b([A-Za-z_][A-Za-z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\\[[^\\]]*\\])+\\s*=\\s*\\{([^}]+)\\};/g,(e,n,r,i)=>t.has(n)||t.has(r)?e:`let ${r} = [${i}];`),r=r.replace(/(?:struct\\s+)?\\b([A-Za-z_][A-Za-z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*=\\s*([^;]+);/g,(e,n,r,i)=>t.has(n)||t.has(r)?e:`let ${r} = ${i};`),r=r.replace(/(?:struct\\s+)?\\b([A-Za-z_][A-Za-z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\\[[^\\]]*\\])?\\s*;/g,(e,n,r)=>t.has(n)||t.has(r)?e:`let ${r};`),r=r.replace(/\\breturn\\s+0\\s*;/g,`return;`),n=`async function main() {\n        try {\n          ${r}\n        } catch (_err) {\n          cPrintf('[Execution Note] ' + ((_err as any)?.message || String(_err)) + '\\\\n');\n        }\n      }\n      await main();`}}else n=n.replace(/\\b(?:int|long|float|double|char|short|unsigned|size_t|bool|uint\\d+_t|int\\d+_t)\\s*\\*?\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*=/g,`let $1 =`),n=n.replace(/\\breturn\\s+0\\s*;/g,`return;`),n=`(async () => {\n      try {\n        ${n}\n      } catch (_e) {\n        // Safe fallback\n      }\n    })()`;return n=n.replace(/__STR_TOKEN_(\\d+)__/g,(e,t)=>r[Number(t)]||`\"\"`),n}function r(e,t,n){let r=/printf\\s*\\(\\s*(\"[\\s\\S]*?\")\\s*(?:,\\s*([^)]*))?\\);|(?:std::)?cout\\s*<<\\s*([^;]+);/g,i,a=!1;for(;(i=r.exec(e))!==null;)if(i[1]){let e=i[1],n=i[2];try{let r=JSON.parse(e.replace(/\\n/g,`\\\\n`));n?t(r,...n.split(`,`).map(e=>e.trim().replace(/^\"/,``).replace(/\"$/,``))):t(r),a=!0}catch{t(e.slice(1,-1)),a=!0}}else i[3]&&(n(i[3].split(`<<`).map(e=>{let t=e.trim();return t===`std::endl`||t===`endl`?`\n`:t.startsWith(`\"`)&&t.endsWith(`\"`)?t.slice(1,-1):t}).join(``)),a=!0);return a}self.onmessage=async function(t){e.length=0;let i=t.data||``,a=(...t)=>{e.push(t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(``))},o=(t,...n)=>{let r=0,i=String(t).replace(/%[sdfncd%]/g,e=>e===`%%`?`%`:e===`%n`?`\n`:r<n.length?String(n[r++]):e).replace(/\\\\n/g,`\n`).replace(/\\\\t/g,`	`);e.push(i)};try{let t=n(i);await Function(`cPrint`,`cPrintf`,`return (async () => { `+t+` })()`)(a,o),self.postMessage({success:!0,output:e.join(``).trim()||(e.length>0?e.join(``):`(실행 완료 - 출력 없음)`)})}catch(t){r(i,o,a)&&e.length>0?self.postMessage({success:!0,output:e.join(``).trim()}):self.postMessage({success:!1,output:`[C/C++ Runtime Error] `+(t.message||String(t))})}}})();", blob$3 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$3], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$4(n) {
+	let r;
+	try {
+		if (r = blob$3 && (self.URL || self.webkitURL).createObjectURL(blob$3), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$3), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useCRuntime.ts
 function getOrCreateCWorker() {
 	if (RuntimeState.cWorker) return RuntimeState.cWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/cWorker-CaWhFkp-.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$4();
+	} catch (r) {
+		console.warn("[C Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/cWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.cWorker = n, n;
 }
 function useCRuntime() {
@@ -50962,14 +51052,32 @@ function useCRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/goWorker.ts?worker&inline
+var jsContent$2 = "(function(){let e=[];function t(e){let t=e;return t=t.replace(/\\bpackage\\s+[a-zA-Z0-9_]+;/g,``),t=t.replace(/\\bpackage\\s+[a-zA-Z0-9_]+/g,``),t=t.replace(/\\bimport\\s*\\([\\s\\S]*?\\)/g,``),t=t.replace(/\\bimport\\s+\"[^\"]+\"/g,``),t=t.replace(/\\bfunc\\s+main\\s*\\(\\s*\\)\\s*\\{/g,`async function main() {`),t=t.replace(/\\bfunc\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)\\s*(?:[a-zA-Z0-9_*<>[\\]\\s,()]+)?\\{/g,(e,t,n)=>`async function ${t}(${n.split(`,`).map(e=>e.trim().split(/\\s+/)[0]).filter(Boolean).join(`, `)}) {`),t=t.replace(/\\bfmt\\.Printf\\s*\\(\\s*(\".*?\")\\s*(?:,\\s*([^)]*))?\\);?/g,(e,t,n)=>n?`goPrintf(${t}, ${n});`:`goPrintf(${t});`),t=t.replace(/\\bfmt\\.Println\\s*\\(([^)\\r\\n]*)\\);?/g,`goPrintln($1);`),t=t.replace(/\\bfmt\\.Print\\s*\\(([^)\\r\\n]*)\\);?/g,`goPrint($1);`),t=t.replace(/\\[\\][a-zA-Z0-9_]+\\s*\\{([^}]*)\\}/g,`[$1]`),t=t.replace(/map\\[[a-zA-Z0-9_]+\\][a-zA-Z0-9_]+\\s*\\{([^}]*)\\}/g,`{$1}`),t=t.replace(/for\\s+([a-zA-Z0-9_]+)\\s*,\\s*([a-zA-Z0-9_]+)\\s*:=\\s*range\\s+([a-zA-Z0-9_.]+)\\s*\\{/g,`for (const [$1, $2] of ($3).entries()) {`),t=t.replace(/for\\s+([a-zA-Z0-9_]+)\\s*:=\\s*range\\s+([a-zA-Z0-9_.]+)\\s*\\{/g,`for (const $1 of ($2).keys()) {`),t=t.replace(/\\b([a-zA-Z0-9_]+)\\s*:=\\s*/g,`let $1 = `),t=t.replace(/\\bvar\\s+([a-zA-Z0-9_]+)\\s+[a-zA-Z0-9_*<>[\\]]+\\s*=\\s*/g,`let $1 = `),t=t.replace(/\\bvar\\s+([a-zA-Z0-9_]+)\\s+[a-zA-Z0-9_*<>[\\]]+/g,`let $1`),t+=`\n;if (typeof main === \"function\") { await main(); }\n`,t}self.onmessage=async function(n){e.length=0;let r=n.data||``;try{let n=t(r);await Function(`goPrint`,`goPrintln`,`goPrintf`,`return (async () => { `+n+` })()`)((...t)=>{e.push(t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `))},(...t)=>{e.push(t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `))},(t,...n)=>{let r=0,i=String(t).replace(/%[vTtsdfqcxXb%]/g,e=>e===`%%`?`%`:r<n.length?String(n[r++]):e).replace(/\\\\n/g,`\n`).replace(/\\\\t/g,`	`);e.push(i)}),self.postMessage({success:!0,output:e.join(``).trim()||(e.length>0?e.join(`\n`):`(실행 완료 - 출력 없음)`)})}catch(e){self.postMessage({success:!1,output:`[Go Runtime Error] `+(e.message||String(e))})}}})();", blob$2 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$2], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$3(n) {
+	let r;
+	try {
+		if (r = blob$2 && (self.URL || self.webkitURL).createObjectURL(blob$2), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$2), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useGoRuntime.ts
 function getOrCreateGoWorker() {
 	if (RuntimeState.goWorker) return RuntimeState.goWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/goWorker-CvUMpfcV.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$3();
+	} catch (r) {
+		console.warn("[Go Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/goWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.goWorker = n, n;
 }
 function useGoRuntime() {
@@ -51013,14 +51121,32 @@ function useGoRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/rustWorker.ts?worker&inline
+var jsContent$1 = "(function(){let e=[];function t(e){let t=e;return t=t.replace(/\\bfn\\s+main\\s*\\(\\s*\\)\\s*\\{/g,`async function main() {`),t=t.replace(/\\bfn\\s+([a-zA-Z0-9_]+)\\s*\\(([^)]*)\\)\\s*(?:->\\s*[^{]+)?\\{/g,(e,t,n)=>`async function ${t}(${n.split(`,`).map(e=>e.trim().split(`:`)[0]).filter(Boolean).join(`, `)}) {`),t=t.replace(/\\bprintln!\\s*\\(\\s*(\".*?\")\\s*(?:,\\s*([^)]*))?\\);?/g,(e,t,n)=>n?`rustPrintln(${t}, ${n});`:`rustPrintln(${t});`),t=t.replace(/\\bprint!\\s*\\(\\s*(\".*?\")\\s*(?:,\\s*([^)]*))?\\);?/g,(e,t,n)=>n?`rustPrint(${t}, ${n});`:`rustPrint(${t});`),t=t.replace(/\\bvec!\\s*\\[([^\\]]*)\\]/g,`[$1]`),t=t.replace(/\\blet\\s+(?:mut\\s+)?([a-zA-Z0-9_]+)(?:\\s*:\\s*[a-zA-Z0-9_<>[\\]&]+)?\\s*=/g,`let $1 =`),t=t.replace(/\\.iter\\(\\)\\.sum(?:::<[^>]*>)?\\(\\)/g,`.reduce((a, b) => a + b, 0)`),t=t.replace(/\\.len\\(\\)/g,`.length`),t=t.replace(/\\bfor\\s+([a-zA-Z0-9_]+)\\s+in\\s+([^{]+)\\{/g,`for (const $1 of $2) {`),t+=`\n;if (typeof main === \"function\") { await main(); }\n`,t}self.onmessage=async function(n){e.length=0;let r=n.data||``;try{let n=t(r),i=(e,...t)=>{let n=0;return String(e).replace(/\\{(?::[^}]*)?\\}/g,()=>n<t.length?typeof t[n]==`object`?JSON.stringify(t[n++]):String(t[n++]):`{}`)};await Function(`rustPrintln`,`rustPrint`,`return (async () => { `+n+` })()`)((t,...n)=>{e.push(i(t,...n))},(t,...n)=>{let r=i(t,...n);e.length>0&&!e[e.length-1].endsWith(`\n`)?e[e.length-1]+=r:e.push(r)}),self.postMessage({success:!0,output:e.join(`\n`)||`(실행 완료 - 출력 없음)`})}catch(e){self.postMessage({success:!1,output:`[Rust Runtime Error] `+(e.message||String(e))})}}})();", blob$1 = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent$1], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$2(n) {
+	let r;
+	try {
+		if (r = blob$1 && (self.URL || self.webkitURL).createObjectURL(blob$1), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent$1), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/useRustRuntime.ts
 function getOrCreateRustWorker() {
 	if (RuntimeState.rustWorker) return RuntimeState.rustWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/rustWorker-DaC3qgNP.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$2();
+	} catch (r) {
+		console.warn("[Rust Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/rustWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.rustWorker = n, n;
 }
 function useRustRuntime() {
@@ -51064,14 +51190,32 @@ function useRustRuntime() {
 	};
 }
 //#endregion
+//#region src/renderer/hooks/code-runtime/workers/polyglotWorker.ts?worker&inline
+var jsContent = "(function(){let e=[];function t(e,t){let n=e.toLowerCase(),r=t;switch(n){case`csharp`:case`cs`:{r=r.replace(/using\\s+[a-zA-Z0-9_.]+;/g,``),r=r.replace(/string\\.Join\\s*\\(\\s*(\".*?\")\\s*,\\s*([^)]+)\\)/g,`($2).join($1)`),r=r.replace(/\\bConsole\\.WriteLine\\b/g,`polyglotPrintln`),r=r.replace(/\\bConsole\\.Write\\b/g,`polyglotPrint`),r=r.replace(/\\b(?:var|string|int|long|double|float|bool|List<[^>]+>)\\s+([a-zA-Z0-9_]+)\\s*=/g,`let $1 =`),r=r.replace(/new\\s+List<[^>]+>\\s*\\{([^}]*)\\}/g,`[$1]`),r=r.replace(/public\\s+class\\s+[a-zA-Z0-9_]+\\s*\\{/g,``),r=r.replace(/public\\s+static\\s+void\\s+Main\\s*\\([^)]*\\)\\s*\\{/g,`async function main() {`);let e=r.lastIndexOf(`}`);e!==-1&&(r=r.substring(0,e)+r.substring(e+1)),r+=`\n;if (typeof main === \"function\") { await main(); }\n`;break}case`swift`:r=r.replace(/import\\s+[a-zA-Z0-9_]+/g,``),r=r.replace(/\\bprint\\s*\\(([\\s\\S]*?)\\)/g,(e,t)=>{let n=t.replace(/\\\\\\\\\\(([^)]+)\\)/g,\"${$1}\").replace(/\\\\\\(([^)]+)\\)/g,\"${$1}\");return n.includes(\"${\")?`polyglotPrintln(\\`${n.replace(/^\"|\"$/g,``)}\\`);`:`polyglotPrintln(${n});`}),r=r.replace(/for\\s*\\(\\s*([a-zA-Z0-9_]+)\\s*,\\s*([a-zA-Z0-9_]+)\\s*\\)\\s*in\\s*([a-zA-Z0-9_.]+)\\.enumerated\\(\\)\\s*\\{/g,`for (const [$1, $2] of ($3).entries()) {`),r=r.replace(/\\blet\\s+([a-zA-Z0-9_]+)\\s*=/g,`const $1 =`),r=r.replace(/\\bvar\\s+([a-zA-Z0-9_]+)\\s*=/g,`let $1 =`);break;case`kotlin`:case`kt`:r=r.replace(/fun\\s+main\\s*\\([^)]*\\)\\s*\\{/g,`async function main() {`),r=r.replace(/\\.filter\\s*\\{\\s*it\\s*%\\s*2\\s*==\\s*0\\s*\\}/g,`.filter(it => it % 2 === 0)`),r=r.replace(/\\blistOf\\s*\\(([^)]*)\\)/g,`[$1]`),r=r.replace(/\\bval\\s+([a-zA-Z0-9_]+)\\s*=/g,`const $1 =`),r=r.replace(/\\bprintln\\b/g,`polyglotPrintln`),r=r.replace(/\\bprint\\b/g,`polyglotPrint`),r+=`\n;if (typeof main === \"function\") { await main(); }\n`;break;case`zig`:r=r.replace(/const\\s+std\\s*=\\s*@import\\(\"std\"\\);?/g,``),r=r.replace(/std\\.debug\\.print\\s*\\(\\s*(\".*?\")\\s*,\\s*\\.\\{([^}]*)\\}\\s*\\);?/g,(e,t,n)=>`polyglotPrint(${t});`),r=r.replace(/pub\\s+fn\\s+main\\s*\\(\\s*\\)\\s*(?:void)?\\s*\\{/g,`async function main() {`),r+=`\n;if (typeof main === \"function\") { await main(); }\n`;break;case`ruby`:case`rb`:r=r.replace(/^\\s*#.*$/gm,``),r=r.replace(/^([a-zA-Z_][a-zA-Z0-9_]*)\\s*=/gm,`let $1 =`),r=r.replace(/#\\{([^}]+)\\}/g,\"${$1}\"),r=r.replace(/\\bputs\\s+\"([^\"]+)\"/gm,\"polyglotPrintln(`$1`);\"),r=r.replace(/\\bputs\\s+(.+?)$/gm,`polyglotPrintln($1);`),r=r.replace(/([a-zA-Z0-9_]+)\\.each_with_index\\s+do\\s+\\|([a-zA-Z0-9_]+),\\s*([a-zA-Z0-9_]+)\\|\\s*/g,`$1.forEach(($2, $3) => {`),r=r.replace(/([a-zA-Z0-9_]+)\\.each\\s+do\\s+\\|([a-zA-Z0-9_]+)\\|\\s*/g,`$1.forEach(($2) => {`),r=r.replace(/\\bend\\b/g,`});`);break;case`php`:r=r.replace(/<\\?php/g,``),r=r.replace(/\\?>/g,``),r=r.replace(/\\becho\\s+(.+?);/g,`polyglotPrint($1);`),r=r.replace(/\\bprint_r\\s*\\(([^)]*)\\);/g,`polyglotPrintln(JSON.stringify($1, null, 2));`),r=r.replace(/\\$([a-zA-Z0-9_]+)/g,`$1`);break;case`r`:{let e=t.split(`\n`),n=[];for(let t of e){let e=t.trim();e.startsWith(`#`)||e.length===0||(t=t.replace(/^\\s*([a-zA-Z0-9_.]+)\\s*<-\\s*/,`let $1 = `),t=t.replace(/<-/g,`=`),n.push(t))}r=`\nfunction c(...args) { return args.flat(); }\nfunction mean(x) { if (!Array.isArray(x) || x.length === 0) return 0; return x.reduce((a, b) => a + b, 0) / x.length; }\nfunction median(x) { if (!Array.isArray(x) || x.length === 0) return 0; const s = [...x].sort((a,b)=>a-b); const m = Math.floor(s.length/2); return s.length % 2 ? s[m] : (s[m-1]+s[m])/2; }\nfunction sd(x) { if (!Array.isArray(x) || x.length <= 1) return 0; const m = mean(x); return Math.sqrt(x.reduce((a,b)=>a+Math.pow(b-m,2),0)/(x.length-1)); }\nfunction summary(x) {\n  if (!Array.isArray(x)) return String(x);\n  const s = [...x].sort((a,b)=>a-b);\n  const min = Math.min(...s);\n  const max = Math.max(...s);\n  const m = mean(s);\n  const med = median(s);\n  const q1 = s[Math.floor(s.length * 0.25)];\n  const q3 = s[Math.floor(s.length * 0.75)];\n  return '   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \\\\n' +\n         '  ' + min.toFixed(2).padStart(5) + ' ' + q1.toFixed(2).padStart(7) + ' ' + med.toFixed(2).padStart(7) + ' ' + m.toFixed(2).padStart(7) + ' ' + q3.toFixed(2).padStart(7) + ' ' + max.toFixed(2).padStart(7);\n}\nfunction cat(...args) {\n  const formatted = args.map(a => typeof a === 'number' ? a.toString() : String(a)).join(' ');\n  polyglotPrint(formatted.replace(/\\\\\\\\n/g, '\\\\n'));\n}\nfunction print(x) {\n  if (typeof x === 'object' && x !== null && !Array.isArray(x)) {\n    polyglotPrintln(JSON.stringify(x, null, 2));\n  } else {\n    polyglotPrintln(String(x));\n  }\n}\n\n`+n.join(`\n`);break}default:break}return r}self.onmessage=async function(n){e.length=0;let{language:r,code:i}=n.data||{language:`plaintext`,code:``};try{let n=t(r,i);await Function(`polyglotPrintln`,`polyglotPrint`,`return (async () => { `+n+` })()`)((...t)=>{e.push(t.map(e=>typeof e==`object`?JSON.stringify(e,null,2):String(e)).join(` `))},(...t)=>{let n=t.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `);e.length>0&&!e[e.length-1].endsWith(`\n`)?e[e.length-1]+=n:e.push(n)}),self.postMessage({success:!0,output:e.join(`\n`).replace(/\\\\n/g,`\n`)||`(실행 완료 - 출력 없음)`})}catch(e){self.postMessage({success:!1,output:`[${r.toUpperCase()} Runtime Error] `+(e.message||String(e))})}}})();", blob = typeof self < "u" && self.Blob && new Blob(["(self.URL || self.webkitURL).revokeObjectURL(self.location.href);", jsContent], { type: "text/javascript;charset=utf-8" });
+function WorkerWrapper$1(n) {
+	let r;
+	try {
+		if (r = blob && (self.URL || self.webkitURL).createObjectURL(blob), !r) throw "";
+		let a = new Worker(r, { name: n?.name });
+		return a.addEventListener("error", () => {
+			(self.URL || self.webkitURL).revokeObjectURL(r);
+		}), a;
+	} catch {
+		return new Worker("data:text/javascript;charset=utf-8," + encodeURIComponent(jsContent), { name: n?.name });
+	}
+}
+//#endregion
 //#region src/renderer/hooks/code-runtime/usePolyglotRuntime.ts
 function getOrCreatePolyglotWorker() {
 	if (RuntimeState.polyglotWorker) return RuntimeState.polyglotWorker;
-	let n = new Worker(new URL(
-		/* @vite-ignore */
-		"/assets/polyglotWorker-BXvZbMXw.js",
-		"" + import.meta.url
-	), { type: "module" });
+	let n;
+	try {
+		n = new WorkerWrapper$1();
+	} catch (r) {
+		console.warn("[Polyglot Runtime] Inline worker failed, attempting URL fallback:", r);
+		let a = import.meta.url ? import.meta.url : typeof window < "u" && window.location?.href ? window.location.href : "http://localhost/";
+		n = new Worker(new URL("./workers/polyglotWorker.ts", a), { type: "module" });
+	}
 	return RuntimeState.polyglotWorker = n, n;
 }
 function usePolyglotRuntime() {
@@ -51742,7 +51886,7 @@ function InlineMermaidRenderer({ code: n }) {
 					let n = d.replace(/^graph\s+([A-Z]+);/im, "graph $1\n").replace(/;\s*$/gm, "");
 					f = (await mermaid_default.render(o + "-fb", n)).svg;
 				}
-				r && f && (a(f.replace(/<svg\s+([^>]*?)id="[^"]*"/, `<svg $1 id="${o}-svg"`).replace(/style="max-width:([^"]*)"/g, "style=\"max-width:$1; height:auto;\"")), l(null));
+				r && f && (a(f.replace(/<svg\s+([^>]*?)id="[^"]*"/, `<svg $1 id="${o}-svg"`).replace(/style="max-width:[^"]*"/g, "style=\"width:100%; height:100%; max-width:100%;\"")), l(null));
 			} catch (n) {
 				r && l(n.message || "Mermaid 렌더링에 실패했습니다.");
 			}
@@ -135788,7 +135932,7 @@ function normalizeKanbanCode(n) {
 function sanitizeMarkdown(n) {
 	if (!n) return "";
 	let r = n;
-	return r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
+	return r = r.replace(/\*\*([^*]+?)\*\*(?=[가-힣ㄱ-ㅎㅏ-ㅣ])/g, "<strong>$1</strong>"), r = r.replace(/\*\*\[([^\]\n]+)\]\*\*/g, "<strong>[$1]</strong>"), r = r.replace(/\u000bec\{/g, "\\vec{"), r = r.replace(/\?ec\{/g, "\\vec{"), r = r.replace(/\u0007lpha/g, "\\alpha"), r = r.replace(/•lpha/g, "\\alpha"), r = r.replace(/\u000crac\{/g, "\\frac{"), r = r.replace(/♀rac\{/g, "\\frac{"), r = r.replace(/\\?\r(?!\n)ight/g, "\\right"), r = r.replace(/\$\s*[\r\n]+\s*ightarrow\$/g, "$\\rightarrow$"), r = r.replace(/[\r\n]+\s*ightarrow\$/g, "\\rightarrow$"), r = r.replace(/\\text\{BINDER_VM_SIZE\}/g, "\\text{BINDER\\_VM\\_SIZE}"), r;
 }
 function buildSegments(n) {
 	let r = typeof n == "string" ? n : String(n || "");
