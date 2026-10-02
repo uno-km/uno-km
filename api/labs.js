@@ -79,7 +79,7 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v25_bilingual_parity_latex_repaired_and_c_runtime_resilient';
+  const SEED_VERSION = 'v26_table_whitespace_repaired';
   try {
     // ── Ultra-Fast Validation Gate (1 lightweight check skips 17 DDL/DML roundtrips) ──
     try {
