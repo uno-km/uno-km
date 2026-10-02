@@ -2647,6 +2647,13 @@
         desc: 'WireGuard/Tailscale L3 메시망, L4 소켓 마스킹 프록시, 무인 자가치유 분산 클러스터',
         range: '8.1 ~ 8.3',
         chapters: ['8.1', '8.2', '8.3']
+      },
+      {
+        num: 9,
+        title: '시스템 핸드북 심층 기술 부록',
+        desc: '모바일 커널 메모리 물리적 한계(NAND 스왑데스, zRAM) 및 Bionic 링커 보안 격리 우회 프로토콜',
+        range: '부록 A ~ B',
+        chapters: ['부록 A', '부록 B']
       }
     ];
 
@@ -3712,7 +3719,7 @@
 
         let pillsHtml = `
           <button class="hb-mod-pill ${this.activeHandbookModule === 0 ? 'active' : ''}" onclick="LabsApp.filterHandbookModule(0)">
-            전체 강좌 <span class="hb-pill-count">30</span>
+            전체 강좌 <span class="hb-pill-count">33</span>
           </button>
         `;
 
@@ -3720,7 +3727,7 @@
           const isAct = (this.activeHandbookModule === m.num) ? 'active' : '';
           pillsHtml += `
             <button class="hb-mod-pill ${isAct}" onclick="LabsApp.filterHandbookModule(${m.num})" title="${escapeHtml(m.title)}">
-              모듈 ${m.num} <span class="hb-pill-count">${m.chapters.length}</span>
+              ${m.num === 9 ? '부록' : `모듈 ${m.num}`} <span class="hb-pill-count">${m.chapters.length}</span>
             </button>
           `;
         });
@@ -3731,7 +3738,7 @@
               <span>📚 안드로이드 시스템 엔지니어링 마스터 커리큘럼</span>
             </div>
             <div class="hb-curriculum-stats">
-              8대 핵심 모듈 · 총 30개 전문 강좌 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
+              9대 핵심 모듈 · 총 33개 전문 강좌 및 부록 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
             </div>
           </div>
           <div class="hb-curriculum-pills">
@@ -3756,7 +3763,7 @@
         const curriculumNav = document.getElementById('handbookCurriculumNav');
 
         if (topBadge) {
-          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (30 LECTURES)';
+          if (isHandbook) topBadge.textContent = 'SYSTEMS HANDBOOK (33 LECTURES & APPENDICES)';
           else if (this.activeMenuId === 'research-papers') topBadge.textContent = 'TECHNICAL PAPERS & MONOGRAPHS';
           else if (this.activeMenuId === 'research-benchmarks') topBadge.textContent = 'FLEET BENCHMARK LAB (S25~S7 DB)';
           else if (this.activeMenuId === 'research-cluster') topBadge.textContent = 'EDGE CLUSTER ORCHESTRATION';
@@ -3793,8 +3800,8 @@
             sortedPosts.forEach(p => {
               const dateStr = (p.created_at || '').substring(0, 10);
               const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
-              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/);
-              const chapCode = chapCodeMatch ? chapCodeMatch[1] : '';
+              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/) || p.title.match(/\[부록\s*([A-Z])\]/);
+              const chapCode = chapCodeMatch ? (chapCodeMatch[1].length === 1 ? `부록 ${chapCodeMatch[1]}` : chapCodeMatch[1]) : '';
 
               const hasGlossary = (p.content || p.excerpt || '').includes('용어') || (p.content || p.excerpt || '').includes('Glossary');
               const hasLab = (p.content || p.excerpt || '').includes('Lab') || (p.content || p.excerpt || '').includes('실습');
@@ -3806,7 +3813,7 @@
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
-                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? `Lecture ${chapCode}` : `제 ${chapCode} 강`}</span>` : ''}
+                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? (chapCode.startsWith('부록') ? `Appendix ${chapCode.slice(-1)}` : `Lecture ${chapCode}`) : (chapCode.startsWith('부록') ? chapCode : `제 ${chapCode} 강`)}</span>` : ''}
                   ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
                   ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
                   ${hasMermaid ? `<span class="hb-feature-pill">${isEn ? '📊 Architecture Diagram' : '📊 다이어그램'}</span>` : ''}
@@ -3832,8 +3839,14 @@
             this.renderHandbookCurriculumNav();
           }
 
-          // Sort strictly by chapter number (1.1 to 8.3)
+          // Sort strictly by chapter number (1.1 to 8.3) with appendices at the end
           const sortedPosts = [...posts].sort((a, b) => {
+            const isAppA = a.title.includes('부록') || (a.title_eng && a.title_eng.includes('Appendix'));
+            const isAppB = b.title.includes('부록') || (b.title_eng && b.title_eng.includes('Appendix'));
+            if (isAppA && !isAppB) return 1;
+            if (!isAppA && isAppB) return -1;
+            if (isAppA && isAppB) return a.id - b.id;
+
             const matchA = a.title.match(/^(\d+)\.(\d+)/);
             const matchB = b.title.match(/^(\d+)\.(\d+)/);
             if (matchA && matchB) {
@@ -3851,6 +3864,9 @@
 
           targetModules.forEach(mod => {
             const modPosts = sortedPosts.filter(p => {
+              if (mod.num === 9) {
+                return p.title.includes('부록') || (p.title_eng && p.title_eng.includes('Appendix'));
+              }
               const m = p.title.match(/^(\d+)\./);
               return m && parseInt(m[1], 10) === mod.num;
             });
@@ -3860,10 +3876,10 @@
             const modHeader = document.createElement('div');
             modHeader.className = 'hb-module-header';
             modHeader.innerHTML = `
-              <span class="hb-module-badge">MODULE 0${mod.num}</span>
+              <span class="hb-module-badge">${mod.num === 9 ? 'APPENDIX' : `MODULE 0${mod.num}`}</span>
               <div class="hb-module-info">
-                <h4 class="hb-module-title">모듈 ${mod.num}: ${escapeHtml(mod.title)}</h4>
-                <p class="hb-module-desc">${escapeHtml(mod.desc)} · 제 ${mod.range}강 (${modPosts.length}개 강좌)</p>
+                <h4 class="hb-module-title">${mod.num === 9 ? '' : `모듈 ${mod.num}: `}${escapeHtml(mod.title)}</h4>
+                <p class="hb-module-desc">${escapeHtml(mod.desc)} · ${mod.num === 9 ? '부록 A ~ B' : `제 ${mod.range}강`} (${modPosts.length}개 강좌)</p>
               </div>
             `;
             container.appendChild(modHeader);
@@ -3875,8 +3891,8 @@
             modPosts.forEach(p => {
               const dateStr = (p.created_at || '').substring(0, 10);
               const excerpt = extractExcerpt(p.excerpt || p.content || '', 200);
-              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/);
-              const chapCode = chapCodeMatch ? chapCodeMatch[1] : '';
+              const chapCodeMatch = p.title.match(/^(\d+\.\d+)/) || p.title.match(/\[부록\s*([A-Z])\]/);
+              const chapCode = chapCodeMatch ? (chapCodeMatch[1].length === 1 ? `부록 ${chapCodeMatch[1]}` : chapCodeMatch[1]) : '';
 
               const hasGlossary = (p.content || p.excerpt || '').includes('용어') || (p.content || p.excerpt || '').includes('Glossary');
               const hasLab = (p.content || p.excerpt || '').includes('Lab') || (p.content || p.excerpt || '').includes('실습');
@@ -3888,7 +3904,7 @@
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
-                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? `Lecture ${chapCode}` : `제 ${chapCode} 강`}</span>` : ''}
+                  ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? (chapCode.startsWith('부록') ? `Appendix ${chapCode.slice(-1)}` : `Lecture ${chapCode}`) : (chapCode.startsWith('부록') ? chapCode : `제 ${chapCode} 강`)}</span>` : ''}
                   ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
                   ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
                   ${hasMermaid ? `<span class="hb-feature-pill">${isEn ? '📊 Architecture Diagram' : '📊 다이어그램'}</span>` : ''}
