@@ -51742,7 +51742,7 @@ function InlineMermaidRenderer({ code: n }) {
 					let n = d.replace(/^graph\s+([A-Z]+);/im, "graph $1\n").replace(/;\s*$/gm, "");
 					f = (await mermaid_default.render(o + "-fb", n)).svg;
 				}
-				r && f && (a(f.replace(/<svg\s+([^>]*?)id="[^"]*"/, `<svg $1 id="${o}-svg"`).replace(/style="max-width:[^"]*"/g, "style=\"width:100%; height:100%; max-width:100%;\"")), l(null));
+				r && f && (a(f.replace(/<svg\s+([^>]*?)id="[^"]*"/, `<svg $1 id="${o}-svg"`).replace(/style="max-width:([^"]*)"/g, "style=\"max-width:$1; height:auto;\"")), l(null));
 			} catch (n) {
 				r && l(n.message || "Mermaid 렌더링에 실패했습니다.");
 			}

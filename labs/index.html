@@ -302,35 +302,63 @@
     }
 
     /* ==========================================================================
-       Mermaid Global Anti-Clipping & Responsive Typography Engine
+       Mermaid Global Responsive Architecture & Anti-Clipping Typography Engine
        ========================================================================== */
-    .av-mermaid-container {
+    .av-mermaid-container,
+    .mermaid-wrapper,
+    .mermaid-svg-container {
       overflow-x: auto !important;
       overflow-y: visible !important;
-      padding: 24px 16px !important;
+      padding: 20px 16px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin: 16px 0 !important;
+      background: #090d16 !important;
+      border: 1.5px solid #1e293b !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
     }
-    .av-mermaid-container svg {
-      max-width: 100% !important;
+    .av-mermaid-container svg,
+    .mermaid-svg-container svg,
+    .mermaid-wrapper svg {
+      /* Preserve natural diagram dimensions calculated by Mermaid; avoid viewport inflation */
+      width: auto !important;
       height: auto !important;
+      max-width: 100%;
       overflow: visible !important;
     }
-    .av-mermaid-container .node foreignObject {
+    .av-mermaid-container .node foreignObject,
+    .mermaid-svg-container .node foreignObject,
+    .mermaid-wrapper .node foreignObject {
       overflow: visible !important;
     }
-    .av-mermaid-container .node foreignObject div {
-      line-height: 1.4 !important;
-      font-family: inherit !important;
+    .av-mermaid-container .node foreignObject div,
+    .mermaid-svg-container .node foreignObject div,
+    .mermaid-wrapper .node foreignObject div {
+      line-height: 1.35 !important;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      font-size: 13.5px !important;
       text-align: center !important;
-      padding: 4px 6px !important;
+      padding: 0 4px !important;
+      margin: 0 !important;
       box-sizing: border-box !important;
+      white-space: normal !important;
+      word-break: keep-all !important;
     }
     .av-mermaid-container .node rect,
     .av-mermaid-container .node circle,
-    .av-mermaid-container .node polygon {
+    .av-mermaid-container .node polygon,
+    .mermaid-svg-container .node rect,
+    .mermaid-svg-container .node circle,
+    .mermaid-svg-container .node polygon {
       overflow: visible !important;
     }
-    .av-mermaid-container .node .label {
-      line-height: 1.4 !important;
+    .av-mermaid-container .node .label,
+    .mermaid-svg-container .node .label,
+    .mermaid-wrapper .node .label {
+      line-height: 1.35 !important;
+      font-size: 13.5px !important;
     }
 
     /* ==========================================================================
