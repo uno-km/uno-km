@@ -446,108 +446,262 @@ footer {
   cursor: pointer;
 }
 
-@media (max-width: 960px) {
-  .menu-toggle-btn {
-    display: inline-flex;
-  }
-  .sidebar {
-    position: fixed;
-    top: var(--header-height);
-    left: -100%;
-    bottom: 0;
-    z-index: 99;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    transition: left 0.2s ease;
-    overflow-y: auto;
-  }
-  .sidebar.mobile-open {
-    left: 0;
-  }
-  .content {
-    padding: 20px;
-  }
-}
-
-
-/* ── Desktop Sidebar Collapse Toggle Handle (문서철 접기/펼치기 탭) ────────── */
-.sidebar {
-  position: relative;
-  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s ease, min-width 0.2s ease;
-}
-
-.sidebar.desktop-collapsed {
-  width: 0 !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-  border-right: none !important;
-  overflow: hidden !important;
-  visibility: hidden;
-}
-
-.container.sidebar-collapsed .content {
-  max-width: 1200px;
-}
-
-.sidebar-toggle-tab {
-  position: absolute;
-  top: 140px;
-  right: -12px;
-  width: 20px;
-  height: 42px;
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  display: flex;
+/* ── Unified Header Sidebar Toggle Button ────────────────────────────────── */
+.header-sidebar-toggle {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 6px;
+  color: var(--text-main, #334155);
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  z-index: 60;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 1;
   transition: all 0.15s ease;
   user-select: none;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
-.sidebar-toggle-tab:hover {
-  background-color: var(--primary-light);
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(0, 68, 153, 0.18);
+.header-sidebar-toggle:hover {
+  background: var(--bg-alt, #f1f5f9);
+  color: var(--primary-color, #004499);
+  border-color: var(--primary-color, #004499);
+  box-shadow: 0 2px 5px rgba(0, 68, 153, 0.12);
 }
 
-.sidebar-toggle-tab.collapsed-tab {
-  position: fixed;
-  left: 0;
-  top: 198px;
-  right: auto;
-  border-left: none;
-  border-radius: 0 4px 4px 0;
-  background: #ffffff;
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+.header-sidebar-toggle:active {
+  transform: scale(0.97);
 }
 
-/* ── Menu Button Responsive Rules ────────────────────────────────────────── */
-.menu-toggle-btn {
+.header-sidebar-toggle.collapsed,
+.header-sidebar-toggle.active {
+  background: var(--primary-light, #e8f0fe);
+  color: var(--primary-color, #004499);
+  border-color: var(--primary-color, #004499);
+}
+
+.header-sidebar-toggle .icon-toggle-panel {
+  display: inline-block;
+}
+
+.header-sidebar-toggle .icon-toggle-hamburger {
   display: none;
 }
 
+.header-sidebar-toggle-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Mobile/Tablet Off-Canvas Backdrop ──────────────────────────────────── */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1040;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+  pointer-events: none;
+}
+
+.sidebar-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.sidebar-drawer-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+/* ── Sidebar Drawer Header (Mobile/Tablet Only) ─────────────────────────── */
+.sidebar-drawer-header {
+  display: none;
+}
+
+/* ── Desktop Sidebar Collapse Architecture (> 960px) ────────────────────── */
 @media (min-width: 961px) {
-  .menu-toggle-btn {
-    display: none !important; /* Wide screen: Hide top header menu button */
+  .sidebar,
+  aside.resume-sidebar {
+    position: relative;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.2s ease,
+                opacity 0.2s ease;
+  }
+
+  .sidebar.desktop-collapsed,
+  aside.resume-sidebar.desktop-collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-right: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+  }
+
+  .container.sidebar-collapsed .content,
+  .container.sidebar-collapsed .main-content,
+  .container.sidebar-collapsed .labs-content-wrap,
+  .container.sidebar-collapsed .resume-main {
+    max-width: 1440px !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Desktop Edge Tab Handle (< / >) */
+  .sidebar-toggle-tab {
+    position: absolute;
+    top: 140px;
+    right: -12px;
+    width: 20px;
+    height: 44px;
+    background: #ffffff;
+    border: 1px solid var(--border-color, #cbd5e1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 60;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    color: var(--text-muted, #64748b);
+    font-size: 15px;
+    font-weight: 800;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+
+  .sidebar-toggle-tab:hover {
+    background-color: var(--primary-light, #e8f0fe);
+    color: var(--primary-color, #004499);
+    border-color: var(--primary-color, #004499);
+    box-shadow: 0 2px 8px rgba(0, 68, 153, 0.2);
+  }
+
+  .sidebar-toggle-tab.collapsed-tab {
+    position: fixed;
+    left: 0;
+    top: 140px;
+    right: auto;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    background: #ffffff;
+    border-color: var(--primary-color, #004499);
+    color: var(--primary-color, #004499);
+    box-shadow: 2px 2px 10px rgba(0, 68, 153, 0.18);
   }
 }
 
+/* ── Tablet & Mobile Unified Drawer Layout (<= 960px) ────────────────────── */
 @media (max-width: 960px) {
-  .menu-toggle-btn {
-    display: inline-flex !important; /* Mobile/Tablet: Show in top header */
+  .header-sidebar-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    margin-right: 6px !important;
+    justify-content: center !important;
+  }
+  .header-sidebar-toggle .icon-toggle-panel {
+    display: none !important;
+  }
+  .header-sidebar-toggle .icon-toggle-hamburger {
+    display: inline-block !important;
+  }
+  .header-sidebar-toggle-text {
+    display: none !important;
   }
   .sidebar-toggle-tab {
-    display: none !important; /* Mobile: Hide desktop sidebar tab */
+    display: none !important;
+  }
+
+  .sidebar-drawer-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid var(--border-color, #e2e8f0) !important;
+  }
+
+  .sidebar-drawer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--primary-color, #004499);
+  }
+
+  .sidebar-drawer-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--text-muted, #64748b);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+
+  .sidebar-drawer-close:hover {
+    color: #ef4444;
+    background: #fee2e2;
+  }
+
+  .sidebar,
+  aside.resume-sidebar {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(320px, 86vw) !important;
+    min-width: 0 !important;
+    max-width: 340px !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 1050 !important;
+    background: #ffffff !important;
+    border-right: 1px solid var(--border-color, #e2e8f0) !important;
+    box-shadow: 4px 0 28px rgba(0, 0, 0, 0.22) !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 16px 14px 40px 14px !important;
+    box-sizing: border-box !important;
+    visibility: visible !important;
+  }
+
+  .sidebar.mobile-open,
+  aside.resume-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  .content,
+  .main-content,
+  .labs-content-wrap {
+    padding: 18px 14px 40px 14px !important;
   }
 }
 
@@ -657,39 +811,8 @@ footer {
     margin: 0 !important;
   }
 
-  @keyframes mobileSlideDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* Note: .sidebar uses unified off-canvas drawer rules from @media (max-width: 960px) */
 
-  .sidebar {
-    display: none !important; /* Collapsed by default on mobile, toggles with Menu button */
-    position: static !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    left: 0 !important;
-    bottom: auto !important;
-    border-right: none !important;
-    border-bottom: 2px solid var(--primary-color, #004499) !important;
-    padding: 12px 14px !important;
-    box-sizing: border-box !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-    overflow: visible !important;
-    background-color: var(--bg-surface, #f8f9fa) !important;
-  }
-
-  .sidebar.mobile-open {
-    display: block !important;
-    animation: mobileSlideDown 0.18s ease-out !important;
-  }
-
-  .menu-toggle-btn.active {
-    background-color: var(--primary-light, #e8f0fe) !important;
-    color: var(--primary-color, #004499) !important;
-    border-color: var(--primary-color, #004499) !important;
-    box-shadow: inset 0 1px 2px rgba(0, 68, 153, 0.15) !important;
-  }
 
   .content {
     width: 100% !important;

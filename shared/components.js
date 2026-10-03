@@ -541,6 +541,18 @@
 
       this.innerHTML = `
   <header>
+    <button type="button" id="headerSidebarToggle" class="header-sidebar-toggle" aria-label="사이드바 메뉴 토글" title="사이드바 접기/펼치기 (Ctrl+B)">
+      <svg class="icon-toggle-panel" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="9" y1="3" x2="9" y2="21"></line>
+      </svg>
+      <svg class="icon-toggle-hamburger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <span class="header-sidebar-toggle-text">메뉴</span>
+    </button>
     <a href="index.html" class="header-brand">
       <img src="/shared/favicon.svg" alt="${brandName} Logo">
       <h1 data-i18n="common.brand">${brandName}</h1>
@@ -699,6 +711,10 @@ ${tier3Items.join('\n')}
 
       if (global.i18n && typeof global.i18n.applyLanguage === 'function') {
         global.i18n.applyLanguage(global.i18n.currentLang);
+      }
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('ameva:sidebar-ready'));
       }
     }
   }

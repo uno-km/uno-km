@@ -10,94 +10,272 @@
  * 5. Active Link Highlighting (Clean URLs & Normalization)
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+// ── Universal Responsive Sidebar & Drawer Controller (SSOT v4.0) ───────────────
+(function() {
+  'use strict';
+
+  function initUniversalSidebar() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('.resume-sidebar');
     const header = document.querySelector('header');
-    const container = document.querySelector('.container');
-    const sidebar = document.querySelector('.sidebar');
+    const container = document.querySelector('.container') || document.querySelector('.portfolio-container');
 
-    if (!sidebar) return;
+    if (!sidebar) {
+      return false;
+    }
 
-    // ── 1. Desktop Sidebar Edge Tab (< / > Toggle Handle) ─────────────────────
+    if (sidebar.__sidebarInitDone) {
+      return true;
+    }
+    sidebar.__sidebarInitDone = true;
+
+    // 1. Ensure Backdrop exists for Mobile / Tablet off-canvas
+    let backdrop = document.querySelector('.sidebar-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(backdrop);
+    }
+
+    // 2. Ensure Mobile/Tablet Drawer Top Bar exists inside sidebar
+    let drawerHeader = sidebar.querySelector('.sidebar-drawer-header');
+    if (!drawerHeader) {
+      drawerHeader = document.createElement('div');
+      drawerHeader.className = 'sidebar-drawer-header';
+      drawerHeader.innerHTML = `
+        <div class="sidebar-drawer-brand">
+          <img src="/shared/favicon.svg" alt="AMEVA Logo" width="20" height="20">
+          <span>내비게이션 (Navigation)</span>
+        </div>
+        <button type="button" class="sidebar-drawer-close" aria-label="메뉴 닫기 (Close)">&times;</button>
+      `;
+      sidebar.insertBefore(drawerHeader, sidebar.firstChild);
+    }
+
+    const drawerCloseBtn = drawerHeader.querySelector('.sidebar-drawer-close');
+
+    // 3. Ensure Header Sidebar Toggle Button exists in <header>
+    let headerToggleBtn = document.getElementById('headerSidebarToggle') || document.querySelector('.header-sidebar-toggle');
+    if (!headerToggleBtn && header) {
+      headerToggleBtn = document.createElement('button');
+      headerToggleBtn.type = 'button';
+      headerToggleBtn.id = 'headerSidebarToggle';
+      headerToggleBtn.className = 'header-sidebar-toggle';
+      headerToggleBtn.setAttribute('aria-label', '사이드바 메뉴 토글');
+      headerToggleBtn.setAttribute('title', '사이드바 접기/펼치기 (Ctrl+B)');
+      headerToggleBtn.innerHTML = `
+        <svg class="icon-toggle-panel" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+        <svg class="icon-toggle-hamburger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <span class="header-sidebar-toggle-text">메뉴</span>
+      `;
+      
+      const brand = header.querySelector('.header-brand') || header.querySelector('.brand-group');
+      if (brand) {
+        header.insertBefore(headerToggleBtn, brand);
+      } else {
+        header.insertBefore(headerToggleBtn, header.firstChild);
+      }
+    }
+
+    // Also support legacy .menu-toggle-btn if already present
+    const legacyToggle = header ? header.querySelector('.menu-toggle-btn') : null;
+    if (legacyToggle && legacyToggle !== headerToggleBtn) {
+      legacyToggle.style.display = 'none';
+    }
+
+    // 4. Desktop Sidebar Edge Tab (< / > Toggle Handle)
     let tabBtn = document.getElementById('sidebar-toggle-tab');
     if (!tabBtn) {
-        tabBtn = document.createElement('div');
-        tabBtn.id = 'sidebar-toggle-tab';
-        tabBtn.className = 'sidebar-toggle-tab';
-        tabBtn.setAttribute('title', '사이드바 접기/펼치기 (Toggle Sidebar)');
-        tabBtn.setAttribute('aria-label', 'Toggle Sidebar');
-        tabBtn.innerHTML = '‹';
-        sidebar.appendChild(tabBtn);
+      tabBtn = document.createElement('div');
+      tabBtn.id = 'sidebar-toggle-tab';
+      tabBtn.className = 'sidebar-toggle-tab';
+      tabBtn.setAttribute('title', '사이드바 접기/펼치기 (Ctrl+B)');
+      tabBtn.setAttribute('aria-label', 'Toggle Sidebar');
+      tabBtn.innerHTML = '‹';
+      sidebar.appendChild(tabBtn);
     }
 
-    function updateDesktopSidebar(collapsed) {
-        if (collapsed) {
-            sidebar.classList.add('desktop-collapsed');
-            if (container) container.classList.add('sidebar-collapsed');
-            tabBtn.classList.add('collapsed-tab');
-            tabBtn.innerHTML = '›';
-            document.body.appendChild(tabBtn);
-        } else {
-            sidebar.classList.remove('desktop-collapsed');
-            if (container) container.classList.remove('sidebar-collapsed');
-            tabBtn.classList.remove('collapsed-tab');
-            tabBtn.innerHTML = '‹';
-            sidebar.appendChild(tabBtn);
+    function isMobileOrTablet() {
+      return window.innerWidth <= 960;
+    }
+
+    function setDesktopCollapsed(collapsed) {
+      if (collapsed) {
+        sidebar.classList.add('desktop-collapsed');
+        if (container) container.classList.add('sidebar-collapsed');
+        document.body.classList.add('sidebar-collapsed');
+        tabBtn.classList.add('collapsed-tab');
+        tabBtn.innerHTML = '›';
+        tabBtn.setAttribute('title', '사이드바 펼치기 (Ctrl+B)');
+        document.body.appendChild(tabBtn);
+        if (headerToggleBtn) {
+          headerToggleBtn.classList.add('collapsed');
+          headerToggleBtn.setAttribute('aria-expanded', 'false');
+          headerToggleBtn.setAttribute('title', '사이드바 펼치기 (Ctrl+B)');
         }
+      } else {
+        sidebar.classList.remove('desktop-collapsed');
+        if (container) container.classList.remove('sidebar-collapsed');
+        document.body.classList.remove('sidebar-collapsed');
+        tabBtn.classList.remove('collapsed-tab');
+        tabBtn.innerHTML = '‹';
+        tabBtn.setAttribute('title', '사이드바 접기 (Ctrl+B)');
+        sidebar.appendChild(tabBtn);
+        if (headerToggleBtn) {
+          headerToggleBtn.classList.remove('collapsed');
+          headerToggleBtn.setAttribute('aria-expanded', 'true');
+          headerToggleBtn.setAttribute('title', '사이드바 접기 (Ctrl+B)');
+        }
+      }
     }
 
-    // Restore saved state
-    const isSavedCollapsed = localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
-    if (window.innerWidth > 960 && isSavedCollapsed) {
-        updateDesktopSidebar(true);
+    function setMobileDrawerOpen(open) {
+      if (open) {
+        sidebar.classList.add('mobile-open');
+        backdrop.classList.add('active');
+        document.body.classList.add('sidebar-drawer-open');
+        if (headerToggleBtn) {
+          headerToggleBtn.classList.add('active');
+          headerToggleBtn.setAttribute('aria-expanded', 'true');
+        }
+      } else {
+        sidebar.classList.remove('mobile-open');
+        backdrop.classList.remove('active');
+        document.body.classList.remove('sidebar-drawer-open');
+        if (headerToggleBtn) {
+          headerToggleBtn.classList.remove('active');
+          headerToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+
+    function toggleSidebar() {
+      if (isMobileOrTablet()) {
+        const isOpen = sidebar.classList.contains('mobile-open');
+        setMobileDrawerOpen(!isOpen);
+      } else {
+        const isCollapsed = sidebar.classList.contains('desktop-collapsed');
+        const willCollapse = !isCollapsed;
+        setDesktopCollapsed(willCollapse);
+        try {
+          localStorage.setItem('uno_sidebar_collapsed', willCollapse ? 'true' : 'false');
+          localStorage.setItem('ameva_desktop_sidebar_collapsed', willCollapse ? 'true' : 'false');
+        } catch (e) {}
+      }
+    }
+
+    // Restore desktop saved state
+    try {
+      const savedCollapsed = localStorage.getItem('uno_sidebar_collapsed') === 'true' || localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
+      if (!isMobileOrTablet() && savedCollapsed) {
+        setDesktopCollapsed(true);
+      }
+    } catch (e) {}
+
+    // Event Bindings
+    if (headerToggleBtn) {
+      headerToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSidebar();
+      });
     }
 
     tabBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const willCollapse = !sidebar.classList.contains('desktop-collapsed');
-        updateDesktopSidebar(willCollapse);
-        localStorage.setItem('ameva_desktop_sidebar_collapsed', willCollapse ? 'true' : 'false');
+      e.preventDefault();
+      e.stopPropagation();
+      toggleSidebar();
     });
 
-    // ── 2. Mobile Header Hamburger Button (Active <= 960px) ───────────────────
-    if (header) {
-        let toggleBtn = header.querySelector('.menu-toggle-btn');
-        if (!toggleBtn) {
-            toggleBtn = document.createElement('button');
-            toggleBtn.className = 'menu-toggle-btn';
-            toggleBtn.setAttribute('aria-label', 'Toggle Navigation Menu');
-            toggleBtn.innerHTML = `
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-                <span class="menu-toggle-label">Menu</span>
-            `;
-            
-            const controls = header.querySelector('.header-controls');
-            if (controls) {
-                controls.insertBefore(toggleBtn, controls.firstChild);
-            } else {
-                header.appendChild(toggleBtn);
-            }
-        }
-
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = sidebar.classList.toggle('mobile-open');
-            toggleBtn.classList.toggle('active', isOpen);
-            toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
-
-        sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 960) {
-                    sidebar.classList.remove('mobile-open');
-                    toggleBtn.classList.remove('active');
-                }
-            });
-        });
+    if (drawerCloseBtn) {
+      drawerCloseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setMobileDrawerOpen(false);
+      });
     }
+
+    backdrop.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setMobileDrawerOpen(false);
+    });
+
+    // Close mobile/tablet drawer when any navigation link is clicked
+    sidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMobileOrTablet()) {
+          setTimeout(() => setMobileDrawerOpen(false), 120);
+        }
+      });
+    });
+
+    // Keyboard Shortcuts: Ctrl+B or Cmd+B to toggle, Escape to close mobile drawer
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+        e.preventDefault();
+        toggleSidebar();
+      } else if (e.key === 'Escape') {
+        if (sidebar.classList.contains('mobile-open')) {
+          setMobileDrawerOpen(false);
+        }
+      }
+    });
+
+    // Handle Window Resize (Desktop <-> Tablet/Mobile transitions)
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      const curWidth = window.innerWidth;
+      if (curWidth > 960 && lastWidth <= 960) {
+        setMobileDrawerOpen(false);
+        try {
+          const shouldCollapse = localStorage.getItem('uno_sidebar_collapsed') === 'true' || localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
+          setDesktopCollapsed(shouldCollapse);
+        } catch (e) {}
+      } else if (curWidth <= 960 && lastWidth > 960) {
+        setDesktopCollapsed(false);
+        setMobileDrawerOpen(false);
+      }
+      lastWidth = curWidth;
+    });
+
+    return true;
+  }
+
+  // Lifecycle Initialization Hooks
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalSidebar);
+  } else {
+    initUniversalSidebar();
+  }
+
+  window.addEventListener('ameva:sidebar-ready', () => {
+    initUniversalSidebar();
+  });
+
+  if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(() => {
+      if (document.querySelector('.sidebar, .resume-sidebar')) {
+        if (initUniversalSidebar()) {
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    setTimeout(() => observer.disconnect(), 6000);
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('.resume-sidebar');
+    if (!sidebar) return;
 
     // ── 3. Collapsible Sidebar Section Accordions ─────────────────────────────
     const headers = sidebar.querySelectorAll('h3');
