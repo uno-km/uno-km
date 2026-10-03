@@ -168,7 +168,7 @@
     },
     "train": {
       "name": "Termux-Train",
-      "version": "v1.1.5",
+      "version": "v2.0.0",
       "github": "https://github.com/uno-km/termux-train",
       "pypi": "termux-train",
       "npm": "termux-train",
@@ -414,6 +414,64 @@
     { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
   ];
 
+  const MENU_ICONS = {
+    // Labs menus
+    'newsletter': '📰',
+    'research': '🔬',
+    'research-handbook': '📚',
+    'research-papers': '📄',
+    'research-benchmarks': '⚡',
+    'research-cluster': '🌐',
+    'research-opensource': '🐙',
+    'free-board': '💬',
+    'board-ai': '🤖',
+    'board-cs': '💻',
+
+    // Flagship libraries
+    'sentinel': '🛡️',
+    'mcp': '🧩',
+    'vulkan': '⚙️',
+    'runtime': '⚙️',
+    'aichain': '⛓️',
+    'bitnet': '🧠',
+    'diffusion': '🎨',
+    'playwright': '🎭',
+    'stt': '🎙️',
+    'tts': '🔊',
+    'train': '🏋️',
+    'llamacpp': '🦙',
+    'vision': '👁️',
+    'forge': '⚡',
+    'workstation': '💻',
+
+    // Foundation
+    'charter': '📜',
+    'governance': '⚖️',
+    'incubation': '🌱',
+    'sponsorship': '💎',
+    'metrics': '📊',
+    'dashboard': '🌐',
+
+    // AI specs
+    'llms.txt': '📑',
+    'llms-full.txt': '📚',
+    'robots.txt': '🤖',
+    'sitemap.xml': '🗺️',
+
+    // Default fallback
+    'default': '📌'
+  };
+
+  function getMenuIcon(key) {
+    if (!key) return MENU_ICONS['default'];
+    const k = String(key).toLowerCase();
+    if (MENU_ICONS[k]) return MENU_ICONS[k];
+    for (const [mKey, icon] of Object.entries(MENU_ICONS)) {
+      if (k.includes(mKey)) return icon;
+    }
+    return MENU_ICONS['default'];
+  }
+
   function buildLabsMenuTreeHtml(menus, curMenu) {
     if (!Array.isArray(menus) || menus.length === 0) return '';
     const nodeMap = {};
@@ -443,9 +501,10 @@
         const actClass = isAct ? ' class="active"' : '';
         const href = `/labs/index.html?menu=${encodeURIComponent(n.id)}`;
         const hasChildren = n.children && n.children.length > 0;
+        const icon = getMenuIcon(n.id);
 
         out += `      <li class="${isSub ? 'tree-sub-item' : 'tree-root-item'}">`;
-        out += `<a href="${href}"${actClass} data-menu-id="${n.id}">${n.name}</a>`;
+        out += `<a href="${href}"${actClass} data-menu-id="${n.id}" title="${n.name}"><span class="nav-icon">${icon}</span><span class="nav-text">${n.name}</span></a>`;
         if (hasChildren) {
           out += '\n' + renderBranch(n.children, true);
         }
@@ -647,20 +706,24 @@
             .catch(() => {});
         }
       } else if (ctx.isFoundation) {
-        tier1H3 = '<h3 data-i18n="common.nav.foundation">Foundation (AOSF)</h3>';
+        tier1H3 = '<h3 data-i18n="common.nav.foundation"><span class="section-title-text">Foundation (AOSF)</span></h3>';
         FOUNDATION_PAGES.forEach(([href, title]) => {
           const isAct = href.includes('/labs/') ? ctx.isLabs : (!ctx.isLabs && normalizePageName(href) === currentNorm);
           const act = isAct ? ' class="active"' : '';
-          tier1Items.push(`      <li><a href="${href}"${act}>${title}</a></li>`);
+          const icon = getMenuIcon(href);
+          tier1Items.push(`      <li><a href="${href}"${act} title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
         });
       } else if (libData && libData.doc_pages) {
+        tier1H3 = '<h3 data-i18n="common.nav.docNav"><span class="section-title-text">Document Navigation</span></h3>';
         libData.doc_pages.forEach(([p, title]) => {
           const pageNorm = normalizePageName(p);
           const isAct = (pageNorm === currentNorm);
           const act = isAct ? ' class="active"' : '';
-          tier1Items.push(`      <li><a href="${p}"${act}>${title}</a></li>`);
+          const icon = getMenuIcon(p);
+          tier1Items.push(`      <li><a href="${p}"${act} title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
         });
       } else {
+        tier1H3 = '<h3 data-i18n="common.nav.docNav"><span class="section-title-text">Document Navigation</span></h3>';
         const defaultPages = [
           ["index.html", "Home / Architecture"],
           ["installation.html", "Installation Guide"],
@@ -674,7 +737,8 @@
           const pageNorm = normalizePageName(p);
           const isAct = (pageNorm === currentNorm);
           const act = isAct ? ' class="active"' : '';
-          tier1Items.push(`      <li><a href="${p}"${act}>${title}</a></li>`);
+          const icon = getMenuIcon(p);
+          tier1Items.push(`      <li><a href="${p}"${act} title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
         });
       }
 
@@ -682,12 +746,14 @@
       FLAGSHIP_LIST.forEach(([href, lk, title]) => {
         const act = (!ctx.isFoundation && lk === libKey) ? ' class="active"' : '';
         const target = href.startsWith('http') ? ' target="_blank"' : '';
-        tier2Items.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}">${title}</a></li>`);
+        const icon = getMenuIcon(lk);
+        tier2Items.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
       });
 
       let tier3Items = [];
       AI_PROTOCOLS.forEach(([href, title]) => {
-        tier3Items.push(`      <li><a href="${href}" target="_blank">${title}</a></li>`);
+        const icon = getMenuIcon(href);
+        tier3Items.push(`      <li><a href="${href}" target="_blank" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
       });
 
       this.innerHTML = `
@@ -698,12 +764,12 @@
 ${tier1Items.join('\n')}
     </ul>
     <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries">Flagship Libraries</h3>
+    <h3 data-i18n="common.nav.libraries"><span class="section-title-text">Flagship Libraries</span></h3>
     <ul>
 ${tier2Items.join('\n')}
     </ul>
     <!-- Tier 3: AI Protocols & Specifications -->
-    <h3 data-i18n="common.nav.aiSpecs">AI Agent Protocols</h3>
+    <h3 data-i18n="common.nav.aiSpecs"><span class="section-title-text">AI Agent Protocols</span></h3>
     <ul>
 ${tier3Items.join('\n')}
     </ul>

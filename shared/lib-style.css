@@ -254,7 +254,9 @@ header {
 }
 
 .sidebar a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 12px;
   color: var(--text-muted);
   text-decoration: none;
@@ -262,6 +264,22 @@ header {
   font-size: 0.88em;
   font-weight: 500;
   transition: background-color 0.12s, color 0.12s;
+}
+
+.sidebar a .nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.sidebar a .nav-text {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar a:hover {
@@ -714,40 +732,131 @@ body.sidebar-drawer-open {
   display: none;
 }
 
-/* ── Desktop Sidebar Collapse Architecture (> 960px) ────────────────────── */
+/* ── Desktop Sidebar Mini-Rail Architecture (> 960px) ────────────────────── */
 @media (min-width: 961px) {
   .sidebar {
-    position: relative;
-    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.2s ease,
-                opacity 0.2s ease;
+    position: sticky;
+    top: var(--header-height, 58px);
+    height: calc(100vh - var(--header-height, 58px));
+    transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                min-width 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                max-width 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.2s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
-  .sidebar.desktop-collapsed {
-    width: 0 !important;
-    min-width: 0 !important;
-    max-width: 0 !important;
-    padding: 0 !important;
+  /* Mini-Rail (Collapsed state: 60px Icon Mode) */
+  .sidebar.desktop-collapsed,
+  .sidebar.mini-rail {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    padding: 12px 6px !important;
     margin: 0 !important;
-    border-right: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    overflow: hidden !important;
+    border-right: 1px solid var(--border-color, #cbd5e1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    overflow-x: hidden !important;
   }
 
+  /* Hide textual headings, convert h3 into a subtle thin divider */
+  .sidebar.desktop-collapsed h3,
+  .sidebar.mini-rail h3 {
+    margin: 12px 4px 8px 4px !important;
+    padding: 0 !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(148, 163, 184, 0.25) !important;
+    height: 1px !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    color: transparent !important;
+    cursor: default !important;
+  }
+
+  .sidebar.desktop-collapsed h3 .section-title-text,
+  .sidebar.mini-rail h3 .section-title-text,
+  .sidebar.desktop-collapsed h3 .accordion-icon,
+  .sidebar.mini-rail h3 .accordion-icon {
+    display: none !important;
+  }
+
+  /* Hide menu text in mini-rail mode */
+  .sidebar.desktop-collapsed .nav-text,
+  .sidebar.mini-rail .nav-text {
+    display: none !important;
+  }
+
+  /* Render nav-icon prominently centered */
+  .sidebar.desktop-collapsed .nav-icon,
+  .sidebar.mini-rail .nav-icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    width: 100%;
+    height: 38px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .sidebar.desktop-collapsed a,
+  .sidebar.mini-rail a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2px 0 !important;
+    margin: 3px 0 !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    border-left: none !important;
+    text-align: center !important;
+    position: relative;
+  }
+
+  .sidebar.desktop-collapsed a:hover .nav-icon,
+  .sidebar.mini-rail a:hover .nav-icon {
+    background: rgba(2, 132, 199, 0.12);
+    transform: scale(1.1);
+  }
+
+  .sidebar.desktop-collapsed a.active .nav-icon,
+  .sidebar.mini-rail a.active .nav-icon {
+    background: rgba(2, 132, 199, 0.2);
+    border: 1px solid rgba(2, 132, 199, 0.4);
+  }
+
+  /* Tree sub lists in mini-rail mode */
+  .sidebar.desktop-collapsed ul.tree-sub-list,
+  .sidebar.mini-rail ul.tree-sub-list {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
+
+  .sidebar.desktop-collapsed ul.tree-sub-list li.tree-sub-item::before,
+  .sidebar.mini-rail ul.tree-sub-list li.tree-sub-item::before {
+    display: none !important;
+  }
+
+  .sidebar.desktop-collapsed ul.tree-sub-list a,
+  .sidebar.mini-rail ul.tree-sub-list a {
+    padding-left: 0 !important;
+  }
+
+  /* Content area expansion with 60px mini-rail */
   .container.sidebar-collapsed .content,
   .container.sidebar-collapsed .main-content,
   .container.sidebar-collapsed .labs-content-wrap {
-    max-width: 1440px !important;
-    width: 100% !important;
-    flex: 1 1 100% !important;
+    max-width: calc(1440px - 60px) !important;
+    width: calc(100% - 60px) !important;
+    flex: 1 1 auto !important;
     margin: 0 auto !important;
   }
 
-  /* Desktop Edge Tab Handle (< / >) */
+  /* Edge Tab Handle repositioned on 60px rail edge */
   .sidebar-toggle-tab {
     position: absolute;
     top: 140px;
@@ -760,34 +869,42 @@ body.sidebar-drawer-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    z-index: 60;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-size: 14px;
+    font-weight: 700;
     color: var(--text-muted, #64748b);
-    font-size: 15px;
-    font-weight: 800;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
     transition: all 0.15s ease;
     user-select: none;
   }
 
   .sidebar-toggle-tab:hover {
-    background-color: var(--primary-light, #e8f0fe);
-    color: var(--primary-color, #004499);
-    border-color: var(--primary-color, #004499);
-    box-shadow: 0 2px 8px rgba(0, 68, 153, 0.2);
+    background: var(--primary-light, #e0f2fe);
+    color: var(--primary-color, #0284c7);
+    border-color: var(--primary-color, #0284c7);
+    width: 22px;
   }
 
+  .sidebar.desktop-collapsed .sidebar-toggle-tab,
+  .sidebar.mini-rail .sidebar-toggle-tab,
   .sidebar-toggle-tab.collapsed-tab {
-    position: fixed;
-    left: 0;
-    top: 140px;
-    right: auto;
-    border-left: none;
-    border-radius: 0 6px 6px 0;
-    background: #ffffff;
-    border-color: var(--primary-color, #004499);
-    color: var(--primary-color, #004499);
-    box-shadow: 2px 2px 10px rgba(0, 68, 153, 0.18);
+    right: -12px !important;
+    left: auto !important;
+    position: absolute !important;
+    border-radius: 4px !important;
+    border: 1px solid var(--border-color, #cbd5e1) !important;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.12) !important;
+    background: #ffffff !important;
+    color: var(--primary-color, #0284c7) !important;
+  }
+
+  .sidebar.desktop-collapsed .sidebar-toggle-tab:hover,
+  .sidebar.mini-rail .sidebar-toggle-tab:hover,
+  .sidebar-toggle-tab.collapsed-tab:hover {
+    background: var(--primary-light, #e0f2fe) !important;
+    color: var(--primary-dark, #002d66) !important;
+    width: 22px !important;
   }
 }
 
@@ -896,10 +1013,30 @@ body.sidebar-drawer-open {
 
   header {
     padding: 8px 12px !important;
-    height: auto !important;
-    min-height: var(--header-height);
-    flex-wrap: wrap !important;
-    gap: 8px 0 !important;
+    height: var(--header-height, 58px) !important;
+    min-height: var(--header-height, 58px) !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Header controls horizontal chip scroll */
+  header .header-controls,
+  header .brand-group + div,
+  header > div:last-child {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    flex-shrink: 1 !important;
+  }
+
+  header .header-controls::-webkit-scrollbar,
+  header > div:last-child::-webkit-scrollbar {
+    display: none !important;
   }
 
   .header-brand {
@@ -981,7 +1118,7 @@ body.sidebar-drawer-open {
   --sidebar-width: 310px !important;
 }
 
-.sidebar {
+.sidebar:not(.desktop-collapsed):not(.mini-rail) {
   width: 310px !important;
 }
 

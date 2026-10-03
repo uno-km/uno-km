@@ -108,26 +108,30 @@
 
     function setDesktopCollapsed(collapsed) {
       if (collapsed) {
-        sidebar.classList.add('desktop-collapsed');
+        sidebar.classList.add('desktop-collapsed', 'mini-rail');
         if (container) container.classList.add('sidebar-collapsed');
         document.body.classList.add('sidebar-collapsed');
         tabBtn.classList.add('collapsed-tab');
         tabBtn.innerHTML = '›';
         tabBtn.setAttribute('title', '사이드바 펼치기 (Ctrl+B)');
-        document.body.appendChild(tabBtn);
+        if (tabBtn.parentElement !== sidebar) {
+          sidebar.appendChild(tabBtn);
+        }
         if (headerToggleBtn) {
           headerToggleBtn.classList.add('collapsed');
           headerToggleBtn.setAttribute('aria-expanded', 'false');
           headerToggleBtn.setAttribute('title', '사이드바 펼치기 (Ctrl+B)');
         }
       } else {
-        sidebar.classList.remove('desktop-collapsed');
+        sidebar.classList.remove('desktop-collapsed', 'mini-rail');
         if (container) container.classList.remove('sidebar-collapsed');
         document.body.classList.remove('sidebar-collapsed');
         tabBtn.classList.remove('collapsed-tab');
         tabBtn.innerHTML = '‹';
         tabBtn.setAttribute('title', '사이드바 접기 (Ctrl+B)');
-        sidebar.appendChild(tabBtn);
+        if (tabBtn.parentElement !== sidebar) {
+          sidebar.appendChild(tabBtn);
+        }
         if (headerToggleBtn) {
           headerToggleBtn.classList.remove('collapsed');
           headerToggleBtn.setAttribute('aria-expanded', 'true');
@@ -161,23 +165,33 @@
         const isOpen = sidebar.classList.contains('mobile-open');
         setMobileDrawerOpen(!isOpen);
       } else {
-        const isCollapsed = sidebar.classList.contains('desktop-collapsed');
+        const isCollapsed = sidebar.classList.contains('desktop-collapsed') || sidebar.classList.contains('mini-rail');
         const willCollapse = !isCollapsed;
         setDesktopCollapsed(willCollapse);
         try {
-          localStorage.setItem('uno_sidebar_collapsed', willCollapse ? 'true' : 'false');
-          localStorage.setItem('ameva_desktop_sidebar_collapsed', willCollapse ? 'true' : 'false');
+          const val = willCollapse ? 'true' : 'false';
+          localStorage.setItem('uno_sidebar_collapsed', val);
+          localStorage.setItem('ameva_desktop_sidebar_collapsed', val);
+          localStorage.setItem('ameva_sidebar_collapsed', val);
         } catch (e) {}
       }
     }
 
-    // Restore desktop saved state
+    // Restore desktop saved state (Default: OPEN / Expanded)
     try {
-      const savedCollapsed = localStorage.getItem('uno_sidebar_collapsed') === 'true' || localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
+      const savedCollapsed = localStorage.getItem('uno_sidebar_collapsed') === 'true' ||
+                             localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true' ||
+                             localStorage.getItem('ameva_sidebar_collapsed') === 'true';
       if (!isMobileOrTablet() && savedCollapsed) {
         setDesktopCollapsed(true);
+      } else if (!isMobileOrTablet()) {
+        setDesktopCollapsed(false);
       }
-    } catch (e) {}
+    } catch (e) {
+      if (!isMobileOrTablet()) {
+        setDesktopCollapsed(false);
+      }
+    }
 
     // Event Bindings
     if (headerToggleBtn) {
@@ -236,9 +250,13 @@
       if (curWidth > 960 && lastWidth <= 960) {
         setMobileDrawerOpen(false);
         try {
-          const shouldCollapse = localStorage.getItem('uno_sidebar_collapsed') === 'true' || localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true';
+          const shouldCollapse = localStorage.getItem('uno_sidebar_collapsed') === 'true' ||
+                                 localStorage.getItem('ameva_desktop_sidebar_collapsed') === 'true' ||
+                                 localStorage.getItem('ameva_sidebar_collapsed') === 'true';
           setDesktopCollapsed(shouldCollapse);
-        } catch (e) {}
+        } catch (e) {
+          setDesktopCollapsed(false);
+        }
       } else if (curWidth <= 960 && lastWidth > 960) {
         setDesktopCollapsed(false);
         setMobileDrawerOpen(false);
