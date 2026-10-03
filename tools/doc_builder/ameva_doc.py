@@ -438,6 +438,8 @@ Sitemap: sitemap.xml
   <url><loc>installation.html</loc><priority>0.8</priority></url>
   <url><loc>quickstart.html</loc><priority>0.8</priority></url>
   <url><loc>api-reference.html</loc><priority>0.9</priority></url>
+  <url><loc>models.html</loc><priority>0.8</priority></url>
+  <url><loc>training-guide.html</loc><priority>0.8</priority></url>
   <url><loc>benchmarks.html</loc><priority>0.7</priority></url>
   <url><loc>advanced-parameters.html</loc><priority>0.7</priority></url>
   <url><loc>versions.html</loc><priority>0.5</priority></url>
@@ -538,11 +540,24 @@ def build_documentation(config_path: Path, output_dir: Path, assets_src_dir: Pat
              <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
            </tbody>
          </table>""")),
+        ("models.html", "Supported Models & Architecture Zoo", "Architecture compatibility, adapter layers, and memory specifications",
+         cfg.get("models_body", f"<h3>Supported Architectures</h3><p>Consult documentation for supported models.</p>")),
+        ("training-guide.html", "Multimodal On-Device Training Manual", "Comprehensive engineering manual for multimodal LoRA fine-tuning",
+         cfg.get("training_guide_body", f"<h3>Training Guide</h3><p>Training recipes and instructions.</p>")),
         ("advanced-parameters.html", "Advanced Parameters & Tuning", "Kernel-level tuning, buffer pool sizing, and thread configuration",
          cfg.get("advanced_parameters_body", f"""<h3>Memory Buffer Pool Configuration</h3>
          <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>""")),
         ("versions.html", "Version Archive & Changelog", "Changelog history and immutable releases", versions_body)
     ]
+
+    for cp in cfg.get("custom_pages", []):
+        cp_slug = cp.get("slug", "")
+        if cp_slug:
+            fn = f"{cp_slug}.html"
+            t_en = cp.get("title_en", cp_slug)
+            d_en = cp.get("desc_en", "")
+            b = cp.get("body") or cfg.get(f"{cp_slug.replace('-', '_')}_body", f"<p>{d_en}</p>")
+            subpages.append((fn, t_en, d_en, b))
 
     for filename, title, subtitle, body in subpages:
         page_html = render_generic_page(cfg, filename, title, subtitle, body)

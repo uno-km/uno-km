@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-Train | Official Documentation</title>
-  <meta name="description" content="비싼 클라우드 GPU 서버 없이 스마트폰 안에서 직접 나만의 맞춤 AI를 훈련시킵니다.">
+  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,124 +19,181 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2 data-i18n="home.title">소개 및 아키텍처 개요</h2>
-      <p class="subtitle" data-i18n="home.subtitle">안드로이드 Bionic ARM64 직접 구동 모바일 LoRA/QLoRA 경량 미세조정(Fine-Tuning) 엔진</p>
+      <h2 data-i18n="home.title">Termux-Train</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Unified Multimodal On-Device Deep Learning & LoRA Training Framework for Android Termux with 6-Modality Adapters (LLM, Diffusion, VLM, STT, TTS, BitNet), GPU Slicing, and 44GB Disaggregated Cluster Virtual RAM Pooling</p>
 
-      <div class="alert alert-info">
-        <span class="alert-title" data-i18n="home.quickInstallTitle">1줄 빠른 설치 가이드</span>
-        <p data-i18n="home.quickInstallDesc">공식 패키지 매니저를 통해 즉시 단말기 환경에 설치하세요:</p>
-        <pre><code># 파이썬 공식 패키지 매니저
-pip install termux-train</code></pre>
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-train/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-train.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/termux-train" target="_blank"><img src="https://img.shields.io/npm/v/termux-train.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Linux_/_Termux-blueviolet.svg" alt="Platform">
       </div>
 
-      <h3 data-i18n="home.challengeTitle">기술적 당면 과제</h3>
-      <p data-i18n="home.challengeText">모바일 단말기에서 인공지능 모델을 훈련하는 것은 수 기가바이트의 거대한 메모리 역전파 연산과 심각한 배터리 발열로 인해 불가능한 것으로 여겨졌습니다.</p>
-
-      <h3 data-i18n="home.breakthroughTitle">아키텍처 혁신 및 기술 돌파구</h3>
-      <p data-i18n="home.breakthroughText">그래디언트 체크포인팅(Gradient Checkpointing), 4비트 양자화 역전파, SafeTensors 제로카피 맵핑을 결합하여 안드로이드 스마트폰 메모리 안에서 직접 동작하는 초경량 LoRA 미세조정을 실현했습니다.</p>
-
-      <div class="alert alert-success">
-        <span class="alert-title" data-i18n="home.valuePropTitle">핵심 가치 제안 (Why It Matters)</span>
-        <p data-i18n="home.valuePropText">비싼 서버나 클라우드 없이 내 스마트폰 안에서 나만의 맞춤 AI를 직접 훈련시키는 초경량 온디바이스 트레이닝 엔진입니다.</p>
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-train
+# or via npm:
+npm install -g termux-train
+# or standalone bootstrap:
+bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-train/main/install.sh)
+</code></pre>
       </div>
 
-      <h3 data-i18n="home.featuresTitle">주요 기능 및 하드웨어 강화</h3>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Standard deep learning training systems (PyTorch, DeepSpeed, Megatron) require multi-gigabyte build toolchains unavailable on Android Bionic, lack native mobile GPU autograd dispatch, and rapidly trigger the Android Low Memory Killer (LMK) during backward activation accumulation.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4 data-i18n="home.features.0.title">Bionic ARM64 직접 역전파 연산</h4>
-          <p data-i18n="home.features.0.desc">안드로이드 네이티브 환경에서 메모리 절감형 오토그라드 엔진을 직접 실행합니다.</p>
+          <h4 data-i18n="home.features.0.title">6-Modality Target-Aware Adapter Hub</h4>
+          <p data-i18n="home.features.0.desc">Directly trains and exports native SafeTensors and _config.json sidecars for LLM (llama.cpp/GGUF), Image Diffusion (ComfyUI/Diffusers), Vision VLM (termux-vision), Whisper STT (termux-stt), TTS (termux-tts), and BitNet 1.58-bit ternary models without format conversion steps.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.1.title">메모리 절감 그래디언트 체크포인팅</h4>
-          <p data-i18n="home.features.1.desc">중간 활성화 값을 디스크에 버리지 않고 순전파 시 즉각 재계산하여 메모리를 60% 이상 절약합니다.</p>
+          <h4 data-i18n="home.features.1.title">Single-Device GPU Slicing (Mali & Adreno)</h4>
+          <p data-i18n="home.features.1.desc">Prevents mobile unified memory allocation spikes via Vocab Slicing (--vocab-slice), Chunked Layer Dispatch (--chunk-layers), and Layer Streaming (--stream-layers), preventing GPU watchdog resets.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.2.title">SafeTensors 제로카피 가중치 저장</h4>
-          <p data-i18n="home.features.2.desc">훈련 완료된 LoRA 어댑터를 안전하고 빠른 SafeTensors 포맷으로 즉시 저장합니다.</p>
+          <h4 data-i18n="home.features.2.title">44GB Disaggregated Cluster Virtual RAM Pooling</h4>
+          <p data-i18n="home.features.2.desc">Aggregates physical RAM across heterogeneous mobile devices (S25, S21, S20, A53, A35) into a unified 44GB virtual memory pool with 300MB Guard-Band memory protection against Android LMK.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.3.title">발열 보호 지능형 스로틀링 가드</h4>
-          <p data-i18n="home.features.3.desc">단말기 배터리 온도가 40도를 넘으면 스텝 간 미세 슬립을 주입하여 기기를 안전하게 보호합니다.</p>
+          <h4 data-i18n="home.features.3.title">On-Device Reinforcement Learning (GRPO / DPO / PPO)</h4>
+          <p data-i18n="home.features.3.desc">Executes client-side DeepSeek-R1 style Group Relative Policy Optimization (GRPO), Direct Preference Optimization (DPO), and PPO directly on mobile hardware.</p>
         </div>
         <div class="feature-card">
-          <h4 data-i18n="home.features.4.title">순수 C++ 경량 옵티마이저</h4>
-          <p data-i18n="home.features.4.desc">AdamW 및 8-bit 양자화 옵티마이저를 탑재하여 메모리 소비를 최소화했습니다.</p>
+          <h4 data-i18n="home.features.4.title">Persistent Latent & Feature Caching</h4>
+          <p data-i18n="home.features.4.desc">Avoids redundant VAE decoding and Mel filterbank recalculation across training epochs through deterministic SHA-256 keyed .safetensors on-device disk caching.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">100% Dual-Engine Parity (Python & Node.js)</h4>
+          <p data-i18n="home.features.5.desc">Guarantees identical subcommands, parameter names, and exit codes across Python API, Python CLI, Node.js SDK, and Node.js Global CLI.</p>
         </div>
       </div>
 
-      <h3 data-i18n="home.matrixTitle">지원 연산 커널 및 하드웨어 가속 매트릭스</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th data-i18n="table.thCategory">서브시스템 분류</th>
-            <th data-i18n="table.thKernel">지원 연산 및 가속 커널</th>
-            <th data-i18n="table.thStability">상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>LoRA Forward/Backward Kernel</strong></td>
-            <td>ARM NEON 가속 저순위 행렬 곱셈 및 그래디언트 누적</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>LLM / Text PEFT</strong></td>
+            <td>LoRA, DoRA, TinyTransformerLM, RoPE Rotary Embeddings, GGUF PEFT Export</td>
+            <td><span class="status-badge active">Production Verified</span></td>
           </tr>
           <tr>
-            <td><strong>Quantized Backprop Engine</strong></td>
-            <td>4비트 양자화 가중치를 통한 역전파 오토그라드</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Image Diffusion</strong></td>
+            <td>DDPMScheduler, Sinusoidal Timestep MLP, CrossAttentionLoRA, ComfyUI SafeTensors</td>
+            <td><span class="status-badge active">Production Verified</span></td>
           </tr>
           <tr>
-            <td><strong>SafeTensors Zero-Copy IO</strong></td>
-            <td>메모리 맵핑 기반 고속 가중치 저장/불러오기</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Vision VLM</strong></td>
+            <td>MultimodalProjectorLoRA, Visual Cross-Attention, LLaVA/Qwen2-VL QA Dataset</td>
+            <td><span class="status-badge active">Production Verified</span></td>
           </tr>
           <tr>
-            <td><strong>Thermal Safety Controller</strong></td>
-            <td>배터리 온도 센서 연동 실시간 학습 속도 제어</td>
-            <td><span class="badge badge-success">프로덕션 안정</span></td>
+            <td><strong>Audio STT</strong></td>
+            <td>Whisper Cross-Attention LoRA, Mel Spectrogram Caching, Acoustic Fine-Tuning</td>
+            <td><span class="status-badge active">Production Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Audio TTS</strong></td>
+            <td>Speaker Style Adaptation LoRA, Phonetic-to-Mel Alignment, Voice Synthesis</td>
+            <td><span class="status-badge active">Production Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>BitNet 1.58-bit</strong></td>
+            <td>Ternary Quantization-Aware Training, Dynamic Activation Scaling, bitnet.cpp Export</td>
+            <td><span class="status-badge active">Production Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cluster Virtual RAM</strong></td>
+            <td>44GB Virtual RAM Pooling, Proportional Sharding, Distributed Pipeline Session</td>
+            <td><span class="status-badge active">Production Verified</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 data-i18n="home.usageTitle">표준 사용 예제 (Python &amp; Node.js)</h3>
-      <div>
-        <h4>Python (pip) 사용 예제</h4>
-        <pre><code class="language-python">from termux_train import TrainEngine, LoRAConfig
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import termux_train as tt
 
-# 1. 온디바이스 LoRA 훈련 설정
-config = LoRAConfig(
-    base_model="./qwen-0.5b.gguf",
+# 1. Image Diffusion LoRA Training (ComfyUI / Diffusers compatible)
+tt.diffusion.train_diffusion_lora(
+    image_dir="./training_images",
+    output_path="./adapter_diffusion.safetensors",
+    prompt="high quality technical schematic",
+    resolution=512,
+    epochs=5,
+    lr=0.0001,
     rank=8,
-    alpha=16,
-    learning_rate=2e-4,
-    gradient_accumulation_steps=4
+    backend="vulkan"
 )
 
-# 2. 온디바이스 파인튜닝 루프 실행
-with TrainEngine(config) as trainer:
-    trainer.load_dataset("./dataset.jsonl")
-    print("[Termux-Train] 온디바이스 훈련 루프 시작...")
-    for epoch, loss in trainer.train(epochs=3):
-        print(f"에포크 {epoch} 완료 - 최종 손실값: {loss:.4f}")
-    trainer.save_adapter("./adapters/custom_lora.bin")</code></pre>
-      </div>
-      <div>
-        <h4>Node.js (npm) 사용 예제</h4>
-        <pre><code class="language-javascript">// Node.js CLI 브리지 실행 예제:
-const { execSync } = require('child_process');
+# 2. Vision Multimodal VLM LoRA Training (LLaVA / Qwen2-VL format)
+tt.vision.train_vision_vlm_lora(
+    data_source="./vlm_dataset.jsonl",
+    output_path="./adapter_vision.safetensors",
+    epochs=3,
+    lr=0.0002,
+    backend="vulkan"
+)
 
-console.log('[Termux-Train] 훈련 CLI 실행 중...');
-const stdout = execSync('termux-train fine-tune --model ./qwen-0.5b.gguf --data ./dataset.jsonl --rank 8');
-console.log(stdout.toString());</code></pre>
+# 3. Whisper STT LoRA Acoustic Adaptation
+tt.stt.train_stt_lora(
+    data_source="./audio_transcripts.jsonl",
+    output_path="./adapter_stt.safetensors",
+    epochs=4,
+    backend="vulkan"
+)
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { trainDiffusion, trainVision, trainSTT, TermuxTrainer } from 'termux-train';
+
+// 1. Asynchronous Image Diffusion LoRA Training
+await trainDiffusion({
+  imageDir: './training_images',
+  output: './adapter_diffusion.safetensors',
+  prompt: 'high quality technical schematic',
+  resolution: 512,
+  epochs: 5,
+  lr: 0.0001,
+  rank: 8,
+  backend: 'vulkan'
+});
+
+// 2. High-Performance LLM LoRA Fine-Tuning
+const trainer = new TermuxTrainer({
+  modelType: 'lora',
+  loraRank: 8,
+  backend: 'vulkan',
+  vocabSlice: 4096,
+  chunkLayers: 2
+});
+await trainer.fit({ epochs: 3, lr: 0.0002 });
+</code></pre>
+        </div>
       </div>
 
-      <h3 data-i18n="home.nextStepsTitle">문서 바로가기 및 상세 가이드</h3>
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">상세 설치 및 환경 구성 가이드 (하드웨어 의존성, Termux 설정)</a></li>
-        <li><a href="quickstart.html">퀵스타트 레시피 및 최소 실행 예제</a></li>
-        <li><a href="api-reference.html">전체 API 명세서 및 인터페이스 규격 정의</a></li>
-        <li><a href="advanced-parameters.html">고급 파라미터 제어 및 하드웨어 튜닝</a></li>
-        <li><a href="benchmarks.html">실기기 벤치마크 및 계측 데이터</a></li>
-        <li><a href="versions.html">버전 릴리즈 아카이브 (Version &amp; Release History)</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>

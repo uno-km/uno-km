@@ -1,50 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Manual & Recipes | termux-train</title>
-    <meta name="description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
-    <meta name="keywords" content="termux-train, pypi, on-device training, android deep learning, autograd pure python, lora on device, bionic arm64, snapdragon ai, mobile transformer, rope kv cache, safetensors mobile, ameva foundation">
-    <meta name="author" content="AMEVA Foundation &amp; uno-km">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://uno-km.github.io/termux-train/">
-    <link rel="alternate" type="application/rss+xml" title="termux-train RSS Feed" href="https://uno-km.github.io/termux-train/rss.xml">
-
-    <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Training Manual & Recipes | termux-train">
-    <meta property="og:description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://uno-km.github.io/termux-train/">
-    <meta property="og:site_name" content="termux-train (AMEVA Foundation)">
-    <meta property="og:image" content="https://uno-km.github.io/termux-train/favicon.svg">
-
-    <!-- Twitter Card Metadata -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Training Manual & Recipes | termux-train">
-    <meta name="twitter:description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
-
-    <!-- Schema.org SoftwareApplication JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "termux-train",
-      "author": {
-        "@type": "Organization",
-        "name": "AMEVA Foundation"
-      },
-      "operatingSystem": "Android, Linux, Windows, macOS",
-      "applicationCategory": "DeveloperApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00"
-      },
-      "description": "Comprehensive training manual for Tiny Models and Small LLMs on Android Termux"
-    }
-    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimodal On-Device Training Manual | Termux-Train</title>
+  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -52,73 +13,38 @@
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <ameva-header></ameva-header>
-    <div class="container">
-                                          <ameva-sidebar></ameva-sidebar>
-        <main class="content">
-            <h2 data-i18n="guide.title">On-Device Tiny Model &amp; Small LLM Training Manual</h2>
-            <p class="subtitle" data-i18n="guide.subtitle">Comprehensive engineering guide for training RoPE Transformers, Whisper LoRA, and DocFold models on mobile hardware.</p>
+  <ameva-header></ameva-header>
 
-            <h3>1. Mobile Hardware Constraints &amp; LMK Defense</h3>
-            <p>Android OS triggers the <strong>Low Memory Killer (LMK)</strong> when free memory falls below 300MB. termux-train avoids this via:</p>
-            <ul style="margin-left: 20px; line-height: 1.8;">
-                <li><strong>Zero-Dependency Core</strong>: Pure Python autograd consuming &lt; 30MB base RAM.</li>
-                <li><strong>Streaming MMap Datasets</strong>: Direct page-cache disk streaming without heap bloat.</li>
-                <li><strong>SafeTensors Binary Format</strong>: Zero-copy tensor serialization.</li>
-            </ul>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
 
-            <h3 style="margin-top: 32px;">2. Recipe 1: Tiny Transformer Language Model (RoPE + KV Cache)</h3>
-            <pre><code class="language-python">from termux_train import Tensor, nn, optim, set_backend
-from termux_train.tokenization import CharTokenizer
+    <main class="content">
+      <h2>Multimodal On-Device Training Manual</h2>
+      <p class="subtitle">Comprehensive engineering manual for multimodal LoRA fine-tuning</p>
+      <h3>Multimodal On-Device Training Pipeline Manual</h3>
+<p>Termux-Train operates through a deterministic 4-stage pipeline designed to protect mobile system integrity while maximizing mathematical convergence.</p>
 
-set_backend("auto")
-tokenizer = CharTokenizer()
-tokenizer.build_vocab(["to be or not to be that is the question"])
+<h4>Stage 1: Zero-Leak Data Ingestion &amp; Persistent Feature Caching</h4>
+<p>To avoid repeated CPU/GPU bottlenecks across epochs, compute-intensive preprocessing operations are cached deterministically on disk using SHA-256 hashes as keys:</p>
+<ul>
+  <li><strong>Diffusion VAE Latents</strong>: Source images are passed through the VAE encoder once; latent representations ($C \times \frac{H}{8} \times \frac{W}{8}$) are stored in <code>.cache/latents/&lt;sha256&gt;.safetensors</code>.</li>
+  <li><strong>Audio Mel Filterbanks</strong>: Raw waveforms are transformed into 80-channel log-Mel spectrograms and cached on disk.</li>
+</ul>
 
-model = nn.TinyTransformerLM(
-    vocab_size=tokenizer.vocab_size,
-    d_model=64,
-    num_heads=4,
-    d_ff=128,
-    num_layers=2,
-    pos_type="rope",
-    tie_weights=True
-)
+<h4>Stage 2: DAG Autograd Forward-Backward Dispatch</h4>
+<p>The pure Python/C DAG Autograd dynamically constructs computational graphs. Tensors maintain backward gradient closure functions without heap allocation overheads.</p>
 
-optimizer = optim.AdamW(model.parameters(), lr=0.005)
-# Train and generate with KV cache
-generated = model.generate(tokenizer.encode("to be"), max_new_tokens=20)</code></pre>
+<h4>Stage 3: 300MB Guard-Band Memory Protection</h4>
+<p>During every forward-backward iteration, the runtime queries <code>/proc/meminfo</code> via native Bionic syscalls. If available physical RAM drops below 300MB, the engine immediately suspends batch ingestion, triggers garbage collection, and pages layer weights to prevent Android LMK termination.</p>
 
-            <h3 style="margin-top: 32px;">3. Recipe 2: Tiny Whisper Speech-to-Text LoRA Fine-Tuning</h3>
-            <pre><code class="language-python"># Freeze base model and train LoRA adapters only (<30KB)
-trainable_params = nn.adapter_parameters(model)
-optimizer = optim.AdamW(trainable_params, lr=0.02)
-# Save adapter
-checkpoint.save_lora_adapter(model, "whisper_lora.safetensors")
-# Merge for zero-overhead inference
-nn.merge_lora_adapters(model)</code></pre>
+<h4>Stage 4: Target-Aware SafeTensors Serialization</h4>
+<p>Weights are serialized into industry-standard SafeTensors files with explicit little-endian byte ordering. A companion <code>_config.json</code> sidecar is automatically generated to enable zero-configuration import into downstream inference engines.</p>
 
-            <h3 style="margin-top: 32px;">4. Recommended Hyperparameter Matrix by Device RAM</h3>
-            <table class="spec-table">
-                <thead>
-                    <tr><th>Device RAM</th><th>Recommended Model</th><th>d_model</th><th>Heads</th><th>Layers</th><th>Batch Size</th><th>RAM Usage</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>2GB - 3GB</strong></td><td>Micro LM / LoRA Adapter</td><td>32</td><td>2</td><td>1 ~ 2</td><td>1 ~ 2</td><td><strong>&lt; 25 MB</strong></td></tr>
-                    <tr><td><strong>4GB - 6GB</strong></td><td>Tiny Transformer LM / Whisper</td><td>64</td><td>4</td><td>2 ~ 4</td><td>4 ~ 8</td><td><strong>&lt; 60 MB</strong></td></tr>
-                    <tr><td><strong>8GB - 12GB</strong></td><td>Small LLM (1M–5M params)</td><td>128</td><td>8</td><td>4 ~ 6</td><td>8 ~ 16</td><td><strong>&lt; 150 MB</strong></td></tr>
-                </tbody>
-            </table>
-        </main>
-    </div>
-    <footer>
-        <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
-            🏛️ <strong>Engineered by AMEVA Foundation (아메바 재단)</strong> — Democratizing On-Device AI Sovereignty for Everyone.
-        </div>
-        <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
-            <strong>Disclaimer:</strong> termux-train is an independent open-source project developed for the Android Termux environment and is not officially affiliated with, endorsed by, or sponsored by the Termux project, PyTorch, or Meta.
-        </div>
-        <span data-i18n="common.footerText">&copy; 2026 termux-train Project (uno-km). Released under Apache License 2.0.</span>
-    </footer>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

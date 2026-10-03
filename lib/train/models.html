@@ -1,50 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiny Models & LoRA Hub | termux-train</title>
-    <meta name="description" content="Pre-configured architectures for Transformers, Whisper, and LoRA">
-    <meta name="keywords" content="termux-train, pypi, on-device training, android deep learning, autograd pure python, lora on device, bionic arm64, snapdragon ai, mobile transformer, rope kv cache, safetensors mobile, ameva foundation">
-    <meta name="author" content="AMEVA Foundation &amp; uno-km">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://uno-km.github.io/termux-train/">
-    <link rel="alternate" type="application/rss+xml" title="termux-train RSS Feed" href="https://uno-km.github.io/termux-train/rss.xml">
-
-    <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Tiny Models & LoRA Hub | termux-train">
-    <meta property="og:description" content="Pre-configured architectures for Transformers, Whisper, and LoRA">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://uno-km.github.io/termux-train/">
-    <meta property="og:site_name" content="termux-train (AMEVA Foundation)">
-    <meta property="og:image" content="https://uno-km.github.io/termux-train/favicon.svg">
-
-    <!-- Twitter Card Metadata -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Tiny Models & LoRA Hub | termux-train">
-    <meta name="twitter:description" content="Pre-configured architectures for Transformers, Whisper, and LoRA">
-
-    <!-- Schema.org SoftwareApplication JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "termux-train",
-      "author": {
-        "@type": "Organization",
-        "name": "AMEVA Foundation"
-      },
-      "operatingSystem": "Android, Linux, Windows, macOS",
-      "applicationCategory": "DeveloperApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00"
-      },
-      "description": "Pre-configured architectures for Transformers, Whisper, and LoRA"
-    }
-    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supported Models & Architecture Zoo | Termux-Train</title>
+  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -52,56 +13,76 @@
   <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <ameva-header></ameva-header>
-    <div class="container">
-                                          <ameva-sidebar></ameva-sidebar>
-        <main class="content">
-            <h2 data-i18n="models.title">Tiny Models &amp; LoRA Hub</h2>
-            <p class="subtitle" data-i18n="models.subtitle">Pre-configured architectures for on-device Transformers, Whisper speech recognition, and low-rank adapters.</p>
+  <ameva-header></ameva-header>
 
-            <div class="callout callout-info" style="margin: 20px 0;">
-                <strong>📚 Full Technical Manual:</strong> See our dedicated <a href="training-guide.html" style="color: var(--primary-color); font-weight: 700;">On-Device Tiny Model &amp; Small LLM Training Guide</a> for in-depth step-by-step instructions.
-            </div>
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
 
-            <h3>1. Tiny Transformer LM (Decoder-Only with RoPE)</h3>
-            <pre><code class="language-python">from termux_train import Tensor, nn
+    <main class="content">
+      <h2>Supported Models & Architecture Zoo</h2>
+      <p class="subtitle">Architecture compatibility, adapter layers, and memory specifications</p>
+      <h3>Supported Model Architectures &amp; Target Adaptations</h3>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Modality</th>
+      <th>Base Architecture</th>
+      <th>Trainable Adaptation Layers</th>
+      <th>Target Runtime Compatibility</th>
+      <th>Memory Footprint (Training)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>LLM / Text</strong></td>
+      <td>TinyTransformerLM, LLaMA, Qwen, RoPE</td>
+      <td>Attention $W_q, W_k, W_v, W_o$, MLP Gate/Up (LoRA / DoRA)</td>
+      <td><code>llama.cpp</code>, <code>termux-llamacpp</code>, GGUF PEFT</td>
+      <td>120 MB - 1.8 GB</td>
+    </tr>
+    <tr>
+      <td><strong>Image Diffusion</strong></td>
+      <td>Stable Diffusion 1.5 / 2.1 / SDXL UNet</td>
+      <td>Cross-Attention Key/Value projections ($d_k=64/128$)</td>
+      <td><code>ComfyUI</code>, <code>Diffusers</code>, <code>termux-diffusion</code></td>
+      <td>450 MB - 2.2 GB</td>
+    </tr>
+    <tr>
+      <td><strong>Vision Multimodal</strong></td>
+      <td>LLaVA 1.5, Qwen2-VL, ViT Multimodal Projector</td>
+      <td>Visual Projection MLP, Cross-Attention Adapter</td>
+      <td><code>termux-vision</code>, HuggingFace Transformers</td>
+      <td>380 MB - 1.6 GB</td>
+    </tr>
+    <tr>
+      <td><strong>Audio STT</strong></td>
+      <td>Whisper (tiny, base, small) Encoder-Decoder</td>
+      <td>Decoder Cross-Attention Blocks, Mel Projector</td>
+      <td><code>termux-stt</code>, <code>whisper.cpp</code></td>
+      <td>290 MB - 1.2 GB</td>
+    </tr>
+    <tr>
+      <td><strong>Audio TTS</strong></td>
+      <td>FastSpeech / VITS / StyleTTS Acoustic Backends</td>
+      <td>Style Conditioning Linear Layers, Mel Decoder</td>
+      <td><code>termux-tts</code>, Piper TTS</td>
+      <td>180 MB - 850 MB</td>
+    </tr>
+    <tr>
+      <td><strong>BitNet 1.58-bit</strong></td>
+      <td>Ternary Weight Transformer $\{-1, 0, +1\}$</td>
+      <td>Dynamic Scale Factor, Ternary Quantized Kernel</td>
+      <td><code>bitnet.cpp</code>, <code>termux-bitnet</code></td>
+      <td>90 MB - 600 MB</td>
+    </tr>
+  </tbody>
+</table>
 
-model = nn.TinyTransformerLM(
-    vocab_size=500,
-    d_model=64,
-    num_heads=4,
-    d_ff=128,
-    num_layers=2,
-    pos_type="rope",   # Rotary Position Embedding
-    tie_weights=True   # Ties token embeddings with LM head
-)
+    </main>
+  </div>
 
-# Autoregressive generation with incremental KV cache
-generated_tokens = model.generate([1, 10, 45], max_new_tokens=30, temperature=0.7)</code></pre>
-
-            <h3 style="margin-top: 32px;">2. Tiny Whisper LoRA Speech-to-Text (<30KB)</h3>
-            <pre><code class="language-python">from termux_train import nn, checkpoint
-
-# Inject LoRA into Attention projections
-for block in model.blocks:
-    block.attn.q_proj = nn.LoRALinear.from_linear(block.attn.q_proj, rank=4, alpha=8.0)
-    block.attn.v_proj = nn.LoRALinear.from_linear(block.attn.v_proj, rank=4, alpha=8.0)
-
-# Save lightweight adapter only (<30KB)
-checkpoint.save_lora_adapter(model, "whisper_lora.safetensors")
-
-# Merge into base weights for zero-overhead inference
-nn.merge_lora_adapters(model)</code></pre>
-        </main>
-    </div>
-    <footer>
-        <div style="margin-bottom: 10px; font-size: 0.88em; color: var(--primary-color);">
-            🏛️ <strong>Engineered by AMEVA Foundation (아메바 재단)</strong> — Democratizing On-Device AI Sovereignty for Everyone.
-        </div>
-        <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
-            <strong>Disclaimer:</strong> termux-train is an independent open-source project developed for the Android Termux environment and is not officially affiliated with, endorsed by, or sponsored by the Termux project, PyTorch, or Meta.
-        </div>
-        <span data-i18n="common.footerText">&copy; 2026 termux-train Project (uno-km). Released under Apache License 2.0.</span>
-    </footer>
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
 </body>
 </html>

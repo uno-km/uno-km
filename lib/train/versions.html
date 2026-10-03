@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | Termux-Train</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Train.">
+  <title>Version Archive & Changelog | Termux-Train</title>
+  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,62 +19,52 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-Train</p>
-
-      <div class="timeline">
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Latest Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.5 - Unified Vulkan Specs &amp; Environment Discovery &mdash; 2026-09-05</h3>
-            <ul>
-              <li><strong>Dependency Standardization:</strong> Aligned Vulkan compute engine docstrings and dependency specifications with unified <code>@ameva/runtime</code> / <code>ameva-runtime</code>.</li>
-              <li><strong>Platform Probe Alignment:</strong> Standardized <code>is_termux</code> and <code>is_android</code> platform detection via ecosystem SSOT.</li>
-              <li><strong>Node.js PYTHONPATH Injection:</strong> Hardened test suite against cross-language module load failure.</li>
-            </ul>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.0 - Major Multimodal Engine & 44GB Disaggregated Cluster Virtual RAM Release</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Major Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-03</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#2563eb;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.4 - Hardware Acceleration Delegation &mdash; 2026-09-05</h3>
-            <ul>
-              <li><strong>Unified Runtime:</strong> Migrated hardware acceleration dependency to unified <code>@ameva/runtime &gt;= 2.0.0</code>.</li>
-              <li><strong>Backend Delegation:</strong> Standardized Vulkan compute backend delegation and streamlined one-touch installation workflow.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Added 6-Modality Target-Aware LoRA Training Hub (LLM, Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit).</li>
+          <li>Introduced Single-Device GPU Slicing Architecture (--vocab-slice, --chunk-layers, --stream-layers) preventing mobile watchdog timeouts.</li>
+          <li>Implemented 44GB Disaggregated Cluster Virtual RAM Pooling across heterogeneous mobile devices with 300MB Guard-Band protection.</li>
+          <li>Integrated client-side On-Device Reinforcement Learning (GRPO, DPO, PPO).</li>
+          <li>Delivered 100% Dual-Engine Parity across Python CLI, Node.js CLI, Python SDK, and Node.js SDK.</li>
+          <li>Zero-conversion SafeTensors adapter export directly consumable by ComfyUI, llama.cpp, termux-vision, termux-stt, termux-tts, and bitnet.cpp.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.1.6 - Vulkan Autograd & OpenCL Kernel Hardening</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-28</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Dual-Engine Milestone</div>
-          <div class="timeline-content">
-            <h3>v1.1.0 - Dual-Engine Architecture &amp; MMap Dataset &mdash; 2026-09-02</h3>
-            <ul>
-              <li><strong>Node.js / TypeScript Dual-Engine:</strong> Native npm ecosystem integration with dual CLI (<code>termux-train</code>, <code>tt</code>).</li>
-              <li><strong>Bounded MMap Dataset Streaming:</strong> Zero-copy token streaming pipeline supporting large datasets within bounded memory footprint.</li>
-              <li><strong>Multilingual ByteTokenizer:</strong> Native UTF-8, CJK ideographs, Hangul, and Emoji encoding support.</li>
-              <li><strong>Safety Guards:</strong> HuggingFace SafeTensors boundary defense and divergence early-abort validation.</li>
-            </ul>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Implemented Vulkan compute shader forward-backward pass kernels for ARM Mali and Adreno.</li>
+          <li>Added SHA-256 persistent disk caching for intermediate autograd tensors.</li>
+          <li>Fixed Bionic ARM64 thread synchronization race condition.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.0.0 - Initial Open Source Foundation Release</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-01</span>
           </div>
         </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#64748b;">Maintenance Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.1 - Documentation &amp; Environment Fixes &mdash; 2026-09-04</h3>
-            <ul>
-              <li>Refined documentation and platform configuration alignment.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Production Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.0 - Bionic C SafeTensors DAG Autograd (Current)</h3>
-            <ul>
-              <li>Standardized on 3-Tier Master SSOT Navigation System.</li>
-              <li>Integrated 6-language client-side i18n DOM translation engine.</li>
-            </ul>
-          </div>
-        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Dependency-free C-vectorized DAG Autograd runtime.</li>
+          <li>Basic TinyTransformerLM and LoRA adapter fine-tuning.</li>
+          <li>SafeTensors file format writer.</li>
+        </ul>
       </div>
     </main>
   </div>

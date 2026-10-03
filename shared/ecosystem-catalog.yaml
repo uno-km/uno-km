@@ -134,8 +134,8 @@ libs:
   - id: train
     name: "Termux-Train"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 Bionic 네이티브 경량 텐서 DAG Autograd 역전파 및 온디바이스 LoRA 파인튜닝 프레임워크."
-    tagline_en: "On-device Tensor & DAG Autograd framework utilizing device resources with SafeTensors zero-copy and LoRA fine-tuning."
+    tagline_ko: "디바이스 리소스를 활용한 안드로이드 Termux 6대 모달리티(LLM, Diffusion, VLM, STT, TTS, BitNet) 온디바이스 LoRA/DoRA 학습, 단일 기기 GPU 슬라이싱 및 44GB 가상 메모리 풀링 프레임워크."
+    tagline_en: "Unified multimodal on-device deep learning framework for Android Termux with 6-modality LoRA adapters, single-device GPU slicing, and 44GB cluster virtual RAM pooling."
     links:
       docs: "/lib/train/"
       pypi: "https://pypi.org/project/termux-train/"
