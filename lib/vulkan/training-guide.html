@@ -9,16 +9,17 @@
 
 ### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
 
-Measured 2026-10-04 with the v2.7.9 bundle through `ameva-run exec`, 4 threads, single runs; the generated text is compared with the CPU route's. The Vulkan rows run with flash attention off (`-fa 0`): with it the bundle's Vulkan backend returns corrupt text. The figures this table carried up to 2.7.8 (35.80 t/s on Galaxy S25, 4.44 t/s on Galaxy A35) are not reproduced with this bundle and are withdrawn.
+Measured 2026-10-04 with `llama-completion` of the v2.8.0 llama bundle, 4 threads; the GPU route is the bundle's ggml-ameva backend with all layers on the GPU. After a warm-up run, two prompt runs and three generation runs alternate with the CPU. Prompt processing is a prompt of about 370 tokens evaluated at once; token generation is 64 tokens, one at a time. The text the GPU route generates is the CPU's on all five devices.
 
-| Device & Processor | Route | Generation Speed (t/s) | Text |
-| :--- | :--- | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | Vulkan (default route, all layers on the GPU) | 24 | same as the CPU's |
-| **Galaxy S25** (Snapdragon 8 Elite) | CPU (`-b cpu`) | 94 | reference |
-| **Galaxy A35** (Exynos 1380, Mali-G68 MP5) | Vulkan (default route, all layers on the GPU) | 6.5 | same as the CPU's |
-| **Galaxy A35** (Exynos 1380) | CPU (`-b cpu`) | 39 | reference |
+| Device & Processor | Default route | Prompt processing, CPU / GPU (t/s) | Token generation, CPU / GPU (t/s) |
+| :--- | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | GPU | 30-58 / 1010-1081 | 16-49 / 36-77 |
+| **Galaxy S20** (Snapdragon 865, Adreno 650) | GPU | 60 / 181-197 | 26-27 / 23.6-24.4 |
+| **Galaxy A35** (Exynos 1380, Mali-G68) | GPU | 109-110 / 190 | 35-37 / 21.5-21.6 |
+| **Galaxy S21** (Exynos 2100, Mali-G78) | CPU | 115-119 / 227 | 46-47 / 22.8-23.1 |
+| **Galaxy A53** (Exynos 1280, Mali-G68) | CPU | 55 / 67 | 22-24 / 14.5 |
 
-For this model the bundle's Vulkan backend is slower than the CPU on both devices. Larger models, the other devices and the known defects are in the [v2.7.9 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.9).
+Galaxy S25 was running other work during the measurement, hence its wide ranges. Galaxy S20 was measured at a GPU clock cap of 441 MHz; at 587 MHz its token generation was 28-31 on the CPU and 32.6-32.9 on the GPU. On the Mali devices token generation is faster on the CPU, and Galaxy S21 and A53, whose drivers lack integer dot products, take the CPU route by default. Larger models and the measurement conditions are in the [v2.8.0 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.8.0).
 
 ### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
 

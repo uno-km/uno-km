@@ -9,16 +9,17 @@
 
 ### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
 
-Measured 2026-10-04 with the v2.7.9 bundle through `ameva-run exec`, 4 threads, single runs; the generated text is compared with the CPU route's. The Vulkan rows run with flash attention off (`-fa 0`): with it the bundle's Vulkan backend returns corrupt text. The figures this table carried up to 2.7.8 (35.80 t/s on Galaxy S25, 4.44 t/s on Galaxy A35) are not reproduced with this bundle and are withdrawn.
+Measured 2026-10-04 with `llama-completion` of the v2.8.0 llama bundle, 4 threads; the GPU route is the bundle's ggml-ameva backend with all layers on the GPU. After a warm-up run, two prompt runs and three generation runs alternate with the CPU. Prompt processing is a prompt of about 370 tokens evaluated at once; token generation is 64 tokens, one at a time. The text the GPU route generates is the CPU's on all five devices.
 
-| Device & Processor | Route | Generation Speed (t/s) | Text |
-| :--- | :--- | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | Vulkan (default route, all layers on the GPU) | 24 | same as the CPU's |
-| **Galaxy S25** (Snapdragon 8 Elite) | CPU (`-b cpu`) | 94 | reference |
-| **Galaxy A35** (Exynos 1380, Mali-G68 MP5) | Vulkan (default route, all layers on the GPU) | 6.5 | same as the CPU's |
-| **Galaxy A35** (Exynos 1380) | CPU (`-b cpu`) | 39 | reference |
+| Device & Processor | Default route | Prompt processing, CPU / GPU (t/s) | Token generation, CPU / GPU (t/s) |
+| :--- | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | GPU | 30-58 / 1010-1081 | 16-49 / 36-77 |
+| **Galaxy S20** (Snapdragon 865, Adreno 650) | GPU | 60 / 181-197 | 26-27 / 23.6-24.4 |
+| **Galaxy A35** (Exynos 1380, Mali-G68) | GPU | 109-110 / 190 | 35-37 / 21.5-21.6 |
+| **Galaxy S21** (Exynos 2100, Mali-G78) | CPU | 115-119 / 227 | 46-47 / 22.8-23.1 |
+| **Galaxy A53** (Exynos 1280, Mali-G68) | CPU | 55 / 67 | 22-24 / 14.5 |
 
-For this model the bundle's Vulkan backend is slower than the CPU on both devices. Larger models, the other devices and the known defects are in the [v2.7.9 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.9).
+Galaxy S25 was running other work during the measurement, hence its wide ranges. Galaxy S20 was measured at a GPU clock cap of 441 MHz; at 587 MHz its token generation was 28-31 on the CPU and 32.6-32.9 on the GPU. On the Mali devices token generation is faster on the CPU, and Galaxy S21 and A53, whose drivers lack integer dot products, take the CPU route by default. Larger models and the measurement conditions are in the [v2.8.0 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.8.0).
 
 ### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
 
@@ -84,16 +85,17 @@ For this model the bundle's Vulkan backend is slower than the CPU on both device
 
 ### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
 
-Measured 2026-10-04 with the v2.7.9 bundle through `ameva-run exec`, 4 threads, single runs; the generated text is compared with the CPU route's. The Vulkan rows run with flash attention off (`-fa 0`): with it the bundle's Vulkan backend returns corrupt text. The figures this table carried up to 2.7.8 (35.80 t/s on Galaxy S25, 4.44 t/s on Galaxy A35) are not reproduced with this bundle and are withdrawn.
+Measured 2026-10-04 with `llama-completion` of the v2.8.0 llama bundle, 4 threads; the GPU route is the bundle's ggml-ameva backend with all layers on the GPU. After a warm-up run, two prompt runs and three generation runs alternate with the CPU. Prompt processing is a prompt of about 370 tokens evaluated at once; token generation is 64 tokens, one at a time. The text the GPU route generates is the CPU's on all five devices.
 
-| Device & Processor | Route | Generation Speed (t/s) | Text |
-| :--- | :--- | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | Vulkan (default route, all layers on the GPU) | 24 | same as the CPU's |
-| **Galaxy S25** (Snapdragon 8 Elite) | CPU (`-b cpu`) | 94 | reference |
-| **Galaxy A35** (Exynos 1380, Mali-G68 MP5) | Vulkan (default route, all layers on the GPU) | 6.5 | same as the CPU's |
-| **Galaxy A35** (Exynos 1380) | CPU (`-b cpu`) | 39 | reference |
+| Device & Processor | Default route | Prompt processing, CPU / GPU (t/s) | Token generation, CPU / GPU (t/s) |
+| :--- | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | GPU | 30-58 / 1010-1081 | 16-49 / 36-77 |
+| **Galaxy S20** (Snapdragon 865, Adreno 650) | GPU | 60 / 181-197 | 26-27 / 23.6-24.4 |
+| **Galaxy A35** (Exynos 1380, Mali-G68) | GPU | 109-110 / 190 | 35-37 / 21.5-21.6 |
+| **Galaxy S21** (Exynos 2100, Mali-G78) | CPU | 115-119 / 227 | 46-47 / 22.8-23.1 |
+| **Galaxy A53** (Exynos 1280, Mali-G68) | CPU | 55 / 67 | 22-24 / 14.5 |
 
-For this model the bundle's Vulkan backend is slower than the CPU on both devices. Larger models, the other devices and the known defects are in the [v2.7.9 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.9).
+Galaxy S25 was running other work during the measurement, hence its wide ranges. Galaxy S20 was measured at a GPU clock cap of 441 MHz; at 587 MHz its token generation was 28-31 on the CPU and 32.6-32.9 on the GPU. On the Mali devices token generation is faster on the CPU, and Galaxy S21 and A53, whose drivers lack integer dot products, take the CPU route by default. Larger models and the measurement conditions are in the [v2.8.0 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.8.0).
 
 ### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
 
@@ -130,11 +132,11 @@ For this model the bundle's Vulkan backend is slower than the CPU on both device
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.1.title">Native Adreno 830 Full Offloading</h4>
-          <p data-i18n="home.features.1.desc">Offloads all LLM layers to the GPU on Snapdragon 8 Elite with flash attention off: 24 tokens/sec for Qwen2.5-0.5B with the CPU's text (the CPU route reaches 94; measured with v2.7.9).</p>
+          <p data-i18n="home.features.1.desc">Runs all LLM layers on the GPU of Snapdragon 8 Elite through the bundled ggml-ameva backend: Qwen2.5-0.5B prompts at 1010-1081 tokens/sec (CPU 30-58) and generation at 36-77 tokens/sec (CPU 16-49) with the CPU's text (measured with v2.8.0 while the device ran other work).</p>
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.2.title">Mali Valhall MatMul Quirk Engine</h4>
-          <p data-i18n="home.features.2.desc">The Mali Vulkan plan turns flash attention off. On Galaxy A35 Qwen2.5-0.5B answers with the CPU's text at 6.5 tokens/sec (the CPU route reaches 39); larger models stop with an assert of the bundled backend (v2.7.9 release notes).</p>
+          <p data-i18n="home.features.2.desc">On Mali the GPU route runs on ggml-ameva with kernel layouts measured per device and weight shape. Galaxy A35 (Mali-G68): Qwen2.5-0.5B prompts at 190 tokens/sec (CPU 109-110) and generation at 21.5 tokens/sec (CPU 35-37) with the CPU's text; Llama-3.2-1B and Gemma-2-2B run as well (v2.8.0 release notes).</p>
         </div>
         <div class="feature-card">
           <h4 data-i18n="home.features.3.title">Whisper STT 2.26x Hardware Acceleration</h4>
@@ -166,12 +168,12 @@ For this model the bundle's Vulkan backend is slower than the CPU on both device
         <tbody>
           <tr>
             <td><strong>Galaxy S25 (Qualcomm Adreno 830)</strong></td>
-            <td>Vulkan, all LLM layers on the GPU, flash attention off: 24 t/s (CPU route 94 t/s), mul_mat_vec_max_cols=2</td>
+            <td>Vulkan through ggml-ameva, all LLM layers on the GPU: prompt 1010-1081 t/s (CPU 30-58), generation 36-77 t/s (CPU 16-49) for Qwen2.5-0.5B</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
             <td><strong>Galaxy A35 (ARM Mali-G68)</strong></td>
-            <td>Vulkan, flash attention off: 6.5 t/s LLM for Qwen2.5-0.5B (CPU route 39 t/s), Whisper Large-v3-Turbo (2.26x)</td>
+            <td>Vulkan through ggml-ameva: prompt 190 t/s (CPU 109-110), generation 21.5 t/s (CPU 35-37) for Qwen2.5-0.5B; Whisper Large-v3-Turbo (2.26x)</td>
             <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>

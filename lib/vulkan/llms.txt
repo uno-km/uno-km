@@ -1,9 +1,9 @@
 # AMEVA-Runtime — AI Agent Fast Context
-# Generated: 2026-10-04  |  Version: 2.7.9
+# Generated: 2026-10-04  |  Version: 2.8.0
 
 ## Library
 Name: AMEVA-Runtime
-Version: 2.7.9
+Version: 2.8.0
 GitHub: https://github.com/uno-km/ameva-runtime
 Documentation: https://uno-km.vercel.app/lib/vulkan/
 License: Apache-2.0

@@ -9,16 +9,17 @@
 
 ### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
 
-Measured 2026-10-04 with the v2.7.9 bundle through `ameva-run exec`, 4 threads, single runs; the generated text is compared with the CPU route's. The Vulkan rows run with flash attention off (`-fa 0`): with it the bundle's Vulkan backend returns corrupt text. The figures this table carried up to 2.7.8 (35.80 t/s on Galaxy S25, 4.44 t/s on Galaxy A35) are not reproduced with this bundle and are withdrawn.
+Measured 2026-10-04 with `llama-completion` of the v2.8.0 llama bundle, 4 threads; the GPU route is the bundle's ggml-ameva backend with all layers on the GPU. After a warm-up run, two prompt runs and three generation runs alternate with the CPU. Prompt processing is a prompt of about 370 tokens evaluated at once; token generation is 64 tokens, one at a time. The text the GPU route generates is the CPU's on all five devices.
 
-| Device & Processor | Route | Generation Speed (t/s) | Text |
-| :--- | :--- | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | Vulkan (default route, all layers on the GPU) | 24 | same as the CPU's |
-| **Galaxy S25** (Snapdragon 8 Elite) | CPU (`-b cpu`) | 94 | reference |
-| **Galaxy A35** (Exynos 1380, Mali-G68 MP5) | Vulkan (default route, all layers on the GPU) | 6.5 | same as the CPU's |
-| **Galaxy A35** (Exynos 1380) | CPU (`-b cpu`) | 39 | reference |
+| Device & Processor | Default route | Prompt processing, CPU / GPU (t/s) | Token generation, CPU / GPU (t/s) |
+| :--- | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | GPU | 30-58 / 1010-1081 | 16-49 / 36-77 |
+| **Galaxy S20** (Snapdragon 865, Adreno 650) | GPU | 60 / 181-197 | 26-27 / 23.6-24.4 |
+| **Galaxy A35** (Exynos 1380, Mali-G68) | GPU | 109-110 / 190 | 35-37 / 21.5-21.6 |
+| **Galaxy S21** (Exynos 2100, Mali-G78) | CPU | 115-119 / 227 | 46-47 / 22.8-23.1 |
+| **Galaxy A53** (Exynos 1280, Mali-G68) | CPU | 55 / 67 | 22-24 / 14.5 |
 
-For this model the bundle's Vulkan backend is slower than the CPU on both devices. Larger models, the other devices and the known defects are in the [v2.7.9 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.9).
+Galaxy S25 was running other work during the measurement, hence its wide ranges. Galaxy S20 was measured at a GPU clock cap of 441 MHz; at 587 MHz its token generation was 28-31 on the CPU and 32.6-32.9 on the GPU. On the Mali devices token generation is faster on the CPU, and Galaxy S21 and A53, whose drivers lack integer dot products, take the CPU route by default. Larger models and the measurement conditions are in the [v2.8.0 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.8.0).
 
 ### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
 
@@ -62,6 +63,22 @@ For this model the bundle's Vulkan backend is slower than the CPU on both device
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.8.0 - ggml-ameva as the LLM GPU Route (own Vulkan backend in the llama bundle, integer-dot kernels)</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Feature Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-04</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>LLM GPU route: the llama bundle carries the project's own Vulkan backend (lib/libggml-ameva.so with lib/libac_runtime.so.2, built against the bundle's ggml 0.9.8). ameva-run exec and ameva_runtime.run() run the Vulkan plan on it (--device AMEVA0, GGML_BACKEND_PATH of the started bundle). ggml-vulkan of the bundled llama.cpp returned corrupt text with flash attention and stopped without it on Mali and Turnip; it stays selectable with AMEVA_LLM_GPU_BACKEND=upstream.</li>
+          <li>Backend: weights are converted in a staging copy (Galaxy A35: Llama-3.2-1B loads in 2.6 s instead of 81 s); token generation with packed integer dot products (ameva_mmvq) where the driver offers them, measured per device and weight shape together with the f32 layouts and used where more than 10 % faster.</li>
+          <li>Routes: Adreno 600 series (Galaxy S20) takes the GPU by default; an explicit 'auto' request is the adaptive route (it used to fall through to the CPU route). Galaxy S21 and A53 keep the CPU route.</li>
+          <li>Measured with Qwen2.5-0.5B, CPU / GPU t/s: prompt processing Galaxy S25 30-58 / 1010-1081, S20 60 / 181-197, A35 109-110 / 190, S21 115-119 / 227, A53 55 / 67; token generation S25 16-49 / 36-77, S20 26-27 / 23.6-24.4, A35 35-37 / 21.5-21.6, S21 46-47 / 22.8-23.1, A53 22-24 / 14.5. CPU-relative KL divergence 0.0026 to 0.0064 (gate 0.01).</li>
+          <li>tools/fleet/divert_apt_llama.sh: dpkg diversions that keep the Termux apt package llama-cpp from overwriting the runtime's llama-cli, llama-server and llama-completion links.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.7.9 - Bundle Isolation (no bundle file in $PREFIX/lib, self-contained bundles, one Vulkan HAL shim)</h3>
           <div>
