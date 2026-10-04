@@ -336,11 +336,16 @@
       <h3>3. Visual Node Orchestration &amp; User Interface</h3>
       <p>AmfyUI runs an interactive web studio right inside Android Chrome or Samsung Internet. Launch the server from Termux terminal:</p>
 
-      <pre><code># 1. Launch AmfyUI Mobile Studio (Default Port: 11553)
+      <pre><code># 1. Launch AmfyUI Mobile Studio (Default: host=0.0.0.0, port=11553)
+# Automatically binds to 0.0.0.0:11553 (both local and external LAN/Tailscale access enabled)
 termux-diffusion ui
 
-# Or specify custom port and network interface:
-termux-diffusion ui --port 8188 --host 0.0.0.0</code></pre>
+# Access URLs:
+# - On phone:      http://localhost:11553
+# - From PC/LAN:   http://&lt;phone-ip&gt;:11553 (e.g. http://100.106.99.81:11553)
+
+# 2. Optional: Custom port & host binding:
+termux-diffusion ui --port 11554 --host 0.0.0.0</code></pre>
 
       <div class="node-graph-mockup">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #374151; padding-bottom: 10px; margin-bottom: 15px;">
