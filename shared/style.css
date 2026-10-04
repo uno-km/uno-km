@@ -598,16 +598,20 @@ body.sidebar-drawer-open {
   }
 
   .sidebar-toggle-tab.collapsed-tab {
-    position: fixed;
-    left: 0;
-    top: 140px;
-    right: auto;
-    border-left: none;
-    border-radius: 0 6px 6px 0;
-    background: #ffffff;
-    border-color: var(--primary-color, #004499);
-    color: var(--primary-color, #004499);
-    box-shadow: 2px 2px 10px rgba(0, 68, 153, 0.18);
+    position: fixed !important;
+    left: 0 !important;
+    top: 140px !important;
+    right: auto !important;
+    border-left: none !important;
+    border-radius: 0 6px 6px 0 !important;
+    background: #ffffff !important;
+    border-color: var(--primary-color, #004499) !important;
+    color: var(--primary-color, #004499) !important;
+    box-shadow: 2px 2px 10px rgba(0, 68, 153, 0.18) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 1060 !important;
   }
 }
 

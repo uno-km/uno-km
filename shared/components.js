@@ -236,6 +236,43 @@
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]
       ]
+    },
+    "cluster": {
+      "name": "AMEVA-Cluster",
+      "version": "v1.0.0",
+      "github": "https://github.com/uno-km/ameva-cluster",
+      "pypi": "ameva-cluster",
+      "npm": "@ameva/cluster",
+      "doc_pages": [
+        ["index.html", "Home / Architecture"],
+        ["fleet-optimization.html", "Fleet Optimization"],
+        ["guard-protocol.html", "Guard Protocol"],
+        ["modalities-guide.html", "Modalities Guide"],
+        ["models.html", "Distributed Models"],
+        ["installation.html", "Installation Guide"],
+        ["quickstart.html", "Quickstart & Recipes"],
+        ["api-reference.html", "API Reference"],
+        ["training-guide.html", "Training Guide"],
+        ["benchmarks.html", "Benchmarks & Profiling"],
+        ["advanced-parameters.html", "Advanced Parameters"],
+        ["versions.html", "Version Archive"]
+      ]
+    },
+    "infra-index": {
+      "name": "Infra-Index Platform",
+      "version": "v1.0.0",
+      "github": "https://github.com/uno-km/infraindex-platform",
+      "pypi": "",
+      "npm": "",
+      "doc_pages": [
+        ["index.html", "Home / Architecture"],
+        ["installation.html", "Installation Guide"],
+        ["quickstart.html", "Quickstart & Recipes"],
+        ["api-reference.html", "API Reference"],
+        ["benchmarks.html", "Benchmarks & Profiling"],
+        ["advanced-parameters.html", "Advanced Parameters"],
+        ["versions.html", "Version Archive"]
+      ]
     }
   };
 
@@ -378,11 +415,21 @@
     });
   }
 
-  const FLAGSHIP_LIST = [
+  // ── 3-Tier Categorized Ecosystem Navigation ──────────────────────────────
+  const APPLICATIONS_LIST = [
+    ["https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)"],
+    ["/lib/infra-index/", "infra-index", "Infra-Index Platform (Cloud & AI Intel)"]
+  ];
+
+  const AMEVA_FRAMEWORKS_LIST = [
     ["/lib/sentinel/", "sentinel", "AMEVA-Sentinel (Security SDK)"],
     ["/lib/mcp/", "mcp", "AMEVA-MCP-Hub (Polyglot WASM)"],
     ["/lib/vulkan/", "vulkan", "AMEVA-Runtime (Unified Hardware HAL)"],
     ["/lib/cluster/", "cluster", "AMEVA-Cluster (Memory Pooling)"],
+    ["/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"]
+  ];
+
+  const TERMUX_AI_LIST = [
     ["/lib/aichain/", "aichain", "Termux-AIChain (Zero-Dep Agent)"],
     ["/lib/bitnet/", "bitnet", "Termux-BitNet (1.58-bit LLM)"],
     ["/lib/diffusion/", "diffusion", "Termux-Diffusion (Image AI)"],
@@ -391,9 +438,14 @@
     ["/lib/tts/", "tts", "Termux-TTS (4-Tier Speech Synthesis)"],
     ["/lib/train/", "train", "Termux-Train (LoRA Engine)"],
     ["/lib/llamacpp/", "llamacpp", "Termux-LlamaCpp (GGUF Runtime)"],
-    ["/lib/vision/", "vision", "Termux-Vision (CV & VLM)"],
-    ["/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"],
-    ["https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)"]
+    ["/lib/vision/", "vision", "Termux-Vision (CV & VLM)"]
+  ];
+
+  // Backward compatibility alias for legacy scripts
+  const FLAGSHIP_LIST = [
+    ...APPLICATIONS_LIST,
+    ...AMEVA_FRAMEWORKS_LIST,
+    ...TERMUX_AI_LIST
   ];
 
   const AI_PROTOCOLS = [
@@ -446,6 +498,8 @@
     'vision': '👁️',
     'forge': '⚡',
     'workstation': '💻',
+    'infra-index': '📊',
+    'infraindex': '📊',
 
     // Foundation
     'charter': '📜',
@@ -745,14 +799,34 @@
         });
       }
 
-      let tier2Items = [];
-      FLAGSHIP_LIST.forEach(([href, lk, title]) => {
+      // Category 1: Applications
+      let appItems = [];
+      APPLICATIONS_LIST.forEach(([href, lk, title]) => {
         const act = (!ctx.isFoundation && lk === libKey) ? ' class="active"' : '';
         const target = href.startsWith('http') ? ' target="_blank"' : '';
         const icon = getMenuIcon(lk);
-        tier2Items.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
+        appItems.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
       });
 
+      // Category 2: AMEVA Core Frameworks
+      let amevaItems = [];
+      AMEVA_FRAMEWORKS_LIST.forEach(([href, lk, title]) => {
+        const act = (!ctx.isFoundation && lk === libKey) ? ' class="active"' : '';
+        const target = href.startsWith('http') ? ' target="_blank"' : '';
+        const icon = getMenuIcon(lk);
+        amevaItems.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
+      });
+
+      // Category 3: Termux On-Device AI
+      let termuxItems = [];
+      TERMUX_AI_LIST.forEach(([href, lk, title]) => {
+        const act = (!ctx.isFoundation && lk === libKey) ? ' class="active"' : '';
+        const target = href.startsWith('http') ? ' target="_blank"' : '';
+        const icon = getMenuIcon(lk);
+        termuxItems.push(`      <li><a href="${href}"${act}${target} data-lib-key="${lk}" title="${title}"><span class="nav-icon">${icon}</span><span class="nav-text">${title}</span></a></li>`);
+      });
+
+      // Category 4: AI Protocols & Specifications
       let tier3Items = [];
       AI_PROTOCOLS.forEach(([href, title]) => {
         const icon = getMenuIcon(href);
@@ -766,12 +840,22 @@
     <ul${ctx.isLabs ? ' id="sidebarLabsTree" class="sidebar-labs-tree"' : ''}>
 ${tier1Items.join('\n')}
     </ul>
-    <!-- Tier 2: Flagship Libraries -->
-    <h3 data-i18n="common.nav.libraries"><span class="section-title-text">Flagship Libraries</span></h3>
+    <!-- Category 1: Applications -->
+    <h3 data-i18n="common.nav.applications"><span class="section-title-text">Applications</span></h3>
     <ul>
-${tier2Items.join('\n')}
+${appItems.join('\n')}
     </ul>
-    <!-- Tier 3: AI Protocols & Specifications -->
+    <!-- Category 2: AMEVA Core Frameworks -->
+    <h3 data-i18n="common.nav.amevaFrameworks"><span class="section-title-text">AMEVA Frameworks</span></h3>
+    <ul>
+${amevaItems.join('\n')}
+    </ul>
+    <!-- Category 3: Termux On-Device AI -->
+    <h3 data-i18n="common.nav.termuxAi"><span class="section-title-text">Termux On-Device AI</span></h3>
+    <ul>
+${termuxItems.join('\n')}
+    </ul>
+    <!-- Category 4: AI Protocols & Specifications -->
     <h3 data-i18n="common.nav.aiSpecs"><span class="section-title-text">AI Agent Protocols</span></h3>
     <ul>
 ${tier3Items.join('\n')}

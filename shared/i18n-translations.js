@@ -4211,6 +4211,133 @@
     }
   }
 };
+
+  const __categoryNavAdditions = {
+  "en": {
+    "common": {
+      "nav": {
+        "applications": "Applications",
+        "amevaFrameworks": "AMEVA Frameworks",
+        "termuxAi": "Termux On-Device AI"
+      }
+    }
+  },
+  "ko": {
+    "common": {
+      "nav": {
+        "applications": "애플리케이션 (Applications)",
+        "amevaFrameworks": "아메바 프레임워크 (AMEVA Frameworks)",
+        "termuxAi": "터먹스 온디바이스 AI (Termux AI)"
+      }
+    }
+  },
+  "ja": {
+    "common": {
+      "nav": {
+        "applications": "アプリケーション (Applications)",
+        "amevaFrameworks": "AMEVA フレームワーク (AMEVA Frameworks)",
+        "termuxAi": "Termux オンデバイス AI (Termux AI)"
+      }
+    }
+  },
+  "zh": {
+    "common": {
+      "nav": {
+        "applications": "应用平台 (Applications)",
+        "amevaFrameworks": "AMEVA 核心框架 (AMEVA Frameworks)",
+        "termuxAi": "Termux 端侧 AI (Termux AI)"
+      }
+    }
+  },
+  "ar": {
+    "common": {
+      "nav": {
+        "applications": "التطبيقات (Applications)",
+        "amevaFrameworks": "أطر عمل AMEVA (AMEVA Frameworks)",
+        "termuxAi": "الذكاء الاصطناعي Termux (Termux AI)"
+      }
+    }
+  },
+  "fr": {
+    "common": {
+      "nav": {
+        "applications": "Applications",
+        "amevaFrameworks": "Frameworks AMEVA",
+        "termuxAi": "IA On-Device Termux"
+      }
+    }
+  },
+  "de": {
+    "common": {
+      "nav": {
+        "applications": "Anwendungen (Applications)",
+        "amevaFrameworks": "AMEVA-Frameworks",
+        "termuxAi": "Termux On-Device-KI"
+      }
+    }
+  },
+  "es": {
+    "common": {
+      "nav": {
+        "applications": "Aplicaciones (Applications)",
+        "amevaFrameworks": "Frameworks AMEVA",
+        "termuxAi": "IA On-Device Termux"
+      }
+    }
+  },
+  "hi": {
+    "common": {
+      "nav": {
+        "applications": "अनुप्रयोग (Applications)",
+        "amevaFrameworks": "AMEVA फ्रेमवर्क (AMEVA Frameworks)",
+        "termuxAi": "Termux ऑन-डिवाइस AI (Termux AI)"
+      }
+    }
+  },
+  "ru": {
+    "common": {
+      "nav": {
+        "applications": "Приложения (Applications)",
+        "amevaFrameworks": "Фреймворки AMEVA (AMEVA Frameworks)",
+        "termuxAi": "Termux On-Device ИИ (Termux AI)"
+      }
+    }
+  },
+  "vi": {
+    "common": {
+      "nav": {
+        "applications": "Ứng dụng (Applications)",
+        "amevaFrameworks": "Khung AMEVA (AMEVA Frameworks)",
+        "termuxAi": "AI trên thiết bị Termux (Termux AI)"
+      }
+    }
+  },
+  "pl": {
+    "common": {
+      "nav": {
+        "applications": "Aplikacje (Applications)",
+        "amevaFrameworks": "Frameworki AMEVA (AMEVA Frameworks)",
+        "termuxAi": "Termux AI na urządzeniu (Termux AI)"
+      }
+    }
+  },
+  "la": {
+    "common": {
+      "nav": {
+        "applications": "Applicationes (Applications)",
+        "amevaFrameworks": "Architecturae AMEVA (AMEVA Frameworks)",
+        "termuxAi": "Termux Intelligentia Artificialis (Termux AI)"
+      }
+    }
+  }
+};
+  for (const [l, sec] of Object.entries(__categoryNavAdditions)) {
+    if (!translations[l]) translations[l] = {};
+    if (!translations[l].common) translations[l].common = {};
+    if (!translations[l].common.nav) translations[l].common.nav = {};
+    Object.assign(translations[l].common.nav, sec.common.nav);
+  }
+
   for (const [l, sec] of Object.entries(__masterAdditions)) {
     if (!translations[l]) translations[l] = {};
     for (const [sKey, sVal] of Object.entries(sec)) {
