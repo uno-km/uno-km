@@ -75,6 +75,17 @@ sdks:
       npm: "https://www.npmjs.com/package/@ameva/runtime"
       github: "https://github.com/uno-km/ameva-runtime"
 
+  - id: cluster
+    name: "AMEVA-Cluster"
+    badge: "pip / npm"
+    tagline_ko: "모바일 스마트폰 유휴 메모리 결속 및 연산-메모리 분리(Decoupling) 기반 대칭형 온디바이스 분산 추론 가속 런타임."
+    tagline_en: "Symmetric Disaggregated Mobile RAM Pooling & On-Device AI Acceleration Runtime with Compute-Memory Decoupling."
+    links:
+      docs: "/lib/cluster/"
+      pypi: "https://pypi.org/project/ameva-cluster/"
+      npm: "https://www.npmjs.com/package/@ameva/cluster"
+      github: "https://github.com/uno-km/ameva-cluster"
+
 libs:
   - id: aichain
     name: "Termux-AIChain"
@@ -174,4 +185,5 @@ libs:
       pypi: "https://pypi.org/project/termux-tts/"
       npm: "https://www.npmjs.com/package/termux-tts"
       github: "https://github.com/uno-km/termux-tts"
+
 

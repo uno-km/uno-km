@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>설치 및 환경 구성 가이드 | AMEVA-Runtime</title>
-  <meta name="description" content="AMEVA-Runtime 모바일 안드로이드 Termux 및 Linux 엣지 환경 설치, 1-Click 네이티브 가속 엔진 프로비저닝 가이드">
+  <title>Installation & Setup Guide | AMEVA-Runtime</title>
+  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Root-Cause Defect Resolution (Ground Truth)
+
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 4. Single Package Architecture
+- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
+- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,71 +54,15 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>설치 및 환경 구성 가이드</h2>
-      <p class="subtitle">모바일 하드웨어 가속, 1-Click 네이티브 엔진 프로비저닝 및 의존성 관리 (AMEVA-Runtime)</p>
-
-      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="vulkan">v2.7.7</code></span>
-        <a href="https://pypi.org/project/ameva-runtime/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
-        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/runtime.svg?color=b91c1c" alt="NPM Version"></a>
-        <img src="https://img.shields.io/badge/Vulkan-1.3_Compute-purple.svg" alt="Vulkan Engine">
-        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-      </div>
-
-      <div class="alert alert-success">
-        <span class="alert-title">핵심 가치 제안 (Why It Matters)</span>
-        <p>복잡한 C/C++ 네이티브 크로스 컴파일 과정 없이, Two-Track 공개 레지스트리를 통해 검증된 6대 모달리티 Vulkan 가속 엔진 바이너리를 토큰 없이 1-Click으로 자동 설치합니다.</p>
-      </div>
-
-      <h3>1. 공식 패키지 매니저 설치</h3>
-      <pre><code class="language-bash"># Python SDK (PyPI)
-pip install ameva-runtime
-
-# Node.js / TypeScript SDK (NPM)
-npm install @ameva/runtime</code></pre>
-
-      <h3>2. 1-Click 네이티브 엔진 자동 프로비저닝 (CLI)</h3>
-      <p>패키지 설치 후 제공되는 <code>ameva</code> CLI를 통해 Android Bionic 최적화 가속 엔진을 즉시 배포할 수 있습니다:</p>
-      <pre><code class="language-bash"># 6대 모달리티 가속 엔진 전수 자동 설치
-ameva install --all
-
-# 또는 특정 모달리티 엔진만 선택 설치
-ameva install --modality diffusion   # Stable Diffusion & DiT Vulkan Engine
-ameva install --modality stt         # Whisper STT Vulkan Engine
-ameva install --modality llm         # LLaMA C++ Vulkan Engine
-ameva install --modality tts         # Sherpa-NCNN Neural Voice Engine
-ameva install --modality bitnet      # BitNet 1.58-bit Acceleration Engine
-
-# 12단계 단말기 하드웨어 무결성 자가 진단 실행
-ameva doctor</code></pre>
-
-      <h3>3. 필수 시스템 요구사항</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>구분</th>
-            <th>최소 요구 사양</th>
-            <th>권장 사양</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>운영체제</strong></td>
-            <td>Android 10+ (Termux ARM64) / Linux aarch64</td>
-            <td>Android 14 ~ 16 (Bionic Direct Vulkan)</td>
-          </tr>
-          <tr>
-            <td><strong>GPU 아키텍처</strong></td>
-            <td>Qualcomm Adreno 600+ / ARM Mali Valhall (G68+)</td>
-            <td>Qualcomm Adreno 830 / Mali-G78+ (Vulkan 1.3)</td>
-          </tr>
-          <tr>
-            <td><strong>시스템 메모리 (RAM)</strong></td>
-            <td>4 GB LPDDR4X</td>
-            <td>8 GB ~ 12 GB LPDDR5X (UMA 통합 메모리)</td>
-          </tr>
-        </tbody>
-      </table>
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install ameva-runtime
+# or: npm install @ameva/runtime</code></pre>
     </main>
   </div>
 

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-Cluster | Official Documentation</title>
+  <meta name="description" content="AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
+Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
+Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">AMEVA-Cluster</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Symmetric Disaggregated Mobile RAM Pooling & On-Device AI Acceleration Runtime with Compute-Memory Decoupling</p>
+
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/ameva-cluster/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-cluster.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/cluster" target="_blank"><img src="https://img.shields.io/npm/v/%40ameva%2Fcluster.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_Termux_/_Linux_ARM64_&_x86_64_/_Windows-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install ameva-cluster
+# or
+npm install -g @ameva/cluster</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Executing frontier 70B scale models on standalone mobile devices inevitably triggers Android Low Memory Killer (LMK) termination and thermal throttling. Conventional distributed inference forces compute on all nodes, overheating lower-tier battery-powered devices.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
+Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
+Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Symmetric Single Binary CLI</h4>
+          <p data-i18n="home.features.0.desc">All-in-one architecture supporting both master and worker roles via single CLI flag.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">Compute-Memory Decoupling</h4>
+          <p data-i18n="home.features.1.desc">Worker nodes execute zero GPU passes, acting solely as RAM caches to prevent heat and failure.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">300MB Safety Guard-Band</h4>
+          <p data-i18n="home.features.2.desc">Automatically deducts buffer memory from usable pool to protect against Android LMK kills.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">Mutual Authentication Guard Proxy</h4>
+          <p data-i18n="home.features.3.desc">0.001s Fail-Fast HMAC-SHA256 verification rejecting unauthorized RPC traffic and DoS attempts.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">Storage-Assisted Hybrid Failover</h4>
+          <p data-i18n="home.features.4.desc">Gracefully degrades to local UFS 3.1 flash streaming upon worker disconnects without crashing.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">6-Modality Pluggable Engine</h4>
+          <p data-i18n="home.features.5.desc">Standardized distributed tensor sharding across LLM, Diffusion, Vision, STT, TTS, and Training.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Compute Engine</strong></td>
+            <td>WebGPU Compute Shaders (WGSL), FP16/FP32</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers, Weakref GC Pooling</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Platform Runtimes</strong></td>
+            <td>Node.js, Chromium WebGPU, Android Termux Bionic</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from ameva_cluster import AmevaCluster, ClusterMaster
+
+# 1. Start worker daemon with Guard protection on remote phone:
+# ameva-cluster worker --port 50052
+
+# 2. Execute distributed inference across phone fleet:
+AmevaCluster.run_master(
+    model_path="Qwen2.5-7B-Instruct-Q4_K_M.gguf",
+    workers=["100.106.251.21:50052", "100.77.47.37:50052"],
+    tensor_split="40,30,30",
+    prompt="Explain disaggregated neural memory architecture."
+)
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>const { AmevaCluster } = require('@ameva/cluster');
+
+// Launch protected cluster master inference
+const master = AmevaCluster.runMaster({
+  modelPath: "Qwen2.5-7B-Instruct-Q4_K_M.gguf",
+  workers: ["100.106.251.21:50052", "100.77.47.37:50052"],
+  tensorSplit: "auto",
+  prompt: "Hello from distributed Node.js runtime!"
+});
+
+master.stdout.on('data', (data) => console.log(data.toString()));
+</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

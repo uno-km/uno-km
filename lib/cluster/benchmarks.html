@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarks & Profiling | AMEVA-Cluster</title>
+  <meta name="description" content="AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
+Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
+Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Benchmarks & Profiling</h2>
+      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
+      <table class="data-table">
+           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
+           <tbody>
+             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
+           </tbody>
+         </table>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>

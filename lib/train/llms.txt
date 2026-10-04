@@ -1,47 +1,30 @@
-# Termux-Train (v2.0.0)
-> Unified Multimodal On-Device Deep Learning & LoRA Training Framework for Android Termux with 6-Modality Adapters (LLM, Diffusion, VLM, STT, TTS, BitNet), GPU Slicing, and 44GB Disaggregated Cluster Virtual RAM Pooling
+# Termux-Train — AI Agent Fast Context
+# Generated: 2026-10-03  |  Version: 1.1.5
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-train
-- Installation: `pip install termux-train
-# or via npm:
-npm install -g termux-train
-# or standalone bootstrap:
-bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-train/main/install.sh)
-`
-- Architecture: Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.
+## Library
+Name: Termux-Train
+Version: 1.1.5
+GitHub: https://github.com/uno-km/termux-train
+Documentation: https://uno-km.vercel.app/lib/train/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-import termux_train as tt
+## Description
 
-# 1. Image Diffusion LoRA Training (ComfyUI / Diffusers compatible)
-tt.diffusion.train_diffusion_lora(
-    image_dir="./training_images",
-    output_path="./adapter_diffusion.safetensors",
-    prompt="high quality technical schematic",
-    resolution=512,
-    epochs=5,
-    lr=0.0001,
-    rank=8,
-    backend="vulkan"
-)
 
-# 2. Vision Multimodal VLM LoRA Training (LLaVA / Qwen2-VL format)
-tt.vision.train_vision_vlm_lora(
-    data_source="./vlm_dataset.jsonl",
-    output_path="./adapter_vision.safetensors",
-    epochs=3,
-    lr=0.0002,
-    backend="vulkan"
-)
+## Documentation Pages
+  - /lib/train/index.html
+  - /lib/train/installation.html
+  - /lib/train/quickstart.html
+  - /lib/train/api-reference.html
+  - /lib/train/models.html
+  - /lib/train/benchmarks.html
+  - /lib/train/advanced-parameters.html
+  - /lib/train/versions.html
+  - /lib/train/training-guide.html
 
-# 3. Whisper STT LoRA Acoustic Adaptation
-tt.stt.train_stt_lora(
-    data_source="./audio_transcripts.jsonl",
-    output_path="./adapter_stt.safetensors",
-    epochs=4,
-    backend="vulkan"
-)
+## Quick Install
+pip install termux-train
 
-```
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/train/llms-full.txt

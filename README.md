@@ -146,6 +146,7 @@ flowchart TD
         Vision["termux-vision<br/>(Zero-Dep 온디바이스 컴퓨터 비전 & VLM 추론)"]
         TTS["termux-tts<br/>(경량 온디바이스 음성합성 & C++/Python/Node 런타임)"]
         VulkanRuntime["AMEVA-Runtime<br/>(SoC 감지 및 디바이스 리소스 적응형 런타임 & HAL)"]
+        Cluster["AMEVA-Cluster<br/>(대칭형 온디바이스 분산 메모리 풀링 & AI 가속 런타임)"]
     end
 
     subgraph RuntimeLayer ["3. 기저 런타임 및 디바이스 리소스 계층 (System Runtimes)"]
@@ -172,6 +173,7 @@ flowchart TD
 | **`AMEVA-MCP-Hub`** | WASI WebAssembly, Node.js | 호스트 컴파일러 없이 C++, Rust, Java, Python, Go 도구를 인메모리 실행하고 깃허브 다중 리포지토리를 실시간 구독하는 유니버설 AI 벡터 MCP 허브. | `npx ameva-mcp-hub`<br/>`npm install ameva-mcp-hub`<br/>[공식 문서](https://uno-km.vercel.app/lib/mcp/) |
 | **`AMEVA-Forge`** | WebGPU, Pyodide, WASM | 서버 비용이 전혀 들지 않는 브라우저 네이티브 WebGPU 딥러닝 텐서 엔진. PyTorch 호환 텐서 API 및 WGSL 셰이더 메모리 바인딩 지원. | `pip install ameva`<br/>[공식 문서](https://uno-km.vercel.app/lib/forge/) |
 | **`AMEVA-Runtime`** | C++20, SoC Auto-Detection, Python, Node | 안드로이드 Termux 환경에서 시스템 SoC를 자동 감지하여 STT/Vision/LLM/Diffusion에 필요한 디바이스 리소스를 적응형으로 최적화하는 추상화 계층(HAL) 및 런타임. | `pip install ameva-runtime`<br/>`npm install @ameva/runtime`<br/>[공식 문서](https://uno-km.vercel.app/lib/vulkan/) |
+| **`AMEVA-Cluster`** | Python, Node.js, POSIX RPC | 모바일 스마트폰 유휴 메모리 결속 및 연산-메모리 분리(Decoupling) 기반 대칭형 온디바이스 분산 추론 가속 런타임. ClusterGuardProxy 상호 인증 및 6대 모달리티 연동. | `pip install ameva-cluster`<br/>`npm install @ameva/cluster`<br/>[공식 문서](https://uno-km.vercel.app/lib/cluster/) |
 | **`termux-aichain`** | Python 3, TypeScript, DAG | 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 실행하는 50KB 초경량 모바일 에이전트 프레임워크. | `pip install termux-aichain`<br/>`npm install termux-aichain`<br/>[공식 문서](https://uno-km.vercel.app/lib/aichain/) |
 | **`termux-bitnet`** | C++17 NEON, Python, Node | ARM64 NEON DotProd 가속 기반 C++ 코어와 Python/Node.js 듀얼 게이트웨이를 통한 1.58비트(i2_s) 온디바이스 LLM 추론 프레임워크. | `npm install termux-bitnet`<br/>`pip install termux-bitnet`<br/>[공식 문서](https://uno-km.vercel.app/lib/bitnet/) |
 | **`termux-playwright`** | Android Bionic, Node, Python | 안드로이드 스마트폰(ARM64 Termux) 유저스페이스에서 비루팅 환경으로 Chromium CDP를 직접 제어하는 초저전력(5W) 분산 자동화 라이브러리. | `npm install termux-playwright`<br/>`pip install termux-playwright`<br/>[공식 문서](https://uno-km.vercel.app/lib/playwright/) |
@@ -216,8 +218,9 @@ AMEVA의 모든 연구와 온디바이스 에지 컴퓨팅 기술은 상업적 �
 - **주머니와 서랍 속 기기 총출동**: 내 폰 갤 A35, S21, 24개월 할부 대출로 산 S25... 친구가 버리려던 깨진 갤20은 바짓가랑이 붙잡고 뺏어와 손가락 찔려가며 터치 테스트하고, 어머니 서랍 속 구식 갤7까지 24시간 풀가동으로 혹사시키고 있습니다.
 - **라면과 공항 와이파이로 버티는 생존 코딩**: 하루 한 끼 라면으로 때우고, 편의점 1,500원 커피값도 아껴가며 터미널 창과 싸우고 있습니다. 작업실 와이파이가 10분마다 끊겨서 노트북과 깨진 폰들을 챙겨 들고 인천공항이나 24시간 카페 구석에서 벌벌 떨며 공용 와이파이로 `git push origin main` 때려 넣는 짠내 나는 현실입니다.
 
-### 🔥 우리가 뜯어고친 14대 온디바이스 플래그십 무기고
+### 🔥 우리가 뜯어고친 15대 온디바이스 플래그십 무기고
 빅테크가 폰에서는 불가능하다고 했던 것들을, 우리는 안드로이드 Bionic libc와 ARM64 NEON 어셈블리, 그리고 Vulkan 컴퓨트 셰이더를 밑바닥부터 다 뜯어고쳐 완성했습니다:
+- **`AMEVA-Cluster`**: 버려진 구형 스마트폰들의 유휴 램을 하나로 결속! 6개 모달리티 온디바이스 분산 메모리 풀링.
 - **`Termux-BitNet`**: 1.58비트 LLM 3진 양자화 커널 Bionic 이식! NEON DotProd + Vulkan GPU 1줄 패키징.
 - **`Termux-TTS`**: 가벼운 DSP부터 22.05kHz Vulkan GPU 스튜디오 신경망까지 4-Tier 복원형 음성 합성.
 - **`Termux-Vision`**: 150MB OpenCV 전면 배제! 순수 Canny/Sobel 알고리즘 + SmolVLM Vulkan GPU 제로카피 시각 지능.

@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMEVA-Runtime | Official Documentation</title>
-  <meta name="description" content="안드로이드 스마트폰의 물리 GPU를 100% 풀 오프로드로 가동하는 통합 온디바이스 하드웨어 오케스트레이션 및 6-모달리티 가속 엔진 AMEVA-Runtime 공식 명세서">
+  <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Root-Cause Defect Resolution (Ground Truth)
+
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 4. Single Package Architecture
+- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
+- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
+">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,258 +54,178 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>AMEVA-Runtime 공식 기술 명세서</h2>
-      <p class="subtitle">안드로이드 스마트폰 물리 실리콘(Adreno / Mali) 풀 GPU 오프로드 &amp; 6-모달리티 통합 하드웨어 가속 런타임 (v2.7.7)</p>
+      <h2 data-i18n="home.title">AMEVA-Runtime</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Library Isolation & Adreno OpenCL Smart Routing)</p>
 
-      <div class="badges-bar" style="margin: 8px 0 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span class="release-tag" style="background:#0f172a; color:#38bdf8; font-family:var(--font-mono, monospace); font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #0284c7; font-size:12px;">Release: <code data-package-version="vulkan">v2.7.7</code></span>
-        <a href="https://pypi.org/project/ameva-runtime/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
-        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@ameva/runtime.svg?color=b91c1c" alt="NPM Version"></a>
-        <img src="https://img.shields.io/badge/Vulkan-1.3_Compute-purple.svg" alt="Vulkan Engine">
-        <img src="https://img.shields.io/badge/Silicon-Qualcomm_Adreno_%26_ARM_Mali-0284c7.svg" alt="Silicon Support">
-        <img src="https://img.shields.io/badge/UMA-Zero_Copy-emerald.svg" alt="Zero-Copy UMA">
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/ameva-runtime/" target="_blank"><img src="https://img.shields.io/pypi/v/ameva-runtime.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank"><img src="https://img.shields.io/npm/v/%40ameva%2Fruntime.svg?color=cb3837" alt="npm Version"></a>
         <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
-      </div>
-
-      <div class="alert alert-success">
-        <span class="alert-title">핵심 기술 사명 (The Engineering Mission)</span>
-        <p><strong>"잠들어 있던 모바일 스마트폰의 물리 GPU를 100% 완벽하게 깨운다."</strong><br>
-        수많은 모바일 AI 앱이 안드로이드 OS의 제약과 드라이버 결함 때문에 GPU를 포기하고 뜨거운 CPU만 혹사시키고 있습니다. AMEVA-Runtime은 Bionic 다이렉트 링킹, 통합 메모리(UMA) 제로카피, 그리고 독자적인 셰이더 커널 쿼크 엔진을 통해 스마트폰의 퀄컴 Adreno 및 ARM Mali GPU를 단 한 방울의 성능 낭비 없이 100% VRAM 풀 오프로드로 폭발시킵니다.</p>
+        <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Qualcomm_Adreno,_ARM_Mali,_Linux_&_Edge-blueviolet.svg" alt="Platform">
       </div>
 
       <div class="alert alert-tip">
-        <span class="alert-title">1줄 패키지 설치 및 네이티브 엔진 프로비저닝</span>
-        <pre><code># Python SDK 설치 (PyPI)
-pip install ameva-runtime
-
-# Node.js / TypeScript SDK 설치 (NPM)
-npm install @ameva/runtime
-
-# 6대 모달리티 네이티브 가속 엔진 1-Click 자동 설치 (토큰 불필요)
-ameva install --all
-
-# 12단계 단말기 하드웨어 무결성 자가 진단 실행
-ameva doctor</code></pre>
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install ameva-runtime
+# or: npm install @ameva/runtime</code></pre>
       </div>
 
-      <h3>1. 안드로이드 모바일 GPU 가속의 4대 물리적 장벽과 돌파구</h3>
-      <p>스마트폰 환경에서 온디바이스 생성형 AI를 물리 GPU로 실행하려고 할 때 마주치는 치명적인 장벽들과 AMEVA-Runtime의 공학적 돌파 내역입니다:</p>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Deploying generative multi-modal AI on mobile hardware encounters severe vendor-specific compiler bugs and driver anomalies. Qualcomm Adreno GPUs suffer from JIT compiler crashes during specialization constant dispatch, while ARM Mali drivers encounter compute shader integer truncation infinite loops and headless fence deadlocks without active display swapchains.</p>
 
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
+
+### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+
+| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
+| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
+| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Root-Cause Defect Resolution (Ground Truth)
+
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 4. Single Package Architecture
+- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
+- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
+</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <h4>(1) 가짜 Vulkan 함정: Bionic Direct Vulkan Linking</h4>
-          <p>안드로이드 Termux 환경에서 기본 설치되는 <code>$PREFIX/lib/libvulkan.so</code>는 실제 GPU가 아니라 오픈소스 Mesa <code>llvmpipe</code> CPU 소프트웨어 에뮬레이터로 연결되어 극심한 발열과 굼뜬 속도를 냅니다. AMEVA-Runtime은 Termux 사용자 공간을 우회하여 안드로이드 OS 시스템 Bionic <code>/system/lib64/libvulkan.so</code>를 런타임에 직접 동적 바인딩(Direct Dynamic Binding)함으로써 <strong>단말기 물리 실리콘 드라이버에 100% 직결</strong>합니다.</p>
+          <h4 data-i18n="home.features.0.title">SmartRouter Silicon Topology Dispatch</h4>
+          <p data-i18n="home.features.0.desc">Analyzes device nodes (/dev/kgsl-3d0, /dev/mali0) and cgroups to dispatch between Qualcomm Adreno and ARM Mali.</p>
         </div>
         <div class="feature-card">
-          <h4>(2) PCI-e 복사 지연 0초: UMA 제로카피 직결 ($0\mu\text{s}$)</h4>
-          <p>외장 그래픽카드를 사용하는 데스크톱 PC와 달리 스마트폰 SoC는 CPU와 GPU가 단일 LPDDR5X DRAM 물리 버스를 공유하는 통합 메모리(UMA) 구조입니다. AMEVA-Runtime은 호스트-디바이스 간 텐서 메모리 복사 오버헤드를 원천 제거하고, mmap 가상 메모리 포인터 직결을 통해 <strong>복사 지연시간 0초($0\mu\text{s}$)로 25/25 레이어 전체를 GPU VRAM에 즉시 로드</strong>합니다.</p>
+          <h4 data-i18n="home.features.1.title">Native Adreno 830 Full Offloading</h4>
+          <p data-i18n="home.features.1.desc">Offloads 25/25 LLM layers to VRAM on Snapdragon 8 Elite, achieving 35.80 tokens/sec (27.9 ms/t).</p>
         </div>
         <div class="feature-card">
-          <h4>(3) ARM Mali Valhall 정수 절삭 무한 루프 영구 소멸</h4>
-          <p>삼성 갤럭시 A35/S21 등 Mali-G68/G78(서브그룹 크기 16)에서 셰이더 컴파일 시 <code>loadstride_b = 16 * 1 / 32 = 0</code>으로 정수 나눗셈이 0으로 절삭되어 내부 루프가 멈추지 않고 시스템 TDR 리셋(<code>VK_ERROR_DEVICE_LOST</code>)이 발생하던 결함을, 워크그룹 크기 128인 미디엄 커널(<code>_m</code>, <code>loadstride_b = 4 &gt; 0</code>) 강제 라우팅(<code>enforce_medium_matmul: true</code>)으로 <strong>무한 루프를 완전히 박멸하고 25/25 레이어 GPU 완주</strong>를 달성했습니다.</p>
+          <h4 data-i18n="home.features.2.title">Mali Valhall MatMul Quirk Engine</h4>
+          <p data-i18n="home.features.2.desc">Eliminates GLSL integer truncation infinite loops on subgroup-16 Mali GPUs by enforcing Medium kernels (4.44 t/s).</p>
         </div>
         <div class="feature-card">
-          <h4>(4) Qualcomm Adreno 830 JIT 컴파일러 결함 격리</h4>
-          <p>최신 스냅드래곤 8 Elite(갤럭시 S25)에서 특수화 상수 <code>NUM_COLS &gt;= 3</code> 조건 시 독점 JIT 컴파일러가 레지스터 할당 실패(<code>VK_ERROR_UNKNOWN -13</code>)를 일으키던 문제를 <code>mul_mat_vec_max_cols = 2</code> 경계 파라미터로 격리하여, <strong>35.80 tokens/sec(27.9 ms/t)의 데스크톱급 초고속 추론</strong>을 완성했습니다.</p>
+          <h4 data-i18n="home.features.3.title">Whisper STT 2.26x Hardware Acceleration</h4>
+          <p data-i18n="home.features.3.desc">Accelerates Whisper Large-v3-Turbo on mobile GPU (360s vs 816s CPU, 56% time reduction) while unburdening CPU.</p>
         </div>
         <div class="feature-card">
-          <h4>(5) Qualcomm Adreno 600 계열 수치 붕괴 회피 라우팅</h4>
-          <p>스냅드래곤 865(갤럭시 S20) 등 구형 Adreno GPU에서 발생하는 IEEE 754 부동소수점 비정규화(Subnormal FP16) 수치 붕괴(반복 횡설수설 현상) 및 Flash Attention 컴파일 데드락을 SmartRouter가 선제 감지하여 고정밀 <strong>OpenCL (<code>llama-cli-opencl</code>) 또는 CPU NEON으로 자동 우회 분기</strong>합니다.</p>
+          <h4 data-i18n="home.features.4.title">Z-Image Turbo 6.0B DiT Vulkan Compute</h4>
+          <p data-i18n="home.features.4.desc">Dispatches SOTA Diffusion Transformer compute with Flash Attention and VAE tiling directly on mobile Qualcomm Adreno and ARM Mali GPUs.</p>
         </div>
         <div class="feature-card">
-          <h4>(6) Android 15/16 Bionic 링커 네임스페이스 무결 격리</h4>
-          <p>안드로이드 최신 버전에서 <code>$PREFIX/lib</code> 주입 시 <code>libunwindstack.so</code> 심볼 충돌 크래시가 발생하던 문제를 해결하기 위해, 런타임 환경변수에서 <code>$PREFIX/lib</code>를 완전 배제하고 자체 ELF <code>DT_RUNPATH</code>만을 격리 바인딩하여 <strong>안드로이드 15/16 시스템 무결성</strong>을 확보했습니다.</p>
+          <h4 data-i18n="home.features.5.title">Two-Track Enterprise Supply Chain Architecture</h4>
+          <p data-i18n="home.features.5.desc">Decouples proprietary source code into private repositories while providing verified release binaries via public registry for tokenless 1-Click provisioning.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.6.title">Unified Multi-Modality Architecture</h4>
+          <p data-i18n="home.features.6.desc">Drives GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion / DiT, Piper TTS, and BitNet from a single runtime.</p>
         </div>
       </div>
 
-      <h3>2. 4계층 수직 하드웨어 아키텍처 다이어그램</h3>
-      <pre><code>┌────────────────────────────────────────────────────────────────────────┐
-│                        User Application &amp; AI Agents                    │
-│        Python SDK (pip)        │         Node.js SDK (npm)             │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │ ameva.run() / Doctor
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│          Layer 1: AMEVA-Runtime Hardware Orchestration (HAL)           │
-│  - SmartRouter: Kernel Node (/dev/kgsl-3d0, /dev/mali0) Topology Probe │
-│  - Modality Isolation: 1:1 Strict Library Environment Mapping          │
-│  - Fallback Guard: Zero-Silent-Fallback &amp; AmbiguousModelMatchError     │
-└───────────────────┬───────────────────────────────────┬────────────────┘
-                    │                                   │
-      ┌─────────────▼───────────────┐     ┌─────────────▼──────────────┐
-      │  Qualcomm Adreno Pipeline   │     │     ARM Mali Pipeline      │
-      │  - Adreno 830: 100% VRAM    │     │  - Mali Valhall Engine     │
-      │  - mul_mat_vec_max_cols=2   │     │  - enforce_medium_matmul   │
-      │  - Adreno 600: -fa 0 Quirk  │     │  - loadstride_b = 4 &gt; 0    │
-      └─────────────┬───────────────┘     └─────────────┬──────────────┘
-                    │                                   │
-                    ▼                                   ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│          Layer 2: Bionic Direct Vulkan 1.3 / OpenCL Driver Driver      │
-│          /system/lib64/libvulkan.so  │  /vendor/lib64/libOpenCL.so     │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │ UMA Zero-Copy DMA ($0\mu\text{s}$)
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│          Layer 3: Physical Silicon Hardware (Snapdragon / Exynos)      │
-│   Snapdragon 8 Elite (Adreno 830) │ Exynos 1380/2100 (Mali-G68/G78)   │
-└────────────────────────────────────────────────────────────────────────┘</code></pre>
-
-      <h3>3. 6대 모달리티 AI 온디바이스 가속 통합 스위트</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th>AI 모달리티</th>
-            <th>통합 네이티브 엔진</th>
-            <th>물리 GPU 가속 메커니즘</th>
-            <th>가속 지표 및 프로덕션 상태</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>1. LLM (대형 언어 모델)</strong></td>
-            <td>LLaMA.cpp / GGUF Q4_K_M</td>
-            <td>25/25 전체 레이어 GPU VRAM 적재 (<code>ngl=999</code>), UMA 제로카피 직접 바인딩</td>
-            <td><strong>Galaxy S25: 35.80 t/s (CPU 대비 35.8배)</strong><br><span class="status-badge active">Production</span></td>
+            <td><strong>Galaxy S25 (Qualcomm Adreno 830)</strong></td>
+            <td>Vulkan 25/25 Layers Offloaded, 35.80 t/s, mul_mat_vec_max_cols=2</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>2. STT (음성 인식)</strong></td>
-            <td>Whisper.cpp Large-v3-Turbo</td>
-            <td>Bionic Direct Vulkan Compute, Specialization Constant JIT 패치</td>
-            <td><strong>Galaxy A35: 360.60초 (CPU 대비 2.26배 고속, 56% 절감)</strong><br><span class="status-badge active">Production</span></td>
+            <td><strong>Galaxy A35 (ARM Mali-G68)</strong></td>
+            <td>Vulkan Medium MatMul, 4.44 t/s LLM, Whisper Large-v3-Turbo (2.26x)</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>3. TTS (음성 합성)</strong></td>
-            <td>Sherpa-NCNN / MeloTTS / Piper</td>
-            <td>HiFi-GAN 32MB 버퍼 시간축 타일링 (<code>chunk_size &lt;= 819</code>), 온칩 SRAM 타일링</td>
-            <td><strong>Galaxy S25: 380 ms (0.12x RTF) 초고속 합성</strong><br><span class="status-badge active">Production</span></td>
+            <td><strong>Mobile DiT Diffusion (Z-Image Turbo 6.0B)</strong></td>
+            <td>Vulkan DiT Pipeline, Flash Attention (--diffusion-fa), VAE Tiling</td>
+            <td><span class="status-badge active">Production (v2.7.4)</span></td>
           </tr>
           <tr>
-            <td><strong>4. Diffusion (이미지 생성)</strong></td>
-            <td>SDXS / Z-Image Turbo 6.0B DiT</td>
-            <td>온디바이스 Flash Attention (<code>--diffusion-fa</code>), 타일형 VAE 디코더</td>
-            <td><strong>Galaxy S25: 4.39초 완주 (VRAM 651MB)</strong><br><span class="status-badge active">Production</span></td>
+            <td><strong>Two-Track Public Registry</strong></td>
+            <td>Anonymous 1-Click Auto-Provisioning via uno-km/ameva-runtime-releases</td>
+            <td><span class="status-badge active">Active</span></td>
           </tr>
           <tr>
-            <td><strong>5. Vision (VLM 멀티모달)</strong></td>
-            <td>CLIP / MobileVLM / LLaVA</td>
-            <td>비전 인코더 텐서 Vulkan 하드웨어 바인딩, 이미지 토큰 즉시 프로젝션</td>
-            <td><strong>Galaxy S25: 15.0 t/s (2.7GB VRAM)</strong><br><span class="status-badge active">Production</span></td>
-          </tr>
-          <tr>
-            <td><strong>6. BitNet (1.58b 초저전력)</strong></td>
-            <td>Microsoft BitNet b1.58 2B-4T</td>
-            <td>삼항 가중치({-1, 0, 1}) ARM64 NEON DotProd 및 Vulkan 연산 커널 직결</td>
-            <td><strong>Galaxy S25: 17.558 t/s (CPU 대비 12.58배)</strong><br><span class="status-badge active">Production</span></td>
+            <td><strong>Multi-Modality Engines</strong></td>
+            <td>GGUF LLM, Whisper STT, LLaVA Vision, Stable Diffusion / DiT, Piper TTS, BitNet</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3>4. 전 기종 플릿 실기기 계측 벤치마크 (Ground Truth)</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>단말기 모델</th>
-            <th>SoC 및 GPU 구성</th>
-            <th>실행 모달리티 및 모델</th>
-            <th>계측 지연시간 / 속도</th>
-            <th>CPU 대비 가속 배율</th>
-            <th>비고 및 하드웨어 거동</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>삼성 갤럭시 S25</strong></td>
-            <td>Snapdragon 8 Elite / Adreno 830</td>
-            <td>LLM: Qwen2.5-0.5B (Q4_K_M)</td>
-            <td><strong>35.80 t/s (27.9 ms/t)</strong></td>
-            <td><strong>35.8배 초고속</strong></td>
-            <td>25/25 레이어 100% VRAM 오프로드, UI 프리즈 0%</td>
-          </tr>
-          <tr>
-            <td><strong>삼성 갤럭시 A35</strong></td>
-            <td>Exynos 1380 / Mali-G68 MP5</td>
-            <td>LLM: Qwen2.5-0.5B (Q4_K_M)</td>
-            <td><strong>4.44 t/s (225.0 ms/t)</strong></td>
-            <td><strong>+26.9% 가속</strong></td>
-            <td>Mali Valhall Medium MatMul Quirk 적용, 무한루프 차단</td>
-          </tr>
-          <tr>
-            <td><strong>삼성 갤럭시 S25</strong></td>
-            <td>Snapdragon 8 Elite / Adreno 830</td>
-            <td>STT: Whisper Large-v3-Turbo</td>
-            <td><strong>4.40 초 (0.07x RTF)</strong></td>
-            <td><strong>18.5배 가속</strong></td>
-            <td>Adreno Turbo 주파수 구동, CPU 부하 12% 유지</td>
-          </tr>
-          <tr>
-            <td><strong>삼성 갤럭시 A35</strong></td>
-            <td>Exynos 1380 / Mali-G68 MP5</td>
-            <td>STT: Whisper Large-v3-Turbo</td>
-            <td><strong>360.60 초 (6분 00초)</strong></td>
-            <td><strong>2.26배 가속</strong></td>
-            <td>Mali GPU 100% (949 MHz) 가속, CPU 291% &rarr; 25% 경감</td>
-          </tr>
-          <tr>
-            <td><strong>삼성 갤럭시 S20</strong></td>
-            <td>Snapdragon 865 / Adreno 650</td>
-            <td>LLM: Qwen2.5-0.5B (Q4_K_M)</td>
-            <td><strong>26.20 t/s (OpenCL / NEON)</strong></td>
-            <td>안정 구동</td>
-            <td>Vulkan FP16 드라이버 결함 우회 고정밀 OpenCL 바이패스</td>
-          </tr>
-          <tr>
-            <td><strong>삼성 갤럭시 S21</strong></td>
-            <td>Exynos 2100 / Mali-G78</td>
-            <td>Diffusion: SDXS 1-Step</td>
-            <td><strong>18.69 초</strong></td>
-            <td><strong>16.5배 단축</strong></td>
-            <td>Flash Attention 적용 (VRAM 1.07GB &rarr; 4MB)</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>5. 파이썬 및 노드 최소 실행 코드 레시피</h3>
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
       <div class="code-tab-group">
         <div class="code-tabs-header">
-          <button class="code-tab-btn active" type="button">Python SDK (pip)</button>
-          <button class="code-tab-btn" type="button">Node.js SDK (npm)</button>
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
         <div class="code-tab-content" style="display:block;">
-          <pre><code class="language-python">import ameva_runtime as ameva
+          <pre><code>import ameva_runtime as ameva
 from ameva_runtime import vulkan
 
-# 1. 단말기 물리 SoC 토폴로지 자동 진단 (/dev/kgsl-3d0, /dev/mali0)
-profile = ameva.detect_hardware()
-print(f"[AMEVA-Runtime] 감지된 하드웨어: {profile.soc_name} | GPU: {profile.gpu_vendor}")
-
-# 2. 100% GPU VRAM 오프로드 LLM 추론 실행 (최적 SPIR-V 파이프라인 자동 분기)
+# 1. Execute LLM inference directly with optimal on-device hardware dispatch
 result = ameva.run(
     model="qwen2.5-0.5b",
-    prompt="스마트폰 GPU 풀가속의 위력은:",
-    max_tokens=64
+    prompt="Space in Korean is:",
+    max_tokens=32
 )
-print(f"생성 결과: {result.text}")
-print(f"활성 백엔드: {result.backend_used} ({result.tokens_per_second:.2f} tokens/s)")
+print(f"Generated text: {result.text}")
+print(f"Hardware backend: {result.backend_used} ({result.tokens_per_second:.2f} t/s)")
 
-# 3. 12단계 단말기 하드웨어 무결성 자가 진단
+# 2. Hardware diagnostic inspection via Vulkan engine
 doc = vulkan.Doctor()
 report = doc.run_self_test(verbose=False)
-print(f"진단 결과: {report.device_name} (통과 단계: {report.passed_stages}/{report.total_stages})")</code></pre>
+print(f"GPU Target: {report.device_name} (Passed: {report.passed_stages}/{report.total_stages})")
+</code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code class="language-typescript">import { createContext, Doctor } from "@ameva/runtime";
+          <pre><code>import { createContext, Doctor } from "@ameva/runtime";
 
-// 1. 하드웨어 진단기 실행
-const doc = new Doctor();
-const report = await doc.runSelfTest();
-console.log(`Vulkan GPU Target: ${report.deviceName}, 상태: ${report.overallSuccess}`);
+const doctor = new Doctor();
+const report = await doctor.runSelfTest();
+console.log(`Topology Status: ${report.overallSuccess}, Hardware: ${report.deviceName}`);
 
-// 2. 가속 컨텍스트 초기화 및 런타임 직결
 const ctx = await createContext({ device: "auto" });
-console.log(`가속 파이프라인 초기화 완료 (${ctx.deviceName})`);</code></pre>
+console.log(`Runtime Context Initialized on ${ctx.deviceName}`);
+</code></pre>
         </div>
       </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
     </main>
   </div>
 

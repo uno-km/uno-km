@@ -1,0 +1,15 @@
+# AMEVA-Cluster Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+Symmetric Disaggregated Mobile RAM Pooling & On-Device AI Acceleration Runtime with Compute-Memory Decoupling
+AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
+Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
+Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.
+
+## 2. Package & Installation
+- PyPI: ameva-cluster
+- Command: pip install ameva-cluster
+# or
+npm install -g @ameva/cluster
+- Repository: https://github.com/uno-km/ameva-cluster

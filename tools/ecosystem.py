@@ -440,7 +440,13 @@ def cmd_release(args):
     config_path = lib_dir / "doc.config.yaml"
     if config_path.exists():
         text = config_path.read_text(encoding="utf-8")
-        text = re.sub(r'version:\s*["\']?[^"\']+["\']?', f'version: "{new_version}"', text)
+        # Only the top-level `version:` key, on its own line. The earlier pattern
+        # (version:\s*["']?[^"']+["']?) matched every `version:` in the file, changelog entries included, and
+        # with an unquoted value ran on across lines up to the next quote character, deleting the keys in between.
+        text, bumped = re.subn(r'^version:[^\n]*$', f'version: "{new_version}"', text, count=1, flags=re.M)
+        if bumped != 1:
+            print(f"[ERROR] No top-level 'version:' key in {config_path}; nothing was changed.")
+            sys.exit(1)
         config_path.write_text(text, encoding="utf-8")
         print(f"  [OK] Bumped version to {new_version} in {config_path}")
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickstart & Execution Recipes | AMEVA-Cluster</title>
+  <meta name="description" content="AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
+Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
+Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>from ameva_cluster import AmevaCluster, ClusterMaster
+
+# 1. Start worker daemon with Guard protection on remote phone:
+# ameva-cluster worker --port 50052
+
+# 2. Execute distributed inference across phone fleet:
+AmevaCluster.run_master(
+    model_path="Qwen2.5-7B-Instruct-Q4_K_M.gguf",
+    workers=["100.106.251.21:50052", "100.77.47.37:50052"],
+    tensor_split="40,30,30",
+    prompt="Explain disaggregated neural memory architecture."
+)
+</code></pre>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+  </footer>
+</body>
+</html>
