@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multimodal On-Device Training Manual | AMEVA-Runtime</title>
   <meta name="description" content="AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
 
-### 1. Empirical Real-Device LLM Benchmarks (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
 
-| Device & Processor | GPU Architecture | Active Backend | Layers in VRAM | Generation Speed (t/s) | Prompt Speed (t/s) | UI Freeze | Acceleration |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Galaxy S25** (Snapdragon 8 Elite) | Qualcomm Adreno 830 (Vulkan 1.3) | **VULKAN** | **25/25 (100%)** | **35.80 t/s** (27.9 ms/t) | **4.53 t/s** | **0% (Stable)** | **35.8x (vs CPU)** |
-| **Galaxy A35** (Exynos 1380) | ARM Mali-G68 MP5 (Vulkan 1.3) | **VULKAN (Medium MatMul)** | **25/25 (100%)** | **4.44 t/s** (225 ms/t) | **6.12 t/s** | **0% (Stable)** | **+26.9% (vs NEON)** |
-| **Galaxy A35** (Exynos 1380) | Cortex-A78 CPU-NEON (3 Threads) | CPU-NEON | 0/25 | 3.55 t/s (281 ms/t) | 8.05 t/s | 0% (Stable) | Baseline |
+Measured 2026-10-04 with the v2.7.9 bundle through `ameva-run exec`, 4 threads, single runs; the generated text is compared with the CPU route's. The Vulkan rows run with flash attention off (`-fa 0`): with it the bundle's Vulkan backend returns corrupt text. The figures this table carried up to 2.7.8 (35.80 t/s on Galaxy S25, 4.44 t/s on Galaxy A35) are not reproduced with this bundle and are withdrawn.
+
+| Device & Processor | Route | Generation Speed (t/s) | Text |
+| :--- | :--- | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | Vulkan (default route, all layers on the GPU) | 24 | same as the CPU's |
+| **Galaxy S25** (Snapdragon 8 Elite) | CPU (`-b cpu`) | 94 | reference |
+| **Galaxy A35** (Exynos 1380, Mali-G68 MP5) | Vulkan (default route, all layers on the GPU) | 6.5 | same as the CPU's |
+| **Galaxy A35** (Exynos 1380) | CPU (`-b cpu`) | 39 | reference |
+
+For this model the bundle's Vulkan backend is slower than the CPU on both devices. Larger models, the other devices and the known defects are in the [v2.7.9 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.7.9).
 
 ### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
 
@@ -40,7 +46,6 @@
 - Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
 - Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
 ">
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>

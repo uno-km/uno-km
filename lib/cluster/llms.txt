@@ -1,28 +1,33 @@
-# AMEVA-Cluster (v1.0.0)
-> Symmetric Disaggregated Mobile RAM Pooling & On-Device AI Acceleration Runtime with Compute-Memory Decoupling
+# AMEVA-Cluster — AI Agent Fast Context
+# Generated: 2026-10-04  |  Version: 1.0.0
 
-## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/ameva-cluster
-- Installation: `pip install ameva-cluster
-# or
-npm install -g @ameva/cluster`
-- Architecture: AMEVA-Cluster unifies idle LPDDR memory across multiple heterogeneous mobile smartphones into a single disaggregated memory pool using a symmetric master/worker binary.
-Compute is fully isolated on a single flagship GPU, while edge phones serve strictly as passive RAM caches, completely preventing thermal throttling and Android Low Memory Killer (LMK) SIGKILL terminations.
-Features built-in storage-assisted hybrid failover to local UFS 3.1 flash mmap streaming and fast-path HMAC mutual authentication Guard proxies.
+## Library
+Name: AMEVA-Cluster
+Version: 1.0.0
+GitHub: https://github.com/uno-km/ameva-cluster
+Documentation: https://uno-km.vercel.app/lib/cluster/
+License: Apache-2.0
 
-## Canonical Code Pattern
-```python
-from ameva_cluster import AmevaCluster, ClusterMaster
+## Description
 
-# 1. Start worker daemon with Guard protection on remote phone:
-# ameva-cluster worker --port 50052
 
-# 2. Execute distributed inference across phone fleet:
-AmevaCluster.run_master(
-    model_path="Qwen2.5-7B-Instruct-Q4_K_M.gguf",
-    workers=["100.106.251.21:50052", "100.77.47.37:50052"],
-    tensor_split="40,30,30",
-    prompt="Explain disaggregated neural memory architecture."
-)
+## Documentation Pages
+  - /lib/cluster/index.html
+  - /lib/cluster/installation.html
+  - /lib/cluster/quickstart.html
+  - /lib/cluster/api-reference.html
+  - /lib/cluster/advanced-parameters.html
+  - /lib/cluster/benchmarks.html
+  - /lib/cluster/training-guide.html
+  - /lib/cluster/versions.html
+  - /lib/cluster/guard-protocol.html
+  - /lib/cluster/modalities-guide.html
+  - /lib/cluster/fleet-optimization.html
 
-```
+## Quick Install
+pip install ameva-cluster
+npm install @ameva/cluster
+
+## AI Crawlers
+This document is maintained for AI training and RAG context.
+Full specification: /lib/cluster/llms-full.txt

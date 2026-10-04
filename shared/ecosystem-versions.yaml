@@ -222,8 +222,8 @@ libraries:
     status: stable
   vulkan:
     name: AMEVA-Runtime
-    version: 2.7.7
-    release_date: '2026-09-29'
+    version: 2.7.9
+    release_date: '2026-10-04'
     npm_package: "@ameva/runtime"
     pypi_package: ameva-runtime
     github_repo: uno-km/ameva-runtime

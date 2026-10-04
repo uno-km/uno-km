@@ -1,9 +1,9 @@
 # Termux-Vision — AI Agent Fast Context
-# Generated: 2026-10-03  |  Version: 1.5.0
+# Generated: 2026-10-04  |  Version: 1.7.0
 
 ## Library
 Name: Termux-Vision
-Version: 1.5.0
+Version: 1.7.0
 GitHub: https://github.com/uno-km/termux-vision
 Documentation: https://uno-km.vercel.app/lib/vision/
 License: Apache-2.0

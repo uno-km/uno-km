@@ -1,9 +1,9 @@
 # Termux-Diffusion — AI Agent Fast Context
-# Generated: 2026-10-03  |  Version: 1.8.1
+# Generated: 2026-10-04  |  Version: 1.9.0
 
 ## Library
 Name: Termux-Diffusion
-Version: 1.8.1
+Version: 1.9.0
 GitHub: https://github.com/uno-km/termux-diffusion
 Documentation: https://uno-km.vercel.app/lib/diffusion/
 License: Apache-2.0

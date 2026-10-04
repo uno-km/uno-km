@@ -1,9 +1,9 @@
 # Termux-LlamaCpp — AI Agent Fast Context
-# Generated: 2026-10-03  |  Version: 1.3.13
+# Generated: 2026-10-04  |  Version: 1.4.0
 
 ## Library
 Name: Termux-LlamaCpp
-Version: 1.3.13
+Version: 1.4.0
 GitHub: https://github.com/uno-km/termux-llamacpp
 Documentation: https://uno-km.vercel.app/lib/llamacpp/
 License: Apache-2.0

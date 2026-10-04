@@ -1,9 +1,9 @@
 # Termux-TTS — AI Agent Fast Context
-# Generated: 2026-10-03  |  Version: 1.5.5
+# Generated: 2026-10-04  |  Version: 1.6.0
 
 ## Library
 Name: Termux-TTS
-Version: 1.5.5
+Version: 1.6.0
 GitHub: https://github.com/uno-km/termux-tts
 Documentation: https://uno-km.vercel.app/lib/tts/
 License: Apache-2.0
