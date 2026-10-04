@@ -90,7 +90,6 @@ AI 에이전트에게 복잡한 코딩을 시키지 않고, 아래 **한 줄 명
 | `stt` | Termux-STT | Voice STT & Diarization | ARM64 / Python / Node | `lib/stt/doc.config.yaml` |
 | `train` | Termux-Train | LoRA Autograd Engine | Android Bionic C / Python | `lib/train/doc.config.yaml` |
 | `forge` | AMEVA-Forge | WebGPU Autograd | Browser WebGPU / WASM | `lib/forge/doc.config.yaml` |
-| `infra-index`| Infra-Index Platform | Cloud Intelligence | Next.js / FastAPI | `lib/infra-index/doc.config.yaml` |
 | `llamacpp` | Termux-LlamaCpp | GGUF LLM Server | Android ARM64 / Python / Node | `lib/llamacpp/doc.config.yaml` |
 | `vision` | Termux-Vision | Computer Vision & VLM | ARM64 NEON & Vulkan / Py & JS | `lib/vision/doc.config.yaml` |
 

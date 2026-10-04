@@ -421,8 +421,7 @@ window.AmevaPortfolioPDF = {
             </ul>
             <div class="pdf-link-bar">
               <span>🌐 <strong>웹 앱:</strong> <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">https://infraindex-platform-front.vercel.app/</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/infra-index/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/infra-index/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="pdf-link">https://github.com/uno-km/infraindex-platform</a></span>
+              <span>🔒 <strong>저장소:</strong> Private Enterprise Repository</span>
             </div>
           </div>
 
@@ -763,10 +762,10 @@ window.AmevaPortfolioPDF = {
                 <td><a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="pdf-link">GitHub Repo</a></td>
               </tr>
               <tr>
-                <td><strong>Infra-Index Platform</strong></td>
+                <td><strong>InfraIndex | GPU Scanner</strong></td>
                 <td><a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">Web App 실행</a></td>
-                <td><a href="https://uno-km.vercel.app/lib/infra-index/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td><a href="https://github.com/uno-km/infraindex-platform" target="_blank" class="pdf-link">GitHub Repo</a></td>
+                <td>- (내부 시스템)</td>
+                <td>Private Repo</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-MCP-Hub</strong></td>

@@ -257,22 +257,6 @@
         ["advanced-parameters.html", "Advanced Parameters"],
         ["versions.html", "Version Archive"]
       ]
-    },
-    "infra-index": {
-      "name": "Infra-Index Platform",
-      "version": "v1.0.0",
-      "github": "https://github.com/uno-km/infraindex-platform",
-      "pypi": "",
-      "npm": "",
-      "doc_pages": [
-        ["index.html", "Home / Architecture"],
-        ["installation.html", "Installation Guide"],
-        ["quickstart.html", "Quickstart & Recipes"],
-        ["api-reference.html", "API Reference"],
-        ["benchmarks.html", "Benchmarks & Profiling"],
-        ["advanced-parameters.html", "Advanced Parameters"],
-        ["versions.html", "Version Archive"]
-      ]
     }
   };
 
@@ -418,7 +402,7 @@
   // ── 3-Tier Categorized Ecosystem Navigation ──────────────────────────────
   const APPLICATIONS_LIST = [
     ["https://ameva-workstation-web-core.vercel.app/", "workstation", "AMEVA Workstation (Web App)"],
-    ["/lib/infra-index/", "infra-index", "Infra-Index Platform (Cloud & AI Intel)"]
+    ["https://infraindex-platform-front.vercel.app/", "infra-index", "InfraIndex | GPU Scanner"]
   ];
 
   const AMEVA_FRAMEWORKS_LIST = [

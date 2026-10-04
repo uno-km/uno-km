@@ -169,23 +169,6 @@ libraries:
     - what-is-forge.html
     - forge-vs-pytorch.html
     status: stable
-  infra-index:
-    name: Infra-Index Platform
-    version: 1.0.1
-    release_date: '2026-09-04'
-    npm_package: null
-    pypi_package: null
-    github_repo: uno-km/infraindex-platform
-    lib_path: lib/infra-index
-    doc_pages:
-    - index.html
-    - installation.html
-    - quickstart.html
-    - api-reference.html
-    - benchmarks.html
-    - advanced-parameters.html
-    - versions.html
-    status: stable
   llamacpp:
     name: Termux-LlamaCpp
     version: 1.4.0

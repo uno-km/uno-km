@@ -40,8 +40,7 @@
   2. **AI 반도체 시황 인텔리전스**: 최신 엔비디아, AMD 및 커스텀 ASIC 수급 동향과 연구 논문 트렌드 분석 리포트 제공.
 - **관련 링크**:
   - [웹 애플리케이션 실행](https://infraindex-platform-front.vercel.app/)
-  - [공식 문서](https://uno-km.vercel.app/lib/infra-index/)
-  - [GitHub 저장소](https://github.com/uno-km/infraindex-platform)
+  - [저장소]: Private Enterprise Repository (비공개)
 
 ---
 
@@ -422,7 +421,7 @@ Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파�
 | 프로젝트 | 패키지 레지스트리 (설치) | 공식 기술 문서 | 소스코드 저장소 |
 | :--- | :--- | :--- | :--- |
 | **AMEVA Workstation** | [Web Live App](https://ameva-workstation-web-core.vercel.app/) | - | [GitHub](https://github.com/uno-km/AMEVA-Workstation-Web) |
-| **Infra-Index Platform** | [Web Live App](https://infraindex-platform-front.vercel.app/) | [Documentation](https://uno-km.vercel.app/lib/infra-index/) | [GitHub](https://github.com/uno-km/infraindex-platform) |
+| **Infra-Index Platform** | [Web Live App](https://infraindex-platform-front.vercel.app/) | - | Private Repo |
 | **AMEVA-MCP-Hub** | [npm: ameva-mcp-hub](https://www.npmjs.com/package/ameva-mcp-hub) | [Documentation](https://uno-km.vercel.app/lib/mcp/) | [GitHub](https://github.com/uno-km/ameva-mcp-hub) |
 | **AMEVA-Sentinel** | [npm: ameva-sentinel](https://www.npmjs.com/package/ameva-sentinel) | [Documentation](https://uno-km.vercel.app/lib/sentinel/) | [GitHub](https://github.com/uno-km/ameva-sentinel) |
 | **AMEVA-Forge** | [PyPI: ameva](https://pypi.org/project/ameva/) | [Documentation](https://uno-km.vercel.app/lib/forge/) | [GitHub](https://github.com/uno-km/AMEVA-Forge) |

@@ -67,7 +67,6 @@ uno-km/                                   ← Git 저장소 루트 (Vercel 배�
 │   ├── stt/                              ← Termux-STT 문서 (Voice STT)
 │   ├── train/                            ← Termux-Train 문서 (LoRA Engine)
 │   ├── forge/                            ← AMEVA-Forge 문서 (WebGPU Autograd)
-│   ├── infra-index/                      ← Infra-Index Platform 문서 (Cloud Intelligence)
 │   ├── llamacpp/                         ← Termux-LlamaCpp 문서 (GGUF Runtime)
 │   └── vision/                           ← Termux-Vision 문서 (Computer Vision & VLM)
 │
@@ -476,7 +475,7 @@ py -3 tools/build_catalog.py --verify
 | `/stt` | `/lib/stt/` | redirect |
 | `/train` | `/lib/train/` | redirect |
 | `/forge` | `/lib/forge/` | redirect |
-| `/infra-index` | `/lib/infra-index/` | redirect |
+| `/infra-index` | `https://infraindex-platform-front.vercel.app/` | redirect |
 | `/llamacpp` | `/lib/llamacpp/` | redirect |
 | `/vision` | `/lib/vision/` | redirect |
 | `/shared/:match*` | `/shared/:match*` | rewrite (정적 자산) |

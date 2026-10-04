@@ -93,14 +93,19 @@
       "permanent": false
     },
     {
+      "source": "/lib/infra-index/(.*)",
+      "destination": "https://infraindex-platform-front.vercel.app/",
+      "permanent": true
+    },
+    {
       "source": "/lib/infra-index",
-      "destination": "/lib/infra-index/",
-      "permanent": false
+      "destination": "https://infraindex-platform-front.vercel.app/",
+      "permanent": true
     },
     {
       "source": "/infra-index",
-      "destination": "/lib/infra-index/",
-      "permanent": false
+      "destination": "https://infraindex-platform-front.vercel.app/",
+      "permanent": true
     },
     {
       "source": "/lib/llamacpp",
@@ -413,10 +418,6 @@
     {
       "source": "/lib/train/:match*",
       "destination": "/lib/train/:match*"
-    },
-    {
-      "source": "/lib/infra-index/:match*",
-      "destination": "/lib/infra-index/:match*"
     },
     {
       "source": "/lib/llamacpp/:match*",
