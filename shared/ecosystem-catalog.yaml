@@ -123,8 +123,8 @@ libs:
   - id: diffusion
     name: "Termux-Diffusion"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 Android Bionic ARM64 네이티브 Z-Image Turbo (60억 DiT) & Vulkan GPU 확산 가속 엔진. 비루트 구동."
-    tagline_en: "Official Z-Image Turbo (6.0B DiT) & native on-device Vulkan GPU Diffusion runtime utilizing mobile device resources for Android ARM64."
+    tagline_ko: "Android Bionic ARM64 네이티브 AmfyUI (ComfyUI 모바일 DAG) & Z-Image Turbo 60억 DiT 1280×720 HD 확산 가속 런타임."
+    tagline_en: "Native AmfyUI (ComfyUI Mobile DAG Studio) & Z-Image Turbo (6.0B DiT) 1280×720 HD Diffusion runtime for Android ARM64."
     links:
       docs: "/lib/diffusion/"
       pypi: "https://pypi.org/project/termux-diffusion/"

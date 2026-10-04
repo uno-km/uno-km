@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>44GB Virtual RAM Pooling & GPU Slicing | Termux-Train</title>
-  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <meta name="description" content="Termux-Train v2.0.1 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated AMEVA Cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -21,7 +21,64 @@
     <main class="content">
       <h2>44GB Virtual RAM Pooling & GPU Slicing</h2>
       <p class="subtitle">Detailed distributed orchestration, 300MB Guard-Band protection, and Mali/Adreno GPU Slicing manual.</p>
-      <p>Detailed distributed orchestration, 300MB Guard-Band protection, and Mali/Adreno GPU Slicing manual.</p>
+      <div class="alert alert-important">
+  <span class="alert-title">Prerequisite: Official AMEVA Cluster Package Required</span>
+  <p>Multi-device distributed memory pooling and cross-device tensor pipeline execution are powered by the official <strong><code>ameva-cluster</code></strong> orchestration control plane. Ensure <code>ameva-cluster</code> is installed across all participating mobile nodes:</p>
+  <pre><code>pip install ameva-cluster termux-train
+# or via npm:
+npm install -g @ameva/cluster termux-train</code></pre>
+</div>
+
+<h3>Disaggregated 44GB Cluster Virtual RAM Pooling Manual</h3>
+<p>Standard mobile deep learning is heavily constrained by physical LPDDR capacity, causing Android Low Memory Killer (LMK) aborts when training large vision or language models. The AMEVA Cluster virtual memory pooling architecture aggregates physical RAM across heterogeneous smartphones (e.g. Galaxy S25, S21, S20, A53, A35) into an unified, high-speed virtual memory pool up to 44GB.</p>
+
+<div class="code-tab-group">
+  <div class="code-tabs-header">
+    <button class="code-tab-btn active" type="button">1. Fleet Node Setup</button>
+    <button class="code-tab-btn" type="button">2. Worker Launch</button>
+    <button class="code-tab-btn" type="button">3. Coordinator Probe</button>
+    <button class="code-tab-btn" type="button">4. Training Execution</button>
+  </div>
+  <div class="code-tab-content" style="display:block;">
+    <pre><code># Run on all participant smartphones over local Wi-Fi or tethered subnet
+pkg update && pkg install -y python clang
+pip install --upgrade ameva-cluster termux-train</code></pre>
+  </div>
+  <div class="code-tab-content" style="display:none;">
+    <pre><code># Launch memory worker daemon on each contributor node (S21, S20, A53, etc.)
+ameva-cluster worker --port 50052 --guard-band 300
+# Alternatively via termux-train CLI bridge:
+termux-train cluster-worker --port 50052 --guard-band 300</code></pre>
+  </div>
+  <div class="code-tab-content" style="display:none;">
+    <pre><code># Probe fleet topology, memory headroom, and round-trip latency from coordinator (S25)
+termux-train cluster-probe --fleet 192.168.1.101:50052,192.168.1.102:50052,192.168.1.103:50052</code></pre>
+  </div>
+  <div class="code-tab-content" style="display:none;">
+    <pre><code># Run multi-device pipeline training bound to aggregated 44GB Virtual RAM pool
+termux-train train \
+  --model tiny-transformer \
+  --data ./corpus.txt \
+  --output ./cluster_adapter.safetensors \
+  --virtual-ram-pool 192.168.1.101:50052,192.168.1.102:50052,192.168.1.103:50052 \
+  --epochs 5 \
+  --vocab-slice 4096 \
+  --chunk-layers 2 \
+  --backend vulkan</code></pre>
+  </div>
+</div>
+
+<h3>300MB Guard-Band Memory Protection Architecture</h3>
+<p>To eliminate system crashes, each worker daemon reads <code>/proc/meminfo</code> via Bionic syscalls before every tensor buffer allocation. If available memory drops below 300MB, the node immediately reports backpressure to the coordinator, avoiding OS memory eviction.</p>
+
+<h3>Troubleshooting &amp; Resolution (E403_CLUSTER_LICENSE_REQUIRED)</h3>
+<p>If distributed cluster commands fail with <code>ClusterLicenseRequiredError</code> (E403), verify that:</p>
+<ul>
+  <li>The <code>ameva-cluster</code> package is installed: <code>python -c "import ameva_cluster"</code>.</li>
+  <li>Cluster worker port <code>50052</code> is reachable across local nodes: <code>nc -zv 192.168.1.101 50052</code>.</li>
+  <li>Appropriate Guard-Band is set (<code>--guard-band 300</code> or <code>500</code> for low-spec nodes).</li>
+</ul>
+
     </main>
   </div>
 

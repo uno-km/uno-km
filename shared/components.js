@@ -94,7 +94,7 @@
     },
     "diffusion": {
       "name": "Termux-Diffusion",
-      "version": "v1.8.1",
+      "version": "v2.0.0",
       "github": "https://github.com/uno-km/termux-diffusion",
       "pypi": "termux-diffusion",
       "npm": "termux-diffusion",
@@ -102,6 +102,7 @@
         ["index.html", "Home / Architecture"],
         ["installation.html", "Installation Guide"],
         ["quickstart.html", "Quickstart & Recipes"],
+        ["amfyui.html", "AmfyUI (ComfyUI Mobile)"],
         ["api-reference.html", "API Reference"],
         ["models.html", "Model Checkpoints"],
         ["gallery.html", "Visual Gallery"],
@@ -168,7 +169,7 @@
     },
     "train": {
       "name": "Termux-Train",
-      "version": "v2.0.0",
+      "version": "v2.0.1",
       "github": "https://github.com/uno-km/termux-train",
       "pypi": "termux-train",
       "npm": "termux-train",

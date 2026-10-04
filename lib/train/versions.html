@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-Train</title>
-  <meta name="description" content="Termux-Train v2.0.0 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <meta name="description" content="Termux-Train v2.0.1 delivers a dependency-free C-vectorized DAG Autograd engine, 6-Modality target-aware LoRA/DoRA training (LLM, Image Diffusion, Vision VLM, Whisper STT, TTS, BitNet 1.58-bit), Mali/Adreno GPU Slicing, 300MB Guard-Band memory protection, and 44GB disaggregated AMEVA Cluster virtual RAM pooling across heterogeneous mobile fleets.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -22,6 +22,22 @@
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.1 - Official AMEVA Cluster Virtual RAM Integration & Standalone Manual</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Stable Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-04</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Enforced explicit AMEVA Cluster (pip install ameva-cluster) control plane requirement for multi-device distributed memory pooling.</li>
+          <li>Published complete step-by-step AMEVA Cluster deployment and 44GB virtual RAM execution manual.</li>
+          <li>Integrated MasterTunnel cryptographic loopback security for inter-device tensor pipelines.</li>
+          <li>Added cluster-virtual-ram documentation portal page with full Zero-Drift compliance.</li>
+          <li>Bumped production package version to 2.0.1 across PyPI and npm registries.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.0 - Major Multimodal Engine & 44GB Disaggregated Cluster Virtual RAM Release</h3>
           <div>
