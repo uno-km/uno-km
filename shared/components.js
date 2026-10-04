@@ -94,7 +94,7 @@
     },
     "diffusion": {
       "name": "Termux-Diffusion",
-      "version": "v2.0.0",
+      "version": "v2.0.1",
       "github": "https://github.com/uno-km/termux-diffusion",
       "pypi": "termux-diffusion",
       "npm": "termux-diffusion",

@@ -69,8 +69,96 @@
                 <p>All rendering samples below were directly generated on live physical devices using <strong>termux-diffusion v1.8.1 Native Vulkan Pipeline</strong> on Android Termux. Zero cloud simulation, pure on-device execution with deterministic VRAM bounds.</p>
             </div>
 
-            <!-- SECTION 1: TRI-ENGINE ARCHITECTURE SHOWCASE -->
-            <h3>1. Physical Device Render Showcase &amp; Detailed Operational Metrics</h3>
+            <!-- SECTION 0: 4-SEASON 1280x720 HD BENCHMARK SHOWCASE (v2.0.0) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; margin-bottom: 8px;">
+                <h3 style="margin: 0;">1. Galaxy S20 (Snapdragon 865) 1280×720 HD 4-Season Portrait Showcase</h3>
+                <a href="amfyui.html" style="font-size: 13px; font-weight: 700; color: #0284c7; text-decoration: none;">View AmfyUI Technical Report &rarr;</a>
+            </div>
+            <p>1280×720 High-Definition wide photorealistic portraits rendered on Samsung Galaxy S20 (Qualcomm Snapdragon 865 KONA / Adreno 650 OpenCL 2.0) using 8-step Z-Image Turbo (6.0B DiT) via AmfyUI ComfyUI DAG engine.</p>
+
+            <div class="gallery-grid" style="margin-bottom: 36px;">
+                <!-- Season 1: Spring -->
+                <div class="gallery-card" style="border: 1px solid var(--border-color); background: var(--bg-surface); border-radius: 8px; overflow: hidden;">
+                    <div class="gallery-img-wrapper" style="position: relative; background: #000; text-align: center;">
+                        <span class="gallery-badge" style="position: absolute; top: 12px; left: 12px; background: #d97706; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 11px;">🌸 SPRING &bull; 1280×720 HD</span>
+                        <img src="assets/gallery/season1_spring_q4_cpu_1280x720.png" alt="Galaxy S20 Spring 1280x720" style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;" loading="lazy">
+                    </div>
+                    <div class="gallery-info" style="padding: 16px;">
+                        <h4 class="gallery-title" style="margin-top: 0; color: var(--text-main);">Spring Sunlight Portrait (Galaxy S20 5G)</h4>
+                        <div class="gallery-params" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;">
+                            <span class="param-tag" style="background: #e8f0fe; color: #004499; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⏱️ 9,022s (CPU)</span>
+                            <span class="param-tag" style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 12px;">해상도: 1280×720 (16:9)</span>
+                            <span class="param-tag" style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 12px;">모델: z_image_turbo Q4_0</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-size: 12px;">무결성: NaN=0 / Zero=0</span>
+                        </div>
+                        <div class="gallery-prompt" style="font-size: 12px; color: var(--text-muted); margin-top: 6px; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 4px;">
+                            "A stunningly beautiful 20-year-old Korean woman smiling warmly on a sunny spring day, exquisite beautiful facial features, highly detailed face, wearing an elegant yellow dress, soft spring sunlight, cherry blossom petals falling, cinematic lighting, photorealistic 8k, landscape 16:9"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Season 2: Summer -->
+                <div class="gallery-card" style="border: 1px solid var(--border-color); background: var(--bg-surface); border-radius: 8px; overflow: hidden;">
+                    <div class="gallery-img-wrapper" style="position: relative; background: #000; text-align: center;">
+                        <span class="gallery-badge" style="position: absolute; top: 12px; left: 12px; background: #0284c7; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 11px;">☀️ SUMMER &bull; 1280×720 HD</span>
+                        <img src="assets/gallery/season2_summer_q4_opencl_1280x720.png" alt="Galaxy S20 Summer 1280x720" style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;" loading="lazy">
+                    </div>
+                    <div class="gallery-info" style="padding: 16px;">
+                        <h4 class="gallery-title" style="margin-top: 0; color: var(--text-main);">Summer Coastal Portrait (Galaxy S20 5G)</h4>
+                        <div class="gallery-params" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;">
+                            <span class="param-tag" style="background: #e8f0fe; color: #004499; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⏱️ 3,835s (OpenCL GPU)</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⚡ 2.35× GPU 가속</span>
+                            <span class="param-tag" style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 12px;">온도: 41.4°C Cool</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-size: 12px;">무결성: NaN=0 / Zero=0</span>
+                        </div>
+                        <div class="gallery-prompt" style="font-size: 12px; color: var(--text-muted); margin-top: 6px; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 4px;">
+                            "A stunningly beautiful 20-year-old Korean woman smiling refreshingly on a bright summer beach, exquisite beautiful facial features, highly detailed face, wearing stylish airy summer dress, vibrant oceanic breeze, bright sunny coastal atmosphere, cinematic lighting, photorealistic 8k, landscape 16:9"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Season 3: Autumn -->
+                <div class="gallery-card" style="border: 1px solid var(--border-color); background: var(--bg-surface); border-radius: 8px; overflow: hidden;">
+                    <div class="gallery-img-wrapper" style="position: relative; background: #000; text-align: center;">
+                        <span class="gallery-badge" style="position: absolute; top: 12px; left: 12px; background: #b45309; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 11px;">🍂 AUTUMN &bull; 1280×720 HD</span>
+                        <img src="assets/gallery/season3_autumn_q8_cpu_1280x720.png" alt="Galaxy S20 Autumn 1280x720" style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;" loading="lazy">
+                    </div>
+                    <div class="gallery-info" style="padding: 16px;">
+                        <h4 class="gallery-title" style="margin-top: 0; color: var(--text-main);">Autumn Foliage Portrait (Galaxy S20 5G)</h4>
+                        <div class="gallery-params" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;">
+                            <span class="param-tag" style="background: #e8f0fe; color: #004499; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⏱️ 8,534s (CPU SDOT)</span>
+                            <span class="param-tag" style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 12px;">모델: z_image_turbo Q8_0</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⚡ Q8이 Q4보다 488초 단축</span>
+                        </div>
+                        <div class="gallery-prompt" style="font-size: 12px; color: var(--text-muted); margin-top: 6px; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 4px;">
+                            "A stunningly beautiful 20-year-old Korean woman smiling peacefully in a scenic autumn park, exquisite beautiful facial features, highly detailed face, wearing a cozy autumn knit sweater, golden afternoon sunlight, colorful maple foliage, cinematic lighting, photorealistic 8k, landscape 16:9"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Season 4: Winter -->
+                <div class="gallery-card" style="border: 1px solid var(--border-color); background: var(--bg-surface); border-radius: 8px; overflow: hidden;">
+                    <div class="gallery-img-wrapper" style="position: relative; background: #000; text-align: center;">
+                        <span class="gallery-badge" style="position: absolute; top: 12px; left: 12px; background: #4f46e5; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 11px;">❄️ WINTER &bull; 1280×720 HD</span>
+                        <img src="assets/gallery/season4_winter_q8_opencl_1280x720.png" alt="Galaxy S20 Winter 1280x720" style="width: 100%; height: auto; max-height: 380px; object-fit: contain; display: block;" loading="lazy">
+                    </div>
+                    <div class="gallery-info" style="padding: 16px;">
+                        <h4 class="gallery-title" style="margin-top: 0; color: var(--text-main);">Winter Snowy Portrait (Galaxy S20 5G)</h4>
+                        <div class="gallery-params" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;">
+                            <span class="param-tag" style="background: #e8f0fe; color: #004499; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⏱️ 3,895s (OpenCL GPU)</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⚡ 2.19× GPU 가속</span>
+                            <span class="param-tag" style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 12px;">온도: 41.8°C Cool</span>
+                            <span class="param-tag" style="background: #dcfce7; color: #166534; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-size: 12px;">무결성: NaN=0 / Zero=0</span>
+                        </div>
+                        <div class="gallery-prompt" style="font-size: 12px; color: var(--text-muted); margin-top: 6px; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 4px;">
+                            "A stunningly beautiful 20-year-old Korean woman smiling warmly on a crisp winter day, exquisite beautiful facial features, highly detailed face, wearing an elegant winter coat and scarf, soft winter sunlight, snowy winter atmosphere, cinematic lighting, photorealistic 8k, landscape 16:9"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: TRI-ENGINE ARCHITECTURE SHOWCASE -->
+            <h3>2. Physical Device Render Showcase &amp; Detailed Operational Metrics</h3>
             <p>Empirically measured configurations demonstrating model convergence, PBR specular reflections, and deterministic memory residency under 1.0GB VRAM caps.</p>
 
             <div class="gallery-grid">

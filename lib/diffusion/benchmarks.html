@@ -89,6 +89,66 @@
   <p>For complete theoretical formulations, shader dispatch analysis, and micro-kernel memory traces, visit the <a href="https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=33" target="_blank"><strong>AMEVA Edge Systems Lab (AESL) Research Portal</strong></a> and view the official <a href="https://github.com/uno-km/termux-diffusion/blob/main/docs/research/s21_z_image_turbo_vulkan_research_report.md" target="_blank"><strong>Galaxy S21 Z-Image Turbo Vulkan Research Report</strong></a>.</p>
 </div>
 
+<h3>3. Galaxy S20 (Snapdragon 865) 1280×720 HD 4-Season Master Benchmark (SCRUM-481)</h3>
+<p>Physical empirical validation on Samsung Galaxy S20 5G (Snapdragon 865 KONA / Adreno 650 OpenCL 2.0 / 12GB LPDDR5). Denoising 8-step wide HD 1280×720 portraits across CPU vs OpenCL GPU backends.</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Quant</th>
+      <th>Backend</th>
+      <th>Latency</th>
+      <th>Speedup</th>
+      <th>Mean RGB</th>
+      <th>Peak Temp</th>
+      <th>Tensor Sanity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>🌸 Spring (봄)</strong></td>
+      <td>Q4_0</td>
+      <td>CPU (ARM NEON)</td>
+      <td>9,022s (2h 30m)</td>
+      <td>1.00× (Base)</td>
+      <td>[156.7, 147.2, 140.9]</td>
+      <td>47.8°C</td>
+      <td>NaN=0 / Zero=0</td>
+    </tr>
+    <tr>
+      <td><strong>☀️ Summer (여름)</strong></td>
+      <td>Q4_0</td>
+      <td>Adreno OpenCL 2.0</td>
+      <td><strong>3,835s (1h 03m)</strong></td>
+      <td><strong>2.35×</strong></td>
+      <td>[152.8, 166.3, 174.0]</td>
+      <td><strong>41.4°C Cool</strong></td>
+      <td>NaN=0 / Zero=0</td>
+    </tr>
+    <tr>
+      <td><strong>🍂 Autumn (가을)</strong></td>
+      <td>Q8_0</td>
+      <td>CPU (ARM SDOT)</td>
+      <td>8,534s (2h 22m)</td>
+      <td>1.06× (vs Q4)</td>
+      <td>[136.3, 107.1, 81.7]</td>
+      <td>47.1°C</td>
+      <td>NaN=0 / Zero=0</td>
+    </tr>
+    <tr>
+      <td><strong>❄️ Winter (겨울)</strong></td>
+      <td>Q8_0</td>
+      <td>Adreno OpenCL 2.0</td>
+      <td><strong>3,895s (1h 04m)</strong></td>
+      <td><strong>2.19×</strong></td>
+      <td>[149.1, 146.1, 146.0]</td>
+      <td><strong>41.8°C Cool</strong></td>
+      <td>NaN=0 / Zero=0</td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin-top: 10px;"><a href="amfyui.html" style="font-weight: 700; color: #0284c7;">Explore full 4-Season HD Gallery &amp; Download ComfyUI Workflow JSONs in AmfyUI Studio &rarr;</a></p>
+
     </main>
   </div>
 
