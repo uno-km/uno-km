@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | AMEVA-Runtime</title>
@@ -47,6 +46,7 @@ Galaxy S25 was running other work during the measurement, hence its wide ranges.
 - Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
 - Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
 ">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -63,6 +63,21 @@ Galaxy S25 was running other work during the measurement, hence its wide ranges.
       <h2>Version Archive & Changelog</h2>
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.8.1 - Context Shift on the GPU Route (ROPE on the f16 KV cache in ggml-ameva)</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Patch Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-05</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Fix: with the backend of 2.8.0, text generation past the end of the context with context shifting enabled stopped with an abort on the GPU route (llama.cpp rotates the stored keys of its f16 KV cache in place; ggml-ameva declined ROPE on f16 tensors). ggml-ameva now runs it. ameva-run exec does not enable context shifting itself.</li>
+          <li>llama bundle: backend built from ameva-compute 7e99154; the four other bundles are unchanged. On devices without integer dot products in Vulkan (Galaxy S21, A53) token generation can use an integer dot product computed with 32-bit multiplications where measured faster; their default route stays the CPU.</li>
+          <li>Verified on all five fleet devices (Galaxy S25, S20, A35, A53, S21) with tools/fleet/lab/verify_kv.sh (context shift and KV cell reuse against the CPU, a 2048-token context, ggml test-backend-ops) and tools/fleet/lab/test_rel.sh (fresh installation, upgrade from the published 2.8.0).</li>
+          <li>Correction to the 2.8.0 notes: on the Galaxy S25 with all eight cores and no other load the CPU generates tokens faster than the GPU route (79-105 against 65-76 t/s for Qwen2.5-0.5B); the GPU route remains 5 to 9 times faster in prompt processing.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.8.0 - ggml-ameva as the LLM GPU Route (own Vulkan backend in the llama bundle, integer-dot kernels)</h3>
           <div>

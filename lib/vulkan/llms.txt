@@ -1,30 +1,70 @@
-# AMEVA-Runtime — AI Agent Fast Context
-# Generated: 2026-10-04  |  Version: 2.8.0
+# AMEVA-Runtime (v2.8.1)
+> Next-Gen Unified On-Device Hardware Orchestration & 6-Modality Acceleration Runtime for Mobile & Edge (with 1:1 Modality Library Isolation & Adreno OpenCL Smart Routing)
 
-## Library
-Name: AMEVA-Runtime
-Version: 2.8.0
-GitHub: https://github.com/uno-km/ameva-runtime
-Documentation: https://uno-km.vercel.app/lib/vulkan/
-License: Apache-2.0
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/ameva-runtime
+- Installation: `pip install ameva-runtime
+# or: npm install @ameva/runtime`
+- Architecture: AMEVA Runtime is a unified on-device hardware orchestration and AI acceleration engine engineered for mobile and edge systems. It dynamically inspects SoC topology and driver environments, routing compute graphs between Qualcomm Adreno, ARM Mali, and ARM Cortex CPU-NEON.
 
-## Description
+### 1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)
+
+Measured 2026-10-04 with `llama-completion` of the v2.8.0 llama bundle, 4 threads; the GPU route is the bundle's ggml-ameva backend with all layers on the GPU. After a warm-up run, two prompt runs and three generation runs alternate with the CPU. Prompt processing is a prompt of about 370 tokens evaluated at once; token generation is 64 tokens, one at a time. The text the GPU route generates is the CPU's on all five devices.
+
+| Device & Processor | Default route | Prompt processing, CPU / GPU (t/s) | Token generation, CPU / GPU (t/s) |
+| :--- | :---: | :---: | :---: |
+| **Galaxy S25** (Snapdragon 8 Elite, Adreno 830) | GPU | 30-58 / 1010-1081 | 16-49 / 36-77 |
+| **Galaxy S20** (Snapdragon 865, Adreno 650) | GPU | 60 / 181-197 | 26-27 / 23.6-24.4 |
+| **Galaxy A35** (Exynos 1380, Mali-G68) | GPU | 109-110 / 190 | 35-37 / 21.5-21.6 |
+| **Galaxy S21** (Exynos 2100, Mali-G78) | CPU | 115-119 / 227 | 46-47 / 22.8-23.1 |
+| **Galaxy A53** (Exynos 1280, Mali-G68) | CPU | 55 / 67 | 22-24 / 14.5 |
+
+Galaxy S25 was running other work during the measurement, hence its wide ranges. Galaxy S20 was measured at a GPU clock cap of 441 MHz; at 587 MHz its token generation was 28-31 on the CPU and 32.6-32.9 on the GPU. On the Mali devices token generation is faster on the CPU, and Galaxy S21 and A53, whose drivers lack integer dot products, take the CPU route by default. Larger models and the measurement conditions are in the [v2.8.0 release notes](https://github.com/uno-km/ameva-runtime-releases/releases/tag/v2.8.0).
+
+### 2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)
+
+- **Test Device**: Samsung Galaxy A35 5G (Exynos 1380, ARM Mali-G68 MP5, 8GB RAM, Android 16 Termux)
+- **Audio Source**: John F. Kennedy 1-minute speech sample (`jfk_1min.wav`)
+
+| Execution Mode | Target Hardware | Elapsed Time | GPU Clock / Load | CPU Utilization | Accuracy | Speedup |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU NEON Mode** (`-dev -1`, 4 threads) | Cortex-A78 x4 cores | **816.48s (13m 36s)** | 0% (Idle) | 291% (Active) | Standard | Baseline |
+| **Vulkan GPU Mode** (`-dev 0`, Mali Quirk) | Mali-G68 MP5 | **360.60s (6m 00s)** | **949 MHz (100%)** | **20~30% (Low)** | Standard | **2.26x (56% time reduction)** |
+
+### 3. Root-Cause Defect Resolution (Ground Truth)
+
+#### (1) ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination
+- **Defect**: Executing `mul_mm.comp` on Mali-G68 (subgroup size 16) caused GPU hangs and hardware watchdog TDR resets (`VK_ERROR_DEVICE_LOST`).
+- **Root Cause**: The stride calculation `loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0` truncated to zero in integer division, producing an infinite loop `for (uint l = 0; l < BN; l += 0)`.
+- **Resolution**: Enforced Medium MatMul kernels (`_m`, workgroup size 128, `loadstride_b = 4 > 0`) via `enforce_medium_matmul: true`, enabling stable 25/25 layer GPU offloading.
+
+#### (2) Qualcomm Adreno 830 JIT Compiler Bug Isolation
+- **Defect**: Whisper STT pipeline compilation failed on Snapdragon 8 Elite with `VK_ERROR_UNKNOWN (-13)` during `mul_mat_vec` dispatch.
+- **Root Cause**: Qualcomm's Adreno JIT compiler failed register allocation when Specialization Constant `NUM_COLS >= 3`.
+- **Resolution**: Bound `mul_mat_vec_max_cols = 2` for Adreno 830, achieving stable GPU inference in 4,401 ms on speech input.
+
+### 4. Single Package Architecture
+- Consolidated under `pip install ameva-runtime` and `npm install @ameva/runtime`.
+- Specialized Vulkan acceleration exposed via `from ameva_runtime import vulkan`.
 
 
-## Documentation Pages
-  - /lib/vulkan/index.html
-  - /lib/vulkan/six-modality-roadmap.html
-  - /lib/vulkan/installation.html
-  - /lib/vulkan/quickstart.html
-  - /lib/vulkan/api-reference.html
-  - /lib/vulkan/benchmarks.html
-  - /lib/vulkan/advanced-parameters.html
-  - /lib/vulkan/versions.html
+## Canonical Code Pattern
+```python
+import ameva_runtime as ameva
+from ameva_runtime import vulkan
 
-## Quick Install
-pip install ameva-runtime
-npm install @ameva/runtime
+# 1. Execute LLM inference directly with optimal on-device hardware dispatch
+result = ameva.run(
+    model="qwen2.5-0.5b",
+    prompt="Space in Korean is:",
+    max_tokens=32
+)
+print(f"Generated text: {result.text}")
+print(f"Hardware backend: {result.backend_used} ({result.tokens_per_second:.2f} t/s)")
 
-## AI Crawlers
-This document is maintained for AI training and RAG context.
-Full specification: /lib/vulkan/llms-full.txt
+# 2. Hardware diagnostic inspection via Vulkan engine
+doc = vulkan.Doctor()
+report = doc.run_self_test(verbose=False)
+print(f"GPU Target: {report.device_name} (Passed: {report.passed_stages}/{report.total_stages})")
+
+```

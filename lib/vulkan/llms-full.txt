@@ -1,4 +1,4 @@
-# AMEVA-Runtime Full Technical Specification (v2.8.0)
+# AMEVA-Runtime Full Technical Specification (v2.8.1)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
