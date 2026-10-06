@@ -2,6 +2,7 @@
  * shared/portfolio-pdf.js
  * AMEVA Open-Source Foundation & Eunho Kim Official Portfolio PDF Generator
  * High-precision, zero-drift Korean typography & hyperlinked layout engine
+ * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (10 Pages)
  */
 
 window.AmevaPortfolioPDF = {
@@ -50,7 +51,7 @@ window.AmevaPortfolioPDF = {
 
     const originalText = buttonElem ? buttonElem.innerHTML : '';
     if (buttonElem) {
-      buttonElem.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">⏳</span> PDF 생성 중...';
+      buttonElem.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">*</span> PDF 생성 중...';
       buttonElem.style.pointerEvents = 'none';
       buttonElem.style.opacity = '0.8';
     }
@@ -99,7 +100,7 @@ window.AmevaPortfolioPDF = {
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
       `;
-      notification.innerHTML = '📄 하이퍼링크가 포함된 상세 포트폴리오 PDF를 생성 중입니다... 잠시만 기다려주세요.';
+      notification.innerHTML = '[PDF] 하이퍼링크가 포함된 상세 포트폴리오 PDF를 생성 중입니다... 잠시만 기다려주세요.';
       wrapper.appendChild(notification);
 
       const container = document.createElement('div');
@@ -109,8 +110,8 @@ window.AmevaPortfolioPDF = {
         background: #ffffff;
         color: #1e293b;
         font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
-        font-size: 11px;
-        line-height: 1.5;
+        font-size: 10.5px;
+        line-height: 1.48;
         box-sizing: border-box;
         box-shadow: 0 10px 25px rgba(0,0,0,0.35);
       `;
@@ -121,7 +122,7 @@ window.AmevaPortfolioPDF = {
             box-sizing: border-box;
             width: 760px;
             min-height: 1040px;
-            padding: 28px 32px;
+            padding: 24px 28px;
             background: #ffffff;
             page-break-after: always;
             position: relative;
@@ -131,25 +132,25 @@ window.AmevaPortfolioPDF = {
           }
           .pdf-header {
             border-bottom: 2.5px solid #004499;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
           }
           .pdf-title {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 800;
             color: #004499;
-            margin: 0 0 4px 0;
+            margin: 0 0 3px 0;
           }
           .pdf-profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            font-size: 11px;
+            gap: 4px;
+            font-size: 10.5px;
             background: #f8fafc;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 1px solid #e2e8f0;
             border-radius: 4px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
           }
           .pdf-profile-item {
             margin: 1px 0;
@@ -158,50 +159,62 @@ window.AmevaPortfolioPDF = {
             color: #0f172a;
           }
           .pdf-h2 {
-            font-size: 13.5px;
+            font-size: 12.8px;
             font-weight: 700;
             color: #0f172a;
             border-bottom: 1.5px solid #cbd5e1;
             padding-bottom: 3px;
-            margin: 12px 0 7px 0;
+            margin: 10px 0 6px 0;
           }
           .pdf-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 6px 0;
-            font-size: 9.8px;
+            margin: 5px 0;
+            font-size: 8.3px;
+            line-height: 1.30;
           }
           .pdf-table th, .pdf-table td {
             border: 1px solid #cbd5e1;
-            padding: 4px 6px;
+            padding: 2.8px 4px;
             text-align: left;
+            vertical-align: middle;
           }
           .pdf-table th {
             background: #f1f5f9;
             color: #0f172a;
             font-weight: 700;
+            font-size: 8.3px;
+            text-align: center;
+          }
+          .pdf-table td.center {
+            text-align: center;
+          }
+          .pdf-table td.num {
+            text-align: right;
+            font-family: monospace;
+            font-size: 8.2px;
           }
           .pdf-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-left: 3.5px solid #004499;
-            padding: 10px 12px;
-            margin-bottom: 14px;
+            padding: 9px 11px;
+            margin-bottom: 12px;
             border-radius: 3px;
-            font-size: 10.5px;
-            line-height: 1.52;
+            font-size: 10.2px;
+            line-height: 1.48;
           }
           .pdf-card-title {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 700;
             color: #0f172a;
-            margin: 0 0 4px 0;
+            margin: 0 0 3px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
           }
           .pdf-tag {
-            font-size: 9px;
+            font-size: 8.5px;
             font-weight: 700;
             padding: 1.5px 5px;
             border-radius: 3px;
@@ -213,7 +226,7 @@ window.AmevaPortfolioPDF = {
             background: #f1f5f9;
             padding: 1px 4px;
             border-radius: 3px;
-            font-size: 10px;
+            font-size: 8.5px;
             color: #0f172a;
           }
           .pdf-link {
@@ -224,34 +237,34 @@ window.AmevaPortfolioPDF = {
           .pdf-link-bar {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 5px 8px;
+            padding: 4px 7px;
             border-radius: 3px;
-            margin-top: 6px;
-            font-size: 10px;
+            margin-top: 5px;
+            font-size: 9.5px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
           }
           .pdf-bench-box {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
-            padding: 5px 8px;
+            padding: 4px 7px;
             border-radius: 3px;
-            margin: 5px 0;
-            font-size: 10px;
+            margin: 4px 0;
+            font-size: 9.5px;
             color: #166534;
           }
           .pdf-footer {
-            font-size: 9px;
+            font-size: 8.5px;
             color: #94a3b8;
             text-align: right;
-            margin-top: 14px;
+            margin-top: 10px;
             border-top: 1px solid #f1f5f9;
-            padding-top: 4px;
+            padding-top: 3px;
           }
         </style>
 
-        <!-- ==================== PAGE 1: 표지 및 프로젝트 요약표 ==================== -->
+        <!-- ==================== PAGE 1: 표지 및 16대 프로젝트 종합 실측 명세 ==================== -->
         <div class="pdf-page">
           <div class="pdf-header">
             <h1 class="pdf-title">엔지니어링 포트폴리오 (Engineering Portfolio)</h1>
@@ -268,112 +281,167 @@ window.AmevaPortfolioPDF = {
             <div class="pdf-profile-item" style="grid-column: 1 / -1;"><strong>재단 포털:</strong> <a href="https://uno-km.vercel.app/foundation/" target="_blank" class="pdf-link">https://uno-km.vercel.app/foundation/</a></div>
           </div>
 
-          <h2 class="pdf-h2">13대 프로젝트 개요 (Ecosystem Summary)</h2>
+          <h2 class="pdf-h2">16대 프로젝트 현황 및 생태계 실측 명세 (Ecosystem Status &amp; Telemetry)</h2>
           <table class="pdf-table">
             <thead>
               <tr>
-                <th style="width: 22%;">프로젝트 명</th>
-                <th style="width: 36%;">핵심 사명 및 해결 과제</th>
-                <th style="width: 20%;">분류 (Domain)</th>
-                <th style="width: 11%;">배포 버전</th>
-                <th style="width: 11%;">총 다운로드</th>
+                <th style="width: 15%;">프로젝트 / 패키지</th>
+                <th style="width: 13%;">분류 (Domain)</th>
+                <th style="width: 7%;">배포 버전</th>
+                <th style="width: 7%;">NPM</th>
+                <th style="width: 7%;">PyPI</th>
+                <th style="width: 8%;">총합</th>
+                <th style="width: 43%;">비고 / 외부 활용 실측 분석 (pip · npm · GitHub)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>AMEVA Workstation</strong></td>
-                <td>100% 로컬 WebGPU LLM, 대용량 문서 3초 맵리듀스 및 인앱 미디어 편집</td>
-                <td>브라우저 온디바이스</td>
-                <td>${(liveData['ameva workstation'] && liveData['ameva workstation'].version) || 'Live App'}</td>
-                <td>Live App</td>
-              </tr>
-              <tr>
-                <td><strong>Infra-Index Platform</strong></td>
-                <td>글로벌 69개 클라우드 GPU/인프라 실시간 시세 집계 및 AI 반도체 시황 인텔리전스</td>
-                <td>클라우드 인프라 웹</td>
-                <td>v1.0.0</td>
-                <td>Live App</td>
-              </tr>
-              <tr>
-                <td><strong>AMEVA-MCP-Hub</strong></td>
-                <td>호스트 컴파일러 없이 C++/Rust/Java 도구를 인메모리 실행하는 WASM MCP 허브</td>
-                <td>개발자 도구 / SDK</td>
-                <td>${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].version) || '-'}</td>
-                <td>${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].total) || '-'}</td>
-              </tr>
-              <tr>
-                <td><strong>AMEVA-Sentinel</strong></td>
-                <td>0-Data 프라이버시 봇 탐지 및 HMAC-SHA256 다계층 트래픽 거버넌스 SDK</td>
-                <td>웹 보안 관측 SDK</td>
-                <td>${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].version) || '-'}</td>
-                <td>${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].total) || '-'}</td>
-              </tr>
-              <tr>
-                <td><strong>AMEVA-Forge</strong></td>
-                <td>PyTorch 호환 문법의 브라우저 네이티브 WebGPU 딥러닝 Autograd 텐서 엔진</td>
-                <td>브라우저 WebGPU</td>
-                <td>${(liveData['ameva-forge'] && liveData['ameva-forge'].version) || '-'}</td>
-                <td>${(liveData['ameva-forge'] && liveData['ameva-forge'].total) || '-'}</td>
-              </tr>
-              <tr>
-                <td><strong>Termux-AIChain</strong></td>
-                <td>외부 의존성 0개(Zero-Dep) 50KB 초경량 모바일 LLM 체이닝 &amp; DAG 에이전트</td>
-                <td>모바일 AI 에이전트</td>
-                <td>${(liveData['termux-aichain'] && liveData['termux-aichain'].version) || '-'}</td>
-                <td>${(liveData['termux-aichain'] && liveData['termux-aichain'].total) || '-'}</td>
+                <td><strong>Termux-Diffusion</strong></td>
+                <td>모바일 생성형 AI</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-diffusion'] && liveData['termux-diffusion'].version) || 'v2.0.1'}</code></td>
+                <td class="num">${(liveData['termux-diffusion'] && liveData['termux-diffusion'].npm) || '4,059'}</td>
+                <td class="num">${(liveData['termux-diffusion'] && liveData['termux-diffusion'].pypi) || '7,080'}</td>
+                <td class="num"><strong>${(liveData['termux-diffusion'] && liveData['termux-diffusion'].total) || '11,139'}</strong></td>
+                <td>AmfyUI 모바일 스튜디오 및 Sovereign 6.0B DiT 가속. 1280x720 HD 고해상도 생성 벤치마크, Safe-Mode SurfaceFlinger 보호, GitHub 클론 511회.</td>
               </tr>
               <tr>
                 <td><strong>Termux-BitNet</strong></td>
-                <td>1.58-bit(3진수) 온디바이스 LLM을 ARM64 NEON SIMD로 가속하는 경량 엔진</td>
-                <td>모바일 LLM 추론</td>
-                <td>${(liveData['termux-bitnet'] && liveData['termux-bitnet'].version) || '-'}</td>
-                <td>${(liveData['termux-bitnet'] && liveData['termux-bitnet'].total) || '-'}</td>
+                <td>1.58-bit 온디바이스 LLM</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-bitnet'] && liveData['termux-bitnet'].version) || 'v2.1.0'}</code></td>
+                <td class="num">${(liveData['termux-bitnet'] && liveData['termux-bitnet'].npm) || '4,692'}</td>
+                <td class="num">${(liveData['termux-bitnet'] && liveData['termux-bitnet'].pypi) || '3,544'}</td>
+                <td class="num"><strong>${(liveData['termux-bitnet'] && liveData['termux-bitnet'].total) || '8,236'}</strong></td>
+                <td>1.58비트 저전력 추론. AMEVA-Cluster 분산 3진수 텐서 풀링(v2.1.0), GPU 메모리 슬라이싱 및 독자 NEON SIMD 어셈블리 검증.</td>
               </tr>
               <tr>
-                <td><strong>Termux-Playwright</strong></td>
-                <td>Android Termux 비루팅 Chromium 브라우저 CDP 직접 제어 자동화 런타임</td>
-                <td>모바일 웹 자동화</td>
-                <td>${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || '-'}</td>
-                <td>${(liveData['termux-playwright'] && liveData['termux-playwright'].total) || '-'}</td>
-              </tr>
-              <tr>
-                <td><strong>Termux-Diffusion</strong></td>
-                <td>Multi-SoC Vulkan GPU 가속 온디바이스 Stable Diffusion 이미지 생성 런타임</td>
-                <td>모바일 생성형 AI</td>
-                <td>${(liveData['termux-diffusion'] && liveData['termux-diffusion'].version) || '-'}</td>
-                <td>${(liveData['termux-diffusion'] && liveData['termux-diffusion'].total) || '-'}</td>
+                <td><strong>AMEVA-Runtime</strong></td>
+                <td>온디바이스 런타임 코어</td>
+                <td class="center"><code class="pdf-code">${(liveData['ameva-runtime'] && liveData['ameva-runtime'].version) || 'v2.8.0'}</code></td>
+                <td class="num">${(liveData['ameva-runtime'] && liveData['ameva-runtime'].npm) || '4,022'}</td>
+                <td class="num">${(liveData['ameva-runtime'] && liveData['ameva-runtime'].pypi) || '4,154'}</td>
+                <td class="num"><strong>${(liveData['ameva-runtime'] && liveData['ameva-runtime'].total) || '8,176'}</strong></td>
+                <td>6-모달리티 공통 네이티브 ABI 및 Vulkan 1.3 하드웨어 가속 코어. Samsung Galaxy 5대 기기 전수 검증, 번들 격리 구동, GitHub 클론 528회.</td>
               </tr>
               <tr>
                 <td><strong>Termux-STT</strong></td>
-                <td>Whisper.cpp + Vosk 결합 및 순수 파이썬 128차원 화자 분리 음성인식 엔진</td>
-                <td>온디바이스 음성인식</td>
-                <td>${(liveData['termux-stt'] && liveData['termux-stt'].version) || '-'}</td>
-                <td>${(liveData['termux-stt'] && liveData['termux-stt'].total) || '-'}</td>
-              </tr>
-              <tr>
-                <td><strong>Termux-Train</strong></td>
-                <td>Bionic C 기반 텐서 DAG 자동미분 및 모바일 온디바이스 LoRA 파인튜닝</td>
-                <td>온디바이스 딥러닝 학습</td>
-                <td>${(liveData['termux-train'] && liveData['termux-train'].version) || '-'}</td>
-                <td>${(liveData['termux-train'] && liveData['termux-train'].total) || '-'}</td>
+                <td>음성인식 &amp; 화자 분리</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-stt'] && liveData['termux-stt'].version) || 'v1.4.0'}</code></td>
+                <td class="num">${(liveData['termux-stt'] && liveData['termux-stt'].npm) || '4,424'}</td>
+                <td class="num">${(liveData['termux-stt'] && liveData['termux-stt'].pypi) || '3,717'}</td>
+                <td class="num"><strong>${(liveData['termux-stt'] && liveData['termux-stt'].total) || '8,141'}</strong></td>
+                <td>Hybrid GPU-Encoder / CPU-Decoder 가속. PyTorch 없는 2-화자 순수 화자 분리 및 자막(.srt/.vtt) 직접 추출, AMEVA-Cluster 분산 풀링, GitHub 클론 442회.</td>
               </tr>
               <tr>
                 <td><strong>Termux-LlamaCpp</strong></td>
-                <td>ARM64 전용 제로 컴파일 사전 빌드 GGUF 런타임 및 OpenAI 호환 서버</td>
                 <td>GGUF LLM 서버</td>
-                <td>${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].version) || '-'}</td>
-                <td>${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].total) || '-'}</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].version) || 'v1.4.0'}</code></td>
+                <td class="num">${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].npm) || '3,680'}</td>
+                <td class="num">${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].pypi) || '3,671'}</td>
+                <td class="num"><strong>${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].total) || '7,351'}</strong></td>
+                <td>제로 컴파일 사전 빌드 바이너리 및 OpenAI 규격 호환 API 서버. Adreno OpenCL 자동 디스패치 &amp; Flash Attention, GitHub 클론 1,397회 (최다).</td>
+              </tr>
+              <tr>
+                <td><strong>Termux-Train</strong></td>
+                <td>온디바이스 딥러닝 학습</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-train'] && liveData['termux-train'].version) || 'v2.0.1'}</code></td>
+                <td class="num">${(liveData['termux-train'] && liveData['termux-train'].npm) || '1,684'}</td>
+                <td class="num">${(liveData['termux-train'] && liveData['termux-train'].pypi) || '3,735'}</td>
+                <td class="num"><strong>${(liveData['termux-train'] && liveData['termux-train'].total) || '5,419'}</strong></td>
+                <td>유니파이드 6-모달리티 학습(Diffusion, Vision, STT, TTS, LLM PEFT, BitNet). AMEVA-Cluster 44GB 분산 가상 RAM 풀링 파이프라인 탑재.</td>
+              </tr>
+              <tr>
+                <td><strong>Termux-Playwright</strong></td>
+                <td>모바일 웹 자동화 &amp; CDP</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || 'v1.81.2'}</code></td>
+                <td class="num">${(liveData['termux-playwright'] && liveData['termux-playwright'].npm) || '1,858'}</td>
+                <td class="num">${(liveData['termux-playwright'] && liveData['termux-playwright'].pypi) || '3,163'}</td>
+                <td class="num"><strong>${(liveData['termux-playwright'] && liveData['termux-playwright'].total) || '5,021'}</strong></td>
+                <td>안드로이드 비루팅 Chromium CDP 직접 제어. TermuxWakeLock 표준화로 5W 초저전력 24시간 무중단 백그라운드 웹 크롤링/모니터링 도입.</td>
+              </tr>
+              <tr>
+                <td><strong>Termux-TTS</strong></td>
+                <td>온디바이스 음성 합성</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-tts'] && liveData['termux-tts'].version) || 'v1.6.0'}</code></td>
+                <td class="num">${(liveData['termux-tts'] && liveData['termux-tts'].npm) || '2,080'}</td>
+                <td class="num">${(liveData['termux-tts'] && liveData['termux-tts'].pypi) || '2,724'}</td>
+                <td class="num"><strong>${(liveData['termux-tts'] && liveData['termux-tts'].total) || '4,804'}</strong></td>
+                <td>Studio Vulkan 1.3 GPU 신경망 음성 합성 엔진. VITS 신경망 모델 탑재, 한국어/영어 온디맨드 프로비저닝, AMEVA-Cluster 분산 음성합성 풀링.</td>
               </tr>
               <tr>
                 <td><strong>Termux-Vision</strong></td>
-                <td>ARM64 NEON 비전 필터 및 SmolVLM/Qwen2-VL 온디바이스 VLM 멀티모달 추론</td>
                 <td>컴퓨터 비전 &amp; VLM</td>
-                <td>${(liveData['termux-vision'] && liveData['termux-vision'].version) || '-'}</td>
-                <td>${(liveData['termux-vision'] && liveData['termux-vision'].total) || '-'}</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-vision'] && liveData['termux-vision'].version) || 'v1.7.0'}</code></td>
+                <td class="num">${(liveData['termux-vision'] && liveData['termux-vision'].npm) || '2,589'}</td>
+                <td class="num">${(liveData['termux-vision'] && liveData['termux-vision'].pypi) || '1,966'}</td>
+                <td class="num"><strong>${(liveData['termux-vision'] && liveData['termux-vision'].total) || '4,555'}</strong></td>
+                <td>UltraFace SSD ONNX 얼굴인식 업그레이드, SmolVLM 멀티모달 질의응답. AMEVA-Cluster 분산 VLM 풀링, VLM 네임스페이스 격리, GitHub 클론 571회.</td>
+              </tr>
+              <tr>
+                <td><strong>Termux-AIChain</strong></td>
+                <td>초경량 에이전트 체인</td>
+                <td class="center"><code class="pdf-code">${(liveData['termux-aichain'] && liveData['termux-aichain'].version) || 'v1.1.4'}</code></td>
+                <td class="num">${(liveData['termux-aichain'] && liveData['termux-aichain'].npm) || '2,519'}</td>
+                <td class="num">${(liveData['termux-aichain'] && liveData['termux-aichain'].pypi) || '1,910'}</td>
+                <td class="num"><strong>${(liveData['termux-aichain'] && liveData['termux-aichain'].total) || '4,429'}</strong></td>
+                <td>50KB 미만 Zero-Dependency 경량 DAG 파이프라인. ameva-runtime 하드웨어 가속 바인딩, 모바일 자율 에이전트 구축 도입.</td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-Sentinel</strong></td>
+                <td>웹 보안 클라이언트 관측</td>
+                <td class="center"><code class="pdf-code">${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].version) || 'v2.3.0'}</code></td>
+                <td class="num">${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].npm) || '663'}</td>
+                <td class="num">${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].pypi) || '562'}</td>
+                <td class="num"><strong>${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].total) || '1,225'}</strong></td>
+                <td>0-Data 개인정보 비수집 봇 탐지 및 HMAC-SHA256 미들웨어. 웹 서비스 자동화 스크래퍼/크롤러 선별 차단 보안 레이어로 연동.</td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-MCP-Hub</strong></td>
+                <td>WASI 인메모리 MCP 허브</td>
+                <td class="center"><code class="pdf-code">${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].version) || 'v3.1.4'}</code></td>
+                <td class="num">${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].npm) || '1,061'}</td>
+                <td class="center" style="font-size:8px; color:#64748b;">NPM 전용</td>
+                <td class="num"><strong>${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].total) || '1,061'}</strong></td>
+                <td>호스트 환경 오염 없는 WASM 인메모리 도구 실행 엔진. Claude Desktop / Cursor 등 AI 코딩 에이전트 도구 공급 인프라로 연동.</td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-Forge</strong></td>
+                <td>브라우저 WebGPU 딥러닝</td>
+                <td class="center"><code class="pdf-code">${(liveData['ameva-forge'] && liveData['ameva-forge'].version) || 'v1.0.1'}</code></td>
+                <td class="num">${(liveData['ameva-forge'] && liveData['ameva-forge'].npm) || '373'}</td>
+                <td class="num">${(liveData['ameva-forge'] && liveData['ameva-forge'].pypi) || '278'}</td>
+                <td class="num"><strong>${(liveData['ameva-forge'] && liveData['ameva-forge'].total) || '651'}</strong></td>
+                <td>PyTorch 호환 WebGPU Autograd 텐서 엔진. 서버 비용 0원 클라이언트 브라우저 GPU 딥러닝 가속 및 인터랙티브 웹 AI에 활용.</td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-Cluster</strong></td>
+                <td>분산 메모리 풀링 런타임</td>
+                <td class="center"><code class="pdf-code">${(liveData['ameva-cluster'] && liveData['ameva-cluster'].version) || 'v1.0.1'}</code></td>
+                <td class="num">${(liveData['ameva-cluster'] && liveData['ameva-cluster'].npm) || '99'}</td>
+                <td class="num">${(liveData['ameva-cluster'] && liveData['ameva-cluster'].pypi) || '112'}</td>
+                <td class="num"><strong>${(liveData['ameva-cluster'] && liveData['ameva-cluster'].total) || '211'}</strong></td>
+                <td>단일 기기 RAM 한계 돌파를 위한 최대 44GB 대칭형 분산 가상 RAM 풀링 런타임. 6-모달리티 텐서 샤딩, TCP RTT 프리플라이트 진단, RPC 격리.</td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA Workstation</strong></td>
+                <td>브라우저 온디바이스 앱</td>
+                <td class="center"><code class="pdf-code">Live App</code></td>
+                <td class="center" style="color:#64748b;">-</td>
+                <td class="center" style="color:#64748b;">-</td>
+                <td class="center"><strong>Live App</strong></td>
+                <td>서버 통신 0% 로컬 WebGPU LLM(Qwen2.5) 추론, 대용량 문서 3초 맵리듀스 요약 및 무손실 인앱 미디어 편집, GitHub 클론 141회 (고유 60명).</td>
+              </tr>
+              <tr>
+                <td><strong>Infra-Index Platform</strong></td>
+                <td>클라우드 인프라 시황</td>
+                <td class="center"><code class="pdf-code">Live App</code></td>
+                <td class="center" style="color:#64748b;">-</td>
+                <td class="center" style="color:#64748b;">-</td>
+                <td class="center"><strong>Live App</strong></td>
+                <td>글로벌 69개 클라우드 GPU/인프라 실시간 시세 집계 및 AI 반도체 시황 인텔리전스 제공. 엔터프라이즈 프라이빗 아키텍처.</td>
               </tr>
             </tbody>
           </table>
-          <div class="pdf-footer">Page 1 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 1 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 2: 1.1 Workstation & 1.2 Infra-Index ==================== -->
@@ -389,17 +457,17 @@ window.AmevaPortfolioPDF = {
             <div><strong>설명:</strong> 클라이언트 브라우저 환경에서 서버 통신 없이 사용자 PC의 WebGPU 자원만으로 거대 언어 모델(LLM) 추론 및 멀티미디어 작업을 수행하는 로컬 워크스테이션 웹 애플리케이션.</div>
             <div><strong>기술 스택:</strong> TypeScript, WebGPU, Web Audio, WebCodecs, HTML5 Canvas, OPFS (Origin Private File System)</div>
             <div><strong>배포 버전 / 상태:</strong> ${(liveData['ameva workstation'] && liveData['ameva workstation'].version) || 'Live App'} | <strong>배포일자:</strong> ${(liveData['ameva workstation'] && liveData['ameva workstation'].date) || '-'}</div>
-            <div><strong>기존 문제:</strong> 대용량 문서 분석이나 AI 편집을 하려면 유료 클라우드 서비스를 써야 하고, 기밀 문서나 개인 데이터가 외부 서버로 전송되어 유출 위험이 있음.</div>
+            <div><strong>기존 문제:</strong> 대용량 문서 분석이나 AI 편집을 하려면 유료 클라우드 서비스를 써야 하고, 기밀 문서나 개인 데이터가 외부 서버로 전송되어 유출 위험이 발생함.</div>
             <div><strong>해결 방식:</strong> 서버와의 데이터 송수신을 100% 차단하고, 브라우저의 WebGPU와 웹 워커를 활용해 AI 모델(Qwen2.5)과 미디어 엔진을 사용자 컴퓨터 내부에서 직접 구동함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>대용량 문서 3초 요약:</strong> 수백 페이지의 PDF/DOCX 파일을 화면에 끌어다 놓으면 웹 워커가 병렬로 읽어 3초 안에 챕터별 핵심 내용을 요약.</li>
+              <li><strong>대용량 문서 3초 요약:</strong> 수백 페이지의 PDF/DOCX 파일을 화면에 끌어다 놓으면 웹 워커가 병렬로 읽어 3초 안에 챕터별 핵심 내용을 맵리듀스로 요약.</li>
               <li><strong>무손실 인앱 미디어 편집:</strong> 무거운 인코딩 없이 브라우저에서 바로 영상 구간을 자르고, 음성 파일에서 말이 없는 무음 구간을 자동으로 잘라내며, 1초 만에 인물 배경을 분리.</li>
-              <li><strong>완전한 로컬 보안:</strong> 모든 작업 데이터가 브라우저 로컬 저장소(OPFS)에만 저장되므로 인터넷이 끊겨도 정상 작동하며 사내 기밀 유출 위험이 전혀 없음.</li>
+              <li><strong>완전한 로컬 보안:</strong> 모든 작업 데이터가 브라우저 로컬 저장소(OPFS)에만 저장되므로 인터넷이 끊겨도 정상 작동하며 사내 기밀 유출 위험이 없음.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>🌐 <strong>웹 앱 실행:</strong> <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="pdf-link">https://ameva-workstation-web-core.vercel.app/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="pdf-link">https://github.com/uno-km/AMEVA-Workstation-Web</a></span>
+              <span><strong>[Web] 앱 실행:</strong> <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="pdf-link">https://ameva-workstation-web-core.vercel.app/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/AMEVA-Workstation-Web" target="_blank" class="pdf-link">https://github.com/uno-km/AMEVA-Workstation-Web</a></span>
             </div>
           </div>
 
@@ -420,17 +488,17 @@ window.AmevaPortfolioPDF = {
               <li><strong>AI 반도체 시황 인텔리전스:</strong> 최신 엔비디아, AMD 및 커스텀 ASIC 수급 동향과 연구 논문 트렌드 분석 리포트 제공.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>🌐 <strong>웹 앱:</strong> <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">https://infraindex-platform-front.vercel.app/</a></span>
-              <span>🔒 <strong>저장소:</strong> Private Enterprise Repository</span>
+              <span><strong>[Web] 웹 앱:</strong> <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">https://infraindex-platform-front.vercel.app/</a></span>
+              <span><strong>[Security] 저장소:</strong> Private Enterprise Repository</span>
             </div>
           </div>
 
-          <div class="pdf-footer">Page 2 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 2 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 3: 1.3 MCP-Hub & 1.4 Sentinel ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (SDK &amp; Developer Tooling)</h2>
+          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (SDK &amp; Developer Infrastructure)</h2>
 
           <!-- 1.3 AMEVA-MCP-Hub -->
           <div class="pdf-card">
@@ -450,9 +518,9 @@ window.AmevaPortfolioPDF = {
               <li><strong>GitHub 저장소 실시간 도구 추가:</strong> GitHub 주소만 적어두면 서버 재부팅 없이 실시간으로 새 도구를 내려받아 즉시 활성화.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="pdf-link">https://www.npmjs.com/package/ameva-mcp-hub</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/mcp/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/mcp/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-mcp-hub</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="pdf-link">https://www.npmjs.com/package/ameva-mcp-hub</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/mcp/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/mcp/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/ameva-mcp-hub" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-mcp-hub</a></span>
             </div>
           </div>
 
@@ -465,22 +533,22 @@ window.AmevaPortfolioPDF = {
             <div><strong>설명:</strong> 사용자의 키 입력이나 마우스 궤적 같은 민감한 개인정보를 일절 수집하지 않고, 브라우저 구조 신호만으로 봇과 정상 사용자를 식별하여 위험도 점수를 산출하는 클라이언트 보안 SDK.</div>
             <div><strong>기술 스택:</strong> TypeScript, WebCrypto API, Browser Internals, Node.js / Python Middleware</div>
             <div><strong>배포 버전:</strong> ${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['ameva-sentinel'] && liveData['ameva-sentinel'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> 기존 봇 탐지 솔루션은 사용자 키 입력이나 마우스 움직임을 서버로 전송해 개인정보 침해(GDPR 위반) 논란이 크고 사이트 속도를 저하시킴.</div>
-            <div><strong>해결 방식:</strong> 사용자 입력값 수집은 0%로 배제하고, 브라우저의 구조적 이상 신호(자동화 툴 흔적, 확장 프로그램 변조 등)만 클라이언트 내부에서 즉시 계산해 0~100점 위험도를 산출함.</div>
+            <div><strong>기존 문제:</strong> 기존 봇 탐지 솔루션은 사용자 키 입력이나 마우스 움직임을 서버로 전송해 개인정보 침해(GDPR 위반) 논란이 크고 사이트 로딩 속도를 저하시킴.</div>
+            <div><strong>해결 방식:</strong> 사용자 입력값 수집은 0%로 배제하고, 브라우저의 구조적 이상 신호(자동화 툴 흔적, 환경 변조 등)만 클라이언트 내부에서 즉시 계산해 0~100점 위험도를 산출함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
               <li><strong>스크립트 1줄로 봇 차단:</strong> 웹사이트에 SDK를 넣으면 매크로, 크롤러, 무단 스크래퍼를 0.001초 만에 감지.</li>
               <li><strong>개인정보 침해 0%:</strong> 키로깅이나 화면 추적이 전혀 없어 국내외 개인정보보호법(GDPR) 규제 리스크를 원천 해결.</li>
-              <li><strong>위변조 불가 암호화 토큰:</strong> WebCrypto 기반 HMAC-SHA256으로 서명된 토큰을 발급하여 백엔드 서버에서 0.1ms 안에 유효성 검증.</li>
+              <li><strong>위변조 방지 암호화 토큰:</strong> WebCrypto 기반 HMAC-SHA256으로 서명된 토큰을 발급하여 백엔드 서버에서 0.1ms 안에 유효성 검증.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="pdf-link">https://www.npmjs.com/package/ameva-sentinel</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/sentinel/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/sentinel/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-sentinel</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="pdf-link">https://www.npmjs.com/package/@ameva/sentinel</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/sentinel/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/sentinel/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-sentinel</a></span>
             </div>
           </div>
 
-          <div class="pdf-footer">Page 3 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 3 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 4: 1.5 Forge & 1.6 AIChain ==================== -->
@@ -504,9 +572,10 @@ window.AmevaPortfolioPDF = {
               <li><strong>PyTorch 개발자 친화 문법:</strong> <span class="pdf-code">torch.Tensor</span>, <span class="pdf-code">tensor.backward()</span> 등 파이토치와 똑같은 문법을 제공하여 기존 AI 개발자가 러닝 커브 없이 즉시 웹에 모델을 배포.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/ameva/" target="_blank" class="pdf-link">https://pypi.org/project/ameva/</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/forge/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/forge/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="pdf-link">https://github.com/uno-km/AMEVA-Forge</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/ameva-forge/" target="_blank" class="pdf-link">https://pypi.org/project/ameva-forge/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/@ameva/forge" target="_blank" class="pdf-link">https://www.npmjs.com/package/@ameva/forge</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/forge/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/forge/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="pdf-link">https://github.com/uno-km/AMEVA-Forge</a></span>
             </div>
           </div>
 
@@ -517,199 +586,304 @@ window.AmevaPortfolioPDF = {
               <span class="pdf-tag">모바일 온디바이스 에이전트 프레임워크</span>
             </div>
             <div><strong>설명:</strong> 안드로이드 Termux 환경에서 LangChain 같은 무거운 외부 라이브러리 없이, 외부 의존성 0개(Zero-Dependency)로 LLM 체이닝과 자율 에이전트 워크플로우를 구성하는 초경량 에이전트 프레임워크.</div>
-            <div><strong>기술 스택:</strong> Python 3, TypeScript, Zero-Dependency, DAG Pipeline</div>
+            <div><strong>기술 스택:</strong> Python 3, TypeScript, Zero-Dependency, DAG Pipeline, ameva-runtime v2.0 직결</div>
             <div><strong>배포 버전:</strong> ${(liveData['termux-aichain'] && liveData['termux-aichain'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-aichain'] && liveData['termux-aichain'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-aichain'] && liveData['termux-aichain'].total) || '-'}</div>
             <div><strong>기존 문제:</strong> LangChain, LlamaIndex 같은 대형 프레임워크는 수백 개의 무거운 외부 패키지를 요구하여 안드로이드 Termux에서 패키지 충돌이 나고 메모리 부족으로 다운됨.</div>
             <div><strong>해결 방식:</strong> 외부 의존성 패키지 설치를 0개로 설계하여, 50KB 미만의 순수 코어만으로 순차 체인, 조건부 분기, 도구 호출을 완벽히 지원함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
               <li><strong>스마트폰 단독 AI 에이전트 워크플로우:</strong> Termux-BitNet 등 온디바이스 로컬 모델과 묶어 인터넷 없이 복잡한 다단계 질문-답변 및 분석 파이프라인 자동 실행.</li>
-              <li><strong>의존성 충돌 0%:</strong> 무거운 pip 패키지 설치 없이 <span class="pdf-code">pip install termux-aichain</span> 단 1초 만에 설치 완료 및 100% 정상 작동.</li>
+              <li><strong>의존성 충돌 0%:</strong> 무거운 외부 의존성 없이 <span class="pdf-code">pip install termux-aichain</span> 단 1초 만에 설치 완료 및 정상 작동.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="pdf-link">https://pypi.org/project/termux-aichain/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-aichain</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/aichain/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/aichain/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="pdf-link">https://github.com/uno-km/termux-aichain</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="pdf-link">https://pypi.org/project/termux-aichain/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-aichain</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/aichain/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/aichain/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="pdf-link">https://github.com/uno-km/termux-aichain</a></span>
             </div>
           </div>
 
-          <div class="pdf-footer">Page 4 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 4 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 5: 1.7 BitNet & 1.8 Diffusion ==================== -->
+        <!-- ==================== PAGE 5: 1.7 Runtime & 1.8 Cluster ==================== -->
+        <div class="pdf-page">
+          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (On-Device Distributed Runtime &amp; Cluster)</h2>
+
+          <!-- 1.7 AMEVA-Runtime -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>1.7 AMEVA-Runtime</span>
+              <span class="pdf-tag">온디바이스 하드웨어 가속 런타임 코어</span>
+            </div>
+            <div><strong>설명:</strong> Android Termux ARM64 환경에서 C++/Vulkan/OpenCL 네이티브 바이너리와 6-모달리티 AI 엔진들을 유기적으로 결합하고 하드웨어 자원을 직접 제어하는 핵심 런타임 오케스트레이터.</div>
+            <div><strong>기술 스택:</strong> C++17, Vulkan 1.3, OpenCL, POSIX IPC, Bionic libc, ARM64 NEON &amp; DotProd</div>
+            <div><strong>배포 버전:</strong> ${(liveData['ameva-runtime'] && liveData['ameva-runtime'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['ameva-runtime'] && liveData['ameva-runtime'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['ameva-runtime'] && liveData['ameva-runtime'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> 모바일 Linux 환경에서 libc++ 버전 불일치로 인한 바이너리 충돌, Qualcomm GPU 컨텍스트 손실, 하드웨어 파편화로 인한 잦은 크래시 발생.</div>
+            <div><strong>해결 방식:</strong> 번들 격리 레이아웃으로 호스트 libc++ 충돌을 원천 차단하고, Adreno 650 컨텍스트 시프트 패치 및 ggml-ameva KV 캐시 최적화를 통해 5대 실기기 연속 추론을 안정화함.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>Samsung Galaxy 5대 기기 전수 검증:</strong> Galaxy S25, S21, A35, S20 등 주요 SoC 전 라인업에서 하드웨어 가속 패스율 100% 검증 완료.</li>
+              <li><strong>6-모달리티 공통 ABI 백엔드:</strong> LLM, Diffusion, STT, TTS, Vision, Train 모듈이 단일 런타임 인터페이스를 통해 Vulkan/OpenCL 가속을 공유.</li>
+            </ul>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/ameva-runtime/" target="_blank" class="pdf-link">https://pypi.org/project/ameva-runtime/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" class="pdf-link">https://www.npmjs.com/package/@ameva/runtime</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/runtime/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/runtime/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/ameva-runtime" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-runtime</a></span>
+            </div>
+          </div>
+
+          <!-- 1.8 AMEVA-Cluster -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>1.8 AMEVA-Cluster</span>
+              <span class="pdf-tag">대칭형 온디바이스 분산 메모리 풀링 런타임</span>
+            </div>
+            <div><strong>설명:</strong> 여러 대의 안드로이드 스마트폰 자원을 대칭형 분산 네트워크로 결합하여 단일 기기의 RAM 용량 한계를 극복하고 최대 44GB 가상 RAM을 형성하는 온디바이스 분산 텐서 샤딩 런타임.</div>
+            <div><strong>기술 스택:</strong> Python 3, Node.js, TCP Sockets, Granular Scoring Telemetry, Bytecode Shielding</div>
+            <div><strong>배포 버전:</strong> ${(liveData['ameva-cluster'] && liveData['ameva-cluster'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['ameva-cluster'] && liveData['ameva-cluster'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['ameva-cluster'] && liveData['ameva-cluster'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> 모바일 기기는 개별 RAM이 4~8GB로 한정되어 있어 6.0B 이상의 거대 모델이나 대규모 배치 학습 구동 시 OOM(Out of Memory)으로 앱이 강제 종료됨.</div>
+            <div><strong>해결 방식:</strong> 스마트폰 여러 대를 P2P로 연결해 단일 가상 RAM(Virtual Distributed RAM) 풀을 생성하고 레이어 단위 텐서 샤딩을 수행하여 최대 44GB 메모리 공간을 확보함.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>최대 44GB 분산 가상 RAM:</strong> 공기계 스마트폰들을 묶어 단일 기기에서 돌릴 수 없던 대형 AI 모델과 LoRA 학습을 협업 수행.</li>
+              <li><strong>사전 무결성 진단 (Pre-Flight):</strong> TCP RTT 핑과 텐서 루프백 진단으로 네트워크 레이턴시를 측정하고 최적 샤딩 비율을 자동 결정.</li>
+              <li><strong>RPC 포트 보안 격리:</strong> 외부 노출 50052 포트와 내부 연산 50055 루프백 포트를 물리적으로 분리하여 무단 원격 침투 차단.</li>
+            </ul>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/ameva-cluster/" target="_blank" class="pdf-link">https://pypi.org/project/ameva-cluster/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/@ameva/cluster" target="_blank" class="pdf-link">https://www.npmjs.com/package/@ameva/cluster</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/cluster/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/cluster/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/ameva-cluster" target="_blank" class="pdf-link">https://github.com/uno-km/ameva-cluster</a></span>
+            </div>
+          </div>
+
+          <div class="pdf-footer">Page 5 / 10 • 김은호 엔지니어링 포트폴리오</div>
+        </div>
+
+        <!-- ==================== PAGE 6: 1.9 BitNet & 1.10 Diffusion ==================== -->
         <div class="pdf-page">
           <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Mobile On-Device AI: LLM &amp; Image)</h2>
 
-          <!-- 1.7 Termux-BitNet -->
+          <!-- 1.9 Termux-BitNet -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>1.7 Termux-BitNet</span>
-              <span class="pdf-tag">모바일 온디바이스 LLM 추론</span>
+              <span>1.9 Termux-BitNet</span>
+              <span class="pdf-tag">모바일 온디바이스 1.58-bit LLM 추론</span>
             </div>
             <div><strong>설명:</strong> 안드로이드 스마트폰(Termux) 환경에서 1.58비트(3진수 {-1,0,+1}) LLM을 스마트폰 전용 SIMD 명령어로 가속하여 빠르게 구동하는 경량 온디바이스 AI 엔진.</div>
-            <div><strong>기술 스택:</strong> C++17, ARM64 NEON Assembly, Python C-API, Node.js N-API</div>
+            <div><strong>기술 스택:</strong> C++17, ARM64 NEON Assembly, Python C-API, Node.js N-API, AMEVA-Cluster 연동</div>
             <div><strong>배포 버전:</strong> ${(liveData['termux-bitnet'] && liveData['termux-bitnet'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-bitnet'] && liveData['termux-bitnet'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-bitnet'] && liveData['termux-bitnet'].total) || '-'}</div>
             <div><strong>기존 문제:</strong> 스마트폰은 RAM 용량이 4~8GB 수준으로 작아, 일반 거대 언어 모델(LLM)을 올리면 메모리 부족(OOM)으로 앱이 튕기거나 속도가 초당 1글자 미만으로 느림.</div>
             <div><strong>해결 방식:</strong> 1.58비트 가중치 압축과 ARM64 NEON 전용 어셈블리 커널을 결합하여, 곱셈 연산 대신 덧셈 연산 위주로 처리하여 연산량과 메모리를 70% 이상 대폭 삭감함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>스마트폰 단독 AI 챗봇:</strong> 인터넷 연결이나 데이터 소모 없이 스마트폰 자체 CPU만으로 초당 8~15토큰 속도의 오프라인 AI 대화 가능.</li>
-              <li><strong>초저메모리 구동:</strong> 4GB RAM을 가진 보급형 스마트폰에서도 백그라운드 앱 종료 없이 안정적으로 작동.</li>
+              <li><strong>스마트폰 단독 AI 챗봇:</strong> 인터넷 연결 없이 스마트폰 CPU만으로 초당 8~15토큰 속도의 오프라인 AI 대화 가능.</li>
+              <li><strong>AMEVA-Cluster 3진수 텐서 풀링:</strong> 단말 간 분산 추론을 지원하여 4GB 보급형 기기에서도 메모리 부담 없이 안정 구동.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="pdf-link">https://pypi.org/project/termux-bitnet/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-bitnet</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/bitnet/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/bitnet/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="pdf-link">https://github.com/uno-km/termux-bitnet</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-bitnet/" target="_blank" class="pdf-link">https://pypi.org/project/termux-bitnet/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-bitnet" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-bitnet</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/bitnet/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/bitnet/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-bitnet" target="_blank" class="pdf-link">https://github.com/uno-km/termux-bitnet</a></span>
             </div>
           </div>
 
-          <!-- 1.8 Termux-Diffusion -->
+          <!-- 1.10 Termux-Diffusion -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>1.8 Termux-Diffusion</span>
-              <span class="pdf-tag">모바일 온디바이스 생성형 AI</span>
+              <span>1.10 Termux-Diffusion</span>
+              <span class="pdf-tag">모바일 온디바이스 생성형 AI &amp; AmfyUI 스튜디오</span>
             </div>
-            <div><strong>설명:</strong> 안드로이드 스마트폰(Termux) 환경에서 고가의 클라우드 GPU 없이 로컬 2~4GB 메모리 안에서 C++ GGML 텐서 엔진으로 Stable Diffusion AI 이미지를 생성하는 모바일 네이티브 프레임워크.</div>
-            <div><strong>기술 스택:</strong> C++17 GGML, Qualcomm Adreno &amp; ARM Mali Vulkan 1.3, ARM64 NEON &amp; DotProd SIMD, Bionic libc</div>
+            <div><strong>설명:</strong> 안드로이드 스마트폰에서 클라우드 GPU 없이 C++ GGML 및 Vulkan 1.3 엔진으로 Stable Diffusion 및 Sovereign 6.0B DiT 이미지를 생성하는 모바일 네이티브 프레임워크 &amp; AmfyUI(ComfyUI 모바일 스튜디오).</div>
+            <div><strong>기술 스택:</strong> C++17 GGML, Vulkan 1.3, ARM64 NEON &amp; DotProd, AmfyUI DAG Engine, Safe-Mode Guard</div>
             <div><strong>배포 버전:</strong> ${(liveData['termux-diffusion'] && liveData['termux-diffusion'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-diffusion'] && liveData['termux-diffusion'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-diffusion'] && liveData['termux-diffusion'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> Stable Diffusion은 VRAM 6GB 이상을 요구해 모바일 GPU에서 1장 생성 시 앱이 즉시 강제 종료됨.</div>
-            <div><strong>해결 방식:</strong> VAE Tiling 기법과 C++ GGML 메모리 풀링을 통해 피크 메모리를 52% 절감하고, Multi-SoC Vulkan GPU 가속 파이프라인을 구축함.</div>
+            <div><strong>기존 문제:</strong> Stable Diffusion 및 DiT 모델은 6GB 이상의 VRAM을 요구하여 모바일에서 실행 시 OOM 크래시가 발생하고 장시간 연산 시 단말 과열로 UI가 프리징됨.</div>
+            <div><strong>해결 방식:</strong> VAE Tiling과 GGML 메모리 풀링, GPU Duty-Cycle 쓰로틀링(SCRUM-493) 및 Safe-Mode SurfaceFlinger 보호를 적용하여 시스템 안정성을 확보함.</div>
             <div class="pdf-bench-box">
-              <strong>📱 실기기 실측 벤치마크 (20 Steps 512x512):</strong><br>
+              <strong>[Benchmark] 실기기 실측 벤치마크 및 고해상도 검증:</strong><br>
               • <strong>Galaxy S25</strong> (Snapdragon 8 Elite / Adreno 830): <strong>4.39초</strong> (Vulkan 가속, 651MB VRAM 점유)<br>
-              • <strong>Galaxy S21</strong> (Exynos 2100 / Mali-G78): <strong>19.82초</strong> (Vulkan 가속, 1.84GB 점유)<br>
-              • <strong>Galaxy A35</strong> (Exynos 1380 / 8 Cores): <strong>4.08초</strong> (CPU Signed DotProd 가속, 1.91GB 점유)
+              • <strong>Galaxy S20 HD 1280x720</strong>: 4계절 포트레이트 고해상도 생성 파이프라인 실증 완료<br>
+              • <strong>AmfyUI Mobile Studio</strong>: <span class="pdf-code">0.0.0.0:11553</span> 자동 바인딩으로 PC 및 모바일 브라우저에서 ComfyUI 노드 워크플로우 직접 실행
             </div>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="pdf-link">https://pypi.org/project/termux-diffusion/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-diffusion</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/diffusion/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/diffusion/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="pdf-link">https://github.com/uno-km/termux-diffusion</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-diffusion/" target="_blank" class="pdf-link">https://pypi.org/project/termux-diffusion/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-diffusion" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-diffusion</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/diffusion/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/diffusion/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-diffusion" target="_blank" class="pdf-link">https://github.com/uno-km/termux-diffusion</a></span>
             </div>
           </div>
 
-          <div class="pdf-footer">Page 5 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 6 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 6: 1.9 STT & 1.10 Train ==================== -->
+        <!-- ==================== PAGE 7: 1.11 STT & 1.12 TTS ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Mobile Audio &amp; On-Device Training)</h2>
+          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Mobile Speech &amp; Audio Processing)</h2>
 
-          <!-- 1.9 Termux-STT -->
+          <!-- 1.11 Termux-STT -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>1.9 Termux-STT</span>
+              <span>1.11 Termux-STT</span>
               <span class="pdf-tag">모바일 온디바이스 음성인식 &amp; 화자 분리</span>
             </div>
-            <div><strong>설명:</strong> 안드로이드 Termux 환경에서 Whisper.cpp, Vosk 등 고성능 음성인식 엔진을 통합하고, 순수 파이썬으로 128차원 벡터 화자 분리를 스마트폰 안에서 100% 로컬로 판별하는 음성 처리 프레임워크.</div>
-            <div><strong>기술 스택:</strong> C++, Python, Whisper.cpp, Vosk, ONNX Runtime</div>
+            <div><strong>설명:</strong> 안드로이드 Termux 환경에서 Whisper.cpp 및 Vosk 엔진을 결합하고, Hybrid GPU-Encoder/CPU-Decoder 가속과 순수 파이썬 128차원 벡터 화자 분리를 지원하는 음성 처리 프레임워크.</div>
+            <div><strong>기술 스택:</strong> C++, Python, Whisper.cpp, Vosk, Hybrid GPU/CPU Acceleration, AMEVA-Cluster</div>
             <div><strong>배포 버전:</strong> ${(liveData['termux-stt'] && liveData['termux-stt'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-stt'] && liveData['termux-stt'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-stt'] && liveData['termux-stt'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> 음성을 텍스트로 바꾸려면 구글이나 네이버 API를 써야 해서 비용이 들고, 회의 내용 등 민감한 음성 파일이 유출될 수 있음. 화자 분리 라이브러리는 무거워서 스마트폰 설치 불가.</div>
-            <div><strong>해결 방식:</strong> 가벼운 Vosk와 Whisper.cpp 엔진을 안드로이드 ARM64에 맞게 컴파일해 탑재하고, 128차원 음성 특징 벡터 코사인 유사도 연산을 순수 파이썬으로 가볍게 구현함.</div>
+            <div><strong>기존 문제:</strong> 음성 인식을 위해 외부 클라우드 API를 쓰면 통신 비용과 기밀 회의록 유출 위험이 발생하며, 기존 화자 분리 패키지는 PyTorch 의존성으로 모바일 설치 불가.</div>
+            <div><strong>해결 방식:</strong> GPU로 인코더를 가속하고 CPU로 디코더를 처리하는 하이브리드 파이프라인을 구축하고, 순수 파이썬 128차원 음성 특징 벡터 코사인 유사도 연산으로 화자를 분리함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>회의록 자동 작성 &amp; 화자 구분:</strong> 회의 녹음 파일을 넣으면 "참여자 1: ...", "참여자 2: ..." 형태로 말한 사람을 구분해 텍스트 문서로 출력.</li>
-              <li><strong>음성 데이터 100% 로컬 보안:</strong> 스마트폰 마이크로 들어온 음성이 외부 서버로 나가지 않아 완벽한 보안 환경 제공.</li>
+              <li><strong>회의록 자동 작성 &amp; 화자 구분:</strong> 오디오 녹음 파일을 넣으면 발화자별로 구분하여 텍스트 및 자막(.srt/.vtt) 파일로 즉시 출력.</li>
+              <li><strong>AMEVA-Cluster 분산 풀링:</strong> 녹음 길이가 길 경우 클러스터 내 여러 기기로 오디오 청크를 분산 전사하여 처리 시간 대폭 단축.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-stt/" target="_blank" class="pdf-link">https://pypi.org/project/termux-stt/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-stt</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/stt/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/stt/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-stt" target="_blank" class="pdf-link">https://github.com/uno-km/termux-stt</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-stt/" target="_blank" class="pdf-link">https://pypi.org/project/termux-stt/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-stt" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-stt</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/stt/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/stt/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-stt" target="_blank" class="pdf-link">https://github.com/uno-km/termux-stt</a></span>
             </div>
           </div>
 
-          <!-- 1.10 Termux-Train -->
+          <!-- 1.12 Termux-TTS -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>1.10 Termux-Train</span>
-              <span class="pdf-tag">온디바이스 딥러닝 학습 엔진</span>
+              <span>1.12 Termux-TTS</span>
+              <span class="pdf-tag">모바일 온디바이스 신경망 음성 합성</span>
             </div>
-            <div><strong>설명:</strong> 안드로이드 스마트폰 CPU 자원만으로 인공신경망의 미분 계산과 LoRA 파인튜닝을 수행할 수 있는 C 언어 기반 딥러닝 학습 엔진.</div>
-            <div><strong>기술 스택:</strong> C, SafeTensors, Python C-API</div>
-            <div><strong>배포 버전:</strong> ${(liveData['termux-train'] && liveData['termux-train'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-train'] && liveData['termux-train'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-train'] && liveData['termux-train'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> PyTorch나 TensorFlow 같은 프레임워크는 수 기가바이트 크기라 스마트폰에 설치조차 불가능하고, 스마트폰에서 모델을 직접 학습시키는 것은 불가능하다고 여겨짐.</div>
-            <div><strong>해결 방식:</strong> 무거운 프레임워크를 걷어내고 순수 C 언어로 역전파(Backpropagation)와 자동미분(Autograd) 엔진을 직접 코딩하여, 단 몇 MB 크기의 가벼운 라이브러리로 완성함.</div>
+            <div><strong>설명:</strong> 안드로이드 Termux 환경에서 Studio Vulkan 1.3 GPU 컴퓨트 가속과 VITS 신경망 모델을 통해 고품질 자연어 음성을 지연 없이 실시간 합성하는 온디바이스 음성 출력 엔진.</div>
+            <div><strong>기술 스택:</strong> C++, Python, Node.js, Studio Vulkan 1.3 GPU Compute, VITS Neural Vocoder, AMEVA-Cluster</div>
+            <div><strong>배포 버전:</strong> ${(liveData['termux-tts'] && liveData['termux-tts'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-tts'] && liveData['termux-tts'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-tts'] && liveData['termux-tts'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> 모바일 기본 TTS 엔진은 기계음이 심하고 감정 표현이 제한적이며, 고품질 신경망 TTS는 무거운 딥러닝 런타임으로 인해 모바일 실시간 구동 불가.</div>
+            <div><strong>해결 방식:</strong> Studio Vulkan GPU 컴퓨트 셰이더로 VITS 신경망 인버터를 최적화하여 1초 미만의 첫 발화 지연(TTFT)으로 사람과 유사한 자연스러운 음성을 합성함.</div>
             <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
             <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>스마트폰 단독 AI 모델 학습 (LoRA):</strong> PC나 GPU 서버 없이 스마트폰 안에서 사용자의 개인 데이터를 모델에 추가 학습시켜 나만의 맞춤형 AI 모델 제작.</li>
-              <li><strong>메모리 누수 0%의 안정성:</strong> C 언어 수준에서 메모리 풀링을 관리하여 스마트폰이 과열되거나 멈추지 않고 밤새 안정적으로 학습 수행.</li>
+              <li><strong>다국어 자동 프로비저닝:</strong> 한국어 KSS 모델 및 영어 Lessac 모델을 명령어 한 줄로 자동 다운로드 및 캐싱.</li>
+              <li><strong>AMEVA-Cluster 분산 음성합성:</strong> 텍스트가 방대할 경우 클러스터 기기들이 문단별로 병렬 합성하여 지연 없는 스트리밍 출력.</li>
             </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-train/" target="_blank" class="pdf-link">https://pypi.org/project/termux-train/</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/train/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/train/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-train" target="_blank" class="pdf-link">https://github.com/uno-km/termux-train</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-tts/" target="_blank" class="pdf-link">https://pypi.org/project/termux-tts/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-tts" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-tts</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/tts/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/tts/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-tts" target="_blank" class="pdf-link">https://github.com/uno-km/termux-tts</a></span>
             </div>
           </div>
 
-          <div class="pdf-footer">Page 6 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 7 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 7: 1.11 LlamaCpp, 1.12 Vision, 1.13 Playwright ==================== -->
+        <!-- ==================== PAGE 8: 1.13 Train & 1.14 LlamaCpp ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Mobile Runtime, Vision &amp; Automation)</h2>
+          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (On-Device Training &amp; LLM Server)</h2>
 
-          <!-- 1.11 Termux-LlamaCpp -->
+          <!-- 1.13 Termux-Train -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>1.11 Termux-LlamaCpp</span>
+              <span>1.13 Termux-Train</span>
+              <span class="pdf-tag">6-모달리티 온디바이스 딥러닝 학습 &amp; 44GB 클러스터 엔진</span>
+            </div>
+            <div><strong>설명:</strong> 안드로이드 스마트폰 자원과 AMEVA-Cluster 44GB 가상 RAM을 결합하여 모바일 기기 단독으로 멀티모달 인공신경망의 미분 계산과 LoRA 파인튜닝을 수행하는 통합 학습 엔진.</div>
+            <div><strong>기술 스택:</strong> C, SafeTensors, Python C-API, Node.js CLI, AMEVA-Cluster 44GB Virtual RAM</div>
+            <div><strong>배포 버전:</strong> ${(liveData['termux-train'] && liveData['termux-train'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-train'] && liveData['termux-train'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-train'] && liveData['termux-train'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> 모바일에서 AI 모델을 학습시키는 것은 RAM 부족과 메모리 누수로 인해 불가능하다고 여겨졌으며, 프레임워크 크기가 수 GB에 달함.</div>
+            <div><strong>해결 방식:</strong> 순수 C 언어로 역전파 DAG를 직접 구현하고, AMEVA-Cluster 분산 가상 RAM을 연동하여 6개 모달리티의 LoRA 파인튜닝 파이프라인을 구축함.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>6-모달리티 학습 지원:</strong> Diffusion 이미지 폴더 LoRA, Vision VLM LoRA, STT 음성 LoRA, TTS 스타일 LoRA, LLM PEFT, BitNet 1.58b QAT 지원.</li>
+              <li><strong>단일 기기 GPU 슬라이싱 &amp; 44GB 클러스터 풀링:</strong> 단일 단말에서는 GPU 메모리를 슬라이싱하고, 다중 단말에서는 가상 RAM으로 대규모 학습 수행.</li>
+            </ul>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-train/" target="_blank" class="pdf-link">https://pypi.org/project/termux-train/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-train" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-train</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/train/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/train/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-train" target="_blank" class="pdf-link">https://github.com/uno-km/termux-train</a></span>
+            </div>
+          </div>
+
+          <!-- 1.14 Termux-LlamaCpp -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>1.14 Termux-LlamaCpp</span>
               <span class="pdf-tag">모바일 온디바이스 GGUF LLM 런타임 &amp; OpenAI 서버</span>
             </div>
-            <div><strong>설명:</strong> 안드로이드 Termux ARM64 전용으로 사전 빌드된 제로 컴파일 GGUF LLM 런타임, 모델 매니저 및 OpenAI 규격 호환 REST/SSE 서버 프레임워크.</div>
-            <div><strong>기술 스택:</strong> C++17, ARM64 NEON &amp; DotProd SIMD, GGUF Runtime, POSIX Sockets</div>
+            <div><strong>설명:</strong> 안드로이드 Termux ARM64 전용으로 사전 빌드된 제로 컴파일 GGUF LLM 런타임, Qualcomm Adreno OpenCL 최적화 디스패치 및 OpenAI 규격 호환 REST/SSE 서버 프레임워크.</div>
+            <div><strong>기술 스택:</strong> C++17, ARM64 NEON &amp; DotProd SIMD, Adreno OpenCL, Flash Attention, POSIX Sockets, AMEVA-Cluster</div>
             <div><strong>배포 버전:</strong> ${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-llamacpp'] && liveData['termux-llamacpp'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> llama.cpp를 모바일에서 빌드하려면 CMake/NDK 컴파일 툴체인 설정이 복잡하고, 타 앱과의 호환 인터페이스 부재.</div>
-            <div><strong>해결 방식:</strong> ARM64 NEON 최적화 바이너리를 휠 패키지에 내장하여 제로 컴파일 1-Touch 실행과 <span class="pdf-code">localhost:8080/v1/chat/completions</span> OpenAI 호환 서버를 자동 구동.</div>
+            <div><strong>기존 문제:</strong> llama.cpp를 모바일에서 빌드하려면 CMake/NDK 컴파일 툴체인 설정이 복잡하고 타 앱 및 웹 프론트엔드와의 표준 연동 인터페이스 부재.</div>
+            <div><strong>해결 방식:</strong> ARM64 NEON 최적화 바이너리를 패키지에 내장하여 제로 컴파일 1-Touch 실행과 <span class="pdf-code">localhost:8080/v1/chat/completions</span> OpenAI 호환 서버를 자동 구동.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>Adreno OpenCL 자동 디스패치:</strong> 스냅드래곤 GPU 환경에서 OpenCL 가속을 자동 활성화하고 Flash Attention으로 토큰 생성 속도 극대화.</li>
+              <li><strong>AMEVA-Cluster 분산 메모리 풀링:</strong> 8B 이상의 대형 모델을 여러 스마트폰에 분산 적재하여 단일 기기 메모리 한계 극복.</li>
+            </ul>
             <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="pdf-link">https://pypi.org/project/termux-llamacpp/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-llamacpp</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/llamacpp/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/llamacpp/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="pdf-link">https://github.com/uno-km/termux-llamacpp</a></span>
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-llamacpp/" target="_blank" class="pdf-link">https://pypi.org/project/termux-llamacpp/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-llamacpp" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-llamacpp</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/llamacpp/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/llamacpp/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-llamacpp" target="_blank" class="pdf-link">https://github.com/uno-km/termux-llamacpp</a></span>
             </div>
           </div>
 
-          <!-- 1.12 Termux-Vision -->
-          <div class="pdf-card">
-            <div class="pdf-card-title">
-              <span>1.12 Termux-Vision</span>
-              <span class="pdf-tag">모바일 온디바이스 컴퓨터 비전 &amp; VLM 엔진</span>
-            </div>
-            <div><strong>설명:</strong> 외부 무거운 의존성 없이 순수 ARM64 NEON 비전 커널과 Vulkan GPU 가속을 통해 온디바이스 컴퓨터 비전 및 VLM 멀티모달 추론을 수행하는 초경량 엔진.</div>
-            <div><strong>기술 스택:</strong> Python 3, JavaScript/TypeScript, ARM64 NEON SIMD, Vulkan 1.3 GPU Engine</div>
-            <div><strong>배포 버전:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].total) || '-'}</div>
-            <div><strong>기존 문제:</strong> OpenCV, torchvision 같은 패키지는 모바일 환경에서 수백 MB 용량과 복잡한 빌드 의존성 발생.</div>
-            <div><strong>해결 방식:</strong> 5단계 Canny 엣지 검출, 얼굴 인식 및 SmolVLM/Qwen2-VL 온디바이스 VLM 멀티모달 질의응답을 순수 경량 커널로 통합 구현.</div>
-            <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-vision/" target="_blank" class="pdf-link">https://pypi.org/project/termux-vision/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-vision</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/vision/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/vision/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-vision" target="_blank" class="pdf-link">https://github.com/uno-km/termux-vision</a></span>
-            </div>
-          </div>
-
-          <!-- 1.13 Termux-Playwright -->
-          <div class="pdf-card" style="margin-bottom:0;">
-            <div class="pdf-card-title">
-              <span>1.13 Termux-Playwright</span>
-              <span class="pdf-tag">모바일 웹 자동화 / 크롤링</span>
-            </div>
-            <div><strong>설명:</strong> 안드로이드 Termux 환경에서 루팅(Rooting) 권한 없이 정품 크로미움 브라우저를 직접 제어하는 모바일 브라우저 자동화 런타임.</div>
-            <div><strong>기술 스택:</strong> Android Bionic libc, Chrome DevTools Protocol (CDP), Node.js, Python | <strong>배포 버전:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].total) || '-'}</div>
-            <div><strong>핵심 기능:</strong> 스마트폰 비루팅 무인 자동화, 5W 초저전력 24시간 무중단 크롤링 및 웹 테스트 자동화.</div>
-            <div class="pdf-link-bar">
-              <span>📦 <strong>PyPI:</strong> <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pdf-link">https://pypi.org/project/termux-playwright/</a></span>
-              <span>📦 <strong>npm:</strong> <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-playwright</a></span>
-              <span>📘 <strong>공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/playwright/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/playwright/</a></span>
-              <span>🐙 <strong>GitHub:</strong> <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="pdf-link">https://github.com/uno-km/termux-playwright</a></span>
-            </div>
-          </div>
-
-          <div class="pdf-footer">Page 7 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 8 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 8: 종합 요약 및 전체 링크 색인 ==================== -->
+        <!-- ==================== PAGE 9: 1.15 Vision & 1.16 Playwright ==================== -->
+        <div class="pdf-page">
+          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Mobile Vision &amp; Automation)</h2>
+
+          <!-- 1.15 Termux-Vision -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>1.15 Termux-Vision</span>
+              <span class="pdf-tag">모바일 온디바이스 컴퓨터 비전 &amp; VLM 엔진</span>
+            </div>
+            <div><strong>설명:</strong> 외부 무거운 의존성 없이 순수 ARM64 NEON 비전 커널, UltraFace SSD ONNX 얼굴 인식 및 SmolVLM/Qwen2-VL 온디바이스 멀티모달 VLM 추론을 수행하는 초경량 비전 프레임워크.</div>
+            <div><strong>기술 스택:</strong> Python 3, JavaScript/TypeScript, ARM64 NEON SIMD, UltraFace SSD ONNX, Vulkan 1.3, AMEVA-Cluster</div>
+            <div><strong>배포 버전:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-vision'] && liveData['termux-vision'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> OpenCV, torchvision 같은 패키지는 모바일 환경에서 수백 MB 용량과 복잡한 빌드 의존성을 유발하며 VLM 멀티모달 구동 불가.</div>
+            <div><strong>해결 방식:</strong> UltraFace SSD ONNX 런타임 얼굴 인식 엔진과 5단계 Canny 엣지 검출을 순수 경량 커널로 탑재하고, SmolVLM/Qwen2-VL 온디바이스 시각 질의응답을 통합 구현.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>온디바이스 VLM 멀티모달 질의응답:</strong> 카메라로 찍은 사진을 모델에 입력하여 "이 물건의 특징이 뭐야?" 같은 자연어 질문에 즉각 답변.</li>
+              <li><strong>AMEVA-Cluster VLM 풀링:</strong> 비전 인코더와 텍스트 디코더를 클러스터 노드로 샤딩하여 VRAM 부족 없이 고성능 VLM 실행.</li>
+            </ul>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-vision/" target="_blank" class="pdf-link">https://pypi.org/project/termux-vision/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-vision" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-vision</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/vision/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/vision/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-vision" target="_blank" class="pdf-link">https://github.com/uno-km/termux-vision</a></span>
+            </div>
+          </div>
+
+          <!-- 1.16 Termux-Playwright -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>1.16 Termux-Playwright</span>
+              <span class="pdf-tag">모바일 웹 자동화 &amp; 크롤링 런타임</span>
+            </div>
+            <div><strong>설명:</strong> 안드로이드 Termux 환경에서 루팅(Rooting) 없이 정품 크로미움 브라우저를 직접 제어하며, TermuxWakeLock 표준화로 화면 꺼짐 상태에서도 5W 초저전력 24시간 무중단 웹 자동화를 수행하는 런타임.</div>
+            <div><strong>기술 스택:</strong> Android Bionic libc, Chrome DevTools Protocol (CDP), Node.js, Python, TermuxWakeLock</div>
+            <div><strong>배포 버전:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || '-'} | <strong>배포일자:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].date) || '-'} | <strong>총 다운로드:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].total) || '-'}</div>
+            <div><strong>기존 문제:</strong> 일반 PC나 클라우드 서버는 24시간 크롤링 시 수백 W의 전력과 월 수십만 원의 서버 비용이 발생하며 모바일에서는 화면이 꺼지면 프로세스가 종료됨.</div>
+            <div><strong>해결 방식:</strong> TermuxWakeLock 인터페이스를 내장하여 스마트폰 화면이 꺼진 절전 상태에서도 CDP 세션을 유지하여 공기계 스마트폰을 상시 무인 크롤러 노드로 전환.</div>
+            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
+            <ul style="margin:2px 0 4px 18px; padding:0;">
+              <li><strong>5W 초저전력 24시간 무중단 자동화:</strong> PC 대비 전력 소모를 98% 절감하며 공기계 스마트폰에서 24시간 상시 웹 데이터 스크래핑 및 테스트 수행.</li>
+              <li><strong>스마트폰 비루팅 무인 자동화:</strong> 시스템 루팅 없이 안전하게 정품 크로미움 브라우저를 백그라운드에서 직접 제어.</li>
+            </ul>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pdf-link">https://pypi.org/project/termux-playwright/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-playwright</a></span>
+              <span><strong>[Docs] 공식 문서:</strong> <a href="https://uno-km.vercel.app/lib/playwright/" target="_blank" class="pdf-link">https://uno-km.vercel.app/lib/playwright/</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="pdf-link">https://github.com/uno-km/termux-playwright</a></span>
+            </div>
+          </div>
+
+          <div class="pdf-footer">Page 9 / 10 • 김은호 엔지니어링 포트폴리오</div>
+        </div>
+
+        <!-- ==================== PAGE 10: 종합 요약 및 전체 링크 색인 ==================== -->
         <div class="pdf-page">
           <h2 class="pdf-h2">2. 공통 기술 스택 및 카테고리 요약</h2>
           <table class="pdf-table">
@@ -727,19 +901,24 @@ window.AmevaPortfolioPDF = {
                 <td>TypeScript, WebGPU (WGSL), WebAssembly, WebCrypto, OPFS. 서버 전송 없이 브라우저 로컬 하드웨어 가속 및 완전한 데이터 격리.</td>
               </tr>
               <tr>
-                <td><strong>클라우드 &amp; 에이전트 도구</strong></td>
+                <td><strong>클라우드 &amp; 에이전트 인프라</strong></td>
                 <td>Infra-Index Platform, AMEVA-MCP-Hub, Termux-AIChain</td>
                 <td>Node.js, TypeScript, Python 3, WASI WebAssembly, Zero-Dependency. 호스트 개발 환경 오염 없는 인메모리 실행 및 경량 에이전트 파이프라인.</td>
               </tr>
               <tr>
-                <td><strong>모바일 온디바이스 AI (Termux)</strong></td>
-                <td>Termux-BitNet, Termux-Diffusion, Termux-STT, Termux-Train, Termux-LlamaCpp, Termux-Vision</td>
-                <td>C++17, C, ARM64 NEON &amp; DotProd Assembly, Vulkan 1.3, Bionic libc, GGML, SafeTensors. 클라우드 비용 0원, 스마트폰 단독 고성능 AI 학습/추론.</td>
+                <td><strong>온디바이스 분산 런타임 &amp; 가상 RAM</strong></td>
+                <td>AMEVA-Runtime, AMEVA-Cluster</td>
+                <td>C++17, Vulkan 1.3, OpenCL, POSIX IPC, Bionic libc, TCP Sockets. 단일 기기 RAM 한계를 극복하는 최대 44GB 분산 가상 RAM 풀링.</td>
+              </tr>
+              <tr>
+                <td><strong>모바일 온디바이스 AI &amp; 오디오</strong></td>
+                <td>Termux-Diffusion, Termux-BitNet, Termux-STT, Termux-TTS, Termux-Train, Termux-LlamaCpp, Termux-Vision</td>
+                <td>C++17, C, ARM64 NEON &amp; DotProd, Vulkan 1.3, AmfyUI, VITS Vocoder, Whisper.cpp, SafeTensors. 100% 로컬 고성능 AI 학습/추론.</td>
               </tr>
               <tr>
                 <td><strong>모바일 시스템 자동화</strong></td>
                 <td>Termux-Playwright</td>
-                <td>Chrome DevTools Protocol (CDP), Android Bionic libc. 비루팅 모바일 5W 초저전력 24시간 무중단 웹 자동화.</td>
+                <td>Chrome DevTools Protocol (CDP), Android Bionic libc, TermuxWakeLock. 비루팅 모바일 5W 초저전력 24시간 무중단 웹 자동화.</td>
               </tr>
             </tbody>
           </table>
@@ -765,7 +944,7 @@ window.AmevaPortfolioPDF = {
                 <td><strong>InfraIndex | GPU Scanner</strong></td>
                 <td><a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">Web App 실행</a></td>
                 <td>- (내부 시스템)</td>
-                <td>Private Repo</td>
+                <td>Private Enterprise Repo</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-MCP-Hub</strong></td>
@@ -775,15 +954,27 @@ window.AmevaPortfolioPDF = {
               </tr>
               <tr>
                 <td><strong>AMEVA-Sentinel</strong></td>
-                <td><a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="pdf-link">npm: ameva-sentinel</a></td>
+                <td><a href="https://www.npmjs.com/package/@ameva/sentinel" target="_blank" class="pdf-link">npm: @ameva/sentinel</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/sentinel/" target="_blank" class="pdf-link">Docs 링크</a></td>
                 <td><a href="https://github.com/uno-km/ameva-sentinel" target="_blank" class="pdf-link">GitHub Repo</a></td>
               </tr>
               <tr>
                 <td><strong>AMEVA-Forge</strong></td>
-                <td><a href="https://pypi.org/project/ameva/" target="_blank" class="pdf-link">PyPI: ameva</a></td>
+                <td><a href="https://pypi.org/project/ameva-forge/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/@ameva/forge" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/forge/" target="_blank" class="pdf-link">Docs 링크</a></td>
                 <td><a href="https://github.com/uno-km/AMEVA-Forge" target="_blank" class="pdf-link">GitHub Repo</a></td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-Runtime</strong></td>
+                <td><a href="https://pypi.org/project/ameva-runtime/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/@ameva/runtime" target="_blank" class="pdf-link">npm</a></td>
+                <td><a href="https://uno-km.vercel.app/lib/runtime/" target="_blank" class="pdf-link">Docs 링크</a></td>
+                <td><a href="https://github.com/uno-km/ameva-runtime" target="_blank" class="pdf-link">GitHub Repo</a></td>
+              </tr>
+              <tr>
+                <td><strong>AMEVA-Cluster</strong></td>
+                <td><a href="https://pypi.org/project/ameva-cluster/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/@ameva/cluster" target="_blank" class="pdf-link">npm</a></td>
+                <td><a href="https://uno-km.vercel.app/lib/cluster/" target="_blank" class="pdf-link">Docs 링크</a></td>
+                <td><a href="https://github.com/uno-km/ameva-cluster" target="_blank" class="pdf-link">GitHub Repo</a></td>
               </tr>
               <tr>
                 <td><strong>Termux-AIChain</strong></td>
@@ -816,8 +1007,14 @@ window.AmevaPortfolioPDF = {
                 <td><a href="https://github.com/uno-km/termux-stt" target="_blank" class="pdf-link">GitHub Repo</a></td>
               </tr>
               <tr>
+                <td><strong>Termux-TTS</strong></td>
+                <td><a href="https://pypi.org/project/termux-tts/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/termux-tts" target="_blank" class="pdf-link">npm</a></td>
+                <td><a href="https://uno-km.vercel.app/lib/tts/" target="_blank" class="pdf-link">Docs 링크</a></td>
+                <td><a href="https://github.com/uno-km/termux-tts" target="_blank" class="pdf-link">GitHub Repo</a></td>
+              </tr>
+              <tr>
                 <td><strong>Termux-Train</strong></td>
-                <td><a href="https://pypi.org/project/termux-train/" target="_blank" class="pdf-link">PyPI: termux-train</a></td>
+                <td><a href="https://pypi.org/project/termux-train/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/termux-train" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/train/" target="_blank" class="pdf-link">Docs 링크</a></td>
                 <td><a href="https://github.com/uno-km/termux-train" target="_blank" class="pdf-link">GitHub Repo</a></td>
               </tr>
@@ -836,10 +1033,10 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div style="margin-top: 14px; text-align: center; font-size: 9.5px; color: #64748b;">
+          <div style="margin-top: 10px; text-align: center; font-size: 9px; color: #64748b;">
             © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF). All Rights Reserved.
           </div>
-          <div class="pdf-footer">Page 8 / 8 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 10 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
       `;
 
@@ -847,10 +1044,10 @@ window.AmevaPortfolioPDF = {
       document.body.appendChild(wrapper);
 
       // Wait for layout calculation and font rendering
-      await new Promise(resolve => setTimeout(resolve, 250));
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const opt = {
-        margin: [6, 6, 6, 6],
+        margin: [5, 5, 5, 5],
         filename: '김은호_엔지니어링_포트폴리오.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         enableLinks: true,
