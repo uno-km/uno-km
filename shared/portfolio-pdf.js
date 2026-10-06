@@ -2,7 +2,7 @@
  * shared/portfolio-pdf.js
  * AMEVA Open-Source Foundation & Eunho Kim Official Portfolio PDF Generator
  * High-precision, zero-drift Korean typography & hyperlinked layout engine
- * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (Strict 10 Pages)
+ * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (Strict 11 Pages)
  * Dynamic AMEVA Labs Research Papers & Benchmarks with Abstracts
  */
 
@@ -89,60 +89,204 @@ window.AmevaPortfolioPDF = {
       // Curated fallback if DB offline
       const fallbackPapers = [
         {
-          id: 45,
-          menu_id: 'research-papers',
-          title: '온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가',
-          author: '김은호',
-          created_at: '2026-09-29',
-          abstract: '밀집 행렬곱 인코더는 Vulkan GPU, 순차 단일 토큰 디코더는 ARM NEON CPU로 분할 처리하여 발열을 408%에서 16%로 냉각한 하이브리드 파이프라인 실증.'
+                "id": 68,
+                "menu_id": "research-papers",
+                "title": "[Vol. 19] 소버린 온디바이스 AI 런타임 & 컴파일러 아키텍처 포렌식 감사 백서: 글로벌 빅테크 전수 대조 및 AMUDA 2.x 이종 가속 실증",
+                "author": "AMEVA Engineering Council",
+                "created_at": "2026-10-02",
+                "abstract": "글로벌 빅테크의 폐쇄형 AI 런타임(MediaPipe, CoreML, ExecuTorch)과 AMEVA 소버린 온디바이스 런타임의 전수 대조 감사 및 AMUDA 2.x 이종 하드웨어 가속 실증 백서."
         },
         {
-          id: 52,
-          menu_id: 'research-papers',
-          title: 'ARM64 온디바이스 1.58비트 LLM의 삼진 수치 붕괴(Word Salad) 결함 원인 규명 및 다이나믹 활성화 함수 엔진 구현 실증',
-          author: '김은호',
-          created_at: '2026-10-01',
-          abstract: '삼진 LLM 구동 시 발생하는 수치 붕괴 결함을 포렌식 분석하고, 정확한 역양자화 수식 w=(b&3)-1 복원 및 다이나믹 활성화 함수 디스패처를 업스트림에 기여.'
+                "id": 67,
+                "menu_id": "research-papers",
+                "title": "[Vol. 18] ARM Mali GPU 하드웨어 결함 포렌식: Exynos 2100(S21) 커널 Watchdog Device Lost 및 Valhall 무한 루프 완치 연대기",
+                "author": "AMEVA Hardware Forensic Lab",
+                "created_at": "2026-10-02",
+                "abstract": "Samsung Exynos 2100(Mali-G78) 및 1380(Mali-G68) GPU에서 고부하 딥러닝 연산 시 발생하는 커널 Watchdog Device Lost 및 Valhall 셰이더 무한 루프 결함을 완치한 하드웨어 포렌식 감사 보고서."
         },
         {
-          id: 33,
-          menu_id: 'research-papers',
-          title: '메모리 제약 모바일 디바이스에서 레이어 스트리밍을 활용한 대규모 Diffusion Transformer 추론 기법 실증',
-          author: '김은호',
-          created_at: '2026-09-28',
-          abstract: '모바일 단말의 1GB VRAM 한계를 극복하기 위해 60억 파라미터 DiT 가중치를 AXI 버스 동적 교체 방식으로 구동하여 안드로이드 LMK 강제 종료를 원천 차단.'
+                "id": 66,
+                "menu_id": "research-papers",
+                "title": "[Vol. 17] 갤럭시 S25 (Snapdragon 8 Elite / Adreno 830) 하드웨어 포렌식: 수치 붕괴 완치 및 순수 Vulkan STT Ground Truth 실측",
+                "author": "AMEVA Hardware Forensic Lab",
+                "created_at": "2026-10-02",
+                "abstract": "Qualcomm Snapdragon 8 Elite(Adreno 830 GPU)의 Vulkan Compute 파이프라인에서 발생하는 FP16 수치 언더플로우 및 LDS 한계를 완치하고 순수 Vulkan STT Ground-Truth 실측 성능을 입증한 하드웨어 포렌식."
         },
         {
-          id: 31,
-          menu_id: 'research-papers',
-          title: 'Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법',
-          author: '김은호',
-          created_at: '2026-09-12',
-          abstract: '스냅드래곤 GPU SPIR-V 컴파일러의 루프 전개 결함을 포렌식 분석하고 IEEE 754 반정밀도(FP16) 언더플로우를 방지하는 정밀도 복원 기법 제시.'
+                "id": 64,
+                "menu_id": "research-papers",
+                "title": "[Vol. 16] NVIDIA CUDA GPGPU 아키텍처 심층 해부: SM·Warp 마이크로아키텍처와 독점 생태계의 기술적 해자",
+                "author": "Antigravity Systems Engineering Team",
+                "created_at": "2026-10-02",
+                "abstract": "엔비디아 GPU 마이크로아키텍처(SM, Warp 스케줄러, 텐서 코어)와 CUDA 소프트웨어 스택이 형성한 독점 생태계의 기술적 해자를 심층 분석하고, 크로스 플랫폼 대안 런타임의 설계 방향성 정립."
+        },
+        {
+                "id": 63,
+                "menu_id": "research-papers",
+                "title": "[Vol. 15] ARM64 마이크로아키텍처 명세 및 하드웨어 가속 원론: AArch64 ISA 기원부터 NEON SIMD 벡터화까지",
+                "author": "Antigravity Systems Engineering Team",
+                "created_at": "2026-10-02",
+                "abstract": "AArch64 ISA의 기원부터 파이프라인, 레지스터 토폴로지, ARMv8.2-A NEON Int8 Dot-Product 벡터화 어셈블리까지 모바일 SoC 하드웨어 직접 가속을 위한 마이크로아키텍처 공학 원론 집대성."
+        },
+        {
+                "id": 60,
+                "menu_id": "research-papers",
+                "title": "모바일 GPGPU 가속 플랫폼 진화사: 빅테크 실패 잔혹사(RenderScript·NNAPI) 해부, 독점 생태계 생존 전략 및 AMUDA CUDA-Subset 런타임 설계 공학",
+                "author": "Antigravity Systems Engineering Team",
+                "created_at": "2026-10-02",
+                "abstract": "모바일 GPGPU 가속 플랫폼의 진화사와 빅테크 실패 사례(RenderScript, NNAPI)를 비판적으로 해부하고, 독점 종속성을 탈피하는 소버린 엣지 전용 AMUDA CUDA-Subset 런타임 설계 공학 제시."
+        },
+        {
+                "id": 55,
+                "menu_id": "research-papers",
+                "title": "모바일 엣지 온디바이스 AI 소프트웨어 아키텍처의 참나무(Oak Tree) 표준화 설계 및 11대 모달리티 실증",
+                "author": "uno-km",
+                "created_at": "2026-10-02",
+                "abstract": "온디바이스 AI 도구군(11대 모달리티)의 엔지니어링 부채를 청산하고 단일 네이티브 ABI 및 제로 의존성 디렉터리 배치를 강제하는 참나무(Oak Tree) 표준 아키텍처 명세 및 다기종 모바일 기기 실증."
+        },
+        {
+                "id": 54,
+                "menu_id": "research-papers",
+                "title": "Android Bionic Vulkan Loader 우회 메커니즘과 모바일 GPU 연산 지연시간 역전 현상 포렌식 분석",
+                "author": "uno-km",
+                "created_at": "2026-10-02",
+                "abstract": "Android Termux 유저스페이스에서 Bionic Vulkan Loader 로딩 시 발생하는 모바일 GPU 연산 지연시간 역전 현상(CPU보다 8배 지연)을 포렌식 분석하고, 다이렉트 드라이버 심볼 바인딩을 통한 제로 오버헤드 우회책 실증."
+        },
+        {
+                "id": 52,
+                "menu_id": "research-papers",
+                "title": "ARM64 온디바이스 1.58비트 LLM의 삼진 수치 붕괴(Word Salad) 결함 원인 규명 및 다이나믹 활성화 함수 엔진 구현 실증",
+                "author": "uno-km",
+                "created_at": "2026-10-01",
+                "abstract": "모바일 ARM64 단말에서 1.58비트 삼진 LLM(BitNet) 구동 시 발생하는 수치 붕괴(Word Salad) 결함을 포렌식 분석하고, 정확한 역양자화 수식 w=(b&3)-1 복원 및 다이나믹 활성화 함수 디스패처를 업스트림에 기여."
+        },
+        {
+                "id": 47,
+                "menu_id": "research-papers",
+                "title": "Qualcomm Adreno 650 GPU의 Vulkan 수치 붕괴 결함 원인 규명 및 OpenCL 우회 가속 파이프라인 구현 실증",
+                "author": "uno-km",
+                "created_at": "2026-09-29",
+                "abstract": "Qualcomm Snapdragon 865(Galaxy S20)의 Adreno 650 GPU에서 Vulkan 거대언어모델 구동 시 발생하는 텍스트 수치 붕괴 현상을 규명하고, OpenCL 네이티브 드라이버 직결 우회 파이프라인을 구축하여 6배 고속 안정성 확보."
+        },
+        {
+                "id": 46,
+                "menu_id": "research-papers",
+                "title": "Snapdragon 8 Elite 온디바이스 LLaMA 추론 결함(@ 토큰 반복) 원인 분석 및 아키텍처적 해결 방안",
+                "author": "uno-km",
+                "created_at": "2026-09-29",
+                "abstract": "최신 Qualcomm Snapdragon 8 Elite(Galaxy S25) 플랫폼에서 LLaMA 기반 추론 시 발생하는 토큰 반복 붕괴(Logit Collapse) 결함의 원인을 규명하고, Bionic libc 16KB 메모리 정렬 및 디스패처 패치를 통한 해결 방안 제시."
+        },
+        {
+                "id": 45,
+                "menu_id": "research-papers",
+                "title": "온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가",
+                "author": "uno-km",
+                "created_at": "2026-09-29",
+                "abstract": "온디바이스 음성인식의 단계별 연산 특성을 분석하여, 밀집 행렬곱 인코더는 Vulkan GPU로 가속하고 순차적 단일 토큰 디코더는 ARM NEON CPU로 분할 처리하여 발열을 408%에서 16%로 냉각한 하이브리드 파이프라인 실증."
+        },
+        {
+                "id": 44,
+                "menu_id": "research-papers",
+                "title": "폐쇄형 다중 에이전트 담론 환경에서 나타나는 의견 동조화와 합의 수렴 현상에 관한 실증 분석",
+                "author": "uno-km",
+                "created_at": "2026-09-26",
+                "abstract": "폐쇄형 가상 커뮤니티에서 자율 AI 에이전트들이 생성한 538개 담론 세션을 전수 조사하여, 가드레일이 배제된 환경에서 나타나는 의견 동조화 및 조기 합의 수렴 현상의 시계열 통계적 특성을 실증 분석."
+        },
+        {
+                "id": 43,
+                "menu_id": "research-papers",
+                "title": "다중 에이전트 담론 시스템에서 정량적 성향 벡터 모델링과 섭동 주입을 통한 의견 다양성 유지 연구",
+                "author": "uno-km",
+                "created_at": "2026-09-25",
+                "abstract": "자율 LLM 다중 에이전트 담론 환경에서 발생하는 조기 합의 수렴 및 인격 평면화를 방지하기 위해 8차원 유클리드 공간 기반 정량적 성향 벡터 모델과 비선형 외부 섭동 주입 기법(Perturbation Injection)을 제안 및 검증."
+        },
+        {
+                "id": 42,
+                "menu_id": "research-papers",
+                "title": "자원 제약 환경의 다중 에이전트 담론 시뮬레이션을 위한 상태 분리형 추론 파이프라인 설계",
+                "author": "uno-km",
+                "created_at": "2026-09-24",
+                "abstract": "제한된 엣지 디바이스 RAM 환경에서 다중 거대언어모델(LLM) 에이전트 간 연속 담론을 시뮬레이션하기 위해, 에이전트 상태를 인메모리에서 분리하고 턴별 컨텍스트를 동적 스와핑하는 상태 분리형 추론 파이프라인 설계."
+        },
+        {
+                "id": 33,
+                "menu_id": "research-papers",
+                "title": "메모리 제약 모바일 디바이스에서 레이어 스트리밍을 활용한 대규모 Diffusion Transformer 추론 기법 실증",
+                "author": "uno-km",
+                "created_at": "2026-09-28",
+                "abstract": "모바일 단말의 엄격한 VRAM 한계(1GB 미만)를 극복하기 위해 60억 파라미터 DiT(Diffusion Transformer) 가중치를 AXI 버스 기반 레이어 스트리밍으로 교체 구동하여 안드로이드 LMK 강제 종료를 원천 차단한 실증 연구."
+        },
+        {
+                "id": 32,
+                "menu_id": "research-papers",
+                "title": "ARM Mali Valhall GPU의 Vulkan 행렬 연산에서 발생하는 정수 절삭 결함 분석 및 런타임 해결 방안",
+                "author": "uno-km",
+                "created_at": "2026-09-05",
+                "abstract": "Samsung Exynos 탑재 ARM Mali Valhall 아키텍처(G78/G68) GPU에서 Vulkan 1.3 행렬 연산 시 발생하는 정수 절삭 및 셰이더 타임아웃 결함을 분석하고, 커널 Watchdog 리셋을 방지하는 작업 분할 런타임 수립."
+        },
+        {
+                "id": 31,
+                "menu_id": "research-papers",
+                "title": "Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법",
+                "author": "uno-km",
+                "created_at": "2026-09-12",
+                "abstract": "Qualcomm Snapdragon Adreno 6xx/7xx GPU의 SPIR-V 셰이더 컴파일러에서 발생하는 동적 루프 전개 결함(Loop Unrolling Bug)을 포렌식 분석하고, IEEE 754 반정밀도(FP16) 언더플로우를 방지하는 정밀도 복원 기법 제시."
+        },
+        {
+                "id": 30,
+                "menu_id": "research-papers",
+                "title": "안드로이드 모바일 환경에서 트랜스포머 음성인식 모델의 Vulkan 가속 파이프라인 설계 및 런타임 결함 분석",
+                "author": "uno-km",
+                "created_at": "2026-09-15",
+                "abstract": "모바일 ARM64 단말에서 Whisper STT 모델 구동 시 Bionic libc 환경의 Vulkan SPIR-V 연산 파이프라인을 설계하고, GPU 셰이더 컴파일러 결함 및 Adreno 드라이버 비정상 종료를 방어하는 네이티브 가속 아키텍처 실증."
         }
-      ];
+];
 
       const fallbackBenchmarks = [
         {
-          id: 65,
-          menu_id: 'research-benchmarks',
-          title: '2026 AMEVA 모바일 플릿 하드웨어 8대 모달리티 전수 실측 대백서: 4대 실기기(S25·S21·A35·S20) 매트릭스',
-          author: '김은호',
-          created_at: '2026-10-02',
-          abstract: '상용 갤럭시 단말기 4종에서 8대 AI 모달리티를 직접 구동하여 측정한 단일 진실 공급원(SSOT) 벤치마크 매트릭스. 발열, 지연시간, 메모리 누수 전수 검증.'
+                "id": 65,
+                "menu_id": "research-benchmarks",
+                "title": "2026 AMEVA 모바일 플릿 하드웨어 8대 모달리티 전수 실측 대백서: 4대 실기기(S25·S21·A35·S20) 매트릭스",
+                "author": "AMEVA Fleet Engineering Consortium",
+                "created_at": "2026-10-02",
+                "abstract": "상용 갤럭시 단말기 4종(S25, S21, A35, S20)에서 8대 AI 모달리티를 직접 구동하여 측정한 단일 진실 공급원(SSOT) 벤치마크 매트릭스. 발열, 지연시간, 메모리 누수 전수 검증 데이터 수록."
         },
         {
-          id: 36,
-          menu_id: 'research-benchmarks',
-          title: '갤럭시 S20 72시간 연속 AI 추론 스트레스 테스트: 발열 및 메모리 누수 분석',
-          author: '김은호',
-          created_at: '2026-09-20',
-          abstract: 'Samsung Galaxy S20 단말에서 72시간 동안 10,000회 연속 온디바이스 AI 추론을 실행하며 배터리 소모율, 온도 변화, 힙 메모리 안전성을 정밀 실측 검증.'
+                "id": 37,
+                "menu_id": "research-benchmarks",
+                "title": "Termux 환경 모바일 온디바이스 AI(LLM, VLM, STT, TTS) 지연시간 및 메모리 소비량",
+                "author": "uno-km",
+                "created_at": "2026-09-22",
+                "abstract": "Android Termux 유저스페이스 상에서 경량 LLM, Vision VLM, Whisper STT, VITS TTS 4대 모달리티의 초기 기동 지연시간, 실시간 처리 배속비, RSS 메모리 소비량을 정밀 프로파일링한 실측 보고서."
+        },
+        {
+                "id": 36,
+                "menu_id": "research-benchmarks",
+                "title": "갤럭시 S20 72시간 연속 AI 추론 스트레스 테스트: 발열 및 메모리 누수 분석",
+                "author": "uno-km",
+                "created_at": "2026-09-20",
+                "abstract": "Samsung Galaxy S20 단말에서 72시간 동안 10,000회 연속 온디바이스 AI 추론을 실행하며 배터리 소모율, 서멀 존 온도 변화, 프로세스 힙 메모리 누수 여부를 완벽히 검증한 신뢰성 리포트."
+        },
+        {
+                "id": 35,
+                "menu_id": "research-benchmarks",
+                "title": "엑시노스 1380(A35) vs 엑시노스 2100(S21) 모바일 Vulkan 연산 성능 실측",
+                "author": "uno-km",
+                "created_at": "2026-09-16",
+                "abstract": "Samsung Exynos 1380(Galaxy A35)과 Exynos 2100(Galaxy S21)의 Mali GPU에서 Vulkan 1.3 컴퓨트 셰이더 행렬 연산 성능 및 열역학적 스로틀링 곡선을 직접 비교 계측한 벤치마크 보고서."
+        },
+        {
+                "id": 34,
+                "menu_id": "research-benchmarks",
+                "title": "갤럭시 S25부터 S7까지: 6종 단말기 온디바이스 AI 8대 모델 실측 성능 비교",
+                "author": "uno-km",
+                "created_at": "2026-09-15",
+                "abstract": "Galaxy S25부터 S7까지 6종의 상용 모바일 단말기에서 8대 온디바이스 AI 모델(LLM, Diffusion, STT 등)의 실제 추론 속도, 메모리 상주량, 전력 소모량을 정밀 대조한 실측 벤치마크 데이터베이스."
         }
-      ];
+];
 
-      const activePapers = (labsData.papers && labsData.papers.length > 0) ? labsData.papers.slice(0, 4) : fallbackPapers;
-      const activeBenchmarks = (labsData.benchmarks && labsData.benchmarks.length > 0) ? labsData.benchmarks.slice(0, 2) : fallbackBenchmarks;
+      const activePapers = (labsData.papers && labsData.papers.length > 0) ? labsData.papers : fallbackPapers;
+      const activeBenchmarks = (labsData.benchmarks && labsData.benchmarks.length > 0) ? labsData.benchmarks : fallbackBenchmarks;
 
       // Build Dynamic Research Table Rows HTML
       let researchRowsHtml = '';
@@ -154,10 +298,10 @@ window.AmevaPortfolioPDF = {
         const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=${p.id}`;
         researchRowsHtml += `
           <tr>
-            <td><span style="color:#0284c7; font-weight:700;">[연구 백서]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>
-            <td><strong>${p.title}</strong></td>
-            <td>${abstractStr}</td>
-            <td class="center"><a href="${linkUrl}" target="_blank" class="pdf-link">논문 열람</a></td>
+            <td style="padding:1.4px 2px;"><span style="color:#0284c7; font-weight:700;">[연구 백서]</span><br><span style="color:#64748b; font-size:5.2px;">${dateStr} · ${authorStr}</span></td>
+            <td style="padding:1.4px 2px;"><strong>${p.title}</strong></td>
+            <td style="padding:1.4px 2px; line-height:1.18;">${abstractStr}</td>
+            <td class="center" style="padding:1.4px 2px;"><a href="${linkUrl}" target="_blank" class="pdf-link">논문 열람</a></td>
           </tr>
         `;
       });
@@ -169,10 +313,10 @@ window.AmevaPortfolioPDF = {
         const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-benchmarks&post=${b.id}`;
         researchRowsHtml += `
           <tr>
-            <td><span style="color:#16a34a; font-weight:700;">[실측 벤치]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>
-            <td><strong>${b.title}</strong></td>
-            <td>${abstractStr}</td>
-            <td class="center"><a href="${linkUrl}" target="_blank" class="pdf-link">리포트 열람</a></td>
+            <td style="padding:1.4px 2px;"><span style="color:#16a34a; font-weight:700;">[실측 벤치]</span><br><span style="color:#64748b; font-size:5.2px;">${dateStr} · ${authorStr}</span></td>
+            <td style="padding:1.4px 2px;"><strong>${b.title}</strong></td>
+            <td style="padding:1.4px 2px; line-height:1.18;">${abstractStr}</td>
+            <td class="center" style="padding:1.4px 2px;"><a href="${linkUrl}" target="_blank" class="pdf-link">리포트 열람</a></td>
           </tr>
         `;
       });
@@ -627,7 +771,7 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div class="pdf-footer">Page 1 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 1 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 2: 1.1 Workstation & 1.2 Infra-Index ==================== -->
@@ -680,7 +824,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 2 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 2 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 3: 2.1 AMEVA-Runtime & 2.2 Termux-Diffusion ==================== -->
@@ -731,7 +875,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 3 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 3 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 4: 2.3 Termux-BitNet & 2.4 Termux-LlamaCpp ==================== -->
@@ -782,7 +926,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 4 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 4 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 5: 2.5 Termux-STT & 2.6 Termux-TTS ==================== -->
@@ -833,7 +977,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 5 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 5 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 6: 2.7 Termux-Vision & 2.8 Termux-Train ==================== -->
@@ -884,7 +1028,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 6 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 6 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 7: 2.9 Termux-Playwright & 2.10 Termux-AIChain ==================== -->
@@ -935,7 +1079,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 7 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 7 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 8: 2.11 AMEVA-Cluster & 2.12 AMEVA-MCP-Hub ==================== -->
@@ -985,7 +1129,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 8 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 8 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
         <!-- ==================== PAGE 9: 2.13 AMEVA-Forge & 2.14 AMEVA-Sentinel ==================== -->
@@ -1036,11 +1180,12 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 9 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 9 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 10: 전체 공식 배포처 및 아키텍처 다이어그램 ==================== -->
+        <!-- ==================== PAGE 10: 전체 공식 배포처 및 생태계 아키텍처 ==================== -->
         <div class="pdf-page">
+
           <h2 class="pdf-h2">3. AMEVA 생태계 분산 아키텍처 (Disaggregated Edge AI)</h2>
           <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:6px 9px; border-radius:3px; margin-bottom:5px; font-size:8.6px; line-height:1.35;">
             <div style="font-weight:700; color:#0f172a; margin-bottom:2px;">시스템 통합 구조 (End-to-End Orchestration)</div>
@@ -1159,14 +1304,33 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <h2 class="pdf-h2">5. AMEVA Labs 기술 연구 백서 &amp; 실기기 벤치마크 (Research Papers &amp; Benchmarks)</h2>
-          <table class="pdf-table" style="font-size:6.7px; margin: 1px 0 3px 0;">
+          
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid #004499; padding:5px 8px; border-radius:3px; margin-top:6px; font-size:7.5px; line-height:1.35;">
+            <div style="font-weight:700; color:#0f172a; margin-bottom:2px; font-size:8.0px;">16대 생태계 패키지 배포 거버넌스 및 독립 연구소(AMEVA Labs) 연동 요약</div>
+            <div>• <strong>라이브러리 및 런타임 보안:</strong> 모든 패키지는 엄격한 패키징 툴체인을 통해 무결성이 검증되어 글로벌 레지스트리(npm · PyPI)에 상시 배포됩니다.</div>
+            <div>• <strong>연구 백서 &amp; 실기기 벤치마크:</strong> 다음 페이지(Page 11)에 수록된 24편의 전수 아카이브는 4대 상용 단말기(Galaxy S25/S21/A35/S20)에서 직접 추출한 하드웨어 포렌식 및 실측 벤치마크 원문입니다.</div>
+          </div>
+
+          <div class="pdf-footer">Page 10 / 11 • 김은호 엔지니어링 포트폴리오</div>
+        </div>
+
+        <!-- ==================== PAGE 11: AMEVA Labs 기술 연구 백서 & 실기기 벤치마크 전수 아카이브 ==================== -->
+        <div class="pdf-page">
+          <h2 class="pdf-h2">5. AMEVA Labs 기술 연구 백서 &amp; 실기기 벤치마크 전수 아카이브 (Full Research Archive)</h2>
+          <div style="background:#f0f9ff; border:1px solid #bae6fd; padding:3px 7px; border-radius:3px; margin-bottom:3px; font-size:6.8px; color:#0369a1; line-height:1.25; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong>[연구실 공식 아카이브]:</strong> 1인 독립 연구소 AMEVA Labs에서 직접 설계·실측·검증한 기술 연구 백서 19편 및 상용 모바일 4대 단말 실기기 벤치마크 5편 (총 24편 전수 수록)
+            </div>
+            <a href="https://uno-km.vercel.app/labs" target="_blank" class="pdf-link" style="font-weight:700; white-space:nowrap; margin-left:8px; font-size:6.8px;">연구 포털 바로가기 →</a>
+          </div>
+
+          <table class="pdf-table" style="font-size:5.6px; margin: 1px 0 2px 0;">
             <thead>
               <tr>
-                <th style="width: 14%;">분류 / 일자</th>
-                <th style="width: 28%;">연구 제목 (논문 / 벤치마크)</th>
-                <th style="width: 48%;">연구 초록 (Abstract)</th>
-                <th style="width: 10%;">원문 링크</th>
+                <th style="width: 14%; padding: 1.2px 2px;">분류 / 일자</th>
+                <th style="width: 29%; padding: 1.2px 2px;">연구 제목 (논문 / 벤치마크)</th>
+                <th style="width: 48%; padding: 1.2px 2px;">연구 초록 (Abstract)</th>
+                <th style="width: 9%; padding: 1.2px 2px;">원문 링크</th>
               </tr>
             </thead>
             <tbody>
@@ -1174,10 +1338,10 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div style="margin-top: 5px; text-align: center; font-size: 8.2px; color: #64748b;">
-            © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF). All Rights Reserved.
+          <div style="margin-top: 3px; text-align: center; font-size: 7.2px; color: #64748b;">
+            © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF) &amp; AMEVA Labs. All Rights Reserved.
           </div>
-          <div class="pdf-footer">Page 10 / 10 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 11 / 11 • 김은호 엔지니어링 포트폴리오</div>
         </div>
       `;
 
