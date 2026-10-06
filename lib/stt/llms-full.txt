@@ -1,9 +1,9 @@
-# Termux-STT Full Technical Specification (v1.3.3)
+# Termux-STT Full Technical Specification (v2.0.3)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Unified On-Device Speech-to-Text Utilizing Device Resources & Pure Python 128d X-Vector Speaker Diarization
-Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.
+Unified On-Device Speech-to-Text & Neural Multi-Speaker Diarization (PyAnnote 3.0 + CAM++ 192d + TS-VAD Overlap Resolver)
+Integrates Whisper.cpp (Native Vulkan GPU / NEON CPU) and Sherpa-ONNX with PyAnnote 3.0 neural segmentation, 3D-Speaker CAM++ 192-dim embeddings, and TS-VAD overlapped speech resolution with zero cloud egress.
 
 ## 2. Package & Installation
 - PyPI: termux-stt

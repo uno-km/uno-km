@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complete API Reference | Termux-STT</title>
-  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
+  <meta name="description" content="Integrates Whisper.cpp (Native Vulkan GPU / NEON CPU) and Sherpa-ONNX with PyAnnote 3.0 neural segmentation, 3D-Speaker CAM++ 192-dim embeddings, and TS-VAD overlapped speech resolution with zero cloud egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -29,7 +29,7 @@
   <tbody>
     <tr>
       <td><code>create_engine</code></td>
-      <td><code>engine="whisper", model=None, lang="ko", threads=None, vad=True, quantization="q5_1", num_speakers=0, **kwargs</code></td>
+      <td><code>engine="whisper"|"sherpa"|"hybrid", model=None, lang="ko", threads=None, vad=True, quantization="q5_1", num_speakers=0, **kwargs</code></td>
       <td><code>Engine</code></td>
       <td>Instantiates and returns the configured concrete STT or Hybrid engine instance.</td>
     </tr>
@@ -50,9 +50,9 @@
     </tr>
     <tr>
       <td><code>diarize</code></td>
-      <td><code>(audio_path: str, num_speakers: int = 2)</code></td>
+      <td><code>(audio_path: str, num_speakers: int = 2, **kwargs)</code></td>
       <td><code>DiarizedResult</code></td>
-      <td>Runs the full hybrid diarization pipeline (128d X-Vector + K-Means + STT).</td>
+      <td>Runs the full neural diarization pipeline (PyAnnote 3.0 + CAM++ 192d + TS-VAD + Whisper STT).</td>
     </tr>
     <tr>
       <td><code>stream_mic</code></td>
@@ -89,37 +89,20 @@
   <li><code>to_rttm() -> str</code> - Serializes segments into NIST Rich Transcription (RTTM) format.</li>
 </ul>
 
+<h4><code>DiarizedResult</code> Struct:</h4>
+<ul>
+  <li>Extends <code>TranscriptResult</code>.</li>
+  <li><code>speakers: Optional[List[str]]</code> - Unique list of identified speaker labels (e.g. <code>["Speaker_0", "Speaker_1"]</code>).</li>
+</ul>
+
 <h4><code>Segment</code> Struct:</h4>
 <ul>
   <li><code>start: float</code> - Start timestamp in seconds (precision: 0.001s).</li>
   <li><code>end: float</code> - End timestamp in seconds.</li>
   <li><code>text: str</code> - Transcribed text within the interval.</li>
-  <li><code>speaker: Optional[str]</code> - Assigned speaker cluster identifier (e.g. <code>"Speaker 0"</code>).</li>
+  <li><code>speaker: Optional[str]</code> - Assigned speaker identifier (e.g. <code>"Speaker_0"</code>).</li>
+  <li><code>confidence: Optional[float]</code> - Transcription confidence score.</li>
 </ul>
-
-<h3>4. Model Management & Preprocessing Subsystems</h3>
-<table class="data-table">
-  <thead>
-    <tr><th>Module / Class</th><th>Method</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>ModelHub</code></td>
-      <td><code>ensure_model(engine, model_name) -> str</code></td>
-      <td>Verifies local cache or downloads model binary with SHA-256 integrity verification.</td>
-    </tr>
-    <tr>
-      <td><code>preprocessor</code></td>
-      <td><code>preprocess(audio_path, target_sr=16000, force_mono=True) -> str</code></td>
-      <td>Direct pure-Python WAV parser or auto-converting FFmpeg fallback.</td>
-    </tr>
-    <tr>
-      <td><code>MobileGuard</code></td>
-      <td><code>acquire_wakelock() / monitor_memory()</code></td>
-      <td>Acquires Android CPU WakeLock and monitors process RSS against OOM limits.</td>
-    </tr>
-  </tbody>
-</table>
 
     </main>
   </div>

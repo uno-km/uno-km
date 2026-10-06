@@ -88,8 +88,8 @@ libs:
   - id: aichain
     name: "Termux-AIChain"
     badge: "pip / npm"
-    tagline_ko: "디바이스 리소스를 활용한 Zero-Dep AI 체인 및 자율 에이전트 DAG 실행 프레임워크 for Android Termux."
-    tagline_en: "Zero-Dependency AI chaining & autonomous agent DAG execution framework utilizing device resources for Android Termux."
+    tagline_ko: "왜 랭체인 대신 AIChain인가? 94KB 제로-의존성 LCEL 파이프 체이닝, StateGraph 에이전트 및 스마트폰 하드웨어 직접 액추에이션 for Android Termux."
+    tagline_en: "Why LangChain on Termux? Bloat & Crash vs 94KB Zero-Dep LCEL Chaining, StateGraph Multi-Agents & Native Smartphone Hardware Actuation."
     links:
       docs: "/lib/aichain/"
       pypi: "https://pypi.org/project/termux-aichain/"

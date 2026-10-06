@@ -14,20 +14,20 @@
  */
 
 const KNOWN_BASELINES = {
-  diffusion:  { npm: 4059, pypi: 7080, ver: "v2.0.1" },
-  bitnet:     { npm: 4692, pypi: 3544, ver: "v2.1.0" },
-  vulkan:     { npm: 4022, pypi: 4154, ver: "v2.8.0" },
-  stt:        { npm: 4424, pypi: 3717, ver: "v1.4.0" },
-  llamacpp:   { npm: 3680, pypi: 3671, ver: "v1.4.0" },
-  train:      { npm: 1684, pypi: 3735, ver: "v2.0.1" },
-  playwright: { npm: 1858, pypi: 3163, ver: "v1.81.2" },
-  tts:        { npm: 2080, pypi: 2724, ver: "v1.6.0" },
-  vision:     { npm: 2589, pypi: 1966, ver: "v1.7.0" },
-  aichain:    { npm: 2519, pypi: 1910, ver: "v1.1.4" },
-  sentinel:   { npm: 663,  pypi: 562,  ver: "v2.3.0" },
-  mcp:        { npm: 1061, pypi: null, ver: "v3.1.4" },
-  forge:      { npm: 373,  pypi: 278,  ver: "v1.0.1" },
-  cluster:    { npm: 99,   pypi: 112,  ver: "v1.0.0" }
+  diffusion:  { npm: 0, pypi: 0, ver: "v2.0.1" },
+  bitnet:     { npm: 0, pypi: 0, ver: "v2.1.0" },
+  vulkan:     { npm: 0, pypi: 0, ver: "v2.8.1" },
+  stt:        { npm: 0, pypi: 0, ver: "v1.5.0" },
+  llamacpp:   { npm: 0, pypi: 0, ver: "v1.4.0" },
+  train:      { npm: 0, pypi: 0, ver: "v2.0.1" },
+  playwright: { npm: 0, pypi: 0, ver: "v1.81.2" },
+  tts:        { npm: 0, pypi: 0, ver: "v1.6.0" },
+  vision:     { npm: 0, pypi: 0, ver: "v1.7.0" },
+  aichain:    { npm: 0, pypi: 0, ver: "v1.1.4" },
+  sentinel:   { npm: 0, pypi: 0, ver: "v2.3.0" },
+  mcp:        { npm: 0, pypi: null, ver: "v3.1.4" },
+  forge:      { npm: 0, pypi: 0, ver: "v1.0.2" },
+  cluster:    { npm: 0, pypi: 0, ver: "v1.0.1" }
 };
 
 const REGISTRY = [
@@ -147,20 +147,16 @@ async function collectPackageMetrics(pkg) {
     }
   }
 
-  // 3. Zero-Null Safety Net: Apply Ground-Truth Floor if Registry Throttled
+  // 3. Fallback to 0 if registry failed or returned null (Pure live registry metrics only)
   if (pkg.npm) {
-    if (typeof npmDownloads === 'number') {
-      npmDownloads = Math.max(npmDownloads, baseline.npm || 0);
-    } else if (typeof baseline.npm === 'number') {
-      npmDownloads = baseline.npm;
+    if (typeof npmDownloads !== 'number') {
+      npmDownloads = 0;
     }
   }
 
   if (pkg.pypi) {
-    if (typeof pypiDownloads === 'number') {
-      pypiDownloads = Math.max(pypiDownloads, baseline.pypi || 0);
-    } else if (typeof baseline.pypi === 'number') {
-      pypiDownloads = baseline.pypi;
+    if (typeof pypiDownloads !== 'number') {
+      pypiDownloads = 0;
     }
   }
 

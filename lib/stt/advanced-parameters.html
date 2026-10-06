@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Parameters & Tuning | Termux-STT</title>
-  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
+  <meta name="description" content="Integrates Whisper.cpp (Native Vulkan GPU / NEON CPU) and Sherpa-ONNX with PyAnnote 3.0 neural segmentation, 3D-Speaker CAM++ 192-dim embeddings, and TS-VAD overlapped speech resolution with zero cloud egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -22,7 +22,6 @@
       <h2>Advanced Parameters & Tuning</h2>
       <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
       <h3>1. Whisper.cpp GGML Quantization Profiles</h3>
-<p>Select the optimal quantization level to balance memory footprint and acoustic precision:</p>
 <table class="data-table">
   <thead>
     <tr><th>Quantization Level</th><th>Memory Overhead</th><th>Relative Speed</th><th>Recommended Use Case</th></tr>
@@ -45,25 +44,13 @@
       <td><code>--beam-size &lt;N&gt;</code></td>
       <td><code>beam_size</code></td>
       <td><code>1</code></td>
-      <td>Expands beam search width (e.g. <code>5</code>) for complex audio with overlapping speakers.</td>
-    </tr>
-    <tr>
-      <td><code>--best-of &lt;N&gt;</code></td>
-      <td><code>best_of</code></td>
-      <td><code>1</code></td>
-      <td>Number of candidate candidate sequences sampled during decoding.</td>
+      <td>Expands beam search width for complex audio with overlapping speakers.</td>
     </tr>
     <tr>
       <td><code>--temperature &lt;T&gt;</code></td>
       <td><code>temperature</code></td>
       <td><code>0.0</code></td>
       <td>Sampling temperature. <code>0.0</code> enables deterministic greedy search.</td>
-    </tr>
-    <tr>
-      <td><code>--no-fallback</code> / <code>-nf</code></td>
-      <td><code>no_fallback</code></td>
-      <td><code>True (Termux)</code></td>
-      <td>Prevents multi-temperature retry loops to avoid mobile CPU overheating.</td>
     </tr>
     <tr>
       <td><code>--prompt &lt;TEXT&gt;</code></td>
@@ -77,23 +64,8 @@
       <td><code>False</code></td>
       <td>Translates multilingual foreign speech directly into English text.</td>
     </tr>
-    <tr>
-      <td><code>--extra-args "&lt;FLAGS&gt;"</code></td>
-      <td><code>extra_args</code></td>
-      <td><code>None</code></td>
-      <td>Raw C++ flag passthrough directly to the underlying whisper.cpp binary.</td>
-    </tr>
   </tbody>
 </table>
-
-<h3>3. Direct Local Custom Model Paths (BitNet / LLaMA / Fine-tuned Weights)</h3>
-<p>Pass local file paths directly to bypass ModelHub downloading and execute custom fine-tuned models:</p>
-<pre><code># Direct path to local fine-tuned or BitNet 1.58b GGML weights
-termux-stt transcribe audio.wav --model /sdcard/models/custom-whisper-q5_1.bin</code></pre>
-
-<h3>4. CPU Big-Core Pinning & Mobile Thermal Management</h3>
-<pre><code># Pin execution to 4 high-performance big cores (Cortex-A78 / X1)
-termux-stt transcribe audio.wav --threads 4</code></pre>
 
     </main>
   </div>

@@ -3,54 +3,70 @@
   "lib_slug": "aichain",
   "package_name_pypi": "termux-aichain",
   "package_name_npm": "termux-aichain",
-  "version": "v1.1.0",
+  "version": "v1.1.5",
   "release_name": "Sovereign Zero-Dependency Edge Agent Engine",
   "license": "Apache-2.0",
-  "platform": "Android Termux (ARM64) / Node.js ESM / Python 3.10+",
+  "platform": "Android Termux (ARM64) / Python 3.10+ / Node.js 18+ ESM",
   "github_repo_url": "https://github.com/uno-km/termux-aichain",
-  "tagline_en": "Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux",
-  "tagline_ko": "안드로이드 Termux 환경을 위한 초경량 제로 의존성(Zero-Dependency) AI 체이닝 및 자율 에이전트 프레임워크",
+  "tagline_en": "Why LangChain on Termux? Bloat & Crash vs 94KB Zero-Dep LCEL & Hardware Native Agents",
+  "tagline_ko": "왜 터먹스에선 랭체인 대신 AIChain인가? 수백MB 의존성 폭탄 vs 94KB 제로-의존성 LCEL 및 하드웨어 액추에이션",
   "quick_install_cmd": "pip install termux-aichain\n# or:\nnpm install termux-aichain",
-  "why_challenge_en": "Heavy agent frameworks (LangChain, LlamaIndex) require hundreds of bloated dependencies, causing package conflicts and OOM crashes on mobile Termux.",
-  "why_challenge_ko": "기존 LangChain 등은 수백 개의 무거운 외부 의존성으로 인해 안드로이드 Termux에서 패키지 충돌과 심각한 메모리 낭비를 유발합니다.",
-  "description_en": "Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.",
-  "description_ko": "외부 라이브러리 의존성 0개(Zero-Dependency)로 DAG 연산 그래프, 구조화된 프롬프트 체이닝, 온디바이스 로컬 모델 연동을 50KB 미만 초경량 코어로 지원합니다.",
-  "code_example_py": "from termux_aichain import LocalAgent\nagent = LocalAgent.local(model='qwen2.5-1.5b')\nres = agent.run('Check battery percentage and vibrate device if > 50%.')\nprint(res)",
-  "code_example_js": "import { LocalAgent } from 'termux-aichain';\nconst agent = await LocalAgent.local('qwen2.5-1.5b');\nconst res = await agent.run('Check battery percentage and vibrate device if > 50%.');\nconsole.log(res);",
+  "why_challenge_en": "Standard enterprise frameworks (LangChain, LlamaIndex, CrewAI) pull in 45+ heavy dependencies (Pydantic-core, Chroma, Tiktoken) weighing 200MB+ that constantly fail to compile on Android Bionic ARM64 and trigger instant Out-Of-Memory (LMK) kernel kills.",
+  "why_challenge_ko": "기존 LangChain 및 LlamaIndex는 45개 이상의 무거운 외부 의존성(Pydantic-core, ChromaDB, Tiktoken)으로 인해 안드로이드 Bionic ARM64에서 C/Rust 컴파일 오류를 일으키고, 180MB가 넘는 유휴 메모리 점유로 안드로이드 LMK(Low Memory Killer)에 의해 프로세스가 즉각 강제 종료됩니다.",
+  "description_en": "Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.",
+  "description_ko": "외부 의존성 0개(Zero-Dependency)의 순수 표준 라이브러리 기반으로 LangChain 호환 LCEL 파이프 체이닝(prompt | llm | parser), StateGraph 자율 에이전트, 온디바이스 SQLite 코사인 벡터 검색, 스마트폰 하드웨어 직접 제어(배터리, 온도, 진동, GPS)를 94KB 초경량 코어로 완벽히 제공합니다.",
+  "code_example_py": "from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser, get_battery_status\n\n# 1. Read physical smartphone hardware telemetry\nbattery = get_battery_status()\n\n# 2. Build LCEL Chain connected to local llama-server (port 8080)\nprompt = PromptTemplate.from_template(\"Phone Telemetry: {status}. Diagnose in 1 sentence:\")\nllm = OpenAICompatibleChat(base_url=\"http://127.0.0.1:8080/v1\", model=\"llama3\", temperature=0.3)\nchain = prompt | llm | StringOutputParser()\n\n# 3. Execute with 0 external dependencies\nreport = chain.invoke({\"status\": battery})\nprint(\"AI Diagnostic:\", report)",
+  "code_example_js": "import { PromptTemplate, OpenAICompatibleChat, StringOutputParser, getBatteryStatus } from 'termux-aichain';\n\n// 1. Read physical smartphone hardware telemetry\nconst battery = await getBatteryStatus.func();\n\n// 2. Build LCEL Chain connected to local llama-server (port 8080)\nconst prompt = PromptTemplate.fromTemplate('Phone Telemetry: {status}. Diagnose in 1 sentence:');\nconst llm = new OpenAICompatibleChat({ baseUrl: 'http://127.0.0.1:8080/v1', model: 'llama3', temperature: 0.3 });\nconst chain = prompt.pipe(llm).pipe(new StringOutputParser());\n\n// 3. Execute with 0 npm dependencies\nconst report = await chain.invoke({ status: JSON.stringify(battery) });\nconsole.log('AI Diagnostic:', report);",
   "features": [
     {
-      "title_en": "Deterministic Zero-Drift Output",
-      "title_ko": "결정론적 0% 오차 연산",
-      "desc_en": "Strict fail-closed identity verification and parameter bounds validation across heterogeneous hardware.",
-      "desc_ko": "엄격한 fail-closed 신원 검증과 파라미터 경계값 검사로 안전한 온디바이스 실행을 보장합니다."
+      "title_en": "Zero External Dependencies (94KB)",
+      "title_ko": "외부 의존성 0개 (94KB 초경량)",
+      "desc_en": "Written entirely in Python stdlib (urllib, sqlite3, json) and Node.js ESM. No C/Rust compiler required on Android Bionic ARM64.",
+      "desc_ko": "순수 파이썬 표준 라이브러리와 Node.js ESM으로만 작성되어 안드로이드 Bionic ARM64에서 빌드 툴 없이 즉각 구동됩니다."
     },
     {
-      "title_en": "Zero Cloud Egress Architecture",
-      "title_ko": "서버 비용 0원 완전 온디바이스",
-      "desc_en": "Operates 100% on the local client without external network telemetry leaks.",
-      "desc_ko": "외부 네트워크 통신 없이 100% 로컬 클라이언트에서 독립 구동됩니다."
+      "title_en": "LCEL Pipeline Compatibility",
+      "title_ko": "LangChain LCEL 파이프라인 100% 호환",
+      "desc_en": "Full Runnable Protocol support with the pipe operator (prompt | llm | parser) and real-time streaming chunk emission.",
+      "desc_ko": "파이프 연산자(|)를 통한 체인 결합과 실시간 토큰 스트리밍을 표준 LangChain 문법 그대로 지원합니다."
     },
     {
-      "title_en": "ToolPolicy Default Deny Security",
-      "title_ko": "도구 권한 기본 거부 보안",
-      "desc_en": "Enforces strict default-deny tool policy with schema bounds and user approval callbacks.",
-      "desc_ko": "도구 실행 시 기본 거부(default-deny) 정책과 사용자 승인 콜백으로 안전성을 극대화합니다."
+      "title_en": "Native Smartphone Hardware Actuation",
+      "title_ko": "스마트폰 물리 하드웨어 직접 제어",
+      "desc_en": "Built-in first-class tools for Android kernel battery, surface temperature, GPS coordinates, haptic vibration, and system notifications.",
+      "desc_ko": "배터리 잔량, 표면 온도, GPS 좌표 수집, 햅틱 진동 및 시스템 알림 발송 도구가 1급 시민으로 내장되어 있습니다."
+    },
+    {
+      "title_en": "On-Device SQLite Vector Store (RAG)",
+      "title_ko": "온디바이스 SQLite 코사인 벡터 검색",
+      "desc_en": "Embeddings storage and pure-math cosine similarity search in SQLite :memory: or local DB without ChromaDB or FAISS.",
+      "desc_ko": "Chroma나 FAISS 없이 모바일 내장 SQLite를 통해 인메모리 또는 로컬 파일 기반 코사인 유사도 벡터 검색을 지원합니다."
     }
   ],
   "matrix_table": [
     {
-      "category": "Compute Kernel",
-      "operations": "Hardware Native Accelerated Kernels",
+      "category": "LCEL Pipe Protocol",
+      "operations": "PromptTemplate | Model | OutputParser Runnable Sequence",
       "status": "Production"
     },
     {
-      "category": "Memory Subsystem",
-      "operations": "Zero-Copy Ring Buffers & Weakref GC",
+      "category": "Autonomous Agents",
+      "operations": "StateGraph, create_react_agent, ToolPolicy(default='deny')",
       "status": "Production"
     },
     {
-      "category": "Identity Verification",
-      "operations": "Fail-Closed Capability Profiling",
+      "category": "Hardware Actuation",
+      "operations": "Battery, Temperature, GPS, Vibration, Notifications, Shell",
+      "status": "Production"
+    },
+    {
+      "category": "Vector Store & RAG",
+      "operations": "SQLiteVectorStore with Pure Math Cosine Similarity",
+      "status": "Production"
+    },
+    {
+      "category": "Dual Runtime Parity",
+      "operations": "Pure Python 3.10+ Stdlib & Pure Node.js 18+ ESM",
       "status": "Production"
     }
   ]

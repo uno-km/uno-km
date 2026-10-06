@@ -2,7 +2,7 @@
  * shared/portfolio-pdf.js
  * AMEVA Open-Source Foundation & Eunho Kim Official Portfolio PDF Generator
  * High-precision, zero-drift Korean typography & hyperlinked layout engine
- * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (Strict 11 Pages)
+ * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (Strict 7 Pages)
  * Dynamic AMEVA Labs Research Papers & Benchmarks with Abstracts
  */
 
@@ -329,9 +329,13 @@ window.AmevaPortfolioPDF = {
         width: 760px;
         background: #ffffff;
         color: #1e293b;
-        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
-        font-size: 10px;
-        line-height: 1.40;
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", "Noto Sans KR", sans-serif;
+        font-size: 8.8px;
+        line-height: 1.35;
+        letter-spacing: -0.15px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: geometricPrecision;
         box-sizing: border-box;
         box-shadow: 0 10px 25px rgba(0,0,0,0.35);
       `;
@@ -424,26 +428,31 @@ window.AmevaPortfolioPDF = {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-left: 3.5px solid #004499;
-            padding: 8px 10px;
-            margin-bottom: 10px;
+            padding: 5px 8px;
+            margin-bottom: 5px;
             border-radius: 3px;
-            font-size: 10px;
-            line-height: 1.45;
+            font-size: 8.6px;
+            line-height: 1.34;
+            letter-spacing: -0.15px;
+            -webkit-font-smoothing: antialiased;
+          }
+          .pdf-card:last-child {
+            margin-bottom: 0;
           }
           .pdf-card-title {
-            font-size: 11.8px;
+            font-size: 10.5px;
             font-weight: 700;
             color: #0f172a;
-            margin: 0 0 3px 0;
+            margin: 0 0 2px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
           }
           .pdf-tag {
-            font-size: 8.2px;
+            font-size: 7.5px;
             font-weight: 700;
-            padding: 1.5px 5px;
-            border-radius: 3px;
+            padding: 1px 4px;
+            border-radius: 2px;
             background: #e0f2fe;
             color: #0369a1;
           }
@@ -463,21 +472,21 @@ window.AmevaPortfolioPDF = {
           .pdf-link-bar {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 3.5px 7px;
-            border-radius: 3px;
-            margin-top: 4px;
-            font-size: 9.2px;
+            padding: 2.5px 6px;
+            border-radius: 2px;
+            margin-top: 3px;
+            font-size: 7.8px;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 7px;
           }
           .pdf-bench-box {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
-            padding: 3.5px 7px;
-            border-radius: 3px;
-            margin: 3.5px 0;
-            font-size: 9.2px;
+            padding: 2.5px 6px;
+            border-radius: 2px;
+            margin: 2.5px 0;
+            font-size: 7.8px;
             color: #166534;
           }
           .pdf-footer {
@@ -670,7 +679,7 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <h2 class="pdf-h2">2. AMEVA 생태계 정의 및 저수준 하드웨어 엔지니어링 (Architecture &amp; Engineering)</h2>
+          <div style="font-weight:700; color:#0f172a; margin: 4px 0 2px 0; font-size:9.5px; border-bottom:1px solid #cbd5e1; padding-bottom:1px;">AMEVA 생태계 정의 및 저수준 하드웨어 엔지니어링 (Architecture &amp; Engineering)</div>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 2px 0 3px 0;">
             <!-- Box 1: AMEVA 공식 정의 및 핵심 가치 (사용자 요청 원문 100% 무변경 수록) -->
             <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid #004499; padding:4px 6px; border-radius:3px; font-size:6.9px; line-height:1.20;">
@@ -700,7 +709,7 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <h2 class="pdf-h2">3. 글로벌 오픈소스 코어 업스트림 기여 실적 (Upstream Open-Source Contributions)</h2>
+          <div style="font-weight:700; color:#0f172a; margin: 4px 0 2px 0; font-size:9.5px; border-bottom:1px solid #cbd5e1; padding-bottom:1px;">글로벌 오픈소스 코어 업스트림 기여 실적 (Upstream Open-Source Contributions)</div>
           <table class="pdf-table" style="font-size:6.8px; margin-top:2px;">
             <thead>
               <tr>
@@ -738,65 +747,12 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div class="pdf-footer">Page 1 / 11 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 1 / 7 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 2: 1.1 Workstation & 1.2 Infra-Index ==================== -->
+        <!-- ==================== PAGE 2: 온디바이스 런타임 & 고성능 언어/생성 코어 (4개) ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">1. 프로젝트 상세 명세 (Web / Cloud Applications)</h2>
-
-          <!-- 1.1 AMEVA Workstation -->
-          <div class="pdf-card">
-            <div class="pdf-card-title">
-              <span>1.1 AMEVA Workstation (Web)</span>
-              <span class="pdf-tag">브라우저 온디바이스 애플리케이션</span>
-            </div>
-            <div><strong>설명:</strong> 클라이언트 브라우저 환경에서 서버 통신 없이 사용자 PC의 WebGPU 자원만으로 거대 언어 모델(LLM) 추론 및 멀티미디어 작업을 수행하는 로컬 워크스테이션 웹 애플리케이션.</div>
-            <div><strong>기술 스택:</strong> TypeScript, WebGPU, Web Audio, WebCodecs, HTML5 Canvas, OPFS (Origin Private File System)</div>
-            <div><strong>배포 버전 / 상태:</strong> ${(liveData['ameva workstation'] && liveData['ameva workstation'].version) || 'Live App'}</div>
-            <div><strong>기존 문제:</strong> 대용량 문서 분석이나 AI 편집을 하려면 유료 클라우드 서비스를 써야 하고, 기밀 문서나 개인 데이터가 외부 서버로 전송되어 유출 위험이 발생함.</div>
-            <div><strong>해결 방식:</strong> 서버와의 데이터 송수신을 100% 차단하고, 브라우저의 WebGPU와 웹 워커를 활용해 AI 모델(Qwen2.5)과 미디어 엔진을 사용자 컴퓨터 내부에서 직접 구동함.</div>
-            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
-            <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>대용량 문서 3초 요약:</strong> 수백 페이지의 PDF/DOCX 파일을 화면에 끌어다 놓으면 웹 워커가 병렬로 읽어 3초 안에 챕터별 핵심 내용을 맵리듀스로 요약.</li>
-              <li><strong>무손실 인앱 미디어 편집:</strong> 무거운 인코딩 없이 브라우저에서 바로 영상 구간을 자르고, 음성 파일에서 말이 없는 무음 구간을 자동으로 잘라내며, 1초 만에 인물 배경을 분리.</li>
-              <li><strong>완전한 로컬 보안:</strong> 모든 작업 데이터가 브라우저 로컬 저장소(OPFS)에만 저장되므로 인터넷이 끊겨도 정상 작동하며 사내 기밀 유출 위험이 없음.</li>
-            </ul>
-            <div class="pdf-link-bar">
-              <span><strong>[Web] 앱 실행:</strong> <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="pdf-link">https://ameva-workstation-web-core.vercel.app/</a></span>
-              <span><strong>[Security] 저장소:</strong> Private Enterprise Repository (Proprietary Source)</span>
-            </div>
-          </div>
-
-          <!-- 1.2 Infra-Index Platform -->
-          <div class="pdf-card">
-            <div class="pdf-card-title">
-              <span>1.2 Infra-Index Platform</span>
-              <span class="pdf-tag">클라우드 인프라 시황 &amp; AI 반도체 인텔리전스</span>
-            </div>
-            <div><strong>설명:</strong> 글로벌 69개 클라우드 공급사의 실시간 GPU/CPU/스토리지 단가 집계, AI 반도체 시황 및 최신 연구 논문/뉴스 인텔리전스를 제공하는 클라우드 인프라 모니터링 플랫폼.</div>
-            <div><strong>기술 스택:</strong> Next.js, TypeScript, Python, FastAPI, Serverless Edge, Real-Time Ingestion</div>
-            <div><strong>배포 버전 / 상태:</strong> ${(liveData['infra-index platform'] && liveData['infra-index platform'].version) || 'Live App'}</div>
-            <div><strong>기존 문제:</strong> AWS, GCP, Azure, Lambda Labs, RunPod 등 수십 개 벤더의 GPU/인프라 가격이 파편화되어 있어 최적 견적 산출과 가격 변동 추적이 극도로 어려움.</div>
-            <div><strong>해결 방식:</strong> 글로벌 69개 클라우드 공급사의 실시간 단가를 자동 수집·정규화하고 AI 반도체 시황 및 최신 연구 논문 인텔리전스를 실시간 시각화하여 제공.</div>
-            <div style="margin-top:4px;"><strong>실제 사용자가 쓰는 핵심 기능:</strong></div>
-            <ul style="margin:2px 0 4px 18px; padding:0;">
-              <li><strong>69개 클라우드 실시간 시세 비교:</strong> GPU(H100, A100, L40S 등), CPU, 스토리지 시간당 단가를 한눈에 비교하고 최저가 인프라 탐색.</li>
-              <li><strong>AI 반도체 시황 인텔리전스:</strong> 최신 엔비디아, AMD 및 커스텀 ASIC 수급 동향과 연구 논문 트렌드 분석 리포트 제공.</li>
-              <li><strong>비용 최적화 계산기:</strong> 자체 보유 서버 구축 비용과 클라우드 대여 비용을 비교하여 월간/연간 예상 절감액을 자동 계산.</li>
-            </ul>
-            <div class="pdf-link-bar">
-              <span><strong>[Web] 웹 앱:</strong> <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">https://infraindex-platform-front.vercel.app/</a></span>
-              <span><strong>[Security] 저장소:</strong> Private Enterprise Repository</span>
-            </div>
-          </div>
-
-          <div class="pdf-footer">Page 2 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
-
-        <!-- ==================== PAGE 3: 2.1 AMEVA-Runtime & 2.2 Termux-Diffusion ==================== -->
-        <div class="pdf-page">
-          <h2 class="pdf-h2">2. 온디바이스 엔진 &amp; 런타임 코어 (On-Device Runtime &amp; Diffusion)</h2>
+          <h2 class="pdf-h2">2. 온디바이스 런타임 &amp; 고성능 언어/생성 코어 (On-Device Runtime &amp; Core Engines)</h2>
 
           <!-- 2.1 AMEVA-Runtime -->
           <div class="pdf-card">
@@ -842,13 +798,6 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 3 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
-
-        <!-- ==================== PAGE 4: 2.3 Termux-BitNet & 2.4 Termux-LlamaCpp ==================== -->
-        <div class="pdf-page">
-          <h2 class="pdf-h2">2. 온디바이스 엔진 &amp; 런타임 코어 (BitNet &amp; LlamaCpp)</h2>
-
           <!-- 2.3 Termux-BitNet -->
           <div class="pdf-card">
             <div class="pdf-card-title">
@@ -893,17 +842,17 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 4 / 11 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 2 / 7 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 5: 2.5 Termux-STT & 2.6 Termux-TTS ==================== -->
+        <!-- ==================== PAGE 3: 모바일 멀티모달 & 음성 지능 파이프라인 (4개) ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">2. 온디바이스 음성 AI 파이프라인 (STT &amp; TTS)</h2>
+          <h2 class="pdf-h2">3. 모바일 멀티모달 &amp; 음성 지능 파이프라인 (Multimodal, Speech &amp; Vision)</h2>
 
-          <!-- 2.5 Termux-STT -->
+          <!-- 3.1 Termux-STT -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.5 Termux-STT</span>
+              <span>3.1 Termux-STT</span>
               <span class="pdf-tag">온디바이스 음성인식 &amp; 화자 분리</span>
             </div>
             <div><strong>설명:</strong> 녹음된 음성이나 실시간 대화를 텍스트로 즉시 변환하고, 누가 말했는지 화자를 분리해내는 고정밀 모바일 음성 인식 솔루션.</div>
@@ -922,10 +871,10 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <!-- 2.6 Termux-TTS -->
+          <!-- 3.2 Termux-TTS -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.6 Termux-TTS</span>
+              <span>3.2 Termux-TTS</span>
               <span class="pdf-tag">온디바이스 신경망 음성 합성 (TTS)</span>
             </div>
             <div><strong>설명:</strong> 자연스러운 사람의 목소리로 텍스트를 읽어주는 신경망 음성 합성 엔진. 외부 클라우드 통신 없이 기기 내부에서 한국어 및 영어를 실시간으로 소리로 변환.</div>
@@ -944,17 +893,10 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 5 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
-
-        <!-- ==================== PAGE 6: 2.7 Termux-Vision & 2.8 Termux-Train ==================== -->
-        <div class="pdf-page">
-          <h2 class="pdf-h2">2. 비전 멀티모달 &amp; 온디바이스 학습 (Vision &amp; Train)</h2>
-
-          <!-- 2.7 Termux-Vision -->
+          <!-- 3.3 Termux-Vision -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.7 Termux-Vision</span>
+              <span>3.3 Termux-Vision</span>
               <span class="pdf-tag">컴퓨터 비전 &amp; 모바일 VLM (Vision-LLM)</span>
             </div>
             <div><strong>설명:</strong> 스마트폰 카메라 영상에서 사람의 얼굴과 사물을 실시간 검출하고, 사진을 보여주면 내용을 이해하여 한국어로 대답하는 시각-언어 멀티모달(VLM) 엔진.</div>
@@ -973,10 +915,10 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <!-- 2.8 Termux-Train -->
+          <!-- 3.4 Termux-Train -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.8 Termux-Train</span>
+              <span>3.4 Termux-Train</span>
               <span class="pdf-tag">온디바이스 딥러닝 학습 &amp; 미세조정</span>
             </div>
             <div><strong>설명:</strong> 서버로 데이터를 보내지 않고 스마트폰 내부에서 개인 데이터(문서, 음성, 이미지)를 학습하여 나만의 전용 AI 모델로 미세조정(Fine-Tuning)하는 모바일 학습 프레임워크.</div>
@@ -995,68 +937,17 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 6 / 11 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 3 / 7 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 7: 2.9 Termux-Playwright & 2.10 Termux-AIChain ==================== -->
+        <!-- ==================== PAGE 4: 분산 클러스터 & 지능형 에이전트 인프라 (4개) ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">2. 자동화 에이전트 &amp; 체인 엔진 (Playwright &amp; AIChain)</h2>
+          <h2 class="pdf-h2">4. 분산 클러스터 &amp; 지능형 에이전트 인프라 (Cluster &amp; Autonomous Agents)</h2>
 
-          <!-- 2.9 Termux-Playwright -->
+          <!-- 4.1 AMEVA-Cluster -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.9 Termux-Playwright</span>
-              <span class="pdf-tag">모바일 웹 자동화 &amp; 브라우저 CDP 제어</span>
-            </div>
-            <div><strong>설명:</strong> 루팅되지 않은 일반 안드로이드 단말에서 크롬 브라우저를 백그라운드로 실행하고, 사람처럼 웹사이트를 탐색·클릭·스크래핑할 수 있도록 제어하는 자동화 도구.</div>
-            <div><strong>기술 스택:</strong> Node.js, Chrome DevTools Protocol (CDP), WebSocket, Chromium Headless</div>
-            <div><strong>배포 버전 / 상태:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || 'v1.81.2'}</div>
-            <div><strong>기존 문제:</strong> 공식 Playwright 라이브러리는 안드로이드(Bionic libc) 환경을 공식 지원하지 않아 모바일 단말에서 웹 자동화 스크립트를 실행할 수 없었음.</div>
-            <div><strong>해결 방식:</strong> Node.js WebSocket을 이용해 안드로이드 크로미움의 CDP 포트에 직결하는 독자 제어 레이어를 구축하고, 절전 모드 방지(WakeLock)를 통합해 24시간 연속 운용이 가능하게 설계함.</div>
-            <div class="pdf-bench-box">
-              <strong>실측 검증 성과:</strong> 소비전력 5W 미만의 공기계 스마트폰에서 24시간 동안 1,200개 웹페이지 무중단 자동 수집 및 스크린샷 캡처 완주.
-            </div>
-            <div class="pdf-link-bar">
-              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pdf-link">https://pypi.org/project/termux-playwright/</a></span>
-              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-playwright</a></span>
-              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="pdf-link">https://github.com/uno-km/termux-playwright</a></span>
-              <span><strong>[Docs]:</strong> <a href="https://uno-km.vercel.app/lib/playwright/" target="_blank" class="pdf-link">공식 문서</a></span>
-            </div>
-          </div>
-
-          <!-- 2.10 Termux-AIChain -->
-          <div class="pdf-card">
-            <div class="pdf-card-title">
-              <span>2.10 Termux-AIChain</span>
-              <span class="pdf-tag">초경량 단일 의존성 에이전트 파이프라인</span>
-            </div>
-            <div><strong>설명:</strong> 무거운 LangChain이나 LlamaIndex를 대체하여, 모바일 환경에서 여러 AI 도구와 로컬 모델들을 순차적·조건부로 연결해 자율 업무를 수행하는 에이전트 오케스트레이터.</div>
-            <div><strong>기술 스택:</strong> 순수 Python 3 (Zero-Dependency), DAG 워크플로우 엔진, JSON Schema</div>
-            <div><strong>배포 버전 / 상태:</strong> ${(liveData['termux-aichain'] && liveData['termux-aichain'].version) || 'v1.1.4'}</div>
-            <div><strong>기존 문제:</strong> 일반적인 AI 에이전트 프레임워크는 수백 개의 종속성 패키지를 요구하여 설치 용량만 수 GB에 달하고 초기 실행 속도가 수초 이상 지연됨.</div>
-            <div><strong>해결 방식:</strong> 외부 종속성이 0개인 순수 50KB 미만의 파이썬 코드로 방향성 비순환 그래프(DAG) 워크플로우 엔진을 직접 개발하여 메모리 낭비를 제로화함.</div>
-            <div class="pdf-bench-box">
-              <strong>실측 검증 성과:</strong> 패키지 용량 48KB, 모바일 초기 실행 시간 0.02초, 복합 에이전트 체인 10단계 연속 실행 완주.
-            </div>
-            <div class="pdf-link-bar">
-              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="pdf-link">https://pypi.org/project/termux-aichain/</a></span>
-              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-aichain</a></span>
-              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="pdf-link">https://github.com/uno-km/termux-aichain</a></span>
-              <span><strong>[Docs]:</strong> <a href="https://uno-km.vercel.app/lib/aichain/" target="_blank" class="pdf-link">공식 문서</a></span>
-            </div>
-          </div>
-
-          <div class="pdf-footer">Page 7 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
-
-        <!-- ==================== PAGE 8: 2.11 AMEVA-Cluster & 2.12 AMEVA-MCP-Hub ==================== -->
-        <div class="pdf-page">
-          <h2 class="pdf-h2">2. 분산 클러스터 &amp; 인메모리 도구 허브 (Cluster &amp; MCP)</h2>
-
-          <!-- 2.11 AMEVA-Cluster -->
-          <div class="pdf-card">
-            <div class="pdf-card-title">
-              <span>2.11 AMEVA-Cluster</span>
+              <span>4.1 AMEVA-Cluster</span>
               <span class="pdf-tag">분산 메모리 풀링 &amp; 엣지 오케스트레이터</span>
             </div>
             <div><strong>설명:</strong> 집이나 사무실에 굴러다니는 구형 스마트폰, 태블릿, 노트북들을 하나의 초고성능 슈퍼컴퓨터처럼 묶어 메모리(RAM)를 공유하는 가상 분산 컴퓨팅 시스템.</div>
@@ -1075,10 +966,10 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <!-- 2.12 AMEVA-MCP-Hub -->
+          <!-- 4.2 AMEVA-MCP-Hub -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.12 AMEVA-MCP-Hub</span>
+              <span>4.2 AMEVA-MCP-Hub</span>
               <span class="pdf-tag">WASI 샌드박스 인메모리 도구 공급 엔진</span>
             </div>
             <div><strong>설명:</strong> AI 코딩 에이전트(Claude Desktop, Cursor 등)가 컴퓨터를 고장 내지 않고 안전하게 다양한 도구(쉘, 파이썬, 웹 브라우저)를 실행할 수 있도록 보장하는 도구 허브.</div>
@@ -1096,17 +987,61 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 8 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
-
-        <!-- ==================== PAGE 9: 2.13 AMEVA-Forge & 2.14 AMEVA-Sentinel ==================== -->
-        <div class="pdf-page">
-          <h2 class="pdf-h2">2. 웹 딥러닝 텐서 &amp; 제로-데이터 보안 (Forge &amp; Sentinel)</h2>
-
-          <!-- 2.13 AMEVA-Forge -->
+          <!-- 4.3 Termux-Playwright -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.13 AMEVA-Forge</span>
+              <span>4.3 Termux-Playwright</span>
+              <span class="pdf-tag">모바일 웹 자동화 &amp; 브라우저 CDP 제어</span>
+            </div>
+            <div><strong>설명:</strong> 루팅되지 않은 일반 안드로이드 단말에서 크롬 브라우저를 백그라운드로 실행하고, 사람처럼 웹사이트를 탐색·클릭·스크래핑할 수 있도록 제어하는 자동화 도구.</div>
+            <div><strong>기술 스택:</strong> Node.js, Chrome DevTools Protocol (CDP), WebSocket, Chromium Headless</div>
+            <div><strong>배포 버전 / 상태:</strong> ${(liveData['termux-playwright'] && liveData['termux-playwright'].version) || 'v1.81.2'}</div>
+            <div><strong>기존 문제:</strong> 공식 Playwright 라이브러리는 안드로이드(Bionic libc) 환경을 공식 지원하지 않아 모바일 단말에서 웹 자동화 스크립트를 실행할 수 없었음.</div>
+            <div><strong>해결 방식:</strong> Node.js WebSocket을 이용해 안드로이드 크로미움의 CDP 포트에 직결하는 독자 제어 레이어를 구축하고, 절전 모드 방지(WakeLock)를 통합해 24시간 연속 운용이 가능하게 설계함.</div>
+            <div class="pdf-bench-box">
+              <strong>실측 검증 성과:</strong> 소비전력 5W 미만의 공기계 스마트폰에서 24시간 동안 1,200개 웹페이지 무중단 자동 수집 및 스크린샷 캡처 완주.
+            </div>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="pdf-link">https://pypi.org/project/termux-playwright/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-playwright</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="pdf-link">https://github.com/uno-km/termux-playwright</a></span>
+              <span><strong>[Docs]:</strong> <a href="https://uno-km.vercel.app/lib/playwright/" target="_blank" class="pdf-link">공식 문서</a></span>
+            </div>
+          </div>
+
+          <!-- 4.4 Termux-AIChain -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>4.4 Termux-AIChain</span>
+              <span class="pdf-tag">초경량 단일 의존성 에이전트 파이프라인</span>
+            </div>
+            <div><strong>설명:</strong> 무거운 LangChain이나 LlamaIndex를 대체하여, 모바일 환경에서 여러 AI 도구와 로컬 모델들을 순차적·조건부로 연결해 자율 업무를 수행하는 에이전트 오케스트레이터.</div>
+            <div><strong>기술 스택:</strong> 순수 Python 3 (Zero-Dependency), DAG 워크플로우 엔진, JSON Schema</div>
+            <div><strong>배포 버전 / 상태:</strong> ${(liveData['termux-aichain'] && liveData['termux-aichain'].version) || 'v1.1.4'}</div>
+            <div><strong>기존 문제:</strong> 일반적인 AI 에이전트 프레임워크는 수백 개의 종속성 패키지를 요구하여 설치 용량만 수 GB에 달하고 초기 실행 속도가 수초 이상 지연됨.</div>
+            <div><strong>해결 방식:</strong> 외부 종속성이 0개인 순수 50KB 미만의 파이썬 코드로 방향성 비순환 그래프(DAG) 워크플로우 엔진을 직접 개발하여 메모리 낭비를 제로화함.</div>
+            <div class="pdf-bench-box">
+              <strong>실측 검증 성과:</strong> 패키지 용량 48KB, 모바일 초기 실행 시간 0.02초, 복합 에이전트 체인 10단계 연속 실행 완주.
+            </div>
+            <div class="pdf-link-bar">
+              <span><strong>[PyPI]:</strong> <a href="https://pypi.org/project/termux-aichain/" target="_blank" class="pdf-link">https://pypi.org/project/termux-aichain/</a></span>
+              <span><strong>[npm]:</strong> <a href="https://www.npmjs.com/package/termux-aichain" target="_blank" class="pdf-link">https://www.npmjs.com/package/termux-aichain</a></span>
+              <span><strong>[GitHub]:</strong> <a href="https://github.com/uno-km/termux-aichain" target="_blank" class="pdf-link">https://github.com/uno-km/termux-aichain</a></span>
+              <span><strong>[Docs]:</strong> <a href="https://uno-km.vercel.app/lib/aichain/" target="_blank" class="pdf-link">공식 문서</a></span>
+            </div>
+          </div>
+
+          <div class="pdf-footer">Page 4 / 7 • 김은호 엔지니어링 포트폴리오</div>
+        </div>
+
+        <!-- ==================== PAGE 5: 웹 딥러닝 가속, 제로-데이터 보안 & 플랫폼 (4개) ==================== -->
+        <div class="pdf-page">
+          <h2 class="pdf-h2">5. 웹 딥러닝 가속, 제로-데이터 보안 &amp; 웹 플랫폼 (Web Deep Learning, Security &amp; Apps)</h2>
+
+          <!-- 5.1 AMEVA-Forge -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>5.1 AMEVA-Forge</span>
               <span class="pdf-tag">브라우저 WebGPU Autograd 텐서 엔진</span>
             </div>
             <div><strong>설명:</strong> 파이썬이나 복잡한 딥러닝 라이브러리 설치 없이, 웹 브라우저에서 사용자의 그래픽카드(GPU)를 직결 활용해 신경망을 직접 학습시키고 계산하는 순수 웹 딥러닝 엔진.</div>
@@ -1125,10 +1060,10 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <!-- 2.14 AMEVA-Sentinel -->
+          <!-- 5.2 AMEVA-Sentinel -->
           <div class="pdf-card">
             <div class="pdf-card-title">
-              <span>2.14 AMEVA-Sentinel</span>
+              <span>5.2 AMEVA-Sentinel</span>
               <span class="pdf-tag">0-Data 개인정보 비수집 봇 탐지 미들웨어</span>
             </div>
             <div><strong>설명:</strong> 웹사이트에 접속하는 사용자의 개인정보나 IP 주소를 전혀 수집하지 않고도, 매크로 프로그램이나 악성 봇의 비정상 접근을 차단하는 차세대 보안 솔루션.</div>
@@ -1147,13 +1082,52 @@ window.AmevaPortfolioPDF = {
             </div>
           </div>
 
-          <div class="pdf-footer">Page 9 / 11 • 김은호 엔지니어링 포트폴리오</div>
-        </div>
+          <!-- 5.3 AMEVA Workstation -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>5.3 AMEVA Workstation (Web)</span>
+              <span class="pdf-tag">브라우저 온디바이스 애플리케이션</span>
+            </div>
+            <div><strong>설명:</strong> 클라이언트 브라우저 환경에서 서버 통신 없이 사용자 PC의 WebGPU 자원만으로 거대 언어 모델(LLM) 추론 및 멀티미디어 작업을 수행하는 로컬 워크스테이션 웹 애플리케이션.</div>
+            <div><strong>기술 스택:</strong> TypeScript, WebGPU, Web Audio, WebCodecs, HTML5 Canvas, OPFS (Origin Private File System)</div>
+            <div><strong>배포 버전 / 상태:</strong> ${(liveData['ameva workstation'] && liveData['ameva workstation'].version) || 'Live App'}</div>
+            <div><strong>기존 문제:</strong> 대용량 문서 분석이나 AI 편집을 하려면 유료 클라우드 서비스를 써야 하고, 기밀 문서나 개인 데이터가 외부 서버로 전송되어 유출 위험이 발생함.</div>
+            <div><strong>해결 방식:</strong> 서버 데이터 송수신을 100% 차단하고 브라우저 WebGPU와 웹 워커로 AI 모델(Qwen2.5)과 미디어 엔진을 로컬에서 직접 구동함.</div>
+            <div class="pdf-bench-box">
+              <strong>핵심 기능 및 성과:</strong> 대용량 문서 3초 요약(Map-Reduce 병렬 처리), 무손실 인앱 미디어 편집(구간 자르기·배경 분리), OPFS 로컬 저장소 기반 100% 데이터 프라이버시 보장.
+            </div>
+            <div class="pdf-link-bar">
+              <span><strong>[Web] 앱 실행:</strong> <a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="pdf-link">https://ameva-workstation-web-core.vercel.app/</a></span>
+              <span><strong>[Security] 저장소:</strong> Private Enterprise Repository (Proprietary Source)</span>
+            </div>
+          </div>
 
-        <!-- ==================== PAGE 10: 전체 공식 배포처 및 생태계 아키텍처 ==================== -->
+          <!-- 5.4 Infra-Index Platform -->
+          <div class="pdf-card">
+            <div class="pdf-card-title">
+              <span>5.4 Infra-Index Platform</span>
+              <span class="pdf-tag">클라우드 인프라 시황 &amp; AI 반도체 인텔리전스</span>
+            </div>
+            <div><strong>설명:</strong> 글로벌 69개 클라우드 공급사의 실시간 GPU/CPU/스토리지 단가 집계, AI 반도체 시황 및 최신 연구 논문/뉴스 인텔리전스를 제공하는 클라우드 인프라 모니터링 플랫폼.</div>
+            <div><strong>기술 스택:</strong> Next.js, TypeScript, Python, FastAPI, Serverless Edge, Real-Time Ingestion</div>
+            <div><strong>배포 버전 / 상태:</strong> ${(liveData['infra-index platform'] && liveData['infra-index platform'].version) || 'Live App'}</div>
+            <div><strong>기존 문제:</strong> 수십 개 벤더의 GPU/인프라 가격이 파편화되어 있어 최적 견적 산출과 가격 변동 추적이 극도로 어려움.</div>
+            <div><strong>해결 방식:</strong> 글로벌 69개 클라우드 공급사의 실시간 단가를 자동 수집·정규화하고 AI 반도체 시황 및 최신 연구 논문 인텔리전스를 실시간 시각화하여 제공.</div>
+            <div class="pdf-bench-box">
+              <strong>핵심 기능 및 성과:</strong> 69개 클라우드(H100, A100 등) 실시간 시세 비교, AI 반도체 수급 및 논문 트렌드 분석 리포트, 온프레미스 vs 클라우드 비용 최적화 계산기 제공.
+            </div>
+            <div class="pdf-link-bar">
+              <span><strong>[Web] 웹 앱:</strong> <a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">https://infraindex-platform-front.vercel.app/</a></span>
+              <span><strong>[Security] 저장소:</strong> Private Enterprise Repository</span>
+            </div>
+          </div>
+
+          <div class="pdf-footer">Page 5 / 7 • 김은호 엔지니어링 포트폴리오</div>
+        </div>
+<!-- ==================== PAGE 6: 전체 공식 배포처 및 생태계 아키텍처 ==================== -->
         <div class="pdf-page">
 
-          <h2 class="pdf-h2">3. AMEVA 생태계 분산 아키텍처 (Disaggregated Edge AI)</h2>
+          <h2 class="pdf-h2">6. AMEVA 생태계 분산 아키텍처 및 16대 프로젝트 공식 배포처 (Architecture &amp; Official Links)</h2>
           <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:6px 9px; border-radius:3px; margin-bottom:5px; font-size:8.6px; line-height:1.35;">
             <div style="font-weight:700; color:#0f172a; margin-bottom:2px;">시스템 통합 구조 (End-to-End Orchestration)</div>
             <div>• <strong>클라이언트 애플리케이션 계층:</strong> AMEVA Workstation(브라우저 WebGPU 기반 오피스 작업) 및 Infra-Index(글로벌 69개 인프라 시황)를 통해 최종 사용자에게 100% 로컬 프라이버시 경험 제공.</div>
@@ -1161,7 +1135,7 @@ window.AmevaPortfolioPDF = {
             <div>• <strong>네이티브 실리콘 가속 계층:</strong> AMEVA-Runtime 코어 위에서 6-모달리티(Diffusion, BitNet, LlamaCpp, STT, TTS, Vision) 엔진이 스마트폰 하드웨어(Vulkan 1.3 / OpenCL / ARM NEON)를 직결 가속하여 상용 GPU 서버 비용 0원 달성.</div>
           </div>
 
-          <h2 class="pdf-h2">4. 생태계 16대 프로젝트 공식 배포처 &amp; 문서 일람 (Official Links)</h2>
+          <div style="font-weight:700; color:#0f172a; margin: 4px 0 2px 0; font-size:9.5px; border-bottom:1px solid #cbd5e1; padding-bottom:1px;">생태계 16대 프로젝트 공식 배포처 &amp; 문서 일람 (Official Links)</div>
           <table class="pdf-table" style="font-size:6.8px; margin: 1px 0 4px 0;">
             <thead>
               <tr>
@@ -1275,15 +1249,15 @@ window.AmevaPortfolioPDF = {
           <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid #004499; padding:5px 8px; border-radius:3px; margin-top:6px; font-size:7.5px; line-height:1.35;">
             <div style="font-weight:700; color:#0f172a; margin-bottom:2px; font-size:8.0px;">16대 생태계 패키지 배포 거버넌스 및 독립 연구소(AMEVA Labs) 연동 요약</div>
             <div>• <strong>라이브러리 및 런타임 보안:</strong> 모든 패키지는 엄격한 패키징 툴체인을 통해 무결성이 검증되어 글로벌 레지스트리(npm · PyPI)에 상시 배포됩니다.</div>
-            <div>• <strong>연구 백서 &amp; 실기기 벤치마크:</strong> 다음 페이지(Page 11)에 수록된 18편의 핵심 아카이브는 4대 상용 단말기(Galaxy S25/S21/A35/S20)에서 직접 추출한 하드웨어 포렌식 및 실측 벤치마크 원문입니다.</div>
+            <div>• <strong>연구 백서 &amp; 실기기 벤치마크:</strong> 다음 페이지(Page 7)에 수록된 18편의 핵심 아카이브는 4대 상용 단말기(Galaxy S25/S21/A35/S20)에서 직접 추출한 하드웨어 포렌식 및 실측 벤치마크 원문입니다.</div>
           </div>
 
-          <div class="pdf-footer">Page 10 / 11 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 6 / 7 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
-        <!-- ==================== PAGE 11: AMEVA Labs 기술 연구 백서 & 실기기 벤치마크 전수 아카이브 ==================== -->
+        <!-- ==================== PAGE 7: AMEVA Labs 기술 연구 백서 & 실기기 벤치마크 전수 아카이브 ==================== -->
         <div class="pdf-page">
-          <h2 class="pdf-h2">5. AMEVA Labs 기술 연구 백서 &amp; 실기기 벤치마크 전수 아카이브 (Full Research Archive)</h2>
+          <h2 class="pdf-h2">7. AMEVA Labs 기술 연구 백서 &amp; 실기기 벤치마크 전수 아카이브 (Full Research Archive)</h2>
           <div style="background:#f0f9ff; border:1px solid #bae6fd; padding:3px 7px; border-radius:3px; margin-bottom:3px; font-size:6.8px; color:#0369a1; line-height:1.25; display:flex; justify-content:space-between; align-items:center;">
             <div>
               <strong>[연구실 공식 아카이브]:</strong> 1인 독립 연구소 AMEVA Labs에서 직접 설계·실측·검증한 기술 연구 백서 13편 및 상용 모바일 4대 단말 실기기 벤치마크 5편 (총 18편 수록)
@@ -1308,7 +1282,7 @@ window.AmevaPortfolioPDF = {
           <div style="margin-top: 3px; text-align: center; font-size: 7.2px; color: #64748b;">
             © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF) &amp; AMEVA Labs. All Rights Reserved.
           </div>
-          <div class="pdf-footer">Page 11 / 11 • 김은호 엔지니어링 포트폴리오</div>
+          <div class="pdf-footer">Page 7 / 7 • 김은호 엔지니어링 포트폴리오</div>
         </div>
       `;
 
@@ -1321,10 +1295,10 @@ window.AmevaPortfolioPDF = {
       const opt = {
         margin: [5, 5, 5, 5],
         filename: '김은호_엔지니어링_포트폴리오.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg', quality: 0.99 },
         enableLinks: true,
         html2canvas: {
-          scale: 2,
+          scale: 2.6,
           useCORS: true,
           logging: false,
           scrollY: 0,

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Installation & Setup Guide | Termux-STT</title>
-  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
+  <meta name="description" content="Integrates Whisper.cpp (Native Vulkan GPU / NEON CPU) and Sherpa-ONNX with PyAnnote 3.0 neural segmentation, 3D-Speaker CAM++ 192-dim embeddings, and TS-VAD overlapped speech resolution with zero cloud egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -22,8 +22,8 @@
       <h2>Installation & Setup Guide</h2>
       <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
       <div class="alert alert-tip">
-  <span class="alert-title">1-Click Self-Contained Automated Installation</span>
-  <p><code>termux-stt</code> includes an automated self-contained installer that provisions all native dependencies, compiles ARM NEON C++ binaries, and verifies hardware vector extensions in a single command.</p>
+  <span class="alert-title">Target-Aware Automated Installation</span>
+  <p><code>termux-stt</code> provisions native ARM64 Whisper binaries and system dependencies out-of-the-box. Neural speaker diarization models can be installed selectively to preserve mobile storage.</p>
 </div>
 
 <h3>1. Automated Package Installation</h3>
@@ -32,17 +32,28 @@
 <pre><code># 1. Install official PyPI package
 pip install --upgrade termux-stt
 
-# 2. 1-Click native compiler and dependency provisioning
-termux-stt install</code></pre>
+# 2. Standard lightweight setup (Whisper STT + FFmpeg)
+termux-stt install
+
+# 3. Optional: Full Neural Diarization Provisioning (PyAnnote + CAM++ 192d)
+termux-stt install --engine diarization
+# Or full setup in one command:
+termux-stt install --all</code></pre>
 
 <h4>Node.js / TypeScript Edition (npm):</h4>
 <pre><code># 1. Install official global npm package
 npm install -g termux-stt
 
-# 2. 1-Click native setup
-termux-stt install</code></pre>
+# 2. Standard setup
+termux-stt install
 
-<h3>2. Android Termux Prerequisites & System Dependencies</h3>
+# 3. Full installation
+termux-stt install --all</code></pre>
+
+<h3>2. Interactive Auto-Provisioning</h3>
+<p>If you run diarization without having installed the neural models, the CLI automatically detects the missing components in interactive terminal sessions and prompts: <code>[?] Neural Diarization models are missing. Download now? [y/N]:</code>.</p>
+
+<h3>3. Android Termux Prerequisites & System Dependencies</h3>
 <p>If you are provisioning a clean Android Termux environment from scratch, execute the following system package installations:</p>
 <pre><code># Update Termux repository index and install native toolchain
 pkg update -y && pkg install -y \
@@ -57,25 +68,9 @@ pkg update -y && pkg install -y \
   git \
   termux-api</code></pre>
 
-<h3>3. Self-Healing Diagnostic Health Check</h3>
+<h3>4. Self-Healing Diagnostic Health Check</h3>
 <p>Verify that your system environment, audio linkers, and ARM NEON binaries are fully functional:</p>
 <pre><code>termux-stt doctor</code></pre>
-<p><strong>Expected Terminal Output:</strong></p>
-<pre><code>System Environment Check:
------------------------------------
-OS: Android (aarch64)
-✅ [OK] ffmpeg is installed
-✅ [OK] whisper.cpp engine found
-✅ [OK] Python 3.13.x
------------------------------------
-Doctor check complete.</code></pre>
-
-<h3>4. Air-Gapped / Offline Deployment</h3>
-<p>For strictly air-gapped devices without internet access, pre-seed GGML models into the local cache directory:</p>
-<pre><code># Cache directory structure
-mkdir -p ~/.cache/termux-stt/models/whisper
-cp ggml-tiny.bin ~/.cache/termux-stt/models/whisper/
-cp ggml-small.bin ~/.cache/termux-stt/models/whisper/</code></pre>
 
     </main>
   </div>

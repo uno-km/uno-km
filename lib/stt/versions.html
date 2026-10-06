@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Version Archive & Changelog | Termux-STT</title>
-  <meta name="description" content="Integrates Whisper.cpp, Vosk, and Sherpa-ONNX with a closed-form pure-Python 128-dimensional X-Vector clustering algorithm that operates in under 80MB RAM with zero cloud egress.">
+  <meta name="description" content="Integrates Whisper.cpp (Native Vulkan GPU / NEON CPU) and Sherpa-ONNX with PyAnnote 3.0 neural segmentation, 3D-Speaker CAM++ 192-dim embeddings, and TS-VAD overlapped speech resolution with zero cloud egress.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -23,24 +23,56 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.3 - Vulkan Pipeline Caching &amp; Unified 5-Backend Standard</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.2 - Vulkan GPU Acceleration & Explicit OpenCL Declaration Protocol (SCRUM-512)</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-06</span>
           </div>
         </div>
         <ul style="margin-left: 20px; line-height: 1.8;">
-          <li><strong>Unified 5-Backend Standard:</strong> Standardized speech transcription choices to the ecosystem standard <code>--device auto|gpu|vulkan|opencl|cpu</code> across <code>transcribe</code>, <code>stream</code>, and <code>diarize</code>.</li>
-          <li><strong>Vulkan Pipeline Caching:</strong> Integrated GPU pipeline caching to significantly reduce shader recompilation latency on subsequent runs.</li>
-          <li><strong>Fail-Fast Parameter Policy:</strong> Enforced strict argument validation eliminating unsupported hardware flags.</li>
-          <li><strong>Fleet Verification:</strong> Validated by 57 automated unit tests across Whisper hybrid routing, Vosk engine, and audio DSP.</li>
+          <li>Vulkan GPU Default & Explicit OpenCL Protocol: Enforced Vulkan GPU priority for mobile neural inference, routing to OpenCL exclusively when explicitly declared via --device opencl with zero silent fallback.</li>
+          <li>Diarization Multi-Thread Optimization: Injected dynamic multi-threading (--embedding.num-threads=4, --segmentation.num-threads=4) eliminating single-core bottlenecks and slashing latency from 109s to 64s (41% reduction).</li>
+          <li>Hybrid Engine GPU Acceleration: Propagated device and threads parameters directly into WhisperEngine and SherpaDiarizer.</li>
+          <li>Full Monorepo SemVer Parity: Synchronized version 2.0.2 across pyproject.toml, package.json, doc.config.yaml, and SDK manifests.</li>
         </ul>
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - SmartRouter Capability Filtering &amp; CLI Flag De-Duplication</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.1 - Timestamp Interval Display, Benchmark Normalization & Hot-Reload Validation (SCRUM-512)</h3>
           <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-06</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Timestamp Interval Display: Added format_timestamp formatting to output [Speaker_X] [MM:SS.ss -> MM:SS.ss] for all diarization CLI and transcript exports.</li>
+          <li>Benchmark Sample Normalization: Standardized official Korean podcast sample to samples/kor_diarization.wav (45.00s 16kHz Mono PCM).</li>
+          <li>Real-Device 2-vs-3 Speaker & Hot-Reload Benchmark: Validated Galaxy A35 (Exynos 1380) with 2.48s hot-reload acceleration and precise cross-talk decoupling.</li>
+          <li>Version Alignment: Bumped version across pyproject.toml, package.json, doc.config.yaml, and SDK manifests to 2.0.1.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.0 - Major Upgrade: Next-Gen Neural Diarization & Vosk Deprecation (SCRUM-512)</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Major Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-06</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Complete Vosk Legacy Deprecation: Fully purged legacy Vosk Kaldi bindings, xvector engine, and outdated dependencies from Python SDK, Node.js, CLI, and installer.</li>
+          <li>PyAnnote 3.0 & 3D-Speaker CAM++ 192d Integration: Integrated SOTA neural speaker segmentation and Alibaba 3D-Speaker CAM++ 192-dimensional d-vector embeddings.</li>
+          <li>TS-VAD Overlap Speech Resolution: Built OverlapResolver module to resolve simultaneous cross-talk and overlapping speech interruptions ('왜요?' backchannels) into clean multi-speaker streams.</li>
+          <li>Target-Aware Lightweight Provisioning: Default installer keeps base whisper STT lightweight, with neural diarization provisioned via 'termux-stt install --engine diarization' or interactive TTY [y/N] prompts.</li>
+          <li>Benchmark Sample Suite Expansion: Added real Korean podcast 2-speaker cross-talk benchmark ('samples/kor_diarization.wav') and 3-speaker benchmark ('samples/3_speaker_test.wav').</li>
+          <li>Full Monorepo SemVer Parity: Synchronized version 2.0.0 across pyproject.toml, package.json, doc.config.yaml, and SDK manifests.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.2 - SmartRouter Capability Filtering & CLI Flag De-Duplication</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-29</span>
           </div>
         </div>
@@ -62,10 +94,8 @@
         <ul style="margin-left: 20px; line-height: 1.8;">
           <li>Asymmetric Hardware Hybrid Pipeline: Offloads dense audio encoder GEMMs to mobile Vulkan GPUs while retaining sequential single-token autoregressive decoding on host CPU ARM NEON SIMD vector units.</li>
           <li>Zero-Copy Cross-Attention DMA Transfer: Automatically syncs calculated KV projections across isolated GGML schedulers via wstate.kv_cross_cpu.</li>
-          <li>High-Performance Verification: Achieves 12.93s wall-clock latency on Whisper Small (Galaxy S25, 21.0% faster than Pure GPU, 16.5% faster than Pure CPU), with zero CPU load during 80s encode on Large-v3-Turbo.</li>
+          <li>High-Performance Verification: Achieves 12.93s wall-clock latency on Whisper Small (Galaxy S25, 21.0% faster than Pure GPU, 16.5% faster than Pure CPU).</li>
           <li>Dynamic CLI Controls: Added --split-mode (-sm, --hybrid), --optimize-1, and Fail-Fast non-GPU validation.</li>
-          <li>Universal Multi-SoC Binary: Unified whisper-cli-android-arm64-v1.3.0.tar.gz verified on Snapdragon 8 Elite, Exynos 2100, Exynos 990, Exynos 1380, and Exynos 1280.</li>
-          <li>Upstream Open-Source Contribution: Submitted official PR to ggml-org/whisper.cpp (PR #4089).</li>
         </ul>
       </div>
       <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
@@ -77,170 +107,9 @@
           </div>
         </div>
         <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Bionic Linker Zero-Collision Rule: Dynamically purges $PREFIX/lib from LD_LIBRARY_PATH during whisper-cli execution, eliminating Android 15 (Galaxy S25) libunwindstack.so (Xzs_Construct) symbol collision aborts.</li>
-          <li>Dual-Flagship Native Vulkan GPU Universal Acceleration: Validated 100% native Vulkan GPU compute offload across Qualcomm Adreno 830 (Galaxy S25) and ARM Mali-G78 (Galaxy S21) using a unified universal binary bundle.</li>
-          <li>Subprocess ABI Isolation: Standardized RPATH dynamic resolution ($ORIGIN:$ORIGIN/../lib) guaranteeing standalone execution integrity without external package interference.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Vosk Engine Dependency Auto-Provisioning & Full SemVer Parity</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-28</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Vosk STT Dependency Auto-Provisioning: Automatically detects and installs essential runtime bindings (cffi>=1.15.0, srt>=3.5.0) required for Vosk speech recognition on Android Termux.</li>
-          <li>Strict Manifest Parity: Synchronized package manifests across pyproject.toml, setup.py, package.json, and __init__.py to 1.2.13.</li>
-          <li>Zero-Drift Runtime Invariants: Verified 100% test pass rate across all 57 test suites with zero silent fallback.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Zero-Hardcoding Dynamic Latest-First Provisioning</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-18</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Zero-Hardcoding Dynamic Provisioning: Permanently purged hardcoded fallback version strings from installer.py, adopting 3-tier dynamic resolution.</li>
-          <li>GitHub Releases SSOT Model Registry: Directed ggml-tiny.bin downloads to release invariant latest assets.</li>
-          <li>Dynamic Package Introspection: Swapped static user-agent strings for runtime version metadata.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Default Whisper Tiny Model Auto-Provisioning</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-17</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Auto-Provisioning Tiny Model: Automatically downloads default Whisper tiny model (~75MB) into cache during install for 0-latency execution.</li>
-          <li>Zero-Compilation 1-Click Installer: Stripped mobile on-device compilation triggers, guaranteeing pure pre-compiled ARM64 Bionic binary deployment.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Mobile Production Greedy Search Default & Android UTF-8 Hardening</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-09-15</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Mobile Greedy Policy: Defaulted --beam-size to 1 across CLI and Python API, reducing memory bus traffic by 5x.</li>
-          <li>Android UTF-8 Replacement Decoding: Replaced strict decoding with errors='replace' to prevent multibyte character ingestion crashes.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Fuzzy Typo Protection & Output Directory Auto-Creation</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-27</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Fuzzy Typo Suggestion & Model Discovery: difflib-powered intelligent typo suggestion (Did you mean: tiny?) and full available model catalog display on unrecognized models, terminating safely with 0ms network latency.</li>
-          <li>Output Directory Auto-Creation: Recursive parent directory provisioning (os.makedirs(out_dir, exist_ok=True)) for all output files (text, srt, vtt, json, rttm), eliminating FileNotFoundError.</li>
-          <li>Library Overreach & Privileged Escalation Elimination: Completely stripped unprompted su root privilege escalation attempts in mobile_guard.py for strict unrooted Android compliance.</li>
-          <li>Zero-Overreach Certification: 100% verified compliance with POSIX process group isolation and Bionic libc sandboxing across all STT inference pipelines.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Direct Local Model Paths & Quantized Models</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Direct Local Model Path Integration: Direct connection for custom fine-tuned GGML, BitNet 1.58b, and LLaMA weights with 0-download bypass.</li>
-          <li>Extended Model Registry: Added large-v3-turbo, large-v3, English-optimized .en models, and quantized ARM NEON weights (small-q5_1, medium-q5_0, large-v3-turbo-q5_0).</li>
-          <li>Full C++ Parameter Control: Full CLI and SDK controls for Beam Search (-bs), Best-Of (-bo), Temperature (-tp), Prompt Hints (--prompt), and Raw C++ Passthrough (--extra-args).</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - 5-Point Core Reliability & Hardening</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Stable Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Temp WAV Garbage Collection: try...finally lifecycle management for automatic converted WAV deletion, eliminating storage leaks.</li>
-          <li>Safe Psutil Import Guard: Defensive lazy-loading in MobileGuard preventing import crashes on minimal Termux environments.</li>
-          <li>Platform Spoofing Isolation: Restricted sys.platform = 'linux' strictly to Android/Termux runtimes.</li>
-          <li>Mobile 1-Pass Greedy Policy: Defaulted to --no-fallback (-nf) on Termux to prevent multi-temperature thermal throttling.</li>
-          <li>Node.js Binary Resolver: Upgraded CLI wrapper with python3 / python dynamic binary detection.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Download Pipeline Optimization</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Patch Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Model Hub Request Sequencing: Resolved NameError: req in download pipeline.</li>
-          <li>Instant Cache Priority: Defaulted CLI models to pre-cached tiny for 0-second execution.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - CLI Standardization & SSL Defense</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Patch Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Flexible EngineConfig Aliasing: Seamless backward-compatible argument aliases (model_path, language, num_threads, use_vad).</li>
-          <li>CLI Factory Standardization: Migrated diarize, benchmark, and listen to unified create_engine.</li>
-          <li>Precise Header Duration: Exact WAV RIFF header duration calculation for benchmark RTF.</li>
-          <li>SSL Fallback: Added unverified SSL context fallback for custom certificate environments.</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Official JFK Sample Audio & 1-Click Installer</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Feature Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-26</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Official JFK 60s Sample Audio: Integrated clean 16kHz Mono PCM sample (samples/jfk_1min.wav).</li>
-          <li>Zero-Subprocess Wave Parsing: Pure Python wave direct parser bypassing FFmpeg subprocessing.</li>
-          <li>Bionic Dynamic Linker Defense: Packaged libbluray and libxml2 in automated installer.</li>
-          <li>1-Click Installer CLI: Registered termux-stt install command.</li>
-          <li>Dual-Engine Monorepo Packaging: Full root package.json support for npm install -g git+....</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.3.0 - Initial Public Release</h3>
-          <div>
-            <span class="status-badge" style="margin-right: 6px;">Initial Release</span>
-            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-08-20</span>
-          </div>
-        </div>
-        <ul style="margin-left: 20px; line-height: 1.8;">
-          <li>Unified Multi-Engine Architecture: Single create_engine() API for whisper.cpp, vosk, and sherpa-onnx.</li>
-          <li>Pure-Python Speaker Diarization: Custom K-Means and Cosine Distance matrix without numpy/sklearn dependencies.</li>
-          <li>Hybrid Diarization Pipeline: Vosk X-Vector + Whisper STT under 1.5 GB RAM.</li>
-          <li>Audio Pipeline: ffmpeg 16kHz mono converter, Silero-VAD integration, and Termux microphone recorder.</li>
-          <li>Model Hub: Automatic model downloader with SHA-256 verification and cache management.</li>
-          <li>Export Standards: SRT, WebVTT, NIST RTTM, and structured JSON output.</li>
-          <li>CLI Suite: transcribe, listen, diarize, models, doctor, and benchmark.</li>
+          <li>Bionic Linker Zero-Collision Rule: Dynamically purges $PREFIX/lib from LD_LIBRARY_PATH during whisper-cli execution.</li>
+          <li>Dual-Flagship Native Vulkan GPU Universal Acceleration: Validated native Vulkan GPU compute offload across Qualcomm Adreno 830 and ARM Mali-G78.</li>
+          <li>Subprocess ABI Isolation: Standardized RPATH dynamic resolution guaranteeing standalone execution integrity.</li>
         </ul>
       </div>
     </main>
