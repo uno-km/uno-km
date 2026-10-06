@@ -122,7 +122,7 @@ window.AmevaPortfolioPDF = {
             box-sizing: border-box;
             width: 760px;
             min-height: 1040px;
-            padding: 24px 28px;
+            padding: 22px 26px;
             background: #ffffff;
             page-break-after: always;
             position: relative;
@@ -132,25 +132,25 @@ window.AmevaPortfolioPDF = {
           }
           .pdf-header {
             border-bottom: 2.5px solid #004499;
-            padding-bottom: 6px;
-            margin-bottom: 10px;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
           }
           .pdf-title {
-            font-size: 19px;
+            font-size: 18.5px;
             font-weight: 800;
             color: #004499;
-            margin: 0 0 3px 0;
+            margin: 0 0 2px 0;
           }
           .pdf-profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4px;
-            font-size: 10.5px;
+            gap: 3px;
+            font-size: 10.2px;
             background: #f8fafc;
-            padding: 8px 12px;
+            padding: 7px 11px;
             border: 1px solid #e2e8f0;
             border-radius: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
           }
           .pdf-profile-item {
             margin: 1px 0;
@@ -159,23 +159,23 @@ window.AmevaPortfolioPDF = {
             color: #0f172a;
           }
           .pdf-h2 {
-            font-size: 12.8px;
+            font-size: 12px;
             font-weight: 700;
             color: #0f172a;
             border-bottom: 1.5px solid #cbd5e1;
-            padding-bottom: 3px;
-            margin: 10px 0 6px 0;
+            padding-bottom: 2.5px;
+            margin: 8px 0 5px 0;
           }
           .pdf-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 5px 0;
-            font-size: 8.3px;
-            line-height: 1.30;
+            margin: 4px 0;
+            font-size: 7.9px;
+            line-height: 1.28;
           }
           .pdf-table th, .pdf-table td {
             border: 1px solid #cbd5e1;
-            padding: 2.8px 4px;
+            padding: 2.5px 3.5px;
             text-align: left;
             vertical-align: middle;
           }
@@ -183,7 +183,7 @@ window.AmevaPortfolioPDF = {
             background: #f1f5f9;
             color: #0f172a;
             font-weight: 700;
-            font-size: 8.3px;
+            font-size: 7.9px;
             text-align: center;
           }
           .pdf-table td.center {
@@ -192,7 +192,7 @@ window.AmevaPortfolioPDF = {
           .pdf-table td.num {
             text-align: right;
             font-family: monospace;
-            font-size: 8.2px;
+            font-size: 7.8px;
           }
           .pdf-card {
             background: #ffffff;
@@ -226,7 +226,7 @@ window.AmevaPortfolioPDF = {
             background: #f1f5f9;
             padding: 1px 4px;
             border-radius: 3px;
-            font-size: 8.5px;
+            font-size: 8.2px;
             color: #0f172a;
           }
           .pdf-link {
@@ -255,10 +255,10 @@ window.AmevaPortfolioPDF = {
             color: #166534;
           }
           .pdf-footer {
-            font-size: 8.5px;
+            font-size: 8.2px;
             color: #94a3b8;
             text-align: right;
-            margin-top: 10px;
+            margin-top: 8px;
             border-top: 1px solid #f1f5f9;
             padding-top: 3px;
           }
@@ -268,7 +268,7 @@ window.AmevaPortfolioPDF = {
         <div class="pdf-page">
           <div class="pdf-header">
             <h1 class="pdf-title">엔지니어링 포트폴리오 (Engineering Portfolio)</h1>
-            <div style="font-size:10.5px; color:#64748b;">AMEVA Open-Source Foundation (AOSF) 기술 생태계 &amp; 프로젝트 명세서 (기준일자: ${todayStr})</div>
+            <div style="font-size:10.2px; color:#64748b;">AMEVA Open-Source Foundation (AOSF) 기술 생태계 &amp; 프로젝트 명세서 (기준일자: ${todayStr})</div>
           </div>
 
           <div class="pdf-profile-grid">
@@ -281,7 +281,7 @@ window.AmevaPortfolioPDF = {
             <div class="pdf-profile-item" style="grid-column: 1 / -1;"><strong>재단 포털:</strong> <a href="https://uno-km.vercel.app/foundation/" target="_blank" class="pdf-link">https://uno-km.vercel.app/foundation/</a></div>
           </div>
 
-          <h2 class="pdf-h2">16대 프로젝트 현황 및 생태계 실측 명세 (Ecosystem Status &amp; Telemetry)</h2>
+          <h2 class="pdf-h2">1. 16대 프로젝트 현황 및 생태계 실측 명세 (Ecosystem Status &amp; Telemetry)</h2>
           <table class="pdf-table">
             <thead>
               <tr>
@@ -399,7 +399,7 @@ window.AmevaPortfolioPDF = {
                 <td>WASI 인메모리 MCP 허브</td>
                 <td class="center"><code class="pdf-code">${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].version) || 'v3.1.4'}</code></td>
                 <td class="num">${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].npm) || '1,061'}</td>
-                <td class="center" style="font-size:8px; color:#64748b;">NPM 전용</td>
+                <td class="center" style="font-size:7.5px; color:#64748b;">NPM 전용</td>
                 <td class="num"><strong>${(liveData['ameva-mcp-hub'] && liveData['ameva-mcp-hub'].total) || '1,061'}</strong></td>
                 <td>호스트 환경 오염 없는 WASM 인메모리 도구 실행 엔진. Claude Desktop / Cursor 등 AI 코딩 에이전트 도구 공급 인프라로 연동.</td>
               </tr>
@@ -441,6 +441,75 @@ window.AmevaPortfolioPDF = {
               </tr>
             </tbody>
           </table>
+
+          <h2 class="pdf-h2">2. AMEVA 생태계 정의 및 저수준 하드웨어 엔지니어링 (Architecture &amp; Engineering)</h2>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 3px 0 5px 0;">
+            <!-- Box 1: AMEVA 공식 정의 및 핵심 가치 (사용자 요청 원문 100% 무변경 수록) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid #004499; padding:5px 7px; border-radius:3px; font-size:7.5px; line-height:1.30;">
+              <div style="font-weight:700; color:#0f172a; margin-bottom:2px; font-size:8px;">AMEVA 공식 정의 및 핵심 가치 (Autonomous Multi-Agent Edge-AI Ecosystem)</div>
+              <div>• <strong>생물학적 기원 (Amoeba):</strong> 가장 척박하고 제한된 환경에서도 형태를 유연하게 바꾸며 자율 증식·적응하는 단세포 생명체 아메바(Amoeba)에서 유래.</div>
+              <div style="margin-top:2px;">• <strong>아크로님 정의 (Acronym):</strong></div>
+              <div style="padding-left:5px; margin:1px 0;">
+                - <strong>A (Autonomous):</strong> 빅테크 클라우드 서버와 외부 네트워크 통신을 배제한 100% 로컬 자율 의사결정<br>
+                - <strong>M (Multi-Agent):</strong> 6-모달리티(LLM, Diffusion, VLM, STT, TTS, Train) 계층적 에이전트 오케스트레이션<br>
+                - <strong>E (Edge-Native):</strong> 상용 GPU 서버 비용 0원을 달성하는 순수 클라이언트 엣지 컴퓨팅<br>
+                - <strong>V (Virtualized):</strong> 격리된 WASM 인메모리 샌드박스 및 P2P 가상 분산 런타임 (Cluster)<br>
+                - <strong>A (Automation):</strong> 스마트폰 및 브라우저 하드웨어를 활용한 24시간 무중단 자율화
+              </div>
+              <div style="margin-top:2px;">• <strong>핵심 가치:</strong> 단 1바이트의 개인·기업 기밀 데이터도 외부로 전송하지 않는 완전한 데이터 주권(Data Sovereignty) 확보.</div>
+            </div>
+
+            <!-- Box 2: Android Termux 환경 채택 배경 및 실리콘 계층 최적화 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid #004499; padding:5px 7px; border-radius:3px; font-size:7.5px; line-height:1.30;">
+              <div style="font-weight:700; color:#0f172a; margin-bottom:2px; font-size:8px;">Android Termux 환경 채택 배경 및 실리콘 계층 최적화</div>
+              <div>• <strong>Termux 환경 채택 배경:</strong> 루팅(Rooting) 없이 표준 안드로이드 환경에서 POSIX Bionic libc 및 시스템 저수준 API에 직접 접근하여, 5W 미만의 저전력 환경에서 공기계 단말을 상시 유효 노드로 운용하는 전력 효율성 확보.</div>
+              <div style="margin-top:2px;">• <strong>저수준 하드웨어 아키텍처 최적화 (Silicon-Level Optimization):</strong></div>
+              <div style="padding-left:5px; margin:1px 0;">
+                - <strong>Qualcomm Snapdragon (Adreno):</strong> 32KB 로컬 메모리(LDS) 경계 조건 방어, Vulkan 드라이버 컨텍스트 안정화 및 OpenCL 네이티브 디스패치 직접 구현.<br>
+                - <strong>Samsung Exynos (ARM Mali):</strong> Valhall 아키텍처 커널 타임아웃 방어 및 Vulkan 셰이더 연산 수치 정밀도 보정.<br>
+                - <strong>순수 ARM64 NEON 커널 내재화:</strong> 대형 외부 의존성(OpenCV 등)을 배제하고, 순수 C++ 및 ARMv8.2-A NEON/DotProd 어셈블리 직접 설계를 통한 초경량 가속 엔진 구축.
+              </div>
+            </div>
+          </div>
+
+          <h2 class="pdf-h2">3. 글로벌 오픈소스 코어 업스트림 기여 실적 (Upstream Open-Source Contributions)</h2>
+          <table class="pdf-table" style="font-size:7.4px; margin-top:2px;">
+            <thead>
+              <tr>
+                <th style="width: 25%;">대상 조직 / 프로젝트</th>
+                <th style="width: 27%;">기여 번호 및 연구 명칭</th>
+                <th style="width: 48%;">핵심 기여 내용 및 기술적 성과</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ggml.ai / OpenAI 아키텍처</strong><br><span style="color:#64748b; font-size:7px;">(ggerganov/whisper.cpp)</span></td>
+                <td><strong>[whisper.cpp #4089]</strong><br>모바일 SoC 하이브리드 스플릿 모드<br><code class="pdf-code">--split-mode</code></td>
+                <td>모바일 이종 컴퓨팅 환경에서 트랜스포머 인코더는 Vulkan GPU, 디코더는 CPU로 분할 처리하여 단말 발열을 억제하고 연산 지연시간을 개선한 파이프라인 기여 (AOSF-TR-2026-UPSTREAM-WHISPER-4089).</td>
+              </tr>
+              <tr>
+                <td><strong>Microsoft Research</strong><br><span style="color:#64748b; font-size:7px;">(microsoft/BitNet)</span></td>
+                <td><strong>[BitNet #551]</strong><br>ARM 아키텍처 i2_s 양자화<br>텐서 안정성 복원</td>
+                <td>ARM 디바이스 구동 시 발생하던 삼진 텐서 메모리 정렬 오류 및 텍스트 출력 결함을 분석·수정하고 비-AVX2 CPU 폴백 루틴 복원 (AOSF-TR-2026-UPSTREAM-BITNET-551).</td>
+              </tr>
+              <tr>
+                <td><strong>Microsoft Research</strong><br><span style="color:#64748b; font-size:7px;">(microsoft/BitNet)</span></td>
+                <td><strong>[BitNet #624]</strong><br>ARMv8.2-A NEON 1x4_32W<br><code class="pdf-code">sdot</code> 가속 커널 완주</td>
+                <td>Signed Dot Product(sdot) 명령어를 활용한 하드웨어 가속 텐서 연산 최적화 커널 및 안드로이드 NDK 빌드 툴체인 기여 (AOSF-TR-2026-UPSTREAM-BITNET-624).</td>
+              </tr>
+              <tr>
+                <td><strong>ggml.ai / OpenAI 아키텍처</strong><br><span style="color:#64748b; font-size:7px;">(ggerganov/whisper.cpp)</span></td>
+                <td><strong>[whisper.cpp 패치]</strong><br>Adreno 6xx Vulkan LDS<br>하드웨어 제한 안전 폴백</td>
+                <td>스냅드래곤 GPU의 32KB 로컬 데이터 공유(LDS) 하드웨어 제약으로 인한 드라이버 비정상 종료를 방지하고 자동 표준 어텐션으로 우회하는 안전 계층 구축 (AOSF-TR-2026-WHISPER-ADRENO6XX-FALLBACK).</td>
+              </tr>
+              <tr>
+                <td><strong>Microsoft Research</strong><br><span style="color:#64748b; font-size:7px;">(microsoft/BitNet)</span></td>
+                <td><strong>[BitNet #633]</strong><br>ARM64 삼진 가중치 역양자화<br>정밀도 개선 및 디스패처 기여</td>
+                <td>ARM64 런타임의 삼진 가중치 역양자화 연산 수치 불안정을 정밀 보정하고 모델 구조에 따른 동적 활성화 함수 디스패처 엔진 업스트림 기여 (AOSF-TR-2026-UPSTREAM-BITNET-633).</td>
+              </tr>
+            </tbody>
+          </table>
+
           <div class="pdf-footer">Page 1 / 10 • 김은호 엔지니어링 포트폴리오</div>
         </div>
 
@@ -1033,7 +1102,7 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div style="margin-top: 10px; text-align: center; font-size: 9px; color: #64748b;">
+          <div style="margin-top: 8px; text-align: center; font-size: 8.8px; color: #64748b;">
             © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF). All Rights Reserved.
           </div>
           <div class="pdf-footer">Page 10 / 10 • 김은호 엔지니어링 포트폴리오</div>
