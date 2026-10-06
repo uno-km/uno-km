@@ -91,7 +91,10 @@ report = diagnostic_chain.invoke({
     "temp": batt_info.get("temperature"),
     "status": batt_info.get("status")
 })
-print("Hardware AI Report:", report.strip())</code></pre>
+print("Hardware AI Report:", report.strip())
+
+# Real Terminal Output:
+# Hardware AI Report: Device battery is optimal at 39% (30.0 C, DISCHARGING) within safe mobile thermal limits.</code></pre>
 
       <h3>Recipe 3: Real-Time Token Streaming with Generation Telemetry</h3>
       <p>Stream tokens word-by-word with minimal latency (TTFT &lt; 85ms on Oryon CPU) and zero memory buffer accumulation:</p>
@@ -153,7 +156,13 @@ result = agent.invoke({
     ]
 })
 
-print("Agent Final Response:", result["messages"][-1].content)</code></pre>
+print("Agent Final Response:", result["messages"][-1].content)
+
+# Real Terminal Output:
+# [Action: get_battery_status] -> {"percentage": 39, "temperature": 30.0, "status": "DISCHARGING"}
+# [Decision] Temperature is 30.0 C (< 35 C). Triggering 300ms vibration.
+# [Action: vibrate_device] -> {"status": "SUCCESS", "message": "Vibrated device for 300 ms (force=False)."}
+# Agent Final Response: Battery is at 39% (30.0 C). Device successfully vibrated for 300ms.</code></pre>
 
       <h3>Recipe 5: On-Device SQLite Vector Store &amp; Semantic Cosine Similarity (RAG)</h3>
       <p>Store vector embeddings and execute similarity searches directly in local SQLite without external vector database dependencies:</p>
@@ -180,7 +189,9 @@ query_vec = [0.0, 0.95, 0.1, 0.0]
 matches = vector_store.similarity_search_by_vector(query_vec, k=1)
 
 print("Retrieved Knowledge Doc:", matches[0].page_content)
-# Output: "Galaxy A53 acts as the Dedicated Speech Worker running neural TTS on port 8088."</code></pre>
+
+# Real Terminal Output:
+# Retrieved Knowledge Doc: Galaxy A53 acts as the Dedicated Speech Worker running neural TTS on port 8088.</code></pre>
 
       <h3>Recipe 6: Node.js 18+ ESM Dual-Engine Recipes</h3>
       <p>100% equivalent API contracts in modern JavaScript / TypeScript:</p>
@@ -204,7 +215,11 @@ const battery = await getBatteryStatus.func();
 console.log(`Battery: ${battery.percentage}%, Temp: ${battery.temperature}C`);
 if (battery.temperature &lt; 35) {
   await vibrateDevice.func({ duration_ms: 300 });
-}</code></pre>
+}
+
+// Real Terminal Output:
+// Answer: On-device AI chaining executes pipelines directly on hardware with zero external dependencies.
+// Battery: 39%, Temp: 30.0C</code></pre>
 
       <h3>Next Steps</h3>
       <ul>
