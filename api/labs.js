@@ -52,6 +52,7 @@ try {
     SERVER_CACHE.setPost(id, {
       ...p,
       id,
+      abstract: p.abstract || '',
       author_ip: '127.0.0.1',
       status: 'published',
       view_count: p.view_count || 0,
@@ -79,7 +80,7 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v26_table_whitespace_repaired';
+  const SEED_VERSION = 'v27_abstract_column_added';
   try {
     // ── Ultra-Fast Validation Gate (1 lightweight check skips 17 DDL/DML roundtrips) ──
     try {
@@ -119,6 +120,7 @@ async function ensureSchema(sql) {
         menu_id VARCHAR(50) NOT NULL REFERENCES labs_menus(id) ON DELETE CASCADE,
         title VARCHAR(255) NOT NULL,
         title_eng VARCHAR(255) DEFAULT '',
+        abstract TEXT DEFAULT '',
         content TEXT NOT NULL,
         content_eng TEXT DEFAULT '',
         tags VARCHAR(4000) DEFAULT '',
@@ -138,6 +140,7 @@ async function ensureSchema(sql) {
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS title_eng VARCHAR(255) DEFAULT '';`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS content_eng TEXT DEFAULT '';`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS tags VARCHAR(4000) DEFAULT '';`;
+    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS abstract TEXT DEFAULT '';`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS labs_comments (
@@ -201,12 +204,13 @@ async function ensureSchema(sql) {
           const postId = p.id || (i + 1);
           const createdAt = p.created_at || new Date().toISOString();
           await sql`
-            INSERT INTO labs_posts (id, menu_id, title, title_eng, content, content_eng, tags, author, author_ip, status, created_at, updated_at)
-            VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.title_eng || ''}, ${p.content}, ${p.content_eng || ''}, ${p.tags || ''}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
+            INSERT INTO labs_posts (id, menu_id, title, title_eng, abstract, content, content_eng, tags, author, author_ip, status, created_at, updated_at)
+            VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.title_eng || ''}, ${p.abstract || ''}, ${p.content}, ${p.content_eng || ''}, ${p.tags || ''}, ${p.author || 'uno-km'}, '127.0.0.1', 'published', ${createdAt}, ${createdAt})
             ON CONFLICT (id) DO UPDATE SET
               menu_id = EXCLUDED.menu_id,
               title = EXCLUDED.title,
               title_eng = EXCLUDED.title_eng,
+              abstract = EXCLUDED.abstract,
               content = EXCLUDED.content,
               content_eng = EXCLUDED.content_eng,
               tags = EXCLUDED.tags,
@@ -393,7 +397,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
       if (menu_id && menu_id !== 'all') {
         if (includeContent) {
           posts = await sql`
-            SELECT p.id, p.menu_id, p.title, p.title_eng, p.content, p.content_eng, p.tags, 
+            SELECT p.id, p.menu_id, p.title, p.title_eng, p.abstract, p.content, p.content_eng, p.tags, 
                    SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                    p.author, p.author_ip, p.status, 
                    p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
@@ -410,7 +414,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
           `;
         } else {
           posts = await sql`
-            SELECT p.id, p.menu_id, p.title, p.title_eng, p.tags, 
+            SELECT p.id, p.menu_id, p.title, p.title_eng, p.abstract, p.tags, 
                    SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                    p.author, p.author_ip, p.status, 
                    p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,
@@ -428,7 +432,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
         }
       } else {
         posts = await sql`
-          SELECT p.id, p.menu_id, p.title, p.title_eng, p.tags, 
+          SELECT p.id, p.menu_id, p.title, p.title_eng, p.abstract, p.tags, 
                  SUBSTRING(p.content FROM 1 FOR 300) as excerpt,
                  p.author, p.author_ip, p.status, 
                  p.view_count, p.like_count, p.comment_count, p.created_at, p.updated_at,

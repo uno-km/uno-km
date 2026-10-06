@@ -3,6 +3,7 @@
  * AMEVA Open-Source Foundation & Eunho Kim Official Portfolio PDF Generator
  * High-precision, zero-drift Korean typography & hyperlinked layout engine
  * 16 Ecosystem Projects & Disaggregated On-Device AI Architecture (Strict 10 Pages)
+ * Dynamic AMEVA Labs Research Papers & Benchmarks with Abstracts
  */
 
 window.AmevaPortfolioPDF = {
@@ -43,13 +44,29 @@ window.AmevaPortfolioPDF = {
     return dataMap;
   },
 
+  fetchLabsResearch: async function() {
+    try {
+      const [papersRes, benchRes] = await Promise.all([
+        fetch('/api/labs?action=get_posts&menu_id=research-papers').then(r => r.json()).catch(() => null),
+        fetch('/api/labs?action=get_posts&menu_id=research-benchmarks').then(r => r.json()).catch(() => null)
+      ]);
+
+      const papers = (papersRes && papersRes.posts) ? papersRes.posts : [];
+      const benchmarks = (benchRes && benchRes.posts) ? benchRes.posts : [];
+      return { papers, benchmarks };
+    } catch (e) {
+      console.warn('[Portfolio PDF] Labs DB API fetch failed, using fallback:', e);
+      return { papers: [], benchmarks: [] };
+    }
+  },
+
   generatePortfolioPDF: async function(buttonElem) {
     if (this.isGenerating) return;
     this.isGenerating = true;
 
     const originalText = buttonElem ? buttonElem.innerHTML : '';
     if (buttonElem) {
-      buttonElem.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">*</span> PDF 생성 중...';
+      buttonElem.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">*</span> PDF 생성 중 (DB 연동)...';
       buttonElem.style.pointerEvents = 'none';
       buttonElem.style.opacity = '0.8';
     }
@@ -65,6 +82,100 @@ window.AmevaPortfolioPDF = {
       }
       const liveData = this.getLiveTableData();
       const todayStr = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      // Fetch dynamic research papers and benchmarks from real DB API
+      const labsData = await this.fetchLabsResearch();
+
+      // Curated fallback if DB offline
+      const fallbackPapers = [
+        {
+          id: 45,
+          menu_id: 'research-papers',
+          title: '온디바이스 트랜스포머 음성인식의 단계별 연산 특성을 고려한 GPU-CPU 이기종 분할 파이프라인 설계 및 실측 평가',
+          author: '김은호',
+          created_at: '2026-09-29',
+          abstract: '밀집 행렬곱 인코더는 Vulkan GPU, 순차 단일 토큰 디코더는 ARM NEON CPU로 분할 처리하여 발열을 408%에서 16%로 냉각한 하이브리드 파이프라인 실증.'
+        },
+        {
+          id: 52,
+          menu_id: 'research-papers',
+          title: 'ARM64 온디바이스 1.58비트 LLM의 삼진 수치 붕괴(Word Salad) 결함 원인 규명 및 다이나믹 활성화 함수 엔진 구현 실증',
+          author: '김은호',
+          created_at: '2026-10-01',
+          abstract: '삼진 LLM 구동 시 발생하는 수치 붕괴 결함을 포렌식 분석하고, 정확한 역양자화 수식 w=(b&3)-1 복원 및 다이나믹 활성화 함수 디스패처를 업스트림에 기여.'
+        },
+        {
+          id: 33,
+          menu_id: 'research-papers',
+          title: '메모리 제약 모바일 디바이스에서 레이어 스트리밍을 활용한 대규모 Diffusion Transformer 추론 기법 실증',
+          author: '김은호',
+          created_at: '2026-09-28',
+          abstract: '모바일 단말의 1GB VRAM 한계를 극복하기 위해 60억 파라미터 DiT 가중치를 AXI 버스 동적 교체 방식으로 구동하여 안드로이드 LMK 강제 종료를 원천 차단.'
+        },
+        {
+          id: 31,
+          menu_id: 'research-papers',
+          title: 'Qualcomm Adreno 셰이더 컴파일러의 동적 루프 전개 결함 포렌식 및 수치 정밀도 복원 기법',
+          author: '김은호',
+          created_at: '2026-09-12',
+          abstract: '스냅드래곤 GPU SPIR-V 컴파일러의 루프 전개 결함을 포렌식 분석하고 IEEE 754 반정밀도(FP16) 언더플로우를 방지하는 정밀도 복원 기법 제시.'
+        }
+      ];
+
+      const fallbackBenchmarks = [
+        {
+          id: 65,
+          menu_id: 'research-benchmarks',
+          title: '2026 AMEVA 모바일 플릿 하드웨어 8대 모달리티 전수 실측 대백서: 4대 실기기(S25·S21·A35·S20) 매트릭스',
+          author: '김은호',
+          created_at: '2026-10-02',
+          abstract: '상용 갤럭시 단말기 4종에서 8대 AI 모달리티를 직접 구동하여 측정한 단일 진실 공급원(SSOT) 벤치마크 매트릭스. 발열, 지연시간, 메모리 누수 전수 검증.'
+        },
+        {
+          id: 36,
+          menu_id: 'research-benchmarks',
+          title: '갤럭시 S20 72시간 연속 AI 추론 스트레스 테스트: 발열 및 메모리 누수 분석',
+          author: '김은호',
+          created_at: '2026-09-20',
+          abstract: 'Samsung Galaxy S20 단말에서 72시간 동안 10,000회 연속 온디바이스 AI 추론을 실행하며 배터리 소모율, 온도 변화, 힙 메모리 무누수를 완벽 검증.'
+        }
+      ];
+
+      const activePapers = (labsData.papers && labsData.papers.length > 0) ? labsData.papers.slice(0, 4) : fallbackPapers;
+      const activeBenchmarks = (labsData.benchmarks && labsData.benchmarks.length > 0) ? labsData.benchmarks.slice(0, 2) : fallbackBenchmarks;
+
+      // Build Dynamic Research Table Rows HTML
+      let researchRowsHtml = '';
+
+      activePapers.forEach(p => {
+        const dateStr = p.created_at ? p.created_at.slice(0, 10) : '2026-09-29';
+        const authorStr = p.author || '김은호';
+        const abstractStr = p.abstract || p.excerpt || '온디바이스 네이티브 C++ 및 Vulkan 하드웨어 가속 아키텍처 실측 연구 백서.';
+        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-papers&id=${p.id}`;
+        researchRowsHtml += `
+          <tr>
+            <td><span style="color:#0284c7; font-weight:700;">[연구 백서]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>
+            <td><strong>${p.title}</strong></td>
+            <td>${abstractStr}</td>
+            <td class="center"><a href="${linkUrl}" target="_blank" class="pdf-link">논문 열람</a></td>
+          </tr>
+        `;
+      });
+
+      activeBenchmarks.forEach(b => {
+        const dateStr = b.created_at ? b.created_at.slice(0, 10) : '2026-10-02';
+        const authorStr = b.author || '김은호';
+        const abstractStr = b.abstract || b.excerpt || '상용 모바일 실기기 기반 온디바이스 AI 성능 및 발열 스트레스 실측 벤치마크.';
+        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-benchmarks&id=${b.id}`;
+        researchRowsHtml += `
+          <tr>
+            <td><span style="color:#16a34a; font-weight:700;">[실측 벤치]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>
+            <td><strong>${b.title}</strong></td>
+            <td>${abstractStr}</td>
+            <td class="center"><a href="${linkUrl}" target="_blank" class="pdf-link">리포트 열람</a></td>
+          </tr>
+        `;
+      });
 
       // Create modal wrapper for deterministic visible canvas capture
       wrapper = document.createElement('div');
@@ -98,7 +209,7 @@ window.AmevaPortfolioPDF = {
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
       `;
-      notification.innerHTML = '[PDF] 하이퍼링크가 포함된 상세 포트폴리오 PDF를 생성 중입니다... 잠시만 기다려주세요.';
+      notification.innerHTML = '[PDF] DB 연동 하이퍼링크 포트폴리오 PDF를 생성 중입니다... 잠시만 기다려주세요.';
       wrapper.appendChild(notification);
 
       const container = document.createElement('div');
@@ -149,7 +260,7 @@ window.AmevaPortfolioPDF = {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2px;
-            font-size: 8.8px;
+            font-size: 8.6px;
             background: #f8fafc;
             padding: 5px 9px;
             border: 1px solid #e2e8f0;
@@ -278,11 +389,13 @@ window.AmevaPortfolioPDF = {
           <div class="pdf-profile-grid">
             <div class="pdf-profile-item"><strong>작성자:</strong> 김은호 (Eunho Kim)</div>
             <div class="pdf-profile-item"><strong>직무:</strong> 시스템 소프트웨어 엔지니어 / 풀스택 엔지니어</div>
-            <div class="pdf-profile-item"><strong>이메일:</strong> <a href="mailto:uno.kim@kakao.com" class="pdf-link">uno.kim@kakao.com</a> / <a href="mailto:zhfldk014745@naver.com" class="pdf-link">zhfldk014745@naver.com</a></div>
+            <div class="pdf-profile-item"><strong>이메일:</strong> <a href="mailto:zhfldk014745@naver.com" class="pdf-link">zhfldk014745@naver.com</a></div>
+            <div class="pdf-profile-item"><strong>조직 형태:</strong> 1인 개발자 · 1인 독립 연구소 (Solo Developer &amp; Sovereign Independent Research Lab)</div>
             <div class="pdf-profile-item"><strong>공식 웹사이트:</strong> <a href="https://uno-km.vercel.app/" target="_blank" class="pdf-link">https://uno-km.vercel.app/</a></div>
             <div class="pdf-profile-item"><strong>기술 블로그:</strong> <a href="https://uno-kim.tistory.com/" target="_blank" class="pdf-link">https://uno-kim.tistory.com/</a></div>
             <div class="pdf-profile-item"><strong>GitHub:</strong> <a href="https://github.com/uno-km" target="_blank" class="pdf-link">https://github.com/uno-km</a></div>
-            <div class="pdf-profile-item" style="grid-column: 1 / -1;"><strong>재단 포털:</strong> <a href="https://uno-km.vercel.app/foundation/" target="_blank" class="pdf-link">https://uno-km.vercel.app/foundation/</a></div>
+            <div class="pdf-profile-item"><strong>재단 포털:</strong> <a href="https://uno-km.vercel.app/foundation/" target="_blank" class="pdf-link">https://uno-km.vercel.app/foundation/</a></div>
+            <div class="pdf-profile-item" style="grid-column: 1 / -1;"><strong>연구소 (AMEVA Labs):</strong> <a href="https://uno-km.vercel.app/labs/" target="_blank" class="pdf-link">https://uno-km.vercel.app/labs/</a> (소버린 온디바이스 AI 연구, 기술 백서 &amp; 벤치마크)</div>
           </div>
 
           <h2 class="pdf-h2">1. 16대 프로젝트 현황 및 생태계 실측 명세 (Ecosystem Status &amp; Telemetry)</h2>
@@ -929,21 +1042,21 @@ window.AmevaPortfolioPDF = {
         <!-- ==================== PAGE 10: 전체 공식 배포처 및 아키텍처 다이어그램 ==================== -->
         <div class="pdf-page">
           <h2 class="pdf-h2">3. AMEVA 생태계 분산 아키텍처 (Disaggregated Edge AI)</h2>
-          <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:9px 12px; border-radius:4px; margin-bottom:12px; font-size:9.5px; line-height:1.5;">
-            <div style="font-weight:700; color:#0f172a; margin-bottom:4px;">시스템 통합 구조 (End-to-End Orchestration)</div>
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:6px 9px; border-radius:3px; margin-bottom:5px; font-size:8.6px; line-height:1.35;">
+            <div style="font-weight:700; color:#0f172a; margin-bottom:2px;">시스템 통합 구조 (End-to-End Orchestration)</div>
             <div>• <strong>클라이언트 애플리케이션 계층:</strong> AMEVA Workstation(브라우저 WebGPU 기반 오피스 작업) 및 Infra-Index(글로벌 69개 인프라 시황)를 통해 최종 사용자에게 100% 로컬 프라이버시 경험 제공.</div>
             <div>• <strong>분산 런타임 &amp; 오케스트레이션 계층:</strong> AMEVA-Cluster가 모바일 기기 간의 메모리를 묶고(최대 44GB), AMEVA-MCP-Hub가 안전한 WASM 격리 환경에서 도구를 제어하며, Termux-AIChain이 자율 에이전트 워크플로우를 경량 지휘.</div>
             <div>• <strong>네이티브 실리콘 가속 계층:</strong> AMEVA-Runtime 코어 위에서 6-모달리티(Diffusion, BitNet, LlamaCpp, STT, TTS, Vision) 엔진이 스마트폰 하드웨어(Vulkan 1.3 / OpenCL / ARM NEON)를 직결 가속하여 상용 GPU 서버 비용 0원 달성.</div>
           </div>
 
           <h2 class="pdf-h2">4. 생태계 16대 프로젝트 공식 배포처 &amp; 문서 일람 (Official Links)</h2>
-          <table class="pdf-table" style="font-size:7.5px;">
+          <table class="pdf-table" style="font-size:6.8px; margin: 1px 0 4px 0;">
             <thead>
               <tr>
                 <th style="width: 25%;">프로젝트명</th>
                 <th style="width: 25%;">패키지 배포처</th>
                 <th style="width: 25%;">공식 기술 문서</th>
-                <th style="width: 25%;">오픈소스 저장소 / 보안 정책</th>
+                <th style="width: 25%;">저장소 보안 정책 / 오픈소스</th>
               </tr>
             </thead>
             <tbody>
@@ -951,43 +1064,43 @@ window.AmevaPortfolioPDF = {
                 <td><strong>AMEVA Workstation</strong></td>
                 <td><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank" class="pdf-link">웹 라이브 앱</a></td>
                 <td><a href="https://uno-km.vercel.app/workstation" target="_blank" class="pdf-link">소개 페이지</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>Infra-Index Platform</strong></td>
                 <td><a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">웹 라이브 앱</a></td>
-                <td><a href="https://infra-index.com/" target="_blank" class="pdf-link">실시간 대시보드</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td><a href="https://infraindex-platform-front.vercel.app/" target="_blank" class="pdf-link">실시간 대시보드</a></td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-Runtime</strong></td>
                 <td><a href="https://pypi.org/project/ameva-runtime/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/ameva-runtime" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/runtime/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-Cluster</strong></td>
                 <td><a href="https://pypi.org/project/ameva-cluster/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/ameva-cluster" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/cluster/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-Forge</strong></td>
                 <td><a href="https://pypi.org/project/ameva-forge/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/ameva-forge" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/forge/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-Sentinel</strong></td>
                 <td><a href="https://pypi.org/project/ameva-sentinel/" target="_blank" class="pdf-link">PyPI</a> / <a href="https://www.npmjs.com/package/ameva-sentinel" target="_blank" class="pdf-link">npm</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/sentinel/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>AMEVA-MCP-Hub</strong></td>
                 <td><a href="https://www.npmjs.com/package/ameva-mcp-hub" target="_blank" class="pdf-link">npm (전용)</a></td>
                 <td><a href="https://uno-km.vercel.app/lib/mcp-hub/" target="_blank" class="pdf-link">Docs 링크</a></td>
-                <td style="color:#64748b; font-size:7.2px;">Private Enterprise Repository</td>
+                <td style="color:#64748b; font-size:6.8px;">Private Enterprise Repository</td>
               </tr>
               <tr>
                 <td><strong>Termux-AIChain</strong></td>
@@ -1046,7 +1159,22 @@ window.AmevaPortfolioPDF = {
             </tbody>
           </table>
 
-          <div style="margin-top: 8px; text-align: center; font-size: 8.8px; color: #64748b;">
+          <h2 class="pdf-h2">5. AMEVA Labs 기술 연구 백서 &amp; 실기기 벤치마크 (Research Papers &amp; Benchmarks)</h2>
+          <table class="pdf-table" style="font-size:6.7px; margin: 1px 0 3px 0;">
+            <thead>
+              <tr>
+                <th style="width: 14%;">분류 / 일자</th>
+                <th style="width: 28%;">연구 제목 (논문 / 벤치마크)</th>
+                <th style="width: 48%;">연구 초록 (Abstract)</th>
+                <th style="width: 10%;">원문 링크</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${researchRowsHtml}
+            </tbody>
+          </table>
+
+          <div style="margin-top: 5px; text-align: center; font-size: 8.2px; color: #64748b;">
             © 2026 Eunho Kim (@uno-km). AMEVA Open-Source Foundation (AOSF). All Rights Reserved.
           </div>
           <div class="pdf-footer">Page 10 / 10 • 김은호 엔지니어링 포트폴리오</div>
