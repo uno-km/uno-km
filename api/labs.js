@@ -382,15 +382,23 @@ Human Web Portal: https://uno-km.vercel.app/labs/
     }
 
     // ── 2. Posts (CRUD) ───────────────────────────────────────────────────────
+    if (action === 'clear_cache') {
+      SERVER_CACHE.invalidateAll();
+      return res.status(200).json({ ok: true, message: 'Server cache invalidated successfully' });
+    }
+
     if (action === 'get_posts') {
       res.setHeader('Cache-Control', 'public, max-age=5, s-maxage=10, stale-while-revalidate=30');
-      const menu_id = req.query.menu_id || 'all';
+      const menu_id = (req.query.menu_id || 'all').trim();
       const includeContent = req.query.include_content === 'true' || menu_id === 'newsletter';
+      const forceRefresh = req.query.force === 'true' || req.query.bust !== undefined;
       const cacheKey = `${menu_id}_${includeContent}`;
 
-      const cached = SERVER_CACHE.getPosts(cacheKey);
-      if (cached) {
-        return res.status(200).json({ ok: true, database_connected: true, cached: true, posts: cached });
+      if (!forceRefresh) {
+        const cached = SERVER_CACHE.getPosts(cacheKey);
+        if (cached && Array.isArray(cached) && cached.length > 0) {
+          return res.status(200).json({ ok: true, database_connected: true, cached: true, posts: cached });
+        }
       }
 
       let posts;
@@ -447,7 +455,9 @@ Human Web Portal: https://uno-km.vercel.app/labs/
           LIMIT 100;
         `;
       }
-      SERVER_CACHE.setPosts(cacheKey, posts);
+      if (posts && Array.isArray(posts) && posts.length > 0) {
+        SERVER_CACHE.setPosts(cacheKey, posts);
+      }
       return res.status(200).json({ ok: true, database_connected: true, posts });
     }
 

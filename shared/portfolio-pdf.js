@@ -137,7 +137,7 @@ window.AmevaPortfolioPDF = {
           title: '갤럭시 S20 72시간 연속 AI 추론 스트레스 테스트: 발열 및 메모리 누수 분석',
           author: '김은호',
           created_at: '2026-09-20',
-          abstract: 'Samsung Galaxy S20 단말에서 72시간 동안 10,000회 연속 온디바이스 AI 추론을 실행하며 배터리 소모율, 온도 변화, 힙 메모리 무누수를 완벽 검증.'
+          abstract: 'Samsung Galaxy S20 단말에서 72시간 동안 10,000회 연속 온디바이스 AI 추론을 실행하며 배터리 소모율, 온도 변화, 힙 메모리 안전성을 정밀 실측 검증.'
         }
       ];
 
@@ -151,7 +151,7 @@ window.AmevaPortfolioPDF = {
         const dateStr = p.created_at ? p.created_at.slice(0, 10) : '2026-09-29';
         const authorStr = p.author || '김은호';
         const abstractStr = p.abstract || p.excerpt || '온디바이스 네이티브 C++ 및 Vulkan 하드웨어 가속 아키텍처 실측 연구 백서.';
-        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-papers&id=${p.id}`;
+        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-papers&post=${p.id}`;
         researchRowsHtml += `
           <tr>
             <td><span style="color:#0284c7; font-weight:700;">[연구 백서]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>
@@ -166,7 +166,7 @@ window.AmevaPortfolioPDF = {
         const dateStr = b.created_at ? b.created_at.slice(0, 10) : '2026-10-02';
         const authorStr = b.author || '김은호';
         const abstractStr = b.abstract || b.excerpt || '상용 모바일 실기기 기반 온디바이스 AI 성능 및 발열 스트레스 실측 벤치마크.';
-        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-benchmarks&id=${b.id}`;
+        const linkUrl = `https://uno-km.vercel.app/labs/index.html?menu=research-benchmarks&post=${b.id}`;
         researchRowsHtml += `
           <tr>
             <td><span style="color:#16a34a; font-weight:700;">[실측 벤치]</span><br><span style="color:#64748b; font-size:6.5px;">${dateStr} · ${authorStr}</span></td>

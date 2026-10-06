@@ -2323,9 +2323,98 @@
         font-size: 0.75rem !important;
       }
     }
+
+    /* ==========================================================================
+       AMEVA Labs - Cybernetic Loading & Transition System (High-Responsive UX)
+       ========================================================================== */
+    #labsGlobalProgressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #06b6d4, #38bdf8);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 5px rgba(37, 99, 235, 0.6);
+      z-index: 999999;
+      pointer-events: none;
+      opacity: 0;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+    #labsGlobalProgressBar.active {
+      opacity: 1;
+    }
+
+    /* Card Interactive Click Feedback (목록 -> 글 진입 시 즉각적 시각 확인) */
+    .anal-card {
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      position: relative;
+      cursor: pointer;
+    }
+    .anal-card:active {
+      transform: scale(0.99);
+    }
+    .anal-card.is-loading,
+    .ranking-item.is-loading,
+    .post-nav-btn.is-loading,
+    .bottom-title-link.is-loading {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.35) !important;
+      background: rgba(15, 23, 42, 0.9) !important;
+      pointer-events: none;
+    }
+    .anal-card.is-loading::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(56, 189, 248, 0.25);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: labsSpin 0.65s linear infinite;
+      z-index: 10;
+    }
+
+    /* Dual-Ring Cybernetic Spinner */
+    .labs-spinner-ring {
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+      border: 3.5px solid rgba(56, 189, 248, 0.2);
+      border-radius: 50%;
+      border-top-color: #38bdf8;
+      border-right-color: #0ea5e9;
+      animation: labsSpin 0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+    .labs-spinner-sm {
+      width: 22px;
+      height: 22px;
+      border-width: 2.5px;
+    }
+
+    @keyframes labsSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Shimmering Skeleton Loader */
+    .labs-skeleton-bar {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(56,189,248,0.12) 50%, rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+      animation: labsSkeletonShimmer 1.5s infinite;
+      border-radius: 6px;
+    }
+    @keyframes labsSkeletonShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
   </style>
 </head>
 <body>
+  <!-- Global Top Progress Bar -->
+  <div id="labsGlobalProgressBar"></div>
+
   <!-- Global Ecosystem Header -->
   <ameva-header></ameva-header>
 
@@ -2426,7 +2515,27 @@
           <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="margin-bottom: 14px;">
             ← 연구 목록으로 돌아가기
           </button>
-          <div class="board-top-post-view">
+
+          <!-- Loading State for Post Detail -->
+          <div id="analDetailLoadingState" style="display: none; padding: 48px 24px; text-align: center; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; margin-bottom: 24px; backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,0.35);">
+            <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
+            <div id="analLoadingText" style="font-size: 1.05rem; font-weight: 700; color: #38bdf8; letter-spacing: -0.01em; margin-bottom: 6px;">
+              연구 백서 원문 및 실측 데이터 블록 로드 중...
+            </div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 24px;">
+              AOSF 온디바이스 연구소 데이터베이스에서 원문 아카이브를 수신하고 있습니다.
+            </div>
+            <div style="max-width: 580px; margin: 0 auto; text-align: left;">
+              <div class="labs-skeleton-bar" style="width: 70%; height: 22px; margin-bottom: 14px;"></div>
+              <div class="labs-skeleton-bar" style="width: 40%; height: 14px; margin-bottom: 24px;"></div>
+              <div class="labs-skeleton-bar" style="width: 100%; height: 14px; margin-bottom: 8px;"></div>
+              <div class="labs-skeleton-bar" style="width: 96%; height: 14px; margin-bottom: 8px;"></div>
+              <div class="labs-skeleton-bar" style="width: 92%; height: 14px; margin-bottom: 8px;"></div>
+              <div class="labs-skeleton-bar" style="width: 65%; height: 14px;"></div>
+            </div>
+          </div>
+
+          <div id="analDetailBodyContent" class="board-top-post-view">
             <div id="transformerScanLine" class="transformer-scan-line"></div>
             <div class="post-view-header transformer-part transformer-part-header">
               <span class="board-badge badge-anal" id="analDetailBadge">RESEARCH</span>
@@ -3090,31 +3199,33 @@
           return cached;
         }
 
-        if (this.apiAvailable) {
-          try {
-            const res = await fetch(`/api/labs?action=get_post&post_id=${postId}`);
-            if (res.ok) {
-              const data = await res.json();
-              if (data.ok && data.post) {
-                const freshViews = Number(data.post.view_count) || 0;
-                const freshLikes = Number(data.post.like_count) || 0;
-                data.post.view_count = freshViews;
-                data.post.like_count = freshLikes;
-                this.cachedPostDetails[postId] = data.post;
-                const existingIdx = this.posts.findIndex(p => p.id === postId);
-                if (existingIdx !== -1) {
-                  this.posts[existingIdx].view_count = freshViews;
-                  this.posts[existingIdx].like_count = freshLikes;
-                } else {
-                  this.posts.push(data.post);
-                }
-                this.saveLocal();
-                return data.post;
+        try {
+          const res = await fetch(`/api/labs?action=get_post&post_id=${postId}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.ok && data.post) {
+              this.apiAvailable = true;
+              const freshViews = Number(data.post.view_count) || 0;
+              const freshLikes = Number(data.post.like_count) || 0;
+              data.post.view_count = freshViews;
+              data.post.like_count = freshLikes;
+              this.cachedPostDetails[postId] = data.post;
+              const existingIdx = (this.posts || []).findIndex(p => p.id === postId);
+              if (existingIdx !== -1) {
+                this.posts[existingIdx].view_count = freshViews;
+                this.posts[existingIdx].like_count = freshLikes;
+                this.posts[existingIdx].content = data.post.content;
+              } else {
+                if (!this.posts) this.posts = [];
+                this.posts.push(data.post);
               }
+              this.saveLocal();
+              return data.post;
             }
-          } catch (e) {}
-        }
-        const p = this.posts.find(x => x.id === postId);
+          }
+        } catch (e) {}
+
+        const p = (this.posts || []).find(x => x.id === postId);
         if (p) {
           p.view_count = (p.view_count || 0) + 1;
         }
@@ -3371,15 +3482,64 @@
         board: 'dark'
       },
 
+      _progressTimer: null,
+
+      showLoading(initialPercent = 35) {
+        const bar = document.getElementById('labsGlobalProgressBar');
+        if (bar) {
+          bar.classList.add('active');
+          bar.style.width = initialPercent + '%';
+          if (this._progressTimer) clearInterval(this._progressTimer);
+          let curr = initialPercent;
+          this._progressTimer = setInterval(() => {
+            if (curr < 85) {
+              curr += (85 - curr) * 0.15;
+              bar.style.width = curr + '%';
+            }
+          }, 150);
+        }
+      },
+
+      hideLoading() {
+        const bar = document.getElementById('labsGlobalProgressBar');
+        if (bar) {
+          if (this._progressTimer) {
+            clearInterval(this._progressTimer);
+            this._progressTimer = null;
+          }
+          bar.style.width = '100%';
+          setTimeout(() => {
+            bar.classList.remove('active');
+            setTimeout(() => {
+              bar.style.width = '0%';
+            }, 300);
+          }, 200);
+        }
+      },
+
       async init() {
-        await this.store.init();
+        this.showLoading(20);
+        try {
+          await this.store.init();
+        } catch (e) {}
 
         this.initDraggableRemote();
         this.renderRecentHistoryUI();
 
         const urlParams = new URLSearchParams(window.location.search);
         const menuParam = urlParams.get('menu');
-        const initialMenu = menuParam || 'newsletter';
+        const postParam = urlParams.get('post') || urlParams.get('id');
+
+        let targetMenu = menuParam || 'newsletter';
+        let targetPostId = postParam ? parseInt(postParam, 10) : null;
+
+        if (targetPostId && !isNaN(targetPostId)) {
+          const knownPost = (this.store.posts || []).find(p => p.id === targetPostId) ||
+                            (this.store.cachedPostDetails && this.store.cachedPostDetails[targetPostId]);
+          if (knownPost && knownPost.menu_id) {
+            targetMenu = knownPost.menu_id;
+          }
+        }
 
         document.addEventListener('click', (e) => {
           const a = e.target.closest('a[data-menu-id]');
@@ -3392,40 +3552,48 @@
 
         this.initNewsletterSwipe();
         this.updateLanguageUI(false);
-        await this.selectMenu(initialMenu);
 
-        // Deep linking: ?post=ID
-        const postParam = urlParams.get('post');
-        if (postParam) {
-          const pId = parseInt(postParam, 10);
-          if (!isNaN(pId)) {
-            const curMenu = this.store.menus.find(m => m.id === initialMenu);
-            if (curMenu && curMenu.board_type === 'anal') {
-              await this.openAnalDetail(pId, false);
-            } else if (curMenu && curMenu.board_type === 'board') {
-              await this.openBoardPost(pId, false);
-            }
+        if (targetPostId && !isNaN(targetPostId)) {
+          // Fast-track: Open post detail directly with loading UI
+          this.activeMenuId = targetMenu;
+          window.__curLabsMenu = targetMenu;
+          this.updateSidebarHighlight(targetMenu);
+          this.renderSubmenuTabs(targetMenu);
+          this.updateHeadingUI(targetMenu);
+
+          const curMenu = this.store.menus.find(m => m.id === targetMenu);
+          if (curMenu && curMenu.board_type === 'board') {
+            await this.openBoardPost(targetPostId, false);
+          } else {
+            await this.openAnalDetail(targetPostId, false);
           }
+          // Non-blocking pre-fetch of list in the background
+          this.store.getPosts(targetMenu).catch(() => {});
+        } else {
+          await this.selectMenu(targetMenu);
         }
+        this.hideLoading();
 
         // Browser Back/Forward navigation listener
         window.addEventListener('popstate', async () => {
           const params = new URLSearchParams(window.location.search);
           const m = params.get('menu') || 'newsletter';
-          const p = params.get('post');
+          const p = params.get('post') || params.get('id');
           if (p) {
             const pId = parseInt(p, 10);
             if (!isNaN(pId)) {
-              const curMenu = this.store.menus.find(item => item.id === m);
-              if (curMenu && curMenu.board_type === 'anal') {
-                if (this.activeMenuId !== m) await this.selectMenu(m);
-                await this.openAnalDetail(pId, false);
-                return;
-              } else if (curMenu && curMenu.board_type === 'board') {
-                if (this.activeMenuId !== m) await this.selectMenu(m);
-                await this.openBoardPost(pId, false);
-                return;
+              if (this.activeMenuId !== m) {
+                this.activeMenuId = m;
+                this.updateSidebarHighlight(m);
+                this.renderSubmenuTabs(m);
               }
+              const curMenu = this.store.menus.find(item => item.id === m);
+              if (curMenu && curMenu.board_type === 'board') {
+                await this.openBoardPost(pId, false);
+              } else {
+                await this.openAnalDetail(pId, false);
+              }
+              return;
             }
           }
           await this.selectMenu(m);
@@ -3434,6 +3602,7 @@
 
       handleSidebarNav(menuId) {
         history.pushState(null, '', `/labs/index.html?menu=${menuId}`);
+        this.showLoading(40);
         this.selectMenu(menuId);
       },
 
@@ -3555,13 +3724,18 @@
 
         const curMenu = this.store.menus.find(m => m.id === menuId) || { board_type: (menuId === 'newsletter' ? 'news' : 'anal') };
 
-        if (curMenu.board_type === 'news') {
-          await this.renderNewsView();
-        } else if (curMenu.board_type === 'anal') {
-          await this.renderAnalView();
-        } else {
-          this.activeBoardFilter = menuId;
-          await this.renderBoardView(menuId);
+        this.showLoading();
+        try {
+          if (curMenu.board_type === 'news') {
+            await this.renderNewsView();
+          } else if (curMenu.board_type === 'anal') {
+            await this.renderAnalView();
+          } else {
+            this.activeBoardFilter = menuId;
+            await this.renderBoardView(menuId);
+          }
+        } finally {
+          this.hideLoading();
         }
       },
 
@@ -3668,7 +3842,7 @@
               : `👍 ${item.like_count || 0}`;
             const statClass = type === 'views' ? 'views' : 'likes';
             return `
-              <div class="ranking-item" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(title)}">
+              <div class="ranking-item" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id}, this)" title="${escapeHtml(title)}">
                 <span class="ranking-num ${rankClass}">${idx + 1}</span>
                 <span class="ranking-item-title">${escapeHtml(title)}</span>
                 <span class="ranking-item-stat ${statClass}">${statText}</span>
@@ -3742,6 +3916,10 @@
       // ── VIEW 1: NEWS (Newsletter Card Reader) ───────────────────────────────
       async renderNewsView() {
         document.getElementById('viewNews').style.display = 'block';
+        const newsViewer = document.getElementById('newsViewerBody');
+        if (newsViewer) {
+          newsViewer.innerHTML = '<div style="padding: 40px 20px; text-align: center;"><div class="labs-spinner-ring" style="margin: 0 auto 12px;"></div><div style="font-size: 0.9rem; color: #38bdf8; font-weight: 600;">최신 뉴스레터를 불러오는 중입니다...</div></div>';
+        }
         this.newsletters = await this.store.getPosts('newsletter');
 
         const card = document.getElementById('newsletterCard');
@@ -3977,9 +4155,23 @@
           else topBadge.textContent = 'RESEARCH DISPATCHES';
         }
 
-        const posts = await this.store.getPosts(this.activeMenuId);
         const container = document.getElementById('analFeedList');
-        container.innerHTML = '';
+        if (container) {
+          container.innerHTML = `
+            <div style="padding: 48px 20px; text-align: center; width: 100%;">
+              <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
+              <div style="font-size: 0.95rem; color: #38bdf8; font-weight: 700; margin-bottom: 6px;">
+                연구 게시글 목록을 수신 중입니다...
+              </div>
+              <div style="font-size: 0.8rem; color: #64748b;">
+                실시간 데이터베이스 및 인메모리 아카이브 동기화 진행 중
+              </div>
+            </div>
+          `;
+        }
+
+        const posts = await this.store.getPosts(this.activeMenuId);
+        if (container) container.innerHTML = '';
 
         if (!posts || posts.length === 0) {
           if (curriculumNav) curriculumNav.style.display = 'none';
@@ -4015,7 +4207,7 @@
 
               const card = document.createElement('div');
               card.className = 'anal-card';
-              card.onclick = () => this.openAnalDetail(p.id);
+              card.onclick = () => this.openAnalDetail(p.id, true, card);
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
@@ -4106,7 +4298,7 @@
 
               const card = document.createElement('div');
               card.className = 'anal-card';
-              card.onclick = () => this.openAnalDetail(p.id);
+              card.onclick = () => this.openAnalDetail(p.id, true, card);
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
@@ -4143,7 +4335,7 @@
 
             const card = document.createElement('div');
             card.className = 'anal-card';
-            card.onclick = () => this.openAnalDetail(p.id);
+            card.onclick = () => this.openAnalDetail(p.id, true, card);
             card.innerHTML = `
               <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
               <h3 class="anal-title">${escapeHtml((isEn && p.title_eng) ? p.title_eng : p.title)}</h3>
@@ -4162,7 +4354,12 @@
         }
       },
 
-      async openAnalDetail(postId, updateHistory = true) {
+      async openAnalDetail(postId, updateHistory = true, clickSourceElem = null) {
+        if (clickSourceElem) {
+          clickSourceElem.classList.add('is-loading');
+        }
+        this.showLoading();
+
         this.activePostId = postId;
         this.activeSlot = 'anal';
 
@@ -4186,6 +4383,37 @@
         const detailView = document.getElementById('analDetailView');
         detailView.style.display = 'block';
 
+        const loadingStateEl = document.getElementById('analDetailLoadingState');
+        const bodyContentEl = document.getElementById('analDetailBodyContent');
+
+        // Check if full post content is already loaded in memory
+        const cachedItem = this.store.cachedPostDetails && this.store.cachedPostDetails[postId];
+        const isAlreadyLoaded = cachedItem && cachedItem.content;
+
+        if (!isAlreadyLoaded) {
+          if (loadingStateEl) {
+            loadingStateEl.style.display = 'block';
+            loadingStateEl.innerHTML = `
+              <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
+              <div id="analLoadingText" style="font-size: 1.05rem; font-weight: 700; color: #38bdf8; letter-spacing: -0.01em; margin-bottom: 6px;">
+                연구 백서 원문 및 실측 데이터 블록 로드 중... (Post #${postId})
+              </div>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 24px;">
+                AOSF 온디바이스 연구소 데이터베이스에서 원문 아카이브를 수신하고 있습니다.
+              </div>
+              <div style="max-width: 580px; margin: 0 auto; text-align: left;">
+                <div class="labs-skeleton-bar" style="width: 70%; height: 22px; margin-bottom: 14px;"></div>
+                <div class="labs-skeleton-bar" style="width: 40%; height: 14px; margin-bottom: 24px;"></div>
+                <div class="labs-skeleton-bar" style="width: 100%; height: 14px; margin-bottom: 8px;"></div>
+                <div class="labs-skeleton-bar" style="width: 96%; height: 14px; margin-bottom: 8px;"></div>
+                <div class="labs-skeleton-bar" style="width: 92%; height: 14px; margin-bottom: 8px;"></div>
+                <div class="labs-skeleton-bar" style="width: 65%; height: 14px;"></div>
+              </div>
+            `;
+          }
+          if (bodyContentEl) bodyContentEl.style.display = 'none';
+        }
+
         // Trigger Cybernetic Transformer Assembly Sequence
         detailView.classList.remove('transformer-active');
         void detailView.offsetWidth; // Force CSS repaint
@@ -4208,9 +4436,35 @@
 
         this.showRemote();
 
-        // STEP 2: Fetch Post Data (0ms In-Memory Fast Path Hit)
-        const post = await this.store.getPost(postId);
-        if (!post) return;
+        // STEP 2: Fetch Post Data
+        let post;
+        try {
+          post = await this.store.getPost(postId);
+        } catch (e) {
+          console.error('[Labs Detail] Post fetch error:', e);
+        }
+
+        if (clickSourceElem) {
+          clickSourceElem.classList.remove('is-loading');
+        }
+        this.hideLoading();
+
+        if (!post) {
+          if (loadingStateEl) {
+            loadingStateEl.style.display = 'block';
+            loadingStateEl.innerHTML = `
+              <div style="font-size: 2.2rem; margin-bottom: 12px; color: #f43f5e;">⚠️</div>
+              <h4 style="color: #f1f5f9; font-size: 1.15rem; margin-bottom: 8px;">게시글을 찾을 수 없습니다 (Post #${postId})</h4>
+              <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 18px;">요청하신 연구 백서가 데이터베이스에 존재하지 않거나 일시적인 네트워크 오류일 수 있습니다.</p>
+              <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()">← 연구 목록으로 돌아가기</button>
+            `;
+          }
+          if (bodyContentEl) bodyContentEl.style.display = 'none';
+          return;
+        }
+
+        if (loadingStateEl) loadingStateEl.style.display = 'none';
+        if (bodyContentEl) bodyContentEl.style.display = 'block';
 
         this.currentReadingPost = post;
         this.updateCurrentReadingIndicator(post);
@@ -4579,6 +4833,10 @@
           this.viewerInstances.anal = null;
         }
         document.getElementById('analDetailView').style.display = 'none';
+        const loadingStateEl = document.getElementById('analDetailLoadingState');
+        const bodyContentEl = document.getElementById('analDetailBodyContent');
+        if (loadingStateEl) loadingStateEl.style.display = 'none';
+        if (bodyContentEl) bodyContentEl.style.display = 'block';
 
         const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal' };
         if (curMenu.board_type === 'board' || curMenu.board_type === 'blog') {
@@ -4615,9 +4873,13 @@
           pillsContainer.innerHTML = pillsHtml;
         }
 
-        const posts = await this.store.getPosts(this.activeBoardFilter);
         const tbody = document.getElementById('boardTableBody');
-        tbody.innerHTML = '';
+        if (tbody) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 40px 20px;"><div class="labs-spinner-ring labs-spinner-sm" style="margin: 0 auto 10px;"></div><div style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">게시글 목록을 불러오는 중입니다...</div></td></tr>`;
+        }
+
+        const posts = await this.store.getPosts(this.activeBoardFilter);
+        if (tbody) tbody.innerHTML = '';
 
         if (!posts || posts.length === 0) {
           const rWidget = document.getElementById('boardRankingWidget');
@@ -4649,7 +4911,7 @@
             <td><span class="board-badge ${badgeClass}">${escapeHtml(menuDisplayName)}</span></td>
             <td>
               ${isSelected ? `<span class="badge-current-reading">${dict.badge_reading}</span> ` : ''}
-              <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id})">${isSelected ? '▶ ' : ''}${escapeHtml(postTitle)}</a>
+              <a href="javascript:void(0)" class="post-title-link" onclick="LabsApp.openBoardPost(${p.id}, true, this)">${isSelected ? '▶ ' : ''}${escapeHtml(postTitle)}</a>
               ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
             </td>
             <td><strong>${escapeHtml(p.author)}</strong> <span style="font-size: 0.72rem; color: #94a3b8;">(${escapeHtml(p.author_ip || '127.0.0.1')})</span></td>
@@ -4665,8 +4927,8 @@
         this.selectMenu(menuId);
       },
 
-      async openBoardPost(postId, updateHistory = true) {
-        return await this.openAnalDetail(postId, updateHistory);
+      async openBoardPost(postId, updateHistory = true, clickSourceElem = null) {
+        return await this.openAnalDetail(postId, updateHistory, clickSourceElem);
       },
 
       closeBoardTopPost() {
@@ -5154,7 +5416,7 @@
               }
             }
             return `
-              <div class="history-item ${isCur ? 'active' : ''}" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id})" title="${escapeHtml(displayTitle)}">
+              <div class="history-item ${isCur ? 'active' : ''}" onclick="LabsApp.openPostByMenuAndId('${item.menu_id}', ${item.id}, this)" title="${escapeHtml(displayTitle)}">
                 <span style="color: #38bdf8; font-size: 0.7rem;">${isCur ? '👉' : '•'}</span>
                 <span class="history-title">${escapeHtml(displayTitle)}</span>
               </div>
@@ -5299,24 +5561,29 @@
         handle.addEventListener('touchstart', onDragStart, { passive: true });
       },
 
-      async openPostByMenuAndId(menuId, postId) {
+      async openPostByMenuAndId(menuId, postId, clickSourceElem = null) {
         if (!postId) return;
-        const targetMenuId = menuId || this.activeMenuId;
-        const curMenu = this.store.menus.find(m => m.id === targetMenuId);
-        if (curMenu && curMenu.board_type === 'anal') {
-          if (this.activeMenuId !== targetMenuId) {
-            await this.selectMenu(targetMenuId);
+        if (clickSourceElem) clickSourceElem.classList.add('is-loading');
+        try {
+          const targetMenuId = menuId || this.activeMenuId;
+          const curMenu = this.store.menus.find(m => m.id === targetMenuId);
+          if (curMenu && curMenu.board_type === 'anal') {
+            if (this.activeMenuId !== targetMenuId) {
+              await this.selectMenu(targetMenuId);
+            }
+            await this.openAnalDetail(postId, true, clickSourceElem);
+          } else if (curMenu && curMenu.board_type === 'board') {
+            if (this.activeMenuId !== targetMenuId && this.activeBoardFilter !== targetMenuId) {
+              await this.selectMenu(targetMenuId);
+            }
+            await this.openBoardPost(postId, true, clickSourceElem);
+          } else if (curMenu && curMenu.board_type === 'news') {
+            await this.selectMenu('newsletter');
+          } else {
+            await this.openAnalDetail(postId, true, clickSourceElem);
           }
-          await this.openAnalDetail(postId);
-        } else if (curMenu && curMenu.board_type === 'board') {
-          if (this.activeMenuId !== targetMenuId && this.activeBoardFilter !== targetMenuId) {
-            await this.selectMenu(targetMenuId);
-          }
-          await this.openBoardPost(postId);
-        } else if (curMenu && curMenu.board_type === 'news') {
-          await this.selectMenu('newsletter');
-        } else {
-          await this.openAnalDetail(postId);
+        } finally {
+          if (clickSourceElem) clickSourceElem.classList.remove('is-loading');
         }
       },
 
@@ -5391,7 +5658,7 @@
           if (prevPost) {
             const prevTitle = (isEn && prevPost.title_eng) ? prevPost.title_eng : prevPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${prevPost.id})" title="${escapeHtml(prevTitle)}">
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${prevPost.id}, true, this)" title="${escapeHtml(prevTitle)}">
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
                   <span class="nav-label">${dict.btn_prev_post}</span>
@@ -5420,7 +5687,7 @@
           if (nextPost) {
             const nextTitle = (isEn && nextPost.title_eng) ? nextPost.title_eng : nextPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${nextPost.id})" title="${escapeHtml(nextTitle)}">
+              <button class="post-nav-btn" onclick="LabsApp.openAnalDetail(${nextPost.id}, true, this)" title="${escapeHtml(nextTitle)}">
                 <div style="text-align: right; overflow: hidden; flex: 1;">
                   <span class="nav-label">${dict.btn_next_post}</span>
                   <span class="nav-title">${escapeHtml(nextTitle)}</span>
@@ -5483,7 +5750,7 @@
               <td class="col-num">${overallIndex}</td>
               <td class="bottom-title-cell">
                 ${isCur ? `<span class="badge-current-reading">${dict.badge_reading}</span>` : ''}
-                <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id})">${escapeHtml(postTitle)}</a>
+                <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id}, true, this)">${escapeHtml(postTitle)}</a>
                 ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
               </td>
               <td class="col-author">${escapeHtml(p.author)}</td>
@@ -5528,7 +5795,7 @@
           if (prevPost) {
             const prevTitle = (isEn && prevPost.title_eng) ? prevPost.title_eng : prevPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${prevPost.id})" title="${escapeHtml(prevTitle)}">
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${prevPost.id}, true, this)" title="${escapeHtml(prevTitle)}">
                 <span style="font-size: 1.15rem; line-height: 1;">←</span>
                 <div style="text-align: left; overflow: hidden; flex: 1;">
                   <span class="nav-label">${dict.btn_prev_post}</span>
@@ -5557,7 +5824,7 @@
           if (nextPost) {
             const nextTitle = (isEn && nextPost.title_eng) ? nextPost.title_eng : nextPost.title;
             pagerHtml += `
-              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${nextPost.id})" title="${escapeHtml(nextTitle)}">
+              <button class="post-nav-btn" onclick="LabsApp.openBoardPost(${nextPost.id}, true, this)" title="${escapeHtml(nextTitle)}">
                 <div style="text-align: right; overflow: hidden; flex: 1;">
                   <span class="nav-label">${dict.btn_next_post}</span>
                   <span class="nav-title">${escapeHtml(nextTitle)}</span>
