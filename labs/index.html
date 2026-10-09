@@ -2427,6 +2427,8 @@
             ← 연구 목록으로 돌아가기
           </button>
 
+          <div id="analDetailLoadingState" style="display: none; padding: 40px 20px; text-align: center; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; margin-bottom: 20px;"></div>
+
           <div id="analDetailBodyContent" class="board-top-post-view">
             <div id="transformerScanLine" class="transformer-scan-line"></div>
             <div class="post-view-header transformer-part transformer-part-header">
@@ -2781,7 +2783,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v16_restore_all_72_posts_and_status';
+    const STATE_VERSION = 'v17_fix_detail_view_loading_state_ref_error';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -4216,6 +4218,7 @@
         const detailView = document.getElementById('analDetailView');
         detailView.style.display = 'block';
 
+        const loadingStateEl = document.getElementById('analDetailLoadingState');
         const bodyContentEl = document.getElementById('analDetailBodyContent');
         if (bodyContentEl) bodyContentEl.style.display = 'block';
 
@@ -4640,6 +4643,8 @@
           this.viewerInstances.anal = null;
         }
         document.getElementById('analDetailView').style.display = 'none';
+        const loadingStateEl = document.getElementById('analDetailLoadingState');
+        if (loadingStateEl) loadingStateEl.style.display = 'none';
         const bodyContentEl = document.getElementById('analDetailBodyContent');
         if (bodyContentEl) bodyContentEl.style.display = 'block';
 
