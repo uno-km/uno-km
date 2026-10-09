@@ -2781,7 +2781,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v15_newsletter_vol3';
+    const STATE_VERSION = 'v16_restore_all_72_posts_and_status';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -2995,7 +2995,7 @@
           : (this.posts || []);
 
         const filtered = sourcePosts
-          .filter(p => targetIds.includes(p.menu_id) && p.status === 'published')
+          .filter(p => targetIds.includes(p.menu_id) && (!p.status || p.status === 'published'))
           .sort((a, b) => {
             if (menuId === 'research-handbook') return a.id - b.id;
             return new Date(b.created_at) - new Date(a.created_at);
