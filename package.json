@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "AMEVA Centralized Documentation Hub & Portfolio",
   "type": "module",
+  "license": "Apache-2.0 OR Commercial-License",
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4"
   }

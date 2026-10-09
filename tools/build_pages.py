@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 tools/build_pages.py — AMEVA Ecosystem Unified Builder
 AMV-BUILD-20260826  |  v1.0.0
@@ -414,17 +416,53 @@ def _install_snippet(lib_name: str, lib_info: dict) -> str:
     return "\n".join(lines) if lines else "# See installation guide"
 
 
+PAGE_SEO_WEIGHTS = {
+    "index.html": ("daily", "1.0"),
+    "api-reference.html": ("weekly", "0.9"),
+    "quickstart.html": ("weekly", "0.9"),
+    "installation.html": ("weekly", "0.9"),
+    "tools.html": ("weekly", "0.8"),
+    "models.html": ("weekly", "0.8"),
+    "six-modality-roadmap.html": ("weekly", "0.8"),
+    "benchmarks.html": ("weekly", "0.7"),
+    "advanced-parameters.html": ("weekly", "0.7"),
+    "training-guide.html": ("weekly", "0.7"),
+    "showcase.html": ("weekly", "0.7"),
+    "demo.html": ("weekly", "0.7"),
+    "what-is-forge.html": ("monthly", "0.6"),
+    "forge-vs-pytorch.html": ("monthly", "0.6"),
+    "versions.html": ("monthly", "0.5"),
+    "llms.txt": ("daily", "0.9"),
+    "llms-full.txt": ("weekly", "0.9"),
+}
+
+SITEMAP_EXCLUDED_PAGES = {"admin.html"}
+
+
 # ── Generate sitemap.xml for a library ──
 def generate_sitemap(lib_name: str, lib_info: dict, dry_run: bool = False):
     lib_dir = LIB / lib_name
-    pages = lib_info.get("doc_pages", [])
+    pages = [p for p in lib_info.get("doc_pages", []) if p not in SITEMAP_EXCLUDED_PAGES]
     now = datetime.date.today().isoformat()
     base = f"https://uno-km.vercel.app/lib/{lib_name}"
 
-    urls = "\n".join(
-        f'  <url><loc>{base}/{p}</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>'
-        for p in pages
-    )
+    url_entries = []
+    for p in pages:
+        freq, prio = PAGE_SEO_WEIGHTS.get(p, ("weekly", "0.7"))
+        url_entries.append(
+            f'  <url><loc>{base}/{p}</loc><lastmod>{now}</lastmod><changefreq>{freq}</changefreq><priority>{prio}</priority></url>'
+        )
+
+    if (lib_dir / "llms.txt").exists():
+        url_entries.append(
+            f'  <url><loc>{base}/llms.txt</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>'
+        )
+    if (lib_dir / "llms-full.txt").exists():
+        url_entries.append(
+            f'  <url><loc>{base}/llms-full.txt</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>'
+        )
+
+    urls = "\n".join(url_entries)
     content = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}
@@ -436,6 +474,55 @@ def generate_sitemap(lib_name: str, lib_info: dict, dry_run: bool = False):
         return
     out.write_text(content, encoding="utf-8")
     print(f"  [INFO] sitemap.xml → lib/{lib_name}/sitemap.xml ({out.stat().st_size}B)")
+
+
+def generate_root_sitemap(libs: dict, dry_run: bool = False):
+    now = datetime.date.today().isoformat()
+    base_root = "https://uno-km.vercel.app"
+    entries = []
+
+    entries.append(f'  <url><loc>{base_root}/</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
+    entries.append(f'  <url><loc>{base_root}/labs/index.html</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
+    entries.append(f'  <url><loc>{base_root}/app/workstation/index.html</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
+    entries.append(f'  <url><loc>{base_root}/analytics/index.html</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
+
+    if (ROOT / "llms.txt").exists():
+        entries.append(f'  <url><loc>{base_root}/llms.txt</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
+    if (ROOT / "llms-full.txt").exists():
+        entries.append(f'  <url><loc>{base_root}/llms-full.txt</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>')
+
+    for href, _ in FOUNDATION_PAGES:
+        clean_href = href.strip("/")
+        prio = "1.0" if "index" in clean_href else "0.8"
+        freq = "daily" if "index" in clean_href else "weekly"
+        entries.append(f'  <url><loc>{base_root}/{clean_href}</loc><lastmod>{now}</lastmod><changefreq>{freq}</changefreq><priority>{prio}</priority></url>')
+
+    for lib_name, lib_info in libs.items():
+        lib_dir = LIB / lib_name
+        if not lib_dir.exists():
+            continue
+        base_lib = f"{base_root}/lib/{lib_name}"
+        pages = [p for p in lib_info.get("doc_pages", []) if p not in SITEMAP_EXCLUDED_PAGES]
+        for p in pages:
+            freq, prio = PAGE_SEO_WEIGHTS.get(p, ("weekly", "0.7"))
+            entries.append(f'  <url><loc>{base_lib}/{p}</loc><lastmod>{now}</lastmod><changefreq>{freq}</changefreq><priority>{prio}</priority></url>')
+        if (lib_dir / "llms.txt").exists():
+            entries.append(f'  <url><loc>{base_lib}/llms.txt</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>')
+        if (lib_dir / "llms-full.txt").exists():
+            entries.append(f'  <url><loc>{base_lib}/llms-full.txt</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>')
+
+    content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{"\n".join(entries)}
+</urlset>
+"""
+    out = ROOT / "sitemap.xml"
+    if dry_run:
+        print(f"  [DRY-RUN] Would write root sitemap.xml ({len(entries)} URLs)")
+        return
+    out.write_text(content, encoding="utf-8")
+    print(f"  [INFO] root sitemap.xml → {out} ({len(entries)} URLs, {out.stat().st_size}B)")
 
 
 # ── HTML Validator & Multi-Stage Integrity Suite ──
@@ -687,6 +774,9 @@ def main():
         if not args.fix_heads:
             generate_llms_txt(lib_name, lib_info, dry_run=args.dry_run)
             generate_sitemap(lib_name, lib_info, dry_run=args.dry_run)
+
+    if not args.lib and not args.fix_heads:
+        generate_root_sitemap(libs, dry_run=args.dry_run)
 
     # Also process foundation/ and docs/ directories
     if not args.lib and not args.update_meta:

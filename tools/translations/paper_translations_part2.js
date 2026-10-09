@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // tools/translations/paper_translations_part2.js
 // High-grade Academic English translations for Papers 41, 42, 43 (DeadNet Multi-Agent Discourse Trilogy)
 

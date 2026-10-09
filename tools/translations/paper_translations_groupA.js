@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // tools/translations/paper_translations_groupA.js
 // Translations for Newsletters (0, 1) and Benchmark Reports (33, 34, 35, 36)
 

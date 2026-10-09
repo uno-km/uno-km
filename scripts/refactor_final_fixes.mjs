@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 import fs from 'fs';
 
 let content = fs.readFileSync('api/seed_posts.js', 'utf8');

@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // tools/translations/paper_translations_groupC.js
 // High-grade Academic Translations for Systems Handbook Modules 1 to 3 (Indices 2 to 11)
 

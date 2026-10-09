@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // tools/translations/paper_translations_groupB.js
 // Translations for Edge Cluster Research (37, 38, 39, 40)
 

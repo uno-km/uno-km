@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // scripts/test_sentinel_audit.mjs
 async function runTests() {
   const baseUrl = 'https://uno-km.vercel.app';

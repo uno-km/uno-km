@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 AMEVA Ecosystem - Deterministic Headless Documentation Engine (ameva_doc)
 Version: 4.0.0 (Master SSOT 3-Tier Navigation Standard)
@@ -330,6 +332,7 @@ def render_generic_page(cfg: dict, active_page: str, title: str, subtitle: str, 
 def generate_i18n_dict(cfg: dict) -> dict:
     name = cfg.get("name", "AMEVA-Library")
     version = cfg.get("version", "v1.0.0")
+    lic = cfg.get("license", "Apache-2.0")
 
     return {
         "en": {
@@ -342,7 +345,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "foundationBtn": "Foundation",
                 "githubBtn": "GitHub",
                 "founderBtn": "Founder CV",
-                "footerText": f"© 2026 AMEVA Open-Source Foundation. Released under the {cfg.get('license', 'Apache-2.0')} License.",
+                "footerText": f"© 2026 AMEVA Open-Source Foundation. Released under the {lic} License.",
                 "nav": {
                     "docNav": "Document Navigation",
                     "foundation": "Foundation Info",
@@ -368,7 +371,7 @@ def generate_i18n_dict(cfg: dict) -> dict:
                 "foundationBtn": "재단 소개",
                 "githubBtn": "GitHub",
                 "founderBtn": "설립자 CV",
-                "footerText": f"© 2026 AMEVA 오픈소스 재단. {cfg.get('license', 'Apache-2.0')} 라이선스로 배포됨.",
+                "footerText": f"© 2026 AMEVA 오픈소스 재단. {lic} 라이선스로 배포됨.",
                 "nav": {
                     "docNav": "문서 상세 목차",
                     "foundation": "재단 소개 (AOSF)",
@@ -381,6 +384,84 @@ def generate_i18n_dict(cfg: dict) -> dict:
                     "benchmarks": "벤치마크 & 하드웨어",
                     "advancedParams": "고급 파라미터 제어",
                     "versions": "버전 릴리즈 아카이브"
+                }
+            }
+        },
+        "ja": {
+            "common": {
+                "brand": name,
+                "releaseTag": version,
+                "pkgBtn": "パッケージ (pip / npm)",
+                "pypiBtn": "PyPI パッケージ",
+                "npmBtn": "npm パッケージ",
+                "foundationBtn": "財団概要",
+                "githubBtn": "GitHub",
+                "founderBtn": "創設者経歴",
+                "footerText": f"© 2026 AMEVAオープンソース財団. {lic} ライセンスの下で公開.",
+                "nav": {
+                    "docNav": "ドキュメント目次",
+                    "foundation": "財団情報 (AOSF)",
+                    "libraries": "主要ライブラリ",
+                    "aiSpecs": "AIエージェント仕様",
+                    "home": "ホーム / アーキテクチャ",
+                    "installation": "インストールガイド",
+                    "quickstart": "クイックスタート＆レシピ",
+                    "apiReference": "完全APIリファレンス",
+                    "benchmarks": "ベンチマーク＆測定",
+                    "advancedParams": "高度パラメータ設定",
+                    "versions": "バージョンアーカイブ"
+                }
+            }
+        },
+        "hi": {
+            "common": {
+                "brand": name,
+                "releaseTag": version,
+                "pkgBtn": "पैकेज (pip / npm)",
+                "pypiBtn": "PyPI पैकेज",
+                "npmBtn": "npm पैकेज",
+                "foundationBtn": "फाउंडेशन परिचय",
+                "githubBtn": "GitHub",
+                "founderBtn": "संस्थापक सीवी",
+                "footerText": f"© 2026 AMEVA ओपन-सोर्स फाउंडेशन. {lic} लाइसेंस के तहत जारी.",
+                "nav": {
+                    "docNav": "दस्तावेज़ नेविगेशन",
+                    "foundation": "फाउंडेशन जानकारी (AOSF)",
+                    "libraries": "फ्लैगशिप लाइब्रेरी",
+                    "aiSpecs": "AI एजेंट प्रोटोकॉल",
+                    "home": "होम / आर्किटेक्चर",
+                    "installation": "स्थापना गाइड",
+                    "quickstart": "त्वरित शुरुआत और रेसिपी",
+                    "apiReference": "एपीआई संदर्भ",
+                    "benchmarks": "बेंचमार्क और प्रोफाइलिंग",
+                    "advancedParams": "उन्नत पैरामीटर",
+                    "versions": "संस्करण संग्रह"
+                }
+            }
+        },
+        "zh": {
+            "common": {
+                "brand": name,
+                "releaseTag": version,
+                "pkgBtn": "软件包 (pip / npm)",
+                "pypiBtn": "PyPI 软件包",
+                "npmBtn": "npm 软件包",
+                "foundationBtn": "基金会介绍",
+                "githubBtn": "GitHub",
+                "founderBtn": "创始人履历",
+                "footerText": f"© 2026 AMEVA 开源基金会. 根据 {lic} 许可证发布.",
+                "nav": {
+                    "docNav": "文档详细目录",
+                    "foundation": "基金会信息 (AOSF)",
+                    "libraries": "旗舰库列表",
+                    "aiSpecs": "AI 代理协议规范",
+                    "home": "首页 / 架构",
+                    "installation": "安装指南",
+                    "quickstart": "快速上手与示例",
+                    "apiReference": "完整 API 参考",
+                    "benchmarks": "基准测试与性能",
+                    "advancedParams": "高级参数微调",
+                    "versions": "版本发布存档"
                 }
             }
         }
@@ -432,19 +513,22 @@ Sitemap: sitemap.xml
 """
     (out_dir / "robots.txt").write_text(robots_txt.strip(), encoding="utf-8")
 
+    slug = cfg.get("lib_slug", out_dir.name)
+    base = f"https://uno-km.vercel.app/lib/{slug}"
+    now = datetime.date.today().isoformat()
     sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>index.html</loc><priority>1.0</priority></url>
-  <url><loc>installation.html</loc><priority>0.8</priority></url>
-  <url><loc>quickstart.html</loc><priority>0.8</priority></url>
-  <url><loc>api-reference.html</loc><priority>0.9</priority></url>
-  <url><loc>models.html</loc><priority>0.8</priority></url>
-  <url><loc>training-guide.html</loc><priority>0.8</priority></url>
-  <url><loc>benchmarks.html</loc><priority>0.7</priority></url>
-  <url><loc>advanced-parameters.html</loc><priority>0.7</priority></url>
-  <url><loc>versions.html</loc><priority>0.5</priority></url>
-  <url><loc>llms.txt</loc><priority>0.9</priority></url>
-  <url><loc>llms-full.txt</loc><priority>0.9</priority></url>
+  <url><loc>{base}/index.html</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>{base}/installation.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>{base}/quickstart.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>{base}/api-reference.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>{base}/models.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>{base}/training-guide.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>{base}/benchmarks.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>{base}/advanced-parameters.html</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>{base}/versions.html</loc><lastmod>{now}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>{base}/llms.txt</loc><lastmod>{now}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>{base}/llms-full.txt</loc><lastmod>{now}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 </urlset>
 """
     (out_dir / "sitemap.xml").write_text(sitemap_xml.strip(), encoding="utf-8")

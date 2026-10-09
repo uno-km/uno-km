@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // scripts/enrich_textbook_and_labs.mjs
 // Master Script: Grand Enrichment of Systems Handbook (Textbook) & AMEVA Labs Research Papers
 

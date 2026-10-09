@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // api/sentinel_trap.js - AMEVA Sentinel Canary Honeypot Decoy Trap
 export default async function handler(req, res) {
   const userAgent = req.headers['user-agent'] || 'Unknown Crawler';

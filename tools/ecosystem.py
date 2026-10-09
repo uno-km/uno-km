@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 tools/ecosystem.py — AMEVA Universal Ecosystem Toolchain (AET)
 Version: 1.0.0 (Master Unified SSOT & Release Compiler)
@@ -349,7 +351,7 @@ package_name_pypi: "{lib_name.lower()}"
 package_name_npm: "{lib_name.lower()}"
 version: "v1.0.0"
 release_name: "Initial Release"
-license: "Apache-2.0"
+license: "Apache-2.0 OR Commercial-License"
 platform: "Android ARM64 / WebGPU"
 github_repo_url: "https://github.com/uno-km/{lib_name}"
 

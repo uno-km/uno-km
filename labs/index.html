@@ -2323,98 +2323,9 @@
         font-size: 0.75rem !important;
       }
     }
-
-    /* ==========================================================================
-       AMEVA Labs - Cybernetic Loading & Transition System (High-Responsive UX)
-       ========================================================================== */
-    #labsGlobalProgressBar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, #2563eb, #06b6d4, #38bdf8);
-      box-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 5px rgba(37, 99, 235, 0.6);
-      z-index: 999999;
-      pointer-events: none;
-      opacity: 0;
-      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    }
-    #labsGlobalProgressBar.active {
-      opacity: 1;
-    }
-
-    /* Card Interactive Click Feedback (목록 -> 글 진입 시 즉각적 시각 확인) */
-    .anal-card {
-      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      position: relative;
-      cursor: pointer;
-    }
-    .anal-card:active {
-      transform: scale(0.99);
-    }
-    .anal-card.is-loading,
-    .ranking-item.is-loading,
-    .post-nav-btn.is-loading,
-    .bottom-title-link.is-loading {
-      border-color: #38bdf8 !important;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.35) !important;
-      background: rgba(15, 23, 42, 0.9) !important;
-      pointer-events: none;
-    }
-    .anal-card.is-loading::after {
-      content: "";
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(56, 189, 248, 0.25);
-      border-top-color: #38bdf8;
-      border-radius: 50%;
-      animation: labsSpin 0.65s linear infinite;
-      z-index: 10;
-    }
-
-    /* Dual-Ring Cybernetic Spinner */
-    .labs-spinner-ring {
-      display: inline-block;
-      width: 44px;
-      height: 44px;
-      border: 3.5px solid rgba(56, 189, 248, 0.2);
-      border-radius: 50%;
-      border-top-color: #38bdf8;
-      border-right-color: #0ea5e9;
-      animation: labsSpin 0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-    }
-    .labs-spinner-sm {
-      width: 22px;
-      height: 22px;
-      border-width: 2.5px;
-    }
-
-    @keyframes labsSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Shimmering Skeleton Loader */
-    .labs-skeleton-bar {
-      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(56,189,248,0.12) 50%, rgba(255,255,255,0.04) 75%);
-      background-size: 200% 100%;
-      animation: labsSkeletonShimmer 1.5s infinite;
-      border-radius: 6px;
-    }
-    @keyframes labsSkeletonShimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
   </style>
 </head>
 <body>
-  <!-- Global Top Progress Bar -->
-  <div id="labsGlobalProgressBar"></div>
-
   <!-- Global Ecosystem Header -->
   <ameva-header></ameva-header>
 
@@ -2450,7 +2361,7 @@
         <div class="news-reader-card" id="newsletterCard">
           <div class="news-nav-bar">
             <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-              <span class="board-badge badge-news" id="newsVolBadge">VOL. 2 (최신호)</span>
+              <span class="board-badge badge-news" id="newsVolBadge">VOL. 3 (최신호)</span>
               <strong id="newsNavTitle" style="font-size: 1.05rem; color: var(--text-bright);"></strong>
               <span id="newsNavTitleSub" style="font-size: 0.82rem; color: var(--text-muted); display: none;"></span>
             </div>
@@ -2515,25 +2426,6 @@
           <button class="btn-action btn-secondary" onclick="LabsApp.closeAnalDetail()" style="margin-bottom: 14px;">
             ← 연구 목록으로 돌아가기
           </button>
-
-          <!-- Loading State for Post Detail -->
-          <div id="analDetailLoadingState" style="display: none; padding: 48px 24px; text-align: center; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; margin-bottom: 24px; backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,0.35);">
-            <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
-            <div id="analLoadingText" style="font-size: 1.05rem; font-weight: 700; color: #38bdf8; letter-spacing: -0.01em; margin-bottom: 6px;">
-              연구 백서 원문 및 실측 데이터 블록 로드 중...
-            </div>
-            <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 24px;">
-              AOSF 온디바이스 연구소 데이터베이스에서 원문 아카이브를 수신하고 있습니다.
-            </div>
-            <div style="max-width: 580px; margin: 0 auto; text-align: left;">
-              <div class="labs-skeleton-bar" style="width: 70%; height: 22px; margin-bottom: 14px;"></div>
-              <div class="labs-skeleton-bar" style="width: 40%; height: 14px; margin-bottom: 24px;"></div>
-              <div class="labs-skeleton-bar" style="width: 100%; height: 14px; margin-bottom: 8px;"></div>
-              <div class="labs-skeleton-bar" style="width: 96%; height: 14px; margin-bottom: 8px;"></div>
-              <div class="labs-skeleton-bar" style="width: 92%; height: 14px; margin-bottom: 8px;"></div>
-              <div class="labs-skeleton-bar" style="width: 65%; height: 14px;"></div>
-            </div>
-          </div>
 
           <div id="analDetailBodyContent" class="board-top-post-view">
             <div id="transformerScanLine" class="transformer-scan-line"></div>
@@ -2889,7 +2781,7 @@
       } catch (e) {}
     })();
 
-    const STATE_VERSION = 'v13_vol20_sota_tts_failure_study';
+    const STATE_VERSION = 'v15_newsletter_vol3';
 
     // 9 Standard Menus (4 Research Subdomains + Board Subdomains)
     const SEED_MENUS = [
@@ -2900,6 +2792,7 @@
       { id: 'research-benchmarks', name: '실기기 벤치마크', parent_id: 'research', depth: 1, sort_order: 3, board_type: 'anal', description: 'S25~S7 6종 실기기 8대 모달리티 실측 성능 DB' },
       { id: 'research-cluster', name: '엣지 분산 클러스터', parent_id: 'research', depth: 1, sort_order: 4, board_type: 'anal', description: '모바일 기기 분산 서버 구축 및 네트워크 연동' },
       { id: 'research-opensource', name: '오픈소스 기여 연구', parent_id: 'research', depth: 1, sort_order: 5, board_type: 'anal', description: '글로벌 오픈소스(whisper.cpp, BitNet 등) 업스트림 기여 및 핵심 커널 연구' },
+      { id: 'research-falsification', name: '가설 반증 및 실패 사례', parent_id: 'research', depth: 1, sort_order: 6, board_type: 'anal', description: '기계 통신 프로토콜 및 신경망 아키텍처 한계 실측, 가설 반증 및 실패 사례 부검' },
       { id: 'free-board', name: '자유게시판', parent_id: null, depth: 0, sort_order: 3, board_type: 'board', description: '자유로운 기술 토론 및 하드웨어 이야기' },
       { id: 'board-ai', name: 'AI', parent_id: 'free-board', depth: 1, sort_order: 5, board_type: 'blog', description: '온디바이스 AI, LLM, 경량화 모델 및 신경망 기고' },
       { id: 'board-cs', name: 'CS', parent_id: 'free-board', depth: 1, sort_order: 6, board_type: 'blog', description: '컴퓨터 구조, 운영체제, Bionic libc 및 시스템 프로그래밍 기고' }
@@ -2924,7 +2817,7 @@
       {
         num: 3,
         title: '하드웨어 추상화 계층(HAL) 및 그래픽스',
-        desc: 'HIDL에서 AIDL로의 진화, Gralloc 버퍼, SurfaceFlinger 락스텝 및 GPGPU 가속 플랫폼(RenderScript/NNAPI 포스트모텀, AMUDA)',
+        desc: 'HIDL에서 AIDL로의 진화, Gralloc 버퍼, SurfaceFlinger 락스텝 및 GPGPU 가속 플랫폼(RenderScript/NNAPI 포스트모텀 및 모바일 저수준 컴퓨트)',
         range: '3.1 ~ 3.6',
         chapters: ['3.1', '3.2', '3.3', '3.4', '3.5', '3.6']
       },
@@ -2981,6 +2874,7 @@
       constructor() {
         this.apiAvailable = true;
         this.databaseConnected = false;
+        this.masterSeedPosts = []; // SSOT array of all 69 posts
         this.cachedPosts = {}; // Fast in-memory cache per menu_id
         this.cachedPostDetails = {}; // Fast in-memory cache per post_id
         this.loadLocal();
@@ -3023,8 +2917,8 @@
 
       saveLocal() {
         try {
-          // Zero-Jank: Save only lightweight headers (strip heavy markdown body)
-          const lightweightPosts = (this.posts || []).slice(0, 100).map(p => ({
+          const source = (this.masterSeedPosts && this.masterSeedPosts.length > 0) ? this.masterSeedPosts : (this.posts || []);
+          const lightweightPosts = source.slice(0, 100).map(p => ({
             id: p.id,
             menu_id: p.menu_id,
             title: p.title,
@@ -3058,18 +2952,12 @@
             try {
               const seedPosts = await seedRes.value.json();
               if (Array.isArray(seedPosts) && seedPosts.length > 0) {
+                this.masterSeedPosts = seedPosts;
+                this.posts = seedPosts;
                 if (!this.cachedPostDetails) this.cachedPostDetails = {};
-                // Preserve dynamically synced view_count and like_count from local storage
-                const localMap = new Map((this.posts || []).map(p => [p.id, p]));
                 seedPosts.forEach(p => {
-                  const local = localMap.get(p.id);
-                  if (local) {
-                    if (local.view_count !== undefined && local.view_count !== null) p.view_count = local.view_count;
-                    if (local.like_count !== undefined && local.like_count !== null) p.like_count = local.like_count;
-                  }
                   this.cachedPostDetails[p.id] = p;
                 });
-                this.posts = seedPosts;
               }
             } catch (err) {}
           }
@@ -3101,51 +2989,38 @@
       }
 
       async getPosts(menuId, forceRefresh = false) {
-        // Fast path 1: In-memory cached posts for ultra-responsive tab switching
-        if (!forceRefresh && this.cachedPosts[menuId] && this.cachedPosts[menuId].length > 0) {
-          return this.cachedPosts[menuId];
-        }
-
         const targetIds = this.getDescendantMenuIds(menuId);
+        const sourcePosts = (this.masterSeedPosts && this.masterSeedPosts.length > 0)
+          ? this.masterSeedPosts
+          : (this.posts || []);
 
-        // Fast path 2: Instant in-memory filter from pre-warmed posts (0ms return)
-        if (!forceRefresh && this.posts && this.posts.length > 0) {
-          const filtered = this.posts
-            .filter(p => targetIds.includes(p.menu_id) && p.status === 'published')
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-          if (filtered.length > 0) {
-            this.cachedPosts[menuId] = filtered;
-            // Background sync with API
-            if (this.apiAvailable) {
-              fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`)
-                .then(r => r.json())
-                .then(data => {
-                  if (data && data.ok && Array.isArray(data.posts)) {
-                    this.cachedPosts[menuId] = data.posts;
-                  }
-                }).catch(() => {});
-            }
-            return filtered;
-          }
-        }
-
-        if (this.apiAvailable) {
-          try {
-            const res = await fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`);
-            if (res.ok) {
-              const data = await res.json();
-              if (data.ok && Array.isArray(data.posts)) {
-                this.cachedPosts[menuId] = data.posts;
-                this.posts = data.posts;
-                this.saveLocal();
-                return data.posts;
-              }
-            }
-          } catch (e) {}
-        }
-        return this.posts
+        const filtered = sourcePosts
           .filter(p => targetIds.includes(p.menu_id) && p.status === 'published')
-          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+          .sort((a, b) => {
+            if (menuId === 'research-handbook') return a.id - b.id;
+            return new Date(b.created_at) - new Date(a.created_at);
+          });
+
+        // Non-destructive background sync: update counts without shrinking master array
+        if (this.apiAvailable) {
+          fetch(`/api/labs?action=get_posts&menu_id=${encodeURIComponent(menuId)}`)
+            .then(r => r.json())
+            .then(data => {
+              if (data && data.ok && Array.isArray(data.posts)) {
+                const freshMap = new Map(data.posts.map(p => [Number(p.id), p]));
+                sourcePosts.forEach(mp => {
+                  const fresh = freshMap.get(Number(mp.id));
+                  if (fresh) {
+                    if (fresh.view_count !== undefined) mp.view_count = fresh.view_count;
+                    if (fresh.like_count !== undefined) mp.like_count = fresh.like_count;
+                    if (fresh.comment_count !== undefined) mp.comment_count = fresh.comment_count;
+                  }
+                });
+              }
+            }).catch(() => {});
+        }
+
+        return filtered;
       }
 
       async getPost(postId) {
@@ -3153,7 +3028,7 @@
 
         let cached = this.cachedPostDetails[postId];
         if (!cached) {
-          cached = (this.posts || []).find(p => p.id === postId && p.content);
+          cached = (this.masterSeedPosts || this.posts || []).find(p => p.id === postId && p.content);
           if (cached) {
             this.cachedPostDetails[postId] = cached;
           }
@@ -3320,6 +3195,7 @@
           'research-benchmarks': { name: '실기기 벤치마크', desc: 'Adreno/Mali/Apple Silicon 실기기 성능 측정 및 NPU 지연시간 분석' },
           'research-cluster': { name: '엣지 클러스터', desc: '분산 온디바이스 토큰 파이프라인 및 P2P 클러스터링 연구' },
           'research-opensource': { name: '오픈소스 기여', desc: 'AMEVA 공식 기여 가이드라인, 커널 PR 분석 및 로드맵' },
+          'research-falsification': { name: '가설 반증 및 실패 사례', desc: '기계 통신 프로토콜 및 신경망 아키텍처 한계 실측, 가설 반증 및 실패 사례 부검' },
           'free-board': { name: '자유게시판', desc: '연구원 및 엔지니어 자유 토론 공간' },
           'free-qna': { name: 'Q&A 질문/답변', desc: '온디바이스 AI 구현 및 커널 트러블슈팅 질의응답' },
           'free-tech': { name: '기술 토론', desc: '아키텍처 설계 및 최적화 기법 집중 토론' }
@@ -3388,6 +3264,7 @@
           'research-benchmarks': { name: 'Device Benchmarks', desc: 'Adreno/Mali/Apple Silicon Performance & NPU Latency Profiling' },
           'research-cluster': { name: 'Edge Clusters', desc: 'Distributed On-Device Token Pipeline & P2P Clustering Research' },
           'research-opensource': { name: 'Open-Source Contributions', desc: 'Official Contribution Guidelines, Kernel PRs & Roadmap' },
+          'research-falsification': { name: 'Empirical Falsification & Failure Cases', desc: 'Empirical limits, hypothesis falsification and post-mortem analysis of neural machine protocols' },
           'free-board': { name: 'Community Forum', desc: 'Open Technical Discussion for Researchers & Engineers' },
           'free-qna': { name: 'Q&A', desc: 'On-Device AI Implementation & Kernel Troubleshooting' },
           'free-tech': { name: 'Tech Discussion', desc: 'Deep Dive into Architecture & Optimization' }
@@ -3482,43 +3359,10 @@
         board: 'dark'
       },
 
-      _progressTimer: null,
-
-      showLoading(initialPercent = 35) {
-        const bar = document.getElementById('labsGlobalProgressBar');
-        if (bar) {
-          bar.classList.add('active');
-          bar.style.width = initialPercent + '%';
-          if (this._progressTimer) clearInterval(this._progressTimer);
-          let curr = initialPercent;
-          this._progressTimer = setInterval(() => {
-            if (curr < 85) {
-              curr += (85 - curr) * 0.15;
-              bar.style.width = curr + '%';
-            }
-          }, 150);
-        }
-      },
-
-      hideLoading() {
-        const bar = document.getElementById('labsGlobalProgressBar');
-        if (bar) {
-          if (this._progressTimer) {
-            clearInterval(this._progressTimer);
-            this._progressTimer = null;
-          }
-          bar.style.width = '100%';
-          setTimeout(() => {
-            bar.classList.remove('active');
-            setTimeout(() => {
-              bar.style.width = '0%';
-            }, 300);
-          }, 200);
-        }
-      },
+      showLoading() {},
+      hideLoading() {},
 
       async init() {
-        this.showLoading(20);
         try {
           await this.store.init();
         } catch (e) {}
@@ -3534,7 +3378,7 @@
         let targetPostId = postParam ? parseInt(postParam, 10) : null;
 
         if (targetPostId && !isNaN(targetPostId)) {
-          const knownPost = (this.store.posts || []).find(p => p.id === targetPostId) ||
+          const knownPost = (this.store.masterSeedPosts || this.store.posts || []).find(p => p.id === targetPostId) ||
                             (this.store.cachedPostDetails && this.store.cachedPostDetails[targetPostId]);
           if (knownPost && knownPost.menu_id) {
             targetMenu = knownPost.menu_id;
@@ -3553,26 +3397,19 @@
         this.initNewsletterSwipe();
         this.updateLanguageUI(false);
 
-        if (targetPostId && !isNaN(targetPostId)) {
-          // Fast-track: Open post detail directly with loading UI
-          this.activeMenuId = targetMenu;
-          window.__curLabsMenu = targetMenu;
-          this.updateSidebarHighlight(targetMenu);
-          this.renderSubmenuTabs(targetMenu);
-          this.updateHeadingUI(targetMenu);
+        // Always render target menu list first (0ms instantaneous)
+        await this.selectMenu(targetMenu);
 
+        // If specific post ID was in URL, open detail view on top
+        if (targetPostId && !isNaN(targetPostId)) {
           const curMenu = this.store.menus.find(m => m.id === targetMenu);
           if (curMenu && curMenu.board_type === 'board') {
             await this.openBoardPost(targetPostId, false);
           } else {
             await this.openAnalDetail(targetPostId, false);
           }
-          // Non-blocking pre-fetch of list in the background
-          this.store.getPosts(targetMenu).catch(() => {});
-        } else {
-          await this.selectMenu(targetMenu);
         }
-        this.hideLoading();
+      },
 
         // Browser Back/Forward navigation listener
         window.addEventListener('popstate', async () => {
@@ -3916,10 +3753,6 @@
       // ── VIEW 1: NEWS (Newsletter Card Reader) ───────────────────────────────
       async renderNewsView() {
         document.getElementById('viewNews').style.display = 'block';
-        const newsViewer = document.getElementById('newsViewerBody');
-        if (newsViewer) {
-          newsViewer.innerHTML = '<div style="padding: 40px 20px; text-align: center;"><div class="labs-spinner-ring" style="margin: 0 auto 12px;"></div><div style="font-size: 0.9rem; color: #38bdf8; font-weight: 600;">최신 뉴스레터를 불러오는 중입니다...</div></div>';
-        }
         this.newsletters = await this.store.getPosts('newsletter');
 
         const card = document.getElementById('newsletterCard');
@@ -4122,7 +3955,7 @@
               <span>📚 안드로이드 시스템 엔지니어링 마스터 커리큘럼</span>
             </div>
             <div class="hb-curriculum-stats">
-              9대 핵심 모듈 · 총 33개 전문 강좌 및 부록 · 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
+              9대 핵심 모듈 / 총 33개 전문 강좌 및 부록 / 330대 핵심 용어 해설집 &amp; 실기기 Lab 실습 완비
             </div>
           </div>
           <div class="hb-curriculum-pills">
@@ -4152,25 +3985,12 @@
           else if (this.activeMenuId === 'research-benchmarks') topBadge.textContent = 'FLEET BENCHMARK LAB (S25~S7 DB)';
           else if (this.activeMenuId === 'research-cluster') topBadge.textContent = 'EDGE CLUSTER ORCHESTRATION';
           else if (this.activeMenuId === 'research-opensource') topBadge.textContent = 'OPEN-SOURCE UPSTREAM CONTRIBUTIONS';
+          else if (this.activeMenuId === 'research-falsification') topBadge.textContent = 'EMPIRICAL FALSIFICATION & FAILURE ANALYSIS';
           else topBadge.textContent = 'RESEARCH DISPATCHES';
         }
 
-        const container = document.getElementById('analFeedList');
-        if (container) {
-          container.innerHTML = `
-            <div style="padding: 48px 20px; text-align: center; width: 100%;">
-              <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
-              <div style="font-size: 0.95rem; color: #38bdf8; font-weight: 700; margin-bottom: 6px;">
-                연구 게시글 목록을 수신 중입니다...
-              </div>
-              <div style="font-size: 0.8rem; color: #64748b;">
-                실시간 데이터베이스 및 인메모리 아카이브 동기화 진행 중
-              </div>
-            </div>
-          `;
-        }
-
         const posts = await this.store.getPosts(this.activeMenuId);
+        const container = document.getElementById('analFeedList');
         if (container) container.innerHTML = '';
 
         if (!posts || posts.length === 0) {
@@ -4207,10 +4027,14 @@
 
               const card = document.createElement('div');
               card.className = 'anal-card';
+              if (p.dsp_yn === 'N') {
+                card.style.cssText = 'opacity: 0.6; filter: grayscale(35%); cursor: pointer; border-left: 3px solid #ef4444;';
+              }
               card.onclick = () => this.openAnalDetail(p.id, true, card);
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
+                  ${p.dsp_yn === 'N' ? '<span class="hb-feature-pill" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); font-weight: 700;">🔒 비공개 연구 아티팩트</span>' : ''}
                   ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? (chapCode.startsWith('부록') ? `Appendix ${chapCode.slice(-1)}` : `Lecture ${chapCode}`) : (chapCode.startsWith('부록') ? chapCode : `제 ${chapCode} 강`)}</span>` : ''}
                   ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
                   ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
@@ -4277,7 +4101,7 @@
               <span class="hb-module-badge">${mod.num === 9 ? 'APPENDIX' : `MODULE 0${mod.num}`}</span>
               <div class="hb-module-info">
                 <h4 class="hb-module-title">${mod.num === 9 ? '' : `모듈 ${mod.num}: `}${escapeHtml(mod.title)}</h4>
-                <p class="hb-module-desc">${escapeHtml(mod.desc)} · ${mod.num === 9 ? '부록 A ~ B' : `제 ${mod.range}강`} (${modPosts.length}개 강좌)</p>
+                <p class="hb-module-desc">${escapeHtml(mod.desc)} / ${mod.num === 9 ? '부록 A ~ B' : `제 ${mod.range}강`} (${modPosts.length}개 강좌)</p>
               </div>
             `;
             container.appendChild(modHeader);
@@ -4298,10 +4122,14 @@
 
               const card = document.createElement('div');
               card.className = 'anal-card';
+              if (p.dsp_yn === 'N') {
+                card.style.cssText = 'opacity: 0.6; filter: grayscale(35%); cursor: pointer; border-left: 3px solid #ef4444;';
+              }
               card.onclick = () => this.openAnalDetail(p.id, true, card);
               card.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
                   <span class="board-badge badge-anal">HANDBOOK</span>
+                  ${p.dsp_yn === 'N' ? '<span class="hb-feature-pill" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); font-weight: 700;">🔒 비공개 연구 아티팩트</span>' : ''}
                   ${chapCode ? `<span class="hb-chap-num-badge">${isEn ? (chapCode.startsWith('부록') ? `Appendix ${chapCode.slice(-1)}` : `Lecture ${chapCode}`) : (chapCode.startsWith('부록') ? chapCode : `제 ${chapCode} 강`)}</span>` : ''}
                   ${hasGlossary ? `<span class="hb-feature-pill glossary">${isEn ? '💡 20 Key Terms Glossary' : '💡 20대 핵심 용어집'}</span>` : ''}
                   ${hasLab ? `<span class="hb-feature-pill lab">${isEn ? '🔬 Hands-on Lab Practice' : '🔬 Hands-on Lab 실습'}</span>` : ''}
@@ -4335,9 +4163,15 @@
 
             const card = document.createElement('div');
             card.className = 'anal-card';
+            if (p.dsp_yn === 'N') {
+              card.style.cssText = 'opacity: 0.6; filter: grayscale(35%); cursor: pointer; border-left: 3px solid #ef4444;';
+            }
             card.onclick = () => this.openAnalDetail(p.id, true, card);
             card.innerHTML = `
-              <span class="board-badge badge-anal" style="margin-bottom: 6px;">RESEARCH</span>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                <span class="board-badge badge-anal">RESEARCH</span>
+                ${p.dsp_yn === 'N' ? '<span class="hb-feature-pill" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); font-weight: 700;">🔒 비공개 연구 아티팩트</span>' : ''}
+              </div>
               <h3 class="anal-title">${escapeHtml((isEn && p.title_eng) ? p.title_eng : p.title)}</h3>
               <p class="anal-excerpt">${escapeHtml(excerpt)}</p>
               <div class="anal-meta">
@@ -4383,36 +4217,8 @@
         const detailView = document.getElementById('analDetailView');
         detailView.style.display = 'block';
 
-        const loadingStateEl = document.getElementById('analDetailLoadingState');
         const bodyContentEl = document.getElementById('analDetailBodyContent');
-
-        // Check if full post content is already loaded in memory
-        const cachedItem = this.store.cachedPostDetails && this.store.cachedPostDetails[postId];
-        const isAlreadyLoaded = cachedItem && cachedItem.content;
-
-        if (!isAlreadyLoaded) {
-          if (loadingStateEl) {
-            loadingStateEl.style.display = 'block';
-            loadingStateEl.innerHTML = `
-              <div class="labs-spinner-ring" style="margin: 0 auto 16px;"></div>
-              <div id="analLoadingText" style="font-size: 1.05rem; font-weight: 700; color: #38bdf8; letter-spacing: -0.01em; margin-bottom: 6px;">
-                연구 백서 원문 및 실측 데이터 블록 로드 중... (Post #${postId})
-              </div>
-              <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 24px;">
-                AOSF 온디바이스 연구소 데이터베이스에서 원문 아카이브를 수신하고 있습니다.
-              </div>
-              <div style="max-width: 580px; margin: 0 auto; text-align: left;">
-                <div class="labs-skeleton-bar" style="width: 70%; height: 22px; margin-bottom: 14px;"></div>
-                <div class="labs-skeleton-bar" style="width: 40%; height: 14px; margin-bottom: 24px;"></div>
-                <div class="labs-skeleton-bar" style="width: 100%; height: 14px; margin-bottom: 8px;"></div>
-                <div class="labs-skeleton-bar" style="width: 96%; height: 14px; margin-bottom: 8px;"></div>
-                <div class="labs-skeleton-bar" style="width: 92%; height: 14px; margin-bottom: 8px;"></div>
-                <div class="labs-skeleton-bar" style="width: 65%; height: 14px;"></div>
-              </div>
-            `;
-          }
-          if (bodyContentEl) bodyContentEl.style.display = 'none';
-        }
+        if (bodyContentEl) bodyContentEl.style.display = 'block';
 
         // Trigger Cybernetic Transformer Assembly Sequence
         detailView.classList.remove('transformer-active');
@@ -4653,6 +4459,8 @@
           titlePrefix = '🌐 엣지 분산 클러스터 목차 (Table of Contents)';
         } else if (this.activeMenuId === 'research-opensource') {
           titlePrefix = '🐙 오픈소스 기여 및 PR 분석 목차 (Table of Contents)';
+        } else if (this.activeMenuId === 'research-falsification') {
+          titlePrefix = '📉 가설 반증 및 실패 사례 목차 (Table of Contents)';
         } else {
           titlePrefix = '📑 연구 리포트 핵심 목차 (Table of Contents)';
         }
@@ -4671,7 +4479,7 @@
           <div class="toc-box-header">
             <div class="toc-box-title">
               <span>${titlePrefix}</span>
-              <span class="toc-badge-count">총 ${majorSectionsCount}개 대단원 · ${subTopicsCount > 0 ? `세부 ${subTopicsCount}개 항목` : `전체 ${totalHeadingsCount}개`}</span>
+              <span class="toc-badge-count">총 ${majorSectionsCount}개 대단원 / ${subTopicsCount > 0 ? `세부 ${subTopicsCount}개 항목` : `전체 ${totalHeadingsCount}개`}</span>
             </div>
             <div class="toc-quick-actions">
               ${labHeading ? `<button type="button" class="toc-quick-btn lab" onclick="LabsApp.jumpToHeading('${labHeading.id}')">🔬 Hands-on Lab 바로가기</button>` : ''}
@@ -4833,9 +4641,7 @@
           this.viewerInstances.anal = null;
         }
         document.getElementById('analDetailView').style.display = 'none';
-        const loadingStateEl = document.getElementById('analDetailLoadingState');
         const bodyContentEl = document.getElementById('analDetailBodyContent');
-        if (loadingStateEl) loadingStateEl.style.display = 'none';
         if (bodyContentEl) bodyContentEl.style.display = 'block';
 
         const curMenu = this.store.menus.find(m => m.id === this.activeMenuId) || { board_type: 'anal' };
@@ -4874,11 +4680,8 @@
         }
 
         const tbody = document.getElementById('boardTableBody');
-        if (tbody) {
-          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 40px 20px;"><div class="labs-spinner-ring labs-spinner-sm" style="margin: 0 auto 10px;"></div><div style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">게시글 목록을 불러오는 중입니다...</div></td></tr>`;
-        }
-
         const posts = await this.store.getPosts(this.activeBoardFilter);
+        const tbody = document.getElementById('boardTableBody');
         if (tbody) tbody.innerHTML = '';
 
         if (!posts || posts.length === 0) {
@@ -5746,10 +5549,11 @@
           const dateStr = (p.created_at || '').substring(0, 10);
           const postTitle = (isEn && p.title_eng) ? p.title_eng : p.title;
           return `
-            <tr class="${isCur ? 'current-reading-row' : ''}">
+            <tr class="${isCur ? 'current-reading-row' : ''}" style="${(p.dsp_yn === 'N') ? 'opacity: 0.6;' : ''}">
               <td class="col-num">${overallIndex}</td>
               <td class="bottom-title-cell">
                 ${isCur ? `<span class="badge-current-reading">${dict.badge_reading}</span>` : ''}
+                ${(p.dsp_yn === 'N') ? '<span style="color: #f87171; margin-right: 4px; font-weight: 600; font-size: 0.75rem;">[🔒 비공개]</span>' : ''}
                 <a href="javascript:void(0)" class="bottom-title-link" onclick="LabsApp.openAnalDetail(${p.id}, true, this)">${escapeHtml(postTitle)}</a>
                 ${(p.comment_count > 0) ? `<span class="comment-count-badge">[${p.comment_count}]</span>` : ''}
               </td>

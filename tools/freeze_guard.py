@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 tools/freeze_guard.py — AMEVA Universal Asset Freeze & Zero-Drift Guard
 Version: 1.1.0 (Master Automated Freeze, Verification & Auto-Healing Engine)

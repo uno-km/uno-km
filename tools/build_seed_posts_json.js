@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // tools/build_seed_posts_json.js
 // Synchronize SEED_POSTS with deterministic IDs, fix Mermaid diagram text, and generate static shared/seed_posts.json
 

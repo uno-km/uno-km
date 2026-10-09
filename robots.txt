@@ -107,7 +107,11 @@ User-agent: *
 Allow: /
 Disallow: /api/stats
 Disallow: /api/sentinel/trap
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /lib/*/llms.txt
+Allow: /lib/*/llms-full.txt
 
-# Official Sitemaps & LLM Context Feeds
+# Official Sitemaps & Machine Context Feeds
 Sitemap: https://uno-km.vercel.app/sitemap.xml
 Sitemap: https://uno-km.github.io/uno-km/sitemap.xml

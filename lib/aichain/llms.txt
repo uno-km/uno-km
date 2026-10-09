@@ -1,18 +1,15 @@
 # Termux-AIChain — AI Agent Fast Context
-# Generated: 2026-10-06  |  Version: 1.1.4
+# Generated: 2026-10-09  |  Version: 1.1.4
 
 ## Library
 Name: Termux-AIChain
 Version: 1.1.4
 GitHub: https://github.com/uno-km/termux-aichain
 Documentation: https://uno-km.vercel.app/lib/aichain/
-PyPI: https://pypi.org/project/termux-aichain/
-NPM: https://www.npmjs.com/package/termux-aichain
 License: Apache-2.0
 
 ## Description
-Why LangChain on Termux? Bloat & Crash vs 94KB Zero-Dep LCEL & Hardware Native Agents.
-Termux-AIChain is an ultra-lightweight, zero-external-dependency AI chaining and autonomous agent framework for Android Termux (ARM64) and Node.js 18+ ESM. Provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), StateGraph multi-agent loops, on-device SQLite vector RAG, and native Android smartphone hardware actuation (battery, temperature, haptics, GPS).
+
 
 ## Documentation Pages
   - /lib/aichain/index.html
@@ -24,7 +21,7 @@ Termux-AIChain is an ultra-lightweight, zero-external-dependency AI chaining and
   - /lib/aichain/versions.html
 
 ## Quick Install
-pip install --upgrade termux-aichain
+pip install termux-aichain
 npm install termux-aichain
 
 ## AI Crawlers

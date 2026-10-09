@@ -1,4 +1,8 @@
 /**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
+/**
  * AMEVA Ecosystem - Standard 13-Language Fallback Translation Dictionary (SSOT)
  * Languages: en, ko, ja, zh, ar, fr, de, es, hi, ru, vi, pl, la
  */
@@ -4343,6 +4347,96 @@
     for (const [sKey, sVal] of Object.entries(sec)) {
       translations[l][sKey] = Object.assign(translations[l][sKey] || {}, sVal);
     }
+  }
+
+  
+  // --- COMMON HOME PATCH INJECTION ---
+  const __commonHomeAdditions = {
+  "en": {
+    "quickInstallTitle": "1-Line Quick Installation",
+    "quickInstallDesc": "Install the official package directly into your runtime:",
+    "challengeTitle": "The Engineering Challenge",
+    "breakthroughTitle": "The Architectural Breakthrough",
+    "featuresTitle": "Key Capabilities & Built-in Hardening",
+    "matrixTitle": "Supported Compute Kernels & Operations",
+    "matrixCol1": "Subsystem Category",
+    "matrixCol2": "Operations & Kernels",
+    "matrixCol3": "Status",
+    "codeExampleTitle": "Canonical Usage Example",
+    "nextStepsTitle": "Getting Started & Deep Guides",
+    "linkInstall": "Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)",
+    "linkQuickstart": "Quickstart Recipes & Common Execution Patterns",
+    "linkApi": "100% Full API Reference & Struct Definitions"
+  },
+  "ko": {
+    "quickInstallTitle": "1줄 빠른 설치",
+    "quickInstallDesc": "런타임에 공식 패키지를 즉시 설치하십시오:",
+    "challengeTitle": "엔지니어링 당면 과제",
+    "breakthroughTitle": "아키텍처 혁신 및 해결책",
+    "featuresTitle": "핵심 기능 및 내장 하드닝 사양",
+    "matrixTitle": "지원 연산 커널 및 하드웨어 가속 매트릭스",
+    "matrixCol1": "서브시스템 분류",
+    "matrixCol2": "연산 및 실행 커널",
+    "matrixCol3": "지원 상태",
+    "codeExampleTitle": "표준 실행 코드 예제",
+    "nextStepsTitle": "시작하기 및 심화 엔지니어링 가이드",
+    "linkInstall": "상세 설치 가이드 (하드웨어 의존성, Termux 설정, WebGPU 플래그)",
+    "linkQuickstart": "퀵스타트 레시피 및 공통 실행 패턴",
+    "linkApi": "전체 API 명세 및 구조체 정의"
+  },
+  "ja": {
+    "quickInstallTitle": "1行クイックインストール",
+    "quickInstallDesc": "ランタイムに公式パッケージを直接インストールします:",
+    "challengeTitle": "エンジニアリング上の課題",
+    "breakthroughTitle": "アーキテクチャの技術的ブレークスルー",
+    "featuresTitle": "主要機能と組み込みの堅牢化",
+    "matrixTitle": "対応演算カーネルおよびハードウェア高速化マトリクス",
+    "matrixCol1": "サブシステム分類",
+    "matrixCol2": "演算および実行カーネル",
+    "matrixCol3": "対応状況",
+    "codeExampleTitle": "標準使用例",
+    "nextStepsTitle": "スタートガイドと詳細ドキュメント",
+    "linkInstall": "詳細インストールガイド（ハードウェア依存関係、Termux設定、WebGPUフラグ）",
+    "linkQuickstart": "クイックスタートレシピと共通実行パターン",
+    "linkApi": "完全なAPIリファレンスおよび構造体定義"
+  },
+  "hi": {
+    "quickInstallTitle": "1-पंक्ति त्वरित स्थापना",
+    "quickInstallDesc": "आधिकारिक पैकेज को सीधे अपने रनटाइम में स्थापित करें:",
+    "challengeTitle": "इंजीनियरिंग चुनौती",
+    "breakthroughTitle": "स्थापत्य की सफलता",
+    "featuresTitle": "प्रमुख क्षमताएं और अंतर्निहित सुरक्षा",
+    "matrixTitle": "समर्थित कंप्यूट कर्नेल और संचालन मैट्रिक्स",
+    "matrixCol1": "उपप्रणाली श्रेणी",
+    "matrixCol2": "संचालन और कर्नेल",
+    "matrixCol3": "स्थिति",
+    "codeExampleTitle": "मानक उपयोग उदाहरण",
+    "nextStepsTitle": "शुरुआत और गहन गाइड",
+    "linkInstall": "विस्तृत स्थापना गाइड (हार्डवेयर निर्भरताएं, Termux सेटअप, WebGPU फ़्लैग)",
+    "linkQuickstart": "त्वरित प्रारंभ रेसिपी और सामान्य निष्पादन पैटर्न",
+    "linkApi": "100% पूर्ण एपीआई संदर्भ और संरचना परिभाषाएं"
+  },
+  "zh": {
+    "quickInstallTitle": "单行快速安装",
+    "quickInstallDesc": "直接将官方软件包安装到您的运行时：",
+    "challengeTitle": "工程面临的挑战",
+    "breakthroughTitle": "架构层面的技术突破",
+    "featuresTitle": "核心功能与内置系统加固",
+    "matrixTitle": "支持的计算算子与硬件加速矩阵",
+    "matrixCol1": "子系统分类",
+    "matrixCol2": "算子与执行内核",
+    "matrixCol3": "支持状态",
+    "codeExampleTitle": "标准使用代码示例",
+    "nextStepsTitle": "入门指南与进阶工程文档",
+    "linkInstall": "详细安装指南（硬件依赖、Termux 配置、WebGPU 标志）",
+    "linkQuickstart": "快速上手配方与通用执行模式",
+    "linkApi": "完整 API 参考规范与结构体定义"
+  }
+};
+  for (const [l, hData] of Object.entries(__commonHomeAdditions)) {
+    if (!translations[l]) translations[l] = {};
+    if (!translations[l].home) translations[l].home = {};
+    Object.assign(translations[l].home, hData);
   }
 
   global.i18nTranslations = translations;

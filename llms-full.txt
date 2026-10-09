@@ -13,7 +13,18 @@ This document contains the complete technical specification, APIs, mathematical 
 6. Termux-Train (Bionic ARM64 DAG Autograd & LoRA Training Engine)
 7. Termux-Playwright (Non-Root Chromium CDP Automation)
 8. Termux-Diffusion (Bionic ARM64 Native Stable Diffusion)
-9. SRE Dynamic Throttling & Security Isolation
+9. AMEVA Sentinel (Privacy-First Security Observability & Risk Scoring)
+10. Termux-BitNet (1.58-bit Ternary Quantization Inference Engine)
+11. Termux-LlamaCPP (High-Performance GGUF On-Device LLM Backend)
+12. Termux-MCP (Model Context Protocol Edge Hub)
+13. Termux-Vision (On-Device Computer Vision & Multimodal Embeddings)
+14. AMEVA-Runtime (ARM64 Vulkan 1.3 Subgroup Compute & Adreno GPGPU Engine)
+15. Termux-TTS (On-Device Text-to-Speech Neural Vocoder)
+16. Termux-AIChain (Deterministic DAG Agent Execution & Distributed P2P Mesh)
+17. Termux-Cluster (Edge Fleet Coordination & Telemetry Network)
+18. Termux-Privacy (Hardware Fingerprint Shield & Telemetry Mask)
+19. SRE Dynamic Throttling & Security Isolation
+20. AMEVA Labs (Sovereign Systems Research & Community Portal)
 
 ---
 
@@ -28,7 +39,7 @@ This document contains the complete technical specification, APIs, mathematical 
 - **A — Agentic**: Autonomous reasoning and planning intelligence.
 - **M — Multi-Agent**: Hierarchical delegation (Nobles & Workers).
 - **E — Ecosystem**: Unified cross-platform integration (Web, Desktop, Mobile Termux, Edge).
-- **V — Virtualized**: 100% isolated client-side WASM sandbox.
+- **V — Virtualized**: Isolated client-side WASM and Bionic sandboxes.
 - **A — Automation**: Zero-server visual pipeline execution.
 
 ---
@@ -39,7 +50,7 @@ This document contains the complete technical specification, APIs, mathematical 
   - WebGPU Local AI: Qwen2.5 0.5B, 1.5B, 7B running in-browser via WebLLM/WGSL shaders.
   - 3-Sec MapReduce PDF/DOCX Document Intelligence.
   - In-App Video Trimming (FFmpeg WASM).
-  - 1-Sec AI Background Removal (WebAssembly Neural Segmentation).
+  - AI Background Removal (WebAssembly Neural Segmentation).
   - Silence Detection & Waveform Trimmer.
 
 ---
@@ -50,7 +61,7 @@ This document contains the complete technical specification, APIs, mathematical 
 - **Features**:
   - Drop-in PyTorch compatibility (`torch.Tensor`, `nn.Linear`, `nn.LayerNorm`, `optim.SGD`, `loss.backward()`).
   - WGSL 16x16 workgroup tiled matmul shaders.
-  - Closed-form GPU reverse-mode automatic differentiation.
+  - GPU reverse-mode automatic differentiation.
   - Deterministic GC finalizers and zero-leak staging buffer pools.
 
 ---
@@ -61,7 +72,7 @@ This document contains the complete technical specification, APIs, mathematical 
 - **Features**:
   - Unified 3-engine backend: Whisper.cpp (OpenBLAS NEON), Vosk (Kaldi), Sherpa-ONNX.
   - Pure Python 128d X-Vector K-Means Speaker Diarization.
-  - Ultra-low memory footprint (<350MB RAM on Android Termux).
+  - Low memory footprint (<350MB RAM on Android Termux).
 
 ---
 
@@ -73,7 +84,6 @@ This document contains the complete technical specification, APIs, mathematical 
   - SafeTensors zero-copy parser & serialization.
   - Rotary Position Embeddings (RoPE) & Causal Attention.
   - Low-Rank Adaptation (LoRA) on-device training & weight freezing.
-  - 100/100 Audit Scorecard passed.
 
 ---
 
@@ -82,7 +92,7 @@ This document contains the complete technical specification, APIs, mathematical 
 - **Docs**: https://uno-km.vercel.app/lib/playwright/
 - **Features**:
   - Native Bionic Chromium CDP control without PRoot overhead.
-  - Persistent disk ledger (.tp_ledger) for validated under test environment 100% orphan process reaping across kernel crashes.
+  - Persistent disk ledger (.tp_ledger) for process recovery across crashes.
   - Prototype-safe anti-bot stealth deleting `navigator.webdriver`.
   - eMMC flash memory wear protection via RAM-based caching.
 
@@ -98,14 +108,114 @@ This document contains the complete technical specification, APIs, mathematical 
 
 ---
 
-## 9. SRE Dynamic Throttling & Security Isolation
-- **Security Guarantee**: AMEVA tools execute within safe client-side WASM or unprivileged user-space Termux sandboxes with zero root elevation.
-- **SRE Resilience**: Dynamic throttling based on device temperature, memory headroom, and battery state.
-
+## 9. AMEVA Sentinel
+- **npm**: `npm install @ameva/sentinel@alpha @ameva/sentinel-browser@alpha @ameva/sentinel-risk-core@alpha`
+- **Docs**: https://uno-km.github.io/ameva-sentinel/
+- **GitHub**: https://github.com/uno-km/ameva-sentinel
+- **Features**:
+  - Privacy-first client security observability.
+  - Deterministic mathematical risk scoring (0-100 scale).
+  - Cross-browser verified: Chromium, Firefox, WebKit.
+  - Zero raw keystroke or location data ingestion.
 
 ---
 
-## 10. AMEVA Labs (Sovereign Systems Research & Community Portal)
+## 10. Termux-BitNet
+- **PyPI**: `pip install termux-bitnet`
+- **Docs**: https://uno-km.vercel.app/lib/bitnet/
+- **Features**:
+  - 1.58-bit ternary weight representation (-1, 0, +1).
+  - Addition-only GEMM operations reducing memory bandwidth by up to 80%.
+  - ARM64 NEON vectorized instruction kernels for edge deployment.
+
+---
+
+## 11. Termux-LlamaCPP
+- **PyPI**: `pip install termux-llamacpp`
+- **Docs**: https://uno-km.vercel.app/lib/llamacpp/
+- **Features**:
+  - GGUF multi-quantization support (Q4_K_M, Q5_K_M, Q8_0).
+  - High-efficiency context window management with mmap weight paging.
+  - Vulkan compute offload for capable mobile GPUs.
+
+---
+
+## 12. Termux-MCP
+- **PyPI / npm**: `pip install termux-mcp` | `npm install termux-mcp`
+- **Docs**: https://uno-km.vercel.app/lib/mcp/
+- **Features**:
+  - Standardized Model Context Protocol client/server implementation.
+  - Tool registration and dynamic execution sandbox for autonomous agents.
+  - JSON-RPC over stdio and HTTP/SSE transport modes.
+
+---
+
+## 13. Termux-Vision
+- **PyPI**: `pip install termux-vision`
+- **Docs**: https://uno-km.vercel.app/lib/vision/
+- **Features**:
+  - Lightweight MobileNet and Vision Transformer feature extractors.
+  - Fast cosine similarity indexing for on-device visual search.
+  - Zero cloud dependency for optical classification.
+
+---
+
+## 14. AMEVA-Runtime
+- **PyPI**: `pip install ameva-runtime`
+- **Docs**: https://uno-km.vercel.app/lib/vulkan/
+- **Features**:
+  - Direct SPIR-V compute pipeline generation.
+  - Vulkan 1.3 subgroup ballot and arithmetic operations.
+  - Qualcomm Adreno 650/830 GPU defect workarounds and LDS bank conflict minimization.
+
+---
+
+## 15. Termux-TTS
+- **PyPI / npm**: `pip install termux-tts` | `npm install termux-tts`
+- **Docs**: https://uno-km.vercel.app/lib/tts/
+- **Features**:
+  - Neural text-to-speech vocoder running in low-resource environments.
+  - Streaming audio generation with PCM chunk buffering.
+  - Support for multi-lingual synthetic output.
+
+---
+
+## 16. Termux-AIChain
+- **PyPI**: `pip install termux-aichain`
+- **Docs**: https://uno-km.vercel.app/lib/aichain/
+- **Features**:
+  - Deterministic execution graphs with checkpointing and state replay.
+  - P2P message passing across edge swarm nodes.
+  - Protocol-level context compression.
+
+---
+
+## 17. Termux-Cluster
+- **PyPI**: `pip install termux-cluster`
+- **Docs**: https://uno-km.vercel.app/lib/cluster/
+- **Features**:
+  - Work-stealing distributed task scheduling for edge devices.
+  - Fleet health monitoring and heartbeat signaling.
+  - Automatic node discovery and failover routing.
+
+---
+
+## 18. Termux-Privacy
+- **Docs**: https://uno-km.vercel.app/lib/privacy/
+- **Features**:
+  - Client fingerprint masking and synthetic hardware profile generation.
+  - Zero-knowledge data sanitization before external egress.
+  - Local entropy injection to resist canvas/WebGL tracking.
+
+---
+
+## 19. SRE Dynamic Throttling & Security Isolation
+- **Security Guarantee**: AMEVA tools execute within safe client-side WASM or unprivileged user-space Termux sandboxes with zero root elevation.
+- **SRE Resilience**: Dynamic throttling based on device temperature, memory headroom, and battery state.
+
+---
+
+## 20. AMEVA Labs (Sovereign Systems Research & Community Portal)
 - **Portal**: https://uno-km.vercel.app/labs/
 - **Architecture**:
   - High-density academic disclosure feed with TechArticle Schema.org metadata and Citation JSON-LD for AI crawler retrieval (GPTBot, ClaudeBot, PerplexityBot).

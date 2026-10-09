@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 const fs = require('fs');
 const path = require('path');
 const { SEED_POSTS } = require('../api/seed_posts.js');
