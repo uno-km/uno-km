@@ -3409,7 +3409,6 @@
             await this.openAnalDetail(targetPostId, false);
           }
         }
-      },
 
         // Browser Back/Forward navigation listener
         window.addEventListener('popstate', async () => {
@@ -4679,7 +4678,6 @@
           pillsContainer.innerHTML = pillsHtml;
         }
 
-        const tbody = document.getElementById('boardTableBody');
         const posts = await this.store.getPosts(this.activeBoardFilter);
         const tbody = document.getElementById('boardTableBody');
         if (tbody) tbody.innerHTML = '';
