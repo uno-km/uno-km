@@ -7,13 +7,13 @@
 
 import { SEED_POSTS } from '../api/seed_posts.js';
 
-console.log('=== AMEVA Labs 72 Posts Corpus Integrity Audit ===\n');
+console.log('=== AMEVA Labs 73 Posts Corpus Integrity Audit ===\n');
 
 let totalPosts = SEED_POSTS.length;
 console.log(`Total Posts in Corpus: ${totalPosts}`);
 
-if (totalPosts !== 72) {
-  console.error(`[FAIL] Expected exactly 72 posts, found ${totalPosts}`);
+if (totalPosts !== 73) {
+  console.error(`[FAIL] Expected exactly 73 posts, found ${totalPosts}`);
   process.exit(1);
 }
 
@@ -64,7 +64,7 @@ console.log('Content (KO) Length:', samplePaper.content.length);
 console.log('Content (EN) Length:', samplePaper.content_eng.length);
 
 if (allPass) {
-  console.log('\n[SUCCESS] 100% of 72 posts passed all forensic integrity checks!');
+  console.log(`\n[SUCCESS] All ${totalPosts} posts passed all forensic integrity checks!`);
 } else {
   console.error('\n[ERROR] Integrity audit detected failures.');
   process.exit(1);

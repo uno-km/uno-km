@@ -25,7 +25,7 @@
 
 1.58비트 삼진(Ternary $\{-1, 0, +1\}$) 극저비트 대규모 언어 모델의 ARM64 하드웨어 추론 시 발생하던 극심한 수치 붕괴(Word Salad)를 원천 해결하기 위해 제출된 마이크로소프트 공식 리포지토리 PR #633(`(w & 3) - 1` 역양자화 양수 편향 제거)과 관련하여, 글로벌 ARM 서버 엔지니어링 커뮤니티(Neoverse-N1 테스트베드)에서 제기된 빌드 파이프라인 누락 피드백을 심층 분석하였다.
 
-실제 모바일 물리 단말기(Galaxy S25/S21/S20/A35/A53)에서는 초당 27.8토큰의 완전 무결한 자연어가 생성되었으나, 마이크로소프트 공식 `setup_env.py` 파이프라인에서는 `src/CMakeLists.txt` 내의 `set(GGML_SOURCES_BITNET)` 순차 덮어쓰기 오타로 인해 핵심 커널(`ggml-bitnet-mad.cpp`)이 컴파일 타깃에서 완전히 증발하여 `nan` 출력이 지속되었음을 포렌식으로 규명하였다. 본 논문은 이 배관 결함을 바로잡고, x86_64/Windows/macOS CI/CD를 단 1%도 파괴하지 않는 플랫폼 안전 격리 기법과 글로벌 협업 피드백 전문을 영구 기록한다.
+실제 모바일 물리 단말기(Galaxy S25/S21/S20/A35/A53)에서는 초당 27.8토큰의 완전 무결한 자연어가 생성되었으나, 마이크로소프트 공식 `setup_env.py` 파이프라인에서는 `src/CMakeLists.txt` 내의 `set(GGML_SOURCES_BITNET)` 순차 덮어쓰기 오타로 인해 핵심 커널(`ggml-bitnet-mad.cpp`)이 컴파일 타깃에서 완전히 증발하여 `nan` 출력이 지속되었음을 포렌식으로 규명하였다. 본 논문은 이 배관 결함을 바로잡고, x86_64/Windows/macOS CI/CD의 빌드 호환성을 온전히 보존하는 플랫폼 안전 격리 기법과 글로벌 협업 피드백 전문을 영구 기록한다.
 
 ---
 
@@ -46,7 +46,7 @@ PR #633 등록 후 약 4시간 뒤, ARM Neoverse-N1 서버 환경에서 활동�
 ## 3. 원인 포렌식: "왜 폰에서는 되고, 서버에서는 안 되었는가?"
 
 ### 3.1 폰(Termux / AMEVA) 환경의 빌드 배관
-우리의 모바일 실기기 환경([`scripts/termux/build_bitnet_adapter.sh`](file:///c:/Users/GAME/Desktop/uno-km/dev/ameva/ameva-compute/scripts/termux/build_bitnet_adapter.sh))은 상위의 결함 있는 CMake 체계를 우회하고 Clang 컴파일러로 핵심 커널을 물리적으로 직결(Direct Injection)하였다:
+우리의 모바일 실기기 환경(`scripts/termux/build_bitnet_adapter.sh`)은 상위의 결함 있는 CMake 체계를 우회하고 Clang 컴파일러로 핵심 커널을 물리적으로 직결(Direct Injection)하였다:
 
 ```bash
 # AMEVA Termux 네이티브 빌드 파이프라인
@@ -56,7 +56,7 @@ clang++ $CXXFLAGS -shared -o "$OUT/libac_bitnet.so" \
     "$A/src/cpu/c_api.cpp" \
     "$A/src/core/ac_bitnet_engine.cpp" ...
 ```
-따라서 폰에서는 `(w & 3) - 1` NEON 및 AMUDA Vulkan 셰이더(`bitnet_gemv_i2_s.comp`)가 100% 바이너리에 포함되어 완벽하게 동작하였다.
+따라서 폰에서는 `(w & 3) - 1` NEON 및 온디바이스 Vulkan 셰이더(`bitnet_gemv_i2_s.comp`)가 바이너리에 정상 포함되어 결함 없이 동작하였다.
 
 ### 3.2 마이크로소프트 공식 `main`의 치명적 CMake 덮어쓰기 버그
 반면 마이크로소프트 공식 리포지토리의 `src/CMakeLists.txt` 1~3행에는 다음과 같은 어처구니없는 버그가 존재했다:
@@ -105,7 +105,7 @@ set(GGML_SOURCES_BITNET
 
 > Thank you so much for the sharp catch and rigorous validation, @matheus-c-feitosa!
 > 
-> You diagnosed the exact root cause: on mobile Termux (`termux-bitnet`), our local build harness directly compiles and links `ggml_bitnet_mad.cpp` into `libac_bitnet.so` alongside the AMUDA native GPU runtime (`ac_runtime`). That is why our on-device testing on Snapdragon 8 Elite and Exynos hardware ran the patched dequantization path directly and achieved 100% clean generation without word salad.
+> You diagnosed the exact root cause: on mobile Termux (`termux-bitnet`), our local build harness directly compiles and links `ggml_bitnet_mad.cpp` into `libac_bitnet.so` alongside the native Vulkan GPU runtime. That is why our on-device testing on Snapdragon 8 Elite and Exynos hardware ran the patched dequantization path directly and achieved clean, stable generation without word salad.
 > 
 > In contrast, in upstream `src/CMakeLists.txt`, `set(GGML_SOURCES_BITNET ggml-bitnet-mad.cpp)` was immediately overwritten by `set(GGML_SOURCES_BITNET ggml-bitnet-lut.cpp)`, inadvertently dropping `mad.cpp` from the compilation unit when using `setup_env.py`.
 > 

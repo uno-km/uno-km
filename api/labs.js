@@ -89,7 +89,7 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v36_all_72_posts_published_status';
+  const SEED_VERSION = 'v37_add_post_73_bitnet_pr633_forensics';
   try {
     // ── Ultra-Fast Validation Gate: Check if current seed_posts_version is satisfied ──
     try {
