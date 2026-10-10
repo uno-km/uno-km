@@ -7,6 +7,7 @@ import { neon } from '@neondatabase/serverless';
 import { SEED_POSTS } from './seed_posts.js';
 
 let isSchemaReady = false;
+let schemaInitPromise = null;
 let lastSchemaError = null;
 
 // ── In-Memory Serverless Cache (10-minute TTL for Warm Instances) ─────────────
@@ -89,7 +90,17 @@ const INITIAL_MENUS = [
 
 async function ensureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v37_add_post_73_bitnet_pr633_forensics';
+  if (!schemaInitPromise) {
+    schemaInitPromise = _doEnsureSchema(sql).finally(() => {
+      schemaInitPromise = null;
+    });
+  }
+  return await schemaInitPromise;
+}
+
+async function _doEnsureSchema(sql) {
+  if (isSchemaReady) return;
+  const SEED_VERSION = 'v38_bulk_upsert_pipeline_latency_optimization';
   try {
     // ── Ultra-Fast Validation Gate: Check if current seed_posts_version is satisfied ──
     try {
@@ -174,30 +185,61 @@ async function ensureSchema(sql) {
       );
     `;
 
-    // Seed/Synchronize all menus with ON CONFLICT DO UPDATE
-    for (const m of INITIAL_MENUS) {
-      await sql`
-        INSERT INTO labs_menus (id, name, parent_id, depth, sort_order, board_type, description)
-        VALUES (${m.id}, ${m.name}, ${m.parent_id}, ${m.depth}, ${m.sort_order}, ${m.board_type}, ${m.description})
-        ON CONFLICT (id) DO UPDATE SET
-          name = EXCLUDED.name,
-          parent_id = EXCLUDED.parent_id,
-          depth = EXCLUDED.depth,
-          sort_order = EXCLUDED.sort_order,
-          board_type = EXCLUDED.board_type,
-          description = EXCLUDED.description;
-      `;
-    }
+    // Stage 1: Batch Bulk Menus UPSERT (Single Roundtrip)
+    const normalizedMenus = INITIAL_MENUS.map(m => ({
+      id: m.id,
+      name: m.name,
+      parent_id: m.parent_id || null,
+      depth: m.depth || 0,
+      sort_order: m.sort_order || 0,
+      board_type: m.board_type || 'board',
+      description: m.description || ''
+    }));
+    const menusJson = JSON.stringify(normalizedMenus);
 
-    // Safe Idempotent Upsert for missing posts (including Post #69)
-    for (let i = 0; i < SEED_POSTS.length; i++) {
-      const p = SEED_POSTS[i];
-      const postId = p.id || (i + 1);
-      const createdAt = p.created_at || new Date().toISOString();
-      const dspVal = p.dsp_yn || 'Y';
+    await sql`
+      INSERT INTO labs_menus (id, name, parent_id, depth, sort_order, board_type, description)
+      SELECT id, name, parent_id, depth, sort_order, board_type, description
+      FROM json_to_recordset(${menusJson}::json) AS m(
+        id varchar, name varchar, parent_id varchar, depth int, sort_order int, board_type varchar, description text
+      )
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        parent_id = EXCLUDED.parent_id,
+        depth = EXCLUDED.depth,
+        sort_order = EXCLUDED.sort_order,
+        board_type = EXCLUDED.board_type,
+        description = EXCLUDED.description;
+    `;
+
+    // Stage 2: Batch Bulk Posts UPSERT (Chunked in safe batches of 25)
+    const nowIso = new Date().toISOString();
+    const normalizedPosts = SEED_POSTS.map((p, idx) => ({
+      id: p.id || (idx + 1),
+      menu_id: p.menu_id,
+      title: p.title,
+      title_eng: p.title_eng || '',
+      abstract: p.abstract || '',
+      content: p.content,
+      content_eng: p.content_eng || '',
+      tags: p.tags || '',
+      author: p.author || 'uno-km',
+      status: p.status || 'published',
+      dsp_yn: p.dsp_yn || 'Y',
+      created_at: p.created_at || nowIso
+    }));
+
+    const BATCH_SIZE = 25;
+    for (let i = 0; i < normalizedPosts.length; i += BATCH_SIZE) {
+      const chunk = normalizedPosts.slice(i, i + BATCH_SIZE);
+      const chunkJson = JSON.stringify(chunk);
       await sql`
         INSERT INTO labs_posts (id, menu_id, title, title_eng, abstract, content, content_eng, tags, author, author_ip, status, dsp_yn, created_at, updated_at)
-        VALUES (${postId}, ${p.menu_id}, ${p.title}, ${p.title_eng || ''}, ${p.abstract || ''}, ${p.content}, ${p.content_eng || ''}, ${p.tags || ''}, ${p.author || 'uno-km'}, '127.0.0.1', ${p.status || 'published'}, ${dspVal}, ${createdAt}, ${createdAt})
+        SELECT 
+          id, menu_id, title, title_eng, abstract, content, content_eng, tags, author, '127.0.0.1', status, dsp_yn, created_at, created_at
+        FROM json_to_recordset(${chunkJson}::json) AS p(
+          id bigint, menu_id varchar, title varchar, title_eng varchar, abstract text, content text, content_eng text, tags varchar, author varchar, status varchar, dsp_yn varchar, created_at timestamptz
+        )
         ON CONFLICT (id) DO UPDATE SET
           menu_id = EXCLUDED.menu_id,
           title = EXCLUDED.title,
