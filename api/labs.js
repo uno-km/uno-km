@@ -100,7 +100,7 @@ async function ensureSchema(sql) {
 
 async function _doEnsureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v38_bulk_upsert_pipeline_latency_optimization';
+  const SEED_VERSION = 'v39_fix_author_length_and_bulk_upsert_optimization';
   try {
     // ── Ultra-Fast Validation Gate: Check if current seed_posts_version is satisfied ──
     try {
@@ -115,9 +115,9 @@ async function _doEnsureSchema(sql) {
 
     await sql`
       CREATE TABLE IF NOT EXISTS labs_menus (
-        id VARCHAR(50) PRIMARY KEY,
+        id VARCHAR(100) PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
-        parent_id VARCHAR(50) REFERENCES labs_menus(id) ON DELETE SET NULL,
+        parent_id VARCHAR(100) REFERENCES labs_menus(id) ON DELETE SET NULL,
         depth INT NOT NULL DEFAULT 0,
         sort_order INT NOT NULL DEFAULT 0,
         board_type VARCHAR(20) NOT NULL DEFAULT 'board',
@@ -131,15 +131,15 @@ async function _doEnsureSchema(sql) {
     await sql`
       CREATE TABLE IF NOT EXISTS labs_posts (
         id BIGSERIAL PRIMARY KEY,
-        menu_id VARCHAR(50) NOT NULL REFERENCES labs_menus(id) ON DELETE CASCADE,
-        title VARCHAR(255) NOT NULL,
-        title_eng VARCHAR(255) DEFAULT '',
+        menu_id VARCHAR(100) NOT NULL REFERENCES labs_menus(id) ON DELETE CASCADE,
+        title VARCHAR(500) NOT NULL,
+        title_eng VARCHAR(500) DEFAULT '',
         abstract TEXT DEFAULT '',
         content TEXT NOT NULL,
         content_eng TEXT DEFAULT '',
         tags VARCHAR(4000) DEFAULT '',
-        author VARCHAR(50) NOT NULL,
-        author_ip VARCHAR(50) NOT NULL,
+        author VARCHAR(255) NOT NULL,
+        author_ip VARCHAR(100) NOT NULL,
         password_hash VARCHAR(64),
         status VARCHAR(20) NOT NULL DEFAULT 'published',
         dsp_yn VARCHAR(1) DEFAULT 'Y',
@@ -152,9 +152,13 @@ async function _doEnsureSchema(sql) {
     `;
 
     // Safe Schema Migration for existing DB instances
+    await sql`ALTER TABLE labs_posts ALTER COLUMN author TYPE VARCHAR(255);`;
+    await sql`ALTER TABLE labs_posts ALTER COLUMN author_ip TYPE VARCHAR(100);`;
+    await sql`ALTER TABLE labs_posts ALTER COLUMN title TYPE VARCHAR(500);`;
+    await sql`ALTER TABLE labs_posts ALTER COLUMN title_eng TYPE VARCHAR(500);`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS dsp_yn VARCHAR(1) DEFAULT 'Y';`;
     await sql`UPDATE labs_posts SET dsp_yn = 'N' WHERE id IN (59, 60, 68);`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS title_eng VARCHAR(255) DEFAULT '';`;
+    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS title_eng VARCHAR(500) DEFAULT '';`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS content_eng TEXT DEFAULT '';`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS tags VARCHAR(4000) DEFAULT '';`;
     await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS abstract TEXT DEFAULT '';`;
