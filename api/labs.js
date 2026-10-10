@@ -113,7 +113,13 @@ async function _doEnsureSchema(sql) {
       // Table labs_meta does not exist yet; proceed with initialization below
     }
 
-    await sql`
+    let stage = 'start';
+    const runStep = async (stepName, fn) => {
+      stage = stepName;
+      await fn();
+    };
+
+    await runStep('create_labs_menus', () => sql`
       CREATE TABLE IF NOT EXISTS labs_menus (
         id VARCHAR(100) PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
@@ -126,9 +132,9 @@ async function _doEnsureSchema(sql) {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
-    `;
+    `);
 
-    await sql`
+    await runStep('create_labs_posts', () => sql`
       CREATE TABLE IF NOT EXISTS labs_posts (
         id BIGSERIAL PRIMARY KEY,
         menu_id VARCHAR(100) NOT NULL REFERENCES labs_menus(id) ON DELETE CASCADE,
@@ -149,29 +155,27 @@ async function _doEnsureSchema(sql) {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
-    `;
+    `);
 
     // Safe Schema Migration for existing DB instances
-    await sql`ALTER TABLE labs_posts ALTER COLUMN author TYPE VARCHAR(255);`;
-    await sql`ALTER TABLE labs_posts ALTER COLUMN author_ip TYPE VARCHAR(100);`;
-    await sql`ALTER TABLE labs_posts ALTER COLUMN title TYPE VARCHAR(500);`;
-    await sql`ALTER TABLE labs_posts ALTER COLUMN title_eng TYPE VARCHAR(500);`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS dsp_yn VARCHAR(1) DEFAULT 'Y';`;
-    await sql`UPDATE labs_posts SET dsp_yn = 'N' WHERE id IN (59, 60, 68);`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS title_eng VARCHAR(500) DEFAULT '';`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS content_eng TEXT DEFAULT '';`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS tags VARCHAR(4000) DEFAULT '';`;
-    await sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS abstract TEXT DEFAULT '';`;
+    await runStep('alter_posts_author', () => sql`ALTER TABLE labs_posts ALTER COLUMN author TYPE VARCHAR(255);`);
+    await runStep('alter_posts_author_ip', () => sql`ALTER TABLE labs_posts ALTER COLUMN author_ip TYPE VARCHAR(100);`);
+    await runStep('alter_posts_title', () => sql`ALTER TABLE labs_posts ALTER COLUMN title TYPE VARCHAR(500);`);
+    await runStep('alter_posts_title_eng', () => sql`ALTER TABLE labs_posts ALTER COLUMN title_eng TYPE VARCHAR(500);`);
+    await runStep('add_posts_dsp_yn', () => sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS dsp_yn VARCHAR(1) DEFAULT 'Y';`);
+    await runStep('update_posts_dsp_yn', () => sql`UPDATE labs_posts SET dsp_yn = 'N' WHERE id IN (59, 60, 68);`);
+    await runStep('add_posts_tags', () => sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS tags VARCHAR(4000) DEFAULT '';`);
+    await runStep('add_posts_abstract', () => sql`ALTER TABLE labs_posts ADD COLUMN IF NOT EXISTS abstract TEXT DEFAULT '';`);
 
-    await sql`
+    await runStep('create_labs_comments', () => sql`
       CREATE TABLE IF NOT EXISTS labs_comments (
         id BIGSERIAL PRIMARY KEY,
         post_id BIGINT NOT NULL REFERENCES labs_posts(id) ON DELETE CASCADE,
         parent_id BIGINT REFERENCES labs_comments(id) ON DELETE CASCADE,
         root_id BIGINT REFERENCES labs_comments(id) ON DELETE CASCADE,
         depth INT NOT NULL DEFAULT 0,
-        author VARCHAR(50) NOT NULL,
-        author_ip VARCHAR(50) NOT NULL,
+        author VARCHAR(255) NOT NULL,
+        author_ip VARCHAR(100) NOT NULL,
         password_hash VARCHAR(64),
         content TEXT NOT NULL,
         like_count INT DEFAULT 0,
@@ -179,15 +183,15 @@ async function _doEnsureSchema(sql) {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
-    `;
+    `);
 
     // Metadata table for migrations and tracking
-    await sql`
+    await runStep('create_labs_meta', () => sql`
       CREATE TABLE IF NOT EXISTS labs_meta (
         key VARCHAR(50) PRIMARY KEY,
         value TEXT
       );
-    `;
+    `);
 
     // Stage 1: Batch Bulk Menus UPSERT (Single Roundtrip)
     const normalizedMenus = INITIAL_MENUS.map(m => ({
@@ -201,7 +205,7 @@ async function _doEnsureSchema(sql) {
     }));
     const menusJson = JSON.stringify(normalizedMenus);
 
-    await sql`
+    await runStep('bulk_upsert_menus', () => sql`
       INSERT INTO labs_menus (id, name, parent_id, depth, sort_order, board_type, description)
       SELECT id, name, parent_id, depth, sort_order, board_type, description
       FROM json_to_recordset(${menusJson}::json) AS m(
@@ -214,7 +218,7 @@ async function _doEnsureSchema(sql) {
         sort_order = EXCLUDED.sort_order,
         board_type = EXCLUDED.board_type,
         description = EXCLUDED.description;
-    `;
+    `);
 
     // Stage 2: Batch Bulk Posts UPSERT (Chunked in safe batches of 25)
     const nowIso = new Date().toISOString();
@@ -237,7 +241,7 @@ async function _doEnsureSchema(sql) {
     for (let i = 0; i < normalizedPosts.length; i += BATCH_SIZE) {
       const chunk = normalizedPosts.slice(i, i + BATCH_SIZE);
       const chunkJson = JSON.stringify(chunk);
-      await sql`
+      await runStep(`bulk_upsert_posts_chunk_${i}`, () => sql`
         INSERT INTO labs_posts (id, menu_id, title, title_eng, abstract, content, content_eng, tags, author, author_ip, status, dsp_yn, created_at, updated_at)
         SELECT 
           id, menu_id, title, title_eng, abstract, content, content_eng, tags, author, '127.0.0.1', status, dsp_yn, created_at, created_at
@@ -256,7 +260,7 @@ async function _doEnsureSchema(sql) {
           status = EXCLUDED.status,
           dsp_yn = EXCLUDED.dsp_yn,
           updated_at = EXCLUDED.updated_at;
-      `;
+      `);
     }
 
     try {
@@ -266,8 +270,8 @@ async function _doEnsureSchema(sql) {
 
     isSchemaReady = true;
   } catch (err) {
-    lastSchemaError = err.message;
-    console.warn('[Labs API] Schema init error:', err.message);
+    lastSchemaError = `${err.message} [stage: ${stage || 'unknown'}]`;
+    console.warn('[Labs API] Schema init error:', lastSchemaError);
   }
 }
 
@@ -727,11 +731,18 @@ Human Web Portal: https://uno-km.vercel.app/labs/
       const postCount = await sql`SELECT count(*) FROM labs_posts;`;
       const meta = await sql`SELECT * FROM labs_meta;`;
       const samplePosts = await sql`SELECT id, menu_id, title FROM labs_posts LIMIT 5;`;
+      const columns = await sql`
+        SELECT table_name, column_name, data_type, character_maximum_length 
+        FROM information_schema.columns 
+        WHERE table_name IN ('labs_posts', 'labs_menus', 'labs_meta')
+        ORDER BY table_name, ordinal_position;
+      `;
       return res.status(200).json({
         ok: true,
         postCount: postCount[0]?.count,
         meta,
         samplePosts,
+        columns,
         lastSchemaError
       });
     }
