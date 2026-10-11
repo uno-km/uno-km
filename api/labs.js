@@ -101,7 +101,7 @@ async function ensureSchema(sql) {
 
 async function _doEnsureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v42_register_post_75_docfold_two_agent_monograph';
+  const SEED_VERSION = 'v43_correction_notices_grade_a';
   try {
     // ── Ultra-Fast Validation Gate: Check if current seed_posts_version is satisfied ──
     try {

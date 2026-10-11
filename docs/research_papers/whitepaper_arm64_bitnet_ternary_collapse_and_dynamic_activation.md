@@ -11,10 +11,14 @@
 # ARM64 온디바이스 1.58비트 LLM의 삼진 수치 붕괴(Word Salad) 결함 원인 규명 및 다이나믹 활성화 함수 엔진 구현 실증
 ### Root Cause Analysis of Ternary Numerical Collapse (Word Salad) in ARM64 On-Device 1.58-bit LLMs and Dynamic Activation Dispatcher Implementation
 
+> **정정 공지 (2026-10-11)**
+> 1. 원문 "PR #551, #624, #633 (공식 머지 완료)"와 각 PR의 "(공식 머지)" → 세 PR 모두 2026-10-11 현재 **OPEN(미병합)**입니다.
+> 2. 원문 "공식 머지시킴으로써, 온디바이스 1.58비트 LLM의 수치 붕괴를 세계 최초로 해결한 엔지니어라는 선행 기술적 지위를 공고히 했습니다" → 사실이 아닌 "공식 머지"와 검증할 수 없는 "세계 최초" 표현을 삭제했습니다.
+
 - **작성자:** 김은호 (@uno-km)
 - **대상 기종:** Samsung Galaxy S25 (Snapdragon 8 Elite), Galaxy A53 (Exynos 1280), Galaxy A35 (Exynos 1380), Galaxy S20 (Snapdragon 865)
 - **개발 환경:** Android Termux Native C++20 / Bionic libc / Clang 19
-- **관련 업스트림 PR:** Microsoft `BitNet` 공식 레포지토리 PR #551, #624, #633 (공식 머지 완료)
+- **관련 업스트림 PR:** Microsoft `BitNet` 공식 레포지토리 PR #551, #624, #633 (2026-10-11 현재 모두 미병합)
 - **저작권 및 라이선스:** Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 
 ---
@@ -188,11 +192,11 @@ if (lay.ffn_sub_norm) {
 이 연구 성과는 방구석 테스트로 끝나지 않고 글로벌 오픈소스 생태계로 직결되었습니다.
 
 ### 6.1 공식 업스트림 기여 (선행 기술 및 글로벌 명성 확보)
-- **PR #551 (Microsoft BitNet)**: ARM 아키텍처 `i2_s` 삼진 가중치 역양자화 수식 오역 버그 최초 규명 및 수정 (공식 머지).
-- **PR #624 (Microsoft BitNet)**: ARMv8.2-A NEON signed dot product(`sdot`) 1x4_32W 어셈블리 가속 커널 기고 (공식 머지).
-- **PR #633 (Microsoft BitNet)**: 모델 아키텍처별 Squared ReLU / SwiGLU 다이나믹 디스패처 기고 (공식 머지).
+- **PR #551 (Microsoft BitNet)**: ARM 아키텍처 `i2_s` 삼진 가중치 역양자화 수식 오역 버그 최초 규명 및 수정 (2026-10-11 현재 미병합).
+- **PR #624 (Microsoft BitNet)**: ARMv8.2-A NEON signed dot product(`sdot`) 1x4_32W 어셈블리 가속 커널 기고 (2026-10-11 현재 미병합).
+- **PR #633 (Microsoft BitNet)**: 모델 아키텍처별 Squared ReLU / SwiGLU 다이나믹 디스패처 기고 (2026-10-11 현재 미병합).
 
-우리는 버그의 존재를 숨기지 않고 가장 먼저 규명하여 공식 머지시킴으로써, **"온디바이스 1.58비트 LLM의 수치 붕괴를 세계 최초로 해결한 엔지니어"**라는 선행 기술적 지위를 공고히 했습니다.
+우리는 버그의 존재를 숨기지 않고 규명한 결함과 수정을 업스트림에 PR로 제출했습니다(2026-10-11 현재 미병합). *(2026-10-11 정정: 문서 첫머리 정정 공지 참조)*
 
 ### 6.2 오픈 인터페이스 vs 비공개 코어의 분리 (Open Interface, Closed Core)
 글로벌 표준과의 호환 규격 및 버그 패치는 투명하게 오픈소스로 공개합니다.  
