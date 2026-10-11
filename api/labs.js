@@ -4,6 +4,7 @@
  */
 // api/labs.js - AMEVA Labs Serverless API (Neon PostgreSQL / Serverless)
 import { neon } from '@neondatabase/serverless';
+import { timingSafeEqual } from 'node:crypto';
 import { SEED_POSTS } from './seed_posts.js';
 
 let isSchemaReady = false;
@@ -292,16 +293,16 @@ function maskIp(ip) {
   return ip.substring(0, 8) + '...';
 }
 
-function isLocalRequest(req) {
-  const host = req.headers['host'] || '';
-  const origin = req.headers['origin'] || '';
-  const referer = req.headers['referer'] || '';
-  const clientIp = getClientIp(req);
-
-  return host.includes('localhost') || host.includes('127.0.0.1') ||
-         origin.includes('localhost') || origin.includes('127.0.0.1') ||
-         referer.includes('localhost') || referer.includes('127.0.0.1') ||
-         clientIp === '127.0.0.1' || clientIp === '::1' || clientIp === 'localhost';
+// Maintenance actions require the x-local-secret header to equal LABS_ADMIN_SECRET.
+// Host / Origin / Referer are client-controlled and are not trusted. Without the
+// environment variable every maintenance request is refused.
+function isAdminRequest(req) {
+  const expected = process.env.LABS_ADMIN_SECRET || '';
+  const given = req.headers['x-local-secret'];
+  if (!expected || typeof given !== 'string' || given.length === 0) return false;
+  const a = Buffer.from(given, 'utf8');
+  const b = Buffer.from(expected, 'utf8');
+  return a.length === b.length && timingSafeEqual(a, b);
 }
 
 export default async function handler(req, res) {
@@ -715,7 +716,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
 
     // Database Reset Action (for maintenance)
     if (action === 'reset_database' && req.method === 'POST') {
-      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
+      if (!isAdminRequest(req)) {
         return res.status(403).json({ ok: false, error: 'Unauthorized' });
       }
       await sql`TRUNCATE TABLE labs_comments, labs_posts RESTART IDENTITY CASCADE;`;
@@ -724,7 +725,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
 
     // ── Diagnostic / Force Seed Actions (Local or Protected) ──────────────────
     if (action === 'debug_db') {
-      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
+      if (!isAdminRequest(req)) {
         return res.status(403).json({ ok: false, error: 'Unauthorized' });
       }
       res.setHeader('Cache-Control', 'no-store');
@@ -748,7 +749,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
     }
 
     if (action === 'force_seed') {
-      if (!isLocalRequest(req) && process.env.NODE_ENV === 'production' && !req.headers['x-local-secret']) {
+      if (!isAdminRequest(req)) {
         return res.status(403).json({ ok: false, error: 'Unauthorized' });
       }
       res.setHeader('Cache-Control', 'no-store');
