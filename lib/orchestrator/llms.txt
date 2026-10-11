@@ -1,0 +1,28 @@
+# AMEVA-Orchestrator (v1.0.0)
+> High-Reliability Control Plane, Lifecycle Scheduling, and Multi-Modality Component Adapter Gateway SDK for Edge & Mobile AI
+
+## Quick Specification for AI Coding Agents
+- Official Repo: https://github.com/uno-km/termux-ai-orchestrator
+- Installation: `pip install termux-ai-orchestrator
+# or
+npm install -g @ameva/orchestrator`
+- Architecture: AMEVA-Orchestrator is a lightweight, high-reliability control plane SDK and adapter gateway managing local AI model lifecycles and external runtime components on Android Termux and edge devices.
+It enforces a strict 5-tier lifecycle model (COLD, WARM, HOT, ACTIVE, ERROR) with process mutex serialization to prevent Android LMK terminations, and features native distributed smartphone clustering via P2P Tailscale mesh and zero-config UDP PIN pairing.
+Compliant with OpenSSF and CNCF security specifications, it provides built-in automated secret redaction and a tamper-evident SHA-256 audit logging chain.
+
+## Canonical Code Pattern
+```python
+import ameva_orchestrator as orch
+from termux_ai_orchestrator.client import Client
+
+# 1. Probe available RAM and calculate dynamic tensor split across phone fleet:
+ram_mb = orch.probe_node_ram_mb("192.168.43.101", user="u0_a123", port=8022)
+servers, ts_str = orch.resolve_auto_tensor_split(["192.168.43.101:8022", "192.168.43.102:8022"])
+print(f"Cluster Auto Split: -ts {ts_str}")
+
+# 2. Connect to local Control Plane and inspect ecosystem status:
+client = Client(base_url="http://127.0.0.1:11553", token="<AUTH_TOKEN>")
+status = client.status()
+print(f"Active nodes: {len(status['nodes'])}, Models: {len(status['models'])}")
+
+```

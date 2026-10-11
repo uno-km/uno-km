@@ -84,6 +84,16 @@ sdks:
       npm: "https://www.npmjs.com/package/@ameva/cluster"
       github: "https://github.com/uno-km/ameva-cluster"
 
+  - id: orchestrator
+    name: "AMEVA-Orchestrator"
+    badge: "Control Plane SDK"
+    tagline_ko: "엣지 및 분산 모바일 클러스터를 위한 고신뢰성 제어 평면, 라이프사이클 스케줄링 및 멀티모달 컴포넌트 어댑터 게이트웨이 SDK."
+    tagline_en: "High-Reliability Control Plane, Lifecycle Scheduling, and Multi-Modality Component Adapter Gateway SDK for Edge & Mobile AI."
+    links:
+      docs: "/lib/orchestrator/"
+      pypi: "https://pypi.org/project/termux-ai-orchestrator/"
+      github: "https://github.com/uno-km/termux-ai-orchestrator"
+
 libs:
   - id: aichain
     name: "Termux-AIChain"

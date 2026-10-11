@@ -275,6 +275,10 @@ def resolve_lib_dir(target: str) -> Path:
         for p in [DEV_DIR / "ameva" / "ameva-runtime", DEV_DIR / "ameva-runtime"]:
             if p.exists() and p.is_dir():
                 return p
+    if t_lower in ("orchestrator", "ameva-orchestrator", "termux-ai-orchestrator", "ai-orchestrator"):
+        for p in [DEV_DIR / "termux" / "termux-ai-orchestrator", DEV_DIR / "ameva" / "ameva-orchestrator", DEV_DIR / "termux-ai-orchestrator"]:
+            if p.exists() and p.is_dir():
+                return p
 
     candidates = [
         DEV_DIR / target,
@@ -314,6 +318,8 @@ def build_library_docs(lib_name: str, config: dict):
             slug = "vulkan"
         elif lib_name.lower() in ("mcp", "mcp-hub", "ameva-mcp", "ameva-mcp-hub"):
             slug = "mcp"
+        elif lib_name.lower() in ("orchestrator", "ai-orchestrator", "termux-ai-orchestrator", "ameva-orchestrator"):
+            slug = "orchestrator"
         else:
             slug = lib_name.replace('termux-', '').replace('AMEVA-', '').replace('ameva-', '').replace('-runtime', '').lower()
         output_dir = ROOT_DIR / "lib" / slug

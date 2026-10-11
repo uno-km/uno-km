@@ -260,4 +260,25 @@ libraries:
     - modalities-guide.html
     - fleet-optimization.html
     status: stable
+  orchestrator:
+    name: AMEVA-Orchestrator
+    version: 1.0.0
+    release_date: '2026-10-11'
+    npm_package: "@ameva/orchestrator"
+    pypi_package: termux-ai-orchestrator
+    github_repo: uno-km/termux-ai-orchestrator
+    lib_path: lib/orchestrator
+    doc_pages:
+    - index.html
+    - installation.html
+    - quickstart.html
+    - api-reference.html
+    - advanced-parameters.html
+    - benchmarks.html
+    - models.html
+    - training-guide.html
+    - versions.html
+    - guide.html
+    - cluster.html
+    status: stable
 

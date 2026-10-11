@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEVA-Orchestrator | Official Documentation</title>
+  <meta name="description" content="AMEVA-Orchestrator is a lightweight, high-reliability control plane SDK and adapter gateway managing local AI model lifecycles and external runtime components on Android Termux and edge devices.
+It enforces a strict 5-tier lifecycle model (COLD, WARM, HOT, ACTIVE, ERROR) with process mutex serialization to prevent Android LMK terminations, and features native distributed smartphone clustering via P2P Tailscale mesh and zero-config UDP PIN pairing.
+Compliant with OpenSSF and CNCF security specifications, it provides built-in automated secret redaction and a tamper-evident SHA-256 audit logging chain.">
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="stylesheet" href="/shared/lib-style.css">
+  <script src="/shared/components.js" defer></script>
+  <script src="/shared/i18n.js" defer></script>
+  <script src="/shared/i18n-translations.js" defer></script>
+  <script src="/shared/common.js" defer></script>
+</head>
+<body>
+  <ameva-header></ameva-header>
+
+  <div class="container">
+    <ameva-sidebar></ameva-sidebar>
+
+    <main class="content">
+      <h2 data-i18n="home.title">AMEVA-Orchestrator</h2>
+      <p class="subtitle" data-i18n="home.subtitle">High-Reliability Control Plane, Lifecycle Scheduling, and Multi-Modality Component Adapter Gateway SDK for Edge & Mobile AI</p>
+
+      <div class="badges-bar">
+        <a href="https://pypi.org/project/termux-ai-orchestrator/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-ai-orchestrator.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://www.npmjs.com/package/@ameva/orchestrator" target="_blank"><img src="https://img.shields.io/npm/v/%40ameva%2Forchestrator.svg?color=cb3837" alt="npm Version"></a>
+        <img src="https://img.shields.io/badge/license-Apache--2.0 OR Commercial--License-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_Termux_/_Linux_ARM64_&_x86_64_/_Windows-blueviolet.svg" alt="Platform">
+      </div>
+
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-ai-orchestrator
+# or
+npm install -g @ameva/orchestrator</code></pre>
+      </div>
+
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Executing concurrent multimodal AI models (LLM, STT, TTS, Vision, Diffusion) on mobile edge devices inevitably triggers Android Low Memory Killer (LMK) SIGKILL terminations, unauthorized RPC exposure risks, and severe compute resource contention across disparate runtimes.</p>
+
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">AMEVA-Orchestrator is a lightweight, high-reliability control plane SDK and adapter gateway managing local AI model lifecycles and external runtime components on Android Termux and edge devices.
+It enforces a strict 5-tier lifecycle model (COLD, WARM, HOT, ACTIVE, ERROR) with process mutex serialization to prevent Android LMK terminations, and features native distributed smartphone clustering via P2P Tailscale mesh and zero-config UDP PIN pairing.
+Compliant with OpenSSF and CNCF security specifications, it provides built-in automated secret redaction and a tamper-evident SHA-256 audit logging chain.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">5-Tier Model Lifecycle Management</h4>
+          <p data-i18n="home.features.0.desc">Strict 5-tier deterministic transitions with budget enforcement, completely preventing Android LMK kills.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">Disaggregated Mobile AI Clustering</h4>
+          <p data-i18n="home.features.1.desc">Pools idle RAM across heterogeneous smartphones and computes dynamic tensor split weights in real-time.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Zero-Config UDP PIN Pairing</h4>
+          <p data-i18n="home.features.2.desc">Instant zero-config master-worker pairing via 6-digit one-time PIN and HMAC-signed UDP beacons.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">Automated Secret Redaction Engine</h4>
+          <p data-i18n="home.features.3.desc">Detects and masks Bearer tokens, passwords, API keys, and URL credentials across logs and SSE event streams.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.4.title">Tamper-Evident SHA-256 Audit Trail</h4>
+          <p data-i18n="home.features.4.desc">Cryptographically links all control commands into a SHA-256 hash chain for provable post-audit integrity.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.5.title">9-Modality Component Adapter Gateway</h4>
+          <p data-i18n="home.features.5.desc">Orchestrates full lifecycles for 9 modality adapters including termux-aichain, stt, tts, and vision.</p>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Compute Engine</strong></td>
+            <td>WebGPU Compute Shaders (WGSL), FP16/FP32</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Memory Subsystem</strong></td>
+            <td>Zero-Copy Ring Buffers, Weakref GC Pooling</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+          <tr>
+            <td><strong>Platform Runtimes</strong></td>
+            <td>Node.js, Chromium WebGPU, Android Termux Bionic</td>
+            <td><span class="status-badge active">Production</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>import ameva_orchestrator as orch
+from termux_ai_orchestrator.client import Client
+
+# 1. Probe available RAM and calculate dynamic tensor split across phone fleet:
+ram_mb = orch.probe_node_ram_mb("192.168.43.101", user="u0_a123", port=8022)
+servers, ts_str = orch.resolve_auto_tensor_split(["192.168.43.101:8022", "192.168.43.102:8022"])
+print(f"Cluster Auto Split: -ts {ts_str}")
+
+# 2. Connect to local Control Plane and inspect ecosystem status:
+client = Client(base_url="http://127.0.0.1:11553", token="<AUTH_TOKEN>")
+status = client.status()
+print(f"Active nodes: {len(status['nodes'])}, Models: {len(status['models'])}")
+</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>const { execSync } = require('child_process');
+
+// Launch local AMEVA Orchestrator control plane daemon
+console.log("Starting AMEVA Orchestrator Control Plane...");
+execSync('ameva-orchestrator serve --allow-remote', { stdio: 'inherit' });
+</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
+      <ul>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 OR Commercial-License License.</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# AMEVA-Orchestrator Full Technical Specification (v1.0.0)
+Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
+
+## 1. System Overview
+High-Reliability Control Plane, Lifecycle Scheduling, and Multi-Modality Component Adapter Gateway SDK for Edge & Mobile AI
+AMEVA-Orchestrator is a lightweight, high-reliability control plane SDK and adapter gateway managing local AI model lifecycles and external runtime components on Android Termux and edge devices.
+It enforces a strict 5-tier lifecycle model (COLD, WARM, HOT, ACTIVE, ERROR) with process mutex serialization to prevent Android LMK terminations, and features native distributed smartphone clustering via P2P Tailscale mesh and zero-config UDP PIN pairing.
+Compliant with OpenSSF and CNCF security specifications, it provides built-in automated secret redaction and a tamper-evident SHA-256 audit logging chain.
+
+## 2. Package & Installation
+- PyPI: termux-ai-orchestrator
+- Command: pip install termux-ai-orchestrator
+# or
+npm install -g @ameva/orchestrator
+- Repository: https://github.com/uno-km/termux-ai-orchestrator
