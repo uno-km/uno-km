@@ -4,7 +4,7 @@
 
   [Architectural Governance]
   - Interface: Open Standard (Vulkan 1.1 command buffer / fence semantics, ggml backend API)
-  - Core Engine: ac_runtime (AMUDA native mobile GPU runtime), commit 084d513
+  - Core Engine: ac_runtime (Native mobile GPU runtime), commit 084d513
   - License Defense: Dual-License Model (Open Research / Commercial Enterprise)
 -->
 
@@ -42,7 +42,7 @@ Kokoro-82M 음성 합성에서 26초 길이의 발화(t3, 446 음소, GPU 디스
 | Galaxy S21 (8 GB) | Termux 세션 재시작 | 여유 메모리 약 3 GB 상태에서 시작 |
 | Galaxy S25 (Adreno) | 완료 | `--gpu-only` 최대 VmRSS 1.41 GB |
 
-CPU f32·f16 경로는 A35에서 t3를 완료했습니다. 따라서 모델 자체의 크기가 아니라, GPU 경로가 길이에 비례해 메모리를 더 쓰는 것이 문제였습니다. ggml 그래프 할당기(gallocr)의 버퍼 크기는 CPU와 AMEVA가 같았으므로, 증가분은 ggml-ameva, `ac_runtime`, 또는 Mali 드라이버 안에 있다고 판단했습니다. 강제 종료의 주체가 Android lmkd인지 커널 OOM killer인지는 기록으로 구분하지 못했습니다.
+CPU f32, f16 경로는 A35에서 t3를 완료했습니다. 따라서 모델 자체의 크기가 아니라, GPU 경로가 길이에 비례해 메모리를 더 쓰는 것이 문제였습니다. ggml 그래프 할당기(gallocr)의 버퍼 크기는 CPU와 AMEVA가 같았으므로, 증가분은 ggml-ameva, `ac_runtime`, 또는 Mali 드라이버 안에 있다고 판단했습니다. 강제 종료의 주체가 Android lmkd인지 커널 OOM killer인지는 기록으로 구분하지 못했습니다.
 
 ### 1.2 측정 방법
 
@@ -171,7 +171,7 @@ AMEVA f16은 음소 길이 예측이 CPU f32와 모두 일치했고(길이 불�
 
 ### 3.6 부록: 같은 날의 BitNet 무작위 샘플링 기록 (`ac_bitnet_sample`)
 
-이 기록은 커밋 `526ef78`의 도구로 같은 날 앞서 실행한 것이며, 본 수정의 시험이 아닙니다. 모델은 BitNet b1.58 2B (i2_s), 프롬프트는 "The capital of France is", 온도 1.0과 1.5, top-k 40, top-p 0.95이며 각 기기의 AMUDA GPU 경로(30/30 레이어)로 실행했습니다.
+이 기록은 커밋 `526ef78`의 도구로 같은 날 앞서 실행한 것이며, 본 수정의 시험이 아닙니다. 모델은 BitNet b1.58 2B (i2_s), 프롬프트는 "The capital of France is", 온도 1.0과 1.5, top-k 40, top-p 0.95이며 각 기기의 GPU 가속 경로(30/30 레이어)로 실행했습니다.
 
 | 기기 | GPU | 첫 토큰 " Paris" 확률 (T=1) | T=1.5에서의 확률 | 생성 속도 (T=1.0) |
 | :--- | :--- | ---: | ---: | ---: |
