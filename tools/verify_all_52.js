@@ -7,13 +7,13 @@
 
 import { SEED_POSTS } from '../api/seed_posts.js';
 
-console.log('=== AMEVA Labs 73 Posts Corpus Integrity Audit ===\n');
+console.log('=== AMEVA Labs 74 Posts Corpus Integrity Audit ===\n');
 
 let totalPosts = SEED_POSTS.length;
 console.log(`Total Posts in Corpus: ${totalPosts}`);
 
-if (totalPosts !== 73) {
-  console.error(`[FAIL] Expected exactly 73 posts, found ${totalPosts}`);
+if (totalPosts !== 74) {
+  console.error(`[FAIL] Expected exactly 74 posts, found ${totalPosts}`);
   process.exit(1);
 }
 

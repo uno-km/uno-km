@@ -100,7 +100,7 @@ async function ensureSchema(sql) {
 
 async function _doEnsureSchema(sql) {
   if (isSchemaReady) return;
-  const SEED_VERSION = 'v39_fix_author_length_and_bulk_upsert_optimization';
+  const SEED_VERSION = 'v40_register_post_74_mali_driver_memory_whitepaper';
   try {
     // ── Ultra-Fast Validation Gate: Check if current seed_posts_version is satisfied ──
     try {
