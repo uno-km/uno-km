@@ -11,6 +11,16 @@
 # Qualcomm Adreno 650 GPU의 Vulkan 수치 붕괴 결함 원인 규명 및 OpenCL 우회 가속 파이프라인 구현 실증
 ### Root Cause Analysis of Vulkan Numerical Collapse in Qualcomm Adreno 650 and OpenCL Bypass Pipeline Implementation
 
+> **정정 공지 (2026-10-11)**
+> 이 문서의 다음 서술을 정정합니다. 원문은 본문에 남기고 해당 위치에 정정 표시를 붙였습니다.
+>
+> 1. **3절의 원인 서술은 가설입니다.** "구형 Qualcomm 드라이버의 SPIR-V 컴파일러가 FP16 서브그룹 연산과 비정규화 수(Denormal)를 컴파일할 때 레지스터 언더플로를 일으킨다"는 서술에는 디스어셈블리, 절제 실험, 비트 비교 같은 측정 근거가 이 문서에 없습니다. 이후 측정에서 확인된 사실은 다음과 같습니다.
+>    - 2026-10-04: ameva-runtime llama 번들(업스트림 llama.cpp b8471의 ggml-vulkan)은 플래시 어텐션을 켜면 Adreno 830(Galaxy S25)과 Mali(Galaxy S21·A35·A53)에서도 텍스트가 손상되었습니다. 텍스트 손상은 Adreno 650만의 현상이 아니었습니다. Galaxy S20(Mesa Turnip 드라이버)에서는 같은 번들이 `ErrorDeviceLost`로 실패했습니다.
+>    - 2026-10-08: Galaxy S20(Turnip)에서 모든 f16 비정규화 수, 양·음의 0, 정규 값 2048개를 GPU 내장 변환(`unpackHalf2x16`)으로 통과시킨 검사가 CPU 변환과 비트 단위로 일치했습니다. Qualcomm 독점 드라이버(`libvulkan.adreno.so`)에서는 이 검사를 하지 않았습니다.
+> 2. **6절의 "Adreno 650 감지 시 자동으로 CPU NEON 모드" 기본값은 바뀌었습니다.** ameva-runtime 2.8.0(2026-10-04)부터 Galaxy S20은 자체 GPU 백엔드(ggml-ameva, Turnip)로 GPU 기본 경로이며, 출력 텍스트와 KL 발산을 CPU와 비교해 확인했습니다. Qwen2.5-0.5B 측정값: 프롬프트 CPU 27.5~27.7 / GPU 180 t/s(2026-10-05), 토큰 생성 CPU 25~27 / GPU 23.6~24.4 t/s(2026-10-04). 토큰 생성은 CPU와 비슷하거나 약간 느립니다.
+> 3. **7.1절 원문:** "…글로벌 오픈소스 커뮤니티(whisper.cpp #4089 및 llama.cpp 모바일 파이프라인)에 정식 공유되어 수많은 모바일 개발자들의 삽질을 방지하는 선행 기술 기준이 되었습니다."
+>    정정: whisper.cpp PR #4089는 2026-10-11 현재 OPEN(미병합)입니다. llama.cpp에는 이 작업의 제출 기록이 없습니다(GitHub 검색 기준).
+
 - **작성자:** 김은호 (@uno-km)
 - **대상 기종:** Samsung Galaxy S20 (Snapdragon 865, Adreno 650 GPU, Kryo 585 CPU, 12GB RAM)
 - **비교 대조 기종:** Samsung Galaxy S21 (Exynos 2100 / Mali-G78), Galaxy S25 (Snapdragon 8 Elite / Adreno 830)
@@ -58,13 +68,13 @@ ggml_vulkan: 0 = Adreno (TM) 650 | shared memory: 32768 | warp size: 64
 
 ---
 
-## 3. 심층 포렌식: 범인은 구형 퀄컴 드라이버의 SPIR-V 컴파일러
+## 3. 심층 포렌식: 범인은 구형 퀄컴 드라이버의 SPIR-V 컴파일러 *(2026-10-11 정정: 측정으로 확인되지 않은 가설)*
 
 원인을 파헤치기 위해 Vulkan 셰이더 바이트코드(SPIR-V)와 드라이버 바이너리(`libvulkan.adreno.so v512`)를 추적했습니다.
 
 ### 3.1 32KB Local Data Share(LDS)와 레지스터 마스킹 결함
 Adreno 650의 셰이더 프로세서는 워크그룹당 32KB의 로컬 공유 메모리(Local Data Share)를 가집니다.  
-그런데 퀄컴이 제공한 구형 안드로이드 12/13 드라이버의 내장 SPIR-V 셰이더 컴파일러는, **16-bit 부동소수점(FP16) 서브그룹 산술 연산(Subgroup Arithmetic) 및 비정규화 수(Denormal Float)를 컴파일할 때 레지스터 언더플로우를 일으키는 중대한 버그**를 안고 있었습니다.
+그런데 퀄컴이 제공한 구형 안드로이드 12/13 드라이버의 내장 SPIR-V 셰이더 컴파일러는, **16-bit 부동소수점(FP16) 서브그룹 산술 연산(Subgroup Arithmetic) 및 비정규화 수(Denormal Float)를 컴파일할 때 레지스터 언더플로우를 일으키는 중대한 버그**를 안고 있었습니다. *(2026-10-11 정정: 이 원인은 측정으로 확인되지 않은 가설입니다. 문서 첫머리 정정 공지 참조)*
 
 트랜스포머의 핵심 연산인 RoPE(Rotary Position Embedding) 각도 계산과 Softmax 확률 정규화는 0에 극도로 가까운 아주 작은 부동소수점을 다룹니다. 그런데 드라이버 컴파일러가 이 비트를 강제로 0으로 밀어버리거나(Flush-to-Zero 오작동) 상위 비트를 날려버리면서, Attention Score의 확률 분포가 단 하나의 엉뚱한 쓰레기 토큰으로 100% 편향되는 현상이 발생했던 것입니다.
 
@@ -136,10 +146,12 @@ The capital of South Korea is Seoul.
 
 > **"S20(Adreno 650)에서는 GPU를 쓰겠다고 똥고집을 부릴 필요가 전혀 없다. 텍스트도 정상이고 속도도 200배 빠른 CPU NEON 4스레드를 기본값으로 고정하는 것이 유일하게 합리적인 엔지니어링이다."**
 
+*(2026-10-11 정정: ameva-runtime 2.8.0부터 Galaxy S20은 자체 GPU 백엔드로 GPU 기본 경로입니다. 문서 첫머리 정정 공지 참조)*
+
 이를 위해 `termux-llamacpp`와 `ameva-runtime`에 기기 자동 판별(Device Fingerprinting) 서브시스템을 구축했습니다:
 
 1. **자동 판별**: 부팅 시 시스템 프로퍼티를 스캔하여 칩셋이 Snapdragon 865 (`sm8250` / `Adreno 650`)인지 감지.
-2. **기본 동작**: Adreno 650 감지 시 사용자가 아무 옵션을 주지 않아도 자동으로 Pure CPU NEON 모드(`-ngl 0 -t 4`)를 인가하여 **42.9 t/s 초고속 정상 추론** 제공.
+2. **기본 동작**: Adreno 650 감지 시 사용자가 아무 옵션을 주지 않아도 자동으로 Pure CPU NEON 모드(`-ngl 0 -t 4`)를 인가하여 **42.9 t/s 초고속 정상 추론** 제공. *(2026-10-11 정정: 2.8.0부터 이 기본값은 GPU 경로로 바뀌었습니다.)*
 3. **Vulkan 차단**: 사용자가 모르고 Vulkan 모드를 켜면 경고 문구를 띄우고 수치 오염을 선제 차단.
 4. **OpenCL 예비 백업**: 대용량 모델 구동으로 시스템 RAM이 극도로 부족해 VRAM으로 가중치를 넘겨야만 하는 특수 상황에서만 `--backend opencl` 플래그를 통해 OpenCL 백엔드를 선택적 허용.
 
@@ -148,7 +160,7 @@ The capital of South Korea is Seoul.
 ## 7. 오픈소스 기여 및 독자 생태계 보호 전략
 
 ### 7.1 공식 업스트림 기여
-이 포렌식 과정에서 규명된 Adreno 6xx 계열의 Vulkan Flash Attention 32KB LDS 한계 및 표준 어텐션 폴백 패치는 글로벌 오픈소스 커뮤니티(whisper.cpp #4089 및 llama.cpp 모바일 파이프라인)에 정식 공유되어 수많은 모바일 개발자들의 삽질을 방지하는 선행 기술 기준이 되었습니다.
+이 포렌식 과정에서 규명된 Adreno 6xx 계열의 Vulkan Flash Attention 32KB LDS 한계 및 표준 어텐션 폴백 패치는 whisper.cpp에 PR #4089로 제출되었습니다(2026-10-11 현재 미병합). *(2026-10-11 정정: "llama.cpp 모바일 파이프라인에 정식 공유되어 선행 기술 기준이 되었다"는 서술을 삭제했습니다. llama.cpp에는 제출 기록이 없습니다.)*
 
 ### 7.2 오픈 인터페이스 vs 비공개 코어의 분리 (Open Interface, Closed Core)
 - **공개 영역**: 드라이버 버그 우회 기법, 표준 라이브러리 연동 인터페이스, 모바일 하드웨어 핑거프린팅 스크립트는 오픈소스로 투명하게 공개하여 글로벌 생태계 기여도를 공고히 합니다.
