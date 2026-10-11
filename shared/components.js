@@ -517,11 +517,28 @@
         ["advanced-parameters.html", "Advanced Parameters"],
 
         ["versions.html", "Version Archive"]
-
       ]
-
+    },
+    "orchestrator": {
+      "name": "AMEVA-Orchestrator",
+      "version": "v1.0.0",
+      "github": "https://github.com/uno-km/termux-ai-orchestrator",
+      "pypi": "termux-ai-orchestrator",
+      "npm": "@ameva/orchestrator",
+      "doc_pages": [
+        ["index.html", "Home / Architecture"],
+        ["installation.html", "Installation Guide"],
+        ["quickstart.html", "Quickstart & Recipes"],
+        ["cluster.html", "Cluster Integration"],
+        ["guide.html", "Engineering Guide"],
+        ["api-reference.html", "API Reference"],
+        ["models.html", "Model Checkpoints"],
+        ["training-guide.html", "Training Guide"],
+        ["benchmarks.html", "Benchmarks & Profiling"],
+        ["advanced-parameters.html", "Advanced Parameters"],
+        ["versions.html", "Version Archive"]
+      ]
     }
-
   };
 
 
@@ -826,6 +843,8 @@
 
     ["/lib/cluster/", "cluster", "AMEVA-Cluster (Memory Pooling)"],
 
+    ["/lib/orchestrator/", "orchestrator", "AMEVA-Orchestrator (Control Plane SDK)"],
+
     ["/lib/forge/", "forge", "AMEVA-Forge (WebGPU Autograd)"]
 
   ];
@@ -949,6 +968,8 @@
     'runtime': '⚙️',
 
     'cluster': '🌐',
+
+    'orchestrator': '🎛️',
 
     'aichain': '⛓️',
 
