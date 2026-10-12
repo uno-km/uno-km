@@ -280,6 +280,10 @@
   ],
   "rewrites": [
     {
+      "source": "/labs/sitemap.xml",
+      "destination": "/labs/sitemap.xml"
+    },
+    {
       "source": "/labs",
       "destination": "/labs/index.html"
     },

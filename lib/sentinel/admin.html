@@ -926,7 +926,7 @@
             const totalSess = data?.metrics?.total_sessions || pubData?.summary?.total_active_sessions || 0;
             const totalVis = data?.metrics?.total_visitors || pubData?.summary?.total_unique_visitors || 0;
             const botsList = data?.ai_bots_detected || [];
-            const totalBots = botsList.length || pubData?.summary?.ai_crawlers_identified || data?.metrics?.identified_ai_bots || 0;
+            const totalBots = data?.metrics?.identified_ai_bots || pubData?.summary?.ai_crawlers_identified || botsList.length || 0;
 
             document.getElementById('stat-total').textContent = totalSess.toLocaleString();
             document.getElementById('stat-sub-visitors').textContent = `${totalVis.toLocaleString()} unique verified visitors`;
