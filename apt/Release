@@ -1,0 +1,12 @@
+Origin: AMEVA Foundation
+Label: AMEVA Termux Official Repository
+Suite: termux
+Codename: main
+Version: 2026.10
+Architectures: aarch64 all
+Components: main
+Description: Sovereign On-Device AI 8-Modality Suite for Termux
+Date: Mon, 12 Oct 2026 12:31:52 UTC
+SHA256:
+ a46b0cac18047f2a3fff385344c154e77567b90a95e707ba1a002019cbfd2f2a 4661 main/binary-aarch64/Packages
+ df3ee018cf3f2220884bd2dabe9104bfca18255e65a0bc5e247a2dca97c4ca93 1663 main/binary-aarch64/Packages.gz

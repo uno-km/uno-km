@@ -280,6 +280,10 @@
   ],
   "rewrites": [
     {
+      "source": "/apt/:match*",
+      "destination": "/apt/:match*"
+    },
+    {
       "source": "/labs/sitemap.xml",
       "destination": "/labs/sitemap.xml"
     },
@@ -540,6 +544,23 @@
         {
           "key": "Cache-Control",
           "value": "private, no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/apt/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, HEAD, OPTIONS"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
         }
       ]
     },
