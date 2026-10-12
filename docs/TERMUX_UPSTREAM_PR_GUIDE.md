@@ -101,27 +101,21 @@ git add packages/termux-ai-suite/build.sh
 git commit -m "termux-ai-suite: new package at version 1.0.0"
 ```
 
-### 나. Pull Request 본문 템플릿 (PR Description Template)
+### 나. 공식 Pull Request 및 레지스트리 증적 (Submitted PR #32505)
 
-```markdown
-### Summary
-This PR adds the official On-Device AI modalities suite for Android Termux:
-- `termux-tts`: Kokoro 82M Speech Synthesis Engine (v1.6.0)
-- `termux-stt`: Whisper Diarization Speech-to-Text CLI (v1.4.0)
-- `termux-bitnet`: BitNet 1.58-bit ARM NEON inference engine (v2.0.1)
-- `termux-llamacpp`: Universal GGUF LLM runtime & server (v1.4.0)
-- `termux-diffusion`: On-Device DiT / Diffusion engine (v2.0.1)
-- `termux-vision`: Moondream2 multimodal vision analysis (v1.7.0)
-- `termux-aichain`: Zero-dependency local agent chain orchestrator (v1.1.5)
-- `termux-train`: On-Device LoRA fine-tuner (v2.0.1)
-- `termux-ai-suite`: Unified meta-package consolidating all 8 modalities (v1.0.0)
+공식 PR 링크: [termux/termux-packages#32505](https://github.com/termux/termux-packages/pull/32505)
 
-### Checklist
-- [x] Package builds cleanly inside `./scripts/run-docker.sh` for `aarch64`.
-- [x] All upstream source archives are cryptographically verified via SHA-256.
-- [x] Conforms to SPDX `Apache-2.0` license standards.
-- [x] Installed executables place binaries correctly under `$TERMUX_PREFIX/bin`.
-```
+| 패키지 명칭 및 버전 | 웹 문서 | PyPI 배포처 | npm 배포처 | 소스 저장소 |
+| :--- | :---: | :---: | :---: | :---: |
+| `termux-tts` (v1.6.0) | [Docs](https://uno-km.vercel.app/lib/tts/) | [PyPI](https://pypi.org/project/termux-tts/) | [npm](https://www.npmjs.com/package/termux-tts) | [GitHub](https://github.com/uno-km/termux-tts) |
+| `termux-stt` (v1.4.0) | [Docs](https://uno-km.vercel.app/lib/stt/) | [PyPI](https://pypi.org/project/termux-stt/) | [npm](https://www.npmjs.com/package/termux-stt) | [GitHub](https://github.com/uno-km/termux-stt) |
+| `termux-bitnet` (v2.0.1) | [Docs](https://uno-km.vercel.app/lib/bitnet/) | [PyPI](https://pypi.org/project/termux-bitnet/) | [npm](https://www.npmjs.com/package/termux-bitnet) | [GitHub](https://github.com/uno-km/termux-bitnet) |
+| `termux-llamacpp` (v1.4.0) | [Docs](https://uno-km.vercel.app/lib/llamacpp/) | [PyPI](https://pypi.org/project/termux-llamacpp/) | [npm](https://www.npmjs.com/package/termux-llamacpp) | [GitHub](https://github.com/uno-km/termux-llamacpp) |
+| `termux-diffusion` (v2.0.1) | [Docs](https://uno-km.vercel.app/lib/diffusion/) | [PyPI](https://pypi.org/project/termux-diffusion/) | [npm](https://www.npmjs.com/package/termux-diffusion) | [GitHub](https://github.com/uno-km/termux-diffusion) |
+| `termux-vision` (v1.7.0) | [Docs](https://uno-km.vercel.app/lib/vision/) | [PyPI](https://pypi.org/project/termux-vision/) | [npm](https://www.npmjs.com/package/termux-vision) | [GitHub](https://github.com/uno-km/termux-vision) |
+| `termux-aichain` (v1.1.5) | [Docs](https://uno-km.vercel.app/lib/aichain/) | [PyPI](https://pypi.org/project/termux-aichain/) | [npm](https://www.npmjs.com/package/termux-aichain) | [GitHub](https://github.com/uno-km/termux-aichain) |
+| `termux-train` (v2.0.1) | [Docs](https://uno-km.vercel.app/lib/train/) | [PyPI](https://pypi.org/project/termux-train/) | [npm](https://www.npmjs.com/package/termux-train) | [GitHub](https://github.com/uno-km/termux-train) |
+| `termux-ai-suite` (v1.0.0) | [Portal](https://uno-km.vercel.app/) | — | — | Meta-package |
 
 ---
 
