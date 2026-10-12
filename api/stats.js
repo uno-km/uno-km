@@ -169,6 +169,8 @@ export default async function handler(req, res) {
                         ip_address,
                         country,
                         city,
+                        COALESCE(user_agent, '') as user_agent,
+                        COALESCE(origin_referrer, 'Direct / Spider') as referrer,
                         evaluated_at as detected_at
                     FROM sentinel_risk_events
                     WHERE triage_category = 'AI_AGENT' OR triage_category = 'CRAWLER_TOOL'
@@ -180,6 +182,8 @@ export default async function handler(req, res) {
                         ip_address,
                         country,
                         city,
+                        bot_name as user_agent,
+                        'Direct / GEO Engine' as referrer,
                         delivered_at as detected_at
                     FROM sentinel_geo_deliveries
                     UNION ALL
@@ -190,6 +194,8 @@ export default async function handler(req, res) {
                         ip_address, 
                         country, 
                         city, 
+                        COALESCE(user_agent, '') as user_agent,
+                        'Direct / Scraper' as referrer,
                         detected_at 
                     FROM bot_crawler_logs
                 )

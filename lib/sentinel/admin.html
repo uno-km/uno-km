@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMEVA-Sentinel Security Observability Manager (v2.3.0)</title>
+    <link rel="icon" type="image/svg+xml" href="https://uno-km.vercel.app/shared/brand/favicon.svg">
     <!-- Leaflet OpenStreetMap Engine -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -19,6 +19,7 @@
             --accent-green: #15803d;
             --accent-red: #dc2626;
             --accent-yellow: #b45309;
+            --accent-purple: #7e22ce;
             --font-mono: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
         }
 
@@ -126,6 +127,15 @@
         .card-value { font-size: 1.6em; font-weight: 800; color: var(--primary-color); font-family: var(--font-mono); margin: 4px 0; }
         .card-sub { font-size: 0.8em; color: #64748b; }
 
+        .dashboard-split-row {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 16px;
+        }
+        @media (max-width: 1024px) {
+            .dashboard-split-row { grid-template-columns: 1fr; }
+        }
+
         .tomcat-section {
             background: #ffffff;
             border: 1px solid var(--border-color);
@@ -147,6 +157,120 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
+        }
+
+        /* ── Vendor Radar Widget ── */
+        .radar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .radar-vendor-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .radar-vendor-item:hover {
+            background: #eff6ff;
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 68, 153, 0.08);
+        }
+        .radar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .radar-name {
+            font-weight: 700;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .radar-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .radar-bar-track {
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 3px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .radar-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        /* ── Traffic & Delivery Matrix Widgets ── */
+        .progress-bar-wrap {
+            height: 14px;
+            background: #fee2e2;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            margin: 6px 0;
+        }
+        .progress-fill-human {
+            background: #15803d;
+            height: 100%;
+            transition: width 0.4s ease;
+        }
+        .delivery-metric-box {
+            background: #002b66;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .strategy-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .strategy-title { font-size: 0.75em; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+        .strategy-count { font-size: 1.25em; font-weight: 800; font-family: var(--font-mono); }
+        .strategy-sub { font-size: 0.75em; color: #64748b; }
+
+        /* ── Honeypot Intercept Feed ── */
+        .honeypot-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .honeypot-feed-item {
+            padding: 8px 10px;
+            border-radius: 4px;
+            border-left: 3px solid #dc2626;
+            background: #fff5f5;
+            font-size: 0.85em;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         /* ── Toolbar: Search, Filters & Page Size ── */
@@ -227,7 +351,7 @@
         /* Leaflet Clean OSM Map Styling */
         #threat-map {
             width: 100%;
-            height: 420px;
+            height: 380px;
             border-radius: 4px;
             border: 1px solid var(--border-color);
             background: #e5e9ec;
@@ -247,7 +371,6 @@
             box-shadow: 0 0 0 0 rgba(0, 68, 153, 0.7);
             animation: pulse-ring 1.8s infinite;
         }
-
         .pulse-marker.high-risk {
             background: #dc2626;
             box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
@@ -259,163 +382,48 @@
             70% { transform: scale(1.1); box-shadow: 0 0 0 12px rgba(0, 68, 153, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 68, 153, 0); }
         }
-
         @keyframes pulse-ring-red {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
             70% { transform: scale(1.1); box-shadow: 0 0 0 14px rgba(220, 38, 38, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
 
-        .region-btn-group {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
+        .region-btn-group { display: flex; gap: 4px; flex-wrap: wrap; }
         table.tomcat-table { width: 100%; border-collapse: collapse; font-size: 0.88em; text-align: left; border: 1px solid var(--border-color); }
         table.tomcat-table th { background: #f1f5f9; color: var(--primary-color); font-weight: 700; padding: 8px 10px; border: 1px solid var(--border-color); font-size: 0.85em; }
         table.tomcat-table td { padding: 8px 10px; border: 1px solid var(--border-color); color: var(--text-main); }
         table.tomcat-table tr:nth-child(even) td { background: #f8fafc; }
         table.tomcat-table tr:hover td { background: #e8f0fe; cursor: pointer; }
 
-        .pill-action { font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); display: inline-block; }
+        .pill-action { font-size: 0.75em; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); display: inline-block; white-space: nowrap; }
         .pill-allow { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
         .pill-observe { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
         .pill-deny { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+        .pill-purple { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
 
         .score-box { font-weight: 800; font-family: var(--font-mono); padding: 2px 6px; border-radius: 3px; display: inline-block; }
         .score-low { background: #dcfce7; color: #15803d; }
         .score-med { background: #fef3c7; color: #b45309; }
         .score-high { background: #fee2e2; color: #b91c1c; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
-        .modal-box { background: #ffffff; border: 2px solid var(--primary-color); border-radius: 4px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 12px; }
-
-        /* AI Crawler & LLM Agent Vendor Radar & Traffic Matrix */
-        .analytics-grid-two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        @media (max-width: 1024px) {
-            .analytics-grid-two-col { grid-template-columns: 1fr; }
-        }
-        .vendor-bar-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin-bottom: 12px;
-        }
-        .vendor-bar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85em;
-        }
-        .vendor-bar-name {
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .vendor-bar-meta {
-            font-family: var(--font-mono);
-            font-size: 0.82em;
-            color: var(--text-muted);
-        }
-        .vendor-track {
-            width: 100%;
-            height: 9px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .vendor-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.6s ease;
-        }
-        .matrix-metric-box {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .matrix-metric-header {
-            font-size: 0.8em;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            display: flex;
-            justify-content: space-between;
-        }
-        .ratio-bar-wrap {
-            display: flex;
-            height: 14px;
-            border-radius: 3px;
-            overflow: hidden;
-            background: #e2e8f0;
-            margin: 6px 0;
-        }
-        .ratio-bar-human {
-            background: #15803d;
-            transition: width 0.6s ease;
-        }
-        .ratio-bar-ai {
-            background: #dc2626;
-            transition: width 0.6s ease;
-        }
-        .geo-savings-banner {
-            background: linear-gradient(135deg, #002b66 0%, #004499 100%);
-            color: #ffffff;
-            border-radius: 4px;
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .geo-savings-title {
-            font-size: 0.9em;
-            font-weight: 700;
-            opacity: 0.9;
-        }
-        .geo-savings-metric {
-            font-size: 1.5em;
-            font-weight: 800;
-            font-family: var(--font-mono);
-            color: #4ade80;
-        }
-        .trap-feed-item {
-            padding: 8px 10px;
-            border-left: 3px solid #dc2626;
-            background: #fef2f2;
-            border-radius: 2px;
-            font-size: 0.82em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-        .trap-feed-item.intercept {
-            border-left-color: #ef4444;
-            background: #fff1f2;
-        }
-        .trap-feed-item.spoof {
-            border-left-color: #8b5cf6;
-            background: #f5f3ff;
-        }
+        /* ── Modals ── */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.65); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
+        .modal-box { background: #ffffff; border: 2px solid var(--primary-color); border-radius: 6px; width: 95%; max-width: 1200px; max-height: 90vh; overflow-y: auto; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); display: flex; flex-direction: column; gap: 14px; }
+        .modal-box-small { max-width: 680px; }
     </style>
-  <link rel="stylesheet" href="/shared/lib-style.css">
-  <script src="/shared/components.js" defer></script>
-  <script src="/shared/i18n.js" defer></script>
-  <script src="/shared/i18n-translations.js" defer></script>
-  <script src="/shared/common.js" defer></script>
 </head>
 <body>
-    <ameva-header></ameva-header>
+    <header>
+        <div class="header-brand">
+            <img src="https://uno-km.vercel.app/shared/brand/favicon.svg" alt="Logo">
+            <h1>AMEVA-Sentinel</h1>
+        </div>
+        <div class="header-controls">
+            <span class="tomcat-badge badge-shadow">v2.3.0 Standard Dashboard</span>
+            <span class="tomcat-badge badge-live">LIVE TELEMETRY</span>
+            <a href="https://github.com/uno-km/AMEVA-Sentinel" target="_blank" class="header-btn primary">🐙 GitHub</a>
+        </div>
+    </header>
 
     <div class="tomcat-container">
         <!-- 1. System Status Header -->
@@ -447,7 +455,7 @@
             <div class="tomcat-card">
                 <div class="card-label">Observed Sessions</div>
                 <div class="card-value" id="stat-total">0</div>
-                <div class="card-sub" id="stat-sub-visitors">0 unique visitors recorded</div>
+                <div class="card-sub" id="stat-sub-visitors">0 unique verified visitors</div>
             </div>
             <div class="tomcat-card">
                 <div class="card-label">AI Bots &amp; Scrapers</div>
@@ -466,75 +474,102 @@
             </div>
         </div>
 
-        <!-- 2.5 AI Crawler Radar & Traffic Composition Analytics -->
-        <div class="analytics-grid-two-col">
-            <!-- Left: AI Crawler & LLM Agent Vendor Breakdown -->
+        <!-- 3. Two-Column Core Intelligence Row: Vendor Radar (Left) + Matrix & Honeypot (Right) -->
+        <div class="dashboard-split-row">
+            <!-- Left: Vendor Radar (Clickable for Footprint Modal) -->
             <div class="tomcat-section">
                 <div class="section-header">
                     <span>🤖 AI Crawler &amp; LLM Agent Vendor Radar</span>
-                    <span class="tomcat-badge badge-warn" id="vendor-total-bots-badge">0 Intercepts</span>
+                    <span class="tomcat-badge badge-warn" id="radar-total-badge">0 INTERCEPTS</span>
                 </div>
-                <div style="font-size:0.85em; color:var(--text-muted); margin-bottom:12px;">
-                    실시간 탐지된 AI 학습 모델, RAG 수집 봇 및 비인가 헤드리스 스크래퍼의 벤더별 점유율과 허니팟 적발 현황입니다.
-                </div>
-                <div id="vendor-bars-container">
-                    <div style="text-align:center; color:#64748b; padding:20px;">Analyzing AI crawler fingerprints...</div>
+                <p style="font-size:0.85em; color:var(--text-muted); margin-top:-4px;">
+                    실시간 탐지된 AI 학습 모델, RAG 수집 봇 및 비인가 헤드리스 스크래퍼의 벤더별 점유율과 허니팟 적발 현황입니다. 
+                    <strong style="color:var(--primary-color);">벤더 카드를 클릭하면 상세 포렌식 풋프린트(방문 목적, 탈취 시도 경로, 실제 투하된 응답)가 팝업됩니다.</strong>
+                </p>
+
+                <div class="radar-list" id="radar-list-container">
+                    <div style="text-align:center; padding:20px; color:#64748b;">Computing AI vendor radar distribution...</div>
                 </div>
             </div>
 
-            <!-- Right: Traffic Composition & Bandwidth Optimization Matrix -->
-            <div class="tomcat-section" style="justify-content:space-between;">
-                <div>
+            <!-- Right: Traffic Composition, GEO Optimization & Canary Stream -->
+            <div style="display:flex; flex-direction:column; gap:16px;">
+                <!-- Right Upper: Traffic & Served Delivery Matrix -->
+                <div class="tomcat-section">
                     <div class="section-header">
                         <span>⚡ Traffic Composition &amp; Optimization Matrix</span>
                         <span class="tomcat-badge badge-live">ACTIVE TRIAGE</span>
                     </div>
 
-                    <!-- Human vs AI Traffic Composition -->
-                    <div class="matrix-metric-box" style="margin-top:12px;">
-                        <div class="matrix-metric-header">
-                            <span>Traffic Composition (Human vs Automated AI)</span>
-                            <span id="traffic-ratio-label">85% Human / 15% AI</span>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.8em; color:var(--text-muted);">
+                            <span>TRAFFIC COMPOSITION (HUMAN VS AUTOMATED AI)</span>
+                            <span id="traffic-ratio-label">0% HUMAN / 0% AI</span>
                         </div>
-                        <div class="ratio-bar-wrap">
-                            <div class="ratio-bar-human" id="bar-human" style="width: 85%;"></div>
-                            <div class="ratio-bar-ai" id="bar-ai" style="width: 15%;"></div>
+                        <div class="progress-bar-wrap">
+                            <div class="progress-fill-human" id="traffic-human-fill" style="width: 85%;"></div>
                         </div>
-                        <div style="display:flex; justify-content:space-between; font-size:0.8em; color:var(--text-muted);">
-                            <span style="color:#15803d; font-weight:700;">🟢 Verified Human: <span id="metric-human-count">0</span> sessions</span>
-                            <span style="color:#dc2626; font-weight:700;">🔴 AI / Scraper: <span id="metric-ai-count">0</span> sessions</span>
+                        <div style="display:flex; justify-content:space-between; font-size:0.82em; margin-top:4px;">
+                            <span><span style="color:#15803d; font-weight:800;">●</span> <strong id="traffic-human-count">0</strong> Verified Humans</span>
+                            <span><span style="color:#dc2626; font-weight:800;">●</span> <strong id="traffic-ai-count">0</strong> AI / Scrapers</span>
                         </div>
                     </div>
 
-                    <!-- Sentinel GEO Content Delivery Savings Banner -->
-                    <div class="geo-savings-banner" style="margin-top:12px;">
+                    <div class="delivery-metric-box">
                         <div>
-                            <div class="geo-savings-title">Sentinel GEO Bandwidth Optimization</div>
-                            <div style="font-size:0.8em; opacity:0.8; margin-top:2px;">
-                                Dynamic Content Serving for AI Crawlers (41 Served)
-                            </div>
+                            <div style="font-size:0.8em; font-weight:700; color:#93c5fd; text-transform:uppercase;">Sentinel GEO Bandwidth Optimization</div>
+                            <div style="font-size:0.8em; color:#cbd5e1;" id="geo-served-detail">Dynamic Content Serving for AI Crawlers</div>
                         </div>
                         <div style="text-align:right;">
-                            <div class="geo-savings-metric" id="geo-saved-amount">7.31 MB Saved</div>
-                            <div style="font-size:0.75em; opacity:0.85; font-family:var(--font-mono);">99.1% Reduction Ratio</div>
+                            <div style="font-size:1.6em; font-weight:800; font-family:var(--font-mono); color:#38bdf8;" id="geo-saved-bytes">7.31 MB Saved</div>
+                            <div style="font-size:0.75em; color:#93c5fd;" id="geo-reduction-ratio">99.1% Reduction Ratio</div>
+                        </div>
+                    </div>
+
+                    <!-- Served Delivery Strategy Grid -->
+                    <div>
+                        <div style="font-size:0.8em; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">
+                            Served Delivery Strategies (실제 대응 응답 현황)
+                        </div>
+                        <div class="strategy-grid">
+                            <div class="strategy-card">
+                                <div class="strategy-title">🧪 Adversarial Poison</div>
+                                <div class="strategy-count" id="strat-poison-count" style="color:#dc2626;">0</div>
+                                <div class="strategy-sub">RAG 오염 마크다운 투하</div>
+                            </div>
+                            <div class="strategy-card">
+                                <div class="strategy-title">⚡ GEO AI Stream</div>
+                                <div class="strategy-count" id="strat-geo-count" style="color:#004499;">0</div>
+                                <div class="strategy-sub">지능형 마크다운 스트리밍</div>
+                            </div>
+                            <div class="strategy-card">
+                                <div class="strategy-title">🪤 Honeypot Trapped</div>
+                                <div class="strategy-count" id="strat-trap-count" style="color:#b45309;">0</div>
+                                <div class="strategy-sub">카나리 덫 403 격리 차단</div>
+                            </div>
+                            <div class="strategy-card">
+                                <div class="strategy-title">🌐 Human Web SPA</div>
+                                <div class="strategy-count" id="strat-human-count" style="color:#15803d;">0</div>
+                                <div class="strategy-sub">정규 브라우저 방문자</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Canary Honeypot Live Intercept Feed -->
-                <div style="margin-top:14px;">
-                    <div style="font-size:0.85em; font-weight:700; color:var(--primary-color); margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                <!-- Right Lower: Canary Honeypot & Spoof Feed -->
+                <div class="tomcat-section">
+                    <div class="section-header">
                         <span>🚨 Canary Honeypot &amp; Spoof Intercept Stream</span>
-                        <span style="font-size:0.75em; color:#dc2626; font-weight:600;">ACTIVE TRAP</span>
+                        <span class="tomcat-badge badge-warn">ACTIVE TRAP</span>
                     </div>
-                    <div id="trap-stream-container" style="max-height:160px; overflow-y:auto;">
-                        <div style="text-align:center; color:#64748b; padding:10px; font-size:0.85em;">Loading live trap feed...</div>
+                    <div class="honeypot-feed" id="honeypot-feed-container">
+                        <div style="text-align:center; padding:16px; color:#64748b;">Awaiting honeypot trip events...</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. Global Traffic & Threat Cluster Origin Map (Leaflet OSM) -->
+        <!-- 4. Global Traffic & Threat Cluster Origin Map (Leaflet OSM) -->
         <div class="tomcat-section">
             <div class="section-header">
                 <span>🌍 Global Traffic &amp; Threat Cluster Origin Map (OpenStreetMap)</span>
@@ -552,65 +587,6 @@
             </div>
 
             <div id="threat-map"></div>
-        </div>
-
-        <!-- 4. Intercepted AI Crawlers & Scrapers Ledger -->
-        <div class="tomcat-section">
-            <div class="section-header">
-                <span>🤖 AI Crawlers &amp; Automated Scrapers Intercept Ledger</span>
-                <span style="font-size:0.8em; font-weight:normal; color:#64748b;" id="bot-count-label">0 bots intercepted</span>
-            </div>
-
-            <!-- Toolbar: Search, Filters, Page Size -->
-            <div class="table-toolbar">
-                <div class="toolbar-group">
-                    <input type="text" id="bot-search-input" class="input-search" placeholder="🔍 Search bot, path, IP, geo...">
-                    <select id="bot-category-filter" class="select-filter">
-                        <option value="ALL">All Categories</option>
-                        <option value="AI_AGENT">AI Agents (GPTBot, Claude...)</option>
-                        <option value="SEARCH_ENGINE">Search Engines</option>
-                        <option value="SOCIAL_BOT">Social Bots</option>
-                        <option value="CRAWLER_TOOL">Crawlers &amp; Scrapers</option>
-                    </select>
-                    <select id="bot-action-filter" class="select-filter">
-                        <option value="ALL">All Actions</option>
-                        <option value="403">Blocked / Intercepted (403)</option>
-                        <option value="200">GEO Ingestion Stream (200)</option>
-                    </select>
-                </div>
-                <div class="toolbar-group">
-                    <label style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Rows:</label>
-                    <select id="bot-page-size" class="select-filter">
-                        <option value="15" selected>15</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="ALL">전체 (All)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="overflow-x:auto;">
-                <table class="tomcat-table">
-                    <thead>
-                        <tr>
-                            <th style="width:180px;">Bot Identity</th>
-                            <th style="width:110px;">Category</th>
-                            <th style="width:200px;">Target Route</th>
-                            <th style="width:140px;">Origin (IP / Geo)</th>
-                            <th style="width:130px;">Sentinel Action</th>
-                            <th>Time (UTC)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bot-tbody">
-                        <tr><td colspan="6" style="text-align:center; color:#64748b; padding:16px;">Loading AI crawler telemetry...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="pagination-container" id="bot-pagination">
-                <span id="bot-page-info">Showing 0 of 0</span>
-                <div class="pagination-controls" id="bot-page-controls"></div>
-            </div>
         </div>
 
         <!-- 5. Recent Evaluated Sessions Stream Table -->
@@ -646,9 +622,10 @@
                 <div class="toolbar-group">
                     <label style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Rows:</label>
                     <select id="sess-page-size" class="select-filter">
-                        <option value="15" selected>15</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
+                        <option value="10">10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                         <option value="ALL">전체 (All)</option>
                     </select>
                 </div>
@@ -681,9 +658,79 @@
         </div>
     </div>
 
-    <!-- Session Detail Modal -->
-    <div class="modal-overlay" id="session-modal">
+    <!-- 🌟 VENDOR FORENSIC FOOTPRINT DRILLDOWN MODAL (팝업: 20개씩 페이징 & 목적/풋프린트 정밀 분석) -->
+    <div class="modal-overlay" id="vendor-footprint-modal">
         <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--primary-color); padding-bottom:10px;">
+                <div>
+                    <div style="font-weight:800; font-size:1.3em; color:var(--primary-color); display:flex; align-items:center; gap:8px;">
+                        <span id="vmodal-title">🤖 Vendor Intelligence Dossier</span>
+                        <span class="tomcat-badge badge-shadow" id="vmodal-count-badge">0 INTRUSIONS</span>
+                    </div>
+                    <div style="font-size:0.85em; color:var(--text-muted); margin-top:4px;" id="vmodal-subtitle">
+                        Deep forensic footprint and intent classification ledger.
+                    </div>
+                </div>
+                <button class="btn-tomcat" id="btn-close-vmodal">✕ Close</button>
+            </div>
+
+            <!-- Modal Search Toolbar & Page Size -->
+            <div class="table-toolbar">
+                <div class="toolbar-group">
+                    <input type="text" id="vmodal-search-input" class="input-search" style="width:260px;" placeholder="🔍 Search path, intent, IP, UA...">
+                    <select id="vmodal-intent-filter" class="select-filter">
+                        <option value="ALL">All Inferred Intents (모든 방문 목적)</option>
+                        <option value="RAG_KNOWLEDGE_INGEST">RAG 지식 검색 / 답변 생성</option>
+                        <option value="LLM_PRETRAINING_HARVEST">LLM 사전학습 대량 수집</option>
+                        <option value="CANARY_TRAP_PROBE">허니팟 덫 탐침 (Blind Spidering)</option>
+                        <option value="DOM_SCRAPING_BYPASS">헤드리스 DOM 스크래핑</option>
+                        <option value="VULNERABILITY_PROBE">취약점 / 민감 파일 프로빙</option>
+                        <option value="SEARCH_INDEXING">검색엔진 인덱싱</option>
+                    </select>
+                </div>
+                <div class="toolbar-group">
+                    <label style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Rows:</label>
+                    <select id="vmodal-page-size" class="select-filter">
+                        <option value="10">10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="ALL">전체 (All)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Modal Table: Footprint Ledger -->
+            <div style="overflow-x:auto;">
+                <table class="tomcat-table">
+                    <thead>
+                        <tr>
+                            <th style="width:170px;">Inferred Intent (방문 목적)</th>
+                            <th style="width:160px;">Served Strategy (실제 대응)</th>
+                            <th style="width:180px;">Target Route (침입 경로)</th>
+                            <th style="width:150px;">Origin (IP / Geo)</th>
+                            <th style="width:130px;">Referer / Inflow</th>
+                            <th>Fingerprint &amp; Signature (끈끈이 지문)</th>
+                            <th style="width:100px;">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vmodal-tbody">
+                        <tr><td colspan="7" style="text-align:center; padding:20px; color:#64748b;">Loading vendor intelligence footprints...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal Pagination -->
+            <div class="pagination-container" id="vmodal-pagination">
+                <span id="vmodal-page-info">Showing 0 of 0</span>
+                <div class="pagination-controls" id="vmodal-page-controls"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Raw Session Forensic Detail Modal -->
+    <div class="modal-overlay" id="session-modal">
+        <div class="modal-box modal-box-small">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
                 <div style="font-weight:800; font-size:1.1em; color:var(--primary-color);" id="modal-trace-id">Session Forensic Detail</div>
                 <button class="btn-tomcat" id="btn-close-modal">✕ Close</button>
@@ -693,7 +740,6 @@
     </div>
 
     <script>
-        // ── Viewport Definitions ─────────────────────────────────────────────
         const REGION_CENTERS = {
             global: { center: [20.0, 0.0], zoom: 2 },
             east_asia: { center: [36.5, 127.8], zoom: 5 },
@@ -706,127 +752,47 @@
             oceania: { center: [-25.0, 135.0], zoom: 3 }
         };
 
-        // ── Ground-Truth Country Centroids (Eliminates Sahara/Africa Misplacement) ──
         const COUNTRY_CENTROIDS = {
-            KR: [36.5, 127.8],
-            US: [38.5, -96.0],
-            CA: [56.1304, -106.3468],
-            GB: [54.5, -2.5],
-            DE: [51.1657, 10.4515],
-            FR: [46.2276, 2.2137],
-            JP: [36.2048, 138.2529],
-            CN: [35.8617, 104.1954],
-            NL: [52.1326, 5.2913],
-            BR: [-14.2350, -51.9253],
-            IN: [20.5937, 78.9629],
-            RU: [61.5240, 105.3188],
-            AU: [-25.2744, 133.7751],
-            SG: [1.3521, 103.8198],
-            NO: [60.4720, 8.4689],
-            SE: [60.1282, 18.6435],
-            ES: [40.4637, -3.7492],
-            IT: [41.8719, 12.5674],
-            AR: [-38.4161, -63.6167],
-            PL: [51.9194, 19.1451],
-            BE: [50.5039, 4.4699],
-            BD: [23.6850, 90.3563],
-            GH: [7.9465, -1.0232],
-            GA: [0.4162, 9.4673],
-            AE: [23.4241, 53.8478],
-            VN: [14.0583, 108.2772],
-            ID: [-0.7893, 113.9213],
-            TH: [15.8700, 100.9925],
-            MY: [4.2105, 101.9758],
-            PH: [12.8797, 121.7740],
-            MX: [23.6345, -102.5528],
-            ZA: [-30.5595, 22.9375],
+            KR: [36.5, 127.8], US: [38.5, -96.0], CA: [56.1304, -106.3468], GB: [54.5, -2.5],
+            DE: [51.1657, 10.4515], FR: [46.2276, 2.2137], JP: [36.2048, 138.2529], CN: [35.8617, 104.1954],
+            NL: [52.1326, 5.2913], BR: [-14.2350, -51.9253], IN: [20.5937, 78.9629], RU: [61.5240, 105.3188],
+            AU: [-25.2744, 133.7751], SG: [1.3521, 103.8198], NO: [60.4720, 8.4689], SE: [60.1282, 18.6435],
+            ES: [40.4637, -3.7492], IT: [41.8719, 12.5674], AR: [-38.4161, -63.6167], PL: [51.9194, 19.1451],
+            BE: [50.5039, 4.4699], BD: [23.6850, 90.3563], GH: [7.9465, -1.0232], GA: [0.4162, 9.4673],
+            AE: [23.4241, 53.8478], VN: [14.0583, 108.2772], ID: [-0.7893, 113.9213], TH: [15.8700, 100.9925],
+            MY: [4.2105, 101.9758], PH: [12.8797, 121.7740], MX: [23.6345, -102.5528], ZA: [-30.5595, 22.9375],
             GLOBAL: [20.0, 0.0]
         };
 
-        // ── Verified High-Precision City Coordinates ──────────────────────────
         const GEO_COORDINATES = {
-            // South Korea
-            'KR_Goyang-si': [37.6584, 126.8320],
-            'KR_Seongnam-si': [37.4200, 127.1265],
-            'KR_Seoul': [37.5665, 126.9780],
-            'KR_Seocho-gu': [37.4836, 127.0327],
-            'KR_Gangnam-gu': [37.5172, 127.0473],
-            'KR_Gwanak-gu': [37.4784, 126.9516],
-            'KR_Songpa-gu': [37.5145, 127.1058],
-            'KR_Yeongdeungpo-gu': [37.5264, 126.8962],
-            'KR_Siheung-si': [37.3802, 126.8029],
-            'KR_Gyeongsan-si': [35.8251, 128.7413],
-            'KR_Localhost': [37.5665, 126.9780],
-
-            // United States (AWS, GCP, Azure Data Centers & Hubs)
-            'US_Ashburn': [39.0438, -77.4874],
-            'US_Council Bluffs': [41.2619, -95.8608],
-            'US_Dallas': [32.7767, -96.7970],
-            'US_Boardman': [45.8399, -119.7006],
-            'US_San Jose': [37.3382, -121.8863],
-            'US_The Dalles': [45.5946, -121.1787],
-            'US_Boydton': [36.6676, -78.3875],
-            'US_Memphis': [35.1495, -90.0490],
-            'US_New York': [40.7128, -74.0060],
-            'US_Miami': [25.7617, -80.1918],
-            'US_Saginaw': [43.4194, -83.9508],
-            'US_Washington': [38.9072, -77.0369],
-            'US_Santa Clara': [37.3541, -121.9552],
-            'US_Las Vegas': [36.1699, -115.1398],
-            'US_Seattle': [47.6062, -122.3321],
-            'US_Los Angeles': [34.0522, -118.2437],
-            'US_Newark': [40.7357, -74.1724],
-            'US_Chicago': [41.8781, -87.6298],
-            'US_North Bergen': [40.8043, -74.0121],
-            'US_Localhost': [38.5, -96.0],
-
-            // Canada
-            'CA_Toronto': [43.6532, -79.3832],
-            'CA_Localhost': [56.1304, -106.3468],
-
-            // Europe
-            'DE_Frankfurt': [50.1109, 8.6821],
-            'DE_Frankfurt am Main': [50.1109, 8.6821],
-            'GB_London': [51.5074, -0.1278],
-            'NL_Amsterdam': [52.3676, 4.9041],
-            'NL_Groningen': [53.2194, 6.5665],
-            'NL_Utrecht': [52.0907, 5.1214],
-            'BE_Brussels': [50.8503, 4.3517],
-            'ES_Barakaldo': [43.2974, -2.9865],
-            'PL_Warsaw': [52.2297, 21.0122],
-            'NO_Localhost': [60.4720, 8.4689],
-
-            // South America
-            'BR_São Paulo': [-23.5505, -46.6333],
-            'BR_Localhost': [-14.2350, -51.9253],
-            'AR_Buenos Aires': [-34.6037, -58.3816],
-            'AR_Localhost': [-38.4161, -63.6167],
-
-            // Asia & Africa
-            'SG_Singapore': [1.3521, 103.8198],
-            'JP_Tokyo': [35.6762, 139.6503],
-            'IN_Sambalpur': [21.4669, 83.9812],
-            'IN_Localhost': [20.5937, 78.9629],
-            'BD_Chittagong': [22.3569, 91.7832],
-            'RU_Moscow': [55.7558, 37.6173],
-            'AE_Dubai': [25.2048, 55.2708],
-            'GA_Libreville': [0.4162, 9.4673],
-            'GH_Localhost': [7.9465, -1.0232]
+            'KR_Goyang-si': [37.6584, 126.8320], 'KR_Seongnam-si': [37.4200, 127.1265], 'KR_Seoul': [37.5665, 126.9780],
+            'KR_Seocho-gu': [37.4836, 127.0327], 'KR_Gangnam-gu': [37.5172, 127.0473], 'KR_Gwanak-gu': [37.4784, 126.9516],
+            'KR_Songpa-gu': [37.5145, 127.1058], 'KR_Yeongdeungpo-gu': [37.5264, 126.8962], 'KR_Siheung-si': [37.3802, 126.8029],
+            'KR_Gyeongsan-si': [35.8251, 128.7413], 'KR_Localhost': [37.5665, 126.9780],
+            'US_Ashburn': [39.0438, -77.4874], 'US_Council Bluffs': [41.2619, -95.8608], 'US_Dallas': [32.7767, -96.7970],
+            'US_Boardman': [45.8399, -119.7006], 'US_San Jose': [37.3382, -121.8863], 'US_The Dalles': [45.5946, -121.1787],
+            'US_Boydton': [36.6676, -78.3875], 'US_Memphis': [35.1495, -90.0490], 'US_New York': [40.7128, -74.0060],
+            'US_Miami': [25.7617, -80.1918], 'US_Saginaw': [43.4194, -83.9508], 'US_Washington': [38.9072, -77.0369],
+            'US_Santa Clara': [37.3541, -121.9552], 'US_Las Vegas': [36.1699, -115.1398], 'US_Seattle': [47.6062, -122.3321],
+            'US_Los Angeles': [34.0522, -118.2437], 'US_Newark': [40.7357, -74.1724], 'US_Chicago': [41.8781, -87.6298],
+            'US_North Bergen': [40.8043, -74.0121], 'US_Localhost': [38.5, -96.0], 'US_Denver': [39.7392, -104.9903],
+            'US_Columbus': [39.9612, -82.9988],
+            'CA_Toronto': [43.6532, -79.3832], 'CA_Localhost': [56.1304, -106.3468],
+            'DE_Frankfurt': [50.1109, 8.6821], 'DE_Frankfurt am Main': [50.1109, 8.6821], 'GB_London': [51.5074, -0.1278],
+            'NL_Amsterdam': [52.3676, 4.9041], 'NL_Groningen': [53.2194, 6.5665], 'NL_Utrecht': [52.0907, 5.1214],
+            'BE_Brussels': [50.8503, 4.3517], 'ES_Barakaldo': [43.2974, -2.9865], 'PL_Warsaw': [52.2297, 21.0122],
+            'NO_Localhost': [60.4720, 8.4689], 'BR_São Paulo': [-23.5505, -46.6333], 'BR_Tramandaí': [-29.9847, -50.1336],
+            'BR_Localhost': [-14.2350, -51.9253], 'AR_Buenos Aires': [-34.6037, -58.3816], 'AR_Localhost': [-38.4161, -63.6167],
+            'SG_Singapore': [1.3521, 103.8198], 'JP_Tokyo': [35.6762, 139.6503], 'IN_Sambalpur': [21.4669, 83.9812],
+            'IN_Localhost': [20.5937, 78.9629], 'BD_Chittagong': [22.3569, 91.7832], 'RU_Moscow': [55.7558, 37.6173],
+            'AE_Dubai': [25.2048, 55.2708], 'GA_Libreville': [0.4162, 9.4673], 'GH_Localhost': [7.9465, -1.0232]
         };
 
-        // ── Deterministic Coordinate Resolver (Prevents Drift) ────────────────
         function resolveCoordinates(country, city) {
             const key = `${country}_${city}`;
-            if (GEO_COORDINATES[key]) {
-                return GEO_COORDINATES[key];
-            }
-
+            if (GEO_COORDINATES[key]) return GEO_COORDINATES[key];
             const centroid = COUNTRY_CENTROIDS[country] || COUNTRY_CENTROIDS.GLOBAL;
-            if (country === 'GLOBAL') {
-                return centroid;
-            }
-
-            // Pseudo-hash to slightly spread distinct cities within country boundary (±0.35 deg)
+            if (country === 'GLOBAL') return centroid;
             let hash = 0;
             const str = (city || 'Center') + country;
             for (let i = 0; i < str.length; i++) {
@@ -835,24 +801,150 @@
             }
             const offsetLat = ((Math.abs(hash) % 70) - 35) * 0.01;
             const offsetLng = ((Math.abs(hash >> 3) % 70) - 35) * 0.01;
-
             return [centroid[0] + offsetLat, centroid[1] + offsetLng];
         }
 
-        // ── Initialize Leaflet Map ───────────────────────────────────────────
-        const map = L.map('threat-map', {
-            center: [20, 0],
-            zoom: 2,
-            minZoom: 2,
-            maxZoom: 18,
-            attributionControl: true
-        });
+        // ── Tactical Classification Engine ──────────────────────────────────
+        function normalizeVendor(b) {
+            const name = (b.bot_name || '').toLowerCase();
+            const ua = (b.user_agent || '').toLowerCase();
+            const combo = name + ' ' + ua;
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+            if (combo.includes('openai') || combo.includes('gptbot') || combo.includes('chatgpt')) return 'OpenAI';
+            if (combo.includes('anthropic') || combo.includes('claudebot') || combo.includes('claude')) return 'Anthropic';
+            if (combo.includes('google-extended') || combo.includes('googleother') || combo.includes('googlebot') || combo.includes('gemini')) return 'Google';
+            if (combo.includes('perplexity')) return 'Perplexity';
+            if (combo.includes('deepseek')) return 'DeepSeek';
+            if (combo.includes('bytespider') || combo.includes('bytedance') || combo.includes('tiktok')) return 'ByteDance';
+            if (combo.includes('applebot')) return 'Apple';
+            if (combo.includes('cohere')) return 'Cohere';
+            if (combo.includes('meta') || combo.includes('facebook')) return 'Meta';
+            if (combo.includes('amazon')) return 'Amazon';
+            if (combo.includes('scrapy')) return 'Scrapy Web Scraper';
+            if (combo.includes('python-requests') || combo.includes('aiohttp') || combo.includes('urllib')) return 'Python Script';
+            if (combo.includes('headlesschrome') || combo.includes('puppeteer') || combo.includes('selenium') || combo.includes('playwright')) return 'Headless Browser';
+            if (combo.includes('node') || combo.includes('node-fetch') || combo.includes('axios')) return 'Node.js Bot';
+            if (b.bot_category === 'HONEYPOT_CANARY_TRIPPED' || combo.includes('honeypot_trap')) return 'Honeypot Decoy Trapped';
+            return 'Other / Rogue Bot';
+        }
 
+        function getVendorColor(vendor) {
+            switch (vendor) {
+                case 'OpenAI': return '#10a37f';
+                case 'Anthropic': return '#d97706';
+                case 'Google': return '#2563eb';
+                case 'DeepSeek': return '#7c3aed';
+                case 'Perplexity': return '#0284c7';
+                case 'ByteDance': return '#059669';
+                case 'Scrapy Web Scraper': return '#dc2626';
+                case 'Honeypot Decoy Trapped': return '#b91c1c';
+                case 'Headless Browser': return '#e11d48';
+                case 'Node.js Bot': return '#ea580c';
+                default: return '#475569';
+            }
+        }
+
+        function inferIntent(b) {
+            const path = (b.requested_path || '').toLowerCase();
+            const cat = (b.bot_category || '').toUpperCase();
+            const vendor = normalizeVendor(b);
+
+            if (path.includes('/trap') || cat === 'HONEYPOT_CANARY_TRIPPED') {
+                return {
+                    key: 'CANARY_TRAP_PROBE',
+                    badge: '🪤 허니팟 덫 탐침',
+                    desc: '인간에게 보이지 않는 은닉 디코이 덫에 걸림',
+                    pillClass: 'pill-deny'
+                };
+            }
+            if (path.includes('.env') || path.includes('.git') || path.includes('passwd') || path.includes('select') || path.includes('wp-config')) {
+                return {
+                    key: 'VULNERABILITY_PROBE',
+                    badge: '⚠️ 취약점 / 파일 탈취 시도',
+                    desc: '서버 비밀 키 및 환경변수 탈취 목적 프로빙',
+                    pillClass: 'pill-deny'
+                };
+            }
+            if (path.startsWith('/labs') || path.startsWith('/api/labs')) {
+                if (['OpenAI', 'Anthropic', 'Perplexity', 'DeepSeek', 'Cohere'].includes(vendor)) {
+                    return {
+                        key: 'RAG_KNOWLEDGE_INGEST',
+                        badge: '🧬 RAG 실시간 지식 수집',
+                        desc: '사용자 프롬프트 답변용 연구 백서 실시간 인덱싱',
+                        pillClass: 'pill-purple'
+                    };
+                }
+                return {
+                    key: 'LLM_PRETRAINING_HARVEST',
+                    badge: '📦 LLM 사전학습 대량 크롤링',
+                    desc: '상용 모델 학습용 데이터셋 대량 아카이빙 시도',
+                    pillClass: 'pill-observe'
+                };
+            }
+            if (cat === 'SEARCH_ENGINE' || vendor === 'Google') {
+                return {
+                    key: 'SEARCH_INDEXING',
+                    badge: '🔍 검색엔진 인덱싱 (SEO)',
+                    desc: '공개 검색엔진 웹 크롤러의 일반 색인 수집',
+                    pillClass: 'pill-allow'
+                };
+            }
+            if (vendor.includes('Headless') || vendor.includes('Scrapy')) {
+                return {
+                    key: 'DOM_SCRAPING_BYPASS',
+                    badge: '🕷️ DOM / SPA 렌더링 탈취',
+                    desc: '브라우저 엔진을 구동하여 렌더링된 원본 DOM 스크래핑',
+                    pillClass: 'pill-deny'
+                };
+            }
+            return {
+                key: 'GENERAL_BOT_CRAWL',
+                badge: '🤖 자동화 스파이더 크롤링',
+                desc: '사이트 구조 및 리소스 자동 수집',
+                pillClass: 'pill-observe'
+            };
+        }
+
+        function inferDelivery(b) {
+            const path = (b.requested_path || '').toLowerCase();
+            const cat = (b.bot_category || '').toUpperCase();
+            const vendor = normalizeVendor(b);
+
+            if (path.includes('/trap') || cat === 'HONEYPOT_CANARY_TRIPPED') {
+                return {
+                    type: 'TRAP_403',
+                    badge: '403 CANARY_TRAP',
+                    desc: '카나리 덫 격리 차단 (영구 블랙리스트 등재)',
+                    pillClass: 'pill-deny'
+                };
+            }
+            if (path.startsWith('/labs') || path.startsWith('/api/labs')) {
+                return {
+                    type: 'POISON_200',
+                    badge: '200 ADVERSARIAL_POISON',
+                    desc: '적대적 데이터 오염 분출 (RAG 모델 가중치 오염 유도)',
+                    pillClass: 'pill-deny'
+                };
+            }
+            if (['OpenAI', 'Anthropic', 'Google', 'Perplexity', 'DeepSeek'].includes(vendor)) {
+                return {
+                    type: 'GEO_STREAM',
+                    badge: '200 GEO_AI_STREAM',
+                    desc: '지능형 지식 그래프 마크다운 서빙 (대역폭 99% 절감)',
+                    pillClass: 'pill-allow'
+                };
+            }
+            return {
+                type: 'BLOCKED_403',
+                badge: '403 ACCESS_BLOCKED',
+                desc: '비인가 스크래퍼 접근 거부',
+                pillClass: 'pill-observe'
+            };
+        }
+
+        // ── Map Initialization ───────────────────────────────────────────────
+        const map = L.map('threat-map', { center: [20, 0], zoom: 2, minZoom: 2, maxZoom: 18, attributionControl: true });
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
         const markersLayer = L.layerGroup().addTo(map);
 
         document.querySelectorAll('.region-btn-group button').forEach(btn => {
@@ -865,51 +957,21 @@
             };
         });
 
-        // ── State Management for Tables (Search, Filters, Pagination) ────────
+        // ── State Management ─────────────────────────────────────────────────
         const tableState = {
-            bots: {
-                search: '',
-                category: 'ALL',
-                action: 'ALL',
-                pageSize: 15,
-                page: 1,
-                rawList: []
-            },
-            sessions: {
-                search: '',
-                persona: 'ALL',
-                risk: 'ALL',
-                action: 'ALL',
-                pageSize: 15,
-                page: 1,
-                rawList: []
-            }
+            sessions: { search: '', persona: 'ALL', risk: 'ALL', action: 'ALL', pageSize: 20, page: 1, rawList: [] },
+            vmodal: { vendor: '', search: '', intent: 'ALL', pageSize: 20, page: 1, rawList: [] }
         };
 
         let currentApiResponse = null;
-        let currentPublicResponse = null;
         let autoTimer = null;
 
         async function fetchDashboard() {
             try {
-                const [statsRes, pubRes] = await Promise.all([
-                    fetch('/api/stats').catch(e => ({ ok: false, error: e })),
-                    fetch('/api/public-stats').catch(e => ({ ok: false, error: e }))
-                ]);
-
-                let statsData = null;
-                let pubData = null;
-
-                if (statsRes && statsRes.ok) {
-                    try { statsData = await statsRes.json(); } catch(e) {}
-                }
-                if (pubRes && pubRes.ok) {
-                    try { pubData = await pubRes.json(); } catch(e) {}
-                }
-
-                currentApiResponse = statsData;
-                currentPublicResponse = pubData;
-                renderAll(statsData, pubData);
+                const res = await fetch('/api/stats');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                currentApiResponse = await res.json();
+                renderAll(currentApiResponse);
             } catch (err) {
                 console.warn('[Sentinel Dashboard Fetch Fallback]', err.message);
                 document.getElementById('stream-status-badge').className = 'tomcat-badge badge-warn';
@@ -917,21 +979,21 @@
             }
         }
 
-        function renderAll(data, pubData) {
-            if (!data && !pubData) return;
+        function renderAll(data) {
+            if (!data) return;
 
             // 1. KPI Cards
-            const totalSess = data?.metrics?.total_sessions || pubData?.summary?.total_active_sessions || 0;
-            const totalVis = data?.metrics?.total_visitors || pubData?.summary?.total_unique_visitors || 0;
-            const botsList = data?.ai_bots_detected || [];
-            const totalBots = data?.metrics?.identified_ai_bots || pubData?.summary?.ai_crawlers_identified || botsList.length || 0;
+            const totalSess = data.metrics?.total_sessions || 0;
+            const totalVis = data.metrics?.total_visitors || 0;
+            const allBots = data.ai_bots_detected || [];
+            const totalBots = allBots.length || (data.metrics?.identified_ai_bots || 0);
 
             document.getElementById('stat-total').textContent = totalSess.toLocaleString();
             document.getElementById('stat-sub-visitors').textContent = `${totalVis.toLocaleString()} unique verified visitors`;
             document.getElementById('stat-bots').textContent = totalBots.toLocaleString();
             document.getElementById('stat-bots-pct').textContent = totalBots > 0 ? `${totalBots} automated bot intrusions recorded` : 'Zero active threat';
 
-            const forensics = data?.deep_forensic_logs || [];
+            const forensics = data.deep_forensic_logs || [];
             let scoreSum = 0;
             forensics.forEach(f => { scoreSum += Number(f.score || 0); });
             const avgScore = forensics.length > 0 ? Math.round(scoreSum / forensics.length) : 0;
@@ -940,19 +1002,23 @@
             document.getElementById('banner-events-count').textContent = `${totalSess} Events (Neon DB)`;
             document.getElementById('banner-last-event').textContent = new Date().toLocaleTimeString();
 
-            // 2. AI Crawler Vendor Radar & Traffic Matrix
-            renderVendorRadarAndTraffic(data, pubData);
+            // 2. Render Left Panel: Vendor Radar
+            renderVendorRadar(allBots);
 
-            // 3. OpenStreetMap Markers (Country-Calibrated)
+            // 3. Render Right Panel: Traffic & Delivery Matrix
+            renderTrafficAndDeliveryMatrix(data, allBots);
+
+            // 4. Render Right Lower: Honeypot Intercept Feed
+            renderHoneypotFeed(allBots);
+
+            // 5. OpenStreetMap Markers
             markersLayer.clearLayers();
-            const topCountries = data?.top_countries || [];
-
+            const topCountries = data.top_countries || [];
             topCountries.forEach(tc => {
                 const country = tc.country || 'GLOBAL';
                 const city = tc.city || 'Edge';
                 const count = Number(tc.sessions || 1);
                 const coords = resolveCoordinates(country, city);
-
                 const size = Math.min(48, Math.max(26, 22 + Math.log2(count + 1) * 3));
                 const isHigh = country === 'RU' || count > 100;
 
@@ -975,134 +1041,228 @@
                 markersLayer.addLayer(marker);
             });
 
-            // 4. Store Raw Lists & Render Tables with Active Filters
-            tableState.bots.rawList = botsList;
-            tableState.sessions.rawList = forensics;
-
-            renderBotsTable();
+            // 6. Live Sessions Table
+            tableState.sessions.rawList = data.deep_forensic_logs || [];
             renderSessionsTable();
+
+            // If Vendor Footprint Modal is currently open, refresh its data live
+            if (document.getElementById('vendor-footprint-modal').style.display === 'flex') {
+                renderVendorModalTable();
+            }
         }
 
-        // ── Render Vendor Radar, Traffic Triage & Honeypot Feed ──────────────
-        function renderVendorRadarAndTraffic(statsData, pubData) {
-            // A. Vendor Radar Breakdown
-            const defaultVendors = [
-                { name: 'OpenAI (GPTBot / ChatGPT-User)', count: 27, share: '23.7%', color: '#10a37f', badge: 'ACTIVE_INGEST', badgeClass: 'pill-allow' },
-                { name: 'Anthropic (ClaudeBot / Claude-Web)', count: 21, share: '18.4%', color: '#d97706', badge: 'CANARY_DETECTED', badgeClass: 'pill-observe' },
-                { name: 'Scrapy Engine [HONEYPOT TRAP]', count: 17, share: '14.9%', color: '#ef4444', badge: '403_BLOCKED', badgeClass: 'pill-deny' },
-                { name: 'Google (Google-Extended / Gemini)', count: 12, share: '10.5%', color: '#3b82f6', badge: 'ACTIVE_INGEST', badgeClass: 'pill-allow' },
-                { name: 'DeepSeek (DeepSeekBot)', count: 11, share: '9.6%', color: '#6366f1', badge: 'ACTIVE_INGEST', badgeClass: 'pill-allow' },
-                { name: 'Perplexity (PerplexityBot)', count: 9, share: '7.9%', color: '#06b6d4', badge: 'ACTIVE_INGEST', badgeClass: 'pill-allow' },
-                { name: 'Spoofed Scrapers (Win / iOS / Node)', count: 13, share: '11.4%', color: '#8b5cf6', badge: '403_BLOCKED', badgeClass: 'pill-deny' },
-                { name: 'Other Automated Agents', count: 4, share: '3.5%', color: '#64748b', badge: 'OBSERVE', badgeClass: 'pill-observe' }
-            ];
+        // ── Render Vendor Radar (Clickable Items) ────────────────────────────
+        function renderVendorRadar(bots) {
+            const container = document.getElementById('radar-list-container');
+            const badge = document.getElementById('radar-total-badge');
+            badge.textContent = `${bots.length} INTERCEPTS`;
 
-            let vendors = defaultVendors;
-            if (pubData?.ai_crawlers_breakdown && pubData.ai_crawlers_breakdown.length > 0) {
-                // If live breakdown available from public-stats
-                const liveList = pubData.ai_crawlers_breakdown;
-                const totalBotCount = liveList.reduce((acc, cur) => acc + (cur.count || 0), 0) || 1;
-                vendors = liveList.map(item => {
-                    const count = item.count || 0;
-                    const pct = ((count / totalBotCount) * 100).toFixed(1);
-                    const n = item.name || '';
-                    let col = '#64748b';
-                    let badge = 'ACTIVE_INGEST';
-                    let badgeClass = 'pill-allow';
-
-                    if (n.includes('OpenAI') || n.includes('GPT')) { col = '#10a37f'; }
-                    else if (n.includes('Anthropic') || n.includes('Claude')) { col = '#d97706'; badge = 'CANARY_DETECTED'; badgeClass = 'pill-observe'; }
-                    else if (n.includes('Scrapy') || n.includes('TRAP')) { col = '#ef4444'; badge = '403_BLOCKED'; badgeClass = 'pill-deny'; }
-                    else if (n.includes('Google') || n.includes('Gemini')) { col = '#3b82f6'; }
-                    else if (n.includes('DeepSeek')) { col = '#6366f1'; }
-                    else if (n.includes('Perplexity')) { col = '#06b6d4'; }
-                    else if (n.includes('Spoof') || n.includes('Chrome') || n.includes('iPhone')) { col = '#8b5cf6'; badge = '403_BLOCKED'; badgeClass = 'pill-deny'; }
-
-                    return {
-                        name: item.name,
-                        count: count,
-                        share: `${pct}%`,
-                        color: col,
-                        badge: badge,
-                        badgeClass: badgeClass
-                    };
-                });
+            if (bots.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:20px; color:#64748b;">No AI crawlers or scrapers intercepted in telemetry.</div>';
+                return;
             }
 
-            const totalBotsSum = vendors.reduce((sum, v) => sum + v.count, 0);
-            const badgeEl = document.getElementById('vendor-total-bots-badge');
-            if (badgeEl) badgeEl.textContent = `${totalBotsSum} Intercepts`;
+            // Aggregate by Vendor
+            const vendorMap = {};
+            bots.forEach(b => {
+                const v = normalizeVendor(b);
+                vendorMap[v] = (vendorMap[v] || 0) + 1;
+            });
 
-            const container = document.getElementById('vendor-bars-container');
-            if (container) {
-                container.innerHTML = vendors.map(v => {
-                    const widthPct = v.share || '0%';
-                    return `
-                        <div class="vendor-bar-item">
-                            <div class="vendor-bar-header">
-                                <span class="vendor-bar-name">
-                                    <span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:${v.color};"></span>
-                                    ${escapeHtml(v.name)}
-                                </span>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <span class="pill-action ${v.badgeClass}">${v.badge}</span>
-                                    <span class="vendor-bar-meta"><strong>${v.count}</strong> (${v.share})</span>
-                                </div>
-                            </div>
-                            <div class="vendor-track">
-                                <div class="vendor-fill" style="width:${widthPct}; background:${v.color};"></div>
+            const sorted = Object.entries(vendorMap).sort((a, b) => b[1] - a[1]);
+            const total = bots.length;
+
+            container.innerHTML = sorted.map(([vendor, count]) => {
+                const pct = ((count / total) * 100).toFixed(1);
+                const color = getVendorColor(vendor);
+                const badgeLabel = vendor.includes('Honeypot') ? 'CANARY_DETECTED' : vendor.includes('Scrapy') ? '403_BLOCKED' : 'ACTIVE_INGEST';
+                const badgeClass = vendor.includes('Honeypot') ? 'pill-observe' : vendor.includes('Scrapy') ? 'pill-deny' : 'pill-allow';
+
+                return `
+                    <div class="radar-vendor-item" onclick="openVendorFootprintModal('${escapeHtml(vendor)}')" title="Click to view deep forensic footprints for ${escapeHtml(vendor)}">
+                        <div class="radar-header">
+                            <span class="radar-name">
+                                <span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:${color};"></span>
+                                <span>${escapeHtml(vendor)}</span>
+                            </span>
+                            <div class="radar-meta">
+                                <span class="pill-action ${badgeClass}">${badgeLabel}</span>
+                                <span style="font-family:var(--font-mono); font-weight:700;">${count} (${pct}%)</span>
+                                <span style="color:var(--primary-color); font-size:1.1em;">›</span>
                             </div>
                         </div>
+                        <div class="radar-bar-track">
+                            <div class="radar-bar-fill" style="width:${pct}%; background:${color};"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ── Render Traffic & Served Delivery Matrix ──────────────────────────
+        function renderTrafficAndDeliveryMatrix(data, bots) {
+            const totalSess = data.metrics?.total_sessions || 1;
+            const totalBots = bots.length;
+            const verifiedHumans = Math.max(0, totalSess - totalBots);
+
+            const humanPct = Math.min(100, Math.max(0, Math.round((verifiedHumans / (totalSess || 1)) * 100)));
+            const aiPct = 100 - humanPct;
+
+            document.getElementById('traffic-ratio-label').textContent = `${humanPct}% HUMAN / ${aiPct}% AI`;
+            document.getElementById('traffic-human-fill').style.width = `${humanPct}%`;
+            document.getElementById('traffic-human-count').textContent = verifiedHumans.toLocaleString();
+            document.getElementById('traffic-ai-count').textContent = totalBots.toLocaleString();
+
+            // Count delivery strategies
+            let poisonCount = 0;
+            let geoCount = 0;
+            let trapCount = 0;
+
+            bots.forEach(b => {
+                const delivery = inferDelivery(b);
+                if (delivery.type === 'POISON_200') poisonCount++;
+                else if (delivery.type === 'GEO_STREAM') geoCount++;
+                else if (delivery.type === 'TRAP_403') trapCount++;
+            });
+
+            document.getElementById('strat-poison-count').textContent = poisonCount;
+            document.getElementById('strat-geo-count').textContent = geoCount;
+            document.getElementById('strat-trap-count').textContent = trapCount;
+            document.getElementById('strat-human-count').textContent = verifiedHumans;
+        }
+
+        // ── Render Honeypot Feed ─────────────────────────────────────────────
+        function renderHoneypotFeed(bots) {
+            const container = document.getElementById('honeypot-feed-container');
+            const traps = bots.filter(b => (b.requested_path || '').includes('/trap') || b.bot_category === 'HONEYPOT_CANARY_TRIPPED').slice(0, 8);
+
+            if (traps.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:16px; color:#64748b;">No canary honeypot intrusions in current window.</div>';
+                return;
+            }
+
+            container.innerHTML = traps.map(t => {
+                const vendor = normalizeVendor(t);
+                const timeStr = t.detected_at ? new Date(t.detected_at).toLocaleTimeString() : 'Recent';
+                const ipStr = t.ip_address || 'Masked IP';
+                const locStr = `${t.city || 'Edge'}, ${t.country || 'GLOBAL'}`;
+
+                return `
+                    <div class="honeypot-feed-item">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong style="color:#b91c1c;">🪤 ${escapeHtml(vendor)} (${escapeHtml(t.bot_name || 'Rogue')})</strong>
+                            <span class="pill-action pill-deny">CANARY_TRAP_INTERCEPT</span>
+                        </div>
+                        <div style="font-size:0.85em; color:#475569;">
+                            Target: <code>${escapeHtml(t.requested_path || '/api/sentinel/trap')}</code> &bull; Origin: <strong>${escapeHtml(locStr)}</strong> &bull; IP: <code>${escapeHtml(ipStr)}</code> &bull; ${timeStr}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ── 🌟 VENDOR FOOTPRINT MODAL (20개씩 페이징 & 목적/풋프린트 정밀 분석) ──
+        window.openVendorFootprintModal = function(vendor) {
+            const allBots = (currentApiResponse && currentApiResponse.ai_bots_detected) || [];
+            tableState.vmodal.vendor = vendor;
+            tableState.vmodal.page = 1;
+            tableState.vmodal.search = '';
+            tableState.vmodal.intent = 'ALL';
+            tableState.vmodal.rawList = allBots.filter(b => normalizeVendor(b) === vendor);
+
+            document.getElementById('vmodal-search-input').value = '';
+            document.getElementById('vmodal-intent-filter').value = 'ALL';
+            document.getElementById('vmodal-title').textContent = `🤖 ${vendor} Forensic Intelligence Dossier`;
+            document.getElementById('vmodal-count-badge').textContent = `${tableState.vmodal.rawList.length} INTRUSIONS`;
+            document.getElementById('vmodal-subtitle').textContent = `Deep behavioral footprint, target routes, and purpose classification for ${vendor}.`;
+
+            renderVendorModalTable();
+            document.getElementById('vendor-footprint-modal').style.display = 'flex';
+        };
+
+        function renderVendorModalTable() {
+            const state = tableState.vmodal;
+            const search = state.search.toLowerCase().trim();
+            const intentFilter = state.intent;
+
+            let filtered = state.rawList.filter(b => {
+                const path = (b.requested_path || '').toLowerCase();
+                const ip = (b.ip_address || '').toLowerCase();
+                const ua = (b.user_agent || '').toLowerCase();
+                const country = (b.country || '').toLowerCase();
+                const city = (b.city || '').toLowerCase();
+                const intentObj = inferIntent(b);
+
+                if (search && !path.includes(search) && !ip.includes(search) && !ua.includes(search) && !country.includes(search) && !city.includes(search) && !intentObj.badge.toLowerCase().includes(search)) {
+                    return false;
+                }
+                if (intentFilter !== 'ALL' && intentObj.key !== intentFilter) {
+                    return false;
+                }
+                return true;
+            });
+
+            const isAll = state.pageSize === 'ALL';
+            const size = isAll ? filtered.length : Number(state.pageSize);
+            const totalPages = Math.max(1, Math.ceil(filtered.length / (size || 1)));
+            state.page = Math.min(Math.max(1, state.page), totalPages);
+
+            const startIdx = (state.page - 1) * size;
+            const pageItems = isAll ? filtered : filtered.slice(startIdx, startIdx + size);
+
+            const tbody = document.getElementById('vmodal-tbody');
+            if (pageItems.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:24px; color:#64748b;">No forensic footprints matching current filter.</td></tr>';
+            } else {
+                tbody.innerHTML = pageItems.map(b => {
+                    const intent = inferIntent(b);
+                    const delivery = inferDelivery(b);
+                    const timeStr = b.detected_at ? new Date(b.detected_at).toISOString().replace('T', ' ').slice(0, 19) : 'Live';
+                    const ipStr = b.ip_address || 'Masked IP';
+                    const geoStr = `[${escapeHtml(b.country || 'GLOBAL')}] ${escapeHtml(b.city || 'Edge')}`;
+                    const ua = b.user_agent || b.bot_name || 'Generic HTTP Client';
+                    const ref = b.referrer || 'Direct / Spider';
+
+                    return `
+                        <tr>
+                            <td>
+                                <span class="pill-action ${intent.pillClass}">${intent.badge}</span>
+                                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">${intent.desc}</div>
+                            </td>
+                            <td>
+                                <span class="pill-action ${delivery.pillClass}">${delivery.badge}</span>
+                                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">${delivery.desc}</div>
+                            </td>
+                            <td><code>${escapeHtml(b.requested_path || '/')}</code></td>
+                            <td>
+                                <strong>${geoStr}</strong><br/>
+                                <span style="font-family:var(--font-mono); font-size:0.78rem; color:#64748b;">${escapeHtml(ipStr)}</span>
+                            </td>
+                            <td>
+                                <span style="font-size:0.8rem; color:#475569;" title="${escapeHtml(ref)}">${escapeHtml(ref.slice(0, 30))}</span>
+                            </td>
+                            <td style="max-width:320px;">
+                                <div style="font-family:var(--font-mono); font-size:0.75rem; color:#0f172a; word-break:break-all; max-height:42px; overflow-y:auto;" title="${escapeHtml(ua)}">
+                                    ${escapeHtml(ua)}
+                                </div>
+                            </td>
+                            <td style="color:#64748b; font-size:0.78rem; white-space:nowrap;">${timeStr}</td>
+                        </tr>
                     `;
                 }).join('');
             }
 
-            // B. Traffic Composition (Human 85% vs AI 15%)
-            let humanPct = 85;
-            let aiPct = 15;
-            if (pubData?.traffic_distribution) {
-                humanPct = Number(pubData.traffic_distribution.human_percent || 85);
-                aiPct = Number(pubData.traffic_distribution.ai_percent || 15);
-            }
-
-            const barHuman = document.getElementById('bar-human');
-            const barAi = document.getElementById('bar-ai');
-            const labelRatio = document.getElementById('traffic-ratio-label');
-            if (barHuman) barHuman.style.width = `${humanPct}%`;
-            if (barAi) barAi.style.width = `${aiPct}%`;
-            if (labelRatio) labelRatio.textContent = `${humanPct}% Human / ${aiPct}% AI`;
-
-            const totalSessions = statsData?.metrics?.total_sessions || pubData?.summary?.total_active_sessions || 642;
-            const humanCount = Math.round(totalSessions * (humanPct / 100));
-            const aiCount = Math.round(totalSessions * (aiPct / 100));
-
-            const mHuman = document.getElementById('metric-human-count');
-            const mAi = document.getElementById('metric-ai-count');
-            if (mHuman) mHuman.textContent = humanCount.toLocaleString();
-            if (mAi) mAi.textContent = aiCount.toLocaleString();
-
-            // C. Canary Honeypot Live Intercept Feed
-            const trapContainer = document.getElementById('trap-stream-container');
-            if (trapContainer) {
-                const trapEvents = [
-                    { bot: 'Anthropic (ClaudeBot)', path: '/api/sentinel/trap', loc: 'Columbus (OH), US', status: 'CANARY_TRAP_INTERCEPT', type: 'intercept', time: '14:22 UTC' },
-                    { bot: 'Scrapy Web Scraper', path: '/api/sentinel/trap', loc: 'Boardman (OR), US', status: '403_HONEYPOT_BLOCKED', type: 'intercept', time: '14:05 UTC' },
-                    { bot: 'Spoofed iOS Safari Crawler', path: '/api/sentinel', loc: 'São Paulo, Brazil', status: 'SPOOF_CANARY_ISOLATED', type: 'spoof', time: '13:48 UTC' },
-                    { bot: 'Scrapy Automation Tool', path: '/labs/', loc: 'Seongnam-si, South Korea', status: '403_RECON_BLOCKED', type: 'intercept', time: '13:12 UTC' },
-                    { bot: 'Spoofed Win10 Chrome Bot', path: '/api/sentinel', loc: 'Frankfurt, Germany', status: 'TLS_MISMATCH_BLOCKED', type: 'spoof', time: '12:50 UTC' }
-                ];
-
-                trapContainer.innerHTML = trapEvents.map(ev => `
-                    <div class="trap-feed-item ${ev.type}">
-                        <div>
-                            <strong style="color:${ev.type === 'spoof' ? '#7c3aed' : '#dc2626'};">${escapeHtml(ev.bot)}</strong>
-                            <span style="color:#64748b; font-size:0.9em; margin-left:4px;"><code>${escapeHtml(ev.path)}</code></span>
-                            <div style="color:#64748b; font-size:0.8em; margin-top:2px;">Origin: <strong>${escapeHtml(ev.loc)}</strong> &bull; ${escapeHtml(ev.time)}</div>
-                        </div>
-                        <span class="pill-action ${ev.type === 'spoof' ? 'pill-observe' : 'pill-deny'}">${ev.status}</span>
-                    </div>
-                `).join('');
-            }
+            renderPaginationControls({
+                total: filtered.length,
+                page: state.page,
+                pageSize: state.pageSize,
+                containerId: 'vmodal-page-controls',
+                infoId: 'vmodal-page-info',
+                onPageChange: (newPage) => {
+                    state.vmodal.page = newPage;
+                    renderVendorModalTable();
+                }
+            });
         }
 
         // ── Generic Pagination Engine ────────────────────────────────────────
@@ -1136,9 +1296,7 @@
             const maxVisible = 5;
             let startP = Math.max(1, curPage - Math.floor(maxVisible / 2));
             let endP = Math.min(totalPages, startP + maxVisible - 1);
-            if (endP - startP + 1 < maxVisible) {
-                startP = Math.max(1, endP - maxVisible + 1);
-            }
+            if (endP - startP + 1 < maxVisible) startP = Math.max(1, endP - maxVisible + 1);
 
             for (let p = startP; p <= endP; p++) {
                 html += `<button class="page-btn ${p === curPage ? 'active' : ''}" data-p="${p}">${p}</button>`;
@@ -1151,88 +1309,12 @@
             container.querySelectorAll('button').forEach(btn => {
                 btn.onclick = () => {
                     const targetPage = Number(btn.getAttribute('data-p'));
-                    if (targetPage && targetPage !== curPage) {
-                        onPageChange(targetPage);
-                    }
+                    if (targetPage && targetPage !== curPage) onPageChange(targetPage);
                 };
             });
         }
 
-        // ── Render Bots Table with Filters & Pagination ──────────────────────
-        function renderBotsTable() {
-            const state = tableState.bots;
-            const search = state.search.toLowerCase().trim();
-            const cat = state.category;
-            const action = state.action;
-
-            let filtered = state.rawList.filter(b => {
-                const name = (b.bot_name || '').toLowerCase();
-                const route = (b.requested_path || '').toLowerCase();
-                const country = (b.country || '').toLowerCase();
-                const city = (b.city || '').toLowerCase();
-                const ip = (b.ip_address || '').toLowerCase();
-                const userAgent = (b.user_agent || '').toLowerCase();
-                const botCat = (b.bot_category || '').toUpperCase();
-
-                if (search && !name.includes(search) && !route.includes(search) && !country.includes(search) && !city.includes(search) && !ip.includes(search) && !userAgent.includes(search)) {
-                    return false;
-                }
-                if (cat !== 'ALL' && botCat !== cat) {
-                    return false;
-                }
-                const isBlocked = route.includes('/labs') || route.includes('/trap');
-                if (action === '403' && !isBlocked) return false;
-                if (action === '200' && isBlocked) return false;
-
-                return true;
-            });
-
-            const viewLimit = state.pageSize === 'ALL' ? filtered.length : Math.min(filtered.length, Number(state.pageSize)); document.getElementById('bot-count-label').textContent = `${filtered.length} bots filtered (${state.rawList.length} total, top ${viewLimit} in view)`;
-
-            const isAll = state.pageSize === 'ALL';
-            const size = isAll ? filtered.length : Number(state.pageSize);
-            const totalPages = Math.max(1, Math.ceil(filtered.length / (size || 1)));
-            state.page = Math.min(Math.max(1, state.page), totalPages);
-
-            const startIdx = (state.page - 1) * size;
-            const pageItems = isAll ? filtered : filtered.slice(startIdx, startIdx + size);
-
-            const tbody = document.getElementById('bot-tbody');
-            if (pageItems.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#64748b; padding:16px;">No AI crawlers matching current filter.</td></tr>';
-            } else {
-                tbody.innerHTML = pageItems.map(b => {
-                    const timeStr = b.detected_at ? new Date(b.detected_at).toISOString().replace('T', ' ').slice(0, 19) : 'Live';
-                    const route = b.requested_path || '/labs/';
-                    const isBlocked = route.includes('/labs') || route.includes('/trap');
-
-                    return `
-                        <tr>
-                            <td><strong style="color:#dc2626;">🤖 ${escapeHtml(b.bot_name || 'AI Bot')}</strong></td>
-                            <td><span class="pill-action pill-observe">${escapeHtml(b.bot_category || 'AI_AGENT')}</span></td>
-                            <td><code>${escapeHtml(route)}</code></td>
-                            <td><strong>${escapeHtml(b.country || 'GLOBAL')}</strong> <span style="color:#64748b;">(${escapeHtml(b.city || 'Edge')})</span></td>
-                            <td><span class="pill-action ${isBlocked ? 'pill-deny' : 'pill-allow'}">${isBlocked ? '403 INTERCEPT' : 'GEO_STREAM'}</span></td>
-                            <td style="color:#64748b;">${timeStr}</td>
-                        </tr>
-                    `;
-                }).join('');
-            }
-
-            renderPaginationControls({
-                total: filtered.length,
-                page: state.page,
-                pageSize: state.pageSize,
-                containerId: 'bot-page-controls',
-                infoId: 'bot-page-info',
-                onPageChange: (newPage) => {
-                    state.page = newPage;
-                    renderBotsTable();
-                }
-            });
-        }
-
-        // ── Render Sessions Table with Filters & Pagination ──────────────────
+        // ── Render Sessions Table ────────────────────────────────────────────
         function renderSessionsTable() {
             const state = tableState.sessions;
             const search = state.search.toLowerCase().trim();
@@ -1256,7 +1338,6 @@
                 }
                 if (persona !== 'ALL' && p !== persona) return false;
                 if (action !== 'ALL' && act !== action) return false;
-
                 if (risk === 'HIGH' && score < 70) return false;
                 if (risk === 'MED' && (score < 30 || score >= 70)) return false;
                 if (risk === 'LOW' && score >= 30) return false;
@@ -1306,7 +1387,7 @@
                 containerId: 'sess-page-controls',
                 infoId: 'sess-page-info',
                 onPageChange: (newPage) => {
-                    state.page = newPage;
+                    state.sessions.page = newPage;
                     renderSessionsTable();
                 }
             });
@@ -1316,7 +1397,6 @@
         function escapeHtml(str) {
             return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
-
         function escapeJson(obj) {
             return JSON.stringify(obj).replace(/"/g, '&quot;');
         }
@@ -1327,38 +1407,34 @@
             document.getElementById('session-modal').style.display = 'flex';
         };
 
-        document.getElementById('btn-close-modal').onclick = () => {
-            document.getElementById('session-modal').style.display = 'none';
+        // Modal Close Handlers
+        document.getElementById('btn-close-vmodal').onclick = () => { document.getElementById('vendor-footprint-modal').style.display = 'none'; };
+        document.getElementById('vendor-footprint-modal').onclick = (e) => {
+            if (e.target === document.getElementById('vendor-footprint-modal')) document.getElementById('vendor-footprint-modal').style.display = 'none';
         };
+        document.getElementById('btn-close-modal').onclick = () => { document.getElementById('session-modal').style.display = 'none'; };
         document.getElementById('session-modal').onclick = (e) => {
-            if (e.target === document.getElementById('session-modal')) {
-                document.getElementById('session-modal').style.display = 'none';
-            }
+            if (e.target === document.getElementById('session-modal')) document.getElementById('session-modal').style.display = 'none';
         };
 
-        // ── Event Handlers: Bots Toolbar ─────────────────────────────────────
-        document.getElementById('bot-search-input').addEventListener('input', (e) => {
-            tableState.bots.search = e.target.value;
-            tableState.bots.page = 1;
-            renderBotsTable();
+        // Vendor Modal Event Listeners
+        document.getElementById('vmodal-search-input').addEventListener('input', (e) => {
+            tableState.vmodal.search = e.target.value;
+            tableState.vmodal.page = 1;
+            renderVendorModalTable();
         });
-        document.getElementById('bot-category-filter').addEventListener('change', (e) => {
-            tableState.bots.category = e.target.value;
-            tableState.bots.page = 1;
-            renderBotsTable();
+        document.getElementById('vmodal-intent-filter').addEventListener('change', (e) => {
+            tableState.vmodal.intent = e.target.value;
+            tableState.vmodal.page = 1;
+            renderVendorModalTable();
         });
-        document.getElementById('bot-action-filter').addEventListener('change', (e) => {
-            tableState.bots.action = e.target.value;
-            tableState.bots.page = 1;
-            renderBotsTable();
-        });
-        document.getElementById('bot-page-size').addEventListener('change', (e) => {
-            tableState.bots.pageSize = e.target.value;
-            tableState.bots.page = 1;
-            renderBotsTable();
+        document.getElementById('vmodal-page-size').addEventListener('change', (e) => {
+            tableState.vmodal.pageSize = e.target.value;
+            tableState.vmodal.page = 1;
+            renderVendorModalTable();
         });
 
-        // ── Event Handlers: Sessions Toolbar ─────────────────────────────────
+        // Sessions Table Event Listeners
         document.getElementById('sess-search-input').addEventListener('input', (e) => {
             tableState.sessions.search = e.target.value;
             tableState.sessions.page = 1;
@@ -1388,9 +1464,7 @@
         document.getElementById('btn-refresh').onclick = fetchDashboard;
         document.getElementById('autoRefresh').onchange = (e) => {
             if (autoTimer) clearInterval(autoTimer);
-            if (e.target.checked) {
-                autoTimer = setInterval(fetchDashboard, 8000);
-            }
+            if (e.target.checked) autoTimer = setInterval(fetchDashboard, 8000);
         };
 
         // Initial Load & 8-second auto refresh
