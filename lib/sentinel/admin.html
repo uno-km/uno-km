@@ -581,10 +581,9 @@
                 <div class="toolbar-group">
                     <label style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Rows:</label>
                     <select id="bot-page-size" class="select-filter">
-                        <option value="10">10</option>
-                        <option value="20" selected>20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
+                        <option value="15" selected>15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
                         <option value="ALL">전체 (All)</option>
                     </select>
                 </div>
@@ -647,10 +646,9 @@
                 <div class="toolbar-group">
                     <label style="font-size:0.85em; color:var(--text-muted); font-weight:600;">Rows:</label>
                     <select id="sess-page-size" class="select-filter">
-                        <option value="10">10</option>
-                        <option value="20" selected>20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
+                        <option value="15" selected>15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
                         <option value="ALL">전체 (All)</option>
                     </select>
                 </div>
@@ -873,7 +871,7 @@
                 search: '',
                 category: 'ALL',
                 action: 'ALL',
-                pageSize: 20,
+                pageSize: 15,
                 page: 1,
                 rawList: []
             },
@@ -882,7 +880,7 @@
                 persona: 'ALL',
                 risk: 'ALL',
                 action: 'ALL',
-                pageSize: 20,
+                pageSize: 15,
                 page: 1,
                 rawList: []
             }
@@ -931,7 +929,7 @@
             document.getElementById('stat-total').textContent = totalSess.toLocaleString();
             document.getElementById('stat-sub-visitors').textContent = `${totalVis.toLocaleString()} unique verified visitors`;
             document.getElementById('stat-bots').textContent = totalBots.toLocaleString();
-            document.getElementById('stat-bots-pct').textContent = totalBots > 0 ? `${totalBots} automated bot intrusions` : 'Zero active threat';
+            document.getElementById('stat-bots-pct').textContent = totalBots > 0 ? `${totalBots} automated bot intrusions recorded` : 'Zero active threat';
 
             const forensics = data?.deep_forensic_logs || [];
             let scoreSum = 0;
@@ -1189,7 +1187,7 @@
                 return true;
             });
 
-            document.getElementById('bot-count-label').textContent = `${filtered.length} bots filtered (${state.rawList.length} total)`;
+            const viewLimit = state.pageSize === 'ALL' ? filtered.length : Math.min(filtered.length, Number(state.pageSize)); document.getElementById('bot-count-label').textContent = `${filtered.length} bots filtered (${state.rawList.length} total, top ${viewLimit} in view)`;
 
             const isAll = state.pageSize === 'ALL';
             const size = isAll ? filtered.length : Number(state.pageSize);
