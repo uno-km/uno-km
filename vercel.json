@@ -325,19 +325,19 @@
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/analytics/$1"
+      "destination": "/404.html"
     },
     {
       "source": "/admin",
-      "destination": "/analytics/index.html"
+      "destination": "/404.html"
     },
     {
       "source": "/analytics/(.*)",
-      "destination": "/analytics/$1"
+      "destination": "/404.html"
     },
     {
       "source": "/analytics",
-      "destination": "/analytics/index.html"
+      "destination": "/404.html"
     },
     {
       "source": "/docs/foundation/:match*",
@@ -527,6 +527,19 @@
       ]
     },
     {
+      "source": "/lib/sentinel/admin.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "private, no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -540,6 +553,18 @@
         {
           "key": "X-Frame-Options",
           "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
         }
       ]
     }

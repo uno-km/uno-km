@@ -249,9 +249,10 @@ export default async function handler(req, res) {
 
     return res.status(200).json(responseData);
   } catch (err) {
+    console.error('Package Metrics API Error:', err.message);
     return res.status(500).json({
       ok: false,
-      error: err.message
+      error: 'INTERNAL_SERVER_ERROR'
     });
   }
 }

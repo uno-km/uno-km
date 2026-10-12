@@ -621,7 +621,7 @@ Human Web Portal: https://uno-km.vercel.app/labs/
           cached.view_count = (parseInt(cached.view_count || 0, 10)) + 1;
           return res.status(200).json({ ok: true, database_connected: false, cached: true, post: cached });
         }
-        return res.status(500).json({ ok: false, error: dbErr.message });
+        return res.status(500).json({ ok: false, error: 'INTERNAL_SERVER_ERROR' });
       }
     }
 
@@ -789,6 +789,6 @@ Human Web Portal: https://uno-km.vercel.app/labs/
     return res.status(400).json({ ok: false, error: `Unknown action: ${action}` });
   } catch (err) {
     console.error('[Labs API Error]:', err);
-    return res.status(500).json({ ok: false, error: err.message });
+    return res.status(500).json({ ok: false, error: 'INTERNAL_SERVER_ERROR' });
   }
 }
