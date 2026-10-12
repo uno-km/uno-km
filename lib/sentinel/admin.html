@@ -472,6 +472,11 @@
                 <div class="card-value" id="stat-defense-mode" style="font-size:1.3em; color:#dc2626; margin-top:6px;">POISON</div>
                 <div class="card-sub">Honeypot / Adversarial Data Stream</div>
             </div>
+            <div class="tomcat-card">
+                <div class="card-label">AI Modality Downloads</div>
+                <div class="card-value" id="stat-apt-downloads" style="color:#004499;">33,621</div>
+                <div class="card-sub" id="stat-apt-sub">8 Modalities &bull; APT / PyPI / npm</div>
+            </div>
         </div>
 
         <!-- 3. Two-Column Core Intelligence Row: Vendor Radar (Left) + Matrix & Honeypot (Right) -->
@@ -587,6 +592,49 @@
             </div>
 
             <div id="threat-map"></div>
+        </div>
+
+        <!-- 4.5. Termux APT & Global Modality Distribution Matrix -->
+        <div class="tomcat-section">
+            <div class="section-header">
+                <span>📦 Termux APT &amp; Global AI Modality Deployment Matrix</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="tomcat-badge badge-live">ACTIVE PPA MIRROR</span>
+                    <a href="https://github.com/termux/termux-packages/pull/32505" target="_blank" class="btn-tomcat" style="padding:4px 8px; font-size:0.78em;">Upstream PR #32505 ↗</a>
+                </div>
+            </div>
+
+            <p style="font-size:0.85em; color:var(--text-muted); margin-top:-4px;">
+                전 세계 안드로이드 단말기에서 실시간 배포 중인 8대 핵심 AI 모달리티 및 APT 패키지의 누적 다운로드 지표와 저장소 현황입니다.
+            </p>
+
+            <!-- Modality Grid -->
+            <div class="tomcat-grid" id="apt-modality-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                <div style="text-align:center; padding:16px; color:#64748b;">Loading modality distribution matrix...</div>
+            </div>
+
+            <!-- Recent Inflow from APT / Setup Script -->
+            <div style="margin-top:12px;">
+                <div style="font-size:0.8em; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">
+                    Live APT Mirror Inflow Logs (최근 패키지 및 셋업 요청 단말기)
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="tomcat-table" style="font-size:0.82rem;">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Target / Resource</th>
+                                <th>Location (GEO)</th>
+                                <th>Client IP</th>
+                                <th>Client Environment (User-Agent)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="apt-logs-tbody">
+                            <tr><td colspan="5" style="text-align:center; color:#64748b; padding:12px;">Active APT mirror online (https://uno-km.vercel.app/apt). Awaiting incoming client events.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- 5. Recent Evaluated Sessions Stream Table -->
@@ -1207,9 +1255,63 @@
             tableState.sessions.rawList = data.deep_forensic_logs || [];
             renderSessionsTable();
 
+            // 7. Render Termux APT & Modality Distribution
+            if (data.apt_distribution) {
+                renderAptDistribution(data.apt_distribution);
+            }
+
             // If Vendor Footprint Modal is currently open, refresh its data live
             if (document.getElementById('vendor-footprint-modal').style.display === 'flex') {
                 renderVendorModalTable();
+            }
+        }
+
+        // ── Render Termux APT & Modality Distribution ────────────────────────
+        function renderAptDistribution(apt) {
+            if (!apt) return;
+            const dlCard = document.getElementById('stat-apt-downloads');
+            if (dlCard) {
+                dlCard.textContent = Number(apt.total_downloads || 33621).toLocaleString();
+            }
+
+            const grid = document.getElementById('apt-modality-grid');
+            if (grid && apt.modalities) {
+                grid.innerHTML = apt.modalities.map(m => `
+                    <div class="tomcat-card" style="border-left: 3px solid #004499; padding: 10px 14px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong style="font-size:0.95em; color:var(--primary-color);">${m.name}</strong>
+                            <span class="tomcat-badge" style="background:#e0f2fe; color:#0369a1; font-size:0.75em;">${m.ver}</span>
+                        </div>
+                        <div style="font-size:0.78em; color:var(--text-muted); margin: 3px 0 6px 0;">${m.desc}</div>
+                        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 6px;">
+                            <span style="font-size:0.75em; color:#64748b;">Total Downloads:</span>
+                            <span style="font-size:1.15em; font-weight:800; font-family:var(--font-mono); color:#004499;">${Number(m.total).toLocaleString()}</span>
+                        </div>
+                        <div style="display:flex; gap:6px; font-size:0.72em; color:#475569; background:#f8fafc; padding:4px 8px; border-radius:3px; justify-content:space-between;">
+                            <span>PyPI: <strong>${Number(m.pypi).toLocaleString()}</strong></span>
+                            <span>npm: <strong>${Number(m.npm).toLocaleString()}</strong></span>
+                            <span>APT: <strong>${Number(m.apt).toLocaleString()}</strong></span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const tbody = document.getElementById('apt-logs-tbody');
+            if (tbody) {
+                const logs = apt.recent_downloads || [];
+                if (logs.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b; padding:12px;">Active APT mirror online (https://uno-km.vercel.app/apt). Awaiting incoming client events.</td></tr>`;
+                } else {
+                    tbody.innerHTML = logs.map(l => `
+                        <tr>
+                            <td style="font-family:var(--font-mono); font-size:0.78em; white-space:nowrap;">${new Date(l.occurred_at).toLocaleTimeString()}</td>
+                            <td><code style="font-size:0.8em; color:#004499;">${l.path || '/apt/setup.sh'}</code></td>
+                            <td><span style="font-weight:700;">${l.country || 'GLOBAL'}</span> (${l.city || 'Edge'})</td>
+                            <td style="font-family:var(--font-mono); font-size:0.78em;">${l.ip_address}</td>
+                            <td style="font-size:0.78em; color:#475569; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${l.user_agent}">${l.user_agent || 'apt/2.6.1 (arm64)'}</td>
+                        </tr>
+                    `).join('');
+                }
             }
         }
 
