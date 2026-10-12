@@ -372,6 +372,9 @@ export default async function handler(req, res) {
                 LIMIT 1000;
             `;
         } catch (e) {
+            console.warn('[Stats journeys Warning]', e.message);
+        }
+
         // 12. Termux APT & Modality Global Distribution Matrix
         let aptEventsRes = [];
         try {
