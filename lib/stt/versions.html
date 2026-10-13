@@ -23,9 +23,25 @@
       <p class="subtitle">Changelog history and immutable releases</p>
             <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.2 - Vulkan GPU Acceleration & Explicit OpenCL Declaration Protocol (SCRUM-512)</h3>
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.1.0 - Neural Multi-Speaker Diarization & Concurrent GPU/CPU Pipeline</h3>
           <div>
             <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-13</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Deployed Neural Multi-Speaker Diarization using PyAnnote 3.0 segmentation and 3D-Speaker CAM++ 192d embeddings.</li>
+          <li>Implemented TS-VAD multi-label overlap resolver for simultaneous speech separation.</li>
+          <li>Engineered Concurrent Dual-Pipeline (Whisper Vulkan GPU || Sherpa Diarizer CPU) achieving 4x diarization speedup.</li>
+          <li>Deprecated and removed legacy Vosk statistical engine.</li>
+          <li>Standardized package licensing under Apache-2.0 with OpenSSF SPDX headers.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.0.2 - Vulkan GPU Acceleration & Explicit OpenCL Declaration Protocol (SCRUM-512)</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px;">Historical Release</span>
             <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-06</span>
           </div>
         </div>

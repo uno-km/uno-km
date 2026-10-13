@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quickstart &amp; Execution Recipes | Termux-AIChain</title>
-  <meta name="description" content="Production recipes for LCEL pipe chains, autonomous ReAct agents, on-device vector RAG, and smartphone hardware actuation.">
+  <title>Quickstart & Execution Recipes | Termux-AIChain</title>
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,219 +19,27 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Quickstart &amp; Production Recipes</h2>
-      <p class="subtitle">Immediate 1-Line Execution, LCEL Pipe Pipelines &amp; Mobile Hardware Actuation Recipes (Termux-AIChain)</p>
+      <h2>Quickstart & Execution Recipes</h2>
+      <p class="subtitle">Standard usage patterns and rapid prototyping code</p>
+      <h3>Basic Execution Recipe</h3>
+         <pre><code>from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser, get_battery_status
 
-      <!-- Section: Why termux-aichain instead of LangChain for Edge Pipelines -->
-      <div class="alert alert-warning">
-        <span class="alert-title">WHY NOT LANGCHAIN FOR EDGE PIPELINES?</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-heading, #1e293b);">Zero-Boilerplate Simplicity vs Heavy Cloud Frameworks</h3>
-        <p>In standard LangChain, building a basic chain requires installing 40+ packages, navigating deprecated import paths (<code>langchain.chains</code> vs <code>langchain_core.runnables</code>), and waiting seconds for heavy metaclasses to initialize. Furthermore, LangChain provides zero tools for interacting with physical mobile devices.</p>
-        <p style="margin-top: 0.5rem;"><strong>termux-aichain delivers the exact same LCEL pipe ergonomics (<code>prompt | llm | parser</code>) in 100% pure standard library code</strong>, while providing direct hardware tools to observe battery telemetry, trigger haptic motors, and search local SQLite vectors.</p>
-      </div>
+# 1. Read physical smartphone hardware telemetry
+battery = get_battery_status()
 
-      <div class="alert alert-info">
-        <span class="alert-title">10-Second Hello Agent</span>
-        <p>Connect directly to your local model server (llama-server or BitNet on port 8080):</p>
-        <pre><code class="language-python">from termux_aichain import LocalAgent
-
-agent = LocalAgent.local(model="llama3")
-print(agent.run("Hello! Introduce yourself as a sovereign on-device AI in one sentence."))</code></pre>
-      </div>
-
-      <h3>Recipe 1: Standard LCEL Pipe Chain (Prompt | LLM | Parser)</h3>
-      <p>Compose deterministic, structured output chains with the pipe operator (<code>|</code>) without external dependencies:</p>
-      <pre><code class="language-python">from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser
-
-# 1. Define prompt template with variable substitution
-prompt = PromptTemplate.from_template(
-    "You are an on-device AI assistant on Galaxy S25. Explain {topic} in one concise sentence."
-)
-
-# 2. Configure model client bound to local llama-server (127.0.0.1:8080)
-llm = OpenAICompatibleChat(
-    base_url="http://127.0.0.1:8080/v1",
-    model="llama3",
-    temperature=0.3,
-    max_tokens=64,
-    timeout=20.0
-)
-
-# 3. Assemble LCEL chain using the pipe operator (|)
+# 2. Build LCEL Chain connected to local llama-server (port 8080)
+prompt = PromptTemplate.from_template("Phone Telemetry: {status}. Diagnose in 1 sentence:")
+llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", model="llama3", temperature=0.3)
 chain = prompt | llm | StringOutputParser()
 
-# 4. Invoke synchronously
-result = chain.invoke({"topic": "zero-dependency edge computing"})
-print("Generated Output:", result.strip())</code></pre>
-
-      <h3>Recipe 2: Real Mobile Hardware Telemetry Injection</h3>
-      <p>Directly probe kernel battery percentage, surface temperature, and charging status, and inject physical telemetry into the AI reasoning context:</p>
-      <pre><code class="language-python">import json
-from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser, get_battery_status
-
-# 1. Probe physical Android hardware telemetry
-raw_battery = get_battery_status()
-batt_info = json.loads(raw_battery)
-# Example return: {"percentage": 48, "temperature": 29.4, "status": "DISCHARGING"}
-
-# 2. Construct diagnostic prompt chain
-prompt = PromptTemplate.from_template(
-    "Current smartphone hardware telemetry:\n"
-    "- Battery: {pct}%\n"
-    "- Temperature: {temp} Celsius\n"
-    "- Status: {status}\n\n"
-    "Provide a 1-sentence diagnostic health summary for the device owner."
-)
-llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", model="llama3", temperature=0.2)
-diagnostic_chain = prompt | llm | StringOutputParser()
-
-# 3. Execute reasoning
-report = diagnostic_chain.invoke({
-    "pct": batt_info.get("percentage"),
-    "temp": batt_info.get("temperature"),
-    "status": batt_info.get("status")
-})
-print("Hardware AI Report:", report.strip())
-
-# Real Terminal Output:
-# Hardware AI Report: Device battery is optimal at 39% (30.0 C, DISCHARGING) within safe mobile thermal limits.</code></pre>
-
-      <h3>Recipe 3: Real-Time Token Streaming with Generation Telemetry</h3>
-      <p>Stream tokens word-by-word with minimal latency (TTFT &lt; 85ms on Oryon CPU) and zero memory buffer accumulation:</p>
-      <pre><code class="language-python">import time
-from termux_aichain import OpenAICompatibleChat, HumanMessage, SystemMessage
-
-llm = OpenAICompatibleChat(
-    base_url="http://127.0.0.1:8080/v1",
-    model="llama3",
-    temperature=0.7,
-    max_tokens=128
-)
-
-messages = [
-    SystemMessage(content="You are a sovereign mobile assistant."),
-    HumanMessage(content="Describe the advantages of distributed on-device edge computing.")
-]
-
-t_start = time.time()
-first_token_time = None
-tokens = []
-
-print("Live Stream: \"", end="", flush=True)
-for chunk in llm.stream(messages):
-    if first_token_time is None:
-        first_token_time = round((time.time() - t_start) * 1000, 2)
-    tokens.append(chunk.content)
-    print(chunk.content, end="", flush=True)
-print("\"\n")
-
-total_ms = round((time.time() - t_start) * 1000, 2)
-print(f"Time To First Token (TTFT): {first_token_time} ms")
-print(f"Total Stream Duration     : {total_ms} ms ({len(tokens)} tokens)")</code></pre>
-
-      <h3>Recipe 4: Autonomous ReAct Multi-Agent with Hardware Actuation</h3>
-      <p>Equip an autonomous agent with real smartphone actuation tools. The model reason about sensor states and physically actuates the phone:</p>
-      <pre><code class="language-python">from termux_aichain import (
-    create_react_agent,
-    OpenAICompatibleChat,
-    HumanMessage,
-    get_battery_status,
-    vibrate_device,
-    send_notification
-)
-
-llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", model="llama3")
-
-# Create autonomous ReAct agent with native Android tools
-agent = create_react_agent(
-    model=llm,
-    tools=[get_battery_status, vibrate_device, send_notification],
-    system_prompt="You are an autonomous smartphone assistant. Check sensors and actuate the device when instructed."
-)
-
-# Run multi-step agent loop
-result = agent.invoke({
-    "messages": [
-        HumanMessage(content="Check device battery. If temperature is under 35C, vibrate the device for 300ms.")
-    ]
-})
-
-print("Agent Final Response:", result["messages"][-1].content)
-
-# Real Terminal Output:
-# [Action: get_battery_status] -> {"percentage": 39, "temperature": 30.0, "status": "DISCHARGING"}
-# [Decision] Temperature is 30.0 C (< 35 C). Triggering 300ms vibration.
-# [Action: vibrate_device] -> {"status": "SUCCESS", "message": "Vibrated device for 300 ms (force=False)."}
-# Agent Final Response: Battery is at 39% (30.0 C). Device successfully vibrated for 300ms.</code></pre>
-
-      <h3>Recipe 5: On-Device SQLite Vector Store &amp; Semantic Cosine Similarity (RAG)</h3>
-      <p>Store vector embeddings and execute similarity searches directly in local SQLite without external vector database dependencies:</p>
-      <pre><code class="language-python">from termux_aichain import SQLiteVectorStore
-
-# 1. Initialize vector store (in-memory ':memory:' or file 'kb.db')
-vector_store = SQLiteVectorStore(":memory:")
-
-# 2. Add knowledge base articles with embedding vectors
-knowledge_base = [
-    "Galaxy S25 acts as the Master Coordinator running llama-server on port 8080.",
-    "Galaxy A53 acts as the Dedicated Speech Worker running neural TTS on port 8088.",
-    "AMEVA Sovereign Ecosystem eliminates cloud egress costs by keeping AI on-device."
-]
-doc_vectors = [
-    [1.0, 0.2, 0.0, 0.0],  # Document 1
-    [0.0, 1.0, 0.2, 0.0],  # Document 2 (Speech Worker)
-    [0.1, 0.1, 1.0, 0.0],  # Document 3
-]
-vector_store.add_texts(knowledge_base, doc_vectors)
-
-# 3. Query: Which node handles speech synthesis? (Target vector close to Doc 2)
-query_vec = [0.0, 0.95, 0.1, 0.0]
-matches = vector_store.similarity_search_by_vector(query_vec, k=1)
-
-print("Retrieved Knowledge Doc:", matches[0].page_content)
-
-# Real Terminal Output:
-# Retrieved Knowledge Doc: Galaxy A53 acts as the Dedicated Speech Worker running neural TTS on port 8088.</code></pre>
-
-      <h3>Recipe 6: Node.js 18+ ESM Dual-Engine Recipes</h3>
-      <p>100% equivalent API contracts in modern JavaScript / TypeScript:</p>
-      <pre><code class="language-javascript">import {
-  PromptTemplate,
-  OpenAICompatibleChat,
-  StringOutputParser,
-  getBatteryStatus,
-  vibrateDevice
-} from "termux-aichain";
-
-// 1. LCEL Pipe in Node.js ESM
-const prompt = PromptTemplate.fromTemplate("Explain {concept} concisely:");
-const llm = new OpenAICompatibleChat({ baseUrl: "http://127.0.0.1:8080/v1", model: "llama3" });
-const chain = prompt.pipe(llm).pipe(new StringOutputParser());
-const answer = await chain.invoke({ concept: "on-device AI chaining" });
-console.log("Answer:", answer);
-
-// 2. Hardware Actuation
-const battery = await getBatteryStatus.func();
-console.log(`Battery: ${battery.percentage}%, Temp: ${battery.temperature}C`);
-if (battery.temperature &lt; 35) {
-  await vibrateDevice.func({ duration_ms: 300 });
-}
-
-// Real Terminal Output:
-// Answer: On-device AI chaining executes pipelines directly on hardware with zero external dependencies.
-// Battery: 39%, Temp: 30.0C</code></pre>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li><a href="api-reference.html">Review Full API Reference &amp; Struct Signatures</a></li>
-        <li><a href="advanced-parameters.html">Configure Hardware Tuning &amp; Sampling Flags</a></li>
-        <li><a href="benchmarks.html">Inspect Physical Hardware Benchmarks (Galaxy S25 &amp; A53)</a></li>
-      </ul>
+# 3. Execute with 0 external dependencies
+report = chain.invoke({"status": battery})
+print("AI Diagnostic:", report)</code></pre>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

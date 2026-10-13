@@ -1,9 +1,9 @@
-# Termux-AIChain Full Technical Specification (v1.1.0)
+# Termux-AIChain Full Technical Specification (v1.2.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
-Ultra-Lightweight Zero-Dependency AI Chaining & Autonomous Agent Framework for Android Termux
-Provides pure zero-dependency DAG execution, structured prompt chains, and deterministic tool dispatching in <50KB footprint.
+Why LangChain on Termux? Bloat & Crash vs 94KB Zero-Dep LCEL & Hardware Native Agents
+Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.
 
 ## 2. Package & Installation
 - PyPI: termux-aichain

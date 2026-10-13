@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Installation &amp; Environment Setup | Termux-AIChain</title>
-  <meta name="description" content="Production installation guide, zero-dependency deployment, and Android Termux environment provisioning for Termux-AIChain.">
+  <title>Installation & Setup Guide | Termux-AIChain</title>
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,121 +19,21 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Installation &amp; Setup Guide</h2>
-      <p class="subtitle">Zero-Dependency Deployment, Environment Diagnostics &amp; Local Engine Provisioning (Termux-AIChain)</p>
-
-      <!-- Why LangChain Install Fails vs termux-aichain -->
-      <div class="alert alert-warning">
-        <span class="alert-title">WHY NOT LANGCHAIN ON MOBILE?</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-heading, #1e293b);">The Android Bionic Compilation Barrier</h3>
-        <p>Attempting to run <code>pip install langchain</code> on Android Termux triggers an avalanche of 48+ dependencies. Packages like <code>pydantic-core</code>, <code>tiktoken</code>, and <code>chromadb</code> do not publish prebuilt wheels for the Android Bionic C runtime. Users face grueling C++/Rust build failures, broken shared library links, and Out-Of-Memory compilation crashes.</p>
-        <p style="margin-top: 0.5rem;"><strong>termux-aichain eliminates this completely:</strong> It has <strong>zero external dependencies</strong> and is implemented strictly using the Python standard library and Node.js standard modules. No compiler is ever required.</p>
-      </div>
-
-      <div class="alert alert-info">
-        <span class="alert-title">1-Step Zero-Dependency Installation</span>
-        <p>Install the package instantly with zero external compilation overhead:</p>
-        <pre><code># Python 3.10+ (Termux or Linux):
-pip install --upgrade termux-aichain
-
-# Node.js 18+ ESM (Termux or Linux):
+      <h2>Installation & Setup Guide</h2>
+      <p class="subtitle">Hardware acceleration, Termux setup, and dependency management</p>
+      <div class="alert alert-tip">
+           <span class="alert-title">Prerequisites</span>
+           <p>Ensure Python 3.9+ or Node.js 18+ is installed on your Linux / Android / Desktop environment.</p>
+         </div>
+         <h3>Package Managers</h3>
+         <pre><code>pip install termux-aichain
+# or:
 npm install termux-aichain</code></pre>
-      </div>
-
-      <h3>System Prerequisites &amp; Optional Tool Bindings</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Subsystem / Package</th>
-            <th>Type</th>
-            <th>Necessity</th>
-            <th>Technical Purpose</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>python</code> (3.10 ~ 3.14)</td>
-            <td>Runtime</td>
-            <td><span class="badge badge-success">Required</span></td>
-            <td>Host interpreter for LCEL pipe execution, StateGraph, and SQLite vector store.</td>
-          </tr>
-          <tr>
-            <td><code>nodejs</code> (18.x ~ 26.x)</td>
-            <td>Runtime</td>
-            <td><span class="badge badge-info">Optional</span></td>
-            <td>Required only if running the Node.js / TypeScript ESM agent pipeline.</td>
-          </tr>
-          <tr>
-            <td><code>termux-api</code> (APK + pkg)</td>
-            <td>System Tool</td>
-            <td><span class="badge badge-warning">Recommended</span></td>
-            <td>Required for smartphone hardware tools (battery probe, GPS, haptics, notifications).</td>
-          </tr>
-          <tr>
-            <td><code>llama-server</code> / <code>BitNet</code></td>
-            <td>Inference Engine</td>
-            <td><span class="badge badge-warning">Recommended</span></td>
-            <td>Local OpenAI-compatible inference server running on <code>127.0.0.1:8080</code>.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Termux Hardware API Provisioning</h3>
-      <p>To enable direct smartphone actuation (battery percentage, device temperature, vibration, GPS, notifications), install the Termux-API bridge:</p>
-      <pre><code># 1. Update Termux package mirrors
-pkg update -y
-
-# 2. Install the Termux-API CLI helper
-pkg install -y termux-api
-
-# 3. Ensure the companion Termux:API Android APK is installed from F-Droid or GitHub Releases.</code></pre>
-
-      <h3>Automated Environment Diagnostics CLI</h3>
-      <p><code>termux-aichain</code> includes built-in diagnostic tools to verify the mobile environment in one command:</p>
-      <pre><code># Run end-to-end environment verification
-termux-aichain setup
-
-# Print installed version, Python runtime, and detected toolchain
-termux-aichain info</code></pre>
-
-      <p>Example diagnostic output on Samsung Galaxy S25:</p>
-      <pre><code>[AIChain Diagnostics]
-  * Python Runtime       : 3.13.13 (ARM64 Bionic) [OK]
-  * Node.js Runtime      : v26.3.1 (ARM64)        [OK]
-  * Termux:API Bridge    : Functional             [OK]
-  * SQLite3 Kernel       : 3.46.1 (Vector Ready)  [OK]
-  * Ecosystem Hooks      : 6/6 Active             [OK]
-[Status] System ready for sovereign edge agent orchestration.</code></pre>
-
-      <h3>Connecting Local Inference Backends</h3>
-      <p>Launch your local ARM64 <code>llama-server</code> with optimal thread allocation (e.g. 8 threads for Snapdragon 8 Elite / Oryon CPU):</p>
-      <pre><code># Launch llama-server on port 8080
-llama-server \
-  -m ~/models/Llama-3.2-1B-Instruct-Q4_K_M.gguf \
-  -c 2048 \
-  -t 8 \
-  --port 8080 \
-  --chat-template llama3</code></pre>
-
-      <h3>Instant Verification Script</h3>
-      <pre><code class="language-python">from termux_aichain import LocalAgent
-
-# Verify connection to local llama-server
-agent = LocalAgent.local(model="llama3")
-print(agent.run("Respond with 'READY' to confirm operational status."))
-# Output: READY</code></pre>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li><a href="quickstart.html">Explore Production Recipes (LCEL, ReAct, RAG)</a></li>
-        <li><a href="api-reference.html">Review Full API Reference &amp; Parameters</a></li>
-        <li><a href="advanced-parameters.html">Configure Hardware Tuning &amp; Sampling Flags</a></li>
-      </ul>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

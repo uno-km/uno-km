@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Parameters &amp; Hardware Tuning | Termux-AIChain</title>
-  <meta name="description" content="In-depth parameter tuning for hardware compute, KV cache quantization, sampling controls, and thermal management on mobile ARM64.">
+  <title>Advanced Parameters & Tuning | Termux-AIChain</title>
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,202 +19,15 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Advanced Parameters &amp; Hardware Tuning</h2>
-      <p class="subtitle">Hardware Compute Optimization, KV Cache Quantization, Sampling Controls &amp; Mobile Thermal Budgets (Termux-AIChain)</p>
-
-      <!-- Section: Why mobile parameter tuning matters vs LangChain -->
-      <div class="alert alert-warning">
-        <span class="alert-title">WHY HARDWARE-AWARE PARAMETERS MATTER ON MOBILE</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-heading, #1e293b);">Thermal Budgets &amp; Memory Bounds vs Cloud Assumptions</h3>
-        <p>Cloud agent frameworks like LangChain assume server-grade machines with constant cooling, redundant power supplies, and hundreds of gigabytes of RAM. Running unconstrained models on a smartphone without strict thread affinity and KV cache limits causes severe thermal throttling (SoC temperature &gt; 45&deg;C), rapid battery depletion, and instant kernel OOM kills.</p>
-        <p style="margin-top: 0.5rem;"><strong>termux-aichain exposes precise hardware-level control knobs:</strong> You can tune CPU big-core allocation, micro-batch sizes, KV cache quantization (saving up to 75% RAM), and default-deny tool sandboxing to run sustained autonomous workloads safely on battery power.</p>
-      </div>
-
-      <h3>1. Hardware Compute &amp; Engine Flags (`LocalServerConfig`)</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Parameter Name</th>
-            <th>Type</th>
-            <th>Default</th>
-            <th>Recommended Range</th>
-            <th>Physical System Impact &amp; Engineering Rationale</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>threads</code></td>
-            <td><code>int</code></td>
-            <td><code>CPU-1</code></td>
-            <td><code>4 ~ 8</code></td>
-            <td>Binds inference to ARM big cores (e.g. 8 threads for Snapdragon 8 Elite Oryon; 6 for Exynos 1280) to maximize NEON SIMD throughput without starving OS tasks.</td>
-          </tr>
-          <tr>
-            <td><code>n_ctx</code></td>
-            <td><code>int</code></td>
-            <td><code>2048</code></td>
-            <td><code>1024 ~ 4096</code></td>
-            <td>Context window token limit. Reducing from 8192 to 2048 saves up to 75% of static DRAM allocation, crucial for devices with &le;8GB RAM.</td>
-          </tr>
-          <tr>
-            <td><code>n_batch</code></td>
-            <td><code>int</code></td>
-            <td><code>512</code></td>
-            <td><code>128 ~ 512</code></td>
-            <td>Prompt evaluation batch size. Larger batch speeds up TTFT (Time To First Token) during long prompt processing.</td>
-          </tr>
-          <tr>
-            <td><code>n_ubatch</code></td>
-            <td><code>int</code></td>
-            <td><code>256</code></td>
-            <td><code>32 ~ 256</code></td>
-            <td>Physical micro-batch compute size. Setting to 128 or 256 prevents burst memory allocation spikes on mobile LPDDR5 RAM.</td>
-          </tr>
-          <tr>
-            <td><code>n_gpu_layers</code></td>
-            <td><code>int</code></td>
-            <td><code>0</code></td>
-            <td><code>0 ~ 99</code></td>
-            <td>GPU layer offload count. Set to <code>0</code> for CPU NEON inference (stable on Oryon), or <code>99</code> for Adreno/Mali Vulkan GPU compute.</td>
-          </tr>
-          <tr>
-            <td><code>cache_type_k</code></td>
-            <td><code>str</code></td>
-            <td><code>"f16"</code></td>
-            <td><code>"q8_0" / "q4_0"</code></td>
-            <td>Key cache quantization format. <code>"q8_0"</code> saves 50% KV cache memory with zero perceptible perplexity loss; <code>"q4_0"</code> saves 75%.</td>
-          </tr>
-          <tr>
-            <td><code>cache_type_v</code></td>
-            <td><code>str</code></td>
-            <td><code>"f16"</code></td>
-            <td><code>"q8_0" / "q4_0"</code></td>
-            <td>Value cache quantization format. Match with <code>cache_type_k</code> for symmetrical memory reduction.</td>
-          </tr>
-          <tr>
-            <td><code>mlock</code></td>
-            <td><code>bool</code></td>
-            <td><code>False</code></td>
-            <td><code>True / False</code></td>
-            <td>Locks model weights in physical RAM to prevent Android OS zRAM swap thrashing, eliminating sudden token generation stalls.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2. Generation &amp; Sampling Controls (`OpenAICompatibleChat`)</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Sampling Parameter</th>
-            <th>Type</th>
-            <th>Default</th>
-            <th>Tuning Spectrum</th>
-            <th>Behavioral Characteristics</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>temperature</code></td>
-            <td><code>float</code></td>
-            <td><code>0.7</code></td>
-            <td><code>0.0 ~ 1.5</code></td>
-            <td><strong>0.0</strong>: Deterministic mathematical/JSON output. <strong>0.3</strong>: Technical analysis. <strong>0.7</strong>: Conversational balance. <strong>1.2+</strong>: Creative exploration.</td>
-          </tr>
-          <tr>
-            <td><code>top_p</code></td>
-            <td><code>float</code></td>
-            <td><code>0.95</code></td>
-            <td><code>0.1 ~ 1.0</code></td>
-            <td>Nucleus probability cutoff. Filters candidate tokens to the top cumulative probability mass, preventing low-probability hallucinations.</td>
-          </tr>
-          <tr>
-            <td><code>top_k</code></td>
-            <td><code>int</code></td>
-            <td><code>40</code></td>
-            <td><code>1 ~ 100</code></td>
-            <td>Limits candidate pool to the top K most likely tokens before softmax sampling.</td>
-          </tr>
-          <tr>
-            <td><code>min_p</code></td>
-            <td><code>float</code></td>
-            <td><code>0.05</code></td>
-            <td><code>0.01 ~ 0.2</code></td>
-            <td>Minimum relative probability cutoff against highest-probability token. Eliminates tail hallucinations far better than top_p alone.</td>
-          </tr>
-          <tr>
-            <td><code>repeat_penalty</code></td>
-            <td><code>float</code></td>
-            <td><code>1.18</code></td>
-            <td><code>1.0 ~ 1.3</code></td>
-            <td>Penalizes repeated tokens. Set to 1.15~1.20 to prevent models from falling into infinite loops during long text generation.</td>
-          </tr>
-          <tr>
-            <td><code>max_tokens</code></td>
-            <td><code>int</code></td>
-            <td><code>128</code></td>
-            <td><code>16 ~ 2048</code></td>
-            <td>Hard ceiling on generated tokens per turn. Critical on mobile to prevent battery-draining runaway generations.</td>
-          </tr>
-          <tr>
-            <td><code>stop</code></td>
-            <td><code>list[str]</code></td>
-            <td><code>None</code></td>
-            <td><code>["<|eot_id|>", "\n\n"]</code></td>
-            <td>Explicit delimiter tokens that immediately halt generation.</td>
-          </tr>
-          <tr>
-            <td><code>timeout</code></td>
-            <td><code>float</code></td>
-            <td><code>20.0</code></td>
-            <td><code>5.0 ~ 120.0</code></td>
-            <td>Socket timeout in seconds. Triggers fail-fast error rather than hanging indefinitely during mobile sleep states.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>3. Tool Execution Governance &amp; Sandboxing (`ToolPolicy`)</h3>
-      <p>Mobile smartphones carry sensitive personal data (GPS, SMS, camera). <code>termux-aichain</code> enforces strict <strong>default-deny tool policies</strong>:</p>
-      <pre><code class="language-python">from termux_aichain import ToolPolicy, ToolRule
-
-# Enforce zero-trust default-deny security policy
-policy = ToolPolicy(
-    default="deny",
-    rules=[
-        # Read-only sensor inspection: Allowed without limits
-        ToolRule(name="get_battery_status", allow=True),
-        # Physical actuation: Allowed with rate limiting
-        ToolRule(name="vibrate_device", allow=True, max_calls_per_minute=10),
-        # High-privilege shell execution: Explicitly denied
-        ToolRule(name="execute_shell", allow=False)
-    ]
-)</code></pre>
-
-      <h3>4. Mobile Thermal Throttling &amp; Battery Safety Protocol</h3>
-      <p>To ensure long-term device longevity, agents should check battery temperature before executing compute-intensive tasks:</p>
-      <pre><code class="language-python">import json
-import time
-from termux_aichain import get_battery_status
-
-def check_thermal_budget(max_temp_celsius=40.0) -> bool:
-    data = json.loads(get_battery_status())
-    current_temp = data.get("temperature", 30.0)
-    if current_temp &gt; max_temp_celsius:
-        print(f"[THERMAL THROTTLE] Temperature {current_temp}C exceeds safe limit {max_temp_celsius}C. Pausing...")
-        time.sleep(10.0)
-        return False
-    return True</code></pre>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li><a href="benchmarks.html">Inspect Physical Device Benchmarks (Galaxy S25 &amp; A53)</a></li>
-        <li><a href="api-reference.html">Review Full API Reference &amp; Specifications</a></li>
-        <li><a href="quickstart.html">Return to Quickstart Recipes</a></li>
-      </ul>
+      <h2>Advanced Parameters & Tuning</h2>
+      <p class="subtitle">Kernel-level tuning, buffer pool sizing, and thread configuration</p>
+      <h3>Memory Buffer Pool Configuration</h3>
+         <p>Adjust max memory threshold and swap behaviors for ultra-constrained edge nodes.</p>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

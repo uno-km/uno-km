@@ -1,4 +1,4 @@
-# Termux-BitNet Full Technical Specification (v2.0.1)
+# Termux-BitNet Full Technical Specification (v2.2.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview

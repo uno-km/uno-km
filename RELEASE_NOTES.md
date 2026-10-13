@@ -2,6 +2,27 @@
 
 ---
 
+## [AMEVA Ecosystem Unified Fleet Upgrade (v2.2.0 Portal Sync)] - 2026-10-13
+
+### Overview
+This ecosystem-wide milestone synchronizes all 10 mobile on-device packages across the **npm Registry**, **GitHub Releases**, **3-Target READMEs**, and the **AMEVA Sovereign Web Portal (`v2.2.0`)**. Highlights include the **Mobile Canva Studio Engine (`termux-diffusion v2.1.0`)**, **Tier 5 SOTA Neural Speech Synthesis (`termux-tts v1.7.0`)**, **Neural Multi-Speaker Diarization (`termux-stt v2.1.0`)**, **Zero-Compilation Prebuilt Provisioning (`termux-bitnet v2.2.0`)**, and **Unified ameva-runtime HAL Routing** across all modalities.
+
+### Released Packages
+| Package | Version | NPM Distribution | GitHub Release | Key Engineering Highlight |
+| :--- | :---: | :--- | :---: | :--- |
+| **`termux-diffusion`** | **`2.1.0`** | `termux-diffusion@2.1.0` | `v2.1.0` | Mobile Canva Studio (Magic Eraser/Grab/Expand/Layers) & SurfaceFlinger Shield |
+| **`termux-tts`** | **`1.7.0`** | `termux-tts@1.7.0` | `v1.7.0` | Tier 5 SOTA ONNX (CosyVoice 2, F5-TTS, ChatTTS) & Zero-Shot Voice Cloning |
+| **`termux-stt`** | **`2.1.0`** | `termux-stt@2.1.0` | `v2.1.0` | Neural Diarization (PyAnnote 3.0 + CAM++ 192d + TS-VAD) & 4x Dual-Pipeline |
+| **`termux-bitnet`** | **`2.2.0`** | `termux-bitnet@2.2.0` | `v2.2.0` | Instant-on prebuilt native engine auto-provisioning & ameva-runtime HAL |
+| **`termux-vision`** | **`1.8.0`** | `termux-vision@1.8.0` | `v1.8.0` | Unified ameva-runtime GPU HAL & OpenSSF SPDX compliance |
+| **`termux-llamacpp`** | **`1.5.0`** | `termux-llamacpp@1.5.0` | `v1.5.0` | Unified GGUF GPU layer offloading & dual SDK synchronization |
+| **`termux-train`** | **`2.1.0`** | `termux-train@2.1.0` | `v2.1.0` | Vulkan compute shader CRLF syntax patch & SafeTensors zero-copy hardening |
+| **`termux-aichain`** | **`1.2.0`** | `termux-aichain@1.2.0` | `v1.2.0` | Zero silent exceptions (136 tests verified) & orchestrator control-plane adapter |
+| **`termux-playwright`** | **`1.82.0`** | `termux-playwright@1.82.0` | `v1.82.0` | Standardized Android Bionic platform detection & TermuxWakeLock interface |
+| **`@ameva/orchestrator`** | **`1.1.0`** | `@ameva/orchestrator@1.1.0` | `v1.1.0` | Official Node.js client SDK, zero-config UDP discovery & 6-digit PIN pairing |
+
+---
+
 ## [Termux-Vision v1.5.0 Pure Vulkan GPU & ARM64 NEON Compute Release] - 2026-10-01
 
 ### Overview

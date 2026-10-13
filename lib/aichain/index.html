@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termux-AIChain | Official Documentation</title>
-  <meta name="description" content="Sovereign zero-dependency AI chaining, LCEL pipe workflows, autonomous StateGraph agents, and smartphone hardware actuation for Android Termux.">
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,194 +19,137 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Termux-AIChain</h2>
-      <p class="subtitle">Sovereign Zero-Dependency AI Chaining, LCEL Pipe Pipelines & Autonomous Agent Engine for Android Termux</p>
+      <h2 data-i18n="home.title">Termux-AIChain</h2>
+      <p class="subtitle" data-i18n="home.subtitle">Why LangChain on Termux? Bloat & Crash vs 94KB Zero-Dep LCEL & Hardware Native Agents</p>
 
       <div class="badges-bar">
         <a href="https://pypi.org/project/termux-aichain/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-aichain.svg?color=004499" alt="PyPI Version"></a>
         <a href="https://www.npmjs.com/package/termux-aichain" target="_blank"><img src="https://img.shields.io/npm/v/termux-aichain.svg?color=cb3837" alt="npm Version"></a>
-        <img src="https://img.shields.io/badge/license-Apache_2.0-004499.svg" alt="License">
-        <img src="https://img.shields.io/badge/platform-Android_Termux_(ARM64)-blueviolet.svg" alt="Platform">
-        <img src="https://img.shields.io/badge/dependencies-0_External_Packages-success.svg" alt="Zero Dependencies">
-        <img src="https://img.shields.io/badge/tests-174%2F174_PASS-brightgreen.svg" alt="Tests">
+        <img src="https://img.shields.io/badge/license-Apache--2.0-004499.svg" alt="License">
+        <img src="https://img.shields.io/badge/platform-Android_Termux_(ARM64)_/_Python_3.10+_/_Node.js_18+_ESM-blueviolet.svg" alt="Platform">
       </div>
 
-      <!-- CRITICAL SECTION: Why termux-aichain instead of LangChain on Termux -->
-      <div class="alert alert-warning" style="margin-top: 1.5rem;">
-        <span class="alert-title">CRITICAL ARCHITECTURE QUESTION</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.75rem; color: var(--text-heading, #1e293b);">Why termux-aichain Instead of LangChain on Android Termux?</h3>
-        <p>Running enterprise cloud frameworks like <strong>LangChain</strong>, <strong>LlamaIndex</strong>, or <strong>CrewAI</strong> on mobile ARM64 devices is fundamentally incompatible with the resource constraints and Bionic C runtime of Android:</p>
-        <ul style="margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li><strong>Heavy Dependency Bloat (48+ Packages vs 0)</strong>: LangChain pulls in Pydantic, SQLAlchemy, aiohttp, and requests, requiring 200MB+ disk space and causing frequent C/Rust compilation crashes on Android Bionic ARM64. <code>termux-aichain</code> requires <strong>exactly 0 external dependencies</strong> (100% Python 3.10+ stdlib & Node.js 18+ ESM).</li>
-          <li><strong>Android Low Memory Killer (LMK) Protection</strong>: LangChain consumes 185MB of idle RAM baseline. When paired with a 1B~3B LLM, total memory exceeds mobile process limits, triggering immediate kernel <code>SIGKILL</code>. <code>termux-aichain</code> operates with a <strong>14.2MB RSS footprint</strong>.</li>
-          <li><strong>Cold Start Import Time (3,840ms vs 12.8ms)</strong>: LangChain takes 3~7 seconds just to complete module imports. <code>termux-aichain</code> imports in <strong>12.8ms</strong> for instant CLI execution.</li>
-          <li><strong>Native Smartphone Hardware Actuation</strong>: LangChain has zero mobile hardware awareness. <code>termux-aichain</code> natively integrates Android battery, temperature, GPS, camera, haptic vibration, and system notifications as <strong>first-class citizen tools</strong>.</li>
-          <li><strong>100% LCEL Syntax Compatible</strong>: Enjoy familiar LangChain Expression Language pipe syntax (<code>prompt | llm | parser</code>) with zero bloat.</li>
-        </ul>
-      </div>
-
-      <div class="alert alert-info">
-        <span class="alert-title">1-Line Quick Installation</span>
-        <p>Install the official zero-dependency package directly into your mobile runtime:</p>
-        <pre><code># Python (Termux or Linux):
-pip install --upgrade termux-aichain
-
-# Node.js ESM (Termux or Linux):
+      <div class="alert alert-tip">
+        <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
+        <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
+        <pre><code>pip install termux-aichain
+# or:
 npm install termux-aichain</code></pre>
       </div>
 
-      <h3>Architectural Head-to-Head Comparison</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Architectural Metric</th>
-            <th>LangChain (Standard Heavy)</th>
-            <th>termux-aichain v1.1.4</th>
-            <th>Mobile Engineering Impact</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>External Dependencies</strong></td>
-            <td>48 packages</td>
-            <td><strong>0 packages</strong></td>
-            <td>Zero dependency conflicts, installs in &lt;1 second</td>
-          </tr>
-          <tr>
-            <td><strong>Wheel Download Size</strong></td>
-            <td>~210 MB (tree)</td>
-            <td><strong>94 KB</strong></td>
-            <td>99.9% storage footprint reduction</td>
-          </tr>
-          <tr>
-            <td><strong>Cold Start Import Time</strong></td>
-            <td>3,840 ms</td>
-            <td><strong>12.8 ms</strong></td>
-            <td>300x faster startup for ephemeral CLI scripts</td>
-          </tr>
-          <tr>
-            <td><strong>Idle Memory Footprint (RSS)</strong></td>
-            <td>185.0 MB</td>
-            <td><strong>14.2 MB</strong></td>
-            <td>Prevents Android LMK (Low Memory Killer) crashes</td>
-          </tr>
-          <tr>
-            <td><strong>Android Compilation Barrier</strong></td>
-            <td>Fails (Rust / C++ wheels)</td>
-            <td><strong>Pure Stdlib (No compilation)</strong></td>
-            <td>Runs out-of-the-box without clang or rustc</td>
-          </tr>
-          <tr>
-            <td><strong>Smartphone Hardware Tools</strong></td>
-            <td>None</td>
-            <td><strong>Native (Battery, GPS, Haptics)</strong></td>
-            <td>Direct actuation of real physical hardware</td>
-          </tr>
-          <tr>
-            <td><strong>On-Device Vector Store</strong></td>
-            <td>Requires Chroma/FAISS</td>
-            <td><strong>Built-in SQLite Vector Store</strong></td>
-            <td>Pure math cosine similarity in mobile SQLite</td>
-          </tr>
-          <tr>
-            <td><strong>LCEL Pipe Syntax (<code>|</code>)</strong></td>
-            <td>Supported</td>
-            <td><strong>100% Supported</strong></td>
-            <td>Zero migration cost for LangChain users</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3 data-i18n="home.challengeTitle">The Engineering Challenge</h3>
+      <p data-i18n="home.challengeText">Standard enterprise frameworks (LangChain, LlamaIndex, CrewAI) pull in 45+ heavy dependencies (Pydantic-core, Chroma, Tiktoken) weighing 200MB+ that constantly fail to compile on Android Bionic ARM64 and trigger instant Out-Of-Memory (LMK) kernel kills.</p>
 
-      <h3>Canonical Working Code Example</h3>
-      <div class="code-tab-group">
-        <div class="code-tabs-header">
-          <button class="code-tab-btn active" type="button">Python (pip)</button>
-          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+      <h3 data-i18n="home.breakthroughTitle">The Architectural Breakthrough</h3>
+      <p data-i18n="home.breakthroughText">Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.</p>
+
+      <h3 data-i18n="home.featuresTitle">Key Capabilities &amp; Built-in Hardening</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 data-i18n="home.features.0.title">Zero External Dependencies (94KB)</h4>
+          <p data-i18n="home.features.0.desc">Written entirely in Python stdlib (urllib, sqlite3, json) and Node.js ESM. No C/Rust compiler required on Android Bionic ARM64.</p>
         </div>
-        <div class="code-tab-content" style="display:block;">
-          <pre><code class="language-python">from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser, get_battery_status
-
-# 1. Probe real physical smartphone hardware telemetry
-batt_status = get_battery_status()
-
-# 2. Build standard LCEL Pipe Chain bound to local llama-server (port 8080)
-prompt = PromptTemplate.from_template("Phone Telemetry: {status}. Diagnose condition in 1 crisp sentence:")
-llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", model="llama3", temperature=0.3, max_tokens=64)
-chain = prompt | llm | StringOutputParser()
-
-# 3. Execute with 0 external dependencies
-report = chain.invoke({"status": batt_status})
-print("AI Diagnostic:", report)</code></pre>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.1.title">LCEL Pipeline Compatibility</h4>
+          <p data-i18n="home.features.1.desc">Full Runnable Protocol support with the pipe operator (prompt | llm | parser) and real-time streaming chunk emission.</p>
         </div>
-        <div class="code-tab-content" style="display:none;">
-          <pre><code class="language-javascript">import { PromptTemplate, OpenAICompatibleChat, StringOutputParser, getBatteryStatus } from "termux-aichain";
-
-// 1. Probe real physical smartphone hardware telemetry
-const battery = await getBatteryStatus.func();
-
-// 2. Build standard LCEL Pipe Chain bound to local llama-server (port 8080)
-const prompt = PromptTemplate.fromTemplate("Phone Telemetry: {status}. Diagnose condition in 1 crisp sentence:");
-const llm = new OpenAICompatibleChat({ baseUrl: "http://127.0.0.1:8080/v1", model: "llama3", temperature: 0.3, maxTokens: 64 });
-const chain = prompt.pipe(llm).pipe(new StringOutputParser());
-
-// 3. Execute with 0 npm dependencies
-const report = await chain.invoke({ status: JSON.stringify(battery) });
-console.log("AI Diagnostic:", report);</code></pre>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.2.title">Native Smartphone Hardware Actuation</h4>
+          <p data-i18n="home.features.2.desc">Built-in first-class tools for Android kernel battery, surface temperature, GPS coordinates, haptic vibration, and system notifications.</p>
+        </div>
+        <div class="feature-card">
+          <h4 data-i18n="home.features.3.title">On-Device SQLite Vector Store (RAG)</h4>
+          <p data-i18n="home.features.3.desc">Embeddings storage and pure-math cosine similarity search in SQLite :memory: or local DB without ChromaDB or FAISS.</p>
         </div>
       </div>
 
-      <h3>Supported Compute Kernels &amp; Operations</h3>
+      <h3 data-i18n="home.matrixTitle">Supported Compute Kernels &amp; Operations</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th>Subsystem Category</th>
-            <th>Operations &amp; Kernels</th>
-            <th>Status</th>
+            <th data-i18n="home.matrixCol1">Subsystem Category</th>
+            <th data-i18n="home.matrixCol2">Operations &amp; Kernels</th>
+            <th data-i18n="home.matrixCol3">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>LCEL Pipe Protocol</strong></td>
             <td>PromptTemplate | Model | OutputParser Runnable Sequence</td>
-            <td><span class="badge badge-success">Production</span></td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
             <td><strong>Autonomous Agents</strong></td>
             <td>StateGraph, create_react_agent, ToolPolicy(default='deny')</td>
-            <td><span class="badge badge-success">Production</span></td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
             <td><strong>Hardware Actuation</strong></td>
             <td>Battery, Temperature, GPS, Vibration, Notifications, Shell</td>
-            <td><span class="badge badge-success">Production</span></td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
-            <td><strong>Vector Store &amp; RAG</strong></td>
+            <td><strong>Vector Store & RAG</strong></td>
             <td>SQLiteVectorStore with Pure Math Cosine Similarity</td>
-            <td><span class="badge badge-success">Production</span></td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
           <tr>
             <td><strong>Dual Runtime Parity</strong></td>
-            <td>Pure Python 3.10+ Stdlib &amp; Pure Node.js 18+ ESM</td>
-            <td><span class="badge badge-success">Production</span></td>
+            <td>Pure Python 3.10+ Stdlib & Pure Node.js 18+ ESM</td>
+            <td><span class="status-badge active">Production</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Getting Started &amp; Deep Technical Guides</h3>
+      <h3 data-i18n="home.codeExampleTitle">Canonical Usage Example</h3>
+      <div class="code-tab-group">
+        <div class="code-tabs-header">
+          <button class="code-tab-btn active" type="button">Python (pip)</button>
+          <button class="code-tab-btn" type="button">Node.js (npm)</button>
+        </div>
+        <div class="code-tab-content" style="display:block;">
+          <pre><code>from termux_aichain import PromptTemplate, OpenAICompatibleChat, StringOutputParser, get_battery_status
+
+# 1. Read physical smartphone hardware telemetry
+battery = get_battery_status()
+
+# 2. Build LCEL Chain connected to local llama-server (port 8080)
+prompt = PromptTemplate.from_template("Phone Telemetry: {status}. Diagnose in 1 sentence:")
+llm = OpenAICompatibleChat(base_url="http://127.0.0.1:8080/v1", model="llama3", temperature=0.3)
+chain = prompt | llm | StringOutputParser()
+
+# 3. Execute with 0 external dependencies
+report = chain.invoke({"status": battery})
+print("AI Diagnostic:", report)</code></pre>
+        </div>
+        <div class="code-tab-content" style="display:none;">
+          <pre><code>import { PromptTemplate, OpenAICompatibleChat, StringOutputParser, getBatteryStatus } from 'termux-aichain';
+
+// 1. Read physical smartphone hardware telemetry
+const battery = await getBatteryStatus.func();
+
+// 2. Build LCEL Chain connected to local llama-server (port 8080)
+const prompt = PromptTemplate.fromTemplate('Phone Telemetry: {status}. Diagnose in 1 sentence:');
+const llm = new OpenAICompatibleChat({ baseUrl: 'http://127.0.0.1:8080/v1', model: 'llama3', temperature: 0.3 });
+const chain = prompt.pipe(llm).pipe(new StringOutputParser());
+
+// 3. Execute with 0 npm dependencies
+const report = await chain.invoke({ status: JSON.stringify(battery) });
+console.log('AI Diagnostic:', report);</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="home.nextStepsTitle">Getting Started &amp; Deep Guides</h3>
       <ul>
-        <li><a href="installation.html">Detailed Installation Guide &amp; Termux Setup</a></li>
-        <li><a href="quickstart.html">Production Recipes &amp; Execution Patterns</a></li>
-        <li><a href="api-reference.html">Complete API Reference &amp; Struct Definitions</a></li>
-        <li><a href="advanced-parameters.html">Hardware Tuning &amp; Sampling Parameters</a></li>
-        <li><a href="benchmarks.html">Physical Galaxy S25 / A53 Hardware Benchmarks</a></li>
-        <li><a href="versions.html">Changelog &amp; Release History</a></li>
+        <li><a href="installation.html" data-i18n="home.linkInstall">Detailed Installation Guide (Hardware dependencies, Termux setup, WebGPU flags)</a></li>
+        <li><a href="quickstart.html" data-i18n="home.linkQuickstart">Quickstart Recipes &amp; Common Execution Patterns</a></li>
+        <li><a href="api-reference.html" data-i18n="home.linkApi">100% Full API Reference &amp; Struct Definitions</a></li>
       </ul>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

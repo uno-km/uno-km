@@ -1,4 +1,4 @@
-# Termux-Train Full Technical Specification (v2.0.1)
+# Termux-Train Full Technical Specification (v2.1.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview

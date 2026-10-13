@@ -1,6 +1,6 @@
 ecosystem:
-  version: 2.1.1
-  release_date: '2026-09-04'
+  version: 2.2.0
+  release_date: '2026-10-13'
   codename: Unified Portal
 libraries:
   sentinel:
@@ -41,8 +41,8 @@ libraries:
     status: stable
   aichain:
     name: Termux-AIChain
-    version: 1.1.4
-    release_date: '2026-09-17'
+    version: 1.2.0
+    release_date: '2026-10-13'
     npm_package: termux-aichain
     pypi_package: termux-aichain
     github_repo: uno-km/termux-aichain
@@ -58,8 +58,8 @@ libraries:
     status: stable
   bitnet:
     name: Termux-BitNet
-    version: 2.1.0
-    release_date: '2026-10-04'
+    version: 2.2.0
+    release_date: '2026-10-13'
     npm_package: termux-bitnet
     pypi_package: termux-bitnet
     github_repo: uno-km/termux-bitnet
@@ -76,8 +76,8 @@ libraries:
     status: stable
   diffusion:
     name: Termux-Diffusion
-    version: 1.9.0
-    release_date: '2026-10-04'
+    version: 2.1.0
+    release_date: '2026-10-13'
     npm_package: termux-diffusion
     pypi_package: termux-diffusion
     github_repo: uno-km/termux-diffusion
@@ -96,8 +96,8 @@ libraries:
     status: stable
   playwright:
     name: Termux-Playwright
-    version: 1.81.2
-    release_date: '2026-09-17'
+    version: 1.82.0
+    release_date: '2026-10-13'
     npm_package: termux-playwright
     pypi_package: termux-playwright
     github_repo: uno-km/termux-playwright
@@ -113,8 +113,8 @@ libraries:
     status: stable
   stt:
     name: Termux-STT
-    version: 1.4.0
-    release_date: '2026-10-04'
+    version: 2.1.0
+    release_date: '2026-10-13'
     npm_package: termux-stt
     pypi_package: termux-stt
     github_repo: uno-km/termux-stt
@@ -132,9 +132,9 @@ libraries:
     status: stable
   train:
     name: Termux-Train
-    version: 2.0.0
-    release_date: '2026-10-03'
-    npm_package: null
+    version: 2.1.0
+    release_date: '2026-10-13'
+    npm_package: termux-train
     pypi_package: termux-train
     github_repo: uno-km/termux-train
     lib_path: lib/train
@@ -171,8 +171,8 @@ libraries:
     status: stable
   llamacpp:
     name: Termux-LlamaCpp
-    version: 1.4.0
-    release_date: '2026-10-04'
+    version: 1.5.0
+    release_date: '2026-10-13'
     npm_package: termux-llamacpp
     pypi_package: termux-llamacpp
     github_repo: uno-km/termux-llamacpp
@@ -188,8 +188,8 @@ libraries:
     status: stable
   vision:
     name: Termux-Vision
-    version: 1.7.0
-    release_date: '2026-10-04'
+    version: 1.8.0
+    release_date: '2026-10-13'
     npm_package: termux-vision
     pypi_package: termux-vision
     github_repo: uno-km/termux-vision
@@ -205,9 +205,9 @@ libraries:
     status: stable
   vulkan:
     name: AMEVA-Runtime
-    version: 2.8.0
-    release_date: '2026-10-04'
-    npm_package: "@ameva/runtime"
+    version: 2.8.1
+    release_date: '2026-10-13'
+    npm_package: '@ameva/runtime'
     pypi_package: ameva-runtime
     github_repo: uno-km/ameva-runtime
     lib_path: lib/vulkan
@@ -223,8 +223,8 @@ libraries:
     status: stable
   tts:
     name: Termux-TTS
-    version: 1.6.0
-    release_date: '2026-10-04'
+    version: 1.7.0
+    release_date: '2026-10-13'
     npm_package: termux-tts
     pypi_package: termux-tts
     github_repo: uno-km/termux-tts
@@ -243,7 +243,7 @@ libraries:
     name: AMEVA-Cluster
     version: 1.0.0
     release_date: '2026-10-03'
-    npm_package: "@ameva/cluster"
+    npm_package: '@ameva/cluster'
     pypi_package: ameva-cluster
     github_repo: uno-km/ameva-cluster
     lib_path: lib/cluster
@@ -262,9 +262,9 @@ libraries:
     status: stable
   orchestrator:
     name: AMEVA-Orchestrator
-    version: 1.0.0
-    release_date: '2026-10-11'
-    npm_package: "@ameva/orchestrator"
+    version: 1.1.0
+    release_date: '2026-10-13'
+    npm_package: '@ameva/orchestrator'
     pypi_package: termux-ai-orchestrator
     github_repo: uno-km/termux-ai-orchestrator
     lib_path: lib/orchestrator
@@ -281,4 +281,3 @@ libraries:
     - guide.html
     - cluster.html
     status: stable
-

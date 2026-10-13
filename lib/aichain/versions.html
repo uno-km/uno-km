@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version &amp; Release Archive | Termux-AIChain</title>
-  <meta name="description" content="Complete historical changelog, semantic versioning milestones, and binary provenance for Termux-AIChain.">
+  <title>Version Archive & Changelog | Termux-AIChain</title>
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,94 +19,28 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Version &amp; Release Archive</h2>
-      <p class="subtitle">Complete Semantic Versioning History, Binary Provenance &amp; Verification Telemetry (Termux-AIChain)</p>
-
-      <!-- Section: Why termux-aichain evolution vs LangChain bloat -->
-      <div class="alert alert-warning">
-        <span class="alert-title">THE ZERO-DRIFT EVOLUTION</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-heading, #1e293b);">From Zero-Dependency Core to Full LCEL &amp; Multi-Device Ecosystem</h3>
-        <p>While mainstream agent frameworks became increasingly fragmented and bloated across 2024&ndash;2026, <code>termux-aichain</code> remained committed to its founding doctrine: <strong>Zero External Dependencies, 100% Pure Standard Library, and Direct Mobile Hardware Actuation</strong>.</p>
+      <h2>Version Archive & Changelog</h2>
+      <p class="subtitle">Changelog history and immutable releases</p>
+            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">v1.2.0 - Fail-Fast Zero-Silent-Exception & ameva-runtime v2 Integration</h3>
+          <div>
+            <span class="status-badge active" style="margin-right: 6px;">Production Release (Latest)</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-13</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li>Purged all bare except:pass blocks and subprocess exception black holes (136 unit tests verified).</li>
+          <li>Migrated hardware acceleration dependency to ameva-runtime v2.</li>
+          <li>Integrated AMEVA cluster orchestrator control-plane adapter.</li>
+          <li>Added live Snapdragon S25 and Exynos A53 E2E telemetry recipes.</li>
+        </ul>
       </div>
-
-      <div class="timeline">
-        <!-- v1.1.5 Latest Release -->
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge">Latest Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.5 &mdash; Flyweight Pattern Optimization &amp; Rigorous Hardware Stress Tests (2026-10-06)</h3>
-            <ul>
-              <li><strong>Flyweight Pattern Pooling:</strong> Introduced <code>PromptFlyweightPool</code> and <code>ToolFlyweightRegistry</code>, reducing 10,000 prompt allocations from 262.89ms to 35.63ms (<strong>7.38x speedup</strong>, 3.56&mu;s/op) on Galaxy S25 Oryon CPU.</li>
-              <li><strong>Zero Heap Fragmentation:</strong> Implemented immutable string interning for recurring system prompts and tool schemas.</li>
-              <li><strong>Dual Registry Deployment:</strong> Published simultaneously to <a href="https://pypi.org/project/termux-aichain/1.1.5/" target="_blank">PyPI</a> and <a href="https://www.npmjs.com/package/termux-aichain" target="_blank">npm</a> with complete LangChain comparative technical documentation.</li>
-              <li><strong>174 / 174 Test Suite Pass:</strong> 156 Python tests and 18 Node.js ESM tests passing with 100% deterministic reproducibility.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v1.1.4 Stable Release -->
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#2563eb;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.4 &mdash; Sovereign Zero-Dependency LCEL &amp; Physical Fleet Verification (2026-10-06)</h3>
-            <ul>
-              <li><strong>Zero-Dependency LCEL Pipeline:</strong> Complete implementation of the <code>Runnable</code> protocol supporting the pipe operator (<code>prompt | llm | parser</code>) without LangChain dependencies.</li>
-              <li><strong>Physical Galaxy Fleet Verification:</strong> Live multi-node verification on Samsung Galaxy S25 (Master Coordinator, Oryon CPU, port 8080/11554) and Galaxy A53 (Samsung HD neural voice worker, port 8088).</li>
-              <li><strong>On-Device SQLite Vector Store:</strong> Native cosine similarity search and RAG engine built directly on Python <code>sqlite3</code> and pure mathematical dot-product.</li>
-              <li><strong>Native Smartphone Actuation Tools:</strong> First-class integration for Android battery status, device temperature, GPS coordinates, haptic vibration, and system notifications.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v1.1.3 -->
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#2563eb;">Stable Release</div>
-          <div class="timeline-content">
-            <h3>v1.1.3 &mdash; Hardware Acceleration Delegation &amp; Fail-Fast Diagnostics (2026-09-05)</h3>
-            <ul>
-              <li><strong>Runtime Migration:</strong> Migrated hardware acceleration hooks to <code>@ameva/runtime &gt;= 2.0.0</code> and <code>ameva-runtime &gt;= 2.0.0</code>.</li>
-              <li><strong>Fail-Fast Error Reporting:</strong> Enhanced chain execution diagnostics with explicit error codes and subprocess exception logging.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v1.1.1 -->
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#475569;">Core Milestone</div>
-          <div class="timeline-content">
-            <h3>v1.1.1 &mdash; Deterministic ReAct Engine &amp; Zero-Dependency Hardening (2026-09-02)</h3>
-            <ul>
-              <li><strong>StateGraph Agent Loop:</strong> Introduced cyclic reasoning-and-acting execution graph with tool dispatching.</li>
-              <li><strong>ToolPolicy Sandboxing:</strong> Implemented default-deny tool security policy with JSON Schema bounds validation.</li>
-              <li><strong>Dual Runtime Parity:</strong> Established complete API symmetry between Python standard library and Node.js 18+ ESM.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v1.0.0 -->
-        <div class="timeline-item" style="margin-top: 1.5rem;">
-          <div class="timeline-badge" style="background:#64748b;">Initial Release</div>
-          <div class="timeline-content">
-            <h3>v1.0.0 &mdash; Initial Sovereign Edge Agent Framework (2026-08-26)</h3>
-            <ul>
-              <li>Initial release of zero-dependency edge chaining framework for Android Termux.</li>
-              <li>Apache-2.0 open-source licensing under AMEVA Open-Source Foundation.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li><a href="index.html">Return to Home &amp; Architecture Overview</a></li>
-        <li><a href="installation.html">View Installation Guide</a></li>
-        <li><a href="quickstart.html">Explore Quickstart Recipes</a></li>
-      </ul>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>

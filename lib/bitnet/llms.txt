@@ -1,9 +1,9 @@
 # Termux-BitNet — AI Agent Fast Context
-# Generated: 2026-10-11  |  Version: 2.1.0
+# Generated: 2026-10-13  |  Version: 2.2.0
 
 ## Library
 Name: Termux-BitNet
-Version: 2.1.0
+Version: 2.2.0
 GitHub: https://github.com/uno-km/termux-bitnet
 Documentation: https://uno-km.vercel.app/lib/bitnet/
 License: Apache-2.0

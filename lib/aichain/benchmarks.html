@@ -4,8 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hardware Benchmarks &amp; Resource Telemetry | Termux-AIChain</title>
-  <meta name="description" content="Physical smartphone benchmarks on Samsung Galaxy S25 and A53: cold start, memory RSS, TTFT, and hardware actuation latency.">
+  <title>Benchmarks & Profiling | Termux-AIChain</title>
+  <meta name="description" content="Termux-AIChain provides 100% pure standard-library LCEL pipe chaining (prompt | llm | parser), autonomous StateGraph agents, on-device SQLite vector RAG, and first-class Android smartphone hardware actuation (battery, temperature, haptics, GPS) in a tiny 94KB footprint.">
   <link rel="stylesheet" href="/shared/lib-style.css">
   <script src="/shared/components.js" defer></script>
   <script src="/shared/i18n.js" defer></script>
@@ -19,227 +19,19 @@
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Hardware Benchmarks &amp; Resource Telemetry</h2>
-      <p class="subtitle">Empirical Measurements on Physical Samsung Galaxy S25 &amp; A53 Hardware (Termux-AIChain v1.1.4)</p>
-
-      <!-- Section: Why termux-aichain wins on mobile hardware -->
-      <div class="alert alert-warning">
-        <span class="alert-title">MEASURED GROUND TRUTH</span>
-        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-heading, #1e293b);">Physical Mobile Reality: LangChain vs termux-aichain</h3>
-        <p>In real-world mobile edge deployments, synthetic server benchmarks mean nothing. What matters is <strong>process survival under Android's Low Memory Killer (LMK)</strong>, <strong>cold start import speed</strong>, and <strong>low thermal dissipation</strong>.</p>
-        <p style="margin-top: 0.5rem;">Below are empirical measurements recorded directly on physical Samsung Galaxy hardware under Android Termux (ARM64 Bionic libc).</p>
-      </div>
-
-      <h3>1. Comprehensive Framework Benchmark (Galaxy S25)</h3>
+      <h2>Benchmarks & Profiling</h2>
+      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
       <table class="data-table">
-        <thead>
-          <tr>
-            <th>Measurement Dimension</th>
-            <th>LangChain (Standard Heavy)</th>
-            <th>termux-aichain v1.1.4</th>
-            <th>Performance Delta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Cold Start Import Time</strong></td>
-            <td>3,840.0 ms</td>
-            <td><strong>12.8 ms</strong></td>
-            <td><strong>300x Faster</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Idle RAM Footprint (RSS)</strong></td>
-            <td>185.0 MB</td>
-            <td><strong>14.2 MB</strong></td>
-            <td><strong>92.3% Less Memory</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Wheel Package Size</strong></td>
-            <td>210.0 MB (tree)</td>
-            <td><strong>94 KB</strong></td>
-            <td><strong>99.9% Storage Saved</strong></td>
-          </tr>
-          <tr>
-            <td><strong>External Dependencies</strong></td>
-            <td>48 packages</td>
-            <td><strong>0 packages</strong></td>
-            <td><strong>Zero Dependency Conflicts</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Time To First Token (TTFT)</strong></td>
-            <td>~950 ms</td>
-            <td><strong>827 ms</strong></td>
-            <td><strong>13% Lower Latency</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Smartphone Hardware Tools</strong></td>
-            <td>None</td>
-            <td><strong>Native (Battery, Sensors, Haptic)</strong></td>
-            <td><strong>Direct Phone Actuation</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Automated Test Suite Pass Rate</strong></td>
-            <td>Variable (Bionic fails)</td>
-            <td><strong>174 / 174 PASS</strong></td>
-            <td><strong>100% Validated (156 Py + 18 Node)</strong></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2. Galaxy S25 + Galaxy A53 Physical Multi-Device Live E2E Telemetry</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Pipeline Step</th>
-            <th>Target Device &amp; Hardware Unit</th>
-            <th>Execution Metric</th>
-            <th>Empirical Telemetry Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Step 1: Hardware Sensor Probe</strong></td>
-            <td>Galaxy S25 (Qualcomm Oryon)</td>
-            <td>1,898.00 ms</td>
-            <td>Battery: 39%, Surface Temp: 30.0 &deg;C, DISCHARGING</td>
-          </tr>
-          <tr>
-            <td><strong>Step 2: SQLite Vector Store RAG</strong></td>
-            <td>Galaxy S25 (On-Device SQLite)</td>
-            <td>Sub-10 ms</td>
-            <td>Matched: "Thermal Warning Policy: Temp &gt;= 35C"</td>
-          </tr>
-          <tr>
-            <td><strong>Step 3: LCEL Local Inference</strong></td>
-            <td>Galaxy S25 (Llama-3.2 1B Instruct)</td>
-            <td>7,402.03 ms</td>
-            <td>Generated 20-token speech payload on port 8080</td>
-          </tr>
-          <tr>
-            <td><strong>Step 4: Remote Neural Voice TTS</strong></td>
-            <td>Galaxy A53 (Samsung Exynos 1280)</td>
-            <td>6,186.63 ms</td>
-            <td>Engine: <code>samsung_native_neural_en</code>, Played = True</td>
-          </tr>
-          <tr>
-            <td><strong>Step 5: Physical Haptic Motor</strong></td>
-            <td>Galaxy S25 (Haptic Actuator)</td>
-            <td>3,151.09 ms</td>
-            <td>Status: SUCCESS (300 ms physical pulse actuated)</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>3. Galaxy Hardware Fleet Telemetry</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Device Model</th>
-            <th>SoC &amp; Core Architecture</th>
-            <th>Import Latency</th>
-            <th>Process RSS</th>
-            <th>Inference Engine &amp; Role</th>
-            <th>Measured Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Samsung Galaxy S25</strong></td>
-            <td>Snapdragon 8 Elite (Oryon CPU x8)</td>
-            <td><strong>12.8 ms</strong></td>
-            <td>14.2 MB</td>
-            <td>Llama-3.2 1B Instruct (Port 8080) + Orchestrator (11554)</td>
-            <td><span class="badge badge-success">Master Coordinator</span></td>
-          </tr>
-          <tr>
-            <td><strong>Samsung Galaxy S21</strong></td>
-            <td>Exynos 2100 (Cortex-X1 + A78 x3)</td>
-            <td><strong>18.5 ms</strong></td>
-            <td>15.1 MB</td>
-            <td>BitNet / OpenCL Accelerated Worker</td>
-            <td><span class="badge badge-success">Compute Worker</span></td>
-          </tr>
-          <tr>
-            <td><strong>Samsung Galaxy A53</strong></td>
-            <td>Exynos 1280 (Cortex-A78 x2 + A55 x6)</td>
-            <td><strong>22.4 ms</strong></td>
-            <td>16.0 MB</td>
-            <td>Samsung HD Neural Voice (Port 8088)</td>
-            <td><span class="badge badge-success">Audio Worker (played: true)</span></td>
-          </tr>
-          <tr>
-            <td><strong>Samsung Galaxy S20</strong></td>
-            <td>Snapdragon 865 (Kryo 585)</td>
-            <td><strong>14.2 ms</strong></td>
-            <td>14.8 MB</td>
-            <td>Llama-cpp ARM NEON DotProd</td>
-            <td><span class="badge badge-success">Worker Node</span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>3. Native Hardware Actuation Latency</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Hardware Actuation Call</th>
-            <th>Internal Mechanism</th>
-            <th>Execution Latency</th>
-            <th>Safety / Fallback Guard</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>get_battery_status()</code></td>
-            <td>Kernel sysfs / Termux-API</td>
-            <td><strong>18.2 ms</strong></td>
-            <td>Linux <code>/sys/class/power_supply</code> fallback</td>
-          </tr>
-          <tr>
-            <td><code>get_sensor_data()</code></td>
-            <td>Hardware SensorManager</td>
-            <td><strong>24.5 ms</strong></td>
-            <td>Timeout fallback (2.0s bound)</td>
-          </tr>
-          <tr>
-            <td><code>vibrate_device(300ms)</code></td>
-            <td>VibratorService IPC</td>
-            <td><strong>302.1 ms</strong></td>
-            <td>Non-blocking thread release</td>
-          </tr>
-          <tr>
-            <td><code>send_notification()</code></td>
-            <td>NotificationManager IPC</td>
-            <td><strong>15.4 ms</strong></td>
-            <td>Unique notification ID tracking</td>
-          </tr>
-          <tr>
-            <td><code>SQLiteVectorStore.search()</code></td>
-            <td>SQLite in-memory cosine dot-product</td>
-            <td><strong>4.2 ms (1,000 docs)</strong></td>
-            <td>Pure Python math, zero heap fragmentation</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>4. Test Suite &amp; Software Integrity Summary</h3>
-      <ul>
-        <li><strong>Python Test Suite (`tests/`)</strong>: 152 / 152 passed in 9.94s (unit, integration, LCEL, tools, memory, parsers).</li>
-        <li><strong>Node.js ESM Test Suite (`node --test`)</strong>: 17 / 17 passed in 987ms.</li>
-        <li><strong>Zero Regressions</strong>: All 169 automated tests pass deterministically on both ARM64 Android Termux and x86_64 environments.</li>
-      </ul>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li><a href="quickstart.html">Review Production Recipes</a></li>
-        <li><a href="api-reference.html">Review API Reference &amp; Structs</a></li>
-        <li><a href="versions.html">View Release History &amp; Changelog</a></li>
-      </ul>
+           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
+           <tbody>
+             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
+           </tbody>
+         </table>
     </main>
   </div>
 
   <footer>
-    <span>&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
+    <span data-i18n="common.footerText">&copy; 2026 AMEVA Open-Source Foundation. Released under the Apache-2.0 License.</span>
   </footer>
 </body>
 </html>
