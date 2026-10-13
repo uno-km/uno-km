@@ -787,6 +787,26 @@
         </div>
     </div>
 
+    <!-- 🌟 SERVED GEO PAYLOAD INSPECTOR MODAL (실제 AI 크롤러에게 서빙된 마크다운 전문 프리뷰) -->
+    <div class="modal-overlay" id="geo-payload-modal">
+        <div class="modal-box" style="max-width:980px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--primary-color); padding-bottom:10px;">
+                <div>
+                    <div style="font-weight:800; font-size:1.3em; color:var(--primary-color); display:flex; align-items:center; gap:8px;">
+                        <span>📄 Served GEO Knowledge Graph Payload Inspector</span>
+                        <span class="tomcat-badge badge-live" id="geo-modal-badge">200 GEO_AI_STREAM</span>
+                    </div>
+                    <div style="font-size:0.85em; color:var(--text-muted); margin-top:4px;" id="geo-modal-subtitle">
+                        Actual Semantic Markdown served to LLM Crawlers to anchor AI Citations and optimize bandwidth.
+                    </div>
+                </div>
+                <button class="btn-tomcat" id="btn-close-geomodal">✕ Close</button>
+            </div>
+            <div style="background:#0f172a; color:#f8fafc; border-radius:6px; padding:16px; font-family:var(--font-mono); font-size:0.88rem; line-height:1.55; overflow-x:auto; max-height:550px; white-space:pre-wrap;" id="geo-modal-content">
+            </div>
+        </div>
+    </div>
+
     <script>
         const REGION_CENTERS = {
             global: { center: [20.0, 0.0], zoom: 2 },
@@ -1146,10 +1166,6 @@
             document.getElementById("geo-modal-subtitle").textContent = `Route: ${reqPath} (Serving optimized Semantic Markdown for AI Crawlers)`;
             document.getElementById("geo-modal-content").textContent = payload;
             document.getElementById("geo-payload-modal").style.display = "flex";
-        };
-        document.getElementById("btn-close-geomodal").onclick = () => { document.getElementById("geo-payload-modal").style.display = "none"; };
-        document.getElementById("geo-payload-modal").onclick = (e) => {
-            if (e.target === document.getElementById("geo-payload-modal")) document.getElementById("geo-payload-modal").style.display = "none";
         };
 
         // ── Map Initialization ───────────────────────────────────────────────
@@ -1674,14 +1690,30 @@
         };
 
         // Modal Close Handlers
-        document.getElementById('btn-close-vmodal').onclick = () => { document.getElementById('vendor-footprint-modal').style.display = 'none'; };
-        document.getElementById('vendor-footprint-modal').onclick = (e) => {
-            if (e.target === document.getElementById('vendor-footprint-modal')) document.getElementById('vendor-footprint-modal').style.display = 'none';
+        // Guarded Modal Close Handlers (Zero-Null Exception)
+        const btnCloseVmodal = document.getElementById("btn-close-vmodal");
+        if (btnCloseVmodal) btnCloseVmodal.onclick = () => {
+            const m = document.getElementById("vendor-footprint-modal");
+            if (m) m.style.display = "none";
         };
-        document.getElementById('btn-close-modal').onclick = () => { document.getElementById('session-modal').style.display = 'none'; };
-        document.getElementById('session-modal').onclick = (e) => {
-            if (e.target === document.getElementById('session-modal')) document.getElementById('session-modal').style.display = 'none';
+        const vModal = document.getElementById("vendor-footprint-modal");
+        if (vModal) vModal.onclick = (e) => { if (e.target === vModal) vModal.style.display = "none"; };
+
+        const btnCloseModal = document.getElementById("btn-close-modal");
+        if (btnCloseModal) btnCloseModal.onclick = () => {
+            const m = document.getElementById("session-modal");
+            if (m) m.style.display = "none";
         };
+        const sessModal = document.getElementById("session-modal");
+        if (sessModal) sessModal.onclick = (e) => { if (e.target === sessModal) sessModal.style.display = "none"; };
+
+        const btnCloseGeomodal = document.getElementById("btn-close-geomodal");
+        if (btnCloseGeomodal) btnCloseGeomodal.onclick = () => {
+            const m = document.getElementById("geo-payload-modal");
+            if (m) m.style.display = "none";
+        };
+        const geoModal = document.getElementById("geo-payload-modal");
+        if (geoModal) geoModal.onclick = (e) => { if (e.target === geoModal) geoModal.style.display = "none"; };
 
         // Vendor Modal Event Listeners
         document.getElementById('vmodal-search-input').addEventListener('input', (e) => {
@@ -1737,24 +1769,5 @@
         fetchDashboard();
         autoTimer = setInterval(fetchDashboard, 8000);
     </script>
-    <!-- 🌟 SERVED GEO PAYLOAD INSPECTOR MODAL (실제 AI 크롤러에게 서빙된 마크다운 전문 프리뷰) -->
-    <div class="modal-overlay" id="geo-payload-modal">
-        <div class="modal-box" style="max-width:980px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--primary-color); padding-bottom:10px;">
-                <div>
-                    <div style="font-weight:800; font-size:1.3em; color:var(--primary-color); display:flex; align-items:center; gap:8px;">
-                        <span>📄 Served GEO Knowledge Graph Payload Inspector</span>
-                        <span class="tomcat-badge badge-live" id="geo-modal-badge">200 GEO_AI_STREAM</span>
-                    </div>
-                    <div style="font-size:0.85em; color:var(--text-muted); margin-top:4px;" id="geo-modal-subtitle">
-                        Actual Semantic Markdown served to LLM Crawlers to anchor AI Citations and optimize bandwidth.
-                    </div>
-                </div>
-                <button class="btn-tomcat" id="btn-close-geomodal">✕ Close</button>
-            </div>
-            <div style="background:#0f172a; color:#f8fafc; border-radius:6px; padding:16px; font-family:var(--font-mono); font-size:0.88rem; line-height:1.55; overflow-x:auto; max-height:550px; white-space:pre-wrap;" id="geo-modal-content">
-            </div>
-        </div>
-    </div>
 </body>
 </html>
