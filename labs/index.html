@@ -27,6 +27,13 @@
   <meta name="citation_publication_date" content="2026/09/08">
   <meta name="citation_publisher" content="AMEVA Open-Source Foundation">
 
+  <!-- PWA & Mobile Web Capabilities -->
+  <link rel="manifest" href="/labs/manifest.webmanifest">
+  <meta name="theme-color" content="#090d16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AmViewer">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <link rel="stylesheet" href="/shared/lib-style.css">
@@ -5690,6 +5697,15 @@
       document.addEventListener('DOMContentLoaded', () => LabsApp.init());
     } else {
       LabsApp.init();
+    }
+
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/labs/sw.js')
+          .then(reg => console.log('[AmViewer PWA] Service Worker registered:', reg.scope))
+          .catch(err => console.debug('[AmViewer PWA] Service Worker registration skipped:', err));
+      });
     }
   })();
   </script>

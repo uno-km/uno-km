@@ -1,0 +1,30 @@
+{
+  "name": "AmevaViewer - On-Device Markdown & Document Viewer",
+  "short_name": "AmViewer",
+  "description": "High-performance WebAssembly on-device Markdown, LaTeX, and Diagram viewer by AMEVA Workstation.",
+  "start_url": "/labs/index.html",
+  "scope": "/labs/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0284c7",
+  "orientation": "any",
+  "categories": ["productivity", "utilities", "developer"],
+  "icons": [
+    {
+      "src": "/shared/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/labs/index.html",
+      "name": "Markdown Document",
+      "accept": {
+        "text/markdown": [".md", ".markdown"],
+        "text/plain": [".txt"]
+      }
+    }
+  ]
+}
