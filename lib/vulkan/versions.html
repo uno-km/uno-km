@@ -61,8 +61,24 @@ Galaxy S25 was running other work during the measurement, hence its wide ranges.
 
     <main class="content">
       <h2>Version Archive & Changelog</h2>
-      <p class="subtitle">Changelog history and immutable releases</p>
-            <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: var(--primary-color, #004499);">AMUDA Android SDK v0.3.0 - In-Process Speech, Diffusion, SenseVoice &amp; Auto-Backend Selection (AAR)</h3>
+          <div>
+            <span class="status-badge" style="margin-right: 6px; background:#dcfce7; color:#15803d; border:1px solid #bbf7d0;">Major Feature Release</span>
+            <span style="font-size: 0.85em; color: var(--text-muted, #64748b);">2026-10-16</span>
+          </div>
+        </div>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+          <li><strong>AmevaSpeech</strong>: Loads whisper.cpp GGML models, transcribes 16 kHz mono PCM in-process with formal Vulkan GPU MatMul (f16, q5_0) acceleration. Verified on Samsung Galaxy A35 and A53 (Mali-G68).</li>
+          <li><strong>AmevaDiffusion</strong>: In-process single-file diffusion generation via <code>txt2img()</code> (stable-diffusion.cpp pinned commit 50d6405 + isolated <code>libggml-ameva-sd.so</code>). Verified with SDXS 683MB 1-step distilled GGUF at 512x512 on Galaxy A35.</li>
+          <li><strong>Auto Backend-Select</strong>: Pre-flight GEMV benchmarks CPU, Vulkan, and OpenCL before loading models. On Galaxy A35 (Mali-G68): CPU 6.77ms, Vulkan 3.39ms, OpenCL 2.92ms/op &mdash; automatically selecting OpenCL as fastest route. Also adds <code>AmevaLlm.reset()</code> to clear KV cache without reload (&lt;0.01ms).</li>
+          <li><strong>AmevaSenseVoice</strong>: Offline SenseVoice transcription (text, language, emotion, sound-event tags) via k2-fsa/sherpa-onnx v1.13.8 CPU ONNX Runtime. Verified on Galaxy S21 (Warm RTF: 0.063 ~ 0.068, 15x real-time), Galaxy A35 and A53 (Warm RTF: 0.31 ~ 0.37).</li>
+          <li><strong>AmevaModelHub</strong>: Zero-dependency background model downloading helper into app storage.</li>
+          <li><strong>CI / CD Release Automation</strong>: Automated sherpa-onnx prebuilt asset download and GitHub Actions Android Release build workflow with automated sha256 artifact verification.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-color, #004499);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="margin: 0; color: var(--primary-color, #004499);">v2.8.1 - Context Shift on the GPU Route (ROPE on the f16 KV cache in ggml-ameva)</h3>
           <div>

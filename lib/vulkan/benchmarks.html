@@ -60,14 +60,163 @@ Galaxy S25 was running other work during the measurement, hence its wide ranges.
     <ameva-sidebar></ameva-sidebar>
 
     <main class="content">
-      <h2>Benchmarks & Profiling</h2>
-      <p class="subtitle">Deterministic latency and VRAM allocation statistics</p>
-      <table class="data-table">
-           <thead><tr><th>Target Device</th><th>Latency (ms)</th><th>VRAM Consumption</th><th>Accuracy</th></tr></thead>
-           <tbody>
-             <tr><td>Snapdragon 8 Gen 2 (ARM64)</td><td>1.2 ms</td><td>14.2 MB</td><td>100.0% Exact</td></tr>
-           </tbody>
-         </table>
+      <h2>Benchmarks &amp; Profiling</h2>
+      <p class="subtitle">Deterministic latency, throughput, and hardware acceleration benchmarks measured on physical Android ARM64 devices.</p>
+
+      <section style="margin-top: 24px;">
+        <h3>1. Measured LLM Inference on Devices (Qwen2.5-0.5B-Instruct, GGUF Q4_K_M)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 12px;">
+          Measured on physical Samsung Galaxy testbed using <code>llama-completion</code> of the v2.8.0 llama bundle with 4 threads. Prompt processing evaluates ~370 tokens concurrently; token generation evaluates 64 tokens sequentially.
+        </p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Device &amp; SoC</th>
+              <th>Default Route</th>
+              <th>Prompt Processing (CPU / GPU t/s)</th>
+              <th>Token Generation (CPU / GPU t/s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Galaxy S25</strong> (Snapdragon 8 Elite, Adreno 830)</td>
+              <td><span class="badge" style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:4px;font-weight:600;">GPU</span></td>
+              <td>30-58 / <strong>1,010-1,081 t/s</strong></td>
+              <td>16-49 / <strong>36-77 t/s</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Galaxy S20</strong> (Snapdragon 865, Adreno 650)</td>
+              <td><span class="badge" style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:4px;font-weight:600;">GPU</span></td>
+              <td>60 / <strong>181-197 t/s</strong></td>
+              <td>26-27 / <strong>23.6-24.4 t/s</strong> (32.9 @ 587MHz)</td>
+            </tr>
+            <tr>
+              <td><strong>Galaxy A35</strong> (Exynos 1380, Mali-G68 MP5)</td>
+              <td><span class="badge" style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:4px;font-weight:600;">GPU</span></td>
+              <td>109-110 / <strong>190 t/s</strong></td>
+              <td>35-37 (CPU) / 21.5 t/s (GPU)</td>
+            </tr>
+            <tr>
+              <td><strong>Galaxy S21</strong> (Exynos 2100, Mali-G78 MP14)</td>
+              <td><span class="badge" style="background:#f1f5f9;color:#475569;padding:2px 8px;border-radius:4px;font-weight:600;">CPU</span></td>
+              <td>115-119 / <strong>227 t/s</strong></td>
+              <td><strong>46-47 t/s</strong> (CPU) / 22.8 t/s (GPU)</td>
+            </tr>
+            <tr>
+              <td><strong>Galaxy A53</strong> (Exynos 1280, Mali-G68 MP4)</td>
+              <td><span class="badge" style="background:#f1f5f9;color:#475569;padding:2px 8px;border-radius:4px;font-weight:600;">CPU</span></td>
+              <td>55 / <strong>67 t/s</strong></td>
+              <td><strong>22-24 t/s</strong> (CPU) / 14.5 t/s (GPU)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style="margin-top: 32px;">
+        <h3>2. Empirical Real-Device STT Benchmarks (Whisper Large-v3-Turbo Q5_0, 548MB)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 12px;">
+          Test Device: Samsung Galaxy A35 5G (Exynos 1380, Mali-G68 MP5, 8GB RAM, Android 16). Audio input: John F. Kennedy 1-minute benchmark audio (<code>jfk_1min.wav</code>).
+        </p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Execution Mode</th>
+              <th>Target Hardware</th>
+              <th>Elapsed Time</th>
+              <th>GPU Clock / Load</th>
+              <th>CPU Utilization</th>
+              <th>Speedup</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CPU NEON Mode</strong> (4 threads)</td>
+              <td>Cortex-A78 x4 cores</td>
+              <td>816.48s (13m 36s)</td>
+              <td>0% (Idle)</td>
+              <td>291% (Active)</td>
+              <td>Baseline</td>
+            </tr>
+            <tr>
+              <td><strong>Vulkan GPU Mode</strong> (Mali Quirk)</td>
+              <td>Mali-G68 MP5</td>
+              <td><strong>360.60s (6m 00s)</strong></td>
+              <td><strong>949 MHz (100%)</strong></td>
+              <td>20~30% (Low)</td>
+              <td><strong>2.26x (56% time reduction)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style="margin-top: 32px;">
+        <h3>3. AMUDA (AMEVA-Compute) Android SDK v0.3.0 In-Process Benchmarks</h3>
+        <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 12px;">
+          In-process Android AAR SDK (no daemon, no shell, runs embedded inside client apps).
+        </p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Engine / API</th>
+              <th>Hardware Backing</th>
+              <th>Measured Metric</th>
+              <th>Physical Testbed</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AmevaSenseVoice</strong></td>
+              <td>CPU / ONNX Runtime (sherpa-onnx v1.13.8)</td>
+              <td><strong>Warm RTF: 0.063 ~ 0.068</strong> (S21)<br><strong>Warm RTF: 0.31 ~ 0.37</strong> (A35/A53)</td>
+              <td>Galaxy S21, A35, A53</td>
+              <td><span class="badge" style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:600;">Verified (15x Real-Time)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Auto Backend-Select</strong></td>
+              <td>Pre-flight GEMV Benchmarking</td>
+              <td>CPU: 6.77ms &bull; Vulkan: 3.39ms &bull; <strong>OpenCL: 2.92ms</strong></td>
+              <td>Galaxy A35 (Mali-G68)</td>
+              <td><span class="badge" style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:600;">Auto-Selected OpenCL</span></td>
+            </tr>
+            <tr>
+              <td><strong>AmevaSpeech</strong></td>
+              <td>Vulkan STT Backend (whisper.cpp)</td>
+              <td>GPU MatMul (f16, q5_0) Dispatch</td>
+              <td>Galaxy A35, A53</td>
+              <td><span class="badge" style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:600;">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>AmevaDiffusion</strong></td>
+              <td>stable-diffusion.cpp (SDXS 683MB GGUF)</td>
+              <td>512x512 1-Step Distilled txt2img</td>
+              <td>Galaxy A35</td>
+              <td><span class="badge" style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:600;">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>AmevaLlm.reset()</strong></td>
+              <td>KV Cache In-Memory Erasure</td>
+              <td>Latency: <strong>&lt; 0.01ms</strong> (No reload)</td>
+              <td>All Devices</td>
+              <td><span class="badge" style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:600;">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style="margin-top: 32px; margin-bottom: 24px;">
+        <h3>4. Silicon &amp; Driver Defect Resolution (Ground Truth)</h3>
+        <ul style="line-height: 1.8; color: var(--text-main);">
+          <li>
+            <strong>ARM Mali-G68 Valhall Integer Truncation Infinite Loop Elimination</strong>:
+            <code>loadstride_b = gl_WorkGroupSize.x * LOAD_VEC_B / BK = 16 * 1 / 32 = 0</code> 정수 나눗셈 절삭 버그로 인한 무한 루프(GPU Hang / TDR Reset)를 감지하고, Medium MatMul(<code>_m</code>, 작업그룹 크기 128, <code>loadstride_b = 4</code>)을 강제 적용하여 25/25 전 레이어 오프로딩을 안정화하였습니다.
+          </li>
+          <li>
+            <strong>Qualcomm Adreno 830 JIT 컴파일러 레지스터 할당 버그 격리</strong>:
+            Snapdragon 8 Elite 환경에서 Specialization Constant <code>NUM_COLS &gt;= 3</code> 시 발생하는 <code>VK_ERROR_UNKNOWN (-13)</code> 컴파일 결함을 분석하고, <code>mul_mat_vec_max_cols = 2</code> 경계를 강제하여 음성 입력 시 4,401ms 안정 구동을 달성하였습니다.
+          </li>
+        </ul>
+      </section>
     </main>
   </div>
 

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/index.html</loc><lastmod>2026-10-13</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/installation.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/quickstart.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/api-reference.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/advanced-parameters.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/benchmarks.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/models.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/training-guide.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/versions.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/guide.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/cluster.html</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/llms.txt</loc><lastmod>2026-10-13</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://uno-km.vercel.app/lib/orchestrator/llms-full.txt</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/index.html</loc><lastmod>2026-10-16</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/installation.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/quickstart.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/api-reference.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/advanced-parameters.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/benchmarks.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/models.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/training-guide.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/versions.html</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/guide.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/cluster.html</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/llms.txt</loc><lastmod>2026-10-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://uno-km.vercel.app/lib/orchestrator/llms-full.txt</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 </urlset>

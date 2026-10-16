@@ -94,6 +94,15 @@ sdks:
       pypi: "https://pypi.org/project/termux-ai-orchestrator/"
       github: "https://github.com/uno-km/termux-ai-orchestrator"
 
+  - id: compute
+    name: "AMEVA-Compute (AMUDA)"
+    badge: "Android AAR v0.3.0"
+    tagline_ko: "모바일 인앱 임베디드 AI SDK. Whisper STT, Stable Diffusion, SenseVoice(RTF 0.063), CPU/Vulkan/OpenCL 자동 벤치마크 백엔드 라우팅."
+    tagline_en: "Android In-Process Embedded AI Engine AAR. Whisper STT, Stable Diffusion, SenseVoice (RTF 0.063), and automatic CPU/Vulkan/OpenCL GEMV benchmark routing."
+    links:
+      docs: "/lib/vulkan/benchmarks.html"
+      github: "https://github.com/uno-km/ameva-compute"
+
 libs:
   - id: aichain
     name: "Termux-AIChain"
